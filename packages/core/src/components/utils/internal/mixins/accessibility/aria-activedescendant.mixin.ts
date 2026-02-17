@@ -15,6 +15,8 @@ export interface AriaActiveDescendantMixinContract {
   isAriaActiveDescendantActive(): boolean;
   getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null;
   getAriaActiveDescendantProxyItemId?(): string | boolean;
+
+  suppressAriaActiveDescendant?: boolean;
 }
 
 export const AriaActiveDescendantMixin = <
@@ -26,6 +28,8 @@ export const AriaActiveDescendantMixin = <
     extends Base
     implements AriaActiveDescendantMixinContract
   {
+    suppressAriaActiveDescendant = false;
+
     isAriaActiveDescendantActive() {
       return false;
     }
@@ -39,6 +43,10 @@ export const AriaActiveDescendantMixin = <
     }
 
     async clearActiveDescendant() {
+      if (this.suppressAriaActiveDescendant) {
+        return;
+      }
+
       const controllingElement = await this.getControllingAriaElement();
       if (!controllingElement) {
         return;
@@ -53,6 +61,10 @@ export const AriaActiveDescendantMixin = <
 
     @Listen(IxFocusVisibleChangeEvent.eventName, { target: 'document' })
     async $internal_onActiveDescendantChange(event: IxFocusVisibleChangeEvent) {
+      if (this.suppressAriaActiveDescendant) {
+        return;
+      }
+
       if (!this.isAriaActiveDescendantActive()) {
         this.clearActiveDescendant();
         return;
@@ -79,7 +91,7 @@ export const AriaActiveDescendantMixin = <
         }
 
         const proxyId = this.getAriaActiveDescendantProxyItemId();
-        if (proxyId) {
+        if (typeof proxyId === 'string' && proxyId) {
           controllingElement.setAttribute(
             'aria-activedescendant',
             item.id + '-' + proxyId

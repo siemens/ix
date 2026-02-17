@@ -23,7 +23,11 @@ import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
-import { FocusProxy, updateFocusProxyList } from '../utils/focus/focus-proxy';
+import {
+  FocusProxy,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   ComponentIdMixin,
@@ -214,6 +218,11 @@ export class Avatar
     this.updateProxyList();
   }
 
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    this.observeChildrenChange?.disconnect();
+  }
+
   private async slottedChanged() {
     this.hasSlottedElements = hasSlottedElements(this.slotElement);
   }
@@ -251,7 +260,7 @@ export class Avatar
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
-    return 'proxy-listbox-item';
+    return PROXY_LISTITEM_ID_SUFFIX;
   }
 
   private updateProxyList() {

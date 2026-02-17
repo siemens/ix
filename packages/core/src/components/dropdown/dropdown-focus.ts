@@ -130,7 +130,7 @@ export const configureKeyboardInteraction = (
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => getItemsHost());
 
-  const callback = async (ev: KeyboardEvent) => {
+  const callback = async (event: KeyboardEvent) => {
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
 
@@ -167,10 +167,10 @@ export const configureKeyboardInteraction = (
     }
 
     if (options.beforeKeydown) {
-      options.beforeKeydown(ev);
+      options.beforeKeydown(event);
     }
 
-    switch (ev.key) {
+    switch (event.key) {
       case 'ArrowLeft': {
         getItemsHost().dispatchEvent(
           new CustomEvent('ix-close-submenu', {
@@ -182,13 +182,13 @@ export const configureKeyboardInteraction = (
       }
 
       case 'ArrowDown': {
-        if (ev.altKey) {
+        if (event.altKey) {
           // ALT + DOWN opens the dropdown but prevent focus change
           return;
         }
 
         // Disable movement/scroll with keyboard
-        ev.preventDefault();
+        event.preventDefault();
         const nextItem = getNextFocusableDropdownItem(
           items,
           activeElement,
@@ -202,12 +202,12 @@ export const configureKeyboardInteraction = (
       }
 
       case 'ArrowUp': {
-        if (ev.altKey) {
+        if (event.altKey) {
           // ALT + DOWN opens the dropdown but prevent focus change
           return;
         }
         // Disable movement/scroll with keyboard
-        ev.preventDefault();
+        event.preventDefault();
         const prevItem = getPreviousFocusableItem(
           items,
           activeElement,
@@ -220,7 +220,7 @@ export const configureKeyboardInteraction = (
       }
 
       case 'Home': {
-        ev.preventDefault();
+        event.preventDefault();
         const firstItem = items[0];
         if (firstItem !== undefined) {
           setItemActive(firstItem);
@@ -229,7 +229,7 @@ export const configureKeyboardInteraction = (
       }
 
       case 'End': {
-        ev.preventDefault();
+        event.preventDefault();
         const lastItem = items[items.length - 1];
         if (lastItem !== undefined) {
           setItemActive(lastItem);
@@ -257,8 +257,8 @@ export const configureKeyboardInteraction = (
         break;
     }
 
-    if (itemTriggerKeys.includes(ev.key)) {
-      options.onItemActivation?.(ev, activeElement!);
+    if (itemTriggerKeys.includes(event.key)) {
+      options.onItemActivation?.(event, activeElement!);
     }
   };
 

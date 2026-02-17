@@ -666,7 +666,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -674,7 +674,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
   outputs: ['dateChange', 'dateRangeChange', 'dateSelect'],
   standalone: false
 })
@@ -861,10 +861,13 @@ export declare interface IxDropdown extends Components.IxDropdown {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'variant'],
+  outputs: ['showChange', 'showChanged'],
   standalone: false
 })
 export class IxDropdownButton {
   protected el: HTMLIxDropdownButtonElement;
+  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -872,7 +875,16 @@ export class IxDropdownButton {
 }
 
 
-export declare interface IxDropdownButton extends Components.IxDropdownButton {}
+export declare interface IxDropdownButton extends Components.IxDropdownButton {
+  /**
+   * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+   */
+  showChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fire event after visibility of dropdown has changed
+   */
+  showChanged: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
@@ -2440,14 +2452,14 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disableFocusTrap', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant']
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant']
 })
 @Component({
   selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disableFocusTrap', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant'],
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant'],
   outputs: ['buttonClick'],
   standalone: false
 })

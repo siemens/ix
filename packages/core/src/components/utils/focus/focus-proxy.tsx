@@ -24,7 +24,7 @@ export const FocusProxy = (props: { hostId: string; otherProps: any }) => {
 };
 
 export const PROXY_LIST_ID_SUFFIX = 'proxy-listbox' as const;
-export const PROXY_ITEM_ID_SUFFIX = 'proxy-listbox-item' as const;
+export const PROXY_LISTITEM_ID_SUFFIX = 'proxy-listbox-item' as const;
 
 export const updateFocusProxyList = <T extends HTMLElement>(
   proxyListElement: HTMLElement,
@@ -44,7 +44,7 @@ export const updateFocusProxyList = <T extends HTMLElement>(
     proxyListElement.innerHTML = '';
     items.forEach((item) => {
       const li = document.createElement('li');
-      li.id = item.id + '-' + PROXY_ITEM_ID_SUFFIX;
+      li.id = item.id + '-' + PROXY_LISTITEM_ID_SUFFIX;
 
       if (modifyProxyElement) {
         modifyProxyElement(item, li);

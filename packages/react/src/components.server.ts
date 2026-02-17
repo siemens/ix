@@ -590,6 +590,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         i18nDone: 'i18n-done',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        ariaLabelMonthSelection: 'aria-label-month-selection',
+        ariaLabelYearSelection: 'aria-label-year-selection',
         weekStartIndex: 'week-start-index',
         locale: 'locale',
         showWeekNumbers: 'show-week-numbers',
@@ -693,7 +695,10 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
     serializeShadowRoot,
 });
 
-export type IxDropdownButtonEvents = NonNullable<unknown>;
+export type IxDropdownButtonEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',
@@ -705,7 +710,8 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         closeBehavior: 'close-behavior',
         placement: 'placement',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownButton as ReactWebComponent<IxDropdownButtonElement, IxDropdownButtonEvents>,
@@ -1695,8 +1701,7 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         disableButton: 'disable-button',
         disableDropdownButton: 'disable-dropdown-button',
         placement: 'placement',
-        enableTopLayer: 'enable-top-layer',
-        disableFocusTrap: 'disable-focus-trap'
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSplitButton as ReactWebComponent<IxSplitButtonElement, IxSplitButtonEvents>,

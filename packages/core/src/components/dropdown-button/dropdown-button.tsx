@@ -11,7 +11,18 @@ import {
   iconChevronDownSmall,
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Mixin,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+  Method,
+} from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
@@ -53,7 +64,7 @@ export class DropdownButton
   /**
    * Set label
    */
-  @Prop() label?: string;
+  @Prop() label?: string | null;
 
   /**
    * Button icon
@@ -86,6 +97,23 @@ export class DropdownButton
    */
   @Prop() enableTopLayer: boolean = false;
 
+  /**
+   * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+   *
+   * @internal
+   * */
+  @Prop() override suppressAriaActiveDescendant = false;
+
+  /**
+   * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+   */
+  @Event() showChange!: EventEmitter<boolean>;
+
+  /**
+   * Fire event after visibility of dropdown has changed
+   */
+  @Event() showChanged!: EventEmitter<boolean>;
+
   @State() dropdownShow = false;
 
   private inheritAriaAttributes: A11yAttributes = {};
@@ -93,9 +121,13 @@ export class DropdownButton
   private dropdownButtonId = this.getHostElementId();
 
   private readonly dropdownAnchor = makeRef<HTMLElement>();
-  private readonly dropdownRef = makeRef<HTMLElement>();
+  private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
-  private hostContext?: { breadcrumb: boolean };
+  private hostContext?: {
+    breadcrumb: boolean;
+    datePicker: boolean;
+    splitButton: boolean;
+  };
 
   private getTriangle() {
     return (
@@ -133,6 +165,8 @@ export class DropdownButton
   override componentWillRender(): Promise<void> | void {
     this.hostContext = {
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
+      datePicker: !!closestPassShadow(this.hostElement, 'ix-date-picker'),
+      splitButton: !!closestPassShadow(this.hostElement, 'ix-split-button'),
     };
   }
 
@@ -144,22 +178,32 @@ export class DropdownButton
   }
 
   override isAriaActiveDescendantActive(): boolean {
-    return this.dropdownShow;
+    return !this.suppressAriaActiveDescendant && this.dropdownShow;
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
     return false;
   }
 
+  /**@internal */
+  @Method()
+  async getDropdownReference(): Promise<HTMLIxDropdownElement> {
+    return this.dropdownRef.waitForCurrent();
+  }
+
   override render() {
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
       'aria-haspopup': 'true',
-      'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
       'aria-disabled': a11yBoolean(this.disabled),
       'aria-expanded': a11yBoolean(this.dropdownShow),
       role: 'button',
     };
+
+    if (!this.inheritAriaAttributes['aria-controls']) {
+      ariaAttributes['aria-controls'] =
+        `dropdown-button-menu-${this.dropdownButtonId}`;
+    }
 
     const commonProperties = {
       id: `dropdown-button-${this.dropdownButtonId}`,
@@ -167,18 +211,24 @@ export class DropdownButton
       variant: this.variant,
     };
 
+    const hideChevron =
+      this.hostContext?.breadcrumb ||
+      this.hostContext?.datePicker ||
+      this.hostContext?.splitButton;
+
     return (
       <Host
         class={{
           disabled: this.disabled,
           'host-context-breadcrumb': !!this.hostContext?.breadcrumb,
+          'host-context-date-picker': !!this.hostContext?.datePicker,
         }}
         ref={this.dropdownAnchor}
         tabIndex={this.disabled ? -1 : 0}
         {...ariaAttributes}
       >
         <div class="dropdown-button">
-          {this.label ? (
+          {this.label || this.label === null ? (
             <ix-button
               {...commonProperties}
               class={'internal-button'}
@@ -195,7 +245,7 @@ export class DropdownButton
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
                 <slot name="button-label"></slot>
-                {!this.hostContext?.breadcrumb && (
+                {!hideChevron && (
                   <ix-icon
                     aria-hidden="true"
                     name={
@@ -215,7 +265,7 @@ export class DropdownButton
                 icon={this.icon}
                 ref={(ref) => (ref!.tabIndex = -1)}
               ></ix-icon-button>
-              {this.getTriangle()}
+              {!hideChevron && this.getTriangle()}
             </div>
           )}
         </div>
@@ -231,6 +281,16 @@ export class DropdownButton
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
+          onScroll={(event) => {
+            // Need to dispatch the event again to handle infinite scroll of ix-date-picker,
+            // as the scroll event does not bubble beyond the shadow root
+            const scrollEvent = new CustomEvent('scroll', {
+              bubbles: event.bubbles,
+              cancelable: event.cancelable,
+              detail: event.detail,
+            });
+            this.hostElement.dispatchEvent(scrollEvent);
+          }}
         >
           <slot></slot>
         </ix-dropdown>

@@ -590,6 +590,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.focusUtilities?.destroy();
+    this.resetForwardQueryElement();
 
     removeVisibleFocus();
 

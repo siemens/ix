@@ -15,20 +15,34 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
+  Build,
 } from '@stencil/core';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import { AlignedPlacement } from '../dropdown/placement';
-import { makeRef } from '../utils/make-ref';
-import { Mixin } from '../utils/internal/component';
+import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+import { DefaultMixins } from '../utils/internal/component';
 import type { SplitButtonVariant } from './split-button.types';
+import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',
   shadow: true,
 })
-export class SplitButton extends Mixin() {
+export class SplitButton
+  extends Mixin(...DefaultMixins, AriaActiveDescendantMixin)
+  implements AriaActiveDescendantMixinContract
+{
   @Element() override hostElement!: HTMLIxSplitButtonElement;
 
   /**
@@ -102,14 +116,33 @@ export class SplitButton extends Mixin() {
    */
   @Prop() enableTopLayer: boolean = false;
 
-  @Prop() disableFocusTrap = false;
-
   /**
    * Button clicked
    */
   @Event() buttonClick!: EventEmitter<MouseEvent>;
 
-  private readonly triggerElementRef = makeRef<HTMLElement>();
+  private showDropdown = false;
+  private internalId = 'ix-split-button';
+
+  private observeChildrenChange?: MutationObserver;
+
+  override componentDidLoad(): Promise<void> | void {
+    super.componentDidLoad();
+    this.observeChildrenChange = new MutationObserver(() => {
+      this.updateProxyList();
+    });
+    this.observeChildrenChange.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
+
+    this.updateProxyList();
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.observeChildrenChange?.disconnect();
+  }
 
   private get isDisabledButton() {
     return this.disabled || this.disableButton;
@@ -117,6 +150,45 @@ export class SplitButton extends Mixin() {
 
   private get isDisabledIcon() {
     return this.disabled || this.disableDropdownButton;
+  }
+
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+      `.right-button`
+    );
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.showDropdown;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return PROXY_LISTITEM_ID_SUFFIX;
+  }
+
+  private updateProxyList() {
+    const items = this.hostElement.querySelectorAll('ix-dropdown-item');
+    const proxyList = this.hostElement.shadowRoot!.querySelector(
+      '.proxy-list'
+    ) as HTMLUListElement | null;
+
+    if (!proxyList) {
+      Build.isDev &&
+        console.warn('ix-split-button - focus proxy list element not found');
+      return;
+    }
+
+    console.log('Updating proxy list with items', items);
+
+    updateFocusProxyList(proxyList, Array.from(items), (item, proxyElement) => {
+      proxyElement.role = 'menuitem';
+      proxyElement.innerText = item.label ?? item.textContent ?? '';
+      proxyElement.ariaLabel =
+        item.ariaLabel ?? item.label ?? item.textContent ?? '';
+    });
   }
 
   override render() {
@@ -129,17 +201,13 @@ export class SplitButton extends Mixin() {
       ...baseAttributes,
       disabled: this.isDisabledButton,
       class: {
+        'left-button': true,
         'left-button-border': !hasOutline,
       },
     };
 
-    const dropdownButtonAttributes = {
-      ...baseAttributes,
-      disabled: this.isDisabledIcon,
-    };
-
     return (
-      <Host class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
+      <Host>
         {this.label ? (
           <ix-button
             {...buttonAttributes}
@@ -157,21 +225,20 @@ export class SplitButton extends Mixin() {
             aria-label={this.ariaLabelButton}
           ></ix-icon-button>
         )}
-        <ix-icon-button
-          {...dropdownButtonAttributes}
-          ref={this.triggerElementRef}
-          class={'anchor'}
-          icon={this.splitIcon ?? iconContextMenu}
+        <ix-dropdown-button
+          class="right-button"
           aria-label={this.ariaLabelSplitIconButton}
-        ></ix-icon-button>
-        <ix-dropdown
-          closeBehavior={this.closeBehavior}
-          trigger={this.triggerElementRef.waitForCurrent()}
+          icon={this.splitIcon ?? iconContextMenu}
           enableTopLayer={this.enableTopLayer}
-          disableFocusTrap
+          closeBehavior={this.closeBehavior}
+          disabled={this.isDisabledIcon}
+          suppressAriaActiveDescendant={true}
+          onShowChanged={({ detail }) => (this.showDropdown = detail)}
+          aria-controls={`${this.internalId}-${PROXY_LIST_ID_SUFFIX}`}
         >
+          <FocusProxy hostId={this.internalId} otherProps={{}}></FocusProxy>
           <slot></slot>
-        </ix-dropdown>
+        </ix-dropdown-button>
       </Host>
     );
   }

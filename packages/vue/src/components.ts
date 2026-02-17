@@ -460,6 +460,8 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'i18nDone',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
+  'ariaLabelMonthSelection',
+  'ariaLabelYearSelection',
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
@@ -563,7 +565,13 @@ export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__
   'closeBehavior',
   'placement',
   'ariaLabelDropdownButton',
-  'enableTopLayer'
+  'enableTopLayer',
+  'suppressAriaActiveDescendant',
+  'showChange',
+  'showChanged'
+], [
+  'showChange',
+  'showChanged'
 ]);
 
 
@@ -1278,7 +1286,6 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'disableDropdownButton',
   'placement',
   'enableTopLayer',
-  'disableFocusTrap',
   'buttonClick'
 ], [
   'buttonClick'

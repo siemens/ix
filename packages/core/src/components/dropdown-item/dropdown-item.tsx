@@ -81,7 +81,7 @@ export class DropdownItem
   /**
    * Whether the item is checked or not. If true a checkmark will mark the item as checked.
    */
-  @Prop() checked = false;
+  @Prop({ reflect: true }) checked = false;
 
   /** @internal */
   @Prop() isSubMenu = false;
