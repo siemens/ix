@@ -9,6 +9,8 @@
 @use 'mixins/shadow-dom/component';
 @use 'legacy/components/button-group';
 
+@use './../utils/focus/focus-proxy';
+
 :host {
   position: relative;
   display: inline-flex;
@@ -34,4 +36,6 @@
 
     margin-right: 0.125rem;
   }
+
+  @include focus-proxy.focus-proxy;
 }

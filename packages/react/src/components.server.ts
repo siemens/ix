@@ -710,7 +710,8 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         closeBehavior: 'close-behavior',
         placement: 'placement',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownButton as ReactWebComponent<IxDropdownButtonElement, IxDropdownButtonEvents>,

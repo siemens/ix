@@ -98,6 +98,13 @@ export class DropdownButton
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+   *
+   * @internal
+   * */
+  @Prop() override suppressAriaActiveDescendant = false;
+
+  /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
    */
   @Event() showChange!: EventEmitter<boolean>;
@@ -171,7 +178,7 @@ export class DropdownButton
   }
 
   override isAriaActiveDescendantActive(): boolean {
-    return this.dropdownShow;
+    return !this.suppressAriaActiveDescendant && this.dropdownShow;
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
@@ -188,11 +195,15 @@ export class DropdownButton
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
       'aria-haspopup': 'true',
-      'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
       'aria-disabled': a11yBoolean(this.disabled),
       'aria-expanded': a11yBoolean(this.dropdownShow),
       role: 'button',
     };
+
+    if (!this.inheritAriaAttributes['aria-controls']) {
+      ariaAttributes['aria-controls'] =
+        `dropdown-button-menu-${this.dropdownButtonId}`;
+    }
 
     const commonProperties = {
       id: `dropdown-button-${this.dropdownButtonId}`,

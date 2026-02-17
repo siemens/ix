@@ -1484,6 +1484,11 @@ export namespace Components {
          */
         "placement"?: AlignedPlacement;
         /**
+          * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+          * @default false
+         */
+        "suppressAriaActiveDescendant": boolean;
+        /**
           * Button variant
           * @default 'primary'
          */
@@ -7609,6 +7614,11 @@ declare namespace LocalJSX {
          */
         "placement"?: AlignedPlacement;
         /**
+          * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+          * @default false
+         */
+        "suppressAriaActiveDescendant"?: boolean;
+        /**
           * Button variant
           * @default 'primary'
          */
@@ -10932,6 +10942,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "enableTopLayer": boolean;
+        "suppressAriaActiveDescendant": boolean;
     }
     interface IxDropdownHeaderAttributes {
         "label": string;
