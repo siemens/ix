@@ -150,7 +150,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
-          ariaLabelButton={this.expanded ? 'Close search' : 'Open search'}
+          aria-label={this.expanded ? 'Close search' : 'Open search'}
         ></ix-icon-button>
 
         <div

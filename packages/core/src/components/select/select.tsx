@@ -76,7 +76,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
+  @Prop() ariaLabelChevronDownIconButton?: string;
 
   /**
    * ARIA label for the clear icon button
@@ -986,9 +986,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
                       aria-label={
-                        this.dropdownShow
+                        this.ariaLabelChevronDownIconButton ??
+                        (this.dropdownShow
                           ? 'Close select dropdown'
-                          : 'Open select dropdown'
+                          : 'Open select dropdown')
                       }
                     ></ix-icon-button>
                   )}
