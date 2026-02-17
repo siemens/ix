@@ -118,7 +118,7 @@ export class Pane {
   /**
    * ARIA label close or collapse button
    */
-  @Prop() ariaLabelCollapseCloseButton?: string = 'Toggle pane';
+  @Prop() ariaLabelCollapseCloseButton?: string;
 
   /**
    * @internal
@@ -617,10 +617,7 @@ export class Pane {
     const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
 
     let paneButtonAriaLabel: string;
-    if (
-      this.ariaLabelCollapseCloseButton &&
-      this.ariaLabelCollapseCloseButton !== 'Toggle pane'
-    ) {
+    if (this.ariaLabelCollapseCloseButton) {
       paneButtonAriaLabel = this.ariaLabelCollapseCloseButton;
     } else if (this.expanded) {
       paneButtonAriaLabel =
@@ -705,7 +702,7 @@ export class Pane {
               variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
-              ariaLabelButton={paneButtonAriaLabel}
+              aria-label={paneButtonAriaLabel}
             />
             <div
               class={{

@@ -486,7 +486,7 @@ export class Tabs {
           <button
             class="arrow"
             onClick={() => this.move(this.scrollAmount, true)}
-            ariaLabel={this.ariaLabelChevronLeftIconButton}
+            aria-label={this.ariaLabelChevronLeftIconButton}
           >
             <ix-icon name={iconChevronLeftSmall}></ix-icon>
           </button>
@@ -508,7 +508,7 @@ export class Tabs {
           <button
             class="arrow right"
             onClick={() => this.move(-this.scrollAmount, true)}
-            ariaLabel={this.ariaLabelChevronRightIconButton}
+            aria-label={this.ariaLabelChevronRightIconButton}
           >
             <ix-icon name={iconChevronRightSmall}></ix-icon>
           </button>

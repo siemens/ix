@@ -710,7 +710,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronLeftSmall}
               variant="tertiary"
               class="arrows"
-              ariaLabelButton={this.ariaLabelPreviousMonthButton}
+              aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
               <ix-button
@@ -786,7 +786,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronRightSmall}
               variant="tertiary"
               class="arrows"
-              ariaLabelButton={this.ariaLabelNextMonthButton}
+              aria-label={this.ariaLabelNextMonthButton}
             ></ix-icon-button>
           </div>
           <div

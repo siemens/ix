@@ -33,15 +33,6 @@ export class IconButton {
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
-   * ARIA label for the icon button
-   * Will be set as aria-label on the nested HTML button element
-   * Use this instead of the deprecated a11y-label or the native aria-label attribute
-   *
-   * @since 4.3.0
-   */
-  @Prop() ariaLabelButton: string | null = null;
-
-  /**
    * Variant of button
    */
   @Prop() variant: IconButtonVariant = 'subtle-primary';
@@ -120,7 +111,6 @@ export class IconButton {
       ariaAttributes: {
         'aria-label':
           a11y['aria-label'] ??
-          this.ariaLabelButton ??
           this.a11yLabel ??
           getFallbackLabelFromIconName(this.icon),
       },

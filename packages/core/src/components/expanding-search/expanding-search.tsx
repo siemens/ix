@@ -183,7 +183,7 @@ export class ExpandingSearch
             onFocus={() => (this.hasFocus = true)}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
-            ariaLabel={this.ariaLabelSearchInput}
+            aria-label={this.ariaLabelSearchInput}
           />
 
           {this.isFieldChanged ? (
@@ -194,7 +194,7 @@ export class ExpandingSearch
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
-              ariaLabelButton={this.ariaLabelClearIconButton}
+              aria-label={this.ariaLabelClearIconButton}
             />
           ) : null}
         </div>

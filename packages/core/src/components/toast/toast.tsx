@@ -225,7 +225,7 @@ export class Toast {
               size="24"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}
-              ariaLabelButton={this.ariaLabelCloseIconButton}
+              aria-label={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>

@@ -954,7 +954,6 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
     tagName: 'ix-icon-button',
     properties: {
         a11yLabel: 'a11y-label',
-        ariaLabelButton: 'aria-label-button',
         variant: 'variant',
         oval: 'oval',
         icon: 'icon',

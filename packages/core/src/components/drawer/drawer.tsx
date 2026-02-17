@@ -244,7 +244,7 @@ export class Drawer {
               variant="tertiary"
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
-              ariaLabelButton={this.ariaLabelCloseButton}
+              aria-label={this.ariaLabelCloseButton}
             ></ix-icon-button>
           </div>
           <div

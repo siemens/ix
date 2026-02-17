@@ -35,7 +35,7 @@ export class TreeItem {
   /**
    * ARIA label for the chevron icon
    */
-  @Prop() ariaLabelChevronIcon?: string = 'Toggle tree item';
+  @Prop() ariaLabelChevronIcon?: string;
 
   /**
    * Expand/Collapsed toggled
@@ -68,10 +68,11 @@ export class TreeItem {
                 e.stopPropagation();
                 this.toggle.emit();
               }}
-              ariaLabel={
-                this.context?.isExpanded
+              aria-label={
+                this.ariaLabelChevronIcon ??
+                (this.context?.isExpanded
                   ? 'Collapse tree item'
-                  : 'Expand tree item'
+                  : 'Expand tree item')
               }
             />
           ) : null}

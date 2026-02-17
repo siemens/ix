@@ -458,7 +458,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            ariaLabelButton={this.ariaLabelCalendarButton}
+            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>

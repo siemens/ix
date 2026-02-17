@@ -100,7 +100,7 @@ export class ModalHeader {
             name={this.icon}
             color={this.iconColor}
             size="32"
-            ariaLabel={this.ariaLabelIcon}
+            aria-label={this.ariaLabelIcon}
           ></ix-icon>
         ) : null}
         <div class="modal-title">
@@ -115,7 +115,7 @@ export class ModalHeader {
             variant="tertiary"
             icon={iconClose}
             iconColor="color-soft-text"
-            ariaLabelButton={this.ariaLabelCloseIconButton}
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

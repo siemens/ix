@@ -247,14 +247,14 @@ export class Pagination {
           variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
-          ariaLabelButton={this.ariaLabelChevronLeftIconButton}
+          aria-label={this.ariaLabelChevronLeftIconButton}
         ></ix-icon-button>
 
         {this.advanced ? (
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
-              ariaLabel={this.ariaLabelPageSelection}
+              aria-label={this.ariaLabelPageSelection}
               class="ix-form-control page-selection"
               type="number"
               min="1"
@@ -293,7 +293,7 @@ export class Pagination {
           variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
-          ariaLabelButton={this.ariaLabelChevronRightIconButton}
+          aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
         {this.advanced && !this.hideItemCount && (
