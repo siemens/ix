@@ -23,6 +23,11 @@ import {
 import { DateTime } from 'luxon';
 import { Slot } from '../input/input.fc';
 import {
+  onInputFocus,
+  onInputBlurWithChange,
+  onEnterKeyChangeEmit,
+} from '../input/input.util';
+import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
@@ -257,6 +262,12 @@ export class DateInput
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
+  /**
+   * Native change event.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
 
@@ -268,6 +279,9 @@ export class DateInput
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
 
   /** @internal */
+  initialValue?: string;
+
+  /** @internal */
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -276,6 +290,7 @@ export class DateInput
   }
 
   componentWillLoad(): void {
+    this.initialValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -429,9 +444,18 @@ export class DateInput
     return renderPickerInputFn(config, {
       onInput: onInput(eventConfig),
       onClick: onClick(eventConfig),
-      onFocus: onFocus(eventConfig),
-      onBlur: onBlur(eventConfig),
-      onKeyDown: onKeyDown(eventConfig),
+      onFocus: async () => {
+        onInputFocus(this, this.value);
+        await onFocus(eventConfig)();
+      },
+      onBlur: () => {
+        onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+        onBlur(eventConfig)();
+      },
+      onKeyDown: (event: KeyboardEvent) => {
+        onEnterKeyChangeEmit(event, this, this.value);
+        onKeyDown(eventConfig)(event);
+      },
     });
   }
 
@@ -456,6 +480,10 @@ export class DateInput
         onDateChange={(event) => {
           const { from } = event.detail;
           this.onInput(from);
+          if (this.initialValue !== from) {
+            this.ixChange.emit(from ?? '');
+            this.initialValue = from ?? undefined;
+          }
         }}
         showWeekNumbers={this.showWeekNumbers}
         ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}

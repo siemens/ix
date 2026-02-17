@@ -437,11 +437,13 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'enableTopLayer',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ],
@@ -762,10 +764,12 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'textAlignment',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ],
 'value', 'valueChange', undefined);
@@ -1026,10 +1030,12 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ],
 'value', 'valueChange', undefined);
@@ -1318,10 +1324,12 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'minLength',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixBlur'
 ],
 'value', 'valueChange', undefined);
@@ -1363,11 +1371,13 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'textAlignment',
   'enableTopLayer',
   'valueChange',
+  'ixChange',
   'validityStateChange',
   'ixFocus',
   'ixBlur'
 ], [
   'valueChange',
+  'ixChange',
   'validityStateChange',
   'ixFocus',
   'ixBlur'

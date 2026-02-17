@@ -11,7 +11,6 @@ import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
-  isIxInputFieldComponent,
   ValidationResults,
   shouldSuppressInternalValidation,
 } from '../utils/input';
@@ -118,7 +117,7 @@ export function onInputBlur<T>(
     throw new Error('Input element is not available');
   }
 
-  input.dataset.ixTouched = 'true';
+  input.setAttribute('data-ix-touched', 'true');
   checkInternalValidity(comp, input);
 }
 
@@ -247,6 +246,106 @@ export function handleSubmitOnEnterKeydown(
   }
 }
 
+export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
+  comp.initialValue = currentValue;
+}
+
+export function onInputBlurWithChange<T>(
+  comp: IxFormComponent<T> & {
+    initialValue?: T;
+    ixChange: { emit: (value: T) => void };
+  },
+  input?: HTMLInputElement | HTMLTextAreaElement | null,
+  currentValue?: T
+) {
+  onInputBlur(comp, input);
+
+  if (comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue!);
+    comp.initialValue = currentValue;
+  }
+}
+
+export function onEnterKeyChangeEmit<T>(
+  event: KeyboardEvent,
+  comp: { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  currentValue: T
+) {
+  if (event.key === 'Enter' && comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue);
+    comp.initialValue = currentValue;
+  }
+}
+
+export interface PickerValidityStateTracker {
+  lastEmittedPatternMismatch?: boolean;
+  lastEmittedValueMissing?: boolean;
+}
+
+export function createPickerValidityStateTracker(): PickerValidityStateTracker {
+  return {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
+}
+
+export interface PickerValidityContext {
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState: () => Promise<ValidityState>;
+  emit: (state: {
+    patternMismatch: boolean;
+    valueMissing: boolean;
+    invalidReason?: string;
+  }) => void;
+}
+
+export interface PickerInputComponent<T> {
+  validityTracker: PickerValidityStateTracker;
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState(): Promise<ValidityState>;
+  validityStateChange: { emit: (state: T) => void };
+}
+
+export function emitPickerValidityState<T>(component: PickerInputComponent<T>) {
+  return emitPickerValidityStateChangeIfChanged(component.validityTracker, {
+    touched: component.touched,
+    invalidReason: component.invalidReason,
+    getValidityState: () => component.getValidityState(),
+    emit: (state) => component.validityStateChange.emit(state as T),
+  });
+}
+
+export async function emitPickerValidityStateChangeIfChanged(
+  tracker: PickerValidityStateTracker,
+  context: PickerValidityContext
+): Promise<void> {
+  if (!context.touched) {
+    return;
+  }
+
+  const state = await context.getValidityState();
+  const currentPatternMismatch = state.patternMismatch;
+  const currentValueMissing = state.valueMissing;
+
+  if (
+    tracker.lastEmittedPatternMismatch === currentPatternMismatch &&
+    tracker.lastEmittedValueMissing === currentValueMissing
+  ) {
+    return;
+  }
+
+  tracker.lastEmittedPatternMismatch = currentPatternMismatch;
+  tracker.lastEmittedValueMissing = currentValueMissing;
+
+  context.emit({
+    patternMismatch: currentPatternMismatch,
+    valueMissing: currentValueMissing,
+    invalidReason: context.invalidReason,
+  });
+}
+
 function isGroupComponent(component: ClearableFormComponent): boolean {
   return (
     component.tagName === 'IX-CHECKBOX-GROUP' ||
@@ -357,6 +456,12 @@ async function finalizeClearingState(
     await component.syncValidationClasses();
   }
   component.isClearing = false;
+}
+
+function isIxInputFieldComponent<T>(
+  comp: IxInputFieldComponent<T> | HTMLElement
+): comp is IxInputFieldComponent<T> {
+  return 'value' in comp && 'valueChange' in comp;
 }
 
 export async function clearInputValue<T>(

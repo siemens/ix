@@ -540,7 +540,8 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
 
 export type IxDateInputEvents = {
     onValueChange: EventName<CustomEvent<string | undefined>>,
-    onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
+    onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>,
+    onIxChange: EventName<CustomEvent<string>>
 };
 
 export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputEvents> = /*@__PURE__*/ createComponent<IxDateInputElement, IxDateInputEvents>({
@@ -991,6 +992,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
 export type IxInputEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxInputCustomEvent<ValidityState>>,
+    onIxChange: EventName<CustomEvent<string>>,
     onIxBlur: EventName<CustomEvent<void>>
 };
 
@@ -1369,6 +1371,7 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
 export type IxNumberInputEvents = {
     onValueChange: EventName<CustomEvent<number>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
+    onIxChange: EventName<CustomEvent<number>>,
     onIxBlur: EventName<CustomEvent<void>>
 };
 
@@ -1743,6 +1746,7 @@ export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__P
 export type IxTextareaEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxTextareaCustomEvent<ValidityState>>,
+    onIxChange: EventName<CustomEvent<string>>,
     onIxBlur: EventName<CustomEvent<void>>
 };
 
@@ -1787,6 +1791,7 @@ export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__P
 
 export type IxTimeInputEvents = {
     onValueChange: EventName<CustomEvent<string>>,
+    onIxChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxTimeInputCustomEvent<TimeInputValidityState>>
 };
 

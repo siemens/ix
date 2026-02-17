@@ -24,6 +24,11 @@ import { DateTime } from 'luxon';
 import { IxTimePickerCustomEvent } from '../../components';
 import { Slot } from '../input/input.fc';
 import {
+  onInputFocus,
+  onInputBlurWithChange,
+  onEnterKeyChangeEmit,
+} from '../input/input.util';
+import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
@@ -263,6 +268,12 @@ export class TimeInput
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
 
   /**
+   * Native change event.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
+  /**
    * Validation state change event.
    */
   @Event() validityStateChange!: EventEmitter<TimeInputValidityState>;
@@ -276,6 +287,9 @@ export class TimeInput
   @State() time: string | null = null;
 
   private readonly timePickerRef = makeRef<HTMLIxTimePickerElement>();
+
+  /** @internal */
+  initialValue?: string;
 
   /** @internal */
   public validityTracker: PickerValidityStateTracker =
@@ -293,6 +307,7 @@ export class TimeInput
       }
     }
 
+    this.initialValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.time = null;
@@ -409,9 +424,18 @@ export class TimeInput
     return renderPickerInputFn(config, {
       onInput: onInput(eventConfig),
       onClick: onClick(eventConfig),
-      onFocus: onFocus(eventConfig),
-      onBlur: onBlur(eventConfig),
-      onKeyDown: onKeyDown(eventConfig),
+      onFocus: async () => {
+        onInputFocus(this, this.value);
+        await onFocus(eventConfig)();
+      },
+      onBlur: () => {
+        onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+        onBlur(eventConfig)();
+      },
+      onKeyDown: (event: KeyboardEvent) => {
+        onEnterKeyChangeEmit(event, this, this.value);
+        onKeyDown(eventConfig)(event);
+      },
     });
   }
 
@@ -443,6 +467,10 @@ export class TimeInput
         i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
         onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
           this.onInput(event.detail);
+          if (this.initialValue !== event.detail) {
+            this.ixChange.emit(event.detail);
+            this.initialValue = event.detail;
+          }
           this.show = false;
         }}
       ></ix-time-picker>,
