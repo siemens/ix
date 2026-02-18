@@ -395,6 +395,15 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return null;
   }
 
+  private closeDropdownWithDelay() {
+    this.clearAutoCloseTimeout();
+    this.autoCloseTimeout = setTimeout(() => {
+      if (this.isDropdownFullyNotVisible()) {
+        this.dismiss();
+      }
+    }, 300);
+  }
+
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (!newShow) {
@@ -414,9 +423,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         this.findScrollableParent(this.hostElement.parentElement) || undefined;
 
       this.visibilityHandler = () => {
-        if (this.isDropdownFullyNotVisible()) {
-          this.dismiss();
-        }
+        this.closeDropdownWithDelay();
       };
 
       window.addEventListener('scroll', this.visibilityHandler, true);
@@ -429,10 +436,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         );
       }
 
-      this.clearAutoCloseTimeout();
-      this.autoCloseTimeout = setTimeout(() => {
-        this.visibilityHandler?.();
-      }, 300);
+      this.closeDropdownWithDelay();
     }
 
     this.arrowFocusController = new ArrowFocusController(
