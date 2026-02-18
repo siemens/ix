@@ -18,6 +18,22 @@ regressionTest.describe('datetime-input', () => {
     });
   });
 
+  regressionTest('dropdown open', async ({ page }) => {
+    await page.goto('datetime-input/basic');
+
+    const datetimeInput = page.locator('ix-datetime-input').first();
+    const calendarButton = datetimeInput.locator('ix-icon-button').first();
+
+    await calendarButton.click();
+    await datetimeInput
+      .getByRole('button', { name: 'Confirm' })
+      .waitFor({ state: 'visible' });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 25,
+    });
+  });
+
   regressionTest('validation', async ({ page }) => {
     await page.goto('datetime-input/validation');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({

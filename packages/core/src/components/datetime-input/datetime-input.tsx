@@ -21,8 +21,11 @@ import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
   handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
@@ -43,6 +46,7 @@ import { makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
 
 /**
+ * @since 4.4.0
  * @form-ready
  *
  * @slot start - Element will be displayed at the start of the input
@@ -70,10 +74,18 @@ export class DatetimeInput
   /** Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat) */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
-  /** Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20") */
+  /**
+   * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").
+   *
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
-  /** Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04") */
+  /**
+   * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").
+   *
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
@@ -130,9 +142,6 @@ export class DatetimeInput
   /** ARIA label for next month navigation button */
   @Prop() ariaLabelNextMonthButton?: string;
 
-  /** ARIA label for the calendar icon button */
-  @Prop() ariaLabelCalendarButton?: string;
-
   /** Show week numbers in date picker */
   @Prop() showWeekNumbers: boolean = false;
 
@@ -188,8 +197,13 @@ export class DatetimeInput
   @State() time?: string | null = null;
 
   private classObserver?: ClassMutationObserver;
-  private invalidReason?: string;
-  private touched = false;
+  /** @internal */
+  public invalidReason?: string;
+  /** @internal */
+  public touched = false;
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @Watch('value')
@@ -227,6 +241,7 @@ export class DatetimeInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
       this.formInternals.setFormValue(null);
       this.valueChange.emit(value);
       return;
@@ -258,9 +273,9 @@ export class DatetimeInput
       this.formInternals.setFormValue(null);
     } else {
       this.formInternals.setFormValue(value);
-      this.closeDropdown();
     }
 
+    this.emitValidityStateChangeIfChanged();
     this.valueChange.emit(value);
   }
 
@@ -458,6 +473,10 @@ export class DatetimeInput
     this.isWarning = isWarning;
   }
 
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityState(this);
+  }
+
   connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
@@ -509,6 +528,7 @@ export class DatetimeInput
 
     const displayValue = `${from} ${time}`;
     this.onInput(displayValue);
+    this.closeDropdown();
   };
 
   private renderInput() {
@@ -537,6 +557,7 @@ export class DatetimeInput
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.emitValidityStateChangeIfChanged();
           }}
           onClick={(event) => {
             if (this.show) {
@@ -559,12 +580,10 @@ export class DatetimeInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-expanded={this.show}
-            aria-label={
-              this.ariaLabelCalendarButton || 'Toggle datetime picker'
-            }
+            aria-hidden="true"
+            tabindex="-1"
+            aria-label="Toggle datetime picker"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            data-testid="open-datetime-picker"
             icon={iconCalendar}
             variant="subtle-tertiary"
             onClick={(event) => this.onCalendarClick(event)}

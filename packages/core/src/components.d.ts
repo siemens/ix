@@ -1202,6 +1202,7 @@ export namespace Components {
         "hideHeader": boolean;
         /**
           * Remove content padding
+          * @since 4.4.0
           * @default false
          */
         "noPadding": boolean;
@@ -1212,13 +1213,10 @@ export namespace Components {
         "timePickerAppearance": boolean;
     }
     /**
+     * @since 4.4.0
      * @form-ready 
      */
     interface IxDatetimeInput {
-        /**
-          * ARIA label for the calendar icon button
-         */
-        "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for next month navigation button
          */
@@ -1228,7 +1226,7 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20")
+          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat": string;
@@ -1343,7 +1341,7 @@ export namespace Components {
          */
         "textAlignment": 'start' | 'end';
         /**
-          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04")
+          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat": string;
@@ -5012,6 +5010,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @since 4.4.0
      * @form-ready 
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
@@ -7405,6 +7404,7 @@ declare namespace LocalJSX {
         "hideHeader"?: boolean;
         /**
           * Remove content padding
+          * @since 4.4.0
           * @default false
          */
         "noPadding"?: boolean;
@@ -7415,13 +7415,10 @@ declare namespace LocalJSX {
         "timePickerAppearance"?: boolean;
     }
     /**
+     * @since 4.4.0
      * @form-ready 
      */
     interface IxDatetimeInput {
-        /**
-          * ARIA label for the calendar icon button
-         */
-        "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for next month navigation button
          */
@@ -7431,7 +7428,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20")
+          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat"?: string;
@@ -7538,7 +7535,7 @@ declare namespace LocalJSX {
          */
         "textAlignment"?: 'start' | 'end';
         /**
-          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04")
+          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat"?: string;
@@ -10944,6 +10941,7 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             /**
+             * @since 4.4.0
              * @form-ready 
              */
             "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;

@@ -12,3 +12,4 @@ export * from './select-value-accessor';
 export * from './text-value-accessor';
 export * from './date-value-accessor';
 export * from './time-value-accessor';
+export * from './datetime-value-accessor';
