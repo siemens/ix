@@ -27,6 +27,7 @@ import { IxSelectValueAccessorDirective } from './directives/control-value-acces
 import { IxRadioValueAccessorDirective } from './directives/control-value-accessors/radio-value-accessor';
 import { IxBooleanValueAccessorDirective } from './directives/control-value-accessors/boolean-value-accessor';
 import { IxDateValueAccessorDirective } from './directives/control-value-accessors';
+import { IxTimeValueAccessorDirective } from './directives/control-value-accessors/time-value-accessor';
 
 const DECLARATIONS = [
   ...DIRECTIVES,
@@ -38,6 +39,7 @@ const DECLARATIONS = [
   IxRadioValueAccessorDirective,
   IxBooleanValueAccessorDirective,
   IxDateValueAccessorDirective,
+  IxTimeValueAccessorDirective,
 ];
 
 @NgModule({
