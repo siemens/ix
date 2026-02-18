@@ -2312,6 +2312,11 @@ export namespace Components {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
@@ -2339,6 +2344,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
@@ -3231,6 +3241,9 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @form-ready 
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -3239,8 +3252,31 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Show error state and message
+          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Show text below the field component
+          * @since 4.3.0
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+          * @since 4.3.0
+         */
+        "infoText"?: string;
+        /**
+          * Error text for the field component
+          * @since 4.3.0
+         */
+        "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
+        /**
+          * Label for the field component
+          * @since 4.3.0
+         */
+        "label"?: string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
@@ -3255,6 +3291,12 @@ export namespace Components {
           * @default 0
          */
         "min": number;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+          * @since 4.3.0
+          * @default false
+         */
+        "showTextAsTooltip": boolean;
         /**
           * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
@@ -3271,10 +3313,20 @@ export namespace Components {
          */
         "traceReference": number;
         /**
+          * Valid text for the field component
+          * @since 4.3.0
+         */
+        "validText"?: string;
+        /**
           * Current value of the slider
           * @default 0
          */
         "value": number;
+        /**
+          * Warning text for the field component
+          * @since 4.3.0
+         */
+        "warningText"?: string;
     }
     interface IxSpinner {
         /**
@@ -4739,6 +4791,7 @@ declare global {
         "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string | undefined;
     }
     /**
      * @form-ready 
@@ -5064,6 +5117,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5376,6 +5430,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -5551,6 +5606,9 @@ declare global {
     interface HTMLIxSliderElementEventMap {
         "valueChange": number;
     }
+    /**
+     * @form-ready 
+     */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5626,6 +5684,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5655,6 +5714,7 @@ declare global {
         "validityStateChange": TimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @since 3.2.0
@@ -6977,6 +7037,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the date input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
@@ -7996,6 +8061,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the text field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
@@ -8330,6 +8400,11 @@ declare namespace LocalJSX {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
@@ -8361,6 +8436,11 @@ declare namespace LocalJSX {
           * Logout click
          */
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
@@ -8675,6 +8755,11 @@ declare namespace LocalJSX {
           * Event emitted when the input field loses focus
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the input field loses focus and the value has changed
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
           * Event emitted when the validity state of the input field changes
          */
@@ -9309,6 +9394,9 @@ declare namespace LocalJSX {
          */
         "value": string;
     }
+    /**
+     * @form-ready 
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -9317,8 +9405,29 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Show error state and message
+          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
+        /**
+          * Show text below the field component
+          * @since 4.3.0
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+          * @since 4.3.0
+         */
+        "infoText"?: string;
+        /**
+          * Error text for the field component
+          * @since 4.3.0
+         */
+        "invalidText"?: string;
+        /**
+          * Label for the field component
+          * @since 4.3.0
+         */
+        "label"?: string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
@@ -9333,7 +9442,16 @@ declare namespace LocalJSX {
           * @default 0
          */
         "min"?: number;
+        /**
+          * Will emit the value when it changes
+         */
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+          * @since 4.3.0
+          * @default false
+         */
+        "showTextAsTooltip"?: boolean;
         /**
           * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
@@ -9350,10 +9468,20 @@ declare namespace LocalJSX {
          */
         "traceReference"?: number;
         /**
+          * Valid text for the field component
+          * @since 4.3.0
+         */
+        "validText"?: string;
+        /**
           * Current value of the slider
           * @default 0
          */
         "value"?: number;
+        /**
+          * Warning text for the field component
+          * @since 4.3.0
+         */
+        "warningText"?: string;
     }
     interface IxSpinner {
         /**
@@ -9565,6 +9693,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
+          * Event emitted when the textarea field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the textarea field changes.
          */
         "onValidityStateChange"?: (event: IxTextareaCustomEvent<ValidityState>) => void;
@@ -9730,6 +9863,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the time input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
@@ -10540,6 +10678,9 @@ declare module "@stencil/core" {
              */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            /**
+             * @form-ready 
+             */
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;

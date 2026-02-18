@@ -85,6 +85,7 @@ export class TabItem {
   render() {
     return (
       <Host
+        role="tab"
         class={this.tabItemClasses({
           selected: this.selected,
           disabled: this.disabled,

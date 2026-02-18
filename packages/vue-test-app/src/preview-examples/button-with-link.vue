@@ -41,18 +41,18 @@ addIcons({ iconHome, iconOpenExternal, iconInfo });
       <IxButton href="https://siemens.com" variant="secondary">
         Secondary Link
       </IxButton>
-      <IxButton href="https://siemens.com" variant="danger">
+      <IxButton href="https://siemens.com" variant="danger-primary">
         Danger Link
       </IxButton>
     </div>
 
     <div style="margin-bottom: 1rem;">
-      <h3>Outline and Ghost Links</h3>
-      <IxButton href="https://siemens.com" outline>
-        Outline Link
+      <h3>Secondary and Tertiary Links</h3>
+      <IxButton href="https://siemens.com" variant="secondary">
+        Secondary Link
       </IxButton>
-      <IxButton href="https://siemens.com" ghost>
-        Ghost Link
+      <IxButton href="https://siemens.com" variant="tertiary">
+        Tertiary Link
       </IxButton>
     </div>
 

@@ -13,5 +13,6 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   templateUrl: './slider.html',
+  styleUrls: ['./slider.css'],
 })
 export default class Slider {}

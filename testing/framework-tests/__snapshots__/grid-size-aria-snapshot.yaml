@@ -1,0 +1,4 @@
+- heading /Column 6 takes up more space to a max of \d+ columns total/ [level=4]
+- text: 1 2 3 4 5 6
+- heading "Stack columns on smaller screens" [level=4]
+- text: 1 2 3 4

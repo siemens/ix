@@ -110,7 +110,7 @@ regressionTest('update tree', async ({ mount, page }) => {
 
   const item3 = tree.locator('ix-tree-item').nth(4);
   await expect(item3).toBeVisible();
-  await expect(item3).toHaveText('Sample Child 3');
+  await expect(item3).toHaveText(/Sample Child 3/);
   await expect(item3).toHaveCSS('padding-left', '16px');
 
   await updateModel(tree, {
@@ -461,6 +461,57 @@ regressionTest(
     await expect(items.nth(0)).not.toBeVisible();
     await expect(items.nth(1)).not.toBeVisible();
     await expect(items.nth(2)).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should handle click events on custom rendered tree items',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    await tree.evaluate(
+      (t) =>
+        ((t as HTMLIxTreeElement).renderItem = (
+          _index,
+          item,
+          _dataList,
+          context,
+          update
+        ) => {
+          const el = document.createElement('ix-tree-item');
+          const treeItem = item as TreeItem<any>;
+          el.hasChildren = treeItem.hasChildren;
+          el.context = context[treeItem.id];
+
+          const container = document.createElement('div');
+          container.classList.add('custom-content');
+          container.style.display = 'flex';
+          container.style.alignItems = 'center';
+
+          const name = document.createElement('span');
+          name.classList.add('custom-name');
+          name.innerText = treeItem.data.name;
+
+          container.appendChild(name);
+          el.appendChild(container);
+
+          update((updateTreeItem) => {
+            name.innerText = updateTreeItem.data.name;
+          });
+
+          return el;
+        })
+    );
+
+    const root = tree.locator('ix-tree-item').first();
+    await root.locator('.icon-toggle-container').click();
+
+    const customItem = tree.locator('ix-tree-item').nth(1);
+    const customName = customItem.locator('.custom-name');
+    await expect(customName).toBeVisible();
+    await expect(customName).toHaveText('Sample Child 1');
+    await customName.click();
+    await expect(customItem).toHaveClass(/selected/);
   }
 );
 

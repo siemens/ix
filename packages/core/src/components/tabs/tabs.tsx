@@ -25,6 +25,25 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+type ManagedClass =
+  (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
+
+const TAB_MANAGED_CLASSES = {
+  SELECTED: 'selected',
+  DISABLED: 'disabled',
+  SMALL_TAB: 'small-tab',
+  ICON: 'icon',
+  STRETCHED: 'stretched',
+  BOTTOM: 'bottom',
+  TOP: 'top',
+  CIRCLE: 'circle',
+  HYDRATED: 'hydrated',
+} as const;
+
+const MANAGED_CLASSES_SET = new Set(
+  Object.values(TAB_MANAGED_CLASSES) as ManagedClass[]
+);
+
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
@@ -87,6 +106,8 @@ export class Tabs {
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
   private readonly ARROW_WIDTH = 32;
+  private classObserver?: MutationObserver;
+  private updateScheduled = false;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -130,6 +151,130 @@ export class Tabs {
       this.renderArrows();
     });
     this.resizeObserver.observe(parentElement);
+  }
+
+  private observeSlotChanges() {
+    this.classObserver?.disconnect();
+
+    this.classObserver = new MutationObserver(() => {
+      this.scheduleTabUpdate();
+    });
+
+    this.classObserver.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  }
+
+  private scheduleTabUpdate() {
+    if (this.updateScheduled) return;
+    this.updateScheduled = true;
+
+    requestAnimationFrame(() => {
+      this.updateTabAttributes();
+      this.updateScheduled = false;
+    });
+  }
+
+  private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
+    const isSelected = index === this.selected;
+    const isDisabled = element.disabled;
+
+    if (this.small) element.setAttribute('small', 'true');
+
+    if (this.rounded) element.setAttribute('rounded', 'true');
+
+    element.setAttribute('layout', this.layout);
+    element.setAttribute('selected', isSelected.toString());
+    element.setAttribute('placement', this.placement);
+    element.toggleAttribute('disabled', isDisabled);
+
+    this.applyRequiredClasses(element, isSelected, isDisabled);
+  }
+
+  private applyRequiredClasses(
+    element: HTMLIxTabItemElement,
+    isSelected: boolean,
+    isDisabled: boolean
+  ) {
+    const requiredClasses = new Set(
+      this.buildRequiredClasses(isSelected, isDisabled)
+    );
+    const { classList } = element;
+
+    for (const cls of requiredClasses) {
+      classList.add(cls);
+    }
+
+    for (const managedClass of MANAGED_CLASSES_SET) {
+      if (!requiredClasses.has(managedClass)) {
+        classList.remove(managedClass);
+      }
+    }
+  }
+
+  private buildRequiredClasses(
+    isSelected: boolean,
+    isDisabled: boolean
+  ): string[] {
+    const classConditions = {
+      [TAB_MANAGED_CLASSES.HYDRATED]: true,
+      [TAB_MANAGED_CLASSES.SELECTED]: isSelected,
+      [TAB_MANAGED_CLASSES.DISABLED]: isDisabled,
+      [TAB_MANAGED_CLASSES.SMALL_TAB]: this.small,
+      [TAB_MANAGED_CLASSES.STRETCHED]: this.layout === 'stretched',
+      [TAB_MANAGED_CLASSES.BOTTOM]: this.placement === 'bottom',
+      [TAB_MANAGED_CLASSES.TOP]: this.placement === 'top',
+      [TAB_MANAGED_CLASSES.CIRCLE]: this.rounded,
+    };
+
+    return Object.entries(classConditions)
+      .filter(([, condition]) => condition)
+      .map(([className]) => className);
+  }
+
+  private ensureSelectedIndex() {
+    if (this.totalItems === 0) {
+      console.warn('ix-tabs: No tabs available for selection');
+      this.selected = -1;
+      return;
+    }
+
+    if (this.selected < this.totalItems) {
+      return;
+    }
+
+    const originalIndex = this.selected;
+    const previousIndex = originalIndex - 1;
+
+    if (previousIndex >= 0 && previousIndex < this.totalItems) {
+      this.updateSelected(previousIndex);
+      return;
+    }
+
+    if (this.totalItems > 0) {
+      this.updateSelected(0);
+    }
+  }
+
+  private updateSelected(index: number) {
+    this.selected = index;
+    this.selectedChange.emit(index);
+  }
+
+  private updateTabAttributes() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    this.ensureSelectedIndex();
+
+    for (const [index, element] of tabs.entries()) {
+      this.setTabAttributes(element, index);
+    }
+
+    this.renderArrows();
   }
 
   private showArrows() {
@@ -284,35 +429,11 @@ export class Tabs {
   }
 
   componentWillLoad() {
-    const tabs = this.getTabs();
-
-    tabs.map((element, index) => {
-      if (this.small) element.setAttribute('small', 'true');
-
-      if (this.rounded) element.setAttribute('rounded', 'true');
-
-      element.setAttribute('layout', this.layout);
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-
-      element.setAttribute('placement', this.placement);
-    });
-
     this.initResizeObserver();
   }
 
   componentDidRender() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    tabs.map((element, index) => {
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-    });
+    this.updateTabAttributes();
   }
 
   componentWillRender() {
@@ -333,10 +454,13 @@ export class Tabs {
         this.dragStart(element, event)
       );
     });
+
+    this.observeSlotChanges();
   }
 
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+    this.classObserver?.disconnect();
   }
 
   @Listen('tabClick')
@@ -357,7 +481,7 @@ export class Tabs {
 
   render() {
     return (
-      <Host>
+      <Host role="tablist">
         {this.showArrowPrevious && (
           <button
             class="arrow"

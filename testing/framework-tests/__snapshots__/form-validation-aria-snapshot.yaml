@@ -1,0 +1,57 @@
+- text: Name *
+- textbox: John
+- text: Last Name
+- textbox: Muster
+- text: Address
+- img
+- textbox: /John Street \d+/
+- radiogroup:
+  - text: Booking option
+  - radio "Option 0"
+  - radio "Option 1"
+  - radio "Option 2" [checked]
+- text: Preferred room size
+- img
+- spinbutton: /\d+/
+- text: m
+- superscript: "2"
+- img
+- text: You can adjust the room size Travel option
+- textbox "Select an option"
+- button "Open select dropdown"
+- text: Threshold limit A
+- spinbutton: "6"
+- img
+- text: The threshold must be equal or lesser than 5 Threshold limit B
+- spinbutton: "7"
+- button "decrement number"
+- button "increment number"
+- img
+- text: A threshold greater than 5 is not recommended Begin
+- textbox: /\d+\/\d+\/\d+/
+- button "Calendar"
+- text: End
+- textbox: /\d+\/\d+\/\d+/
+- button "Calendar"
+- img
+- text: /\d+\/\d+\/\d+ is not allowed to pick Comment/
+- textbox: Some info
+- text: /Let us know if you have any special requests or comments\. We will do our best to accommodate you\. 9\/\d+ Email/
+- textbox
+- text: Upload
+- textbox
+- button "Star"
+- img
+- text: You need to upload a file PIN
+- textbox
+- button "Eye"
+- text: Only numbers between 1 and 4 is allowed 0/4 PIN
+- textbox
+- button "Eye"
+- text: Confirm password 0/4
+- checkbox "I agree everything":
+  - button:
+    - img
+- img
+- text: You must agree to continue
+- button "Submit"
