@@ -11,7 +11,9 @@ import stencilSSR from '@stencil/ssr/next';
 /**
  * @type {import('next').NextConfig}
  */
-const nextConfig = {};
+const nextConfig = {
+  turbopack: {},
+};
 
 export default stencilSSR({
   module: import('@siemens/ix-react'),
