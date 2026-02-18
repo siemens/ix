@@ -48,12 +48,11 @@ regressionTest('open show number of page dropdown', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const element = page.locator('ix-pagination[advanced]');
-
-  await element.getByRole('button').nth(-1).click();
-
+  await element.locator('[data-select-dropdown]').click();
   const dropdown = element.locator('ix-dropdown');
 
   await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 });
 
 regressionTest(
@@ -73,10 +72,10 @@ regressionTest(
       });
     });
 
-    await pagination.getByRole('button').nth(-1).click();
+    await pagination.locator('[data-select-dropdown]').click();
 
     await pagination.locator('ix-dropdown-item').nth(3).click();
-    await expect(pagination.locator('ix-dropdown')).not.toBeVisible();
+    await expect(pagination.locator('ix-dropdown')).not.toHaveClass(/show/);
 
     await expect(pagination).toHaveClass(/hydrated/);
     expect(await itemChanged).toBe(20);

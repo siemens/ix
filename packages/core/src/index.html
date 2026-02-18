@@ -96,7 +96,41 @@ SPDX-License-Identifier: MIT
           breadcrumb.nextItems = ['Next 1', 'Next 2', 'Next 3'];
         </script>
 
-        <ix-date-dropdown></ix-date-dropdown>
+        <ix-date-dropdown format="LL/dd/yyyy"></ix-date-dropdown>
+        <script>
+          const today = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          });
+
+          const lastSevenDays = new Date(
+            new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+          ).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          });
+
+          const dateRangeOptions = [
+            {
+              id: 'last-7',
+              label: 'Last 7 days',
+              from: lastSevenDays,
+              to: today,
+            },
+            {
+              id: 'today',
+              label: 'Today',
+              from: today,
+              to: today,
+            },
+          ];
+
+          const dateDropdown = document.querySelector('ix-date-dropdown');
+          dateDropdown.dateRangeOptions = dateRangeOptions;
+          dateDropdown.dateRangeId = 'today';
+        </script>
 
         <ix-time-input></ix-time-input>
 
@@ -108,6 +142,8 @@ SPDX-License-Identifier: MIT
           <ix-dropdown-item label="Item 5"></ix-dropdown-item>
           <ix-dropdown-item label="Item 6"></ix-dropdown-item>
         </ix-split-button>
+
+        <ix-pagination advanced> </ix-pagination>
 
         <h3 style="margin-top: 2rem">Dont get any keyboard rework yet</h3>
         <ix-category-filter></ix-category-filter>

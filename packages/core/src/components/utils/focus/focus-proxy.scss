@@ -21,8 +21,8 @@
 
   .proxy-list li {
     // Make it at least 1px high so that testing tools like playwright can find and click it
-    height: 1px;
-    width: 1px;
+    height: 2px;
+    width: 2px;
     pointer-events: all;
   }
 }

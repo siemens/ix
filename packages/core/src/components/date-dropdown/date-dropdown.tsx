@@ -386,7 +386,6 @@ export class DateDropdown
           closeBehavior="outside"
           placement="bottom-start"
           enableTopLayer={this.enableTopLayer}
-          disableFocusHandling
           suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {
             if (
@@ -400,8 +399,8 @@ export class DateDropdown
 
             if (show && hasKeyboardMode()) {
               requestAnimationFrameNoNgZone(() => {
-                const datePicker = this.datePickerRef.current!;
-                datePicker.focus();
+                const datePicker = this.datePickerRef.current;
+                datePicker?.focus();
               });
             }
           }}
