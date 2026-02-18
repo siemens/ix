@@ -502,7 +502,6 @@ export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PU
   'i18nTime',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
-  'ariaLabelCalendarButton',
   'showWeekNumbers',
   'weekStartIndex',
   'suppressSubmitOnEnter',

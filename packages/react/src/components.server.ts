@@ -636,7 +636,6 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         i18nTime: 'i-1-8n-time',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
-        ariaLabelCalendarButton: 'aria-label-calendar-button',
         showWeekNumbers: 'show-week-numbers',
         weekStartIndex: 'week-start-index',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',

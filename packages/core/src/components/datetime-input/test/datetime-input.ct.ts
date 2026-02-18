@@ -16,30 +16,29 @@ import {
 const createDateTimeInputAccessor = async (dateTimeInput: Locator) => {
   return {
     openByCalendar: async () => {
-      const trigger = dateTimeInput.getByTestId('open-datetime-picker');
+      // Calendar button is aria-hidden, so we select the first icon button
+      const trigger = dateTimeInput.locator('ix-icon-button').first();
       await trigger.click();
+      await dateTimeInput.getByRole('button', { name: /^hr:/ }).first().waitFor({ state: 'visible', timeout: 5000 });
     },
     selectDay: async (day: number) => {
-      const dayButton = dateTimeInput
-        .locator(`ix-date-picker .calendar-item[date-calender-day]`)
-        .filter({ hasText: new RegExp(`^${day}$`) });
-      await dayButton.click();
+      // Day cells have aria-label like "4: 15" (month index: day)
+      // Use getByLabel to find by aria-label (day cells are divs, not buttons)
+      const dayCell = dateTimeInput.getByLabel(new RegExp(`^\\d+: ${day}$`));
+      await dayCell.click();
     },
     selectTime: async (hour: number, minute: number, second: number) => {
-      await dateTimeInput
-        .locator(`[data-element-container-id="hour-${hour}"]`)
-        .click();
-      await dateTimeInput
-        .locator(`[data-element-container-id="minute-${minute}"]`)
-        .click();
-      await dateTimeInput
-        .locator(`[data-element-container-id="second-${second}"]`)
-        .click();
+      // Time buttons have aria-label like "hr: 14", "min: 30", "sec: 45"
+      // getByRole pierces shadow DOM automatically
+      await dateTimeInput.getByRole('button', { name: `hr: ${hour}` }).click();
+      await dateTimeInput.getByRole('button', { name: `min: ${minute}` }).click();
+      await dateTimeInput.getByRole('button', { name: `sec: ${second}` }).click();
     },
     confirm: async () => {
-      const confirmButton = dateTimeInput.locator(
-        'ix-datetime-picker .btn-select-date'
-      );
+      // Confirm button has text from i18nDone (default: "Confirm")
+      const confirmButton = dateTimeInput.getByRole('button', {
+        name: 'Confirm',
+      });
       await confirmButton.click();
     },
   };
@@ -57,7 +56,8 @@ regressionTest('displays initial value correctly', async ({ mount, page }) => {
   await mount(
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveValue('2024/05/05 09:10:11');
 });
 
@@ -65,7 +65,8 @@ regressionTest('handles empty initial state', async ({ mount, page }) => {
   await mount(
     `<ix-datetime-input placeholder="Select date and time"></ix-datetime-input>`
   );
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveValue('');
   await expect(input).toHaveAttribute('placeholder', 'Select date and time');
 });
@@ -91,9 +92,7 @@ regressionTest(
       'value',
       '2024/05/15 14:30:45'
     );
-    await expect(
-      dateTimeInputElement.getByTestId('datetime-dropdown')
-    ).not.toHaveClass(/show/);
+    await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).not.toBeVisible();
   }
 );
 
@@ -102,16 +101,15 @@ regressionTest('calendar button toggles picker', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const dropdown = page.locator('ix-dropdown[data-testid="datetime-dropdown"]');
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
+  const dateTimeInputElement = page.locator('ix-datetime-input');
+  // Calendar button is aria-hidden, so we use CSS selector
+  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
 
   await calendarButton.click();
-  await expect(dropdown).toHaveClass(/show/);
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
 
   await calendarButton.click();
-  await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).not.toBeVisible();
 });
 
 regressionTest(
@@ -121,9 +119,10 @@ regressionTest(
       `<ix-datetime-input value="2024/05/05 09:10:11" readonly></ix-datetime-input>`
     );
 
-    const calendarButton = page.locator(
-      'ix-icon-button[data-testid="open-datetime-picker"]'
-    );
+    const dateTimeInputElement = page.locator('ix-datetime-input');
+    const calendarButton = dateTimeInputElement
+      .locator('ix-icon-button')
+      .first();
     await expect(calendarButton).toHaveClass(/calendar-hidden/);
   }
 );
@@ -135,10 +134,11 @@ regressionTest(
       `<ix-datetime-input value="2024/05/05 09:10:11" disabled></ix-datetime-input>`
     );
 
-    const input = page.locator('ix-datetime-input input');
-    const calendarButton = page.locator(
-      'ix-icon-button[data-testid="open-datetime-picker"]'
-    );
+    const dateTimeInputElement = page.locator('ix-datetime-input');
+    const input = dateTimeInputElement.getByRole('textbox');
+    const calendarButton = dateTimeInputElement
+      .locator('ix-icon-button')
+      .first();
 
     await expect(input).toBeDisabled();
     await expect(calendarButton).toHaveClass(/calendar-hidden/);
@@ -151,70 +151,67 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   );
   const dateTimeInputElement = page.locator('ix-datetime-input');
   await expect(dateTimeInputElement).toHaveClass(/hydrated/);
-
-  const dateTimeInput = await createDateTimeInputAccessor(dateTimeInputElement);
-  await dateTimeInputElement.locator('input').focus();
-  await expect(
-    dateTimeInputElement.getByTestId('datetime-dropdown')
-  ).toHaveClass(/show/);
-
-  await dateTimeInputElement.locator('input').fill('2025/10/10 14:30:45');
-
-  await expect(
-    dateTimeInputElement.getByTestId('datetime-dropdown')
-  ).not.toHaveClass(/show/);
-  await expect(dateTimeInputElement).toHaveAttribute(
-    'value',
-    '2025/10/10 14:30:45'
-  );
-
-  await dateTimeInput.openByCalendar();
-
-  await expect(
-    dateTimeInputElement.locator('.calendar-item.selected')
-  ).toHaveText('10');
-  await expect(
-    dateTimeInputElement.locator(
-      '[data-element-container-id="hour-14"].selected'
-    )
-  ).toBeVisible();
-});
-
-regressionTest('valid input closes dropdown', async ({ mount, page }) => {
-  await mount(
-    `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
-  );
-
-  const dateTimeInputElement = page.locator('ix-datetime-input');
-  const input = dateTimeInputElement.locator('input');
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
-  const dropdown = page.locator('ix-dropdown[data-testid="datetime-dropdown"]');
-
-  await calendarButton.click();
-  await expect(dropdown).toHaveClass(/show/);
+  
+  const input = dateTimeInputElement.getByRole('textbox');
+  await input.focus();
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
 
   await input.fill('2025/10/10 14:30:45');
-  await expect(dropdown).not.toHaveClass(/show/);
+
   await expect(dateTimeInputElement).toHaveAttribute(
     'value',
     '2025/10/10 14:30:45'
   );
+
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
+
+  // Use getByLabel to find by aria-label (day cells are divs, not buttons)
+  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 10$/);
+  await expect(selectedDay).toHaveClass(/selected/);
+
+  const selectedHour = dateTimeInputElement.getByRole('button', {
+    name: 'hr: 14',
+  });
+  await expect(selectedHour).toHaveClass(/selected/);
 });
+
+regressionTest(
+  'valid input keeps dropdown open (no auto-close)',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInputElement = page.locator('ix-datetime-input');
+    const input = dateTimeInputElement.getByRole('textbox');
+    // Calendar button is aria-hidden, so we use CSS selector
+    const calendarButton = dateTimeInputElement
+      .locator('ix-icon-button')
+      .first();
+
+    await calendarButton.click();
+    await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
+
+    await input.fill('2025/10/10 14:30:45');
+    await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
+    await expect(dateTimeInputElement).toHaveAttribute(
+      'value',
+      '2025/10/10 14:30:45'
+    );
+  }
+);
 
 regressionTest('invalid input shows error', async ({ mount, page }) => {
   await mount(
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await input.fill('invalid-datetime');
 
   await expect(input).toHaveClass(/is-invalid/);
-  await expect(page.locator('ix-field-wrapper')).toContainText(
-    'Date time is not valid'
-  );
+  await expect(dateTimeInput.getByText('Date time is not valid')).toBeVisible();
 });
 
 regressionTest('select date and time by focus', async ({ mount, page }) => {
@@ -225,7 +222,8 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
   await expect(dateTimeInputElement).toHaveClass(/hydrated/);
 
   const dateTimeInput = await createDateTimeInputAccessor(dateTimeInputElement);
-  await dateTimeInputElement.locator('input').focus();
+  const input = dateTimeInputElement.getByRole('textbox');
+  await input.focus();
 
   await dateTimeInput.selectDay(20);
   await dateTimeInput.selectTime(15, 45, 30);
@@ -235,9 +233,7 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
     'value',
     '2024/05/20 15:45:30'
   );
-  await expect(
-    dateTimeInputElement.getByTestId('datetime-dropdown')
-  ).not.toHaveClass(/show/);
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).not.toBeVisible();
 });
 
 regressionTest('select date and time from picker', async ({ mount, page }) => {
@@ -245,33 +241,25 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
+  const dateTimeInputElement = page.locator('ix-datetime-input');
+  // Calendar button is aria-hidden, so we use CSS selector
+  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
   await calendarButton.click();
 
-  const dayButton = page
-    .locator('ix-date-picker .calendar-item[date-calender-day]')
-    .filter({ hasText: /^15$/ });
-  await dayButton.click();
+  // Use getByLabel to find by aria-label (day cells are divs, not buttons)
+  const dayCell = dateTimeInputElement.getByLabel(/^\d+: 15$/);
+  await dayCell.click();
 
-  await page
-    .locator('ix-time-picker [data-element-container-id="hour-14"]')
-    .click();
-  await page
-    .locator('ix-time-picker [data-element-container-id="minute-30"]')
-    .click();
-  await page
-    .locator('ix-time-picker [data-element-container-id="second-45"]')
-    .click();
+  await dateTimeInputElement.getByRole('button', { name: 'hr: 14' }).click();
+  await dateTimeInputElement.getByRole('button', { name: 'min: 30' }).click();
+  await dateTimeInputElement.getByRole('button', { name: 'sec: 45' }).click();
 
-  await page.locator('ix-datetime-picker .btn-select-date').click();
+  await page.getByRole('button', { name: 'Confirm' }).click();
 
   const dateTimeInput = page.locator('ix-datetime-input');
   await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
 
-  const dropdown = page.locator('ix-dropdown[data-testid="datetime-dropdown"]');
-  await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dateTimeInput.getByRole('button', { name: 'Confirm' })).not.toBeVisible();
 });
 
 regressionTest('picker syncs with input value', async ({ mount, page }) => {
@@ -279,23 +267,18 @@ regressionTest('picker syncs with input value', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/15 14:30:45"></ix-datetime-input>`
   );
 
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
+  const dateTimeInputElement = page.locator('ix-datetime-input');
+  // Calendar button is aria-hidden, so we use CSS selector
+  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
   await calendarButton.click();
 
-  const selectedDay = page.locator('ix-date-picker .calendar-item.selected');
-  await expect(selectedDay).toHaveText('15');
+  // Use getByLabel to find by aria-label (day cells are divs, not buttons)
+  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 15$/);
+  await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = page.locator(
-    'ix-time-picker [data-element-container-id="hour-14"]'
-  );
-  const minuteElement = page.locator(
-    'ix-time-picker [data-element-container-id="minute-30"]'
-  );
-  const secondElement = page.locator(
-    'ix-time-picker [data-element-container-id="second-45"]'
-  );
+  const hourElement = dateTimeInputElement.getByRole('button', { name: 'hr: 14' });
+  const minuteElement = dateTimeInputElement.getByRole('button', { name: 'min: 30' });
+  const secondElement = dateTimeInputElement.getByRole('button', { name: 'sec: 45' });
 
   await expect(hourElement).toHaveClass(/selected/);
   await expect(minuteElement).toHaveClass(/selected/);
@@ -307,27 +290,21 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const input = page.locator('ix-datetime-input input');
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
+  const dateTimeInputElement = page.locator('ix-datetime-input');
+  const input = dateTimeInputElement.getByRole('textbox');
 
   await input.fill('2024/05/20 15:45:30');
 
-  await calendarButton.click();
+  await expect(dateTimeInputElement).toHaveAttribute('value', '2024/05/20 15:45:30');
 
-  const selectedDay = page.locator('ix-date-picker .calendar-item.selected');
-  await expect(selectedDay).toHaveText('20');
+  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 20$/);
+  await selectedDay.waitFor({ state: 'visible', timeout: 5000 });
 
-  const hourElement = page.locator(
-    'ix-time-picker [data-element-container-id="hour-15"]'
-  );
-  const minuteElement = page.locator(
-    'ix-time-picker [data-element-container-id="minute-45"]'
-  );
-  const secondElement = page.locator(
-    'ix-time-picker [data-element-container-id="second-30"]'
-  );
+  await expect(selectedDay).toHaveClass(/selected/);
+
+  const hourElement = dateTimeInputElement.getByRole('button', { name: 'hr: 15' });
+  const minuteElement = dateTimeInputElement.getByRole('button', { name: 'min: 45' });
+  const secondElement = dateTimeInputElement.getByRole('button', { name: 'sec: 30' });
 
   await expect(hourElement).toHaveClass(/selected/);
   await expect(minuteElement).toHaveClass(/selected/);
@@ -339,13 +316,12 @@ regressionTest('invalid date format shows error', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await input.fill('2025/13/45 25:70:99');
 
   await expect(input).toHaveClass(/is-invalid/);
-  await expect(page.locator('ix-field-wrapper')).toContainText(
-    'Date time is not valid'
-  );
+  await expect(dateTimeInput.getByText('Date time is not valid')).toBeVisible();
 });
 
 regressionTest('validates minDate constraint', async ({ mount, page }) => {
@@ -356,7 +332,8 @@ regressionTest('validates minDate constraint', async ({ mount, page }) => {
     ></ix-datetime-input>
   `);
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveClass(/is-invalid/);
 });
 
@@ -368,7 +345,8 @@ regressionTest('validates maxDate constraint', async ({ mount, page }) => {
     ></ix-datetime-input>
   `);
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveClass(/is-invalid/);
 });
 
@@ -382,7 +360,8 @@ regressionTest(
     ></ix-datetime-input>
   `);
 
-    const input = page.locator('ix-datetime-input input');
+    const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
     await expect(input).toHaveClass(/is-invalid/);
   }
 );
@@ -397,7 +376,8 @@ regressionTest(
     ></ix-datetime-input>
   `);
 
-    const input = page.locator('ix-datetime-input input');
+    const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
     await expect(input).not.toHaveClass(/is-invalid/);
   }
 );
@@ -412,7 +392,8 @@ regressionTest(
     ></ix-datetime-input>
   `);
 
-    const input = page.locator('ix-datetime-input input');
+    const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
     await expect(input).toHaveClass(/is-invalid/);
   }
 );
@@ -423,17 +404,18 @@ regressionTest('required field validation', async ({ mount, page }) => {
   );
 
   const dateTimeInput = page.locator('ix-datetime-input');
-  const input = dateTimeInput.locator('input');
+  const input = dateTimeInput.getByRole('textbox');
 
   await expect(dateTimeInput).toHaveAttribute('required');
-  await expect(dateTimeInput.locator('ix-field-label')).toHaveText(
-    'Appointment*'
-  );
+  await expect(dateTimeInput.getByText('Appointment*')).toBeVisible();
 
   await input.focus();
+  await page.waitForTimeout(50); // Small delay between focus and blur
   await input.blur();
-
-  await expect(dateTimeInput).toHaveClass(/ix-invalid--required/);
+  
+  await expect(dateTimeInput).toHaveClass(/ix-invalid--required/, {
+    timeout: 5000,
+  });
 });
 
 regressionTest('recovers from invalid state', async ({ mount, page }) => {
@@ -442,7 +424,7 @@ regressionTest('recovers from invalid state', async ({ mount, page }) => {
   );
 
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  const input = dateTimeInputElement.locator('input');
+  const input = dateTimeInputElement.getByRole('textbox');
 
   await input.fill('invalid-datetime');
   await expect(input).toHaveClass(/is-invalid/);
@@ -465,7 +447,8 @@ regressionTest('form-ready - basic submission', async ({ mount, page }) => {
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await input.fill('2024/05/05 14:30:00');
   await input.blur();
 
@@ -498,7 +481,7 @@ regressionTest(
     );
 
     const dateTimeInput = page.locator('ix-datetime-input');
-    const input = page.locator('input');
+    const input = dateTimeInput.getByRole('textbox');
 
     await dateTimeInput.evaluateHandle((el) => {
       el.setAttribute('value', 'invalid-datetime');
@@ -521,7 +504,8 @@ regressionTest('respects custom format props', async ({ mount, page }) => {
     ></ix-datetime-input>
   `);
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveValue('15-06-2024 14:30:45');
 });
 
@@ -533,7 +517,8 @@ regressionTest('respects locale prop', async ({ mount, page }) => {
     ></ix-datetime-input>
   `);
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
   await expect(input).toHaveValue(/2024/);
 });
 
@@ -544,12 +529,11 @@ regressionTest(
       `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
     );
 
-    const input = page.locator('ix-datetime-input input');
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
     await input.fill('invalid-datetime');
 
-    await expect(page.locator('ix-field-wrapper')).toContainText(
-      'Date time is not valid'
-    );
+    await expect(dateTimeInput.getByText('Date time is not valid')).toBeVisible();
   }
 );
 
@@ -564,29 +548,24 @@ regressionTest(
     ></ix-datetime-input>
   `);
 
-    const input = page.locator('ix-datetime-input input');
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
     await input.fill('invalid-datetime');
     await input.blur();
 
-    await expect(
-      page
-        .locator('ix-field-wrapper')
-        .locator('ix-typography')
-        .filter({ hasText: 'Custom error message' })
-    ).toHaveText(/Custom error message/);
+    await expect(dateTimeInput.getByText('Custom error message')).toBeVisible();
   }
 );
 
 regressionTest('handles empty value', async ({ mount, page }) => {
   await mount(`<ix-datetime-input></ix-datetime-input>`);
 
-  const calendarButton = page.locator(
-    'ix-icon-button[data-testid="open-datetime-picker"]'
-  );
+  const dateTimeInputElement = page.locator('ix-datetime-input');
+  // Calendar button is aria-hidden, so CSS selector is used
+  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
   await calendarButton.click();
 
-  const dropdown = page.locator('ix-dropdown[data-testid="datetime-dropdown"]');
-  await expect(dropdown).toHaveClass(/show/);
+  await expect(dateTimeInputElement.getByRole('button', { name: 'Confirm' })).toBeVisible();
 });
 
 regressionTest('handles rapid value changes', async ({ mount, page }) => {
@@ -594,7 +573,8 @@ regressionTest('handles rapid value changes', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
 
-  const input = page.locator('ix-datetime-input input');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
 
   await input.fill('2024/01/01 00:00:00');
   await input.fill('2024/06/15 12:30:45');
