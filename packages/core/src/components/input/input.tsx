@@ -28,7 +28,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, SlotEnd, SlotStart } from './input.fc';
+import { InputElement, Slot } from './input.fc';
 import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
@@ -37,6 +37,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
+  clearInputValue,
   onInputFocus,
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
@@ -171,15 +172,15 @@ export class Input implements IxInputFieldComponent<string> {
   @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
-   * Event emitted when the text field loses focus.
-   */
-  @Event() ixBlur!: EventEmitter<void>;
-
-  /**
-   * Event emitted when the text field loses focus and the value has changed.
+   * Native change event.
    * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
+
+  /**
+   * Event emitted when the text field loses focus.
+   */
+  @Event() ixBlur!: EventEmitter<void>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -189,13 +190,14 @@ export class Input implements IxInputFieldComponent<string> {
 
   @State() inputType = 'text';
 
-  /** @internal */
-  public initialValue?: string;
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
+
+  /** @internal */
+  public initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -238,7 +240,11 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (this.inputRef.current && this.touched) {
+    if (
+      this.inputRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -289,6 +295,15 @@ export class Input implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this);
+  }
+
   render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
     return (
@@ -315,10 +330,11 @@ export class Input implements IxInputFieldComponent<string> {
           controlRef={this.inputRef}
         >
           <div class="input-wrapper">
-            <SlotStart
-              slotStartRef={this.slotStartRef}
+            <Slot
+              slotRef={this.slotStartRef}
+              position="start"
               onSlotChange={() => this.updatePaddings()}
-            ></SlotStart>
+            ></Slot>
             <InputElement
               id={this.inputId}
               readonly={this.readonly}
@@ -350,8 +366,9 @@ export class Input implements IxInputFieldComponent<string> {
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
             ></InputElement>
-            <SlotEnd
-              slotEndRef={this.slotEndRef}
+            <Slot
+              slotRef={this.slotEndRef}
+              position="end"
               onSlotChange={() => this.updatePaddings()}
             >
               <ix-icon-button
@@ -373,7 +390,7 @@ export class Input implements IxInputFieldComponent<string> {
                   this.inputType = 'password';
                 }}
               ></ix-icon-button>
-            </SlotEnd>
+            </Slot>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (
             <ix-typography

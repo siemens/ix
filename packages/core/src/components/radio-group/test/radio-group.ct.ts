@@ -41,6 +41,8 @@ regressionTest('required', async ({ mount, page }) => {
   );
   const radioGroupElement = page.locator('ix-radio-group');
   await expect(radioGroupElement).toHaveClass(/hydrated/);
+
+  // Wait for the asterisk to appear (hasRequiredChild state update)
   await expect(radioGroupElement).toHaveText(/example\*/);
 
   const radioOption1 = page.locator('ix-radio').nth(0);
@@ -204,8 +206,10 @@ regressionTest.describe('keyboard navigation', () => {
 
     await page.keyboard.press('Tab');
     await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Option 3')).toBeDisabled();
+    await page.keyboard.press('Tab');
     await expect(page.getByLabel('Option 2')).toBeChecked();
-
     await page.keyboard.press('Tab');
     await expect(page.getByLabel('Focusable Element')).toBeFocused();
   });
@@ -230,6 +234,7 @@ regressionTest.describe('keyboard navigation', () => {
 
     await page.keyboard.press('ArrowDown');
     await expect(page.getByLabel('Option 3')).not.toBeChecked();
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByLabel('Option 4')).toBeChecked();
 
     await page.keyboard.press('ArrowRight');
