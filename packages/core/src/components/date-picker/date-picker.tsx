@@ -23,11 +23,12 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { queryElements } from '../utils/focus/focus-utilities';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -46,7 +47,10 @@ interface CalendarWeek {
     delegatesFocus: true,
   },
 })
-export class DatePicker extends Mixin() implements IxDatePickerComponent {
+export class DatePicker
+  extends Mixin(...DefaultMixins)
+  implements IxDatePickerComponent
+{
   @Element() override hostElement!: HTMLIxDatePickerElement;
 
   /**

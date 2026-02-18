@@ -18,9 +18,10 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
 
@@ -74,7 +75,7 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
     delegatesFocus: true,
   },
 })
-export class TimePicker extends Mixin() {
+export class TimePicker extends Mixin(...DefaultMixins) {
   @Element() override hostElement!: HTMLIxTimePickerElement;
 
   /**

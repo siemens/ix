@@ -20,12 +20,13 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { type LiteralStringUnion } from '../utils/type-helper';
@@ -41,7 +42,7 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
   shadow: true,
 })
 export class DateDropdown
-  extends Mixin()
+  extends Mixin(...DefaultMixins)
   implements
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>

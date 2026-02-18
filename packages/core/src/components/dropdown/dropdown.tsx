@@ -27,6 +27,7 @@ import {
   Method,
   Prop,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import {
@@ -42,7 +43,7 @@ import {
   focusLastDescendant,
   queryElements,
 } from '../utils/focus/focus-utilities';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import {
   hasKeyboardMode,
   removeVisibleFocus,
@@ -65,7 +66,10 @@ let sequenceId = 0;
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
-export class Dropdown extends Mixin() implements DropdownInterface {
+export class Dropdown
+  extends Mixin(...DefaultMixins)
+  implements DropdownInterface
+{
   @Element() override hostElement!: HTMLIxDropdownElement;
 
   /**

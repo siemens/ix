@@ -17,6 +17,7 @@ import {
   Host,
   Prop,
   State,
+  Mixin,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
@@ -24,7 +25,7 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
@@ -32,7 +33,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem extends Mixin() implements AnchorInterface {
+export class BreadcrumbItem
+  extends Mixin(...DefaultMixins)
+  implements AnchorInterface
+{
   @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**

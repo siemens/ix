@@ -16,15 +16,16 @@ import {
   h,
   Host,
   Prop,
+  Mixin,
 } from '@stencil/core';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
   shadow: true,
 })
-export class MenuAboutNews extends Mixin() {
+export class MenuAboutNews extends Mixin(...DefaultMixins) {
   @Element() override hostElement!: HTMLIxMenuAboutNewsElement;
   /**
    * Show about news
