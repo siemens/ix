@@ -133,7 +133,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /**
    * Define a container element to constrain dropdown within.
-   * @since 4.3.0
+   * @since 4.4.0
    */
   @Prop() container?: ElementReference;
 
@@ -431,9 +431,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.clearAutoCloseTimeout();
       this.autoCloseTimeout = setTimeout(() => {
-        if (this.isDropdownFullyNotVisible()) {
-          this.dismiss();
-        }
+        this.visibilityHandler?.();
       }, 300);
     }
 

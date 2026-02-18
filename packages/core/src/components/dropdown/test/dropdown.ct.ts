@@ -903,5 +903,7 @@ regressionTest(
     });
     await page.waitForTimeout(350);
     await expect(dropdown).not.toBeVisible();
+    const showAttribute = await dropdown.evaluate((el: any) => el.show);
+    expect(showAttribute).toBe(false);
   }
 );

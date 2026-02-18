@@ -1344,7 +1344,7 @@ export namespace Components {
         "closeBehavior": CloseBehavior;
         /**
           * Define a container element to constrain dropdown within.
-          * @since 4.3.0
+          * @since 4.4.0
          */
         "container"?: ElementReference;
         /**
@@ -7375,7 +7375,7 @@ declare namespace LocalJSX {
         "closeBehavior"?: CloseBehavior;
         /**
           * Define a container element to constrain dropdown within.
-          * @since 4.3.0
+          * @since 4.4.0
          */
         "container"?: ElementReference;
         /**
