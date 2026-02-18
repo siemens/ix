@@ -89,8 +89,9 @@ regressionTest(
     const dateTimeInputElement = page.locator('ix-datetime-input');
     await expect(dateTimeInputElement).toHaveClass(/hydrated/);
 
-    const dateTimeInput =
-      await createDateTimeInputAccessor(dateTimeInputElement);
+    const dateTimeInput = await createDateTimeInputAccessor(
+      dateTimeInputElement
+    );
     await dateTimeInput.openByCalendar();
 
     await dateTimeInput.selectDay(15);
@@ -368,8 +369,8 @@ regressionTest('invalid date format shows error', async ({ mount, page }) => {
 
 regressionTest('validates minDate constraint', async ({ mount, page }) => {
   await mount(`
-    <ix-datetime-input 
-      value="2024/01/10 10:00:00" 
+    <ix-datetime-input
+      value="2024/01/10 10:00:00"
       min-date="2024/01/20"
     ></ix-datetime-input>
   `);
@@ -381,8 +382,8 @@ regressionTest('validates minDate constraint', async ({ mount, page }) => {
 
 regressionTest('validates maxDate constraint', async ({ mount, page }) => {
   await mount(`
-    <ix-datetime-input 
-      value="2024/12/25 10:00:00" 
+    <ix-datetime-input
+      value="2024/12/25 10:00:00"
       max-date="2024/12/20"
     ></ix-datetime-input>
   `);
@@ -396,8 +397,8 @@ regressionTest(
   'validates minDate with date boundary',
   async ({ mount, page }) => {
     await mount(`
-    <ix-datetime-input 
-      value="2024/01/19 23:59:59" 
+    <ix-datetime-input
+      value="2024/01/19 23:59:59"
       min-date="2024/01/20"
     ></ix-datetime-input>
   `);
@@ -412,8 +413,8 @@ regressionTest(
   'validates maxDate with date boundary',
   async ({ mount, page }) => {
     await mount(`
-    <ix-datetime-input 
-      value="2024/12/20 23:59:59" 
+    <ix-datetime-input
+      value="2024/12/20 23:59:59"
       max-date="2024/12/20"
     ></ix-datetime-input>
   `);
@@ -428,8 +429,8 @@ regressionTest(
   'validates minDate with date-only format',
   async ({ mount, page }) => {
     await mount(`
-    <ix-datetime-input 
-      value="2024/01/15 10:00:00" 
+    <ix-datetime-input
+      value="2024/01/15 10:00:00"
       min-date="2024/01/20"
     ></ix-datetime-input>
   `);
@@ -452,7 +453,8 @@ regressionTest('required field validation', async ({ mount, page }) => {
   await expect(dateTimeInput.getByText('Appointment*')).toBeVisible();
 
   await input.focus();
-  await page.waitForTimeout(50); // Small delay between focus and blur
+  // Small delay between focus and blur
+  await page.waitForTimeout(50);
   await input.blur();
 
   await expect(dateTimeInput).toHaveClass(/ix-invalid--required/, {
@@ -501,8 +503,8 @@ regressionTest('form-ready - basic submission', async ({ mount, page }) => {
 regressionTest('form-ready - initial value', async ({ mount, page }) => {
   await mount(`
     <form>
-      <ix-datetime-input 
-        name="appointment-time" 
+      <ix-datetime-input
+        name="appointment-time"
         value="2024/12/25 10:00:00"
       ></ix-datetime-input>
     </form>
@@ -539,9 +541,9 @@ regressionTest(
 
 regressionTest('respects custom format props', async ({ mount, page }) => {
   await mount(`
-    <ix-datetime-input 
-      date-format="dd-MM-yyyy" 
-      time-format="HH:mm:ss" 
+    <ix-datetime-input
+      date-format="dd-MM-yyyy"
+      time-format="HH:mm:ss"
       value="15-06-2024 14:30:45"
     ></ix-datetime-input>
   `);
@@ -553,8 +555,8 @@ regressionTest('respects custom format props', async ({ mount, page }) => {
 
 regressionTest('respects locale prop', async ({ mount, page }) => {
   await mount(`
-    <ix-datetime-input 
-      locale="de-DE" 
+    <ix-datetime-input
+      locale="de-DE"
       value="2024/05/05 09:10:11"
     ></ix-datetime-input>
   `);
@@ -585,8 +587,8 @@ regressionTest(
   'invalidText takes precedence over i18n',
   async ({ mount, page }) => {
     await mount(`
-    <ix-datetime-input 
-      value="2024/05/05 09:10:11" 
+    <ix-datetime-input
+      value="2024/05/05 09:10:11"
       invalid-text="Custom error message"
       i18n-error-date-time-unparsable="i18n error message"
     ></ix-datetime-input>
