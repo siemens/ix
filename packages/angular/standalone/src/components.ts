@@ -740,12 +740,13 @@ The event payload contains information about the selected date range.
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  outputs: ['valueChange', 'validityStateChange'],
+  outputs: ['valueChange', 'validityStateChange', 'ixChange'],
 })
 export class IxDateInput {
   protected el: HTMLIxDateInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -764,6 +765,10 @@ export declare interface IxDateInput extends Components.IxDateInput {
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
+  /**
+   * Native change event. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -1437,12 +1442,13 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
 })
 export class IxInput {
   protected el: HTMLIxInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1460,6 +1466,10 @@ export declare interface IxInput extends Components.IxInput {
    * Event emitted when the validity state of the text field changes.
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * Native change event. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
   /**
    * Event emitted when the text field loses focus.
    */
@@ -2114,12 +2124,13 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<number>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<number>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -2137,6 +2148,10 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    * Event emitted when the validity state of the input field changes
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * Native change event. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<number>>;
   /**
    * Event emitted when the input field loses focus
    */
@@ -2641,12 +2656,13 @@ export declare interface IxTabs extends Components.IxTabs {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
 })
 export class IxTextarea {
   protected el: HTMLIxTextareaElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -2664,6 +2680,10 @@ export declare interface IxTextarea extends Components.IxTextarea {
    * Event emitted when the validity state of the textarea field changes.
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * Native change event. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
   /**
    * Event emitted when the textarea field loses focus.
    */
@@ -2705,11 +2725,12 @@ export declare interface IxTile extends Components.IxTile {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange'],
+  outputs: ['valueChange', 'ixChange', 'validityStateChange'],
 })
 export class IxTimeInput {
   protected el: HTMLIxTimeInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -2725,6 +2746,10 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    * Input change event.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Native change event. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
   /**
    * Validation state change event.
    */
