@@ -72,13 +72,12 @@
     }
   }
 
-  html:not([class*='theme-']):not([data-ix-theme])
-    body:not([class*='theme-']):not([data-ix-theme]),
-  :is(html, body)[class*='theme-classic-dark'] {
+  :not([data-ix-theme]) body:not([class*='theme-']):not([data-ix-theme]),
+  body[class*='theme-classic-dark'] {
     @include as_dark_variables.setVars();
   }
 
-  :is(html, body)[class*='theme-classic-light'] {
+  body[class*='theme-classic-light'] {
     @include as_light_variables.setVars();
   }
 }
