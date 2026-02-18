@@ -36,9 +36,12 @@ describe('ThemeSwitcher', () => {
     it('should toggle theme CSS class', () => {
       themeSwitcher.setTheme(themeClass);
       themeSwitcher.toggleMode();
+      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
+        'classic'
+      );
       expect(
-        document.documentElement.classList.contains('theme-classic-light')
-      ).toBe(true);
+        document.documentElement.getAttribute('data-ix-color-schema')
+      ).toBe('light');
     });
 
     it('should toggle theme attribute', () => {
@@ -68,7 +71,13 @@ describe('ThemeSwitcher', () => {
       themeSwitcher.toggleMode();
       expect(
         document.documentElement.classList.contains('theme-classic-light')
-      ).toBe(true);
+      ).toBe(false);
+      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
+        'classic'
+      );
+      expect(
+        document.documentElement.getAttribute('data-ix-color-schema')
+      ).toBe('light');
     });
 
     it('should toggle schema via attribute', () => {
