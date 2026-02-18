@@ -527,12 +527,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.hostElement.addEventListener('invalid', (event: Event) => {
       event.preventDefault();
     });
-
-    this.hostElement.addEventListener('focus', () => {
-      if (this.inputElement) {
-        this.inputElement.focus();
-      }
-    });
   }
 
   componentDidLoad() {
@@ -988,10 +982,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         class={{
           disabled: this.disabled,
         }}
-        onFocus={() => {
+        onFocus={(event: FocusEvent) => {
           if (
             this.inputElement &&
-            document.activeElement === this.hostElement
+            event.target === this.hostElement &&
+            !this.dropdownShow
           ) {
             this.inputElement.focus();
           }
