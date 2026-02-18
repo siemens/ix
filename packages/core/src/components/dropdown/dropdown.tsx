@@ -641,7 +641,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         let x = Math.round(computeResponse.x);
         let y = Math.round(computeResponse.y);
 
-        if (useAbsolute && this.containerElement) {
+        if (this.containerElement) {
           if (
             this.hostElement.parentElement !== this.containerElement &&
             this.hostElement.isConnected &&
