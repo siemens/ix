@@ -33,10 +33,10 @@ import BlindVariants from './preview-examples/blind-variants';
 import Breadcrumb from './preview-examples/breadcrumb';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
-import ButtonGhost from './preview-examples/button-ghost';
-import ButtonGrey from './preview-examples/button-grey';
-import ButtonGreyGhost from './preview-examples/button-grey-ghost';
-import ButtonGreySecondary from './preview-examples/button-grey-secondary';
+import ButtonTertiary from './preview-examples/button-tertiary';
+import ButtonSubtlePrimary from './preview-examples/button-subtle-primary';
+import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary';
+import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary';
 import ButtonGroup from './preview-examples/button-group';
 import ButtonLoading from './preview-examples/button-loading';
 import ButtonSecondary from './preview-examples/button-secondary';
@@ -239,9 +239,9 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import buttonDanger from './preview-examples/button-danger.tsx';
-import buttonDangerGhost from './preview-examples/button-danger-ghost.tsx';
-import buttonDangerOutline from './preview-examples/button-danger-outline.tsx';
+import buttonDangerPrimary from './preview-examples/button-danger-primary.tsx';
+import buttonDangerTertiary from './preview-examples/button-danger-tertiary.tsx';
+import buttonDangerSecondary from './preview-examples/button-danger-secondary.tsx';
 import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
 import dateInputLabel from './preview-examples/date-input-label.tsx';
 import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
@@ -288,10 +288,10 @@ const routes: IxPreviewRoutes = {
   '/preview/breadcrumb-next-items': BreadcrumbNextItems,
   '/preview/breadcrumb-truncate': BreadcrumbTruncate,
   '/preview/breadcrumb': Breadcrumb,
-  '/preview/button-ghost': ButtonGhost,
-  '/preview/button-grey-ghost': ButtonGreyGhost,
-  '/preview/button-grey-secondary': ButtonGreySecondary,
-  '/preview/button-grey': ButtonGrey,
+  '/preview/button-tertiary': ButtonTertiary,
+  '/preview/button-subtle-tertiary': ButtonSubtleTertiary,
+  '/preview/button-subtle-secondary': ButtonSubtleSecondary,
+  '/preview/button-subtle-primary': ButtonSubtlePrimary,
   '/preview/button-group': ButtonGroup,
   '/preview/button-loading': ButtonLoading,
   '/preview/button-secondary': ButtonSecondary,
@@ -489,9 +489,9 @@ const routes: IxPreviewRoutes = {
   '/preview/progress-indicator-circular-sizes': ProgressIndicatorCircularSizes,
   '/preview/progress-indicator-circular': ProgressIndicatorCircular,
   '/preview/progress-indicator': ProgressIndicator,
-  '/preview/button-danger': buttonDanger,
-  '/preview/button-danger-ghost': buttonDangerGhost,
-  '/preview/button-danger-outline': buttonDangerOutline,
+  '/preview/button-danger-primary': buttonDangerPrimary,
+  '/preview/button-danger-tertiary': buttonDangerTertiary,
+  '/preview/button-danger-secondary': buttonDangerSecondary,
   '/preview/button-with-link': ButtonWithLink,
   '/preview/date-input-disabled': dateInputDisabled,
   '/preview/date-input-label': dateInputLabel,
