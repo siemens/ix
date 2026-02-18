@@ -13,7 +13,7 @@ import {
   regressionTest,
 } from '@utils/test';
 
-const createDateTimeInputAccessor = async (dateTimeInput: Locator) => {
+const createAccessor = async (dateTimeInput: Locator) => {
   return {
     openByCalendar: async () => {
       // Calendar button is aria-hidden, so we select the first icon button
@@ -89,9 +89,7 @@ regressionTest(
     const dateTimeInputElement = page.locator('ix-datetime-input');
     await expect(dateTimeInputElement).toHaveClass(/hydrated/);
 
-    const dateTimeInput = await createDateTimeInputAccessor(
-      dateTimeInputElement
-    );
+    const dateTimeInput = await createAccessor(dateTimeInputElement);
     await dateTimeInput.openByCalendar();
 
     await dateTimeInput.selectDay(15);
@@ -245,7 +243,7 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
   const dateTimeInputElement = page.locator('ix-datetime-input');
   await expect(dateTimeInputElement).toHaveClass(/hydrated/);
 
-  const dateTimeInput = await createDateTimeInputAccessor(dateTimeInputElement);
+  const dateTimeInput = await createAccessor(dateTimeInputElement);
   const input = dateTimeInputElement.getByRole('textbox');
   await input.focus();
 
