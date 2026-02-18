@@ -180,7 +180,7 @@ export class Toggle implements IxFormComponent<string> {
       <Host
         role="switch"
         tabindex={this.disabled ? -1 : 0}
-        aria-label={this.hostElement.getAttribute('aria-label') ?? 'Toggle'}
+        aria-label={this.hostElement.getAttribute('aria-label')}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
