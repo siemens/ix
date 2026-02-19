@@ -150,3 +150,25 @@ regressionTest(
     await expect(group).not.toHaveAttribute('selected');
   }
 );
+
+regressionTest.only(
+  'disabled prop reflects to host attribute',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group>
+      <ix-group-item disabled>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+    await expandIcon.click();
+    const groupItem = page.locator('ix-group-item').first();
+    await expect(groupItem).toHaveAttribute('disabled', '');
+    await groupItem.evaluate((item) => {
+      (item as HTMLElement & { disabled: boolean }).disabled = false;
+    });
+    await expect(groupItem).not.toHaveAttribute('disabled');
+    await groupItem.click();
+    await expect(groupItem).toHaveClass(/selected/);
+  }
+);
