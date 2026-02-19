@@ -1,4 +1,10 @@
-import { IxInput, IxButton, IxDateInput, IxTimeInput, IxNumberInput } from '@siemens/ix-react';
+import {
+  IxInput,
+  IxButton,
+  IxDateInput,
+  IxTimeInput,
+  IxNumberInput,
+} from '@siemens/ix-react';
 
 export default () => {
   const handleSubmit = (e: React.FormEvent, formType: string) => {

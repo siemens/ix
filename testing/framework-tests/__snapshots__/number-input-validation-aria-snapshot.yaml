@@ -1,0 +1,12 @@
+- spinbutton: "5"
+- img
+- text: Info text
+- spinbutton: "5"
+- img
+- text: Warning text
+- spinbutton: "5"
+- img
+- text: Valid text
+- spinbutton: "5"
+- img
+- text: Invalid text

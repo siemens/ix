@@ -31,13 +31,13 @@ import Blind from './preview-examples/blind.vue';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items.vue';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate.vue';
 import Breadcrumb from './preview-examples/breadcrumb.vue';
-import ButtonDangerGhost from './preview-examples/button-danger-ghost.vue';
-import ButtonDangerOutline from './preview-examples/button-danger-outline.vue';
-import ButtonDanger from './preview-examples/button-danger.vue';
-import ButtonGhost from './preview-examples/button-ghost.vue';
-import ButtonGreyGhost from './preview-examples/button-grey-ghost.vue';
-import ButtonGreySecondary from './preview-examples/button-grey-secondary.vue';
-import ButtonGrey from './preview-examples/button-grey.vue';
+import ButtonDangerTertiary from './preview-examples/button-danger-tertiary.vue';
+import ButtonDangerSecondary from './preview-examples/button-danger-secondary.vue';
+import ButtonDangerPrimary from './preview-examples/button-danger-primary.vue';
+import ButtonTertiary from './preview-examples/button-tertiary.vue';
+import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary.vue';
+import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary.vue';
+import ButtonSubtlePrimary from './preview-examples/button-subtle-primary.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
 import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
@@ -232,8 +232,16 @@ import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
 import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
 import ProgressIndicator from './preview-examples/progress-indicator.vue';
+import { testIds } from 'framework-tests/tests/test-ids';
 
-const routes: any = {
+const exampleNames = [...testIds, ...'validation'] as const;
+type IxPreviewRoutes = {
+  '/': any;
+} & {
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
+};
+
+const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/action-card': ActionCard,
@@ -254,10 +262,10 @@ const routes: any = {
   '/preview/breadcrumb-next-items': BreadcrumbNextItems,
   '/preview/breadcrumb-truncate': BreadcrumbTruncate,
   '/preview/breadcrumb': Breadcrumb,
-  '/preview/button-ghost': ButtonGhost,
-  '/preview/button-grey-ghost': ButtonGreyGhost,
-  '/preview/button-grey-secondary': ButtonGreySecondary,
-  '/preview/button-grey': ButtonGrey,
+  '/preview/button-tertiary': ButtonTertiary,
+  '/preview/button-subtle-tertiary': ButtonSubtleTertiary,
+  '/preview/button-subtle-secondary': ButtonSubtleSecondary,
+  '/preview/button-subtle-primary': ButtonSubtlePrimary,
   '/preview/button-group': ButtonGroup,
   '/preview/button-loading': ButtonLoading,
   '/preview/button-secondary': ButtonSecondary,
@@ -447,9 +455,9 @@ const routes: any = {
   '/preview/validation': Validation,
   '/preview/vertical-tabs-with-avatar': VerticalTabsWithAvatar,
   '/preview/vertical-tabs': VerticalTabs,
-  '/preview/button-danger': ButtonDanger,
-  '/preview/button-danger-ghost': ButtonDangerGhost,
-  '/preview/button-danger-outline': ButtonDangerOutline,
+  '/preview/button-danger-primary': ButtonDangerPrimary,
+  '/preview/button-danger-tertiary': ButtonDangerTertiary,
+  '/preview/button-danger-secondary': ButtonDangerSecondary,
   '/preview/form-layout-auto': FormLayoutAuto,
   '/preview/form-layout-grid': FormLayoutGrid,
   '/preview/progress-indicator-linear-status': ProgressIndicatorLinearStatus,
@@ -462,9 +470,8 @@ const routes: any = {
 };
 
 const currentPath = ref(window.location.pathname);
-
 const currentView = computed(() => {
-  return routes[currentPath.value || '/'] || App;
+  return (routes as any)[currentPath.value || '/'] || App;
 });
 </script>
 

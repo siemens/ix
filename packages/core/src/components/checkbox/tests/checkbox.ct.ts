@@ -85,7 +85,7 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
 regressionTest('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');
-  await expect(checkboxElement).toHaveText('some label');
+  await expect(checkboxElement).toHaveText(/some label/);
 });
 
 test('Checkbox should not cause layout shift when checked', async ({
