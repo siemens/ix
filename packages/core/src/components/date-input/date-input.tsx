@@ -31,7 +31,6 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
-  onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
 import {
@@ -397,38 +396,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.show = true;
       requestAnimationFrameNoNgZone(() => this.datepickerRef.current?.focus());
     }
-
-    if (this.show) {
-      const forwardableKeys = [
-        'ArrowUp',
-        'ArrowDown',
-        'ArrowLeft',
-        'ArrowRight',
-        'Home',
-        'End',
-        'PageUp',
-        'PageDown',
-        'Enter',
-        ' ',
-      ];
-      if (forwardableKeys.includes(event.key)) {
-        event.preventDefault();
-        this.datepickerRef.current?.dispatchEvent(
-          new KeyboardEvent('keydown', {
-            key: event.key,
-            shiftKey: event.shiftKey,
-            bubbles: true,
-          })
-        );
-        requestAnimationFrameNoNgZone(async () => {
-          const id = await this.datepickerRef.current?.getVisuallyFocusedId();
-          this.activeDescendantId = id ?? null;
-        });
-        return;
-      }
-    }
-    onEnterKeyChangeEmit(event, this, this.value);
-
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,

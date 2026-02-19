@@ -290,38 +290,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private handleInputKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowDown') {
       this.show = true;
-      this.time = this.value;
-      event.preventDefault();
-      return;
-    }
-
-    if (this.show) {
-      if (event.key === 'Tab') {
-        event.preventDefault();
-        this.timePickerRef.current?.navigateToNextColumn(event.shiftKey);
-        requestAnimationFrameNoNgZone(async () => {
-          const id = await this.timePickerRef.current?.getVisuallyFocusedId();
-          this.activeDescendantId = id ?? null;
-        });
-        return;
-      }
-
-      const forwardableKeys = ['ArrowUp', 'ArrowDown', 'Enter', ' '];
-      if (forwardableKeys.includes(event.key)) {
-        event.preventDefault();
-        this.timePickerRef.current?.dispatchEvent(
-          new KeyboardEvent('keydown', {
-            key: event.key,
-            shiftKey: event.shiftKey,
-            bubbles: true,
-          })
-        );
-        requestAnimationFrameNoNgZone(async () => {
-          const id = await this.timePickerRef.current?.getVisuallyFocusedId();
-          this.activeDescendantId = id ?? null;
-        });
-        return;
-      }
+      requestAnimationFrameNoNgZone(() => {
+        this.timePickerRef.current?.focus();
+      });
     }
     onEnterKeyChangeEmit(event, this, this.value);
 
