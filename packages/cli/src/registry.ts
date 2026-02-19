@@ -12,6 +12,13 @@ export type RegistryIndex = {
     string,
     {
       blocks: Array<{ name: string; path: string }>;
+      searchIndex?: {
+        html?: string;
+        react?: string;
+        angular?: string;
+        'angular-standalone'?: string;
+        vue?: string;
+      };
     }
   >;
 };
@@ -30,6 +37,13 @@ export type ExamplesRegistryIndex = {
     string,
     {
       examples: Array<{ name: string; path: string }>;
+      searchIndex?: {
+        html?: string;
+        react?: string;
+        angular?: string;
+        'angular-standalone'?: string;
+        vue?: string;
+      };
     }
   >;
 };
@@ -71,6 +85,172 @@ async function fetchJson<T>(url: string): Promise<T> {
   return (await res.json()) as T;
 }
 
+type VersionedRegistry = {
+  'dist-tags': Record<string, string>;
+  versions: Record<string, unknown>;
+};
+
+function resolveVersionKey(
+  registry: VersionedRegistry,
+  candidate?: string
+): string | null {
+  if (!candidate) {
+    return null;
+  }
+
+  if (registry.versions[candidate]) {
+    return candidate;
+  }
+
+  if (candidate.startsWith('v') && registry.versions[candidate.slice(1)]) {
+    return candidate.slice(1);
+  }
+
+  const vPrefixedCandidate = `v${candidate}`;
+  if (registry.versions[vPrefixedCandidate]) {
+    return vPrefixedCandidate;
+  }
+
+  return null;
+}
+
+function normalizePath(value: string): string {
+  return value.replace(/^\.\//, '').replace(/^\/+/, '');
+}
+
+function getVersionPrefixFromEntryPath(entryPath: string): string | null {
+  const normalizedPath = normalizePath(entryPath);
+  const segments = normalizedPath.split('/');
+
+  if (segments.length < 2) {
+    return null;
+  }
+
+  if (segments[0] === 'examples' || segments[0] === 'blocks') {
+    return null;
+  }
+
+  if (segments[1] === 'examples' || segments[1] === 'blocks') {
+    return segments[0];
+  }
+
+  return null;
+}
+
+function toVersionScopedPath(pathValue: string, versionPrefix: string | null): string {
+  const normalizedPath = normalizePath(pathValue);
+
+  if (!versionPrefix) {
+    return normalizedPath;
+  }
+
+  if (normalizedPath.startsWith(`${versionPrefix}/`)) {
+    return normalizedPath;
+  }
+
+  return `${versionPrefix}/${normalizedPath}`;
+}
+
+function withVersionPrefix(
+  value: string,
+  version: string,
+  knownVersions: string[]
+): string {
+  const normalizedValue = normalizePath(value);
+
+  if (normalizedValue.startsWith(`${version}/`)) {
+    return normalizedValue;
+  }
+
+  const [head, ...rest] = normalizedValue.split('/');
+  if (knownVersions.includes(head) && rest.length > 0) {
+    return `${version}/${rest.join('/')}`;
+  }
+
+  return `${version}/${normalizedValue}`;
+}
+
+export function resolveRegistryVersion(
+  registry: VersionedRegistry,
+  versionRef?: string
+): string {
+  const latest = registry['dist-tags']?.latest;
+
+  if (!versionRef || versionRef === 'latest') {
+    const resolvedLatest = resolveVersionKey(registry, latest);
+
+    if (!resolvedLatest) {
+      throw new Error('Registry latest version is missing or invalid');
+    }
+
+    return resolvedLatest;
+  }
+
+  const resolvedDirect = resolveVersionKey(registry, versionRef);
+  if (resolvedDirect) {
+    return resolvedDirect;
+  }
+
+  const resolvedFromTag = registry['dist-tags']?.[versionRef];
+  const resolvedFromTagVersion = resolveVersionKey(registry, resolvedFromTag);
+  if (resolvedFromTagVersion) {
+    return resolvedFromTagVersion;
+  }
+
+  const availableVersions = Object.keys(registry.versions).sort().join(', ');
+  const availableTags = Object.keys(registry['dist-tags'] || {})
+    .sort()
+    .join(', ');
+
+  throw new Error(
+    `Unknown registry version/tag '${versionRef}'. Available versions: [${availableVersions}] | tags: [${availableTags}]`
+  );
+}
+
+export function resolveBlocksSearchIndexPath(
+  registry: RegistryIndex,
+  framework: 'react' | 'angular' | 'vue',
+  versionRef?: string
+): string {
+  const version = resolveRegistryVersion(registry, versionRef);
+  const sourceIndex =
+    registry.versions[version]?.searchIndex ?? registry.searchIndex;
+
+  const frameworkIndexPath = sourceIndex?.[framework];
+  if (!frameworkIndexPath) {
+    throw new Error(`No search index available for framework: ${framework}`);
+  }
+
+  return withVersionPrefix(
+    frameworkIndexPath,
+    version,
+    Object.keys(registry.versions)
+  );
+}
+
+export function resolveExamplesSearchIndexPath(
+  registry: ExamplesRegistryIndex,
+  framework: 'html' | 'react' | 'angular' | 'angular-standalone' | 'vue',
+  versionRef?: string
+): string {
+  const version = resolveRegistryVersion(registry, versionRef);
+  const sourceIndex =
+    registry.versions[version]?.searchIndex ?? registry.searchIndex;
+
+  const frameworkIndexPath = sourceIndex?.[framework];
+  if (!frameworkIndexPath) {
+    throw new Error(
+      `No search index available for framework: ${framework} in examples registry`
+    );
+  }
+
+  return withVersionPrefix(
+    frameworkIndexPath,
+    version,
+    Object.keys(registry.versions)
+  );
+}
+
 export async function fetchRegistryIndex(
   baseUrl: string
 ): Promise<RegistryIndex> {
@@ -87,11 +267,12 @@ export async function fetchBlockDefinition(
 
 export async function listAllBlocks(
   baseUrl: string,
-  framework: 'react' | 'angular' | 'vue'
+  framework: 'react' | 'angular' | 'vue',
+  versionRef?: string
 ): Promise<Array<{ name: string; path: string }>> {
   const registry = await fetchRegistryIndex(baseUrl);
-  const latestVersion = registry['dist-tags'].latest;
-  const versionBlocks = registry.versions[latestVersion]?.blocks || [];
+  const selectedVersion = resolveRegistryVersion(registry, versionRef);
+  const versionBlocks = registry.versions[selectedVersion]?.blocks || [];
 
   // Filter blocks that support the requested framework
   const filteredBlocks: Array<{ name: string; path: string }> = [];
@@ -147,6 +328,7 @@ export async function getExampleCode(
 ): Promise<ExampleCode> {
   const exampleDef = await fetchExampleDefinition(baseUrl, examplePath);
   const variant = exampleDef.variants[framework];
+  const versionPrefix = getVersionPrefixFromEntryPath(examplePath);
 
   if (!variant) {
     throw new Error(
@@ -158,10 +340,11 @@ export async function getExampleCode(
   const files: ExampleCodeFile[] = [];
   for (const file of variant.files) {
     try {
-      const sourceUrl = `${baseUrl}/${file.source}`;
+      const sourcePath = toVersionScopedPath(file.source, versionPrefix);
+      const sourceUrl = `${baseUrl}/${sourcePath}`;
       const response = await fetch(sourceUrl);
       if (!response.ok) {
-        throw new Error(`Failed to fetch ${file.source}: ${response.status}`);
+        throw new Error(`Failed to fetch ${sourcePath}: ${response.status}`);
       }
       const content = await response.text();
       files.push({

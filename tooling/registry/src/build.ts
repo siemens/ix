@@ -264,10 +264,13 @@ const task = new Listr<Ctx>([
         'search-index'
       );
 
-      // Update registry.json with search index paths
+      // Update registry.json with version-scoped search index paths
       const registryPath = path.join(ctx.dist, 'registry.json');
       const registry = await fs.readJson(registryPath);
-      registry.searchIndex = indexPaths;
+      registry.versions ??= {};
+      registry.versions[ctx.registryVersion] ??= { blocks: [] };
+      registry.versions[ctx.registryVersion].searchIndex = indexPaths;
+      delete registry.searchIndex;
       await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
@@ -281,10 +284,13 @@ const task = new Listr<Ctx>([
         'examples-search-index'
       );
 
-      // Update examples-registry.json with search index paths
+      // Update examples-registry.json with version-scoped search index paths
       const registryPath = path.join(ctx.dist, 'examples-registry.json');
       const registry = await fs.readJson(registryPath);
-      registry.searchIndex = indexPaths;
+      registry.versions ??= {};
+      registry.versions[ctx.registryVersion] ??= { examples: [] };
+      registry.versions[ctx.registryVersion].searchIndex = indexPaths;
+      delete registry.searchIndex;
       await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },

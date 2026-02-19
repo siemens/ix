@@ -10,17 +10,6 @@
       "description": "Registry package name",
       "pattern": "^[a-z0-9-]+$"
     },
-    "searchIndex": {
-      "type": "object",
-      "description": "Framework-specific MiniSearch index files for fast example searching",
-      "properties": {
-        "html": { "type": "string", "pattern": "\\.json$" },
-        "react": { "type": "string", "pattern": "\\.json$" },
-        "angular": { "type": "string", "pattern": "\\.json$" },
-        "angular-standalone": { "type": "string", "pattern": "\\.json$" },
-        "vue": { "type": "string", "pattern": "\\.json$" }
-      }
-    },
     "dist-tags": {
       "type": "object",
       "description": "Distribution tags mapping to version numbers",
@@ -52,7 +41,7 @@
   "definitions": {
     "versionEntry": {
       "type": "object",
-      "required": ["examples"],
+      "required": ["examples", "searchIndex"],
       "properties": {
         "examples": {
           "type": "array",
@@ -60,6 +49,17 @@
           "minItems": 1,
           "items": {
             "$ref": "#/definitions/exampleReference"
+          }
+        },
+        "searchIndex": {
+          "type": "object",
+          "description": "Framework-specific MiniSearch index files for this version",
+          "properties": {
+            "html": { "type": "string", "pattern": "\\.json$" },
+            "react": { "type": "string", "pattern": "\\.json$" },
+            "angular": { "type": "string", "pattern": "\\.json$" },
+            "angular-standalone": { "type": "string", "pattern": "\\.json$" },
+            "vue": { "type": "string", "pattern": "\\.json$" }
           }
         }
       },

@@ -11,16 +11,17 @@ import path from 'node:path';
 
 type RegistryVersionEntry = {
   blocks: Array<{ name: string; path: string }>;
+  searchIndex?: Record<string, string>;
 };
 
 type ExamplesRegistryVersionEntry = {
   examples: Array<{ name: string; path: string }>;
+  searchIndex?: Record<string, string>;
 };
 
 type RegistryIndex = {
   $schema?: string;
   name: string;
-  searchIndex?: Record<string, string>;
   'dist-tags': Record<string, string>;
   versions: Record<string, RegistryVersionEntry>;
 };
@@ -28,7 +29,6 @@ type RegistryIndex = {
 type ExamplesRegistryIndex = {
   $schema?: string;
   name: string;
-  searchIndex?: Record<string, string>;
   'dist-tags': Record<string, string>;
   versions: Record<string, ExamplesRegistryVersionEntry>;
 };
@@ -126,7 +126,6 @@ function mergeBlocksRegistry(
     existingRegistry ?? {
       $schema: currentRegistry.$schema,
       name: currentRegistry.name,
-      searchIndex: {},
       'dist-tags': { latest: latestTag },
       versions: {},
     };
@@ -136,11 +135,16 @@ function mergeBlocksRegistry(
     throw new Error(`Current blocks registry does not contain version '${version}'`);
   }
 
+  const sourceSearchIndex =
+    currentVersionEntry.searchIndex ||
+    (currentRegistry as { searchIndex?: Record<string, string> }).searchIndex;
+
   const normalizedVersionEntry: RegistryVersionEntry = {
     blocks: currentVersionEntry.blocks.map((block) => ({
       ...block,
       path: prefixVersionPath(version, block.path),
     })),
+    searchIndex: prefixSearchIndex(version, sourceSearchIndex),
   };
 
   baseRegistry.versions = {
@@ -148,17 +152,14 @@ function mergeBlocksRegistry(
     [version]: normalizedVersionEntry,
   };
 
-  const prefixedSearchIndex = prefixSearchIndex(version, currentRegistry.searchIndex);
-  if (prefixedSearchIndex && (shouldUpdateLatest || !baseRegistry.searchIndex)) {
-    baseRegistry.searchIndex = prefixedSearchIndex;
-  }
-
   baseRegistry['dist-tags'] = {
     ...baseRegistry['dist-tags'],
     latest: shouldUpdateLatest
       ? latestTag
       : (baseRegistry['dist-tags']?.latest ?? latestTag),
   };
+
+  delete (baseRegistry as { searchIndex?: unknown }).searchIndex;
 
   return baseRegistry;
 }
@@ -174,7 +175,6 @@ function mergeExamplesRegistry(
     existingRegistry ?? {
       $schema: currentRegistry.$schema,
       name: currentRegistry.name,
-      searchIndex: {},
       'dist-tags': { latest: latestTag },
       versions: {},
     };
@@ -186,11 +186,16 @@ function mergeExamplesRegistry(
     );
   }
 
+  const sourceSearchIndex =
+    currentVersionEntry.searchIndex ||
+    (currentRegistry as { searchIndex?: Record<string, string> }).searchIndex;
+
   const normalizedVersionEntry: ExamplesRegistryVersionEntry = {
     examples: currentVersionEntry.examples.map((example) => ({
       ...example,
       path: prefixVersionPath(version, example.path),
     })),
+    searchIndex: prefixSearchIndex(version, sourceSearchIndex),
   };
 
   baseRegistry.versions = {
@@ -198,17 +203,14 @@ function mergeExamplesRegistry(
     [version]: normalizedVersionEntry,
   };
 
-  const prefixedSearchIndex = prefixSearchIndex(version, currentRegistry.searchIndex);
-  if (prefixedSearchIndex && (shouldUpdateLatest || !baseRegistry.searchIndex)) {
-    baseRegistry.searchIndex = prefixedSearchIndex;
-  }
-
   baseRegistry['dist-tags'] = {
     ...baseRegistry['dist-tags'],
     latest: shouldUpdateLatest
       ? latestTag
       : (baseRegistry['dist-tags']?.latest ?? latestTag),
   };
+
+  delete (baseRegistry as { searchIndex?: unknown }).searchIndex;
 
   return baseRegistry;
 }

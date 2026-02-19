@@ -19,14 +19,19 @@ const mcpCommand = new Command('mcp').description(
 
 const registryOption = new Option('-r, --registry <url>', 'Registry base URL');
 registryOption.default(defaultRegistry);
+const tagOption = new Option(
+  '-t, --tag <tag>',
+  'Registry tag/version (e.g. latest, main, v4.3.0)'
+).default('latest');
 
 const mcpRunReactMcpCommand = new Command('run-react')
   .description('Run the React MCP server')
   .addOption(registryOption)
-  .action(async (options: { registry: string }) => {
+  .addOption(tagOption)
+  .action(async (options: { registry: string; tag: string }) => {
     try {
       const transport = new StdioServerTransport();
-      const server = createServer('react', options.registry);
+      const server = createServer('react', options.registry, options.tag);
       await server.connect(transport);
     } catch (error) {
       console.error('Error starting MCP server:', error);
@@ -36,10 +41,11 @@ const mcpRunReactMcpCommand = new Command('run-react')
 const mcpRunAngularMcpCommand = new Command('run-angular')
   .description('Run the Angular MCP server')
   .addOption(registryOption)
-  .action(async (options: { registry: string }) => {
+  .addOption(tagOption)
+  .action(async (options: { registry: string; tag: string }) => {
     try {
       const transport = new StdioServerTransport();
-      const server = createServer('angular', options.registry);
+      const server = createServer('angular', options.registry, options.tag);
       await server.connect(transport);
     } catch (error) {
       console.error('Error starting MCP server:', error);

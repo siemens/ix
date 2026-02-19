@@ -7,7 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import MiniSearch from 'minisearch';
-import { fetchRegistryIndex, fetchExamplesRegistryIndex } from './registry';
+import {
+  fetchRegistryIndex,
+  fetchExamplesRegistryIndex,
+  resolveBlocksSearchIndexPath,
+  resolveExamplesSearchIndexPath,
+  resolveRegistryVersion,
+} from './registry';
 
 export interface BlockSearchResult {
   id: string;
@@ -20,6 +26,7 @@ export interface SearchOptions {
   baseUrl: string;
   query: string;
   framework: 'react' | 'angular' | 'vue';
+  version?: string;
   limit?: number;
 }
 
@@ -27,6 +34,7 @@ export interface ExampleSearchOptions {
   baseUrl: string;
   query: string;
   framework: 'html' | 'react' | 'angular' | 'angular-standalone' | 'vue';
+  version?: string;
   limit?: number;
 }
 
@@ -37,6 +45,24 @@ export interface ExampleSearchResult {
   score: number;
 }
 
+function normalizeResultPathForVersion(
+  pathValue: string,
+  version: string,
+  knownVersions: string[]
+): string {
+  const normalizedValue = pathValue.replace(/^\.\//, '').replace(/^\/+/, '');
+
+  if (normalizedValue.startsWith(`${version}/`)) {
+    return normalizedValue;
+  }
+
+  const [head, ...rest] = normalizedValue.split('/');
+  if (knownVersions.includes(head) && rest.length > 0) {
+    return `${version}/${rest.join('/')}`;
+  }
+
+  return `${version}/${normalizedValue}`;
+}
 
 /**
  * Search for blocks in the registry using the prebuilt MiniSearch index
@@ -44,19 +70,16 @@ export interface ExampleSearchResult {
 export async function searchBlocks(
   options: SearchOptions
 ): Promise<BlockSearchResult[]> {
-  const { baseUrl, query, framework, limit = 10 } = options;
+  const { baseUrl, query, framework, version, limit = 10 } = options;
 
   const registry = await fetchRegistryIndex(baseUrl);
-
-  if (!registry.searchIndex) {
-    throw new Error('Registry does not include a search index');
-  }
-
-  // Get framework-specific search index
-  const frameworkIndexPath = registry.searchIndex[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(`No search index available for framework: ${framework}`);
-  }
+  const selectedVersion = resolveRegistryVersion(registry, version);
+  const knownVersions = Object.keys(registry.versions);
+  const frameworkIndexPath = resolveBlocksSearchIndexPath(
+    registry,
+    framework,
+    version
+  );
 
   const indexUrl = `${baseUrl}/${frameworkIndexPath}`;
   const indexRes = await fetch(indexUrl);
@@ -83,7 +106,11 @@ export async function searchBlocks(
   return results.map((r) => ({
     id: r.id,
     name: r.name,
-    path: r.path || '',
+    path: normalizeResultPathForVersion(
+      r.path || '',
+      selectedVersion,
+      knownVersions
+    ),
     score: r.score,
   }));
 }
@@ -94,27 +121,24 @@ export async function searchBlocks(
 export async function searchExamples(
   options: ExampleSearchOptions
 ): Promise<ExampleSearchResult[]> {
-  const { baseUrl, query, framework, limit = 10 } = options;
+  const { baseUrl, query, framework, version, limit = 10 } = options;
 
   const registry = await fetchExamplesRegistryIndex(baseUrl);
-
-  if (!registry.searchIndex) {
-    throw new Error('Examples registry does not include a search index');
-  }
-
-  // Get framework-specific search index
-  const frameworkIndexPath = registry.searchIndex[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(
-      `No search index available for framework: ${framework} in examples registry`
-    );
-  }
+  const selectedVersion = resolveRegistryVersion(registry, version);
+  const knownVersions = Object.keys(registry.versions);
+  const frameworkIndexPath = resolveExamplesSearchIndexPath(
+    registry,
+    framework,
+    version
+  );
 
   const indexUrl = `${baseUrl}/${frameworkIndexPath}`;
   const indexRes = await fetch(indexUrl);
 
   if (!indexRes.ok) {
-    throw new Error(`Failed to fetch examples search index: ${indexRes.status}`);
+    throw new Error(
+      `Failed to fetch examples search index: ${indexRes.status}`
+    );
   }
 
   const indexData = await indexRes.json();
@@ -135,7 +159,11 @@ export async function searchExamples(
   return results.map((r) => ({
     id: r.id,
     name: r.name,
-    path: r.path || '',
+    path: normalizeResultPathForVersion(
+      r.path || '',
+      selectedVersion,
+      knownVersions
+    ),
     score: r.score,
   }));
 }

@@ -1,18 +1,18 @@
 {
   "$schema": "./schemas/examples-registry.schema.json",
   "name": "siemens-ix-examples",
-  "searchIndex": {
-    "html": "examples-search-index-html.json",
-    "react": "examples-search-index-react.json",
-    "angular": "examples-search-index-angular.json",
-    "angular-standalone": "examples-search-index-angular-standalone.json",
-    "vue": "examples-search-index-vue.json"
-  },
   "dist-tags": {
     "latest": "template"
   },
   "versions": {
     "template": {
+      "searchIndex": {
+        "html": "examples-search-index-html.json",
+        "react": "examples-search-index-react.json",
+        "angular": "examples-search-index-angular.json",
+        "angular-standalone": "examples-search-index-angular-standalone.json",
+        "vue": "examples-search-index-vue.json"
+      },
       "examples": [
         {
           "name": "about-and-legal",

@@ -19,8 +19,10 @@ import { searchBlocks, searchExamples } from '../search';
 import {
   fetchBlockDefinition,
   listAllBlocks,
+  fetchExamplesRegistryIndex,
   fetchExampleDefinition,
   getExampleCode,
+  resolveRegistryVersion,
 } from '../registry';
 import {
   searchComponents,
@@ -36,7 +38,11 @@ node_modules is excluded by default in VS Code search settings.
 You needed to use includeIgnoredFiles: true in the grep_search tool.
 `;
 
-export const createServer = (framework: Framework, registryUrl: string) => {
+export const createServer = (
+  framework: Framework,
+  registryUrl: string,
+  registryRef: string = 'latest'
+) => {
   const server = new Server(
     {
       name: 'siemens-ix',
@@ -554,6 +560,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
               baseUrl: registryUrl,
               query: args.query,
               framework,
+              version: registryRef,
               limit: args.limit || 10,
             });
 
@@ -656,7 +663,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
         }
         case listAllBlocksName: {
           try {
-            const blocks = await listAllBlocks(registryUrl, framework);
+            const blocks = await listAllBlocks(registryUrl, framework, registryRef);
 
             if (blocks.length === 0) {
               return {
@@ -724,6 +731,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
               baseUrl: registryUrl,
               query: args.query,
               framework: examplesFramework,
+              version: registryRef,
               limit: args.limit || 10,
             });
 
@@ -831,12 +839,27 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                 ? ('angular-standalone' as const)
                 : framework;
 
-            // Construct the example path
-            const examplePath = `examples/${args.exampleName}.json`;
+            const examplesRegistry = await fetchExamplesRegistryIndex(
+              registryUrl
+            );
+            const selectedVersion = resolveRegistryVersion(
+              examplesRegistry,
+              registryRef
+            );
+            const exampleEntry =
+              examplesRegistry.versions[selectedVersion]?.examples.find(
+                (example) => example.name === args.exampleName
+              );
+
+            if (!exampleEntry) {
+              throw new Error(
+                `Example '${args.exampleName}' not found for version '${selectedVersion}'`
+              );
+            }
 
             const exampleCode = await getExampleCode(
               registryUrl,
-              examplePath,
+              exampleEntry.path,
               examplesFramework
             );
 

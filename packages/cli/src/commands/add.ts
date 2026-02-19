@@ -11,11 +11,16 @@ import {
 } from '../config';
 import { detectFramework } from '../detect';
 import { installBlock } from '../installer';
-import { fetchRegistryIndex, fetchBlockDefinition } from '../registry';
+import {
+  fetchRegistryIndex,
+  fetchBlockDefinition,
+  resolveRegistryVersion,
+} from '../registry';
 
 export const addCommand = new Command('add')
   .argument('<blockName>', 'Block name (e.g. hero)')
   .option('-r, --registry <url>', 'Registry base URL', defaultRegistry)
+  .option('-t, --tag <tag>', 'Registry tag/version (e.g. latest, main, v4.3.0)', 'latest')
   .option('-f, --framework <fw>', 'react|angular|auto', 'auto')
   .option('--dry-run', 'Print what would be done, without writing files', false)
   .option(
@@ -44,11 +49,12 @@ export const addCommand = new Command('add')
     const baseUrl = opts.registry.replace(/\/+$/, '');
     const index = await fetchRegistryIndex(baseUrl);
 
-    const latest = index.versions[index['dist-tags'].latest];
-    const entry = latest.blocks.find((b) => b.name === blockName);
+    const selectedVersion = resolveRegistryVersion(index, opts.tag);
+    const selected = index.versions[selectedVersion];
+    const entry = selected.blocks.find((b) => b.name === blockName);
     if (!entry) {
       console.error(
-        `Block '${blockName}' not found in registry '${index.name}'.`
+        `Block '${blockName}' not found in registry '${index.name}' for version '${selectedVersion}'.`
       );
       process.exit(1);
     }
@@ -91,7 +97,7 @@ export const addCommand = new Command('add')
     });
 
     if (!opts.dryRun) {
-      await addBlockToConfig(cwd, blockName, '0.0.0');
+      await addBlockToConfig(cwd, blockName, selectedVersion);
     }
 
     console.log(`✅ Installed '${blockName}' (${fw})`);
