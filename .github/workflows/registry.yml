@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - 'release-registry/**'
+      - 'feat/block-cli'
     paths:
       - 'packages/**'
       - 'blocks/**'
