@@ -6,6 +6,7 @@ on:
       - main
       - 'release-registry/**'
     paths:
+      - 'packages/**'
       - 'blocks/**'
       - 'examples/**'
       - 'tooling/registry/**'
