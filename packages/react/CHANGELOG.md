@@ -1,5 +1,20 @@
 # @siemens/ix-react
 
+## 4.4.0
+
+### Minor Changes
+
+- [#2352](https://github.com/siemens/ix/pull/2352) [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9) Thanks [@danielleroux](https://github.com/danielleroux)! - If an icon is provided via import like `<IxIcon name={iconDocument}></IxIcon>` the fallback will now be resolved. Works only if https://github.com/siemens/ix-icons/pull/112 is merged and released
+
+### Patch Changes
+
+- [#2355](https://github.com/siemens/ix/pull/2355) [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add change event to **ix-input**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #1811
+
+- Updated dependencies [[`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe), [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5), [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9), [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e), [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1)]:
+  - @siemens/ix@4.4.0
+
 ## 4.3.0
 
 ### Minor Changes
