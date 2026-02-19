@@ -42,7 +42,9 @@ class ThemeSwitcher {
 
   private isThemeClass(className: string) {
     return (
-      className.startsWith(this.prefixTheme) && this.hasVariantSuffix(className)
+      className &&
+      className.startsWith(this.prefixTheme) &&
+      this.hasVariantSuffix(className)
     );
   }
 
@@ -81,26 +83,29 @@ class ThemeSwitcher {
       return;
     }
 
-    const oldThemes: string[] = [];
-    Array.from(document.documentElement.classList)
-      .filter((className) => className && this.isThemeClass(className))
-      .forEach((className) => {
-        oldThemes.push(className);
-      });
+    const themeClasses = Array.from(document.documentElement.classList).filter(
+      (className) => this.isThemeClass(className)
+    );
+    const currentTheme = themeClasses[0] ?? this.defaultTheme;
+    const oppositeTheme = this.getOppositeMode(currentTheme);
 
-    if (oldThemes.length === 0) {
-      document.documentElement.classList.add(
-        this.getOppositeMode(this.defaultTheme)
-      );
+    if (!oppositeTheme) {
       return;
     }
 
-    oldThemes.forEach((themeName) => {
-      document.documentElement.classList.replace(
-        themeName,
-        this.getOppositeMode(themeName)
-      );
-    });
+    const baseTheme = currentTheme
+      .replace(this.prefixTheme, '')
+      .replace(/-dark$/, '')
+      .replace(/-light$/, '');
+
+    const newVariant: ThemeVariant = oppositeTheme.endsWith(this.suffixDark)
+      ? 'dark'
+      : 'light';
+
+    document.documentElement.setAttribute(dataIxTheme, baseTheme);
+    document.documentElement.setAttribute(dataIxColorSchema, newVariant);
+
+    document.documentElement.classList.remove(...themeClasses);
   }
 
   private getDataColorSchema(target: HTMLElement) {
