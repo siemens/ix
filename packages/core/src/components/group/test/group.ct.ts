@@ -151,7 +151,7 @@ regressionTest(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'disabled prop reflects to host attribute',
   async ({ mount, page }) => {
     await mount(`
