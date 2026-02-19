@@ -63,6 +63,13 @@ import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
 import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
+import DatetimeInput from './preview-examples/datetime-input.vue';
+import DatetimeInputDisabled from './preview-examples/datetime-input-disabled.vue';
+import DatetimeInputLabel from './preview-examples/datetime-input-label.vue';
+import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date.vue';
+import DatetimeInputReadonly from './preview-examples/datetime-input-readonly.vue';
+import DatetimeInputValidation from './preview-examples/datetime-input-validation.vue';
+import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -407,6 +414,13 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-with-slots': NumberInputWithSlots,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/datetime-input': DatetimeInput,
+  '/preview/datetime-input-disabled': DatetimeInputDisabled,
+  '/preview/datetime-input-label': DatetimeInputLabel,
+  '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
+  '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-validation': DatetimeInputValidation,
+  '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/tooltip': Tooltip,
@@ -480,4 +494,3 @@ const currentView = computed(() => {
     <component :is="currentView"></component>
   </IxApplicationContext>
 </template>
-import layoutAutoVue from './preview-examples/layout-auto.vue';

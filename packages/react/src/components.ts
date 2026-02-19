@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement, defineCustomElement as defineIxApplication } from "@siemens/ix/components/ix-application.js";
@@ -32,6 +32,7 @@ import { IxCustomField as IxCustomFieldElement, defineCustomElement as defineIxC
 import { IxDateDropdown as IxDateDropdownElement, defineCustomElement as defineIxDateDropdown } from "@siemens/ix/components/ix-date-dropdown.js";
 import { IxDateInput as IxDateInputElement, defineCustomElement as defineIxDateInput } from "@siemens/ix/components/ix-date-input.js";
 import { IxDatePicker as IxDatePickerElement, defineCustomElement as defineIxDatePicker } from "@siemens/ix/components/ix-date-picker.js";
+import { IxDatetimeInput as IxDatetimeInputElement, defineCustomElement as defineIxDatetimeInput } from "@siemens/ix/components/ix-datetime-input.js";
 import { IxDatetimePicker as IxDatetimePickerElement, defineCustomElement as defineIxDatetimePicker } from "@siemens/ix/components/ix-datetime-picker.js";
 import { IxDivider as IxDividerElement, defineCustomElement as defineIxDivider } from "@siemens/ix/components/ix-divider.js";
 import { IxDrawer as IxDrawerElement, defineCustomElement as defineIxDrawer } from "@siemens/ix/components/ix-drawer.js";
@@ -432,6 +433,27 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         onDateSelect: 'dateSelect'
     } as IxDatePickerEvents,
     defineCustomElement: defineIxDatePicker
+});
+
+export type IxDatetimeInputEvents = {
+    onValueChange: EventName<CustomEvent<string | undefined>>,
+    onValidityStateChange: EventName<IxDatetimeInputCustomEvent<DateTimeInputValidityState>>,
+    onIxFocus: EventName<CustomEvent<void>>,
+    onIxBlur: EventName<CustomEvent<void>>
+};
+
+export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents> = /*@__PURE__*/ createComponent<IxDatetimeInputElement, IxDatetimeInputEvents>({
+    tagName: 'ix-datetime-input',
+    elementClass: IxDatetimeInputElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onValueChange: 'valueChange',
+        onValidityStateChange: 'validityStateChange',
+        onIxFocus: 'ixFocus',
+        onIxBlur: 'ixBlur'
+    } as IxDatetimeInputEvents,
+    defineCustomElement: defineIxDatetimeInput
 });
 
 export type IxDatetimePickerEvents = {

@@ -26,6 +26,7 @@ export const DIRECTIVES = [
   d.IxDateDropdown,
   d.IxDateInput,
   d.IxDatePicker,
+  d.IxDatetimeInput,
   d.IxDatetimePicker,
   d.IxDivider,
   d.IxDrawer,

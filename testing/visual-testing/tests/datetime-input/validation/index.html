@@ -1,0 +1,66 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>DateTime Input Validation Test</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        margin-top: 2rem;
+        gap: 10px;
+        padding: 1rem;
+      "
+    >
+      <h4>Info</h4>
+      <ix-datetime-input
+        value="2024/05/05 09:10:11"
+        info-text="Info message"
+        class="ix-info"
+      ></ix-datetime-input>
+
+      <h4>Warning</h4>
+      <ix-datetime-input
+        value="2024/05/05 09:10:11"
+        warning-text="Warning message"
+        class="ix-warning"
+      ></ix-datetime-input>
+
+      <h4>Valid</h4>
+      <ix-datetime-input
+        value="2024/05/05 09:10:11"
+        valid-text="Valid input"
+        class="ix-valid"
+      ></ix-datetime-input>
+
+      <h4>Invalid</h4>
+      <ix-datetime-input
+        value="2024/05/05 09:10:11"
+        invalid-text="Invalid datetime"
+        class="ix-invalid"
+      ></ix-datetime-input>
+
+      <h4>Required (empty)</h4>
+      <ix-datetime-input
+        required
+        label="Required field"
+        class="ix-invalid--required"
+      ></ix-datetime-input>
+    </div>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

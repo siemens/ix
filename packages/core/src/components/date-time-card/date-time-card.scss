@@ -71,6 +71,10 @@
       &--time-picker {
         padding: 0 vars.$default-space;
       }
+
+      &--no-padding {
+        padding: 0;
+      }
     }
 
     .footer-container {
