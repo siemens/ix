@@ -50,6 +50,7 @@ export const updateFocusProxyList = <T extends HTMLElement>(
         modifyProxyElement(item, li);
       }
 
+      item.ariaHidden = 'true';
       proxyListElement.appendChild(li);
     });
   }

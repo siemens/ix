@@ -87,7 +87,7 @@ regressionTest.describe('date dropdown tests', () => {
       const dateDropdown = page.locator('ix-date-dropdown');
       await dateDropdown.click();
 
-      const intervalOptionsButton = dateDropdown.getByRole('button', {
+      const intervalOptionsButton = dateDropdown.getByRole('menuitem', {
         name: 'Last 7 days',
       });
       await intervalOptionsButton.click();
@@ -241,24 +241,29 @@ regressionTest('select different year', async ({ mount, page }) => {
   await expect(datePickerDropdown).toBeVisible();
 
   const datepicker = datePickerDropdown.locator('ix-date-picker');
-  const yearMonthButton = datepicker.getByTestId('year-month-button');
-  await yearMonthButton.click();
 
-  const yearMonthDropdown = datepicker.getByTestId('year-month-dropdown');
-  await expect(yearMonthDropdown).toBeVisible();
+  const yearContainer = datepicker.getByRole('button', { name: 'Select year' });
+  await yearContainer.click();
 
-  const yearContainer = yearMonthDropdown.getByTestId('year-container');
-  const year2020 = yearContainer.getByText('2020');
+  await expect(yearContainer).toHaveAttribute('aria-expanded', 'true');
 
+  const year2020 = yearContainer.getByRole('menuitem', { name: '2020' });
   await year2020.click();
 
-  const monthContainer = yearMonthDropdown.getByTestId('month-container');
-  const march2020 = monthContainer.getByText('March 2020');
+  const monthContainer = datepicker.getByRole('button', {
+    name: 'Select month',
+  });
+  await monthContainer.click();
+  await expect(monthContainer).toHaveAttribute('aria-expanded', 'true');
+
+  const march2020 = monthContainer.getByRole('menuitem', {
+    name: 'March 2020',
+  });
 
   await march2020.click();
 
-  await expect(yearMonthDropdown).not.toBeVisible();
-  await expect(yearMonthButton).toHaveText(/March 2020/);
+  await expect(yearContainer).toHaveText(/2020/);
+  await expect(monthContainer).toHaveText(/March/);
 });
 
 regressionTest('disable', async ({ mount, page }) => {

@@ -181,8 +181,6 @@ export class SplitButton
       return;
     }
 
-    console.log('Updating proxy list with items', items);
-
     updateFocusProxyList(proxyList, Array.from(items), (item, proxyElement) => {
       proxyElement.role = 'menuitem';
       proxyElement.innerText = item.label ?? item.textContent ?? '';

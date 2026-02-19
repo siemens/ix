@@ -18,9 +18,10 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
@@ -30,7 +31,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
     delegatesFocus: true,
   },
 })
-export class Breadcrumb extends Mixin() {
+export class Breadcrumb extends Mixin(...DefaultMixins) {
   @Element() override hostElement!: HTMLIxBreadcrumbElement;
 
   /**
@@ -113,8 +114,7 @@ export class Breadcrumb extends Mixin() {
 
     updatedItems.forEach((breadcrumbItem, index) => {
       const isLastItem = updatedItems.length - 1 === index;
-      const shouldShowDropdown =
-        this.nextItems.length !== 0 && isLastItem;
+      const shouldShowDropdown = this.nextItems.length !== 0 && isLastItem;
 
       breadcrumbItem.subtle = this.subtle;
       breadcrumbItem.hideChevron = isLastItem && !shouldShowDropdown;

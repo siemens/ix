@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Mixin } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import {
@@ -16,7 +16,7 @@ import {
   getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
-import { Mixin } from '../utils/internal/component';
+import { DefaultMixins } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-icon-button',
@@ -25,7 +25,7 @@ import { Mixin } from '../utils/internal/component';
     delegatesFocus: true,
   },
 })
-export class IconButton extends Mixin() {
+export class IconButton extends Mixin(...DefaultMixins) {
   @Element() override hostElement!: HTMLIxIconButtonElement;
 
   /**

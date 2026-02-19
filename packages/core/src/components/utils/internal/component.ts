@@ -6,8 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ComponentInterface, MixedInCtor } from '@stencil/core';
-import { Mixin as BaseMixin } from '@stencil/core';
+import type { ComponentInterface } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { SetupMixin } from './mixins/setup.mixin';
 
@@ -73,15 +72,6 @@ export interface StencilLifecycle {
 
 export interface IxComponentInterface extends ComponentInterface {
   hostElement: HTMLStencilElement;
-}
-
-export function Mixin<T extends StencilLifecycle = StencilLifecycle>(
-  ...mixins: Array<(base: MixedInCtor<StencilLifecycle>) => MixedInCtor<T>>
-): MixedInCtor<T & StencilLifecycle> {
-  if (mixins.length === 0) {
-    return BaseMixin(SetupMixin) as any;
-  }
-  return BaseMixin(SetupMixin, ...mixins) as any;
 }
 
 export const DefaultMixins = [SetupMixin] as const;
