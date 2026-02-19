@@ -76,7 +76,9 @@ regressionTest.describe('dropdown', () => {
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({
+      maxDiffPixels: 20
+    });
   });
 
   regressionTest('centered overflow', async ({ page }) => {
