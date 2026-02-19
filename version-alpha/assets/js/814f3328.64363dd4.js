@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[7472],{55513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Release V3.0.0-alpha","permalink":"/version-alpha/blog/v3-alpha","unlisted":false,"date":"2025-04-03T00:00:00.000Z"}]}')}}]);

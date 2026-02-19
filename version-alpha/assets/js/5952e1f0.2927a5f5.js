@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[8860],{73791:e=>{e.exports=JSON.parse('{"authors":[{"name":"Daniel Leroux","title":"Maintainer of Siemens Industrial Experience","socials":{"github":"https://github.com/danielleroux"},"imageURL":"https://github.com/danielleroux.png","key":"danielleroux","page":null,"count":1}]}')}}]);

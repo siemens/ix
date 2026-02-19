@@ -1,9 +1,0 @@
-@use './../utils' as util;
-
-@mixin fontWeights {
-  @include util.match-variant("dark") {
-      --theme-font-weight-normal: 400;
-      --theme-font-weight-bold: 700;
-      --theme-font-weight-black: 900;
-  }
-}

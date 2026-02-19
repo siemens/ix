@@ -1,8 +1,0 @@
-@use './../utils' as util;
-
-@mixin fontFamilies {
-  @include util.match-variant("dark") {
-      --theme-font-code: JetBrains Mono;
-      --theme-font-sans: Siemens Sans;
-  }
-}
