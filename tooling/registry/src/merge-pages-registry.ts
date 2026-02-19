@@ -161,7 +161,10 @@ function mergeBlocksRegistry(
 
   const currentVersionEntry = currentRegistry.versions[version];
   if (!currentVersionEntry) {
-    throw new Error(`Current blocks registry does not contain version '${version}'`);
+    const availableVersions = Object.keys(currentRegistry.versions ?? {});
+    throw new Error(
+      `Current blocks registry does not contain version '${version}'. Available versions: ${availableVersions.join(', ') || 'none'}`
+    );
   }
 
   const sourceSearchIndex =
@@ -210,8 +213,9 @@ function mergeExamplesRegistry(
 
   const currentVersionEntry = currentRegistry.versions[version];
   if (!currentVersionEntry) {
+    const availableVersions = Object.keys(currentRegistry.versions ?? {});
     throw new Error(
-      `Current examples registry does not contain version '${version}'`
+      `Current examples registry does not contain version '${version}'. Available versions: ${availableVersions.join(', ') || 'none'}`
     );
   }
 
@@ -261,8 +265,9 @@ function mergeComponentsRegistry(
 
   const currentVersionEntry = currentRegistry.versions[version];
   if (!currentVersionEntry) {
+    const availableVersions = Object.keys(currentRegistry.versions ?? {});
     throw new Error(
-      `Current components registry does not contain version '${version}'`
+      `Current components registry does not contain version '${version}'. Available versions: ${availableVersions.join(', ') || 'none'}`
     );
   }
 
