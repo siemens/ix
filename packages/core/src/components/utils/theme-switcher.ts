@@ -83,10 +83,10 @@ class ThemeSwitcher {
       return;
     }
 
-    const classTheme = Array.from(document.documentElement.classList).find(
+    const themeClasses = Array.from(document.documentElement.classList).filter(
       (className) => this.isThemeClass(className)
     );
-    const currentTheme = classTheme ?? this.defaultTheme;
+    const currentTheme = themeClasses[0] ?? this.defaultTheme;
     const oppositeTheme = this.getOppositeMode(currentTheme);
 
     if (!oppositeTheme) {
@@ -105,11 +105,7 @@ class ThemeSwitcher {
     document.documentElement.setAttribute(dataIxTheme, baseTheme);
     document.documentElement.setAttribute(dataIxColorSchema, newVariant);
 
-    Array.from(document.documentElement.classList)
-      .filter((className) => this.isThemeClass(className))
-      .forEach((className) =>
-        document.documentElement.classList.remove(className)
-      );
+    document.documentElement.classList.remove(...themeClasses);
   }
 
   private getDataColorSchema(target: HTMLElement) {
