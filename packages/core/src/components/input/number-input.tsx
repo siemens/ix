@@ -343,12 +343,19 @@ export class NumberInput implements IxInputFieldComponent<number> {
   };
 
   private getDecimalPlaces(num: number): number {
-    const str = num.toString();
-    const decimalIndex = str.indexOf('.');
-    if (decimalIndex === -1) {
+    // (?:\.(\d+))? --> match[1] --> decimal digits
+    // (?:[eE]([+-]?\d+))? --> match[2] --> exponent
+    const match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+
+    if (!match) {
       return 0;
     }
-    return str.length - decimalIndex - 1;
+
+    // combine decimal digits and exponent to get number of decimal places
+    return Math.max(
+      0,
+      (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0)
+    );
   }
 
   private handleStepOperation(operation: 'up' | 'down') {
