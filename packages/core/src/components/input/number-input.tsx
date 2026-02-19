@@ -358,7 +358,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private getDecimalPlaces(num: number): number {
     // (?:\.(\d+))? --> match[1] --> decimal digits
     // (?:[eE]([+-]?\d+))? --> match[2] --> exponent
-    const match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+    const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec('' + num);
 
     if (!match) {
       return 0;
