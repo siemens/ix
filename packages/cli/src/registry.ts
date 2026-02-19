@@ -151,6 +151,63 @@ function toVersionScopedPath(pathValue: string, versionPrefix: string | null): s
   return `${versionPrefix}/${normalizedPath}`;
 }
 
+function getEntryBaseDir(entryPath: string): string {
+  const normalizedPath = normalizePath(entryPath);
+  const parts = normalizedPath.split('/');
+  if (parts.length <= 1) {
+    return '';
+  }
+
+  return parts.slice(0, -1).join('/');
+}
+
+function removeVersionPrefix(
+  pathValue: string,
+  versionPrefix: string | null
+): string {
+  if (!versionPrefix) {
+    return pathValue;
+  }
+
+  const prefix = `${versionPrefix}/`;
+  if (pathValue.startsWith(prefix)) {
+    return pathValue.slice(prefix.length);
+  }
+
+  return pathValue;
+}
+
+function resolveExampleSourcePath(
+  exampleEntryPath: string,
+  fileSourcePath: string,
+  versionPrefix: string | null
+): string {
+  const entryBaseDir = getEntryBaseDir(exampleEntryPath);
+  const sourcePath = normalizePath(fileSourcePath);
+
+  if (!entryBaseDir) {
+    return toVersionScopedPath(sourcePath, versionPrefix);
+  }
+
+  if (sourcePath.startsWith(`${entryBaseDir}/`)) {
+    return sourcePath;
+  }
+
+  const entryBaseDirWithoutVersion = removeVersionPrefix(
+    entryBaseDir,
+    versionPrefix
+  );
+
+  if (
+    entryBaseDirWithoutVersion &&
+    sourcePath.startsWith(`${entryBaseDirWithoutVersion}/`)
+  ) {
+    return toVersionScopedPath(sourcePath, versionPrefix);
+  }
+
+  return `${entryBaseDir}/${sourcePath}`;
+}
+
 function withVersionPrefix(
   value: string,
   version: string,
@@ -340,7 +397,11 @@ export async function getExampleCode(
   const files: ExampleCodeFile[] = [];
   for (const file of variant.files) {
     try {
-      const sourcePath = toVersionScopedPath(file.source, versionPrefix);
+      const sourcePath = resolveExampleSourcePath(
+        examplePath,
+        file.source,
+        versionPrefix
+      );
       const sourceUrl = `${baseUrl}/${sourcePath}`;
       const response = await fetch(sourceUrl);
       if (!response.ok) {

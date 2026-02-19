@@ -29,6 +29,49 @@ const FRAMEWORKS = [
 ] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
+async function resolveWorkspaceRoot(startDir: string): Promise<string> {
+  let currentDir = path.resolve(startDir);
+
+  while (true) {
+    const workspaceConfig = path.join(currentDir, 'pnpm-workspace.yaml');
+
+    if (await fs.pathExists(workspaceConfig)) {
+      return currentDir;
+    }
+
+    const parentDir = path.dirname(currentDir);
+    if (parentDir === currentDir) {
+      throw new Error(
+        `Could not resolve workspace root from ${startDir}. Expected to find pnpm-workspace.yaml in an ancestor directory.`
+      );
+    }
+
+    currentDir = parentDir;
+  }
+}
+
+async function resolveSourcePath(
+  source: string,
+  blocksDir: string,
+  distDir: string,
+  workspaceRoot: string
+): Promise<string | null> {
+  const candidates = [
+    path.resolve(blocksDir, source),
+    path.resolve(distDir, source),
+    path.resolve(workspaceRoot, source),
+    path.resolve(workspaceRoot, 'blocks', source),
+  ];
+
+  for (const candidate of candidates) {
+    if (await fs.pathExists(candidate)) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
 /**
  * Build framework-specific search indexes for blocks/examples
  */
@@ -41,14 +84,11 @@ export async function buildSearchIndex(
     absolute: true,
   });
 
-  // Get workspace root (go up from blocksDir which is typically dist/blocks)
-  const workspaceRoot = path.join(blocksDir, '..', '..', '..');
+  const workspaceRoot = await resolveWorkspaceRoot(blocksDir);
 
-  // Determine if this is for examples or blocks based on the base file name
   const isExamples = baseFileName.includes('examples');
   const pathPrefix = isExamples ? 'examples' : 'blocks';
 
-  // Create separate document collections for each framework
   const frameworkDocuments: Record<string, BlockDocument[]> = {
     html: [],
     react: [],
@@ -62,7 +102,6 @@ export async function buildSearchIndex(
     const blockName = blockDef.name;
     const blockPath = path.basename(blockFile);
 
-    // Process each framework variant separately
     for (const [framework, variant] of Object.entries(
       blockDef.variants || {}
     )) {
@@ -80,29 +119,33 @@ export async function buildSearchIndex(
 
       if (Array.isArray((variant as any).files)) {
         for (const file of (variant as any).files) {
-          // Resolve source path from workspace root
-          const sourcePath = path.join(workspaceRoot, file.source);
           files.push(file.target);
 
           try {
-            if (await fs.pathExists(sourcePath)) {
+            const sourcePath = await resolveSourcePath(
+              file.source,
+              blocksDir,
+              distDir,
+              workspaceRoot
+            );
+
+            if (sourcePath) {
               const content = await fs.readFile(sourcePath, 'utf-8');
               sourceCodeParts.push(content);
             } else {
               console.warn(
-                `Source file not found: ${sourcePath} for ${framework} ${blockName}`
+                `Source file not found: ${file.source} for ${framework} ${blockName}`
               );
             }
           } catch (err) {
             console.warn(
-              `Could not read source file ${sourcePath} for ${framework} ${blockName}:`,
+              `Could not read source file ${file.source} for ${framework} ${blockName}:`,
               err
             );
           }
         }
       }
 
-      // Add document to the framework-specific collection
       if (frameworkDocuments[framework]) {
         frameworkDocuments[framework].push({
           id: blockName,
@@ -116,7 +159,6 @@ export async function buildSearchIndex(
     }
   }
 
-  // Create a separate MiniSearch index for each framework
   const indexPaths: Record<Framework, string> = {} as any;
 
   for (const framework of FRAMEWORKS) {

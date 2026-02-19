@@ -74,7 +74,7 @@ async function scanExamples(examplesDir: string): Promise<Map<string, ExampleMet
 
       example.files.get(framework.name)!.push({
         framework: framework.name,
-        filePath: path.join('examples', framework.dir, 'src', 'preview-examples', file),
+        filePath: path.join(framework.dir, 'src', 'preview-examples', file),
         extension: ext,
       });
     }

@@ -26,7 +26,10 @@ const __angular_blocks = path.join(__node_modules, 'angular-blocks');
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
-const __examples_registry_template = path.join(__dirname, 'examples-registry.json');
+const __examples_registry_template = path.join(
+  __dirname,
+  'examples-registry.json'
+);
 const __components_registry_template = path.join(
   __dirname,
   'components-registry.json'
@@ -51,7 +54,8 @@ const task = new Listr<Ctx>([
     title: 'Resolve build metadata',
     task: (ctx) => {
       ctx.dist = tsconfig.compilerOptions.outDir || 'dist';
-      ctx.registryVersion = process.env.REGISTRY_VERSION?.trim() || '4.3.0';
+      ctx.registryVersion =
+        process.env.REGISTRY_VERSION?.trim() || 'development';
       ctx.registryPathPrefix =
         process.env.REGISTRY_PATH_PREFIX?.trim() || ctx.registryVersion;
       ctx.registryLatestTag =
@@ -187,13 +191,9 @@ const task = new Listr<Ctx>([
         fs.copy(__ix_component_doc, path.join(dest, 'component-doc.json'), {
           dereference: true,
         }),
-        fs.copy(
-          __ix_component_index,
-          path.join(dest, 'component-index.json'),
-          {
-            dereference: true,
-          }
-        ),
+        fs.copy(__ix_component_index, path.join(dest, 'component-index.json'), {
+          dereference: true,
+        }),
         fs.copy(
           __ix_component_search_index,
           path.join(dest, 'component-search-index.json'),
