@@ -243,7 +243,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
-  @State() activeDescendantId: string | null = null;
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
@@ -372,52 +371,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.show) {
-      this.show = false;
-      this.activeDescendantId = null;
-      this.datepickerRef.current?.deactivateVisualFocus();
-      event.preventDefault();
-      return;
-    }
-
-    if (event.key === 'ArrowDown' && !this.show) {
+    if (event.key === 'ArrowDown') {
       this.show = true;
-      this.from = this.value;
-      event.preventDefault();
-      return;
+      requestAnimationFrameNoNgZone(() => this.datepickerRef.current?.focus());
     }
-
-    if (this.show) {
-      const forwardableKeys = [
-        'ArrowUp',
-        'ArrowDown',
-        'ArrowLeft',
-        'ArrowRight',
-        'Home',
-        'End',
-        'PageUp',
-        'PageDown',
-        'Enter',
-        ' ',
-      ];
-      if (forwardableKeys.includes(event.key)) {
-        event.preventDefault();
-        this.datepickerRef.current?.dispatchEvent(
-          new KeyboardEvent('keydown', {
-            key: event.key,
-            shiftKey: event.shiftKey,
-            bubbles: true,
-          })
-        );
-        requestAnimationFrameNoNgZone(async () => {
-          const id =
-            await this.datepickerRef.current?.getVisuallyFocusedId();
-          this.activeDescendantId = id ?? null;
-        });
-        return;
-      }
-    }
-
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -467,11 +424,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           style={{
             textAlign: this.textAlignment,
           }}
-          aria-activedescendant={
-            this.show && this.activeDescendantId
-              ? this.activeDescendantId
-              : undefined
-          }
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -556,7 +508,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
     return (
       <Host
-        role="combobox"
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
@@ -594,22 +545,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          disableFocusHandling
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
-            if (event.detail) {
-              requestAnimationFrameNoNgZone(async () => {
-                const id =
-                  await this.datepickerRef.current?.activateVisualFocus();
-                this.activeDescendantId = id ?? null;
-              });
-            } else {
-              this.activeDescendantId = null;
-              this.datepickerRef.current?.deactivateVisualFocus();
-            }
           }}
         >
           <ix-date-picker

@@ -340,12 +340,7 @@ export class TimePicker extends Mixin() {
       const elementList = this.getElementList(this.focusedUnit);
 
       if (elementContainer) {
-        if (this.embedded) {
-          this.clearVisualFocus();
-          elementContainer.classList.add('ix-focused');
-        } else {
-          elementContainer.focus({ preventScroll: true });
-        }
+        elementContainer.focus({ preventScroll: true });
 
         if (!this.isElementVisible(elementContainer, elementList)) {
           this.scrollElementIntoView(
@@ -355,8 +350,6 @@ export class TimePicker extends Mixin() {
           );
         }
       }
-    } else if (this.embedded) {
-      this.clearVisualFocus();
     }
   }
 
@@ -393,12 +386,8 @@ export class TimePicker extends Mixin() {
 
     switch (event.key) {
       case 'Tab':
-        if (this.embedded) {
-          this.navigateToNextColumn(event.shiftKey);
-        } else {
-          shouldPreventDefault = false;
-          this.isUnitFocused = false;
-        }
+        shouldPreventDefault = false;
+        this.isUnitFocused = false;
         break;
 
       case 'ArrowUp':
@@ -427,67 +416,6 @@ export class TimePicker extends Mixin() {
     if (shouldPreventDefault) {
       event.preventDefault();
     }
-  }
-
-  private clearVisualFocus() {
-    const prev = this.hostElement.shadowRoot?.querySelector('.ix-focused');
-    prev?.classList.remove('ix-focused');
-  }
-
-  /**
-   * @internal
-   * Navigates to the next or previous column. Called by time-input for Tab handling.
-   */
-  @Method()
-  async navigateToNextColumn(reverse: boolean) {
-    const visibleDescriptors = this.timePickerDescriptors.filter(
-      (d) => !d.hidden
-    );
-    const currentIndex = visibleDescriptors.findIndex(
-      (d) => d.unit === this.focusedUnit
-    );
-    let nextIndex: number;
-    if (reverse) {
-      nextIndex =
-        currentIndex - 1 < 0 ? visibleDescriptors.length - 1 : currentIndex - 1;
-    } else {
-      nextIndex =
-        currentIndex + 1 >= visibleDescriptors.length ? 0 : currentIndex + 1;
-    }
-    const nextDescriptor = visibleDescriptors[nextIndex];
-    this.focusedUnit = nextDescriptor.unit;
-    this.focusedValue = nextDescriptor.focusedValue;
-    this.isUnitFocused = true;
-  }
-
-  /**
-   * @internal
-   * Activates visual focus mode. Called by input components when the dropdown opens.
-   */
-  @Method()
-  async activateVisualFocus(): Promise<string> {
-    this.setInitialFocusedValueAndUnit();
-    this.isUnitFocused = true;
-    return `${this.focusedUnit}-${this.focusedValue}`;
-  }
-
-  /**
-   * @internal
-   * Deactivates visual focus mode. Called by input components when the dropdown closes.
-   */
-  @Method()
-  async deactivateVisualFocus(): Promise<void> {
-    this.isUnitFocused = false;
-    this.clearVisualFocus();
-  }
-
-  /**
-   * @internal
-   * Returns the ID of the currently visually focused element.
-   */
-  @Method()
-  async getVisuallyFocusedId(): Promise<string> {
-    return `${this.focusedUnit}-${this.focusedValue}`;
   }
 
   onUnitCellBlur(unit: TimePickerDescriptorUnit, event: FocusEvent) {
@@ -1006,7 +934,6 @@ export class TimePicker extends Mixin() {
 
                         return (
                           <button
-                            id={`${descriptor.unit}-${number}`}
                             data-element-container-id={`${descriptor.unit}-${number}`}
                             class={{
                               selected: this.isSelected(
@@ -1057,7 +984,6 @@ export class TimePicker extends Mixin() {
                   <div class="column-header" title="AM/PM" />
                   <div class="element-list" tabIndex={-1}>
                     <button
-                      id="am-pm-AM"
                       data-am-pm-id="AM"
                       class={{
                         selected: this.timeRef === 'AM',
@@ -1070,7 +996,6 @@ export class TimePicker extends Mixin() {
                       AM
                     </button>
                     <button
-                      id="am-pm-PM"
                       data-am-pm-id="PM"
                       class={{
                         selected: this.timeRef === 'PM',

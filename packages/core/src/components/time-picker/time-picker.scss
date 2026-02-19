@@ -103,10 +103,6 @@
         &:focus-visible {
           box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
         }
-
-        &.ix-focused {
-          box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
-        }
       }
 
       .selected {
@@ -121,10 +117,6 @@
         }
 
         &:focus-visible {
-          border: 0.0625rem solid var(--theme-color-inv-contrast-text);
-        }
-
-        &.ix-focused {
           border: 0.0625rem solid var(--theme-color-inv-contrast-text);
         }
       }

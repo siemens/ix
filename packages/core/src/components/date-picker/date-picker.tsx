@@ -306,17 +306,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
         this.navigateByMonthOrYear(event.shiftKey ? 'year' : 'month', 1);
         event.preventDefault();
         return;
-      case 'Enter':
-      case ' ': {
-        const dayElem = this.hostElement.shadowRoot!.querySelector(
-          `[id=day-cell-${this.focusedDay}]`
-        ) as Element;
-        if (dayElem) {
-          this.selectDay(this.focusedDay, dayElem);
-        }
-        event.preventDefault();
-        return;
-      }
       default:
         return;
     }
@@ -435,50 +424,8 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
 
-    if (dayElem) {
-      if (this.embedded) {
-        this.clearVisualFocus();
-        dayElem.classList.add('ix-focused');
-      } else {
-        dayElem.focus();
-      }
-    }
+    dayElem?.focus();
     this.monthChangedFromFocus = false;
-  }
-
-  private clearVisualFocus() {
-    const prev = this.hostElement.shadowRoot?.querySelector('.ix-focused');
-    prev?.classList.remove('ix-focused');
-  }
-
-  /**
-   * @internal
-   * Activates visual focus mode. Called by input components when the dropdown opens.
-   */
-  @Method()
-  async activateVisualFocus(): Promise<string> {
-    this.isDayFocus = true;
-    this.changeFocusedDay();
-    return `day-cell-${this.focusedDay}`;
-  }
-
-  /**
-   * @internal
-   * Deactivates visual focus mode. Called by input components when the dropdown closes.
-   */
-  @Method()
-  async deactivateVisualFocus(): Promise<void> {
-    this.isDayFocus = false;
-    this.clearVisualFocus();
-  }
-
-  /**
-   * @internal
-   * Returns the ID of the currently visually focused element.
-   */
-  @Method()
-  async getVisuallyFocusedId(): Promise<string> {
-    return `day-cell-${this.focusedDay}`;
   }
 
   /**
