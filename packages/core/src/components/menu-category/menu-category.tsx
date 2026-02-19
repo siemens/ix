@@ -296,14 +296,12 @@ export class MenuCategory
           expanded: this.showItems,
         }}
         onPointerEnter={() => {
-          console.log('enter');
           this.showMenuItemDropdown();
         }}
         onPointerLeave={(event: PointerEvent) => {
           if (event.pointerType === 'touch') {
             return;
           }
-          console.log('leave');
           this.hideMenuItemDropdown();
         }}
       >
