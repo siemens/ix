@@ -257,6 +257,21 @@ const task = new Listr<Ctx>([
       await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
+  {
+    title: 'Minify JSON files in dist',
+    task: async (ctx) => {
+      const jsonFiles = await glob(path.join(ctx.dist, '**', '*.json'), {
+        absolute: true,
+      });
+
+      await Promise.all(
+        jsonFiles.map(async (file) => {
+          const json = await fs.readJson(file);
+          await fs.writeFile(file, JSON.stringify(json), 'utf-8');
+        })
+      );
+    },
+  },
 ]);
 
 async function main() {

@@ -55,6 +55,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Visual regression testing](#visual-regression-testing)
     - [Modify and preview documentation](#modify-and-preview-documentation)
       - [Preview and example code](#preview-and-example-code)
+      - [Registry overview: blocks vs examples](#registry-overview-blocks-vs-examples)
     - [Submit Pull Request](#submit-pull-request)
   - [Attribution](#attribution)
 
@@ -312,6 +313,25 @@ If you need to update only the preview or code examples, you can do so by follow
 These packages contain playground applications to explore and test the respective `ix` components.
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
+
+#### Registry overview: blocks vs examples
+
+The registry content for `blocks` and `examples` is intentionally built in different ways:
+
+| Topic                   | Blocks registry                                                       | Examples registry                                                                                               |
+| ----------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Registry file           | `tooling/registry/src/registry.json`                                  | `tooling/registry/src/examples-registry.json`                                                                   |
+| Source of entries       | Manual JSON files in `./blocks/*.json`                                | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                 |
+| Schema                  | `tooling/registry/schemas/block.schema.json`                          | `tooling/registry/schemas/example.schema.json`                                                                  |
+| How entries are created | Hand-authored block definitions (for example `blocks/upload-01.json`) | Auto-generated from files in `./examples/*/src/preview-examples` by `tooling/registry/src/generate-examples.ts` |
+| Included frameworks     | Defined per block variant (typically React/Angular)                   | Scanned from `html`, `react`, `angular`, `angular-standalone`, `vue` example folders                            |
+| Update step             | `updateBlocksRegistry(...)` scans `./blocks`                          | `generateExampleBlocks(...)` creates JSON, then `updateExamplesRegistry(...)` scans generated files             |
+
+Contributor guidance:
+
+- For a **new block**, add or update a JSON definition in `./blocks` and ensure its `variants` map to the block source files (for example from `react-blocks` / `angular-blocks`).
+- For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
+- Rebuild the registry (`pnpm --filter registry build`) to refresh both `registry.json` and `examples-registry.json`.
 
 ### Submit Pull Request
 

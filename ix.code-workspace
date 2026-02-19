@@ -1,8 +1,36 @@
 {
   "folders": [
     {
-      "name": "Library",
-      "path": "./packages"
+      "name": "@siemens/ix",
+      "path": "./packages/core"
+    },
+    {
+      "name": "@siemens/ix-angular",
+      "path": "./packages/angular"
+    },
+    {
+      "name": "@siemens/ix-react",
+      "path": "./packages/react"
+    },
+    {
+      "name": "@siemens/ix-vue",
+      "path": "./packages/vue"
+    },
+    {
+      "name": "@siemens/ix-aggrid",
+      "path": "./packages/aggrid"
+    },
+    {
+      "name": "@siemens/ix-echarts",
+      "path": "./packages/echarts"
+    },
+    {
+      "name": "@siemens/ix-cli",
+      "path": "./packages/cli"
+    },
+    {
+      "name": "@siemens/ix-docs",
+      "path": "./packages/documentation"
     },
     {
       "name": "Examples",
