@@ -10,13 +10,19 @@ import fs from 'fs-extra';
 import path from 'node:path';
 import { glob } from 'glob';
 
+interface RegistryUpdateOptions {
+  version: string;
+  latestTag?: string;
+  pathPrefix?: string;
+}
+
 /**
  * Update blocks registry.json with manual blocks only
  */
 export async function updateBlocksRegistry(
   registryPath: string,
   blocksDir: string,
-  version: string = '4.3.0'
+  options: RegistryUpdateOptions
 ): Promise<void> {
   console.log('📝 Updating blocks registry.json...');
 
@@ -30,17 +36,27 @@ export async function updateBlocksRegistry(
     absolute: false,
   });
 
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
   blocks.push(...blockFiles.map((file) => {
     const name = path.basename(file, '.json');
+    const blockPath = `blocks/${path.basename(file)}`;
+
     return {
       name,
-      path: `blocks/${path.basename(file)}`,
+      path: normalizedPrefix ? `${normalizedPrefix}/${blockPath}` : blockPath,
     };
   }));
 
-  // Update the registry with all blocks
-  registry.versions[version] = {
-    blocks: blocks.sort((a, b) => a.name.localeCompare(b.name)),
+  // Update the registry with all blocks for a single dynamic version
+  registry.versions = {
+    [options.version]: {
+      blocks: blocks.sort((a, b) => a.name.localeCompare(b.name)),
+    },
+  };
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
   };
 
   // Write updated registry
@@ -55,7 +71,7 @@ export async function updateBlocksRegistry(
 export async function updateExamplesRegistry(
   registryPath: string,
   examplesDir: string,
-  version: string = '4.3.0'
+  options: RegistryUpdateOptions
 ): Promise<void> {
   console.log('📝 Updating examples registry.json...');
 
@@ -63,6 +79,8 @@ export async function updateExamplesRegistry(
   const registry = await fs.readJson(registryPath);
 
   const examples: Array<{ name: string; path: string }> = [];
+
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
   // Find all generated example block JSON files
   if (await fs.pathExists(examplesDir)) {
@@ -72,16 +90,26 @@ export async function updateExamplesRegistry(
 
     examples.push(...exampleFiles.map((file) => {
       const name = path.basename(file, '.json');
+      const examplePath = `examples/${path.basename(file)}`;
+
       return {
         name,
-        path: `examples/${path.basename(file)}`,
+        path: normalizedPrefix
+          ? `${normalizedPrefix}/${examplePath}`
+          : examplePath,
       };
     }));
   }
 
-  // Update the registry with all examples
-  registry.versions[version] = {
-    examples: examples.sort((a, b) => a.name.localeCompare(b.name)),
+  // Update the registry with all examples for a single dynamic version
+  registry.versions = {
+    [options.version]: {
+      examples: examples.sort((a, b) => a.name.localeCompare(b.name)),
+    },
+  };
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
   };
 
   // Write updated registry

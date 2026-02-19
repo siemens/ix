@@ -29,12 +29,12 @@
         "latest": {
           "type": "string",
           "description": "Latest stable version",
-          "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+          "pattern": "^[a-zA-Z0-9._-]+$"
         }
       },
       "additionalProperties": {
         "type": "string",
-        "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+        "pattern": "^[a-zA-Z0-9._-]+$"
       }
     },
     "versions": {
@@ -42,7 +42,7 @@
       "description": "Available versions and their blocks",
       "minProperties": 1,
       "patternProperties": {
-        "^\\d+\\.\\d+\\.\\d+(-.*)?$": {
+        "^[a-zA-Z0-9._-]+$": {
           "$ref": "#/definitions/versionEntry"
         }
       },

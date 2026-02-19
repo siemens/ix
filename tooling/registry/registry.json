@@ -9,10 +9,10 @@
     "vue": "search-index-vue.json"
   },
   "dist-tags": {
-    "latest": "4.3.0"
+    "latest": "template"
   },
   "versions": {
-    "4.3.0": {
+    "template": {
       "blocks": [
         {
           "name": "example-01",

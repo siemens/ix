@@ -50,6 +50,7 @@ Thumbs.db
 *.log
 *.lock
 *.tmp
+.tmp*
 *.tmp.*
 log.txt
 *.sublime-project

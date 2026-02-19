@@ -9,10 +9,10 @@
     "vue": "examples-search-index-vue.json"
   },
   "dist-tags": {
-    "latest": "4.3.0"
+    "latest": "template"
   },
   "versions": {
-    "4.3.0": {
+    "template": {
       "examples": [
         {
           "name": "about-and-legal",

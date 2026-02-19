@@ -1,16 +1,15 @@
-name: Deploy blocks registry
+name: Deploy registry
 
 on:
   push:
     branches:
       - main
+      - 'release-registry/**'
     paths:
       - 'blocks/**'
+      - 'examples/**'
       - 'tooling/registry/**'
       - '.github/workflows/registry.yml'
-  push:
-    tags:
-      - 'registry-v*'
   workflow_dispatch:
 
 permissions:
@@ -18,34 +17,76 @@ permissions:
 
 jobs:
   build-and-deploy:
-    concurrency: ci-${{ github.ref }}
+    concurrency: ci-registry-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Checkout gh-pages
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: .gh-pages
+
       - uses: ./.github/workflows/actions/turbo
 
+      - name: Determine deployment metadata
+        id: deploy-meta
+        run: |
+          REF_NAME="${GITHUB_REF_NAME}"
+
+          if [[ "${REF_NAME}" == "main" ]]; then
+            VERSION="main"
+          elif [[ "${REF_NAME}" == release-registry/* ]]; then
+            VERSION="${REF_NAME#release-registry/}"
+          else
+            VERSION="${REF_NAME}"
+          fi
+
+          LATEST_TAG="${VERSION}"
+          if [[ "${VERSION}" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+            LATEST_TAG="${BASH_REMATCH[1]}"
+          fi
+
+          echo "registry_version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "registry_path_prefix=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "registry_latest_tag=${LATEST_TAG}" >> "$GITHUB_OUTPUT"
+          if [[ "${VERSION}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "update_latest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "update_latest=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "Deploying registry version '${VERSION}'"
+
       - name: Build
+        env:
+          REGISTRY_VERSION: ${{ steps.deploy-meta.outputs.registry_version }}
+          REGISTRY_PATH_PREFIX: ${{ steps.deploy-meta.outputs.registry_path_prefix }}
+          REGISTRY_LATEST_TAG: ${{ steps.deploy-meta.outputs.registry_latest_tag }}
         run: pnpm build --filter registry --cache-dir=.turbo
 
-      - name: Determine deployment path
-        id: deploy-path
+      - name: Prepare merged deploy folder
         run: |
-          if [[ $GITHUB_REF == refs/tags/registry-v* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/registry-v}
-            echo "target-folder=v/$VERSION" >> $GITHUB_OUTPUT
-            echo "Deploying version $VERSION to /v/$VERSION/"
-          else
-            echo "target-folder=." >> $GITHUB_OUTPUT
-            echo "Deploying development version to root"
+          rm -rf ./tooling/registry/deploy
+
+          if [[ ! -d ./.gh-pages/.git ]]; then
+            mkdir -p ./.gh-pages
           fi
+
+          pnpm --filter registry exec tsx src/merge-pages-registry.ts \
+            --dist-dir ./dist \
+            --pages-dir ../../.gh-pages \
+            --out-dir ./deploy \
+            --version "${{ steps.deploy-meta.outputs.registry_version }}" \
+            --latest-tag "${{ steps.deploy-meta.outputs.registry_latest_tag }}" \
+            --update-latest "${{ steps.deploy-meta.outputs.update_latest }}"
 
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
-          folder: ./tooling/registry/dist
-          target-folder: ${{ steps.deploy-path.outputs.target-folder }}
-          clean: false
-          clean-exclude: |
-            v/**
+          folder: ./tooling/registry/deploy
+          target-folder: .
+          clean: true

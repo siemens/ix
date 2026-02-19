@@ -23,16 +23,55 @@ const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
 const __angular_blocks = path.join(__node_modules, 'angular-blocks');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
+const __registry_template = path.join(__dirname, 'registry.json');
+const __examples_registry_template = path.join(__dirname, 'examples-registry.json');
 
 interface Ctx {
   dist: string;
+  registryVersion: string;
+  registryPathPrefix: string;
+  registryLatestTag: string;
+  noRegistryMinify: boolean;
 }
 
 const task = new Listr<Ctx>([
   {
-    title: 'Get outDir',
+    title: 'Resolve build metadata',
     task: (ctx) => {
       ctx.dist = tsconfig.compilerOptions.outDir || 'dist';
+      ctx.registryVersion = process.env.REGISTRY_VERSION?.trim() || '4.3.0';
+      ctx.registryPathPrefix =
+        process.env.REGISTRY_PATH_PREFIX?.trim() || ctx.registryVersion;
+      ctx.registryLatestTag =
+        process.env.REGISTRY_LATEST_TAG?.trim() || ctx.registryVersion;
+
+      const noRegistryMinifyRaw = process.env.NO_REGISTRY_MINIFY?.trim();
+      ctx.noRegistryMinify =
+        noRegistryMinifyRaw === '1' ||
+        noRegistryMinifyRaw === 'true' ||
+        noRegistryMinifyRaw === 'yes';
+
+      console.log(`📌 Registry version: ${ctx.registryVersion}`);
+      console.log(`📂 Registry path prefix: ${ctx.registryPathPrefix}`);
+      console.log(`🏷️  Registry latest tag: ${ctx.registryLatestTag}`);
+    },
+  },
+  {
+    title: 'Copy registry templates to dist',
+    task: async (ctx) => {
+      await fs.ensureDir(ctx.dist);
+      await Promise.all([
+        fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
+          dereference: true,
+        }),
+        fs.copy(
+          __examples_registry_template,
+          path.join(ctx.dist, 'examples-registry.json'),
+          {
+            dereference: true,
+          }
+        ),
+      ]);
     },
   },
   {
@@ -123,17 +162,25 @@ const task = new Listr<Ctx>([
   {
     title: 'Update blocks registry.json',
     task: async (ctx) => {
-      const registryPath = path.join(__dirname, 'registry.json');
+      const registryPath = path.join(ctx.dist, 'registry.json');
       const blocksDir = path.join(__dirname, '..', '..', 'blocks');
-      await updateBlocksRegistry(registryPath, blocksDir);
+      await updateBlocksRegistry(registryPath, blocksDir, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+      });
     },
   },
   {
     title: 'Update examples registry.json',
     task: async (ctx) => {
-      const registryPath = path.join(__dirname, 'examples-registry.json');
+      const registryPath = path.join(ctx.dist, 'examples-registry.json');
       const examplesDir = path.join(ctx.dist, 'examples');
-      await updateExamplesRegistry(registryPath, examplesDir);
+      await updateExamplesRegistry(registryPath, examplesDir, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+      });
     },
   },
   {
@@ -208,22 +255,6 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy registry.json to dist',
-    task: async (ctx) => {
-      const src = path.join(__dirname, 'registry.json');
-      const dest = path.join(ctx.dist, 'registry.json');
-      await fs.copy(src, dest, { dereference: true });
-    },
-  },
-  {
-    title: 'Copy examples-registry.json to dist',
-    task: async (ctx) => {
-      const src = path.join(__dirname, 'examples-registry.json');
-      const dest = path.join(ctx.dist, 'examples-registry.json');
-      await fs.copy(src, dest, { dereference: true });
-    },
-  },
-  {
     title: 'Build blocks search indexes',
     task: async (ctx) => {
       const blocksDir = path.join(ctx.dist, 'blocks');
@@ -260,6 +291,11 @@ const task = new Listr<Ctx>([
   {
     title: 'Minify JSON files in dist',
     task: async (ctx) => {
+      if (ctx.noRegistryMinify) {
+        console.log('🧾 JSON minification disabled (NO_REGISTRY_MINIFY)');
+        return;
+      }
+
       const jsonFiles = await glob(path.join(ctx.dist, '**', '*.json'), {
         absolute: true,
       });
