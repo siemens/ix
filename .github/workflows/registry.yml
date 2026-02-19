@@ -63,12 +63,30 @@ jobs:
 
           echo "Deploying registry version '${VERSION}'"
 
+      - name: Debug deployment metadata
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF}"
+          echo "GITHUB_REF_NAME=${GITHUB_REF_NAME}"
+          echo "registry_version=${{ steps.deploy-meta.outputs.registry_version }}"
+          echo "registry_path_prefix=${{ steps.deploy-meta.outputs.registry_path_prefix }}"
+          echo "registry_latest_tag=${{ steps.deploy-meta.outputs.registry_latest_tag }}"
+          echo "update_latest=${{ steps.deploy-meta.outputs.update_latest }}"
+
       - name: Build
         env:
           REGISTRY_VERSION: ${{ steps.deploy-meta.outputs.registry_version }}
           REGISTRY_PATH_PREFIX: ${{ steps.deploy-meta.outputs.registry_path_prefix }}
           REGISTRY_LATEST_TAG: ${{ steps.deploy-meta.outputs.registry_latest_tag }}
         run: pnpm build --filter registry --cache-dir=.turbo
+
+      - name: Debug dist artifacts
+        run: |
+          echo "== tooling/registry/dist top-level =="
+          ls -la ./tooling/registry/dist || true
+          echo "== key dist json files =="
+          ls -la ./tooling/registry/dist/registry.json ./tooling/registry/dist/examples-registry.json ./tooling/registry/dist/components-registry.json || true
+          echo "== first 40 files under dist =="
+          find ./tooling/registry/dist -type f | sort | head -n 40 || true
 
       - name: Prepare merged deploy folder
         run: |
@@ -86,9 +104,26 @@ jobs:
             --latest-tag "${{ steps.deploy-meta.outputs.registry_latest_tag }}" \
             --update-latest "${{ steps.deploy-meta.outputs.update_latest }}"
 
+      - name: Debug merged deploy folder
+        run: |
+          echo "== deploy top-level =="
+          ls -la ./tooling/registry/deploy || true
+          echo "== key deploy json files =="
+          ls -la ./tooling/registry/deploy/registry.json ./tooling/registry/deploy/examples-registry.json ./tooling/registry/deploy/components-registry.json || true
+          echo "== first 80 files under deploy =="
+          find ./tooling/registry/deploy -type f | sort | head -n 80 || true
+
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
           folder: ./tooling/registry/deploy
           target-folder: .
           clean: true
+
+      - name: Debug post-failure context
+        if: failure()
+        run: |
+          echo "== gh-pages checkout =="
+          ls -la ./.gh-pages || true
+          echo "== deploy folder (on failure) =="
+          ls -la ./tooling/registry/deploy || true
