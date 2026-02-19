@@ -661,9 +661,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           Object.assign(targetElement.style, {
             top: '0',
             left: '0',
-            transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
-              computeResponse.y
-            )}px)`,
+            transform: `translate(${x}px,${y}px)`,
             position: this.positioningStrategy,
             zIndex: `var(--theme-z-index-dropdown)`,
           });
