@@ -25,9 +25,12 @@ import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
-import { createEnterLeaveDebounce } from './enter-leave';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DefaultMixins } from '../utils/internal/component';
+import { getComposedPath } from '../utils/shadow-dom';
+import { makeRef } from '../utils/make-ref';
+import { dropdownController } from '../dropdown/dropdown-controller';
+
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -80,14 +83,7 @@ export class MenuCategory
   private menuItemsContainer?: HTMLDivElement;
   private ixMenu?: HTMLIxMenuElement;
 
-  private enterLeaveDebounce = createEnterLeaveDebounce(
-    () => {
-      this.showMenuItemDropdown();
-    },
-    () => {
-      this.onPointerLeave();
-    }
-  );
+  private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -147,12 +143,29 @@ export class MenuCategory
       return;
     }
     this.closeOtherCategories.emit();
-    this.showDropdown = true;
+
+    if (this.dropdownRef.current) {
+      const ref = dropdownController.getDropdownById(
+        this.dropdownRef.current.dataset.ixDropdown!
+      );
+
+      if (ref) {
+        dropdownController.present(ref);
+      }
+    }
   }
 
   @Listen('closeOtherCategories', { target: 'window' })
-  private onPointerLeave() {
-    this.showDropdown = false;
+  private hideMenuItemDropdown() {
+    if (this.dropdownRef.current) {
+      const ref = dropdownController.getDropdownById(
+        this.dropdownRef.current.dataset.ixDropdown!
+      );
+
+      if (ref) {
+        dropdownController.dismiss(ref);
+      }
+    }
   }
 
   private handleCategoryVisibility() {
@@ -283,13 +296,13 @@ export class MenuCategory
           expanded: this.showItems,
         }}
         onPointerEnter={() => {
-          this.enterLeaveDebounce.onEnter();
+          this.showMenuItemDropdown();
         }}
         onPointerLeave={(event: PointerEvent) => {
           if (event.pointerType === 'touch') {
             return;
           }
-          this.enterLeaveDebounce.onLeave();
+          this.hideMenuItemDropdown();
         }}
       >
         <ix-menu-item
@@ -325,20 +338,30 @@ export class MenuCategory
           {this.showItems ? <slot></slot> : null}
         </div>
         <ix-dropdown
+          ref={this.dropdownRef}
           closeBehavior={'both'}
           show={this.showDropdown}
+          onShowChange={({ detail: dropdownShow }) => {
+            if (dropdownShow) {
+              return;
+            }
+
+            const activeElement = document.activeElement;
+            const isFocused = getComposedPath(
+              activeElement as HTMLElement
+            ).includes(this.hostElement);
+
+            if (hasKeyboardMode() && isFocused) {
+              // Ugly workaround to restore focus to the category after the dropdown is closed,
+              // because focus gets lost when the dropdown is removed from the DOM.
+              // This is needed to ensure keyboard users can continue navigating after closing the dropdown with the keyboard.
+              requestAnimationFrameNoNgZone(() =>
+                requestAnimationFrameNoNgZone(() => this.hostElement.focus())
+              );
+            }
+          }}
           onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
             this.showDropdown = dropdownShown;
-
-            // TODO Cause a false focus shift, if keyboard navigation through content
-            // Then hover and leave via mouse case a focus change to the menu item
-            if (
-              this.showItems === false &&
-              dropdownShown === false &&
-              hasKeyboardMode()
-            ) {
-              this.hostElement.focus();
-            }
           }}
           class={'category-dropdown'}
           anchor={this.hostElement}
