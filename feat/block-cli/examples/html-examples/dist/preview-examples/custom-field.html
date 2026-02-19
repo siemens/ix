@@ -1,0 +1,40 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom field example</title>
+    <script type="module" crossorigin src="../assets/custom-field-DA_SsDRt.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-Cn4dOqNA.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-BUqBgp9y.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-Bz-5pS6W.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-CtK4JYCE.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-D_T-tGgV.css">
+  </head>
+  <body>
+    <ix-custom-field helper-text="Choose file">
+      <ix-input value="No file chosen" readonly></ix-input>
+      <ix-icon-button icon="open-file" variant="subtle-primary"></ix-icon-button>
+      <input id="file-upload" type="file" style="display: none" />
+    </ix-custom-field>
+
+    <script>
+      document.querySelector('ix-icon-button').addEventListener('click', () => {
+        document.querySelector('#file-upload').click();
+      });
+      document.querySelector('#file-upload').addEventListener('input', (e) => {
+        const fileName = e.target.files[0]?.name;
+        document.querySelector('ix-input').value = fileName || 'No file chosen';
+      });
+    </script>
+  </body>
+</html>

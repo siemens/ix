@@ -1,0 +1,39 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2026 ALL RIGHTS RESERVED.
+-->
+
+<div class="container">
+  <div class="search-wrapper">
+    <ix-input
+      [value]="searchQuery"
+      (input)="onSearchInput($event)"
+      placeholder="Search events..."
+      [attr.aria-label]="'Search events by title, description, date, or severity'"
+    ></ix-input>
+  </div>
+
+  <div
+    class="event-list-wrapper"
+    role="region"
+    [attr.aria-live]="'polite'"
+    [attr.aria-label]="filteredEvents.length + ' event' + (filteredEvents.length !== 1 ? 's' : '') + ' found'"
+  >
+    @if (filteredEvents.length > 0) {
+      <ix-event-list itemHeight="L">
+        @for (event of filteredEvents; track event.id) {
+          <ix-event-list-item [itemColor]="'color-' + event.severity">
+            <div class="event-item">
+              <strong class="event-title">{{ event.title }}</strong>
+              <p class="event-description">{{ event.description }}</p>
+              <small class="event-date">{{ event.date }}</small>
+            </div>
+          </ix-event-list-item>
+        }
+      </ix-event-list>
+    } @else {
+      <div class="empty-state">
+        No events found matching "{{ searchQuery }}"
+      </div>
+    }
+  </div>
+</div>

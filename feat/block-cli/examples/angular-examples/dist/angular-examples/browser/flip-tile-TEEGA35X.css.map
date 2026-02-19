@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/preview-examples/flip-tile.css"],
+  "sourcesContent": ["/*\n * SPDX-FileCopyrightText: 2024 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n/*\n * Styles get overwritten by html-test-app css files each build or dev task.\n * If you want to modify the example styles do this only inside the html-test-app\n */\n\n.flip-tile {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  position: relative;\n  margin-top: 2rem;\n  max-width: 100%;\n  flex-wrap: wrap;\n}\n\n.flip-tile > ix-flip-tile {\n  margin: 0 0.5rem 0.5rem 0;\n}\n\n.footer-date {\n  display: flex;\n  align-items: center;\n}\n"],
+  "mappings": "AAaA,CAAC,UACC,QAAS,KACT,eAAgB,IAChB,gBAAiB,OACjB,SAAU,SACV,WAAY,KACZ,UAAW,KACX,UAAW,IACb,CAEA,CAVC,SAUU,CAAE,aAvBb,OAwBU,EAAE,MAAO,MAAO,CAC1B,CAEA,CAAC,YACC,QAAS,KACT,YAAa,MACf",
+  "names": []
+}

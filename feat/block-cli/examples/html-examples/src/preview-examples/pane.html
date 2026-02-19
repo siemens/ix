@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pane example</title>
+  </head>
+  <body>
+    <div style="position: relative; width: 100%; height: 100%">
+      <ix-pane
+        id="popup-pane"
+        heading="Pane Popup"
+        composition="right"
+        size="50%"
+        variant="floating"
+        hide-on-collapse
+        style="position: absolute; right: 0; z-index: 1"
+      >
+        <p>This is a popup pane.</p>
+      </ix-pane>
+
+      <ix-button id="toggle-expanded" style="margin: 2.5rem">
+        Toggle Expanded
+      </ix-button>
+    </div>
+
+    <script>
+      const pane = document.getElementById('popup-pane');
+      const button = document.getElementById('toggle-expanded');
+
+      button.addEventListener('click', () => {
+        pane.expanded = pane.expanded ? undefined : true;
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

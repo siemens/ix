@@ -1,0 +1,18 @@
+import { r as registerInstance, h, H as Host } from "./global-Cn4dOqNA.js";
+const pushCardCss = ":host{display:block;position:relative}:host ix-card{cursor:default}:host ix-card-accordion{cursor:pointer}:host .icon{height:2.5rem;width:2.5rem}:host ix-card-title{height:2.5rem}:host ix-card-content{height:11rem}:host(.card-outline) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-outline-accordion--border-color)}:host(.card-filled) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-filled-accordion--border-color)}:host(.card-alarm) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-alarm-accordion--border-color)}:host(.card-critical) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-critical-accordion--border-color)}:host(.card-warning) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-warning-accordion--border-color)}:host(.card-success) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-success-accordion--border-color)}:host(.card-info) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-info-accordion--border-color)}:host(.card-neutral) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-neutral-accordion--border-color)}:host(.card-primary) ix-card-content{border-bottom:var(--theme-push-card--border-width) solid var(--theme-push-card-primary-accordion--border-color)}";
+const PushCard = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.variant = "outline";
+    this.expanded = false;
+    this.passive = false;
+  }
+  render() {
+    var _a;
+    return h(Host, { key: "b5d6c4c34598670f4e8ae1228843b9afde2ef241", class: `card-${this.variant}` }, h("ix-card", { key: "a62c8dfd617a8c141dd6ccf3c95da7877d44f7b7", variant: this.variant, passive: this.passive }, h("ix-card-content", { key: "4367ef2c91bf7b5ee9adef7c42b1a3f801b83bf9" }, h("ix-card-title", { key: "e17700e10181981d14e90c83f7f7e400a618df6e" }, this.icon ? h("ix-icon", { class: "icon", name: this.icon, size: "32", "aria-label": this.ariaLabelIcon }) : null, h("ix-typography", { key: "d10982fa32f721d09a4bb829dbf4ce7980ad1572", format: "display-xxl" }, (_a = this.notification) !== null && _a !== void 0 ? _a : 0), h("slot", { key: "2c5ba728f0ed723750fd3daa37c0c849ef791e52", name: "title-action" })), h("ix-typography", { key: "b74801e57b670bdf5f1bfcfd3404502e118c00a5", format: "h4" }, this.heading), h("ix-typography", { key: "4869e7565d8e301551efae7ca8679bfb1df02d75" }, this.subheading)), h("ix-card-accordion", { key: "5fda212d77b6c8e1664d0c1a855b7b2e6a2ba26a", collapse: !this.expanded, variant: this.variant }, h("slot", { key: "9cfe767d08c2c49811d7d6f8ee1cba049606977b" }))));
+  }
+};
+PushCard.style = pushCardCss;
+export {
+  PushCard as ix_push_card
+};

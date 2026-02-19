@@ -1,0 +1,44 @@
+.Container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+.SearchWrapper {
+  flex-shrink: 0;
+}
+
+.EventListWrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.EventItem {
+  display: block;
+  padding: 0.5rem;
+}
+
+.EventTitle {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.EventDescription {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.EventDate {
+  color: var(--theme-color-soft-text);
+  font-size: 0.75rem;
+}
+
+.EmptyState {
+  padding: 1rem;
+  text-align: center;
+  color: var(--theme-color-soft-text);
+}

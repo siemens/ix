@@ -1,0 +1,44 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datepicker locale example</title>
+  </head>
+  <body>
+    <span style="margin-right: 1rem">Language:</span>
+    <ix-select style="margin: 1rem 0">
+      <ix-select-item value="de" label="de"></ix-select-item>
+      <ix-select-item value="en" label="en"></ix-select-item>
+    </ix-select>
+    <ix-date-picker range="false"></ix-date-picker>
+    <script>
+      const select = document.querySelector('ix-select');
+      const datepicker = document.querySelector('ix-date-picker');
+
+      let locale = 'de';
+
+      function setLocale(newLocale) {
+        locale = newLocale;
+        datepicker.locale = locale;
+        select.value = locale;
+      }
+
+      setLocale(locale);
+
+      select.addEventListener('valueChange', ({ detail }) => {
+        setLocale(detail);
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

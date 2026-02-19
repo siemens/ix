@@ -1,0 +1,992 @@
+{
+  "$schema": "./schemas/examples-registry.schema.json",
+  "name": "siemens-ix-examples",
+  "dist-tags": {
+    "latest": "feat/block-cli"
+  },
+  "versions": {
+    "feat/block-cli": {
+      "examples": [
+        {
+          "name": "about-and-legal",
+          "path": "feat/block-cli/examples/about-and-legal.json"
+        },
+        {
+          "name": "action-card",
+          "path": "feat/block-cli/examples/action-card.json"
+        },
+        {
+          "name": "add-icons",
+          "path": "feat/block-cli/examples/add-icons.json"
+        },
+        {
+          "name": "aggrid",
+          "path": "feat/block-cli/examples/aggrid.json"
+        },
+        {
+          "name": "application",
+          "path": "feat/block-cli/examples/application.json"
+        },
+        {
+          "name": "application-advanced",
+          "path": "feat/block-cli/examples/application-advanced.json"
+        },
+        {
+          "name": "application-app-switch",
+          "path": "feat/block-cli/examples/application-app-switch.json"
+        },
+        {
+          "name": "application-breakpoints",
+          "path": "feat/block-cli/examples/application-breakpoints.json"
+        },
+        {
+          "name": "application-header",
+          "path": "feat/block-cli/examples/application-header.json"
+        },
+        {
+          "name": "aria-label-properties",
+          "path": "feat/block-cli/examples/aria-label-properties.json"
+        },
+        {
+          "name": "avatar",
+          "path": "feat/block-cli/examples/avatar.json"
+        },
+        {
+          "name": "avatar-image",
+          "path": "feat/block-cli/examples/avatar-image.json"
+        },
+        {
+          "name": "avatar-initials",
+          "path": "feat/block-cli/examples/avatar-initials.json"
+        },
+        {
+          "name": "basic-navigation-migration",
+          "path": "feat/block-cli/examples/basic-navigation-migration.json"
+        },
+        {
+          "name": "blind",
+          "path": "feat/block-cli/examples/blind.json"
+        },
+        {
+          "name": "blind-header-actions",
+          "path": "feat/block-cli/examples/blind-header-actions.json"
+        },
+        {
+          "name": "blind-variants",
+          "path": "feat/block-cli/examples/blind-variants.json"
+        },
+        {
+          "name": "breadcrumb",
+          "path": "feat/block-cli/examples/breadcrumb.json"
+        },
+        {
+          "name": "breadcrumb-next-items",
+          "path": "feat/block-cli/examples/breadcrumb-next-items.json"
+        },
+        {
+          "name": "breadcrumb-truncate",
+          "path": "feat/block-cli/examples/breadcrumb-truncate.json"
+        },
+        {
+          "name": "button-danger",
+          "path": "feat/block-cli/examples/button-danger.json"
+        },
+        {
+          "name": "button-danger-ghost",
+          "path": "feat/block-cli/examples/button-danger-ghost.json"
+        },
+        {
+          "name": "button-danger-outline",
+          "path": "feat/block-cli/examples/button-danger-outline.json"
+        },
+        {
+          "name": "button-ghost",
+          "path": "feat/block-cli/examples/button-ghost.json"
+        },
+        {
+          "name": "button-grey",
+          "path": "feat/block-cli/examples/button-grey.json"
+        },
+        {
+          "name": "button-grey-ghost",
+          "path": "feat/block-cli/examples/button-grey-ghost.json"
+        },
+        {
+          "name": "button-grey-secondary",
+          "path": "feat/block-cli/examples/button-grey-secondary.json"
+        },
+        {
+          "name": "button-group",
+          "path": "feat/block-cli/examples/button-group.json"
+        },
+        {
+          "name": "button-loading",
+          "path": "feat/block-cli/examples/button-loading.json"
+        },
+        {
+          "name": "button-secondary",
+          "path": "feat/block-cli/examples/button-secondary.json"
+        },
+        {
+          "name": "button-text-icon",
+          "path": "feat/block-cli/examples/button-text-icon.json"
+        },
+        {
+          "name": "button-with-icon",
+          "path": "feat/block-cli/examples/button-with-icon.json"
+        },
+        {
+          "name": "button-with-link",
+          "path": "feat/block-cli/examples/button-with-link.json"
+        },
+        {
+          "name": "buttons",
+          "path": "feat/block-cli/examples/buttons.json"
+        },
+        {
+          "name": "card",
+          "path": "feat/block-cli/examples/card.json"
+        },
+        {
+          "name": "card-list",
+          "path": "feat/block-cli/examples/card-list.json"
+        },
+        {
+          "name": "category-filter",
+          "path": "feat/block-cli/examples/category-filter.json"
+        },
+        {
+          "name": "category-filter-suggestions",
+          "path": "feat/block-cli/examples/category-filter-suggestions.json"
+        },
+        {
+          "name": "checkbox",
+          "path": "feat/block-cli/examples/checkbox.json"
+        },
+        {
+          "name": "checkbox-indeterminate",
+          "path": "feat/block-cli/examples/checkbox-indeterminate.json"
+        },
+        {
+          "name": "chip",
+          "path": "feat/block-cli/examples/chip.json"
+        },
+        {
+          "name": "content",
+          "path": "feat/block-cli/examples/content.json"
+        },
+        {
+          "name": "content-header",
+          "path": "feat/block-cli/examples/content-header.json"
+        },
+        {
+          "name": "content-header-no-back",
+          "path": "feat/block-cli/examples/content-header-no-back.json"
+        },
+        {
+          "name": "content-header-with-slot",
+          "path": "feat/block-cli/examples/content-header-with-slot.json"
+        },
+        {
+          "name": "custom-field",
+          "path": "feat/block-cli/examples/custom-field.json"
+        },
+        {
+          "name": "custom-field-validation",
+          "path": "feat/block-cli/examples/custom-field-validation.json"
+        },
+        {
+          "name": "date-dropdown",
+          "path": "feat/block-cli/examples/date-dropdown.json"
+        },
+        {
+          "name": "date-dropdown-user-range",
+          "path": "feat/block-cli/examples/date-dropdown-user-range.json"
+        },
+        {
+          "name": "date-input",
+          "path": "feat/block-cli/examples/date-input.json"
+        },
+        {
+          "name": "date-input-disabled",
+          "path": "feat/block-cli/examples/date-input-disabled.json"
+        },
+        {
+          "name": "date-input-label",
+          "path": "feat/block-cli/examples/date-input-label.json"
+        },
+        {
+          "name": "date-input-min-max-date",
+          "path": "feat/block-cli/examples/date-input-min-max-date.json"
+        },
+        {
+          "name": "date-input-readonly",
+          "path": "feat/block-cli/examples/date-input-readonly.json"
+        },
+        {
+          "name": "date-input-validation",
+          "path": "feat/block-cli/examples/date-input-validation.json"
+        },
+        {
+          "name": "date-input-with-slots",
+          "path": "feat/block-cli/examples/date-input-with-slots.json"
+        },
+        {
+          "name": "datepicker",
+          "path": "feat/block-cli/examples/datepicker.json"
+        },
+        {
+          "name": "datepicker-locale",
+          "path": "feat/block-cli/examples/datepicker-locale.json"
+        },
+        {
+          "name": "datepicker-range",
+          "path": "feat/block-cli/examples/datepicker-range.json"
+        },
+        {
+          "name": "datetimepicker",
+          "path": "feat/block-cli/examples/datetimepicker.json"
+        },
+        {
+          "name": "divider",
+          "path": "feat/block-cli/examples/divider.json"
+        },
+        {
+          "name": "drawer",
+          "path": "feat/block-cli/examples/drawer.json"
+        },
+        {
+          "name": "drawer-full-height",
+          "path": "feat/block-cli/examples/drawer-full-height.json"
+        },
+        {
+          "name": "dropdown",
+          "path": "feat/block-cli/examples/dropdown.json"
+        },
+        {
+          "name": "dropdown-button",
+          "path": "feat/block-cli/examples/dropdown-button.json"
+        },
+        {
+          "name": "dropdown-button-icon",
+          "path": "feat/block-cli/examples/dropdown-button-icon.json"
+        },
+        {
+          "name": "dropdown-icon",
+          "path": "feat/block-cli/examples/dropdown-icon.json"
+        },
+        {
+          "name": "dropdown-quick-actions",
+          "path": "feat/block-cli/examples/dropdown-quick-actions.json"
+        },
+        {
+          "name": "dropdown-submenu",
+          "path": "feat/block-cli/examples/dropdown-submenu.json"
+        },
+        {
+          "name": "echarts",
+          "path": "feat/block-cli/examples/echarts.json"
+        },
+        {
+          "name": "echarts-bar-horizontal-stacked",
+          "path": "feat/block-cli/examples/echarts-bar-horizontal-stacked.json"
+        },
+        {
+          "name": "echarts-bar-simple",
+          "path": "feat/block-cli/examples/echarts-bar-simple.json"
+        },
+        {
+          "name": "echarts-circle",
+          "path": "feat/block-cli/examples/echarts-circle.json"
+        },
+        {
+          "name": "echarts-empty-state",
+          "path": "feat/block-cli/examples/echarts-empty-state.json"
+        },
+        {
+          "name": "echarts-gauge",
+          "path": "feat/block-cli/examples/echarts-gauge.json"
+        },
+        {
+          "name": "echarts-line-advanced",
+          "path": "feat/block-cli/examples/echarts-line-advanced.json"
+        },
+        {
+          "name": "echarts-line-multiple-y-axis",
+          "path": "feat/block-cli/examples/echarts-line-multiple-y-axis.json"
+        },
+        {
+          "name": "echarts-line-simple",
+          "path": "feat/block-cli/examples/echarts-line-simple.json"
+        },
+        {
+          "name": "echarts-pie",
+          "path": "feat/block-cli/examples/echarts-pie.json"
+        },
+        {
+          "name": "echarts-progress-arc",
+          "path": "feat/block-cli/examples/echarts-progress-arc.json"
+        },
+        {
+          "name": "echarts-progress-circle",
+          "path": "feat/block-cli/examples/echarts-progress-circle.json"
+        },
+        {
+          "name": "echarts-special-3d",
+          "path": "feat/block-cli/examples/echarts-special-3d.json"
+        },
+        {
+          "name": "echarts-special-toolbox",
+          "path": "feat/block-cli/examples/echarts-special-toolbox.json"
+        },
+        {
+          "name": "echarts-special-zoom",
+          "path": "feat/block-cli/examples/echarts-special-zoom.json"
+        },
+        {
+          "name": "empty-state",
+          "path": "feat/block-cli/examples/empty-state.json"
+        },
+        {
+          "name": "empty-state-compact",
+          "path": "feat/block-cli/examples/empty-state-compact.json"
+        },
+        {
+          "name": "empty-state-compact-break",
+          "path": "feat/block-cli/examples/empty-state-compact-break.json"
+        },
+        {
+          "name": "event-list",
+          "path": "feat/block-cli/examples/event-list.json"
+        },
+        {
+          "name": "event-list-compact",
+          "path": "feat/block-cli/examples/event-list-compact.json"
+        },
+        {
+          "name": "event-list-custom-item-height",
+          "path": "feat/block-cli/examples/event-list-custom-item-height.json"
+        },
+        {
+          "name": "event-list-custom-item-height-in-number",
+          "path": "feat/block-cli/examples/event-list-custom-item-height-in-number.json"
+        },
+        {
+          "name": "event-list-filled",
+          "path": "feat/block-cli/examples/event-list-filled.json"
+        },
+        {
+          "name": "event-list-selected",
+          "path": "feat/block-cli/examples/event-list-selected.json"
+        },
+        {
+          "name": "expanding-search",
+          "path": "feat/block-cli/examples/expanding-search.json"
+        },
+        {
+          "name": "flip-tile",
+          "path": "feat/block-cli/examples/flip-tile.json"
+        },
+        {
+          "name": "form-checkbox",
+          "path": "feat/block-cli/examples/form-checkbox.json"
+        },
+        {
+          "name": "form-checkbox-disabled",
+          "path": "feat/block-cli/examples/form-checkbox-disabled.json"
+        },
+        {
+          "name": "form-checkbox-group",
+          "path": "feat/block-cli/examples/form-checkbox-group.json"
+        },
+        {
+          "name": "form-checkbox-group-indeterminate",
+          "path": "feat/block-cli/examples/form-checkbox-group-indeterminate.json"
+        },
+        {
+          "name": "form-checkbox-validation",
+          "path": "feat/block-cli/examples/form-checkbox-validation.json"
+        },
+        {
+          "name": "form-layout-auto",
+          "path": "feat/block-cli/examples/form-layout-auto.json"
+        },
+        {
+          "name": "form-layout-grid",
+          "path": "feat/block-cli/examples/form-layout-grid.json"
+        },
+        {
+          "name": "form-validation",
+          "path": "feat/block-cli/examples/form-validation.json"
+        },
+        {
+          "name": "grid",
+          "path": "feat/block-cli/examples/grid.json"
+        },
+        {
+          "name": "grid-padding",
+          "path": "feat/block-cli/examples/grid-padding.json"
+        },
+        {
+          "name": "grid-size",
+          "path": "feat/block-cli/examples/grid-size.json"
+        },
+        {
+          "name": "group",
+          "path": "feat/block-cli/examples/group.json"
+        },
+        {
+          "name": "group-context-menu",
+          "path": "feat/block-cli/examples/group-context-menu.json"
+        },
+        {
+          "name": "group-custom-entry",
+          "path": "feat/block-cli/examples/group-custom-entry.json"
+        },
+        {
+          "name": "group-header-suppressed",
+          "path": "feat/block-cli/examples/group-header-suppressed.json"
+        },
+        {
+          "name": "html-table",
+          "path": "feat/block-cli/examples/html-table.json"
+        },
+        {
+          "name": "html-table-striped",
+          "path": "feat/block-cli/examples/html-table-striped.json"
+        },
+        {
+          "name": "icon-toggle-button-secondary",
+          "path": "feat/block-cli/examples/icon-toggle-button-secondary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-primary",
+          "path": "feat/block-cli/examples/icon-toggle-button-subtle-primary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-secondary",
+          "path": "feat/block-cli/examples/icon-toggle-button-subtle-secondary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-tertiary",
+          "path": "feat/block-cli/examples/icon-toggle-button-subtle-tertiary.json"
+        },
+        {
+          "name": "icon-toggle-button-tertiary",
+          "path": "feat/block-cli/examples/icon-toggle-button-tertiary.json"
+        },
+        {
+          "name": "input",
+          "path": "feat/block-cli/examples/input.json"
+        },
+        {
+          "name": "input-disabled",
+          "path": "feat/block-cli/examples/input-disabled.json"
+        },
+        {
+          "name": "input-form-validation",
+          "path": "feat/block-cli/examples/input-form-validation.json"
+        },
+        {
+          "name": "input-label",
+          "path": "feat/block-cli/examples/input-label.json"
+        },
+        {
+          "name": "input-legacy",
+          "path": "feat/block-cli/examples/input-legacy.json"
+        },
+        {
+          "name": "input-legacy-disabled",
+          "path": "feat/block-cli/examples/input-legacy-disabled.json"
+        },
+        {
+          "name": "input-legacy-readonly",
+          "path": "feat/block-cli/examples/input-legacy-readonly.json"
+        },
+        {
+          "name": "input-pattern",
+          "path": "feat/block-cli/examples/input-pattern.json"
+        },
+        {
+          "name": "input-readonly",
+          "path": "feat/block-cli/examples/input-readonly.json"
+        },
+        {
+          "name": "input-types",
+          "path": "feat/block-cli/examples/input-types.json"
+        },
+        {
+          "name": "input-validation",
+          "path": "feat/block-cli/examples/input-validation.json"
+        },
+        {
+          "name": "input-with-slots",
+          "path": "feat/block-cli/examples/input-with-slots.json"
+        },
+        {
+          "name": "key-value",
+          "path": "feat/block-cli/examples/key-value.json"
+        },
+        {
+          "name": "key-value-list",
+          "path": "feat/block-cli/examples/key-value-list.json"
+        },
+        {
+          "name": "key-value-list-striped",
+          "path": "feat/block-cli/examples/key-value-list-striped.json"
+        },
+        {
+          "name": "key-value-list-with-custom-value",
+          "path": "feat/block-cli/examples/key-value-list-with-custom-value.json"
+        },
+        {
+          "name": "key-value-list-with-icon",
+          "path": "feat/block-cli/examples/key-value-list-with-icon.json"
+        },
+        {
+          "name": "key-value-with-custom-value",
+          "path": "feat/block-cli/examples/key-value-with-custom-value.json"
+        },
+        {
+          "name": "key-value-with-icon",
+          "path": "feat/block-cli/examples/key-value-with-icon.json"
+        },
+        {
+          "name": "key-value-with-label-left",
+          "path": "feat/block-cli/examples/key-value-with-label-left.json"
+        },
+        {
+          "name": "kpi",
+          "path": "feat/block-cli/examples/kpi.json"
+        },
+        {
+          "name": "layout-auto",
+          "path": "feat/block-cli/examples/layout-auto.json"
+        },
+        {
+          "name": "layout-auto-custom",
+          "path": "feat/block-cli/examples/layout-auto-custom.json"
+        },
+        {
+          "name": "link-button",
+          "path": "feat/block-cli/examples/link-button.json"
+        },
+        {
+          "name": "link-button-disabled",
+          "path": "feat/block-cli/examples/link-button-disabled.json"
+        },
+        {
+          "name": "loading",
+          "path": "feat/block-cli/examples/loading.json"
+        },
+        {
+          "name": "map-navigation-migration",
+          "path": "feat/block-cli/examples/map-navigation-migration.json"
+        },
+        {
+          "name": "menu-category",
+          "path": "feat/block-cli/examples/menu-category.json"
+        },
+        {
+          "name": "menu-with-bottom-tabs",
+          "path": "feat/block-cli/examples/menu-with-bottom-tabs.json"
+        },
+        {
+          "name": "message",
+          "path": "feat/block-cli/examples/message.json"
+        },
+        {
+          "name": "message-bar",
+          "path": "feat/block-cli/examples/message-bar.json"
+        },
+        {
+          "name": "message-bar-removal",
+          "path": "feat/block-cli/examples/message-bar-removal.json"
+        },
+        {
+          "name": "modal",
+          "path": "feat/block-cli/examples/modal.json"
+        },
+        {
+          "name": "modal-by-instance",
+          "path": "feat/block-cli/examples/modal-by-instance.json"
+        },
+        {
+          "name": "modal-by-instance-content",
+          "path": "feat/block-cli/examples/modal-by-instance-content.json"
+        },
+        {
+          "name": "modal-by-template",
+          "path": "feat/block-cli/examples/modal-by-template.json"
+        },
+        {
+          "name": "modal-close",
+          "path": "feat/block-cli/examples/modal-close.json"
+        },
+        {
+          "name": "modal-form-ix-button-submit",
+          "path": "feat/block-cli/examples/modal-form-ix-button-submit.json"
+        },
+        {
+          "name": "modal-sizes",
+          "path": "feat/block-cli/examples/modal-sizes.json"
+        },
+        {
+          "name": "number-input",
+          "path": "feat/block-cli/examples/number-input.json"
+        },
+        {
+          "name": "number-input-disabled",
+          "path": "feat/block-cli/examples/number-input-disabled.json"
+        },
+        {
+          "name": "number-input-label",
+          "path": "feat/block-cli/examples/number-input-label.json"
+        },
+        {
+          "name": "number-input-readonly",
+          "path": "feat/block-cli/examples/number-input-readonly.json"
+        },
+        {
+          "name": "number-input-stepper-button",
+          "path": "feat/block-cli/examples/number-input-stepper-button.json"
+        },
+        {
+          "name": "number-input-validation",
+          "path": "feat/block-cli/examples/number-input-validation.json"
+        },
+        {
+          "name": "number-input-with-slots",
+          "path": "feat/block-cli/examples/number-input-with-slots.json"
+        },
+        {
+          "name": "pagination",
+          "path": "feat/block-cli/examples/pagination.json"
+        },
+        {
+          "name": "pagination-advanced",
+          "path": "feat/block-cli/examples/pagination-advanced.json"
+        },
+        {
+          "name": "pane",
+          "path": "feat/block-cli/examples/pane.json"
+        },
+        {
+          "name": "pane-layout",
+          "path": "feat/block-cli/examples/pane-layout.json"
+        },
+        {
+          "name": "pill",
+          "path": "feat/block-cli/examples/pill.json"
+        },
+        {
+          "name": "pill-variants",
+          "path": "feat/block-cli/examples/pill-variants.json"
+        },
+        {
+          "name": "popover-news",
+          "path": "feat/block-cli/examples/popover-news.json"
+        },
+        {
+          "name": "progress-indicator",
+          "path": "feat/block-cli/examples/progress-indicator.json"
+        },
+        {
+          "name": "progress-indicator-circular",
+          "path": "feat/block-cli/examples/progress-indicator-circular.json"
+        },
+        {
+          "name": "progress-indicator-circular-sizes",
+          "path": "feat/block-cli/examples/progress-indicator-circular-sizes.json"
+        },
+        {
+          "name": "progress-indicator-circular-status",
+          "path": "feat/block-cli/examples/progress-indicator-circular-status.json"
+        },
+        {
+          "name": "progress-indicator-linear-sizes",
+          "path": "feat/block-cli/examples/progress-indicator-linear-sizes.json"
+        },
+        {
+          "name": "progress-indicator-linear-status",
+          "path": "feat/block-cli/examples/progress-indicator-linear-status.json"
+        },
+        {
+          "name": "push-card",
+          "path": "feat/block-cli/examples/push-card.json"
+        },
+        {
+          "name": "radio",
+          "path": "feat/block-cli/examples/radio.json"
+        },
+        {
+          "name": "radio-button",
+          "path": "feat/block-cli/examples/radio-button.json"
+        },
+        {
+          "name": "radio-disabled",
+          "path": "feat/block-cli/examples/radio-disabled.json"
+        },
+        {
+          "name": "radio-group",
+          "path": "feat/block-cli/examples/radio-group.json"
+        },
+        {
+          "name": "radio-validation",
+          "path": "feat/block-cli/examples/radio-validation.json"
+        },
+        {
+          "name": "select",
+          "path": "feat/block-cli/examples/select.json"
+        },
+        {
+          "name": "select-editable",
+          "path": "feat/block-cli/examples/select-editable.json"
+        },
+        {
+          "name": "select-multiple",
+          "path": "feat/block-cli/examples/select-multiple.json"
+        },
+        {
+          "name": "select-ng-model",
+          "path": "feat/block-cli/examples/select-ng-model.json"
+        },
+        {
+          "name": "select-validation",
+          "path": "feat/block-cli/examples/select-validation.json"
+        },
+        {
+          "name": "settings",
+          "path": "feat/block-cli/examples/settings.json"
+        },
+        {
+          "name": "slider",
+          "path": "feat/block-cli/examples/slider.json"
+        },
+        {
+          "name": "slider-error",
+          "path": "feat/block-cli/examples/slider-error.json"
+        },
+        {
+          "name": "slider-marker",
+          "path": "feat/block-cli/examples/slider-marker.json"
+        },
+        {
+          "name": "slider-trace",
+          "path": "feat/block-cli/examples/slider-trace.json"
+        },
+        {
+          "name": "spinner",
+          "path": "feat/block-cli/examples/spinner.json"
+        },
+        {
+          "name": "spinner-large",
+          "path": "feat/block-cli/examples/spinner-large.json"
+        },
+        {
+          "name": "split-button",
+          "path": "feat/block-cli/examples/split-button.json"
+        },
+        {
+          "name": "split-button-icons",
+          "path": "feat/block-cli/examples/split-button-icons.json"
+        },
+        {
+          "name": "tabs",
+          "path": "feat/block-cli/examples/tabs.json"
+        },
+        {
+          "name": "tabs-rounded",
+          "path": "feat/block-cli/examples/tabs-rounded.json"
+        },
+        {
+          "name": "textarea",
+          "path": "feat/block-cli/examples/textarea.json"
+        },
+        {
+          "name": "textarea-disabled",
+          "path": "feat/block-cli/examples/textarea-disabled.json"
+        },
+        {
+          "name": "textarea-legacy",
+          "path": "feat/block-cli/examples/textarea-legacy.json"
+        },
+        {
+          "name": "textarea-legacy-disabled",
+          "path": "feat/block-cli/examples/textarea-legacy-disabled.json"
+        },
+        {
+          "name": "textarea-legacy-readonly",
+          "path": "feat/block-cli/examples/textarea-legacy-readonly.json"
+        },
+        {
+          "name": "textarea-readonly",
+          "path": "feat/block-cli/examples/textarea-readonly.json"
+        },
+        {
+          "name": "textarea-rows-cols",
+          "path": "feat/block-cli/examples/textarea-rows-cols.json"
+        },
+        {
+          "name": "textarea-validation",
+          "path": "feat/block-cli/examples/textarea-validation.json"
+        },
+        {
+          "name": "theme-switcher",
+          "path": "feat/block-cli/examples/theme-switcher.json"
+        },
+        {
+          "name": "tile",
+          "path": "feat/block-cli/examples/tile.json"
+        },
+        {
+          "name": "time-input",
+          "path": "feat/block-cli/examples/time-input.json"
+        },
+        {
+          "name": "time-input-disabled",
+          "path": "feat/block-cli/examples/time-input-disabled.json"
+        },
+        {
+          "name": "time-input-label",
+          "path": "feat/block-cli/examples/time-input-label.json"
+        },
+        {
+          "name": "time-input-readonly",
+          "path": "feat/block-cli/examples/time-input-readonly.json"
+        },
+        {
+          "name": "time-input-validation",
+          "path": "feat/block-cli/examples/time-input-validation.json"
+        },
+        {
+          "name": "time-input-with-slots",
+          "path": "feat/block-cli/examples/time-input-with-slots.json"
+        },
+        {
+          "name": "timepicker",
+          "path": "feat/block-cli/examples/timepicker.json"
+        },
+        {
+          "name": "timepicker-format-adjusted",
+          "path": "feat/block-cli/examples/timepicker-format-adjusted.json"
+        },
+        {
+          "name": "timepicker-intervals",
+          "path": "feat/block-cli/examples/timepicker-intervals.json"
+        },
+        {
+          "name": "toast",
+          "path": "feat/block-cli/examples/toast.json"
+        },
+        {
+          "name": "toast-custom",
+          "path": "feat/block-cli/examples/toast-custom.json"
+        },
+        {
+          "name": "toast-position",
+          "path": "feat/block-cli/examples/toast-position.json"
+        },
+        {
+          "name": "toggle",
+          "path": "feat/block-cli/examples/toggle.json"
+        },
+        {
+          "name": "toggle-button-primary",
+          "path": "feat/block-cli/examples/toggle-button-primary.json"
+        },
+        {
+          "name": "toggle-button-secondary",
+          "path": "feat/block-cli/examples/toggle-button-secondary.json"
+        },
+        {
+          "name": "toggle-button-subtle-primary",
+          "path": "feat/block-cli/examples/toggle-button-subtle-primary.json"
+        },
+        {
+          "name": "toggle-button-subtle-secondary",
+          "path": "feat/block-cli/examples/toggle-button-subtle-secondary.json"
+        },
+        {
+          "name": "toggle-button-subtle-tertiary",
+          "path": "feat/block-cli/examples/toggle-button-subtle-tertiary.json"
+        },
+        {
+          "name": "toggle-button-tertiary",
+          "path": "feat/block-cli/examples/toggle-button-tertiary.json"
+        },
+        {
+          "name": "toggle-checked",
+          "path": "feat/block-cli/examples/toggle-checked.json"
+        },
+        {
+          "name": "toggle-custom-label",
+          "path": "feat/block-cli/examples/toggle-custom-label.json"
+        },
+        {
+          "name": "toggle-disabled",
+          "path": "feat/block-cli/examples/toggle-disabled.json"
+        },
+        {
+          "name": "toggle-indeterminate",
+          "path": "feat/block-cli/examples/toggle-indeterminate.json"
+        },
+        {
+          "name": "toggle-ng-model",
+          "path": "feat/block-cli/examples/toggle-ng-model.json"
+        },
+        {
+          "name": "tooltip",
+          "path": "feat/block-cli/examples/tooltip.json"
+        },
+        {
+          "name": "tooltip-with-icon",
+          "path": "feat/block-cli/examples/tooltip-with-icon.json"
+        },
+        {
+          "name": "tree",
+          "path": "feat/block-cli/examples/tree.json"
+        },
+        {
+          "name": "tree-custom",
+          "path": "feat/block-cli/examples/tree-custom.json"
+        },
+        {
+          "name": "upload",
+          "path": "feat/block-cli/examples/upload.json"
+        },
+        {
+          "name": "validation",
+          "path": "feat/block-cli/examples/validation.json"
+        },
+        {
+          "name": "validation-select",
+          "path": "feat/block-cli/examples/validation-select.json"
+        },
+        {
+          "name": "vertical-tabs",
+          "path": "feat/block-cli/examples/vertical-tabs.json"
+        },
+        {
+          "name": "vertical-tabs-with-avatar",
+          "path": "feat/block-cli/examples/vertical-tabs-with-avatar.json"
+        },
+        {
+          "name": "workflow",
+          "path": "feat/block-cli/examples/workflow.json"
+        },
+        {
+          "name": "workflow-vertical",
+          "path": "feat/block-cli/examples/workflow-vertical.json"
+        }
+      ],
+      "searchIndex": {
+        "html": "feat/block-cli/examples-search-index-html.json",
+        "react": "feat/block-cli/examples-search-index-react.json",
+        "angular": "feat/block-cli/examples-search-index-angular.json",
+        "angular-standalone": "feat/block-cli/examples-search-index-angular-standalone.json",
+        "vue": "feat/block-cli/examples-search-index-vue.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * Styles get overwritten by html-test-app css files each build or dev task.
+ * If you want to modify the example styles do this only inside the html-test-app
+ */
+
+.tabs {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.tabs > div[data-tab-content] {
+  display: none;
+}
+
+.tabs > div[data-tab-content].show {
+  display: block;
+}

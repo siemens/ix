@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About and legal example</title>
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header>
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    </ix-application>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-menu');
+        const instance = document.querySelector('ix-menu');
+        await instance.toggleAbout(true);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "$schema": "./schemas/registry.schema.json",
+  "name": "siemens-ix-blocks",
+  "dist-tags": {
+    "latest": "feat/block-cli"
+  },
+  "versions": {
+    "feat/block-cli": {
+      "blocks": [
+        {
+          "name": "example-01",
+          "path": "feat/block-cli/blocks/example-01.json"
+        },
+        {
+          "name": "upload-01",
+          "path": "feat/block-cli/blocks/upload-01.json"
+        }
+      ],
+      "searchIndex": {
+        "react": "feat/block-cli/search-index-react.json",
+        "angular": "feat/block-cli/search-index-angular.json"
+      }
+    }
+  }
+}

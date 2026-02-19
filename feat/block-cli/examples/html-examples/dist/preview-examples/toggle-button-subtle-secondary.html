@@ -1,0 +1,48 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle button subtle secondary example</title>
+    <script type="module" crossorigin src="../assets/toggle-button-subtle-secondary-C3ooO8_n.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-Cn4dOqNA.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-BUqBgp9y.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-Bz-5pS6W.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-CtK4JYCE.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-D_T-tGgV.css">
+    <link rel="stylesheet" crossorigin href="../assets/toggle-button-primary-Y2SHNDRH.css">
+  </head>
+  <body>
+    <div class="button-container">
+      <ix-toggle-button
+        id="boldButton"
+        variant="subtle-secondary"
+        icon="text-bold"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="subtle-secondary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        id="underlineButton"
+        variant="subtle-secondary"
+        icon="text-underline"
+        pressed
+        >Underline</ix-toggle-button
+      >
+      <ix-toggle-button variant="subtle-secondary" disabled loading>
+        Strikethrough
+      </ix-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
+  </body>
+</html>

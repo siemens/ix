@@ -1,0 +1,70 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select validation example</title>
+  </head>
+  <body>
+    <div>
+      <ix-select
+        label="Framework options"
+        name="framework-option"
+        info-text="We will show examples based on your selection."
+        class="ix-info"
+      >
+        <ix-select-item value="angular" label="Angular"></ix-select-item>
+        <ix-select-item value="react" label="React"></ix-select-item>
+        <ix-select-item value="vue" label="Vue"></ix-select-item>
+      </ix-select>
+    </div>
+    <div>
+      <ix-select
+        label="Framework options"
+        name="framework-option"
+        warning-text="Selected Framework is partly supported."
+        class="ix-warning"
+        value="blazor"
+      >
+        <ix-select-item value="blazor" label="Blazor"></ix-select-item>
+        <ix-select-item value="nextjs" label="NextJS"></ix-select-item>
+      </ix-select>
+    </div>
+    <div>
+      <ix-select
+        label="Framework options"
+        name="framework-option"
+        valid-text="Selected Framework is fully supported."
+        class="ix-valid"
+        value="angular"
+      >
+        <ix-select-item value="angular" label="Angular"></ix-select-item>
+        <ix-select-item value="react" label="React"></ix-select-item>
+        <ix-select-item value="vue" label="Vue"></ix-select-item>
+      </ix-select>
+    </div>
+    <div>
+      <ix-select
+        label="Framework options"
+        name="framework-option"
+        invalid-text="Selected Framework is not supported."
+        class="ix-invalid"
+        value="svelte"
+      >
+        <ix-select-item value="svelte" label="Svelte"></ix-select-item>
+        <ix-select-item value="solid" label="Solid"></ix-select-item>
+      </ix-select>
+    </div>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

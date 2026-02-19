@@ -1,0 +1,2 @@
+import{e as n}from"./chunk-H2DCSFHQ.js";import{f as e}from"./chunk-IXF2NW34.js";function r(c){return e(this,null,function*(){let t=document.createElement("ix-application-switch-modal");t.config=c;let o=(yield n({content:t,size:"840",closeOnBackdropClick:!0})).htmlElement.querySelector("ix-application-switch-modal");return i=>{if(!o){console.warn("ix-application-switch-modal element not found!");return}o.config=i}})}export{r as a};
+//# sourceMappingURL=chunk-PMZMCSTF.js.map

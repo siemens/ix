@@ -1,0 +1,55 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical tabs with avatar example</title>
+    <link rel="stylesheet" href="./vertical-tabs-with-avatar.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconUserProfile,
+        iconHome,
+        iconGlobe,
+        iconStar,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconUserProfile,
+        iconHome,
+        iconGlobe,
+        iconStar,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-menu>
+      <ix-menu-avatar
+        top="john.doe@company.com"
+        bottom="Administrator"
+        image="https://ui-avatars.com/api/?name=John+Doe"
+      >
+        <ix-menu-avatar-item
+          icon="user-profile"
+          label="User profile..."
+        ></ix-menu-avatar-item>
+      </ix-menu-avatar>
+      <ix-menu-item home icon="home">Home</ix-menu-item>
+      <ix-menu-item icon="globe">Normal tab</ix-menu-item>
+      <ix-menu-item icon="star" disabled>Disabled tab</ix-menu-item>
+      <ix-menu-item icon="star">With other icon</ix-menu-item>
+      <ix-menu-item icon="globe" style="display: none">
+        Should not be visible
+      </ix-menu-item>
+    </ix-menu>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

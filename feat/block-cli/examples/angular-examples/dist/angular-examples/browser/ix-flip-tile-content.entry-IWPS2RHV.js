@@ -1,0 +1,2 @@
+import{a as s,d as t,e as n}from"./chunk-M63OK7P4.js";import"./chunk-IXF2NW34.js";var i=":host{display:block}",r=(()=>{let e=class{constructor(l){s(this,l),this.contentVisible=!1}render(){return t(n,{key:"002fbfde1a46839d622af7fb2be6dff5ca99aa87"},this.contentVisible?t("slot",null):null)}};return e.style=i,e})();export{r as ix_flip_tile_content};
+//# sourceMappingURL=ix-flip-tile-content.entry-IWPS2RHV.js.map

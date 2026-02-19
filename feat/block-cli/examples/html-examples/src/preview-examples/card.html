@@ -1,0 +1,53 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card example</title>
+    <link rel="stylesheet" href="./card.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconCapacity } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconCapacity,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="card-example">
+      <ix-card variant="outline">
+        <ix-card-content>
+          <ix-icon name="capacity"></ix-icon>
+          <ix-typography bold>Number of components</ix-typography>
+          <ix-typography>
+            Vanilla JavaScript<br />
+            Angular<br />
+            Blazor<br />
+            React<br />
+            Vue.js
+          </ix-typography>
+          <ix-typography format="h1">123</ix-typography>
+        </ix-card-content>
+      </ix-card>
+    </div>
+
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-card');
+        const cardElement = document.querySelector('ix-card');
+        cardElement.addEventListener('click', console.log);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

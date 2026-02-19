@@ -1,0 +1,2 @@
+import{Ha as o,ab as a,bb as i,pb as r}from"./chunk-Y6TG2SFA.js";import"./chunk-B4AJQJMI.js";var s=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-example"]],decls:2,vars:0,consts:[["placeholder","Enter text here","readonly",""]],template:function(n,p){n&1&&(a(0,"textarea",0),r(1,`      Some example text
+    `),i())},encapsulation:2});let t=e;return t})();export{s as default};

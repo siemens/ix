@@ -1,0 +1,16 @@
+{
+  "$schema": "./schemas/components-registry.schema.json",
+  "name": "siemens-ix-components",
+  "dist-tags": {
+    "latest": "feat/block-cli"
+  },
+  "versions": {
+    "feat/block-cli": {
+      "components": {
+        "componentDoc": "feat/block-cli/ix/component-doc.json",
+        "componentIndex": "feat/block-cli/ix/component-index.json",
+        "componentSearchIndex": "feat/block-cli/ix/component-search-index.json"
+      }
+    }
+  }
+}
