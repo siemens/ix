@@ -14,6 +14,14 @@ type RegistryVersionEntry = {
   searchIndex?: Record<string, string>;
 };
 
+type ComponentsRegistryVersionEntry = {
+  components: {
+    componentDoc: string;
+    componentIndex: string;
+    componentSearchIndex: string;
+  };
+};
+
 type ExamplesRegistryVersionEntry = {
   examples: Array<{ name: string; path: string }>;
   searchIndex?: Record<string, string>;
@@ -31,6 +39,13 @@ type ExamplesRegistryIndex = {
   name: string;
   'dist-tags': Record<string, string>;
   versions: Record<string, ExamplesRegistryVersionEntry>;
+};
+
+type ComponentsRegistryIndex = {
+  $schema?: string;
+  name: string;
+  'dist-tags': Record<string, string>;
+  versions: Record<string, ComponentsRegistryVersionEntry>;
 };
 
 type CliArgs = {
@@ -105,6 +120,20 @@ function prefixSearchIndex(
       prefixVersionPath(version, indexFile),
     ])
   );
+}
+
+function prefixComponents(
+  version: string,
+  components: ComponentsRegistryVersionEntry['components']
+): ComponentsRegistryVersionEntry['components'] {
+  return {
+    componentDoc: prefixVersionPath(version, components.componentDoc),
+    componentIndex: prefixVersionPath(version, components.componentIndex),
+    componentSearchIndex: prefixVersionPath(
+      version,
+      components.componentSearchIndex
+    ),
+  };
 }
 
 async function readJsonIfExists<T>(filePath: string): Promise<T | null> {
@@ -215,6 +244,47 @@ function mergeExamplesRegistry(
   return baseRegistry;
 }
 
+function mergeComponentsRegistry(
+  existingRegistry: ComponentsRegistryIndex | null,
+  currentRegistry: ComponentsRegistryIndex,
+  version: string,
+  latestTag: string,
+  shouldUpdateLatest: boolean
+): ComponentsRegistryIndex {
+  const baseRegistry: ComponentsRegistryIndex =
+    existingRegistry ?? {
+      $schema: currentRegistry.$schema,
+      name: currentRegistry.name,
+      'dist-tags': { latest: latestTag },
+      versions: {},
+    };
+
+  const currentVersionEntry = currentRegistry.versions[version];
+  if (!currentVersionEntry) {
+    throw new Error(
+      `Current components registry does not contain version '${version}'`
+    );
+  }
+
+  const normalizedVersionEntry: ComponentsRegistryVersionEntry = {
+    components: prefixComponents(version, currentVersionEntry.components),
+  };
+
+  baseRegistry.versions = {
+    ...baseRegistry.versions,
+    [version]: normalizedVersionEntry,
+  };
+
+  baseRegistry['dist-tags'] = {
+    ...baseRegistry['dist-tags'],
+    latest: shouldUpdateLatest
+      ? latestTag
+      : (baseRegistry['dist-tags']?.latest ?? latestTag),
+  };
+
+  return baseRegistry;
+}
+
 async function copyVersionPayload(
   distDir: string,
   outDir: string,
@@ -227,7 +297,10 @@ async function copyVersionPayload(
   await Promise.all(
     files
       .filter(
-        (file) => file !== 'registry.json' && file !== 'examples-registry.json'
+        (file) =>
+          file !== 'registry.json' &&
+          file !== 'examples-registry.json' &&
+          file !== 'components-registry.json'
       )
       .map((file) =>
         fs.copy(path.join(distDir, file), path.join(versionDir, file), {
@@ -255,19 +328,33 @@ async function main() {
 
   const currentRegistryPath = path.join(args.distDir, 'registry.json');
   const currentExamplesRegistryPath = path.join(args.distDir, 'examples-registry.json');
+  const currentComponentsRegistryPath = path.join(
+    args.distDir,
+    'components-registry.json'
+  );
 
   const existingRegistryPath = path.join(args.outDir, 'registry.json');
   const existingExamplesRegistryPath = path.join(args.outDir, 'examples-registry.json');
+  const existingComponentsRegistryPath = path.join(
+    args.outDir,
+    'components-registry.json'
+  );
 
   const currentRegistry = (await fs.readJson(currentRegistryPath)) as RegistryIndex;
   const currentExamplesRegistry =
     (await fs.readJson(currentExamplesRegistryPath)) as ExamplesRegistryIndex;
+  const currentComponentsRegistry =
+    (await fs.readJson(currentComponentsRegistryPath)) as ComponentsRegistryIndex;
 
   const existingRegistry = await readJsonIfExists<RegistryIndex>(
     existingRegistryPath
   );
   const existingExamplesRegistry =
     await readJsonIfExists<ExamplesRegistryIndex>(existingExamplesRegistryPath);
+  const existingComponentsRegistry =
+    await readJsonIfExists<ComponentsRegistryIndex>(
+      existingComponentsRegistryPath
+    );
 
   const mergedRegistry = mergeBlocksRegistry(
     existingRegistry,
@@ -285,8 +372,19 @@ async function main() {
     args.shouldUpdateLatest
   );
 
+  const mergedComponentsRegistry = mergeComponentsRegistry(
+    existingComponentsRegistry,
+    currentComponentsRegistry,
+    args.version,
+    args.latestTag,
+    args.shouldUpdateLatest
+  );
+
   await fs.writeJson(existingRegistryPath, mergedRegistry, { spaces: 2 });
   await fs.writeJson(existingExamplesRegistryPath, mergedExamplesRegistry, {
+    spaces: 2,
+  });
+  await fs.writeJson(existingComponentsRegistryPath, mergedComponentsRegistry, {
     spaces: 2,
   });
 

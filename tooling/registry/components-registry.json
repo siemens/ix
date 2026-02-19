@@ -1,0 +1,16 @@
+{
+  "$schema": "./schemas/components-registry.schema.json",
+  "name": "siemens-ix-components",
+  "dist-tags": {
+    "latest": "template"
+  },
+  "versions": {
+    "template": {
+      "components": {
+        "componentDoc": "ix/component-doc.json",
+        "componentIndex": "ix/component-index.json",
+        "componentSearchIndex": "ix/component-search-index.json"
+      }
+    }
+  }
+}

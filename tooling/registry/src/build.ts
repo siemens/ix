@@ -14,6 +14,7 @@ import { glob } from 'glob';
 import { buildSearchIndex } from './search-index';
 import { generateExampleBlocks } from './generate-examples';
 import {
+  updateComponentsRegistry,
   updateBlocksRegistry,
   updateExamplesRegistry,
 } from './update-registry';
@@ -22,9 +23,20 @@ const __dirname = path.resolve();
 const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
 const __angular_blocks = path.join(__node_modules, 'angular-blocks');
+const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
 const __examples_registry_template = path.join(__dirname, 'examples-registry.json');
+const __components_registry_template = path.join(
+  __dirname,
+  'components-registry.json'
+);
+const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
+const __ix_component_index = path.join(__ix_package, 'component-index.json');
+const __ix_component_search_index = path.join(
+  __ix_package,
+  'component-search-index.json'
+);
 
 interface Ctx {
   dist: string;
@@ -67,6 +79,13 @@ const task = new Listr<Ctx>([
         fs.copy(
           __examples_registry_template,
           path.join(ctx.dist, 'examples-registry.json'),
+          {
+            dereference: true,
+          }
+        ),
+        fs.copy(
+          __components_registry_template,
+          path.join(ctx.dist, 'components-registry.json'),
           {
             dereference: true,
           }
@@ -160,6 +179,32 @@ const task = new Listr<Ctx>([
     },
   },
   {
+    title: 'Copy IX component metadata to dist',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'ix');
+
+      await Promise.all([
+        fs.copy(__ix_component_doc, path.join(dest, 'component-doc.json'), {
+          dereference: true,
+        }),
+        fs.copy(
+          __ix_component_index,
+          path.join(dest, 'component-index.json'),
+          {
+            dereference: true,
+          }
+        ),
+        fs.copy(
+          __ix_component_search_index,
+          path.join(dest, 'component-search-index.json'),
+          {
+            dereference: true,
+          }
+        ),
+      ]);
+    },
+  },
+  {
     title: 'Update blocks registry.json',
     task: async (ctx) => {
       const registryPath = path.join(ctx.dist, 'registry.json');
@@ -168,6 +213,22 @@ const task = new Listr<Ctx>([
         version: ctx.registryVersion,
         latestTag: ctx.registryLatestTag,
         pathPrefix: ctx.registryPathPrefix,
+      });
+    },
+  },
+  {
+    title: 'Update components-registry.json',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'components-registry.json');
+      await updateComponentsRegistry(registryPath, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+        components: {
+          componentDoc: 'ix/component-doc.json',
+          componentIndex: 'ix/component-index.json',
+          componentSearchIndex: 'ix/component-search-index.json',
+        },
       });
     },
   },

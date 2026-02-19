@@ -16,6 +16,14 @@ interface RegistryUpdateOptions {
   pathPrefix?: string;
 }
 
+interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
+  components: {
+    componentDoc: string;
+    componentIndex: string;
+    componentSearchIndex: string;
+  };
+}
+
 /**
  * Update blocks registry.json with manual blocks only
  */
@@ -116,4 +124,38 @@ export async function updateExamplesRegistry(
   await fs.writeJson(registryPath, registry, { spaces: 2 });
 
   console.log(`✅ Updated examples registry with ${examples.length} examples`);
+}
+
+/**
+ * Update components-registry.json with IX component metadata files
+ */
+export async function updateComponentsRegistry(
+  registryPath: string,
+  options: ComponentsRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating components-registry.json...');
+
+  const registry = await fs.readJson(registryPath);
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  const prefixedComponents = Object.fromEntries(
+    Object.entries(options.components).map(([key, value]) => [
+      key,
+      normalizedPrefix ? `${normalizedPrefix}/${value}` : value,
+    ])
+  );
+
+  registry.versions = {
+    [options.version]: {
+      components: prefixedComponents,
+    },
+  };
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated components registry with IX component metadata');
 }
