@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+const textStyleDefault = {
+  color: '#000000',
+  fontFamily: 'Siemens Sans, sans-serif',
+};
+
 const colors = [
   '#00838F' /* theme-chart-3 */,
   '#00572B' /* theme-chart-2 */,
@@ -63,15 +68,7 @@ export default {
   theme: {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
-    textStyle: {},
-    title: {
-      textStyle: {
-        color: '#000000',
-      },
-      subtextStyle: {
-        color: '#000000',
-      },
-    },
+    textStyle: textStyleDefault,
     line: {
       itemStyle: {
         borderWidth: 1,
@@ -183,11 +180,6 @@ export default {
         iconStyle: {
           borderColor: '#000000',
         },
-      },
-    },
-    legend: {
-      textStyle: {
-        color: '#000000',
       },
     },
     tooltip: {
