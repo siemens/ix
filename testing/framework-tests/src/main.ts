@@ -61,17 +61,17 @@ async function generateIndexForGeneratedAxeTests() {
   await fs.writeFile(indexPath, importStatements, 'utf-8');
 }
 
-const TOGGLE_AXE_TEST_IDS = [
+const TOGGLE_AXE_TEST_IDS = new Set([
   'toggle',
   'toggle-checked',
   'toggle-custom-label',
   'toggle-disabled',
   'toggle-indeterminate',
-];
+]);
 
 async function generateTestForTestId(testId: string) {
   const axeDisableRules =
-    TOGGLE_AXE_TEST_IDS.includes(testId)
+    TOGGLE_AXE_TEST_IDS.has(testId)
       ? "['page-has-heading-one', 'nested-interactive']"
       : "['page-has-heading-one']";
 

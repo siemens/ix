@@ -202,6 +202,7 @@ export class Toggle implements IxFormComponent<string> {
       >
         <label
           class="wrapper"
+          role="presentation"
           onClick={() => {
             if (!this.disabled) {
               this.onCheckedChange(!this.checked);
@@ -219,6 +220,7 @@ export class Toggle implements IxFormComponent<string> {
           </div>
           <input
             type="checkbox"
+            aria-hidden="true"
             tabindex={-1}
             disabled={this.disabled}
             indeterminate={this.indeterminate}
