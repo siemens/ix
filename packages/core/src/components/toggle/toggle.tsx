@@ -178,7 +178,7 @@ export class Toggle implements IxFormComponent<string> {
     }
 
     const ariaLabelAttr = this.hostElement.getAttribute('aria-label');
-    const ariaLabel = ariaLabelAttr || toggleText;
+    const ariaLabel = ariaLabelAttr || (this.hideText ? toggleText : undefined);
 
     return (
       <Host
@@ -200,9 +200,8 @@ export class Toggle implements IxFormComponent<string> {
           }
         }}
       >
-        <label 
-          class="wrapper" 
-          aria-hidden="true"
+        <label
+          class="wrapper"
           onClick={() => {
             if (!this.disabled) {
               this.onCheckedChange(!this.checked);
@@ -215,13 +214,11 @@ export class Toggle implements IxFormComponent<string> {
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
-            aria-hidden="true"
           >
             <div class="slider"></div>
           </div>
           <input
             type="checkbox"
-            aria-hidden="true"
             tabindex={-1}
             disabled={this.disabled}
             indeterminate={this.indeterminate}
@@ -233,9 +230,7 @@ export class Toggle implements IxFormComponent<string> {
             }}
           />
           {!this.hideText && (
-            <ix-typography class="label" aria-hidden="true">
-              {toggleText}
-            </ix-typography>
+            <ix-typography class="label">{toggleText}</ix-typography>
           )}
         </label>
       </Host>
