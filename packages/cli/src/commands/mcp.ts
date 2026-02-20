@@ -7,11 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Command, Option } from 'commander';
-import { initVSCodeMCPConfig } from '../mcp/config';
+import {
+  getMCPConfigChoices,
+  initMCPConfig,
+  MCPConfigName,
+} from '../mcp/config';
 import { detectFramework } from '../detect';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { createServer } from '../mcp/server';
 import { defaultRegistry } from '../config';
+import prompts from 'prompts';
 
 const mcpCommand = new Command('mcp').description(
   'MCP server and configuration commands'
@@ -52,11 +57,49 @@ const mcpRunAngularMcpCommand = new Command('run-angular')
     }
   });
 
+const askConfigChoice = async (
+  framework: Awaited<ReturnType<typeof detectFramework>>
+) => {
+  const choices = getMCPConfigChoices(framework);
+
+  if (!process.stdin.isTTY) {
+    throw new Error(
+      `No interactive terminal available. Please provide --config <${choices
+        .map(({ name }) => name)
+        .join('|')}>`
+    );
+  }
+
+  const response = await prompts({
+    type: 'select',
+    name: 'client',
+    message: 'Which MCP client are you using?',
+    choices: choices.map((choice) => ({
+      title: choice.label,
+      value: choice.name,
+    })),
+  });
+
+  if (!response.client) {
+    throw new Error('MCP config selection cancelled');
+  }
+
+  return response.client as MCPConfigName;
+};
+
 const mcpInitCommand = new Command('init')
   .description('Initialize MCP configuration in the current directory')
-  .action(async () => {
+  .addOption(
+    new Option('-c, --config <config>', 'MCP config target').choices([
+      'claude',
+      'cursor',
+      'vscode',
+    ])
+  )
+  .action(async (options: { config?: MCPConfigName }) => {
     const framework = await detectFramework(process.cwd());
-    const configPath = await initVSCodeMCPConfig(framework);
+    const configName = options.config ?? (await askConfigChoice(framework));
+    const configPath = await initMCPConfig(framework, configName);
     console.log(`MCP configuration initialized in ${configPath}`);
   });
 

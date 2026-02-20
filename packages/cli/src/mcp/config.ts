@@ -11,20 +11,75 @@ import path from 'node:path';
 import deepmerge from 'deepmerge';
 import { Framework } from '../detect';
 
+const CLI = './../../ix/packages/cli@latest'; // @siemens/ix-cli@latest
+
 const overwriteMerge = (_: any[], sourceArray: any[]) => sourceArray;
 
-export const initVSCodeMCPConfig = async (framework: Framework) => {
-  const config = {
-    configPath: '.vscode/mcp.json',
-    config: {
-      servers: {
-        siemensix: {
-          command: 'npx',
-          args: [`./../../ix/packages/cli`, 'mcp', `run-${framework}`],
+export type MCPConfigName = 'claude' | 'cursor' | 'vscode';
+
+type MCPConfig = {
+  name: MCPConfigName;
+  label: string;
+  configPath: string;
+  config: Record<string, unknown>;
+};
+
+const getMCPConfigs = (framework: Framework): MCPConfig[] => [
+    {
+      name: 'claude',
+      label: 'Claude Code',
+      configPath: '.mcp.json',
+      config: {
+        mcpServers: {
+          shadcn: {
+            command: 'npx',
+            args: [CLI, 'mcp', `run-${framework}`],
+          },
         },
       },
     },
-  };
+    {
+      name: 'cursor',
+      label: 'Cursor',
+      configPath: '.cursor/mcp.json',
+      config: {
+        mcpServers: {
+          shadcn: {
+            command: 'npx',
+            args: [CLI, 'mcp', `run-${framework}`],
+          },
+        },
+      },
+    },
+    {
+      name: 'vscode',
+      label: 'VS Code',
+      configPath: '.vscode/mcp.json',
+      config: {
+        servers: {
+          siemensix: {
+            command: 'npx',
+            args: [CLI, 'mcp', `run-${framework}`],
+          },
+        },
+      },
+    },
+  ];
+
+export const getMCPConfigChoices = (framework: Framework) =>
+  getMCPConfigs(framework).map(({ name, label }) => ({ name, label }));
+
+export const initMCPConfig = async (
+  framework: Framework,
+  configName: MCPConfigName
+) => {
+  const config = getMCPConfigs(framework).find(
+    (item) => item.name === configName
+  );
+
+  if (!config) {
+    throw new Error(`Unknown MCP config '${configName}'`);
+  }
 
   const dirname = path.dirname(config.configPath);
   await fs.ensureDir(dirname);
@@ -36,8 +91,8 @@ export const initVSCodeMCPConfig = async (framework: Framework) => {
   } catch {}
 
   const mergedConfig = deepmerge(
-    existingConfig,
     config.config as Record<string, unknown>,
+    existingConfig,
     { arrayMerge: overwriteMerge }
   );
 
