@@ -10,7 +10,7 @@ import { h } from '@stencil/core';
 /**
  * Add a focus proxy element to the DOM to allow for better keyboard navigation and accessibility.
  *
- * Important also import the focus proxy mixin in the host component's scss file to ensure the proxy is visually hidden but still accessible to screen readers and keyboard navigation.
+ * Important: Also import the focus proxy mixin in the host component's scss file to ensure the proxy is visually hidden but still accessible to screen readers and keyboard navigation.
  */
 export const FocusProxy = (props: { hostId: string; otherProps: any }) => {
   return (

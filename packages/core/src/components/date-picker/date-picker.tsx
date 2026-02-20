@@ -147,12 +147,16 @@ export class DatePicker
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 5.0.0
    */
   @Prop() ariaLabelMonthSelection?: string = 'Select month';
 
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 5.0.0
    */
   @Prop() ariaLabelYearSelection?: string = 'Select year';
 
@@ -824,8 +828,8 @@ export class DatePicker
       let dayElement = selectedDayElement ?? todayElement;
 
       if (!dayElement) {
-        // This is only the case if user use the year/month selector to select a date
-        // and changing to a month with has ether a today or selected day
+        // This only happens if the user uses the year/month selector to pick a date
+        // and then switches to a month that has either today’s date or the selected
         dayElement = shadowRoot.querySelector(
           '.calendar-item.first-day'
         ) as HTMLElement;

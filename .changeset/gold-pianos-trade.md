@@ -5,4 +5,4 @@
 '@siemens/ix-vue': patch
 ---
 
-Hide overflow context menu when switching from small to medium/large viewport
+Hide the overflow context menu in `ix-application-header` when switching from a small to a medium or large viewport.
