@@ -155,13 +155,11 @@
   }
 }
 
-/* Remove default focus ring from host so only the switch track shows our custom ring (Figma: ring around switch only) */
 :host(:focus),
 :host(:focus-visible) {
   outline: none;
 }
 
-/* Focus ring when the host has focus (keyboard only) – around switch track only */
 :host(:not(.disabled):focus-visible) .switch > .slider {
   outline: 0.0625rem solid var(--theme-color-focus-bdr);
   outline-offset: 0.0625rem;
