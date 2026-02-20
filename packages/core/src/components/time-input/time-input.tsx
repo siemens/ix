@@ -50,6 +50,7 @@ import {
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
 
 /**
@@ -61,7 +62,9 @@ import type { TimeInputValidityState } from './time-input.types';
 @Component({
   tag: 'ix-time-input',
   styleUrl: 'time-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
 export class TimeInput implements IxInputFieldComponent<string> {
@@ -285,6 +288,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+      this.show = true;
+      requestAnimationFrameNoNgZone(() => {
+        this.timePickerRef.current?.focus();
+      });
+    }
     onEnterKeyChangeEmit(event, this, this.value);
 
     handleSubmitOnEnterKeydown(
@@ -447,7 +456,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -466,6 +474,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            tabindex={-1}
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
@@ -542,6 +551,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+        }}
+        onFocusout={() => {
+          this.closeDropdown();
         }}
       >
         <ix-field-wrapper

@@ -68,9 +68,23 @@ export class FilterChip {
             oval
             icon={iconCloseSmall}
             size="16"
-            tabindex={this.disabled ? -1 : 0}
             disabled={this.disabled}
-            onClick={(e) => this.onCloseClick(e)}
+            onClick={(event) => {
+              this.onCloseClick(event);
+            }}
+            onKeyDown={(event) => {
+              switch (event.key) {
+                case 'Enter':
+                case ' ':
+                  this.onCloseClick(event);
+                  break;
+                case 'Tab':
+                  break;
+                default:
+                  event.preventDefault();
+                  event.stopPropagation();
+              }
+            }}
             aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}

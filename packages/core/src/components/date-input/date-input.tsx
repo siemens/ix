@@ -31,7 +31,6 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
-  onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
 import {
@@ -49,6 +48,7 @@ import {
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { DateInputValidityState } from './date-input.types';
 
 /**
@@ -60,7 +60,9 @@ import type { DateInputValidityState } from './date-input.types';
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
 export class DateInput implements IxInputFieldComponent<string | undefined> {
@@ -361,6 +363,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
+      this.inputElementRef.current?.focus();
     }
 
     this.emitValidityStateChangeIfChanged();
@@ -389,8 +392,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    onEnterKeyChangeEmit(event, this, this.value);
-
+    if (event.key === 'ArrowDown') {
+      this.show = true;
+      requestAnimationFrameNoNgZone(() => this.datepickerRef.current?.focus());
+    }
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -430,8 +435,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
-            this.initialValue = this.value;
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -453,6 +456,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
@@ -528,6 +532,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+        }}
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
         }}
       >
         <ix-field-wrapper

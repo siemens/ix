@@ -20,17 +20,21 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { type LiteralStringUnion } from '../utils/type-helper';
 import type {
   DateDropdownOption,
   DateRangeChangeEvent,
 } from './date-dropdown.types';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -38,11 +42,12 @@ import type {
   shadow: true,
 })
 export class DateDropdown
+  extends Mixin(...DefaultMixins)
   implements
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>
 {
-  @Element() hostElement!: HTMLIxDateDropdownElement;
+  @Element() override hostElement!: HTMLIxDateDropdownElement;
 
   /**
    * Disable the button that opens the dropdown containing the date picker.
@@ -226,8 +231,13 @@ export class DateDropdown
   }
 
   private datePickerTouched = false;
+  private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
 
-  componentWillLoad() {
+  override connectedCallback() {}
+
+  override disconnectedCallback() {}
+
+  override componentWillLoad() {
     this.initialize();
     this.setDateRangeSelection(this.dateRangeId);
   }
@@ -344,9 +354,19 @@ export class DateDropdown
     return option.label;
   }
 
-  render() {
+  override render() {
     return (
-      <Host>
+      <Host
+        onFocusout={(event: FocusEvent) => {
+          const relatedTarget = event.relatedTarget as HTMLElement | null;
+
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
+      >
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
@@ -367,7 +387,8 @@ export class DateDropdown
           closeBehavior="outside"
           placement="bottom-start"
           enableTopLayer={this.enableTopLayer}
-          onShowChanged={({ detail: show }) => {
+          suppressOverflowBehavior
+          onShowChanged={async ({ detail: show }) => {
             if (
               !show &&
               this.selectedDateRangeId === 'custom' &&
@@ -375,6 +396,13 @@ export class DateDropdown
               this.currentRangeValue
             ) {
               this.onDateSelect(this.currentRangeValue);
+            }
+
+            if (show && hasKeyboardMode()) {
+              requestAnimationFrameNoNgZone(() => {
+                const datePicker = this.datePickerRef.current;
+                datePicker?.focus();
+              });
             }
           }}
         >
@@ -407,6 +435,7 @@ export class DateDropdown
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
                     <ix-date-picker
+                      ref={this.datePickerRef}
                       embedded
                       locale={this.locale}
                       onDateChange={(e) => {

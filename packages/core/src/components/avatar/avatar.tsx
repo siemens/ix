@@ -16,11 +16,27 @@ import {
   Prop,
   readTask,
   State,
+  Mixin,
+  Build,
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import {
+  FocusProxy,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -119,8 +135,11 @@ function UserInfo(
   styleUrl: 'avatar.scss',
   shadow: true,
 })
-export class Avatar {
-  @Element() hostElement!: HTMLIxAvatarElement;
+export class Avatar
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements ComponentIdMixinContract, AriaActiveDescendantMixinContract
+{
+  @Element() override hostElement!: HTMLIxAvatarElement;
 
   /**
    * Accessibility label for the image
@@ -171,14 +190,37 @@ export class Avatar {
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
+  @State() dropdownShow = false;
+
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
 
-  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
+  private observeChildrenChange?: MutationObserver;
 
-  componentWillLoad() {
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
+  private a11yAttributes: Partial<ReturnType<typeof a11yHostAttributes>> = {};
+
+  override componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
+
+    this.observeChildrenChange = new MutationObserver(() => {
+      this.updateProxyList();
+    });
+    this.observeChildrenChange.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  override componentDidLoad(): void {
+    this.updateProxyList();
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    this.observeChildrenChange?.disconnect();
   }
 
   private async slottedChanged() {
@@ -204,9 +246,45 @@ export class Avatar {
     }
   }
 
-  render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-    const a11yLabel = a11y['aria-label'];
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+      `[aria-controls="${this.getHostElementId()}-proxy-listbox"]`
+    );
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return PROXY_LISTITEM_ID_SUFFIX;
+  }
+
+  private updateProxyList() {
+    const items = this.hostElement.querySelectorAll('ix-dropdown-item');
+    const proxyList = this.hostElement.shadowRoot!.querySelector(
+      '.proxy-list'
+    ) as HTMLUListElement | null;
+
+    if (!proxyList) {
+      Build.isDev &&
+        console.warn('ix-avatar - focus proxy list element not found');
+      return;
+    }
+
+    updateFocusProxyList(proxyList, Array.from(items), (item, proxyElement) => {
+      proxyElement.role = 'menuitem';
+      proxyElement.innerText = item.label ?? item.textContent ?? '';
+      proxyElement.ariaLabel =
+        item.ariaLabel ?? item.label ?? item.textContent ?? '';
+    });
+  }
+
+  override render() {
+    const a11yLabel = this.a11yAttributes['aria-label'];
 
     const tooltipText = this.tooltipText || this.username;
     const ariaHidden = tooltipText === this.username;
@@ -243,6 +321,11 @@ export class Avatar {
             selected={false}
             type="button"
             variant="tertiary"
+            ariaAttributes={{
+              role: 'combobox',
+              'aria-controls': `${this.getHostElementId()}-proxy-listbox`,
+              'aria-expanded': a11yBoolean(this.dropdownShow),
+            }}
           >
             {Avatar}
           </BaseButton>
@@ -252,11 +335,18 @@ export class Avatar {
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
             onShowChanged={(event) => {
+              this.dropdownShow = event.detail;
               if (event.detail && this.tooltipRef.current) {
                 this.tooltipRef.current.hideTooltip(0);
               }
             }}
+            disableFocusTrap
+            focusHost={this.hostElement}
           >
+            <FocusProxy
+              hostId={this.getHostElementId()}
+              otherProps={{}}
+            ></FocusProxy>
             {this.username && (
               <Fragment>
                 <UserInfo

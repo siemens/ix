@@ -212,7 +212,10 @@ regressionTest(
     const labelElement = page.locator('ix-field-label');
 
     await selectElement.click();
-    const firstOption = page.getByRole('button', { name: 'Item 1' });
+
+    await expect(selectElement.locator('ix-dropdown')).toHaveClass(/show/);
+
+    const firstOption = page.getByRole('option', { name: 'Item 1' });
     await firstOption.click();
 
     const clearButton = selectElement.locator('ix-icon-button.clear');
