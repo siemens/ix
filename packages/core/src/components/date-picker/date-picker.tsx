@@ -1005,7 +1005,7 @@ export class DatePicker
                         }}
                         onKeyDown={(e) => {
                           const target = e.currentTarget as HTMLElement;
-                          if (e.key === 'Enter') {
+                          if (e.key === 'Enter' || e.key === ' ') {
                             this.selectDay(day, target);
                           }
                         }}
