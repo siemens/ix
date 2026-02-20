@@ -176,11 +176,15 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
+
+    const ariaLabelAttr = this.hostElement.getAttribute('aria-label');
+    const ariaLabel = ariaLabelAttr || toggleText;
+
     return (
       <Host
         role="switch"
         tabindex={this.disabled ? -1 : 0}
-        aria-label={this.hostElement.getAttribute('aria-label')}
+        aria-label={ariaLabel}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
@@ -190,13 +194,21 @@ export class Toggle implements IxFormComponent<string> {
         onFocus={() => (this.touched = true)}
         onKeyDown={(e: KeyboardEvent) => {
           if (this.disabled) return;
-          if (e.key === ' ') {
+          if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             this.onCheckedChange(!this.checked);
           }
         }}
       >
-        <label class="wrapper" aria-hidden="true">
+        <label 
+          class="wrapper" 
+          aria-hidden="true"
+          onClick={() => {
+            if (!this.disabled) {
+              this.onCheckedChange(!this.checked);
+            }
+          }}
+        >
           <div
             class={{
               switch: true,
@@ -215,9 +227,10 @@ export class Toggle implements IxFormComponent<string> {
             indeterminate={this.indeterminate}
             checked={this.checked}
             onFocus={() => this.hostElement.focus()}
-            onChange={(event) =>
-              this.onCheckedChange((event.target as HTMLInputElement).checked)
-            }
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
           />
           {!this.hideText && (
             <ix-typography class="label" aria-hidden="true">
