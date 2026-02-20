@@ -200,9 +200,8 @@ export class Toggle implements IxFormComponent<string> {
           }
         }}
       >
-        <label
+        <div
           class="wrapper"
-          role="presentation"
           onClick={() => {
             if (!this.disabled) {
               this.onCheckedChange(!this.checked);
@@ -215,6 +214,7 @@ export class Toggle implements IxFormComponent<string> {
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
+            aria-hidden="true"
           >
             <div class="slider"></div>
           </div>
@@ -234,7 +234,7 @@ export class Toggle implements IxFormComponent<string> {
           {!this.hideText && (
             <ix-typography class="label">{toggleText}</ix-typography>
           )}
-        </label>
+        </div>
       </Host>
     );
   }
