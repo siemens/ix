@@ -38,19 +38,23 @@ regressionTest('should toggle', async ({ mount, page }) => {
   await expect(input).toBeChecked();
 });
 
-// FAIL: input stays checked after preventDefault() – re-render may be async
 regressionTest(
   'should not toggle - default prevented',
   async ({ mount, page }) => {
     await mount(`<ix-toggle></ix-toggle>`);
     const toggle = page.locator('ix-toggle');
-    await toggle.evaluate((t) =>
-      t.addEventListener('checkedChange', (e) => e.preventDefault())
-    );
+
+    await toggle.evaluate((t) => {
+      t.addEventListener('checkedChange', (e) => {
+        e.preventDefault();
+      });
+    });
+
     await expect(toggle).toHaveClass(/hydrated/);
-    await toggle.click();
 
     const input = toggle.locator('input');
+    await toggle.click();
+
     await expect(input).not.toBeChecked();
   }
 );
@@ -117,7 +121,6 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
   expect(formData).toBe('on');
 });
 
-// FAIL: accessible name comes from aria-label, not text-off; getByRole('switch', { name: 'Disabled' }) not found
 regressionTest(
   'should expose label via aria-label for accessible queries',
   async ({ mount, page }) => {
@@ -129,7 +132,6 @@ regressionTest(
   }
 );
 
-// FAIL: no default aria-label; getByRole('switch', { name: 'Off' }) times out (accessible name not "Off")
 regressionTest(
   'should be directly clickable via host element with accessible query',
   async ({ mount, page }) => {
@@ -142,7 +144,6 @@ regressionTest(
   }
 );
 
-// FAIL: same as above – getByRole('switch', { name: 'Off' }) times out
 regressionTest(
   'should respect disabled state when clicking via accessible query',
   async ({ mount, page }) => {
