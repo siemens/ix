@@ -21,6 +21,7 @@ import { exampleTools } from './tools/example-tools';
 import { figmaTools } from './tools/figma-tools';
 import { iconTools } from './tools/icon-tools';
 import { ToolContext, ToolDefinition } from './tools/types';
+import { setupTools } from './tools/setup-tools';
 
 const promptNodeModulesExcluded = dedent`Important:
 node_modules is excluded by default in VS Code search settings.
@@ -58,6 +59,7 @@ export const createServer = (
     ...blockTools,
     ...exampleTools,
     ...figmaTools,
+    ...setupTools,
     ...auditTools,
   ];
 
