@@ -10,5 +10,5 @@
 import { IxToggle } from '@siemens/ix-react';
 
 export default () => {
-  return <IxToggle />;
+  return <IxToggle aria-label="My Toggle" />;
 };

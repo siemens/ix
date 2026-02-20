@@ -176,9 +176,15 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
+
+    const ariaLabelAttr = this.hostElement.getAttribute('aria-label');
+    const ariaLabel = ariaLabelAttr || (this.hideText ? toggleText : undefined);
+
     return (
       <Host
         role="switch"
+        tabindex={this.disabled ? -1 : 0}
+        aria-label={ariaLabel}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
@@ -186,36 +192,49 @@ export class Toggle implements IxFormComponent<string> {
         }}
         onBlur={() => this.ixBlur.emit()}
         onFocus={() => (this.touched = true)}
+        onKeyDown={(e: KeyboardEvent) => {
+          if (this.disabled) return;
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            this.onCheckedChange(!this.checked);
+          }
+        }}
       >
-        <label class="wrapper">
-          <button
+        <div
+          class="wrapper"
+          onClick={() => {
+            if (!this.disabled) {
+              this.onCheckedChange(!this.checked);
+            }
+          }}
+        >
+          <div
             class={{
               switch: true,
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
-            onClick={() => this.onCheckedChange(!this.checked)}
-            tabindex={-1}
             aria-hidden="true"
           >
             <div class="slider"></div>
-          </button>
+          </div>
           <input
             type="checkbox"
+            aria-hidden="true"
+            tabindex={-1}
             disabled={this.disabled}
             indeterminate={this.indeterminate}
             checked={this.checked}
-            tabindex={0}
-            aria-hidden={a11yBoolean(true)}
-            aria-checked={a11yBoolean(this.checked)}
-            onChange={(event) =>
-              this.onCheckedChange((event.target as HTMLInputElement).checked)
-            }
+            onFocus={() => this.hostElement.focus()}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
           />
           {!this.hideText && (
             <ix-typography class="label">{toggleText}</ix-typography>
           )}
-        </label>
+        </div>
       </Host>
     );
   }

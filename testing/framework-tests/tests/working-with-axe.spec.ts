@@ -7,3 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import './generated/tabs-axe.spec';
+
+// Toggle tests
+import './generated/toggle-axe.spec';
+import './generated/toggle-checked-axe.spec';
+import './generated/toggle-custom-label-axe.spec';
+import './generated/toggle-disabled-axe.spec';
+import './generated/toggle-indeterminate-axe.spec';
