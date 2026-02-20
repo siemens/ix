@@ -129,6 +129,7 @@ export class FieldWrapper implements FieldWrapperInterface {
               required={this.required}
               controlRef={this.controlRef}
               isInvalid={this.isInvalid}
+              ariaHidden={true}
             >
               {this.label}
             </ix-field-label>
