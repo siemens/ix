@@ -141,26 +141,15 @@ export const focusElement = (element: HTMLElement | null | undefined) => {
 
   element.focus();
 };
-// TODO Check why ix-focusable is not working as expected in some components
-// export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]):not([tabindex^="-"]), .ix-focusable[disabled="false"]:not([hidden]):not([tabindex^="-"]), ${[
 
-export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), ${[
-  'ix-dropdown-item',
-  'ix-select-item',
-]
-  .map((tag) => `${tag}:not([tabindex^="-"]):not([hidden]):not([disabled])`)
-  .join(', ')}`;
+const focusableBase = ':not([tabindex^="-"]):not([hidden]):not([disabled])';
 
-const baseFocusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled])`;
-const customFocusableSelectors = ['ix-dropdown-item', 'ix-select-item'];
+const customTags = ['ix-dropdown-item', 'ix-select-item'];
 
-export const buildFocusableQueryString = (additionalSelector: string = '') => {
-  const customSelectors = customFocusableSelectors
-    .map(
-      (tag) =>
-        `${tag}:not([tabindex^="-"]):not([hidden]):not([disabled])${additionalSelector}`
-    )
-    .join(', ');
+const buildCustom = () =>
+  customTags.map((tag) => `${tag}${focusableBase}`).join(', ');
 
-  return `${baseFocusableQueryString}${additionalSelector}, ${customSelectors}`;
-};
+export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom()}`;
+
+export const buildFocusableQueryString = (additionalSelector = '') =>
+  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom()}`;

@@ -40,9 +40,6 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
       if (super.componentDidLoad) {
         super.componentDidLoad();
       }
-
-      if (!this.disableAriaSelectHandling) {
-      }
     }
 
     @Watch('ixFocusVisible')

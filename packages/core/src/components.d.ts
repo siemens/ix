@@ -1108,6 +1108,7 @@ export namespace Components {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
           * @default 'Select month'
          */
         "ariaLabelMonthSelection"?: string;
@@ -1123,6 +1124,7 @@ export namespace Components {
         "ariaLabelPreviousMonthButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
           * @default 'Select year'
          */
         "ariaLabelYearSelection"?: string;
@@ -7210,6 +7212,7 @@ declare namespace LocalJSX {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
           * @default 'Select month'
          */
         "ariaLabelMonthSelection"?: string;
@@ -7225,6 +7228,7 @@ declare namespace LocalJSX {
         "ariaLabelPreviousMonthButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
           * @default 'Select year'
          */
         "ariaLabelYearSelection"?: string;
