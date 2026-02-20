@@ -99,8 +99,12 @@ const mcpInitCommand = new Command('init')
   .action(async (options: { config?: MCPConfigName }) => {
     const framework = await detectFramework(process.cwd());
     const configName = options.config ?? (await askConfigChoice(framework));
-    const configPath = await initMCPConfig(framework, configName);
+    const { configPath, instructionPath } = await initMCPConfig(
+      framework,
+      configName
+    );
     console.log(`MCP configuration initialized in ${configPath}`);
+    console.log(`MCP instructions initialized in ${instructionPath}`);
   });
 
 mcpCommand.addCommand(mcpInitCommand);

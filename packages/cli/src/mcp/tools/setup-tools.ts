@@ -28,11 +28,18 @@ export const setupTools: ToolDefinition[] = [
           frameworkDependency = '';
       }
 
+      const frameworkHint =
+        frameworkDependency !== ''
+          ? dedent`Important: It is not necessary to call any \`defineCustomElements\` or \`defineCustomElement\` from the package "@siemens/ix/loader"`
+          : '';
+
       return {
         content: [
           {
             type: 'text',
             text: dedent`## Siemens IX Setup Checklist
+
+          ${frameworkHint}
 
           - [ ] Install all required dependencies: @siemens/ix, @siemens/ix-icons${frameworkDependency}
           - [ ] If you want to use aggrid theme or echarts theme you need to install: @siemens/ix-aggrid or @siemens/ix-echarts

@@ -9,6 +9,7 @@
 import fs from 'fs-extra';
 import path from 'node:path';
 import deepmerge from 'deepmerge';
+import dedent from 'dedent';
 import { Framework } from '../detect';
 
 const CLI = './../../ix/packages/cli@latest'; // @siemens/ix-cli@latest
@@ -22,49 +23,89 @@ type MCPConfig = {
   label: string;
   configPath: string;
   config: Record<string, unknown>;
+  instructionPath: string;
+  instructionContent: string;
+};
+
+const INSTRUCTION_START_MARKER = '<!-- ix-mcp-instructions:start -->';
+const INSTRUCTION_END_MARKER = '<!-- ix-mcp-instructions:end -->';
+
+const instructionContent = (withFrontmatter = false) => {
+  const content = dedent`
+    ${INSTRUCTION_START_MARKER}
+    ## Siemens iX code generation
+
+    When generating ix code
+
+    If you generate code, also take care that for each ix component is a example existing which can be found with the tool "search_examples". You should use that tool to verify that the code you generated is correct
+
+    After codegeneration:
+
+    - [ ] Ensure that there are no typescript errors
+    - [ ] Ensure that there are no linting errors
+    ${INSTRUCTION_END_MARKER}
+  `;
+
+  if (!withFrontmatter) {
+    return content;
+  }
+
+  return dedent`
+    ---
+    description: When generating ix code
+    ---
+
+    ${content}
+  `;
 };
 
 const getMCPConfigs = (framework: Framework): MCPConfig[] => [
-    {
-      name: 'claude',
-      label: 'Claude Code',
-      configPath: '.mcp.json',
-      config: {
-        mcpServers: {
-          shadcn: {
-            command: 'npx',
-            args: [CLI, 'mcp', `run-${framework}`],
-          },
+  {
+    name: 'vscode',
+    label: 'VS Code',
+    configPath: '.vscode/mcp.json',
+    instructionPath: '.github/copilot-instructions.md',
+    instructionContent: instructionContent(),
+    config: {
+      servers: {
+        siemensix: {
+          command: 'npx',
+          args: [CLI, 'mcp', `run-${framework}`],
         },
       },
     },
-    {
-      name: 'cursor',
-      label: 'Cursor',
-      configPath: '.cursor/mcp.json',
-      config: {
-        mcpServers: {
-          shadcn: {
-            command: 'npx',
-            args: [CLI, 'mcp', `run-${framework}`],
-          },
+  },
+  {
+    name: 'claude',
+    label: 'Claude Code',
+    configPath: '.mcp.json',
+    instructionPath: 'CLAUDE.md',
+    instructionContent: instructionContent(),
+    config: {
+      mcpServers: {
+        shadcn: {
+          command: 'npx',
+          args: [CLI, 'mcp', `run-${framework}`],
         },
       },
     },
-    {
-      name: 'vscode',
-      label: 'VS Code',
-      configPath: '.vscode/mcp.json',
-      config: {
-        servers: {
-          siemensix: {
-            command: 'npx',
-            args: [CLI, 'mcp', `run-${framework}`],
-          },
+  },
+  {
+    name: 'cursor',
+    label: 'Cursor',
+    configPath: '.cursor/mcp.json',
+    instructionPath: '.cursor/rules/siemens-ix.mdc',
+    instructionContent: instructionContent(true),
+    config: {
+      mcpServers: {
+        shadcn: {
+          command: 'npx',
+          args: [CLI, 'mcp', `run-${framework}`],
         },
       },
     },
-  ];
+  },
+];
 
 export const getMCPConfigChoices = (framework: Framework) =>
   getMCPConfigs(framework).map(({ name, label }) => ({ name, label }));
@@ -102,5 +143,25 @@ export const initMCPConfig = async (
     'utf-8'
   );
 
-  return config.configPath;
+  const instructionDirname = path.dirname(config.instructionPath);
+  await fs.ensureDir(instructionDirname);
+
+  let existingInstructions = '';
+  try {
+    existingInstructions = await fs.readFile(config.instructionPath, 'utf-8');
+  } catch {}
+
+  if (!existingInstructions.includes(INSTRUCTION_START_MARKER)) {
+    const normalized = existingInstructions.trim();
+    const mergedInstructions = normalized
+      ? `${normalized}\n\n${config.instructionContent}\n`
+      : `${config.instructionContent}\n`;
+
+    await fs.writeFile(config.instructionPath, mergedInstructions, 'utf-8');
+  }
+
+  return {
+    configPath: config.configPath,
+    instructionPath: config.instructionPath,
+  };
 };
