@@ -45,12 +45,12 @@ regressionTest('required', async ({ mount, page }) => {
   // Wait for the asterisk to appear (hasRequiredChild state update)
   await expect(radioGroupElement).toHaveText(/Option 2\*/);
 
-  const radioOption1 = page.locator('ix-radio').nth(0);
+  const radioOption2 = page.locator('ix-radio').nth(1);
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
 
   await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioOption1).toHaveClass(/ix-invalid--required/);
+  await expect(radioOption2).toHaveClass(/ix-invalid--required/);
 });
 
 regressionTest('initial checked', async ({ mount, page }) => {
