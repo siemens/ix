@@ -48,6 +48,7 @@ regressionTest('required', async ({ mount, page }) => {
   const radioOption2 = page.locator('ix-radio').nth(1);
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
 
   await expect(radioGroupElement).toHaveClass(/hydrated/);
   await expect(radioOption2).toHaveClass(/ix-invalid--required/);
