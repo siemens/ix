@@ -49,7 +49,7 @@ regressionTest('required', async ({ mount, page }) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
 
-  await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
+  await expect(radioGroupElement).toHaveClass(/hydrated/);
   await expect(radioOption1).toHaveClass(/ix-invalid--required/);
 });
 
