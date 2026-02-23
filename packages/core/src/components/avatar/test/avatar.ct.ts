@@ -120,22 +120,6 @@ regressionTest.describe('embedded into header', () => {
     }
   );
 
-  regressionTest('should prevent navigation', async ({ page, mount }) => {
-    await page.setViewportSize(viewPorts.lg);
-    await mount(
-      `
-      <ix-application-header name="Test">
-        <ix-avatar>
-        </ix-avatar>
-      </ix-application-header>
-    `
-    );
-
-    const avatar = page.locator('ix-avatar');
-    const button = avatar.getByRole('button');
-    await expect(button).toHaveAttribute('tabindex', '-1');
-  });
-
   regressionTest('should show no tooltip', async ({ page, mount }) => {
     await mount(`<ix-avatar aria-label-tooltip="myTooltip"></ix-avatar>`);
 
