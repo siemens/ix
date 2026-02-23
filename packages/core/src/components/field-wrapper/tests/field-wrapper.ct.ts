@@ -262,3 +262,93 @@ regressionTest(
     await expect(tooltip).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'should set aria-label on control from label prop',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper>
+        <input id="test-input" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    // Set controlRef and label
+    await page.evaluate(() => {
+      const fieldWrapper = document.querySelector(
+        'ix-field-wrapper'
+      ) as HTMLIxFieldWrapperElement;
+      const input = document.querySelector('#test-input') as HTMLInputElement;
+
+      let resolve: ((value: HTMLElement) => void) | undefined;
+      const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
+
+      const ref = ((el: HTMLElement) => {
+        ref.current = el;
+        resolve?.(el);
+      }) as any;
+      ref.current = null;
+      ref.waitForCurrent = async () => {
+        await currentPromise;
+        return ref.current;
+      };
+
+      ref(input);
+      // Controlref has to bet set before label
+      fieldWrapper.controlRef = ref;
+      fieldWrapper.label = 'Test label';
+    });
+
+    const input = page.locator('#test-input');
+    await expect(input).toHaveAttribute('aria-label', 'Test label');
+  }
+);
+
+regressionTest(
+  'should not override existing aria-label on control',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper>
+        <input id="test-input" aria-label="Explicit label" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    // Set controlRef and label
+    await page.evaluate(() => {
+      const fieldWrapper = document.querySelector(
+        'ix-field-wrapper'
+      ) as HTMLIxFieldWrapperElement;
+      const input = document.querySelector('#test-input') as HTMLInputElement;
+
+      let resolve: ((value: HTMLElement) => void) | undefined;
+      const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
+
+      const ref = ((el: HTMLElement) => {
+        ref.current = el;
+        resolve?.(el);
+      }) as any;
+      ref.current = null;
+      ref.waitForCurrent = async () => {
+        await currentPromise;
+        return ref.current;
+      };
+
+      ref(input);
+      // Controlref has to bet set before label
+      fieldWrapper.controlRef = ref;
+      fieldWrapper.label = 'Test label';
+    });
+
+    const input = page.locator('#test-input');
+    await expect(input).toHaveAttribute('aria-label', 'Explicit label');
+  }
+);
