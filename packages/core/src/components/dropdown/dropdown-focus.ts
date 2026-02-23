@@ -82,6 +82,12 @@ const focusItem = (item: HTMLElement) => {
 
     if (element) {
       focusElement(element);
+
+      requestAnimationFrameNoNgZone(() =>
+        element.scrollIntoView({
+          block: 'nearest',
+        })
+      );
     }
   });
 };
