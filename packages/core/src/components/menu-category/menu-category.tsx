@@ -263,8 +263,8 @@ export class MenuCategory implements IxMenuItemBase {
           tooltipText={this.tooltipText}
           isCategory
         >
-          <div class="category">
-            <div class="category-text">{this.label}</div>
+          <span class="category">
+            <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
               class={{
@@ -273,7 +273,7 @@ export class MenuCategory implements IxMenuItemBase {
               }}
               aria-hidden="true"
             ></ix-icon>
-          </div>
+          </span>
         </ix-menu-item>
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}

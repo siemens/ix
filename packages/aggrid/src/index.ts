@@ -22,6 +22,8 @@ import {
   iconDragGripper,
 } from '@siemens/ix-icons/icons';
 
+const additionalThemeParams = { fontFamily: ['Siemens Sans', 'sans-serif'] };
+
 // Flexible type for multiple versions
 type AgGridModule = {
   createPart: typeof AgGridCommunity.createPart;
@@ -43,6 +45,7 @@ function createIxTheme(agModule: AgGridModule) {
   const { createPart, themeAlpine } = agModule;
   const base = themeAlpine.withParams({
     ...aggridIxThemeParams,
+    ...additionalThemeParams,
   });
 
   const iconCSS = iconOverrides({
