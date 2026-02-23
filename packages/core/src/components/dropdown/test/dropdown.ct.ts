@@ -585,11 +585,11 @@ regressionTest(
 
     await expect(trigger).toBeVisible();
 
-    const triggerDropdown = trigger.locator('ix-dropdown');
+    const triggerDropdown = page.locator('ix-dropdown-button ix-dropdown');
     await expect(triggerDropdown).toBeVisible();
     await expect(triggerDropdown).toHaveClass(/show/);
 
-    const submenuTrigger = triggerDropdown.getByRole('menuitem', {
+    const submenuTrigger = page.getByRole('menuitem', {
       name: 'MainItem 3',
     });
     await submenuTrigger.click();
