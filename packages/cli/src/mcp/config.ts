@@ -12,7 +12,7 @@ import deepmerge from 'deepmerge';
 import dedent from 'dedent';
 import { Framework } from '../detect';
 
-const CLI = './../../ix/packages/cli@latest'; // @siemens/ix-cli@latest
+const CLI = './../../ix/packages/cli'; // @siemens/ix-cli@latest
 
 const overwriteMerge = (_: any[], sourceArray: any[]) => sourceArray;
 
