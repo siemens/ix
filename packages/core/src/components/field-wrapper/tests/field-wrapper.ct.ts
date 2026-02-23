@@ -263,6 +263,33 @@ regressionTest(
   }
 );
 
+async function setControlRefAndLabel(page: any, label: string) {
+  await page.evaluate((label: string) => {
+    const fieldWrapper = document.querySelector(
+      'ix-field-wrapper'
+    ) as HTMLIxFieldWrapperElement;
+    const input = document.querySelector('#test-input') as HTMLInputElement;
+
+    let resolve: ((value: HTMLElement) => void) | undefined;
+    const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
+
+    const ref = ((el: HTMLElement) => {
+      ref.current = el;
+      resolve?.(el);
+    }) as any;
+    ref.current = null;
+    ref.waitForCurrent = async () => {
+      await currentPromise;
+      return ref.current;
+    };
+
+    ref(input);
+    // controlRef has to be set before label
+    fieldWrapper.controlRef = ref;
+    fieldWrapper.label = label;
+  }, label);
+}
+
 regressionTest(
   'should set aria-label on control from label prop',
   async ({ mount, page }) => {
@@ -277,31 +304,7 @@ regressionTest(
     const fieldWrapperElement = page.locator('ix-field-wrapper');
     await expect(fieldWrapperElement).toHaveClass(/hydrated/);
 
-    // Set controlRef and label
-    await page.evaluate(() => {
-      const fieldWrapper = document.querySelector(
-        'ix-field-wrapper'
-      ) as HTMLIxFieldWrapperElement;
-      const input = document.querySelector('#test-input') as HTMLInputElement;
-
-      let resolve: ((value: HTMLElement) => void) | undefined;
-      const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
-
-      const ref = ((el: HTMLElement) => {
-        ref.current = el;
-        resolve?.(el);
-      }) as any;
-      ref.current = null;
-      ref.waitForCurrent = async () => {
-        await currentPromise;
-        return ref.current;
-      };
-
-      ref(input);
-      // Controlref has to bet set before label
-      fieldWrapper.controlRef = ref;
-      fieldWrapper.label = 'Test label';
-    });
+    await setControlRefAndLabel(page, 'Test label');
 
     const input = page.locator('#test-input');
     await expect(input).toHaveAttribute('aria-label', 'Test label');
@@ -322,31 +325,7 @@ regressionTest(
     const fieldWrapperElement = page.locator('ix-field-wrapper');
     await expect(fieldWrapperElement).toHaveClass(/hydrated/);
 
-    // Set controlRef and label
-    await page.evaluate(() => {
-      const fieldWrapper = document.querySelector(
-        'ix-field-wrapper'
-      ) as HTMLIxFieldWrapperElement;
-      const input = document.querySelector('#test-input') as HTMLInputElement;
-
-      let resolve: ((value: HTMLElement) => void) | undefined;
-      const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
-
-      const ref = ((el: HTMLElement) => {
-        ref.current = el;
-        resolve?.(el);
-      }) as any;
-      ref.current = null;
-      ref.waitForCurrent = async () => {
-        await currentPromise;
-        return ref.current;
-      };
-
-      ref(input);
-      // Controlref has to bet set before label
-      fieldWrapper.controlRef = ref;
-      fieldWrapper.label = 'Test label';
-    });
+    await setControlRefAndLabel(page, 'Test label');
 
     const input = page.locator('#test-input');
     await expect(input).toHaveAttribute('aria-label', 'Explicit label');
