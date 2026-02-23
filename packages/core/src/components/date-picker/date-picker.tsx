@@ -441,12 +441,12 @@ export class DatePicker
    */
   @Method()
   async focusFirstCalenderDay() {
-    const firstDayCell = this.hostElement.shadowRoot!.querySelector(
-      '[date-calender-day].calendar-item'
-    )! as HTMLElement;
+    const dayCell = this.hostElement.shadowRoot!.querySelector(
+      `[id=day-cell-${this.focusedDay}]`
+    ) as HTMLElement;
 
-    if (firstDayCell) {
-      firstDayCell.focus();
+    if (dayCell) {
+      dayCell.focus();
     }
   }
 
@@ -1010,6 +1010,7 @@ export class DatePicker
                         onKeyDown={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
                             this.selectDay(day, target);
                           }
                         }}
