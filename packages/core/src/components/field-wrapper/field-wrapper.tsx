@@ -89,18 +89,28 @@ export class FieldWrapper implements FieldWrapperInterface {
     | MakeRef<HTMLTextAreaElement>;
 
   private readonly slotRef = makeRef<HTMLDivElement>();
+  private hasExplicitAriaLabel = false;
 
   componentDidLoad() {
-    this.syncAriaLabel();
+    this.syncAriaLabel(true);
   }
 
   @Watch('label')
-  syncAriaLabel() {
-    if (!this.controlRef) {
+  syncAriaLabel(initialSync = false) {
+    if (!this.controlRef || this.hasExplicitAriaLabel) {
       return;
     }
 
     this.controlRef.waitForCurrent().then((el) => {
+      if (
+        initialSync &&
+        (el.hasAttribute('aria-label') || el.hasAttribute('aria-labelledby'))
+      ) {
+        this.hasExplicitAriaLabel = true;
+
+        return;
+      }
+
       if (this.label) {
         el.setAttribute('aria-label', this.label);
       } else {
