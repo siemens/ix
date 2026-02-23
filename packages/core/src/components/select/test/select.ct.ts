@@ -674,6 +674,7 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.pressEnter();
 
     await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 });
 

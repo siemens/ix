@@ -50,7 +50,12 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
-import { FocusProxy, updateFocusProxyList } from '../utils/focus/focus-proxy';
+import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
 
 let selectId = 0;
 
@@ -556,6 +561,7 @@ export class Select
       }
 
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+      this.checkVisibilityOfProxyList();
     } else {
       this.updateSelection();
       this.inputFilterText = '';
@@ -569,13 +575,26 @@ export class Select
 
     if (this.inputFilterText) {
       this.items.forEach((item) => {
+        const proxyItem = this.hostElement.shadowRoot?.getElementById(
+          `${item.id}-${PROXY_LISTITEM_ID_SUFFIX}`
+        );
         item.hidden = false;
+
+        if (proxyItem) {
+          proxyItem.hidden = false;
+          proxyItem.setAttribute('aria-hidden', 'false');
+        }
+
         if (
           !item.label
             ?.toLowerCase()
             .includes(this.inputFilterText.toLowerCase())
         ) {
           item.hidden = true;
+          if (proxyItem) {
+            proxyItem.hidden = true;
+            proxyItem.setAttribute('aria-hidden', 'true');
+          }
         }
       });
     } else {
@@ -583,11 +602,32 @@ export class Select
     }
 
     this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+    this.checkVisibilityOfProxyList();
+  }
+
+  private checkVisibilityOfProxyList() {
+    const proxyList = this.hostElement?.shadowRoot?.getElementById(
+      `${this.hostId}-${PROXY_LIST_ID_SUFFIX}`
+    );
+
+    if (!proxyList) {
+      return;
+    }
+
+    proxyList.hidden = this.isDropdownEmpty;
   }
 
   private removeHiddenAttributeFromItems() {
     this.items.forEach((item) => {
       item.hidden = false;
+
+      const proxyItem = this.hostElement.shadowRoot?.getElementById(
+        `${item.id}-${PROXY_LISTITEM_ID_SUFFIX}`
+      );
+      if (proxyItem) {
+        proxyItem.hidden = false;
+        proxyItem.setAttribute('aria-hidden', 'false');
+      }
     });
   }
 
@@ -964,11 +1004,11 @@ export class Select
               target.tagName === 'IX-DROPDOWN-ITEM' ||
               target.tagName === 'IX-SELECT-ITEM';
 
-            const activeVisualFocusedItem = this.getActiveVisualFocusedItem();
-
             if (!isTargetElement) {
               return;
             }
+
+            const activeVisualFocusedItem = this.getActiveVisualFocusedItem();
 
             const item =
               activeVisualFocusedItem ?? (target as HTMLIxSelectItemElement);
