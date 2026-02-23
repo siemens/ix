@@ -31,7 +31,7 @@ export const updateFocusProxyList = <T extends HTMLElement>(
   items: T[],
   modifyProxyElement?: (item: T, proxyElement: HTMLLIElement) => void
 ) => {
-  if (proxyListElement) {
+  if (proxyListElement && items.length > 0) {
     const top =
       items[0].getBoundingClientRect().top -
       items[0].getBoundingClientRect().height +

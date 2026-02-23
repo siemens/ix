@@ -188,9 +188,8 @@ export class Avatar
   @Prop() ariaLabelTooltip?: string;
 
   @State() isClosestApplicationHeader = false;
-  @State() hasSlottedElements = false;
-
   @State() dropdownShow = false;
+  @State() hasSlottedElements = false;
 
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
@@ -199,6 +198,10 @@ export class Avatar
 
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
   private a11yAttributes: Partial<ReturnType<typeof a11yHostAttributes>> = {};
+
+  get items() {
+    return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
+  }
 
   override componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
@@ -264,7 +267,7 @@ export class Avatar
   }
 
   private updateProxyList() {
-    const items = this.hostElement.querySelectorAll('ix-dropdown-item');
+    const items = this.items;
     const proxyList = this.hostElement.shadowRoot!.querySelector(
       '.proxy-list'
     ) as HTMLUListElement | null;
@@ -275,7 +278,7 @@ export class Avatar
       return;
     }
 
-    updateFocusProxyList(proxyList, Array.from(items), (item, proxyElement) => {
+    updateFocusProxyList(proxyList, items, (item, proxyElement) => {
       proxyElement.role = 'menuitem';
       proxyElement.innerText = item.label ?? item.textContent ?? '';
       proxyElement.ariaLabel =
@@ -322,9 +325,10 @@ export class Avatar
             type="button"
             variant="tertiary"
             ariaAttributes={{
-              role: 'combobox',
+              role: 'menu',
               'aria-controls': `${this.getHostElementId()}-proxy-listbox`,
               'aria-expanded': a11yBoolean(this.dropdownShow),
+              'aria-haspopup': 'menu',
             }}
           >
             {Avatar}
