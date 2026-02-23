@@ -394,7 +394,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private handleInputKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowDown') {
       this.show = true;
-      requestAnimationFrameNoNgZone(() => this.datepickerRef.current?.focusFirstCalenderDay());
+      requestAnimationFrameNoNgZone(() =>
+        this.datepickerRef.current?.focusFirstCalenderDay()
+      );
     }
     handleSubmitOnEnterKeydown(
       event,
