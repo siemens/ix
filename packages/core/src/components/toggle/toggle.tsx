@@ -23,6 +23,7 @@ import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 
 /**
+ * @figma-main-component-id 43875:36542
  * @form-ready
  */
 @Component({

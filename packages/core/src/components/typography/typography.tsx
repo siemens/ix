@@ -14,6 +14,9 @@ import type {
   TypographyColors,
 } from './typography.types';
 
+/**
+ * @figma-main-component-id 40211:13267
+ */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',

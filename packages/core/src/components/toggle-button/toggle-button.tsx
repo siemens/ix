@@ -30,6 +30,9 @@ export type ToggleButtonVariant = Exclude<
   `danger-${BaseButtonVariant}`
 >;
 
+/**
+ * @figma-main-component-id 8994:173458
+ */
 @Component({
   tag: 'ix-toggle-button',
   shadow: true,

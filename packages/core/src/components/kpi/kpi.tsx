@@ -10,6 +10,9 @@
 import { iconAlarm, iconWarning } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 423:3986
+ */
 @Component({
   tag: 'ix-kpi',
   styleUrl: 'kpi.scss',

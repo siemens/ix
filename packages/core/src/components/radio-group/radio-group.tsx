@@ -28,6 +28,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * @figma-main-component-id 42365:44973
  * @form-ready
  */
 @Component({

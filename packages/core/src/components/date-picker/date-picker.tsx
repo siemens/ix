@@ -37,6 +37,9 @@ interface CalendarWeek {
   dayNumbers: (number | undefined)[];
 }
 
+/**
+ * @figma-main-component-id 561:6290
+ */
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',

@@ -16,6 +16,9 @@ import {
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
 
+/**
+ * @figma-main-component-id 270:941
+ */
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',

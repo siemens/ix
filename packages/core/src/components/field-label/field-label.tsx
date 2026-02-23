@@ -18,6 +18,9 @@ import {
 import { IxComponent } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 
+/**
+ * @figma-main-component-id 1682:60975
+ */
 @Component({
   tag: 'ix-field-label',
   styleUrl: 'field-label.scss',

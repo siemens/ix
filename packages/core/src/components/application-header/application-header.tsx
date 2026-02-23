@@ -33,6 +33,8 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
+ * @figma-main-component-id 20920:77660
+ *
  * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.

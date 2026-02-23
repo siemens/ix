@@ -32,6 +32,9 @@ import type {
   DateRangeChangeEvent,
 } from './date-dropdown.types';
 
+/**
+ * @figma-main-component-id 45886:27067
+ */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',

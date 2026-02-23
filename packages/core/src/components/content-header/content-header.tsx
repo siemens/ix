@@ -12,6 +12,8 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { ContentHeaderVariant } from './content-header.types';
 
 /**
+ * @figma-main-component-id 4727:112521
+ *
  * @slot header - Content to be placed in the header area next to the title
  * @slot - Default slot for action buttons or other content
  */

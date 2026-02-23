@@ -8,6 +8,9 @@
  */
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 1233:34168
+ */
 @Component({
   tag: 'ix-dropdown-quick-actions',
   styleUrl: 'dropdown-quick-actions.scss',

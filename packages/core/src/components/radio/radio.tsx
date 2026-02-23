@@ -27,6 +27,7 @@ import {
 } from '../utils/input';
 
 /**
+ * @figma-main-component-id 42365:44481
  * @form-ready
  */
 @Component({

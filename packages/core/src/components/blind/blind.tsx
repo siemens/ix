@@ -26,6 +26,9 @@ import Animation from '../utils/animation';
 
 let sequentialInstanceId = 0;
 
+/**
+ * @figma-main-component-id 388:3986
+ */
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',

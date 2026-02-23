@@ -25,6 +25,9 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileVariant } from './flip-tile.types';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @figma-main-component-id 407:3446
+ */
 @Component({
   tag: 'ix-flip-tile',
   styleUrl: 'flip-tile.scss',

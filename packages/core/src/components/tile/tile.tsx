@@ -9,6 +9,9 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 1431:43158
+ */
 @Component({
   tag: 'ix-tile',
   styleUrl: 'tile.scss',

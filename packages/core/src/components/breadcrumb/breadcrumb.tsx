@@ -28,6 +28,9 @@ const createId = (prefix: string = 'breadcrumb-') => {
   return `${prefix}-${sequenceId++}`;
 };
 
+/**
+ * @figma-main-component-id 1603:54616
+ */
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',

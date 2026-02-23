@@ -21,6 +21,9 @@ import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @figma-main-component-id 107597:25227
+ */
 @Component({
   tag: 'ix-icon-toggle-button',
   shadow: true,

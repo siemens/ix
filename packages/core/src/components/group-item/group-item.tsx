@@ -18,6 +18,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 1274:34186
+ */
 @Component({
   tag: 'ix-group-item',
   styleUrl: 'group-item.scss',

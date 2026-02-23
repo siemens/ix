@@ -22,6 +22,8 @@ import type {
 } from './progress-indicator.types';
 
 /**
+ * @figma-main-component-id 69677:5549
+ *
  * @since 3.2.0
  */
 @Component({

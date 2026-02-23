@@ -16,6 +16,9 @@ import {
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
 
+/**
+ * @figma-main-component-id 42365:52677
+ */
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',

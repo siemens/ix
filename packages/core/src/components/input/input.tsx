@@ -44,7 +44,7 @@ let inputIds = 0;
 
 /**
  *
- * @figma-main-component-id 42365:39459, 42365:42743
+ * @figma-main-component-id 42365:39459
  *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input

@@ -10,6 +10,9 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 import type { PushCardVariant } from './push-card.types';
 
+/**
+ * @figma-main-component-id 104612:25695
+ */
 @Component({
   tag: 'ix-push-card',
   styleUrl: 'push-card.scss',

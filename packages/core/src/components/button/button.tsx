@@ -25,6 +25,9 @@ export type ButtonVariant =
   | `${BaseButtonVariant}`
   | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
+/**
+ * @figma-main-component-id 225:5535
+ */
 @Component({
   tag: 'ix-button',
   shadow: {

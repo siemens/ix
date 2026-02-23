@@ -66,6 +66,9 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   millisecond: '',
 };
 
+/**
+ * @figma-main-component-id 68801:7500
+ */
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',

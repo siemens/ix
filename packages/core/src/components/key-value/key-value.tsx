@@ -11,6 +11,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import type { KeyValueLabelPosition } from './key-value.types';
 
 /**
+ * @figma-main-component-id 4727:112546
+ *
  * @slot custom-value - Optional custom value at key value instead of text value
  */
 @Component({

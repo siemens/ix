@@ -10,6 +10,9 @@
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 107603:15976
+ */
 @Component({
   tag: 'ix-link-button',
   styleUrl: 'link-button.scss',

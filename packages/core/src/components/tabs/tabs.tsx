@@ -44,6 +44,9 @@ const MANAGED_CLASSES_SET = new Set(
   Object.values(TAB_MANAGED_CLASSES) as ManagedClass[]
 );
 
+/**
+ * @figma-main-component-id 427:6367
+ */
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',

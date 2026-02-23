@@ -41,6 +41,9 @@ import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @figma-main-component-id 20977:55554
+ */
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',

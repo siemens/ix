@@ -42,6 +42,7 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
+ * @figma-main-component-id 50042:20986
  * @form-ready
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider

@@ -15,6 +15,9 @@ import type {
   DateTimeSelectEvent,
 } from './datetime-picker.types';
 
+/**
+ * @figma-main-component-id 70466:78415
+ */
 @Component({
   tag: 'ix-datetime-picker',
   styleUrl: 'datetime-picker.scss',

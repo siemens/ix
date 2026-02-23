@@ -17,6 +17,8 @@ import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * @figma-main-component-id 84992:87199
+ *
  * @form-ready
  */
 @Component({

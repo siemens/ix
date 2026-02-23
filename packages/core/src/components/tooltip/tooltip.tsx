@@ -47,6 +47,7 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
+ * @figma-main-component-id 1239:30786
  * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
  */

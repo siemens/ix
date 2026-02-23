@@ -23,6 +23,9 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @figma-main-component-id 2302:67995, 2554:79100
+ */
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',

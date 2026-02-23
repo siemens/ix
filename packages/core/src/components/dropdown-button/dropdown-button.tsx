@@ -17,6 +17,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 
+/**
+ * @figma-main-component-id 294:1198
+ */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',

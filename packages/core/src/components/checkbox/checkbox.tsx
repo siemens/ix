@@ -25,6 +25,8 @@ import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * @figma-main-component-id 42365:47165
+ *
  * @form-ready
  */
 @Component({

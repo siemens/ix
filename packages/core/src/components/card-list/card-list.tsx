@@ -58,6 +58,9 @@ function CardListTitle(props: {
   );
 }
 
+/**
+ * @figma-main-component-id 104638:14632
+ */
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',

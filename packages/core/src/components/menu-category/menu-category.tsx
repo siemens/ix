@@ -26,6 +26,9 @@ import { createEnterLeaveDebounce } from './enter-leave';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
+/**
+ * @figma-main-component-id 4533:132499
+ */
 @Component({
   tag: 'ix-menu-category',
   styleUrl: 'menu-category.scss',

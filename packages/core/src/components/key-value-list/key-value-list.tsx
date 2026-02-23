@@ -9,6 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 4784:118515
+ */
 @Component({
   tag: 'ix-key-value-list',
   styleUrl: 'key-value-list.scss',

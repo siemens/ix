@@ -33,6 +33,9 @@ interface MessageTypeConfig {
   color: NotificationColor;
 }
 
+/**
+ * @figma-main-component-id 103814:17693
+ */
 @Component({
   tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',

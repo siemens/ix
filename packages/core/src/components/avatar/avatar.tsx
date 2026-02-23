@@ -114,6 +114,9 @@ function UserInfo(
   );
 }
 
+/**
+ * @figma-main-component-id 308:1151
+ */
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',

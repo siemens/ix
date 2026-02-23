@@ -11,6 +11,9 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * @figma-main-component-id 312:1219
+ */
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',

@@ -25,6 +25,9 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 
+/**
+ * @figma-main-component-id 358:3004
+ */
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',

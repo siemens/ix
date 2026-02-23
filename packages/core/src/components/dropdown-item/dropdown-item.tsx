@@ -24,6 +24,9 @@ import {
 } from '@siemens/ix-icons/icons';
 import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @figma-main-component-id 1603:52792
+ */
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',

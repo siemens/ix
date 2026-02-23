@@ -26,6 +26,9 @@ import {
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @figma-main-component-id 1274:38298
+ */
 @Component({
   tag: 'ix-group',
   styleUrl: 'group.scss',

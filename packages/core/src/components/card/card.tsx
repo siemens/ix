@@ -1,6 +1,9 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import type { CardVariant } from './card.types';
 
+/**
+ * @figma-main-component-id 104612:25530
+ */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',

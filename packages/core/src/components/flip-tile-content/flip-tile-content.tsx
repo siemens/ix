@@ -8,6 +8,9 @@
  */
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 407:3446
+ */
 @Component({
   tag: 'ix-flip-tile-content',
   styleUrl: 'flip-tile-content.css',

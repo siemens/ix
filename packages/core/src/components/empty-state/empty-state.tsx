@@ -10,6 +10,9 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { EmptyStateLayout } from './empty-state.types';
 
+/**
+ * @figma-main-component-id 4727:112645
+ */
 @Component({
   tag: 'ix-empty-state',
   styleUrl: 'empty-state.scss',

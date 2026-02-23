@@ -12,6 +12,9 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import { animate } from 'animejs';
 
+/**
+ * @figma-main-component-id 1433:43161
+ */
 @Component({
   tag: 'ix-event-list',
   styleUrl: 'event-list.scss',

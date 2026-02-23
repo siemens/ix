@@ -10,6 +10,9 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { TabClickDetail } from './tab-item.types';
 
+/**
+ * @figma-main-component-id 426:4122
+ */
 @Component({
   tag: 'ix-tab-item',
   styleUrl: 'tab-item.scss',

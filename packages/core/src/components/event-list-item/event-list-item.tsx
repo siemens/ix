@@ -19,6 +19,9 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @figma-main-component-id 1433:41688
+ */
 @Component({
   tag: 'ix-event-list-item',
   styleUrl: 'event-list-item.scss',

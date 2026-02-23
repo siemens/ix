@@ -22,6 +22,9 @@ import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
+/**
+ * @figma-main-component-id 19924:12291
+ */
 @Component({
   tag: 'ix-pane-layout',
   styleUrl: 'pane-layout.scss',

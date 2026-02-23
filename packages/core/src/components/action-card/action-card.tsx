@@ -11,6 +11,9 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import type { ActionCardVariant } from './action-card.types';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
+/**
+ * @figma-main-component-id 104612:25269
+ */
 @Component({
   tag: 'ix-action-card',
   styleUrl: 'action-card.scss',

@@ -51,6 +51,7 @@ import { makeRef } from '../utils/make-ref';
 import type { TimeInputValidityState } from './time-input.types';
 
 /**
+ * @figma-main-component-id 68801:5742
  * @since 3.2.0
  * @form-ready
  * @slot start - Element will be displayed at the start of the input

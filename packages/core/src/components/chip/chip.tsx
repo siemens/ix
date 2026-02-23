@@ -19,6 +19,9 @@ import {
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * @figma-main-component-id 286:1758
+ */
 @Component({
   tag: 'ix-chip',
   styleUrl: 'chip.scss',

@@ -23,6 +23,9 @@ import { AlignedPlacement } from '../dropdown/placement';
 import { makeRef } from '../utils/make-ref';
 import type { SplitButtonVariant } from './split-button.types';
 
+/**
+ * @figma-main-component-id 237:4370
+ */
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',

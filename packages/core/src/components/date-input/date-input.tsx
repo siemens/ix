@@ -50,8 +50,9 @@ import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
 
 /**
- * @form-ready
+ * @figma-main-component-id 442365:42749
  *
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */

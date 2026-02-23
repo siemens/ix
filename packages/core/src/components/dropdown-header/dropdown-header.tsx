@@ -9,6 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @figma-main-component-id 1233:33137
+ */
 @Component({
   tag: 'ix-dropdown-header',
   styleUrl: 'dropdown-header.scss',

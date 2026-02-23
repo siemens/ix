@@ -48,6 +48,9 @@ import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
 
+/**
+ * @figma-main-component-id 1233:32649
+ */
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',

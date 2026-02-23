@@ -23,6 +23,8 @@ import { animate } from 'animejs';
 import Animation from '../utils/animation';
 
 /**
+ * @figma-main-component-id 1435:46269
+ *
  * @deprecated Will be removed with 5.0.0, use ix-pane as successor
  */
 @Component({

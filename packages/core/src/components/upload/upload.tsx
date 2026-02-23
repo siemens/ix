@@ -22,6 +22,9 @@ import { UploadFileState } from './upload-file-state';
 import { iconError, iconSuccess } from '@siemens/ix-icons/icons';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
+/**
+ * @figma-main-component-id 1028:14676
+ */
 @Component({
   tag: 'ix-upload',
   styleUrl: 'upload.scss',

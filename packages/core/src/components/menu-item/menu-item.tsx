@@ -21,6 +21,8 @@ import { IxMenuItemBase } from './menu-item.interface';
 let sequenceId = 0;
 
 /**
+ * @figma-main-component-id 308:1293
+ *
  * @slot menu-item-label Custom label
  */
 @Component({

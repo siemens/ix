@@ -30,6 +30,9 @@ import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 
+/**
+ * @figma-main-component-id 1221:30316
+ */
 @Component({
   tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
