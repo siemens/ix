@@ -55,7 +55,7 @@ regressionTest(
 );
 
 regressionTest(
-  'should disable disable both buttons when disable is set',
+  'should disable both buttons when disable is set',
   async ({ mount, page }) => {
     await mount(getSplitButtonExample({ disabled: true }));
 
@@ -68,7 +68,7 @@ regressionTest(
 );
 
 regressionTest(
-  'should disable disable both buttons when disable-dropdown-button and disable-button are set',
+  'should disable both buttons when disable-dropdown-button and disable-button are set',
   async ({ mount, page }) => {
     await mount(
       getSplitButtonExample({
