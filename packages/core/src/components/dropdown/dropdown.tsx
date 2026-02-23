@@ -339,8 +339,6 @@ export class Dropdown
 
     if ((event.key === 'Escape' || shouldCloseOnTab) && this.show) {
       dropdownController.dismiss(this);
-      event.stopPropagation();
-      event.preventDefault();
       return;
     }
 
