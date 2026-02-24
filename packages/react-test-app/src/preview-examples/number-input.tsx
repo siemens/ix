@@ -7,16 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxNumberInput, IxButton } from '@siemens/ix-react';
-import { useRef } from 'react';
+import { IxNumberInput } from '@siemens/ix-react';
 
 export default () => {
-  const numberInputRef = useRef<HTMLIxNumberInputElement>(null);
-
-  return (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
-      <IxNumberInput required ref={numberInputRef} value={42}></IxNumberInput>
-      <IxButton onClick={() => numberInputRef.current?.clear()}>Clear</IxButton>
-    </div>
-  );
+  return <IxNumberInput></IxNumberInput>;
 };
