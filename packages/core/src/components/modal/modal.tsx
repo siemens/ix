@@ -127,17 +127,15 @@ export class Modal {
   }
 
   private onMouseDown(event: MouseEvent) {
-    this.isMouseDownInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
-    );
+    this.isMouseDownInsideDialog =
+      this.isPointInsideDialog(event.clientX, event.clientY) ||
+      this.isTargetInsideModalContent(event);
   }
 
   private onMouseUp(event: MouseEvent) {
-    const isMouseUpInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
-    );
+    const isMouseUpInsideDialog =
+      this.isPointInsideDialog(event.clientX, event.clientY) ||
+      this.isTargetInsideModalContent(event);
 
     if (
       this.closeOnBackdropClick &&
@@ -153,6 +151,41 @@ export class Modal {
     return (
       x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
     );
+  }
+
+  private isTargetInsideModalContent(event: MouseEvent): boolean {
+    const path = event.composedPath();
+
+    const modalContentTags = new Set<string>(['IX-DROPDOWN', 'IX-SELECT']);
+
+    for (const el of path) {
+      if (el instanceof HTMLElement && modalContentTags.has(el.tagName)) {
+        if (this.isElementInsideModal(el)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  private isElementInsideModal(element: HTMLElement): boolean {
+    let current: Node | null = element;
+
+    while (current) {
+      if (current === this.hostElement) {
+        return true;
+      }
+
+      const rootNode = current.getRootNode();
+      if (rootNode instanceof ShadowRoot) {
+        current = rootNode.host;
+      } else {
+        current = current.parentNode;
+      }
+    }
+
+    return false;
   }
   /**
    * Show the dialog
