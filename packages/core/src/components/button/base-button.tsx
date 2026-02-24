@@ -99,7 +99,6 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     ariaAttributes['aria-disabled'] = 'true';
   }
 
-  console.log('checking icon');
   const iconIsDecorative = isIconDecorative(ariaAttributes, children);
 
   const commonAttributes = {
