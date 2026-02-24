@@ -57,7 +57,7 @@ export class Radio implements IxFormComponent<string> {
   /**
    * Disabled state of the radio component
    */
-  @Prop() disabled: boolean = false;
+  @Prop({ reflect: true }) disabled: boolean = false;
 
   /**
    * Checked state of the radio component
