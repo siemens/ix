@@ -608,12 +608,17 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       targetElement = dialog;
     }
 
+    let positionStrategy: 'absolute' | 'fixed';
+    if (useAbsolute) {
+      positionStrategy = 'absolute';
+    } else if (this.enableTopLayer) {
+      positionStrategy = 'fixed';
+    } else {
+      positionStrategy = this.positioningStrategy;
+    }
+
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy: useAbsolute
-        ? 'absolute'
-        : this.enableTopLayer
-          ? 'fixed'
-          : this.positioningStrategy,
+      strategy: positionStrategy,
       middleware: [],
     };
 
