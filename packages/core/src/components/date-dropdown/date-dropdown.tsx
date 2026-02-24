@@ -36,6 +36,7 @@ import type {
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { BaseButton } from '../button/base-button';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -338,10 +339,16 @@ export class DateDropdown
           aria-haspopup="true"
           aria-expanded={a11yBoolean(this.show)}
           aria-controls="date-dropdown"
+          {...{ [TRAP_FOCUS_EXCLUDE_ATTRIBUTE]: true }}
         >
           {this.getButtonLabel()}
         </ix-button>
         <ix-dropdown
+          focusTrapOptions={{
+            excludeElements: true,
+            trapFocusInShadowDom: true,
+          }}
+          focusHost={this.hostElement}
           id="date-dropdown"
           data-testid="date-dropdown"
           data-date-dropdown
@@ -381,7 +388,7 @@ export class DateDropdown
                     selected={false}
                     loading={false}
                     type="button"
-                    variant="tertiary"
+                    variant="subtle-tertiary"
                     onClick={() => this.onRangeListSelect(dateRangeOption.id)}
                     ariaAttributes={{
                       'aria-label': `${dateRangeOption.label}: ${dateRangeOption.from} to ${dateRangeOption.to}`,

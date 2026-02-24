@@ -776,7 +776,7 @@ export class DatePicker
             this.selectMonth(index);
           }}
         >
-          <span class="capitalize monthMargin">{`${month} ${this.tempYear}`}</span>
+          <span class="capitalize monthMargin">{`${month}`}</span>
         </ix-dropdown-item>
       );
     });
@@ -1036,7 +1036,12 @@ export class DatePicker
               hidden: this.singleSelection || this.embedded,
             }}
           >
-            <ix-button onClick={() => this.onDone()}>{this.i18nDone}</ix-button>
+            <ix-button
+              hidden={this.singleSelection || this.embedded}
+              onClick={() => this.onDone()}
+            >
+              {this.i18nDone}
+            </ix-button>
           </div>
         </ix-date-time-card>
       </Host>

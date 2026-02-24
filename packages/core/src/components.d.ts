@@ -29,6 +29,7 @@ import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
+import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
@@ -79,6 +80,7 @@ export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
+export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
@@ -1372,6 +1374,7 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         "focusHost"?: HTMLElement;
+        "focusTrapOptions"?: FocusTrapOptions;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -7483,6 +7486,7 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         "focusHost"?: HTMLElement;
+        "focusTrapOptions"?: FocusTrapOptions;
         /**
           * An optional header shown at the top of the dropdown
          */

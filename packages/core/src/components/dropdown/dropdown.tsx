@@ -36,7 +36,11 @@ import {
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
-import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
+import {
+  addFocusTrap,
+  FocusTrapOptions,
+  FocusTrapResult,
+} from '../utils/focus/focus-trap';
 import {
   focusElementInContext,
   focusFirstDescendant,
@@ -189,6 +193,9 @@ export class Dropdown
 
   /** @internal */
   @Prop() focusHost?: HTMLElement;
+
+  /** @internal */
+  @Prop() focusTrapOptions?: FocusTrapOptions;
 
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
@@ -520,7 +527,12 @@ export class Dropdown
     }
 
     if (!this.disableFocusTrap) {
-      this.focusUtilities = addFocusTrap(this.focusHost ?? this.hostElement);
+      addFocusTrap(
+        this.focusHost ?? this.hostElement,
+        this.focusTrapOptions
+      ).then((focusTrap) => {
+        this.focusUtilities = focusTrap;
+      });
     }
 
     if (

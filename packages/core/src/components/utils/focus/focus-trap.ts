@@ -7,29 +7,41 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { isMakeRef, MakeRef } from '../make-ref';
 import { focusableQueryString, queryElements } from './focus-utilities';
 
 export interface FocusTrapResult {
   destroy: () => void;
 }
 
+export const TRAP_FOCUS_EXCLUDE_ATTRIBUTE = 'data-ix-focus-trap-exclude';
+
 export type FocusTrapOptions = {
+  targetElement?: HTMLElement | MakeRef<any>;
   trapFocusInShadowDom?: boolean;
+  excludeElements?: boolean;
 };
 
-export const addFocusTrap = (
-  element?: HTMLElement,
-  config?: FocusTrapOptions
-): FocusTrapResult => {
-  const ref = element ? element.shadowRoot! : document;
-  const root = element ?? document.body;
+export const addFocusTrap = async (
+  element: HTMLElement,
+  options?: FocusTrapOptions
+): Promise<FocusTrapResult> => {
+  let ref = element;
+
+  if (options?.targetElement) {
+    if (options.targetElement instanceof HTMLElement) {
+      ref = options.targetElement;
+    } else if (isMakeRef(options.targetElement)) {
+      ref = await options.targetElement.waitForCurrent();
+    }
+  }
 
   const onKeydown = (event: Event) => {
     const keyboardEvent = event as KeyboardEvent;
 
     if (keyboardEvent.key === 'Tab') {
       const focusableElements = queryElements(
-        config?.trapFocusInShadowDom ? root.shadowRoot! : root,
+        options?.trapFocusInShadowDom ? ref.shadowRoot! : ref,
         focusableQueryString
       );
 
@@ -37,9 +49,28 @@ export const addFocusTrap = (
         return;
       }
 
+      if (options?.excludeElements) {
+        focusableElements.forEach((element) => {
+          if (element.hasAttribute(TRAP_FOCUS_EXCLUDE_ATTRIBUTE)) {
+            const index = focusableElements.indexOf(element);
+            if (index !== -1) {
+              focusableElements.splice(index, 1);
+            }
+          }
+        });
+      }
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
-      const activeElement = ref.activeElement || document.activeElement;
+      let activeElement = document.activeElement;
+
+      if (ref instanceof HTMLElement && ref.shadowRoot) {
+        activeElement = ref.shadowRoot.activeElement || activeElement;
+      }
 
       if (keyboardEvent.shiftKey) {
         if (activeElement === firstElement) {

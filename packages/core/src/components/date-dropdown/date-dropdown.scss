@@ -20,7 +20,7 @@
 
   .pull-right {
     float: right;
-    padding: 0.25rem vars.$default-space vars.$medium-space vars.$default-space;
+    padding: 0rem 1rem;
   }
 
   .quick-selection {
@@ -46,14 +46,17 @@
       outline-offset: var(--theme-btn--focus--outline-offset);
     }
 
-    @include button-mixin.btn-base-variant('tertiary');
+    @include button-mixin.btn-base-variant('subtle-tertiary');
   }
 
   .container {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     height: 25rem;
     max-height: 25rem;
+  }
+
+  ix-dropdown {
+    padding: 0px;
   }
 }

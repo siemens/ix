@@ -574,6 +574,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
+          focusTrapOptions={{
+            targetElement: this.datepickerRef,
+            excludeElements: false,
+            trapFocusInShadowDom: true,
+          }}
         >
           <ix-date-picker
             ref={this.datepickerRef}
