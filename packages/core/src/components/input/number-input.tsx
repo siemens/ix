@@ -186,15 +186,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
-   * Native change event.
-   * @since 4.4.0
-   */
-  @Event() ixChange!: EventEmitter<number>;
-
-  /**
    * Event emitted when the input field loses focus
    */
   @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the input field loses focus and the value has changed
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<number>;
 
   @State() isInvalid = false;
   @State() isValid = false;

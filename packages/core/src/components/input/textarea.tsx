@@ -29,10 +29,10 @@ import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   mapValidationResult,
-  clearInputValue,
-  checkInternalValidity,
   onInputFocus,
   onInputBlurWithChange,
+  clearInputValue,
+  checkInternalValidity,
 } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
@@ -161,15 +161,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
-   * Native change event.
-   * @since 4.4.0
-   */
-  @Event() ixChange!: EventEmitter<string>;
-
-  /**
    * Event emitted when the textarea field loses focus.
    */
   @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the textarea field loses focus and the value has changed.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -181,7 +181,6 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.initResizeObserver();
   });
   private touched = false;
-
   /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;

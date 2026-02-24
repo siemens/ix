@@ -2547,7 +2547,7 @@ export declare interface IxTabs extends Components.IxTabs {
 
 @ProxyCmp({
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
+  methods: ['getNativeInputElement', 'focusInput', 'getValidityState', 'clear']
 })
 @Component({
   selector: 'ix-textarea',
@@ -2651,7 +2651,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the time input loses focus and the value has changed. @since 4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }

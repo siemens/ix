@@ -2662,8 +2662,8 @@ export class IxTextarea {
   protected el: HTMLIxTextareaElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;

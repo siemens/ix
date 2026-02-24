@@ -268,12 +268,6 @@ export class TimeInput
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
 
   /**
-   * Native change event.
-   * @since 4.4.0
-   */
-  @Event() ixChange!: EventEmitter<string>;
-
-  /**
    * Validation state change event.
    */
   @Event() validityStateChange!: EventEmitter<TimeInputValidityState>;
@@ -283,6 +277,12 @@ export class TimeInput
 
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the time input loses focus and the value has changed.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
 
   @State() time: string | null = null;
 
