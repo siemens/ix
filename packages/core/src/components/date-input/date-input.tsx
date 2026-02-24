@@ -431,7 +431,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            this.openDropdown();
+            if (!this.readonly && !this.disabled) {
+              this.openDropdown();
+            }
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -549,7 +551,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         </ix-field-wrapper>
         <ix-dropdown
           data-testid="date-dropdown"
-          trigger={this.inputElementRef.waitForCurrent()}
+          trigger={
+            !this.readonly && !this.disabled
+              ? this.inputElementRef.waitForCurrent()
+              : undefined
+          }
           ref={this.dropdownElementRef}
           closeBehavior="outside"
           enableTopLayer={this.enableTopLayer}
