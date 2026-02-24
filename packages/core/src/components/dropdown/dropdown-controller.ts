@@ -95,10 +95,7 @@ class DropdownController {
   }
 
   present(dropdown: DropdownInterface) {
-    if (
-      !dropdown.isPresent() &&
-      (!dropdown.willPresent || dropdown.willPresent())
-    ) {
+    if (!dropdown.isPresent() && dropdown.willPresent?.()) {
       this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
     }
@@ -115,10 +112,7 @@ class DropdownController {
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (
-      dropdown.isPresent() &&
-      (!dropdown.willDismiss || dropdown.willDismiss())
-    ) {
+    if (dropdown.isPresent() && dropdown.willDismiss?.()) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.submenuIds[dropdown.getId()];

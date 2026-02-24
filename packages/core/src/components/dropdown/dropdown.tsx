@@ -603,7 +603,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy: useAbsolute ? 'absolute' : this.positioningStrategy,
+      strategy: useAbsolute
+        ? 'absolute'
+        : this.enableTopLayer
+          ? 'fixed'
+          : this.positioningStrategy,
       middleware: [],
     };
 
