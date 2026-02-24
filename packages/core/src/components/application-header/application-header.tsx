@@ -433,26 +433,21 @@ export class ApplicationHeader {
             <ix-icon-button
               class={{
                 'context-menu': true,
-                'context-menu-visible':
-                  this.hasOverflowContextMenu || this.hasOverflowSlotElements,
+                'context-menu-visible': this.hasOverflowContextMenu,
               }}
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
-              aria-hidden={a11yBoolean(
-                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
-              )}
+              aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}
             ></ix-icon-button>
             <ix-dropdown
               data-overflow-dropdown
               class="dropdown"
               discoverAllSubmenus
               trigger={this.resolveContextMenuButton()}
-              aria-hidden={a11yBoolean(
-                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
-              )}
+              aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}
               enableTopLayer={this.enableTopLayer}
             >
               <div
