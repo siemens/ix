@@ -646,7 +646,7 @@ export class IxDateInput {
   protected el: HTMLIxDateInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string | undefined>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -666,9 +666,9 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Native change event. @since 4.4.0
+   * Event emitted when the date input loses focus and the value has changed. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string>>;
+  ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
 
 
@@ -1341,15 +1341,15 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange'],
   standalone: false
 })
 export class IxInput {
   protected el: HTMLIxInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1367,13 +1367,13 @@ export declare interface IxInput extends Components.IxInput {
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * Native change event. @since 4.4.0
-   */
-  ixChange: EventEmitter<CustomEvent<string>>;
-  /**
    * Event emitted when the text field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the text field loses focus and the value has changed. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2023,15 +2023,15 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange'],
   standalone: false
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<number>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<number>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2049,13 +2049,13 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * Native change event. @since 4.4.0
-   */
-  ixChange: EventEmitter<CustomEvent<number>>;
-  /**
    * Event emitted when the input field loses focus
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the input field loses focus and the value has changed @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<number>>;
 }
 
 
@@ -2555,15 +2555,15 @@ export declare interface IxTabs extends Components.IxTabs {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixChange', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange'],
   standalone: false
 })
 export class IxTextarea {
   protected el: HTMLIxTextareaElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2581,13 +2581,13 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * Native change event. @since 4.4.0
-   */
-  ixChange: EventEmitter<CustomEvent<string>>;
-  /**
    * Event emitted when the textarea field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2624,14 +2624,14 @@ export declare interface IxTile extends Components.IxTile {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'ixChange', 'validityStateChange'],
+  outputs: ['valueChange', 'validityStateChange', 'ixChange'],
   standalone: false
 })
 export class IxTimeInput {
   protected el: HTMLIxTimeInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2647,13 +2647,13 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Native change event. @since 4.4.0
-   */
-  ixChange: EventEmitter<CustomEvent<string>>;
-  /**
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+  /**
+   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
