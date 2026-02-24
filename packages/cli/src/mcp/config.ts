@@ -11,6 +11,7 @@ import path from 'node:path';
 import deepmerge from 'deepmerge';
 import dedent from 'dedent';
 import { Framework } from '../detect';
+import { usageAngular, usageReact } from './prompts/icons';
 
 const CLI = './../../ix/packages/cli'; // @siemens/ix-cli@latest
 
@@ -30,14 +31,20 @@ type MCPConfig = {
 const INSTRUCTION_START_MARKER = '<!-- ix-mcp-instructions:start -->';
 const INSTRUCTION_END_MARKER = '<!-- ix-mcp-instructions:end -->';
 
-const instructionContent = (withFrontmatter = false) => {
+const instructionContent = (withFrontmatter = false, framework?: Framework) => {
+  const iconUsage = framework === 'angular' ? usageAngular : usageReact;
   const content = dedent`
     ${INSTRUCTION_START_MARKER}
     ## Siemens iX code generation
 
-    When generating ix code
+    When generating ix code keep in mind:
+    - For each ix component exists a example which can be found with the tool "search_examples". You should use that tool to verify that the code you generated is correct.
 
-    If you generate code, also take care that for each ix component is a example existing which can be found with the tool "search_examples". You should use that tool to verify that the code you generated is correct
+    When you generate code and a figma resource is included::
+    - Most IX components have mapped Figma components. Use "get_figma_component_mapping" for a specific component or Figma ID, and "list_components_with_figma_ids" to list all available mappings.
+
+    Regarding icon usage, take the following usage into account:
+    ${iconUsage}
 
     After codegeneration:
 
@@ -65,7 +72,7 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     label: 'VS Code',
     configPath: '.vscode/mcp.json',
     instructionPath: '.github/copilot-instructions.md',
-    instructionContent: instructionContent(),
+    instructionContent: instructionContent(false, framework),
     config: {
       servers: {
         siemensix: {
@@ -80,7 +87,7 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     label: 'Claude Code',
     configPath: '.mcp.json',
     instructionPath: 'CLAUDE.md',
-    instructionContent: instructionContent(),
+    instructionContent: instructionContent(false, framework),
     config: {
       mcpServers: {
         shadcn: {
@@ -95,7 +102,7 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     label: 'Cursor',
     configPath: '.cursor/mcp.json',
     instructionPath: '.cursor/rules/siemens-ix.mdc',
-    instructionContent: instructionContent(true),
+    instructionContent: instructionContent(true, framework),
     config: {
       mcpServers: {
         shadcn: {
