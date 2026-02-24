@@ -68,7 +68,7 @@ export class GroupItem {
    *
    * If false tabindex will be 0, -1 otherwise.
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Selection changed
