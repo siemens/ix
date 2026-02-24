@@ -437,15 +437,15 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'enableTopLayer',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
-  'ixBlur',
-  'ixChange'
+  'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
-  'ixBlur',
-  'ixChange'
+  'ixBlur'
 ],
 'value', 'valueChange', undefined);
 

@@ -5130,8 +5130,8 @@ declare global {
     interface HTMLIxInputElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
-        "ixChange": string;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5443,8 +5443,8 @@ declare global {
     interface HTMLIxNumberInputElementEventMap {
         "valueChange": number;
         "validityStateChange": ValidityState;
-        "ixChange": number;
         "ixBlur": void;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -5697,8 +5697,8 @@ declare global {
     interface HTMLIxTextareaElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
-        "ixChange": string;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5725,10 +5725,10 @@ declare global {
     };
     interface HTMLIxTimeInputElementEventMap {
         "valueChange": string;
-        "ixChange": string;
         "validityStateChange": TimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @since 3.2.0
@@ -8075,7 +8075,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
-          * Native change event.
+          * Event emitted when the text field loses focus and the value has changed.
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
@@ -8770,7 +8770,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
-          * Native change event.
+          * Event emitted when the input field loses focus and the value has changed
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
@@ -9707,7 +9707,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
-          * Native change event.
+          * Event emitted when the textarea field loses focus and the value has changed.
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
@@ -9878,7 +9878,7 @@ declare namespace LocalJSX {
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
-          * Native change event.
+          * Event emitted when the time input loses focus and the value has changed.
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;

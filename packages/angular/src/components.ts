@@ -646,7 +646,7 @@ export class IxDateInput {
   protected el: HTMLIxDateInputElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string | undefined>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -666,9 +666,9 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Event emitted when the date input loses focus and the value has changed. @since 4.4.0
+   * Native change event. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string | undefined>>;
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2547,7 +2547,7 @@ export declare interface IxTabs extends Components.IxTabs {
 
 @ProxyCmp({
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput', 'getValidityState', 'clear']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-textarea',
