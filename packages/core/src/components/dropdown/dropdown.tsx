@@ -158,6 +158,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
+  private isRelocating = false;
 
   private itemObserver? = new MutationObserver(() => {
     if (this.arrowFocusController) {
@@ -186,6 +187,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   disconnectedCallback() {
+    if (this.isRelocating) {
+      return;
+    }
+
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
@@ -280,6 +285,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       'click',
       (event: Event) => {
         if (!event.defaultPrevented) {
+          event.stopPropagation();
           toggleController();
         }
       }
@@ -651,7 +657,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
             this.hostElement.isConnected &&
             this.containerElement.isConnected
           ) {
+            this.isRelocating = true;
             this.containerElement.appendChild(this.hostElement);
+            this.isRelocating = false;
           }
           Object.assign(this.hostElement.style, {
             position: 'absolute',
