@@ -14,6 +14,8 @@
 
 @mixin btn-base-variant($name) {
   .btn-#{$name} {
+    text-align: start;
+
     border-top-left-radius: var(--ix-button-border-radius-left);
     border-bottom-left-radius: var(--ix-button-border-radius-left);
     border-top-right-radius: var(--ix-button-border-radius-right);

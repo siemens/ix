@@ -8,7 +8,9 @@
  */
 
 @use './common-variables' as vars;
+@use './../button/button-mixin' as button-mixin;
 @use 'mixins/shadow-dom/component';
+@use 'mixins/scrollbar' as scrollbar;
 
 :host {
   display: inline-block;
@@ -16,33 +18,42 @@
 
   @include component.ix-component;
 
-  @media (max-width: 48em) {
-    .min-width {
-      width: min-content;
-    }
-  }
-
-  @media (min-width: 48em) {
-    .border-right {
-      border-right: var(--theme-x-weak-bdr-2);
-    }
-  }
-
-  ix-button {
-    width: 100%;
-  }
-
-  .max-height {
-    max-height: max-content;
-  }
-
-  .no-margin {
-    margin: 0;
-    padding: 0;
-  }
-
   .pull-right {
     float: right;
     padding: 0.25rem vars.$default-space vars.$medium-space vars.$default-space;
+  }
+
+  .quick-selection {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-right: var(--theme-x-weak-bdr-1);
+    overflow: auto;
+    padding: 0.5rem;
+
+    @include scrollbar.scrollbar;
+
+    .btn {
+      @include button-mixin.btn-base;
+      min-width: 8rem;
+      min-height: 2rem;
+      max-height: 2rem;
+      justify-content: flex-start;
+    }
+
+    .btn:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+
+    @include button-mixin.btn-base-variant('tertiary');
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    height: 25rem;
+    max-height: 25rem;
   }
 }

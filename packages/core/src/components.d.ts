@@ -858,15 +858,6 @@ export namespace Components {
     }
     interface IxDateDropdown {
         /**
-          * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
-         */
-        "ariaLabelDropdownButton"?: string;
-        /**
-          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
-          * @default false
-         */
-        "customRangeDisabled": boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
          */
@@ -901,11 +892,6 @@ export namespace Components {
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
-         */
-        "i18nCustomItem": string;
         /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
@@ -6958,15 +6944,6 @@ declare namespace LocalJSX {
     }
     interface IxDateDropdown {
         /**
-          * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
-         */
-        "ariaLabelDropdownButton"?: string;
-        /**
-          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
-          * @default false
-         */
-        "customRangeDisabled"?: boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
          */
@@ -6997,11 +6974,6 @@ declare namespace LocalJSX {
           * @default ''
          */
         "from"?: string;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
-         */
-        "i18nCustomItem"?: string;
         /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
@@ -10858,11 +10830,8 @@ declare namespace LocalJSX {
         "variant": ButtonVariant;
         "loading": boolean;
         "showWeekNumbers": boolean;
-        "ariaLabelDropdownButton": string;
-        "customRangeDisabled": boolean;
         "locale": string;
         "weekStartIndex": number;
-        "i18nCustomItem": string;
         "i18nDone": string;
         "i18nNoRange": string;
         "today": string;

@@ -13,7 +13,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Method,
@@ -35,6 +34,8 @@ import type {
   DateRangeChangeEvent,
 } from './date-dropdown.types';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { BaseButton } from '../button/base-button';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -116,12 +117,6 @@ export class DateDropdown
    */
   @Prop() showWeekNumbers = false;
 
-  /**
-   * ARIA label for the dropdown
-   * Will be set as aria-label on the nested HTML button element that will trigger the dropdown
-   */
-  @Prop() ariaLabelDropdownButton?: string;
-
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -140,13 +135,6 @@ export class DateDropdown
       id: this.currentRangeValue.id,
     });
   }
-
-  /**
-   * Controls whether custom date range selection is disabled in the component.
-   * When set to 'false', the user can select a custom date range using the date picker.
-   * When set to 'true', only predefined time date ranges are available for selection.
-   */
-  @Prop() customRangeDisabled = false;
 
   /**
    * An array of predefined date range options for the date picker.
@@ -179,11 +167,6 @@ export class DateDropdown
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    */
   @Prop() weekStartIndex = 0;
-
-  /**
-   * Text for custom dropdown item. Will be used for translation.
-   */
-  @Prop({ attribute: 'i18n-custom-item' }) i18nCustomItem = 'Custom...';
 
   /**
    * Text for the done button. Will be used for translation.
@@ -221,6 +204,8 @@ export class DateDropdown
     to?: string;
     id: string;
   };
+  @State() private show = false;
+
   private readonly triggerRef = makeRef<HTMLElement>();
 
   @Watch('disabled')
@@ -230,16 +215,14 @@ export class DateDropdown
     }
   }
 
-  private datePickerTouched = false;
   private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
 
-  override connectedCallback() {}
-
-  override disconnectedCallback() {}
+  private inheritAriaAttributes: A11yAttributes = {};
 
   override componentWillLoad() {
     this.initialize();
     this.setDateRangeSelection(this.dateRangeId);
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
   }
 
   /**
@@ -256,7 +239,7 @@ export class DateDropdown
       this.dateRangeId === 'custom' ||
       (!this.dateRangeId && !!this.from && !!this.to);
 
-    if (isCustomRange && !this.customRangeDisabled) {
+    if (isCustomRange) {
       this.selectedDateRangeId = 'custom';
       this.updateCurrentDate();
 
@@ -283,17 +266,8 @@ export class DateDropdown
     };
   }
 
-  private onDateSelect(
-    rangeValue: { from?: string; to?: string; id: string },
-    preserveDropdown = true
-  ) {
+  private onDateSelect(rangeValue: { from?: string; to?: string; id: string }) {
     this.dateRangeChange.emit(rangeValue);
-
-    if (preserveDropdown) {
-      this.closeDropdown();
-    }
-
-    this.datePickerTouched = false;
   }
 
   private onRangeListSelect(id: string) {
@@ -322,8 +296,12 @@ export class DateDropdown
   }
 
   private getButtonLabel() {
-    if (this.selectedDateRangeId === 'custom' && this.currentRangeValue?.from) {
+    if (this.currentRangeValue?.from) {
       let range = this.currentRangeValue.from;
+
+      if (this.currentRangeValue.to === this.currentRangeValue.from) {
+        return range;
+      }
 
       if (this.currentRangeValue.to) {
         range += ` - ${this.currentRangeValue.to}`;
@@ -332,26 +310,7 @@ export class DateDropdown
       return range;
     }
 
-    if (!this.selectedDateRangeId) {
-      return this.i18nNoRange;
-    }
-
-    if (!this.dateRangeOptions || this.dateRangeOptions?.length === 0) {
-      return this.i18nNoRange;
-    }
-
-    const option = this.dateRangeOptions.find(
-      (option) => option.id === this.selectedDateRangeId
-    );
-
-    if (!option) {
-      console.error(
-        `Cannot find range option with id ${this.selectedDateRangeId}`
-      );
-      return this.i18nNoRange;
-    }
-
-    return option.label;
+    return this.i18nNoRange;
   }
 
   override render() {
@@ -375,11 +334,15 @@ export class DateDropdown
           icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
-          ariaLabel={this.ariaLabelDropdownButton}
+          {...this.inheritAriaAttributes}
+          aria-haspopup="true"
+          aria-expanded={a11yBoolean(this.show)}
+          aria-controls="date-dropdown"
         >
           {this.getButtonLabel()}
         </ix-button>
         <ix-dropdown
+          id="date-dropdown"
           data-testid="date-dropdown"
           data-date-dropdown
           class="min-width max-height"
@@ -389,12 +352,8 @@ export class DateDropdown
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {
-            if (
-              !show &&
-              this.selectedDateRangeId === 'custom' &&
-              this.datePickerTouched &&
-              this.currentRangeValue
-            ) {
+            this.show = show;
+            if (!show && this.currentRangeValue) {
               this.onDateSelect(this.currentRangeValue);
             }
 
@@ -406,73 +365,70 @@ export class DateDropdown
             }
           }}
         >
-          <ix-layout-grid noMargin>
-            <ix-row>
-              {this.dateRangeOptions?.length > 1 && (
-                <ix-col
-                  class={{
-                    'no-margin': true,
-                    'border-right': this.selectedDateRangeId === 'custom',
+          <div class="container">
+            {this.dateRangeOptions?.length > 1 && (
+              <div
+                class={{
+                  'quick-selection': true,
+                  'border-right': this.selectedDateRangeId === 'custom',
+                }}
+              >
+                {this.dateRangeOptions.map((dateRangeOption) => (
+                  <BaseButton
+                    disabled={false}
+                    iconOnly={false}
+                    iconOval={false}
+                    selected={false}
+                    loading={false}
+                    type="button"
+                    variant="tertiary"
+                    onClick={() => this.onRangeListSelect(dateRangeOption.id)}
+                    ariaAttributes={{
+                      'aria-label': `${dateRangeOption.label}: ${dateRangeOption.from} to ${dateRangeOption.to}`,
+                    }}
+                  >
+                    {dateRangeOption.label}
+                  </BaseButton>
+                ))}
+              </div>
+            )}
+            <div class="picker-wrapper">
+              <ix-date-picker
+                ref={this.datePickerRef}
+                embedded
+                locale={this.locale}
+                onDateChange={(e) => {
+                  e.stopPropagation();
+                  this.currentRangeValue = {
+                    ...e.detail,
+                    id: 'custom',
+                  };
+                }}
+                onDateRangeChange={(e) => e.stopPropagation()}
+                format={this.format}
+                singleSelection={this.singleSelection}
+                from={this.from || this.currentRangeValue?.from}
+                to={this.to || this.currentRangeValue?.to}
+                minDate={this.minDate}
+                maxDate={this.maxDate}
+                today={this.today}
+                weekStartIndex={this.weekStartIndex}
+                showWeekNumbers={this.showWeekNumbers}
+              ></ix-date-picker>
+              <div class="pull-right">
+                <ix-button
+                  onClick={() => {
+                    if (this.currentRangeValue) {
+                      this.onDateSelect(this.currentRangeValue);
+                      this.closeDropdown();
+                    }
                   }}
                 >
-                  {this.dateRangeOptions.map((dateRangeOption) => (
-                    <ix-dropdown-item
-                      label={dateRangeOption.label}
-                      onClick={() => this.onRangeListSelect(dateRangeOption.id)}
-                      checked={this.selectedDateRangeId === dateRangeOption.id}
-                    ></ix-dropdown-item>
-                  ))}
-                  <div hidden={this.customRangeDisabled}>
-                    <ix-dropdown-item
-                      label={this.i18nCustomItem}
-                      checked={this.selectedDateRangeId === 'custom'}
-                      onClick={() => this.onRangeListSelect('custom')}
-                    ></ix-dropdown-item>
-                  </div>
-                </ix-col>
-              )}
-              <ix-col class="no-margin">
-                {this.selectedDateRangeId === 'custom' && (
-                  <Fragment>
-                    <ix-date-picker
-                      ref={this.datePickerRef}
-                      embedded
-                      locale={this.locale}
-                      onDateChange={(e) => {
-                        e.stopPropagation();
-                        this.currentRangeValue = {
-                          ...e.detail,
-                          id: 'custom',
-                        };
-                        this.datePickerTouched = true;
-                      }}
-                      onDateRangeChange={(e) => e.stopPropagation()}
-                      format={this.format}
-                      singleSelection={this.singleSelection}
-                      from={this.from || this.currentRangeValue?.from}
-                      to={this.to || this.currentRangeValue?.to}
-                      minDate={this.minDate}
-                      maxDate={this.maxDate}
-                      today={this.today}
-                      weekStartIndex={this.weekStartIndex}
-                      showWeekNumbers={this.showWeekNumbers}
-                    ></ix-date-picker>
-                    <div class="pull-right">
-                      <ix-button
-                        onClick={() => {
-                          if (this.currentRangeValue) {
-                            this.onDateSelect(this.currentRangeValue);
-                          }
-                        }}
-                      >
-                        {this.i18nDone}
-                      </ix-button>
-                    </div>
-                  </Fragment>
-                )}
-              </ix-col>
-            </ix-row>
-          </ix-layout-grid>
+                  {this.i18nDone}
+                </ix-button>
+              </div>
+            </div>
+          </div>
         </ix-dropdown>
       </Host>
     );

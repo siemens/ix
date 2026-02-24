@@ -74,7 +74,6 @@ regressionTest.describe('date dropdown tests', () => {
         const elementToTest = el as HTMLIxDateDropdownElement;
 
         elementToTest.dateRangeId = 'today';
-        elementToTest.customRangeDisabled = false;
         elementToTest.dateRangeOptions = dateRangeOptions;
       },
       [rangeOptions]
@@ -87,13 +86,19 @@ regressionTest.describe('date dropdown tests', () => {
       const dateDropdown = page.locator('ix-date-dropdown');
       await dateDropdown.click();
 
-      const intervalOptionsButton = dateDropdown.getByRole('menuitem', {
-        name: 'Last 7 days',
+      const dropdown = dateDropdown.locator('#date-dropdown');
+      await expect(dropdown).toHaveClass(/show/);
+
+      const intervalOptionsButton = dateDropdown.getByRole('button', {
+        name: /Last 7 days/,
       });
       await intervalOptionsButton.click();
 
-      const button = dateDropdown.locator('ix-button');
-      await expect(button).toContainText(/Last 7 days/);
+      await page.keyboard.press('Escape');
+      await expect(dateDropdown.locator('#date-dropdown')).not.toHaveClass(
+        /show/
+      );
+      await expect(dateDropdown).toContainText('2026/02/17 - 2026/02/24');
 
       const selectedDateRange = await dateDropdown.evaluate(
         (el: HTMLIxDateDropdownElement) => el.getDateRange()
@@ -109,43 +114,6 @@ regressionTest.describe('date dropdown tests', () => {
         id: 'last-7-days',
         label: 'Last 7 days',
       });
-    }
-  );
-
-  regressionTest(
-    'select custom date interval and get time',
-    async ({ page }) => {
-      const dateDropDownButton = page.locator('ix-date-dropdown');
-      await dateDropDownButton.click();
-
-      const dropdown = dateDropDownButton.locator('ix-dropdown');
-      await expect(dropdown).toHaveClass(/show/);
-
-      const customItem = dateDropDownButton.getByText('Custom...');
-      await customItem.click();
-
-      const datepicker = dateDropDownButton.locator('ix-date-picker');
-      await expect(datepicker).toBeVisible();
-
-      const startDay = datepicker
-        .locator('[data-calendar-day]')
-        .getByText('3', { exact: true });
-      const endDay = datepicker
-        .locator('[data-calendar-day]')
-        .getByText('11', { exact: true });
-
-      await startDay.click();
-      await endDay.click();
-
-      const dateDoneButton = dateDropDownButton.getByRole('button', {
-        name: 'Done',
-      });
-
-      await dateDoneButton.click();
-      await expect(datepicker).not.toBeVisible();
-
-      const button = dateDropDownButton.locator('[data-date-dropdown-trigger]');
-      await expect(button).toHaveText(/2023\/11\/03 \- 2023\/11\/11/);
     }
   );
 
@@ -168,9 +136,9 @@ regressionTest.describe('date dropdown tests', () => {
       });
 
       await dateDropdown.click();
-      const intervalOptionsButton = page.locator(
-        'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
-      );
+      const intervalOptionsButton = dateDropdown.getByRole('button', {
+        name: /Last 7 days/,
+      });
       await intervalOptionsButton.click();
 
       const dateRangeChangeEvent = await eventPromise;
