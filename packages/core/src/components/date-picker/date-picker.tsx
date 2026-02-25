@@ -300,20 +300,6 @@ export class DatePicker
       case 'ArrowDown':
         _focusedDay = _focusedDay + 7;
         break;
-      case 'Home':
-        _focusedDay = this.getFirstDayOfWeek(_focusedDay);
-        break;
-      case 'End':
-        _focusedDay = this.getLastDayOfWeek(_focusedDay);
-        break;
-      case 'PageUp':
-        this.navigateByMonthOrYear(event.shiftKey ? 'year' : 'month', -1);
-        event.preventDefault();
-        return;
-      case 'PageDown':
-        this.navigateByMonthOrYear(event.shiftKey ? 'year' : 'month', 1);
-        event.preventDefault();
-        return;
       default:
         return;
     }
@@ -436,18 +422,49 @@ export class DatePicker
     this.monthChangedFromFocus = false;
   }
 
-  /**
-   * @internal
-   */
+  /** @internal */
   @Method()
-  async focusFirstCalenderDay() {
-    const dayCell = this.hostElement.shadowRoot!.querySelector(
-      `[id=day-cell-${this.focusedDay}]`
-    ) as HTMLElement;
+  async navigateCalendar(direction: -1 | 1, byYear: boolean): Promise<void> {
+    this.navigateByMonthOrYear(byYear ? 'year' : 'month', direction);
+  }
 
-    if (dayCell) {
-      dayCell.focus();
+  /** @internal */
+  @Method()
+  async focusFirstDayOfCurrentWeek(): Promise<void> {
+    this.focusedDay = this.getFirstDayOfWeek(this.focusedDay);
+  }
+
+  /** @internal */
+  @Method()
+  async focusLastDayOfCurrentWeek(): Promise<void> {
+    this.focusedDay = this.getLastDayOfWeek(this.focusedDay);
+  }
+
+  /** @internal */
+  @Method()
+  async isCalendarDayFocused(): Promise<boolean> {
+    return this.isDayFocus && !this.yearMonthSelectionDropdownRef.current?.show;
+  }
+
+  /** @internal */
+  @Method()
+  async focusActiveDay(): Promise<void> {
+    const shadowRoot = this.hostElement.shadowRoot!;
+    const dayElement =
+      (shadowRoot.querySelector('.calendar-item.selected') as HTMLElement) ??
+      (shadowRoot.querySelector('.calendar-item.today') as HTMLElement) ??
+      (shadowRoot.querySelector('.calendar-item.first-day') as HTMLElement);
+
+    if (!dayElement) {
+      return;
     }
+
+    const day = dayElement.dataset.calendarDay;
+    if (day) {
+      this.focusedDay = parseInt(day, 10);
+    }
+
+    dayElement.focus();
   }
 
   private setTranslations() {

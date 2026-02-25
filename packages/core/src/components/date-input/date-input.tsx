@@ -392,17 +392,40 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    if (event.key === 'ArrowDown') {
-      this.show = true;
-      requestAnimationFrameNoNgZone(() =>
-        this.datepickerRef.current?.focusFirstCalenderDay()
-      );
-    }
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
       this.formInternals.form
     );
+  }
+
+  private async handleDatePickerKeyDown(event: KeyboardEvent) {
+    event.preventDefault();
+
+    if (!this.datepickerRef.current) {
+      return;
+    }
+
+    if (!(await this.datepickerRef.current.isCalendarDayFocused())) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'PageUp':
+        await this.datepickerRef.current.navigateCalendar(-1, event.shiftKey);
+        break;
+      case 'PageDown':
+        await this.datepickerRef.current.navigateCalendar(1, event.shiftKey);
+        break;
+      case 'Home':
+        await this.datepickerRef.current.focusFirstDayOfCurrentWeek();
+        break;
+      case 'End':
+        await this.datepickerRef.current.focusLastDayOfCurrentWeek();
+        break;
+      default:
+        return;
+    }
   }
 
   private renderInput() {
@@ -578,9 +601,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             targetElement: this.datepickerRef,
             trapFocusInShadowDom: true,
           }}
+          callbackFocus={() => {
+            requestAnimationFrameNoNgZone(() =>
+              this.datepickerRef.current?.focusActiveDay()
+            );
+          }}
         >
           <ix-date-picker
             ref={this.datepickerRef}
+            onKeyDown={(event) =>
+              this.handleDatePickerKeyDown(event as KeyboardEvent)
+            }
             format={this.format}
             locale={this.locale}
             singleSelection

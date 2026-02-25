@@ -1131,7 +1131,9 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
-        "focusFirstCalenderDay": () => Promise<void>;
+        "focusActiveDay": () => Promise<void>;
+        "focusFirstDayOfCurrentWeek": () => Promise<void>;
+        "focusLastDayOfCurrentWeek": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1150,6 +1152,7 @@ export namespace Components {
           * @default 'Done'
          */
         "i18nDone": string;
+        "isCalendarDayFocused": () => Promise<boolean>;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
@@ -1164,6 +1167,7 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
+        "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -1345,6 +1349,7 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        "callbackFocus"?: (event: KeyboardEvent) => void;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
@@ -7470,6 +7475,7 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        "callbackFocus"?: (event: KeyboardEvent) => void;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'

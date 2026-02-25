@@ -205,6 +205,13 @@ export class Dropdown
   @Prop() focusTrapOptions?: FocusTrapOptions;
 
   /**
+   * @internal
+   * Called instead of the default focus-on-open logic when the dropdown is
+   * opened via keyboard. When not set, default behavior is used.
+   */
+  @Prop() callbackFocus?: (event: KeyboardEvent) => void;
+
+  /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
    */
   @Event() showChange!: EventEmitter<boolean>;
@@ -388,7 +395,9 @@ export class Dropdown
           return;
         }
 
-        if (event.key === 'ArrowUp') {
+        if (this.callbackFocus) {
+          this.callbackFocus(event);
+        } else if (event.key === 'ArrowUp') {
           focusLast(this.hostElement);
         } else {
           focusFirst(this.hostElement);
@@ -396,7 +405,9 @@ export class Dropdown
       }
     } else if (!this.disableFocusHandling) {
       // Dropdown is already open - handle focus navigation
-      if (event.key === 'ArrowUp') {
+      if (this.callbackFocus) {
+        this.callbackFocus(event);
+      } else if (event.key === 'ArrowUp') {
         focusLast(this.hostElement);
       } else {
         focusFirst(this.hostElement);
@@ -519,7 +530,7 @@ export class Dropdown
 
     await this.resolveAnchorElement();
     this.registerKeyListener();
-    if (!this.disableFocusHandling) {
+    if (!this.disableFocusHandling && !this.callbackFocus) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
         () => this.forwardQueryElement ?? this.focusHost ?? this.hostElement,
         {
