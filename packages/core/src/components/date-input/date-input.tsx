@@ -388,6 +388,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   private handleInputKeyDown(event: KeyboardEvent) {
     onEnterKeyChangeEmit(event, this, this.value);
 
@@ -431,7 +435,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            if (!this.readonly && !this.disabled) {
+            if (this.isInteractive) {
               this.openDropdown();
             }
             this.ixFocus.emit();
@@ -552,7 +556,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         <ix-dropdown
           data-testid="date-dropdown"
           trigger={
-            !this.readonly && !this.disabled
+            this.isInteractive
               ? this.inputElementRef.waitForCurrent()
               : undefined
           }

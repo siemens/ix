@@ -284,6 +284,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   private handleInputKeyDown(event: KeyboardEvent) {
     onEnterKeyChangeEmit(event, this, this.value);
 
@@ -447,7 +451,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            if (!this.readonly && !this.disabled) {
+            if (this.isInteractive) {
               this.openDropdown();
             }
             this.ixFocus.emit();
@@ -566,7 +570,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
         <ix-dropdown
           data-testid="time-dropdown"
           trigger={
-            !this.readonly && !this.disabled
+            this.isInteractive
               ? this.inputElementRef.waitForCurrent()
               : undefined
           }
