@@ -1352,7 +1352,7 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
-        "callbackFocus"?: (event: KeyboardEvent) => void;
+        "callbackFocusElement"?: (event: KeyboardEvent) => void;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
@@ -1399,7 +1399,7 @@ export namespace Components {
         "ignoreRelatedSubmenu": boolean;
         /**
           * Keys that will open the dropdown when the trigger is focused
-          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+          * @default [     'Home',     'End',     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
          */
         "keyboardActivationKeys": string[];
         /**
@@ -7478,7 +7478,7 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
-        "callbackFocus"?: (event: KeyboardEvent) => void;
+        "callbackFocusElement"?: (event: KeyboardEvent) => void;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
@@ -7524,7 +7524,7 @@ declare namespace LocalJSX {
         "ignoreRelatedSubmenu"?: boolean;
         /**
           * Keys that will open the dropdown when the trigger is focused
-          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+          * @default [     'Home',     'End',     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
          */
         "keyboardActivationKeys"?: string[];
         /**

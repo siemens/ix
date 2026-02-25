@@ -169,6 +169,14 @@ SPDX-License-Identifier: MIT
             },
           };
         </script>
+
+        <ix-date-picker id="test123"></ix-date-picker>
+        <script>
+          setTimeout(() => {
+            const datePicker = document.querySelector('#test123');
+            datePicker.focusLastDayOfCurrentWeek();
+          }, 2000);
+        </script>
       </ix-content>
     </ix-application>
   </body>

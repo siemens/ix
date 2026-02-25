@@ -458,16 +458,13 @@ export class DatePicker
       (shadowRoot.querySelector('.calendar-item.selected') as HTMLElement) ??
       (shadowRoot.querySelector('.calendar-item.today') as HTMLElement) ??
       (shadowRoot.querySelector('.calendar-item.first-day') as HTMLElement);
-
     if (!dayElement) {
       return;
     }
-
     const day = dayElement.dataset.calendarDay;
     if (day) {
       this.focusedDay = parseInt(day, 10);
     }
-
     dayElement.focus();
   }
 

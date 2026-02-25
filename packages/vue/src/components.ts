@@ -546,7 +546,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'suppressOverflowBehavior',
   'focusHost',
   'focusTrapOptions',
-  'callbackFocus',
+  'callbackFocusElement',
   'showChange',
   'showChanged',
   'experimentalRequestFocus',

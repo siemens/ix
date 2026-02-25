@@ -153,6 +153,8 @@ export class Dropdown
    * @internal
    */
   @Prop() keyboardActivationKeys: string[] = [
+    'Home',
+    'End',
     'ArrowDown',
     'ArrowUp',
     'Enter',
@@ -209,7 +211,7 @@ export class Dropdown
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
    */
-  @Prop() callbackFocus?: (event: KeyboardEvent) => void;
+  @Prop() callbackFocusElement?: (event: KeyboardEvent) => void;
 
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
@@ -345,8 +347,18 @@ export class Dropdown
     this.handleTriggerKeydown(event);
 
   private handleTriggerKeydown(event: KeyboardEvent) {
+    console.log('handleTriggerKeydown', event.key);
     const focusFirst = (element: HTMLElement) =>
       requestAnimationFrameNoNgZone(() => {
+        if (this.callbackFocusElement) {
+          this.callbackFocusElement(event);
+          event.defaultPrevented;
+        }
+
+        if (event.defaultPrevented) {
+          return;
+        }
+
         focusFirstDescendant(element, undefined, {
           focusCheckedItem: this.focusCheckedItem,
         });
@@ -354,6 +366,14 @@ export class Dropdown
 
     const focusLast = (element: HTMLElement) =>
       requestAnimationFrameNoNgZone(() => {
+        if (this.callbackFocusElement) {
+          this.callbackFocusElement(event);
+        }
+
+        if (event.defaultPrevented) {
+          return;
+        }
+
         focusLastDescendant(element);
       });
 
@@ -370,6 +390,8 @@ export class Dropdown
     }
 
     const navigationKeys = this.keyboardActivationKeys ?? [
+      'Home',
+      'End',
       'ArrowUp',
       'ArrowDown',
       ' ',
@@ -395,9 +417,7 @@ export class Dropdown
           return;
         }
 
-        if (this.callbackFocus) {
-          this.callbackFocus(event);
-        } else if (event.key === 'ArrowUp') {
+        if (event.key === 'ArrowUp' || event.key === 'End') {
           focusLast(this.hostElement);
         } else {
           focusFirst(this.hostElement);
@@ -405,9 +425,9 @@ export class Dropdown
       }
     } else if (!this.disableFocusHandling) {
       // Dropdown is already open - handle focus navigation
-      if (this.callbackFocus) {
-        this.callbackFocus(event);
-      } else if (event.key === 'ArrowUp') {
+      if (this.callbackFocusElement) {
+        this.callbackFocusElement(event);
+      } else if (event.key === 'ArrowUp' || event.key === 'End') {
         focusLast(this.hostElement);
       } else {
         focusFirst(this.hostElement);
@@ -530,7 +550,7 @@ export class Dropdown
 
     await this.resolveAnchorElement();
     this.registerKeyListener();
-    if (!this.disableFocusHandling && !this.callbackFocus) {
+    if (!this.disableFocusHandling && !this.callbackFocusElement) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
         () => this.forwardQueryElement ?? this.focusHost ?? this.hostElement,
         {

@@ -48,7 +48,6 @@ import {
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
 import { makeRef } from '../utils/make-ref';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { DateInputValidityState } from './date-input.types';
 
 /**
@@ -423,8 +422,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       case 'End':
         await this.datepickerRef.current.focusLastDayOfCurrentWeek();
         break;
-      default:
-        return;
     }
   }
 
@@ -601,17 +598,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             targetElement: this.datepickerRef,
             trapFocusInShadowDom: true,
           }}
-          callbackFocus={() => {
-            requestAnimationFrameNoNgZone(() =>
-              this.datepickerRef.current?.focusActiveDay()
-            );
+          callbackFocusElement={(event) => {
+            event.preventDefault();
+            this.datepickerRef.current?.focusActiveDay();
           }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
         >
           <ix-date-picker
             ref={this.datepickerRef}
-            onKeyDown={(event) =>
-              this.handleDatePickerKeyDown(event as KeyboardEvent)
-            }
             format={this.format}
             locale={this.locale}
             singleSelection
@@ -630,6 +624,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
+            onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>
