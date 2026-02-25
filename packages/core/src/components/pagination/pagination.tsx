@@ -43,7 +43,6 @@ export class Pagination {
 
   private readonly maxCountPages = 7;
   private readonly defaultItemCountOptions = [10, 15, 20, 40, 100];
-  private readonly itemCountOptionsPropName = 'itemCountOptions';
   private verifiedItemCountOptions?: number[];
 
   @Element() hostElement!: HTMLIxPaginationElement;
@@ -134,15 +133,14 @@ export class Pagination {
 
   @Watch('itemCountOptions')
   onItemCountOptionsChange() {
-    if (this.advanced && !this.hideItemCount) {
-      this.verifiedItemCountOptions = this.getValidItemCountOptions();
-      this.verifyEmptyItemCountOptions();
-      this.verifyAllInvalidItemCountOptions();
-      this.verifyItemCountMismatch();
-    }
+    this._verifyItemCountOptions();
   }
 
   componentWillLoad() {
+    this._verifyItemCountOptions();
+  }
+
+  private _verifyItemCountOptions(): void {
     if (!this.advanced || this.hideItemCount) {
       return;
     }
@@ -195,8 +193,8 @@ export class Pagination {
     console.warn(
       `[ix-pagination] Configuration mismatch: itemCount value "${
         this.itemCount
-      }" is not present in ${this.itemCountOptionsPropName} [${displayOptions}]. ` +
-        `This will result in an invalid dropdown state. Please either add ${this.itemCount} to ${this.itemCountOptionsPropName} or set itemCount to one of the available options.`
+      }" is not present in itemCountOptions [${displayOptions}]. ` +
+        `This will result in an invalid dropdown state. Please either add ${this.itemCount} to itemCountOptions or set itemCount to one of the available options.`
     );
   }
 
@@ -407,9 +405,7 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              {(
-                this.verifiedItemCountOptions || this.getValidItemCountOptions()
-              ).map((option) => (
+              {this.verifiedItemCountOptions!.map((option) => (
                 <ix-select-item
                   label={`${option}`}
                   value={`${option}`}
