@@ -41,7 +41,7 @@ regressionTest('required', async ({ mount, page }) => {
   );
   const radioGroupElement = page.locator('ix-checkbox-group');
   await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioGroupElement).toHaveText(/Option 2\*/);
+  await expect(radioGroupElement).toHaveText(/example\*/);
 
   const radioOption2 = page.locator('ix-checkbox').nth(1);
   const radioOption3 = page.locator('ix-checkbox').nth(2);
@@ -49,7 +49,7 @@ regressionTest('required', async ({ mount, page }) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
 
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
   await expect(radioOption2).toHaveClass(/ix-invalid--required/);
   await expect(radioOption3).not.toHaveClass(/ix-invalid/);
 });

@@ -88,6 +88,10 @@ export class CheckboxGroup
   private cleanFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
+  private readonly observer = new MutationObserver(() => {
+    this.hasNestedRequiredCheckbox();
+  });
+
   private readonly validation = useFieldGroupValidation<HTMLIxCheckboxElement>(
     this.hostElement,
     {
@@ -112,12 +116,29 @@ export class CheckboxGroup
 
   connectedCallback(): void {
     this.setupFormListener();
+    this.observer.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['checked', 'required'],
+    });
+  }
+
+  componentWillLoad(): void | Promise<void> {
+    this.hasNestedRequiredCheckbox();
   }
 
   disconnectedCallback(): void {
     if (this.cleanFormListener) {
       this.cleanFormListener();
     }
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private hasNestedRequiredCheckbox() {
+    this.required = this.checkboxElements.some((checkbox) => checkbox.required);
   }
 
   @HookValidationLifecycle({
@@ -289,6 +310,7 @@ export class CheckboxGroup
           isInfo={this.isInfo}
           isValid={this.isValid}
           isWarning={this.isWarning}
+          required={this.required}
           controlRef={this.groupRef}
         >
           <div

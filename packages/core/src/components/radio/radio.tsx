@@ -66,7 +66,7 @@ export class Radio implements IxFormComponent<string> {
   /**
    * Disabled state of the radio component
    */
-  @Prop({ reflect: true }) disabled: boolean = false;
+  @Prop() disabled: boolean = false;
 
   /**
    * Checked state of the radio component
@@ -339,7 +339,6 @@ export class Radio implements IxFormComponent<string> {
               textColor={this.disabled ? 'weak' : 'std'}
             >
               {this.label}
-              {this.required && '*'}
               <slot></slot>
             </ix-typography>
           )}

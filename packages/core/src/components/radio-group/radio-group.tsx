@@ -114,6 +114,11 @@ export class RadiobuttonGroup
   private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
+  private readonly observer = new MutationObserver(() => {
+    this.ensureOnlyLastRadioChecked();
+    this.hasNestedRequiredRadio();
+  });
+
   private readonly radioValidation =
     useFieldGroupValidation<HTMLIxRadioElement>(this.hostElement, {
       selector: 'ix-radio',
@@ -136,12 +141,68 @@ export class RadiobuttonGroup
 
   connectedCallback(): void {
     this.setupFormListener();
+    this.observer.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['checked', 'required'],
+    });
+  }
+
+  componentWillLoad(): void | Promise<void> {
+    this.selectInitialValue();
+    this.ensureOnlyLastRadioChecked();
+    this.hasNestedRequiredRadio();
   }
 
   disconnectedCallback(): void {
     if (this.cleanupFormListener) {
       this.cleanupFormListener();
     }
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private selectInitialValue() {
+    if (!this.value) {
+      return;
+    }
+    this.radiobuttonElements.forEach((radiobutton) => {
+      radiobutton.checked = radiobutton.value === this.value;
+    });
+  }
+
+  private ensureOnlyLastRadioChecked() {
+    const checkedRadios = this.radiobuttonElements.filter(
+      (radio) => radio.checked
+    );
+    checkedRadios.forEach((radio, index) => {
+      if (index === checkedRadios.length - 1) {
+        return;
+      }
+      radio.checked = false;
+    });
+
+    const hasCheckedRadio = this.isSomeRadioChecked();
+
+    for (const radio of this.radiobuttonElements) {
+      radio.tabIndex = radio.checked ? 0 : -1;
+    }
+
+    if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
+      this.radiobuttonElements[0].tabIndex = 0;
+    }
+  }
+
+  private hasNestedRequiredRadio() {
+    this.required = this.radiobuttonElements.some(
+      (radiobutton) => radiobutton.required
+    );
+  }
+
+  private isSomeRadioChecked() {
+    return this.radiobuttonElements.some((radio) => radio.checked);
   }
 
   @Watch('value')
@@ -366,6 +427,7 @@ export class RadiobuttonGroup
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
+          required={this.required}
           controlRef={this.groupRef}
         >
           <div
