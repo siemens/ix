@@ -154,38 +154,7 @@ export class Modal {
   }
 
   private isTargetInsideModalContent(event: MouseEvent): boolean {
-    const path = event.composedPath();
-
-    const modalContentTags = new Set<string>(['IX-DROPDOWN', 'IX-SELECT']);
-
-    for (const el of path) {
-      if (el instanceof HTMLElement && modalContentTags.has(el.tagName)) {
-        if (this.isElementInsideModal(el)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  private isElementInsideModal(element: HTMLElement): boolean {
-    let current: Node | null = element;
-
-    while (current) {
-      if (current === this.hostElement) {
-        return true;
-      }
-
-      const rootNode = current.getRootNode();
-      if (rootNode instanceof ShadowRoot) {
-        current = rootNode.host;
-      } else {
-        current = current.parentNode;
-      }
-    }
-
-    return false;
+    return event.target !== this.dialog;
   }
   /**
    * Show the dialog
