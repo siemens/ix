@@ -598,9 +598,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             targetElement: this.datepickerRef,
             trapFocusInShadowDom: true,
           }}
-          callbackFocusElement={(event) => {
-            event.preventDefault();
+          callbackFocusElement={() => {
             this.datepickerRef.current?.focusActiveDay();
+            return true;
           }}
           keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
         >

@@ -211,7 +211,7 @@ export class Dropdown
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
    */
-  @Prop() callbackFocusElement?: (event: KeyboardEvent) => void;
+  @Prop() callbackFocusElement?: (event: KeyboardEvent) => boolean | undefined;
 
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
@@ -347,15 +347,14 @@ export class Dropdown
     this.handleTriggerKeydown(event);
 
   private handleTriggerKeydown(event: KeyboardEvent) {
-    console.log('handleTriggerKeydown', event.key);
     const focusFirst = (element: HTMLElement) =>
       requestAnimationFrameNoNgZone(() => {
+        let shouldPreventDefault = false;
         if (this.callbackFocusElement) {
-          this.callbackFocusElement(event);
-          event.defaultPrevented;
+          shouldPreventDefault = this.callbackFocusElement(event) ?? false;
         }
 
-        if (event.defaultPrevented) {
+        if (shouldPreventDefault) {
           return;
         }
 
