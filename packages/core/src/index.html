@@ -33,13 +33,13 @@ SPDX-License-Identifier: MIT
   <body>
     <ix-application>
       <ix-application-header name="My Header">
-        <ix-button>BTEst</ix-button>
-        <ix-button>BTEst1</ix-button>
-        <button>BTEst2</button>
-        <ix-dropdown-button label="BTest2">
-          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 3" id="id4"></ix-dropdown-item>
+        <ix-button>Some button</ix-button>
+        <ix-button>Another button</ix-button>
+        <button>Regular button</button>
+        <ix-dropdown-button label="Choose your pizza">
+          <ix-dropdown-item label="Hawaii"></ix-dropdown-item>
+          <ix-dropdown-item label="Salami"></ix-dropdown-item>
+          <ix-dropdown-item label="Special" id="id4"></ix-dropdown-item>
         </ix-dropdown-button>
         <ix-avatar username="John Doe">
           <ix-dropdown-item label="TEst 1"></ix-dropdown-item>
@@ -50,24 +50,20 @@ SPDX-License-Identifier: MIT
         </ix-avatar>
       </ix-application-header>
 
+      <ix-dropdown trigger="id4">
+        <ix-dropdown-item label="Special pizza 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Special pizza 2"></ix-dropdown-item>
+      </ix-dropdown>
+
       <ix-menu>
         <ix-menu-item>Menu item 1</ix-menu-item>
-        <ix-menu-item>Menu item 2</ix-menu-item>
-        <ix-menu-item>Menu item 3</ix-menu-item>
         <ix-menu-category label="Category 1">
-          <ix-menu-item>Menu item 4</ix-menu-item>
-          <ix-menu-item>Menu item 5</ix-menu-item>
+          <ix-menu-item>Submenu 1</ix-menu-item>
+          <ix-menu-item>Submenu 2</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
 
       <ix-content>
-        <ix-avatar>
-          <ix-dropdown-item label="TEst 1"></ix-dropdown-item>
-          <ix-dropdown-item label="TEst 2"></ix-dropdown-item>
-          <ix-dropdown-item>Content inline</ix-dropdown-item>
-          <ix-dropdown-item label="TEst 3"></ix-dropdown-item>
-          <ix-dropdown-item label="TEst 4"></ix-dropdown-item>
-        </ix-avatar>
         <ix-select>
           <ix-select-item value="1" label="Option 1"></ix-select-item>
           <ix-select-item value="2" label="Option 2"></ix-select-item>
@@ -79,13 +75,6 @@ SPDX-License-Identifier: MIT
           <ix-dropdown-item label="Item 3"></ix-dropdown-item>
         </ix-dropdown-button>
 
-        <ix-dropdown trigger="id4">
-          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 3"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 4"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 5"></ix-dropdown-item>
-        </ix-dropdown>
         <ix-breadcrumb visible-item-count="4">
           <ix-breadcrumb-item>Home1</ix-breadcrumb-item>
           <ix-breadcrumb-item>Home2</ix-breadcrumb-item>
@@ -140,6 +129,7 @@ SPDX-License-Identifier: MIT
         </script>
 
         <ix-time-input></ix-time-input>
+        <ix-date-input></ix-date-input>
 
         <ix-split-button label="test">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
@@ -151,32 +141,6 @@ SPDX-License-Identifier: MIT
         </ix-split-button>
 
         <ix-pagination advanced> </ix-pagination>
-
-        <ix-date-input></ix-date-input>
-
-        <h3 style="margin-top: 2rem">Dont get any keyboard rework yet</h3>
-        <ix-category-filter></ix-category-filter>
-        <script type="module">
-          const categoryFilter = document.querySelector('ix-category-filter');
-          categoryFilter.categories = {
-            ID_1: {
-              label: 'Vendor',
-              options: ['Apple', 'MS', 'Siemens'],
-            },
-            ID_2: {
-              label: 'Product',
-              options: ['iPhone X', 'Windows', 'APS'],
-            },
-          };
-        </script>
-
-        <ix-date-picker id="test123"></ix-date-picker>
-        <script>
-          setTimeout(() => {
-            const datePicker = document.querySelector('#test123');
-            datePicker.focusLastDayOfCurrentWeek();
-          }, 2000);
-        </script>
       </ix-content>
     </ix-application>
   </body>
