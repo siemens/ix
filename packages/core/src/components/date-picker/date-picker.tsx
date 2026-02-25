@@ -363,7 +363,7 @@ export class DatePicker
    * @internal
    */
   @Method()
-  public updateSelectedYearMonth(date: DateTime) {
+  async updateSelectedYearMonth(date: DateTime) {
     this.selectedYear = date.year;
     this.selectedMonth = date.month - 1;
   }
