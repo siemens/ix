@@ -894,6 +894,7 @@ export class DatePicker
             ></ix-icon-button>
             <div class="selector">
               <ix-dropdown-button
+                focusCheckedItem={true}
                 aria-label={this.ariaLabelMonthSelection}
                 variant="tertiary"
                 label={null}
@@ -909,6 +910,7 @@ export class DatePicker
               </ix-dropdown-button>
 
               <ix-dropdown-button
+                focusCheckedItem={true}
                 aria-label={this.ariaLabelYearSelection}
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"

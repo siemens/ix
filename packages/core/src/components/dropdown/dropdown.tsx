@@ -141,6 +141,13 @@ export class Dropdown
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+   *
+   * @since 5.0.0
+   */
+  @Prop() focusCheckedItem: boolean = false;
+
+  /**
    * Keys that will open the dropdown when the trigger is focused
    *
    * @internal
@@ -333,7 +340,9 @@ export class Dropdown
   private handleTriggerKeydown(event: KeyboardEvent) {
     const focusFirst = (element: HTMLElement) =>
       requestAnimationFrameNoNgZone(() => {
-        focusFirstDescendant(element);
+        focusFirstDescendant(element, undefined, {
+          focusCheckedItem: this.focusCheckedItem,
+        });
       });
 
     const focusLast = (element: HTMLElement) =>

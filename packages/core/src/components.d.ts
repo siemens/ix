@@ -1373,6 +1373,12 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem": boolean;
         "focusHost"?: HTMLElement;
         "focusTrapOptions"?: FocusTrapOptions;
         /**
@@ -1461,6 +1467,12 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem": boolean;
         "getDropdownReference": () => Promise<HTMLIxDropdownElement>;
         /**
           * Button icon
@@ -7485,6 +7497,12 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem"?: boolean;
         "focusHost"?: HTMLElement;
         "focusTrapOptions"?: FocusTrapOptions;
         /**
@@ -7583,6 +7601,12 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem"?: boolean;
         /**
           * Button icon
          */
@@ -10936,6 +10960,7 @@ declare namespace LocalJSX {
         "disableFocusHandling": boolean;
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
+        "focusCheckedItem": boolean;
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
@@ -10948,6 +10973,7 @@ declare namespace LocalJSX {
         "closeBehavior": string;
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
+        "focusCheckedItem": boolean;
         "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }

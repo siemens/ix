@@ -68,19 +68,27 @@ export type FocusVisibleConfig = {
   trapFocusInShadowDom?: boolean;
 };
 
+export type FocusOptions = {
+  focusCheckedItem?: boolean;
+};
+
 export const focusFirstDescendant = <
   R extends HTMLElement,
   T extends HTMLElement,
 >(
   ref: R,
-  fallbackElement?: T
+  fallbackElement?: T,
+  options?: FocusOptions
 ) => {
-  const checkedQueryString = buildFocusableQueryString('[checked]');
-  const checkedElements = queryElements(ref, checkedQueryString);
+  console.log('focusFirstDescendant called with options:', options);
+  if (options?.focusCheckedItem) {
+    const checkedQueryString = buildFocusableQueryString('[checked]');
+    const checkedElements = queryElements(ref, checkedQueryString);
 
-  if (checkedElements.length > 0) {
-    focusElementInContext(checkedElements[0], fallbackElement ?? ref);
-    return;
+    if (checkedElements.length > 0) {
+      focusElementInContext(checkedElements[0], fallbackElement ?? ref);
+      return;
+    }
   }
 
   const inputs = queryElements(ref, focusableQueryString);
@@ -146,10 +154,12 @@ const focusableBase = ':not([tabindex^="-"]):not([hidden]):not([disabled])';
 
 const customTags = ['ix-dropdown-item', 'ix-select-item'];
 
-const buildCustom = () =>
-  customTags.map((tag) => `${tag}${focusableBase}`).join(', ');
+const buildCustom = (additionalSelector: string) =>
+  customTags
+    .map((tag) => `${tag}${focusableBase}${additionalSelector}`)
+    .join(', ');
 
-export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom()}`;
+export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('')}`;
 
 export const buildFocusableQueryString = (additionalSelector = '') =>
-  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom()}`;
+  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}`;

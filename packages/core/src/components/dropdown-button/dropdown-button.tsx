@@ -90,6 +90,13 @@ export class DropdownButton
   @Prop() ariaLabelDropdownButton?: string;
 
   /**
+   * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+   *
+   * @since 5.0.0
+   */
+  @Prop() focusCheckedItem: boolean = false;
+
+  /**
    * Enable Popover API rendering for dropdown.
    *
    * @default false
@@ -280,6 +287,7 @@ export class DropdownButton
           closeBehavior={this.closeBehavior}
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
+          focusCheckedItem={this.focusCheckedItem}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,
