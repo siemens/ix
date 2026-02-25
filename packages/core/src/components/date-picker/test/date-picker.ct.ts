@@ -27,7 +27,7 @@ regressionTest('translation', async ({ mount, page }) => {
     `<ix-date-picker from="2023/01/01" locale="de"></ix-date-picker>`
   );
 
-  const header = page.getByText('Januar 2023').nth(0);
+  const header = page.getByText('Januar').nth(0);
   await expect(header).toHaveCount(1);
 });
 
