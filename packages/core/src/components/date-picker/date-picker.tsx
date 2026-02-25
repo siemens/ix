@@ -359,7 +359,11 @@ export class DatePicker
     return date;
   }
 
-  private updateSelectedYearMonth(date: DateTime) {
+  /**
+   * @internal
+   */
+  @Method()
+  public updateSelectedYearMonth(date: DateTime) {
     this.selectedYear = date.year;
     this.selectedMonth = date.month - 1;
   }
