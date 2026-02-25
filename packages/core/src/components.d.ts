@@ -1352,7 +1352,7 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
-        "callbackFocusElement"?: (event: KeyboardEvent) => void;
+        "callbackFocusElement"?: (event: KeyboardEvent) => boolean | undefined;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
@@ -7478,7 +7478,7 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
-        "callbackFocusElement"?: (event: KeyboardEvent) => void;
+        "callbackFocusElement"?: (event: KeyboardEvent) => boolean | undefined;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
