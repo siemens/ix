@@ -882,11 +882,7 @@ export class DatePicker
 
   override render() {
     return (
-      <Host
-        onFocusin={() => {
-          this.changeFocusedDay();
-        }}
-      >
+      <Host>
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">
             <ix-icon-button
