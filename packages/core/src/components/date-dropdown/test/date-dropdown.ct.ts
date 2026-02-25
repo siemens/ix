@@ -98,7 +98,13 @@ regressionTest.describe('date dropdown tests', () => {
       await expect(dateDropdown.locator('#date-dropdown')).not.toHaveClass(
         /show/
       );
-      await expect(dateDropdown).toContainText('2026/02/17 - 2026/02/24');
+
+      const button = dateDropdown.getByRole('button', {
+        name: '2026/02/18 - 2026/02/25',
+      });
+
+      await expect(button).toBeVisible();
+      await expect(dateDropdown).toHaveText(/2026\/02\/18 - 2026\/02\/25/);
 
       const selectedDateRange = await dateDropdown.evaluate(
         (el: HTMLIxDateDropdownElement) => el.getDateRange()
@@ -224,11 +230,11 @@ regressionTest('select different year', async ({ mount, page }) => {
   await monthContainer.click();
   await expect(monthContainer).toHaveAttribute('aria-expanded', 'true');
 
-  const march2020 = monthContainer.getByRole('menuitem', {
-    name: 'March 2020',
+  const monthMarch = monthContainer.getByRole('menuitem', {
+    name: 'March',
   });
 
-  await march2020.click();
+  await monthMarch.click();
 
   await expect(yearContainer).toHaveText(/2020/);
   await expect(monthContainer).toHaveText(/March/);

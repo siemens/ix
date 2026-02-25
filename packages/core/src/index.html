@@ -31,7 +31,43 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-application>
+    <ix-date-dropdown format="LL/dd/yyyy"></ix-date-dropdown>
+    <script>
+      const today = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+
+      const lastSevenDays = new Date(
+        new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+      ).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+
+      const dateRangeOptions = [
+        {
+          id: 'last-7',
+          label: 'Last 7 days',
+          from: lastSevenDays,
+          to: today,
+        },
+        {
+          id: 'today',
+          label: 'Today',
+          from: today,
+          to: today,
+        },
+      ];
+
+      const dateDropdown = document.querySelector('ix-date-dropdown');
+      dateDropdown.dateRangeOptions = dateRangeOptions;
+      dateDropdown.dateRangeId = 'today';
+    </script>
+
+    <!-- <ix-application>
       <ix-application-header name="My Header">
         <ix-button>BTEst</ix-button>
         <ix-button>BTEst1</ix-button>
@@ -170,6 +206,6 @@ SPDX-License-Identifier: MIT
           };
         </script>
       </ix-content>
-    </ix-application>
+    </ix-application> -->
   </body>
 </html>

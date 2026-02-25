@@ -315,6 +315,9 @@ export class DateDropdown
   }
 
   override render() {
+    const ariaLabel =
+      this.inheritAriaAttributes['aria-label'] || this.getButtonLabel();
+
     return (
       <Host
         onFocusout={(event: FocusEvent) => {
@@ -326,6 +329,7 @@ export class DateDropdown
 
           this.closeDropdown();
         }}
+        role="presentation"
       >
         <ix-button
           data-testid="date-dropdown-trigger"
@@ -339,6 +343,7 @@ export class DateDropdown
           aria-haspopup="true"
           aria-expanded={a11yBoolean(this.show)}
           aria-controls="date-dropdown"
+          aria-label={ariaLabel}
           {...{ [TRAP_FOCUS_EXCLUDE_ATTRIBUTE]: true }}
         >
           {this.getButtonLabel()}
