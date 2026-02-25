@@ -809,7 +809,7 @@ export class DatePicker
     return rows;
   }
 
-  private changeFocusedDay() {
+  public changeFocusedDay() {
     if (this.monthChangedFromFocus) {
       return;
     }
