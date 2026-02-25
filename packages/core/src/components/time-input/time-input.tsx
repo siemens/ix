@@ -584,6 +584,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
+          focusTrapOptions={{
+            targetElement: this.timePickerRef,
+            trapFocusInShadowDom: true,
+          }}
         >
           <ix-time-picker
             ref={this.timePickerRef}

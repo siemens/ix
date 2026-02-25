@@ -576,7 +576,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           }}
           focusTrapOptions={{
             targetElement: this.datepickerRef,
-            excludeElements: false,
             trapFocusInShadowDom: true,
           }}
         >
