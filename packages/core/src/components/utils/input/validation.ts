@@ -123,6 +123,8 @@ export function HookValidationLifecycle(options?: {
           return;
         }
 
+        const validationElement = await host.getNativeInputElement();
+
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
           const touched = await isTouched(host);
@@ -150,6 +152,41 @@ export function HookValidationLifecycle(options?: {
             'ix-invalid--validity-invalid',
             !validityState.valid && touched
           );
+
+          const fieldWrapper =
+            host.shadowRoot?.querySelector('ix-field-wrapper');
+
+          if (validationElement && fieldWrapper) {
+            const ariaErrorMessageElement =
+              await fieldWrapper.getAriaErrorMessageElement();
+
+            const ariaHelperMessageElement =
+              await fieldWrapper.getAriaHelperMessageElement();
+
+            if (ariaHelperMessageElement) {
+              validationElement.setAttribute(
+                'aria-describedby',
+                `${ariaHelperMessageElement.id}`
+              );
+            }
+
+            if (!validityState.valid) {
+              validationElement?.setAttribute('aria-invalid', 'true');
+
+              if (ariaErrorMessageElement && !validityState.valid) {
+                validationElement.setAttribute(
+                  'aria-errormessage',
+                  `${ariaErrorMessageElement.id}`
+                );
+                validationElement.setAttribute(
+                  'aria-describedby',
+                  `${ariaErrorMessageElement.id}`
+                );
+              }
+            } else {
+              validationElement?.removeAttribute('aria-invalid');
+            }
+          }
         }
       };
 

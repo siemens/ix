@@ -1711,6 +1711,8 @@ export namespace Components {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
+        "getAriaErrorMessageElement": () => Promise<HTMLElement | null>;
+        "getAriaHelperMessageElement": () => Promise<HTMLElement | null>;
         /**
           * Show text below the field component
          */

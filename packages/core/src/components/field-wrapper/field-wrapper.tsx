@@ -6,10 +6,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Host,
+  Method,
+  Mixin,
+  Prop,
+  Watch,
+  h,
+} from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/input';
 import { MakeRef, makeRef } from '../utils/make-ref';
-import { hasAnyText, HelperText } from './helper-text-util';
+import {
+  hasAnyText,
+  HelperText,
+  resolveTextFromValidationState,
+} from './helper-text-util';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 
 /** @internal */
 @Component({
@@ -17,8 +35,11 @@ import { hasAnyText, HelperText } from './helper-text-util';
   styleUrl: 'field-wrapper.scss',
   shadow: true,
 })
-export class FieldWrapper implements FieldWrapperInterface {
-  @Element() hostElement!: HTMLIxFieldWrapperElement;
+export class FieldWrapper
+  extends Mixin(...DefaultMixins, ComponentIdMixin)
+  implements FieldWrapperInterface, ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxFieldWrapperElement;
 
   /**
    * Show text below the field component
@@ -91,7 +112,7 @@ export class FieldWrapper implements FieldWrapperInterface {
   private readonly slotRef = makeRef<HTMLDivElement>();
   private hasExplicitAriaLabel = false;
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.syncAriaLabel(true);
   }
 
@@ -119,7 +140,71 @@ export class FieldWrapper implements FieldWrapperInterface {
     });
   }
 
-  render() {
+  override componentWillLoad(): Promise<void> | void {
+    if (!this.hostElement.querySelector('.error-message-container')) {
+      const errorMessageContainer = document.createElement('span');
+      errorMessageContainer.classList.add('error-message-container');
+      errorMessageContainer.id = `${this.getHostElementId()}-errormessage`;
+      errorMessageContainer.hidden = true;
+      this.hostElement.appendChild(errorMessageContainer);
+    }
+
+    if (!this.hostElement.querySelector('.helper-message-container')) {
+      const helperMessageContainer = document.createElement('span');
+      helperMessageContainer.classList.add('helper-message-container');
+      helperMessageContainer.id = `${this.getHostElementId()}-helpermessage`;
+      helperMessageContainer.hidden = true;
+      this.hostElement.appendChild(helperMessageContainer);
+    }
+  }
+
+  override componentWillRender() {
+    const errorMessageElement = this.hostElement.querySelector(
+      `#${this.getHostElementId()}-errormessage`
+    );
+
+    const helperMessageElement = this.hostElement.querySelector(
+      `#${this.getHostElementId()}-helpermessage`
+    );
+
+    if (this.isInvalid && this.invalidText && errorMessageElement) {
+      errorMessageElement.textContent = this.invalidText;
+    }
+
+    if (helperMessageElement) {
+      helperMessageElement.textContent = resolveTextFromValidationState({
+        isInvalid: this.isInvalid,
+        invalidText: this.invalidText,
+        isWarning: this.isWarning,
+        warningText: this.warningText,
+        isInfo: this.isInfo,
+        infoText: this.infoText,
+        isValid: this.isValid,
+        validText: this.validText,
+        helperText: this.helperText,
+      });
+    }
+  }
+
+  /** @internal */
+  @Method()
+  getAriaErrorMessageElement(): Promise<HTMLElement | null> {
+    return Promise.resolve(
+      this.hostElement.querySelector(`#${this.getHostElementId()}-errormessage`)
+    );
+  }
+
+  /** @internal */
+  @Method()
+  getAriaHelperMessageElement(): Promise<HTMLElement | null> {
+    return Promise.resolve(
+      this.hostElement.querySelector(
+        `#${this.getHostElementId()}-helpermessage`
+      )
+    );
+  }
+
+  override render() {
     const textOptions = {
       invalidText: this.invalidText,
       isInvalid: this.isInvalid,
@@ -131,8 +216,16 @@ export class FieldWrapper implements FieldWrapperInterface {
       infoText: this.infoText,
       helperText: this.helperText,
     };
+
+    let additionalAriaAttributes = {};
+    if (this.isInvalid && this.invalidText) {
+      additionalAriaAttributes = {
+        role: 'alert',
+        'aria-live': 'polite',
+      };
+    }
     return (
-      <Host>
+      <Host {...additionalAriaAttributes}>
         {this.label && (
           <div class="field-top">
             <ix-field-label
