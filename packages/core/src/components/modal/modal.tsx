@@ -127,17 +127,15 @@ export class Modal {
   }
 
   private onMouseDown(event: MouseEvent) {
-    this.isMouseDownInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
-    );
+    this.isMouseDownInsideDialog =
+      this.isPointInsideDialog(event.clientX, event.clientY) ||
+      this.isTargetInsideModalContent(event);
   }
 
   private onMouseUp(event: MouseEvent) {
-    const isMouseUpInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
-    );
+    const isMouseUpInsideDialog =
+      this.isPointInsideDialog(event.clientX, event.clientY) ||
+      this.isTargetInsideModalContent(event);
 
     if (
       this.closeOnBackdropClick &&
@@ -153,6 +151,10 @@ export class Modal {
     return (
       x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
     );
+  }
+
+  private isTargetInsideModalContent(event: MouseEvent): boolean {
+    return event.target !== this.dialog;
   }
   /**
    * Show the dialog
