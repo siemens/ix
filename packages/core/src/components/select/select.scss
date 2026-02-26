@@ -16,10 +16,11 @@
 @use 'mixins/validation/form-component';
 
 :host {
-  display: inline-block;
+  display: block;
   position: relative;
   min-height: 2rem;
   height: auto;
+  width: 18rem;
   border-radius: var(--theme-input--border-radius);
 
   @include component.ix-component;
@@ -103,7 +104,8 @@
   .trigger {
     display: flex;
     align-items: center;
-    flex-grow: 1;
+    flex: 1 1 0;
+    min-width: 4rem;
     height: 100%;
   }
 
@@ -120,9 +122,7 @@
       align-items: center;
       flex-wrap: wrap;
       height: 100%;
-      max-height: 3.5rem;
       flex-grow: 1;
-      overflow-y: auto;
 
       > ix-filter-chip {
         margin: 0.1rem;
@@ -187,8 +187,6 @@
     @include text-truncation.ellipsis;
   }
 }
-
-
 
 @include form-component.host-valid;
 

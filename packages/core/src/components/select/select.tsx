@@ -836,7 +836,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private renderOverflowChip(overflowCount: number) {
     return (
-      <ix-filter-chip disabled={this.disabled} readonly={true} key="overflow">
+      <ix-filter-chip readonly={true} key="overflow">
         {`+${overflowCount}`}
       </ix-filter-chip>
     );
