@@ -1,5 +1,14 @@
 # @siemens/ix-aggrid
 
+## 4.0.2
+
+### Patch Changes
+
+- [#2389](https://github.com/siemens/ix/pull/2389) [`a773314`](https://github.com/siemens/ix/commit/a7733145460a90129a2896b1abdb9b892cf82dcc) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-aggrid** now properly uses `Siemens Sans` with `sans-serif` fallback.
+
+- Updated dependencies [[`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe), [`07501d6`](https://github.com/siemens/ix/commit/07501d6fb131bd228eadb865c4bd56149edb6e17), [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5), [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9), [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e), [`a5f8477`](https://github.com/siemens/ix/commit/a5f84772b3055503205547cdf04e3bb2484c70d0), [`3551db0`](https://github.com/siemens/ix/commit/3551db057e91abe2d5dac1db83034a654e0a062b), [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1)]:
+  - @siemens/ix@4.4.0
+
 ## 4.0.1
 
 ### Patch Changes

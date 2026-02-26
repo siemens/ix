@@ -1,5 +1,41 @@
 # @siemens/ix
 
+## 4.4.0
+
+### Minor Changes
+
+- [#2352](https://github.com/siemens/ix/pull/2352) [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9) Thanks [@danielleroux](https://github.com/danielleroux)! - If an icon is provided via import like `<IxIcon name={iconDocument}></IxIcon>` the fallback will now be resolved. Works only if https://github.com/siemens/ix-icons/pull/112 is merged and released
+
+### Patch Changes
+
+- [#2336](https://github.com/siemens/ix/pull/2336) [`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Trigger **validityStateChange** events everytime values change for **ix-input**, **ix-number-input**, **ix-textarea**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #2315 and #2323
+
+- [#2404](https://github.com/siemens/ix/pull/2404) [`07501d6`](https://github.com/siemens/ix/commit/07501d6fb131bd228eadb865c4bd56149edb6e17) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Keep user input if select items change in _ix-select_.
+
+  Fixes #1716
+
+- [#2259](https://github.com/siemens/ix/pull/2259) [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Make sure custom **ix-tree-item**s allow selection via mouse click.
+
+  Fixes #2098
+
+- [#2355](https://github.com/siemens/ix/pull/2355) [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add change event to **ix-input**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #1811
+
+- [#2408](https://github.com/siemens/ix/pull/2408) [`a5f8477`](https://github.com/siemens/ix/commit/a5f84772b3055503205547cdf04e3bb2484c70d0) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Reflect disabled state to DOM for **ix-group-item**.
+
+  Reflect disabled state to DOM for **ix-group-item**.
+
+  Fixes #2370
+
+- [#2377](https://github.com/siemens/ix/pull/2377) [`3551db0`](https://github.com/siemens/ix/commit/3551db057e91abe2d5dac1db83034a654e0a062b) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Submit forms with submit button element, only if button is accessible in light DOM to prevent error.
+
+  Fixes #2362
+
+- [#2375](https://github.com/siemens/ix/pull/2375) [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Enable keyboard interaction (toggle submenu) on **ix-menu-item** while NVDA screen reader is active.
+
 ## 4.3.0
 
 ### Minor Changes
