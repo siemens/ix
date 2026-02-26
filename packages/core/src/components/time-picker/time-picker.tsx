@@ -24,6 +24,7 @@ import { DateTime } from 'luxon';
 import { DefaultMixins } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
@@ -333,24 +334,29 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   override componentDidRender() {
-    if (this.isUnitFocused) {
-      const elementContainer = this.getElementContainer(
-        this.focusedUnit,
-        this.focusedValue
+    if (!this.isUnitFocused) {
+      return;
+    }
+    const elementContainer = this.getElementContainer(
+      this.focusedUnit,
+      this.focusedValue
+    );
+    const elementList = this.getElementList(this.focusedUnit);
+
+    if (!elementContainer) {
+      return;
+    }
+
+    if (hasKeyboardMode()) {
+      elementContainer.focus({ preventScroll: true });
+    }
+
+    if (!this.isElementVisible(elementContainer, elementList)) {
+      this.scrollElementIntoView(
+        elementContainer,
+        elementList,
+        this.focusScrollAlignment
       );
-      const elementList = this.getElementList(this.focusedUnit);
-
-      if (elementContainer) {
-        elementContainer.focus({ preventScroll: true });
-
-        if (!this.isElementVisible(elementContainer, elementList)) {
-          this.scrollElementIntoView(
-            elementContainer,
-            elementList,
-            this.focusScrollAlignment
-          );
-        }
-      }
     }
   }
 
