@@ -398,33 +398,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     );
   }
 
-  private async handleDatePickerKeyDown(event: KeyboardEvent) {
-    event.preventDefault();
-
-    if (!this.datepickerRef.current) {
-      return;
-    }
-
-    if (!(await this.datepickerRef.current.isCalendarDayFocused())) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'PageUp':
-        await this.datepickerRef.current.navigateCalendar(-1, event.shiftKey);
-        break;
-      case 'PageDown':
-        await this.datepickerRef.current.navigateCalendar(1, event.shiftKey);
-        break;
-      case 'Home':
-        await this.datepickerRef.current.focusFirstDayOfCurrentWeek();
-        break;
-      case 'End':
-        await this.datepickerRef.current.focusLastDayOfCurrentWeek();
-        break;
-    }
-  }
-
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -624,7 +597,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
-            onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
+            // onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

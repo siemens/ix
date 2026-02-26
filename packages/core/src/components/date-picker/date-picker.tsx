@@ -29,11 +29,11 @@ import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
-import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -276,13 +276,31 @@ export class DatePicker
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[] = [];
 
-  @OnListener<DatePicker>('keydown')
-  handleKeyUp(event: KeyboardEvent) {
+  onKeyDown(event: KeyboardEvent) {
     if (!this.isDayFocus) {
       return;
     }
 
     if (this.yearMonthSelectionDropdownRef.current?.show) {
+      return;
+    }
+
+    if (['PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+      switch (event.key) {
+        case 'PageUp':
+          this.navigateCalendar(-1, event.shiftKey);
+          break;
+        case 'PageDown':
+          this.navigateCalendar(1, event.shiftKey);
+          break;
+        case 'Home':
+          this.focusFirstDayOfCurrentWeek();
+          break;
+        case 'End':
+          this.focusLastDayOfCurrentWeek();
+          break;
+      }
+
       return;
     }
 
@@ -305,18 +323,21 @@ export class DatePicker
     }
 
     event.preventDefault();
+    this.setFocusedDay(_focusedDay);
+  }
 
-    if (_focusedDay > this.getDaysInCurrentMonth()) {
-      _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
+  private setFocusedDay(day: number = 0) {
+    if (day > this.getDaysInCurrentMonth()) {
+      day = day - this.getDaysInCurrentMonth();
       this.changeCalendarView(1);
       this.monthChangedFromFocus = true;
-    } else if (_focusedDay < 1) {
+    } else if (day < 1) {
       this.changeCalendarView(-1);
-      _focusedDay = _focusedDay + this.getDaysInCurrentMonth();
+      day = day + this.getDaysInCurrentMonth();
       this.monthChangedFromFocus = true;
     }
 
-    this.focusedDay = _focusedDay;
+    this.focusedDay = day;
   }
 
   private getDaysInCurrentMonth(): number {
@@ -900,7 +921,14 @@ export class DatePicker
 
   override render() {
     return (
-      <Host>
+      <Host
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
+        onFocusin={() => {
+          if (hasKeyboardMode()) {
+            this.changeFocusedDay();
+          }
+        }}
+      >
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">
             <ix-icon-button
