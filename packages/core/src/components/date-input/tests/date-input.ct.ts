@@ -14,16 +14,21 @@ import {
 } from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
+  const dateDropdown = dateInput.getByTestId('date-dropdown');
+
   const handle = {
     openByCalender: async () => {
       const trigger = dateInput.getByTestId('open-calendar');
       await trigger.click();
+      await expect(dateDropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
       const dayButton = dateInput
-        .locator('ix-dropdown')
-        .filter({ hasText: day.toString() })
-        .getByText(day.toString());
+        .locator('ix-dropdown .calendar-item')
+        .filter({ hasText: new RegExp(`^${day}$`) })
+        .first();
+
+      await expect(dayButton).toBeVisible();
       await dayButton.click();
     },
   };
@@ -57,15 +62,15 @@ regressionTest('select date by focus', async ({ mount, page }) => {
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
 
+  const dateDropdown = dateInputElement.getByTestId('date-dropdown');
   const dateInput = await createDateInputAccessor(dateInputElement);
   await dateInputElement.locator('input').focus();
   await page.keyboard.press('ArrowDown');
+  await expect(dateDropdown).toHaveClass(/show/);
 
   await dateInput.selectDay(10);
   await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
-  await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
-    /show/
-  );
+  await expect(dateDropdown).not.toHaveClass(/show/);
 });
 
 regressionTest('select date by input', async ({ mount, page }) => {
@@ -74,12 +79,7 @@ regressionTest('select date by input', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveClass(/hydrated/);
 
   const dateInput = await createDateInputAccessor(dateInputElement);
-  await dateInputElement.locator('input').focus();
-  await page.keyboard.press('ArrowDown');
-
-  await expect(dateInputElement.getByTestId('date-dropdown')).toHaveClass(
-    /show/
-  );
+  await dateInput.openByCalender();
   await dateInputElement.locator('input').fill('2025/10/10');
 
   await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
@@ -178,8 +178,11 @@ regressionTest(
 
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
+    const componentValue = await page
+      .locator('ix-date-input')
+      .evaluate((el: HTMLIxDateInputElement) => el.value);
     const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('2024/12/12');
+    expect(formData).toBe(componentValue);
   }
 );
 

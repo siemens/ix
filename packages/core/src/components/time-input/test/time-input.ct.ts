@@ -106,6 +106,9 @@ regressionTest.describe('time input tests', () => {
     async ({ page }) => {
       const input = page.locator('input');
       const fieldWrapper = page.locator('ix-field-wrapper');
+      const visibleInvalidText = fieldWrapper
+        .locator('ix-typography:visible')
+        .filter({ hasText: /is not valid/i });
       const dropdown = page.locator('ix-dropdown[data-testid="time-dropdown"]');
       const iconButton = page.locator(
         'ix-icon-button[data-testid="open-time-picker"]'
@@ -140,7 +143,7 @@ regressionTest.describe('time input tests', () => {
       await page.locator('ix-time-picker ix-button').click();
 
       await expect(input).not.toHaveClass(/is-invalid/);
-      await expect(fieldWrapper).not.toContainText('Time is not valid');
+      await expect(visibleInvalidText).toHaveCount(0);
     }
   );
 
