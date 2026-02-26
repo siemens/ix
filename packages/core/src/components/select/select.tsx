@@ -838,6 +838,25 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     );
   }
 
+  private renderOverflowChip(overflowCount: number) {
+    return (
+      <ix-filter-chip readonly={true} key="overflow">
+        {`+${overflowCount}`}
+      </ix-filter-chip>
+    );
+  }
+
+  private renderChips() {
+    const maxVisibleChips = 2;
+    const visibleItems = this.selectedItems.slice(0, maxVisibleChips);
+    const overflowCount = this.selectedItems.length - maxVisibleChips;
+
+    return [
+      ...visibleItems.map((item) => this.renderChip(item)),
+      overflowCount > 0 ? this.renderOverflowChip(overflowCount) : null,
+    ];
+  }
+
   @HookValidationLifecycle()
   onValidationChange({
     isInvalid,
@@ -930,7 +949,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   this.items.length !== 0 &&
                   (this.shouldDisplayAllChip()
                     ? this.renderAllChip()
-                    : this.selectedItems?.map((item) => this.renderChip(item)))}
+                    : this.renderChips())}
                 <div class="trigger">
                   <input
                     autocomplete="off"
