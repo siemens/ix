@@ -408,8 +408,8 @@ export class DatePicker
       : undefined;
 
     const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
-    this.startYear = year - 5;
-    this.endYear = year + 5;
+    this.startYear = year - 101;
+    this.endYear = year + 101;
 
     this.selectedMonth =
       (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;

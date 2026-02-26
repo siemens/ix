@@ -1830,7 +1830,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
         hideHeader: 'hide-header',
         textAlignment: 'text-alignment',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        ariaLabelTimeToggleButton: 'aria-label-time-toggle-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,

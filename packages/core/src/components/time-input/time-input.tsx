@@ -236,6 +236,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * ARIA label for the time picker toggle button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -429,6 +437,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -480,7 +489,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             variant="subtle-tertiary"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
-            aria-label="Toggle time picker"
+            aria-label={this.ariaLabelTimeToggleButton}
             aria-expanded={this.show}
           ></ix-icon-button>
         </SlotEnd>

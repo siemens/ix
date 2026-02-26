@@ -406,6 +406,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -451,13 +452,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            aria-hidden={this.ariaLabelCalendarButton}
             tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>

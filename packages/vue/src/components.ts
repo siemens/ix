@@ -1397,6 +1397,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'hideHeader',
   'textAlignment',
   'enableTopLayer',
+  'ariaLabelTimeToggleButton',
   'valueChange',
   'validityStateChange',
   'ixFocus',

@@ -3680,6 +3680,12 @@ export namespace Components {
      */
     interface IxTimeInput {
         /**
+          * ARIA label for the time picker toggle button Will be set as aria-label for the nested HTML button element
+          * @since 5.0.0
+          * @default 'Toggle time picker'
+         */
+        "ariaLabelTimeToggleButton"?: string;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -9999,6 +10005,12 @@ declare namespace LocalJSX {
      */
     interface IxTimeInput {
         /**
+          * ARIA label for the time picker toggle button Will be set as aria-label for the nested HTML button element
+          * @since 5.0.0
+          * @default 'Toggle time picker'
+         */
+        "ariaLabelTimeToggleButton"?: string;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -11548,6 +11560,7 @@ declare namespace LocalJSX {
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "ariaLabelTimeToggleButton": string;
     }
     interface IxTimePickerAttributes {
         "format": string;

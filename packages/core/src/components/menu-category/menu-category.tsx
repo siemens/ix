@@ -306,6 +306,7 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
+          aria-haspopup="true"
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
