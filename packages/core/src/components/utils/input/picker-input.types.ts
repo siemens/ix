@@ -74,19 +74,6 @@ export interface PickerContext {
   touched: boolean;
 }
 
-export interface CommonInputMethods {
-  focusInput: () => Promise<void>;
-  isTouched: () => Promise<boolean>;
-  syncValidationClasses: () => void;
-}
-
-export interface DropdownMethods {
-  openDropdown: () => Promise<void>;
-  closeDropdown: () => Promise<void>;
-  getEventConfig: () => EventConfig;
-  checkClassList: () => boolean;
-}
-
 export interface PickerInputMethods {
   eventConfig: EventConfig;
   handleInputKeyDown: (event: KeyboardEvent) => void;
@@ -104,30 +91,17 @@ export interface PickerInputMethods {
   onInputValidationChange: () => Promise<void>;
 }
 
-export interface PickerMethodsConfig<Component>
+export interface PickerMethodsConfig
   extends ValidationState,
     PickerEventState,
     PickerContext,
     ValidationSetters {
-  component: Component;
+  component: PickerComponent;
   setTouched: (touched: boolean) => void;
   suppressSubmitOnEnter: boolean;
   formInternals: ElementInternals;
   validityStateChange: EventEmitter<PickerInputValidityState>;
   invalidReason: string | undefined;
-  createInputMethods: (params: InputMethodsContext) => CommonInputMethods;
-  createDropdownMethods: (params: DropdownMethodsContext) => DropdownMethods;
-  createEventConfig: (params: EventConfig) => EventConfig;
-  createKeyDownHandler: (
-    suppressSubmitOnEnter: boolean,
-    formInternals: ElementInternals
-  ) => (event: KeyboardEvent) => void;
-  handleValidationLifecycle: (
-    suppressValidation: boolean,
-    shouldShowInvalid: boolean,
-    results: ValidationResults,
-    setters: ValidationSetters
-  ) => void;
 }
 
 export interface BasePickerState extends CommonInputAttributes {
@@ -176,8 +150,8 @@ export interface PickerRenderConfig extends BasePickerState {
   onShow?: (event: CustomEvent<boolean>) => void;
 }
 
-export interface CreatePickerMethodsContext<Component> {
-  component: Component;
+export interface CreatePickerMethodsContext {
+  component: PickerComponent;
 }
 
 export interface ValidationContext {
@@ -222,11 +196,6 @@ export interface EventConfig extends Omit<EventHandlers, 'handleInputKeyDown'> {
   openDropdown: () => void | Promise<void>;
   handleInputKeyDown?: (event: KeyboardEvent) => void;
   alwaysSetTouchedOnBlur?: boolean;
-}
-
-export interface InputMethodsContext extends ValidationContext {
-  inputElementRef: MakeRef<HTMLInputElement>;
-  syncValidationClasses: () => void;
 }
 
 export interface DropdownMethodsContext extends EventHandlers {

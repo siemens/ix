@@ -27,6 +27,7 @@ import {
 import { openDropdown, createValidityState } from './picker-input.util';
 import { makeRef } from '../make-ref';
 import type { PickerInputMethods } from '../input';
+import type { PickerComponent } from './picker-input.types';
 
 export class BasePickerInput {
   protected hostElement!: HTMLElement;
@@ -64,7 +65,7 @@ export class BasePickerInput {
     return createPickerMethods(
       createPickerMethodsContext(
         {
-          component: this,
+          component: this as unknown as PickerComponent,
         },
         openDropdown
       ),
