@@ -51,7 +51,7 @@
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.6.0",
     "@vitest/browser": "^3.2.4",
-    "eslint": "~8.21.0",
+    "eslint": "^9.39.3",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
     "happy-dom": "^20.4.0",
