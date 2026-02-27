@@ -1081,6 +1081,38 @@ test('clear button returns empty string in single mode', async ({
   expect(emittedValue).toBe('');
 });
 
+test('input does not clear when items added during search', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-select i18n-placeholder="Search in database...">
+        <ix-select-item value="1" label="Initial">Initial</ix-select-item>
+      </ix-select>
+    `);
+
+  const input = page.getByTestId('input');
+
+  await page.locator('[data-select-dropdown]').click();
+  await input.fill('test');
+  await expect(input).toHaveValue('test');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const newItem = document.createElement('ix-select-item');
+    newItem.setAttribute('value', 'test-result');
+    newItem.setAttribute('label', 'Test Result from API');
+    select?.appendChild(newItem);
+  });
+
+  await page.waitForTimeout(100);
+
+  await expect(input).toHaveValue('test');
+  await expect(
+    page.getByRole('button', { name: 'Test Result from API' })
+  ).toBeVisible();
+});
+
 test('required select prevents form submission when empty', async ({
   mount,
   page,
