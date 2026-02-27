@@ -35,7 +35,6 @@ import {
   shouldSuppressInternalValidation,
   watchValue,
   renderFieldWrapper,
-  handleValidationLifecycle,
   onInput,
   onClick,
   onFocus,
@@ -295,7 +294,7 @@ export class DateInput
     if (this.isInputInvalid) {
       this.from = null;
     } else {
-      this.watchValue();
+      this.syncFromValue();
     }
 
     this.updateFormInternalValue(this.value);
@@ -305,26 +304,18 @@ export class DateInput
     this.destroyObservers();
   }
 
+  private syncFromValue() {
+    this.from = this.value;
+  }
+
   @Watch('value')
   watchValue() {
-    this.from = this.value;
+    this.syncFromValue();
   }
 
   @HookValidationLifecycle()
   hookValidationLifecycle(results: ValidationResults) {
-    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
-
-    handleValidationLifecycle(
-      this.suppressValidation,
-      shouldShowInputInvalid,
-      results,
-      {
-        setIsInvalid: (value) => (this.isInvalid = value),
-        setIsInfo: (value) => (this.isInfo = value),
-        setIsValid: (value) => (this.isValid = value),
-        setIsWarning: (value) => (this.isWarning = value),
-      }
-    );
+    this.pickerMethods.hookValidationLifecycle(results);
   }
 
   /** @internal */

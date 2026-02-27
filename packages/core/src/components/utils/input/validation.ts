@@ -126,9 +126,10 @@ export function HookValidationLifecycle(options?: {
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
           const touched = await isTouched(host);
+          const shouldBeInvalid = !hasValue && touched;
 
           if (host.required) {
-            host.classList.toggle('ix-invalid--required', !hasValue && touched);
+            host.classList.toggle('ix-invalid--required', shouldBeInvalid);
           } else {
             host.classList.remove('ix-invalid--required');
           }

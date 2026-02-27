@@ -312,7 +312,7 @@ export class TimeInput
     if (this.isInputInvalid) {
       this.time = null;
     } else {
-      this.watchValue();
+      this.syncTimeValue();
     }
 
     this.updateFormInternalValue(this.value);
@@ -326,9 +326,13 @@ export class TimeInput
     this.destroyObservers();
   }
 
+  private syncTimeValue() {
+    this.time = this.value;
+  }
+
   @Watch('value')
   watchValue() {
-    this.time = this.value;
+    this.syncTimeValue();
   }
 
   @HookValidationLifecycle()

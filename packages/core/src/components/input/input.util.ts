@@ -76,6 +76,11 @@ export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    return;
+  }
+
   const validityState = input.validity;
   const currentValidityState = !comp.hostElement.classList.contains(
     'ix-invalid--validity-invalid'
@@ -95,11 +100,6 @@ export async function checkInternalValidity<T>(
   }
 
   if (comp.value === null || comp.value === undefined) {
-    return;
-  }
-
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
     return;
   }
 

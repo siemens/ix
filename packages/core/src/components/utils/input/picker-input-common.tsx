@@ -188,7 +188,8 @@ export function handleValidationLifecycle(
     return;
   }
 
-  setters.setIsInvalid(isInvalid || isInvalidByRequired || isInputInvalid);
+  const finalInvalid = isInvalid || isInvalidByRequired || isInputInvalid;
+  setters.setIsInvalid(finalInvalid);
   setters.setIsInfo(isInfo);
   setters.setIsValid(isValid);
   setters.setIsWarning(isWarning);
