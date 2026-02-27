@@ -123,7 +123,7 @@ export function HookValidationLifecycle(options?: {
           return;
         }
 
-        const validationElement = await host.getNativeInputElement();
+        const validationElement = await host.getNativeInputElement?.();
 
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
