@@ -199,7 +199,6 @@ export class CheckboxGroup
     hasAnyChecked: boolean;
     touched: boolean;
     formSubmissionAttempt: boolean;
-    invalidText: string | undefined;
     hostElement: HTMLElement;
     clearValidationState: () => void;
     updateValidationClasses: (
@@ -269,7 +268,6 @@ export class CheckboxGroup
       hasAnyChecked: this.hasAnyChecked(),
       touched: this.touched,
       formSubmissionAttempt: this.formSubmissionAttempt,
-      invalidText: this.invalidText,
       hostElement: this.hostElement,
       clearValidationState: this.clearValidationState.bind(this),
       updateValidationClasses: updateCheckboxValidationClasses,

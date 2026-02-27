@@ -308,7 +308,6 @@ export class RadiobuttonGroup
     hasAnyChecked: boolean;
     touched: boolean;
     formSubmissionAttempted: boolean;
-    invalidText: string | undefined;
     hostElement: HTMLElement;
     clearValidationState: () => void;
     updateValidationClasses: (
@@ -383,7 +382,6 @@ export class RadiobuttonGroup
       hasAnyChecked: this.hasAnyChecked(),
       touched: this.touched,
       formSubmissionAttempted: this.formSubmissionAttempted,
-      invalidText: this.invalidText,
       hostElement: this.hostElement,
       clearValidationState: this.clearValidationState.bind(this),
       updateValidationClasses: updateRadioValidationClasses,
