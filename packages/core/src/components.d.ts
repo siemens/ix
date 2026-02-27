@@ -6039,6 +6039,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface IxActionCard {
         /**
           * ARIA label for the card
@@ -6623,6 +6625,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Indeterminate state of the checkbox component
           * @default false
          */
@@ -6992,6 +6998,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -8029,6 +8039,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the text field.
          */
         "helperText"?: string;
@@ -8724,6 +8738,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the input field
          */
         "helperText"?: string;
@@ -9140,6 +9158,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label for the radio component
          */
         "label"?: string;
@@ -9272,6 +9294,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Helper text for the select component
          */
@@ -9409,6 +9435,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean | string;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Show text below the field component
           * @since 4.3.0
          */
@@ -9442,6 +9472,10 @@ declare namespace LocalJSX {
           * @default 0
          */
         "min"?: number;
+        /**
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
         /**
           * Will emit the value when it changes
          */
@@ -9661,6 +9695,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the textarea field.
          */
         "helperText"?: string;
@@ -9781,6 +9819,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
@@ -10087,6 +10129,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Hide `on` and `off` text
           * @default false
@@ -10437,285 +10483,1261 @@ declare namespace LocalJSX {
          */
         "vertical"?: boolean;
     }
+
+    interface IxActionCardAttributes {
+        "variant": ActionCardVariant;
+        "icon": string | undefined;
+        "ariaLabelIcon": string;
+        "heading": string;
+        "subheading": string;
+        "selected": boolean;
+        "ariaLabelCard": string;
+        "passive": boolean;
+    }
+    interface IxApplicationAttributes {
+        "theme": IxTheme;
+        "themeSystemAppearance": boolean;
+        "forceBreakpoint": Breakpoint | undefined;
+    }
+    interface IxApplicationHeaderAttributes {
+        "name": string;
+        "nameSuffix": string;
+        "companyLogo": string;
+        "companyLogoAlt": string;
+        "appIcon": string;
+        "appIconAlt": string;
+        "appIconOutline": boolean;
+        "hideBottomBorder": boolean;
+        "showMenu": boolean;
+        "ariaLabelMenuExpandIconButton": string;
+        "ariaLabelAppSwitchIconButton": string;
+        "ariaLabelMoreMenuIconButton": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxAvatarAttributes {
+        "a11yLabel": string;
+        "image": string;
+        "initials": string;
+        "username": string;
+        "extra": string;
+        "tooltipText": string;
+        "ariaLabelTooltip": string;
+    }
+    interface IxBlindAttributes {
+        "collapsed": boolean;
+        "label": string;
+        "sublabel": string;
+        "icon": string;
+        "variant": BlindVariant;
+    }
+    interface IxBreadcrumbAttributes {
+        "visibleItemCount": number;
+        "subtle": boolean;
+        "ariaLabelPreviousButton": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxBreadcrumbItemAttributes {
+        "ariaLabelButton": string;
+        "label": string;
+        "icon": string;
+        "href": string;
+        "target": AnchorTarget;
+        "rel": string;
+        "subtle": boolean;
+        "invisible": boolean;
+        "hideChevron": boolean;
+        "isDropdownTrigger": boolean;
+    }
+    interface IxButtonAttributes {
+        "ariaLabelButton": string;
+        "variant": ButtonVariant;
+        "disabled": boolean;
+        "type": 'button' | 'submit';
+        "loading": boolean;
+        "form": string;
+        "icon": string;
+        "iconRight": string;
+        "alignment": 'center' | 'start';
+        "iconSize": '12' | '16' | '24';
+        "href": string;
+        "target": AnchorTarget;
+        "rel": string;
+    }
+    interface IxCardAttributes {
+        "variant": CardVariant;
+        "selected": boolean;
+        "passive": boolean;
+    }
+    interface IxCardAccordionAttributes {
+        "ariaLabelExpandButton": string;
+        "collapse": boolean;
+        "variant": CardAccordionVariant;
+    }
+    interface IxCardListAttributes {
+        "ariaLabelExpandButton": string;
+        "label": string;
+        "collapse": boolean;
+        "listStyle": 'stack' | 'scroll';
+        "maxVisibleCards": number;
+        "showAllCount": number;
+        "suppressOverflowHandling": boolean;
+        "hideShowAll": boolean;
+        "i18nShowAll": string;
+        "i18nMoreCards": string;
+    }
+    interface IxCategoryFilterAttributes {
+        "disabled": boolean;
+        "readonly": boolean;
+        "placeholder": string;
+        "icon": string;
+        "hideIcon": boolean;
+        "staticOperator": LogicalFilterOperator;
+        "uniqueCategories": boolean;
+        "labelCategories": string;
+        "i18nPlainText": string;
+        "ariaLabelResetButton": string;
+        "ariaLabelOperatorButton": string;
+        "ariaLabelFilterInput": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxCheckboxAttributes {
+        "name": string;
+        "value": string;
+        "label": string;
+        "checked": boolean;
+        "disabled": boolean;
+        "indeterminate": boolean;
+        "required": boolean;
+    }
+    interface IxCheckboxGroupAttributes {
+        "helperText": string;
+        "label": string;
+        "direction": 'row' | 'column';
+        "invalidText": string;
+        "infoText": string;
+        "validText": string;
+        "warningText": string;
+        "showTextAsTooltip": boolean;
+        "required": boolean;
+    }
+    interface IxChipAttributes {
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
+        "inactive": boolean;
+        "closable": boolean;
+        "icon": string;
+        "background": string | undefined;
+        "chipColor": string | undefined;
+        "outline": boolean;
+        "tooltipText": string;
+        "centerContent": boolean;
+        "ariaLabelCloseButton": string;
+    }
+    interface IxColAttributes {
+        "size": ColumnSize;
+        "sizeSm": ColumnSize;
+        "sizeMd": ColumnSize;
+        "sizeLg": ColumnSize;
+    }
+    interface IxContentHeaderAttributes {
+        "variant": ContentHeaderVariant;
+        "headerTitle": string;
+        "headerSubtitle": string | undefined;
+        "hasBackButton": boolean;
+    }
+    interface IxCssGridItemAttributes {
+        "itemName": string;
+    }
+    interface IxCustomFieldAttributes {
+        "required": boolean;
+        "label": string;
+        "helperText": string;
+        "infoText": string;
+        "warningText": string;
+        "invalidText": string;
+        "validText": string;
+        "showTextAsTooltip": boolean;
+    }
+    interface IxDateDropdownAttributes {
+        "disabled": boolean;
+        "format": string;
+        "singleSelection": boolean;
+        "from": string;
+        "to": string;
+        "minDate": string;
+        "maxDate": string;
+        "dateRangeId": string;
+        "variant": ButtonVariant;
+        "loading": boolean;
+        "showWeekNumbers": boolean;
+        "ariaLabelDropdownButton": string;
+        "customRangeDisabled": boolean;
+        "locale": string;
+        "weekStartIndex": number;
+        "i18nCustomItem": string;
+        "i18nDone": string;
+        "i18nNoRange": string;
+        "today": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxDateInputAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "minDate": string;
+        "maxDate": string;
+        "locale": string;
+        "format": string;
+        "required": boolean;
+        "helperText": string;
+        "label": string;
+        "ariaLabelCalendarButton": string;
+        "invalidText": string;
+        "readonly": boolean;
+        "disabled": boolean;
+        "infoText": string;
+        "warningText": string;
+        "validText": string;
+        "showTextAsTooltip": boolean;
+        "i18nErrorDateUnparsable": string;
+        "showWeekNumbers": boolean;
+        "weekStartIndex": number;
+        "ariaLabelPreviousMonthButton": string;
+        "ariaLabelNextMonthButton": string;
+        "suppressSubmitOnEnter": boolean;
+        "textAlignment": 'start' | 'end';
+        "enableTopLayer": boolean;
+    }
+    interface IxDatePickerAttributes {
+        "format": string;
+        "singleSelection": boolean;
+        "corners": DateTimeCardCorners;
+        "from": string | undefined;
+        "to": string | undefined;
+        "minDate": string;
+        "maxDate": string;
+        "i18nDone": string;
+        "ariaLabelPreviousMonthButton": string;
+        "ariaLabelNextMonthButton": string;
+        "weekStartIndex": number;
+        "locale": string;
+        "showWeekNumbers": boolean;
+        "embedded": boolean;
+        "today": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxDateTimeCardAttributes {
+        "embedded": boolean;
+        "timePickerAppearance": boolean;
+        "hideHeader": boolean;
+        "hasFooter": boolean;
+        "corners": DateTimeCardCorners;
+    }
+    interface IxDatetimePickerAttributes {
+        "singleSelection": boolean;
+        "minDate": string;
+        "maxDate": string;
+        "dateFormat": string;
+        "timeFormat": string;
+        "from": string;
+        "to": string;
+        "time": string;
+        "showTimeReference": boolean;
+        "timeReference": 'AM' | 'PM';
+        "i18nDone": string;
+        "i18nTime": string;
+        "ariaLabelPreviousMonthButton": string;
+        "ariaLabelNextMonthButton": string;
+        "weekStartIndex": number;
+        "locale": string;
+        "showWeekNumbers": boolean;
+    }
+    interface IxDrawerAttributes {
+        "show": boolean;
+        "closeOnClickOutside": boolean;
+        "fullHeight": boolean;
+        "minWidth": number;
+        "maxWidth": number;
+        "width": string;
+        "ariaLabelCloseButton": string;
+    }
+    interface IxDropdownAttributes {
+        "suppressAutomaticPlacement": boolean;
+        "show": boolean;
+        "trigger": ElementReference;
+        "anchor": ElementReference;
+        "closeBehavior": string;
+        "placement": AlignedPlacement;
+        "positioningStrategy": 'absolute' | 'fixed';
+        "header": string;
+        "discoverAllSubmenus": boolean;
+        "ignoreRelatedSubmenu": boolean;
+        "suppressOverflowBehavior": boolean;
+        "enableTopLayer": boolean;
+    }
+    interface IxDropdownButtonAttributes {
+        "variant": DropdownButtonVariant;
+        "disabled": boolean;
+        "label": string;
+        "icon": string;
+        "closeBehavior": string;
+        "placement": AlignedPlacement;
+        "ariaLabelDropdownButton": string;
+        "enableTopLayer": boolean;
+    }
+    interface IxDropdownHeaderAttributes {
+        "label": string;
+    }
+    interface IxDropdownItemAttributes {
+        "label": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "ariaLabelButton": string;
+        "hover": boolean;
+        "disabled": boolean;
+        "checked": boolean;
+        "isSubMenu": boolean;
+        "suppressChecked": boolean;
+    }
+    interface IxEmptyStateAttributes {
+        "layout": EmptyStateLayout;
+        "icon": string;
+        "header": string;
+        "subHeader": string;
+        "action": string;
+        "ariaLabelEmptyStateIcon": string;
+    }
+    interface IxEventListAttributes {
+        "itemHeight": string;
+        "compact": boolean;
+        "animated": boolean;
+        "chevron": boolean;
+    }
+    interface IxEventListItemAttributes {
+        "variant": 'outline' | 'filled';
+        "itemColor": string;
+        "selected": boolean;
+        "disabled": boolean;
+        "chevron": boolean;
+    }
+    interface IxExpandingSearchAttributes {
+        "icon": string;
+        "placeholder": string;
+        "value": string;
+        "fullWidth": boolean;
+        "variant": ButtonVariant;
+        "ariaLabelSearchIconButton": string;
+        "ariaLabelClearIconButton": string;
+        "ariaLabelSearchInput": string;
+    }
+    interface IxFieldLabelAttributes {
+        "required": boolean;
+        "htmlFor": string;
+        "isInvalid": boolean;
+    }
+    interface IxFieldWrapperAttributes {
+        "helperText": string;
+        "label": string;
+        "invalidText": string;
+        "validText": string;
+        "infoText": string;
+        "warningText": string;
+        "isInvalid": boolean;
+        "isValid": boolean;
+        "isInfo": boolean;
+        "isWarning": boolean;
+        "showTextAsTooltip": boolean;
+        "required": boolean;
+        "htmlForLabel": string;
+    }
+    interface IxFilterChipAttributes {
+        "disabled": boolean;
+        "readonly": boolean;
+        "ariaLabelCloseIconButton": string;
+    }
+    interface IxFlipTileAttributes {
+        "variant": FlipTileVariant;
+        "height": string;
+        "width": string;
+        "index": number;
+        "ariaLabelEyeIconButton": string;
+    }
+    interface IxFlipTileContentAttributes {
+        "contentVisible": boolean;
+    }
+    interface IxGroupAttributes {
+        "suppressHeaderSelection": boolean;
+        "header": string;
+        "subHeader": string;
+        "expanded": boolean;
+        "selected": boolean;
+        "index": number;
+        "expandOnHeaderClick": boolean;
+    }
+    interface IxGroupItemAttributes {
+        "icon": string;
+        "ariaLabelIcon": string;
+        "text": string;
+        "secondaryText": string;
+        "suppressSelection": boolean;
+        "groupFooter": boolean;
+        "selected": boolean;
+        "disabled": boolean;
+        "index": number;
+    }
+    interface IxHelperTextAttributes {
+        "htmlFor": string;
+        "helperText": string;
+        "invalidText": string;
+        "validText": string;
+        "infoText": string;
+        "warningText": string;
+    }
+    interface IxIconButtonAttributes {
+        "a11yLabel": string;
+        "variant": IconButtonVariant;
+        "oval": boolean;
+        "icon": string;
+        "size": '24' | '16' | '12';
+        "iconColor": string;
+        "disabled": boolean;
+        "type": 'button' | 'submit';
+        "loading": boolean;
+    }
+    interface IxIconToggleButtonAttributes {
+        "variant": ButtonVariant;
+        "outline": boolean;
+        "ghost": boolean;
+        "icon": string;
+        "oval": boolean;
+        "pressed": boolean;
+        "size": '24' | '16' | '12';
+        "disabled": boolean;
+        "loading": boolean;
+        "ariaLabelIconButton": string;
+    }
+    interface IxInputAttributes {
+        "type": 'text' | 'email' | 'password' | 'tel' | 'url';
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "required": boolean;
+        "disabled": boolean;
+        "readonly": boolean;
+        "helperText": string;
+        "infoText": string;
+        "showTextAsTooltip": boolean;
+        "validText": string;
+        "warningText": string;
+        "label": string;
+        "invalidText": string;
+        "pattern": string;
+        "maxLength": number;
+        "minLength": number;
+        "allowedCharactersPattern": string;
+        "suppressSubmitOnEnter": boolean;
+        "textAlignment": 'start' | 'end';
+    }
+    interface IxKeyValueAttributes {
+        "icon": string;
+        "ariaLabelIcon": string;
+        "label": string;
+        "labelPosition": KeyValueLabelPosition;
+        "value": string;
+    }
+    interface IxKeyValueListAttributes {
+        "striped": boolean;
+    }
+    interface IxKpiAttributes {
+        "label": string;
+        "ariaLabelAlarmIcon": string;
+        "ariaLabelWarningIcon": string;
+        "value": string;
+        "unit": string;
+        "state": 'neutral' | 'warning' | 'alarm';
+        "orientation": 'horizontal' | 'vertical';
+    }
+    interface IxLayoutGridAttributes {
+        "noMargin": boolean;
+        "gap": '8' | '12' | '16' | '24';
+        "columns": number;
+    }
+    interface IxLinkButtonAttributes {
+        "disabled": boolean;
+        "url": string;
+        "target": '_self' | '_blank' | '_parent' | '_top';
+    }
+    interface IxMenuAttributes {
+        "showSettings": boolean;
+        "showAbout": boolean;
+        "enableToggleTheme": boolean;
+        "enableMapExpand": boolean;
+        "applicationName": string;
+        "applicationDescription": string;
+        "i18nExpandSidebar": string;
+        "expand": boolean;
+        "startExpanded": boolean;
+        "pinned": boolean;
+        "i18nLegal": string;
+        "i18nSettings": string;
+        "i18nToggleTheme": string;
+        "i18nExpand": string;
+        "i18nCollapse": string;
+    }
+    interface IxMenuAboutAttributes {
+        "activeTabLabel": string;
+        "label": string;
+        "ariaLabelCloseButton": string;
+        "show": boolean;
+    }
+    interface IxMenuAboutItemAttributes {
+        "label": string;
+    }
+    interface IxMenuAboutNewsAttributes {
+        "show": boolean;
+        "label": string;
+        "i18nShowMore": string;
+        "aboutItemLabel": string;
+        "expanded": boolean;
+    }
+    interface IxMenuAvatarAttributes {
+        "top": string;
+        "bottom": string;
+        "image": string;
+        "initials": string;
+        "tooltipText": string;
+        "ariaLabelTooltip": string;
+        "i18nLogout": string;
+        "hideLogoutButton": boolean;
+        "enableTopLayer": boolean;
+    }
+    interface IxMenuAvatarItemAttributes {
+        "icon": string;
+        "label": string;
+    }
+    interface IxMenuCategoryAttributes {
+        "label": string;
+        "icon": string;
+        "notifications": number;
+        "tooltipText": string;
+    }
+    interface IxMenuExpandIconAttributes {
+        "expanded": boolean;
+        "breakpoint": Breakpoint;
+        "pinned": boolean;
+        "ixAriaLabel": string;
+    }
+    interface IxMenuItemAttributes {
+        "label": string;
+        "home": boolean;
+        "bottom": boolean;
+        "icon": string;
+        "notifications": number;
+        "active": boolean;
+        "disabled": boolean;
+        "tooltipText": string;
+        "href": string;
+        "target": AnchorTarget;
+        "rel": string;
+        "isCategory": boolean;
+    }
+    interface IxMenuSettingsAttributes {
+        "activeTabLabel": string;
+        "label": string;
+        "ariaLabelCloseButton": string;
+        "show": boolean;
+    }
+    interface IxMenuSettingsItemAttributes {
+        "label": string;
+    }
+    interface IxMessageBarAttributes {
+        "type": | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
+        "persistent": boolean;
+    }
+    interface IxModalAttributes {
+        "size": IxModalSize;
+        "disableAnimation": boolean;
+        "hideBackdrop": boolean;
+        "closeOnBackdropClick": boolean;
+        "centered": boolean;
+        "disableEscapeClose": boolean;
+    }
+    interface IxModalHeaderAttributes {
+        "hideClose": boolean;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "ariaLabelCloseIconButton": string;
+        "iconColor": string;
+    }
+    interface IxNumberInputAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": number;
+        "required": boolean;
+        "disabled": boolean;
+        "readonly": boolean;
+        "helperText": string;
+        "infoText": string;
+        "showTextAsTooltip": boolean;
+        "validText": string;
+        "warningText": string;
+        "label": string;
+        "invalidText": string;
+        "pattern": string;
+        "min": string;
+        "max": string;
+        "allowedCharactersPattern": string;
+        "showStepperButtons": boolean;
+        "step": string;
+        "suppressSubmitOnEnter": boolean;
+        "textAlignment": 'start' | 'end';
+        "allowEmptyValueChange": boolean;
+    }
+    interface IxPaginationAttributes {
+        "advanced": boolean;
+        "itemCount": number;
+        "hideItemCount": boolean;
+        "count": number;
+        "selectedPage": number;
+        "i18nPage": string;
+        "i18nOf": string;
+        "i18nItems": string;
+        "ariaLabelChevronLeftIconButton": string;
+        "ariaLabelChevronRightIconButton": string;
+        "ariaLabelPageSelection": string;
+    }
+    interface IxPaneAttributes {
+        "heading": string;
+        "variant": 'floating' | 'inline';
+        "hideOnCollapse": boolean;
+        "size": | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%';
+        "borderless": boolean;
+        "expanded": boolean;
+        "composition": Composition;
+        "icon": string;
+        "closeOnClickOutside": boolean;
+        "ariaLabelIcon": string;
+        "ariaLabelCollapseCloseButton": string;
+        "ignoreLayoutSettings": boolean;
+        "isMobile": boolean;
+    }
+    interface IxPaneLayoutAttributes {
+        "layout": 'full-vertical' | 'full-horizontal';
+        "variant": 'floating' | 'inline';
+        "borderless": boolean;
+    }
+    interface IxPillAttributes {
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
+        "outline": boolean;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "background": string | undefined;
+        "pillColor": string | undefined;
+        "alignLeft": boolean;
+        "tooltipText": string;
+    }
+    interface IxProgressIndicatorAttributes {
+        "type": 'linear' | 'circular';
+        "size": ProgressIndicatorSize;
+        "value": number;
+        "min": number;
+        "max": number;
+        "status": ProgressIndicatorStatus;
+        "label": string;
+        "helperText": string;
+        "textAlignment": 'left' | 'center' | 'right';
+        "showTextAsTooltip": boolean;
+    }
+    interface IxPushCardAttributes {
+        "icon": string;
+        "ariaLabelIcon": string;
+        "notification": string;
+        "heading": string;
+        "subheading": string;
+        "variant": PushCardVariant;
+        "expanded": boolean;
+        "passive": boolean;
+    }
+    interface IxRadioAttributes {
+        "name": string;
+        "value": string;
+        "label": string;
+        "disabled": boolean;
+        "checked": boolean;
+        "required": boolean;
+    }
+    interface IxRadioGroupAttributes {
+        "helperText": string;
+        "label": string;
+        "value": string;
+        "invalidText": string;
+        "infoText": string;
+        "warningText": string;
+        "validText": string;
+        "showTextAsTooltip": boolean;
+        "direction": 'column' | 'row';
+        "required": boolean;
+    }
+    interface IxSelectAttributes {
+        "name": string;
+        "required": boolean;
+        "label": string;
+        "ariaLabelChevronDownIconButton": string;
+        "ariaLabelClearIconButton": string;
+        "warningText": string;
+        "infoText": string;
+        "invalidText": string;
+        "validText": string;
+        "helperText": string;
+        "showTextAsTooltip": boolean;
+        "value": string | string[];
+        "allowClear": boolean;
+        "mode": 'single' | 'multiple';
+        "editable": boolean;
+        "disabled": boolean;
+        "readonly": boolean;
+        "i18nPlaceholder": string;
+        "i18nPlaceholderEditable": string;
+        "i18nSelectListHeader": string;
+        "i18nNoMatches": string;
+        "i18nAllSelected": string;
+        "hideListHeader": boolean;
+        "dropdownWidth": string;
+        "dropdownMaxWidth": string;
+        "collapseMultipleSelection": boolean;
+        "enableTopLayer": boolean;
+    }
+    interface IxSelectItemAttributes {
+        "label": string;
+        "value": string;
+        "selected": boolean;
+        "hover": boolean;
+    }
+    interface IxSliderAttributes {
+        "helperText": string;
+        "label": string;
+        "invalidText": string;
+        "infoText": string;
+        "warningText": string;
+        "validText": string;
+        "showTextAsTooltip": boolean;
+        "step": number;
+        "min": number;
+        "max": number;
+        "value": number;
+        "trace": boolean;
+        "traceReference": number;
+        "disabled": boolean;
+        "error": string;
+    }
+    interface IxSpinnerAttributes {
+        "variant": 'primary' | 'secondary';
+        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "hideTrack": boolean;
+    }
+    interface IxSplitButtonAttributes {
+        "variant": SplitButtonVariant;
+        "closeBehavior": string;
+        "label": string;
+        "ariaLabelButton": string;
+        "icon": string;
+        "splitIcon": string;
+        "ariaLabelSplitIconButton": string;
+        "disabled": boolean;
+        "disableButton": boolean;
+        "disableDropdownButton": boolean;
+        "placement": AlignedPlacement;
+        "enableTopLayer": boolean;
+    }
+    interface IxTabItemAttributes {
+        "selected": boolean;
+        "disabled": boolean;
+        "small": boolean;
+        "icon": boolean;
+        "rounded": boolean;
+        "counter": number;
+        "layout": 'auto' | 'stretched';
+        "placement": 'bottom' | 'top';
+    }
+    interface IxTabsAttributes {
+        "small": boolean;
+        "rounded": boolean;
+        "selected": number;
+        "layout": 'auto' | 'stretched';
+        "placement": 'bottom' | 'top';
+        "ariaLabelChevronLeftIconButton": string;
+        "ariaLabelChevronRightIconButton": string;
+    }
+    interface IxTextareaAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "required": boolean;
+        "disabled": boolean;
+        "readonly": boolean;
+        "helperText": string;
+        "infoText": string;
+        "showTextAsTooltip": boolean;
+        "validText": string;
+        "warningText": string;
+        "label": string;
+        "invalidText": string;
+        "textareaHeight": string;
+        "textareaWidth": string;
+        "textareaRows": number;
+        "textareaCols": number;
+        "resizeBehavior": TextareaResizeBehavior;
+        "maxLength": number;
+        "minLength": number;
+    }
+    interface IxTileAttributes {
+        "size": 'small' | 'medium' | 'big';
+    }
+    interface IxTimeInputAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "format": string;
+        "required": boolean;
+        "helperText": string;
+        "label": string;
+        "invalidText": string;
+        "readonly": boolean;
+        "disabled": boolean;
+        "infoText": string;
+        "warningText": string;
+        "validText": string;
+        "showTextAsTooltip": boolean;
+        "i18nErrorTimeUnparsable": string;
+        "hourInterval": number;
+        "minuteInterval": number;
+        "secondInterval": number;
+        "millisecondInterval": number;
+        "i18nSelectTime": string;
+        "i18nTime": string;
+        "i18nHourColumnHeader": string;
+        "i18nMinuteColumnHeader": string;
+        "i18nSecondColumnHeader": string;
+        "i18nMillisecondColumnHeader": string;
+        "suppressSubmitOnEnter": boolean;
+        "hideHeader": boolean;
+        "textAlignment": 'start' | 'end';
+        "enableTopLayer": boolean;
+    }
+    interface IxTimePickerAttributes {
+        "format": string;
+        "corners": TimePickerCorners;
+        "embedded": boolean;
+        "dateTimePickerAppearance": boolean;
+        "hideHeader": boolean;
+        "hourInterval": number;
+        "minuteInterval": number;
+        "secondInterval": number;
+        "millisecondInterval": number;
+        "time": string;
+        "i18nConfirmTime": string;
+        "i18nHeader": string;
+        "i18nHourColumnHeader": string;
+        "i18nMinuteColumnHeader": string;
+        "i18nSecondColumnHeader": string;
+        "i18nMillisecondColumnHeader": string;
+    }
+    interface IxToastAttributes {
+        "type": ToastType;
+        "toastTitle": string;
+        "autoCloseDelay": number;
+        "preventAutoClose": boolean;
+        "icon": string;
+        "iconColor": string;
+        "hideIcon": boolean;
+        "ariaLabelCloseIconButton": string;
+    }
+    interface IxToastContainerAttributes {
+        "containerId": string;
+        "containerClass": string;
+        "position": 'bottom-right' | 'top-right';
+    }
+    interface IxToggleAttributes {
+        "name": string;
+        "value": string;
+        "checked": boolean;
+        "disabled": boolean;
+        "indeterminate": boolean;
+        "textOn": string;
+        "textOff": string;
+        "textIndeterminate": string;
+        "hideText": boolean;
+        "required": boolean;
+    }
+    interface IxToggleButtonAttributes {
+        "variant": ToggleButtonVariant;
+        "disabled": boolean;
+        "loading": boolean;
+        "icon": string;
+        "iconRight": string;
+        "pressed": boolean;
+        "ariaLabelButton": string;
+    }
+    interface IxTooltipAttributes {
+        "for": ElementReference | ElementReference[];
+        "titleContent": string;
+        "interactive": boolean;
+        "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showDelay": number;
+        "hideDelay": number;
+        "animationFrame": boolean;
+    }
+    interface IxTreeAttributes {
+        "root": string;
+        "toggleOnItemClick": boolean;
+    }
+    interface IxTreeItemAttributes {
+        "text": string;
+        "hasChildren": boolean;
+        "ariaLabelChevronIcon": string;
+    }
+    interface IxTypographyAttributes {
+        "format": TypographyFormat;
+        "textColor": TypographyColors;
+        "bold": boolean;
+        "textDecoration": TextDecoration;
+    }
+    interface IxUploadAttributes {
+        "accept": string;
+        "multiple": boolean;
+        "multiline": boolean;
+        "disabled": boolean;
+        "state": UploadFileState;
+        "selectFileText": string;
+        "loadingText": string;
+        "uploadFailedText": string;
+        "uploadSuccessText": string;
+        "i18nUploadFile": string;
+        "i18nUploadDisabled": string;
+    }
+    interface IxValidationTooltipAttributes {
+        "message": string;
+        "placement": Side;
+        "suppressAutomaticPlacement": boolean;
+    }
+    interface IxWorkflowStepAttributes {
+        "vertical": boolean;
+        "disabled": boolean;
+        "status": 'open' | 'success' | 'done' | 'warning' | 'error';
+        "clickable": boolean;
+        "selected": boolean;
+        "position": 'first' | 'last' | 'single' | 'undefined';
+    }
+    interface IxWorkflowStepsAttributes {
+        "vertical": boolean;
+        "clickable": boolean;
+        "selectedIndex": number;
+    }
+
     interface IntrinsicElements {
-        "ix-action-card": IxActionCard;
-        "ix-application": IxApplication;
-        "ix-application-header": IxApplicationHeader;
+        "ix-action-card": Omit<IxActionCard, keyof IxActionCardAttributes> & { [K in keyof IxActionCard & keyof IxActionCardAttributes]?: IxActionCard[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `attr:${K}`]?: IxActionCardAttributes[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `prop:${K}`]?: IxActionCard[K] };
+        "ix-application": Omit<IxApplication, keyof IxApplicationAttributes> & { [K in keyof IxApplication & keyof IxApplicationAttributes]?: IxApplication[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `attr:${K}`]?: IxApplicationAttributes[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `prop:${K}`]?: IxApplication[K] };
+        "ix-application-header": Omit<IxApplicationHeader, keyof IxApplicationHeaderAttributes> & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes]?: IxApplicationHeader[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `attr:${K}`]?: IxApplicationHeaderAttributes[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `prop:${K}`]?: IxApplicationHeader[K] };
         "ix-application-sidebar": IxApplicationSidebar;
         "ix-application-switch-modal": IxApplicationSwitchModal;
-        "ix-avatar": IxAvatar;
-        "ix-blind": IxBlind;
-        "ix-breadcrumb": IxBreadcrumb;
-        "ix-breadcrumb-item": IxBreadcrumbItem;
-        "ix-button": IxButton;
-        "ix-card": IxCard;
-        "ix-card-accordion": IxCardAccordion;
+        "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
+        "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
+        "ix-breadcrumb": Omit<IxBreadcrumb, keyof IxBreadcrumbAttributes> & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes]?: IxBreadcrumb[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `attr:${K}`]?: IxBreadcrumbAttributes[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `prop:${K}`]?: IxBreadcrumb[K] };
+        "ix-breadcrumb-item": Omit<IxBreadcrumbItem, keyof IxBreadcrumbItemAttributes> & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes]?: IxBreadcrumbItem[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `attr:${K}`]?: IxBreadcrumbItemAttributes[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `prop:${K}`]?: IxBreadcrumbItem[K] };
+        "ix-button": Omit<IxButton, keyof IxButtonAttributes> & { [K in keyof IxButton & keyof IxButtonAttributes]?: IxButton[K] } & { [K in keyof IxButton & keyof IxButtonAttributes as `attr:${K}`]?: IxButtonAttributes[K] } & { [K in keyof IxButton & keyof IxButtonAttributes as `prop:${K}`]?: IxButton[K] };
+        "ix-card": Omit<IxCard, keyof IxCardAttributes> & { [K in keyof IxCard & keyof IxCardAttributes]?: IxCard[K] } & { [K in keyof IxCard & keyof IxCardAttributes as `attr:${K}`]?: IxCardAttributes[K] } & { [K in keyof IxCard & keyof IxCardAttributes as `prop:${K}`]?: IxCard[K] };
+        "ix-card-accordion": Omit<IxCardAccordion, keyof IxCardAccordionAttributes> & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes]?: IxCardAccordion[K] } & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes as `attr:${K}`]?: IxCardAccordionAttributes[K] } & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes as `prop:${K}`]?: IxCardAccordion[K] };
         "ix-card-content": IxCardContent;
-        "ix-card-list": IxCardList;
+        "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
-        "ix-category-filter": IxCategoryFilter;
-        "ix-checkbox": IxCheckbox;
-        "ix-checkbox-group": IxCheckboxGroup;
-        "ix-chip": IxChip;
-        "ix-col": IxCol;
+        "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
+        "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
+        "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
+        "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
         "ix-content": IxContent;
-        "ix-content-header": IxContentHeader;
+        "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
         "ix-css-grid": IxCssGrid;
-        "ix-css-grid-item": IxCssGridItem;
-        "ix-custom-field": IxCustomField;
-        "ix-date-dropdown": IxDateDropdown;
-        "ix-date-input": IxDateInput;
-        "ix-date-picker": IxDatePicker;
-        "ix-date-time-card": IxDateTimeCard;
-        "ix-datetime-picker": IxDatetimePicker;
+        "ix-css-grid-item": Omit<IxCssGridItem, keyof IxCssGridItemAttributes> & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes]?: IxCssGridItem[K] } & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes as `attr:${K}`]?: IxCssGridItemAttributes[K] } & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes as `prop:${K}`]?: IxCssGridItem[K] } & OneOf<"itemName", IxCssGridItem["itemName"], IxCssGridItemAttributes["itemName"]>;
+        "ix-custom-field": Omit<IxCustomField, keyof IxCustomFieldAttributes> & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes]?: IxCustomField[K] } & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes as `attr:${K}`]?: IxCustomFieldAttributes[K] } & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes as `prop:${K}`]?: IxCustomField[K] };
+        "ix-date-dropdown": Omit<IxDateDropdown, keyof IxDateDropdownAttributes> & { [K in keyof IxDateDropdown & keyof IxDateDropdownAttributes]?: IxDateDropdown[K] } & { [K in keyof IxDateDropdown & keyof IxDateDropdownAttributes as `attr:${K}`]?: IxDateDropdownAttributes[K] } & { [K in keyof IxDateDropdown & keyof IxDateDropdownAttributes as `prop:${K}`]?: IxDateDropdown[K] };
+        "ix-date-input": Omit<IxDateInput, keyof IxDateInputAttributes> & { [K in keyof IxDateInput & keyof IxDateInputAttributes]?: IxDateInput[K] } & { [K in keyof IxDateInput & keyof IxDateInputAttributes as `attr:${K}`]?: IxDateInputAttributes[K] } & { [K in keyof IxDateInput & keyof IxDateInputAttributes as `prop:${K}`]?: IxDateInput[K] };
+        "ix-date-picker": Omit<IxDatePicker, keyof IxDatePickerAttributes> & { [K in keyof IxDatePicker & keyof IxDatePickerAttributes]?: IxDatePicker[K] } & { [K in keyof IxDatePicker & keyof IxDatePickerAttributes as `attr:${K}`]?: IxDatePickerAttributes[K] } & { [K in keyof IxDatePicker & keyof IxDatePickerAttributes as `prop:${K}`]?: IxDatePicker[K] };
+        "ix-date-time-card": Omit<IxDateTimeCard, keyof IxDateTimeCardAttributes> & { [K in keyof IxDateTimeCard & keyof IxDateTimeCardAttributes]?: IxDateTimeCard[K] } & { [K in keyof IxDateTimeCard & keyof IxDateTimeCardAttributes as `attr:${K}`]?: IxDateTimeCardAttributes[K] } & { [K in keyof IxDateTimeCard & keyof IxDateTimeCardAttributes as `prop:${K}`]?: IxDateTimeCard[K] };
+        "ix-datetime-picker": Omit<IxDatetimePicker, keyof IxDatetimePickerAttributes> & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes]?: IxDatetimePicker[K] } & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes as `attr:${K}`]?: IxDatetimePickerAttributes[K] } & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes as `prop:${K}`]?: IxDatetimePicker[K] };
         "ix-divider": IxDivider;
-        "ix-drawer": IxDrawer;
-        "ix-dropdown": IxDropdown;
-        "ix-dropdown-button": IxDropdownButton;
-        "ix-dropdown-header": IxDropdownHeader;
-        "ix-dropdown-item": IxDropdownItem;
+        "ix-drawer": Omit<IxDrawer, keyof IxDrawerAttributes> & { [K in keyof IxDrawer & keyof IxDrawerAttributes]?: IxDrawer[K] } & { [K in keyof IxDrawer & keyof IxDrawerAttributes as `attr:${K}`]?: IxDrawerAttributes[K] } & { [K in keyof IxDrawer & keyof IxDrawerAttributes as `prop:${K}`]?: IxDrawer[K] };
+        "ix-dropdown": Omit<IxDropdown, keyof IxDropdownAttributes> & { [K in keyof IxDropdown & keyof IxDropdownAttributes]?: IxDropdown[K] } & { [K in keyof IxDropdown & keyof IxDropdownAttributes as `attr:${K}`]?: IxDropdownAttributes[K] } & { [K in keyof IxDropdown & keyof IxDropdownAttributes as `prop:${K}`]?: IxDropdown[K] };
+        "ix-dropdown-button": Omit<IxDropdownButton, keyof IxDropdownButtonAttributes> & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes]?: IxDropdownButton[K] } & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes as `attr:${K}`]?: IxDropdownButtonAttributes[K] } & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes as `prop:${K}`]?: IxDropdownButton[K] };
+        "ix-dropdown-header": Omit<IxDropdownHeader, keyof IxDropdownHeaderAttributes> & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes]?: IxDropdownHeader[K] } & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes as `attr:${K}`]?: IxDropdownHeaderAttributes[K] } & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes as `prop:${K}`]?: IxDropdownHeader[K] };
+        "ix-dropdown-item": Omit<IxDropdownItem, keyof IxDropdownItemAttributes> & { [K in keyof IxDropdownItem & keyof IxDropdownItemAttributes]?: IxDropdownItem[K] } & { [K in keyof IxDropdownItem & keyof IxDropdownItemAttributes as `attr:${K}`]?: IxDropdownItemAttributes[K] } & { [K in keyof IxDropdownItem & keyof IxDropdownItemAttributes as `prop:${K}`]?: IxDropdownItem[K] };
         "ix-dropdown-quick-actions": IxDropdownQuickActions;
-        "ix-empty-state": IxEmptyState;
-        "ix-event-list": IxEventList;
-        "ix-event-list-item": IxEventListItem;
-        "ix-expanding-search": IxExpandingSearch;
-        "ix-field-label": IxFieldLabel;
-        "ix-field-wrapper": IxFieldWrapper;
-        "ix-filter-chip": IxFilterChip;
-        "ix-flip-tile": IxFlipTile;
-        "ix-flip-tile-content": IxFlipTileContent;
-        "ix-group": IxGroup;
+        "ix-empty-state": Omit<IxEmptyState, keyof IxEmptyStateAttributes> & { [K in keyof IxEmptyState & keyof IxEmptyStateAttributes]?: IxEmptyState[K] } & { [K in keyof IxEmptyState & keyof IxEmptyStateAttributes as `attr:${K}`]?: IxEmptyStateAttributes[K] } & { [K in keyof IxEmptyState & keyof IxEmptyStateAttributes as `prop:${K}`]?: IxEmptyState[K] } & OneOf<"header", IxEmptyState["header"], IxEmptyStateAttributes["header"]>;
+        "ix-event-list": Omit<IxEventList, keyof IxEventListAttributes> & { [K in keyof IxEventList & keyof IxEventListAttributes]?: IxEventList[K] } & { [K in keyof IxEventList & keyof IxEventListAttributes as `attr:${K}`]?: IxEventListAttributes[K] } & { [K in keyof IxEventList & keyof IxEventListAttributes as `prop:${K}`]?: IxEventList[K] };
+        "ix-event-list-item": Omit<IxEventListItem, keyof IxEventListItemAttributes> & { [K in keyof IxEventListItem & keyof IxEventListItemAttributes]?: IxEventListItem[K] } & { [K in keyof IxEventListItem & keyof IxEventListItemAttributes as `attr:${K}`]?: IxEventListItemAttributes[K] } & { [K in keyof IxEventListItem & keyof IxEventListItemAttributes as `prop:${K}`]?: IxEventListItem[K] };
+        "ix-expanding-search": Omit<IxExpandingSearch, keyof IxExpandingSearchAttributes> & { [K in keyof IxExpandingSearch & keyof IxExpandingSearchAttributes]?: IxExpandingSearch[K] } & { [K in keyof IxExpandingSearch & keyof IxExpandingSearchAttributes as `attr:${K}`]?: IxExpandingSearchAttributes[K] } & { [K in keyof IxExpandingSearch & keyof IxExpandingSearchAttributes as `prop:${K}`]?: IxExpandingSearch[K] };
+        "ix-field-label": Omit<IxFieldLabel, keyof IxFieldLabelAttributes> & { [K in keyof IxFieldLabel & keyof IxFieldLabelAttributes]?: IxFieldLabel[K] } & { [K in keyof IxFieldLabel & keyof IxFieldLabelAttributes as `attr:${K}`]?: IxFieldLabelAttributes[K] } & { [K in keyof IxFieldLabel & keyof IxFieldLabelAttributes as `prop:${K}`]?: IxFieldLabel[K] };
+        "ix-field-wrapper": Omit<IxFieldWrapper, keyof IxFieldWrapperAttributes> & { [K in keyof IxFieldWrapper & keyof IxFieldWrapperAttributes]?: IxFieldWrapper[K] } & { [K in keyof IxFieldWrapper & keyof IxFieldWrapperAttributes as `attr:${K}`]?: IxFieldWrapperAttributes[K] } & { [K in keyof IxFieldWrapper & keyof IxFieldWrapperAttributes as `prop:${K}`]?: IxFieldWrapper[K] };
+        "ix-filter-chip": Omit<IxFilterChip, keyof IxFilterChipAttributes> & { [K in keyof IxFilterChip & keyof IxFilterChipAttributes]?: IxFilterChip[K] } & { [K in keyof IxFilterChip & keyof IxFilterChipAttributes as `attr:${K}`]?: IxFilterChipAttributes[K] } & { [K in keyof IxFilterChip & keyof IxFilterChipAttributes as `prop:${K}`]?: IxFilterChip[K] };
+        "ix-flip-tile": Omit<IxFlipTile, keyof IxFlipTileAttributes> & { [K in keyof IxFlipTile & keyof IxFlipTileAttributes]?: IxFlipTile[K] } & { [K in keyof IxFlipTile & keyof IxFlipTileAttributes as `attr:${K}`]?: IxFlipTileAttributes[K] } & { [K in keyof IxFlipTile & keyof IxFlipTileAttributes as `prop:${K}`]?: IxFlipTile[K] };
+        "ix-flip-tile-content": Omit<IxFlipTileContent, keyof IxFlipTileContentAttributes> & { [K in keyof IxFlipTileContent & keyof IxFlipTileContentAttributes]?: IxFlipTileContent[K] } & { [K in keyof IxFlipTileContent & keyof IxFlipTileContentAttributes as `attr:${K}`]?: IxFlipTileContentAttributes[K] } & { [K in keyof IxFlipTileContent & keyof IxFlipTileContentAttributes as `prop:${K}`]?: IxFlipTileContent[K] };
+        "ix-group": Omit<IxGroup, keyof IxGroupAttributes> & { [K in keyof IxGroup & keyof IxGroupAttributes]?: IxGroup[K] } & { [K in keyof IxGroup & keyof IxGroupAttributes as `attr:${K}`]?: IxGroupAttributes[K] } & { [K in keyof IxGroup & keyof IxGroupAttributes as `prop:${K}`]?: IxGroup[K] };
         "ix-group-context-menu": IxGroupContextMenu;
-        "ix-group-item": IxGroupItem;
-        "ix-helper-text": IxHelperText;
-        "ix-icon-button": IxIconButton;
-        "ix-icon-toggle-button": IxIconToggleButton;
-        "ix-input": IxInput;
+        "ix-group-item": Omit<IxGroupItem, keyof IxGroupItemAttributes> & { [K in keyof IxGroupItem & keyof IxGroupItemAttributes]?: IxGroupItem[K] } & { [K in keyof IxGroupItem & keyof IxGroupItemAttributes as `attr:${K}`]?: IxGroupItemAttributes[K] } & { [K in keyof IxGroupItem & keyof IxGroupItemAttributes as `prop:${K}`]?: IxGroupItem[K] };
+        "ix-helper-text": Omit<IxHelperText, keyof IxHelperTextAttributes> & { [K in keyof IxHelperText & keyof IxHelperTextAttributes]?: IxHelperText[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `attr:${K}`]?: IxHelperTextAttributes[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `prop:${K}`]?: IxHelperText[K] };
+        "ix-icon-button": Omit<IxIconButton, keyof IxIconButtonAttributes> & { [K in keyof IxIconButton & keyof IxIconButtonAttributes]?: IxIconButton[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `attr:${K}`]?: IxIconButtonAttributes[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `prop:${K}`]?: IxIconButton[K] };
+        "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
+        "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
         "ix-input-group": IxInputGroup;
-        "ix-key-value": IxKeyValue;
-        "ix-key-value-list": IxKeyValueList;
-        "ix-kpi": IxKpi;
+        "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
+        "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
+        "ix-kpi": Omit<IxKpi, keyof IxKpiAttributes> & { [K in keyof IxKpi & keyof IxKpiAttributes]?: IxKpi[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `attr:${K}`]?: IxKpiAttributes[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `prop:${K}`]?: IxKpi[K] };
         "ix-layout-auto": IxLayoutAuto;
-        "ix-layout-grid": IxLayoutGrid;
-        "ix-link-button": IxLinkButton;
-        "ix-menu": IxMenu;
-        "ix-menu-about": IxMenuAbout;
-        "ix-menu-about-item": IxMenuAboutItem;
-        "ix-menu-about-news": IxMenuAboutNews;
-        "ix-menu-avatar": IxMenuAvatar;
-        "ix-menu-avatar-item": IxMenuAvatarItem;
-        "ix-menu-category": IxMenuCategory;
-        "ix-menu-expand-icon": IxMenuExpandIcon;
-        "ix-menu-item": IxMenuItem;
-        "ix-menu-settings": IxMenuSettings;
-        "ix-menu-settings-item": IxMenuSettingsItem;
-        "ix-message-bar": IxMessageBar;
-        "ix-modal": IxModal;
+        "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
+        "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
+        "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
+        "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] };
+        "ix-menu-about-news": Omit<IxMenuAboutNews, keyof IxMenuAboutNewsAttributes> & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes]?: IxMenuAboutNews[K] } & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes as `attr:${K}`]?: IxMenuAboutNewsAttributes[K] } & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes as `prop:${K}`]?: IxMenuAboutNews[K] };
+        "ix-menu-avatar": Omit<IxMenuAvatar, keyof IxMenuAvatarAttributes> & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes]?: IxMenuAvatar[K] } & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes as `attr:${K}`]?: IxMenuAvatarAttributes[K] } & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes as `prop:${K}`]?: IxMenuAvatar[K] };
+        "ix-menu-avatar-item": Omit<IxMenuAvatarItem, keyof IxMenuAvatarItemAttributes> & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes]?: IxMenuAvatarItem[K] } & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes as `attr:${K}`]?: IxMenuAvatarItemAttributes[K] } & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes as `prop:${K}`]?: IxMenuAvatarItem[K] };
+        "ix-menu-category": Omit<IxMenuCategory, keyof IxMenuCategoryAttributes> & { [K in keyof IxMenuCategory & keyof IxMenuCategoryAttributes]?: IxMenuCategory[K] } & { [K in keyof IxMenuCategory & keyof IxMenuCategoryAttributes as `attr:${K}`]?: IxMenuCategoryAttributes[K] } & { [K in keyof IxMenuCategory & keyof IxMenuCategoryAttributes as `prop:${K}`]?: IxMenuCategory[K] };
+        "ix-menu-expand-icon": Omit<IxMenuExpandIcon, keyof IxMenuExpandIconAttributes> & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes]?: IxMenuExpandIcon[K] } & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes as `attr:${K}`]?: IxMenuExpandIconAttributes[K] } & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes as `prop:${K}`]?: IxMenuExpandIcon[K] };
+        "ix-menu-item": Omit<IxMenuItem, keyof IxMenuItemAttributes> & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes]?: IxMenuItem[K] } & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes as `attr:${K}`]?: IxMenuItemAttributes[K] } & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes as `prop:${K}`]?: IxMenuItem[K] };
+        "ix-menu-settings": Omit<IxMenuSettings, keyof IxMenuSettingsAttributes> & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes]?: IxMenuSettings[K] } & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes as `attr:${K}`]?: IxMenuSettingsAttributes[K] } & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes as `prop:${K}`]?: IxMenuSettings[K] };
+        "ix-menu-settings-item": Omit<IxMenuSettingsItem, keyof IxMenuSettingsItemAttributes> & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes]?: IxMenuSettingsItem[K] } & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes as `attr:${K}`]?: IxMenuSettingsItemAttributes[K] } & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes as `prop:${K}`]?: IxMenuSettingsItem[K] };
+        "ix-message-bar": Omit<IxMessageBar, keyof IxMessageBarAttributes> & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes]?: IxMessageBar[K] } & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes as `attr:${K}`]?: IxMessageBarAttributes[K] } & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes as `prop:${K}`]?: IxMessageBar[K] };
+        "ix-modal": Omit<IxModal, keyof IxModalAttributes> & { [K in keyof IxModal & keyof IxModalAttributes]?: IxModal[K] } & { [K in keyof IxModal & keyof IxModalAttributes as `attr:${K}`]?: IxModalAttributes[K] } & { [K in keyof IxModal & keyof IxModalAttributes as `prop:${K}`]?: IxModal[K] };
         "ix-modal-content": IxModalContent;
         "ix-modal-footer": IxModalFooter;
-        "ix-modal-header": IxModalHeader;
+        "ix-modal-header": Omit<IxModalHeader, keyof IxModalHeaderAttributes> & { [K in keyof IxModalHeader & keyof IxModalHeaderAttributes]?: IxModalHeader[K] } & { [K in keyof IxModalHeader & keyof IxModalHeaderAttributes as `attr:${K}`]?: IxModalHeaderAttributes[K] } & { [K in keyof IxModalHeader & keyof IxModalHeaderAttributes as `prop:${K}`]?: IxModalHeader[K] };
         "ix-modal-loading": IxModalLoading;
-        "ix-number-input": IxNumberInput;
-        "ix-pagination": IxPagination;
-        "ix-pane": IxPane;
-        "ix-pane-layout": IxPaneLayout;
-        "ix-pill": IxPill;
-        "ix-progress-indicator": IxProgressIndicator;
-        "ix-push-card": IxPushCard;
-        "ix-radio": IxRadio;
-        "ix-radio-group": IxRadioGroup;
+        "ix-number-input": Omit<IxNumberInput, keyof IxNumberInputAttributes> & { [K in keyof IxNumberInput & keyof IxNumberInputAttributes]?: IxNumberInput[K] } & { [K in keyof IxNumberInput & keyof IxNumberInputAttributes as `attr:${K}`]?: IxNumberInputAttributes[K] } & { [K in keyof IxNumberInput & keyof IxNumberInputAttributes as `prop:${K}`]?: IxNumberInput[K] };
+        "ix-pagination": Omit<IxPagination, keyof IxPaginationAttributes> & { [K in keyof IxPagination & keyof IxPaginationAttributes]?: IxPagination[K] } & { [K in keyof IxPagination & keyof IxPaginationAttributes as `attr:${K}`]?: IxPaginationAttributes[K] } & { [K in keyof IxPagination & keyof IxPaginationAttributes as `prop:${K}`]?: IxPagination[K] };
+        "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
+        "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
+        "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
+        "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
+        "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
+        "ix-radio-group": Omit<IxRadioGroup, keyof IxRadioGroupAttributes> & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes]?: IxRadioGroup[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `attr:${K}`]?: IxRadioGroupAttributes[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `prop:${K}`]?: IxRadioGroup[K] };
         "ix-row": IxRow;
-        "ix-select": IxSelect;
-        "ix-select-item": IxSelectItem;
-        "ix-slider": IxSlider;
-        "ix-spinner": IxSpinner;
-        "ix-split-button": IxSplitButton;
-        "ix-tab-item": IxTabItem;
-        "ix-tabs": IxTabs;
-        "ix-textarea": IxTextarea;
-        "ix-tile": IxTile;
-        "ix-time-input": IxTimeInput;
-        "ix-time-picker": IxTimePicker;
-        "ix-toast": IxToast;
-        "ix-toast-container": IxToastContainer;
-        "ix-toggle": IxToggle;
-        "ix-toggle-button": IxToggleButton;
-        "ix-tooltip": IxTooltip;
-        "ix-tree": IxTree;
-        "ix-tree-item": IxTreeItem;
-        "ix-typography": IxTypography;
-        "ix-upload": IxUpload;
-        "ix-validation-tooltip": IxValidationTooltip;
-        "ix-workflow-step": IxWorkflowStep;
-        "ix-workflow-steps": IxWorkflowSteps;
+        "ix-select": Omit<IxSelect, keyof IxSelectAttributes> & { [K in keyof IxSelect & keyof IxSelectAttributes]?: IxSelect[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `attr:${K}`]?: IxSelectAttributes[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `prop:${K}`]?: IxSelect[K] };
+        "ix-select-item": Omit<IxSelectItem, keyof IxSelectItemAttributes> & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes]?: IxSelectItem[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `attr:${K}`]?: IxSelectItemAttributes[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `prop:${K}`]?: IxSelectItem[K] } & OneOf<"value", IxSelectItem["value"], IxSelectItemAttributes["value"]>;
+        "ix-slider": Omit<IxSlider, keyof IxSliderAttributes> & { [K in keyof IxSlider & keyof IxSliderAttributes]?: IxSlider[K] } & { [K in keyof IxSlider & keyof IxSliderAttributes as `attr:${K}`]?: IxSliderAttributes[K] } & { [K in keyof IxSlider & keyof IxSliderAttributes as `prop:${K}`]?: IxSlider[K] };
+        "ix-spinner": Omit<IxSpinner, keyof IxSpinnerAttributes> & { [K in keyof IxSpinner & keyof IxSpinnerAttributes]?: IxSpinner[K] } & { [K in keyof IxSpinner & keyof IxSpinnerAttributes as `attr:${K}`]?: IxSpinnerAttributes[K] } & { [K in keyof IxSpinner & keyof IxSpinnerAttributes as `prop:${K}`]?: IxSpinner[K] };
+        "ix-split-button": Omit<IxSplitButton, keyof IxSplitButtonAttributes> & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes]?: IxSplitButton[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `attr:${K}`]?: IxSplitButtonAttributes[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `prop:${K}`]?: IxSplitButton[K] };
+        "ix-tab-item": Omit<IxTabItem, keyof IxTabItemAttributes> & { [K in keyof IxTabItem & keyof IxTabItemAttributes]?: IxTabItem[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `attr:${K}`]?: IxTabItemAttributes[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `prop:${K}`]?: IxTabItem[K] };
+        "ix-tabs": Omit<IxTabs, keyof IxTabsAttributes> & { [K in keyof IxTabs & keyof IxTabsAttributes]?: IxTabs[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `attr:${K}`]?: IxTabsAttributes[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `prop:${K}`]?: IxTabs[K] };
+        "ix-textarea": Omit<IxTextarea, keyof IxTextareaAttributes> & { [K in keyof IxTextarea & keyof IxTextareaAttributes]?: IxTextarea[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `attr:${K}`]?: IxTextareaAttributes[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `prop:${K}`]?: IxTextarea[K] };
+        "ix-tile": Omit<IxTile, keyof IxTileAttributes> & { [K in keyof IxTile & keyof IxTileAttributes]?: IxTile[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `attr:${K}`]?: IxTileAttributes[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `prop:${K}`]?: IxTile[K] };
+        "ix-time-input": Omit<IxTimeInput, keyof IxTimeInputAttributes> & { [K in keyof IxTimeInput & keyof IxTimeInputAttributes]?: IxTimeInput[K] } & { [K in keyof IxTimeInput & keyof IxTimeInputAttributes as `attr:${K}`]?: IxTimeInputAttributes[K] } & { [K in keyof IxTimeInput & keyof IxTimeInputAttributes as `prop:${K}`]?: IxTimeInput[K] };
+        "ix-time-picker": Omit<IxTimePicker, keyof IxTimePickerAttributes> & { [K in keyof IxTimePicker & keyof IxTimePickerAttributes]?: IxTimePicker[K] } & { [K in keyof IxTimePicker & keyof IxTimePickerAttributes as `attr:${K}`]?: IxTimePickerAttributes[K] } & { [K in keyof IxTimePicker & keyof IxTimePickerAttributes as `prop:${K}`]?: IxTimePicker[K] };
+        "ix-toast": Omit<IxToast, keyof IxToastAttributes> & { [K in keyof IxToast & keyof IxToastAttributes]?: IxToast[K] } & { [K in keyof IxToast & keyof IxToastAttributes as `attr:${K}`]?: IxToastAttributes[K] } & { [K in keyof IxToast & keyof IxToastAttributes as `prop:${K}`]?: IxToast[K] };
+        "ix-toast-container": Omit<IxToastContainer, keyof IxToastContainerAttributes> & { [K in keyof IxToastContainer & keyof IxToastContainerAttributes]?: IxToastContainer[K] } & { [K in keyof IxToastContainer & keyof IxToastContainerAttributes as `attr:${K}`]?: IxToastContainerAttributes[K] } & { [K in keyof IxToastContainer & keyof IxToastContainerAttributes as `prop:${K}`]?: IxToastContainer[K] };
+        "ix-toggle": Omit<IxToggle, keyof IxToggleAttributes> & { [K in keyof IxToggle & keyof IxToggleAttributes]?: IxToggle[K] } & { [K in keyof IxToggle & keyof IxToggleAttributes as `attr:${K}`]?: IxToggleAttributes[K] } & { [K in keyof IxToggle & keyof IxToggleAttributes as `prop:${K}`]?: IxToggle[K] };
+        "ix-toggle-button": Omit<IxToggleButton, keyof IxToggleButtonAttributes> & { [K in keyof IxToggleButton & keyof IxToggleButtonAttributes]?: IxToggleButton[K] } & { [K in keyof IxToggleButton & keyof IxToggleButtonAttributes as `attr:${K}`]?: IxToggleButtonAttributes[K] } & { [K in keyof IxToggleButton & keyof IxToggleButtonAttributes as `prop:${K}`]?: IxToggleButton[K] };
+        "ix-tooltip": Omit<IxTooltip, keyof IxTooltipAttributes> & { [K in keyof IxTooltip & keyof IxTooltipAttributes]?: IxTooltip[K] } & { [K in keyof IxTooltip & keyof IxTooltipAttributes as `attr:${K}`]?: IxTooltipAttributes[K] } & { [K in keyof IxTooltip & keyof IxTooltipAttributes as `prop:${K}`]?: IxTooltip[K] };
+        "ix-tree": Omit<IxTree, keyof IxTreeAttributes> & { [K in keyof IxTree & keyof IxTreeAttributes]?: IxTree[K] } & { [K in keyof IxTree & keyof IxTreeAttributes as `attr:${K}`]?: IxTreeAttributes[K] } & { [K in keyof IxTree & keyof IxTreeAttributes as `prop:${K}`]?: IxTree[K] };
+        "ix-tree-item": Omit<IxTreeItem, keyof IxTreeItemAttributes> & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes]?: IxTreeItem[K] } & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes as `attr:${K}`]?: IxTreeItemAttributes[K] } & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes as `prop:${K}`]?: IxTreeItem[K] };
+        "ix-typography": Omit<IxTypography, keyof IxTypographyAttributes> & { [K in keyof IxTypography & keyof IxTypographyAttributes]?: IxTypography[K] } & { [K in keyof IxTypography & keyof IxTypographyAttributes as `attr:${K}`]?: IxTypographyAttributes[K] } & { [K in keyof IxTypography & keyof IxTypographyAttributes as `prop:${K}`]?: IxTypography[K] };
+        "ix-upload": Omit<IxUpload, keyof IxUploadAttributes> & { [K in keyof IxUpload & keyof IxUploadAttributes]?: IxUpload[K] } & { [K in keyof IxUpload & keyof IxUploadAttributes as `attr:${K}`]?: IxUploadAttributes[K] } & { [K in keyof IxUpload & keyof IxUploadAttributes as `prop:${K}`]?: IxUpload[K] };
+        "ix-validation-tooltip": Omit<IxValidationTooltip, keyof IxValidationTooltipAttributes> & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes]?: IxValidationTooltip[K] } & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes as `attr:${K}`]?: IxValidationTooltipAttributes[K] } & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes as `prop:${K}`]?: IxValidationTooltip[K] };
+        "ix-workflow-step": Omit<IxWorkflowStep, keyof IxWorkflowStepAttributes> & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes]?: IxWorkflowStep[K] } & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes as `attr:${K}`]?: IxWorkflowStepAttributes[K] } & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes as `prop:${K}`]?: IxWorkflowStep[K] };
+        "ix-workflow-steps": Omit<IxWorkflowSteps, keyof IxWorkflowStepsAttributes> & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes]?: IxWorkflowSteps[K] } & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes as `attr:${K}`]?: IxWorkflowStepsAttributes[K] } & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes as `prop:${K}`]?: IxWorkflowSteps[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
-            "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
-            "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
-            "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
-            "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
-            "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
-            "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
-            "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
-            "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
-            "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
-            "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
-            "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
-            "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
-            "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
-            "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
-            "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            "ix-action-card": LocalJSX.IntrinsicElements["ix-action-card"] & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
+            "ix-application": LocalJSX.IntrinsicElements["ix-application"] & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
+            "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            "ix-application-sidebar": LocalJSX.IntrinsicElements["ix-application-sidebar"] & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
+            "ix-application-switch-modal": LocalJSX.IntrinsicElements["ix-application-switch-modal"] & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
+            "ix-avatar": LocalJSX.IntrinsicElements["ix-avatar"] & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
+            "ix-blind": LocalJSX.IntrinsicElements["ix-blind"] & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
+            "ix-breadcrumb": LocalJSX.IntrinsicElements["ix-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
+            "ix-breadcrumb-item": LocalJSX.IntrinsicElements["ix-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
+            "ix-button": LocalJSX.IntrinsicElements["ix-button"] & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            "ix-card": LocalJSX.IntrinsicElements["ix-card"] & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            "ix-card-accordion": LocalJSX.IntrinsicElements["ix-card-accordion"] & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
+            "ix-card-content": LocalJSX.IntrinsicElements["ix-card-content"] & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
+            "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
+            "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             /**
              * @form-ready 
              */
-            "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
+            "ix-checkbox": LocalJSX.IntrinsicElements["ix-checkbox"] & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             /**
              * @form-ready 
              */
-            "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
-            "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
-            "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
-            "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
-            "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
-            "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
-            "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
-            "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
-            "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
+            "ix-checkbox-group": LocalJSX.IntrinsicElements["ix-checkbox-group"] & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
+            "ix-chip": LocalJSX.IntrinsicElements["ix-chip"] & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            "ix-col": LocalJSX.IntrinsicElements["ix-col"] & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            "ix-content": LocalJSX.IntrinsicElements["ix-content"] & JSXBase.HTMLAttributes<HTMLIxContentElement>;
+            "ix-content-header": LocalJSX.IntrinsicElements["ix-content-header"] & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
+            "ix-css-grid": LocalJSX.IntrinsicElements["ix-css-grid"] & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
+            "ix-css-grid-item": LocalJSX.IntrinsicElements["ix-css-grid-item"] & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            "ix-custom-field": LocalJSX.IntrinsicElements["ix-custom-field"] & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
+            "ix-date-dropdown": LocalJSX.IntrinsicElements["ix-date-dropdown"] & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             /**
              * @form-ready 
              */
-            "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
-            "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
-            "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
-            "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
-            "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
+            "ix-date-input": LocalJSX.IntrinsicElements["ix-date-input"] & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
+            "ix-date-picker": LocalJSX.IntrinsicElements["ix-date-picker"] & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
+            "ix-date-time-card": LocalJSX.IntrinsicElements["ix-date-time-card"] & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
+            "ix-datetime-picker": LocalJSX.IntrinsicElements["ix-datetime-picker"] & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-divider": LocalJSX.IntrinsicElements["ix-divider"] & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             /**
              * @deprecated Will be removed with 5.0.0, use ix-pane as successor
              */
-            "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
-            "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
-            "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
-            "ix-dropdown-header": LocalJSX.IxDropdownHeader & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
-            "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
-            "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
-            "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
-            "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
-            "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
-            "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
-            "ix-field-label": LocalJSX.IxFieldLabel & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
-            "ix-field-wrapper": LocalJSX.IxFieldWrapper & JSXBase.HTMLAttributes<HTMLIxFieldWrapperElement>;
-            "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
-            "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
-            "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
-            "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
-            "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
-            "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
-            "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
-            "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
-            "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            "ix-drawer": LocalJSX.IntrinsicElements["ix-drawer"] & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
+            "ix-dropdown": LocalJSX.IntrinsicElements["ix-dropdown"] & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            "ix-dropdown-button": LocalJSX.IntrinsicElements["ix-dropdown-button"] & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
+            "ix-dropdown-header": LocalJSX.IntrinsicElements["ix-dropdown-header"] & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
+            "ix-dropdown-item": LocalJSX.IntrinsicElements["ix-dropdown-item"] & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            "ix-dropdown-quick-actions": LocalJSX.IntrinsicElements["ix-dropdown-quick-actions"] & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            "ix-empty-state": LocalJSX.IntrinsicElements["ix-empty-state"] & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
+            "ix-event-list": LocalJSX.IntrinsicElements["ix-event-list"] & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
+            "ix-event-list-item": LocalJSX.IntrinsicElements["ix-event-list-item"] & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
+            "ix-expanding-search": LocalJSX.IntrinsicElements["ix-expanding-search"] & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
+            "ix-field-label": LocalJSX.IntrinsicElements["ix-field-label"] & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
+            "ix-field-wrapper": LocalJSX.IntrinsicElements["ix-field-wrapper"] & JSXBase.HTMLAttributes<HTMLIxFieldWrapperElement>;
+            "ix-filter-chip": LocalJSX.IntrinsicElements["ix-filter-chip"] & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
+            "ix-flip-tile": LocalJSX.IntrinsicElements["ix-flip-tile"] & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
+            "ix-flip-tile-content": LocalJSX.IntrinsicElements["ix-flip-tile-content"] & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            "ix-group": LocalJSX.IntrinsicElements["ix-group"] & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
+            "ix-group-context-menu": LocalJSX.IntrinsicElements["ix-group-context-menu"] & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
+            "ix-group-item": LocalJSX.IntrinsicElements["ix-group-item"] & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            "ix-helper-text": LocalJSX.IntrinsicElements["ix-helper-text"] & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
+            "ix-icon-button": LocalJSX.IntrinsicElements["ix-icon-button"] & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            "ix-icon-toggle-button": LocalJSX.IntrinsicElements["ix-icon-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             /**
              * @form-ready 
              */
-            "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
+            "ix-input": LocalJSX.IntrinsicElements["ix-input"] & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
              * @deprecated Since 3.0.0. Will be removed with 5.0.0
              * Not maintained anymore.
              * Use the 'ix-input' component instead
              */
-            "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
-            "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
-            "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
-            "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
-            "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
-            "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
-            "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
-            "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
-            "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
-            "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
-            "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
-            "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
-            "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
-            "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
-            "ix-menu-expand-icon": LocalJSX.IxMenuExpandIcon & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
-            "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
-            "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
-            "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
-            "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
-            "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
-            "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
-            "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
-            "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
-            "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
+            "ix-input-group": LocalJSX.IntrinsicElements["ix-input-group"] & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            "ix-key-value": LocalJSX.IntrinsicElements["ix-key-value"] & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
+            "ix-key-value-list": LocalJSX.IntrinsicElements["ix-key-value-list"] & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
+            "ix-kpi": LocalJSX.IntrinsicElements["ix-kpi"] & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            "ix-layout-auto": LocalJSX.IntrinsicElements["ix-layout-auto"] & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
+            "ix-layout-grid": LocalJSX.IntrinsicElements["ix-layout-grid"] & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
+            "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
+            "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
+            "ix-menu-about-item": LocalJSX.IntrinsicElements["ix-menu-about-item"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
+            "ix-menu-about-news": LocalJSX.IntrinsicElements["ix-menu-about-news"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
+            "ix-menu-avatar": LocalJSX.IntrinsicElements["ix-menu-avatar"] & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
+            "ix-menu-avatar-item": LocalJSX.IntrinsicElements["ix-menu-avatar-item"] & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            "ix-menu-category": LocalJSX.IntrinsicElements["ix-menu-category"] & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
+            "ix-menu-expand-icon": LocalJSX.IntrinsicElements["ix-menu-expand-icon"] & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
+            "ix-menu-item": LocalJSX.IntrinsicElements["ix-menu-item"] & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
+            "ix-menu-settings": LocalJSX.IntrinsicElements["ix-menu-settings"] & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
+            "ix-menu-settings-item": LocalJSX.IntrinsicElements["ix-menu-settings-item"] & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
+            "ix-message-bar": LocalJSX.IntrinsicElements["ix-message-bar"] & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
+            "ix-modal": LocalJSX.IntrinsicElements["ix-modal"] & JSXBase.HTMLAttributes<HTMLIxModalElement>;
+            "ix-modal-content": LocalJSX.IntrinsicElements["ix-modal-content"] & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
+            "ix-modal-footer": LocalJSX.IntrinsicElements["ix-modal-footer"] & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
+            "ix-modal-header": LocalJSX.IntrinsicElements["ix-modal-header"] & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
+            "ix-modal-loading": LocalJSX.IntrinsicElements["ix-modal-loading"] & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
             /**
              * @form-ready 
              */
-            "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
-            "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
-            "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
-            "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
-            "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-number-input": LocalJSX.IntrinsicElements["ix-number-input"] & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
+            "ix-pagination": LocalJSX.IntrinsicElements["ix-pagination"] & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
+            "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
              * @since 3.2.0
              */
-            "ix-progress-indicator": LocalJSX.IxProgressIndicator & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
-            "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
+            "ix-progress-indicator": LocalJSX.IntrinsicElements["ix-progress-indicator"] & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
+            "ix-push-card": LocalJSX.IntrinsicElements["ix-push-card"] & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
              * @form-ready 
              */
-            "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
+            "ix-radio": LocalJSX.IntrinsicElements["ix-radio"] & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
             /**
              * @form-ready 
              */
-            "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
-            "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
+            "ix-radio-group": LocalJSX.IntrinsicElements["ix-radio-group"] & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
+            "ix-row": LocalJSX.IntrinsicElements["ix-row"] & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
              * @form-ready 
              */
-            "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
-            "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            "ix-select": LocalJSX.IntrinsicElements["ix-select"] & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
+            "ix-select-item": LocalJSX.IntrinsicElements["ix-select-item"] & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             /**
              * @form-ready 
              */
-            "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
-            "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
-            "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
-            "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
-            "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
+            "ix-slider": LocalJSX.IntrinsicElements["ix-slider"] & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
+            "ix-spinner": LocalJSX.IntrinsicElements["ix-spinner"] & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
+            "ix-split-button": LocalJSX.IntrinsicElements["ix-split-button"] & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            "ix-tab-item": LocalJSX.IntrinsicElements["ix-tab-item"] & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
+            "ix-tabs": LocalJSX.IntrinsicElements["ix-tabs"] & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
              * @form-ready 
              */
-            "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
-            "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
+            "ix-textarea": LocalJSX.IntrinsicElements["ix-textarea"] & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
+            "ix-tile": LocalJSX.IntrinsicElements["ix-tile"] & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
              * @since 3.2.0
              * @form-ready 
              */
-            "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
-            "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
-            "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
-            "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
+            "ix-time-input": LocalJSX.IntrinsicElements["ix-time-input"] & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
+            "ix-time-picker": LocalJSX.IntrinsicElements["ix-time-picker"] & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
+            "ix-toast": LocalJSX.IntrinsicElements["ix-toast"] & JSXBase.HTMLAttributes<HTMLIxToastElement>;
+            "ix-toast-container": LocalJSX.IntrinsicElements["ix-toast-container"] & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             /**
              * @form-ready 
              */
-            "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
-            "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
-            "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
-            "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
-            "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
-            "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
-            "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
+            "ix-toggle": LocalJSX.IntrinsicElements["ix-toggle"] & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            "ix-toggle-button": LocalJSX.IntrinsicElements["ix-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
+            "ix-tooltip": LocalJSX.IntrinsicElements["ix-tooltip"] & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
+            "ix-tree": LocalJSX.IntrinsicElements["ix-tree"] & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
+            "ix-tree-item": LocalJSX.IntrinsicElements["ix-tree-item"] & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            "ix-typography": LocalJSX.IntrinsicElements["ix-typography"] & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
+            "ix-upload": LocalJSX.IntrinsicElements["ix-upload"] & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**
              * @deprecated Since 3.0.0. Will be removed with 4.0.0
              * Not maintained anymore.
              */
-            "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
-            "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
-            "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
+            "ix-validation-tooltip": LocalJSX.IntrinsicElements["ix-validation-tooltip"] & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
+            "ix-workflow-step": LocalJSX.IntrinsicElements["ix-workflow-step"] & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
+            "ix-workflow-steps": LocalJSX.IntrinsicElements["ix-workflow-steps"] & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
         }
     }
 }

@@ -109,6 +109,7 @@ import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/compone
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 
 
+
 export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
   'variant',
   'icon',
@@ -1562,4 +1563,5 @@ export const IxWorkflowSteps: StencilVueComponent<JSX.IxWorkflowSteps> = /*@__PU
 ], [
   'stepSelected'
 ]);
+
 
