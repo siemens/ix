@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^8.56.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitest/browser": "^3.2.4",
-    "eslint": "^9.39.3",
+    "eslint": "catalog:",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-vue": "^9.27.0",
     "playwright": "^1.57.0",
