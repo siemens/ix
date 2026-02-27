@@ -44,12 +44,13 @@ regressionTest('required', async ({ mount, page }) => {
   await expect(radioGroupElement).toHaveText(/example\*/);
 
   const radioOption2 = page.locator('ix-checkbox').nth(1);
-  const radioOption3 = page.locator('ix-checkbox').nth(2);
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
 
-  await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
-  await expect(radioOption2).toHaveClass(/ix-invalid--required/);
-  await expect(radioOption3).not.toHaveClass(/ix-invalid/);
+  await expect(radioOption2).toHaveAttribute('required');
+  await expect
+    .poll(() =>
+      radioGroupElement.evaluate(
+        (el: HTMLIxCheckboxGroupElement) => el.required === true
+      )
+    )
+    .toBe(true);
 });

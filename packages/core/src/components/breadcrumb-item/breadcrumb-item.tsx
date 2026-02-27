@@ -17,27 +17,35 @@ import {
   Host,
   Prop,
   State,
+  Mixin,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { a11yHostAttributes } from '../utils/a11y';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
+import { DefaultMixins } from '../utils/internal/component';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem implements AnchorInterface {
-  @Element() hostElement!: HTMLIxBreadcrumbItemElement;
+export class BreadcrumbItem
+  extends Mixin(...DefaultMixins)
+  implements AnchorInterface
+{
+  @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
    * ARIA label for the button
    * Will be set as aria-label for the nested HTML button element
    *
    * @since 3.2.0
+   *
+   * @deprecated Use `aria-label` attribute directly on the component instead.
    */
   @Prop() ariaLabelButton?: string;
 
@@ -84,22 +92,26 @@ export class BreadcrumbItem implements AnchorInterface {
   /** @internal */
   @Prop() isDropdownTrigger = false;
 
+  /** @internal */
+  @Prop() isCurrentPage = false;
+
   /**@internal */
   @Event() itemClick!: EventEmitter<string>;
 
-  @State() a11y: any;
+  @State() inheritAriaAttributes: A11yAttributes = {};
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.animationFadeIn();
   }
 
-  componentWillLoad() {
-    this.a11y = a11yHostAttributes(this.hostElement, [
-      'aria-describedby',
-      'aria-controls',
-      'aria-expanded',
+  override componentWillLoad() {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
+      'role',
+      'aria-label',
     ]);
   }
+
+  override componentDidRender(): void {}
 
   animationFadeIn() {
     animate(this.hostElement, {
@@ -107,10 +119,22 @@ export class BreadcrumbItem implements AnchorInterface {
       opacity: [0, 1],
       translateX: ['-100%', '0%'],
       easing: 'linear',
+      onComplete: () => {
+        // this.hostElement.innerText is not available in componentWillLoad,
+        // so we need to set aria-label in onComplete callback to ensure it is set after the content is rendered.
+        requestAnimationFrameNoNgZone(() => {
+          const ariaLabel =
+            this.inheritAriaAttributes['aria-label'] ??
+            this.ariaLabelButton ??
+            this.label ??
+            this.hostElement.innerText;
+          this.hostElement.setAttribute('aria-label', ariaLabel);
+        });
+      },
     });
   }
 
-  render() {
+  override render() {
     const props: BaseButtonProps = {
       variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
@@ -126,42 +150,56 @@ export class BreadcrumbItem implements AnchorInterface {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      ariaAttributes: {
+        ...this.inheritAriaAttributes,
+        'aria-label':
+          this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
+        ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
+        role: 'link',
+      },
       href: this.href,
       target: this.target,
       rel: this.rel,
     };
 
     if (this.invisible) {
-      return <Host class={'invisible'}></Host>;
+      return <Host class={'invisible'} aria-hidden></Host>;
     }
+
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-label':
+        this.inheritAriaAttributes['aria-label'] ??
+        this.ariaLabelButton ??
+        this.label ??
+        this.hostElement.innerText,
+    };
 
     return (
       <Host
+        {...ariaAttributes}
         class={{
           'hide-chevron': this.hideChevron,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >
-        <li>
-          <BaseButton
-            {...props}
-            afterContent={
-              <Fragment>
-                {!this.hideChevron && (
-                  <ix-icon
-                    name={iconChevronRightSmall}
-                    size="16"
-                    class={'chevron'}
-                  ></ix-icon>
-                )}
-              </Fragment>
-            }
-          >
-            {this.label}
-            <slot></slot>
-          </BaseButton>
-        </li>
+        <BaseButton
+          {...props}
+          afterContent={
+            <Fragment>
+              {!this.hideChevron && (
+                <ix-icon
+                  name={iconChevronRightSmall}
+                  size="16"
+                  class={'chevron'}
+                ></ix-icon>
+              )}
+            </Fragment>
+          }
+        >
+          {this.label}
+          <slot></slot>
+        </BaseButton>
       </Host>
     );
   }

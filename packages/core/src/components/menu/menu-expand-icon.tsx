@@ -14,13 +14,16 @@ import {
 import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Breakpoint } from '../utils/breakpoints';
+import { a11yBoolean } from '../utils/a11y';
 /**
  * @internal
  */
 @Component({
   tag: 'ix-menu-expand-icon',
   styleUrl: './menu-expand-icon.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class MenuExpandIcon {
   /** Whether the menu expand icon displays the expanded state or not */
@@ -41,7 +44,7 @@ export class MenuExpandIcon {
   getSmallScreenIcon() {
     return (
       <button
-        tabindex={-1}
+        aria-hidden="true"
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -64,8 +67,8 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
-        tabindex={-1}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
+        aria-hidden="true"
         variant="subtle-tertiary"
       ></ix-icon-button>
     );
@@ -92,8 +95,10 @@ export class MenuExpandIcon {
       <Host
         class={{
           expanded: this.expanded,
+          'ix-focusable': true,
         }}
-        aria-hidden="true"
+        aria-label={this.ixAriaLabel}
+        aria-pressed={a11yBoolean(this.expanded)}
       >
         {this.getMenuIcon()}
       </Host>

@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
 
-export interface DropdownInterface extends IxComponent {
+export interface DropdownInterface extends IxComponentInterface {
   closeBehavior: CloseBehavior;
   discoverAllSubmenus: boolean;
 
@@ -178,6 +178,14 @@ class DropdownController {
     }
 
     return;
+  }
+
+  getParentDropdownId(dropdownId: string) {
+    for (const ruleKey of Object.keys(this.submenuIds)) {
+      if (this.submenuIds[ruleKey].includes(dropdownId)) {
+        return ruleKey;
+      }
+    }
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {

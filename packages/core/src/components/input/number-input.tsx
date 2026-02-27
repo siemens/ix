@@ -300,12 +300,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const parsedValue = this.convertNumberStringToFloat(inputValue);
 
-    if (parsedValue !== undefined) {
+    this.updateFormInternalValue(parsedValue!);
+    if (parsedValue !== undefined && this.inputRef.current) {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
     this.updateFormInternalValue(parsedValue!);
-
     onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
@@ -497,12 +497,17 @@ export class NumberInput implements IxInputFieldComponent<number> {
               }
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
+                const parsedValue = this.convertNumberStringToFloat(value);
                 const isScientificNotation = this.isScientificNotation(
                   value.trim()
                 );
 
-                if (!isScientificNotation) {
-                  const parsedValue = this.convertNumberStringToFloat(value);
+                if (isScientificNotation) {
+                  // For scientific notation, update form value with raw notation
+                  // but update component value with parsed number
+                  this.formInternals.setFormValue(value);
+                  this.value = parsedValue;
+                } else {
                   this.updateFormInternalValue(parsedValue!);
                 }
               }}

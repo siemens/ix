@@ -45,6 +45,7 @@ const config: PlaywrightTestConfig = {
     trace: 'on-first-retry',
     contextOptions: {
       reducedMotion: 'reduce',
+      timezoneId: 'UTC',
     },
   },
   testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),

@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import type {
@@ -23,6 +31,8 @@ import type {
 export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
+  @Element() hostElement!: HTMLIxDatetimePickerElement;
+
   /**
    * If true disables date range selection (from/to).
    */

@@ -52,10 +52,6 @@ $focusBorder: 0.0625rem;
     @include applyItemWidth(1rem, $itemPaddingRight);
   }
 
-  .dropdown-item:focus-visible {
-    border-color: var(--theme-color-focus-bdr);
-  }
-
   .dropdown-item-checked {
     display: flex;
     align-items: center;
@@ -116,4 +112,29 @@ $focusBorder: 0.0625rem;
   .dropdown-item-icon {
     color: var(--theme-color-weak-text) !important;
   }
+}
+
+:host(:focus-visible) {
+  outline: none;
+
+  .dropdown-item {
+    border-color: var(--theme-color-focus-bdr);
+  }
+}
+
+:host(.ix-focused) {
+  outline: none;
+
+  .dropdown-item {
+    border-color: var(--theme-color-focus-bdr);
+  }
+}
+
+:host(.outline-visible) {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: -0.0625rem;
+}
+
+:host([hidden]) {
+  display: none !important;
 }

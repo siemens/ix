@@ -23,23 +23,41 @@ import {
   Host,
   Listen,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
-import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
-import { ArrowFocusController } from '../utils/focus';
+import {
+  IX_FOCUS_VISIBLE_ACTIVE,
+  queryElements,
+} from '../utils/focus/focus-utilities';
 import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  AriaActiveDescendantMixinContract,
+  AriaActiveDescendantMixin,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+
+let selectId = 0;
 
 /**
  * @form-ready
@@ -47,11 +65,19 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
-export class Select implements IxInputFieldComponent<string | string[]> {
-  @Element() hostElement!: HTMLIxSelectElement;
+export class Select
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements
+    IxInputFieldComponent<string | string[]>,
+    AriaActiveDescendantMixinContract,
+    ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -75,6 +101,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
+   * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
    */
   @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
 
@@ -85,6 +112,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string;
+
+  /**
+   * ARIA label for the add item
+   *
+   * @since TODO: Define
+   */
+  @Prop() ariaLabelAddItem: string = 'Add item';
 
   /**
    * Warning text for the select component
@@ -226,45 +260,29 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() dropdownShow = false;
   @State() selectedLabels: (string | undefined)[] = [];
   @State() isDropdownEmpty = false;
-  @State() navigationItem?: DropdownItemWrapper;
   @State() inputFilterText = '';
   @State() inputValue = '';
+
+  @State() hasInputFocus = false;
+  @State() dropdownItemsVisualFocused = false;
 
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
 
+  private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
   private readonly inputRef = makeRef<HTMLInputElement>();
+  private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
+  private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
-  private dropdownElement?: HTMLIxDropdownElement;
-  private customItemsContainerElement?: HTMLDivElement;
-  private addItemElement?: HTMLIxDropdownItemElement;
-  private arrowFocusController?: ArrowFocusController;
-
   private touched = false;
-
-  private readonly itemObserver = createMutationObserver(() => {
-    if (!this.arrowFocusController) {
-      return;
-    }
-    this.arrowFocusController.items = this.visibleNonShadowItems;
-  });
-
-  private readonly focusControllerCallbackBind =
-    this.focusDropdownItem.bind(this);
 
   get nonShadowItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
-  }
-
-  get visibleNonShadowItems() {
-    return this.nonShadowItems.filter(
-      (item) => !item.classList.contains('display-none')
-    );
   }
 
   get shadowItems() {
@@ -273,9 +291,21 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     );
   }
 
-  get visibleShadowItems() {
-    return this.shadowItems.filter(
-      (item) => !item.classList.contains('display-none')
+  get focusableItems() {
+    return Array.from(
+      this.hostElement.querySelectorAll<
+        HTMLIxSelectItemElement | HTMLIxDropdownItemElement
+      >(
+        'ix-select-item:not([disabled]):not([hidden]), ix-dropdown-item:not([disabled]):not([hidden])'
+      )
+    );
+  }
+
+  get allFocusableItems() {
+    return Array.from(
+      this.hostElement.querySelectorAll<
+        HTMLIxSelectItemElement | HTMLIxDropdownItemElement
+      >('ix-select-item, ix-dropdown-item')
     );
   }
 
@@ -283,18 +313,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return [...this.nonShadowItems, ...this.shadowItems];
   }
 
-  get visibleItems() {
-    return this.items.filter(
-      (item) => !item.classList.contains('display-none')
-    );
-  }
-
   get selectedItems() {
     return this.items.filter((item) => item.selected);
   }
 
-  get addItemButton() {
-    return this.hostElement.shadowRoot!.querySelector('.add-item');
+  get addItemElement() {
+    return this.hostElement.querySelector<HTMLIxDropdownItemElement>(
+      'ix-dropdown-item.add-item'
+    );
   }
 
   get isSingleMode() {
@@ -306,37 +332,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   get isEveryDropdownItemHidden() {
-    return this.items.every((item) => item.classList.contains('display-none'));
+    return this.items.every((item) => item.hidden === true);
   }
 
   @Watch('value')
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
-  }
-
-  @Watch('dropdownShow')
-  watchDropdownShow(show: boolean) {
-    if (show && this.dropdownElement) {
-      this.itemObserver.observe(this.dropdownElement, {
-        childList: true,
-        subtree: true,
-      });
-    } else {
-      this.cleanupResources();
-    }
-  }
-
-  private cleanupResources() {
-    this.arrowFocusController?.disconnect();
-    this.arrowFocusController = undefined;
-    this.itemObserver?.disconnect();
-  }
-
-  @Listen('itemClick')
-  onItemClicked(event: CustomEvent<string>) {
-    const newId = event.detail;
-    this.itemClick(newId);
   }
 
   updateFormInternalValue(value: string | string[]) {
@@ -361,25 +363,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return !!this.value;
   }
 
-  private focusDropdownItem(index: number) {
-    this.navigationItem = undefined;
-
-    if (index < this.visibleNonShadowItems.length) {
-      const nestedDropdownItem =
-        this.visibleNonShadowItems[index]?.shadowRoot?.querySelector(
-          'ix-dropdown-item'
-        );
-
-      if (!nestedDropdownItem) {
-        return;
-      }
-
-      requestAnimationFrameNoNgZone(() => {
-        nestedDropdownItem?.shadowRoot?.querySelector('button')?.focus();
-      });
-    }
-  }
-
   private itemClick(newId: string) {
     const oldValue = this.value;
     const value = this.toggleValue(newId);
@@ -393,11 +376,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.updateSelection();
     if (this.isMultipleMode && this.inputFilterText) {
       this.clearInput();
-      this.removeHiddenFromItems();
-      if (this.arrowFocusController) {
-        this.arrowFocusController.items = this.visibleNonShadowItems;
-      }
-      this.navigationItem = undefined;
+      this.removeHiddenAttributeFromItems();
     }
   }
 
@@ -415,10 +394,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     newItem.value = value;
     newItem.label = value;
 
-    this.customItemsContainerElement?.appendChild(newItem);
+    this.addItemElement?.before(newItem);
 
-    this.clearInput();
-    this.itemClick(value);
+    requestAnimationFrameNoNgZone(() => {
+      this.clearInput();
+      this.itemClick(value);
+    });
 
     return false;
   }
@@ -462,7 +443,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       });
     });
 
-    this.selectedLabels = this.selectedItems.map((item) => item.label);
+    this.selectedLabels = this.selectedItems.map(
+      (item) => item.label ?? item.value
+    );
 
     if (this.dropdownShow && this.inputFilterText) {
       return;
@@ -488,35 +471,58 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return false;
   }
 
-  componentDidLoad() {
+  private createAddItemElement() {
+    const onAddItemButtonClick = () => {
+      this.emitAddItem(this.inputFilterText);
+    };
+
+    const createElement = () => {
+      const addItemElement = document.createElement('ix-dropdown-item');
+      addItemElement.hidden = true;
+      addItemElement.setAttribute('data-testid', 'add-item');
+      addItemElement.icon = iconPlus;
+      addItemElement.classList.add('add-item');
+      addItemElement.addEventListener('click', onAddItemButtonClick);
+      addItemElement.style.order = Number.MAX_SAFE_INTEGER.toString();
+      addItemElement.ariaHidden = 'true';
+      addItemElement.role = 'presentation';
+      return addItemElement;
+    };
+
+    const isRendered = this.hostElement.querySelector('.add-item');
+    if (!isRendered) {
+      this.hostElement.appendChild(createElement());
+    }
+  }
+
+  override componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputElement?.value);
     });
+
+    this.createAddItemElement();
+
+    this.proxyListObserver = new MutationObserver(() => {
+      this.updateAriaProxyListbox();
+    });
+    this.proxyListObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['aria-selected'],
+      subtree: true,
+      childList: true,
+    });
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender(): void {
-    if (
-      !this.dropdownShow ||
-      this.arrowFocusController ||
-      !this.dropdownElement
-    ) {
-      return;
-    }
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
 
-    this.arrowFocusController = new ArrowFocusController(
-      this.visibleNonShadowItems,
-      this.dropdownElement,
-      this.focusControllerCallbackBind
-    );
-
-    this.arrowFocusController.wrap =
-      !this.isAddItemVisible() && !this.visibleShadowItems.length;
+    this.proxyListObserver?.disconnect();
   }
 
   @Listen('ix-select-item:valueChange')
@@ -527,12 +533,21 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.updateSelection();
   }
 
-  disconnectedCallback() {
-    this.cleanupResources();
-  }
-
   private itemExists(item: string | undefined) {
     return this.items.find((i) => i.label === item);
+  }
+
+  private getActiveVisualFocusedItem(): HTMLIxSelectItemElement | null {
+    const elements = queryElements(
+      this.hostElement,
+      `.${IX_FOCUS_VISIBLE_ACTIVE}`
+    );
+
+    if (elements.length > 0) {
+      return elements[0] as HTMLIxSelectItemElement;
+    }
+
+    return null;
   }
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
@@ -540,203 +555,83 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     if (event.detail) {
       this.inputElement?.focus();
-      this.inputElement?.select();
 
-      this.removeHiddenFromItems();
+      if (this.hasValue()) {
+        this.inputElement?.select();
+      }
+
+      if (!this.inputFilterText) {
+        this.removeHiddenAttributeFromItems();
+      }
+
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+      this.checkVisibilityOfProxyList();
     } else {
-      this.navigationItem = undefined;
       this.updateSelection();
       this.inputFilterText = '';
+      this.dropdownItemsVisualFocused = false;
+      this.inputElement?.setAttribute('aria-activedescendant', '');
     }
   }
 
-  @OnListener<Select>('keydown', (self) => self.dropdownShow)
-  async onKeyDown(event: KeyboardEvent) {
-    if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
-      await this.onArrowNavigation(event, event.code);
-    }
-
-    if (!this.dropdownShow) {
-      return;
-    }
-
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      await this.onEnterNavigation(event.target as HTMLIxSelectItemElement);
-    }
-
-    if (event.code === 'Escape') {
-      this.dropdownShow = false;
-    }
-  }
-
-  private async onEnterNavigation(
-    el: HTMLIxSelectItemElement | HTMLInputElement
-  ) {
-    if (this.isMultipleMode) {
-      return;
-    }
-    const itemLabel = (el as HTMLIxSelectItemElement)?.label;
-    const item = this.itemExists(this.inputFilterText);
-
-    if (item) {
-      this.itemClick(item.value);
-    } else if (this.editable && !this.itemExists(itemLabel)) {
-      const defaultPrevented = this.emitAddItem(this.inputFilterText);
-      if (defaultPrevented) {
-        return;
-      }
-    }
-
-    this.dropdownShow = false;
-    this.updateSelection();
-  }
-
-  private async onArrowNavigation(
-    event: KeyboardEvent,
-    key: 'ArrowDown' | 'ArrowUp'
-  ) {
-    if (event.defaultPrevented) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.dropdownShow = true;
-
-    if (!this.navigationItem && document.activeElement === this.hostElement) {
-      if (this.visibleItems.length) {
-        this.applyFocusTo(this.visibleItems.shift());
-      } else if (this.isAddItemVisible()) {
-        this.focusAddItemButton();
-      }
-      return;
-    }
-
-    const moveUp = key === 'ArrowUp';
-    const indexNonShadow = document.activeElement
-      ? this.visibleNonShadowItems.indexOf(
-          document.activeElement as HTMLIxSelectItemElement
-        )
-      : -1;
-
-    // Slotted select items
-    if (indexNonShadow === 0) {
-      if (!this.visibleShadowItems.length && this.isAddItemVisible()) {
-        this.focusAddItemButton();
-      } else {
-        this.applyFocusTo(this.visibleShadowItems.pop());
-      }
-      return;
-    } else if (
-      indexNonShadow !== -1 &&
-      indexNonShadow === this.visibleNonShadowItems.length - 1
-    ) {
-      if (this.visibleShadowItems.length) {
-        this.applyFocusTo(this.visibleShadowItems.shift());
-      } else if (this.isAddItemVisible()) {
-        this.focusAddItemButton();
-      }
-      return;
-    }
-
-    if (!this.navigationItem) {
-      return;
-    }
-
-    if (
-      this.isAddItemVisible() &&
-      this.addItemElement?.contains(
-        await this.navigationItem.getDropdownItemElement()
-      )
-    ) {
-      if (moveUp) {
-        this.applyFocusTo(this.visibleItems.pop());
-      } else if (this.visibleItems.length) {
-        this.applyFocusTo(this.visibleItems.shift());
-      }
-      return;
-    }
-
-    // Custom select items
-    const indexShadow = this.visibleShadowItems.indexOf(
-      this.navigationItem as HTMLIxSelectItemElement
-    );
-
-    if (moveUp) {
-      if (indexShadow === 0) {
-        if (this.visibleNonShadowItems.length) {
-          this.applyFocusTo(this.visibleNonShadowItems.pop());
-        } else if (this.isAddItemVisible()) {
-          this.focusAddItemButton();
-        }
-      } else {
-        this.applyFocusTo(this.visibleShadowItems[indexShadow - 1]);
-      }
-    } else {
-      if (indexShadow === this.visibleShadowItems.length - 1) {
-        if (this.isAddItemVisible()) {
-          this.focusAddItemButton();
-        } else {
-          this.applyFocusTo(this.visibleItems.shift());
-        }
-      } else {
-        this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
-      }
-    }
-  }
-
-  private applyFocusTo(element?: HTMLIxSelectItemElement) {
-    if (!element) {
-      return;
-    }
-
-    this.navigationItem = element;
-
-    setTimeout(() => {
-      element.shadowRoot
-        ?.querySelector('ix-dropdown-item')
-        ?.shadowRoot?.querySelector('button')
-        ?.focus();
-    });
-  }
-
-  private focusAddItemButton() {
-    if (this.addItemButton) {
-      this.addItemButton.shadowRoot?.querySelector('button')?.focus();
-      this.navigationItem = this.addItemElement;
-    }
-  }
-
-  private filterItemsWithTypeahead() {
+  private setItemFilter() {
     this.inputFilterText = this.inputElement?.value.trim() ?? '';
 
     if (this.inputFilterText) {
       this.items.forEach((item) => {
-        item.classList.remove('display-none');
+        const proxyItem = this.hostElement.shadowRoot?.getElementById(
+          `${item.id}-${PROXY_LISTITEM_ID_SUFFIX}`
+        );
+        item.hidden = false;
+
+        if (proxyItem) {
+          proxyItem.hidden = false;
+          proxyItem.setAttribute('aria-hidden', 'false');
+        }
+
         if (
           !item.label
             ?.toLowerCase()
             .includes(this.inputFilterText.toLowerCase())
         ) {
-          item.classList.add('display-none');
+          item.hidden = true;
+          if (proxyItem) {
+            proxyItem.hidden = true;
+            proxyItem.setAttribute('aria-hidden', 'true');
+          }
         }
       });
     } else {
-      this.removeHiddenFromItems();
-    }
-
-    if (this.arrowFocusController) {
-      this.arrowFocusController.items = this.visibleNonShadowItems;
+      this.removeHiddenAttributeFromItems();
     }
 
     this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+    this.checkVisibilityOfProxyList();
   }
 
-  private removeHiddenFromItems() {
+  private checkVisibilityOfProxyList() {
+    const proxyList = this.hostElement?.shadowRoot?.getElementById(
+      `${this.hostId}-${PROXY_LIST_ID_SUFFIX}`
+    );
+
+    if (!proxyList) {
+      return;
+    }
+
+    proxyList.hidden = this.isDropdownEmpty;
+  }
+
+  private removeHiddenAttributeFromItems() {
     this.items.forEach((item) => {
-      item.classList.remove('display-none');
+      item.hidden = false;
+
+      const proxyItem = this.hostElement.shadowRoot?.getElementById(
+        `${item.id}-${PROXY_LISTITEM_ID_SUFFIX}`
+      );
+      if (proxyItem) {
+        proxyItem.hidden = false;
+        proxyItem.setAttribute('aria-hidden', 'false');
+      }
     });
   }
 
@@ -759,6 +654,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private onInputBlur(event: Event) {
     this.ixBlur.emit();
     this.touched = true;
+    this.hasInputFocus = false;
 
     if (this.editable) {
       return;
@@ -773,6 +669,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (!this.dropdownShow && this.mode !== 'multiple') {
       target.value = this.selectedLabels.toString();
     }
+  }
+
+  onInputFocus() {
+    this.hasInputFocus = true;
   }
 
   private placeholderValue() {
@@ -827,10 +727,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
         key={item.value}
-        onCloseClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
+        onCloseClick={() => {
           this.itemClick(item.value);
+          this.inputElement?.focus();
         }}
       >
         {item.label}
@@ -890,13 +789,75 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.inputRef.waitForCurrent();
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return 'proxy-listbox-item';
+  }
+
+  override componentWillRender(): Promise<void> | void {
+    if (this.addItemElement) {
+      this.addItemElement.hidden = !this.isAddItemVisible();
+      this.addItemElement.label = this.inputFilterText;
+    }
+    this.updateAriaProxyListbox();
+  }
+
+  private updateAriaProxyListbox() {
+    const ariaActiveDescendantHelper =
+      this.hostElement.shadowRoot?.getElementById(
+        `${this.hostId}-proxy-listbox`
+      );
+    if (this.focusableItems.length === 0) {
+      return;
+    }
+
+    updateFocusProxyList(
+      ariaActiveDescendantHelper!,
+      this.focusableItems,
+      (item, proxyElement) => {
+        proxyElement.role = 'option';
+        proxyElement.innerText = item.label ?? '';
+        proxyElement.ariaLabel =
+          item.getAttribute('aria-label') || item.label || '';
+        proxyElement.ariaSelected =
+          item.getAttribute('aria-selected') || 'false';
+        proxyElement.ariaChecked = item.getAttribute('aria-checked') || 'false';
+        // Forward clicks from the proxy element to the actual dropdown item
+        proxyElement.addEventListener('click', (event) => {
+          event.stopPropagation();
+          event.preventDefault();
+          item.click();
+        });
+        if (this.addItemElement === item) {
+          proxyElement.ariaLabel = `${this.ariaLabelAddItem}: ${item.label}`;
+        }
+        // Bad for building playwright selectors but necessary to ensure that assistive technologies
+        // can announce the items in the dropdown with their respective aria-labels
+        item.ariaHidden = 'true';
+      }
+    );
+  }
+
+  override render() {
     return (
       <Host
-        aria-disabled={a11yBoolean(this.disabled)}
+        id={this.getHostElementId()}
         class={{
           disabled: this.disabled,
+          'show-focus-outline':
+            this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <ix-field-wrapper
           required={this.required}
@@ -921,7 +882,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             }}
             ref={(ref) => {
               this.dropdownAnchorRef(ref);
-              if (!this.editable) this.dropdownWrapperRef(ref);
+              this.dropdownWrapperRef(ref);
             }}
           >
             <div class="input-container">
@@ -933,6 +894,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     : this.selectedItems?.map((item) => this.renderChip(item)))}
                 <div class="trigger">
                   <input
+                    id={`${this.hostId}-input`}
+                    role="combobox"
+                    aria-controls={`${this.hostId}-proxy-listbox`}
+                    aria-expanded={a11yBoolean(this.dropdownShow)}
+                    aria-autocomplete="list"
+                    aria-disabled={a11yBoolean(this.disabled)}
                     autocomplete="off"
                     data-testid="input"
                     disabled={this.disabled}
@@ -949,12 +916,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       this.inputElement = ref;
                       this.inputRef(ref);
                     }}
+                    onFocus={() => this.onInputFocus()}
                     onBlur={(e) => this.onInputBlur(e)}
-                    onFocus={() => {
-                      this.navigationItem = undefined;
-                    }}
-                    onInput={() => this.filterItemsWithTypeahead()}
-                    onKeyDown={(e) => this.onKeyDown(e)}
+                    onInput={() => this.setItemFilter()}
                   />
                   {this.allowClear &&
                   !this.disabled &&
@@ -977,6 +941,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   ) : null}
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
+                      aria-label={this.ariaLabelChevronDownIconButton}
+                      aria-hidden="true"
+                      ref={(ref) => {
+                        const element = ref as unknown as HTMLButtonElement;
+                        // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
+                        // the tabindex will be '0' after expanding the dropdown
+                        element.tabIndex = -1;
+                        element.ariaHidden = 'true';
+                      }}
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
@@ -986,10 +959,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                           : iconChevronDownSmall
                       }
                       variant="subtle-tertiary"
-                      ref={(ref) => {
-                        if (this.editable) this.dropdownWrapperRef(ref);
-                      }}
-                      aria-label={this.ariaLabelChevronDownIconButton}
                     ></ix-icon-button>
                   )}
                 </div>
@@ -998,12 +967,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           </div>
         </ix-field-wrapper>
         <ix-dropdown
-          ref={(ref) => (this.dropdownElement = ref!)}
+          id={`${this.hostId}-listbox`}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+          keyboardItemTriggerKeys={['Enter']}
+          disableFocusTrap
+          focusHost={this.hostElement}
+          ref={this.dropdownRef}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
-          class={{
-            'display-none': this.disabled || this.readonly,
-          }}
+          hidden={this.disabled || this.readonly}
           anchor={this.dropdownAnchorRef.waitForCurrent()}
           trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
@@ -1030,8 +1002,39 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
             return styleOverwrites;
           }}
+          onClick={(event) => {
+            const target = event.target as HTMLElement;
+            const isTargetElement =
+              target.tagName === 'IX-DROPDOWN-ITEM' ||
+              target.tagName === 'IX-SELECT-ITEM';
+
+            if (!isTargetElement) {
+              return;
+            }
+
+            const activeVisualFocusedItem = this.getActiveVisualFocusedItem();
+
+            const item =
+              activeVisualFocusedItem ?? (target as HTMLIxSelectItemElement);
+
+            if (!item) {
+              return;
+            }
+
+            event.stopPropagation();
+
+            if (!item.classList.contains('add-item')) {
+              this.itemClick(item.value);
+              this.setItemFilter();
+            }
+
+            if (this.isSingleMode) {
+              this.dropdownShow = false;
+            }
+          }}
         >
           <div
+            aria-hidden="true"
             class={{
               'select-list-header': true,
               hidden: this.hideListHeader || this.isDropdownEmpty,
@@ -1046,30 +1049,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               this.updateSelection();
             }}
           ></slot>
-          <div ref={(ref) => (this.customItemsContainerElement = ref!)}></div>
-          {this.isAddItemVisible() ? (
-            <ix-dropdown-item
-              data-testid="add-item"
-              icon={iconPlus}
-              class={{
-                'add-item': true,
-              }}
-              label={this.inputFilterText}
-              onItemClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.emitAddItem(this.inputFilterText);
-              }}
-              onFocus={() => (this.navigationItem = this.addItemElement)}
-              ref={(ref) => {
-                this.addItemElement = ref!;
-              }}
-            ></ix-dropdown-item>
-          ) : null}
-          {this.isDropdownEmpty && !this.editable ? (
+          <FocusProxy
+            hostId={this.hostId}
+            otherProps={{
+              'aria-hidden': a11yBoolean(!this.dropdownShow),
+              'aria-multiselectable': a11yBoolean(this.isMultipleMode),
+              hidden: this.disabled || this.readonly,
+            }}
+          ></FocusProxy>
+          {this.isDropdownEmpty && !this.editable && (
             <div class="select-list-header">{this.i18nNoMatches}</div>
-          ) : (
-            ''
           )}
         </ix-dropdown>
       </Host>

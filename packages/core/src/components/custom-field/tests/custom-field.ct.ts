@@ -34,9 +34,7 @@ regressionTest('renders with helper-text', async ({ mount, page }) => {
   const fieldWrapper = customFieldElement.locator('ix-field-wrapper');
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldWrapper).toHaveClass(/hydrated/);
-  await expect(fieldWrapper.filter({ hasText: 'Some helper text' })).toHaveText(
-    'Some helper text'
-  );
+  await expect(fieldWrapper).toContainText('Some helper text');
 });
 
 regressionTest('renders with invalid-text', async ({ mount, page }) => {

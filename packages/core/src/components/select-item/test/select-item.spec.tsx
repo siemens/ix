@@ -24,6 +24,7 @@ describe('select-item', () => {
   });
 
   it('should pass through click event from dropdown item', async () => {
+    global.console = { info: jest.fn(), warn: jest.fn() } as any;
     let eventSpy = jest.fn();
 
     const page = await newSpecPage({
@@ -37,7 +38,7 @@ describe('select-item', () => {
     const dropdownItem = item.shadowRoot!.querySelector(
       'ix-dropdown-item'
     ) as HTMLElement;
-    dropdownItem.shadowRoot!.querySelector('button')!.click();
+    dropdownItem.click();
 
     expect(eventSpy).toHaveBeenCalled();
   });

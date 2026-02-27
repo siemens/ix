@@ -39,3 +39,9 @@ export function makeRef<T>(
 
   return setRefFunction as MakeRef<T>;
 }
+
+export function isMakeRef<T>(ref: any): ref is MakeRef<T> {
+  return (
+    typeof ref === 'function' && 'current' in ref && 'waitForCurrent' in ref
+  );
+}

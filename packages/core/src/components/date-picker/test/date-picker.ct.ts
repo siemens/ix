@@ -27,7 +27,7 @@ regressionTest('translation', async ({ mount, page }) => {
     `<ix-date-picker from="2023/01/01" locale="de"></ix-date-picker>`
   );
 
-  const header = page.getByText('Januar 2023').nth(0);
+  const header = page.getByText('Januar').nth(0);
   await expect(header).toHaveCount(1);
 });
 
@@ -128,24 +128,28 @@ regressionTest.describe('date picker tests single', () => {
     'select different date from specific month',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
+      const monthSelection = page.getByLabel('Select month');
 
-      await page
-        .locator('ix-button')
-        .filter({ hasText: /^September 2023$/ })
-        .locator('span')
-        .click();
+      await expect(monthSelection).toBeVisible();
+      await monthSelection.click();
 
-      await page
-        .locator('div')
-        .filter({ hasText: /^2021$/ })
-        .first()
-        .click();
+      const itemJanuary = monthSelection.getByRole('menuitem', {
+        name: 'January',
+      });
 
-      await page
-        .locator('div')
-        .filter({ hasText: /^January 2021$/ })
-        .first()
-        .click();
+      await expect(itemJanuary).toBeVisible();
+      await itemJanuary.click();
+
+      const yearSelection = page.getByLabel('Select year');
+      await expect(yearSelection).toBeVisible();
+      await yearSelection.click();
+
+      const item2021 = yearSelection.getByRole('menuitem', {
+        name: /2021/,
+      });
+
+      await expect(item2021).toBeVisible();
+      await item2021.click();
 
       await page.getByText(/^1$/).nth(0).click();
 
@@ -318,5 +322,63 @@ regressionTest.describe('date picker tests range', () => {
     await page.getByText('Done').click();
 
     expect(await dateSelectEventPromise).toBeTruthy();
+  });
+});
+
+regressionTest.describe('keyboard navigation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-input embedded value="2023/09/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await dateInputElement.locator('input').focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();
+  });
+
+  regressionTest('Home moves focus to first day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Home');
+    await expect(page.locator('[data-calendar-day="4"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/04');
+  });
+
+  regressionTest('End moves focus to last day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('End');
+    await expect(page.locator('[data-calendar-day="10"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/10');
+  });
+
+  regressionTest('PageUp navigates to previous month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageUp');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/08/05');
+  });
+
+  regressionTest('PageDown navigates to next month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/10/05');
+  });
+
+  regressionTest(
+    'Shift+PageUp navigates to previous year',
+    async ({ page }) => {
+      const dateInputElement = page.locator('ix-date-input');
+      await page.keyboard.press('Shift+PageUp');
+      await page.keyboard.press('Enter');
+      await expect(dateInputElement).toHaveAttribute('value', '2022/09/05');
+    }
+  );
+
+  regressionTest('Shift+PageDown navigates to next year', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Shift+PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
 });

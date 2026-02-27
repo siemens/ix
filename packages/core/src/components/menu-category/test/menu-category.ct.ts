@@ -6,8 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
+import { regressionTest, test, expect } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -314,10 +313,28 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   // Navigate to category
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
+
+  await expect(categoryElement).toBeFocused();
 
   const dropdown = categoryElement.locator('ix-dropdown');
+  await expect(dropdown).not.toBeVisible();
+
+  await page.keyboard.press(' ');
   await expect(dropdown).toBeVisible();
+
+  const item1 = categoryElement.locator('ix-menu-item').nth(0);
+  const item2 = categoryElement.locator('ix-menu-item').nth(1);
+
+  // Focus trapping inside dropdown
+  await expect(item1).toHaveVisibleFocus();
+  await page.keyboard.press('Tab');
+  await expect(item2).toHaveVisibleFocus();
+  await page.keyboard.press('Tab');
+  await expect(item1).toHaveVisibleFocus();
+
+  await page.keyboard.press('Escape');
+  await expect(dropdown).not.toBeVisible();
+  await expect(categoryElement.locator('.category-parent')).toBeFocused();
 });
 
 test('should adjust height when items are added dynamically', async ({

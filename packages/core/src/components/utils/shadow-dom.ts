@@ -56,3 +56,48 @@ export function closestPassShadow(node: Node, selector: string) {
 
   return closestPassShadow(node.parentNode!, selector);
 }
+
+/**
+ * Returns an array of elements representing the path from the given element
+ * to the document root, similar to Event.composedPath().
+ * This function respects shadow DOM boundaries and traverses through them.
+ *
+ * @param element - The HTMLElement to start the path from
+ * @returns An array of Elements including the element itself, shadow roots, and parent elements
+ *
+ * @example
+ * ```typescript
+ * const button = document.querySelector('ix-button');
+ * const path = getComposedPath(button);
+ * // Returns: [button, shadow-root, ix-button, body, html, document]
+ * ```
+ */
+export function getComposedPath(element: HTMLElement): Element[] {
+  const path: Element[] = [];
+  let currentElement: Node | null = element;
+
+  while (currentElement) {
+    if (currentElement instanceof Element) {
+      path.push(currentElement);
+
+      // Check if we're inside a shadow root
+      const rootNode = currentElement.getRootNode();
+      if (rootNode instanceof ShadowRoot) {
+        // Continue with the shadow host
+        currentElement = rootNode.host;
+        continue;
+      }
+
+      // Move to the parent element
+      currentElement = currentElement.parentElement;
+    } else if (currentElement instanceof Document) {
+      // Reached the document, stop here
+      break;
+    } else {
+      // Move to parent node for other node types
+      currentElement = currentElement.parentNode;
+    }
+  }
+
+  return path;
+}

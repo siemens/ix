@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { EventEmitter } from '@stencil/core';
-import { IxComponent } from '../internal';
+import { IxComponentInterface } from '../internal';
 
 export * from './validation';
 
@@ -57,7 +57,7 @@ export interface IxFormValidationState {
   isWarning: boolean;
 }
 
-export interface IxFormComponent<T = string> extends IxComponent {
+export interface IxFormComponent<T = string> extends IxComponentInterface {
   // Private internal
   formInternals: ElementInternals;
 

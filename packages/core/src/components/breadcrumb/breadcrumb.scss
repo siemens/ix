@@ -23,8 +23,9 @@
   @include component.ix-component;
 
   .previous-button {
-    width: 3rem;
+    width: auto;
     min-width: 0px;
+    margin-right: 0.25rem;
   }
 
   .crumb-dropdown {
@@ -55,5 +56,11 @@
   ol,
   .crumb-items {
     display: contents;
+  }
+
+  .chevron {
+    margin-left: 0.5rem;
+    margin-right: 0rem;
+    color: var(--theme-color-soft-text);
   }
 }
