@@ -1040,28 +1040,6 @@ importers:
         specifier: ^4.9.5
         version: 4.9.5
 
-  packages/html-test-app:
-    dependencies:
-      ag-grid-community:
-        specifier: ^33.1.1
-        version: 33.3.2
-    devDependencies:
-      '@siemens/ix':
-        specifier: workspace:*
-        version: link:../core
-      '@siemens/ix-aggrid':
-        specifier: workspace:*
-        version: link:../aggrid
-      '@siemens/ix-echarts':
-        specifier: workspace:*
-        version: link:../echarts
-      '@siemens/ix-icons':
-        specifier: 'catalog:'
-        version: 3.3.0
-      vite:
-        specifier: 'catalog:'
-        version: 7.3.1(@types/node@25.0.9)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
-
   packages/react:
     dependencies:
       '@siemens/ix':
@@ -1339,7 +1317,7 @@ importers:
         version: 2.0.9(echarts@6.0.0)
       html-test-app:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-test-app
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@6.0.0)
@@ -1538,6 +1516,28 @@ importers:
         specifier: ^5.8.2
         version: 5.9.3
 
+  testing/html-test-app:
+    dependencies:
+      ag-grid-community:
+        specifier: ^33.1.1
+        version: 33.3.2
+    devDependencies:
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-aggrid':
+        specifier: workspace:*
+        version: link:../../packages/aggrid
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../../packages/echarts
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 3.3.0
+      vite:
+        specifier: 'catalog:'
+        version: 7.3.1(@types/node@25.0.9)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
+
   testing/ionic-test-app:
     dependencies:
       '@capacitor/app':
@@ -1727,7 +1727,7 @@ importers:
         version: 2.0.9(echarts@5.5.1)
       html-test-app:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-test-app
       react:
         specifier: ^19.1.0
         version: 19.2.4
@@ -1836,7 +1836,7 @@ importers:
         version: 2.0.9(echarts@5.5.1)
       html-test-app:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-test-app
       vue:
         specifier: ^3.4.34
         version: 3.5.17(typescript@5.8.3)
@@ -5552,11 +5552,6 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.55.2':
-    resolution: {integrity: sha512-oWKZLjYwTihnTeINcNenxIIDfeotkQ2GAjFJPe7aYsMONrwDwQQXcAl3Qv0qON7Hdc8RTsFomq22zotm/i6VVQ==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-
   '@rollup/wasm-node@4.57.0':
     resolution: {integrity: sha512-EmuVEJWCxlkA/HIe9IJUSSXUXj3mw3w/4NDHhdu2KLCfBUOsjHMOWWrVzTGySmdaua0E120LSQ5ojDGfi+tA/Q==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -5564,6 +5559,11 @@ packages:
 
   '@rollup/wasm-node@4.57.1':
     resolution: {integrity: sha512-b0rcJH8ykEanfgTeDtlPubhphIUOx0oaAek+3hizTaFkoC1FBSTsY0GixwB4D5HZ5r3Gt2yI9c8M13OcW/kW5A==}
+    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
+    hasBin: true
+
+  '@rollup/wasm-node@4.59.0':
+    resolution: {integrity: sha512-cKB/Pe05aJWQYw3UFS79Id+KVXdExBxWful0+CSl24z3ukwOgBSy6l39XZNwfm3vCh/fpUrAAs+T7PsJ6dC8NA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -18678,12 +18678,6 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.55.2':
-    dependencies:
-      '@types/estree': 1.0.8
-    optionalDependencies:
-      fsevents: 2.3.3
-
   '@rollup/wasm-node@4.57.0':
     dependencies:
       '@types/estree': 1.0.8
@@ -18691,6 +18685,12 @@ snapshots:
       fsevents: 2.3.3
 
   '@rollup/wasm-node@4.57.1':
+    dependencies:
+      '@types/estree': 1.0.8
+    optionalDependencies:
+      fsevents: 2.3.3
+
+  '@rollup/wasm-node@4.59.0':
     dependencies:
       '@types/estree': 1.0.8
     optionalDependencies:
@@ -29018,7 +29018,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 20.16.5
@@ -29038,7 +29038,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 20.16.5
@@ -29057,7 +29057,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 22.19.7
@@ -29076,7 +29076,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 24.0.14
@@ -29095,7 +29095,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 24.10.9
@@ -29114,7 +29114,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.55.2'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 25.0.9

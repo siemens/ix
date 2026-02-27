@@ -106,6 +106,9 @@ export { RefreshTreeOptions } from "./components/tree/tree.types";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    /**
+     * @figma-main-component-id 104612:25269
+     */
     interface IxActionCard {
         /**
           * ARIA label for the card
@@ -170,6 +173,9 @@ export namespace Components {
          */
         "themeSystemAppearance": boolean;
     }
+    /**
+     * @figma-main-component-id 20920:77660
+     */
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
@@ -245,6 +251,9 @@ export namespace Components {
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
+    /**
+     * @figma-main-component-id 308:1151
+     */
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
@@ -278,6 +287,9 @@ export namespace Components {
          */
         "username"?: string;
     }
+    /**
+     * @figma-main-component-id 388:3986
+     */
     interface IxBlind {
         /**
           * Collapsed state
@@ -302,6 +314,9 @@ export namespace Components {
          */
         "variant": BlindVariant;
     }
+    /**
+     * @figma-main-component-id 1603:54616
+     */
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
@@ -330,6 +345,9 @@ export namespace Components {
          */
         "visibleItemCount": number;
     }
+    /**
+     * @figma-main-component-id 358:3004
+     */
     interface IxBreadcrumbItem {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
@@ -377,6 +395,9 @@ export namespace Components {
          */
         "target"?: AnchorTarget;
     }
+    /**
+     * @figma-main-component-id 225:5535
+     */
     interface IxButton {
         /**
           * @default 'center'
@@ -442,6 +463,9 @@ export namespace Components {
          */
         "variant": ButtonVariant;
     }
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCard {
         /**
           * If true, disables hover and active styles and changes cursor to default
@@ -477,8 +501,14 @@ export namespace Components {
          */
         "variant": CardAccordionVariant;
     }
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCardContent {
     }
+    /**
+     * @figma-main-component-id 104638:14632
+     */
     interface IxCardList {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
@@ -531,6 +561,9 @@ export namespace Components {
     }
     interface IxCardTitle {
     }
+    /**
+     * @figma-main-component-id 1221:30316
+     */
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
@@ -621,6 +654,7 @@ export namespace Components {
         "uniqueCategories": boolean;
     }
     /**
+     * @figma-main-component-id 42365:47165
      * @form-ready 
      */
     interface IxCheckbox {
@@ -662,6 +696,7 @@ export namespace Components {
         "value": string;
     }
     /**
+     * @figma-main-component-id 84992:87199
      * @form-ready 
      */
     interface IxCheckboxGroup {
@@ -706,6 +741,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 286:1758
+     */
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
@@ -783,6 +821,9 @@ export namespace Components {
     }
     interface IxContent {
     }
+    /**
+     * @figma-main-component-id 4727:112521
+     */
     interface IxContentHeader {
         /**
           * Display a back button
@@ -816,6 +857,9 @@ export namespace Components {
          */
         "itemName": string;
     }
+    /**
+     * @figma-main-component-id 42365:52677
+     */
     interface IxCustomField {
         /**
           * Show text below the field component which show additional information
@@ -851,6 +895,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 45886:27067
+     */
     interface IxDateDropdown {
         /**
           * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
@@ -962,6 +1009,7 @@ export namespace Components {
         "weekStartIndex": number;
     }
     /**
+     * @figma-main-component-id 442365:42749
      * @form-ready 
      */
     interface IxDateInput {
@@ -1100,6 +1148,9 @@ export namespace Components {
          */
         "weekStartIndex": number;
     }
+    /**
+     * @figma-main-component-id 561:6290
+     */
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
@@ -1204,6 +1255,9 @@ export namespace Components {
          */
         "timePickerAppearance": boolean;
     }
+    /**
+     * @figma-main-component-id 70466:78415
+     */
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
@@ -1288,6 +1342,7 @@ export namespace Components {
     interface IxDivider {
     }
     /**
+     * @figma-main-component-id 1435:46269
      * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface IxDrawer {
@@ -1332,6 +1387,9 @@ export namespace Components {
          */
         "width": number | 'auto';
     }
+    /**
+     * @figma-main-component-id 1233:32649
+     */
     interface IxDropdown {
         /**
           * Define an anchor element
@@ -1405,6 +1463,9 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
+    /**
+     * @figma-main-component-id 294:1198
+     */
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
@@ -1445,12 +1506,18 @@ export namespace Components {
          */
         "variant": DropdownButtonVariant;
     }
+    /**
+     * @figma-main-component-id 1233:33137
+     */
     interface IxDropdownHeader {
         /**
           * Display name of the header
          */
         "label"?: string;
     }
+    /**
+     * @figma-main-component-id 1603:52792
+     */
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
@@ -1495,8 +1562,14 @@ export namespace Components {
          */
         "suppressChecked": boolean;
     }
+    /**
+     * @figma-main-component-id 1233:34168
+     */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @figma-main-component-id 4727:112645
+     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -1525,6 +1598,9 @@ export namespace Components {
          */
         "subHeader"?: string;
     }
+    /**
+     * @figma-main-component-id 1433:43161
+     */
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'false'.
@@ -1547,6 +1623,9 @@ export namespace Components {
          */
         "itemHeight": 'S' | 'L' | number;
     }
+    /**
+     * @figma-main-component-id 1433:41688
+     */
     interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
@@ -1574,6 +1653,9 @@ export namespace Components {
          */
         "variant": 'outline' | 'filled';
     }
+    /**
+     * @figma-main-component-id 680:9354
+     */
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
@@ -1615,6 +1697,9 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
     }
+    /**
+     * @figma-main-component-id 1682:60975
+     */
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
@@ -1714,6 +1799,9 @@ export namespace Components {
          */
         "readonly": boolean;
     }
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
@@ -1743,6 +1831,9 @@ export namespace Components {
          */
         "width": number | 'auto';
     }
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface IxFlipTileContent {
         /**
           * Controls the visibility of the content
@@ -1750,6 +1841,9 @@ export namespace Components {
          */
         "contentVisible": boolean;
     }
+    /**
+     * @figma-main-component-id 1274:38298
+     */
     interface IxGroup {
         /**
           * Expand the group if the header is clicked
@@ -1786,6 +1880,9 @@ export namespace Components {
     }
     interface IxGroupContextMenu {
     }
+    /**
+     * @figma-main-component-id 1274:34186
+     */
     interface IxGroupItem {
         /**
           * ARIA label for the icon
@@ -1853,6 +1950,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 270:941
+     */
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -1898,6 +1998,9 @@ export namespace Components {
          */
         "variant": IconButtonVariant;
     }
+    /**
+     * @figma-main-component-id 107597:25227
+     */
     interface IxIconToggleButton {
         /**
           * ARIA label for the icon button Will be set for the native HTML button element
@@ -1951,7 +2054,7 @@ export namespace Components {
         "variant": ButtonVariant1;
     }
     /**
-     * @figma-main-component-id 42365:39459, 42365:42743
+     * @figma-main-component-id 42365:39459
      * @form-ready 
      */
     interface IxInput {
@@ -2068,6 +2171,9 @@ export namespace Components {
      */
     interface IxInputGroup {
     }
+    /**
+     * @figma-main-component-id 4727:112546
+     */
     interface IxKeyValue {
         /**
           * ARIA label for the icon
@@ -2092,6 +2198,9 @@ export namespace Components {
          */
         "value"?: string;
     }
+    /**
+     * @figma-main-component-id 4784:118515
+     */
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
@@ -2099,6 +2208,9 @@ export namespace Components {
          */
         "striped": boolean;
     }
+    /**
+     * @figma-main-component-id 423:3986
+     */
     interface IxKpi {
         /**
           * ARIA label for the alarm icon
@@ -2149,6 +2261,9 @@ export namespace Components {
          */
         "noMargin": boolean;
     }
+    /**
+     * @figma-main-component-id 107603:15976
+     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -2165,6 +2280,9 @@ export namespace Components {
          */
         "url"?: string;
     }
+    /**
+     * @figma-main-component-id 20977:55554
+     */
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -2366,6 +2484,9 @@ export namespace Components {
          */
         "label"?: string;
     }
+    /**
+     * @figma-main-component-id 4533:132499
+     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -2407,6 +2528,9 @@ export namespace Components {
          */
         "pinned": boolean;
     }
+    /**
+     * @figma-main-component-id 308:1293
+     */
     interface IxMenuItem {
         /**
           * State to display active
@@ -2492,6 +2616,9 @@ export namespace Components {
          */
         "label"?: string;
     }
+    /**
+     * @figma-main-component-id 103814:17693
+     */
     interface IxMessageBar {
         /**
           * If true, close button is disabled and alert cannot be dismissed by the user
@@ -2704,6 +2831,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 2302:67995, 2554:79100
+     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -2762,6 +2892,9 @@ export namespace Components {
          */
         "selectedPage": number;
     }
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface IxPane {
         /**
           * ARIA label close or collapse button
@@ -2829,6 +2962,9 @@ export namespace Components {
          */
         "variant": 'floating' | 'inline';
     }
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
@@ -2846,6 +2982,9 @@ export namespace Components {
          */
         "variant": 'floating' | 'inline';
     }
+    /**
+     * @figma-main-component-id 312:1219
+     */
     interface IxPill {
         /**
           * Align pill content left
@@ -2894,6 +3033,7 @@ export namespace Components {
     | 'custom';
     }
     /**
+     * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
     interface IxProgressIndicator {
@@ -2946,6 +3086,9 @@ export namespace Components {
          */
         "value": number;
     }
+    /**
+     * @figma-main-component-id 104612:25695
+     */
     interface IxPushCard {
         /**
           * ARIA label for the icon
@@ -2985,6 +3128,7 @@ export namespace Components {
         "variant": PushCardVariant;
     }
     /**
+     * @figma-main-component-id 42365:44481
      * @form-ready 
      */
     interface IxRadio {
@@ -3021,6 +3165,7 @@ export namespace Components {
         "value"?: string;
     }
     /**
+     * @figma-main-component-id 42365:44973
      * @form-ready 
      */
     interface IxRadioGroup {
@@ -3073,6 +3218,7 @@ export namespace Components {
     interface IxRow {
     }
     /**
+     * @figma-main-component-id 42365:49989
      * @form-ready 
      */
     interface IxSelect {
@@ -3243,6 +3389,7 @@ export namespace Components {
         "value": string;
     }
     /**
+     * @figma-main-component-id 50042:20986
      * @form-ready 
      */
     interface IxSlider {
@@ -3329,6 +3476,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 453:5375
+     */
     interface IxSpinner {
         /**
           * @default false
@@ -3345,6 +3495,9 @@ export namespace Components {
          */
         "variant": 'primary' | 'secondary';
     }
+    /**
+     * @figma-main-component-id 237:4370
+     */
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
@@ -3407,6 +3560,9 @@ export namespace Components {
          */
         "variant": SplitButtonVariant;
     }
+    /**
+     * @figma-main-component-id 426:4122
+     */
     interface IxTabItem {
         /**
           * Set counter value
@@ -3448,6 +3604,9 @@ export namespace Components {
          */
         "small": boolean;
     }
+    /**
+     * @figma-main-component-id 427:6367
+     */
     interface IxTabs {
         /**
           * ARIA label for the chevron left icon button
@@ -3589,6 +3748,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 1431:43158
+     */
     interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
@@ -3597,6 +3759,7 @@ export namespace Components {
         "size": 'small' | 'medium' | 'big';
     }
     /**
+     * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
      */
@@ -3754,6 +3917,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 68801:7500
+     */
     interface IxTimePicker {
         /**
           * Corner style
@@ -3914,6 +4080,7 @@ export namespace Components {
         "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
     /**
+     * @figma-main-component-id 43875:36542
      * @form-ready 
      */
     interface IxToggle {
@@ -3970,6 +4137,9 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @figma-main-component-id 8994:173458
+     */
     interface IxToggleButton {
         /**
           * ARIA label that will be set on the native HTML button element
@@ -4006,6 +4176,9 @@ export namespace Components {
          */
         "variant": ToggleButtonVariant;
     }
+    /**
+     * @figma-main-component-id 1239:30786
+     */
     interface IxTooltip {
         /**
           * @default false
@@ -4099,6 +4272,9 @@ export namespace Components {
          */
         "text"?: string;
     }
+    /**
+     * @figma-main-component-id 40211:13267
+     */
     interface IxTypography {
         /**
           * Display text bold
@@ -4119,6 +4295,9 @@ export namespace Components {
          */
         "textDecoration": TextDecoration;
     }
+    /**
+     * @figma-main-component-id 1028:14676
+     */
     interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
@@ -4491,6 +4670,9 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    /**
+     * @figma-main-component-id 104612:25269
+     */
     interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
     }
     var HTMLIxActionCardElement: {
@@ -4507,6 +4689,9 @@ declare global {
         "menuToggle": boolean;
         "openAppSwitch": void;
     }
+    /**
+     * @figma-main-component-id 20920:77660
+     */
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4533,6 +4718,9 @@ declare global {
         prototype: HTMLIxApplicationSwitchModalElement;
         new (): HTMLIxApplicationSwitchModalElement;
     };
+    /**
+     * @figma-main-component-id 308:1151
+     */
     interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
     }
     var HTMLIxAvatarElement: {
@@ -4542,6 +4730,9 @@ declare global {
     interface HTMLIxBlindElementEventMap {
         "collapsedChange": boolean;
     }
+    /**
+     * @figma-main-component-id 388:3986
+     */
     interface HTMLIxBlindElement extends Components.IxBlind, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBlindElementEventMap>(type: K, listener: (this: HTMLIxBlindElement, ev: IxBlindCustomEvent<HTMLIxBlindElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4560,6 +4751,9 @@ declare global {
         "itemClick": string;
         "nextClick": { event: UIEvent; item: string };
     }
+    /**
+     * @figma-main-component-id 1603:54616
+     */
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBreadcrumbElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbElement, ev: IxBreadcrumbCustomEvent<HTMLIxBreadcrumbElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4577,6 +4771,9 @@ declare global {
     interface HTMLIxBreadcrumbItemElementEventMap {
         "itemClick": string;
     }
+    /**
+     * @figma-main-component-id 358:3004
+     */
     interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBreadcrumbItemElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbItemElement, ev: IxBreadcrumbItemCustomEvent<HTMLIxBreadcrumbItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4591,12 +4788,18 @@ declare global {
         prototype: HTMLIxBreadcrumbItemElement;
         new (): HTMLIxBreadcrumbItemElement;
     };
+    /**
+     * @figma-main-component-id 225:5535
+     */
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
     var HTMLIxButtonElement: {
         prototype: HTMLIxButtonElement;
         new (): HTMLIxButtonElement;
     };
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
     }
     var HTMLIxCardElement: {
@@ -4620,6 +4823,9 @@ declare global {
         prototype: HTMLIxCardAccordionElement;
         new (): HTMLIxCardAccordionElement;
     };
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
     }
     var HTMLIxCardContentElement: {
@@ -4635,6 +4841,9 @@ declare global {
     nativeEvent: MouseEvent;
   };
     }
+    /**
+     * @figma-main-component-id 104638:14632
+     */
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCardListElementEventMap>(type: K, listener: (this: HTMLIxCardListElement, ev: IxCardListCustomEvent<HTMLIxCardListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4661,6 +4870,9 @@ declare global {
         "filterChanged": FilterState;
         "filterCleared": void;
     }
+    /**
+     * @figma-main-component-id 1221:30316
+     */
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCategoryFilterElementEventMap>(type: K, listener: (this: HTMLIxCategoryFilterElement, ev: IxCategoryFilterCustomEvent<HTMLIxCategoryFilterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4681,6 +4893,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 42365:47165
      * @form-ready 
      */
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
@@ -4698,6 +4911,7 @@ declare global {
         new (): HTMLIxCheckboxElement;
     };
     /**
+     * @figma-main-component-id 84992:87199
      * @form-ready 
      */
     interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
@@ -4709,6 +4923,9 @@ declare global {
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
     }
+    /**
+     * @figma-main-component-id 286:1758
+     */
     interface HTMLIxChipElement extends Components.IxChip, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChipElementEventMap>(type: K, listener: (this: HTMLIxChipElement, ev: IxChipCustomEvent<HTMLIxChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4738,6 +4955,9 @@ declare global {
     interface HTMLIxContentHeaderElementEventMap {
         "backButtonClick": void;
     }
+    /**
+     * @figma-main-component-id 4727:112521
+     */
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxContentHeaderElementEventMap>(type: K, listener: (this: HTMLIxContentHeaderElement, ev: IxContentHeaderCustomEvent<HTMLIxContentHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4764,6 +4984,9 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
+    /**
+     * @figma-main-component-id 42365:52677
+     */
     interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
     }
     var HTMLIxCustomFieldElement: {
@@ -4773,6 +4996,9 @@ declare global {
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
     }
+    /**
+     * @figma-main-component-id 45886:27067
+     */
     interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateDropdownElementEventMap>(type: K, listener: (this: HTMLIxDateDropdownElement, ev: IxDateDropdownCustomEvent<HTMLIxDateDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4794,6 +5020,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 442365:42749
      * @form-ready 
      */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
@@ -4815,6 +5042,9 @@ declare global {
         "dateRangeChange": DateChangeEvent;
         "dateSelect": DateChangeEvent;
     }
+    /**
+     * @figma-main-component-id 561:6290
+     */
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatePickerElementEventMap>(type: K, listener: (this: HTMLIxDatePickerElement, ev: IxDatePickerCustomEvent<HTMLIxDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4840,6 +5070,9 @@ declare global {
         "dateChange": DateTimeDateChangeEvent;
         "dateSelect": DateTimeSelectEvent;
     }
+    /**
+     * @figma-main-component-id 70466:78415
+     */
     interface HTMLIxDatetimePickerElement extends Components.IxDatetimePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatetimePickerElementEventMap>(type: K, listener: (this: HTMLIxDatetimePickerElement, ev: IxDatetimePickerCustomEvent<HTMLIxDatetimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4865,6 +5098,7 @@ declare global {
         "drawerClose": any;
     }
     /**
+     * @figma-main-component-id 1435:46269
      * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
@@ -4884,6 +5118,9 @@ declare global {
     interface HTMLIxDropdownElementEventMap {
         "showChanged": boolean;
     }
+    /**
+     * @figma-main-component-id 1233:32649
+     */
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4898,12 +5135,18 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    /**
+     * @figma-main-component-id 294:1198
+     */
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
     }
     var HTMLIxDropdownButtonElement: {
         prototype: HTMLIxDropdownButtonElement;
         new (): HTMLIxDropdownButtonElement;
     };
+    /**
+     * @figma-main-component-id 1233:33137
+     */
     interface HTMLIxDropdownHeaderElement extends Components.IxDropdownHeader, HTMLStencilElement {
     }
     var HTMLIxDropdownHeaderElement: {
@@ -4913,6 +5156,9 @@ declare global {
     interface HTMLIxDropdownItemElementEventMap {
         "itemClick": HTMLIxDropdownItemElement;
     }
+    /**
+     * @figma-main-component-id 1603:52792
+     */
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownItemElementEventMap>(type: K, listener: (this: HTMLIxDropdownItemElement, ev: IxDropdownItemCustomEvent<HTMLIxDropdownItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4927,6 +5173,9 @@ declare global {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
     };
+    /**
+     * @figma-main-component-id 1233:34168
+     */
     interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
     }
     var HTMLIxDropdownQuickActionsElement: {
@@ -4936,6 +5185,9 @@ declare global {
     interface HTMLIxEmptyStateElementEventMap {
         "actionClick": void;
     }
+    /**
+     * @figma-main-component-id 4727:112645
+     */
     interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxEmptyStateElementEventMap>(type: K, listener: (this: HTMLIxEmptyStateElement, ev: IxEmptyStateCustomEvent<HTMLIxEmptyStateElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4950,6 +5202,9 @@ declare global {
         prototype: HTMLIxEmptyStateElement;
         new (): HTMLIxEmptyStateElement;
     };
+    /**
+     * @figma-main-component-id 1433:43161
+     */
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
     var HTMLIxEventListElement: {
@@ -4959,6 +5214,9 @@ declare global {
     interface HTMLIxEventListItemElementEventMap {
         "itemClick": any;
     }
+    /**
+     * @figma-main-component-id 1433:41688
+     */
     interface HTMLIxEventListItemElement extends Components.IxEventListItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxEventListItemElementEventMap>(type: K, listener: (this: HTMLIxEventListItemElement, ev: IxEventListItemCustomEvent<HTMLIxEventListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4976,6 +5234,9 @@ declare global {
     interface HTMLIxExpandingSearchElementEventMap {
         "valueChange": string;
     }
+    /**
+     * @figma-main-component-id 680:9354
+     */
     interface HTMLIxExpandingSearchElement extends Components.IxExpandingSearch, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxExpandingSearchElementEventMap>(type: K, listener: (this: HTMLIxExpandingSearchElement, ev: IxExpandingSearchCustomEvent<HTMLIxExpandingSearchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4990,6 +5251,9 @@ declare global {
         prototype: HTMLIxExpandingSearchElement;
         new (): HTMLIxExpandingSearchElement;
     };
+    /**
+     * @figma-main-component-id 1682:60975
+     */
     interface HTMLIxFieldLabelElement extends Components.IxFieldLabel, HTMLStencilElement {
     }
     var HTMLIxFieldLabelElement: {
@@ -5022,6 +5286,9 @@ declare global {
     interface HTMLIxFlipTileElementEventMap {
         "toggle": number;
     }
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface HTMLIxFlipTileElement extends Components.IxFlipTile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5036,6 +5303,9 @@ declare global {
         prototype: HTMLIxFlipTileElement;
         new (): HTMLIxFlipTileElement;
     };
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface HTMLIxFlipTileContentElement extends Components.IxFlipTileContent, HTMLStencilElement {
     }
     var HTMLIxFlipTileContentElement: {
@@ -5047,6 +5317,9 @@ declare global {
         "selectItem": number;
         "expandedChanged": boolean;
     }
+    /**
+     * @figma-main-component-id 1274:38298
+     */
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxGroupElementEventMap>(type: K, listener: (this: HTMLIxGroupElement, ev: IxGroupCustomEvent<HTMLIxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5070,6 +5343,9 @@ declare global {
     interface HTMLIxGroupItemElementEventMap {
         "selectedChanged": HTMLIxGroupItemElement;
     }
+    /**
+     * @figma-main-component-id 1274:34186
+     */
     interface HTMLIxGroupItemElement extends Components.IxGroupItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxGroupItemElementEventMap>(type: K, listener: (this: HTMLIxGroupItemElement, ev: IxGroupItemCustomEvent<HTMLIxGroupItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5090,6 +5366,9 @@ declare global {
         prototype: HTMLIxHelperTextElement;
         new (): HTMLIxHelperTextElement;
     };
+    /**
+     * @figma-main-component-id 270:941
+     */
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -5099,6 +5378,9 @@ declare global {
     interface HTMLIxIconToggleButtonElementEventMap {
         "pressedChange": boolean;
     }
+    /**
+     * @figma-main-component-id 107597:25227
+     */
     interface HTMLIxIconToggleButtonElement extends Components.IxIconToggleButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxIconToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxIconToggleButtonElement, ev: IxIconToggleButtonCustomEvent<HTMLIxIconToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5119,7 +5401,7 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @figma-main-component-id 42365:39459, 42365:42743
+     * @figma-main-component-id 42365:39459
      * @form-ready 
      */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
@@ -5147,18 +5429,27 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
+    /**
+     * @figma-main-component-id 4727:112546
+     */
     interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
     }
     var HTMLIxKeyValueElement: {
         prototype: HTMLIxKeyValueElement;
         new (): HTMLIxKeyValueElement;
     };
+    /**
+     * @figma-main-component-id 4784:118515
+     */
     interface HTMLIxKeyValueListElement extends Components.IxKeyValueList, HTMLStencilElement {
     }
     var HTMLIxKeyValueListElement: {
         prototype: HTMLIxKeyValueListElement;
         new (): HTMLIxKeyValueListElement;
     };
+    /**
+     * @figma-main-component-id 423:3986
+     */
     interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
     }
     var HTMLIxKpiElement: {
@@ -5177,6 +5468,9 @@ declare global {
         prototype: HTMLIxLayoutGridElement;
         new (): HTMLIxLayoutGridElement;
     };
+    /**
+     * @figma-main-component-id 107603:15976
+     */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
     }
     var HTMLIxLinkButtonElement: {
@@ -5190,6 +5484,9 @@ declare global {
         "openSettings": void;
         "openAbout": void;
     }
+    /**
+     * @figma-main-component-id 20977:55554
+     */
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5294,6 +5591,9 @@ declare global {
     interface HTMLIxMenuCategoryElementEventMap {
         "closeOtherCategories": any;
     }
+    /**
+     * @figma-main-component-id 4533:132499
+     */
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5314,6 +5614,9 @@ declare global {
         prototype: HTMLIxMenuExpandIconElement;
         new (): HTMLIxMenuExpandIconElement;
     };
+    /**
+     * @figma-main-component-id 308:1293
+     */
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
     var HTMLIxMenuItemElement: {
@@ -5359,6 +5662,9 @@ declare global {
         "closedChange": any;
         "closeAnimationCompleted": any;
     }
+    /**
+     * @figma-main-component-id 103814:17693
+     */
     interface HTMLIxMessageBarElement extends Components.IxMessageBar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMessageBarElementEventMap>(type: K, listener: (this: HTMLIxMessageBarElement, ev: IxMessageBarCustomEvent<HTMLIxMessageBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5452,6 +5758,9 @@ declare global {
         "pageSelected": number;
         "itemCountChanged": number;
     }
+    /**
+     * @figma-main-component-id 2302:67995, 2554:79100
+     */
     interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaginationElementEventMap>(type: K, listener: (this: HTMLIxPaginationElement, ev: IxPaginationCustomEvent<HTMLIxPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5473,6 +5782,9 @@ declare global {
         "hideOnCollapseChanged": HideOnCollapseChangedEvent;
         "slotChanged": SlotChangedEvent;
     }
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5487,12 +5799,18 @@ declare global {
         prototype: HTMLIxPaneElement;
         new (): HTMLIxPaneElement;
     };
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
     }
     var HTMLIxPaneLayoutElement: {
         prototype: HTMLIxPaneLayoutElement;
         new (): HTMLIxPaneLayoutElement;
     };
+    /**
+     * @figma-main-component-id 312:1219
+     */
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
     var HTMLIxPillElement: {
@@ -5500,6 +5818,7 @@ declare global {
         new (): HTMLIxPillElement;
     };
     /**
+     * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
     interface HTMLIxProgressIndicatorElement extends Components.IxProgressIndicator, HTMLStencilElement {
@@ -5508,6 +5827,9 @@ declare global {
         prototype: HTMLIxProgressIndicatorElement;
         new (): HTMLIxProgressIndicatorElement;
     };
+    /**
+     * @figma-main-component-id 104612:25695
+     */
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
     var HTMLIxPushCardElement: {
@@ -5520,6 +5842,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 42365:44481
      * @form-ready 
      */
     interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
@@ -5540,6 +5863,7 @@ declare global {
         "valueChange": string;
     }
     /**
+     * @figma-main-component-id 42365:44973
      * @form-ready 
      */
     interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
@@ -5569,6 +5893,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 42365:49989
      * @form-ready 
      */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
@@ -5606,6 +5931,7 @@ declare global {
         "valueChange": number;
     }
     /**
+     * @figma-main-component-id 50042:20986
      * @form-ready 
      */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
@@ -5622,6 +5948,9 @@ declare global {
         prototype: HTMLIxSliderElement;
         new (): HTMLIxSliderElement;
     };
+    /**
+     * @figma-main-component-id 453:5375
+     */
     interface HTMLIxSpinnerElement extends Components.IxSpinner, HTMLStencilElement {
     }
     var HTMLIxSpinnerElement: {
@@ -5631,6 +5960,9 @@ declare global {
     interface HTMLIxSplitButtonElementEventMap {
         "buttonClick": MouseEvent;
     }
+    /**
+     * @figma-main-component-id 237:4370
+     */
     interface HTMLIxSplitButtonElement extends Components.IxSplitButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSplitButtonElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonElement, ev: IxSplitButtonCustomEvent<HTMLIxSplitButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5648,6 +5980,9 @@ declare global {
     interface HTMLIxTabItemElementEventMap {
         "tabClick": TabClickDetail;
     }
+    /**
+     * @figma-main-component-id 426:4122
+     */
     interface HTMLIxTabItemElement extends Components.IxTabItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTabItemElementEventMap>(type: K, listener: (this: HTMLIxTabItemElement, ev: IxTabItemCustomEvent<HTMLIxTabItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5665,6 +6000,9 @@ declare global {
     interface HTMLIxTabsElementEventMap {
         "selectedChange": number;
     }
+    /**
+     * @figma-main-component-id 427:6367
+     */
     interface HTMLIxTabsElement extends Components.IxTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTabsElementEventMap>(type: K, listener: (this: HTMLIxTabsElement, ev: IxTabsCustomEvent<HTMLIxTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5701,6 +6039,9 @@ declare global {
         prototype: HTMLIxTextareaElement;
         new (): HTMLIxTextareaElement;
     };
+    /**
+     * @figma-main-component-id 1431:43158
+     */
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
     var HTMLIxTileElement: {
@@ -5714,6 +6055,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
      */
@@ -5735,6 +6077,9 @@ declare global {
         "timeSelect": string;
         "timeChange": string;
     }
+    /**
+     * @figma-main-component-id 68801:7500
+     */
     interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimePickerElementEventMap>(type: K, listener: (this: HTMLIxTimePickerElement, ev: IxTimePickerCustomEvent<HTMLIxTimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5778,6 +6123,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 43875:36542
      * @form-ready 
      */
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
@@ -5797,6 +6143,9 @@ declare global {
     interface HTMLIxToggleButtonElementEventMap {
         "pressedChange": boolean;
     }
+    /**
+     * @figma-main-component-id 8994:173458
+     */
     interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxToggleButtonElement, ev: IxToggleButtonCustomEvent<HTMLIxToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5811,6 +6160,9 @@ declare global {
         prototype: HTMLIxToggleButtonElement;
         new (): HTMLIxToggleButtonElement;
     };
+    /**
+     * @figma-main-component-id 1239:30786
+     */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
     }
     var HTMLIxTooltipElement: {
@@ -5855,6 +6207,9 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
+    /**
+     * @figma-main-component-id 40211:13267
+     */
     interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
     }
     var HTMLIxTypographyElement: {
@@ -5864,6 +6219,9 @@ declare global {
     interface HTMLIxUploadElementEventMap {
         "filesChanged": Array<File>;
     }
+    /**
+     * @figma-main-component-id 1028:14676
+     */
     interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxUploadElementEventMap>(type: K, listener: (this: HTMLIxUploadElement, ev: IxUploadCustomEvent<HTMLIxUploadElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6036,6 +6394,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * @figma-main-component-id 104612:25269
+     */
     interface IxActionCard {
         /**
           * ARIA label for the card
@@ -6100,6 +6461,9 @@ declare namespace LocalJSX {
          */
         "themeSystemAppearance"?: boolean;
     }
+    /**
+     * @figma-main-component-id 20920:77660
+     */
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
@@ -6184,6 +6548,9 @@ declare namespace LocalJSX {
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
+    /**
+     * @figma-main-component-id 308:1151
+     */
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
@@ -6217,6 +6584,9 @@ declare namespace LocalJSX {
          */
         "username"?: string;
     }
+    /**
+     * @figma-main-component-id 388:3986
+     */
     interface IxBlind {
         /**
           * Collapsed state
@@ -6245,6 +6615,9 @@ declare namespace LocalJSX {
          */
         "variant"?: BlindVariant;
     }
+    /**
+     * @figma-main-component-id 1603:54616
+     */
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
@@ -6281,6 +6654,9 @@ declare namespace LocalJSX {
          */
         "visibleItemCount"?: number;
     }
+    /**
+     * @figma-main-component-id 358:3004
+     */
     interface IxBreadcrumbItem {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
@@ -6329,6 +6705,9 @@ declare namespace LocalJSX {
          */
         "target"?: AnchorTarget;
     }
+    /**
+     * @figma-main-component-id 225:5535
+     */
     interface IxButton {
         /**
           * @default 'center'
@@ -6394,6 +6773,9 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant;
     }
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCard {
         /**
           * If true, disables hover and active styles and changes cursor to default
@@ -6430,8 +6812,14 @@ declare namespace LocalJSX {
          */
         "variant"?: CardAccordionVariant;
     }
+    /**
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCardContent {
     }
+    /**
+     * @figma-main-component-id 104638:14632
+     */
     interface IxCardList {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
@@ -6500,6 +6888,9 @@ declare namespace LocalJSX {
     }
     interface IxCardTitle {
     }
+    /**
+     * @figma-main-component-id 1221:30316
+     */
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
@@ -6606,6 +6997,7 @@ declare namespace LocalJSX {
         "uniqueCategories"?: boolean;
     }
     /**
+     * @figma-main-component-id 42365:47165
      * @form-ready 
      */
     interface IxCheckbox {
@@ -6656,6 +7048,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * @figma-main-component-id 84992:87199
      * @form-ready 
      */
     interface IxCheckboxGroup {
@@ -6698,6 +7091,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 286:1758
+     */
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
@@ -6779,6 +7175,9 @@ declare namespace LocalJSX {
     }
     interface IxContent {
     }
+    /**
+     * @figma-main-component-id 4727:112521
+     */
     interface IxContentHeader {
         /**
           * Display a back button
@@ -6816,6 +7215,9 @@ declare namespace LocalJSX {
          */
         "itemName": string;
     }
+    /**
+     * @figma-main-component-id 42365:52677
+     */
     interface IxCustomField {
         /**
           * Show text below the field component which show additional information
@@ -6851,6 +7253,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 45886:27067
+     */
     interface IxDateDropdown {
         /**
           * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
@@ -6962,6 +7367,7 @@ declare namespace LocalJSX {
         "weekStartIndex"?: number;
     }
     /**
+     * @figma-main-component-id 442365:42749
      * @form-ready 
      */
     interface IxDateInput {
@@ -7095,6 +7501,9 @@ declare namespace LocalJSX {
          */
         "weekStartIndex"?: number;
     }
+    /**
+     * @figma-main-component-id 561:6290
+     */
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
@@ -7207,6 +7616,9 @@ declare namespace LocalJSX {
          */
         "timePickerAppearance"?: boolean;
     }
+    /**
+     * @figma-main-component-id 70466:78415
+     */
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
@@ -7303,6 +7715,7 @@ declare namespace LocalJSX {
     interface IxDivider {
     }
     /**
+     * @figma-main-component-id 1435:46269
      * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface IxDrawer {
@@ -7350,6 +7763,9 @@ declare namespace LocalJSX {
          */
         "width"?: number | 'auto';
     }
+    /**
+     * @figma-main-component-id 1233:32649
+     */
     interface IxDropdown {
         /**
           * Define an anchor element
@@ -7422,6 +7838,9 @@ declare namespace LocalJSX {
          */
         "trigger"?: ElementReference;
     }
+    /**
+     * @figma-main-component-id 294:1198
+     */
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
@@ -7462,12 +7881,18 @@ declare namespace LocalJSX {
          */
         "variant"?: DropdownButtonVariant;
     }
+    /**
+     * @figma-main-component-id 1233:33137
+     */
     interface IxDropdownHeader {
         /**
           * Display name of the header
          */
         "label"?: string;
     }
+    /**
+     * @figma-main-component-id 1603:52792
+     */
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
@@ -7511,8 +7936,14 @@ declare namespace LocalJSX {
          */
         "suppressChecked"?: boolean;
     }
+    /**
+     * @figma-main-component-id 1233:34168
+     */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @figma-main-component-id 4727:112645
+     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -7545,6 +7976,9 @@ declare namespace LocalJSX {
          */
         "subHeader"?: string;
     }
+    /**
+     * @figma-main-component-id 1433:43161
+     */
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'false'.
@@ -7567,6 +8001,9 @@ declare namespace LocalJSX {
          */
         "itemHeight"?: 'S' | 'L' | number;
     }
+    /**
+     * @figma-main-component-id 1433:41688
+     */
     interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
@@ -7598,6 +8035,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'outline' | 'filled';
     }
+    /**
+     * @figma-main-component-id 680:9354
+     */
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
@@ -7643,6 +8083,9 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
     }
+    /**
+     * @figma-main-component-id 1682:60975
+     */
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
@@ -7746,6 +8189,9 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
     }
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
@@ -7780,6 +8226,9 @@ declare namespace LocalJSX {
          */
         "width"?: number | 'auto';
     }
+    /**
+     * @figma-main-component-id 407:3446
+     */
     interface IxFlipTileContent {
         /**
           * Controls the visibility of the content
@@ -7787,6 +8236,9 @@ declare namespace LocalJSX {
          */
         "contentVisible"?: boolean;
     }
+    /**
+     * @figma-main-component-id 1274:38298
+     */
     interface IxGroup {
         /**
           * Expand the group if the header is clicked
@@ -7835,6 +8287,9 @@ declare namespace LocalJSX {
     }
     interface IxGroupContextMenu {
     }
+    /**
+     * @figma-main-component-id 1274:34186
+     */
     interface IxGroupItem {
         /**
           * ARIA label for the icon
@@ -7906,6 +8361,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 270:941
+     */
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -7951,6 +8409,9 @@ declare namespace LocalJSX {
          */
         "variant"?: IconButtonVariant;
     }
+    /**
+     * @figma-main-component-id 107597:25227
+     */
     interface IxIconToggleButton {
         /**
           * ARIA label for the icon button Will be set for the native HTML button element
@@ -8008,7 +8469,7 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant1;
     }
     /**
-     * @figma-main-component-id 42365:39459, 42365:42743
+     * @figma-main-component-id 42365:39459
      * @form-ready 
      */
     interface IxInput {
@@ -8119,6 +8580,9 @@ declare namespace LocalJSX {
      */
     interface IxInputGroup {
     }
+    /**
+     * @figma-main-component-id 4727:112546
+     */
     interface IxKeyValue {
         /**
           * ARIA label for the icon
@@ -8143,6 +8607,9 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    /**
+     * @figma-main-component-id 4784:118515
+     */
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
@@ -8150,6 +8617,9 @@ declare namespace LocalJSX {
          */
         "striped"?: boolean;
     }
+    /**
+     * @figma-main-component-id 423:3986
+     */
     interface IxKpi {
         /**
           * ARIA label for the alarm icon
@@ -8200,6 +8670,9 @@ declare namespace LocalJSX {
          */
         "noMargin"?: boolean;
     }
+    /**
+     * @figma-main-component-id 107603:15976
+     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -8216,6 +8689,9 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    /**
+     * @figma-main-component-id 20977:55554
+     */
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -8448,6 +8924,9 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @figma-main-component-id 4533:132499
+     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -8490,6 +8969,9 @@ declare namespace LocalJSX {
          */
         "pinned"?: boolean;
     }
+    /**
+     * @figma-main-component-id 308:1293
+     */
     interface IxMenuItem {
         /**
           * State to display active
@@ -8588,6 +9070,9 @@ declare namespace LocalJSX {
          */
         "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
+    /**
+     * @figma-main-component-id 103814:17693
+     */
     interface IxMessageBar {
         /**
           * An event emitted when the close animation is completed
@@ -8806,6 +9291,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 2302:67995, 2554:79100
+     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -8872,6 +9360,9 @@ declare namespace LocalJSX {
          */
         "selectedPage"?: number;
     }
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface IxPane {
         /**
           * ARIA label close or collapse button
@@ -8953,6 +9444,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'floating' | 'inline';
     }
+    /**
+     * @figma-main-component-id 19924:12291
+     */
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
@@ -8970,6 +9464,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'floating' | 'inline';
     }
+    /**
+     * @figma-main-component-id 312:1219
+     */
     interface IxPill {
         /**
           * Align pill content left
@@ -9018,6 +9515,7 @@ declare namespace LocalJSX {
     | 'custom';
     }
     /**
+     * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
     interface IxProgressIndicator {
@@ -9070,6 +9568,9 @@ declare namespace LocalJSX {
          */
         "value"?: number;
     }
+    /**
+     * @figma-main-component-id 104612:25695
+     */
     interface IxPushCard {
         /**
           * ARIA label for the icon
@@ -9109,6 +9610,7 @@ declare namespace LocalJSX {
         "variant"?: PushCardVariant;
     }
     /**
+     * @figma-main-component-id 42365:44481
      * @form-ready 
      */
     interface IxRadio {
@@ -9154,6 +9656,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * @figma-main-component-id 42365:44973
      * @form-ready 
      */
     interface IxRadioGroup {
@@ -9207,6 +9710,7 @@ declare namespace LocalJSX {
     interface IxRow {
     }
     /**
+     * @figma-main-component-id 42365:49989
      * @form-ready 
      */
     interface IxSelect {
@@ -9378,6 +9882,7 @@ declare namespace LocalJSX {
         "value": string;
     }
     /**
+     * @figma-main-component-id 50042:20986
      * @form-ready 
      */
     interface IxSlider {
@@ -9466,6 +9971,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 453:5375
+     */
     interface IxSpinner {
         /**
           * @default false
@@ -9482,6 +9990,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'primary' | 'secondary';
     }
+    /**
+     * @figma-main-component-id 237:4370
+     */
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
@@ -9548,6 +10059,9 @@ declare namespace LocalJSX {
          */
         "variant"?: SplitButtonVariant;
     }
+    /**
+     * @figma-main-component-id 426:4122
+     */
     interface IxTabItem {
         /**
           * Set counter value
@@ -9593,6 +10107,9 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
+    /**
+     * @figma-main-component-id 427:6367
+     */
     interface IxTabs {
         /**
           * ARIA label for the chevron left icon button
@@ -9736,6 +10253,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 1431:43158
+     */
     interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
@@ -9744,6 +10264,7 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'big';
     }
     /**
+     * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
      */
@@ -9896,6 +10417,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @figma-main-component-id 68801:7500
+     */
     interface IxTimePicker {
         /**
           * Corner style
@@ -10047,6 +10571,7 @@ declare namespace LocalJSX {
         "position"?: 'bottom-right' | 'top-right';
     }
     /**
+     * @figma-main-component-id 43875:36542
      * @form-ready 
      */
     interface IxToggle {
@@ -10109,6 +10634,9 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    /**
+     * @figma-main-component-id 8994:173458
+     */
     interface IxToggleButton {
         /**
           * ARIA label that will be set on the native HTML button element
@@ -10149,6 +10677,9 @@ declare namespace LocalJSX {
          */
         "variant"?: ToggleButtonVariant;
     }
+    /**
+     * @figma-main-component-id 1239:30786
+     */
     interface IxTooltip {
         /**
           * @default false
@@ -10256,6 +10787,9 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * @figma-main-component-id 40211:13267
+     */
     interface IxTypography {
         /**
           * Display text bold
@@ -10276,6 +10810,9 @@ declare namespace LocalJSX {
          */
         "textDecoration"?: TextDecoration;
     }
+    /**
+     * @figma-main-component-id 1028:14676
+     */
     interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
@@ -10527,72 +11064,175 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @figma-main-component-id 104612:25269
+             */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
+            /**
+             * @figma-main-component-id 20920:77660
+             */
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
+            /**
+             * @figma-main-component-id 308:1151
+             */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
+            /**
+             * @figma-main-component-id 388:3986
+             */
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
+            /**
+             * @figma-main-component-id 1603:54616
+             */
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
+            /**
+             * @figma-main-component-id 358:3004
+             */
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
+            /**
+             * @figma-main-component-id 225:5535
+             */
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            /**
+             * @figma-main-component-id 104612:25530
+             */
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
             "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
+            /**
+             * @figma-main-component-id 104612:25530
+             */
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            /**
+             * @figma-main-component-id 104638:14632
+             */
             "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
+            /**
+             * @figma-main-component-id 1221:30316
+             */
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             /**
+             * @figma-main-component-id 42365:47165
              * @form-ready 
              */
             "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             /**
+             * @figma-main-component-id 84992:87199
              * @form-ready 
              */
             "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
+            /**
+             * @figma-main-component-id 286:1758
+             */
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
+            /**
+             * @figma-main-component-id 4727:112521
+             */
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            /**
+             * @figma-main-component-id 42365:52677
+             */
             "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
+            /**
+             * @figma-main-component-id 45886:27067
+             */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             /**
+             * @figma-main-component-id 442365:42749
              * @form-ready 
              */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
+            /**
+             * @figma-main-component-id 561:6290
+             */
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
+            /**
+             * @figma-main-component-id 70466:78415
+             */
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             /**
+             * @figma-main-component-id 1435:46269
              * @deprecated Will be removed with 5.0.0, use ix-pane as successor
              */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
+            /**
+             * @figma-main-component-id 1233:32649
+             */
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            /**
+             * @figma-main-component-id 294:1198
+             */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
+            /**
+             * @figma-main-component-id 1233:33137
+             */
             "ix-dropdown-header": LocalJSX.IxDropdownHeader & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
+            /**
+             * @figma-main-component-id 1603:52792
+             */
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            /**
+             * @figma-main-component-id 1233:34168
+             */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            /**
+             * @figma-main-component-id 4727:112645
+             */
             "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
+            /**
+             * @figma-main-component-id 1433:43161
+             */
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
+            /**
+             * @figma-main-component-id 1433:41688
+             */
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
+            /**
+             * @figma-main-component-id 680:9354
+             */
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
+            /**
+             * @figma-main-component-id 1682:60975
+             */
             "ix-field-label": LocalJSX.IxFieldLabel & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
             "ix-field-wrapper": LocalJSX.IxFieldWrapper & JSXBase.HTMLAttributes<HTMLIxFieldWrapperElement>;
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
+            /**
+             * @figma-main-component-id 407:3446
+             */
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
+            /**
+             * @figma-main-component-id 407:3446
+             */
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            /**
+             * @figma-main-component-id 1274:38298
+             */
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
+            /**
+             * @figma-main-component-id 1274:34186
+             */
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
+            /**
+             * @figma-main-component-id 270:941
+             */
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            /**
+             * @figma-main-component-id 107597:25227
+             */
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             /**
-             * @figma-main-component-id 42365:39459, 42365:42743
+             * @figma-main-component-id 42365:39459
              * @form-ready 
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
@@ -10602,23 +11242,47 @@ declare module "@stencil/core" {
              * Use the 'ix-input' component instead
              */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            /**
+             * @figma-main-component-id 4727:112546
+             */
             "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
+            /**
+             * @figma-main-component-id 4784:118515
+             */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
+            /**
+             * @figma-main-component-id 423:3986
+             */
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
+            /**
+             * @figma-main-component-id 107603:15976
+             */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * @figma-main-component-id 20977:55554
+             */
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            /**
+             * @figma-main-component-id 4533:132499
+             */
             "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-expand-icon": LocalJSX.IxMenuExpandIcon & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
+            /**
+             * @figma-main-component-id 308:1293
+             */
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
+            /**
+             * @figma-main-component-id 103814:17693
+             */
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
@@ -10629,59 +11293,111 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
+            /**
+             * @figma-main-component-id 2302:67995, 2554:79100
+             */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            /**
+             * @figma-main-component-id 19924:12291
+             */
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            /**
+             * @figma-main-component-id 19924:12291
+             */
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
+            /**
+             * @figma-main-component-id 312:1219
+             */
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
+             * @figma-main-component-id 69677:5549
              * @since 3.2.0
              */
             "ix-progress-indicator": LocalJSX.IxProgressIndicator & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
+            /**
+             * @figma-main-component-id 104612:25695
+             */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
+             * @figma-main-component-id 42365:44481
              * @form-ready 
              */
             "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
             /**
+             * @figma-main-component-id 42365:44973
              * @form-ready 
              */
             "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
+             * @figma-main-component-id 42365:49989
              * @form-ready 
              */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             /**
+             * @figma-main-component-id 50042:20986
              * @form-ready 
              */
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
+            /**
+             * @figma-main-component-id 453:5375
+             */
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
+            /**
+             * @figma-main-component-id 237:4370
+             */
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            /**
+             * @figma-main-component-id 426:4122
+             */
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
+            /**
+             * @figma-main-component-id 427:6367
+             */
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
              * @form-ready 
              */
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
+            /**
+             * @figma-main-component-id 1431:43158
+             */
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
+             * @figma-main-component-id 68801:5742
              * @since 3.2.0
              * @form-ready 
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
+            /**
+             * @figma-main-component-id 68801:7500
+             */
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             /**
+             * @figma-main-component-id 43875:36542
              * @form-ready 
              */
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            /**
+             * @figma-main-component-id 8994:173458
+             */
             "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
+            /**
+             * @figma-main-component-id 1239:30786
+             */
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            /**
+             * @figma-main-component-id 40211:13267
+             */
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
+            /**
+             * @figma-main-component-id 1028:14676
+             */
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**
              * @deprecated Since 3.0.0. Will be removed with 4.0.0
