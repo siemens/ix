@@ -42,6 +42,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/select/guide.md
  * @figma-main-component-id 42365:49989
  * @form-ready
  */

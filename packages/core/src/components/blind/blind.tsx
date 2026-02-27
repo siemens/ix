@@ -27,6 +27,7 @@ import Animation from '../utils/animation';
 let sequentialInstanceId = 0;
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/blind/guide.md
  * @figma-main-component-id 388:3986
  */
 @Component({

@@ -23,6 +23,7 @@ import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/panes/guide.md
  * @figma-main-component-id 19924:12291
  */
 @Component({

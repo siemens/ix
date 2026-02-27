@@ -24,6 +24,7 @@ import { makeRef } from '../utils/make-ref';
 import type { SplitButtonVariant } from './split-button.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
  * @figma-main-component-id 237:4370
  */
 @Component({

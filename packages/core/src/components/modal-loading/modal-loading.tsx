@@ -12,6 +12,9 @@ import { Component, h, Host } from '@stencil/core';
 /**
  * @internal
  */
+/**
+ * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
+ */
 @Component({
   tag: 'ix-modal-loading',
   styleUrl: 'modal-loading.scss',

@@ -67,6 +67,7 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
 };
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
  * @figma-main-component-id 68801:7500
  */
 @Component({

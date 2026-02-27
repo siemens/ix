@@ -24,6 +24,9 @@ import { OnListener } from '../utils/listener';
 import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ */
 @Component({
   tag: 'ix-modal',
   styleUrl: 'modal.scss',

@@ -20,6 +20,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/chip/guide.md
  * @figma-main-component-id 286:1758
  */
 @Component({

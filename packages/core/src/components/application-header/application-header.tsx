@@ -33,6 +33,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
  * @figma-main-component-id 20920:77660
  *
  * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.

@@ -49,6 +49,7 @@ import { AlignedPlacement } from './placement';
 let sequenceId = 0;
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
  * @figma-main-component-id 1233:32649
  */
 @Component({

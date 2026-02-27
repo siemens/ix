@@ -50,6 +50,7 @@ import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
  * @figma-main-component-id 442365:42749
  *
  * @form-ready

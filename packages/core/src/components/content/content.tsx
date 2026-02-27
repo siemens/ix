@@ -13,6 +13,9 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 /**
  * @slot header - Display content at the top of the content page
  */
+/**
+ * @documentation https://ix.siemens.io//docs/components/content/guide.md
+ */
 @Component({
   tag: 'ix-content',
   styleUrl: 'content.scss',

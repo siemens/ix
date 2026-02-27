@@ -42,6 +42,7 @@ import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
  * @figma-main-component-id 20977:55554
  */
 @Component({

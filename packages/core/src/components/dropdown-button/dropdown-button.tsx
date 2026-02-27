@@ -18,6 +18,7 @@ import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
  * @figma-main-component-id 294:1198
  */
 @Component({

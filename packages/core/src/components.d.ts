@@ -149,6 +149,9 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/application/guide.md
+     */
     interface IxApplication {
         /**
           * Define application switch configuration
@@ -174,6 +177,7 @@ export namespace Components {
         "themeSystemAppearance": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
      * @figma-main-component-id 20920:77660
      */
     interface IxApplicationHeader {
@@ -252,6 +256,7 @@ export namespace Components {
         "config"?: AppSwitchConfiguration;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
      * @figma-main-component-id 308:1151
      */
     interface IxAvatar {
@@ -288,6 +293,7 @@ export namespace Components {
         "username"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/blind/guide.md
      * @figma-main-component-id 388:3986
      */
     interface IxBlind {
@@ -315,6 +321,7 @@ export namespace Components {
         "variant": BlindVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 1603:54616
      */
     interface IxBreadcrumb {
@@ -396,6 +403,7 @@ export namespace Components {
         "target"?: AnchorTarget;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/button/guide.md
      * @figma-main-component-id 225:5535
      */
     interface IxButton {
@@ -464,6 +472,7 @@ export namespace Components {
         "variant": ButtonVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface IxCard {
@@ -507,6 +516,7 @@ export namespace Components {
     interface IxCardContent {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
      * @figma-main-component-id 104638:14632
      */
     interface IxCardList {
@@ -562,6 +572,7 @@ export namespace Components {
     interface IxCardTitle {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
      * @figma-main-component-id 1221:30316
      */
     interface IxCategoryFilter {
@@ -654,6 +665,7 @@ export namespace Components {
         "uniqueCategories": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
      * @form-ready 
      */
@@ -742,6 +754,7 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/chip/guide.md
      * @figma-main-component-id 286:1758
      */
     interface IxChip {
@@ -819,9 +832,13 @@ export namespace Components {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/content/guide.md
+     */
     interface IxContent {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
      */
     interface IxContentHeader {
@@ -858,6 +875,7 @@ export namespace Components {
         "itemName": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
      * @figma-main-component-id 42365:52677
      */
     interface IxCustomField {
@@ -1009,6 +1027,7 @@ export namespace Components {
         "weekStartIndex": number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
      * @form-ready 
      */
@@ -1388,6 +1407,7 @@ export namespace Components {
         "width": number | 'auto';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
      * @figma-main-component-id 1233:32649
      */
     interface IxDropdown {
@@ -1464,6 +1484,7 @@ export namespace Components {
         "updatePosition": () => Promise<void>;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 294:1198
      */
     interface IxDropdownButton {
@@ -1951,6 +1972,7 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
      * @figma-main-component-id 270:941
      */
     interface IxIconButton {
@@ -2054,6 +2076,7 @@ export namespace Components {
         "variant": ButtonVariant1;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -2244,6 +2267,9 @@ export namespace Components {
     columns: number;
   }[];
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+     */
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -2262,6 +2288,7 @@ export namespace Components {
         "noMargin": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
      * @figma-main-component-id 107603:15976
      */
     interface IxLinkButton {
@@ -2281,6 +2308,7 @@ export namespace Components {
         "url"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 20977:55554
      */
     interface IxMenu {
@@ -2379,6 +2407,9 @@ export namespace Components {
          */
         "toggleSettings": (show: boolean) => Promise<void>;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface IxMenuAbout {
         /**
           * Active tab
@@ -2405,6 +2436,9 @@ export namespace Components {
          */
         "label"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+     */
     interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
@@ -2590,6 +2624,9 @@ export namespace Components {
          */
         "tooltipText"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+     */
     interface IxMenuSettings {
         /**
           * Active tab
@@ -2637,6 +2674,9 @@ export namespace Components {
     | 'neutral'
     | 'primary';
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModal {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
@@ -2713,10 +2753,13 @@ export namespace Components {
          */
         "iconColor"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
+     */
     interface IxModalLoading {
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
      */
     interface IxNumberInput {
         /**
@@ -2893,6 +2936,7 @@ export namespace Components {
         "selectedPage": number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface IxPane {
@@ -2963,6 +3007,7 @@ export namespace Components {
         "variant": 'floating' | 'inline';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface IxPaneLayout {
@@ -2983,6 +3028,7 @@ export namespace Components {
         "variant": 'floating' | 'inline';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/pill/guide.md
      * @figma-main-component-id 312:1219
      */
     interface IxPill {
@@ -3033,6 +3079,7 @@ export namespace Components {
     | 'custom';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
@@ -3128,6 +3175,7 @@ export namespace Components {
         "variant": PushCardVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
      * @form-ready 
      */
@@ -3218,6 +3266,7 @@ export namespace Components {
     interface IxRow {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
      * @form-ready 
      */
@@ -3496,6 +3545,7 @@ export namespace Components {
         "variant": 'primary' | 'secondary';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
      * @figma-main-component-id 237:4370
      */
     interface IxSplitButton {
@@ -3645,7 +3695,7 @@ export namespace Components {
         "small": boolean;
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
         /**
@@ -3759,6 +3809,7 @@ export namespace Components {
         "size": 'small' | 'medium' | 'big';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
@@ -3918,6 +3969,7 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
      * @figma-main-component-id 68801:7500
      */
     interface IxTimePicker {
@@ -4009,6 +4061,9 @@ export namespace Components {
          */
         "time"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+     */
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -4080,6 +4135,7 @@ export namespace Components {
         "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
      * @form-ready 
      */
@@ -4138,6 +4194,7 @@ export namespace Components {
         "value": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
      * @figma-main-component-id 8994:173458
      */
     interface IxToggleButton {
@@ -4679,6 +4736,9 @@ declare global {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/application/guide.md
+     */
     interface HTMLIxApplicationElement extends Components.IxApplication, HTMLStencilElement {
     }
     var HTMLIxApplicationElement: {
@@ -4690,6 +4750,7 @@ declare global {
         "openAppSwitch": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
      * @figma-main-component-id 20920:77660
      */
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
@@ -4719,6 +4780,7 @@ declare global {
         new (): HTMLIxApplicationSwitchModalElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
      * @figma-main-component-id 308:1151
      */
     interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
@@ -4731,6 +4793,7 @@ declare global {
         "collapsedChange": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/blind/guide.md
      * @figma-main-component-id 388:3986
      */
     interface HTMLIxBlindElement extends Components.IxBlind, HTMLStencilElement {
@@ -4752,6 +4815,7 @@ declare global {
         "nextClick": { event: UIEvent; item: string };
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 1603:54616
      */
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
@@ -4789,6 +4853,7 @@ declare global {
         new (): HTMLIxBreadcrumbItemElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/button/guide.md
      * @figma-main-component-id 225:5535
      */
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
@@ -4798,6 +4863,7 @@ declare global {
         new (): HTMLIxButtonElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
@@ -4842,6 +4908,7 @@ declare global {
   };
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
      * @figma-main-component-id 104638:14632
      */
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
@@ -4871,6 +4938,7 @@ declare global {
         "filterCleared": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
      * @figma-main-component-id 1221:30316
      */
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
@@ -4893,6 +4961,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
      * @form-ready 
      */
@@ -4924,6 +4993,7 @@ declare global {
         "closeChip": any;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/chip/guide.md
      * @figma-main-component-id 286:1758
      */
     interface HTMLIxChipElement extends Components.IxChip, HTMLStencilElement {
@@ -4946,6 +5016,9 @@ declare global {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/content/guide.md
+     */
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
     var HTMLIxContentElement: {
@@ -4956,6 +5029,7 @@ declare global {
         "backButtonClick": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
      */
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
@@ -4985,6 +5059,7 @@ declare global {
         new (): HTMLIxCssGridItemElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
      * @figma-main-component-id 42365:52677
      */
     interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
@@ -5020,6 +5095,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
      * @form-ready 
      */
@@ -5119,6 +5195,7 @@ declare global {
         "showChanged": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
      * @figma-main-component-id 1233:32649
      */
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
@@ -5136,6 +5213,7 @@ declare global {
         new (): HTMLIxDropdownElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 294:1198
      */
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
@@ -5367,6 +5445,7 @@ declare global {
         new (): HTMLIxHelperTextElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
      * @figma-main-component-id 270:941
      */
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
@@ -5401,6 +5480,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -5462,6 +5542,9 @@ declare global {
         prototype: HTMLIxLayoutAutoElement;
         new (): HTMLIxLayoutAutoElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+     */
     interface HTMLIxLayoutGridElement extends Components.IxLayoutGrid, HTMLStencilElement {
     }
     var HTMLIxLayoutGridElement: {
@@ -5469,6 +5552,7 @@ declare global {
         new (): HTMLIxLayoutGridElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
      * @figma-main-component-id 107603:15976
      */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
@@ -5485,6 +5569,7 @@ declare global {
         "openAbout": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 20977:55554
      */
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
@@ -5505,6 +5590,9 @@ declare global {
         "tabChange": string;
         "close": CustomCloseEvent;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAboutElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutElement, ev: IxMenuAboutCustomEvent<HTMLIxMenuAboutElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5540,6 +5628,9 @@ declare global {
         "showMore": MouseEvent;
         "closePopover": void;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+     */
     interface HTMLIxMenuAboutNewsElement extends Components.IxMenuAboutNews, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAboutNewsElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutNewsElement, ev: IxMenuAboutNewsCustomEvent<HTMLIxMenuAboutNewsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5627,6 +5718,9 @@ declare global {
         "tabChange": string;
         "close": CustomCloseEvent;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+     */
     interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuSettingsElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsElement, ev: IxMenuSettingsCustomEvent<HTMLIxMenuSettingsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5683,6 +5777,9 @@ declare global {
         "dialogClose": any;
         "dialogDismiss": any;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface HTMLIxModalElement extends Components.IxModal, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxModalElementEventMap>(type: K, listener: (this: HTMLIxModalElement, ev: IxModalCustomEvent<HTMLIxModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5726,6 +5823,9 @@ declare global {
         prototype: HTMLIxModalHeaderElement;
         new (): HTMLIxModalHeaderElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
+     */
     interface HTMLIxModalLoadingElement extends Components.IxModalLoading, HTMLStencilElement {
     }
     var HTMLIxModalLoadingElement: {
@@ -5738,7 +5838,7 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
      */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5783,6 +5883,7 @@ declare global {
         "slotChanged": SlotChangedEvent;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
@@ -5800,6 +5901,7 @@ declare global {
         new (): HTMLIxPaneElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
@@ -5809,6 +5911,7 @@ declare global {
         new (): HTMLIxPaneLayoutElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/pill/guide.md
      * @figma-main-component-id 312:1219
      */
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
@@ -5818,6 +5921,7 @@ declare global {
         new (): HTMLIxPillElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
@@ -5842,6 +5946,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
      * @form-ready 
      */
@@ -5893,6 +5998,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
      * @form-ready 
      */
@@ -5961,6 +6067,7 @@ declare global {
         "buttonClick": MouseEvent;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
      * @figma-main-component-id 237:4370
      */
     interface HTMLIxSplitButtonElement extends Components.IxSplitButton, HTMLStencilElement {
@@ -6023,7 +6130,7 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTextareaElementEventMap>(type: K, listener: (this: HTMLIxTextareaElement, ev: IxTextareaCustomEvent<HTMLIxTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6055,6 +6162,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
@@ -6078,6 +6186,7 @@ declare global {
         "timeChange": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
      * @figma-main-component-id 68801:7500
      */
     interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
@@ -6097,6 +6206,9 @@ declare global {
     interface HTMLIxToastElementEventMap {
         "closeToast": any;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+     */
     interface HTMLIxToastElement extends Components.IxToast, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToastElementEventMap>(type: K, listener: (this: HTMLIxToastElement, ev: IxToastCustomEvent<HTMLIxToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6123,6 +6235,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
      * @form-ready 
      */
@@ -6144,6 +6257,7 @@ declare global {
         "pressedChange": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
      * @figma-main-component-id 8994:173458
      */
     interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
@@ -6437,6 +6551,9 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/application/guide.md
+     */
     interface IxApplication {
         /**
           * Define application switch configuration
@@ -6462,6 +6579,7 @@ declare namespace LocalJSX {
         "themeSystemAppearance"?: boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
      * @figma-main-component-id 20920:77660
      */
     interface IxApplicationHeader {
@@ -6549,6 +6667,7 @@ declare namespace LocalJSX {
         "config"?: AppSwitchConfiguration;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
      * @figma-main-component-id 308:1151
      */
     interface IxAvatar {
@@ -6585,6 +6704,7 @@ declare namespace LocalJSX {
         "username"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/blind/guide.md
      * @figma-main-component-id 388:3986
      */
     interface IxBlind {
@@ -6616,6 +6736,7 @@ declare namespace LocalJSX {
         "variant"?: BlindVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 1603:54616
      */
     interface IxBreadcrumb {
@@ -6706,6 +6827,7 @@ declare namespace LocalJSX {
         "target"?: AnchorTarget;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/button/guide.md
      * @figma-main-component-id 225:5535
      */
     interface IxButton {
@@ -6774,6 +6896,7 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface IxCard {
@@ -6818,6 +6941,7 @@ declare namespace LocalJSX {
     interface IxCardContent {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
      * @figma-main-component-id 104638:14632
      */
     interface IxCardList {
@@ -6889,6 +7013,7 @@ declare namespace LocalJSX {
     interface IxCardTitle {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
      * @figma-main-component-id 1221:30316
      */
     interface IxCategoryFilter {
@@ -6997,6 +7122,7 @@ declare namespace LocalJSX {
         "uniqueCategories"?: boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
      * @form-ready 
      */
@@ -7092,6 +7218,7 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/chip/guide.md
      * @figma-main-component-id 286:1758
      */
     interface IxChip {
@@ -7173,9 +7300,13 @@ declare namespace LocalJSX {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/content/guide.md
+     */
     interface IxContent {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
      */
     interface IxContentHeader {
@@ -7216,6 +7347,7 @@ declare namespace LocalJSX {
         "itemName": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
      * @figma-main-component-id 42365:52677
      */
     interface IxCustomField {
@@ -7367,6 +7499,7 @@ declare namespace LocalJSX {
         "weekStartIndex"?: number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
      * @form-ready 
      */
@@ -7764,6 +7897,7 @@ declare namespace LocalJSX {
         "width"?: number | 'auto';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
      * @figma-main-component-id 1233:32649
      */
     interface IxDropdown {
@@ -7839,6 +7973,7 @@ declare namespace LocalJSX {
         "trigger"?: ElementReference;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 294:1198
      */
     interface IxDropdownButton {
@@ -8362,6 +8497,7 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
      * @figma-main-component-id 270:941
      */
     interface IxIconButton {
@@ -8469,6 +8605,7 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant1;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -8653,6 +8790,9 @@ declare namespace LocalJSX {
     columns: number;
   }[];
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+     */
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -8671,6 +8811,7 @@ declare namespace LocalJSX {
         "noMargin"?: boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
      * @figma-main-component-id 107603:15976
      */
     interface IxLinkButton {
@@ -8690,6 +8831,7 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 20977:55554
      */
     interface IxMenu {
@@ -8791,6 +8933,9 @@ declare namespace LocalJSX {
          */
         "startExpanded"?: boolean;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface IxMenuAbout {
         /**
           * Active tab
@@ -8830,6 +8975,9 @@ declare namespace LocalJSX {
          */
         "onLabelChange"?: (event: IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+     */
     interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
@@ -9031,6 +9179,9 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+     */
     interface IxMenuSettings {
         /**
           * Active tab
@@ -9099,6 +9250,9 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'primary';
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModal {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
@@ -9175,10 +9329,13 @@ declare namespace LocalJSX {
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
+     */
     interface IxModalLoading {
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
      */
     interface IxNumberInput {
         /**
@@ -9361,6 +9518,7 @@ declare namespace LocalJSX {
         "selectedPage"?: number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface IxPane {
@@ -9445,6 +9603,7 @@ declare namespace LocalJSX {
         "variant"?: 'floating' | 'inline';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/panes/guide.md
      * @figma-main-component-id 19924:12291
      */
     interface IxPaneLayout {
@@ -9465,6 +9624,7 @@ declare namespace LocalJSX {
         "variant"?: 'floating' | 'inline';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/pill/guide.md
      * @figma-main-component-id 312:1219
      */
     interface IxPill {
@@ -9515,6 +9675,7 @@ declare namespace LocalJSX {
     | 'custom';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
      * @since 3.2.0
      */
@@ -9610,6 +9771,7 @@ declare namespace LocalJSX {
         "variant"?: PushCardVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
      * @form-ready 
      */
@@ -9710,6 +9872,7 @@ declare namespace LocalJSX {
     interface IxRow {
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
      * @form-ready 
      */
@@ -9991,6 +10154,7 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
      * @figma-main-component-id 237:4370
      */
     interface IxSplitButton {
@@ -10152,7 +10316,7 @@ declare namespace LocalJSX {
         "small"?: boolean;
     }
     /**
-     * @form-ready 
+     * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
         /**
@@ -10264,6 +10428,7 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'big';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
      * @form-ready 
@@ -10418,6 +10583,7 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
      * @figma-main-component-id 68801:7500
      */
     interface IxTimePicker {
@@ -10513,6 +10679,9 @@ declare namespace LocalJSX {
          */
         "time"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+     */
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -10571,6 +10740,7 @@ declare namespace LocalJSX {
         "position"?: 'bottom-right' | 'top-right';
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
      * @form-ready 
      */
@@ -10635,6 +10805,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
      * @figma-main-component-id 8994:173458
      */
     interface IxToggleButton {
@@ -11068,22 +11239,29 @@ declare module "@stencil/core" {
              * @figma-main-component-id 104612:25269
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/application/guide.md
+             */
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
              * @figma-main-component-id 20920:77660
              */
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
              * @figma-main-component-id 308:1151
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/blind/guide.md
              * @figma-main-component-id 388:3986
              */
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
              * @figma-main-component-id 1603:54616
              */
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
@@ -11092,10 +11270,12 @@ declare module "@stencil/core" {
              */
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/button/guide.md
              * @figma-main-component-id 225:5535
              */
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/card/guide.md
              * @figma-main-component-id 104612:25530
              */
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
@@ -11105,15 +11285,18 @@ declare module "@stencil/core" {
              */
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
              * @figma-main-component-id 104638:14632
              */
             "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
              * @figma-main-component-id 1221:30316
              */
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 42365:47165
              * @form-ready 
              */
@@ -11124,18 +11307,24 @@ declare module "@stencil/core" {
              */
             "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/chip/guide.md
              * @figma-main-component-id 286:1758
              */
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/content/guide.md
+             */
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
              * @figma-main-component-id 4727:112521
              */
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
              * @figma-main-component-id 42365:52677
              */
             "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
@@ -11144,6 +11333,7 @@ declare module "@stencil/core" {
              */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
              * @figma-main-component-id 442365:42749
              * @form-ready 
              */
@@ -11164,10 +11354,12 @@ declare module "@stencil/core" {
              */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
              * @figma-main-component-id 1233:32649
              */
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
              * @figma-main-component-id 294:1198
              */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
@@ -11224,6 +11416,7 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
              * @figma-main-component-id 270:941
              */
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
@@ -11232,6 +11425,7 @@ declare module "@stencil/core" {
              */
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/input/guide.md
              * @figma-main-component-id 42365:39459
              * @form-ready 
              */
@@ -11255,17 +11449,28 @@ declare module "@stencil/core" {
              */
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+             */
             "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
              * @figma-main-component-id 107603:15976
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
              * @figma-main-component-id 20977:55554
              */
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+             */
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+             */
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
@@ -11278,19 +11483,28 @@ declare module "@stencil/core" {
              * @figma-main-component-id 308:1293
              */
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+             */
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
             /**
              * @figma-main-component-id 103814:17693
              */
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+             */
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
             "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
             "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
+             */
             "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
             /**
-             * @form-ready 
+             * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
              */
             "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             /**
@@ -11298,18 +11512,22 @@ declare module "@stencil/core" {
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/panes/guide.md
              * @figma-main-component-id 19924:12291
              */
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/panes/guide.md
              * @figma-main-component-id 19924:12291
              */
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/pill/guide.md
              * @figma-main-component-id 312:1219
              */
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
              * @figma-main-component-id 69677:5549
              * @since 3.2.0
              */
@@ -11319,6 +11537,7 @@ declare module "@stencil/core" {
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44481
              * @form-ready 
              */
@@ -11330,6 +11549,7 @@ declare module "@stencil/core" {
             "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/select/guide.md
              * @figma-main-component-id 42365:49989
              * @form-ready 
              */
@@ -11345,6 +11565,7 @@ declare module "@stencil/core" {
              */
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
              * @figma-main-component-id 237:4370
              */
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
@@ -11357,7 +11578,7 @@ declare module "@stencil/core" {
              */
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
-             * @form-ready 
+             * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
              */
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             /**
@@ -11365,23 +11586,30 @@ declare module "@stencil/core" {
              */
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
              * @figma-main-component-id 68801:5742
              * @since 3.2.0
              * @form-ready 
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
              * @figma-main-component-id 68801:7500
              */
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+             */
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
              * @figma-main-component-id 43875:36542
              * @form-ready 
              */
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
              * @figma-main-component-id 8994:173458
              */
             "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;

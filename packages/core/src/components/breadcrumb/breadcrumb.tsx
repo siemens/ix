@@ -29,6 +29,7 @@ const createId = (prefix: string = 'breadcrumb-') => {
 };
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
  * @figma-main-component-id 1603:54616
  */
 @Component({

@@ -25,6 +25,9 @@ import {
   syncTabDisplay,
 } from '../utils/menu-tabs/menu-tabs-utils';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+ */
 @Component({
   tag: 'ix-menu-about',
   styleUrl: 'menu-about.scss',

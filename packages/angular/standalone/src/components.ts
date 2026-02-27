@@ -75,6 +75,7 @@ import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
+import { defineCustomElement as defineIxModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
 import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
@@ -2099,6 +2100,28 @@ Can be prevented, in which case only the event is triggered, and the modal remai
    */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxModalLoading
+})
+@Component({
+  selector: 'ix-modal-loading',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxModalLoading {
+  protected el: HTMLIxModalLoadingElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxModalLoading extends Components.IxModalLoading {}
 
 
 @ProxyCmp({

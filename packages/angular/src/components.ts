@@ -2002,6 +2002,28 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-modal-loading',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxModalLoading {
+  protected el: HTMLIxModalLoadingElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxModalLoading extends Components.IxModalLoading {}
+
+
+@ProxyCmp({
   inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })

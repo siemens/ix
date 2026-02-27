@@ -77,6 +77,7 @@ import { IxMessageBar as IxMessageBarElement } from "@siemens/ix/components/ix-m
 import { IxModalContent as IxModalContentElement } from "@siemens/ix/components/ix-modal-content.js";
 import { IxModalFooter as IxModalFooterElement } from "@siemens/ix/components/ix-modal-footer.js";
 import { IxModalHeader as IxModalHeaderElement } from "@siemens/ix/components/ix-modal-header.js";
+import { IxModalLoading as IxModalLoadingElement } from "@siemens/ix/components/ix-modal-loading.js";
 import { IxModal as IxModalElement } from "@siemens/ix/components/ix-modal.js";
 import { IxNumberInput as IxNumberInputElement } from "@siemens/ix/components/ix-number-input.js";
 import { IxPagination as IxPaginationElement } from "@siemens/ix/components/ix-pagination.js";
@@ -1363,6 +1364,16 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxModalHeader as ReactWebComponent<IxModalHeaderElement, IxModalHeaderEvents>,
+    serializeShadowRoot,
+});
+
+export type IxModalLoadingEvents = NonNullable<unknown>;
+
+export const IxModalLoading: StencilReactComponent<IxModalLoadingElement, IxModalLoadingEvents> = /*@__PURE__*/ createComponent<IxModalLoadingElement, IxModalLoadingEvents>({
+    tagName: 'ix-modal-loading',
+    properties: {},
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxModalLoading as ReactWebComponent<IxModalLoadingElement, IxModalLoadingEvents>,
     serializeShadowRoot,
 });
 

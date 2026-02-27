@@ -17,6 +17,7 @@ import {
 import type { IconButtonVariant } from './icon-button.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
  * @figma-main-component-id 270:941
  */
 @Component({

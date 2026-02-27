@@ -76,6 +76,7 @@ import { IxMessageBar as IxMessageBarElement, defineCustomElement as defineIxMes
 import { IxModalContent as IxModalContentElement, defineCustomElement as defineIxModalContent } from "@siemens/ix/components/ix-modal-content.js";
 import { IxModalFooter as IxModalFooterElement, defineCustomElement as defineIxModalFooter } from "@siemens/ix/components/ix-modal-footer.js";
 import { IxModalHeader as IxModalHeaderElement, defineCustomElement as defineIxModalHeader } from "@siemens/ix/components/ix-modal-header.js";
+import { IxModalLoading as IxModalLoadingElement, defineCustomElement as defineIxModalLoading } from "@siemens/ix/components/ix-modal-loading.js";
 import { IxModal as IxModalElement, defineCustomElement as defineIxModal } from "@siemens/ix/components/ix-modal.js";
 import { IxNumberInput as IxNumberInputElement, defineCustomElement as defineIxNumberInput } from "@siemens/ix/components/ix-number-input.js";
 import { IxPagination as IxPaginationElement, defineCustomElement as defineIxPagination } from "@siemens/ix/components/ix-pagination.js";
@@ -997,6 +998,17 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
     react: React,
     events: { onCloseClick: 'closeClick' } as IxModalHeaderEvents,
     defineCustomElement: defineIxModalHeader
+});
+
+export type IxModalLoadingEvents = NonNullable<unknown>;
+
+export const IxModalLoading: StencilReactComponent<IxModalLoadingElement, IxModalLoadingEvents> = /*@__PURE__*/ createComponent<IxModalLoadingElement, IxModalLoadingEvents>({
+    tagName: 'ix-modal-loading',
+    elementClass: IxModalLoadingElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxModalLoadingEvents,
+    defineCustomElement: defineIxModalLoading
 });
 
 export type IxNumberInputEvents = {

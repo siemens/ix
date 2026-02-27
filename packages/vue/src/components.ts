@@ -74,6 +74,7 @@ import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
+import { defineCustomElement as defineIxModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
 import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
@@ -999,6 +1000,9 @@ export const IxModalHeader: StencilVueComponent<JSX.IxModalHeader> = /*@__PURE__
 ], [
   'closeClick'
 ]);
+
+
+export const IxModalLoading: StencilVueComponent<JSX.IxModalLoading> = /*@__PURE__*/ defineContainer<JSX.IxModalLoading>('ix-modal-loading', defineIxModalLoading);
 
 
 export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxNumberInput, JSX.IxNumberInput["value"]>('ix-number-input', defineIxNumberInput, [

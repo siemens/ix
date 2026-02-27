@@ -27,6 +27,9 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ */
 @Component({
   tag: 'ix-toast',
   styleUrl: 'toast.scss',

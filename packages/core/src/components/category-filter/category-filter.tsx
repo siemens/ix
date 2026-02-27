@@ -31,6 +31,7 @@ import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
  * @figma-main-component-id 1221:30316
  */
 @Component({

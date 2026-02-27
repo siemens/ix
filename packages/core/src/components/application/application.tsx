@@ -20,6 +20,9 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/application/guide.md
+ */
 @Component({
   tag: 'ix-application',
   styleUrl: 'application.scss',

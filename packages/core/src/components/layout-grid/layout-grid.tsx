@@ -9,6 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+ */
 @Component({
   tag: 'ix-layout-grid',
   styleUrl: 'layout-grid.scss',

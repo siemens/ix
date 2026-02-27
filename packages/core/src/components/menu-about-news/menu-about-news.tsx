@@ -10,6 +10,9 @@
 import { iconClose, iconShout } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+ */
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',

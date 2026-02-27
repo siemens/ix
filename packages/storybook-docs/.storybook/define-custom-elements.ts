@@ -69,6 +69,7 @@ import { defineCustomElement as ixModal } from '@siemens/ix/components/ix-modal.
 import { defineCustomElement as ixModalContent } from '@siemens/ix/components/ix-modal-content.js';
 import { defineCustomElement as ixModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as ixModalHeader } from '@siemens/ix/components/ix-modal-header.js';
+import { defineCustomElement as ixModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
 import { defineCustomElement as ixNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as ixPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as ixPane } from '@siemens/ix/components/ix-pane.js';
@@ -171,6 +172,7 @@ ixModal();
 ixModalContent();
 ixModalFooter();
 ixModalHeader();
+ixModalLoading();
 ixNumberInput();
 ixPagination();
 ixPane();
