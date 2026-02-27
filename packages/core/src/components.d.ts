@@ -22,7 +22,7 @@ import { ContentHeaderVariant } from "./components/content-header/content-header
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
-import { DateInputValidityState } from "./components/date-input/date-input.types";
+import { PickerInputValidityState as DateInputValidityState, PickerInputValidityState as TimeInputValidityState } from "./components/utils/input/picker-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -44,7 +44,6 @@ import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
 import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
-import { TimeInputValidityState } from "./components/time-input/time-input.types";
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
@@ -72,7 +71,7 @@ export { ContentHeaderVariant } from "./components/content-header/content-header
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
-export { DateInputValidityState } from "./components/date-input/date-input.types";
+export { PickerInputValidityState as DateInputValidityState, PickerInputValidityState as TimeInputValidityState } from "./components/utils/input/picker-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -94,7 +93,6 @@ export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
 export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
-export { TimeInputValidityState } from "./components/time-input/time-input.types";
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
@@ -630,6 +628,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the checkbox component
           * @default false
          */
@@ -665,6 +667,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxCheckboxGroup {
+        /**
+          * Clear all checked checkboxes and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the checkboxes in the group
           * @default 'column'
@@ -978,6 +984,7 @@ export namespace Components {
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelPreviousMonthButton"?: string;
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false
@@ -989,9 +996,6 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
-        /**
-          * Focuses the input field
-         */
         "focusInput": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
@@ -999,9 +1003,6 @@ export namespace Components {
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Get the native input element
-         */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
@@ -1022,9 +1023,6 @@ export namespace Components {
           * Error text below the input field
          */
         "invalidText"?: string;
-        /**
-          * Returns whether the text field has been touched.
-         */
         "isTouched": () => Promise<boolean>;
         /**
           * Label of the input field
@@ -1959,6 +1957,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Specifies whether the text field is disabled.
           * @default false
          */
@@ -2602,6 +2604,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disables the input field
           * @default false
          */
@@ -2993,6 +2999,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the radio component
           * @default false
          */
@@ -3023,6 +3033,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxRadioGroup {
+        /**
+          * Clear the selected radio button and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the radio buttons in the group
           * @default 'column'
@@ -3489,6 +3503,10 @@ export namespace Components {
      */
     interface IxTextarea {
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Determines if the textarea field is disabled.
           * @default false
          */
@@ -3502,6 +3520,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3600,6 +3622,7 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false
@@ -3611,9 +3634,6 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
-        /**
-          * Focuses the input field
-         */
         "focusInput": () => Promise<void>;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
@@ -3621,9 +3641,6 @@ export namespace Components {
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Get the native input element
-         */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
@@ -3685,9 +3702,6 @@ export namespace Components {
           * Error text below the input field
          */
         "invalidText"?: string;
-        /**
-          * Returns whether the text field has been touched.
-         */
         "isTouched": () => Promise<boolean>;
         /**
           * Label of the input field
@@ -4789,9 +4803,9 @@ declare global {
     interface HTMLIxDateInputElementEventMap {
         "valueChange": string | undefined;
         "validityStateChange": DateInputValidityState;
+        "ixChange": string;
         "ixFocus": void;
         "ixBlur": void;
-        "ixChange": string | undefined;
     }
     /**
      * @form-ready 
@@ -7038,10 +7052,10 @@ declare namespace LocalJSX {
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the date input loses focus and the value has changed.
+          * Native change event.
           * @since 4.4.0
          */
-        "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
+        "onIxChange"?: (event: IxDateInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.

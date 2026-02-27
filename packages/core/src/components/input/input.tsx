@@ -28,7 +28,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, SlotEnd, SlotStart } from './input.fc';
+import { InputElement, Slot } from './input.fc';
 import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
@@ -37,6 +37,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
+  clearInputValue,
   onInputFocus,
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
@@ -238,7 +239,11 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (this.inputRef.current && this.touched) {
+    if (
+      this.inputRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -289,6 +294,15 @@ export class Input implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this);
+  }
+
   render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
     return (
@@ -315,10 +329,11 @@ export class Input implements IxInputFieldComponent<string> {
           controlRef={this.inputRef}
         >
           <div class="input-wrapper">
-            <SlotStart
-              slotStartRef={this.slotStartRef}
+            <Slot
+              slotRef={this.slotStartRef}
+              position="start"
               onSlotChange={() => this.updatePaddings()}
-            ></SlotStart>
+            ></Slot>
             <InputElement
               id={this.inputId}
               readonly={this.readonly}
@@ -350,8 +365,9 @@ export class Input implements IxInputFieldComponent<string> {
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
             ></InputElement>
-            <SlotEnd
-              slotEndRef={this.slotEndRef}
+            <Slot
+              slotRef={this.slotEndRef}
+              position="end"
               onSlotChange={() => this.updatePaddings()}
             >
               <ix-icon-button
@@ -373,7 +389,7 @@ export class Input implements IxInputFieldComponent<string> {
                   this.inputType = 'password';
                 }}
               ></ix-icon-button>
-            </SlotEnd>
+            </Slot>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (
             <ix-typography

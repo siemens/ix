@@ -67,9 +67,13 @@ test.describe('validation', () => {
       const shadowDomInput = ixInput.locator('input');
 
       await ixInput.evaluate((el) => {
-        (el as any).__validityChanged = false;
+        (
+          el as HTMLElement & { __validityChanged?: boolean }
+        ).__validityChanged = false;
         el.addEventListener('validityStateChange', () => {
-          (el as any).__validityChanged = true;
+          (
+            el as HTMLElement & { __validityChanged?: boolean }
+          ).__validityChanged = true;
         });
       });
 

@@ -10,6 +10,13 @@ import { EventEmitter } from '@stencil/core';
 import { IxComponent } from '../internal';
 
 export * from './validation';
+export * from './picker-input-common';
+export type {
+  PickerInputMethods,
+  EventConfig,
+  SyncOptions,
+  WatchConfig,
+} from './picker-input.types';
 
 export interface FieldWrapperInterface {
   /**

@@ -25,7 +25,15 @@ import {
   FieldWrapperInterface,
   IxFormValidationState,
 } from '../utils/input';
+import {
+  isFormNoValidate,
+  setupFormSubmitListener,
+  updateRadioValidationClasses,
+  clearRadioGroupValidationState,
+} from '../radio/radio-validation';
 import { makeRef } from '../utils/make-ref';
+import { useFieldGroupValidation } from '../utils/field-group-utils';
+import { clearInputValue } from '../input/input.util';
 
 /**
  * @form-ready
@@ -102,6 +110,8 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+  private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
   private readonly observer = new MutationObserver(() => {
@@ -109,11 +119,28 @@ export class RadiobuttonGroup
     this.hasNestedRequiredRadio();
   });
 
+  private readonly radioValidation =
+    useFieldGroupValidation<HTMLIxRadioElement>(this.hostElement, {
+      selector: 'ix-radio',
+      isChecked: (el) => el.checked,
+      isRequired: (el) => el.required,
+      updateValidationClasses: updateRadioValidationClasses,
+      clearValidationState: this.clearValidationState.bind(this),
+    });
+
   private get radiobuttonElements() {
-    return Array.from(this.hostElement.querySelectorAll('ix-radio'));
+    return this.radioValidation.getElements();
+  }
+
+  private setupFormListener() {
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
   }
 
   connectedCallback(): void {
+    this.setupFormListener();
     this.observer.observe(this.hostElement, {
       childList: true,
       subtree: true,
@@ -129,6 +156,9 @@ export class RadiobuttonGroup
   }
 
   disconnectedCallback(): void {
+    if (this.cleanupFormListener) {
+      this.cleanupFormListener();
+    }
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -138,7 +168,6 @@ export class RadiobuttonGroup
     if (!this.value) {
       return;
     }
-
     this.radiobuttonElements.forEach((radiobutton) => {
       radiobutton.checked = radiobutton.value === this.value;
     });
@@ -216,9 +245,7 @@ export class RadiobuttonGroup
   @Method()
   hasValidValue(): Promise<boolean> {
     return Promise.resolve(
-      !!Array.from(this.hostElement.querySelectorAll('ix-radio')).find(
-        (radio) => radio.checked
-      )
+      this.radiobuttonElements.some((radio) => radio.checked)
     );
   }
 
@@ -256,10 +283,125 @@ export class RadiobuttonGroup
     nextRadio.focus();
   }
 
+  /**
+   * Clear the selected radio button and reset validation state
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement);
+  }
+
+  // --- Validation helpers (shared with checkbox-group) ---
+  private hasAnyChecked(): boolean {
+    return this.radioValidation.hasAnyChecked();
+  }
+
+  private clearValidationState() {
+    clearRadioGroupValidationState(
+      this.hostElement,
+      this.radiobuttonElements as HTMLElement[]
+    );
+  }
+
+  private handleRequiredValidationShared(params: {
+    elements: HTMLElement[];
+    hasAnyChecked: boolean;
+    touched: boolean;
+    formSubmissionAttempted: boolean;
+    hostElement: HTMLElement;
+    clearValidationState: () => void;
+    updateValidationClasses: (
+      elements: HTMLElement[],
+      isChecked: boolean,
+      touched: boolean,
+      formSubmissionAttempted: boolean
+    ) => void;
+  }) {
+    const {
+      elements,
+      hasAnyChecked,
+      touched,
+      formSubmissionAttempted,
+      hostElement,
+      clearValidationState,
+      updateValidationClasses,
+    } = params;
+
+    if (isFormNoValidate(hostElement)) {
+      clearValidationState();
+      return;
+    }
+
+    const requiredElements = elements.filter(
+      (el) => (el as HTMLIxRadioElement).required
+    );
+    const isChecked = hasAnyChecked;
+    const anyTouched = requiredElements.some((el) => {
+      const radio = el as HTMLIxRadioElement & {
+        touched?: boolean;
+        formSubmissionAttempted?: boolean;
+      };
+      return radio.touched || radio.formSubmissionAttempted;
+    });
+    const isRequiredInvalid =
+      !isChecked && (touched || formSubmissionAttempted || anyTouched);
+
+    hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+
+    if (isRequiredInvalid) {
+      hostElement.classList.add('ix-invalid');
+    } else {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+
+    if (!isFormNoValidate(hostElement)) {
+      updateValidationClasses(
+        elements,
+        isChecked,
+        touched,
+        formSubmissionAttempted
+      );
+    }
+
+    if (isChecked) {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+  }
+
+  private handleRequiredValidation() {
+    this.handleRequiredValidationShared({
+      elements: this.radiobuttonElements,
+      hasAnyChecked: this.hasAnyChecked(),
+      touched: this.touched,
+      formSubmissionAttempted: this.formSubmissionAttempted,
+      hostElement: this.hostElement,
+      clearValidationState: this.clearValidationState.bind(this),
+      updateValidationClasses: updateRadioValidationClasses,
+    });
+  }
+
+  async syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
+      return;
+    }
+
+    if (this.required) {
+      this.handleRequiredValidation();
+    } else {
+      this.clearValidationState();
+    }
+  }
+
   render() {
     return (
       <Host
-        onIxBlur={() => (this.touched = true)}
+        onIxBlur={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
         ref={this.groupRef}
         role="radiogroup"
       >
@@ -275,6 +417,7 @@ export class RadiobuttonGroup
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
+          required={this.required}
           controlRef={this.groupRef}
         >
           <div

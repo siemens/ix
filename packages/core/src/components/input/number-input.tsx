@@ -27,7 +27,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, SlotEnd, SlotStart } from './input.fc';
+import { InputElement, Slot } from './input.fc';
 import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
@@ -35,6 +35,7 @@ import {
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
+  clearInputValue,
   onInputFocus,
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
@@ -206,6 +207,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+
   /** @internal */
   public initialValue?: number;
 
@@ -277,7 +279,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
-    if (this.inputRef.current && this.touched) {
+    if (
+      this.inputRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -327,31 +333,33 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
-  private readonly handleBeforeInput = (e: InputEvent) => {
+  private readonly handleBeforeInput = (event: InputEvent) => {
     if (this.disabled || this.readonly) return;
 
-    if (e.inputType === 'insertText') {
-      const character = e.data;
+    if (event.inputType === 'insertText') {
+      const character = event.data;
 
       if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
 
-    if (e.inputType === 'insertFromPaste') {
-      const dt = e.dataTransfer || (e as any).clipboardData;
-      const text = dt?.getData?.('text') ?? '';
+    if (event.inputType === 'insertFromPaste') {
+      const dataTransfer =
+        event.dataTransfer ||
+        (event as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
+      const text = dataTransfer?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
   };
 
-  private readonly handlePaste = (e: ClipboardEvent) => {
-    // Fallback for browsers that don’t fire beforeinput for paste
-    const text = e.clipboardData?.getData('text') ?? '';
+  private readonly handlePaste = (event: ClipboardEvent) => {
+    // Fallback for browsers that don't fire beforeinput for paste
+    const text = event.clipboardData?.getData('text') ?? '';
     if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-      e.preventDefault();
+      event.preventDefault();
     }
   };
 
@@ -435,6 +443,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this, { defaultValue: undefined });
+  }
+
   render() {
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;
@@ -468,10 +485,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
               'show-stepper-buttons': !!this.showStepperButtons,
             }}
           >
-            <SlotStart
-              slotStartRef={this.slotStartRef}
+            <Slot
+              slotRef={this.slotStartRef}
+              position="start"
               onSlotChange={() => this.updatePaddings()}
-            ></SlotStart>
+            ></Slot>
 
             <InputElement
               id={this.numberInputId}
@@ -511,8 +529,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
             ></InputElement>
-            <SlotEnd
-              slotEndRef={this.slotEndRef}
+            <Slot
+              slotRef={this.slotEndRef}
+              position="end"
               onSlotChange={() => this.updatePaddings()}
             >
               <div
@@ -538,7 +557,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   onClick={() => this.handleStepOperation('up')}
                 ></ix-icon-button>
               </div>
-            </SlotEnd>
+            </Slot>
           </div>
         </ix-field-wrapper>
       </Host>

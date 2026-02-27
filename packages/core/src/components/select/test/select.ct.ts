@@ -1112,3 +1112,187 @@ test('input does not clear when items added during search', async ({
     page.getByRole('button', { name: 'Test Result from API' })
   ).toBeVisible();
 });
+
+test('required select prevents form submission when empty', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(select).toHaveClass(/hydrated/);
+
+  await submitButton.click();
+
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  const tabIndex = await select.getAttribute('tabindex');
+  expect(tabIndex).toBe('0');
+});
+
+test('multiple required selects prevent form submission when any is empty', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Department 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Department 2">Test</ix-select-item>
+        </ix-select>
+        <ix-select name="location" required>
+          <ix-select-item value="ny" label="New York">Test</ix-select-item>
+          <ix-select-item value="london" label="London">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const departmentSelect = page.locator('ix-select[name="department"]');
+  const locationSelect = page.locator('ix-select[name="location"]');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await departmentSelect.locator('[data-select-dropdown]').click();
+  await departmentSelect.locator('ix-select-item').first().click();
+
+  await submitButton.click();
+  await expect(locationSelect).toHaveClass(/ix-invalid--required/);
+
+  await locationSelect.locator('[data-select-dropdown]').click();
+  await locationSelect.locator('ix-select-item').first().click();
+
+  const isFormValidNow = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValidNow).toBe(true);
+});
+
+test('custom invalidText is used for validation feedback', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required invalid-text="Please select your department">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await submitButton.click();
+  const fieldWrapper = select.locator('ix-field-wrapper');
+  await expect(fieldWrapper).toContainText('Please select your department');
+});
+
+test('novalidate form attribute disables validation', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form novalidate>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  const isFormValid = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValid).toBe(true);
+
+  await submitButton.click();
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+});
+
+test('multiple mode validation works correctly', async ({ mount, page }) => {
+  await mount(`
+      <form>
+        <ix-select name="departments" required mode="multiple">
+          <ix-select-item value="1" label="Sales">Test</ix-select-item>
+          <ix-select-item value="2" label="Marketing">Test</ix-select-item>
+          <ix-select-item value="3" label="Engineering">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await submitButton.click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').first().click();
+  await page.locator('ix-select-item').nth(1).click();
+
+  const isFormValid = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValid).toBe(true);
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+});
+
+test('programmatic value setting updates validation state', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await submitButton.click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = '1';
+  });
+
+  await page.waitForTimeout(100);
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+});

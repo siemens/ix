@@ -14,7 +14,14 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
+import { useFieldGroupValidation } from '../utils/field-group-utils';
 import { makeRef } from '../utils/make-ref';
+import {
+  isFormNoValidate,
+  setupFormSubmitListener,
+  updateCheckboxValidationClasses,
+} from '../checkbox/checkbox-validation';
+import { clearInputValue } from '../input/input.util';
 
 /**
  * @form-ready
@@ -77,21 +84,38 @@ export class CheckboxGroup
   @State() isWarning = false;
 
   private touched = false;
+  private formSubmissionAttempt = false;
+  private cleanFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
-  get checkboxElements(): HTMLIxCheckboxElement[] {
-    return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
-  }
-
   private readonly observer = new MutationObserver(() => {
-    this.checkForRequiredCheckbox();
+    this.hasNestedRequiredCheckbox();
   });
 
-  private checkForRequiredCheckbox() {
-    this.required = this.checkboxElements.some((checkbox) => checkbox.required);
+  private readonly validation = useFieldGroupValidation<HTMLIxCheckboxElement>(
+    this.hostElement,
+    {
+      selector: 'ix-checkbox',
+      isChecked: (el) => el.checked,
+      isRequired: (el) => el.required,
+      updateValidationClasses: updateCheckboxValidationClasses,
+      clearValidationState: this.clearValidationState.bind(this),
+    }
+  );
+
+  get checkboxElements(): HTMLIxCheckboxElement[] {
+    return this.validation.getElements();
+  }
+
+  private setupFormListener() {
+    this.cleanFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempt = true;
+      this.syncValidationClasses();
+    });
   }
 
   connectedCallback(): void {
+    this.setupFormListener();
     this.observer.observe(this.hostElement, {
       childList: true,
       subtree: true,
@@ -101,13 +125,20 @@ export class CheckboxGroup
   }
 
   componentWillLoad(): void | Promise<void> {
-    this.checkForRequiredCheckbox();
+    this.hasNestedRequiredCheckbox();
   }
 
   disconnectedCallback(): void {
+    if (this.cleanFormListener) {
+      this.cleanFormListener();
+    }
     if (this.observer) {
       this.observer.disconnect();
     }
+  }
+
+  private hasNestedRequiredCheckbox() {
+    this.required = this.checkboxElements.some((checkbox) => checkbox.required);
   }
 
   @HookValidationLifecycle({
@@ -144,9 +175,119 @@ export class CheckboxGroup
     );
   }
 
+  /**
+   * Clear all checked checkboxes and reset validation state
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement);
+  }
+
+  private hasAnyChecked(): boolean {
+    return this.validation.hasAnyChecked();
+  }
+
+  private clearValidationState() {
+    this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+    this.checkboxElements.forEach((el: any) => {
+      el.classList.remove('ix-invalid', 'ix-invalid--required');
+    });
+  }
+
+  private handleRequiredValidationShared(params: {
+    elements: HTMLElement[];
+    hasAnyChecked: boolean;
+    touched: boolean;
+    formSubmissionAttempt: boolean;
+    hostElement: HTMLElement;
+    clearValidationState: () => void;
+    updateValidationClasses: (
+      elements: HTMLElement[],
+      isChecked: boolean,
+      touched: boolean,
+      formSubmissionAttempt: boolean
+    ) => void;
+  }) {
+    const {
+      elements,
+      hasAnyChecked,
+      touched,
+      formSubmissionAttempt,
+      hostElement,
+      clearValidationState,
+      updateValidationClasses,
+    } = params;
+
+    if (isFormNoValidate(hostElement)) {
+      clearValidationState();
+      return;
+    }
+    const requiredElements = elements.filter(
+      (el) => (el as HTMLIxCheckboxElement).required
+    );
+    const isChecked = hasAnyChecked;
+    const anyTouched = requiredElements.some((el) => {
+      const checkbox = el as HTMLIxCheckboxElement & {
+        touched?: boolean;
+        formSubmissionAttempted?: boolean;
+      };
+      return checkbox.touched || checkbox.formSubmissionAttempted;
+    });
+    const isRequiredInvalid =
+      !isChecked && (touched || formSubmissionAttempt || anyTouched);
+    hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+    if (isRequiredInvalid) {
+      hostElement.classList.add('ix-invalid');
+    } else {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+    if (!isFormNoValidate(hostElement)) {
+      updateValidationClasses(
+        elements,
+        isChecked,
+        touched,
+        formSubmissionAttempt
+      );
+    }
+    if (isChecked) {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+  }
+
+  private handleRequiredValidation() {
+    this.handleRequiredValidationShared({
+      elements: this.checkboxElements,
+      hasAnyChecked: this.hasAnyChecked(),
+      touched: this.touched,
+      formSubmissionAttempt: this.formSubmissionAttempt,
+      hostElement: this.hostElement,
+      clearValidationState: this.clearValidationState.bind(this),
+      updateValidationClasses: updateCheckboxValidationClasses,
+    });
+  }
+
+  async syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
+      return;
+    }
+    if (this.required) {
+      this.handleRequiredValidation();
+    } else {
+      this.clearValidationState();
+    }
+  }
+
   render() {
     return (
-      <Host ref={this.groupRef} onIxBlur={() => (this.touched = true)}>
+      <Host
+        onIxBlur={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
@@ -159,6 +300,7 @@ export class CheckboxGroup
           isInfo={this.isInfo}
           isValid={this.isValid}
           isWarning={this.isWarning}
+          required={this.required}
           controlRef={this.groupRef}
         >
           <div
