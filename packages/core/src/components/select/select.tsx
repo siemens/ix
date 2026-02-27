@@ -485,6 +485,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
+    if (this.dropdownShow && this.inputFilterText) {
+      return;
+    }
+
     if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0] ?? '';
     } else {
