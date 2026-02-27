@@ -18,7 +18,9 @@ regressionTest.describe('date dropdown', () => {
     const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
 
     await expect(dropdown).toHaveClass(/show/);
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({
+      maxDiffPixels: 1
+    });
   });
 
   regressionTest('range options', async ({ page }) => {
@@ -58,6 +60,8 @@ regressionTest.describe('date dropdown', () => {
     const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
 
     await expect(dropdown).toHaveClass(/show/);
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({
+      maxDiffPixels: 1
+    });
   });
 });

@@ -884,3 +884,26 @@ regressionTest(
     await expect(dynamicItem).not.toHaveAttribute('disabled');
   }
 );
+
+regressionTest(
+  'auto-close when dropdown is fully not visible',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown id="dropdown" trigger="trigger">
+      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+    </ix-dropdown>
+  `);
+    const trigger = page.locator('#trigger');
+    const dropdown = page.locator('#dropdown');
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
+    await dropdown.evaluate((el: HTMLElement) => {
+      el.style.transform = 'translate(-10000px, -10000px)';
+    });
+    await page.waitForTimeout(350);
+    await expect(dropdown).not.toBeVisible();
+    const showAttribute = await dropdown.evaluate((el: any) => el.show);
+    expect(showAttribute).toBe(false);
+  }
+);
