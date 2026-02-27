@@ -37,6 +37,8 @@ const instructionContent = (withFrontmatter = false, framework?: Framework) => {
     ${INSTRUCTION_START_MARKER}
     ## Siemens iX code generation
 
+    The official Siemens iX documentation is available at https://ix.siemens.io and provides a llms.txt file following the llmstxt.org standard at https://ix.siemens.io/llms.txt. Use this resource to get an overview of available documentation and additional information regarding components.
+
     When generating ix code keep in mind:
     - For each ix component exists a example which can be found with the tool "search_examples". You should use that tool to verify that the code you generated is correct.
 
