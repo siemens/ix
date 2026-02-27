@@ -229,7 +229,9 @@ regressionTest.describe('time picker tests', () => {
       await page.waitForSelector('ix-date-time-card');
 
       const secondPicker = page.locator('ix-time-picker').nth(1);
-      const hour = secondPicker.locator('[data-element-container-id="hour-10"]');
+      const hour = secondPicker.locator(
+        '[data-element-container-id="hour-10"]'
+      );
       const minute = secondPicker.locator(
         '[data-element-container-id="minute-11"]'
       );
