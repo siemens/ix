@@ -24,18 +24,8 @@ export function useFieldGroupValidation<T extends HTMLElement>(
   }
 
   function hasAnyChecked(): boolean {
-    const elements = getElements().filter(options.isRequired);
-    if (elements.length > 0 && (elements[0] as any).name) {
-      const name = (elements[0] as any).name;
-      const form = hostElement.closest('form');
-      const allWithSameName: NodeListOf<T> = form
-        ? form.querySelectorAll(`${options.selector}[name="${name}"]`)
-        : document.querySelectorAll(`${options.selector}[name="${name}"]`);
-      return Array.from(allWithSameName)
-        .filter(options.isRequired)
-        .some(options.isChecked);
-    }
-    return elements.some(options.isChecked);
+    const requiredElements = getElements().filter(options.isRequired);
+    return requiredElements.some(options.isChecked);
   }
 
   return {
