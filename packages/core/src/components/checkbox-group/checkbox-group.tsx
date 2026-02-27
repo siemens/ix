@@ -226,21 +226,13 @@ export class CheckboxGroup
       (el) => (el as HTMLIxCheckboxElement).required
     );
     const isChecked = hasAnyChecked;
-    const anyTouched = requiredElements.some(
-      (el) =>
-        (
-          el as HTMLIxCheckboxElement & {
-            touched?: boolean;
-            formSubmissionAttempted?: boolean;
-          }
-        ).touched ||
-        (
-          el as HTMLIxCheckboxElement & {
-            touched?: boolean;
-            formSubmissionAttempted?: boolean;
-          }
-        ).formSubmissionAttempted
-    );
+    const anyTouched = requiredElements.some((el) => {
+      const checkbox = el as HTMLIxCheckboxElement & {
+        touched?: boolean;
+        formSubmissionAttempted?: boolean;
+      };
+      return checkbox.touched || checkbox.formSubmissionAttempted;
+    });
     const isRequiredInvalid =
       !isChecked && (touched || formSubmissionAttempt || anyTouched);
     hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);

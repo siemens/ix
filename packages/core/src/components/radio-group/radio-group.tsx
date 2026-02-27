@@ -336,21 +336,13 @@ export class RadiobuttonGroup
       (el) => (el as HTMLIxRadioElement).required
     );
     const isChecked = hasAnyChecked;
-    const anyTouched = requiredElements.some(
-      (el) =>
-        (
-          el as HTMLIxRadioElement & {
-            touched?: boolean;
-            formSubmissionAttempted?: boolean;
-          }
-        ).touched ||
-        (
-          el as HTMLIxRadioElement & {
-            touched?: boolean;
-            formSubmissionAttempted?: boolean;
-          }
-        ).formSubmissionAttempted
-    );
+    const anyTouched = requiredElements.some((el) => {
+      const radio = el as HTMLIxRadioElement & {
+        touched?: boolean;
+        formSubmissionAttempted?: boolean;
+      };
+      return radio.touched || radio.formSubmissionAttempted;
+    });
     const isRequiredInvalid =
       !isChecked && (touched || formSubmissionAttempted || anyTouched);
 
