@@ -39,11 +39,14 @@ const instructionContent = (withFrontmatter = false, framework?: Framework) => {
 
     The official Siemens iX documentation is available at https://ix.siemens.io and provides a llms.txt file following the llmstxt.org standard at https://ix.siemens.io/llms.txt. Use this resource to get an overview of available documentation and additional information regarding components.
 
-    When generating ix code keep in mind:
-    - For each ix component exists a example which can be found with the tool "search_examples". You should use that tool to verify that the code you generated is correct.
+    When generating ix code follow the rules:
+
+    - For each iX component, validate generated code with \`mcp_siemensix_search_examples\`.
+    - Copilot MUST call \`mcp_siemensix_get_component_details\` by default.
 
     When you generate code and a figma resource is included::
-    - Most IX components have mapped Figma components. Use "get_figma_component_mapping" for a specific component or Figma ID, and "list_components_with_figma_ids" to list all available mappings.
+
+    - Most IX components have mapped Figma components. Use \`mcp_siemensix_get_figma_component_mapping\` for a specific component or Figma ID, and \`mcp_siemensix_list_components_with_figma_ids\` to list all available mappings.
 
     Regarding icon usage, take the following usage into account:
     ${iconUsage}
