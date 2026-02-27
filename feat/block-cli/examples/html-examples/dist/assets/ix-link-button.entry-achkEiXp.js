@@ -1,0 +1,23 @@
+import { r as registerInstance, h, H as Host } from "./global-DXu0UsM0.js";
+import { w as iconChevronRightSmall } from "./index-8HpPmDK_-DinFJk0z.js";
+const linkButtonCss = ":host{display:inline-flex;height:2rem;font-size:0.875rem;font-weight:400;min-width:2rem}:host .link-button{display:inline-flex;position:relative;width:100%;padding:0 0.25rem 0 0;align-items:center;justify-content:center;background-color:transparent;color:var(--theme-color-primary);cursor:pointer;text-decoration:none}:host .link-button .link{display:block;position:relative;width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;text-decoration:underline;text-underline-offset:0.2rem}:host .link-button:not(.disabled):not(:disabled){cursor:pointer}:host .link-button:not(.disabled):not(:disabled):hover,:host .link-button:not(.disabled):not(:disabled).hover{color:var(--theme-color-dynamic--hover)}:host .link-button:not(.disabled):not(:disabled){cursor:pointer}:host .link-button:not(.disabled):not(:disabled):active,:host .link-button:not(.disabled):not(:disabled).active{color:var(--theme-color-dynamic--active)}:host .link-button.disabled{cursor:default;color:var(--theme-color-weak-text)}:host .link-button a{all:unset}:host :focus-visible{outline:1px solid var(--theme-color-focus-bdr)}";
+const LinkButton = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.disabled = false;
+    this.target = "_self";
+  }
+  render() {
+    return h(Host, { key: "624649d171501e6b2f5ba588a9c5da861f2a4c0d" }, h("a", { key: "ae45236a2a7b9b720f99e7e9bc6e6fc29e41db6f", title: this.url, tabindex: "0", class: {
+      "link-button": true,
+      disabled: this.disabled
+    }, href: this.disabled ? void 0 : this.url, target: this.target }, h("ix-icon", { key: "905b3d535969009b66e32d7634812ff01a983e43", class: "icon", name: iconChevronRightSmall, size: "16", "aria-hidden": "true" }), h("div", { key: "2a1eaab8a8689b5b02a9240bf79c2eef1e792d77", class: {
+      link: true,
+      disabled: this.disabled
+    } }, h("slot", { key: "12437f85cb8ec492f958c51b71f05e1c9f18ff3f" }))));
+  }
+};
+LinkButton.style = linkButtonCss;
+export {
+  LinkButton as ix_link_button
+};

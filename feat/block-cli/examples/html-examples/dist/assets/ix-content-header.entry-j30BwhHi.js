@@ -1,0 +1,25 @@
+import { r as registerInstance, c as createEvent, h, H as Host } from "./global-DXu0UsM0.js";
+import { n as iconArrowLeft } from "./index-8HpPmDK_-DinFJk0z.js";
+const contentHeaderCss = ":host{display:flex;flex-direction:row;align-items:flex-start;padding:0}:host .titleGroup{display:flex;flex-direction:column;flex:1 1 0;min-width:0;white-space:nowrap;margin-right:0.5rem}:host .titleGroup .titleOverflow{overflow:hidden;text-overflow:ellipsis}:host .titleGroup .headerTitleRow{display:flex}:host .titleGroup .headerTitleRow .headerSlot{display:inline-flex;margin-left:0.5rem}:host .titleGroup .secondary{padding:0.25rem 0}:host .subtitle{margin-top:-0.125rem}:host .backButton{margin-right:0.5rem}:host .buttons{flex:0 0 auto}";
+const ContentHeader = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.backButtonClick = createEvent(this, "backButtonClick", 7);
+    this.variant = "primary";
+    this.headerSubtitle = void 0;
+    this.hasBackButton = false;
+  }
+  render() {
+    return h(Host, { key: "653e3098cd53c645459cdaf26d96de5a6bb87e93" }, this.hasBackButton ? h("ix-icon-button", { class: "backButton", variant: "tertiary", icon: iconArrowLeft, onClick: () => this.backButtonClick.emit() }) : null, h("div", { key: "4ab4b48c6d000376d418aad8e286ebcdab00c465", class: "titleGroup" }, h("div", { key: "c5089199a4b30043482b9ce269b5ac7de1d63d7e", class: "headerTitleRow" }, h("ix-typography", { key: "1881f9009a6580ed33623656e9ebacf8fc8d3d24", format: this.variant === "secondary" ? "h4" : "h3", class: {
+      secondary: this.variant === "secondary",
+      titleOverflow: true
+    } }, this.headerTitle), h("div", { key: "60cb1c5bc61fd7094cefcd0df5c2cc35bbce26f9", class: "headerSlot" }, h("slot", { key: "59e169df67c1dab3cb56f68999a80014e523ebd1", name: "header" }))), !!this.headerSubtitle && h("ix-typography", { key: "171999d29be970a009b6089b74c314bf7f2c4d9a", format: "h6", "text-color": "soft", class: {
+      subtitle: this.variant === "secondary",
+      titleOverflow: true
+    }, title: this.headerSubtitle }, this.headerSubtitle)), h("div", { key: "f34f2bb5de52bbc19ec54052a5bc3af117cbc52a", class: "buttons" }, h("slot", { key: "6b895ff8371be0df6be8663a98f5add23a8b7fec" })));
+  }
+};
+ContentHeader.style = contentHeaderCss;
+export {
+  ContentHeader as ix_content_header
+};
