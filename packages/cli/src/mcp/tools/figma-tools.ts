@@ -66,9 +66,13 @@ export const figmaTools: ToolDefinition[] = [
               const figmaIds = r.figmaMainComponentIds
                 .map((id) => `  - ${id}`)
                 .join('\n');
+              const docSection =
+                r.documentation.length > 0
+                  ? `\nDocumentation:\n${r.documentation.map((url) => `  - ${url}`).join('\n')}`
+                  : '';
               return dedent`**${r.componentTag}**
               Figma Main Component IDs:
-              ${figmaIds}`;
+              ${figmaIds}${docSection}`;
             })
             .join('\n\n');
 
@@ -108,6 +112,11 @@ export const figmaTools: ToolDefinition[] = [
           .map((id) => `  - ${id}`)
           .join('\n');
 
+        const docSection =
+          result.documentation.length > 0
+            ? `\nDocumentation guide available:\n${result.documentation.map((url) => `  - ${url}`).join('\n')}`
+            : '\nNo documentation guide available for this component.';
+
         return {
           content: [
             {
@@ -116,6 +125,7 @@ export const figmaTools: ToolDefinition[] = [
 
               Figma Main Component IDs:
               ${figmaIds}
+              ${docSection}
 
               You can use these Figma main component IDs to reference the design in Figma.
               `,
@@ -162,7 +172,11 @@ export const figmaTools: ToolDefinition[] = [
         const componentsList = components
           .map((c) => {
             const figmaIds = c.figmaMainComponentIds.join(', ');
-            return `- **${c.componentTag}**: ${figmaIds}`;
+            const docNote =
+              c.documentation.length > 0
+                ? ` — [docs](${c.documentation[0]})`
+                : '';
+            return `- **${c.componentTag}**: ${figmaIds}${docNote}`;
           })
           .join('\n');
 

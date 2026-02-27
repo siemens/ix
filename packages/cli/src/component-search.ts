@@ -423,6 +423,7 @@ export function getComponentMarkdownPath(componentTag: string): string {
 export interface FigmaComponentMapping {
   componentTag: string;
   figmaMainComponentIds: string[];
+  documentation: string[];
 }
 
 /**
@@ -454,6 +455,7 @@ export async function getFigmaComponentMapping(query: string): Promise<{
         .map((c: any) => ({
           componentTag: c.tag,
           figmaMainComponentIds: c.figmaMainComponentIds,
+          documentation: c.documentation || [],
         }));
 
       return {
@@ -479,6 +481,7 @@ export async function getFigmaComponentMapping(query: string): Promise<{
           {
             componentTag: component.tag,
             figmaMainComponentIds: component.figmaMainComponentIds || [],
+            documentation: component.documentation || [],
           },
         ],
       };
@@ -510,6 +513,7 @@ export async function listComponentsWithFigmaIds(): Promise<
       .map((c: any) => ({
         componentTag: c.tag,
         figmaMainComponentIds: c.figmaMainComponentIds,
+        documentation: c.documentation || [],
       }));
   } catch (error) {
     console.error(
