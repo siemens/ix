@@ -3,14 +3,15 @@ import { z } from 'zod';
 import {
   searchComponents,
   getComponentDetails,
-  getComponentMarkdownPath,
   listAllComponents,
 } from '../../component-search';
 import { ToolDefinition } from './types';
 
 const searchComponentApiName = 'search_component_api' as const;
 const searchComponentApiSchema = z.object({
-  query: z.string().describe('Search query for component name or functionality'),
+  query: z
+    .string()
+    .describe('Search query for component name or functionality'),
   limit: z
     .number()
     .optional()
@@ -66,7 +67,6 @@ export const componentTools: ToolDefinition[] = [
           .join('\n\n');
 
         const topResult = results[0];
-        const mdPath = getComponentMarkdownPath(topResult.tag);
 
         return {
           content: [
@@ -78,7 +78,6 @@ export const componentTools: ToolDefinition[] = [
 
               **Next Steps:**
               - Use "get_component_details" with tag "${topResult.tag}" for complete API documentation
-              - Read the full documentation at: ${mdPath}
               - Use "search_examples" to find examples related to this component
 
               ${context.promptNodeModulesExcluded}
@@ -106,7 +105,7 @@ export const componentTools: ToolDefinition[] = [
   {
     name: getComponentDetailsName,
     description:
-      'Get complete API documentation for a specific IX component including props, events, methods, and slots. Use this after finding a component via search.',
+      'Get complete API documentation for a specific IX component including usage guideline, do and donts, props, events, methods, and slots. Use this after finding a component via search.',
     schema: getComponentDetailsSchema,
     handler: async (args, context) => {
       try {
@@ -163,11 +162,23 @@ export const componentTools: ToolDefinition[] = [
           ? details.dependencies.map((d) => `- ${d}`).join('\n')
           : 'None';
 
+        let docSection = '';
+        if (
+          details.documentationContent &&
+          details.documentationContent.length > 0
+        ) {
+          docSection = dedent`
+          ## Documentation
+
+          ${details.documentationContent.join('\n\n---\n\n')}
+          `;
+        }
         return {
           content: [
             {
               type: 'text',
-              text: dedent`# ${details.tag} API Documentation
+              text: dedent`# ${details.tag} Documentation
+              ${docSection}
 
               ## Properties
               ${propsList}
@@ -210,10 +221,6 @@ export const componentTools: ToolDefinition[] = [
                   ? `\`\`\`vue\n<${details.tag}></${details.tag}>\n\`\`\``
                   : ''
               }
-
-              For usage examples, search in node_modules/@siemens/ix-${context.framework}/component-examples/
-
-              ${context.promptNodeModulesExcluded}
               `,
             },
           ],

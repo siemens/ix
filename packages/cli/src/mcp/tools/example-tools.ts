@@ -70,8 +70,7 @@ export const exampleTools: ToolDefinition[] = [
 
         const resultsList = results
           .map(
-            (r, i) =>
-              `${i + 1}. **${r.name}** (score: ${r.score.toFixed(2)})`
+            (r, i) => `${i + 1}. **${r.name}** (score: ${r.score.toFixed(2)})`
           )
           .join('\n');
 

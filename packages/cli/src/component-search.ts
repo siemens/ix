@@ -38,6 +38,8 @@ export interface ComponentSearchResult {
 
 export interface ComponentDetails {
   tag: string;
+  documentation?: string[];
+  documentationContent?: string[];
   props?: Array<{
     name: string;
     type: string;
@@ -321,6 +323,22 @@ export async function searchComponents(
 }
 
 /**
+ * Fetch the markdown content from a documentation URL.
+ * Returns the text on success, or null if the fetch fails.
+ */
+export async function fetchDocumentationContent(
+  url: string
+): Promise<string | null> {
+  try {
+    const res = await fetch(url);
+    if (res.ok) return await res.text();
+  } catch {
+    // ignore fetch errors
+  }
+  return null;
+}
+
+/**
  * Get detailed API documentation for a specific component
  * Loads only the requested component from the full component-doc.json
  */
@@ -340,8 +358,19 @@ export async function getComponentDetails(
       return null;
     }
 
+    const docUrls: string[] =
+      component.docsTags
+        ?.filter((t: { name: string }) => t.name === 'documentation')
+        .map((t: { text: string }) => t.text.trim()) ?? [];
+
+    const documentationContent = (
+      await Promise.all(docUrls.map(fetchDocumentationContent))
+    ).filter((r): r is string => r !== null);
+
     return {
       tag: component.tag,
+      documentation: docUrls,
+      documentationContent,
       props: component.props?.map((p: any) => ({
         name: p.name,
         type: p.type,
