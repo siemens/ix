@@ -2,7 +2,7 @@
   "version": 1,
   "themeName": "theme-brand-dark",
   "theme": {
-    "seriesCnt": 3,
+    "seriesCnt": "3",
     "backgroundColor": "transparent",
     "titleColor": "#ffffff",
     "subtitleColor": "#ffffff",
@@ -26,7 +26,7 @@
       "#FFBC66",
       "#FFF7D6",
       "#AAAA96",
-      "#FFBC66"
+      "#7D8099"
     ],
     "borderColor": "#ffffff",
     "borderWidth": 0,
