@@ -44,7 +44,7 @@
     "ag-grid-community": "^33.3.2",
     "http-server": "^14.1.1",
     "rimraf": "^6.0.1",
-    "rollup-plugin-import-css": "^4.0.1",
+    "rollup-plugin-import-css": "^4.2.0",
     "rollup": "^4.43.0",
     "typescript": "^5.8.3",
     "vite": "catalog:"
