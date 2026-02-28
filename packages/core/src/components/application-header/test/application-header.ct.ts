@@ -589,3 +589,31 @@ test.describe('cross app navigation', () => {
     });
   });
 });
+
+test('should update context menu visibility when breakpoint changes', async ({
+  page,
+  mount,
+}) => {
+  await page.setViewportSize(viewPorts.lg);
+  await mount(
+    `
+      <ix-application-header name="Test">
+        <ix-button>Action</ix-button>
+        <ix-avatar></ix-avatar>
+      </ix-application-header>
+      `
+  );
+  const header = page.locator('ix-application-header');
+  const contextMenu = header.locator('[data-testid="show-more"]');
+
+  await expect(header).toHaveClass(/breakpoint-lg/);
+  await expect(contextMenu).not.toBeVisible();
+
+  await page.setViewportSize(viewPorts.sm);
+  await expect(header).toHaveClass(/breakpoint-sm/);
+  await expect(contextMenu).toBeVisible();
+
+  await page.setViewportSize(viewPorts.lg);
+  await expect(header).toHaveClass(/breakpoint-lg/);
+  await expect(contextMenu).not.toBeVisible();
+});
