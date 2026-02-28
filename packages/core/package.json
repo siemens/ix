@@ -121,7 +121,7 @@
     "mustache": "^4.2.0",
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",
-    "rimraf": "^5.0.9",
+    "rimraf": "^6.1.2",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
