@@ -355,6 +355,22 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
+  private getDecimalPlaces(num: number): number {
+    // (?:\.(\d+))? --> match[1] --> decimal digits
+    // (?:[eE]([+-]?\d+))? --> match[2] --> exponent
+    const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec('' + num);
+
+    if (!match) {
+      return 0;
+    }
+
+    // combine decimal digits and exponent to get number of decimal places
+    return Math.max(
+      0,
+      (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0)
+    );
+  }
+
   private handleStepOperation(operation: 'up' | 'down') {
     if (!this.inputRef.current) {
       return;
@@ -373,6 +389,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
     } else {
       newValue = currentValue - stepValue;
     }
+
+    // Round to avoid floating point precision errors
+    const decimalPlaces = Math.max(
+      this.getDecimalPlaces(currentValue),
+      this.getDecimalPlaces(stepValue)
+    );
+    newValue = Number(newValue.toFixed(decimalPlaces));
 
     if (this.min !== undefined) {
       const minValue =
