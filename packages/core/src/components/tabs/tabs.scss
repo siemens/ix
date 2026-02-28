@@ -22,10 +22,12 @@
     overflow: hidden;
     scroll-behavior: smooth;
     width: 100%;
+    touch-action: pan-y; // Allow vertical scroll but prevent horizontal touch gestures
 
     .items-content {
       display: flex;
       align-items: center;
+      touch-action: none; // Disable all default touch behaviors for drag
     }
   }
 
