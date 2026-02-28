@@ -67,6 +67,7 @@ export class MenuExpandIcon {
         tabindex={-1}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         variant="subtle-tertiary"
+        aria-label={this.expanded ? 'Collapse menu' : 'Expand menu'}
       ></ix-icon-button>
     );
   }

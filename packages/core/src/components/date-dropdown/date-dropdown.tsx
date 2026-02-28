@@ -355,7 +355,7 @@ export class DateDropdown
           icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
-          ariaLabel={this.ariaLabelDropdownButton}
+          ariaLabelButton={this.ariaLabelDropdownButton}
         >
           {this.getButtonLabel()}
         </ix-button>

@@ -709,6 +709,7 @@ export namespace Components {
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
+          * @default 'Close chip'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -968,14 +969,17 @@ export namespace Components {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -1103,10 +1107,12 @@ export namespace Components {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -1207,10 +1213,12 @@ export namespace Components {
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -1294,6 +1302,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close drawer'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -1578,16 +1587,19 @@ export namespace Components {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Search'
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
           * @since 3.2.0
+          * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -2565,6 +2577,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -2712,11 +2725,13 @@ export namespace Components {
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -3083,12 +3098,12 @@ export namespace Components {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
-          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -3451,11 +3466,13 @@ export namespace Components {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
+          * @default 'Previous tab'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
+          * @default 'Next tab'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -3846,6 +3863,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -6704,6 +6722,7 @@ declare namespace LocalJSX {
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
+          * @default 'Close chip'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -6971,14 +6990,17 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -7106,10 +7128,12 @@ declare namespace LocalJSX {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -7218,10 +7242,12 @@ declare namespace LocalJSX {
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -7317,6 +7343,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close drawer'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -7610,16 +7637,19 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Search'
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
           * @since 3.2.0
+          * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -8678,6 +8708,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -8832,11 +8863,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -9235,12 +9268,12 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
-          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -9614,11 +9647,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
+          * @default 'Previous tab'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
+          * @default 'Next tab'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -10020,6 +10055,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
