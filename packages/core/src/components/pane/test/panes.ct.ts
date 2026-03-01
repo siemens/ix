@@ -133,23 +133,27 @@ regressionTest(
   }
 );
 regressionTest(
-  'icon direction reacts correctly to slot and expanded state',
+  'icon direction reacts correctly to slot and expanded state for all compositions',
   async ({ mount, page }) => {
     const pane_slots = [
       { slot: 'left', expanded: false, expected: 'double-chevron-right' },
       { slot: 'left', expanded: true, expected: 'double-chevron-left' },
       { slot: 'right', expanded: false, expected: 'double-chevron-left' },
       { slot: 'right', expanded: true, expected: 'double-chevron-right' },
+      { slot: 'top', expanded: false, expected: 'double-chevron-down' },
+      { slot: 'top', expanded: true, expected: 'double-chevron-up' },
+      { slot: 'bottom', expanded: false, expected: 'double-chevron-up' },
+      { slot: 'bottom', expanded: true, expected: 'double-chevron-down' },
     ];
 
     for (const pane_slot of pane_slots) {
       await mount(`
-      <ix-pane
-        heading="TEST"
-        slot="${pane_slot.slot}"
-        expanded="${pane_slot.expanded}"
-      ></ix-pane>
-    `);
+        <ix-pane
+          heading="TEST"
+          slot="${pane_slot.slot}"
+          expanded="${pane_slot.expanded}"
+        ></ix-pane>
+      `);
 
       const pane = page.locator('ix-pane');
       await expect(pane).toHaveClass(/hydrated/);
@@ -162,6 +166,8 @@ regressionTest(
       );
 
       expect(iconValue).toContain(pane_slot.expected);
+
+      await page.close();
     }
   }
 );
