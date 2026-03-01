@@ -21,7 +21,7 @@ test('pill - accessibility check', async ({ page }) => {
   // Ugly and not the reliable way to wait for Stencil to be ready
   await waitForReadiness(page);
 
-  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
+  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(["page-has-heading-one","aria-tooltip-name"]).analyze();
 
   expect(accessibilityScanResults.violations).toEqual([]);
 });

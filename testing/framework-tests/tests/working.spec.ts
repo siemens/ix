@@ -7,3 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import './generated/tabs.spec';
+
+// Pill tests
+import './generated/pill.spec';
+import './generated/pill-variants.spec';

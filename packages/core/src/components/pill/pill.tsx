@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
@@ -104,6 +105,7 @@ export class Pill implements IxComponent {
   }
 
   render() {
+    const hostA11y = a11yHostAttributes(this.hostElement);
     let customStyle = {};
 
     if (this.variant === 'custom') {
@@ -112,6 +114,11 @@ export class Pill implements IxComponent {
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
+
+    // Add role="group" when aria-label is set without explicit role (ARIA spec requirement)
+    const containerRole =
+      hostA11y['role'] || (hostA11y['aria-label'] ? 'group' : undefined);
+
     return (
       <Host
         style={
@@ -126,6 +133,8 @@ export class Pill implements IxComponent {
         }}
       >
         <div
+          {...hostA11y}
+          role={containerRole}
           ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
@@ -153,6 +162,7 @@ export class Pill implements IxComponent {
               name={this.icon}
               size={'16'}
               aria-label={this.ariaLabelIcon}
+              aria-hidden={this.ariaLabelIcon ? undefined : 'true'}
             />
           )}
           <span class="slot-container">
