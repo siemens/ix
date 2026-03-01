@@ -216,7 +216,6 @@ export class Pane {
 
   componentWillLoad() {
     this.onExpandedChange();
-    this.setIcons();
 
     this.floating = this.variant === 'floating';
 
@@ -232,6 +231,7 @@ export class Pane {
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
     }
+    this.setIcons();
 
     this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -521,13 +521,14 @@ export class Pane {
   }
 
   private dispatchExpandedChangedEvent() {
+    const newExpandedValue = !this.expanded;
     const event = this.expandedChanged.emit({
       slot: this.currentSlot ?? '',
-      expanded: !this.expanded,
+      expanded: newExpandedValue,
     });
 
     if (!event.defaultPrevented) {
-      this.expanded = !this.expanded;
+      this.expanded = newExpandedValue;
     }
   }
 
