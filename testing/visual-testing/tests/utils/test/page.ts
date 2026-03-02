@@ -57,6 +57,7 @@ export async function waitForIxHydration(page: Page): Promise<void> {
       timeout: timeout,
     }
   );
+  await page.waitForTimeout(1000);
 }
 
 function getThemeMetaData(testInfo: TestInfo): {
