@@ -128,7 +128,7 @@ async function mountComponent(
 ): Promise<ElementHandle<HTMLElement>> {
   await page.mouse.move(9999, 9999);
 
-  return page.evaluateHandle(
+  const elementHandle = await page.evaluateHandle(
     async ({ componentSelector, config }) => {
       await window.customElements.whenDefined('ix-button');
       const mount = document.querySelector('#mount');
@@ -146,6 +146,8 @@ async function mountComponent(
     },
     { componentSelector: selector, config }
   );
+
+  return elementHandle;
 }
 
 export const regressionTest = testBase.extend<{
