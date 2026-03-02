@@ -88,32 +88,16 @@
           "path": "feat/block-cli/examples/breadcrumb-truncate.json"
         },
         {
-          "name": "button-danger",
-          "path": "feat/block-cli/examples/button-danger.json"
+          "name": "button-danger-primary",
+          "path": "feat/block-cli/examples/button-danger-primary.json"
         },
         {
-          "name": "button-danger-ghost",
-          "path": "feat/block-cli/examples/button-danger-ghost.json"
+          "name": "button-danger-secondary",
+          "path": "feat/block-cli/examples/button-danger-secondary.json"
         },
         {
-          "name": "button-danger-outline",
-          "path": "feat/block-cli/examples/button-danger-outline.json"
-        },
-        {
-          "name": "button-ghost",
-          "path": "feat/block-cli/examples/button-ghost.json"
-        },
-        {
-          "name": "button-grey",
-          "path": "feat/block-cli/examples/button-grey.json"
-        },
-        {
-          "name": "button-grey-ghost",
-          "path": "feat/block-cli/examples/button-grey-ghost.json"
-        },
-        {
-          "name": "button-grey-secondary",
-          "path": "feat/block-cli/examples/button-grey-secondary.json"
+          "name": "button-danger-tertiary",
+          "path": "feat/block-cli/examples/button-danger-tertiary.json"
         },
         {
           "name": "button-group",
@@ -126,6 +110,22 @@
         {
           "name": "button-secondary",
           "path": "feat/block-cli/examples/button-secondary.json"
+        },
+        {
+          "name": "button-subtle-primary",
+          "path": "feat/block-cli/examples/button-subtle-primary.json"
+        },
+        {
+          "name": "button-subtle-secondary",
+          "path": "feat/block-cli/examples/button-subtle-secondary.json"
+        },
+        {
+          "name": "button-subtle-tertiary",
+          "path": "feat/block-cli/examples/button-subtle-tertiary.json"
+        },
+        {
+          "name": "button-tertiary",
+          "path": "feat/block-cli/examples/button-tertiary.json"
         },
         {
           "name": "button-text-icon",

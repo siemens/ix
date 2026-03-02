@@ -1,0 +1,2 @@
+import{a as r,d as e,e as s}from"./chunk-TUPSBSQ4.js";import"./chunk-IXF2NW34.js";var o=()=>":host{display:block;position:relative;width:100%;border-bottom:0.0625rem solid var(--theme-color-x-weak-bdr);margin:0.25rem 0px}",i=class{constructor(t){r(this,t)}render(){return e(s,{key:"ca814e8d386105be46954dfba6ae6f9a0c8ba4a9"})}};i.style=o();export{i as ix_divider};
+//# sourceMappingURL=ix-divider.entry-YNKNG3MR.js.map
