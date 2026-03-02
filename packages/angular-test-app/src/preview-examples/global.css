@@ -24,12 +24,6 @@ html {
   width: 100vw;
 }
 
-app-root {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
 /* placeholder-logo for usage in all files */
 .placeholder-logo {
   float: left;
