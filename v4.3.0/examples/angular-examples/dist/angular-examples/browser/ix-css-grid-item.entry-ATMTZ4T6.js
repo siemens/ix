@@ -1,2 +1,0 @@
-import{a as e,d as t,e as r}from"./chunk-TUPSBSQ4.js";import"./chunk-IXF2NW34.js";var c=()=>":host{display:block;position:relative}:host ::slotted(*){height:100%;width:100%}",i=class{constructor(s){e(this,s)}render(){let s={};return s["grid-area"]=this.itemName,t(r,{key:"0f7a1001629ec09b7e6f44470b733f3d1d691bcb",style:s},t("slot",{key:"1fce4a329cea68181bc52e60d155d6c6b7bb41bc"}))}};i.style=c();export{i as ix_css_grid_item};
-//# sourceMappingURL=ix-css-grid-item.entry-ATMTZ4T6.js.map
