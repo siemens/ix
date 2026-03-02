@@ -33,6 +33,9 @@ jobs:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
