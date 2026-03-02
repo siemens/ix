@@ -54,13 +54,7 @@ export async function waitForIxHydration(page: Page): Promise<void> {
     },
     null,
     {
-      timeout,
-    }
-  );
-}
-
-    {
-      timeout: 1000,
+      timeout: timeout,
     }
   );
 }
