@@ -1173,6 +1173,6 @@ test('input does not clear when items added during search', async ({
 
   await expect(input).toHaveValue('test');
   await expect(
-    page.getByRole('button', { name: 'Test Result from API' })
+    page.getByRole('option', { name: 'Test Result from API' })
   ).toBeVisible();
 });
