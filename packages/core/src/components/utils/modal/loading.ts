@@ -15,12 +15,24 @@ export type ModalLoadingContext = {
   finish: (text?: string, timeout?: number) => void;
 };
 
+export type ModalLoadingOptions = {
+  /**
+   * Center the loading modal vertically
+   * @default false
+   */
+  centered?: boolean;
+};
+
 /**
  * Displays a loading modal with a message
  */
-export function showModalLoading(message: string) {
+export function showModalLoading(
+  message: string,
+  options?: ModalLoadingOptions
+) {
   const modal = document.createElement('ix-modal');
   modal.disableEscapeClose = true;
+  modal.centered = options?.centered ?? false;
 
   const loading = document.createElement('ix-modal-loading');
   loading.innerText = message;
