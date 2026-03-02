@@ -1,5 +1,5 @@
 {
-  "name": "angular-blocks",
+  "name": "angular-standalone-blocks",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

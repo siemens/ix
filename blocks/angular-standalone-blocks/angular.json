@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-blocks": {
+    "angular-standalone-blocks": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,9 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -56,10 +54,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-blocks:build:production"
+              "buildTarget": "angular-standalone-blocks:build:production"
             },
             "development": {
-              "buildTarget": "angular-blocks:build:development"
+              "buildTarget": "angular-standalone-blocks:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.19.0",
-    "angular-blocks": "workspace:",
+    "angular-standalone-blocks": "workspace:",
     "angular-examples": "workspace:",
     "angular-standalone-examples": "workspace:",
     "fs-extra": "^11.3.3",

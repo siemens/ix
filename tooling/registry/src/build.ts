@@ -22,14 +22,14 @@ import {
 const __dirname = path.resolve();
 const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
-const __angular_blocks = path.join(__node_modules, 'angular-blocks');
+const __angular_standalone_blocks = path.join(
+  __node_modules,
+  'angular-standalone-blocks'
+);
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
-const __registry_schema_template = path.join(
-  __dirname,
-  'registry.schema.json'
-);
+const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
 const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __ix_component_index = path.join(__ix_package, 'component-index.json');
 const __ix_component_search_index = path.join(
@@ -103,14 +103,22 @@ const task = new Listr<Ctx>([
   {
     title: 'Copy angular blocks to dist',
     task: async (ctx) => {
-      const dest = path.join(ctx.dist, 'blocks', 'angular-blocks');
+      const dest = path.join(ctx.dist, 'blocks', 'angular-standalone-blocks');
       await Promise.all([
-        fs.copy(path.join(__angular_blocks, 'dist'), path.join(dest, 'dist'), {
-          dereference: true,
-        }),
-        fs.copy(path.join(__angular_blocks, 'src'), path.join(dest, 'src'), {
-          dereference: true,
-        }),
+        fs.copy(
+          path.join(__angular_standalone_blocks, 'dist'),
+          path.join(dest, 'dist'),
+          {
+            dereference: true,
+          }
+        ),
+        fs.copy(
+          path.join(__angular_standalone_blocks, 'src'),
+          path.join(dest, 'src'),
+          {
+            dereference: true,
+          }
+        ),
       ]);
     },
   },

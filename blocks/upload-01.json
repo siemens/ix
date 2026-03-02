@@ -32,15 +32,15 @@
       "files": [
         {
           "target": "angular/upload-files.ts",
-          "source": "angular-blocks/src/routes/upload-01/upload-files.ts"
+          "source": "angular-standalone-blocks/src/routes/upload-01/upload-files.ts"
         },
         {
           "target": "angular/upload-files.html",
-          "source": "angular-blocks/src/routes/upload-01/upload-files.html"
+          "source": "angular-standalone-blocks/src/routes/upload-01/upload-files.html"
         },
         {
           "target": "angular/upload-files.css",
-          "source": "angular-blocks/src/routes/upload-01/upload-files.css"
+          "source": "angular-standalone-blocks/src/routes/upload-01/upload-files.css"
         }
       ],
       "dependencies": [
