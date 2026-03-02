@@ -447,6 +447,10 @@ export class Select
       (item) => item.label ?? item.value
     );
 
+    if (this.dropdownShow && this.inputFilterText) {
+      return;
+    }
+
     if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0] ?? '';
     } else {
