@@ -166,8 +166,6 @@ regressionTest(
       );
 
       expect(iconValue).toContain(pane_slot.expected);
-
-      await page.close();
     }
   }
 );
