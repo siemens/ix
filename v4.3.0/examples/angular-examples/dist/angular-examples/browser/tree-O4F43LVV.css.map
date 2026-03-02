@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["angular:styles/component:css;64157e8f84862c1b969abbac46e24d7f436f30cc170b4bffde19d3b620e74b92;/home/runner/work/ix/ix/examples/angular-examples/src/preview-examples/tree.ts"],
+  "sourcesContent": ["\n      .example {\n        display: block;\n        position: relative;\n        height: 32rem;\n        width: 100%;\n      }\n    "],
+  "mappings": "AACM,CAAC,QACC,QAAS,MACT,SAAU,SACV,OAAQ,MACR,MAAO,IACT",
+  "names": []
+}

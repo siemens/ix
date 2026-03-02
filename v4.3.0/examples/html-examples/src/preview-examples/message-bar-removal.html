@@ -1,0 +1,57 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message bar example</title>
+    <link rel="stylesheet" href="./message-bar.css" />
+  </head>
+
+  <body>
+    <ix-button id="showButton" style="display: none">
+      Show message bar
+    </ix-button>
+    <div class="message-bar" id="messageBarContainer">
+    </div>
+
+    <script type="module">
+      const messageBarContainer = document.getElementById('messageBarContainer');
+      const showButton = document.getElementById('showButton');
+
+      function createMessageBar() {
+        const newMessageBar = document.createElement('ix-message-bar');
+        newMessageBar.id = 'messageBar';
+        newMessageBar.textContent = 'Message text';
+        newMessageBar.addEventListener('closeAnimationCompleted', (event) => {
+          const messageBarToRemove = event.target;
+          if (messageBarToRemove.parentNode === messageBarContainer) {
+            messageBarContainer.removeChild(messageBarToRemove);
+            showButton.style.display = 'inline-block';
+          }
+        });
+        return newMessageBar;
+      }
+
+      function handleShowMessage() {
+        if (messageBarContainer.children.length === 0) {
+          const newMessageBar = createMessageBar();
+          messageBarContainer.appendChild(newMessageBar);
+          showButton.style.display = 'none';
+        }
+      }
+
+      messageBarContainer.appendChild(createMessageBar());
+      showButton.addEventListener('click', handleShowMessage);
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

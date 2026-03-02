@@ -1,0 +1,47 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation select example</title>
+  </head>
+  <body>
+    <form class="form-validation-example" data-ix-disable-valid>
+      <ix-select
+        allow-clear
+        name="car"
+        label="Select Car"
+        helper-text="Select your car brand"
+        invalid-text="Value is required"
+        required
+      >
+        <ix-select-item value="audi" label="Audi"></ix-select-item>
+        <ix-select-item value="vw" label="VW"></ix-select-item>
+      </ix-select>
+      <ix-button type="submit">Submit</ix-button>
+    </form>
+    <script type="module">
+      const form = document.querySelector('form');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        for (const [key, value] of formData.entries()) {
+          console.log(`${key}: ${value}`);
+        }
+      });
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

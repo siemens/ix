@@ -1,0 +1,1 @@
+var n={sm:"(max-width: 48em)",md:"(min-width: 48.0625em) and (max-width: 80em)",lg:"(min-width: 80.0625em)"},e=t=>{if(typeof window<"u"&&window.matchMedia){let i=n[t];return window.matchMedia(i).matches}return!1},d=()=>typeof window>"u"||!window.matchMedia||e("lg")?"lg":e("md")?"md":e("sm")?"sm":"lg";export{e as a,d as b};

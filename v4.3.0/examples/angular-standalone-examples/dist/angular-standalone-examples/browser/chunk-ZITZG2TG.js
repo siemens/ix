@@ -1,0 +1,1 @@
+import{Ha as o,cb as a}from"./chunk-Y6TG2SFA.js";import"./chunk-B4AJQJMI.js";var s=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-example"]],decls:1,vars:0,consts:[["placeholder","Enter text here"]],template:function(n,r){n&1&&a(0,"textarea",0)},encapsulation:2});let t=e;return t})();export{s as default};

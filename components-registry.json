@@ -2,7 +2,7 @@
   "$schema": "./schemas/components-registry.schema.json",
   "name": "siemens-ix-components",
   "dist-tags": {
-    "latest": "feat/block-cli"
+    "latest": "4.3.0"
   },
   "versions": {
     "feat/block-cli": {
@@ -10,6 +10,13 @@
         "componentDoc": "feat/block-cli/ix/component-doc.json",
         "componentIndex": "feat/block-cli/ix/component-index.json",
         "componentSearchIndex": "feat/block-cli/ix/component-search-index.json"
+      }
+    },
+    "v4.3.0": {
+      "components": {
+        "componentDoc": "v4.3.0/ix/component-doc.json",
+        "componentIndex": "v4.3.0/ix/component-index.json",
+        "componentSearchIndex": "v4.3.0/ix/component-search-index.json"
       }
     }
   }

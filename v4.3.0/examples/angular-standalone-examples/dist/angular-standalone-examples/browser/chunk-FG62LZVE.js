@@ -1,0 +1,1 @@
+import{a as r,c as e,d as s}from"./chunk-V2F66CT3.js";import"./chunk-B4AJQJMI.js";var o=()=>":host{display:block;position:relative;width:100%;border-bottom:0.0625rem solid var(--theme-color-x-weak-bdr);margin:0.25rem 0px}",i=class{constructor(t){r(this,t)}render(){return e(s,{key:"ca814e8d386105be46954dfba6ae6f9a0c8ba4a9"})}};i.style=o();export{i as ix_divider};

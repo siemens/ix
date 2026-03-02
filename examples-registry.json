@@ -2,7 +2,7 @@
   "$schema": "./schemas/examples-registry.schema.json",
   "name": "siemens-ix-examples",
   "dist-tags": {
-    "latest": "feat/block-cli"
+    "latest": "4.3.0"
   },
   "versions": {
     "feat/block-cli": {
@@ -986,6 +986,989 @@
         "angular": "feat/block-cli/examples-search-index-angular.json",
         "angular-standalone": "feat/block-cli/examples-search-index-angular-standalone.json",
         "vue": "feat/block-cli/examples-search-index-vue.json"
+      }
+    },
+    "v4.3.0": {
+      "examples": [
+        {
+          "name": "about-and-legal",
+          "path": "v4.3.0/examples/about-and-legal.json"
+        },
+        {
+          "name": "action-card",
+          "path": "v4.3.0/examples/action-card.json"
+        },
+        {
+          "name": "add-icons",
+          "path": "v4.3.0/examples/add-icons.json"
+        },
+        {
+          "name": "aggrid",
+          "path": "v4.3.0/examples/aggrid.json"
+        },
+        {
+          "name": "application",
+          "path": "v4.3.0/examples/application.json"
+        },
+        {
+          "name": "application-advanced",
+          "path": "v4.3.0/examples/application-advanced.json"
+        },
+        {
+          "name": "application-app-switch",
+          "path": "v4.3.0/examples/application-app-switch.json"
+        },
+        {
+          "name": "application-breakpoints",
+          "path": "v4.3.0/examples/application-breakpoints.json"
+        },
+        {
+          "name": "application-header",
+          "path": "v4.3.0/examples/application-header.json"
+        },
+        {
+          "name": "aria-label-properties",
+          "path": "v4.3.0/examples/aria-label-properties.json"
+        },
+        {
+          "name": "avatar",
+          "path": "v4.3.0/examples/avatar.json"
+        },
+        {
+          "name": "avatar-image",
+          "path": "v4.3.0/examples/avatar-image.json"
+        },
+        {
+          "name": "avatar-initials",
+          "path": "v4.3.0/examples/avatar-initials.json"
+        },
+        {
+          "name": "basic-navigation-migration",
+          "path": "v4.3.0/examples/basic-navigation-migration.json"
+        },
+        {
+          "name": "blind",
+          "path": "v4.3.0/examples/blind.json"
+        },
+        {
+          "name": "blind-header-actions",
+          "path": "v4.3.0/examples/blind-header-actions.json"
+        },
+        {
+          "name": "blind-variants",
+          "path": "v4.3.0/examples/blind-variants.json"
+        },
+        {
+          "name": "breadcrumb",
+          "path": "v4.3.0/examples/breadcrumb.json"
+        },
+        {
+          "name": "breadcrumb-next-items",
+          "path": "v4.3.0/examples/breadcrumb-next-items.json"
+        },
+        {
+          "name": "breadcrumb-truncate",
+          "path": "v4.3.0/examples/breadcrumb-truncate.json"
+        },
+        {
+          "name": "button-danger-primary",
+          "path": "v4.3.0/examples/button-danger-primary.json"
+        },
+        {
+          "name": "button-danger-secondary",
+          "path": "v4.3.0/examples/button-danger-secondary.json"
+        },
+        {
+          "name": "button-danger-tertiary",
+          "path": "v4.3.0/examples/button-danger-tertiary.json"
+        },
+        {
+          "name": "button-group",
+          "path": "v4.3.0/examples/button-group.json"
+        },
+        {
+          "name": "button-loading",
+          "path": "v4.3.0/examples/button-loading.json"
+        },
+        {
+          "name": "button-secondary",
+          "path": "v4.3.0/examples/button-secondary.json"
+        },
+        {
+          "name": "button-subtle-primary",
+          "path": "v4.3.0/examples/button-subtle-primary.json"
+        },
+        {
+          "name": "button-subtle-secondary",
+          "path": "v4.3.0/examples/button-subtle-secondary.json"
+        },
+        {
+          "name": "button-subtle-tertiary",
+          "path": "v4.3.0/examples/button-subtle-tertiary.json"
+        },
+        {
+          "name": "button-tertiary",
+          "path": "v4.3.0/examples/button-tertiary.json"
+        },
+        {
+          "name": "button-text-icon",
+          "path": "v4.3.0/examples/button-text-icon.json"
+        },
+        {
+          "name": "button-with-icon",
+          "path": "v4.3.0/examples/button-with-icon.json"
+        },
+        {
+          "name": "button-with-link",
+          "path": "v4.3.0/examples/button-with-link.json"
+        },
+        {
+          "name": "buttons",
+          "path": "v4.3.0/examples/buttons.json"
+        },
+        {
+          "name": "card",
+          "path": "v4.3.0/examples/card.json"
+        },
+        {
+          "name": "card-list",
+          "path": "v4.3.0/examples/card-list.json"
+        },
+        {
+          "name": "category-filter",
+          "path": "v4.3.0/examples/category-filter.json"
+        },
+        {
+          "name": "category-filter-suggestions",
+          "path": "v4.3.0/examples/category-filter-suggestions.json"
+        },
+        {
+          "name": "checkbox",
+          "path": "v4.3.0/examples/checkbox.json"
+        },
+        {
+          "name": "checkbox-indeterminate",
+          "path": "v4.3.0/examples/checkbox-indeterminate.json"
+        },
+        {
+          "name": "chip",
+          "path": "v4.3.0/examples/chip.json"
+        },
+        {
+          "name": "content",
+          "path": "v4.3.0/examples/content.json"
+        },
+        {
+          "name": "content-header",
+          "path": "v4.3.0/examples/content-header.json"
+        },
+        {
+          "name": "content-header-no-back",
+          "path": "v4.3.0/examples/content-header-no-back.json"
+        },
+        {
+          "name": "content-header-with-slot",
+          "path": "v4.3.0/examples/content-header-with-slot.json"
+        },
+        {
+          "name": "custom-field",
+          "path": "v4.3.0/examples/custom-field.json"
+        },
+        {
+          "name": "custom-field-validation",
+          "path": "v4.3.0/examples/custom-field-validation.json"
+        },
+        {
+          "name": "date-dropdown",
+          "path": "v4.3.0/examples/date-dropdown.json"
+        },
+        {
+          "name": "date-dropdown-user-range",
+          "path": "v4.3.0/examples/date-dropdown-user-range.json"
+        },
+        {
+          "name": "date-input",
+          "path": "v4.3.0/examples/date-input.json"
+        },
+        {
+          "name": "date-input-disabled",
+          "path": "v4.3.0/examples/date-input-disabled.json"
+        },
+        {
+          "name": "date-input-label",
+          "path": "v4.3.0/examples/date-input-label.json"
+        },
+        {
+          "name": "date-input-min-max-date",
+          "path": "v4.3.0/examples/date-input-min-max-date.json"
+        },
+        {
+          "name": "date-input-readonly",
+          "path": "v4.3.0/examples/date-input-readonly.json"
+        },
+        {
+          "name": "date-input-validation",
+          "path": "v4.3.0/examples/date-input-validation.json"
+        },
+        {
+          "name": "date-input-with-slots",
+          "path": "v4.3.0/examples/date-input-with-slots.json"
+        },
+        {
+          "name": "datepicker",
+          "path": "v4.3.0/examples/datepicker.json"
+        },
+        {
+          "name": "datepicker-locale",
+          "path": "v4.3.0/examples/datepicker-locale.json"
+        },
+        {
+          "name": "datepicker-range",
+          "path": "v4.3.0/examples/datepicker-range.json"
+        },
+        {
+          "name": "datetimepicker",
+          "path": "v4.3.0/examples/datetimepicker.json"
+        },
+        {
+          "name": "divider",
+          "path": "v4.3.0/examples/divider.json"
+        },
+        {
+          "name": "drawer",
+          "path": "v4.3.0/examples/drawer.json"
+        },
+        {
+          "name": "drawer-full-height",
+          "path": "v4.3.0/examples/drawer-full-height.json"
+        },
+        {
+          "name": "dropdown",
+          "path": "v4.3.0/examples/dropdown.json"
+        },
+        {
+          "name": "dropdown-button",
+          "path": "v4.3.0/examples/dropdown-button.json"
+        },
+        {
+          "name": "dropdown-button-icon",
+          "path": "v4.3.0/examples/dropdown-button-icon.json"
+        },
+        {
+          "name": "dropdown-icon",
+          "path": "v4.3.0/examples/dropdown-icon.json"
+        },
+        {
+          "name": "dropdown-quick-actions",
+          "path": "v4.3.0/examples/dropdown-quick-actions.json"
+        },
+        {
+          "name": "dropdown-submenu",
+          "path": "v4.3.0/examples/dropdown-submenu.json"
+        },
+        {
+          "name": "echarts",
+          "path": "v4.3.0/examples/echarts.json"
+        },
+        {
+          "name": "echarts-bar-horizontal-stacked",
+          "path": "v4.3.0/examples/echarts-bar-horizontal-stacked.json"
+        },
+        {
+          "name": "echarts-bar-simple",
+          "path": "v4.3.0/examples/echarts-bar-simple.json"
+        },
+        {
+          "name": "echarts-circle",
+          "path": "v4.3.0/examples/echarts-circle.json"
+        },
+        {
+          "name": "echarts-empty-state",
+          "path": "v4.3.0/examples/echarts-empty-state.json"
+        },
+        {
+          "name": "echarts-gauge",
+          "path": "v4.3.0/examples/echarts-gauge.json"
+        },
+        {
+          "name": "echarts-line-advanced",
+          "path": "v4.3.0/examples/echarts-line-advanced.json"
+        },
+        {
+          "name": "echarts-line-multiple-y-axis",
+          "path": "v4.3.0/examples/echarts-line-multiple-y-axis.json"
+        },
+        {
+          "name": "echarts-line-simple",
+          "path": "v4.3.0/examples/echarts-line-simple.json"
+        },
+        {
+          "name": "echarts-pie",
+          "path": "v4.3.0/examples/echarts-pie.json"
+        },
+        {
+          "name": "echarts-progress-arc",
+          "path": "v4.3.0/examples/echarts-progress-arc.json"
+        },
+        {
+          "name": "echarts-progress-circle",
+          "path": "v4.3.0/examples/echarts-progress-circle.json"
+        },
+        {
+          "name": "echarts-special-3d",
+          "path": "v4.3.0/examples/echarts-special-3d.json"
+        },
+        {
+          "name": "echarts-special-toolbox",
+          "path": "v4.3.0/examples/echarts-special-toolbox.json"
+        },
+        {
+          "name": "echarts-special-zoom",
+          "path": "v4.3.0/examples/echarts-special-zoom.json"
+        },
+        {
+          "name": "empty-state",
+          "path": "v4.3.0/examples/empty-state.json"
+        },
+        {
+          "name": "empty-state-compact",
+          "path": "v4.3.0/examples/empty-state-compact.json"
+        },
+        {
+          "name": "empty-state-compact-break",
+          "path": "v4.3.0/examples/empty-state-compact-break.json"
+        },
+        {
+          "name": "event-list",
+          "path": "v4.3.0/examples/event-list.json"
+        },
+        {
+          "name": "event-list-compact",
+          "path": "v4.3.0/examples/event-list-compact.json"
+        },
+        {
+          "name": "event-list-custom-item-height",
+          "path": "v4.3.0/examples/event-list-custom-item-height.json"
+        },
+        {
+          "name": "event-list-custom-item-height-in-number",
+          "path": "v4.3.0/examples/event-list-custom-item-height-in-number.json"
+        },
+        {
+          "name": "event-list-filled",
+          "path": "v4.3.0/examples/event-list-filled.json"
+        },
+        {
+          "name": "event-list-selected",
+          "path": "v4.3.0/examples/event-list-selected.json"
+        },
+        {
+          "name": "expanding-search",
+          "path": "v4.3.0/examples/expanding-search.json"
+        },
+        {
+          "name": "flip-tile",
+          "path": "v4.3.0/examples/flip-tile.json"
+        },
+        {
+          "name": "form-checkbox",
+          "path": "v4.3.0/examples/form-checkbox.json"
+        },
+        {
+          "name": "form-checkbox-disabled",
+          "path": "v4.3.0/examples/form-checkbox-disabled.json"
+        },
+        {
+          "name": "form-checkbox-group",
+          "path": "v4.3.0/examples/form-checkbox-group.json"
+        },
+        {
+          "name": "form-checkbox-group-indeterminate",
+          "path": "v4.3.0/examples/form-checkbox-group-indeterminate.json"
+        },
+        {
+          "name": "form-checkbox-validation",
+          "path": "v4.3.0/examples/form-checkbox-validation.json"
+        },
+        {
+          "name": "form-layout-auto",
+          "path": "v4.3.0/examples/form-layout-auto.json"
+        },
+        {
+          "name": "form-layout-grid",
+          "path": "v4.3.0/examples/form-layout-grid.json"
+        },
+        {
+          "name": "form-validation",
+          "path": "v4.3.0/examples/form-validation.json"
+        },
+        {
+          "name": "grid",
+          "path": "v4.3.0/examples/grid.json"
+        },
+        {
+          "name": "grid-padding",
+          "path": "v4.3.0/examples/grid-padding.json"
+        },
+        {
+          "name": "grid-size",
+          "path": "v4.3.0/examples/grid-size.json"
+        },
+        {
+          "name": "group",
+          "path": "v4.3.0/examples/group.json"
+        },
+        {
+          "name": "group-context-menu",
+          "path": "v4.3.0/examples/group-context-menu.json"
+        },
+        {
+          "name": "group-custom-entry",
+          "path": "v4.3.0/examples/group-custom-entry.json"
+        },
+        {
+          "name": "group-header-suppressed",
+          "path": "v4.3.0/examples/group-header-suppressed.json"
+        },
+        {
+          "name": "html-table",
+          "path": "v4.3.0/examples/html-table.json"
+        },
+        {
+          "name": "html-table-striped",
+          "path": "v4.3.0/examples/html-table-striped.json"
+        },
+        {
+          "name": "icon-toggle-button-secondary",
+          "path": "v4.3.0/examples/icon-toggle-button-secondary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-primary",
+          "path": "v4.3.0/examples/icon-toggle-button-subtle-primary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-secondary",
+          "path": "v4.3.0/examples/icon-toggle-button-subtle-secondary.json"
+        },
+        {
+          "name": "icon-toggle-button-subtle-tertiary",
+          "path": "v4.3.0/examples/icon-toggle-button-subtle-tertiary.json"
+        },
+        {
+          "name": "icon-toggle-button-tertiary",
+          "path": "v4.3.0/examples/icon-toggle-button-tertiary.json"
+        },
+        {
+          "name": "input",
+          "path": "v4.3.0/examples/input.json"
+        },
+        {
+          "name": "input-disabled",
+          "path": "v4.3.0/examples/input-disabled.json"
+        },
+        {
+          "name": "input-form-validation",
+          "path": "v4.3.0/examples/input-form-validation.json"
+        },
+        {
+          "name": "input-label",
+          "path": "v4.3.0/examples/input-label.json"
+        },
+        {
+          "name": "input-legacy",
+          "path": "v4.3.0/examples/input-legacy.json"
+        },
+        {
+          "name": "input-legacy-disabled",
+          "path": "v4.3.0/examples/input-legacy-disabled.json"
+        },
+        {
+          "name": "input-legacy-readonly",
+          "path": "v4.3.0/examples/input-legacy-readonly.json"
+        },
+        {
+          "name": "input-pattern",
+          "path": "v4.3.0/examples/input-pattern.json"
+        },
+        {
+          "name": "input-readonly",
+          "path": "v4.3.0/examples/input-readonly.json"
+        },
+        {
+          "name": "input-types",
+          "path": "v4.3.0/examples/input-types.json"
+        },
+        {
+          "name": "input-validation",
+          "path": "v4.3.0/examples/input-validation.json"
+        },
+        {
+          "name": "input-with-slots",
+          "path": "v4.3.0/examples/input-with-slots.json"
+        },
+        {
+          "name": "key-value",
+          "path": "v4.3.0/examples/key-value.json"
+        },
+        {
+          "name": "key-value-list",
+          "path": "v4.3.0/examples/key-value-list.json"
+        },
+        {
+          "name": "key-value-list-striped",
+          "path": "v4.3.0/examples/key-value-list-striped.json"
+        },
+        {
+          "name": "key-value-list-with-custom-value",
+          "path": "v4.3.0/examples/key-value-list-with-custom-value.json"
+        },
+        {
+          "name": "key-value-list-with-icon",
+          "path": "v4.3.0/examples/key-value-list-with-icon.json"
+        },
+        {
+          "name": "key-value-with-custom-value",
+          "path": "v4.3.0/examples/key-value-with-custom-value.json"
+        },
+        {
+          "name": "key-value-with-icon",
+          "path": "v4.3.0/examples/key-value-with-icon.json"
+        },
+        {
+          "name": "key-value-with-label-left",
+          "path": "v4.3.0/examples/key-value-with-label-left.json"
+        },
+        {
+          "name": "kpi",
+          "path": "v4.3.0/examples/kpi.json"
+        },
+        {
+          "name": "layout-auto",
+          "path": "v4.3.0/examples/layout-auto.json"
+        },
+        {
+          "name": "layout-auto-custom",
+          "path": "v4.3.0/examples/layout-auto-custom.json"
+        },
+        {
+          "name": "link-button",
+          "path": "v4.3.0/examples/link-button.json"
+        },
+        {
+          "name": "link-button-disabled",
+          "path": "v4.3.0/examples/link-button-disabled.json"
+        },
+        {
+          "name": "loading",
+          "path": "v4.3.0/examples/loading.json"
+        },
+        {
+          "name": "map-navigation-migration",
+          "path": "v4.3.0/examples/map-navigation-migration.json"
+        },
+        {
+          "name": "menu-category",
+          "path": "v4.3.0/examples/menu-category.json"
+        },
+        {
+          "name": "menu-with-bottom-tabs",
+          "path": "v4.3.0/examples/menu-with-bottom-tabs.json"
+        },
+        {
+          "name": "message",
+          "path": "v4.3.0/examples/message.json"
+        },
+        {
+          "name": "message-bar",
+          "path": "v4.3.0/examples/message-bar.json"
+        },
+        {
+          "name": "message-bar-removal",
+          "path": "v4.3.0/examples/message-bar-removal.json"
+        },
+        {
+          "name": "modal",
+          "path": "v4.3.0/examples/modal.json"
+        },
+        {
+          "name": "modal-by-instance",
+          "path": "v4.3.0/examples/modal-by-instance.json"
+        },
+        {
+          "name": "modal-by-instance-content",
+          "path": "v4.3.0/examples/modal-by-instance-content.json"
+        },
+        {
+          "name": "modal-by-template",
+          "path": "v4.3.0/examples/modal-by-template.json"
+        },
+        {
+          "name": "modal-close",
+          "path": "v4.3.0/examples/modal-close.json"
+        },
+        {
+          "name": "modal-form-ix-button-submit",
+          "path": "v4.3.0/examples/modal-form-ix-button-submit.json"
+        },
+        {
+          "name": "modal-sizes",
+          "path": "v4.3.0/examples/modal-sizes.json"
+        },
+        {
+          "name": "number-input",
+          "path": "v4.3.0/examples/number-input.json"
+        },
+        {
+          "name": "number-input-disabled",
+          "path": "v4.3.0/examples/number-input-disabled.json"
+        },
+        {
+          "name": "number-input-label",
+          "path": "v4.3.0/examples/number-input-label.json"
+        },
+        {
+          "name": "number-input-readonly",
+          "path": "v4.3.0/examples/number-input-readonly.json"
+        },
+        {
+          "name": "number-input-stepper-button",
+          "path": "v4.3.0/examples/number-input-stepper-button.json"
+        },
+        {
+          "name": "number-input-validation",
+          "path": "v4.3.0/examples/number-input-validation.json"
+        },
+        {
+          "name": "number-input-with-slots",
+          "path": "v4.3.0/examples/number-input-with-slots.json"
+        },
+        {
+          "name": "pagination",
+          "path": "v4.3.0/examples/pagination.json"
+        },
+        {
+          "name": "pagination-advanced",
+          "path": "v4.3.0/examples/pagination-advanced.json"
+        },
+        {
+          "name": "pane",
+          "path": "v4.3.0/examples/pane.json"
+        },
+        {
+          "name": "pane-layout",
+          "path": "v4.3.0/examples/pane-layout.json"
+        },
+        {
+          "name": "pill",
+          "path": "v4.3.0/examples/pill.json"
+        },
+        {
+          "name": "pill-variants",
+          "path": "v4.3.0/examples/pill-variants.json"
+        },
+        {
+          "name": "popover-news",
+          "path": "v4.3.0/examples/popover-news.json"
+        },
+        {
+          "name": "progress-indicator",
+          "path": "v4.3.0/examples/progress-indicator.json"
+        },
+        {
+          "name": "progress-indicator-circular",
+          "path": "v4.3.0/examples/progress-indicator-circular.json"
+        },
+        {
+          "name": "progress-indicator-circular-sizes",
+          "path": "v4.3.0/examples/progress-indicator-circular-sizes.json"
+        },
+        {
+          "name": "progress-indicator-circular-status",
+          "path": "v4.3.0/examples/progress-indicator-circular-status.json"
+        },
+        {
+          "name": "progress-indicator-linear-sizes",
+          "path": "v4.3.0/examples/progress-indicator-linear-sizes.json"
+        },
+        {
+          "name": "progress-indicator-linear-status",
+          "path": "v4.3.0/examples/progress-indicator-linear-status.json"
+        },
+        {
+          "name": "push-card",
+          "path": "v4.3.0/examples/push-card.json"
+        },
+        {
+          "name": "radio",
+          "path": "v4.3.0/examples/radio.json"
+        },
+        {
+          "name": "radio-button",
+          "path": "v4.3.0/examples/radio-button.json"
+        },
+        {
+          "name": "radio-disabled",
+          "path": "v4.3.0/examples/radio-disabled.json"
+        },
+        {
+          "name": "radio-group",
+          "path": "v4.3.0/examples/radio-group.json"
+        },
+        {
+          "name": "radio-validation",
+          "path": "v4.3.0/examples/radio-validation.json"
+        },
+        {
+          "name": "select",
+          "path": "v4.3.0/examples/select.json"
+        },
+        {
+          "name": "select-editable",
+          "path": "v4.3.0/examples/select-editable.json"
+        },
+        {
+          "name": "select-multiple",
+          "path": "v4.3.0/examples/select-multiple.json"
+        },
+        {
+          "name": "select-ng-model",
+          "path": "v4.3.0/examples/select-ng-model.json"
+        },
+        {
+          "name": "select-validation",
+          "path": "v4.3.0/examples/select-validation.json"
+        },
+        {
+          "name": "settings",
+          "path": "v4.3.0/examples/settings.json"
+        },
+        {
+          "name": "slider",
+          "path": "v4.3.0/examples/slider.json"
+        },
+        {
+          "name": "slider-error",
+          "path": "v4.3.0/examples/slider-error.json"
+        },
+        {
+          "name": "slider-marker",
+          "path": "v4.3.0/examples/slider-marker.json"
+        },
+        {
+          "name": "slider-trace",
+          "path": "v4.3.0/examples/slider-trace.json"
+        },
+        {
+          "name": "spinner",
+          "path": "v4.3.0/examples/spinner.json"
+        },
+        {
+          "name": "spinner-large",
+          "path": "v4.3.0/examples/spinner-large.json"
+        },
+        {
+          "name": "split-button",
+          "path": "v4.3.0/examples/split-button.json"
+        },
+        {
+          "name": "split-button-icons",
+          "path": "v4.3.0/examples/split-button-icons.json"
+        },
+        {
+          "name": "tabs",
+          "path": "v4.3.0/examples/tabs.json"
+        },
+        {
+          "name": "tabs-rounded",
+          "path": "v4.3.0/examples/tabs-rounded.json"
+        },
+        {
+          "name": "textarea",
+          "path": "v4.3.0/examples/textarea.json"
+        },
+        {
+          "name": "textarea-disabled",
+          "path": "v4.3.0/examples/textarea-disabled.json"
+        },
+        {
+          "name": "textarea-legacy",
+          "path": "v4.3.0/examples/textarea-legacy.json"
+        },
+        {
+          "name": "textarea-legacy-disabled",
+          "path": "v4.3.0/examples/textarea-legacy-disabled.json"
+        },
+        {
+          "name": "textarea-legacy-readonly",
+          "path": "v4.3.0/examples/textarea-legacy-readonly.json"
+        },
+        {
+          "name": "textarea-readonly",
+          "path": "v4.3.0/examples/textarea-readonly.json"
+        },
+        {
+          "name": "textarea-rows-cols",
+          "path": "v4.3.0/examples/textarea-rows-cols.json"
+        },
+        {
+          "name": "textarea-validation",
+          "path": "v4.3.0/examples/textarea-validation.json"
+        },
+        {
+          "name": "theme-switcher",
+          "path": "v4.3.0/examples/theme-switcher.json"
+        },
+        {
+          "name": "tile",
+          "path": "v4.3.0/examples/tile.json"
+        },
+        {
+          "name": "time-input",
+          "path": "v4.3.0/examples/time-input.json"
+        },
+        {
+          "name": "time-input-disabled",
+          "path": "v4.3.0/examples/time-input-disabled.json"
+        },
+        {
+          "name": "time-input-label",
+          "path": "v4.3.0/examples/time-input-label.json"
+        },
+        {
+          "name": "time-input-readonly",
+          "path": "v4.3.0/examples/time-input-readonly.json"
+        },
+        {
+          "name": "time-input-validation",
+          "path": "v4.3.0/examples/time-input-validation.json"
+        },
+        {
+          "name": "time-input-with-slots",
+          "path": "v4.3.0/examples/time-input-with-slots.json"
+        },
+        {
+          "name": "timepicker",
+          "path": "v4.3.0/examples/timepicker.json"
+        },
+        {
+          "name": "timepicker-format-adjusted",
+          "path": "v4.3.0/examples/timepicker-format-adjusted.json"
+        },
+        {
+          "name": "timepicker-intervals",
+          "path": "v4.3.0/examples/timepicker-intervals.json"
+        },
+        {
+          "name": "toast",
+          "path": "v4.3.0/examples/toast.json"
+        },
+        {
+          "name": "toast-custom",
+          "path": "v4.3.0/examples/toast-custom.json"
+        },
+        {
+          "name": "toast-position",
+          "path": "v4.3.0/examples/toast-position.json"
+        },
+        {
+          "name": "toggle",
+          "path": "v4.3.0/examples/toggle.json"
+        },
+        {
+          "name": "toggle-button-primary",
+          "path": "v4.3.0/examples/toggle-button-primary.json"
+        },
+        {
+          "name": "toggle-button-secondary",
+          "path": "v4.3.0/examples/toggle-button-secondary.json"
+        },
+        {
+          "name": "toggle-button-subtle-primary",
+          "path": "v4.3.0/examples/toggle-button-subtle-primary.json"
+        },
+        {
+          "name": "toggle-button-subtle-secondary",
+          "path": "v4.3.0/examples/toggle-button-subtle-secondary.json"
+        },
+        {
+          "name": "toggle-button-subtle-tertiary",
+          "path": "v4.3.0/examples/toggle-button-subtle-tertiary.json"
+        },
+        {
+          "name": "toggle-button-tertiary",
+          "path": "v4.3.0/examples/toggle-button-tertiary.json"
+        },
+        {
+          "name": "toggle-checked",
+          "path": "v4.3.0/examples/toggle-checked.json"
+        },
+        {
+          "name": "toggle-custom-label",
+          "path": "v4.3.0/examples/toggle-custom-label.json"
+        },
+        {
+          "name": "toggle-disabled",
+          "path": "v4.3.0/examples/toggle-disabled.json"
+        },
+        {
+          "name": "toggle-indeterminate",
+          "path": "v4.3.0/examples/toggle-indeterminate.json"
+        },
+        {
+          "name": "toggle-ng-model",
+          "path": "v4.3.0/examples/toggle-ng-model.json"
+        },
+        {
+          "name": "tooltip",
+          "path": "v4.3.0/examples/tooltip.json"
+        },
+        {
+          "name": "tooltip-with-icon",
+          "path": "v4.3.0/examples/tooltip-with-icon.json"
+        },
+        {
+          "name": "tree",
+          "path": "v4.3.0/examples/tree.json"
+        },
+        {
+          "name": "tree-custom",
+          "path": "v4.3.0/examples/tree-custom.json"
+        },
+        {
+          "name": "upload",
+          "path": "v4.3.0/examples/upload.json"
+        },
+        {
+          "name": "validation",
+          "path": "v4.3.0/examples/validation.json"
+        },
+        {
+          "name": "validation-select",
+          "path": "v4.3.0/examples/validation-select.json"
+        },
+        {
+          "name": "vertical-tabs",
+          "path": "v4.3.0/examples/vertical-tabs.json"
+        },
+        {
+          "name": "vertical-tabs-with-avatar",
+          "path": "v4.3.0/examples/vertical-tabs-with-avatar.json"
+        },
+        {
+          "name": "workflow",
+          "path": "v4.3.0/examples/workflow.json"
+        },
+        {
+          "name": "workflow-vertical",
+          "path": "v4.3.0/examples/workflow-vertical.json"
+        }
+      ],
+      "searchIndex": {
+        "html": "v4.3.0/examples-search-index-html.json",
+        "react": "v4.3.0/examples-search-index-react.json",
+        "angular": "v4.3.0/examples-search-index-angular.json",
+        "angular-standalone": "v4.3.0/examples-search-index-angular-standalone.json",
+        "vue": "v4.3.0/examples-search-index-vue.json"
       }
     }
   }
