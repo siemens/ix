@@ -15,9 +15,23 @@ import {
   expect,
 } from '@playwright/test';
 
+declare global {
+  interface Window {
+    __ixApploadDispatched?: boolean;
+  }
+}
+
 export type AdditionalPageConfig = {
   icons?: Record<string, string>;
   bodyPadding?: boolean | string;
+};
+
+export type IxGotoOptions = Parameters<Page['goto']>[1] & {
+  skipIxHydrationCheck?: boolean;
+};
+
+type IxPage = Omit<Page, 'goto'> & {
+  goto: (url: string, options?: IxGotoOptions) => ReturnType<Page['goto']>;
 };
 
 interface TestInfo extends _TestInfo {
@@ -32,23 +46,16 @@ export type Mount = (
   }
 ) => Promise<ElementHandle<HTMLElement>>;
 
-/**
- * Waits until at least one `ix-*` custom element is attached to the DOM
- * and every such element has the `hydrated` class applied by Stencil.
- */
 export async function waitForIxHydration(page: Page): Promise<void> {
-  await page.waitForFunction(() => {
-    console.error('Watch running');
-    const ixElements = Array.from(document.querySelectorAll('*')).filter((el) =>
-      el.tagName.toLowerCase().startsWith('ix-')
-    );
-
-    if (ixElements.length === 0) {
-      return false;
+  await page.waitForFunction(
+    () => {
+      return window.__ixApploadDispatched === true;
+    },
+    null,
+    {
+      timeout: 1000,
     }
-
-    return ixElements.every((el) => el.classList.contains('hydrated'));
-  });
+  );
 }
 
 function getThemeMetaData(testInfo: TestInfo): {
@@ -64,33 +71,49 @@ function getThemeMetaData(testInfo: TestInfo): {
   };
 }
 
-async function extendPageFixture(page: Page, testInfo: TestInfo) {
+async function extendPageFixture(
+  page: Page,
+  testInfo: TestInfo
+): Promise<IxPage> {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
   const { theme, colorSchema } = getThemeMetaData(testInfo);
   testInfo.annotations.push({
     type: `theme-${theme}-${colorSchema}`,
   });
-  page.goto = async (url: string, options) => {
+  const ixGoto: IxPage['goto'] = async (url: string, options) => {
     if (testInfo.componentTest === true) {
       return originalGoto(url, options);
     }
+
+    await page.addInitScript(() => {
+      window.__ixApploadDispatched = false;
+
+      window.addEventListener('appload', () => {
+        window.__ixApploadDispatched = true;
+      });
+    });
 
     const response = await originalGoto(
       `/tests/${url}/index.html?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
 
-    await waitForIxHydration(page);
+    if (!options?.skipIxHydrationCheck) {
+      await waitForIxHydration(page);
+    }
     return response;
   };
+  const ixPage = Object.assign(page, {
+    goto: ixGoto,
+  });
 
   page.screenshot = async (options?: PageScreenshotOptions) => {
     await page.waitForTimeout(150);
     return originalScreenshot(options);
   };
 
-  return page;
+  return ixPage;
 }
 
 async function mountComponent(
@@ -124,6 +147,7 @@ async function mountComponent(
 }
 
 export const regressionTest = testBase.extend<{
+  page: IxPage;
   mount: (
     selector: string,
     config?: AdditionalPageConfig
