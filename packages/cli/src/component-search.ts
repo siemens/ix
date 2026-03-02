@@ -22,7 +22,12 @@ type ComponentRegistryEntry = {
 
 type ComponentsRegistryIndex = {
   'dist-tags': Record<string, string>;
-  versions: Record<string, ComponentRegistryEntry>;
+  versions: Record<
+    string,
+    {
+      components: ComponentRegistryEntry['components'];
+    }
+  >;
 };
 
 type ComponentJsonType =
@@ -150,8 +155,8 @@ function findLocalComponentsRegistryPath(): string | null {
 
   while (currentDir !== root) {
     const candidatePaths = [
-      path.join(currentDir, 'tooling', 'registry', 'components-registry.json'),
-      path.join(currentDir, 'components-registry.json'),
+      path.join(currentDir, 'tooling', 'registry', 'registry.json'),
+      path.join(currentDir, 'registry.json'),
     ];
 
     for (const candidatePath of candidatePaths) {
@@ -210,9 +215,7 @@ function readLocalRegistryArtifact(jsonType: ComponentJsonType): string | null {
 async function readRemoteRegistryArtifact(
   jsonType: ComponentJsonType
 ): Promise<string> {
-  const registryResponse = await fetch(
-    `${DEFAULT_REGISTRY_BASE_URL}/components-registry.json`
-  );
+  const registryResponse = await fetch(`${DEFAULT_REGISTRY_BASE_URL}/registry.json`);
 
   if (!registryResponse.ok) {
     throw new Error(

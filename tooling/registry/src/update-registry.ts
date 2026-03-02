@@ -16,12 +16,36 @@ interface RegistryUpdateOptions {
   pathPrefix?: string;
 }
 
+type UnifiedRegistry = {
+  versions: Record<
+    string,
+    {
+      blocks?: Array<{ name: string; path: string }>;
+      examples?: Array<{ name: string; path: string }>;
+      components?: {
+        componentDoc: string;
+        componentIndex: string;
+        componentSearchIndex: string;
+      };
+    }
+  >;
+  'dist-tags': {
+    latest: string;
+  };
+};
+
 interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
   components: {
     componentDoc: string;
     componentIndex: string;
     componentSearchIndex: string;
   };
+}
+
+function ensureVersionEntry(registry: UnifiedRegistry, version: string) {
+  registry.versions ??= {};
+  registry.versions[version] ??= {};
+  return registry.versions[version];
 }
 
 /**
@@ -32,10 +56,10 @@ export async function updateBlocksRegistry(
   blocksDir: string,
   options: RegistryUpdateOptions
 ): Promise<void> {
-  console.log('📝 Updating blocks registry.json...');
+  console.log('📝 Updating registry.json blocks section...');
 
   // Read current registry
-  const registry = await fs.readJson(registryPath);
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
 
   const blocks: Array<{ name: string; path: string }> = [];
 
@@ -56,12 +80,8 @@ export async function updateBlocksRegistry(
     };
   }));
 
-  // Update the registry with all blocks for a single dynamic version
-  registry.versions = {
-    [options.version]: {
-      blocks: blocks.sort((a, b) => a.name.localeCompare(b.name)),
-    },
-  };
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.blocks = blocks.sort((a, b) => a.name.localeCompare(b.name));
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,
@@ -81,10 +101,10 @@ export async function updateExamplesRegistry(
   examplesDir: string,
   options: RegistryUpdateOptions
 ): Promise<void> {
-  console.log('📝 Updating examples registry.json...');
+  console.log('📝 Updating registry.json examples section...');
 
   // Read current registry
-  const registry = await fs.readJson(registryPath);
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
 
   const examples: Array<{ name: string; path: string }> = [];
 
@@ -109,12 +129,8 @@ export async function updateExamplesRegistry(
     }));
   }
 
-  // Update the registry with all examples for a single dynamic version
-  registry.versions = {
-    [options.version]: {
-      examples: examples.sort((a, b) => a.name.localeCompare(b.name)),
-    },
-  };
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.examples = examples.sort((a, b) => a.name.localeCompare(b.name));
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,
@@ -127,15 +143,15 @@ export async function updateExamplesRegistry(
 }
 
 /**
- * Update components-registry.json with IX component metadata files
+ * Update registry.json with IX component metadata files
  */
 export async function updateComponentsRegistry(
   registryPath: string,
   options: ComponentsRegistryUpdateOptions
 ): Promise<void> {
-  console.log('📝 Updating components-registry.json...');
+  console.log('📝 Updating registry.json components section...');
 
-  const registry = await fs.readJson(registryPath);
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
   const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
   const prefixedComponents = Object.fromEntries(
@@ -145,11 +161,8 @@ export async function updateComponentsRegistry(
     ])
   );
 
-  registry.versions = {
-    [options.version]: {
-      components: prefixedComponents,
-    },
-  };
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.components = prefixedComponents as ComponentsRegistryUpdateOptions['components'];
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,

@@ -42,17 +42,12 @@ print_summary() {
 const fs = require("fs");
 const path = process.argv[1];
 const reg = JSON.parse(fs.readFileSync(path + "/registry.json", "utf8"));
-const ex = JSON.parse(fs.readFileSync(path + "/examples-registry.json", "utf8"));
 const regVersions = Object.keys(reg.versions || {}).sort();
-const exVersions = Object.keys(ex.versions || {}).sort();
 const firstRegVersion = regVersions[regVersions.length - 1];
-const firstExVersion = exVersions[exVersions.length - 1];
 const firstBlockPath = reg.versions[firstRegVersion]?.blocks?.[0]?.path;
-const firstExamplePath = ex.versions[firstExVersion]?.examples?.[0]?.path;
+const firstExamplePath = reg.versions[firstRegVersion]?.examples?.[0]?.path;
 console.log("registry.latest:", reg["dist-tags"]?.latest);
-console.log("examples.latest:", ex["dist-tags"]?.latest);
 console.log("registry.versions:", regVersions.join(", "));
-console.log("examples.versions:", exVersions.join(", "));
 console.log("sample.block.path:", firstBlockPath || "(none)");
 console.log("sample.example.path:", firstExamplePath || "(none)");
 ' "$target_dir"
@@ -125,4 +120,3 @@ echo ""
 echo "✅ Done"
 echo "   Inspect files in: ${PAGES_DIR}"
 echo "   - ${PAGES_DIR}/registry.json"
-echo "   - ${PAGES_DIR}/examples-registry.json"

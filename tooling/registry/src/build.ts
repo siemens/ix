@@ -26,14 +26,6 @@ const __angular_blocks = path.join(__node_modules, 'angular-blocks');
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
-const __examples_registry_template = path.join(
-  __dirname,
-  'examples-registry.json'
-);
-const __components_registry_template = path.join(
-  __dirname,
-  'components-registry.json'
-);
 const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __ix_component_index = path.join(__ix_package, 'component-index.json');
 const __ix_component_search_index = path.join(
@@ -76,25 +68,9 @@ const task = new Listr<Ctx>([
     title: 'Copy registry templates to dist',
     task: async (ctx) => {
       await fs.ensureDir(ctx.dist);
-      await Promise.all([
-        fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
-          dereference: true,
-        }),
-        fs.copy(
-          __examples_registry_template,
-          path.join(ctx.dist, 'examples-registry.json'),
-          {
-            dereference: true,
-          }
-        ),
-        fs.copy(
-          __components_registry_template,
-          path.join(ctx.dist, 'components-registry.json'),
-          {
-            dereference: true,
-          }
-        ),
-      ]);
+      await fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
+        dereference: true,
+      });
     },
   },
   {
@@ -217,9 +193,9 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Update components-registry.json',
+    title: 'Update registry.json components section',
     task: async (ctx) => {
-      const registryPath = path.join(ctx.dist, 'components-registry.json');
+      const registryPath = path.join(ctx.dist, 'registry.json');
       await updateComponentsRegistry(registryPath, {
         version: ctx.registryVersion,
         latestTag: ctx.registryLatestTag,
@@ -233,9 +209,9 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Update examples registry.json',
+    title: 'Update registry.json examples section',
     task: async (ctx) => {
-      const registryPath = path.join(ctx.dist, 'examples-registry.json');
+      const registryPath = path.join(ctx.dist, 'registry.json');
       const examplesDir = path.join(ctx.dist, 'examples');
       await updateExamplesRegistry(registryPath, examplesDir, {
         version: ctx.registryVersion,
@@ -325,13 +301,13 @@ const task = new Listr<Ctx>([
         'search-index'
       );
 
-      // Update registry.json with version-scoped search index paths
+      // Update registry.json with version-scoped blocks search index paths
       const registryPath = path.join(ctx.dist, 'registry.json');
       const registry = await fs.readJson(registryPath);
       registry.versions ??= {};
       registry.versions[ctx.registryVersion] ??= { blocks: [] };
-      registry.versions[ctx.registryVersion].searchIndex = indexPaths;
-      delete registry.searchIndex;
+      registry.versions[ctx.registryVersion].searchIndex ??= {};
+      registry.versions[ctx.registryVersion].searchIndex.blocks = indexPaths;
       await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
@@ -345,13 +321,13 @@ const task = new Listr<Ctx>([
         'examples-search-index'
       );
 
-      // Update examples-registry.json with version-scoped search index paths
-      const registryPath = path.join(ctx.dist, 'examples-registry.json');
+      // Update registry.json with version-scoped examples search index paths
+      const registryPath = path.join(ctx.dist, 'registry.json');
       const registry = await fs.readJson(registryPath);
       registry.versions ??= {};
       registry.versions[ctx.registryVersion] ??= { examples: [] };
-      registry.versions[ctx.registryVersion].searchIndex = indexPaths;
-      delete registry.searchIndex;
+      registry.versions[ctx.registryVersion].searchIndex ??= {};
+      registry.versions[ctx.registryVersion].searchIndex.examples = indexPaths;
       await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },

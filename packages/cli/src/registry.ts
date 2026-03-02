@@ -1,52 +1,37 @@
 export type RegistryIndex = {
   name: string;
-  searchIndex?: {
-    html?: string;
-    react?: string;
-    angular?: string;
-    'angular-standalone'?: string;
-    vue?: string;
-  };
   'dist-tags': Record<string, string>;
   versions: Record<
     string,
     {
       blocks: Array<{ name: string; path: string }>;
+      examples: Array<{ name: string; path: string }>;
+      components: {
+        componentDoc: string;
+        componentIndex: string;
+        componentSearchIndex: string;
+      };
       searchIndex?: {
-        html?: string;
-        react?: string;
-        angular?: string;
-        'angular-standalone'?: string;
-        vue?: string;
+        blocks?: {
+          html?: string;
+          react?: string;
+          angular?: string;
+          'angular-standalone'?: string;
+          vue?: string;
+        };
+        examples?: {
+          html?: string;
+          react?: string;
+          angular?: string;
+          'angular-standalone'?: string;
+          vue?: string;
+        };
       };
     }
   >;
 };
 
-export type ExamplesRegistryIndex = {
-  name: string;
-  searchIndex?: {
-    html?: string;
-    react?: string;
-    angular?: string;
-    'angular-standalone'?: string;
-    vue?: string;
-  };
-  'dist-tags': Record<string, string>;
-  versions: Record<
-    string,
-    {
-      examples: Array<{ name: string; path: string }>;
-      searchIndex?: {
-        html?: string;
-        react?: string;
-        angular?: string;
-        'angular-standalone'?: string;
-        vue?: string;
-      };
-    }
-  >;
-};
+export type ExamplesRegistryIndex = RegistryIndex;
 
 export type BlockDefinition = {
   name: string;
@@ -270,8 +255,7 @@ export function resolveBlocksSearchIndexPath(
   versionRef?: string
 ): string {
   const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex =
-    registry.versions[version]?.searchIndex ?? registry.searchIndex;
+  const sourceIndex = registry.versions[version]?.searchIndex?.blocks;
 
   const frameworkIndexPath = sourceIndex?.[framework];
   if (!frameworkIndexPath) {
@@ -291,8 +275,7 @@ export function resolveExamplesSearchIndexPath(
   versionRef?: string
 ): string {
   const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex =
-    registry.versions[version]?.searchIndex ?? registry.searchIndex;
+  const sourceIndex = registry.versions[version]?.searchIndex?.examples;
 
   const frameworkIndexPath = sourceIndex?.[framework];
   if (!frameworkIndexPath) {
@@ -353,9 +336,7 @@ export async function listAllBlocks(
 export async function fetchExamplesRegistryIndex(
   baseUrl: string
 ): Promise<ExamplesRegistryIndex> {
-  return await fetchJson<ExamplesRegistryIndex>(
-    `${baseUrl}/examples-registry.json`
-  );
+  return await fetchJson<ExamplesRegistryIndex>(`${baseUrl}/registry.json`);
 }
 
 export async function fetchExampleDefinition(

@@ -84,7 +84,7 @@ jobs:
           echo "== tooling/registry/dist top-level =="
           ls -la ./tooling/registry/dist || true
           echo "== key dist json files =="
-          ls -la ./tooling/registry/dist/registry.json ./tooling/registry/dist/examples-registry.json ./tooling/registry/dist/components-registry.json || true
+          ls -la ./tooling/registry/dist/registry.json || true
           echo "== first 40 files under dist =="
           find ./tooling/registry/dist -type f | sort | head -n 40 || true
 
@@ -109,7 +109,7 @@ jobs:
           echo "== deploy top-level =="
           ls -la ./tooling/registry/deploy || true
           echo "== key deploy json files =="
-          ls -la ./tooling/registry/deploy/registry.json ./tooling/registry/deploy/examples-registry.json ./tooling/registry/deploy/components-registry.json || true
+          ls -la ./tooling/registry/deploy/registry.json || true
           echo "== first 80 files under deploy =="
           find ./tooling/registry/deploy -type f | sort | head -n 80 || true
 

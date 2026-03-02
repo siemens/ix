@@ -314,26 +314,26 @@ These packages contain playground applications to explore and test the respectiv
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
 
-#### Registry overview: blocks vs examples
+#### Registry overview: unified catalog
 
-The registry content for `blocks` and `examples` is intentionally built in different ways:
+The registry content for `blocks`, `examples` and component API metadata is exposed through a single registry file and built from different sources:
 
-| Topic                   | Blocks registry                                                       | Examples registry                                                                                               |
-| ----------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Registry file           | `tooling/registry/registry.json` (template)                           | `tooling/registry/examples-registry.json` (template)                                                            |
-| Source of entries       | Manual JSON files in `./blocks/*.json`                                | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                 |
-| Schema                  | `tooling/registry/schemas/block.schema.json`                          | `tooling/registry/schemas/example.schema.json`                                                                  |
-| How entries are created | Hand-authored block definitions (for example `blocks/upload-01.json`) | Auto-generated from files in `./examples/*/src/preview-examples` by `tooling/registry/src/generate-examples.ts` |
-| Included frameworks     | Defined per block variant (typically React/Angular)                   | Scanned from `html`, `react`, `angular`, `angular-standalone`, `vue` example folders                            |
-| Update step             | `updateBlocksRegistry(...)` scans `./blocks`                          | `generateExampleBlocks(...)` creates JSON, then `updateExamplesRegistry(...)` scans generated files             |
-| Template behavior       | `dist-tags` and `versions` are overwritten during build/deploy        | `dist-tags` and `versions` are overwritten during build/deploy                                                   |
+| Topic | Unified registry |
+| ----- | ---------------- |
+| Registry file | `tooling/registry/registry.json` (template) |
+| Blocks source | Manual JSON files in `./blocks/*.json` |
+| Examples source | Generated JSON files in `tooling/registry/dist/examples/*.json` |
+| Components source | `packages/core/component-doc.json`, `component-index.json`, `component-search-index.json` |
+| Schemas | `tooling/registry/schemas/registry.schema.json`, plus `block.schema.json` and `example.schema.json` for entry files |
+| Build steps | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, and `updateComponentsRegistry(...)` update sections of the same version entry |
+| Template behavior | `dist-tags` and `versions` are overwritten during build/deploy |
 
 Contributor guidance:
 
 - For a **new block**, add or update a JSON definition in `./blocks` and ensure its `variants` map to the block source files (for example from `react-blocks` / `angular-blocks`).
 - For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
-- `tooling/registry/registry.json` and `tooling/registry/examples-registry.json` are templates; runtime entries are generated dynamically during registry build/deployment.
-- Rebuild the registry (`pnpm --filter registry build`) to refresh both `registry.json` and `examples-registry.json`.
+- `tooling/registry/registry.json` is a template; runtime entries are generated dynamically during registry build/deployment.
+- Rebuild the registry (`pnpm --filter registry build`) to refresh the generated `registry.json` in `tooling/registry/dist`.
 
 ### Submit Pull Request
 

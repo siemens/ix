@@ -1,17 +1,26 @@
 {
   "$schema": "./schemas/registry.schema.json",
-  "name": "siemens-ix-blocks",
+  "name": "siemens-ix-registry",
   "dist-tags": {
     "latest": "template"
   },
   "versions": {
     "template": {
       "searchIndex": {
-        "html": "search-index-html.json",
-        "react": "search-index-react.json",
-        "angular": "search-index-angular.json",
-        "angular-standalone": "search-index-angular-standalone.json",
-        "vue": "search-index-vue.json"
+        "blocks": {
+          "html": "search-index-html.json",
+          "react": "search-index-react.json",
+          "angular": "search-index-angular.json",
+          "angular-standalone": "search-index-angular-standalone.json",
+          "vue": "search-index-vue.json"
+        },
+        "examples": {
+          "html": "examples-search-index-html.json",
+          "react": "examples-search-index-react.json",
+          "angular": "examples-search-index-angular.json",
+          "angular-standalone": "examples-search-index-angular-standalone.json",
+          "vue": "examples-search-index-vue.json"
+        }
       },
       "blocks": [
         {
@@ -22,7 +31,18 @@
           "name": "upload-01",
           "path": "blocks/upload-01.json"
         }
-      ]
+      ],
+      "examples": [
+        {
+          "name": "about-and-legal",
+          "path": "examples/about-and-legal.json"
+        }
+      ],
+      "components": {
+        "componentDoc": "ix/component-doc.json",
+        "componentIndex": "ix/component-index.json",
+        "componentSearchIndex": "ix/component-search-index.json"
+      }
     }
   }
 }
