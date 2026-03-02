@@ -26,6 +26,8 @@
         "loader/**",
         "api-docs/**",
         "component-doc.json",
+        "component-index.json",
+        "component-search-index.json",
         "component-usage-by-component.json",
         "component-usage.json"
       ],
