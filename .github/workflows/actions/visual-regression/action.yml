@@ -19,10 +19,16 @@ inputs:
     description: 'Total number of shards for parallel test execution'
     required: false
     default: ''
+  skipTestsetup:
+    description: 'Whether to skip the test setup step (installing browsers, etc.)'
+    required: false
+    default: 'false'
+
 runs:
   using: 'composite'
   steps:
     - name: Install Playwright Browsers
+      if: ${{ inputs.skipTestsetup == 'false' }}
       shell: bash
       env:
         PROJECT_NAME: ${{ inputs.projectName }}

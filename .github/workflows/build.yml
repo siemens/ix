@@ -51,6 +51,7 @@ jobs:
           projectPath: './packages/core/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
+          skipTestsetup: true
 
   merge-core-reports:
     if: failure()

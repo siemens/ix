@@ -103,6 +103,7 @@ jobs:
           artifactName: 'visual-testing'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
+          skipTestsetup: true
 
   merge-core-reports:
     if: failure()
