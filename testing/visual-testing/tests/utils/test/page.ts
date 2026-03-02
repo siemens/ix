@@ -47,11 +47,18 @@ export type Mount = (
 ) => Promise<ElementHandle<HTMLElement>>;
 
 export async function waitForIxHydration(page: Page): Promise<void> {
+  const timeout = process.env.CI ? 15_000 : 5_000;
   await page.waitForFunction(
     () => {
       return window.__ixApploadDispatched === true;
     },
     null,
+    {
+      timeout,
+    }
+  );
+}
+
     {
       timeout: 1000,
     }
