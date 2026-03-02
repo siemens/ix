@@ -24,6 +24,7 @@ declare global {
 export type AdditionalPageConfig = {
   icons?: Record<string, string>;
   bodyPadding?: boolean | string;
+  checkIxHydration?: boolean;
 };
 
 export type IxGotoOptions = Parameters<Page['goto']>[1] & {
@@ -124,8 +125,19 @@ async function mountComponent(
   config?: {
     icons?: Record<string, string>;
     bodyPadding?: boolean | string;
+    checkIxHydration?: boolean;
   }
 ): Promise<ElementHandle<HTMLElement>> {
+  if (config?.checkIxHydration === true) {
+    await page.addInitScript(() => {
+      window.__ixApploadDispatched = false;
+
+      window.addEventListener('appload', () => {
+        window.__ixApploadDispatched = true;
+      });
+    });
+  }
+
   await page.mouse.move(9999, 9999);
 
   const elementHandle = await page.evaluateHandle(
@@ -146,6 +158,10 @@ async function mountComponent(
     },
     { componentSelector: selector, config }
   );
+
+  if (config?.checkIxHydration === true) {
+    await waitForIxHydration(page);
+  }
 
   return elementHandle;
 }
