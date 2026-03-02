@@ -6,12 +6,12 @@ on:
       - main
       - 'release-registry/**'
       - 'feat/block-cli'
-    paths:
-      - 'packages/**'
-      - 'blocks/**'
-      - 'examples/**'
-      - 'tooling/registry/**'
-      - '.github/workflows/registry.yml'
+    # paths:
+    #   - 'packages/**'
+    #   - 'blocks/**'
+    #   - 'examples/**'
+    #   - 'tooling/registry/**'
+    #   - '.github/workflows/registry.yml'
   workflow_dispatch:
 
 permissions:
