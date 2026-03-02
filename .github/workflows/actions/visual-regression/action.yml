@@ -35,8 +35,9 @@ runs:
       run: pnpm run test.setup --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Build
+      if: ${{ inputs.shardIndex != '' && inputs.shardTotal != '' }}
       shell: bash
-      run: pnpm run build --cache-dir=.turbo
+      run: pnpm run build --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Test
       shell: bash
@@ -46,6 +47,7 @@ runs:
         SHARD_TOTAL: ${{ inputs.shardTotal }}
       run: |
         if [ -n "$SHARD_INDEX" ] && [ -n "$SHARD_TOTAL" ]; then
+          pnpm run build --cache-dir=.turbo --filter $PROJECT_NAME
           pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARD_INDEX/$SHARD_TOTAL
         else
           pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME
