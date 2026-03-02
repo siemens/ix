@@ -32,6 +32,25 @@ export type Mount = (
   }
 ) => Promise<ElementHandle<HTMLElement>>;
 
+/**
+ * Waits until at least one `ix-*` custom element is attached to the DOM
+ * and every such element has the `hydrated` class applied by Stencil.
+ */
+export async function waitForIxHydration(page: Page): Promise<void> {
+  await page.waitForFunction(() => {
+    console.error('Watch running');
+    const ixElements = Array.from(document.querySelectorAll('*')).filter((el) =>
+      el.tagName.toLowerCase().startsWith('ix-')
+    );
+
+    if (ixElements.length === 0) {
+      return false;
+    }
+
+    return ixElements.every((el) => el.classList.contains('hydrated'));
+  });
+}
+
 function getThemeMetaData(testInfo: TestInfo): {
   theme: string;
   colorSchema: string;
@@ -62,7 +81,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
       options
     );
 
-    await page.waitForTimeout(1000);
+    await waitForIxHydration(page);
     return response;
   };
 
@@ -166,6 +185,7 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `/tests/utils/ct/index.html?theme=${theme}&colorSchema=${colorSchema}`
     );
+
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });
