@@ -87,7 +87,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -103,7 +102,6 @@ jobs:
           artifactName: 'visual-testing'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
-          skipTestsetup: true
 
   merge-core-reports:
     if: failure()

@@ -35,7 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -51,7 +50,6 @@ jobs:
           projectPath: './packages/core/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
-          skipTestsetup: true
 
   merge-core-reports:
     if: failure()
