@@ -149,6 +149,9 @@ function mergeRegistry(
       versions: {},
     };
 
+  baseRegistry.$schema = currentRegistry.$schema;
+  baseRegistry.name = currentRegistry.name;
+
   const currentVersionEntry = currentRegistry.versions[version];
   if (!currentVersionEntry) {
     const availableVersions = Object.keys(currentRegistry.versions ?? {});
@@ -229,6 +232,29 @@ async function main() {
   }
 
   await copyVersionPayload(args.distDir, args.outDir, args.version);
+
+  const sourceRegistrySchemaPath = path.join(
+    args.distDir,
+    'registry.schema.json'
+  );
+  const sourceRegistrySchemaFallbackPath = path.join(
+    args.distDir,
+    'schemas',
+    'registry.schema.json'
+  );
+  const targetRegistrySchemaPath = path.join(args.outDir, 'registry.schema.json');
+
+  if (await fs.pathExists(sourceRegistrySchemaPath)) {
+    await fs.copy(sourceRegistrySchemaPath, targetRegistrySchemaPath, {
+      dereference: true,
+      overwrite: true,
+    });
+  } else if (await fs.pathExists(sourceRegistrySchemaFallbackPath)) {
+    await fs.copy(sourceRegistrySchemaFallbackPath, targetRegistrySchemaPath, {
+      dereference: true,
+      overwrite: true,
+    });
+  }
 
   const currentRegistryPath = path.join(args.distDir, 'registry.json');
   const existingRegistryPath = path.join(args.outDir, 'registry.json');

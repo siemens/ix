@@ -26,6 +26,10 @@ const __angular_blocks = path.join(__node_modules, 'angular-blocks');
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
+const __registry_schema_template = path.join(
+  __dirname,
+  'registry.schema.json'
+);
 const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __ix_component_index = path.join(__ix_package, 'component-index.json');
 const __ix_component_search_index = path.join(
@@ -68,9 +72,18 @@ const task = new Listr<Ctx>([
     title: 'Copy registry templates to dist',
     task: async (ctx) => {
       await fs.ensureDir(ctx.dist);
-      await fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
-        dereference: true,
-      });
+      await Promise.all([
+        fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
+          dereference: true,
+        }),
+        fs.copy(
+          __registry_schema_template,
+          path.join(ctx.dist, 'registry.schema.json'),
+          {
+            dereference: true,
+          }
+        ),
+      ]);
     },
   },
   {
