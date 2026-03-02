@@ -1,0 +1,1 @@
+function s(t,e){return e?e.closest(t)||s(t,e.getRootNode().host):null}function r(t){return t.assignedElements({flatten:!0})}function a(t){return t?t.assignedElements({flatten:!0}).length!==0:!1}function n(t,e){return t?t instanceof ShadowRoot?n(t.host,e):t instanceof HTMLElement&&t.matches(e)?t:n(t.parentNode,e):null}export{s as a,r as b,a as c,n as d};

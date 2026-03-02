@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number input validation example</title>
+  </head>
+  <body>
+    <div>
+      <ix-number-input
+        value="5"
+        info-text="Info text"
+        class="ix-info"
+      ></ix-number-input>
+    </div>
+
+    <div>
+      <ix-number-input
+        value="5"
+        warning-text="Warning text"
+        class="ix-warning"
+      ></ix-number-input>
+    </div>
+
+    <div>
+      <ix-number-input
+        value="5"
+        valid-text="Valid text"
+        class="ix-valid"
+      ></ix-number-input>
+    </div>
+
+    <div>
+      <ix-number-input
+        value="5"
+        invalid-text="Invalid text"
+        class="ix-invalid"
+      ></ix-number-input>
+    </div>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

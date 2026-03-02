@@ -1,0 +1,101 @@
+<div class="container">
+  <ix-card variant="outline" class="uploadCard">
+    <ix-card-content>
+      <div class="header">
+        <ix-typography format="h3" [bold]="true">
+          File Upload
+        </ix-typography>
+        <ix-typography class="subtitle">
+          Upload your files by dragging and dropping or browsing
+        </ix-typography>
+      </div>
+
+      <div
+        class="dropZone"
+        [class.dragging]="isDragging"
+        (dragenter)="handleDragEnter($event)"
+        (dragover)="handleDragOver($event)"
+        (dragleave)="handleDragLeave($event)"
+        (drop)="handleDrop($event)"
+        role="button"
+        tabindex="0"
+        attr.aria-label="File upload drop zone. Press Enter to browse files"
+        (keydown)="handleKeyDown($event)"
+      >
+        <ix-icon
+          [name]="iconUpload"
+          size="32"
+          class="uploadIcon"
+        ></ix-icon>
+        <ix-typography format="h4" [bold]="true" class="dropZoneTitle">
+          Drag and drop files here
+        </ix-typography>
+        <ix-typography class="dropZoneText">
+          or
+        </ix-typography>
+        <ix-button variant="primary" (click)="handleBrowseClick()">
+          Browse Files
+        </ix-button>
+
+        <input
+          #fileInput
+          type="file"
+          multiple
+          (change)="handleFileInput($event)"
+          class="hiddenInput"
+          aria-label="File input"
+        />
+      </div>
+
+      <div class="filesSection" *ngIf="files.length > 0">
+        <div class="filesSectionHeader">
+          <ix-typography format="h5" [bold]="true">
+            Uploaded Files ({{ files.length }})
+          </ix-typography>
+          <ix-button
+            variant="subtle-primary"
+            (click)="clearAllFiles()"
+            aria-label="Clear all files"
+          >
+            Clear All
+          </ix-button>
+        </div>
+
+        <div
+          class="filesList"
+          role="list"
+          aria-label="List of uploaded files"
+        >
+          <div
+            *ngFor="let fileItem of files"
+            class="fileItem"
+            role="listitem"
+          >
+            <div class="fileIcon">
+              <ix-icon [name]="iconDocument" size="24"></ix-icon>
+            </div>
+            <div class="fileInfo">
+              <ix-typography [bold]="true" class="fileName">
+                {{ fileItem.file.name }}
+              </ix-typography>
+              <ix-typography class="fileSize">
+                {{ formatFileSize(fileItem.file.size) }}
+              </ix-typography>
+            </div>
+            <div class="fileActions">
+              <ix-chip class="fileChip">
+                {{ fileItem.file.type || 'Unknown type' }}
+              </ix-chip>
+              <ix-icon-button
+                variant="tertiary"
+                [icon]="iconTrashcan"
+                (click)="removeFile(fileItem.id)"
+                [attr.aria-label]="'Remove ' + fileItem.file.name"
+              ></ix-icon-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ix-card-content>
+  </ix-card>
+</div>

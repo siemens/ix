@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["angular:styles/component:css;8e5171532a6e27436015867e55b6597e43b3fbbc506cf6c456a265e7c6b28791;/home/runner/work/ix/ix/examples/angular-examples/src/preview-examples/form-checkbox-validation.html"],
+  "sourcesContent": ["\n  .checkbox-group-wrapper {\n    margin-bottom: 1rem;\n  }\n"],
+  "mappings": "AACE,CAAC,uBACC,cAAe,IACjB",
+  "names": []
+}

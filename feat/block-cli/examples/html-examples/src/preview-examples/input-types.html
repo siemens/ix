@@ -1,0 +1,60 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input types example</title>
+  </head>
+  <link rel="stylesheet" href="./input-types.css" />
+  <body>
+    <div>
+      <ix-input type="text" label="Username" value="MaxMuster1"></ix-input>
+    </div>
+
+    <div>
+      <ix-input
+        type="email"
+        label="Email"
+        value="example@example.com"
+      ></ix-input>
+    </div>
+
+    <div>
+      <ix-input
+        type="password"
+        label="Password"
+        placeholder="Enter your password"
+        value="1234"
+      ></ix-input>
+    </div>
+
+    <div>
+      <ix-input
+        type="tel"
+        label="Telephone"
+        placeholder="Enter your phone number"
+        value="+49 123 456789"
+      ></ix-input>
+    </div>
+
+    <div>
+      <ix-input
+        type="url"
+        label="URL"
+        placeholder="Enter your URL"
+        value="https://ix.siemens.io"
+      ></ix-input>
+    </div>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

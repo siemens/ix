@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/preview-examples/key-value-with-custom-value.css"],
+  "sourcesContent": ["/*\n * SPDX-FileCopyrightText: 2025 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n/*\n * Styles get overwritten by html-test-app css files each build or dev task.\n * If you want to modify the example styles do this only inside the html-test-app\n */\n\n.ix-form-control {\n  width: 100% !important;\n}\n"],
+  "mappings": "AAaA,CAAC,gBACC,MAAO,cACT",
+  "names": []
+}

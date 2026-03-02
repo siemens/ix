@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/preview-examples/chip.css"],
+  "sourcesContent": ["/*\n * SPDX-FileCopyrightText: 2024 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n/*\n * Styles get overwritten by html-test-app css files each build or dev task.\n * If you want to modify the example styles do this only inside the html-test-app\n */\n\n.chip {\n  display: flex;\n  gap: 2rem;\n}\n\n.chip-column {\n  display: flex;\n  flex-direction: column;\n  gap: 0.5rem;\n}\n"],
+  "mappings": "AAaA,CAAC,KACC,QAAS,KACT,IAAK,IACP,CAEA,CAAC,YACC,QAAS,KACT,eAAgB,OAChB,IAAK,KACP",
+  "names": []
+}

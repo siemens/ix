@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/preview-examples/split-button.css"],
+  "sourcesContent": ["body {\n  display: flex;\n}\n\nix-split-button {\n  margin: 0.25rem;\n}\n"],
+  "mappings": "AAAA,KACE,QAAS,IACX,CAEA,gBAJA,OAKU,MACV",
+  "names": []
+}
