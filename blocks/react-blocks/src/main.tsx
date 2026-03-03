@@ -8,6 +8,38 @@ import Index from './routes/index';
 import LoginOverlay from './routes/login-overlay/login-overlay';
 import ChangePassword from './routes/change-password/change-password';
 
+const getQueryParamsFromHash = () => {
+  const [, queryString] = window.location.hash.split('?');
+  return new URLSearchParams(queryString ?? '');
+};
+
+const applyThemeFromQueryParams = () => {
+  const queryParams = getQueryParamsFromHash();
+  const rawTheme = queryParams.get('theme');
+  const rawColorSchema = queryParams.get('colorSchema');
+
+  const fallbackTheme = corporateThemeAvailable ? 'brand' : 'classic';
+  const resolvedTheme =
+    rawTheme === 'brand' && !corporateThemeAvailable
+      ? 'classic'
+      : rawTheme ?? fallbackTheme;
+
+  document.documentElement.setAttribute('data-ix-theme', resolvedTheme);
+
+  if (rawColorSchema) {
+    document.documentElement.setAttribute(
+      'data-ix-color-schema',
+      rawColorSchema
+    );
+    return;
+  }
+
+  document.documentElement.removeAttribute('data-ix-color-schema');
+};
+
+applyThemeFromQueryParams();
+window.addEventListener('hashchange', applyThemeFromQueryParams);
+
 if (corporateThemeAvailable) {
   const href = `${import.meta.env.BASE_URL}brand-theme.css`;
   const alreadyLoaded = document.querySelector(
