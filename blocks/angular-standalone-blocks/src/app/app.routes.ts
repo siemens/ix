@@ -2,6 +2,13 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'change-password',
+    loadComponent: () =>
+      import('../routes/change-password/change-password').then(
+        (m) => m.ChangePassword,
+      ),
+  },
+  {
     path: 'example-01',
     loadComponent: () => import('../routes/example-01/example').then((m) => m.Example),
   },
