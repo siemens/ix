@@ -1,6 +1,7 @@
 {
   "$schema": "./../tooling/registry/schemas/block.schema.json",
   "name": "upload-01",
+  "preview": "react-blocks/dist/ix/upload-01",
   "variants": {
     "react": {
       "files": [
