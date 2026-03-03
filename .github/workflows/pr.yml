@@ -18,7 +18,6 @@ concurrency:
 env:
   CORPORATE_THEME_TOKEN: ${{ secrets.CORPORATE_THEME_TOKEN }}
   CORPORATE_THEME_VERSION: ${{ vars.CORPORATE_THEME_VERSION }}
-  CORPORATE_THEME_URL: ${{ vars.CORPORATE_THEME_URL }}
 
 jobs:
   changes:
