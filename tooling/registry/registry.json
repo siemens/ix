@@ -24,6 +24,10 @@
       },
       "blocks": [
         {
+          "name": "change-password",
+          "path": "blocks/change-password.json"
+        },
+        {
           "name": "example-01",
           "path": "blocks/example-01.json"
         },
