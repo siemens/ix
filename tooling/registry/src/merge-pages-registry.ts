@@ -141,13 +141,12 @@ function mergeRegistry(
   latestTag: string,
   shouldUpdateLatest: boolean
 ): RegistryIndex {
-  const baseRegistry: RegistryIndex =
-    existingRegistry ?? {
-      $schema: currentRegistry.$schema,
-      name: currentRegistry.name,
-      'dist-tags': { latest: latestTag },
-      versions: {},
-    };
+  const baseRegistry: RegistryIndex = existingRegistry ?? {
+    $schema: currentRegistry.$schema,
+    name: currentRegistry.name,
+    'dist-tags': { latest: latestTag },
+    versions: {},
+  };
 
   baseRegistry.$schema = currentRegistry.$schema;
   baseRegistry.name = currentRegistry.name;
@@ -156,7 +155,9 @@ function mergeRegistry(
   if (!currentVersionEntry) {
     const availableVersions = Object.keys(currentRegistry.versions ?? {});
     throw new Error(
-      `Current registry does not contain version '${version}'. Available versions: ${availableVersions.join(', ') || 'none'}`
+      `Current registry does not contain version '${version}'. Available versions: ${
+        availableVersions.join(', ') || 'none'
+      }`
     );
   }
 
@@ -191,7 +192,7 @@ function mergeRegistry(
     ...baseRegistry['dist-tags'],
     latest: shouldUpdateLatest
       ? latestTag
-      : (baseRegistry['dist-tags']?.latest ?? latestTag),
+      : baseRegistry['dist-tags']?.latest ?? latestTag,
   };
 
   return baseRegistry;
@@ -242,7 +243,10 @@ async function main() {
     'schemas',
     'registry.schema.json'
   );
-  const targetRegistrySchemaPath = path.join(args.outDir, 'registry.schema.json');
+  const targetRegistrySchemaPath = path.join(
+    args.outDir,
+    'registry.schema.json'
+  );
 
   if (await fs.pathExists(sourceRegistrySchemaPath)) {
     await fs.copy(sourceRegistrySchemaPath, targetRegistrySchemaPath, {
@@ -259,7 +263,9 @@ async function main() {
   const currentRegistryPath = path.join(args.distDir, 'registry.json');
   const existingRegistryPath = path.join(args.outDir, 'registry.json');
 
-  const currentRegistry = (await fs.readJson(currentRegistryPath)) as RegistryIndex;
+  const currentRegistry = (await fs.readJson(
+    currentRegistryPath
+  )) as RegistryIndex;
   const existingRegistry = await readJsonIfExists<RegistryIndex>(
     existingRegistryPath
   );

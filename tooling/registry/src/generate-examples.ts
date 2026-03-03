@@ -8,7 +8,6 @@
  */
 import fs from 'fs-extra';
 import path from 'node:path';
-import { glob } from 'glob';
 
 interface ExampleFile {
   framework: string;
@@ -24,19 +23,42 @@ interface ExampleMetadata {
 /**
  * Get all example files for each framework
  */
-async function scanExamples(examplesDir: string): Promise<Map<string, ExampleMetadata>> {
+async function scanExamples(
+  examplesDir: string
+): Promise<Map<string, ExampleMetadata>> {
   const examples = new Map<string, ExampleMetadata>();
 
   const frameworks = [
-    { name: 'html', dir: 'html-examples', extensions: ['.html', '.css', '.js'] },
-    { name: 'react', dir: 'react-examples', extensions: ['.tsx', '.scoped.css', '.css'] },
-    { name: 'angular', dir: 'angular-examples', extensions: ['.ts', '.html', '.css'] },
-    { name: 'angular-standalone', dir: 'angular-standalone-examples', extensions: ['.ts', '.html', '.css'] },
+    {
+      name: 'html',
+      dir: 'html-examples',
+      extensions: ['.html', '.css', '.js'],
+    },
+    {
+      name: 'react',
+      dir: 'react-examples',
+      extensions: ['.tsx', '.scoped.css', '.css'],
+    },
+    {
+      name: 'angular',
+      dir: 'angular-examples',
+      extensions: ['.ts', '.html', '.css'],
+    },
+    {
+      name: 'angular-standalone',
+      dir: 'angular-standalone-examples',
+      extensions: ['.ts', '.html', '.css'],
+    },
     { name: 'vue', dir: 'vue-examples', extensions: ['.vue', '.css'] },
   ];
 
   for (const framework of frameworks) {
-    const examplesPath = path.join(examplesDir, framework.dir, 'src', 'preview-examples');
+    const examplesPath = path.join(
+      examplesDir,
+      framework.dir,
+      'src',
+      'preview-examples'
+    );
 
     if (!(await fs.pathExists(examplesPath))) {
       console.warn(`⚠️  Examples path not found: ${examplesPath}`);
@@ -146,16 +168,28 @@ function generateBlockJson(example: ExampleMetadata): any {
     // Add framework-specific dependencies
     switch (framework) {
       case 'react':
-        variant.dependencies.push({ name: '@siemens/ix-react', version: '^4.0.0' });
+        variant.dependencies.push({
+          name: '@siemens/ix-react',
+          version: '^4.0.0',
+        });
         break;
       case 'angular':
-        variant.dependencies.push({ name: '@siemens/ix-angular', version: '^4.0.0' });
+        variant.dependencies.push({
+          name: '@siemens/ix-angular',
+          version: '^4.0.0',
+        });
         break;
       case 'angular-standalone':
-        variant.dependencies.push({ name: '@siemens/ix-angular', version: '^4.0.0' });
+        variant.dependencies.push({
+          name: '@siemens/ix-angular',
+          version: '^4.0.0',
+        });
         break;
       case 'vue':
-        variant.dependencies.push({ name: '@siemens/ix-vue', version: '^4.0.0' });
+        variant.dependencies.push({
+          name: '@siemens/ix-vue',
+          version: '^4.0.0',
+        });
         break;
     }
 
@@ -169,7 +203,8 @@ function generateBlockJson(example: ExampleMetadata): any {
     }
 
     // Map angular-standalone to angular in the variants
-    const variantKey = framework === 'angular-standalone' ? 'angular-standalone' : framework;
+    const variantKey =
+      framework === 'angular-standalone' ? 'angular-standalone' : framework;
     block.variants[variantKey] = variant;
   }
 
@@ -179,7 +214,10 @@ function generateBlockJson(example: ExampleMetadata): any {
 /**
  * Generate all example block JSON files
  */
-export async function generateExampleBlocks(outputDir: string, examplesDir: string): Promise<number> {
+export async function generateExampleBlocks(
+  outputDir: string,
+  examplesDir: string
+): Promise<number> {
   console.log('🔍 Scanning examples...');
   const examples = await scanExamples(examplesDir);
 

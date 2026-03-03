@@ -70,15 +70,17 @@ export async function updateBlocksRegistry(
 
   const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
-  blocks.push(...blockFiles.map((file) => {
-    const name = path.basename(file, '.json');
-    const blockPath = `blocks/${path.basename(file)}`;
+  blocks.push(
+    ...blockFiles.map((file) => {
+      const name = path.basename(file, '.json');
+      const blockPath = `blocks/${path.basename(file)}`;
 
-    return {
-      name,
-      path: normalizedPrefix ? `${normalizedPrefix}/${blockPath}` : blockPath,
-    };
-  }));
+      return {
+        name,
+        path: normalizedPrefix ? `${normalizedPrefix}/${blockPath}` : blockPath,
+      };
+    })
+  );
 
   const versionEntry = ensureVersionEntry(registry, options.version);
   versionEntry.blocks = blocks.sort((a, b) => a.name.localeCompare(b.name));
@@ -116,17 +118,19 @@ export async function updateExamplesRegistry(
       absolute: false,
     });
 
-    examples.push(...exampleFiles.map((file) => {
-      const name = path.basename(file, '.json');
-      const examplePath = `examples/${path.basename(file)}`;
+    examples.push(
+      ...exampleFiles.map((file) => {
+        const name = path.basename(file, '.json');
+        const examplePath = `examples/${path.basename(file)}`;
 
-      return {
-        name,
-        path: normalizedPrefix
-          ? `${normalizedPrefix}/${examplePath}`
-          : examplePath,
-      };
-    }));
+        return {
+          name,
+          path: normalizedPrefix
+            ? `${normalizedPrefix}/${examplePath}`
+            : examplePath,
+        };
+      })
+    );
   }
 
   const versionEntry = ensureVersionEntry(registry, options.version);
@@ -162,7 +166,8 @@ export async function updateComponentsRegistry(
   );
 
   const versionEntry = ensureVersionEntry(registry, options.version);
-  versionEntry.components = prefixedComponents as ComponentsRegistryUpdateOptions['components'];
+  versionEntry.components =
+    prefixedComponents as ComponentsRegistryUpdateOptions['components'];
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,
