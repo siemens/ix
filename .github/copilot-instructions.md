@@ -97,3 +97,30 @@ export class Button {
 - Use SPDX license headers in all source files
 
 When modifying components, always build first, then test visual regression changes with appropriate theme configurations.
+
+<!-- ix-mcp-instructions:start -->
+## Siemens iX code generation
+
+The official Siemens iX documentation is available at https://ix.siemens.io and provides a llms.txt file following the llmstxt.org standard at https://ix.siemens.io/llms.txt. Use this resource to get an overview of available documentation and additional information regarding components.
+
+When generating ix code follow the rules:
+
+- For each iX component, validate generated code with `mcp_siemensix_search_examples`.
+- Copilot MUST call `mcp_siemensix_get_component_details` by default.
+
+When you generate code and a figma resource is included::
+
+- Most IX components have mapped Figma components. Use `mcp_siemensix_get_figma_component_mapping` for a specific component or Figma ID, and `mcp_siemensix_list_components_with_figma_ids` to list all available mappings.
+
+Regarding icon usage, take the following usage into account:
+```tsx
+import { iconAddShieldHalf } from '@siemens/ix-icons/icons';
+
+<IxIcon name={iconAddShieldHalf}></IxIcon>
+```
+
+After codegeneration:
+
+- [ ] Ensure that there are no typescript errors
+- [ ] Ensure that there are no linting errors
+<!-- ix-mcp-instructions:end -->

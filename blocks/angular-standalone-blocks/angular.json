@@ -21,6 +21,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "preserveSymlinks": true,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {

@@ -1,0 +1,63 @@
+{
+  "$schema": "./../tooling/registry/schemas/block.schema.json",
+  "name": "login-overlay",
+  "preview": "react-blocks/dist/ix/login-overlay",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "target": "react/login-overlay.tsx",
+          "source": "react-blocks/src/routes/login-overlay/login-overlay.tsx"
+        },
+        {
+          "target": "react/login-overlay.module.css",
+          "source": "react-blocks/src/routes/login-overlay/login-overlay.module.css"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-react",
+          "version": "^4.0.0"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "target": "angular/login-overlay.ts",
+          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.ts"
+        },
+        {
+          "target": "angular/login-overlay.html",
+          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.html"
+        },
+        {
+          "target": "angular/login-overlay.css",
+          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.css"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-angular",
+          "version": "^4.0.0"
+        }
+      ]
+    }
+  }
+}
