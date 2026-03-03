@@ -1,0 +1,9 @@
+- navigation:
+  - button "About & legal information" [expanded]
+  - tooltip "About & legal information"
+- region "About & legal information":
+  - heading "About & legal information" [level=2]
+  - button "Close About"
+- complementary
+- main
+- contentinfo

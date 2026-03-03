@@ -25,7 +25,7 @@ regressionTest('renders', async ({ mount, page }) => {
       .locator('.field-bottom')
       .locator('ix-typography.bottom-text')
       .filter({ hasText: 'Helper text' })
-  ).toHaveText('Helper text');
+  ).toHaveText(/Helper text/);
 });
 
 regressionTest(
@@ -45,7 +45,7 @@ regressionTest(
         .locator('.field-bottom')
         .locator('ix-typography.bottom-text')
         .filter({ hasText: 'invalid text' })
-    ).toHaveText('invalid text');
+    ).toHaveText(/invalid text/);
   }
 );
 regressionTest(

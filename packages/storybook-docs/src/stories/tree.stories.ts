@@ -8,7 +8,7 @@
  */
 import { html } from 'lit';
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxTree;

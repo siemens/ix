@@ -1,0 +1,24 @@
+- radiogroup:
+  - text: Storage options
+  - radio "256GB SSD storage" [checked]
+  - radio "512GB SSD storage"
+  - img
+  - text: Storage options might differ in speed.
+- radiogroup:
+  - text: Storage options
+  - radio "256GB SSD storage" [checked]
+  - radio "512GB SSD storage"
+  - img
+  - text: Storage options might not be available.
+- radiogroup:
+  - text: Storage options
+  - radio "256GB SSD storage" [checked]
+  - radio "512GB SSD storage"
+  - img
+  - text: Storage option is available.
+- radiogroup:
+  - text: Storage options
+  - radio "256GB SSD storage" [checked]
+  - radio "512GB SSD storage"
+  - img
+  - text: Storage option is not available.

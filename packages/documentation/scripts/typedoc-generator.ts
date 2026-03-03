@@ -19,9 +19,18 @@ import {
 } from 'typedoc';
 import { toKebabCase } from './utils/string-utils';
 
+// TypeDoc ReflectionKind constants
+// See: https://typedoc.org/api/enums/Models.ReflectionKind.html
+const ReflectionKind = {
+  Class: 128,
+  Constructor: 512,
+  Method: 2048,
+} as const;
+
 export type TypeDocTarget = {
   name: string;
-  properties: TypeDocProperty[];
+  properties?: TypeDocProperty[];
+  functions?: FunctionDocProperty[];
   type: 'Function' | 'Type';
   source: string;
 };
@@ -30,6 +39,19 @@ export type TypeDocProperty = {
   name: string;
   defaultValue?: string;
   type: string;
+  comment: string;
+  tags: Array<{ tag: string; text?: string }>;
+};
+
+export type FunctionDocProperty = {
+  name: string;
+  parameters: Array<{
+    name: string;
+    type: string;
+    optional?: boolean;
+    defaultValue?: string;
+  }>;
+  returnType: string;
   comment: string;
   tags: Array<{ tag: string; text?: string }>;
 };
@@ -63,21 +85,48 @@ async function generateDocsForEntrypoint(
   }
 
   const types = processProjectChildren(project, __root);
-  await generateTypeDocs(types, targetPath, __templates);
+  // Only needed for type 'Function'
+  const entrypointName = path.basename(entrypoint, path.extname(entrypoint));
+
+  await generateTypeDocs(types, targetPath, __templates, entrypointName);
 }
 
 function getPropertyType(property: any): string {
+  if (!property?.type) {
+    console.log(`=== Type ${property?.name || 'unknown'} has no type property`);
+    return 'unknown';
+  }
+
   if (property.type instanceof IntrinsicType) {
     return property.type.name;
   } else if (property.type instanceof ReferenceType) {
-    return property.type.qualifiedName;
+    // Handle generic types like Promise<ModalInstance<TReason>>
+    if (property.type.typeArguments && property.type.typeArguments.length > 0) {
+      const baseType = property.type.qualifiedName || property.type.name;
+      const typeArgs = property.type.typeArguments
+        .map((arg: any) => getPropertyType({ type: arg }))
+        .join(', ');
+
+      // Remove __global namespace prefix
+      return `${baseType}<${typeArgs}>`.replace(/^__global\./, '');
+    }
+
+    const typeName = property.type.qualifiedName || property.type.name;
+
+    // Remove __global namespace prefix
+    return typeName.replace(/^__global\./, '');
   } else if (property.type instanceof UnionType) {
     return property.type.types
       .filter((t: any) => 'name' in t)
       .map((t: any) => t.name)
       .join(' | ');
   } else {
-    console.log(`=== Type ${property.name} is unknown`);
+    console.log(`=== Type ${property?.name || 'unknown'} is unknown`);
+    console.log('property.type:', property?.type);
+    console.log(
+      'property.type constructor:',
+      property?.type?.constructor?.name
+    );
     return 'unknown';
   }
 }
@@ -142,27 +191,155 @@ function processProperties(child: any): TypeDocProperty[] {
   return properties;
 }
 
+function processFunctionSignature(
+  child: any,
+  parentName?: string
+): FunctionDocProperty {
+  const signature = child.signatures?.[0];
+  const functionName = parentName ? `${parentName}.${child.name}` : child.name;
+
+  return {
+    name: functionName,
+    parameters:
+      signature.parameters?.map((param) => ({
+        name: param.name,
+        type: getPropertyType(param),
+        optional: param.flags?.isOptional,
+      })) || [],
+    returnType: getPropertyType({ type: signature.type }),
+    comment: getCommentSummary(child),
+    tags: extractCommentTags(child),
+  };
+}
+
+function ensureFunctionGroup(
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  if (!functionGroups.has(source)) {
+    functionGroups.set(source, []);
+  }
+}
+
+function processStaticProperties(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  if (!child.children) {
+    return;
+  }
+
+  // If the function has static properties (e.g., showMessage.info), process its children
+  for (const staticProp of child.children) {
+    if (staticProp.signatures?.length > 0) {
+      const staticFunctionDoc = processFunctionSignature(
+        staticProp,
+        child.name
+      );
+      functionGroups.get(source)!.push(staticFunctionDoc);
+    }
+  }
+}
+
+function processFunction(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  const functionDoc = processFunctionSignature(child);
+
+  ensureFunctionGroup(functionGroups, source);
+  functionGroups.get(source)!.push(functionDoc);
+
+  processStaticProperties(child, functionGroups, source);
+}
+
+function extractClassMethods(child: any): any[] {
+  if (!child.children) {
+    return [];
+  }
+
+  const methods: any[] = [];
+  for (const classChild of child.children) {
+    // Process methods but skip constructors
+    if (
+      classChild.signatures?.length > 0 &&
+      classChild.kind === ReflectionKind.Method
+    ) {
+      const methodDoc = processFunctionSignature(classChild);
+      methods.push(methodDoc);
+    }
+  }
+
+  return methods;
+}
+
+function processClass(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  const methods = extractClassMethods(child);
+
+  if (methods.length > 0) {
+    ensureFunctionGroup(functionGroups, source);
+    functionGroups.get(source)!.push(...methods);
+  }
+}
+
+function processType(child: any, source: string): TypeDocTarget {
+  const properties = processProperties(child);
+  return {
+    name: child.name,
+    properties,
+    type: 'Type',
+    source,
+  };
+}
+
+function createFunctionTarget(source: string, funcs: any[]): TypeDocTarget {
+  funcs.sort((a, b) => a.name.localeCompare(b.name));
+
+  const fileName = path.basename(source, path.extname(source));
+
+  return {
+    name: fileName,
+    functions: funcs,
+    type: 'Function',
+    source: source,
+  };
+}
+
 function processProjectChildren(
   project: any,
   rootPath: string
 ): TypeDocTarget[] {
-  const types: TypeDocTarget[] = [];
-
   if (!project.children) {
-    return types;
+    return [];
   }
+
+  const types: TypeDocTarget[] = [];
+  const functionGroups = new Map<string, any[]>();
 
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
 
-    const properties = processProperties(child);
+    const isFunction = child.signatures?.length > 0;
+    const isClass = child.kind === ReflectionKind.Class;
+    const isType = !child.signatures?.length && !isClass;
 
-    types.push({
-      name: child.name,
-      properties,
-      type: 'Type',
-      source,
-    });
+    if (isFunction) {
+      processFunction(child, functionGroups, source);
+    } else if (isClass) {
+      processClass(child, functionGroups, source);
+    } else if (isType) {
+      types.push(processType(child, source));
+    }
+  }
+
+  for (const [source, funcs] of functionGroups) {
+    types.push(createFunctionTarget(source, funcs));
   }
 
   return types;
@@ -183,12 +360,42 @@ function determineFramework(source: string): string | undefined {
 async function generateTypeDocs(
   types: TypeDocTarget[],
   targetPath: string,
-  templatesPath: string
+  templatesPath: string,
+  entrypointName: string
 ) {
   const utilsPath = path.join(targetPath, 'utils');
   await fs.ensureDir(utilsPath);
 
-  for (const typedoc of types) {
+  const serviceFunctions = types.filter((t) => t.type === 'Function');
+  const otherTypes = types.filter((t) => t.type !== 'Function');
+
+  if (serviceFunctions.length > 0) {
+    const functionDocsContent: string[] = [];
+
+    serviceFunctions.sort((a, b) => a.name.localeCompare(b.name));
+
+    for (const funcDoc of serviceFunctions) {
+      const current_framework = determineFramework(funcDoc.source);
+
+      const mdxFragment = generateStructuredMDX(
+        funcDoc,
+        templatesPath,
+        current_framework
+      );
+
+      functionDocsContent.push(mdxFragment);
+    }
+
+    const joinedContent = functionDocsContent.join('\n\n<br/>\n\n');
+
+    const outputFileName = `${toKebabCase(entrypointName)}.mdx`;
+    const outputPath = path.join(utilsPath, outputFileName);
+
+    console.log(`Generating Service Doc: ${outputPath}`);
+    await fs.writeFile(outputPath, joinedContent);
+  }
+
+  for (const typedoc of otherTypes) {
     const current_framework = determineFramework(typedoc.source);
     const mdxContent = generateStructuredMDX(
       typedoc,
@@ -199,10 +406,10 @@ async function generateTypeDocs(
     const outputPath = path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`);
     console.log(`Generating TypeDoc: ${outputPath}`);
     await fs.writeFile(outputPath, mdxContent);
+  }
 
-    if (global.gc) {
-      global.gc();
-    }
+  if (global.gc) {
+    global.gc();
   }
 }
 
@@ -230,6 +437,18 @@ function generateStructuredMDX(
   templatesPath: string,
   framework?: string
 ): string {
+  if (typedoc.type === 'Function' && typedoc.functions) {
+    return generateFunctionMDX(typedoc, templatesPath, framework);
+  }
+
+  return generatePropertyMDX(typedoc, templatesPath, framework);
+}
+
+function generatePropertyMDX(
+  typedoc: TypeDocTarget,
+  templatesPath: string,
+  framework?: string
+): string {
   const propertyTemplate = fs.readFileSync(
     path.join(templatesPath, 'property-table.mustache'),
     'utf-8'
@@ -241,7 +460,7 @@ function generateStructuredMDX(
 
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
 
-  const formattedProps = typedoc.properties.map((prop) => {
+  const formattedProps = (typedoc.properties || []).map((prop) => {
     return {
       name: prop.name,
       singleFramework: framework,
@@ -262,7 +481,7 @@ function generateStructuredMDX(
 
   return Mustache.render(apiTemplate, {
     tag: kebabName,
-    hasProps: typedoc.properties.length > 0,
+    hasProps: (typedoc.properties || []).length > 0,
     hasEvents: false,
     hasSlots: false,
     singleFramework: framework,
@@ -270,6 +489,44 @@ function generateStructuredMDX(
     properties: propertyOutput,
     events: '',
     slots: '',
+  });
+}
+
+function generateFunctionMDX(
+  typedoc: TypeDocTarget,
+  templatesPath: string,
+  framework?: string
+): string {
+  const functionTemplate = fs.readFileSync(
+    path.join(templatesPath, 'function-table.mustache'),
+    'utf-8'
+  );
+
+  const formatFunction = (func: any) => {
+    const formattedParams = func.parameters.map((param: any) => ({
+      name: param.name,
+      type: escapeBackticks(param.type),
+      optional: param.optional,
+      default: param.defaultValue
+        ? escapeBackticks(param.defaultValue)
+        : undefined,
+    }));
+
+    return {
+      name: func.name,
+      comment: escapeBackticks(func.comment),
+      returnType: escapeBackticks(func.returnType),
+      parameters: formattedParams,
+      hasParameters: formattedParams.length > 0,
+      docsTags: convertTagsToTSXElements(func.tags),
+      singleFramework: framework,
+    };
+  };
+
+  const formattedFunctions = typedoc.functions?.map(formatFunction);
+
+  return Mustache.render(functionTemplate, {
+    functions: formattedFunctions,
   });
 }
 

@@ -37,10 +37,10 @@ import BlindVariants from '../preview-examples/blind-variants';
 import Breadcrumb from '../preview-examples/breadcrumb';
 import BreadcrumbNextItems from '../preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from '../preview-examples/breadcrumb-truncate';
-import ButtonGhost from '../preview-examples/button-ghost';
-import ButtonGrey from '../preview-examples/button-grey';
-import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
-import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
+import ButtonTertiary from '../preview-examples/button-tertiary';
+import ButtonSubtlePrimary from '../preview-examples/button-subtle-primary';
+import ButtonSubtleTertiary from '../preview-examples/button-subtle-tertiary';
+import ButtonSubtleSecondary from '../preview-examples/button-subtle-secondary';
 import ButtonGroup from '../preview-examples/button-group';
 import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
@@ -48,6 +48,9 @@ import ButtonTextIcon from '../preview-examples/button-text-icon';
 import ButtonWithIcon from '../preview-examples/button-with-icon';
 import ButtonWithLink from '../preview-examples/button-with-link';
 import Buttons from '../preview-examples/buttons';
+import ButtonDangerPrimary from '../preview-examples/button-danger-primary';
+import ButtonDangerSecondary from '../preview-examples/button-danger-secondary';
+import ButtonDangerTertiary from '../preview-examples/button-danger-tertiary';
 import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
@@ -124,11 +127,11 @@ import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
-import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
-import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-button-secondary-ghost';
-import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -218,17 +221,18 @@ import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
+import TimeInput from '../preview-examples/time-input';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
-import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
-import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
@@ -271,10 +275,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     BreadcrumbNextItems,
     BreadcrumbTruncate,
     Breadcrumb,
-    ButtonGhost,
-    ButtonGreyGhost,
-    ButtonGreySecondary,
-    ButtonGrey,
+    ButtonTertiary,
+    ButtonSubtleTertiary,
+    ButtonSubtleSecondary,
+    ButtonSubtlePrimary,
     ButtonGroup,
     ButtonLoading,
     ButtonSecondary,
@@ -282,6 +286,9 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ButtonWithIcon,
     ButtonWithLink,
     Buttons,
+    ButtonDangerPrimary,
+    ButtonDangerSecondary,
+    ButtonDangerTertiary,
     Card,
     CardList,
     CategoryFilterSuggestions,
@@ -355,10 +362,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Group,
     HtmlTable,
     HtmlTableStriped,
-    IconToggleButtonPrimaryGhost,
-    IconToggleButtonPrimaryOutline,
-    IconToggleButtonSecondaryGhost,
-    IconToggleButtonSecondaryOutline,
+    IconToggleButtonTertiary,
+    IconToggleButtonSubtleTertiary,
+    IconToggleButtonSubtleSecondary,
+    IconToggleButtonSubtlePrimary,
     IconToggleButtonSecondary,
     InputLegacyDisabled,
     InputLegacyReadonly,
@@ -433,15 +440,16 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     TextareaLegacy,
     ThemeSwitcher,
     Tile,
+    TimeInput,
     Timepicker,
     ToastCustom,
     ToastPosition,
     Toast,
-    ToggleButtonPrimaryGhost,
-    ToggleButtonPrimaryOutline,
+    ToggleButtonTertiary,
+    ToggleButtonSubtleTertiary,
     ToggleButtonPrimary,
-    ToggleButtonSecondaryGhost,
-    ToggleButtonSecondaryOutline,
+    ToggleButtonSubtleSecondary,
+    ToggleButtonSubtlePrimary,
     ToggleButtonSecondary,
     ToggleChecked,
     ToggleCustomLabel,

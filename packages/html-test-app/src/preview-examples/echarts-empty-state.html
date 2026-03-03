@@ -26,7 +26,7 @@ LICENSE file in the root directory of this source tree.
       });
     </script>
   </head>
-  <body class="theme-classic-dark">
+  <body>
     <div class="echarts">
       <div id="empty-state-container" class="empty-state-container">
         <ix-empty-state
@@ -39,10 +39,14 @@ LICENSE file in the root directory of this source tree.
       </div>
       <div class="echarts" id="main"></div>
     </div>
+    <script type="module" src="./init.js"></script>
 
     <script type="module">
       import { registerTheme } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
+
+      // Wait for init.js to complete (including theme CSS loading)
+      await globalThis.ixInitPromise;
 
       function initChart(theme, options) {
         var myChart = echarts.init(document.querySelector('#main'), theme);
@@ -123,7 +127,5 @@ LICENSE file in the root directory of this source tree.
         myChart.resize();
       };
     </script>
-
-    <script type="module" src="./init.js"></script>
   </body>
 </html>

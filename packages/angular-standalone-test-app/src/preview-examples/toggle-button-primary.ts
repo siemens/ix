@@ -14,13 +14,46 @@ import { IxToggleButton } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxToggleButton],
   template: `
-    <ix-toggle-button variant="primary">Normal</ix-toggle-button>
-    <ix-toggle-button variant="primary" pressed> Pressed </ix-toggle-button>
-    <ix-toggle-button variant="primary" disabled> Disabled </ix-toggle-button>
-    <ix-toggle-button variant="primary" disabled loading>
-      Loading
-    </ix-toggle-button>
+    <div class="button-container">
+      <ix-toggle-button
+        variant="primary"
+        icon="text-bold"
+        [pressed]="boldPressed"
+        (click)="handleBoldClick()"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="primary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        variant="primary"
+        icon="text-underline"
+        [pressed]="underlinePressed"
+        (click)="handleUnderlineClick()"
+        >Underline</ix-toggle-button
+      >
+      <ix-toggle-button variant="primary" disabled loading>
+        Strikethrough
+      </ix-toggle-button>
+    </div>
+    <p
+      [style.fontWeight]="boldPressed ? 'bold' : 'normal'"
+      [style.text-decoration]="underlinePressed ? 'underline' : 'none'"
+    >
+      Lorem ipsum text
+    </p>
   `,
   styleUrls: ['./toggle-button-primary.css'],
 })
-export default class Buttons {}
+export default class Buttons {
+  boldPressed = false;
+  underlinePressed = true;
+
+  handleBoldClick() {
+    this.boldPressed = !this.boldPressed;
+  }
+
+  handleUnderlineClick() {
+    this.underlinePressed = !this.underlinePressed;
+  }
+}

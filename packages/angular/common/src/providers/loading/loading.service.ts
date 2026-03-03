@@ -11,6 +11,9 @@ import { showModalLoading, ModalLoadingContext } from '@siemens/ix';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
+  /**
+   * Displays a loading modal with a message
+   */
   public showModalLoading(message: string): ModalLoadingContext {
     return showModalLoading(message);
   }

@@ -6,23 +6,23 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
-  h,
-  Host,
-  Prop,
-  State,
   Event,
   EventEmitter,
+  h,
+  Host,
   Listen,
+  Prop,
+  State,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { createEnterLeaveDebounce } from './enter-leave';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
+import { createEnterLeaveDebounce } from './enter-leave';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -263,16 +263,17 @@ export class MenuCategory implements IxMenuItemBase {
           tooltipText={this.tooltipText}
           isCategory
         >
-          <div class="category">
-            <div class="category-text">{this.label}</div>
+          <span class="category">
+            <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,
               }}
+              aria-hidden="true"
             ></ix-icon>
-          </div>
+          </span>
         </ix-menu-item>
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}

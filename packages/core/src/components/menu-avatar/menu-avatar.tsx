@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconLogOut } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -16,8 +17,9 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
-import { iconLogOut } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -48,6 +50,20 @@ export class MenuAvatar {
   @Prop() initials?: string;
 
   /**
+   * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+   *
+   * @since 4.3.0.
+   */
+  @Prop() tooltipText?: string;
+
+  /**
+   * aria-label for the tooltip
+   *
+   * @since 4.3.0.
+   */
+  @Prop() ariaLabelTooltip?: string;
+
+  /**
    * i18n label for 'Logout' button
    */
   @Prop({ attribute: 'i18n-logout' }) i18nLogout: string = 'Logout';
@@ -56,6 +72,14 @@ export class MenuAvatar {
    *  Control the visibility of the logout button
    */
   @Prop() hideLogoutButton: boolean = false;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Control the visibility of the dropdown menu
@@ -68,6 +92,7 @@ export class MenuAvatar {
   @Event() logoutClick!: EventEmitter;
 
   private avatarElementId = 'ix-menu-avatar-id';
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   onSlotChange() {
     const slot = this.hostElement.shadowRoot!.querySelector('slot');
@@ -79,25 +104,34 @@ export class MenuAvatar {
   }
 
   render() {
+    const tooltipText = this.tooltipText ?? this.top;
+    const ariaHidden = tooltipText === this.top;
+
     return (
       <Host slot="ix-menu-avatar">
         <button
           class="nav-item top-item avatar no-hover"
-          title={this.top}
           id={this.avatarElementId}
           tabIndex={0}
         >
           <ix-avatar image={this.image} initials={this.initials}></ix-avatar>
 
           <div class="avatar-name">
-            <span class="text-default-single" title={this.top}>
-              {this.top}
-            </span>
-            <span class="text-default-single" title={this.bottom}>
-              {this.bottom}
-            </span>
+            <span class="text-default-single">{this.top}</span>
+            <span class="text-default-single">{this.bottom}</span>
           </div>
         </button>
+        {!!tooltipText && (
+          <ix-tooltip
+            ref={this.tooltipRef}
+            for={`#${this.avatarElementId}`}
+            placement={'right'}
+            aria-hidden={a11yBoolean(ariaHidden)}
+            aria-label={this.ariaLabelTooltip}
+          >
+            {tooltipText}
+          </ix-tooltip>
+        )}
         <ix-dropdown
           trigger={this.hostElement}
           placement={'right-start'}
@@ -105,6 +139,12 @@ export class MenuAvatar {
           offset={{
             mainAxis: 16,
           }}
+          onShowChanged={(event) => {
+            if (event.detail && this.tooltipRef.current) {
+              this.tooltipRef.current.hideTooltip(0);
+            }
+          }}
+          enableTopLayer={this.enableTopLayer}
         >
           <slot onSlotchange={() => this.onSlotChange()}></slot>
           {!this.hideLogoutButton && (

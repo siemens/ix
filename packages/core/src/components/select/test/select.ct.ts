@@ -1048,3 +1048,67 @@ test('should not show "All" chip of de-selected a item', async ({
 
   await expect(allChip).not.toBeVisible();
 });
+
+test('clear button returns empty string in single mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-select allow-clear mode="single" value="1">
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      </ix-select>
+    `);
+
+  const select = page.locator('ix-select');
+
+  const valueChanged = select.evaluate((elm: HTMLIxSelectElement) => {
+    return new Promise<string | string[]>((resolve) => {
+      elm.addEventListener('valueChange', (e: Event) => {
+        resolve((e as CustomEvent).detail);
+      });
+    });
+  });
+
+  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+  await expect(clearButton).toBeVisible();
+
+  await clearButton.click();
+
+  const emittedValue = await valueChanged;
+
+  expect(emittedValue).toBe('');
+});
+
+test('input does not clear when items added during search', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-select i18n-placeholder="Search in database...">
+        <ix-select-item value="1" label="Initial">Initial</ix-select-item>
+      </ix-select>
+    `);
+
+  const input = page.getByTestId('input');
+
+  await page.locator('[data-select-dropdown]').click();
+  await input.fill('test');
+  await expect(input).toHaveValue('test');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const newItem = document.createElement('ix-select-item');
+    newItem.setAttribute('value', 'test-result');
+    newItem.setAttribute('label', 'Test Result from API');
+    select?.appendChild(newItem);
+  });
+
+  await page.waitForTimeout(100);
+
+  await expect(input).toHaveValue('test');
+  await expect(
+    page.getByRole('button', { name: 'Test Result from API' })
+  ).toBeVisible();
+});

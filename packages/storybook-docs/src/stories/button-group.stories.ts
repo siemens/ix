@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 type Element = Components.IxButton & { defaultSlot: string };

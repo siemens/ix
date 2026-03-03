@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -17,11 +18,10 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { AlignedPlacement } from '../dropdown/placement';
-import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
-import type { SplitButtonVariant } from './split-button.types';
+import { AlignedPlacement } from '../dropdown/placement';
 import { makeRef } from '../utils/make-ref';
+import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
   tag: 'ix-split-button',
@@ -94,6 +94,14 @@ export class SplitButton {
    */
   @Prop() placement: AlignedPlacement = 'bottom-start';
 
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
   @State() toggle = false;
 
   /**
@@ -162,6 +170,7 @@ export class SplitButton {
         <ix-dropdown
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
+          enableTopLayer={this.enableTopLayer}
         >
           <slot></slot>
         </ix-dropdown>

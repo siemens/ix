@@ -24,8 +24,26 @@ const changeTab = (tabId: number) => (selectedTab.value = tabId);
       <IxTabItem @click="changeTab(1)">Tab 2</IxTabItem>
       <IxTabItem @click="changeTab(2)">Tab 3</IxTabItem>
     </IxTabs>
-    <div v-show="selectedTab === 0">Content 1</div>
-    <div v-show="selectedTab === 1">Content 2</div>
-    <div v-show="selectedTab === 2">Content 3</div>
+    <section
+      role="tabpanel"
+      aria-label="Example content"
+      v-show="selectedTab === 0"
+    >
+      Content 1
+    </section>
+    <section
+      role="tabpanel"
+      aria-label="Example content"
+      v-show="selectedTab === 1"
+    >
+      Content 2
+    </section>
+    <section
+      role="tabpanel"
+      aria-label="Example content"
+      v-show="selectedTab === 2"
+    >
+      Content 3
+    </section>
   </div>
 </template>

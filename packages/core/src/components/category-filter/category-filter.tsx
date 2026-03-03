@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -19,16 +20,15 @@ import {
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { FilterState } from './filter-state';
-import { InputState } from './input-state';
-import { LogicalFilterOperator } from './logical-filter-operator';
-import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
-import { makeRef } from '../utils/make-ref';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
+import { FilterState } from './filter-state';
+import { InputState } from './input-state';
+import { LogicalFilterOperator } from './logical-filter-operator';
 
 @Component({
   tag: 'ix-category-filter',
@@ -167,6 +167,14 @@ export class CategoryFilter {
    * @since 3.2.0
    */
   @Prop() ariaLabelFilterInput?: string;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Event dispatched whenever a category gets selected in the dropdown
@@ -914,6 +922,7 @@ export class CategoryFilter {
             anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
+            enableTopLayer={this.enableTopLayer}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>

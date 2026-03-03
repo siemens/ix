@@ -31,13 +31,13 @@ import Blind from './preview-examples/blind.vue';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items.vue';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate.vue';
 import Breadcrumb from './preview-examples/breadcrumb.vue';
-import ButtonDangerGhost from './preview-examples/button-danger-ghost.vue';
-import ButtonDangerOutline from './preview-examples/button-danger-outline.vue';
-import ButtonDanger from './preview-examples/button-danger.vue';
-import ButtonGhost from './preview-examples/button-ghost.vue';
-import ButtonGreyGhost from './preview-examples/button-grey-ghost.vue';
-import ButtonGreySecondary from './preview-examples/button-grey-secondary.vue';
-import ButtonGrey from './preview-examples/button-grey.vue';
+import ButtonDangerTertiary from './preview-examples/button-danger-tertiary.vue';
+import ButtonDangerSecondary from './preview-examples/button-danger-secondary.vue';
+import ButtonDangerPrimary from './preview-examples/button-danger-primary.vue';
+import ButtonTertiary from './preview-examples/button-tertiary.vue';
+import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary.vue';
+import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary.vue';
+import ButtonSubtlePrimary from './preview-examples/button-subtle-primary.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
 import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
@@ -117,10 +117,10 @@ import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vu
 import Group from './preview-examples/group.vue';
 import HtmlTable from './preview-examples/html-table.vue';
 import HtmlTableStriped from './preview-examples/html-table-striped.vue';
-import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost.vue';
-import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline.vue';
-import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
-import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline.vue';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary.vue';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary.vue';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary.vue';
+import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary.vue';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary.vue';
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
@@ -203,11 +203,11 @@ import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
-import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-ghost.vue';
-import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline.vue';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary.vue';
+import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary.vue';
 import ToggleButtonPrimary from './preview-examples/toggle-button-primary.vue';
-import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost.vue';
-import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline.vue';
+import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary.vue';
+import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary.vue';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary.vue';
 import ToggleChecked from './preview-examples/toggle-checked.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
@@ -232,8 +232,16 @@ import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
 import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
 import ProgressIndicator from './preview-examples/progress-indicator.vue';
+import { testIds } from 'framework-tests/tests/test-ids';
 
-const routes: any = {
+const exampleNames = [...testIds, ...'validation'] as const;
+type IxPreviewRoutes = {
+  '/': any;
+} & {
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
+};
+
+const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/action-card': ActionCard,
@@ -254,10 +262,10 @@ const routes: any = {
   '/preview/breadcrumb-next-items': BreadcrumbNextItems,
   '/preview/breadcrumb-truncate': BreadcrumbTruncate,
   '/preview/breadcrumb': Breadcrumb,
-  '/preview/button-ghost': ButtonGhost,
-  '/preview/button-grey-ghost': ButtonGreyGhost,
-  '/preview/button-grey-secondary': ButtonGreySecondary,
-  '/preview/button-grey': ButtonGrey,
+  '/preview/button-tertiary': ButtonTertiary,
+  '/preview/button-subtle-tertiary': ButtonSubtleTertiary,
+  '/preview/button-subtle-secondary': ButtonSubtleSecondary,
+  '/preview/button-subtle-primary': ButtonSubtlePrimary,
   '/preview/button-group': ButtonGroup,
   '/preview/button-loading': ButtonLoading,
   '/preview/button-secondary': ButtonSecondary,
@@ -331,11 +339,11 @@ const routes: any = {
   '/preview/html-table': HtmlTable,
   '/preview/html-table-striped': HtmlTableStriped,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
-  '/preview/icon-toggle-button-primary-ghost': IconToggleButtonPrimaryGhost,
-  '/preview/icon-toggle-button-primary-outline': IconToggleButtonPrimaryOutline,
-  '/preview/icon-toggle-button-secondary-ghost': IconToggleButtonSecondaryGhost,
-  '/preview/icon-toggle-button-secondary-outline':
-    IconToggleButtonSecondaryOutline,
+  '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
+  '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
+  '/preview/icon-toggle-button-subtle-secondary': IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary':
+    IconToggleButtonSubtlePrimary,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
@@ -434,11 +442,11 @@ const routes: any = {
   '/preview/slider': Slider,
   '/preview/tabs-rounded': TabsRounded,
   '/preview/theme-switcher': ThemeSwitcher,
-  '/preview/toggle-button-primary-ghost': ToggleButtonPrimaryGhost,
-  '/preview/toggle-button-primary-outline': ToggleButtonPrimaryOutline,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
   '/preview/toggle-button-primary': ToggleButtonPrimary,
-  '/preview/toggle-button-secondary-ghost': ToggleButtonSecondaryGhost,
-  '/preview/toggle-button-secondary-outline': ToggleButtonSecondaryOutline,
+  '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
+  '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
   '/preview/toggle-button-secondary': ToggleButtonSecondary,
   '/preview/toggle-checked': ToggleChecked,
   '/preview/toggle-custom-label': ToggleCustomLabel,
@@ -447,9 +455,9 @@ const routes: any = {
   '/preview/validation': Validation,
   '/preview/vertical-tabs-with-avatar': VerticalTabsWithAvatar,
   '/preview/vertical-tabs': VerticalTabs,
-  '/preview/button-danger': ButtonDanger,
-  '/preview/button-danger-ghost': ButtonDangerGhost,
-  '/preview/button-danger-outline': ButtonDangerOutline,
+  '/preview/button-danger-primary': ButtonDangerPrimary,
+  '/preview/button-danger-tertiary': ButtonDangerTertiary,
+  '/preview/button-danger-secondary': ButtonDangerSecondary,
   '/preview/form-layout-auto': FormLayoutAuto,
   '/preview/form-layout-grid': FormLayoutGrid,
   '/preview/progress-indicator-linear-status': ProgressIndicatorLinearStatus,
@@ -462,9 +470,8 @@ const routes: any = {
 };
 
 const currentPath = ref(window.location.pathname);
-
 const currentView = computed(() => {
-  return routes[currentPath.value || '/'] || App;
+  return (routes as any)[currentPath.value || '/'] || App;
 });
 </script>
 

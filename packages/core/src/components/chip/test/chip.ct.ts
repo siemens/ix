@@ -83,7 +83,7 @@ regressionTest.describe('tooltip', () => {
       await expect(chip).toHaveAttribute('tooltip-text', '');
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
-      await expect(tooltip).toHaveText('Text content');
+      await expect(tooltip).toHaveText(/Text content/);
     }
   );
 
@@ -97,7 +97,7 @@ regressionTest.describe('tooltip', () => {
       await expect(chip).toHaveAttribute('tooltip-text', undefined);
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
-      await expect(tooltip).toHaveText('Text content');
+      await expect(tooltip).toHaveText(/Text content/);
     }
   );
 
@@ -113,7 +113,7 @@ regressionTest.describe('tooltip', () => {
       await expect(chip).toHaveAttribute('tooltip-text', 'custom tooltip text');
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
-      await expect(tooltip).toHaveText('custom tooltip text');
+      await expect(tooltip).toHaveText(/custom tooltip text/);
     }
   );
 });

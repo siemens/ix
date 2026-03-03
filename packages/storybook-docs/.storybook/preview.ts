@@ -7,10 +7,14 @@ import { preloadIcons } from './preload-icons';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import './preview.css';
 
+declare const window: Window & {
+  hasAdditionalTheme?: boolean;
+};
+
 preloadIcons();
 defineCustomElement();
 
-const additionalTheme = {};
+const additionalTheme: Record<string, string> = {};
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
@@ -35,7 +39,7 @@ const preview: Preview = {
     },
     a11y: {
       // TODO(IX-3023): Set test runner to throw errors for accessibility violations
-      // test: 'error',
+      test: 'todo',
       rules: [
         // TODO(IX-3236): Remove rule if all components pass the aria-valid-attr rule
         {

@@ -27,6 +27,7 @@ export function TextareaElement(
     value: string;
     placeholder?: string;
     textAreaRef: (el: HTMLTextAreaElement | undefined) => void;
+    onFocus?: () => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
@@ -48,6 +49,7 @@ export function TextareaElement(
       required={props.required}
       value={props.value}
       placeholder={props.placeholder}
+      onFocus={() => props.onFocus?.()}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);
@@ -86,6 +88,8 @@ export function InputElement(
     onKeyDown?: (event: KeyboardEvent) => void;
     onBeforeInput?: (event: InputEvent) => void;
     onPaste?: (event: ClipboardEvent) => void;
+    onFocus?: () => void;
+    onEnterKeyChange?: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
@@ -120,6 +124,7 @@ export function InputElement(
       onKeyPress={(event) => props.onKeyPress(event)}
       onKeyDown={(e) => {
         props.onKeyDown?.(e);
+        props.onEnterKeyChange?.(e);
         handleSubmitOnEnterKeydown(
           e,
           !!props.suppressSubmitOnEnter,
@@ -130,6 +135,7 @@ export function InputElement(
         onBeforeInput: (event: InputEvent) => props.onBeforeInput?.(event),
       } as any)}
       onPaste={(event) => props.onPaste?.(event)}
+      onFocus={() => props.onFocus?.()}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);

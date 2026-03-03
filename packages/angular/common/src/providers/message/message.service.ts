@@ -14,6 +14,9 @@ export class MessageService {
     return showMessage(config);
   }
 
+  /**
+   * Displays an info message modal with an info icon
+   */
   public info(
     title: string,
     message: string,
@@ -32,6 +35,9 @@ export class MessageService {
     );
   }
 
+  /**
+   * Displays a warning message modal with a warning icon
+   */
   public warning(
     title: string,
     message: string,
@@ -50,6 +56,9 @@ export class MessageService {
     );
   }
 
+  /**
+   * Displays an error message modal with an error icon
+   */
   public error(
     title: string,
     message: string,
@@ -68,6 +77,9 @@ export class MessageService {
     );
   }
 
+  /**
+   * Displays a success message modal with a success icon
+   */
   public success(
     title: string,
     message: string,
@@ -86,6 +98,9 @@ export class MessageService {
     );
   }
 
+  /**
+   * Displays a question message modal with a question icon
+   */
   public question(
     title: string,
     message: string,

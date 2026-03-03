@@ -83,27 +83,37 @@ for (const { tag, fill } of inputTags) {
     }
   );
 
-  regressionTest(
-    `form-ready - multiple ${tag}s submits form on Enter key when submit button is present`,
-    async ({ mount, page }) => {
-      await mount(`
-        <form onsubmit="globalThis.__formSubmitted = true; return false;">
-          <${tag} name="field-1"></${tag}><${tag} name="field-2"></${tag}><button type="submit">Submit</button>
-        </form>
-      `);
-      await page.evaluate(() => {
-        globalThis.__formSubmitted = false;
-      });
-      const input = page.locator(tag).first().locator('input');
-      await input.fill(fill);
-      await input.focus();
-      await input.press('Enter');
-      const wasSubmitted = await page.evaluate(
-        () => globalThis.__formSubmitted
-      );
-      expect(wasSubmitted).toBe(true);
-    }
-  );
+  const submitButtons = [
+    { name: 'button', markup: '<button type="submit">Submit</button>' },
+    {
+      name: 'ix-button',
+      markup: '<ix-button type="submit">Submit</ix-button>',
+    },
+  ];
+
+  for (const { name, markup } of submitButtons) {
+    regressionTest(
+      `form-ready - multiple ${tag}s submits form on Enter key when ${name} type submit is present`,
+      async ({ mount, page }) => {
+        await mount(`
+          <form onsubmit="globalThis.__formSubmitted = true; return false;">
+            <${tag} name="field-1"></${tag}><${tag} name="field-2"></${tag}>${markup}
+          </form>
+        `);
+        await page.evaluate(() => {
+          globalThis.__formSubmitted = false;
+        });
+        const input = page.locator(tag).first().locator('input');
+        await input.fill(fill);
+        await input.focus();
+        await input.press('Enter');
+        const wasSubmitted = await page.evaluate(
+          () => globalThis.__formSubmitted
+        );
+        expect(wasSubmitted).toBe(true);
+      }
+    );
+  }
 
   regressionTest(
     `form-ready - ${tag} doesn't submit form on Enter key when suppress submit on enter is true`,
@@ -267,7 +277,7 @@ regressionTest(
     });
 
     const counter = page.locator('ix-typography.bottom-text');
-    await expect(counter).toHaveText('0/100');
+    await expect(counter).toHaveText(/0\/100/);
   }
 );
 
@@ -283,7 +293,7 @@ regressionTest(
       el.value = null;
     });
     const counter = page.locator('ix-typography.bottom-text');
-    await expect(counter).toHaveText('0/20');
+    await expect(counter).toHaveText(/0\/20/);
   }
 );
 
@@ -294,7 +304,7 @@ regressionTest(
       `<form><ix-input name="my-field-name" value="221" max-length="20"></ix-input></form>`
     );
     const counter = page.locator('ix-typography.bottom-text').first();
-    await expect(counter).toHaveText('3/20');
+    await expect(counter).toHaveText(/3\/20/);
   }
 );
 
@@ -305,7 +315,7 @@ regressionTest(
       `<form><ix-input name="my-field-name" value=" " max-length="20"></ix-input></form>`
     );
     const counter = page.locator('ix-typography.bottom-text').first();
-    await expect(counter).toHaveText('1/20');
+    await expect(counter).toHaveText(/1\/20/);
   }
 );
 

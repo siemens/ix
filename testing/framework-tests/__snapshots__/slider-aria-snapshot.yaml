@@ -1,0 +1,4 @@
+- slider: /\d+/
+- text: /0 \d+/
+- slider: /\d+/
+- text: /0 \d+/

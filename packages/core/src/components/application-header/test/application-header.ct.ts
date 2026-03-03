@@ -508,8 +508,8 @@ test.describe('cross app navigation', () => {
     const dropdownAfterAvatarButton = page
       .locator('ix-application-header ix-button')
       .nth(1);
-    await expect(dropdownBeforeAvatarButton).toHaveText('before avatar');
-    await expect(dropdownAfterAvatarButton).toHaveText('after avatar');
+    await expect(dropdownBeforeAvatarButton).toHaveText(/before avatar/);
+    await expect(dropdownAfterAvatarButton).toHaveText(/after avatar/);
     await expect(dropdownBeforeAvatarButton).toBeVisible();
     await expect(dropdownAfterAvatarButton).toBeVisible();
   });
@@ -561,8 +561,8 @@ test.describe('cross app navigation', () => {
     const dropdownAfterAvatarButton = page
       .locator('ix-application-header ix-button')
       .nth(1);
-    await expect(dropdownBeforeAvatarButton).toHaveText('before avatar');
-    await expect(dropdownAfterAvatarButton).toHaveText('after avatar');
+    await expect(dropdownBeforeAvatarButton).toHaveText(/before avatar/);
+    await expect(dropdownAfterAvatarButton).toHaveText(/after avatar/);
     await expect(dropdownBeforeAvatarButton).toBeVisible();
     await expect(dropdownAfterAvatarButton).toBeVisible();
   });

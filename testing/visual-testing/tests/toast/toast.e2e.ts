@@ -24,6 +24,7 @@ regressionTest.describe('toast', () => {
   });
 
   regressionTest('custom', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('toast/custom');
     await page.waitForTimeout(200);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

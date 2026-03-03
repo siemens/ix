@@ -43,3 +43,50 @@ $dropdown-offset: 3rem;
 :host(:not(.show)) {
   display: none;
 }
+
+.dialog {
+  margin: 0;
+  border: none;
+  outline: none;
+  padding: 0.25rem 0px;
+  min-width: 0;
+  max-width: 100vw;
+  width: max-content;
+  height: fit-content;
+  background-color: var(--theme-color-2);
+  border-radius: var(--theme-default-border-radius);
+  box-shadow: var(--theme-shadow-4);
+  overflow-x: visible;
+  overflow-y: visible;
+
+  inset: unset;
+
+  color-scheme: inherit;
+  color: var(--theme-color-std-text);
+
+  box-sizing: border-box;
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  .dropdown-container {
+    display: block;
+    position: relative;
+  }
+
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    height: vars.$large-control-height;
+    color: var(--theme-menu-header--color);
+    padding: 0 vars.$default-space;
+  }
+
+  &.overflow {
+    max-height: calc(50vh - $dropdown-offset);
+    overflow-y: auto;
+  }
+}

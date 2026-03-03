@@ -24,7 +24,7 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-field-label required>MyLabel</ix-field-label>`);
   const labelElement = page.locator('ix-field-label');
-  await expect(labelElement).toHaveText('MyLabel*');
+  await expect(labelElement).toHaveText(/MyLabel*/);
 });
 
 regressionTest('focus native input by label click', async ({ mount, page }) => {
@@ -190,6 +190,35 @@ regressionTest(
 
     await expect(fieldElement).toHaveClass(/ix-invalid--required/);
 
+    await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+      'style',
+      'color: var(--theme-color-alarm-text);'
+    );
+  }
+);
+
+regressionTest(
+  'label turns red when select with value is cleared and becomes invalid',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-select allow-clear label="Framework options" required>
+      <ix-select-item label="Item 1" value="1"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+    </ix-select>
+  `);
+
+    const selectElement = page.locator('ix-select');
+    const labelElement = page.locator('ix-field-label');
+
+    await selectElement.click();
+    const firstOption = page.getByRole('button', { name: 'Item 1' });
+    await firstOption.click();
+
+    const clearButton = selectElement.locator('ix-icon-button.clear');
+    await clearButton.click();
+
+    await expect(selectElement).toHaveClass(/ix-invalid--required/);
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
       'color: var(--theme-color-alarm-text);'

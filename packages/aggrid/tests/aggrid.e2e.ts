@@ -121,4 +121,46 @@ regressionTest.describe('aggrid', () => {
       })
     ).toMatchSnapshot();
   });
+
+  regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {
+    regressionTest(
+      'dropdown-button in cell should appear above other rows',
+      async ({ page }) => {
+        await page.goto('dropdown-top-layer/dropdown-top-layer.html');
+
+        const dropdownButton = page
+          .locator('.ag-row[row-index="5"]')
+          .locator('ix-dropdown-button');
+        await dropdownButton.click();
+
+        await page.waitForSelector('ix-dropdown dialog[popover="manual"]', {
+          state: 'attached',
+        });
+
+        expect(
+          await page.screenshot({ fullPage: true, animations: 'disabled' })
+        ).toMatchSnapshot();
+      }
+    );
+
+    regressionTest(
+      'select in cell should appear above other rows',
+      async ({ page }) => {
+        await page.goto('dropdown-top-layer/dropdown-top-layer.html');
+
+        const select = page
+          .locator('.ag-row[row-index="8"]')
+          .locator('ix-select');
+        await select.click();
+
+        await page.waitForSelector('ix-dropdown dialog[popover="manual"]', {
+          state: 'attached',
+        });
+
+        expect(
+          await page.screenshot({ fullPage: true, animations: 'disabled' })
+        ).toMatchSnapshot();
+      }
+    );
+  });
 });
