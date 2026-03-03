@@ -1,1 +1,1 @@
-export const corporateThemeAvailable = false;
+export const corporateThemeAvailable = true;
