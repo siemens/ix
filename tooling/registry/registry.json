@@ -28,16 +28,8 @@
           "path": "blocks/change-password.json"
         },
         {
-          "name": "example-01",
-          "path": "blocks/example-01.json"
-        },
-        {
           "name": "login-overlay",
           "path": "blocks/login-overlay.json"
-        },
-        {
-          "name": "upload-01",
-          "path": "blocks/upload-01.json"
         }
       ],
       "examples": [
