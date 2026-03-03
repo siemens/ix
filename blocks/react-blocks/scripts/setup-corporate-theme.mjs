@@ -36,6 +36,9 @@ function writeAvailabilityFile(isAvailable) {
 
 async function downloadCorporateThemeArchive(archivePath) {
   if (!corporateThemeToken) {
+    console.log(
+      '[corporate-theme] No token provided, skipping corporate theme download.'
+    );
     return false;
   }
 
