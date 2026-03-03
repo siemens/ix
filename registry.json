@@ -8,12 +8,12 @@
     "feat/block-cli": {
       "blocks": [
         {
-          "name": "example-01",
-          "path": "feat/block-cli/blocks/example-01.json"
+          "name": "change-password",
+          "path": "feat/block-cli/blocks/change-password.json"
         },
         {
-          "name": "upload-01",
-          "path": "feat/block-cli/blocks/upload-01.json"
+          "name": "login-overlay",
+          "path": "feat/block-cli/blocks/login-overlay.json"
         }
       ],
       "examples": [
