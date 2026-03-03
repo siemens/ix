@@ -780,6 +780,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return '';
     }
 
+    if (this.selectedLabels?.length) {
+      return '';
+    }
+
     if (this.editable) {
       return this.i18nPlaceholderEditable;
     }
