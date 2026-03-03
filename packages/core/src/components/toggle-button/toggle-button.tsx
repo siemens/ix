@@ -99,12 +99,12 @@ export class ToggleButton {
       onClick: () => this.dispatchPressedChange(),
       type: 'button',
       ariaAttributes: {
+        ...a11y,
         'aria-pressed': a11yBoolean(this.pressed),
         'aria-label':
           a11y['aria-label'] ??
           this.ariaLabelButton ??
           getFallbackLabelFromIconName(this.icon),
-        'aria-describedby': a11y['aria-describedby'],
       },
     };
 

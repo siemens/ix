@@ -200,8 +200,8 @@ export class Button
       type: this.type,
       alignment: this.alignment,
       ariaAttributes: {
+        ...a11y,
         'aria-label': a11y['aria-label'] ?? this.ariaLabelButton,
-        'aria-describedby': a11y['aria-describedby'],
       },
       href: this.href,
       target: this.target,

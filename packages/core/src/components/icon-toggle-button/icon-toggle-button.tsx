@@ -117,9 +117,9 @@ export class IconToggleButton {
       onClick: () => this.dispatchPressedChange(),
       type: 'button',
       ariaAttributes: {
+        ...a11y,
         'aria-pressed': a11yBoolean(this.pressed),
         'aria-label': a11y['aria-label'] ?? this.ariaLabelIconButton,
-        'aria-describedby': a11y['aria-describedby'],
       },
       extraClasses: {
         'icon-button': true,
