@@ -163,7 +163,6 @@ const task = new Listr<Ctx>([
             console.warn(`⚠️  Example source not found: ${srcSourcePath}`);
           }
 
-          // Also copy dist folders if they exist (for previews)
           const distSourcePath = path.join(__examples_root, framework, 'dist');
           const distDestPath = path.join(
             ctx.dist,
@@ -322,7 +321,6 @@ const task = new Listr<Ctx>([
         'search-index'
       );
 
-      // Update registry.json with version-scoped blocks search index paths
       const registryPath = path.join(ctx.dist, 'registry.json');
       const registry = await fs.readJson(registryPath);
       registry.versions ??= {};
@@ -342,7 +340,6 @@ const task = new Listr<Ctx>([
         'examples-search-index'
       );
 
-      // Update registry.json with version-scoped examples search index paths
       const registryPath = path.join(ctx.dist, 'registry.json');
       const registry = await fs.readJson(registryPath);
       registry.versions ??= {};

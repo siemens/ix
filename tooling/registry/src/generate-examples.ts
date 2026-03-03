@@ -68,7 +68,6 @@ async function scanExamples(
     const files = await fs.readdir(examplesPath);
 
     for (const file of files) {
-      // Skip utility files and global styles
       if (file === 'init.js' || file === 'utils.js' || file === 'global.css') {
         continue;
       }
@@ -76,7 +75,6 @@ async function scanExamples(
       const ext = path.extname(file);
       const basename = path.basename(file, ext);
 
-      // Handle scoped CSS files for React
       let exampleName = basename;
       if (basename.endsWith('.scoped')) {
         exampleName = basename.replace('.scoped', '');
@@ -157,7 +155,6 @@ function generateBlockJson(example: ExampleMetadata): any {
   ];
 
   for (const [framework, files] of example.files.entries()) {
-    // Skip if no files for this framework
     if (files.length === 0) continue;
 
     const variant: any = {
@@ -165,7 +162,6 @@ function generateBlockJson(example: ExampleMetadata): any {
       dependencies: [...dependencies],
     };
 
-    // Add framework-specific dependencies
     switch (framework) {
       case 'react':
         variant.dependencies.push({
@@ -193,7 +189,6 @@ function generateBlockJson(example: ExampleMetadata): any {
         break;
     }
 
-    // Add files
     for (const file of files) {
       const targetFileName = getTargetFileName(file, example.name);
       variant.files.push({
@@ -202,7 +197,6 @@ function generateBlockJson(example: ExampleMetadata): any {
       });
     }
 
-    // Map angular-standalone to angular in the variants
     const variantKey =
       framework === 'angular-standalone' ? 'angular-standalone' : framework;
     block.variants[variantKey] = variant;
@@ -229,7 +223,6 @@ export async function generateExampleBlocks(
   for (const [name, example] of examples.entries()) {
     const blockJson = generateBlockJson(example);
 
-    // Only generate if at least one framework variant exists
     if (Object.keys(blockJson.variants).length > 0) {
       const outputPath = path.join(outputDir, `${name}.json`);
       await fs.writeJson(outputPath, blockJson, { spaces: 2 });

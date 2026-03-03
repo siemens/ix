@@ -58,12 +58,10 @@ export async function updateBlocksRegistry(
 ): Promise<void> {
   console.log('📝 Updating registry.json blocks section...');
 
-  // Read current registry
   const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
 
   const blocks: Array<{ name: string; path: string }> = [];
 
-  // Find all manual block JSON files
   const blockFiles = await glob(path.join(blocksDir, '*.json'), {
     absolute: false,
   });
@@ -89,7 +87,6 @@ export async function updateBlocksRegistry(
     latest: options.latestTag ?? options.version,
   };
 
-  // Write updated registry
   await fs.writeJson(registryPath, registry, { spaces: 2 });
 
   console.log(`✅ Updated blocks registry with ${blocks.length} blocks`);
@@ -105,14 +102,10 @@ export async function updateExamplesRegistry(
 ): Promise<void> {
   console.log('📝 Updating registry.json examples section...');
 
-  // Read current registry
   const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
-
   const examples: Array<{ name: string; path: string }> = [];
-
   const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
-  // Find all generated example block JSON files
   if (await fs.pathExists(examplesDir)) {
     const exampleFiles = await glob(path.join(examplesDir, '*.json'), {
       absolute: false,
@@ -140,9 +133,7 @@ export async function updateExamplesRegistry(
     latest: options.latestTag ?? options.version,
   };
 
-  // Write updated registry
   await fs.writeJson(registryPath, registry, { spaces: 2 });
-
   console.log(`✅ Updated examples registry with ${examples.length} examples`);
 }
 
