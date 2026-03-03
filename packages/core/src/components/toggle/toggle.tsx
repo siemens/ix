@@ -232,7 +232,9 @@ export class Toggle implements IxFormComponent<string> {
             }}
           />
           {!this.hideText && (
-            <ix-typography class="label">{toggleText}</ix-typography>
+            <ix-typography class="label" aria-hidden="true">
+              {toggleText}
+            </ix-typography>
           )}
         </div>
       </Host>
