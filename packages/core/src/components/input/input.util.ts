@@ -212,16 +212,46 @@ export function handleSubmitOnEnterKeydown(
   }
 
   event.preventDefault();
-  const submitButton = form.querySelector<HTMLElement>(
-    'button[type="submit"], ix-button[type="submit"]'
+
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]'
   );
 
   if (submitButton) {
     form.requestSubmit(submitButton);
-  }
-
-  if (form.length === 1) {
+  } else if (form.length === 1) {
     form.requestSubmit();
+  }
+}
+
+export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
+  comp.initialValue = currentValue;
+}
+
+export function onInputBlurWithChange<T>(
+  comp: IxFormComponent<T> & {
+    initialValue?: T;
+    ixChange: { emit: (value: T) => void };
+  },
+  input?: HTMLInputElement | HTMLTextAreaElement | null,
+  currentValue?: T
+) {
+  onInputBlur(comp, input);
+
+  if (comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue!);
+    comp.initialValue = currentValue;
+  }
+}
+
+export function onEnterKeyChangeEmit<T>(
+  event: KeyboardEvent,
+  comp: { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  currentValue: T
+) {
+  if (event.key === 'Enter' && comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue);
+    comp.initialValue = currentValue;
   }
 }
 
