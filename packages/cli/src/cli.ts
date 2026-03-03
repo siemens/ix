@@ -11,6 +11,8 @@ program.name('ix').description('Siemens IX Blocks CLI').version('0.1.0');
 
 program.addCommand(initCommand);
 program.addCommand(addCommand);
-program.addCommand(mcpCommand);
+program.addCommand(mcpCommand, {
+  hidden: true,
+});
 
 program.parse(process.argv);
