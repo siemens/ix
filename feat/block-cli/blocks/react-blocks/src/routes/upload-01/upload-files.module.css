@@ -1,0 +1,206 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.uploadCard {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  color: var(--theme-color-soft-text);
+}
+
+.dropZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border: 2px dashed var(--theme-color-soft-border);
+  border-radius: var(--theme-default-border-radius);
+  background-color: var(--theme-color-component-1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  min-height: 280px;
+}
+
+.dropZone:hover {
+  border-color: var(--theme-color-primary);
+  background-color: var(--theme-color-component-2);
+}
+
+.dropZone:focus-visible {
+  outline: 2px solid var(--theme-color-focus-bdr);
+  outline-offset: 2px;
+  border-color: var(--theme-color-primary);
+}
+
+.dropZone.dragging {
+  border-color: var(--theme-color-primary);
+  background-color: var(--theme-color-primary--5);
+  transform: scale(1.01);
+}
+
+.uploadIcon {
+  color: var(--theme-color-primary);
+  opacity: 0.8;
+}
+
+.dropZoneTitle {
+  margin: 0;
+}
+
+.dropZoneText {
+  color: var(--theme-color-soft-text);
+  margin: 0.5rem 0;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.filesSection {
+  width: 100%;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--theme-color-soft-border);
+}
+
+.filesSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--theme-default-border-radius);
+  background-color: var(--theme-color-component-2);
+  border: 1px solid var(--theme-color-soft-border);
+  transition: all 0.2s ease-in-out;
+}
+
+.fileItem:hover {
+  background-color: var(--theme-color-component-3);
+  border-color: var(--theme-color-primary--20);
+}
+
+.fileIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--theme-default-border-radius);
+  background-color: var(--theme-color-primary--10);
+  color: var(--theme-color-primary);
+}
+
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSize {
+  font-size: 0.875rem;
+  color: var(--theme-color-soft-text);
+}
+
+.fileActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.fileChip {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .dropZone {
+    padding: 2rem 1rem;
+    min-height: 220px;
+  }
+
+  .uploadIcon {
+    font-size: 48px !important;
+  }
+
+  .fileItem {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .fileActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .fileChip {
+    flex: 1;
+    max-width: none;
+  }
+}
+
+/* Animation for file item entry */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fileItem {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Focus visible improvements for accessibility */
+.fileItem:focus-within {
+  outline: 2px solid var(--theme-color-focus-bdr);
+  outline-offset: 2px;
+}

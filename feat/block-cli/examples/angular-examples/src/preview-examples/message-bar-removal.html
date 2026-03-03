@@ -1,0 +1,24 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div class="message-bar">
+  <ix-message-bar
+    *ngIf="messageBarVisible"
+    (closeAnimationCompleted)="handleCloseAnimationCompleted()"
+  >
+    Message text
+  </ix-message-bar>
+
+  <ix-button
+    *ngIf="!messageBarVisible"
+    (click)="handleShowMessage()"
+  >
+    Show message bar
+  </ix-button>
+</div>
