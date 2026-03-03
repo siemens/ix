@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-toggle disabled></ix-toggle> `,
+  template: ` <ix-toggle disabled aria-label="Toggle"></ix-toggle> `,
 })
 export default class ToggleCustomDisabled {}

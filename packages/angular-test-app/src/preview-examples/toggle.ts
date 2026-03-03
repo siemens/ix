@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-toggle></ix-toggle> `,
+  template: ` <ix-toggle aria-label="Toggle"></ix-toggle> `,
 })
 export default class Toggle {}

@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'app-example',
   imports: [IxToggle, IxBooleanValueAccessorDirective, FormsModule],
-  template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
+  template: ` <ix-toggle [(ngModel)]="checked" aria-label="Toggle"></ix-toggle>`,
 })
 export default class Toggle {
   checked = false;
