@@ -1,1 +1,0 @@
-import{a as t,c as e,d as s}from"./chunk-V2F66CT3.js";import"./chunk-B4AJQJMI.js";var l=()=>":host{display:block}",i=class{constructor(n){t(this,n),this.contentVisible=!1}render(){return e(s,{key:"08ee2d43aae8b13a3fe73ae6be4616e469795731"},this.contentVisible?e("slot",null):null)}};i.style=l();export{i as ix_flip_tile_content};

@@ -1,2 +1,0 @@
-import{a,d as t,e as s,g as b}from"./chunk-TUPSBSQ4.js";import"./chunk-IXF2NW34.js";var l=()=>":host{display:block}",n=class{constructor(e){a(this,e),this.labelChange=b(this,"labelChange",7)}watchLabel(e,c){this.labelChange.emit({name:"ix-menu-about-item",oldLabel:c,newLabel:e})}render(){return t(s,{key:"2877a9c9386fb74d8c4fcfb72d5f31d8aa9057f1"},t("slot",{key:"fc2e89e7a6a427dbbf3e2030949a4db31c34957e"}))}static get watchers(){return{label:[{watchLabel:0}]}}};n.style=l();export{n as ix_menu_about_item};
-//# sourceMappingURL=ix-menu-about-item.entry-VNGJ5KXO.js.map
