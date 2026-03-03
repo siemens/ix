@@ -12,7 +12,6 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import dedent from 'dedent';
-import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Framework } from '../detect';
 import { auditTools } from './tools/audit-tools';
 import { blockTools } from './tools/block-tools';
@@ -22,6 +21,7 @@ import { figmaTools } from './tools/figma-tools';
 import { iconTools } from './tools/icon-tools';
 import { ToolContext, ToolDefinition } from './tools/types';
 import { setupTools } from './tools/setup-tools';
+import { toJSONSchema } from 'zod';
 
 const promptNodeModulesExcluded = dedent`Important:
 node_modules is excluded by default in VS Code search settings.
@@ -70,7 +70,7 @@ export const createServer = (
       tools: tools.map((tool) => ({
         name: tool.name,
         description: tool.description,
-        inputSchema: zodToJsonSchema(tool.schema),
+        inputSchema: toJSONSchema(tool.schema),
       })),
     };
   });

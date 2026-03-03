@@ -760,7 +760,7 @@ importers:
     dependencies:
       '@modelcontextprotocol/sdk':
         specifier: ^1.25.3
-        version: 1.25.3(hono@4.12.3)(zod@3.25.75)
+        version: 1.25.3(hono@4.12.3)(zod@4.3.6)
       commander:
         specifier: ^14.0.2
         version: 14.0.3
@@ -783,11 +783,8 @@ importers:
         specifier: ^7.6.3
         version: 7.7.3
       zod:
-        specifier: ^3.24.1
-        version: 3.25.75
-      zod-to-json-schema:
-        specifier: ^3.25.1
-        version: 3.25.1(zod@3.25.75)
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4
@@ -18149,7 +18146,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@modelcontextprotocol/sdk@1.25.3(hono@4.12.3)(zod@3.25.75)':
+  '@modelcontextprotocol/sdk@1.25.3(hono@4.12.3)(zod@4.3.6)':
     dependencies:
       '@hono/node-server': 1.19.9(hono@4.12.3)
       ajv: 8.17.1
@@ -18165,8 +18162,8 @@ snapshots:
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.0
       raw-body: 3.0.0
-      zod: 3.25.75
-      zod-to-json-schema: 3.25.1(zod@3.25.75)
+      zod: 4.3.6
+      zod-to-json-schema: 3.25.1(zod@4.3.6)
     transitivePeerDependencies:
       - hono
       - supports-color
