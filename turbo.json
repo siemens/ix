@@ -8,9 +8,12 @@
     "BASE_URL",
     "REGISTRY_VERSION",
     "REGISTRY_PATH_PREFIX",
-    "REGISTRY_LATEST_TAG"
+    "REGISTRY_LATEST_TAG",
+    "CORPORATE_THEME_VERSION",
+    "CORPORATE_THEME_URL"
   ],
-  "globalDependencies": [".env"],
+  "globalPassThroughEnv": ["CORPORATE_THEME_TOKEN"],
+  "globalDependencies": [".env*", "**/.env*"],
   "ui": "stream",
   "tasks": {
     "build": {

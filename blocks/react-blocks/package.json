@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "setup:corporate-theme": "node ./scripts/setup-corporate-theme.mjs",
+    "predev": "pnpm run setup:corporate-theme",
+    "prebuild": "pnpm run setup:corporate-theme",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
