@@ -376,7 +376,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
       return;
     }
 
-    const currentValue = this.value ?? 0;
+    const currentValue =
+      this.convertNumberStringToFloat(this.inputRef.current.value) ?? 0;
     const stepValue =
       typeof this.step === 'string'
         ? Number.parseFloat(this.step)
