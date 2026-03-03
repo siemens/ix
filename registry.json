@@ -1,5 +1,5 @@
 {
-  "$schema": "./schemas/registry.schema.json",
+  "$schema": "./registry.schema.json",
   "name": "siemens-ix-registry",
   "dist-tags": {
     "latest": "feat/block-cli"
