@@ -104,22 +104,13 @@ const task = new Listr<Ctx>([
     title: 'Copy angular blocks to dist',
     task: async (ctx) => {
       const dest = path.join(ctx.dist, 'blocks', 'angular-standalone-blocks');
-      await Promise.all([
-        fs.copy(
-          path.join(__angular_standalone_blocks, 'dist'),
-          path.join(dest, 'dist'),
-          {
-            dereference: true,
-          }
-        ),
-        fs.copy(
-          path.join(__angular_standalone_blocks, 'src'),
-          path.join(dest, 'src'),
-          {
-            dereference: true,
-          }
-        ),
-      ]);
+      await fs.copy(
+        path.join(__angular_standalone_blocks, 'src'),
+        path.join(dest, 'src'),
+        {
+          dereference: true,
+        }
+      );
     },
   },
   {
@@ -162,20 +153,26 @@ const task = new Listr<Ctx>([
           } else {
             console.warn(`⚠️  Example source not found: ${srcSourcePath}`);
           }
-
-          const distSourcePath = path.join(__examples_root, framework, 'dist');
-          const distDestPath = path.join(
-            ctx.dist,
-            'examples',
-            framework,
-            'dist'
-          );
-
-          if (await fs.pathExists(distSourcePath)) {
-            await fs.copy(distSourcePath, distDestPath, { dereference: true });
-          }
         })
       );
+
+      const htmlDistSourcePath = path.join(
+        __examples_root,
+        'html-examples',
+        'dist'
+      );
+      const htmlDistDestPath = path.join(
+        ctx.dist,
+        'examples',
+        'html-examples',
+        'dist'
+      );
+
+      if (await fs.pathExists(htmlDistSourcePath)) {
+        await fs.copy(htmlDistSourcePath, htmlDistDestPath, {
+          dereference: true,
+        });
+      }
     },
   },
   {
