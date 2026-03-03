@@ -31,7 +31,6 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
-  onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
 import {
@@ -60,7 +59,9 @@ import type { DateInputValidityState } from './date-input.types';
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
 export class DateInput implements IxInputFieldComponent<string | undefined> {
@@ -361,6 +362,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
+      this.inputElementRef.current?.focus();
     }
 
     this.emitValidityStateChangeIfChanged();
@@ -389,8 +391,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    onEnterKeyChangeEmit(event, this, this.value);
-
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -406,6 +406,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -430,8 +431,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
-            this.initialValue = this.value;
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -453,12 +452,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            aria-hidden={this.ariaLabelCalendarButton}
+            tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -529,6 +529,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           disabled: this.disabled,
           readonly: this.readonly,
         }}
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
       >
         <ix-field-wrapper
           label={this.label}
@@ -558,6 +568,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
+          focusTrapOptions={{
+            targetElement: this.datepickerRef,
+            trapFocusInShadowDom: true,
+          }}
+          callbackFocusElement={() => {
+            this.datepickerRef.current?.focusActiveDay();
+            return true;
+          }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
         >
           <ix-date-picker
             ref={this.datepickerRef}
@@ -579,6 +598,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
+            // onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

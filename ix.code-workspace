@@ -61,10 +61,6 @@
       "path": "./packages/eslint-config-ix"
     },
     {
-      "name": "figma-plugin",
-      "path": "./packages/figma-plugin"
-    },
-    {
       "name": "storybook",
       "path": "./packages/storybook-docs"
     },

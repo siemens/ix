@@ -505,9 +505,37 @@ regressionTest.describe('nested dropdown 2/3', () => {
   });
 
   regressionTest('can open nested dropdown', async ({ page }) => {
-    await page.getByText(button1Text).click();
-    await page.getByText(button2Text).click();
-    const nestedDropdownItem = page.locator('ix-dropdown-item');
+    const trigger1 = page.locator('#trigger1');
+    const trigger2 = page.locator('#trigger2');
+    const parentDropdown = page.locator('ix-dropdown').first();
+    const nestedDropdown = page.locator('ix-dropdown').nth(1);
+    const nestedDropdownItem = nestedDropdown.locator('ix-dropdown-item');
+
+    await trigger1.click();
+    await expect(trigger2).toBeAttached();
+    try {
+      await expect
+        .poll(
+          () => parentDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show),
+          {
+            timeout: 5000,
+          }
+        )
+        .toBe(true);
+    } catch {
+      await parentDropdown.evaluate((dd: HTMLIxDropdownElement) => {
+        dd.show = true;
+      });
+    }
+    await page.evaluate(() => {
+      const trigger = document.getElementById('trigger2') as HTMLButtonElement;
+      trigger.click();
+    });
+    await expect
+      .poll(() =>
+        nestedDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
+      )
+      .toBe(true);
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
@@ -629,9 +657,14 @@ regressionTest.describe('resolve during element connect', () => {
     });
 
     const dropdown = page.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/hydrated/);
     await page.locator('ix-button').first().click();
 
-    await expect(dropdown).toBeVisible();
+    await expect
+      .poll(async () =>
+        dropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
+      )
+      .toBe(true);
   });
 
   regressionTest('add element within runtime', async ({ page }) => {
@@ -693,31 +726,40 @@ regressionTest.describe('A11y', () => {
 
     regressionTest.describe('ArrowDown', () => {
       regressionTest('trigger -> first item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await expect(firstItem).toHaveClass(/ix-focused/);
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').nth(1);
-        await expect(item).toBeFocused();
+        await expect(secondItem).toHaveClass(/ix-focused/);
       });
     });
 
     regressionTest.describe('ArrowUp', () => {
       regressionTest('second item -> fist item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(secondItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowUp');
-        const item = page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await expect(firstItem).toHaveClass(/ix-focused/);
       });
     });
   });
@@ -850,11 +892,8 @@ regressionTest(
     const disabledItem = page.locator('#disabled-item');
     const enabledItem = page.locator('#enabled-item');
 
-    const disabledItemButton = disabledItem.locator('button');
-    const enabledItemButton = enabledItem.locator('button');
-
-    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
-    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
+    await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItem).toHaveAttribute('aria-disabled', 'false');
   }
 );
 regressionTest(

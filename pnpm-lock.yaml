@@ -35,6 +35,11 @@ overrides:
   cheerio: 1.0.0-rc.12
   rollup: npm:@rollup/wasm-node
 
+patchedDependencies:
+  '@stencil/core':
+    hash: 5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193
+    path: patches/@stencil__core.patch
+
 importers:
 
   .:
@@ -465,22 +470,22 @@ importers:
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@1.21.7))(typescript@5.4.5))(eslint@9.39.3(jiti@1.21.7))(typescript@5.4.5))(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@1.21.7))(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@1.21.7)))(eslint@9.39.3(jiti@1.21.7))(typescript@5.4.5)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.43.1)
+        version: 2.2.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))
       '@stencil/angular-output-target':
         specifier: ^1.3.0
-        version: 1.3.0(@stencil/core@4.43.1)
+        version: 1.3.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))
       '@stencil/core':
         specifier: ^4.43.1
-        version: 4.43.1
+        version: 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       '@stencil/react-output-target':
         specifier: ^1.4.2
-        version: 1.4.2(@stencil/core@4.43.1)(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 1.4.2(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@stencil/sass':
         specifier: ^3.2.3
-        version: 3.2.3(@stencil/core@4.43.1)
+        version: 3.2.3(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))
       '@stencil/vue-output-target':
         specifier: ^0.13.1
-        version: 0.13.1(@stencil/core@4.43.1)(vue@3.5.17(typescript@5.4.5))
+        version: 0.13.1(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -867,7 +872,7 @@ importers:
         version: 3.2.0
       '@stencil/react-output-target':
         specifier: ^1.2.0
-        version: 1.2.0(@stencil/core@4.43.1)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.2.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tslib:
         specifier: '*'
         version: 2.8.1
@@ -1065,7 +1070,7 @@ importers:
         version: 3.4.0
       '@stencil/core':
         specifier: ~4.17.0
-        version: 4.17.2
+        version: 4.17.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       '@storybook/addon-a11y':
         specifier: ^10.1.11
         version: 10.1.11(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))
@@ -1125,7 +1130,7 @@ importers:
         version: 3.2.0
       '@stencil/vue-output-target':
         specifier: ^0.12.0
-        version: 0.12.2(@stencil/core@4.43.1)(vue@3.5.17(typescript@5.8.3))
+        version: 0.12.2(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -4281,11 +4286,6 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.57.1':
-    resolution: {integrity: sha512-b0rcJH8ykEanfgTeDtlPubhphIUOx0oaAek+3hizTaFkoC1FBSTsY0GixwB4D5HZ5r3Gt2yI9c8M13OcW/kW5A==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-
   '@rollup/wasm-node@4.59.0':
     resolution: {integrity: sha512-cKB/Pe05aJWQYw3UFS79Id+KVXdExBxWful0+CSl24z3ukwOgBSy6l39XZNwfm3vCh/fpUrAAs+T7PsJ6dC8NA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -4396,8 +4396,8 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  '@stencil/core@4.37.1':
-    resolution: {integrity: sha512-s4ZroxdYc2HU0b7V3n59RVtMKdNlTvWWBN8KofaP64eCzvg1qRh6SKMet7MJ069F1lx/FxDvsYfOv7pZRiMWmQ==}
+  '@stencil/core@4.43.0':
+    resolution: {integrity: sha512-6Uj2Z3lzLuufYAE7asZ6NLKgSwsB9uxl84Eh34PASnUjfj32GkrP4DtKK7fNeh1WFGGyffsTDka3gwtl+4reUg==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -8773,10 +8773,6 @@ packages:
 
   minimatch@10.0.3:
     resolution: {integrity: sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==}
-    engines: {node: 20 || >=22}
-
-  minimatch@10.1.1:
-    resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
     engines: {node: 20 || >=22}
 
   minimatch@10.2.2:
@@ -14930,7 +14926,7 @@ snapshots:
 
   '@ionic/core@8.7.4':
     dependencies:
-      '@stencil/core': 4.36.2
+      '@stencil/core': 4.36.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       ionicons: 8.0.13
       tslib: 2.8.1
 
@@ -16129,12 +16125,6 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.57.1':
-    dependencies:
-      '@types/estree': 1.0.8
-    optionalDependencies:
-      fsevents: 2.3.3
-
   '@rollup/wasm-node@4.59.0':
     dependencies:
       '@types/estree': 1.0.8
@@ -16241,18 +16231,18 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil-community/postcss@2.2.0(@stencil/core@4.43.1)':
+  '@stencil-community/postcss@2.2.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))':
     dependencies:
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       postcss: 8.4.48
 
-  '@stencil/angular-output-target@1.3.0(@stencil/core@4.43.1)':
+  '@stencil/angular-output-target@1.3.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))':
     dependencies:
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
-  '@stencil/core@4.17.2': {}
+  '@stencil/core@4.17.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)': {}
 
-  '@stencil/core@4.36.2':
+  '@stencil/core@4.36.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.34.9
       '@rollup/rollup-darwin-x64': 4.34.9
@@ -16263,7 +16253,7 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/core@4.37.1':
+  '@stencil/core@4.43.0(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.34.9
       '@rollup/rollup-darwin-x64': 4.34.9
@@ -16274,7 +16264,7 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/core@4.43.1':
+  '@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.44.0
       '@rollup/rollup-darwin-x64': 4.44.0
@@ -16285,10 +16275,10 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.44.0
       '@rollup/rollup-win32-x64-msvc': 4.44.0
 
-  '@stencil/react-output-target@1.2.0(@stencil/core@4.43.1)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.3.26)
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       html-react-parser: 5.2.2(@types/react@18.3.26)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -16297,10 +16287,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/react-output-target@1.4.2(@stencil/core@4.43.1)(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@stencil/react-output-target@1.4.2(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@19.1.0)
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       html-react-parser: 5.2.2(@types/react@19.1.0)(react@19.1.1)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
@@ -16309,9 +16299,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.2.3(@stencil/core@4.43.1)':
+  '@stencil/sass@3.2.3(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))':
     dependencies:
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       sass-embedded: 1.93.0
 
   '@stencil/ssr@0.3.0(next@16.1.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0))(vite@7.3.1(@types/node@20.16.5)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))(webpack@5.99.9)':
@@ -16326,17 +16316,17 @@ snapshots:
       vite: 7.3.1(@types/node@20.16.5)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
       webpack: 5.99.9
 
-  '@stencil/vue-output-target@0.12.2(@stencil/core@4.43.1)(vue@3.5.17(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.12.2(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
-  '@stencil/vue-output-target@0.13.1(@stencil/core@4.43.1)(vue@3.5.17(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.13.1(@stencil/core@4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
     dependencies:
       vue: 3.5.17(typescript@5.4.5)
     optionalDependencies:
-      '@stencil/core': 4.43.1
+      '@stencil/core': 4.43.1(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
   '@storybook/addon-a11y@10.1.11(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))':
     dependencies:
@@ -20306,7 +20296,7 @@ snapshots:
 
   glob@13.0.0:
     dependencies:
-      minimatch: 10.1.1
+      minimatch: 10.2.2
       minipass: 7.1.2
       path-scurry: 2.0.1
 
@@ -20721,11 +20711,11 @@ snapshots:
 
   ionicons@7.4.0:
     dependencies:
-      '@stencil/core': 4.37.1
+      '@stencil/core': 4.17.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
   ionicons@8.0.13:
     dependencies:
-      '@stencil/core': 4.37.1
+      '@stencil/core': 4.43.0(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
   ip-address@9.0.5:
     dependencies:
@@ -22235,10 +22225,6 @@ snapshots:
   minimalistic-assert@1.0.1: {}
 
   minimatch@10.0.3:
-    dependencies:
-      '@isaacs/brace-expansion': 5.0.0
-
-  minimatch@10.1.1:
     dependencies:
       '@isaacs/brace-expansion': 5.0.0
 
@@ -25652,7 +25638,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.57.1'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 20.16.5
@@ -25672,7 +25658,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.57.1'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 20.16.5
@@ -25691,7 +25677,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.57.1'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 22.15.33
@@ -25710,7 +25696,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.57.1'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 24.0.14
@@ -25729,7 +25715,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
-      rollup: '@rollup/wasm-node@4.57.1'
+      rollup: '@rollup/wasm-node@4.59.0'
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 25.2.0

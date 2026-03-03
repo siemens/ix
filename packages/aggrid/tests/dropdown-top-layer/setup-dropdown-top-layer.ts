@@ -27,16 +27,17 @@ class DropdownButtonRenderer {
   eGui!: HTMLElement;
 
   init(params: ICellRendererParams) {
-    this.eGui = document.createElement('div');
-    this.eGui.innerHTML = `
-      <ix-dropdown-button label="${params.value}" enable-top-layer="true">
+    const element = document.createElement('ix-dropdown-button');
+    element.label = params.value;
+    element.enableTopLayer = true;
+    element.innerHTML = `
         <ix-dropdown-item label="Edit"></ix-dropdown-item>
         <ix-dropdown-item label="Delete"></ix-dropdown-item>
         <ix-dropdown-item label="Duplicate"></ix-dropdown-item>
         <ix-dropdown-item label="Export"></ix-dropdown-item>
         <ix-dropdown-item label="Archive"></ix-dropdown-item>
-      </ix-dropdown-button>
     `;
+    this.eGui = element;
   }
 
   getGui() {

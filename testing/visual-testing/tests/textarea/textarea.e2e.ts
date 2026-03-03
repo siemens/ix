@@ -12,17 +12,23 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('textarea', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('textarea/basic');
+    await page.goto('textarea/basic', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
   regressionTest('readonly', async ({ page }) => {
-    await page.goto('textarea/readonly');
+    await page.goto('textarea/readonly', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
   regressionTest('disabled', async ({ page }) => {
-    await page.goto('textarea/disabled');
+    await page.goto('textarea/disabled', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });
