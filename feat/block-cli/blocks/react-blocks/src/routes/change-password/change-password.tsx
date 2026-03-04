@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  IxApplicationContext,
   IxButton,
   IxInput,
   IxModalContent,
@@ -17,7 +18,7 @@ import {
   showModal,
 } from '@siemens/ix-react';
 import type { ModalRef } from '@siemens/ix-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './change-password.module.css';
 
 interface PasswordRule {
@@ -151,7 +152,7 @@ export default function ChangePassword() {
     null
   );
 
-  const openModal = async () => {
+  const openModal = useCallback(async () => {
     if (modalInstanceRef.current) {
       dismissModal(modalInstanceRef.current);
     }
@@ -160,20 +161,26 @@ export default function ChangePassword() {
       size: '480',
       content: <ChangePasswordModal />,
     });
-  };
+  }, []);
 
   useEffect(() => {
+    void openModal();
+
     return () => {
       if (modalInstanceRef.current) {
         dismissModal(modalInstanceRef.current);
         modalInstanceRef.current = null;
       }
     };
-  }, []);
+  }, [openModal]);
 
   return (
-    <div className={styles.viewport}>
-      <IxButton onClick={openModal}>Open change password modal</IxButton>
-    </div>
+    // IxApplicationContext is required to use Ix components within the modal content
+    // Normally it would be provided at a higher level in the app e.g into the main.tsx.
+    <IxApplicationContext>
+      <div className={styles.viewport}>
+        <IxButton onClick={openModal}>Open change password modal</IxButton>
+      </div>
+    </IxApplicationContext>
   );
 }
