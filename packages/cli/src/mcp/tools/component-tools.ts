@@ -36,8 +36,10 @@ export const componentTools: ToolDefinition[] = [
     schema: searchComponentApiSchema,
     handler: async (args, context) => {
       try {
-        const results = await searchComponents(args.query, {
-          limit: args.limit || 10,
+        const parsedArgs = searchComponentApiSchema.parse(args);
+
+        const results = await searchComponents(parsedArgs.query, {
+          limit: parsedArgs.limit || 10,
         });
 
         if (results.length === 0) {
@@ -45,7 +47,7 @@ export const componentTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`No components found matching "${args.query}".
+                text: dedent`No components found matching "${parsedArgs.query}".
 
                 Try different search terms like:
                 - Component types (button, input, modal, select)
@@ -72,7 +74,7 @@ export const componentTools: ToolDefinition[] = [
           content: [
             {
               type: 'text',
-              text: dedent`Found ${results.length} component(s) matching "${args.query}":
+              text: dedent`Found ${results.length} component(s) matching "${parsedArgs.query}":
 
               ${resultsList}
 
@@ -109,14 +111,15 @@ export const componentTools: ToolDefinition[] = [
     schema: getComponentDetailsSchema,
     handler: async (args, context) => {
       try {
-        const details = await getComponentDetails(args.componentTag);
+        const parsedArgs = getComponentDetailsSchema.parse(args);
+        const details = await getComponentDetails(parsedArgs.componentTag);
 
         if (!details) {
           return {
             content: [
               {
                 type: 'text',
-                text: `Component "${args.componentTag}" not found.`,
+                text: `Component "${parsedArgs.componentTag}" not found.`,
               },
             ],
           };
@@ -162,6 +165,10 @@ export const componentTools: ToolDefinition[] = [
           ? details.dependencies.map((d) => `- ${d}`).join('\n')
           : 'None';
 
+        const relatedExamplesList = details.relatedExamples?.length
+          ? details.relatedExamples.map((example) => `- ${example}`).join('\n')
+          : 'No related examples found';
+
         let docSection = '';
         if (
           details.documentationContent &&
@@ -194,6 +201,9 @@ export const componentTools: ToolDefinition[] = [
 
               ## Dependencies
               ${depsList}
+
+              ## Related Examples
+              ${relatedExamplesList}
 
               **Framework Usage (${context.framework}):**
               ${

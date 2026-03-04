@@ -24,6 +24,7 @@ type RegistryVersionEntry = {
     componentDoc: string;
     componentIndex: string;
     componentSearchIndex: string;
+    componentRelatedExamples: string;
   };
   searchIndex?: {
     blocks?: SearchIndexMap;
@@ -122,6 +123,10 @@ function prefixComponents(
     componentSearchIndex: prefixVersionPath(
       version,
       components.componentSearchIndex
+    ),
+    componentRelatedExamples: prefixVersionPath(
+      version,
+      components.componentRelatedExamples
     ),
   };
 }

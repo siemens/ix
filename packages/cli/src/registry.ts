@@ -10,6 +10,7 @@ export type RegistryIndex = {
         componentDoc: string;
         componentIndex: string;
         componentSearchIndex: string;
+        componentRelatedExamples?: string;
       };
       searchIndex?: {
         blocks?: {

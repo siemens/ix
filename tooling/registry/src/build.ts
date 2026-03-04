@@ -36,6 +36,47 @@ const __ix_component_search_index = path.join(
   __ix_package,
   'component-search-index.json'
 );
+const __html_examples_component_usage_by_component = path.join(
+  __examples_root,
+  'html-examples',
+  'component-usage-by-component.json'
+);
+
+function normalizeRelatedExamples(
+  input: Record<string, string[]>
+): Record<string, string[]> {
+  const result: Record<string, string[]> = {};
+
+  const toExampleName = (value: string): string | null => {
+    const normalized = value.replace(/\\/g, '/');
+    const previewExampleMatch = normalized.match(
+      /\/src\/preview-examples\/([^/]+)\.html$/
+    );
+
+    if (previewExampleMatch?.[1]) {
+      return previewExampleMatch[1];
+    }
+
+    const htmlFileMatch = normalized.match(/([^/]+)\.html$/);
+    if (htmlFileMatch?.[1]) {
+      return htmlFileMatch[1];
+    }
+
+    return null;
+  };
+
+  for (const [component, entries] of Object.entries(input)) {
+    const normalizedEntries = Array.from(
+      new Set(entries.map(toExampleName).filter((name): name is string => !!name))
+    ).sort();
+
+    if (normalizedEntries.length > 0) {
+      result[component] = normalizedEntries;
+    }
+  }
+
+  return result;
+}
 
 interface Ctx {
   dist: string;
@@ -195,6 +236,28 @@ const task = new Listr<Ctx>([
           }
         ),
       ]);
+
+      const componentRelatedExamplesTarget = path.join(
+        dest,
+        'component-related-examples.json'
+      );
+
+      if (await fs.pathExists(__html_examples_component_usage_by_component)) {
+        const relatedExamples = (await fs.readJson(
+          __html_examples_component_usage_by_component
+        )) as Record<string, string[]>;
+
+        await fs.outputJson(
+          componentRelatedExamplesTarget,
+          normalizeRelatedExamples(relatedExamples),
+          { spaces: 2 }
+        );
+      } else {
+        console.warn(
+          `⚠️  Related examples file not found: ${__html_examples_component_usage_by_component}. Creating empty mapping.`
+        );
+        await fs.outputJson(componentRelatedExamplesTarget, {}, { spaces: 2 });
+      }
     },
   },
   {
@@ -221,6 +284,7 @@ const task = new Listr<Ctx>([
           componentDoc: 'ix/component-doc.json',
           componentIndex: 'ix/component-index.json',
           componentSearchIndex: 'ix/component-search-index.json',
+          componentRelatedExamples: 'ix/component-related-examples.json',
         },
       });
     },

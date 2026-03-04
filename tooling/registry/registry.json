@@ -1009,7 +1009,8 @@
       "components": {
         "componentDoc": "ix/component-doc.json",
         "componentIndex": "ix/component-index.json",
-        "componentSearchIndex": "ix/component-search-index.json"
+        "componentSearchIndex": "ix/component-search-index.json",
+        "componentRelatedExamples": "ix/component-related-examples.json"
       }
     }
   }

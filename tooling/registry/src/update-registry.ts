@@ -26,6 +26,7 @@ type UnifiedRegistry = {
         componentDoc: string;
         componentIndex: string;
         componentSearchIndex: string;
+        componentRelatedExamples: string;
       };
     }
   >;
@@ -39,6 +40,7 @@ interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
     componentDoc: string;
     componentIndex: string;
     componentSearchIndex: string;
+    componentRelatedExamples: string;
   };
 }
 

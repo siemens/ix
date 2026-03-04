@@ -64,12 +64,17 @@
           "required": [
             "componentDoc",
             "componentIndex",
-            "componentSearchIndex"
+            "componentSearchIndex",
+            "componentRelatedExamples"
           ],
           "properties": {
             "componentDoc": { "type": "string", "pattern": "\\.json$" },
             "componentIndex": { "type": "string", "pattern": "\\.json$" },
             "componentSearchIndex": {
+              "type": "string",
+              "pattern": "\\.json$"
+            },
+            "componentRelatedExamples": {
               "type": "string",
               "pattern": "\\.json$"
             }

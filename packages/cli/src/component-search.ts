@@ -17,6 +17,7 @@ type ComponentRegistryEntry = {
     componentDoc: string;
     componentIndex: string;
     componentSearchIndex: string;
+    componentRelatedExamples?: string;
   };
 };
 
@@ -33,7 +34,8 @@ type ComponentsRegistryIndex = {
 type ComponentJsonType =
   | 'componentDoc'
   | 'componentIndex'
-  | 'componentSearchIndex';
+  | 'componentSearchIndex'
+  | 'componentRelatedExamples';
 
 export interface ComponentSearchResult {
   tag: string;
@@ -45,6 +47,7 @@ export interface ComponentDetails {
   tag: string;
   documentation?: string[];
   documentationContent?: string[];
+  relatedExamples?: string[];
   props?: Array<{
     name: string;
     type: string;
@@ -215,7 +218,9 @@ function readLocalRegistryArtifact(jsonType: ComponentJsonType): string | null {
 async function readRemoteRegistryArtifact(
   jsonType: ComponentJsonType
 ): Promise<string> {
-  const registryResponse = await fetch(`${DEFAULT_REGISTRY_BASE_URL}/registry.json`);
+  const registryResponse = await fetch(
+    `${DEFAULT_REGISTRY_BASE_URL}/registry.json`
+  );
 
   if (!registryResponse.ok) {
     throw new Error(
@@ -265,6 +270,7 @@ async function loadComponentJsonArtifact(
       componentDoc: 'component-doc.json',
       componentIndex: 'component-index.json',
       componentSearchIndex: 'component-search-index.json',
+      componentRelatedExamples: 'component-related-examples.json',
     };
 
     const packageArtifactPath = path.join(
@@ -349,6 +355,10 @@ export async function getComponentDetails(
   componentTag: string
 ): Promise<ComponentDetails | null> {
   try {
+    const relatedExamplesMap = JSON.parse(
+      await loadComponentJsonArtifact('componentRelatedExamples')
+    ) as Record<string, string[]>;
+
     const componentDoc = JSON.parse(
       await loadComponentJsonArtifact('componentDoc')
     );
@@ -374,6 +384,7 @@ export async function getComponentDetails(
       tag: component.tag,
       documentation: docUrls,
       documentationContent,
+      relatedExamples: relatedExamplesMap[component.tag] ?? [],
       props: component.props?.map((p: any) => ({
         name: p.name,
         type: p.type,
