@@ -26,6 +26,7 @@ import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
  * @figma-main-component-id 358:3004
  */
 @Component({

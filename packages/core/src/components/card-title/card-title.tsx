@@ -1,6 +1,7 @@
 import { Component, h, Host } from '@stencil/core';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
  * @slot title-actions - Place additional actions inside title
  */
 @Component({

@@ -9,6 +9,9 @@
 
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ */
 @Component({
   tag: 'ix-modal-footer',
   styleUrl: 'modal-footer.scss',

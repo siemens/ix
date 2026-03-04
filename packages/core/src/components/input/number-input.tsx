@@ -45,12 +45,16 @@ let numberInputIds = 0;
 const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ *
+ * @figma-main-component-id 42365:39459
+ *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
- */
-/**
- * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
  */
 @Component({
   tag: 'ix-number-input',

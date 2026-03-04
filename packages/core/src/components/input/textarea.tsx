@@ -37,8 +37,6 @@ import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
  * @form-ready
- */
-/**
  * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
  */
 @Component({

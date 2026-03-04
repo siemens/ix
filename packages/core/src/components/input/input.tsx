@@ -47,6 +47,10 @@ let inputIds = 0;
 /**
  *
  * @documentation https://ix.siemens.io//docs/components/input/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ *
  * @figma-main-component-id 42365:39459
  *
  * @form-ready

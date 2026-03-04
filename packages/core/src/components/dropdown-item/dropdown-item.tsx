@@ -25,6 +25,7 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
  * @figma-main-component-id 1603:52792
  */
 @Component({

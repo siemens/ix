@@ -19,6 +19,9 @@ import { IxComponent } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
  * @figma-main-component-id 1682:60975
  */
 @Component({

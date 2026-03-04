@@ -20,6 +20,10 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordionControlId++].join('-');
 };
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @figma-main-component-id 104612:25530
+ */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',

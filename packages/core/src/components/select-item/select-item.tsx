@@ -24,6 +24,9 @@ import {
 } from './events';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/select/guide.md
+ */
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',

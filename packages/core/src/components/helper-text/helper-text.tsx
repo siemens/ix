@@ -9,6 +9,11 @@ import {
 import { HelperText as HelperTextUtil } from '../field-wrapper/helper-text-util';
 import { IxComponent } from '../utils/internal';
 
+/**
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ */
 @Component({
   tag: 'ix-helper-text',
   styleUrl: 'helper-text.scss',

@@ -107,6 +107,7 @@ export { TextDecoration, TypographyColors, TypographyFormat } from "./components
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25269
      */
     interface IxActionCard {
@@ -353,6 +354,7 @@ export namespace Components {
         "visibleItemCount": number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 358:3004
      */
     interface IxBreadcrumbItem {
@@ -492,6 +494,10 @@ export namespace Components {
          */
         "variant": CardVariant;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
@@ -511,6 +517,7 @@ export namespace Components {
         "variant": CardAccordionVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface IxCardContent {
@@ -569,6 +576,9 @@ export namespace Components {
          */
         "suppressOverflowHandling": boolean;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+     */
     interface IxCardTitle {
     }
     /**
@@ -708,6 +718,7 @@ export namespace Components {
         "value": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
      * @form-ready 
      */
@@ -1537,6 +1548,7 @@ export namespace Components {
         "label"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1603:52792
      */
     interface IxDropdownItem {
@@ -1584,6 +1596,7 @@ export namespace Components {
         "suppressChecked": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1233:34168
      */
     interface IxDropdownQuickActions {
@@ -1719,6 +1732,9 @@ export namespace Components {
         "variant": ButtonVariant1;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 1682:60975
      */
     interface IxFieldLabel {
@@ -1945,6 +1961,11 @@ export namespace Components {
          */
         "text"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     */
     interface IxHelperText {
         /**
           * Show text below the field component
@@ -2077,6 +2098,9 @@ export namespace Components {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -2430,6 +2454,9 @@ export namespace Components {
          */
         "show": boolean;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface IxMenuAboutItem {
         /**
           * About Item label
@@ -2563,6 +2590,7 @@ export namespace Components {
         "pinned": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 308:1293
      */
     interface IxMenuItem {
@@ -2725,10 +2753,19 @@ export namespace Components {
          */
         "size": IxModalSize;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalContent {
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalFooter {
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -2760,6 +2797,11 @@ export namespace Components {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     * @figma-main-component-id 42365:39459
+     * @form-ready 
      */
     interface IxNumberInput {
         /**
@@ -3134,6 +3176,7 @@ export namespace Components {
         "value": number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25695
      */
     interface IxPushCard {
@@ -3213,6 +3256,7 @@ export namespace Components {
         "value"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
      * @form-ready 
      */
@@ -3413,6 +3457,9 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
+     */
     interface IxSelectItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
@@ -3695,6 +3742,7 @@ export namespace Components {
         "small": boolean;
     }
     /**
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -4330,6 +4378,7 @@ export namespace Components {
         "text"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
      * @figma-main-component-id 40211:13267
      */
     interface IxTypography {
@@ -4728,6 +4777,7 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25269
      */
     interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
@@ -4836,6 +4886,7 @@ declare global {
         "itemClick": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 358:3004
      */
     interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
@@ -4875,6 +4926,10 @@ declare global {
     interface HTMLIxCardAccordionElementEventMap {
         "accordionExpand": CardAccordionExpandChangeEvent;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
+     * @figma-main-component-id 104612:25530
+     */
     interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCardAccordionElementEventMap>(type: K, listener: (this: HTMLIxCardAccordionElement, ev: IxCardAccordionCustomEvent<HTMLIxCardAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4890,6 +4945,7 @@ declare global {
         new (): HTMLIxCardAccordionElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
@@ -4925,6 +4981,9 @@ declare global {
         prototype: HTMLIxCardListElement;
         new (): HTMLIxCardListElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+     */
     interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
     }
     var HTMLIxCardTitleElement: {
@@ -4980,6 +5039,7 @@ declare global {
         new (): HTMLIxCheckboxElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
      * @form-ready 
      */
@@ -5236,6 +5296,7 @@ declare global {
         "itemClick": HTMLIxDropdownItemElement;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1603:52792
      */
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
@@ -5253,6 +5314,7 @@ declare global {
         new (): HTMLIxDropdownItemElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1233:34168
      */
     interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
@@ -5331,6 +5393,9 @@ declare global {
         new (): HTMLIxExpandingSearchElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 1682:60975
      */
     interface HTMLIxFieldLabelElement extends Components.IxFieldLabel, HTMLStencilElement {
@@ -5439,6 +5504,11 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     */
     interface HTMLIxHelperTextElement extends Components.IxHelperText, HTMLStencilElement {
     }
     var HTMLIxHelperTextElement: {
@@ -5483,6 +5553,9 @@ declare global {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -5612,6 +5685,9 @@ declare global {
     interface HTMLIxMenuAboutItemElementEventMap {
         "labelChange": CustomLabelChangeEvent;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface HTMLIxMenuAboutItemElement extends Components.IxMenuAboutItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5708,6 +5784,7 @@ declare global {
         new (): HTMLIxMenuExpandIconElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 308:1293
      */
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
@@ -5796,12 +5873,18 @@ declare global {
         prototype: HTMLIxModalElement;
         new (): HTMLIxModalElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface HTMLIxModalContentElement extends Components.IxModalContent, HTMLStencilElement {
     }
     var HTMLIxModalContentElement: {
         prototype: HTMLIxModalContentElement;
         new (): HTMLIxModalContentElement;
     };
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface HTMLIxModalFooterElement extends Components.IxModalFooter, HTMLStencilElement {
     }
     var HTMLIxModalFooterElement: {
@@ -5811,6 +5894,9 @@ declare global {
     interface HTMLIxModalHeaderElementEventMap {
         "closeClick": MouseEvent;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface HTMLIxModalHeaderElement extends Components.IxModalHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxModalHeaderElementEventMap>(type: K, listener: (this: HTMLIxModalHeaderElement, ev: IxModalHeaderCustomEvent<HTMLIxModalHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5842,6 +5928,11 @@ declare global {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     * @figma-main-component-id 42365:39459
+     * @form-ready 
      */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5935,6 +6026,7 @@ declare global {
         new (): HTMLIxProgressIndicatorElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25695
      */
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
@@ -5971,6 +6063,7 @@ declare global {
         "valueChange": string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
      * @form-ready 
      */
@@ -6022,6 +6115,9 @@ declare global {
     interface HTMLIxSelectItemElementEventMap {
         "itemClick": string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
+     */
     interface HTMLIxSelectItemElement extends Components.IxSelectItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectItemElementEventMap>(type: K, listener: (this: HTMLIxSelectItemElement, ev: IxSelectItemCustomEvent<HTMLIxSelectItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6134,6 +6230,7 @@ declare global {
         "ixChange": string;
     }
     /**
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
@@ -6327,6 +6424,7 @@ declare global {
         new (): HTMLIxTreeItemElement;
     };
     /**
+     * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
      * @figma-main-component-id 40211:13267
      */
     interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
@@ -6516,6 +6614,7 @@ declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25269
      */
     interface IxActionCard {
@@ -6783,6 +6882,7 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
      * @figma-main-component-id 358:3004
      */
     interface IxBreadcrumbItem {
@@ -6923,6 +7023,10 @@ declare namespace LocalJSX {
          */
         "variant"?: CardVariant;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
+     * @figma-main-component-id 104612:25530
+     */
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
@@ -6943,6 +7047,7 @@ declare namespace LocalJSX {
         "variant"?: CardAccordionVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25530
      */
     interface IxCardContent {
@@ -7017,6 +7122,9 @@ declare namespace LocalJSX {
          */
         "suppressOverflowHandling"?: boolean;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+     */
     interface IxCardTitle {
     }
     /**
@@ -7185,6 +7293,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
      * @form-ready 
      */
@@ -8046,6 +8155,7 @@ declare namespace LocalJSX {
         "label"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1603:52792
      */
     interface IxDropdownItem {
@@ -8092,6 +8202,7 @@ declare namespace LocalJSX {
         "suppressChecked"?: boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
      * @figma-main-component-id 1233:34168
      */
     interface IxDropdownQuickActions {
@@ -8239,6 +8350,9 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant1;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 1682:60975
      */
     interface IxFieldLabel {
@@ -8490,6 +8604,11 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     */
     interface IxHelperText {
         /**
           * Show text below the field component
@@ -8626,6 +8745,9 @@ declare namespace LocalJSX {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
      * @form-ready 
      */
@@ -8994,6 +9116,9 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+     */
     interface IxMenuAboutItem {
         /**
           * About Item label
@@ -9147,6 +9272,7 @@ declare namespace LocalJSX {
         "pinned"?: boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
      * @figma-main-component-id 308:1293
      */
     interface IxMenuItem {
@@ -9326,10 +9452,19 @@ declare namespace LocalJSX {
          */
         "size"?: IxModalSize;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalContent {
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalFooter {
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+     */
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -9365,6 +9500,11 @@ declare namespace LocalJSX {
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+     * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+     * @figma-main-component-id 42365:39459
+     * @form-ready 
      */
     interface IxNumberInput {
         /**
@@ -9768,6 +9908,7 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/card/guide.md
      * @figma-main-component-id 104612:25695
      */
     interface IxPushCard {
@@ -9860,6 +10001,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
      * @form-ready 
      */
@@ -10067,6 +10209,9 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @documentation https://ix.siemens.io//docs/components/select/guide.md
+     */
     interface IxSelectItem {
         /**
           * @default false
@@ -10370,6 +10515,7 @@ declare namespace LocalJSX {
         "small"?: boolean;
     }
     /**
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -11035,6 +11181,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
      * @figma-main-component-id 40211:13267
      */
     interface IxTypography {
@@ -12288,6 +12435,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             /**
+             * @documentation https://ix.siemens.io//docs/components/card/guide.md
              * @figma-main-component-id 104612:25269
              */
             "ix-action-card": LocalJSX.IntrinsicElements["ix-action-card"] & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
@@ -12318,6 +12466,7 @@ declare module "@stencil/core" {
              */
             "ix-breadcrumb": LocalJSX.IntrinsicElements["ix-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
              * @figma-main-component-id 358:3004
              */
             "ix-breadcrumb-item": LocalJSX.IntrinsicElements["ix-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
@@ -12331,8 +12480,13 @@ declare module "@stencil/core" {
              * @figma-main-component-id 104612:25530
              */
             "ix-card": LocalJSX.IntrinsicElements["ix-card"] & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/card/guide.md
+             * @figma-main-component-id 104612:25530
+             */
             "ix-card-accordion": LocalJSX.IntrinsicElements["ix-card-accordion"] & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/card/guide.md
              * @figma-main-component-id 104612:25530
              */
             "ix-card-content": LocalJSX.IntrinsicElements["ix-card-content"] & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
@@ -12341,6 +12495,9 @@ declare module "@stencil/core" {
              * @figma-main-component-id 104638:14632
              */
             "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+             */
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
@@ -12354,6 +12511,7 @@ declare module "@stencil/core" {
              */
             "ix-checkbox": LocalJSX.IntrinsicElements["ix-checkbox"] & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 84992:87199
              * @form-ready 
              */
@@ -12420,10 +12578,12 @@ declare module "@stencil/core" {
              */
             "ix-dropdown-header": LocalJSX.IntrinsicElements["ix-dropdown-header"] & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
              * @figma-main-component-id 1603:52792
              */
             "ix-dropdown-item": LocalJSX.IntrinsicElements["ix-dropdown-item"] & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
              * @figma-main-component-id 1233:34168
              */
             "ix-dropdown-quick-actions": LocalJSX.IntrinsicElements["ix-dropdown-quick-actions"] & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
@@ -12444,6 +12604,9 @@ declare module "@stencil/core" {
              */
             "ix-expanding-search": LocalJSX.IntrinsicElements["ix-expanding-search"] & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 1682:60975
              */
             "ix-field-label": LocalJSX.IntrinsicElements["ix-field-label"] & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
@@ -12466,6 +12629,11 @@ declare module "@stencil/core" {
              * @figma-main-component-id 1274:34186
              */
             "ix-group-item": LocalJSX.IntrinsicElements["ix-group-item"] & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+             */
             "ix-helper-text": LocalJSX.IntrinsicElements["ix-helper-text"] & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
@@ -12478,6 +12646,9 @@ declare module "@stencil/core" {
             "ix-icon-toggle-button": LocalJSX.IntrinsicElements["ix-icon-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/input/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 42365:39459
              * @form-ready 
              */
@@ -12519,6 +12690,9 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
              */
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+             */
             "ix-menu-about-item": LocalJSX.IntrinsicElements["ix-menu-about-item"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
@@ -12532,6 +12706,7 @@ declare module "@stencil/core" {
             "ix-menu-category": LocalJSX.IntrinsicElements["ix-menu-category"] & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-expand-icon": LocalJSX.IntrinsicElements["ix-menu-expand-icon"] & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
              * @figma-main-component-id 308:1293
              */
             "ix-menu-item": LocalJSX.IntrinsicElements["ix-menu-item"] & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
@@ -12548,8 +12723,17 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/modal/guide.md
              */
             "ix-modal": LocalJSX.IntrinsicElements["ix-modal"] & JSXBase.HTMLAttributes<HTMLIxModalElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+             */
             "ix-modal-content": LocalJSX.IntrinsicElements["ix-modal-content"] & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+             */
             "ix-modal-footer": LocalJSX.IntrinsicElements["ix-modal-footer"] & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+             */
             "ix-modal-header": LocalJSX.IntrinsicElements["ix-modal-header"] & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
@@ -12557,6 +12741,11 @@ declare module "@stencil/core" {
             "ix-modal-loading": LocalJSX.IntrinsicElements["ix-modal-loading"] & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+             * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+             * @figma-main-component-id 42365:39459
+             * @form-ready 
              */
             "ix-number-input": LocalJSX.IntrinsicElements["ix-number-input"] & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             /**
@@ -12585,6 +12774,7 @@ declare module "@stencil/core" {
              */
             "ix-progress-indicator": LocalJSX.IntrinsicElements["ix-progress-indicator"] & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/card/guide.md
              * @figma-main-component-id 104612:25695
              */
             "ix-push-card": LocalJSX.IntrinsicElements["ix-push-card"] & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
@@ -12595,6 +12785,7 @@ declare module "@stencil/core" {
              */
             "ix-radio": LocalJSX.IntrinsicElements["ix-radio"] & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44973
              * @form-ready 
              */
@@ -12606,6 +12797,9 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-select": LocalJSX.IntrinsicElements["ix-select"] & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
+            /**
+             * @documentation https://ix.siemens.io//docs/components/select/guide.md
+             */
             "ix-select-item": LocalJSX.IntrinsicElements["ix-select-item"] & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             /**
              * @figma-main-component-id 50042:20986
@@ -12630,6 +12824,7 @@ declare module "@stencil/core" {
              */
             "ix-tabs": LocalJSX.IntrinsicElements["ix-tabs"] & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
+             * @form-ready 
              * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
              */
             "ix-textarea": LocalJSX.IntrinsicElements["ix-textarea"] & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
@@ -12672,6 +12867,7 @@ declare module "@stencil/core" {
             "ix-tree": LocalJSX.IntrinsicElements["ix-tree"] & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IntrinsicElements["ix-tree-item"] & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
              * @figma-main-component-id 40211:13267
              */
             "ix-typography": LocalJSX.IntrinsicElements["ix-typography"] & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;

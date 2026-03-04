@@ -11,6 +11,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import type { PushCardVariant } from './push-card.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
  * @figma-main-component-id 104612:25695
  */
 @Component({
