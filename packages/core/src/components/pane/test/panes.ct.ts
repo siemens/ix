@@ -135,7 +135,7 @@ regressionTest(
 regressionTest(
   'icon direction reacts correctly to slot and expanded state for all compositions',
   async ({ mount, page }) => {
-    const pane_slots = [
+    const paneSlots = [
       { slot: 'left', expanded: false, expected: 'double-chevron-right' },
       { slot: 'left', expanded: true, expected: 'double-chevron-left' },
       { slot: 'right', expanded: false, expected: 'double-chevron-left' },
@@ -146,12 +146,12 @@ regressionTest(
       { slot: 'bottom', expanded: true, expected: 'double-chevron-down' },
     ];
 
-    for (const pane_slot of pane_slots) {
+    for (const paneSlot of paneSlots) {
       await mount(`
         <ix-pane
           heading="TEST"
-          slot="${pane_slot.slot}"
-          expanded="${pane_slot.expanded}"
+          slot="${paneSlot.slot}"
+          expanded="${paneSlot.expanded}"
         ></ix-pane>
       `);
 
@@ -165,7 +165,7 @@ regressionTest(
         (el: HTMLIxIconButtonElement) => el.icon
       );
 
-      expect(iconValue).toContain(pane_slot.expected);
+      expect(iconValue).toContain(paneSlot.expected);
     }
   }
 );
