@@ -993,7 +993,8 @@
       "components": {
         "componentDoc": "feat/block-cli/ix/component-doc.json",
         "componentIndex": "feat/block-cli/ix/component-index.json",
-        "componentSearchIndex": "feat/block-cli/ix/component-search-index.json"
+        "componentSearchIndex": "feat/block-cli/ix/component-search-index.json",
+        "componentRelatedExamples": "feat/block-cli/ix/component-related-examples.json"
       },
       "searchIndex": {
         "blocks": {
