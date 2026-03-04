@@ -42,10 +42,36 @@ class ThemeSwitcher {
 
   private isThemeClass(className: string) {
     return (
-      className &&
-      className.startsWith(this.prefixTheme) &&
-      this.hasVariantSuffix(className)
+      className.startsWith(this.prefixTheme) && this.hasVariantSuffix(className)
     );
+  }
+
+  public getMode(): ThemeVariant {
+    const colorSchema =
+      document.documentElement.getAttribute(dataIxColorSchema);
+    if (colorSchema === 'dark' || colorSchema === 'light') {
+      return colorSchema;
+    }
+    const bodyThemeClass = this.getThemeClassFromBody();
+    if (bodyThemeClass) {
+      return bodyThemeClass.endsWith(this.suffixDark) ? 'dark' : 'light';
+    }
+    const htmlThemeClass = (document.documentElement.className || '')
+      .split(' ')
+      .find((cls) => cls && this.isThemeClass(cls));
+    if (htmlThemeClass) {
+      return htmlThemeClass.endsWith(this.suffixDark) ? 'dark' : 'light';
+    }
+    return getCurrentSystemAppearance();
+  }
+
+  private getThemeClassFromBody(): string | undefined {
+    if (!document.body) {
+      return undefined;
+    }
+    return (document.body.className || '')
+      .split(' ')
+      .find((cls) => cls && this.isThemeClass(cls));
   }
 
   public setTheme(themeName: string, systemAppearance = false) {
@@ -82,30 +108,24 @@ class ThemeSwitcher {
       );
       return;
     }
-
-    const themeClasses = Array.from(document.documentElement.classList).filter(
-      (className) => this.isThemeClass(className)
-    );
-    const currentTheme = themeClasses[0] ?? this.defaultTheme;
-    const oppositeTheme = this.getOppositeMode(currentTheme);
-
-    if (!oppositeTheme) {
+    const bodyThemeClass = this.getThemeClassFromBody();
+    if (bodyThemeClass) {
+      const newTheme = bodyThemeClass.replace(/-(dark|light)$/, (m) =>
+        m === '-dark' ? '-light' : '-dark'
+      );
+      document.body.classList.remove(bodyThemeClass);
+      document.body.classList.add(newTheme);
+      this._themeChanged.emit(newTheme);
+      this._schemaChanged.emit(
+        newTheme.endsWith(this.suffixDark) ? 'dark' : 'light'
+      );
       return;
     }
-
-    const baseTheme = currentTheme
-      .replace(this.prefixTheme, '')
-      .replace(/-dark$/, '')
-      .replace(/-light$/, '');
-
-    const newVariant: ThemeVariant = oppositeTheme.endsWith(this.suffixDark)
-      ? 'dark'
-      : 'light';
-
-    document.documentElement.setAttribute(dataIxTheme, baseTheme);
-    document.documentElement.setAttribute(dataIxColorSchema, newVariant);
-
-    document.documentElement.classList.remove(...themeClasses);
+    const newMode: ThemeVariant = this.getMode() === 'dark' ? 'light' : 'dark';
+    if (!document.documentElement.hasAttribute(dataIxTheme)) {
+      document.documentElement.setAttribute(dataIxTheme, 'classic');
+    }
+    document.documentElement.setAttribute(dataIxColorSchema, newMode);
   }
 
   private getDataColorSchema(target: HTMLElement) {
@@ -113,10 +133,9 @@ class ThemeSwitcher {
   }
 
   public getCurrentTheme() {
+    const bodyThemeClass = this.getThemeClassFromBody();
     return (
-      Array.from(document.documentElement.classList).find((className) =>
-        this.isThemeClass(className)
-      ) ??
+      bodyThemeClass ??
       `theme-${
         document.documentElement.getAttribute(dataIxTheme) || 'classic'
       }-${
@@ -131,37 +150,20 @@ class ThemeSwitcher {
       document.documentElement.setAttribute(dataIxColorSchema, variant);
       return;
     }
-
-    const currentTheme = this.getCurrentTheme();
-    document.documentElement.classList.remove(currentTheme);
-
-    if (currentTheme.endsWith(this.suffixDark)) {
-      document.documentElement.classList.add(
-        currentTheme.replace(/-dark$/g, `-${variant}`)
-      );
+    const bodyThemeClass = this.getThemeClassFromBody();
+    if (bodyThemeClass) {
+      const newTheme = bodyThemeClass.replace(/-(dark|light)$/, `-${variant}`);
+      document.body.classList.remove(bodyThemeClass);
+      document.body.classList.add(newTheme);
+      this._themeChanged.emit(newTheme);
+      this._schemaChanged.emit(variant);
+      return;
     }
-
-    if (currentTheme.endsWith(this.suffixLight)) {
-      document.documentElement.classList.add(
-        currentTheme.replace(/-light$/g, `-${variant}`)
-      );
+    if (!document.documentElement.hasAttribute(dataIxTheme)) {
+      document.documentElement.setAttribute(dataIxTheme, 'classic');
     }
-
     document.documentElement.setAttribute(dataIxColorSchema, variant);
   }
-
-  private getOppositeMode(themeName: string) {
-    if (themeName.endsWith(this.suffixDark)) {
-      return themeName.replace(/-dark$/g, this.suffixLight);
-    }
-
-    if (themeName.endsWith(this.suffixLight)) {
-      return themeName.replace(/-light$/g, this.suffixDark);
-    }
-
-    return '';
-  }
-
   private splitMutations(mutations: MutationRecord[]) {
     const classMutations = mutations.filter(
       (mutation) => mutation.attributeName === 'class'

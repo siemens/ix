@@ -11,6 +11,9 @@ describe('ThemeSwitcher', () => {
     Array.from(document.documentElement.classList).forEach((cls) =>
       document.documentElement.classList.remove(cls)
     );
+    Array.from(document.body.classList).forEach((cls) =>
+      document.body.classList.remove(cls)
+    );
     document.documentElement.removeAttribute('data-ix-theme');
     document.documentElement.removeAttribute('data-ix-color-schema');
   });
@@ -32,8 +35,7 @@ describe('ThemeSwitcher', () => {
         theme
       );
     });
-
-    it('should toggle theme CSS class', () => {
+    it('should toggle from html theme class to data attributes', () => {
       themeSwitcher.setTheme(themeClass);
       themeSwitcher.toggleMode();
       expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
@@ -66,18 +68,14 @@ describe('ThemeSwitcher', () => {
         document.documentElement.getAttribute('data-ix-color-schema')
       ).toBe(schema);
     });
-
-    it('should toggle schema via CSS class', () => {
+    it('should toggle from default state using data attributes', () => {
       themeSwitcher.toggleMode();
-      expect(
-        document.documentElement.classList.contains('theme-classic-light')
-      ).toBe(false);
       expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
         'classic'
       );
       expect(
         document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('light');
+      ).toBe('dark');
     });
 
     it('should toggle schema via attribute', () => {
@@ -99,6 +97,59 @@ describe('ThemeSwitcher', () => {
     it('should detect valid theme class', () => {
       expect(themeSwitcher['isThemeClass']('theme-classic-dark')).toBe(true);
       expect(themeSwitcher['isThemeClass']('theme-classic')).toBe(false);
+    });
+  });
+  describe('getMode', () => {
+    it('should return dark when data-ix-color-schema is dark', () => {
+      document.documentElement.setAttribute('data-ix-color-schema', 'dark');
+      expect(themeSwitcher.getMode()).toBe('dark');
+    });
+    it('should return light when data-ix-color-schema is light', () => {
+      document.documentElement.setAttribute('data-ix-color-schema', 'light');
+      expect(themeSwitcher.getMode()).toBe('light');
+    });
+    it('should return dark when body has dark theme class (legacy)', () => {
+      document.body.classList.add('theme-classic-dark');
+      expect(themeSwitcher.getMode()).toBe('dark');
+    });
+    it('should return light when body has light theme class (legacy)', () => {
+      document.body.classList.add('theme-classic-light');
+      expect(themeSwitcher.getMode()).toBe('light');
+    });
+  });
+  describe('legacy body class support', () => {
+    it('should toggle theme CSS class on body', () => {
+      document.body.classList.add('theme-classic-dark');
+      themeSwitcher.toggleMode();
+      expect(document.body.classList.contains('theme-classic-light')).toBe(
+        true
+      );
+      expect(document.body.classList.contains('theme-classic-dark')).toBe(
+        false
+      );
+    });
+    it('should toggle theme CSS class on body back and forth', () => {
+      document.body.classList.add('theme-classic-dark');
+      themeSwitcher.toggleMode();
+      expect(document.body.classList.contains('theme-classic-light')).toBe(
+        true
+      );
+      themeSwitcher.toggleMode();
+      expect(document.body.classList.contains('theme-classic-dark')).toBe(true);
+    });
+    it('should detect current theme from body class', () => {
+      document.body.classList.add('theme-classic-dark');
+      expect(themeSwitcher.getCurrentTheme()).toBe('theme-classic-dark');
+    });
+    it('should set variant on body when theme class is on body', () => {
+      document.body.classList.add('theme-classic-dark');
+      themeSwitcher.setVariant('light');
+      expect(document.body.classList.contains('theme-classic-light')).toBe(
+        true
+      );
+      expect(document.body.classList.contains('theme-classic-dark')).toBe(
+        false
+      );
     });
   });
 });
