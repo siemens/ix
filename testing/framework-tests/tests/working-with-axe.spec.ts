@@ -26,15 +26,15 @@ import './generated/buttons-axe.spec';
 import './generated/button-secondary-axe.spec';
 
 // Button tests - variants
-import './generated/button-ghost-axe.spec';
-import './generated/button-grey-axe.spec';
-import './generated/button-grey-secondary-axe.spec';
-import './generated/button-grey-ghost-axe.spec';
+import './generated/button-tertiary-axe.spec';
+import './generated/button-subtle-primary-axe.spec';
+import './generated/button-subtle-secondary-axe.spec';
+import './generated/button-subtle-tertiary-axe.spec';
 
 // Button tests - danger
-import './generated/button-danger-axe.spec';
-import './generated/button-danger-outline-axe.spec';
-import './generated/button-danger-ghost-axe.spec';
+import './generated/button-danger-primary-axe.spec';
+import './generated/button-danger-secondary-axe.spec';
+import './generated/button-danger-tertiary-axe.spec';
 
 // Button tests - with icons
 import './generated/button-text-icon-axe.spec';
