@@ -17,6 +17,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 
 @Component({
@@ -92,7 +93,7 @@ export class Chip {
    * ARIA label for the close button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelCloseButton?: string;
+  @Prop({ attribute: 'aria-label-close-button' }) ariaLabelCloseButton?: string;
 
   /**
    * Fire event if close button is clicked
@@ -100,6 +101,17 @@ export class Chip {
   @Event() closeChip!: EventEmitter;
 
   private readonly containerElementRef = makeRef<HTMLElement>();
+  private closeButtonLabel?: string;
+
+  componentWillLoad() {
+    // Save the value BEFORE removing the attribute
+    // (removeAttribute also clears the linked prop value)
+    this.closeButtonLabel = this.ariaLabelCloseButton;
+
+    // Remove custom aria-label-close-button attribute from host
+    // This prop is consumed internally and should not appear as a DOM attribute
+    this.hostElement.removeAttribute('aria-label-close-button');
+  }
 
   private getCloseButton() {
     return (
@@ -116,7 +128,7 @@ export class Chip {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
-          aria-label={this.ariaLabelCloseButton}
+          aria-label={this.closeButtonLabel}
         ></ix-icon-button>
       </div>
     );
@@ -139,19 +151,52 @@ export class Chip {
     );
   }
 
-  render() {
-    let customStyle = {};
-
-    if (this.variant === 'custom') {
-      customStyle = {
-        color: this.chipColor,
-        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
-      };
+  private getCustomStyle() {
+    if (this.variant !== 'custom') {
+      return {};
     }
+    return {
+      color: this.chipColor,
+      [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
+    };
+  }
+
+  private getEffectiveLabel(hostA11y: Record<string, string>) {
+    if (hostA11y['aria-label']) {
+      return hostA11y['aria-label'];
+    }
+
+    const chipText = this.hostElement.textContent?.trim();
+    if (this.closable && chipText) {
+      return chipText;
+    }
+
+    return undefined;
+  }
+
+  private getContainerRole(
+    hostA11y: Record<string, string>,
+    effectiveLabel?: string
+  ) {
+    if (hostA11y['role']) {
+      return hostA11y['role'];
+    }
+
+    if (this.closable) {
+      return effectiveLabel ? 'group' : undefined;
+    }
+
+    return 'button';
+  }
+
+  render() {
+    const hostA11y = a11yHostAttributes(this.hostElement);
+    const customStyle = this.getCustomStyle();
+    const effectiveLabel = this.getEffectiveLabel(hostA11y);
+    const containerRole = this.getContainerRole(hostA11y, effectiveLabel);
 
     return (
       <Host
-        tabIndex="-1"
         class={{
           inactive: this.inactive,
         }}
@@ -164,6 +209,11 @@ export class Chip {
         }
       >
         <div
+          {...hostA11y}
+          aria-label={effectiveLabel}
+          role={containerRole}
+          aria-disabled={this.inactive ? 'true' : undefined}
+          tabIndex={this.closable ? undefined : 0}
           ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
@@ -191,6 +241,7 @@ export class Chip {
                 }}
                 name={this.icon}
                 size={'24'}
+                aria-hidden="true"
                 style={
                   this.variant === 'custom'
                     ? { color: this.outline ? this.background : this.chipColor }

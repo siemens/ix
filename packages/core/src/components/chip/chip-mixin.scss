@@ -13,6 +13,18 @@
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 
+// Placeholder for common ::after overlay styles
+%after-overlay {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  border-radius: $border-radius;
+  pointer-events: none;
+}
+
 @mixin chip-container($interaction: true) {
   .container {
     display: inline-flex;
@@ -28,9 +40,11 @@ $border-radius: 100px;
     height: vars.$default-control-height;
     max-height: vars.$default-control-height;
 
-    @if $interaction {
+    &:not(.closable) {
       cursor: pointer;
-    } @else {
+    }
+
+    &.closable {
       cursor: default;
     }
 
@@ -130,11 +144,19 @@ $border-radius: 100px;
     }
 
     @if $interaction {
-      &:hover {
+      &.closable:has(.close-button:hover) {
         background-color: var(--theme-chip-primary--background--hover);
       }
 
-      &:active {
+      &.closable:has(.close-button:active) {
+        background-color: var(--theme-chip-primary--background--active);
+      }
+
+      &:not(.closable):hover:not(:focus-visible) {
+        background-color: var(--theme-chip-primary--background--hover);
+      }
+
+      &:not(.closable):active {
         background-color: var(--theme-chip-primary--background--active);
       }
 
@@ -160,11 +182,19 @@ $border-radius: 100px;
     }
 
     @if $interaction {
-      &:hover {
+      &.closable:has(.close-button:hover) {
         background-color: var(--theme-chip-primary-outline--background--hover);
       }
 
-      &:active {
+      &.closable:has(.close-button:active) {
+        background-color: var(--theme-chip-primary-outline--background--active);
+      }
+
+      &:not(.closable):hover:not(:focus-visible) {
+        background-color: var(--theme-chip-primary-outline--background--hover);
+      }
+
+      &:not(.closable):active {
         background-color: var(--theme-chip-primary-outline--background--active);
       }
     }
@@ -180,29 +210,17 @@ $border-radius: 100px;
       color: var(--theme-color-#{$color}--contrast);
 
       @if $interaction {
-        &:hover::after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 100%;
-          height: 100%;
+        &.closable:has(.close-button:hover)::after,
+        &:not(.closable):hover:not(:focus-visible)::after {
+          @extend %after-overlay;
           background-color: rgba(0, 0, 0, 0.05);
-          left: 0;
-          border-radius: $border-radius;
-          pointer-events: none;
         }
 
-        &.active::after,
-        &:active::after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 100%;
-          height: 100%;
+        &.closable.active::after,
+        &.closable:has(.close-button:active)::after,
+        &:not(.closable):active::after {
+          @extend %after-overlay;
           background-color: rgba(0, 0, 0, 0.1);
-          left: 0;
-          border-radius: $border-radius;
-          pointer-events: none;
         }
       }
 
@@ -215,13 +233,16 @@ $border-radius: 100px;
         }
 
         @if $interaction {
-          &:hover::after {
-            content: '';
+          &.closable:has(.close-button:hover)::after,
+          &:not(.closable):hover:not(:focus-visible)::after {
+            @extend %after-overlay;
             background-color: rgba(0, 0, 0, 0.05);
           }
 
-          &.active::after,
-          &:active::after {
+          &.closable.active::after,
+          &.closable:has(.close-button:active)::after,
+          &:not(.closable):active::after {
+            @extend %after-overlay;
             background-color: rgba(0, 0, 0, 0.1);
           }
         }
@@ -233,21 +254,37 @@ $border-radius: 100px;
         border-color: var(--theme-color-#{$color});
 
         @if $interaction {
-          &:hover::after {
+          &.closable:has(.close-button:hover)::after {
             display: none;
           }
 
-          &:hover {
+          &.closable:has(.close-button:hover) {
             background-color: var(--theme-chip-outline--background--hover);
           }
 
-          &.active::after,
-          &:active::after {
+          &.closable.active::after,
+          &.closable:has(.close-button:active)::after {
             display: none;
           }
 
-          &.active,
-          &:active {
+          &.closable.active,
+          &.closable:has(.close-button:active) {
+            background-color: var(--theme-chip-outline--background--active);
+          }
+
+          &:not(.closable):hover:not(:focus-visible)::after {
+            display: none;
+          }
+
+          &:not(.closable):hover:not(:focus-visible) {
+            background-color: var(--theme-chip-outline--background--hover);
+          }
+
+          &:not(.closable):active::after {
+            display: none;
+          }
+
+          &:not(.closable):active {
             background-color: var(--theme-chip-outline--background--active);
           }
         }

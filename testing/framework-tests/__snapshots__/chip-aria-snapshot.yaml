@@ -1,41 +1,35 @@
-- img
-- text: Primary
-- button "Close Small"
-- img
-- text: Alarm
-- button "Close Small"
-- img
-- text: Critical
-- img
-- text: Warning
-- img
-- text: Info
-- img
-- text: Success
-- img
-- text: Neutral
-- img
-- text: Custom
-- button "Close Small"
-- img
-- text: Chip with icon
-- button "Close Small"
-- img
-- text: Primary
-- button "Close Small"
-- img
-- text: Alarm
-- button "Close Small"
-- img
-- text: Critical
-- img
-- text: Warning
-- img
-- text: Info
-- img
-- text: Success
-- img
-- text: Neutral Custom
-- button "Close Small"
-- text: Chip without icon
-- button "Close Small"
+- main:
+  - group "Primary category":
+    - text: ""
+    - button "Remove primary category"
+  - group "Alarm":
+    - text: ""
+    - button "Close Small"
+  - button "Critical"
+  - button "Warning"
+  - button "Info"
+  - button "Success"
+  - button "Neutral"
+  - group "Custom chip":
+    - text: ""
+    - button "Remove custom chip"
+  - group "Chip with icon":
+    - text: ""
+    - button "Close Small"
+  - group "Primary":
+    - text: ""
+    - button "Close Small"
+  - group "Alarm":
+    - text: ""
+    - button "Remove alarm"
+  - button "Critical"
+  - button "Warning"
+  - button "Information tag"
+  - button "Success"
+  - button "Neutral"
+  - group "Custom":
+    - text: ""
+    - button "Close Small"
+  - group "Chip without icon":
+    - text: ""
+    - button "Close Small"

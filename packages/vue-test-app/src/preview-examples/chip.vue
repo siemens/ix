@@ -17,36 +17,53 @@ import { IxChip } from '@siemens/ix-vue';
 <template>
   <div class="chip">
     <div class="chip-column">
-      <IxChip :icon="iconPrint" variant="subtle-primary" closable>
-        Primary
+      <IxChip 
+        :icon="iconPrint" 
+        variant="primary" 
+        closable
+        aria-label="Primary category"
+        aria-label-close-button="Remove primary category"
+      > 
+        Primary 
       </IxChip>
-      <IxChip :icon="iconPrint" variant="alarm" closable>
-        Alarm
-      </IxChip>
-      <IxChip :icon="iconPrint" variant="critical"> Critical </IxChip>
-      <IxChip :icon="iconPrint" variant="warning"> Warning </IxChip>
-      <IxChip :icon="iconPrint" variant="info"> Info </IxChip>
-      <IxChip :icon="iconPrint" variant="success"> Success </IxChip>
-      <IxChip :icon="iconPrint" variant="neutral"> Neutral </IxChip>
-      <IxChip :icon="iconPrint" variant="custom" background="#FF00FF" closable>
-        Custom
-      </IxChip>
-      <IxChip :icon="iconPrint" variant="subtle-primary" closable>
-        Chip with icon
-      </IxChip>
-    </div>
-    <div className="chip-column">
-      <IxChip :icon="iconPrint" variant="primary" closable> Primary </IxChip>
       <IxChip :icon="iconPrint" variant="alarm" closable> Alarm </IxChip>
       <IxChip :icon="iconPrint" variant="critical"> Critical </IxChip>
       <IxChip :icon="iconPrint" variant="warning"> Warning </IxChip>
       <IxChip :icon="iconPrint" variant="info"> Info </IxChip>
       <IxChip :icon="iconPrint" variant="success"> Success </IxChip>
       <IxChip :icon="iconPrint" variant="neutral"> Neutral </IxChip>
-      <IxChip variant="custom" background="#FF00FF" chip-color="black" closable>
+      <IxChip
+        :icon="iconPrint"
+        variant="custom"
+        background="#5C3FD6"
+        chipColor="#FFFFFF"
+        closable
+        aria-label="Custom chip"
+        aria-label-close-button="Remove custom chip"
+      >
         Custom
       </IxChip>
-      <IxChip variant="subtle-primary" closable> Chip without icon </IxChip>
+      <IxChip :icon="iconPrint" variant="primary" closable>
+        Chip with icon
+      </IxChip>
+    </div>
+    <div class="chip-column">
+      <IxChip :icon="iconPrint" variant="primary" closable> Primary </IxChip>
+      <IxChip :icon="iconPrint" variant="alarm" closable aria-label-close-button="Remove alarm"> Alarm </IxChip>
+      <IxChip :icon="iconPrint" variant="critical"> Critical </IxChip>
+      <IxChip :icon="iconPrint" variant="warning"> Warning </IxChip>
+      <IxChip :icon="iconPrint" variant="info" aria-label="Information tag"> Info </IxChip>
+      <IxChip :icon="iconPrint" variant="success"> Success </IxChip>
+      <IxChip :icon="iconPrint" variant="neutral"> Neutral </IxChip>
+      <IxChip
+        variant="custom"
+        background="#5C3FD6"
+        chipColor="#FFFFFF"
+        closable
+      >
+        Custom
+      </IxChip>
+      <IxChip variant="primary" closable> Chip without icon </IxChip>
     </div>
   </div>
 </template>

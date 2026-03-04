@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);
@@ -114,6 +114,54 @@ regressionTest.describe('tooltip', () => {
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/custom tooltip text/);
+    }
+  );
+
+  regressionTest(
+    'should apply aria-label from host to container',
+    async ({ mount, page }) => {
+      await mount('<ix-chip aria-label="Test label">Content</ix-chip>');
+      const container = page.locator('ix-chip .container');
+      await expect(container).toHaveAttribute('aria-label', 'Test label');
+    }
+  );
+
+  regressionTest(
+    'should apply role="button" for non-closable chip (interactive)',
+    async ({ mount, page }) => {
+      await mount('<ix-chip aria-label="Test label">Content</ix-chip>');
+      const container = page.locator('ix-chip .container');
+      await expect(container).toHaveAttribute('role', 'button');
+    }
+  );
+
+  regressionTest(
+    'should apply role="group" for closable chip with aria-label',
+    async ({ mount, page }) => {
+      await mount(
+        '<ix-chip closable aria-label="Test label">Content</ix-chip>'
+      );
+      const container = page.locator('ix-chip .container');
+      await expect(container).toHaveAttribute('role', 'group');
+    }
+  );
+
+  regressionTest(
+    'should auto-generate aria-label for closable chip without explicit label',
+    async ({ mount, page }) => {
+      await mount('<ix-chip closable>Designer</ix-chip>');
+      const container = page.locator('ix-chip .container');
+      await expect(container).toHaveAttribute('role', 'group');
+      await expect(container).toHaveAttribute('aria-label', 'Designer');
+    }
+  );
+
+  regressionTest(
+    'should apply aria-disabled when inactive',
+    async ({ mount, page }) => {
+      await mount('<ix-chip inactive>Content</ix-chip>');
+      const container = page.locator('ix-chip .container');
+      await expect(container).toHaveAttribute('aria-disabled', 'true');
     }
   );
 });
