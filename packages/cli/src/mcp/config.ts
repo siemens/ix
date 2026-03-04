@@ -13,7 +13,7 @@ import dedent from 'dedent';
 import { Framework } from '../detect';
 import { usageAngular, usageReact } from './prompts/icons';
 
-const CLI = './../../ix/packages/cli'; // @siemens/ix-cli@latest
+const CLI = '@siemens/ix-cli@latest';
 
 const overwriteMerge = (_: any[], sourceArray: any[]) => sourceArray;
 
