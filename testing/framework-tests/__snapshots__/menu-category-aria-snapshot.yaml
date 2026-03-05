@@ -1,0 +1,7 @@
+- navigation:
+  - button "Home"
+  - button "Normal Tab"
+  - button "Top level Category"
+- complementary
+- main
+- contentinfo

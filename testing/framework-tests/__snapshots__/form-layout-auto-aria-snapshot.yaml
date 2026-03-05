@@ -1,0 +1,6 @@
+- text: Example
+- textbox "Select an option"
+- button "Open select dropdown"
+- text: Example
+- textbox
+- button "Submit"

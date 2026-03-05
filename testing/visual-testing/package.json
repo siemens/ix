@@ -10,7 +10,7 @@
   "devDependencies": {
     "@playwright/test": "catalog:",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "catalog:",
     "@types/node": "^24.0.14",
     "vite": "catalog:",
     "@esbuild/linux-arm64": "catalog:"

@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-spinner',
@@ -34,8 +35,16 @@ export class Spinner {
   @Prop() hideTrack = false;
 
   render() {
+    const ariaProperties = a11yHostAttributes(this.hostElement);
+    if (ariaProperties['aria-label'] === undefined) {
+      ariaProperties['aria-label'] = 'Loading';
+    }
+
+    ariaProperties.role = 'status';
+    ariaProperties['aria-busy'] = 'true';
+
     return (
-      <Host>
+      <Host {...ariaProperties}>
         <div
           class={{
             primary: this.variant === 'primary',
