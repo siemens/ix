@@ -123,7 +123,10 @@ function getVersionPrefixFromEntryPath(entryPath: string): string | null {
   return null;
 }
 
-function toVersionScopedPath(pathValue: string, versionPrefix: string | null): string {
+function toVersionScopedPath(
+  pathValue: string,
+  versionPrefix: string | null
+): string {
   const normalizedPath = normalizePath(pathValue);
 
   if (!versionPrefix) {
@@ -375,7 +378,6 @@ export async function getExampleCode(
     );
   }
 
-  // Fetch source code for each file
   const files: ExampleCodeFile[] = [];
   for (const file of variant.files) {
     try {
@@ -399,7 +401,9 @@ export async function getExampleCode(
       // Include error info in the file
       files.push({
         path: file.target,
-        content: `// Error loading file: ${err instanceof Error ? err.message : String(err)}`,
+        content: `// Error loading file: ${
+          err instanceof Error ? err.message : String(err)
+        }`,
       });
     }
   }
