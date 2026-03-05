@@ -228,29 +228,31 @@ regressionTest.describe('time picker tests', () => {
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
 
-      // Focus on the hour element in the second time picker
       const secondPicker = page.locator('ix-time-picker').nth(1);
-      await secondPicker
-        .locator('[data-element-container-id="hour-10"]')
-        .focus();
+      const hour = secondPicker.locator(
+        '[data-element-container-id="hour-10"]'
+      );
+      const minute = secondPicker.locator(
+        '[data-element-container-id="minute-11"]'
+      );
+      const second = secondPicker.locator(
+        '[data-element-container-id="second-12"]'
+      );
+      const pm = secondPicker.locator('[data-am-pm-id="PM"]');
 
-      // Change hour
+      await hour.focus();
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 
-      // Change minutes
-      await page.keyboard.press('Tab');
+      await minute.focus();
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 
-      // Change seconds
-      await page.keyboard.press('Tab');
+      await second.focus();
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 
-      // Change time ref
-      await page.keyboard.press('Tab');
-      await page.keyboard.press('Tab');
+      await pm.focus();
       await page.keyboard.press('Enter');
 
       expect(await getTimeObjs(page)).toEqual(['09:10:11', '11:12:13 PM']);

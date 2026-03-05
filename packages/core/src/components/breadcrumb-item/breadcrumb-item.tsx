@@ -177,7 +177,6 @@ export class BreadcrumbItem
     return (
       <Host
         {...ariaAttributes}
-        role="listitem"
         class={{
           'hide-chevron': this.hideChevron,
         }}

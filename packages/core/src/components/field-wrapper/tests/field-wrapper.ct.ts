@@ -331,3 +331,58 @@ regressionTest(
     await expect(input).toHaveAttribute('aria-label', 'Explicit label');
   }
 );
+
+regressionTest(
+  'getAriaHelperMessageElement should return the helper message element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper helper-text="Helper text" id="test">
+        <input id="test-input" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const helperMessageElement = fieldWrapperElement.locator(
+      '.helper-message-container'
+    );
+
+    expect(helperMessageElement).toBeAttached();
+    await expect(helperMessageElement!).toHaveAttribute(
+      'id',
+      'test-helpermessage'
+    );
+  }
+);
+
+regressionTest(
+  'getAriaErrorMessageElement should return the error message element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper invalid-text="Invalid text" is-invalid id="test">
+      <input id="test-input" />
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const errorMessageElement = fieldWrapperElement.locator(
+      '.error-message-container'
+    );
+
+    expect(errorMessageElement).toBeAttached();
+    await expect(errorMessageElement!).toHaveAttribute(
+      'id',
+      'test-errormessage'
+    );
+
+    await expect(fieldWrapperElement).toHaveAttribute('role', 'alert');
+    await expect(fieldWrapperElement).toHaveAttribute('aria-live', 'polite');
+  }
+);

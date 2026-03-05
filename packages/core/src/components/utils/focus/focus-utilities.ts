@@ -80,7 +80,6 @@ export const focusFirstDescendant = <
   fallbackElement?: T,
   options?: FocusOptions
 ) => {
-  console.log('focusFirstDescendant called with options:', options);
   if (options?.focusCheckedItem) {
     const checkedQueryString = buildFocusableQueryString('[checked]');
     const checkedElements = queryElements(ref, checkedQueryString);

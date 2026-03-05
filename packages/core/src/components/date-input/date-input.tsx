@@ -398,33 +398,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     );
   }
 
-  private async handleDatePickerKeyDown(event: KeyboardEvent) {
-    event.preventDefault();
-
-    if (!this.datepickerRef.current) {
-      return;
-    }
-
-    if (!(await this.datepickerRef.current.isCalendarDayFocused())) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'PageUp':
-        await this.datepickerRef.current.navigateCalendar(-1, event.shiftKey);
-        break;
-      case 'PageDown':
-        await this.datepickerRef.current.navigateCalendar(1, event.shiftKey);
-        break;
-      case 'Home':
-        await this.datepickerRef.current.focusFirstDayOfCurrentWeek();
-        break;
-      case 'End':
-        await this.datepickerRef.current.focusLastDayOfCurrentWeek();
-        break;
-    }
-  }
-
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -433,6 +406,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -478,13 +452,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            aria-hidden={this.ariaLabelCalendarButton}
             tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -624,7 +598,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
-            onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

@@ -306,6 +306,7 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
+          aria-haspopup="true"
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
@@ -315,8 +316,8 @@ export class MenuCategory
           tooltipText={this.tooltipText}
           isCategory
         >
-          <div class="category">
-            <div class="category-text">{this.label}</div>
+          <span class="category">
+            <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
               class={{
@@ -325,7 +326,7 @@ export class MenuCategory
               }}
               aria-hidden="true"
             ></ix-icon>
-          </div>
+          </span>
         </ix-menu-item>
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}

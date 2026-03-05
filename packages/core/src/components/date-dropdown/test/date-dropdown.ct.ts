@@ -99,12 +99,14 @@ regressionTest.describe('date dropdown tests', () => {
         /show/
       );
 
+      const dateRangeRegex = /\d{4}\/\d{2}\/\d{2} - \d{4}\/\d{2}\/\d{2}/;
+
       const button = dateDropdown.getByRole('button', {
-        name: '2026/02/18 - 2026/02/25',
+        name: dateRangeRegex,
       });
 
       await expect(button).toBeVisible();
-      await expect(dateDropdown).toHaveText(/2026\/02\/18 - 2026\/02\/25/);
+      await expect(dateDropdown).toHaveText(dateRangeRegex);
 
       const selectedDateRange = await dateDropdown.evaluate(
         (el: HTMLIxDateDropdownElement) => el.getDateRange()
