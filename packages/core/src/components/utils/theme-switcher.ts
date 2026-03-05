@@ -56,22 +56,28 @@ class ThemeSwitcher {
     if (bodyThemeClass) {
       return bodyThemeClass.endsWith(this.suffixDark) ? 'dark' : 'light';
     }
-    const htmlThemeClass = (document.documentElement.className || '')
-      .split(' ')
-      .find((cls) => cls && this.isThemeClass(cls));
+    const htmlThemeClass = this.getThemeClassFromElement(
+      document.documentElement
+    );
     if (htmlThemeClass) {
       return htmlThemeClass.endsWith(this.suffixDark) ? 'dark' : 'light';
     }
     return getCurrentSystemAppearance();
   }
 
-  private getThemeClassFromBody(): string | undefined {
-    if (!document.body) {
+  private getThemeClassFromElement(
+    element: HTMLElement | null
+  ): string | undefined {
+    if (!element) {
       return undefined;
     }
-    return (document.body.className || '')
+    return (element.className || '')
       .split(' ')
       .find((cls) => cls && this.isThemeClass(cls));
+  }
+
+  private getThemeClassFromBody(): string | undefined {
+    return this.getThemeClassFromElement(document.body);
   }
 
   public setTheme(themeName: string, systemAppearance = false) {
