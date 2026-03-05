@@ -19,8 +19,8 @@ regressionTest(
 
     const textarea = hostElement.locator('textarea');
 
-    // Check default styles are applied
-    await expect(textarea).toHaveAttribute('style', /.*width: 100%;/);
+    // Check default styles are applied (no inline width/height fallback)
+    await expect(textarea).not.toHaveAttribute('style', /width/);
     await expect(textarea).not.toHaveAttribute('style', /height/);
     await expect(textarea).not.toHaveAttribute('rows');
     await expect(textarea).not.toHaveAttribute('cols');
@@ -42,6 +42,9 @@ regressionTest(
 
     // When rows is set, height should be auto to allow browser natural sizing
     await expect(textarea).toHaveAttribute('style', /.*height: auto.*/);
+
+    // Without textarea-width, cols should control width and not be overridden by inline fallback width
+    await expect(textarea).not.toHaveAttribute('style', /.*width:\s*100%.*/);
   }
 );
 
@@ -93,10 +96,9 @@ regressionTest(
     );
 
     const textarea = page.locator('ix-textarea textarea');
-    const textareaComponent = page.locator('ix-textarea');
 
-    // Get element font size for conversion calculation
-    const elementFontSize = await textareaComponent.evaluate((el) => {
+    // Get textarea font size for conversion calculation
+    const elementFontSize = await textarea.evaluate((el) => {
       return Number.parseFloat(getComputedStyle(el).fontSize);
     });
 
@@ -110,34 +112,53 @@ regressionTest(
 );
 
 regressionTest(
-  'textarea dimensions - percentage height conversion',
+  'textarea dimensions - percentage height is responsive',
   async ({ mount, page }) => {
     await mount(`
-      <div style="width: 500px; height: 300px;">
-        <ix-textarea textarea-height="50%"></ix-textarea>
-      </div>
+      <ix-textarea
+        id="textarea-host"
+        style="display: block; width: 500px; height: 300px;"
+        textarea-height="50%">
+      </ix-textarea>
     `);
 
     const textarea = page.locator('ix-textarea textarea');
+    const textareaHost = page.locator('#textarea-host');
 
-    // Check that percentage is converted based on parent height
-    await expect(textarea).toHaveCSS('height', '150px');
+    // Check percentage height is passed through as-is
+    await expect(textarea).toHaveAttribute('style', /.*height:\s*50%.*/);
+
+    // Update host height and ensure percentage style is still preserved
+    await textareaHost.evaluate((el) => {
+      el.setAttribute('style', 'display: block; width: 500px; height: 400px;');
+    });
+    await expect(textarea).toHaveAttribute('style', /.*height:\s*50%.*/);
   }
 );
 
 regressionTest(
-  'textarea dimensions - percentage width conversion',
+  'textarea dimensions - percentage width is responsive',
   async ({ mount, page }) => {
     await mount(`
-    <div style="width: 500px;">
-      <ix-textarea textarea-width="80%"></ix-textarea>
-    </div>
+    <ix-textarea
+      id="textarea-host"
+      style="display: block; width: 500px;"
+      textarea-width="80%">
+    </ix-textarea>
   `);
 
     const textarea = page.locator('ix-textarea textarea');
+    const textareaHost = page.locator('#textarea-host');
 
-    // Check that percentage is converted based on parent width
+    // Check initial computed width
     await expect(textarea).toHaveCSS('width', '400px');
+    await expect(textarea).toHaveAttribute('style', /.*width:\s*80%.*/);
+
+    // Update host width and verify textarea updates responsively
+    await textareaHost.evaluate((el) => {
+      el.setAttribute('style', 'display: block; width: 600px;');
+    });
+    await expect(textarea).toHaveCSS('width', '480px');
   }
 );
 
@@ -165,7 +186,7 @@ regressionTest(
 
     const textarea = page.locator('ix-textarea textarea');
 
-    await expect(textarea).toHaveAttribute('style', /.*width: 100%;/);
+    await expect(textarea).not.toHaveAttribute('style', /width/);
     await expect(textarea).not.toHaveAttribute('style', /height/);
   }
 );
@@ -227,7 +248,8 @@ regressionTest(
     <ix-textarea textarea-width="200px" textarea-height="100px"></ix-textarea>
   `);
 
-    const textarea = page.locator('ix-textarea textarea');
+    const textareaComponent = page.locator('ix-textarea');
+    const textarea = textareaComponent.locator('textarea');
 
     // Initial dimensions
     await expect(textarea).toHaveCSS('width', '200px');
@@ -239,10 +261,16 @@ regressionTest(
       el.style.height = '150px';
     });
 
-    // Trigger resize event to simulate user resize
-    await textarea.evaluate(() => {
-      const event = new Event('resize');
-      globalThis.dispatchEvent(event);
+    // Wait for ResizeObserver callback cycle, then force a rerender.
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+        })
+    );
+
+    await textareaComponent.evaluate((el: HTMLIxTextareaElement) => {
+      el.value = 'rerender';
     });
 
     // After manual resize, the manually set dimensions should be preserved

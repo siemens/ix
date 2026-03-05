@@ -183,8 +183,8 @@ export class Textarea implements IxInputFieldComponent<string> {
   private touched = false;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
-  private manualHeight?: string;
-  private manualWidth?: string;
+  @State() private manualHeight?: string;
+  @State() private manualWidth?: string;
   private isProgrammaticResize = false;
 
   @HookValidationLifecycle()
@@ -194,6 +194,8 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   @Watch('textareaHeight')
   @Watch('textareaWidth')
+  @Watch('textareaRows')
+  @Watch('textareaCols')
   onDimensionPropsChange() {
     this.isManuallyResized = false;
     this.manualHeight = undefined;
@@ -293,10 +295,12 @@ export class Textarea implements IxInputFieldComponent<string> {
       return this.manualHeight;
     }
 
+    const conversionElement = this.textAreaRef.current || this.hostElement;
+
     const convertedHeight = convertToPx(
       this.textareaHeight,
       'height',
-      this.hostElement
+      conversionElement
     );
 
     if (convertedHeight) {
@@ -306,12 +310,24 @@ export class Textarea implements IxInputFieldComponent<string> {
     return this.textareaRows ? 'auto' : undefined;
   }
 
-  private getTextareaWidth(): string {
+  private getTextareaWidth(): string | undefined {
     if (this.isManuallyResized) {
       return this.manualWidth || '100%';
     }
 
-    return convertToPx(this.textareaWidth, 'width', this.hostElement) || '100%';
+    const conversionElement = this.textAreaRef.current || this.hostElement;
+
+    const convertedWidth = convertToPx(
+      this.textareaWidth,
+      'width',
+      conversionElement
+    );
+
+    if (convertedWidth) {
+      return convertedWidth;
+    }
+
+    return this.textareaCols ? 'auto' : undefined;
   }
 
   render() {
