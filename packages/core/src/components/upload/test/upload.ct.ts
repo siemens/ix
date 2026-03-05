@@ -16,3 +16,11 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(upload).toHaveClass(/hydrated/);
   await expect(upload).toBeVisible();
 });
+
+regressionTest('should not be draggable', async ({ mount, page }) => {
+  await mount(`<ix-upload></ix-upload>`);
+  const upload = page.locator('ix-upload');
+
+  await expect(upload).toHaveCSS('user-select', 'none');
+  await expect(upload).toHaveCSS('-webkit-user-drag', 'none');
+});
