@@ -20,7 +20,8 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest('should not be draggable', async ({ mount, page }) => {
   await mount(`<ix-upload></ix-upload>`);
   const upload = page.locator('ix-upload');
+  const inner = upload.locator('.file-upload-area');
 
-  await expect(upload).toHaveCSS('user-select', 'none');
-  await expect(upload).toHaveCSS('-webkit-user-drag', 'none');
+  await expect(inner).toHaveCSS('user-select', 'none');
+  await expect(inner).toHaveCSS('-webkit-user-drag', 'none');
 });
