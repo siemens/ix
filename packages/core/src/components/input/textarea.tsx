@@ -196,6 +196,8 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() private manualHeight?: string;
   @State() private manualWidth?: string;
   private isProgrammaticResize = false;
+  private lastObservedInlineHeight?: string;
+  private lastObservedInlineWidth?: string;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -235,13 +237,34 @@ export class Textarea implements IxInputFieldComponent<string> {
     if (this.resizeBehavior === 'none') return;
 
     let isInitialResize = true;
+    this.lastObservedInlineHeight = textarea.style.height;
+    this.lastObservedInlineWidth = textarea.style.width;
 
     this.resizeObserver = new ResizeObserver(() => {
       const textarea = this.textAreaRef.current;
-      if (!textarea) return;
+
+      if (!textarea) {
+        return;
+      }
+
+      const currentInlineHeight = textarea.style.height;
+      const currentInlineWidth = textarea.style.width;
 
       if (isInitialResize) {
         isInitialResize = false;
+        this.lastObservedInlineHeight = currentInlineHeight;
+        this.lastObservedInlineWidth = currentInlineWidth;
+        return;
+      }
+
+      const hasInlineStyleChange =
+        currentInlineHeight !== this.lastObservedInlineHeight ||
+        currentInlineWidth !== this.lastObservedInlineWidth;
+
+      this.lastObservedInlineHeight = currentInlineHeight;
+      this.lastObservedInlineWidth = currentInlineWidth;
+
+      if (!hasInlineStyleChange) {
         return;
       }
 
@@ -251,8 +274,8 @@ export class Textarea implements IxInputFieldComponent<string> {
       }
 
       this.isManuallyResized = true;
-      this.manualHeight = textarea.style.height;
-      this.manualWidth = textarea.style.width;
+      this.manualHeight = currentInlineHeight;
+      this.manualWidth = currentInlineWidth;
     });
 
     this.resizeObserver.observe(textarea);

@@ -24,6 +24,21 @@ regressionTest(
     await expect(textarea).not.toHaveAttribute('style', /height/);
     await expect(textarea).not.toHaveAttribute('rows');
     await expect(textarea).not.toHaveAttribute('cols');
+
+    // Ensure initial observer activation doesn't mark textarea as manually resized.
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+        })
+    );
+
+    await hostElement.evaluate((el: HTMLIxTextareaElement) => {
+      el.value = 'rerender';
+    });
+
+    await expect(textarea).not.toHaveAttribute('style', /width/);
+    await expect(textarea).not.toHaveAttribute('style', /height/);
   }
 );
 
