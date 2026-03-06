@@ -209,9 +209,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Watch('textareaRows')
   @Watch('textareaCols')
   onDimensionPropsChange() {
-    this.isManuallyResized = false;
-    this.manualHeight = undefined;
-    this.manualWidth = undefined;
+    this.resetManualResizeState();
     this.isProgrammaticResize = true;
   }
 
@@ -228,6 +226,24 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.resizeObserver?.disconnect();
   }
 
+  private resetManualResizeState() {
+    this.isManuallyResized = false;
+    this.manualHeight = undefined;
+    this.manualWidth = undefined;
+  }
+
+  private updateLastObservedInlineStyles(textarea: HTMLTextAreaElement) {
+    this.lastObservedInlineHeight = textarea.style.height;
+    this.lastObservedInlineWidth = textarea.style.width;
+  }
+
+  private hasInlineStyleChange(textarea: HTMLTextAreaElement) {
+    return (
+      textarea.style.height !== this.lastObservedInlineHeight ||
+      textarea.style.width !== this.lastObservedInlineWidth
+    );
+  }
+
   private initResizeObserver() {
     this.resizeObserver?.disconnect();
 
@@ -237,8 +253,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     if (this.resizeBehavior === 'none') return;
 
     let isInitialResize = true;
-    this.lastObservedInlineHeight = textarea.style.height;
-    this.lastObservedInlineWidth = textarea.style.width;
+    this.updateLastObservedInlineStyles(textarea);
 
     this.resizeObserver = new ResizeObserver(() => {
       const textarea = this.textAreaRef.current;
@@ -247,22 +262,14 @@ export class Textarea implements IxInputFieldComponent<string> {
         return;
       }
 
-      const currentInlineHeight = textarea.style.height;
-      const currentInlineWidth = textarea.style.width;
-
       if (isInitialResize) {
         isInitialResize = false;
-        this.lastObservedInlineHeight = currentInlineHeight;
-        this.lastObservedInlineWidth = currentInlineWidth;
+        this.updateLastObservedInlineStyles(textarea);
         return;
       }
 
-      const hasInlineStyleChange =
-        currentInlineHeight !== this.lastObservedInlineHeight ||
-        currentInlineWidth !== this.lastObservedInlineWidth;
-
-      this.lastObservedInlineHeight = currentInlineHeight;
-      this.lastObservedInlineWidth = currentInlineWidth;
+      const hasInlineStyleChange = this.hasInlineStyleChange(textarea);
+      this.updateLastObservedInlineStyles(textarea);
 
       if (!hasInlineStyleChange) {
         return;
@@ -274,8 +281,8 @@ export class Textarea implements IxInputFieldComponent<string> {
       }
 
       this.isManuallyResized = true;
-      this.manualHeight = currentInlineHeight;
-      this.manualWidth = currentInlineWidth;
+      this.manualHeight = textarea.style.height;
+      this.manualWidth = textarea.style.width;
     });
 
     this.resizeObserver.observe(textarea);
@@ -326,17 +333,25 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  private getConvertedDimension(
+    value: string | undefined,
+    dimension: 'width' | 'height'
+  ): string | undefined {
+    return convertToPx(
+      value,
+      dimension,
+      this.textAreaRef.current || this.hostElement
+    );
+  }
+
   private getTextareaHeight(): string | undefined {
     if (this.isManuallyResized) {
       return this.manualHeight;
     }
 
-    const conversionElement = this.textAreaRef.current || this.hostElement;
-
-    const convertedHeight = convertToPx(
+    const convertedHeight = this.getConvertedDimension(
       this.textareaHeight,
-      'height',
-      conversionElement
+      'height'
     );
 
     if (convertedHeight) {
@@ -351,12 +366,9 @@ export class Textarea implements IxInputFieldComponent<string> {
       return this.manualWidth || '100%';
     }
 
-    const conversionElement = this.textAreaRef.current || this.hostElement;
-
-    const convertedWidth = convertToPx(
+    const convertedWidth = this.getConvertedDimension(
       this.textareaWidth,
-      'width',
-      conversionElement
+      'width'
     );
 
     if (convertedWidth) {
