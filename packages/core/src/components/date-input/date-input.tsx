@@ -572,7 +572,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             targetElement: this.datepickerRef,
             trapFocusInShadowDom: true,
           }}
-          callbackFocusElement={() => {
+          callbackFocusElement={async () => {
             this.datepickerRef.current?.focusActiveDay();
             return true;
           }}

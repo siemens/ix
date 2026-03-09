@@ -15,6 +15,7 @@ import {
   h,
   Host,
   Prop,
+  Method,
 } from '@stencil/core';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import type { DateChangeEvent } from '../date-picker/date-picker.events';
@@ -22,6 +23,7 @@ import type {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
 } from './datetime-picker.types';
+import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -181,6 +183,18 @@ export class DatetimePicker
     this.timeChange.emit(time);
   }
 
+  /** @internal */
+  @Method()
+  async getDatepickerElement() {
+    return this.datePickerElement;
+  }
+
+  /** @internal */
+  @Method()
+  async getTimepickerElement() {
+    return this.timePickerElement;
+  }
+
   render() {
     return (
       <Host>
@@ -212,6 +226,10 @@ export class DatetimePicker
                     this.ariaLabelPreviousMonthButton
                   }
                   ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+                  {...{
+                    tabIndex: this.embedded ? -1 : 0,
+                    [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
+                  }}
                 ></ix-date-picker>
               </ix-col>
 
@@ -224,6 +242,10 @@ export class DatetimePicker
                   onTimeChange={(event) => this.onTimeChange(event)}
                   format={this.timeFormat}
                   time={this.time}
+                  {...{
+                    tabIndex: this.embedded ? -1 : 0,
+                    [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
+                  }}
                 ></ix-time-picker>
               </ix-col>
             </ix-row>

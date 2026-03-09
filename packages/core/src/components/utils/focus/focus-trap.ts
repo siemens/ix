@@ -15,6 +15,7 @@ export interface FocusTrapResult {
 }
 
 export const TRAP_FOCUS_EXCLUDE_ATTRIBUTE = 'data-ix-focus-trap-exclude';
+export const TRAP_FOCUS_INCLUDE_ATTRIBUTE = 'data-ix-focus-trap-include';
 
 export type FocusTrapOptions = {
   targetElement?: HTMLElement | MakeRef<any>;
@@ -40,11 +41,41 @@ export const addFocusTrap = async (
     const keyboardEvent = event as KeyboardEvent;
 
     if (keyboardEvent.key === 'Tab') {
+      const focusTrapRoot = options?.trapFocusInShadowDom
+        ? ref.shadowRoot
+        : ref;
       const focusableElements = queryElements(
-        options?.trapFocusInShadowDom ? ref.shadowRoot! : ref,
-        focusableQueryString
+        focusTrapRoot,
+        `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`
       );
 
+      for (let index = 0; index < focusableElements.length; index++) {
+        const includeElement = focusableElements[index];
+
+        if (!includeElement.hasAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE)) {
+          continue;
+        }
+
+        const includedFocusableElements = queryElements(
+          options?.trapFocusInShadowDom && includeElement.shadowRoot
+            ? includeElement.shadowRoot
+            : includeElement,
+          focusableQueryString
+        ).filter((element) => element !== includeElement);
+
+        for (const includedElement of includedFocusableElements) {
+          const duplicateIndex = focusableElements.indexOf(includedElement);
+          if (duplicateIndex !== -1) {
+            focusableElements.splice(duplicateIndex, 1);
+            if (duplicateIndex < index) {
+              index--;
+            }
+          }
+        }
+
+        focusableElements.splice(index, 1, ...includedFocusableElements);
+        index += includedFocusableElements.length - 1;
+      }
       if (focusableElements.length === 0) {
         return;
       }
@@ -70,6 +101,14 @@ export const addFocusTrap = async (
 
       if (ref instanceof HTMLElement && ref.shadowRoot) {
         activeElement = ref.shadowRoot.activeElement || activeElement;
+      }
+
+      if (
+        activeElement?.hasAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE) &&
+        activeElement?.shadowRoot &&
+        activeElement.shadowRoot.activeElement
+      ) {
+        activeElement = activeElement.shadowRoot.activeElement as HTMLElement;
       }
 
       if (keyboardEvent.shiftKey) {
