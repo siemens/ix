@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 const createOnPageSelectedListener = (pagination: Locator) =>
@@ -179,7 +179,7 @@ regressionTest(
 
     await pagination.getByRole('button').nth(-1).click();
 
-    const dropdownItems = pagination.locator('ix-dropdown-item');
+    const dropdownItems = pagination.locator('ix-select-item');
     const expectedValues = ['5', '25', '50', '100'];
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
@@ -206,7 +206,7 @@ regressionTest(
 
     await pagination.getByRole('button').nth(-1).click();
 
-    const dropdownItems = pagination.locator('ix-dropdown-item');
+    const dropdownItems = pagination.locator('ix-select-item');
     const expectedValues = ['5', '25', '50', '100'];
 
     for (let index = 0; index < expectedValues.length; index++) {
@@ -232,7 +232,7 @@ regressionTest(
     });
     await pagination.getByRole('button').nth(-1).click();
 
-    const dropdownItems = pagination.locator('ix-dropdown-item');
+    const dropdownItems = pagination.locator('ix-select-item');
     await expect(dropdownItems).toHaveCount(2);
     await expect(dropdownItems.nth(0)).toContainText('10');
     await expect(dropdownItems.nth(1)).toContainText('20');
@@ -254,7 +254,7 @@ regressionTest(
 
     await pagination.getByRole('button').nth(-1).click();
 
-    const dropdownItems = pagination.locator('ix-dropdown-item');
+    const dropdownItems = pagination.locator('ix-select-item');
     const expectedValues = ['10', '15', '20', '40', '100'];
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
