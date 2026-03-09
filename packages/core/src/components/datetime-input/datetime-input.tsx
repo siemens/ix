@@ -46,7 +46,7 @@ import { makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
 
 /**
- * @since 4.4.0
+ * @since 5.0.0
  * @form-ready
  *
  * @slot start - Element will be displayed at the start of the input
@@ -153,6 +153,13 @@ export class DatetimeInput
 
   /** Text alignment within the input field */
   @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /** Emitted when the datetime value changes. Payload is display format or undefined */
   @Event() valueChange!: EventEmitter<string | undefined>;
@@ -627,6 +634,7 @@ export class DatetimeInput
           class="datetime-dropdown"
           closeBehavior="outside"
           data-testid="datetime-dropdown"
+          enableTopLayer={this.enableTopLayer}
           ref={this.dropdownElementRef}
           show={this.show}
           suppressOverflowBehavior

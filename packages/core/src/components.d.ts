@@ -1228,7 +1228,7 @@ export namespace Components {
         "timePickerAppearance": boolean;
     }
     /**
-     * @since 4.4.0
+     * @since 5.0.0
      * @form-ready 
      */
     interface IxDatetimeInput {
@@ -1250,6 +1250,11 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+         */
+        "enableTopLayer": boolean;
         /**
           * Focus the native input element
          */
@@ -5105,7 +5110,7 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @since 4.4.0
+     * @since 5.0.0
      * @form-ready 
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
@@ -7542,7 +7547,7 @@ declare namespace LocalJSX {
         "timePickerAppearance"?: boolean;
     }
     /**
-     * @since 4.4.0
+     * @since 5.0.0
      * @form-ready 
      */
     interface IxDatetimeInput {
@@ -7564,6 +7569,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+         */
+        "enableTopLayer"?: boolean;
         /**
           * The `id` of a `<form>` element to associate this element with.
          */
@@ -11329,6 +11339,7 @@ declare namespace LocalJSX {
         "weekStartIndex": number;
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
+        "enableTopLayer": boolean;
     }
     interface IxDatetimePickerAttributes {
         "singleSelection": boolean;
@@ -12219,7 +12230,7 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IntrinsicElements["ix-date-picker"] & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IntrinsicElements["ix-date-time-card"] & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             /**
-             * @since 4.4.0
+             * @since 5.0.0
              * @form-ready 
              */
             "ix-datetime-input": LocalJSX.IntrinsicElements["ix-datetime-input"] & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;

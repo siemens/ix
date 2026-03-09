@@ -507,6 +507,7 @@ export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PU
   'weekStartIndex',
   'suppressSubmitOnEnter',
   'textAlignment',
+  'enableTopLayer',
   'valueChange',
   'validityStateChange',
   'ixFocus',

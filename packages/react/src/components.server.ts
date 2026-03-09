@@ -636,7 +636,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         showWeekNumbers: 'show-week-numbers',
         weekStartIndex: 'week-start-index',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDatetimeInput as ReactWebComponent<IxDatetimeInputElement, IxDatetimeInputEvents>,
