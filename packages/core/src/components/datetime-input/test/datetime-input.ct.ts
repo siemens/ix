@@ -14,22 +14,21 @@ import {
 } from '@utils/test';
 
 const createAccessor = async (dateTimeInput: Locator) => {
-  return {
+  const accessor = {
     openByCalendar: async () => {
       // Calendar button is aria-hidden, so we select the first icon button
       const trigger = dateTimeInput.locator('ix-icon-button').first();
       await trigger.click();
-      await dateTimeInput
-        .getByRole('button', { name: /^hr:/ })
-        .first()
-        .waitFor({ state: 'visible', timeout: 5000 });
+      const dropdown = dateTimeInput.locator('> ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await expect(dropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
-      // Day cells have aria-label like "4: 15" (month index: day)
+      // Day cells have aria-label like "15 May" (month index: day)
       // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-      const dayCell = dateTimeInput.getByLabel(
-        new RegExp(String.raw`^\d+: ${day}$`)
-      );
+      const dayCell = dateTimeInput.getByRole('button', {
+        name: new RegExp(`^${day}\\s.+$`),
+      });
       await dayCell.click();
     },
     selectTime: async (hour: number, minute: number, second: number) => {
@@ -50,7 +49,24 @@ const createAccessor = async (dateTimeInput: Locator) => {
       });
       await confirmButton.click();
     },
+    expectCalendarToBeVisible: async () => {
+      const dropdown = dateTimeInput.locator('> ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await expect(dropdown).toHaveClass(/show/);
+    },
+    expectToHaveErrorMessage: async (message: string) => {
+      const input = dateTimeInput.getByRole('textbox');
+      const errorMessageId = await input.evaluate((el) =>
+        el.getAttribute('aria-errormessage')
+      );
+
+      expect(errorMessageId).toMatch(/ix-component-ix-field-wrapper-.*/g);
+      await expect(dateTimeInput.locator(`#${errorMessageId}`)).toHaveText(
+        message
+      );
+    },
   };
+  return accessor;
 };
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -167,24 +183,21 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   await expect(dateTimeInputElement).toHaveClass(/hydrated/);
 
   const input = dateTimeInputElement.getByRole('textbox');
-  await input.focus();
-  await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
-  ).toBeVisible();
-
   await input.fill('2025/10/10 14:30:45');
-
   await expect(dateTimeInputElement).toHaveAttribute(
     'value',
     '2025/10/10 14:30:45'
   );
+
+  await input.focus();
+  await page.keyboard.press('ArrowDown');
 
   await expect(
     dateTimeInputElement.getByRole('button', { name: 'Confirm' })
   ).toBeVisible();
 
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 10$/);
+  const selectedDay = dateTimeInputElement.getByLabel(/^10\s.+$/);
   await expect(selectedDay).toHaveClass(/selected/);
 
   const selectedHour = dateTimeInputElement.getByRole('button', {
@@ -229,11 +242,12 @@ regressionTest('invalid input shows error', async ({ mount, page }) => {
   );
 
   const dateTimeInput = page.locator('ix-datetime-input');
+  const dateTimeAccessor = await createAccessor(dateTimeInput);
   const input = dateTimeInput.getByRole('textbox');
   await input.fill('invalid-datetime');
 
   await expect(input).toHaveClass(/is-invalid/);
-  await expect(dateTimeInput.getByText('Date time is not valid')).toBeVisible();
+  await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
 });
 
 regressionTest('select date and time by focus', async ({ mount, page }) => {
@@ -246,6 +260,9 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
   const dateTimeInput = await createAccessor(dateTimeInputElement);
   const input = dateTimeInputElement.getByRole('textbox');
   await input.focus();
+
+  await page.keyboard.press('ArrowDown');
+  await dateTimeInput.expectCalendarToBeVisible();
 
   await dateTimeInput.selectDay(20);
   await dateTimeInput.selectTime(15, 45, 30);
@@ -266,13 +283,11 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   );
 
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  // Calendar button is aria-hidden, so we use CSS selector
-  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
-  await calendarButton.click();
 
-  // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const dayCell = dateTimeInputElement.getByLabel(/^\d+: 15$/);
-  await dayCell.click();
+  const dateTimeAccessor = await createAccessor(dateTimeInputElement);
+  await dateTimeAccessor.openByCalendar();
+
+  await dateTimeAccessor.selectDay(15);
 
   await dateTimeInputElement.getByRole('button', { name: 'hr: 14' }).click();
   await dateTimeInputElement.getByRole('button', { name: 'min: 30' }).click();
@@ -294,12 +309,12 @@ regressionTest('picker syncs with input value', async ({ mount, page }) => {
   );
 
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  // Calendar button is aria-hidden, so we use CSS selector
-  const calendarButton = dateTimeInputElement.locator('ix-icon-button').first();
-  await calendarButton.click();
-
+  const dateTimeAccessor = await createAccessor(dateTimeInputElement);
+  await dateTimeAccessor.openByCalendar();
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 15$/);
+  const selectedDay = dateTimeInputElement.getByRole('button', {
+    name: '15 May',
+  });
   await expect(selectedDay).toHaveClass(/selected/);
 
   const hourElement = dateTimeInputElement.getByRole('button', {
@@ -323,6 +338,7 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
   );
 
   const dateTimeInputElement = page.locator('ix-datetime-input');
+  const dateTimeAccessor = await createAccessor(dateTimeInputElement);
   const input = dateTimeInputElement.getByRole('textbox');
 
   await input.fill('2024/05/20 15:45:30');
@@ -332,9 +348,9 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
     '2024/05/20 15:45:30'
   );
 
-  const selectedDay = dateTimeInputElement.getByLabel(/^\d+: 20$/);
-  await selectedDay.waitFor({ state: 'visible', timeout: 5000 });
+  await dateTimeAccessor.openByCalendar();
 
+  const selectedDay = dateTimeInputElement.getByLabel('20 May');
   await expect(selectedDay).toHaveClass(/selected/);
 
   const hourElement = dateTimeInputElement.getByRole('button', {
@@ -358,11 +374,12 @@ regressionTest('invalid date format shows error', async ({ mount, page }) => {
   );
 
   const dateTimeInput = page.locator('ix-datetime-input');
+  const dateTimeAccessor = await createAccessor(dateTimeInput);
   const input = dateTimeInput.getByRole('textbox');
   await input.fill('2025/13/45 25:70:99');
 
   await expect(input).toHaveClass(/is-invalid/);
-  await expect(dateTimeInput.getByText('Date time is not valid')).toBeVisible();
+  await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
 });
 
 regressionTest('validates minDate constraint', async ({ mount, page }) => {
@@ -572,12 +589,11 @@ regressionTest(
     );
 
     const dateTimeInput = page.locator('ix-datetime-input');
+    const dateTimeAccessor = await createAccessor(dateTimeInput);
     const input = dateTimeInput.getByRole('textbox');
     await input.fill('invalid-datetime');
 
-    await expect(
-      dateTimeInput.getByText('Date time is not valid')
-    ).toBeVisible();
+    await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
   }
 );
 
@@ -593,11 +609,12 @@ regressionTest(
   `);
 
     const dateTimeInput = page.locator('ix-datetime-input');
+    const dateTimeAccessor = await createAccessor(dateTimeInput);
     const input = dateTimeInput.getByRole('textbox');
     await input.fill('invalid-datetime');
     await input.blur();
 
-    await expect(dateTimeInput.getByText('Custom error message')).toBeVisible();
+    await dateTimeAccessor.expectToHaveErrorMessage('Custom error message');
   }
 );
 
