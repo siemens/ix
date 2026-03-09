@@ -403,18 +403,20 @@ export class Tabs {
     const move = (event: PointerEvent) =>
       this.dragMove(event, pointerdownPositionX);
 
-    const pointerUp = () => {
+    const cleanupPointerListeners = () => {
       element.removeEventListener('pointermove', move, false);
       element.removeEventListener('pointerup', pointerUp, false);
       element.removeEventListener('pointercancel', pointerCancel, false);
+    };
+
+    const pointerUp = () => {
+      cleanupPointerListeners();
       this.isDragging = false;
       this.dragStop();
     };
 
     const pointerCancel = () => {
-      element.removeEventListener('pointermove', move, false);
-      element.removeEventListener('pointerup', pointerUp, false);
-      element.removeEventListener('pointercancel', pointerCancel, false);
+      cleanupPointerListeners();
       this.isDragging = false;
       this.scrollActionAmount = initialScrollAmount;
       const tabsWrapper = this.getTabsWrapper();
