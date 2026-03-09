@@ -15,6 +15,7 @@ import {
   h,
   Host,
   Prop,
+  Method,
 } from '@stencil/core';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import type { DateChangeEvent } from '../date-picker/date-picker.events';
@@ -23,7 +24,6 @@ import type {
   DateTimeSelectEvent,
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
-import { Method } from 'node_modules/@siemens/ix-icons/dist/types/stencil-public-runtime';
 
 @Component({
   tag: 'ix-datetime-picker',

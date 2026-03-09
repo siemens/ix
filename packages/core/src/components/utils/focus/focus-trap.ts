@@ -63,12 +63,15 @@ export const addFocusTrap = async (
           focusableQueryString
         ).filter((element) => element !== includeElement);
 
-        includedFocusableElements.forEach((includedElement) => {
+        for (const includedElement of includedFocusableElements) {
           const duplicateIndex = focusableElements.indexOf(includedElement);
           if (duplicateIndex !== -1) {
             focusableElements.splice(duplicateIndex, 1);
+            if (duplicateIndex < index) {
+              index--;
+            }
           }
-        });
+        }
 
         focusableElements.splice(index, 1, ...includedFocusableElements);
         index += includedFocusableElements.length - 1;
