@@ -35,16 +35,6 @@ describe('ThemeSwitcher', () => {
         theme
       );
     });
-    it('should toggle from html theme class to data attributes', () => {
-      themeSwitcher.setTheme(themeClass);
-      themeSwitcher.toggleMode();
-      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
-        'classic'
-      );
-      expect(
-        document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('light');
-    });
 
     it('should toggle theme attribute', () => {
       themeSwitcher.setTheme(theme);
