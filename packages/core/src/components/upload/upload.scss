@@ -35,13 +35,6 @@
     border-radius: var(--theme-upload--border-radius);
     color: var(--theme-upload-text--color);
 
-    -webkit-user-drag: none;
-    user-select: none;
-
-    * {
-      -webkit-user-drag: none;
-    }
-
     &.multiline {
       max-height: unset;
       height: auto;
