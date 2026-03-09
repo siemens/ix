@@ -566,7 +566,6 @@ export class DatetimeInput
             }
           }}
           onFocus={async () => {
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onInput={(event) => {
@@ -635,6 +634,20 @@ export class DatetimeInput
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
+          focusTrapOptions={{
+            targetElement: this.datetimePickerRef,
+            trapFocusInShadowDom: true,
+          }}
+          callbackFocusElement={async () => {
+            const datetimePicker = this.datetimePickerRef.current;
+            if (datetimePicker) {
+              const datePickerElement =
+                await datetimePicker.getDatepickerElement();
+              datePickerElement?.focusActiveDay();
+            }
+            return true;
+          }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
         >
           <ix-datetime-picker
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
