@@ -198,63 +198,65 @@ export class DatetimePicker
   render() {
     return (
       <Host>
-        {/* <ix-date-time-card
+        <ix-date-time-card
           hideHeader={true}
           hasFooter={true}
           embedded={this.embedded}
           corners="rounded"
           noPadding
-        > */}
-        {/* <ix-layout-grid class="no-padding">
+        >
+          <ix-layout-grid class="no-padding">
             <ix-row class="row-separator">
-              <ix-col class="col-separator"> */}
-        <ix-date-picker
-          ref={(ref) => (this.datePickerElement = ref)}
-          corners="left"
-          singleSelection={this.singleSelection}
-          onDateChange={(event) => this.onDateChange(event)}
-          from={this.from}
-          to={this.to}
-          format={this.dateFormat}
-          minDate={this.minDate}
-          maxDate={this.maxDate}
-          weekStartIndex={this.weekStartIndex}
-          embedded
-          locale={this.locale}
-          showWeekNumbers={this.showWeekNumbers}
-          ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-          ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
-          {...{
-            tabIndex: this.embedded ? -1 : 0,
-            [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
-          }}
-        ></ix-date-picker>
-        {/* </ix-col> */}
+              <ix-col class="col-separator">
+                <ix-date-picker
+                  ref={(ref) => (this.datePickerElement = ref)}
+                  corners="left"
+                  singleSelection={this.singleSelection}
+                  onDateChange={(event) => this.onDateChange(event)}
+                  from={this.from}
+                  to={this.to}
+                  format={this.dateFormat}
+                  minDate={this.minDate}
+                  maxDate={this.maxDate}
+                  weekStartIndex={this.weekStartIndex}
+                  embedded
+                  locale={this.locale}
+                  showWeekNumbers={this.showWeekNumbers}
+                  ariaLabelPreviousMonthButton={
+                    this.ariaLabelPreviousMonthButton
+                  }
+                  ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+                  {...{
+                    tabIndex: this.embedded ? -1 : 0,
+                    [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
+                  }}
+                ></ix-date-picker>
+              </ix-col>
 
-        {/* <ix-col> */}
-        <ix-time-picker
-          class="min-width"
-          ref={(ref) => (this.timePickerElement = ref)}
-          embedded
-          dateTimePickerAppearance={true}
-          onTimeChange={(event) => this.onTimeChange(event)}
-          format={this.timeFormat}
-          time={this.time}
-          {...{
-            tabIndex: this.embedded ? -1 : 0,
-            [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
-          }}
-        ></ix-time-picker>
-        {/* </ix-col>
+              <ix-col>
+                <ix-time-picker
+                  class="min-width"
+                  ref={(ref) => (this.timePickerElement = ref)}
+                  embedded
+                  dateTimePickerAppearance={true}
+                  onTimeChange={(event) => this.onTimeChange(event)}
+                  format={this.timeFormat}
+                  time={this.time}
+                  {...{
+                    tabIndex: this.embedded ? -1 : 0,
+                    [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
+                  }}
+                ></ix-time-picker>
+              </ix-col>
             </ix-row>
-          </ix-layout-grid> */}
+          </ix-layout-grid>
 
-        {/* <div slot="footer" class="btn-select-date-container"> */}
-        <ix-button class="btn-select-date" onClick={() => this.onDone()}>
-          {this.i18nDone}
-        </ix-button>
-        {/* </div> */}
-        {/* </ix-date-time-card> */}
+          <div slot="footer" class="btn-select-date-container">
+            <ix-button class="btn-select-date" onClick={() => this.onDone()}>
+              {this.i18nDone}
+            </ix-button>
+          </div>
+        </ix-date-time-card>
       </Host>
     );
   }
