@@ -184,6 +184,42 @@ regressionTest(
   }
 );
 
+regressionTest(
+  `form-ready - ix-number-input stepper avoids floating point precision errors`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name" value="0.2" step="0.1" show-stepper-buttons></ix-number-input></form>`
+    );
+
+    await page.evaluate(() => {
+      globalThis.__lastEmittedValue = null;
+      document
+        .querySelector('ix-number-input')
+        ?.addEventListener('valueChange', (event: any) => {
+          globalThis.__lastEmittedValue = event.detail;
+        });
+    });
+
+    const numberInput = page.locator('ix-number-input');
+    const incrementButton = numberInput.locator('.step-plus');
+    await incrementButton.click();
+
+    const emittedValue = await page.evaluate(
+      () => globalThis.__lastEmittedValue
+    );
+    expect(emittedValue).toBe(0.3);
+
+    const decrementButton = numberInput.locator('.step-minus');
+    await decrementButton.click();
+    await decrementButton.click();
+
+    const decrementedValue = await page.evaluate(
+      () => globalThis.__lastEmittedValue
+    );
+    expect(decrementedValue).toBe(0.1);
+  }
+);
+
 regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
 
