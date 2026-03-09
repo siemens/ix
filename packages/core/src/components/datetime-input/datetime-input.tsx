@@ -142,6 +142,12 @@ export class DatetimeInput
   /** ARIA label for next month navigation button */
   @Prop() ariaLabelNextMonthButton?: string;
 
+  /**
+   * ARIA label for the calendar icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelCalendarButton?: string;
+
   /** Show week numbers in date picker */
   @Prop() showWeekNumbers: boolean = false;
 
@@ -156,8 +162,6 @@ export class DatetimeInput
 
   /**
    * Enable Popover API rendering for dropdown.
-   *
-   * @default false
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -173,19 +177,14 @@ export class DatetimeInput
   /** Emitted when the input loses focus */
   @Event() ixBlur!: EventEmitter<void>;
 
-  /** Whether the current input value is invalid */
   @State() isInputInvalid: boolean = false;
 
-  /** Validation state: Invalid */
   @State() isInvalid: boolean = false;
 
-  /** Validation state: Valid */
   @State() isValid: boolean = false;
 
-  /** Validation state: Info */
   @State() isInfo: boolean = false;
 
-  /** Validation state: Warning */
   @State() isWarning: boolean = false;
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
@@ -194,13 +193,10 @@ export class DatetimeInput
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private readonly datetimePickerRef = makeRef<HTMLIxDatetimePickerElement>();
 
-  /** Dropdown open/closed state */
   @State() show: boolean = false;
 
-  /** Date value for picker (in picker's format) */
   @State() from?: string | null = null;
 
-  /** Time value for picker (in picker's format) */
   @State() time?: string | null = null;
 
   private classObserver?: ClassMutationObserver;
@@ -358,14 +354,14 @@ export class DatetimeInput
     }
   }
 
-  private readonly onCalendarClick = (event: Event) => {
+  onCalendarClick(event: Event) {
     handleIconClick(
       event,
       this.show,
       () => this.openDropdown(),
       this.inputElementRef
     );
-  };
+  }
 
   private async openDropdown() {
     this.initPickerValues();
@@ -586,12 +582,11 @@ export class DatetimeInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-hidden="true"
-            tabindex="-1"
-            aria-label="Toggle datetime picker"
+            aria-hidden={this.ariaLabelCalendarButton}
+            tabindex={-1}
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            icon={iconCalendar}
             variant="subtle-tertiary"
+            icon={iconCalendar}
             onClick={(event) => this.onCalendarClick(event)}
           ></ix-icon-button>
         </SlotEnd>

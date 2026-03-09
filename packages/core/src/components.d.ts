@@ -1233,6 +1233,10 @@ export namespace Components {
      */
     interface IxDatetimeInput {
         /**
+          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
           * ARIA label for next month navigation button
          */
         "ariaLabelNextMonthButton"?: string;
@@ -7557,6 +7561,10 @@ declare namespace LocalJSX {
      */
     interface IxDatetimeInput {
         /**
+          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
           * ARIA label for next month navigation button
          */
         "ariaLabelNextMonthButton"?: string;
@@ -11345,6 +11353,7 @@ declare namespace LocalJSX {
         "i18nTime": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
+        "ariaLabelCalendarButton": string;
         "showWeekNumbers": boolean;
         "weekStartIndex": number;
         "suppressSubmitOnEnter": boolean;
