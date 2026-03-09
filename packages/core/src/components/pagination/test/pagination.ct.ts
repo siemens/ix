@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 const createOnPageSelectedListener = (pagination: Locator) =>
@@ -161,5 +161,107 @@ regressionTest(
 
     await expect(input).toHaveValue('10');
     expect(await pageSelected$).toBe(9);
+  }
+);
+
+regressionTest(
+  'should use custom itemCountOptions',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [5, 25, 50, 100];
+    });
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-select-item');
+    const expectedValues = ['5', '25', '50', '100'];
+    await expect(dropdownItems).toHaveCount(expectedValues.length);
+
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
+    }
+  }
+);
+
+regressionTest(
+  'should sort itemCountOptions in ascending order',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [100, 5, 50, 25];
+    });
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-select-item');
+    const expectedValues = ['5', '25', '50', '100'];
+
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
+    }
+  }
+);
+
+regressionTest(
+  'should filter out zero and negative values from itemCountOptions',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [0, -5, 10, 20, -1];
+      elm.count = 11;
+    });
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-select-item');
+    await expect(dropdownItems).toHaveCount(2);
+    await expect(dropdownItems.nth(0)).toContainText('10');
+    await expect(dropdownItems.nth(1)).toContainText('20');
+  }
+);
+
+regressionTest(
+  'should use default options when itemCountOptions is empty',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [];
+    });
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-select-item');
+    const expectedValues = ['10', '15', '20', '40', '100'];
+    await expect(dropdownItems).toHaveCount(expectedValues.length);
+
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
+    }
   }
 );
