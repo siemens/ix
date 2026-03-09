@@ -159,6 +159,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
   private isRelocating = false;
+  private relocatingTimeout?: ReturnType<typeof setTimeout>;
 
   private itemObserver? = new MutationObserver(() => {
     if (this.arrowFocusController) {
@@ -167,6 +168,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   });
 
   connectedCallback(): void {
+    if (this.relocatingTimeout) {
+      clearTimeout(this.relocatingTimeout);
+      this.relocatingTimeout = undefined;
+    }
+
     dropdownController.connected(this);
 
     if (this.trigger != undefined) {
@@ -188,9 +194,17 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   disconnectedCallback() {
     if (this.isRelocating) {
+      this.relocatingTimeout = setTimeout(() => {
+        this.isRelocating = false;
+        this.performFullCleanup();
+      });
       return;
     }
 
+    this.performFullCleanup();
+  }
+
+  private performFullCleanup() {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
@@ -218,6 +232,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
+
+    this.clearAutoCloseTimeout();
     this.removeVisibilityListeners();
   }
 
