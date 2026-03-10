@@ -59,7 +59,7 @@ export class ExpandingSearch
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelSearchIconButton?: string;
+  @Prop() ariaLabelSearchIconButton?: string = 'Search';
 
   /**
    * ARIA label for the clear icon button
@@ -150,10 +150,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
-          aria-label={
-            this.ariaLabelSearchIconButton ??
-            (this.expanded ? 'Close search' : 'Open search')
-          }
+          aria-label={this.expanded ? 'Close search' : 'Open search'}
         ></ix-icon-button>
 
         <div

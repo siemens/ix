@@ -1593,6 +1593,7 @@ export namespace Components {
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Search'
          */
         "ariaLabelSearchIconButton"?: string;
         /**
@@ -7657,6 +7658,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Search'
          */
         "ariaLabelSearchIconButton"?: string;
         /**
