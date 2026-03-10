@@ -2756,6 +2756,11 @@ export namespace Components {
          */
         "itemCount": number;
         /**
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
+          * @since 4.3.0
+         */
+        "itemCountOptions"?: number[];
+        /**
           * Zero based index of currently selected page
           * @default 0
          */
@@ -4791,6 +4796,7 @@ declare global {
         "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string | undefined;
     }
     /**
      * @form-ready 
@@ -5116,6 +5122,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5428,6 +5435,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -5681,6 +5689,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5710,6 +5719,7 @@ declare global {
         "validityStateChange": TimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @since 3.2.0
@@ -7042,6 +7052,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the date input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
@@ -8065,6 +8080,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the text field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
@@ -8759,6 +8779,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the input field loses focus and the value has changed
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
+        /**
           * Event emitted when the validity state of the input field changes
          */
         "onValidityStateChange"?: (event: IxNumberInputCustomEvent<ValidityState>) => void;
@@ -8873,6 +8898,11 @@ declare namespace LocalJSX {
           * @default 15
          */
         "itemCount"?: number;
+        /**
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
+          * @since 4.3.0
+         */
+        "itemCountOptions"?: number[];
         /**
           * Item count change event
          */
@@ -9711,6 +9741,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
+          * Event emitted when the textarea field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the textarea field changes.
          */
         "onValidityStateChange"?: (event: IxTextareaCustomEvent<ValidityState>) => void;
@@ -9880,6 +9915,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the time input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
