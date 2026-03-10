@@ -13,9 +13,14 @@
 @include input.input-field;
 
 :host {
-  // Hide the default password reveal icon in Microsoft Edge
+  // Hide the default password reveal icon in Microsoft Edge (Windows)
   input::-ms-reveal {
     display: none;
+  }
+
+  // Hide the default password reveal icon in Edge (macOS) and other Chromium browsers
+  input::-webkit-credentials-auto-fill-button {
+    display: none !important;
   }
 
   .password-eye {
