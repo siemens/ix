@@ -15,6 +15,7 @@ import {
   h,
   Host,
   Prop,
+  Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
@@ -41,6 +42,8 @@ export class Pagination {
   };
 
   private readonly maxCountPages = 7;
+  private readonly defaultItemCountOptions = [10, 15, 20, 40, 100];
+  private verifiedItemCountOptions?: number[];
 
   @Element() hostElement!: HTMLIxPaginationElement;
 
@@ -59,6 +62,16 @@ export class Pagination {
    * Hide item count in advanced mode
    */
   @Prop() hideItemCount = false;
+
+  /**
+   * Custom item count options for advanced mode.
+   * Provide an array of numbers to display in the items per page dropdown.
+   * If not provided or empty, defaults to [10, 15, 20, 40, 100].
+   * Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
+   *
+   * @since 4.3.0
+   */
+  @Prop() itemCountOptions?: number[];
 
   /**
    * Total number of pages
@@ -117,6 +130,86 @@ export class Pagination {
    * Item count change event
    */
   @Event() itemCountChanged!: EventEmitter<number>;
+
+  @Watch('itemCountOptions')
+  onItemCountOptionsChange() {
+    this._verifyItemCountOptions();
+  }
+
+  componentWillLoad() {
+    this._verifyItemCountOptions();
+  }
+
+  private _verifyItemCountOptions(): void {
+    if (!this.advanced || this.hideItemCount) {
+      return;
+    }
+
+    this.verifiedItemCountOptions = this.getValidItemCountOptions();
+    this.verifyEmptyItemCountOptions();
+    this.verifyAllInvalidItemCountOptions();
+    this.verifyItemCountMismatch();
+  }
+
+  private verifyEmptyItemCountOptions(): void {
+    if (this.itemCountOptions?.length !== 0) {
+      return;
+    }
+
+    console.warn(
+      `[ix-pagination] itemCountOptions is an empty array. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
+    );
+  }
+
+  private verifyAllInvalidItemCountOptions(): void {
+    if (
+      !this.itemCountOptions?.length ||
+      (this.verifiedItemCountOptions?.length ?? 0) > 0
+    ) {
+      return;
+    }
+
+    console.warn(
+      `[ix-pagination] All values in itemCountOptions are invalid. ` +
+        `Only positive integers are allowed. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
+    );
+    this.verifiedItemCountOptions = this.defaultItemCountOptions;
+  }
+
+  private verifyItemCountMismatch(): void {
+    if (!this.verifiedItemCountOptions?.length) {
+      return;
+    }
+
+    if (this.verifiedItemCountOptions.includes(this.itemCount)) {
+      return;
+    }
+
+    const displayOptions =
+      this.verifiedItemCountOptions.length > 5
+        ? `${this.verifiedItemCountOptions.slice(0, 5).join(', ')} ...`
+        : this.verifiedItemCountOptions.join(', ');
+
+    console.warn(
+      `[ix-pagination] Configuration mismatch: itemCount value "${
+        this.itemCount
+      }" is not present in itemCountOptions [${displayOptions}]. ` +
+        `This will result in an invalid dropdown state. Please either add ${this.itemCount} to itemCountOptions or set itemCount to one of the available options.`
+    );
+  }
+
+  private getValidItemCountOptions(): number[] {
+    return Array.from(
+      new Set(
+        (this.itemCountOptions?.length
+          ? this.itemCountOptions
+          : this.defaultItemCountOptions
+        )
+          .filter((option) => option > 0 && Number.isInteger(option))
+          .sort((current, next) => current - next)
+      )
+    );
+  }
 
   private selectPage(index: number) {
     const oldIndex = this.selectedPage;
@@ -312,11 +405,12 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              <ix-select-item label="10" value="10"></ix-select-item>
-              <ix-select-item label="15" value="15"></ix-select-item>
-              <ix-select-item label="20" value="20"></ix-select-item>
-              <ix-select-item label="40" value="40"></ix-select-item>
-              <ix-select-item label="100" value="100"></ix-select-item>
+              {this.verifiedItemCountOptions!.map((option) => (
+                <ix-select-item
+                  label={`${option}`}
+                  value={`${option}`}
+                ></ix-select-item>
+              ))}
             </ix-select>
           </span>
         )}
