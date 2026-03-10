@@ -320,7 +320,7 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              {this.itemCountOptions!.map((option) => (
+              {this.itemCountOptions.map((option) => (
                 <ix-select-item
                   label={`${option}`}
                   value={`${option}`}
