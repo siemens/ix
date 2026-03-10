@@ -262,3 +262,127 @@ regressionTest(
     await expect(tooltip).not.toBeVisible();
   }
 );
+
+async function setControlRefAndLabel(page: any, label: string) {
+  await page.evaluate((label: string) => {
+    const fieldWrapper = document.querySelector(
+      'ix-field-wrapper'
+    ) as HTMLIxFieldWrapperElement;
+    const input = document.querySelector('#test-input') as HTMLInputElement;
+
+    let resolve: ((value: HTMLElement) => void) | undefined;
+    const currentPromise = new Promise<HTMLElement>((res) => (resolve = res));
+
+    const ref = ((el: HTMLElement) => {
+      ref.current = el;
+      resolve?.(el);
+    }) as any;
+    ref.current = null;
+    ref.waitForCurrent = async () => {
+      await currentPromise;
+      return ref.current;
+    };
+
+    ref(input);
+    // controlRef has to be set before label
+    fieldWrapper.controlRef = ref;
+    fieldWrapper.label = label;
+  }, label);
+}
+
+regressionTest(
+  'should set aria-label on control from label prop',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper>
+        <input id="test-input" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    await setControlRefAndLabel(page, 'Test label');
+
+    const input = page.locator('#test-input');
+    await expect(input).toHaveAttribute('aria-label', 'Test label');
+  }
+);
+
+regressionTest(
+  'should not override existing aria-label on control',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper>
+        <input id="test-input" aria-label="Explicit label" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    await setControlRefAndLabel(page, 'Test label');
+
+    const input = page.locator('#test-input');
+    await expect(input).toHaveAttribute('aria-label', 'Explicit label');
+  }
+);
+
+regressionTest(
+  'getAriaHelperMessageElement should return the helper message element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper helper-text="Helper text" id="test">
+        <input id="test-input" />
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const helperMessageElement = fieldWrapperElement.locator(
+      '.helper-message-container'
+    );
+
+    expect(helperMessageElement).toBeAttached();
+    await expect(helperMessageElement!).toHaveAttribute(
+      'id',
+      'test-helpermessage'
+    );
+  }
+);
+
+regressionTest(
+  'getAriaErrorMessageElement should return the error message element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper invalid-text="Invalid text" is-invalid id="test">
+      <input id="test-input" />
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const errorMessageElement = fieldWrapperElement.locator(
+      '.error-message-container'
+    );
+
+    expect(errorMessageElement).toBeAttached();
+    await expect(errorMessageElement!).toHaveAttribute(
+      'id',
+      'test-errormessage'
+    );
+
+    await expect(fieldWrapperElement).toHaveAttribute('role', 'alert');
+    await expect(fieldWrapperElement).toHaveAttribute('aria-live', 'polite');
+  }
+);

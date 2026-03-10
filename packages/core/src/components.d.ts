@@ -25,10 +25,12 @@ import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 import { DateInputValidityState } from "./components/date-input/date-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
+import { DateTime } from "luxon";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
+import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
@@ -75,10 +77,12 @@ export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 export { DateInputValidityState } from "./components/date-input/date-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
+export { DateTime } from "luxon";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
+export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
@@ -305,7 +309,7 @@ export namespace Components {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton": string;
         /**
@@ -334,6 +338,7 @@ export namespace Components {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
+          * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
         /**
@@ -353,6 +358,10 @@ export namespace Components {
           * @default false
          */
         "invisible": boolean;
+        /**
+          * @default false
+         */
+        "isCurrentPage": boolean;
         /**
           * @default false
          */
@@ -853,15 +862,6 @@ export namespace Components {
     }
     interface IxDateDropdown {
         /**
-          * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
-         */
-        "ariaLabelDropdownButton"?: string;
-        /**
-          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
-          * @default false
-         */
-        "customRangeDisabled": boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
          */
@@ -896,11 +896,6 @@ export namespace Components {
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
-         */
-        "i18nCustomItem": string;
         /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
@@ -1103,12 +1098,26 @@ export namespace Components {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
+          * @default 'Select month'
+         */
+        "ariaLabelMonthSelection"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
+          * @default 'Select year'
+         */
+        "ariaLabelYearSelection"?: string;
         /**
           * Corner style
           * @default 'rounded'
@@ -1124,6 +1133,9 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        "focusActiveDay": () => Promise<void>;
+        "focusFirstDayOfCurrentWeek": () => Promise<void>;
+        "focusLastDayOfCurrentWeek": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1142,6 +1154,7 @@ export namespace Components {
           * @default 'Done'
          */
         "i18nDone": string;
+        "isCalendarDayFocused": () => Promise<boolean>;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
@@ -1156,6 +1169,7 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
+        "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -1175,6 +1189,7 @@ export namespace Components {
           * @default DateTime.now().toISO()
          */
         "today": string;
+        "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @default 0
@@ -1337,11 +1352,24 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        "callbackFocusElement"?: (event: KeyboardEvent) => boolean | undefined;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
          */
         "closeBehavior": CloseBehavior;
+        /**
+          * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusHandling": boolean;
+        /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusTrap": boolean;
         /**
           * @default false
          */
@@ -1350,8 +1378,17 @@ export namespace Components {
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v4.x, will default to true in v5.0.0
+          * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem": boolean;
+        "focusHost"?: HTMLElement;
+        "focusTrapOptions"?: FocusTrapOptions;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -1360,6 +1397,16 @@ export namespace Components {
           * @default false
          */
         "ignoreRelatedSubmenu": boolean;
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'Home',     'End',     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys": string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys": string[];
         /**
           * Move dropdown along main axis of alignment
          */
@@ -1382,6 +1429,7 @@ export namespace Components {
           * @default 'fixed'
          */
         "positioningStrategy": 'absolute' | 'fixed';
+        "resetForwardQueryElement": () => Promise<void>;
         /**
           * Show dropdown
           * @default false
@@ -1428,17 +1476,29 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem": boolean;
+        "getDropdownReference": () => Promise<HTMLIxDropdownElement>;
+        /**
           * Button icon
          */
         "icon"?: string;
         /**
           * Set label
          */
-        "label"?: string;
+        "label"?: string | null;
         /**
           * Placement of the dropdown
          */
         "placement"?: AlignedPlacement;
+        /**
+          * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+          * @default false
+         */
+        "suppressAriaActiveDescendant": boolean;
         /**
           * Button variant
           * @default 'primary'
@@ -1467,12 +1527,20 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling": boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
         "disabled": boolean;
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
+        /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
         /**
           * Display hover state
           * @default false
@@ -1486,6 +1554,10 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
         /**
           * Label of dropdown item
          */
@@ -1639,14 +1711,12 @@ export namespace Components {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
+        "getAriaErrorMessageElement": () => Promise<HTMLElement | null>;
+        "getAriaHelperMessageElement": () => Promise<HTMLElement | null>;
         /**
           * Show text below the field component
          */
         "helperText"?: string;
-        /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlForLabel"?: string;
         /**
           * Info text for the field component
          */
@@ -2756,6 +2826,11 @@ export namespace Components {
          */
         "itemCount": number;
         /**
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
+          * @since 4.3.0
+         */
+        "itemCountOptions"?: number[];
+        /**
           * Zero based index of currently selected page
           * @default 0
          */
@@ -3081,8 +3156,15 @@ export namespace Components {
          */
         "allowClear": boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem": string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
           * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
@@ -3218,19 +3300,23 @@ export namespace Components {
         "warningText"?: string;
     }
     interface IxSelectItem {
+        /**
+          * @default false
+         */
+        "disableAriaSelectHandling": boolean;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * @default false
          */
         "hover": boolean;
         /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
+        /**
           * Displayed name of the item
          */
         "label"?: string;
-        /**
-          * @param event
-         */
-        "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
           * Flag indicating whether the item is selected
           * @default false
@@ -3600,6 +3686,12 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
+        /**
+          * ARIA label for the time picker toggle button Will be set as aria-label for the nested HTML button element
+          * @since 5.0.0
+          * @default 'Toggle time picker'
+         */
+        "ariaLabelTimeToggleButton"?: string;
         /**
           * Disabled attribute
           * @default false
@@ -4313,6 +4405,10 @@ export interface IxDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownElement;
 }
+export interface IxDropdownButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDropdownButtonElement;
+}
 export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownItemElement;
@@ -4882,7 +4978,12 @@ declare global {
         new (): HTMLIxDrawerElement;
     };
     interface HTMLIxDropdownElementEventMap {
+        "showChange": boolean;
         "showChanged": boolean;
+        "experimentalRequestFocus": {
+    keyEvent: KeyboardEvent;
+  };
+        "experimentalFocusNextElement": void;
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4898,7 +4999,19 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    interface HTMLIxDropdownButtonElementEventMap {
+        "showChange": boolean;
+        "showChanged": boolean;
+    }
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDropdownButtonElementEventMap>(type: K, listener: (this: HTMLIxDropdownButtonElement, ev: IxDropdownButtonCustomEvent<HTMLIxDropdownButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDropdownButtonElementEventMap>(type: K, listener: (this: HTMLIxDropdownButtonElement, ev: IxDropdownButtonCustomEvent<HTMLIxDropdownButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDropdownButtonElement: {
         prototype: HTMLIxDropdownButtonElement;
@@ -6253,7 +6366,7 @@ declare namespace LocalJSX {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton"?: string;
         /**
@@ -6290,6 +6403,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
+          * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
         /**
@@ -6309,6 +6423,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "invisible"?: boolean;
+        /**
+          * @default false
+         */
+        "isCurrentPage"?: boolean;
         /**
           * @default false
          */
@@ -6862,15 +6980,6 @@ declare namespace LocalJSX {
     }
     interface IxDateDropdown {
         /**
-          * ARIA label for the dropdown Will be set as aria-label on the nested HTML button element that will trigger the dropdown
-         */
-        "ariaLabelDropdownButton"?: string;
-        /**
-          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
-          * @default false
-         */
-        "customRangeDisabled"?: boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
          */
@@ -6901,11 +7010,6 @@ declare namespace LocalJSX {
           * @default ''
          */
         "from"?: string;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
-         */
-        "i18nCustomItem"?: string;
         /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
@@ -7116,12 +7220,26 @@ declare namespace LocalJSX {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
+          * @default 'Select month'
+         */
+        "ariaLabelMonthSelection"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @since 5.0.0
+          * @default 'Select year'
+         */
+        "ariaLabelYearSelection"?: string;
         /**
           * Corner style
           * @default 'rounded'
@@ -7373,11 +7491,24 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        "callbackFocusElement"?: (event: KeyboardEvent) => boolean | undefined;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
           * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
+        /**
+          * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusHandling"?: boolean;
+        /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusTrap"?: boolean;
         /**
           * @default false
          */
@@ -7385,8 +7516,17 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v4.x, will default to true in v5.0.0
+          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem"?: boolean;
+        "focusHost"?: HTMLElement;
+        "focusTrapOptions"?: FocusTrapOptions;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -7396,6 +7536,16 @@ declare namespace LocalJSX {
          */
         "ignoreRelatedSubmenu"?: boolean;
         /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'Home',     'End',     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys"?: string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys"?: string[];
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -7403,6 +7553,17 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onExperimentalFocusNextElement"?: (event: IxDropdownCustomEvent<void>) => void;
+        /**
+          * Will be fired only after dropdown changed visibility to "true"
+         */
+        "onExperimentalRequestFocus"?: (event: IxDropdownCustomEvent<{
+    keyEvent: KeyboardEvent;
+  }>) => void;
+        /**
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownCustomEvent<boolean>) => void;
         /**
           * Fire event after visibility of dropdown has changed
          */
@@ -7463,17 +7624,36 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
+          * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+          * @since 5.0.0
+          * @default false
+         */
+        "focusCheckedItem"?: boolean;
+        /**
           * Button icon
          */
         "icon"?: string;
         /**
           * Set label
          */
-        "label"?: string;
+        "label"?: string | null;
+        /**
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownButtonCustomEvent<boolean>) => void;
+        /**
+          * Fire event after visibility of dropdown has changed
+         */
+        "onShowChanged"?: (event: IxDropdownButtonCustomEvent<boolean>) => void;
         /**
           * Placement of the dropdown
          */
         "placement"?: AlignedPlacement;
+        /**
+          * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
+          * @default false
+         */
+        "suppressAriaActiveDescendant"?: boolean;
         /**
           * Button variant
           * @default 'primary'
@@ -7502,10 +7682,18 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling"?: boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
         /**
           * Display hover state
           * @default false
@@ -7519,6 +7707,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Label of dropdown item
          */
@@ -7689,10 +7881,6 @@ declare namespace LocalJSX {
           * Show text below the field component
          */
         "helperText"?: string;
-        /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlForLabel"?: string;
         /**
           * Info text for the field component
          */
@@ -8894,6 +9082,11 @@ declare namespace LocalJSX {
          */
         "itemCount"?: number;
         /**
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
+          * @since 4.3.0
+         */
+        "itemCountOptions"?: number[];
+        /**
           * Item count change event
          */
         "onItemCountChanged"?: (event: IxPaginationCustomEvent<number>) => void;
@@ -9255,8 +9448,15 @@ declare namespace LocalJSX {
          */
         "allowClear"?: boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem"?: string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
           * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
@@ -9401,7 +9601,15 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "disableAriaSelectHandling"?: boolean;
+        /**
+          * @default false
+         */
         "hover"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Displayed name of the item
          */
@@ -9808,6 +10016,12 @@ declare namespace LocalJSX {
      * @form-ready 
      */
     interface IxTimeInput {
+        /**
+          * ARIA label for the time picker toggle button Will be set as aria-label for the nested HTML button element
+          * @since 5.0.0
+          * @default 'Toggle time picker'
+         */
+        "ariaLabelTimeToggleButton"?: string;
         /**
           * Disabled attribute
           * @default false
@@ -10547,6 +10761,7 @@ declare namespace LocalJSX {
         "invisible": boolean;
         "hideChevron": boolean;
         "isDropdownTrigger": boolean;
+        "isCurrentPage": boolean;
     }
     interface IxButtonAttributes {
         "ariaLabelButton": string;
@@ -10676,11 +10891,8 @@ declare namespace LocalJSX {
         "variant": ButtonVariant;
         "loading": boolean;
         "showWeekNumbers": boolean;
-        "ariaLabelDropdownButton": string;
-        "customRangeDisabled": boolean;
         "locale": string;
         "weekStartIndex": number;
-        "i18nCustomItem": string;
         "i18nDone": string;
         "i18nNoRange": string;
         "today": string;
@@ -10725,6 +10937,8 @@ declare namespace LocalJSX {
         "i18nDone": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
+        "ariaLabelMonthSelection": string;
+        "ariaLabelYearSelection": string;
         "weekStartIndex": number;
         "locale": string;
         "showWeekNumbers": boolean;
@@ -10776,25 +10990,32 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "positioningStrategy": 'absolute' | 'fixed';
         "header": string;
+        "disableFocusHandling": boolean;
+        "disableFocusTrap": boolean;
+        "enableTopLayer": boolean;
+        "focusCheckedItem": boolean;
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
-        "enableTopLayer": boolean;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;
         "disabled": boolean;
-        "label": string;
+        "label": string | null;
         "icon": string;
         "closeBehavior": string;
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
+        "focusCheckedItem": boolean;
         "enableTopLayer": boolean;
+        "suppressAriaActiveDescendant": boolean;
     }
     interface IxDropdownHeaderAttributes {
         "label": string;
     }
     interface IxDropdownItemAttributes {
+        "ixFocusVisible": boolean;
+        "disableAriaSelectHandling": boolean;
         "label": string;
         "icon": string;
         "ariaLabelIcon": string;
@@ -10804,6 +11025,7 @@ declare namespace LocalJSX {
         "checked": boolean;
         "isSubMenu": boolean;
         "suppressChecked": boolean;
+        "hasVisualFocus": boolean;
     }
     interface IxEmptyStateAttributes {
         "layout": EmptyStateLayout;
@@ -10854,7 +11076,6 @@ declare namespace LocalJSX {
         "isWarning": boolean;
         "showTextAsTooltip": boolean;
         "required": boolean;
-        "htmlForLabel": string;
     }
     interface IxFilterChipAttributes {
         "disabled": boolean;
@@ -11209,6 +11430,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelChevronDownIconButton": string;
         "ariaLabelClearIconButton": string;
+        "ariaLabelAddItem": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;
@@ -11233,6 +11455,8 @@ declare namespace LocalJSX {
         "enableTopLayer": boolean;
     }
     interface IxSelectItemAttributes {
+        "ixFocusVisible": boolean;
+        "disableAriaSelectHandling": boolean;
         "label": string;
         "value": string;
         "selected": boolean;
@@ -11348,6 +11572,7 @@ declare namespace LocalJSX {
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "ariaLabelTimeToggleButton": string;
     }
     interface IxTimePickerAttributes {
         "format": string;

@@ -27,15 +27,31 @@ import {
   Method,
   Prop,
   Watch,
+  Mixin,
 } from '@stencil/core';
-import { ComponentInterface } from '@stencil/core/internal';
+import { A11yAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
-import { ArrowFocusController } from '../utils/focus';
+import {
+  addFocusTrap,
+  FocusTrapOptions,
+  FocusTrapResult,
+} from '../utils/focus/focus-trap';
+import {
+  focusElementInContext,
+  focusFirstDescendant,
+  focusLastDescendant,
+  queryElements,
+} from '../utils/focus/focus-utilities';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  hasKeyboardMode,
+  removeVisibleFocus,
+} from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
@@ -44,6 +60,7 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
+import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
@@ -53,8 +70,11 @@ let sequenceId = 0;
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
-export class Dropdown implements ComponentInterface, DropdownInterface {
-  @Element() hostElement!: HTMLIxDropdownElement;
+export class Dropdown
+  extends Mixin(...DefaultMixins)
+  implements DropdownInterface
+{
+  @Element() override hostElement!: HTMLIxDropdownElement;
 
   /**
    * Suppress the automatic placement of the dropdown.
@@ -99,6 +119,56 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() header?: string;
 
   /**
+   * Suppress automatic focus when the dropdown is shown
+   *
+   * @since 4.3.0
+   */
+  @Prop() disableFocusHandling = false;
+
+  /**
+   * Close dropdown when tabbing away, and do not trap focus inside dropdown
+   *
+   * @since 4.3.0
+   */
+  @Prop() disableFocusTrap = false;
+
+  /**
+   * Enable Popover API rendering for top-layer positioning.
+   *
+   * @default false in v4.x, will default to true in v5.0.0
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
+   *
+   * @since 5.0.0
+   */
+  @Prop() focusCheckedItem: boolean = false;
+
+  /**
+   * Keys that will open the dropdown when the trigger is focused
+   *
+   * @internal
+   */
+  @Prop() keyboardActivationKeys: string[] = [
+    'Home',
+    'End',
+    'ArrowDown',
+    'ArrowUp',
+    'Enter',
+    ' ',
+  ];
+
+  /**
+   * Keys that will open the dropdown when the trigger is focused
+   *
+   * @internal
+   */
+  @Prop() keyboardItemTriggerKeys: string[] = ['Enter', ' '];
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -130,35 +200,60 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /** @internal */
   @Prop() suppressOverflowBehavior = false;
 
+  /** @internal */
+  @Prop() focusHost?: HTMLElement;
+
+  /** @internal */
+  @Prop() focusTrapOptions?: FocusTrapOptions;
+
   /**
-   * Enable Popover API rendering for top-layer positioning.
-   *
-   * @default false in v4.x, will default to true in v5.0.0
+   * @internal
+   * Called instead of the default focus-on-open logic when the dropdown is
+   * opened via keyboard. When not set, default behavior is used.
    */
-  @Prop() enableTopLayer: boolean = false;
+  @Prop() callbackFocusElement?: (event: KeyboardEvent) => boolean | undefined;
+
+  /**
+   * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+   */
+  @Event() showChange!: EventEmitter<boolean>;
 
   /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
+  /**
+   * Will be fired only after dropdown changed visibility to "true"
+   *
+   * @internal
+   */
+  @Event() experimentalRequestFocus!: EventEmitter<{
+    keyEvent: KeyboardEvent;
+  }>;
+
+  /**
+   * @internal
+   */
+  @Event() experimentalFocusNextElement!: EventEmitter<void>;
+
   private autoUpdateCleanup?: () => void;
-  private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   private triggerElement?: Element;
   private anchorElement?: Element;
-  private arrowFocusController?: ArrowFocusController;
 
-  private localUId = `dropdown-${sequenceId++}`;
+  private forwardQueryElement: HTMLElement | null = null;
+
+  private dropdownElementId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
-  private itemObserver? = new MutationObserver(() => {
-    if (this.arrowFocusController) {
-      this.arrowFocusController.items = this.dropdownItems;
-    }
-  });
+  private keyboardNavigationCleanup?: () => void;
 
-  connectedCallback(): void {
+  private focusUtilities?: FocusTrapResult;
+
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
+
+  override connectedCallback(): void {
     dropdownController.connected(this);
 
     if (this.trigger != undefined) {
@@ -178,29 +273,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
-
-    if (this.arrowFocusController) {
-      this.arrowFocusController?.disconnect();
-      this.arrowFocusController = undefined;
-    }
-
-    if (this.itemObserver) {
-      this.itemObserver.disconnect();
-      this.itemObserver = undefined;
-    }
-
-    if (this.disposeClickListener) {
-      this.disposeClickListener();
-      this.disposeClickListener = undefined;
-    }
-
-    if (this.disposeKeyListener) {
-      this.disposeKeyListener();
-      this.disposeKeyListener = undefined;
-    }
 
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
@@ -225,16 +300,16 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   getId() {
-    return this.localUId;
+    return this.dropdownElementId;
   }
 
   willDismiss() {
-    const { defaultPrevented } = this.showChanged.emit(false);
+    const { defaultPrevented } = this.showChange.emit(false);
     return !defaultPrevented;
   }
 
   willPresent() {
-    const { defaultPrevented } = this.showChanged.emit(true);
+    const { defaultPrevented } = this.showChange.emit(true);
     return !defaultPrevented;
   }
 
@@ -249,37 +324,147 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private disposeClickListener?: DisposableEventListener;
   private disposeKeyListener?: DisposableEventListener;
 
-  private addEventListenersFor() {
-    this.disposeClickListener?.();
-    this.disposeKeyListener?.();
+  private toggleController() {
+    if (!this.isPresent()) {
+      dropdownController.present(this);
+    } else {
+      dropdownController.dismiss(this);
+    }
 
-    const toggleController = () => {
-      if (!this.isPresent()) {
-        dropdownController.present(this);
-      } else {
-        dropdownController.dismiss(this);
+    dropdownController.dismissOthers(this.getId());
+  }
+
+  private readonly onTriggerClick = (event: Event) =>
+    this.handleTriggerClick(event);
+
+  private handleTriggerClick(event: Event) {
+    if (!event.defaultPrevented) {
+      this.toggleController();
+    }
+  }
+
+  private readonly onTriggerKeydown = (event: KeyboardEvent) =>
+    this.handleTriggerKeydown(event);
+
+  private handleTriggerKeydown(event: KeyboardEvent) {
+    const focusFirst = (element: HTMLElement) =>
+      requestAnimationFrameNoNgZone(() => {
+        let shouldPreventDefault = false;
+        if (this.callbackFocusElement) {
+          shouldPreventDefault = this.callbackFocusElement(event) ?? false;
+        }
+
+        if (shouldPreventDefault) {
+          return;
+        }
+
+        focusFirstDescendant(element, undefined, {
+          focusCheckedItem: this.focusCheckedItem,
+        });
+      });
+
+    const focusLast = (element: HTMLElement) =>
+      requestAnimationFrameNoNgZone(() => {
+        if (this.callbackFocusElement) {
+          this.callbackFocusElement(event);
+        }
+
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        focusLastDescendant(element);
+      });
+
+    const shouldCloseOnTab =
+      this.disableFocusTrap === true && event.key === 'Tab';
+
+    if ((event.key === 'Escape' || shouldCloseOnTab) && this.show) {
+      dropdownController.dismiss(this);
+      return;
+    }
+
+    if (this.show) {
+      return;
+    }
+
+    const navigationKeys = this.keyboardActivationKeys ?? [
+      'Home',
+      'End',
+      'ArrowUp',
+      'ArrowDown',
+      ' ',
+      'Enter',
+    ];
+
+    if (!navigationKeys.includes(event.key)) {
+      return;
+    }
+
+    // If dropdown is not yet shown, try to open it
+    if (!this.isAnchorSubmenu()) {
+      if (!event.defaultPrevented) {
+        this.toggleController();
       }
 
-      dropdownController.dismissOthers(this.getId());
-    };
+      if (this.disableFocusHandling) {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+      } else {
+        // Focus first item for all keys except ArrowUp (which focuses last)
+        if (event.altKey) {
+          return;
+        }
 
+        if (event.key === 'ArrowUp' || event.key === 'End') {
+          focusLast(this.hostElement);
+        } else {
+          focusFirst(this.hostElement);
+        }
+      }
+    } else if (!this.disableFocusHandling) {
+      // Dropdown is already open - handle focus navigation
+      if (this.callbackFocusElement) {
+        this.callbackFocusElement(event);
+      } else if (event.key === 'ArrowUp' || event.key === 'End') {
+        focusLast(this.hostElement);
+      } else {
+        focusFirst(this.hostElement);
+      }
+    }
+
+    this.experimentalRequestFocus.emit({
+      keyEvent: event,
+    });
+
+    // Prevent click listener from also toggling the dropdown, which would close it again
+    event.preventDefault();
+  }
+
+  private addEventListenersFor() {
     if (!this.triggerElement) {
       return;
     }
 
-    this.disposeClickListener = addDisposableEventListener(
-      this.triggerElement,
-      'click',
-      (event: Event) => {
-        if (!event.defaultPrevented) {
-          toggleController();
-        }
-      }
-    );
+    if (!this.disposeClickListener) {
+      this.disposeClickListener = addDisposableEventListener(
+        this.triggerElement,
+        'click',
+        this.onTriggerClick
+      );
+    }
+
+    if (!this.disposeKeyListener) {
+      this.disposeKeyListener = addDisposableEventListener(
+        this.triggerElement,
+        'keydown',
+        this.onTriggerKeydown as EventListener
+      );
+    }
 
     this.triggerElement?.setAttribute(
       'data-ix-dropdown-trigger',
-      this.localUId
+      this.dropdownElementId
     );
   }
 
@@ -291,7 +476,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         bubbles: true,
         composed: true,
         cancelable: true,
-        detail: this.localUId,
+        detail: this.dropdownElementId,
       })
     );
   }
@@ -300,26 +485,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (!this.triggerElement) {
       return;
     }
-
-    this.disposeKeyListener = addDisposableEventListener(
-      this.triggerElement,
-      'keydown',
-      ((event: KeyboardEvent) => {
-        if (event.key !== 'ArrowDown') {
-          return;
-        }
-
-        if (document.activeElement !== this.triggerElement) {
-          return;
-        }
-
-        dropdownController.present(this);
-
-        setTimeout(() => {
-          this.focusDropdownItem(0);
-        });
-      }) as EventListener
-    );
   }
 
   private async registerListener(element: ElementReference) {
@@ -366,42 +531,128 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (!newShow) {
+      if (
+        this.triggerElement &&
+        this.triggerElement.ariaHasPopup === 'menu' &&
+        this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+      ) {
+        this.triggerElement.ariaExpanded = 'false';
+      }
       this.cleanupOnHide();
 
       if (this.enableTopLayer) {
-        await this.hideDropdownAsync();
+        await this.hideDialog();
       }
-      return;
-    }
 
-    this.arrowFocusController = new ArrowFocusController(
-      this.dropdownItems,
-      this.hostElement,
-      (index) => this.focusDropdownItem(index)
-    );
-
-    this.itemObserver?.observe(this.hostElement, {
-      childList: true,
-      subtree: true,
-    });
-
-    this.registerKeyListener();
-
-    if (this.enableTopLayer) {
-      await this.showDropdownAsync();
       return;
     }
 
     await this.resolveAnchorElement();
-
-    if (this.anchorElement) {
-      this.applyDropdownPosition();
+    this.registerKeyListener();
+    if (!this.disableFocusHandling && !this.callbackFocusElement) {
+      this.keyboardNavigationCleanup = configureKeyboardInteraction(
+        () => this.forwardQueryElement ?? this.focusHost ?? this.hostElement,
+        {
+          getEventListenerTarget: () =>
+            (this.triggerElement as HTMLElement) ??
+            (this.anchorElement as HTMLElement),
+          onItemActivation: (event, activeElement) => {
+            event.preventDefault();
+            activeElement?.click();
+          },
+          itemTriggerKeys: this.keyboardItemTriggerKeys,
+        }
+      );
     }
+
+    if (!this.disableFocusTrap) {
+      addFocusTrap(
+        this.focusHost ?? this.hostElement,
+        this.focusTrapOptions
+      ).then((focusTrap) => {
+        this.focusUtilities = focusTrap;
+      });
+    }
+
+    if (
+      this.triggerElement &&
+      this.triggerElement.ariaHasPopup === 'menu' &&
+      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+    ) {
+      this.triggerElement.ariaExpanded = 'true';
+    }
+
+    if (this.enableTopLayer) {
+      const popover = await this.dialogRef.waitForCurrent();
+      if (!popover) {
+        return;
+      }
+
+      popover.showPopover();
+    }
+
+    this.applyDropdownPosition();
+  }
+
+  @Watch('show')
+  async emitShowChanged(newShow: boolean) {
+    requestAnimationFrameNoNgZone(() => this.showChanged.emit(newShow));
   }
 
   @Watch('trigger')
-  changedTrigger(newTriggerValue: ElementReference) {
+  changedTrigger(
+    newTriggerValue: ElementReference,
+    oldTriggerValue: ElementReference | undefined
+  ) {
+    if (newTriggerValue && newTriggerValue !== oldTriggerValue) {
+      this.disposeClickListener?.();
+      this.disposeClickListener = undefined;
+      this.disposeKeyListener?.();
+      this.disposeKeyListener = undefined;
+    }
+
     this.registerListener(newTriggerValue);
+  }
+
+  private applyFallbackPosition(element: HTMLElement) {
+    requestAnimationFrameNoNgZone(() => {
+      const referenceElement =
+        this.hostElement.parentElement || this.hostElement;
+      const refRect = referenceElement.getBoundingClientRect();
+
+      const transform = `translate(${Math.round(
+        refRect.left
+      )}px, ${Math.round(refRect.top)}px)`;
+
+      Object.assign(element.style, {
+        top: '0',
+        left: '0',
+        transform,
+      });
+    });
+  }
+
+  private async hideDialog() {
+    const popover = await this.dialogRef.waitForCurrent();
+    if (popover?.matches(':popover-open')) {
+      popover.hidePopover();
+    }
+  }
+
+  private cleanupOnHide() {
+    this.destroyAutoUpdate();
+    this.keyboardNavigationCleanup?.();
+    this.focusUtilities?.destroy();
+    this.resetForwardQueryElement();
+
+    removeVisibleFocus();
+
+    if (!this.disableFocusTrap && hasKeyboardMode()) {
+      // Restore focus to trigger element
+      requestAnimationFrameNoNgZone(() => {
+        (this.triggerElement as HTMLElement)?.focus();
+      });
+    }
   }
 
   private destroyAutoUpdate() {
@@ -421,71 +672,31 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return true;
   }
 
-  private async showDropdownAsync() {
-    const popover = await this.dialogRef.waitForCurrent();
-    if (!popover) {
-      return;
-    }
-
-    popover.showPopover();
-
-    await this.resolveAnchorElement();
-
-    if (this.anchorElement) {
-      this.applyDropdownPosition();
-    } else {
-      requestAnimationFrameNoNgZone(() => {
-        const referenceElement =
-          this.hostElement.parentElement || this.hostElement;
-        const refRect = referenceElement.getBoundingClientRect();
-
-        const transform = `translate(${Math.round(
-          refRect.left
-        )}px, ${Math.round(refRect.top)}px)`;
-
-        Object.assign(popover.style, {
-          top: '0',
-          left: '0',
-          transform,
-        });
-      });
-    }
-  }
-
-  private async hideDropdownAsync() {
-    const popover = await this.dialogRef.waitForCurrent();
-    if (popover?.matches(':popover-open')) {
-      popover.hidePopover();
-    }
-  }
-
-  private cleanupOnHide() {
-    this.destroyAutoUpdate();
-    this.arrowFocusController?.disconnect();
-    this.itemObserver?.disconnect();
-    this.disposeKeyListener?.();
-  }
-
   private async applyDropdownPosition() {
+    const targetElement: HTMLElement = this.enableTopLayer
+      ? await this.dialogRef.waitForCurrent()
+      : this.hostElement;
+
     if (!this.show) {
       return;
     }
+
+    if (!targetElement) {
+      return;
+    }
+
     if (!this.anchorElement) {
+      this.applyFallbackPosition(targetElement);
       return;
     }
 
     const referenceElement = this.anchorElement;
     const isSubmenu = this.isAnchorSubmenu();
 
-    let targetElement: HTMLElement = this.hostElement;
     let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
     if (this.enableTopLayer) {
-      const dialog = await this.dialogRef.waitForCurrent();
-      if (!dialog) {
-        return;
-      }
-      targetElement = dialog;
+      // Popover API only supports fixed positioning
       strategy = 'fixed';
     }
 
@@ -548,30 +759,15 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     );
   }
 
-  private focusDropdownItem(index: number) {
-    requestAnimationFrameNoNgZone(() => {
-      const button =
-        this.dropdownItems[index]?.shadowRoot?.querySelector('button');
-
-      if (button) {
-        button.focus();
-      }
-    });
-  }
-
-  async componentDidLoad() {
-    if (this.show) {
-      this.changedShow(true);
-    }
-
+  override async componentDidLoad() {
     if (!this.trigger) {
       return;
     }
 
-    this.changedTrigger(this.trigger);
+    this.changedTrigger(this.trigger, undefined);
   }
 
-  async componentDidRender() {
+  override async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
   }
@@ -616,25 +812,108 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.applyDropdownPosition();
   }
 
-  render() {
-    if (this.enableTopLayer) {
-      return (
-        <Host
-          data-ix-dropdown={this.localUId}
-          class={{
-            'dropdown-menu': true,
-            show: this.show,
-          }}
-        >
+  @Listen('ix-open-submenu')
+  openSubmenu(event: CustomEvent<{ activeElement: HTMLElement }>) {
+    const submenuIds = this.getAssignedSubmenuIds();
+
+    if (submenuIds.length === 0) {
+      return;
+    }
+
+    event.detail.activeElement.classList.add(
+      'ix-dropdown-submenu-trigger-active'
+    );
+    dropdownController.present(
+      dropdownController.getDropdownById(submenuIds[0])!
+    );
+
+    this.forwardQueryElement = dropdownController.getDropdownById(
+      submenuIds[0]
+    )!.hostElement;
+
+    requestAnimationFrameNoNgZone(() => {
+      focusFirstDescendant(
+        dropdownController.getDropdownById(submenuIds[0])!.hostElement
+      );
+    });
+  }
+
+  @Listen('ix-close-submenu')
+  closeSubmenu() {
+    const parent = dropdownController.getParentDropdownId(this.getId());
+
+    if (parent) {
+      const parentDropdown = dropdownController.getDropdownById(parent);
+      const activeTriggers = queryElements(
+        parentDropdown?.hostElement,
+        '.ix-dropdown-submenu-trigger-active'
+      );
+
+      dropdownController.dismissChildren(parent);
+
+      if (parentDropdown && activeTriggers.length > 0) {
+        const activeTrigger = activeTriggers[0];
+        activeTrigger.classList.remove('ix-dropdown-submenu-trigger-active');
+
+        (
+          parentDropdown.hostElement as HTMLIxDropdownElement
+        ).resetForwardQueryElement();
+
+        requestAnimationFrameNoNgZone(() => {
+          focusElementInContext(activeTrigger, parentDropdown.hostElement);
+        });
+      }
+    }
+  }
+
+  /**@internal */
+  @Method()
+  async resetForwardQueryElement() {
+    this.forwardQueryElement = null;
+  }
+
+  override render() {
+    const ariaAttributes: A11yAttributes = {};
+    if (
+      this.triggerElement &&
+      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+    ) {
+      ariaAttributes['aria-labelledby'] = this.triggerElement.id;
+      ariaAttributes['aria-owns'] = this.triggerElement.id;
+      ariaAttributes['role'] = 'menu';
+    }
+    return (
+      <Host
+        {...ariaAttributes}
+        aria-modal="true"
+        data-ix-dropdown={this.dropdownElementId}
+        data-ix-focus-trap
+        class={{
+          'dropdown-menu': true,
+          show: this.show,
+          // overflow handling not needed when using top-layer
+          overflow: !this.suppressOverflowBehavior && !this.enableTopLayer,
+        }}
+        style={
+          this.enableTopLayer
+            ? {}
+            : {
+                margin: '0',
+                minWidth: '0px',
+                position: this.positioningStrategy,
+              }
+        }
+        onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+      >
+        {this.enableTopLayer ? (
           <dialog
+            role="presentation"
             ref={this.dialogRef}
             class={{
               dialog: true,
               overflow: !this.suppressOverflowBehavior,
             }}
             popover="manual"
-            aria-modal="true"
-            aria-label={this.header}
             tabindex={-1}
             onClick={(event: PointerEvent) => this.onDropdownClick(event)}
           >
@@ -643,30 +922,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
               {this.show && <slot></slot>}
             </div>
           </dialog>
-        </Host>
-      );
-    }
-
-    return (
-      <Host
-        data-ix-dropdown={this.localUId}
-        class={{
-          'dropdown-menu': true,
-          show: this.show,
-          overflow: !this.suppressOverflowBehavior,
-        }}
-        style={{
-          margin: '0',
-          minWidth: '0px',
-          position: this.positioningStrategy,
-        }}
-        role="list"
-        onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-      >
-        <div style={{ display: 'contents' }}>
-          {this.header && <div class="dropdown-header">{this.header}</div>}
-          {this.show && <slot></slot>}
-        </div>
+        ) : (
+          <div style={{ display: 'contents' }} role="presentation">
+            {this.header && <div class="dropdown-header">{this.header}</div>}
+            {this.show && <slot></slot>}
+          </div>
+        )}
       </Host>
     );
   }

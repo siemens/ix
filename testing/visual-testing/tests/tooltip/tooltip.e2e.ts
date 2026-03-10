@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForIxHydration } from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
@@ -212,27 +212,35 @@ regressionTest.describe('tooltip delay', () => {
       `tooltip placement ${placement} with delay`,
       async ({ mount, page }) => {
         const testDelayToShowTooltip = 1100;
-        await mount(`
-      <div style="margin: 20rem">
-        <ix-button>Long text</ix-button>
-        <ix-tooltip
-          for="ix-button"
-          title-content="Test"
-          showDelay="1000"
-          placement="${placement}"
-        >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        </ix-tooltip>
-      </div>
-      `);
+
+        await mount(
+          `
+            <div style="margin: 20rem">
+              <ix-button>Long text</ix-button>
+              <ix-tooltip
+                for="ix-button"
+                title-content="Test"
+                placement="${placement}"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              </ix-tooltip>
+            </div>
+          `
+        );
+        //manual mouse movement of mount function requires in some cases a short timeout
+        await page.waitForTimeout(500);
+
+        const tooltip = page.locator('ix-tooltip');
 
         const tooltipTrigger = page.locator('ix-button');
         await tooltipTrigger.hover();
 
         await page.waitForTimeout(testDelayToShowTooltip);
 
-        expect(await page.screenshot()).toMatchSnapshot({
+        await expect(tooltip).toHaveClass(/visible/);
+
+        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
           threshold: 0.05,
         });
       }
