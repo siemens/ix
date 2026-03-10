@@ -200,11 +200,11 @@ export class DatetimeInput
   @State() time?: string | null = null;
 
   private classObserver?: ClassMutationObserver;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
