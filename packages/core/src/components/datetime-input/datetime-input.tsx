@@ -137,10 +137,10 @@ export class DatetimeInput
   @Prop() i18nTime: string = 'Time';
 
   /** ARIA label for previous month navigation button */
-  @Prop() ariaLabelPreviousMonthButton?: string;
+  @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /** ARIA label for next month navigation button */
-  @Prop() ariaLabelNextMonthButton?: string;
+  @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
    * ARIA label for the calendar icon button
