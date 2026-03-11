@@ -1217,7 +1217,6 @@ export namespace Components {
         "hideHeader": boolean;
         /**
           * Remove content padding
-          * @since 4.4.0
           * @default false
          */
         "noPadding": boolean;
@@ -1238,10 +1237,12 @@ export namespace Components {
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for next month navigation button
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for previous month navigation button
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -7545,7 +7546,6 @@ declare namespace LocalJSX {
         "hideHeader"?: boolean;
         /**
           * Remove content padding
-          * @since 4.4.0
           * @default false
          */
         "noPadding"?: boolean;
@@ -7566,10 +7566,12 @@ declare namespace LocalJSX {
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for next month navigation button
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for previous month navigation button
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
