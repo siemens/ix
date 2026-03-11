@@ -98,20 +98,16 @@ $CardList__Title__Height: 1.5rem;
     align-self: flex-start;
     justify-self: center;
 
-    max-width: 11.25rem;
-    min-width: 11.25rem;
-    width: 11.25rem;
+    max-width: var(--ix-card-list-show-more-width, 11.25rem);
+    min-width: var(--ix-card-list-show-more-width, 11.25rem);
+    width: var(--ix-card-list-show-more-width, 11.25rem);
 
-    min-height: 11.25rem;
-    max-height: 11.25rem;
-    height: 11.25rem;
+    min-height: var(--ix-card-list-show-more-height, 11.25rem);
+    max-height: var(--ix-card-list-show-more-height, 11.25rem);
+    height: var(--ix-card-list-show-more-height, 11.25rem);
 
     --ix-card-border-color: var(--theme-color-primary);
     color: var(--theme-color-primary);
-  }
-
-  .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: 2.375rem;
   }
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
@@ -127,6 +123,7 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .Show__All__Card__Content {
+    --ix-card-content-align-items: center;
     display: flex;
     justify-content: center;
     align-items: center;
