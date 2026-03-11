@@ -42,8 +42,6 @@ export class DateTimeCard {
 
   /**
    * Remove content padding
-   *
-   * @since 4.4.0
    */
   @Prop() noPadding: boolean = false;
 
