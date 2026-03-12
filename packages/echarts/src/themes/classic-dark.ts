@@ -69,6 +69,10 @@ export default {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: textStyleDefault,
+    title: {
+      textStyle: textStyleDefault,
+      subtextStyle: textStyleDefault,
+    },
     line: {
       itemStyle: {
         borderWidth: 1,
@@ -181,6 +185,9 @@ export default {
           borderColor: '#ffffff',
         },
       },
+    },
+    legend: {
+      textStyle: textStyleDefault,
     },
     tooltip: {
       backgroundColor: '#0f1619cc',
