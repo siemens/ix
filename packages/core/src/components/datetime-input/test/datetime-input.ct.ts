@@ -27,7 +27,7 @@ const createAccessor = async (dateTimeInput: Locator) => {
       // Day cells have aria-label like "15 May" (month index: day)
       // Use getByLabel to find by aria-label (day cells are divs, not buttons)
       const dayCell = dateTimeInput.getByRole('button', {
-        name: new RegExp(`^${day}\\s.+$`),
+        name: new RegExp(String.raw`^${day}\s.+$`),
       });
       await dayCell.click();
     },
