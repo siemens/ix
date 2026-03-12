@@ -1246,11 +1246,6 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
-          * @default 'yyyy/LL/dd'
-         */
-        "dateFormat": string;
-        /**
           * Whether the input is disabled
           * @default false
          */
@@ -1264,6 +1259,11 @@ export namespace Components {
           * Focus the native input element
          */
         "focusInput": () => Promise<void>;
+        /**
+          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @default 'yyyy/LL/dd HH:mm:ss'
+         */
+        "format": string;
         /**
           * Returns the associated HTML form element.
          */
@@ -1365,11 +1365,6 @@ export namespace Components {
           * @default 'start'
          */
         "textAlignment": 'start' | 'end';
-        /**
-          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
-          * @default 'HH:mm:ss'
-         */
-        "timeFormat": string;
         /**
           * Success/valid message
          */
@@ -7575,11 +7570,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
-          * @default 'yyyy/LL/dd'
-         */
-        "dateFormat"?: string;
-        /**
           * Whether the input is disabled
           * @default false
          */
@@ -7593,6 +7583,11 @@ declare namespace LocalJSX {
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
+        /**
+          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @default 'yyyy/LL/dd HH:mm:ss'
+         */
+        "format"?: string;
         /**
           * Helper text displayed below the input
          */
@@ -7690,11 +7685,6 @@ declare namespace LocalJSX {
           * @default 'start'
          */
         "textAlignment"?: 'start' | 'end';
-        /**
-          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
-          * @default 'HH:mm:ss'
-         */
-        "timeFormat"?: string;
         /**
           * Success/valid message
          */
@@ -11335,8 +11325,7 @@ declare namespace LocalJSX {
         "name": string;
         "placeholder": string;
         "value": string;
-        "dateFormat": string;
-        "timeFormat": string;
+        "format": string;
         "locale": string;
         "required": boolean;
         "disabled": boolean;

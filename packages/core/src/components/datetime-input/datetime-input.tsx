@@ -75,18 +75,11 @@ export class DatetimeInput
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
-   * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20").
+   * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").
    *
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
-  @Prop() dateFormat: string = 'yyyy/LL/dd';
-
-  /**
-   * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04").
-   *
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
-   */
-  @Prop() timeFormat: string = 'HH:mm:ss';
+  @Prop() format: string = 'yyyy/LL/dd HH:mm:ss';
 
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
   @Prop() locale?: string;
@@ -216,7 +209,7 @@ export class DatetimeInput
   }
 
   private get combinedFormat(): string {
-    return `${this.dateFormat} ${this.timeFormat}`;
+    return this.format;
   }
 
   private syncPickerState() {
@@ -231,8 +224,8 @@ export class DatetimeInput
     });
 
     if (dateTime.isValid) {
-      this.from = dateTime.toFormat(this.dateFormat);
-      this.time = dateTime.toFormat(this.timeFormat);
+      this.from = dateTime.toFormat(this.format);
+      this.time = dateTime.toFormat(this.format);
     } else {
       this.from = null;
       this.time = null;
@@ -250,7 +243,7 @@ export class DatetimeInput
       return;
     }
 
-    if (!this.dateFormat || !this.timeFormat) {
+    if (!this.format) {
       return;
     }
 
@@ -290,7 +283,7 @@ export class DatetimeInput
       return null;
     }
 
-    const parsed = DateTime.fromFormat(dateString, this.dateFormat, {
+    const parsed = DateTime.fromFormat(dateString, this.format, {
       locale: this.locale,
     });
 
@@ -348,8 +341,8 @@ export class DatetimeInput
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
-        this.from = now.toFormat(this.dateFormat);
-        this.time = now.toFormat(this.timeFormat);
+        this.from = now.toFormat(this.format);
+        this.time = now.toFormat(this.format);
       }
     }
   }
@@ -529,7 +522,21 @@ export class DatetimeInput
       return;
     }
 
-    const displayValue = `${from} ${time}`;
+    const dateOnly = DateTime.fromFormat(from, this.format, {
+      locale: this.locale,
+    });
+    const timeOnly = DateTime.fromFormat(time, this.format, {
+      locale: this.locale,
+    });
+
+    const dateTimeCombined = dateOnly.set({
+      hour: timeOnly.hour,
+      minute: timeOnly.minute,
+      second: timeOnly.second,
+      millisecond: timeOnly.millisecond,
+    });
+
+    const displayValue = dateTimeCombined.toFormat(this.format);
     this.onInput(displayValue);
     this.closeDropdown();
   };
@@ -655,7 +662,7 @@ export class DatetimeInput
           <ix-datetime-picker
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            dateFormat={this.dateFormat}
+            dateFormat={this.format}
             embedded
             from={this.from ?? ''}
             i18nDone={this.i18nDone}
@@ -667,7 +674,7 @@ export class DatetimeInput
             showWeekNumbers={this.showWeekNumbers}
             singleSelection
             time={this.time ?? ''}
-            timeFormat={this.timeFormat}
+            timeFormat={this.format}
             weekStartIndex={this.weekStartIndex}
             onDateSelect={this.handleDateSelect}
           ></ix-datetime-picker>
