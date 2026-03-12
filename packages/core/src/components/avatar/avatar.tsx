@@ -264,9 +264,8 @@ export class Avatar {
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
             onShowChanged={(event) => {
-              this.tooltipRef.current?.hideTooltip(0);
-
-              if (event.detail) {
+              if (event.detail && this.tooltipRef.current) {
+                this.tooltipRef.current.hideTooltip(0);
                 this.hostElement.shadowRoot?.querySelector('button')?.blur();
               }
             }}
