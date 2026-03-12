@@ -1233,6 +1233,7 @@ export namespace Components {
     interface IxDatetimeInput {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Toggle calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
@@ -1320,11 +1321,11 @@ export namespace Components {
          */
         "locale"?: string;
         /**
-          * Maximum allowed date in date format (matching dateFormat, e.g., "2026/12/31")
+          * Maximum allowed date (matching format or date-only, e.g., "2026/12/31")
          */
         "maxDate"?: string;
         /**
-          * Minimum allowed date in date format (matching dateFormat, e.g., "2026/01/20")
+          * Minimum allowed date (matching format or date-only, e.g., "2026/01/20")
          */
         "minDate"?: string;
         /**
@@ -1370,7 +1371,7 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat)
+          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -7557,6 +7558,7 @@ declare namespace LocalJSX {
     interface IxDatetimeInput {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Toggle calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
@@ -7624,11 +7626,11 @@ declare namespace LocalJSX {
          */
         "locale"?: string;
         /**
-          * Maximum allowed date in date format (matching dateFormat, e.g., "2026/12/31")
+          * Maximum allowed date (matching format or date-only, e.g., "2026/12/31")
          */
         "maxDate"?: string;
         /**
-          * Minimum allowed date in date format (matching dateFormat, e.g., "2026/01/20")
+          * Minimum allowed date (matching format or date-only, e.g., "2026/01/20")
          */
         "minDate"?: string;
         /**
@@ -7690,7 +7692,7 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat)
+          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;

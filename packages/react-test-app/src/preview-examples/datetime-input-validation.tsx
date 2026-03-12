@@ -14,6 +14,7 @@ function DatetimeInputValidation() {
     <>
       <div>
         <IxDatetimeInput
+          label="Info"
           value="2026/02/08 00:00:00"
           infoText="Info text"
           className="ix-info"
@@ -22,6 +23,7 @@ function DatetimeInputValidation() {
 
       <div>
         <IxDatetimeInput
+          label="Warning"
           value="2026/02/08 00:00:00"
           warningText="Warning text"
           className="ix-warning"
@@ -30,6 +32,7 @@ function DatetimeInputValidation() {
 
       <div>
         <IxDatetimeInput
+          label="Valid"
           value="2026/02/08 00:00:00"
           validText="Valid text"
           className="ix-valid"
@@ -38,6 +41,7 @@ function DatetimeInputValidation() {
 
       <div>
         <IxDatetimeInput
+          label="Invalid"
           value="2026/02/08 00:00:00"
           invalidText="Invalid text"
           className="ix-invalid"

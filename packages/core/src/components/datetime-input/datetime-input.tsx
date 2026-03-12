@@ -71,7 +71,7 @@ export class DatetimeInput
   /** Placeholder text when input is empty */
   @Prop({ reflect: true }) placeholder?: string;
 
-  /** Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat) */
+  /** Value in display format (e.g., "2026/01/21 13:07:04" for default format) */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
@@ -93,10 +93,10 @@ export class DatetimeInput
   /** Whether the input is read-only (calendar icon hidden) */
   @Prop() readonly: boolean = false;
 
-  /** Minimum allowed date in date format (matching dateFormat, e.g., "2026/01/20") */
+  /** Minimum allowed date (matching format or date-only, e.g., "2026/01/20") */
   @Prop() minDate?: string;
 
-  /** Maximum allowed date in date format (matching dateFormat, e.g., "2026/12/31") */
+  /** Maximum allowed date (matching format or date-only, e.g., "2026/12/31") */
   @Prop() maxDate?: string;
 
   /** Label text displayed above the input */
@@ -139,7 +139,7 @@ export class DatetimeInput
    * ARIA label for the calendar icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelCalendarButton?: string;
+  @Prop() ariaLabelCalendarButton?: string = 'Toggle calendar';
 
   /** Show week numbers in date picker */
   @Prop() showWeekNumbers: boolean = false;
@@ -210,6 +210,10 @@ export class DatetimeInput
 
   private get combinedFormat(): string {
     return this.format;
+  }
+
+  private get dateOnlyFormat(): string {
+    return this.format.replace(/[\s'T]+[HhmsaSZ].*$/, '').trim();
   }
 
   private syncPickerState() {
@@ -283,9 +287,13 @@ export class DatetimeInput
       return null;
     }
 
-    const parsed = DateTime.fromFormat(dateString, this.format, {
-      locale: this.locale,
-    });
+    const localeOpts = { locale: this.locale };
+
+    let parsed = DateTime.fromFormat(dateString, this.format, localeOpts);
+
+    if (!parsed.isValid) {
+      parsed = DateTime.fromFormat(dateString, this.dateOnlyFormat, localeOpts);
+    }
 
     if (!parsed.isValid) {
       return null;
@@ -589,7 +597,7 @@ export class DatetimeInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-hidden={this.ariaLabelCalendarButton}
+            aria-label={this.ariaLabelCalendarButton}
             tabindex={-1}
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"

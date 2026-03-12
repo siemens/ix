@@ -10,7 +10,7 @@
 import { IxDatetimeInput } from '@siemens/ix-react';
 
 function DatetimeInputDisabled() {
-  return <IxDatetimeInput value="2026/02/08 00:00:00" disabled></IxDatetimeInput>;
+  return <IxDatetimeInput label="Date and time" value="2026/02/08 00:00:00" disabled></IxDatetimeInput>;
 }
 
 export default DatetimeInputDisabled;

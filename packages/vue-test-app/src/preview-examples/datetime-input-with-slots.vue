@@ -12,8 +12,8 @@ import { IxDatetimeInput, IxIcon, IxTypography } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxDatetimeInput value="2026/02/08 00:00:00">
-    <IxIcon slot="start" name="bulb" size="16"></IxIcon>
+  <IxDatetimeInput label="Date and time" value="2026/02/08 00:00:00">
+    <IxIcon slot="start" name="bulb" size="16" aria-label="Info"></IxIcon>
     <IxTypography slot="end">Slot</IxTypography>
   </IxDatetimeInput>
 </template>

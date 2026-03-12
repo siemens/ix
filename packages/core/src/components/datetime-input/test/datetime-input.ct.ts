@@ -69,6 +69,15 @@ const createAccessor = async (dateTimeInput: Locator) => {
   return accessor;
 };
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-datetime-input value="2026/02/08 00:00:00"></ix-datetime-input>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
@@ -557,8 +566,7 @@ regressionTest(
 regressionTest('respects custom format props', async ({ mount, page }) => {
   await mount(`
     <ix-datetime-input
-      date-format="dd-MM-yyyy"
-      time-format="HH:mm:ss"
+      format="dd-MM-yyyy HH:mm:ss"
       value="15-06-2024 14:30:45"
     ></ix-datetime-input>
   `);

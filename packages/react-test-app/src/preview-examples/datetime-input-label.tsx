@@ -14,8 +14,7 @@ function DatetimeInputLabel() {
     <IxDatetimeInput
       value="08.02.2026 00:00"
       label="Meeting schedule"
-      dateFormat="dd.MM.yyyy"
-      timeFormat="HH:mm"
+      format="dd.MM.yyyy HH:mm"
     ></IxDatetimeInput>
   );
 }
