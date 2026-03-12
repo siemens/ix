@@ -213,7 +213,13 @@ export class DatetimeInput
   }
 
   private get dateOnlyFormat(): string {
-    return this.format.replace(/[\s'T]+[HhmsaSZ].*$/, '').trim();
+    const timeTokenIndex = this.format.search(/[HhmsaSZ]/);
+    if (timeTokenIndex === -1) return this.format;
+    let end = timeTokenIndex;
+    while (end > 0 && " \t'T".includes(this.format[end - 1])) {
+      end--;
+    }
+    return this.format.slice(0, end);
   }
 
   private syncPickerState() {
