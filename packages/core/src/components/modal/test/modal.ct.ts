@@ -32,14 +32,14 @@ async function setupModalEnvironment(page: Page) {
       script.type = 'module';
       script.innerHTML = `
         import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
-        window.showModal = ix.showModal;
-        window.dismissModal = ix.dismissModal;
+        globalThis.showModal = ix.showModal;
+        globalThis.dismissModal = ix.dismissModal;
 
-        window.showMessage = ix.showMessage;
-        window.showMessage.info = ix.showMessage.info;
-        window.showMessage.error = ix.showMessage.error;
-        window.showMessage.success = ix.showMessage.success;
-        window.showMessage.question = ix.showMessage.question;
+        globalThis.showMessage = ix.showMessage;
+        globalThis.showMessage.info = ix.showMessage.info;
+        globalThis.showMessage.error = ix.showMessage.error;
+        globalThis.showMessage.success = ix.showMessage.success;
+        globalThis.showMessage.question = ix.showMessage.question;
       `;
       document.getElementById('mount')?.appendChild(script);
       resolve();
@@ -59,7 +59,7 @@ async function createToggleExample(page: Page) {
     }
 
     setTimeout(() => {
-      window.showModal({
+      (globalThis as Window).showModal({
         content: createModalExample(),
         closeOnBackdropClick: true,
       });
@@ -90,7 +90,7 @@ async function createSelectOverflowExample(page: Page) {
 
     modal.appendChild(content);
 
-    window.showModal({
+    (globalThis as Window).showModal({
       content: modal,
       closeOnBackdropClick: true,
       animation: false,
@@ -109,7 +109,7 @@ regressionTest('closes on Escape key down', async ({ mount, page }) => {
       <ix-modal-header>Title</ix-modal-header>
       <ix-modal-content>Content</ix-modal-content>
     `;
-    window.showModal({
+    (globalThis as Window).showModal({
       content: elm,
     });
   });
@@ -297,7 +297,7 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
       <ix-modal-content>Content</ix-modal-content>
     `;
 
-    window
+    (globalThis as Window)
       .showModal({
         content: elm,
         // Disable animation to get the direct animation end callback
@@ -305,11 +305,11 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
       })
       .then((instance: ModalInstance<unknown>) => {
         instance.onDismiss.on(() => {
-          const counter = window.__counter;
+          const counter = (globalThis as Window).__counter;
           if (counter) {
-            window.__counter = counter + 1;
+            (globalThis as Window).__counter = counter + 1;
           } else {
-            window.__counter = 1;
+            (globalThis as Window).__counter = 1;
           }
         });
       });
@@ -321,7 +321,7 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
   await iconButton.click();
   await expect(dialog).not.toBeVisible();
 
-  expect(await page.evaluate(() => window.__counter)).toBe(1);
+  expect(await page.evaluate(() => (globalThis as Window).__counter)).toBe(1);
 });
 
 regressionTest('button receives focus on load', async ({ mount, page }) => {
@@ -337,12 +337,12 @@ regressionTest('button receives focus on load', async ({ mount, page }) => {
         <ix-button autofocus>OK</ix-button>
       </ix-modal-footer>
     `;
-    window.showModal({
+    (globalThis as Window).showModal({
       content: elm,
     });
     const okButton = elm.querySelector('ix-button');
     okButton?.addEventListener('click', () => {
-      window.dismissModal(elm);
+      (globalThis as Window).dismissModal(elm);
     });
   });
 
@@ -382,7 +382,7 @@ regressionTest.describe('message utils', () => {
       await setupModalEnvironment(page);
       await page.evaluate(
         ([functionName]) => {
-          (window.showMessage as any)[functionName]('title', 'message', 'okay');
+          (globalThis as any).showMessage[functionName]('title', 'message', 'okay');
         },
         [name]
       );
