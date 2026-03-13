@@ -524,7 +524,7 @@ export namespace Components {
          */
         "showAllCount"?: number;
         /**
-          * Number of additional cards to reveal each time the "Show more" card is clicked. Defaults to maxVisibleCards, which keeps the "Show more" card at a consistent column position (maxVisibleCards + 1) after each click. Set to a custom number to override.
+          * Number of additional cards to reveal each time the "Show more" card is clicked. column position (maxVisibleCards + 1) after each click.
          */
         "showMoreStep"?: number;
         /**
@@ -6505,7 +6505,7 @@ declare namespace LocalJSX {
          */
         "showAllCount"?: number;
         /**
-          * Number of additional cards to reveal each time the "Show more" card is clicked. Defaults to maxVisibleCards, which keeps the "Show more" card at a consistent column position (maxVisibleCards + 1) after each click. Set to a custom number to override.
+          * Number of additional cards to reveal each time the "Show more" card is clicked. column position (maxVisibleCards + 1) after each click.
          */
         "showMoreStep"?: number;
         /**
