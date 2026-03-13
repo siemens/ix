@@ -2,7 +2,7 @@
   "version": 1,
   "themeName": "theme-brand-light",
   "theme": {
-    "seriesCnt": 3,
+    "seriesCnt": "3",
     "backgroundColor": "rgba(0,0,0,0)",
     "titleColor": "#000028",
     "subtitleColor": "#000028",
