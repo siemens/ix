@@ -120,11 +120,18 @@
       position: relative;
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow: hidden;
       height: 100%;
       flex-grow: 1;
 
+      > div {
+        flex-shrink: 0;
+        margin: 0.1rem;
+      }
+
       > ix-filter-chip {
+        flex-shrink: 0;
         margin: 0.1rem;
       }
     }
