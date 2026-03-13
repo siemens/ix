@@ -67,6 +67,37 @@ async function createToggleExample(page: Page) {
   });
 }
 
+async function createSelectOverflowExample(page: Page) {
+  await page.evaluate(() => {
+    const modal = document.createElement('ix-modal');
+    modal.setAttribute('size', '360');
+
+    const content = document.createElement('ix-modal-content');
+    content.innerHTML = '<div style="height: 12rem;"></div>';
+
+    const select = document.createElement('ix-select');
+    select.setAttribute('id', 'overflow-select');
+    select.style.width = '100%';
+
+    for (let i = 1; i <= 20; i++) {
+      const item = document.createElement('ix-select-item');
+      item.setAttribute('value', `${i}`);
+      item.setAttribute('label', `Item ${i}`);
+      select.appendChild(item);
+    }
+
+    content.appendChild(select);
+
+    modal.appendChild(content);
+
+    window.showModal({
+      content: modal,
+      closeOnBackdropClick: true,
+      animation: false,
+    });
+  });
+}
+
 regressionTest('closes on Escape key down', async ({ mount, page }) => {
   await mount(``);
   await setupModalEnvironment(page);
@@ -211,6 +242,45 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       // needed to skip fade out / in animation
       await page.waitForTimeout(500);
       await expect(page.locator('ix-modal dialog')).toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'should stay open when selecting ix-select dropdown item outside modal bounds',
+    async ({ mount, page }) => {
+      await mount(`<ix-button>Some background noise</ix-button>`);
+
+      await setupModalEnvironment(page);
+      await createSelectOverflowExample(page);
+
+      await page.waitForTimeout(100);
+
+      const modalDialog = page.locator('ix-modal dialog');
+      await expect(modalDialog).toBeVisible();
+
+      await page.locator('[data-select-dropdown]').click();
+
+      const dropdownItem = page.getByRole('button', {
+        name: 'Item 1',
+        exact: true,
+      });
+      await expect(dropdownItem).toBeVisible();
+
+      const modalBox = await modalDialog.boundingBox();
+      const itemBox = await dropdownItem.boundingBox();
+
+      if (!modalBox || !itemBox) {
+        throw new Error('Could not resolve bounds for modal or dropdown item');
+      }
+
+      expect(itemBox.y + itemBox.height / 2).toBeGreaterThan(
+        modalBox.y + modalBox.height
+      );
+
+      await dropdownItem.click();
+
+      await page.waitForTimeout(100);
+      await expect(modalDialog).toBeVisible();
     }
   );
 });

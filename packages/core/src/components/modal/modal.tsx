@@ -129,13 +129,13 @@ export class Modal {
   private onMouseDown(event: MouseEvent) {
     this.isMouseDownInsideDialog =
       this.isPointInsideDialog(event.clientX, event.clientY) ||
-      this.isTargetInsideModalContent(event);
+      this.isDescendant(event.target as Node);
   }
 
   private onMouseUp(event: MouseEvent) {
     const isMouseUpInsideDialog =
       this.isPointInsideDialog(event.clientX, event.clientY) ||
-      this.isTargetInsideModalContent(event);
+      this.isDescendant(event.target as Node);
 
     if (
       this.closeOnBackdropClick &&
@@ -153,9 +153,46 @@ export class Modal {
     );
   }
 
-  private isTargetInsideModalContent(event: MouseEvent): boolean {
-    return event.target !== this.dialog;
+  private isDescendant(target: Node): boolean {
+    const dialog = this.dialog;
+
+    if (!target || !dialog || target === dialog) {
+      return false;
+    }
+
+    let current: Node | null = target;
+
+    while (current) {
+      if (current === dialog) {
+        return true;
+      }
+
+      const assignedSlot: unknown = Reflect.get(
+        current as object,
+        'assignedSlot'
+      );
+      if (assignedSlot instanceof HTMLSlotElement) {
+        current = assignedSlot;
+        continue;
+      }
+
+      if (current.parentNode) {
+        current = current.parentNode;
+        continue;
+      }
+
+      const root = current.getRootNode();
+      if (root instanceof ShadowRoot) {
+        current = root.host;
+        continue;
+      }
+
+      current = null;
+    }
+
+    return false;
   }
+
   /**
    * Show the dialog
    */
@@ -169,7 +206,7 @@ export class Modal {
       this.modalVisible = true;
       dialog.showModal();
       this.slideInModal();
-    } catch (e) {
+    } catch {
       console.error('HTMLDialogElement not existing');
     }
   }
