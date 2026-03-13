@@ -2,7 +2,7 @@
   "version": 1,
   "themeName": "theme-classic-dark",
   "theme": {
-    "seriesCnt": 3,
+    "seriesCnt": "3",
     "backgroundColor": "rgba(0,0,0,0)",
     "titleColor": "#ffffff",
     "subtitleColor": "#ffffff",
