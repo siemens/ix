@@ -175,7 +175,8 @@ export class CardList {
   }
 
   private onShowMoreCardClick(event: MouseEvent) {
-    const step = this.showMoreStep ?? this.maxVisibleCards;
+    const showMoreStep = this.showMoreStep ?? 0;
+    const step = showMoreStep > 0 ? showMoreStep : this.maxVisibleCards;
     this.currentlyVisibleCards += step;
     this.changeVisibilityOfSlotChildren();
     this.showMoreCardClick.emit({
