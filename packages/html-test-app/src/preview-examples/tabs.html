@@ -49,22 +49,16 @@ LICENSE file in the root directory of this source tree.
     <script>
       (async function () {
         await window.customElements.whenDefined('ix-tabs');
-        const tabs = document.querySelectorAll('ix-tab-item[data-tab-id]');
-
-        function registerClickListener(tab) {
-          tab.addEventListener('click', (tabContent) => {
-            const contentList = document.querySelectorAll('[data-tab-content]');
+        const container = document.querySelector('.tabs');
+        const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const contentList = container.querySelectorAll('[data-tab-content]');
             contentList.forEach((content) => {
-              if (content.dataset.tabContent === tab.dataset.tabId) {
-                content.classList.add('show');
-              } else {
-                content.classList.remove('show');
-              }
+              content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
             });
           });
-        }
-
-        tabs.forEach(registerClickListener);
+        });
       })();
     </script>
     <script type="module" src="./init.js"></script>

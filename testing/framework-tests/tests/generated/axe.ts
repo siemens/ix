@@ -170,6 +170,7 @@ import './spinner-large-axe.spec.ts';
 import './split-button-axe.spec.ts';
 import './split-button-icons-axe.spec.ts';
 import './tabs-axe.spec.ts';
+import './tabs-overflow-axe.spec.ts';
 import './tabs-rounded-axe.spec.ts';
 import './textarea-axe.spec.ts';
 import './textarea-disabled-axe.spec.ts';

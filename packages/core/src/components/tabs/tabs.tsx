@@ -82,14 +82,14 @@ export class Tabs {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton = 'Scroll tabs left';
 
   /**
    * ARIA label for the chevron right icon button
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton = 'Scroll tabs right';
 
   /**
    * `selected` property changed
@@ -106,6 +106,8 @@ export class Tabs {
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
   private readonly ARROW_WIDTH = 32;
+  /** Movement in px beyond which we treat as drag (not tap). */
+  private readonly TAP_THRESHOLD_PX = 10;
   private classObserver?: MutationObserver;
   private updateScheduled = false;
 
@@ -272,6 +274,11 @@ export class Tabs {
       this.setTabAttributes(element, index);
     }
 
+    const overflow = this.showArrows();
+    tabs.forEach((el) => {
+      (el as HTMLElement).style.touchAction = overflow ? 'none' : '';
+    });
+
     this.renderArrows();
   }
 
@@ -284,7 +291,7 @@ export class Tabs {
           Math.ceil(tabWrapper.getBoundingClientRect().width) &&
         this.layout === 'auto'
       );
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -292,7 +299,7 @@ export class Tabs {
   private showPreviousArrow() {
     try {
       return this.showArrows() === true && this.scrollActionAmount < 0;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -312,7 +319,7 @@ export class Tabs {
         this.scrollActionAmount >
           (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
       );
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -392,6 +399,8 @@ export class Tabs {
     if (event.button > 0) return;
     if (this.isDragging) return;
 
+    event.preventDefault();
+
     this.isDragging = true;
     this.clickAction.isClick = true;
 
@@ -413,6 +422,13 @@ export class Tabs {
       cleanupPointerListeners();
       this.isDragging = false;
       this.dragStop();
+      if (this.clickAction.isClick) {
+        const tabs = this.getTabs();
+        const index = tabs.indexOf(element);
+        if (index >= 0 && !element.disabled) {
+          this.clickTab(index);
+        }
+      }
     };
 
     const pointerCancel = () => {
@@ -435,8 +451,11 @@ export class Tabs {
   }
 
   private dragMove(event: PointerEvent, pointerdownX: number) {
-    this.clickAction.isClick = false;
-    this.move(event.clientX - pointerdownX);
+    const delta = event.clientX - pointerdownX;
+    if (Math.abs(delta) > this.TAP_THRESHOLD_PX) {
+      this.clickAction.isClick = false;
+    }
+    this.move(delta);
   }
 
   private dragStop() {
@@ -474,6 +493,19 @@ export class Tabs {
       );
     });
 
+    const wrapper = this.getTabsWrapper();
+    if (wrapper) {
+      wrapper.addEventListener(
+        'touchstart',
+        (e) => {
+          if (this.showArrows()) {
+            e.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+    }
+
     this.observeSlotChanges();
   }
 
@@ -500,14 +532,14 @@ export class Tabs {
 
   render() {
     return (
-      <Host role="tablist">
+      <Host>
         {this.showArrowPrevious && (
           <button
             class="arrow"
             onClick={() => this.move(this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronLeftIconButton}
           >
-            <ix-icon name={iconChevronLeftSmall}></ix-icon>
+            <ix-icon name={iconChevronLeftSmall} aria-hidden="true"></ix-icon>
           </button>
         )}
         <div
@@ -519,7 +551,7 @@ export class Tabs {
             'shadow-both': this.showArrowNext && this.showArrowPrevious,
           }}
         >
-          <div class="items-content">
+          <div class="items-content" role="tablist">
             <slot></slot>
           </div>
         </div>
@@ -529,7 +561,7 @@ export class Tabs {
             onClick={() => this.move(-this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronRightIconButton}
           >
-            <ix-icon name={iconChevronRightSmall}></ix-icon>
+            <ix-icon name={iconChevronRightSmall} aria-hidden="true"></ix-icon>
           </button>
         )}
       </Host>
