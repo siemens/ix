@@ -209,15 +209,13 @@ export class Toggle implements IxFormComponent<string> {
             this.onCheckedChange(!this.checked);
           }
         }}
+        onClick={() => {
+          if (!this.disabled) {
+            this.onCheckedChange(!this.checked);
+          }
+        }}
       >
-        <div
-          class="wrapper"
-          onClick={() => {
-            if (!this.disabled) {
-              this.onCheckedChange(!this.checked);
-            }
-          }}
-        >
+        <div class="wrapper">
           <div
             class={{
               switch: true,
@@ -236,10 +234,7 @@ export class Toggle implements IxFormComponent<string> {
             indeterminate={this.indeterminate}
             checked={this.checked}
             onFocus={() => this.hostElement.focus()}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
+            onClick={(e) => e.preventDefault()}
           />
           {!this.hideText && (
             <ix-typography
