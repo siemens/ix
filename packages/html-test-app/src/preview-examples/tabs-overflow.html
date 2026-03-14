@@ -52,20 +52,18 @@ Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs).
       </section>
     </div>
 
-    <script>
-      (async function () {
-        await window.customElements.whenDefined('ix-tabs');
-        const container = document.querySelector('.tabs');
-        const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
-        tabs.forEach((tab) => {
-          tab.addEventListener('click', () => {
-            const contentList = container.querySelectorAll('[data-tab-content]');
-            contentList.forEach((content) => {
-              content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
-            });
+    <script type="module">
+      await globalThis.customElements.whenDefined('ix-tabs');
+      const container = document.querySelector('.tabs');
+      const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const contentList = container.querySelectorAll('[data-tab-content]');
+          contentList.forEach((content) => {
+            content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
           });
         });
-      })();
+      });
     </script>
     <script type="module" src="./init.js"></script>
   </body>

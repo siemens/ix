@@ -111,7 +111,7 @@ export class Tabs {
   private classObserver?: MutationObserver;
   private updateScheduled = false;
 
-  private clickAction = {
+  private readonly clickAction = {
     isClick: true,
   };
 
