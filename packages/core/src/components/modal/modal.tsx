@@ -139,9 +139,12 @@ export class Modal {
   }
 
   private isInsideDialog(event: MouseEvent) {
+    if (!this.dialog) {
+      return false;
+    }
+
     return (
-      event.target !== this.dialog &&
-      event.composedPath().includes(this.dialog!)
+      event.target !== this.dialog && event.composedPath().includes(this.dialog)
     );
   }
 
