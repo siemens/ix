@@ -26,9 +26,14 @@ import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
   handleSubmitOnEnterKeydown,
+  onEnterKeyChangeEmit,
+  onInputBlurWithChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -243,6 +248,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the time input loses focus and the value has changed.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
@@ -260,12 +271,22 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
-  private invalidReason?: string;
-  private touched = false;
+
+  /** @internal */
+  public initialValue?: string;
+  /** @internal */
+  public invalidReason?: string;
+  /** @internal */
+  public touched = false;
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    onEnterKeyChangeEmit(event, this, this.value);
+
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -343,6 +364,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
     if (!value) {
       this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       return;
@@ -355,11 +378,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      this.invalidReason = undefined;
     } else {
       this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason;
+      this.invalidReason = time.invalidReason ?? undefined;
     }
 
+    this.emitValidityStateChangeIfChanged();
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
   }
@@ -374,7 +399,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
-    // keep picker in sync with input
     this.time = this.value;
 
     return openDropdownUtil(this.dropdownElementRef);
@@ -422,12 +446,18 @@ export class TimeInput implements IxInputFieldComponent<string> {
             }
           }}
           onFocus={async () => {
+            this.initialValue = this.value;
             this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
-            this.ixBlur.emit();
+            onInputBlurWithChange(
+              this,
+              this.inputElementRef.current,
+              this.value
+            );
             this.touched = true;
+            this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
@@ -463,13 +493,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.isWarning = isWarning;
   }
 
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    const state = await this.getValidityState();
-    this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
-      invalidReason: this.invalidReason,
-    });
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityState(this);
   }
 
   /** @internal */
@@ -566,7 +591,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
-
+              if (this.initialValue !== event.detail) {
+                this.ixChange.emit(event.detail);
+                this.initialValue = event.detail;
+              }
               this.show = false;
             }}
           ></ix-time-picker>

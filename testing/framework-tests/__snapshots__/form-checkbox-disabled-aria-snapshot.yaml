@@ -1,0 +1,3 @@
+- checkbox "I agree everything" [disabled]:
+  - button [disabled]:
+    - img

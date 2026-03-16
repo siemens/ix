@@ -1,0 +1,4 @@
+- slider: "0"
+- text: /0 \d+/
+- slider: "0"
+- text: /0 \d+ Error message/

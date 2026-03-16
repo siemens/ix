@@ -30,10 +30,6 @@
     left: 50%;
   }
 
-  dialog::backdrop {
-    backdrop-filter: blur(2.7182817459106445px);
-  }
-
   .modal {
     display: flex;
     flex-direction: column;
@@ -89,12 +85,12 @@
     max-width: calc(100% - var(--ix-dialog-padding) * 2);
 
     min-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% -
+        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
     );
     max-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% -
+        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
     );
   }
 

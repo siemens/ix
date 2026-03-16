@@ -27,7 +27,12 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputBlur } from './input.util';
+import {
+  mapValidationResult,
+  onInputFocus,
+  onInputBlurWithChange,
+  checkInternalValidity,
+} from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
@@ -159,6 +164,12 @@ export class Textarea implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the textarea field loses focus and the value has changed.
+   *@since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -169,6 +180,8 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.initResizeObserver();
   });
   private touched = false;
+  /** @internal */
+  public initialValue?: string;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
   private manualHeight?: string;
@@ -237,6 +250,9 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+    if (this.textAreaRef.current && this.touched) {
+      checkInternalValidity(this, this.textAreaRef.current);
+    }
   }
 
   /** @internal */
@@ -328,12 +344,17 @@ export class Textarea implements IxInputFieldComponent<string> {
               value={this.value}
               placeholder={this.placeholder}
               textAreaRef={this.textAreaRef}
+              onFocus={() => onInputFocus(this, this.value)}
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
               onBlur={() => {
-                onInputBlur(this, this.textAreaRef.current);
+                onInputBlurWithChange(
+                  this,
+                  this.textAreaRef.current,
+                  this.value
+                );
                 this.touched = true;
               }}
             ></TextareaElement>

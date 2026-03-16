@@ -35,7 +35,9 @@ import {
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
-  onInputBlur,
+  onInputFocus,
+  onInputBlurWithChange,
+  onEnterKeyChangeEmit,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -187,6 +189,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input field loses focus and the value has changed
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<number>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -198,6 +206,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+  /** @internal */
+  public initialValue?: number;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -267,6 +277,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
+    if (this.inputRef.current && this.touched) {
+      checkInternalValidity(this, this.inputRef.current);
+    }
   }
 
   private readonly handleInputChange = (inputValue: string) => {
@@ -293,7 +306,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     this.updateFormInternalValue(parsedValue!);
 
-    onInputBlur(this, this.inputRef.current);
+    onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
 
@@ -342,12 +355,29 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
+  private getDecimalPlaces(num: number): number {
+    // (?:\.(\d+))? --> match[1] --> decimal digits
+    // (?:[eE]([+-]?\d+))? --> match[2] --> exponent
+    const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec('' + num);
+
+    if (!match) {
+      return 0;
+    }
+
+    // combine decimal digits and exponent to get number of decimal places
+    return Math.max(
+      0,
+      (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0)
+    );
+  }
+
   private handleStepOperation(operation: 'up' | 'down') {
     if (!this.inputRef.current) {
       return;
     }
 
-    const currentValue = this.value ?? 0;
+    const currentValue =
+      this.convertNumberStringToFloat(this.inputRef.current.value) ?? 0;
     const stepValue =
       typeof this.step === 'string'
         ? Number.parseFloat(this.step)
@@ -360,6 +390,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
     } else {
       newValue = currentValue - stepValue;
     }
+
+    // Round to avoid floating point precision errors
+    const decimalPlaces = Math.max(
+      this.getDecimalPlaces(currentValue),
+      this.getDecimalPlaces(stepValue)
+    );
+    newValue = Number(newValue.toFixed(decimalPlaces));
 
     if (this.min !== undefined) {
       const minValue =
@@ -478,6 +515,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onKeyDown={(event) => this.handleKeyDown(event)}
               onBeforeInput={(event) => this.handleBeforeInput(event)}
               onPaste={(event) => this.handlePaste(event)}
+              onFocus={() => onInputFocus(this, this.value)}
+              onEnterKeyChange={(event) =>
+                onEnterKeyChangeEmit(event, this, this.value)
+              }
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
                 const isScientificNotation = this.isScientificNotation(

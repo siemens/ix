@@ -508,8 +508,8 @@ test.describe('cross app navigation', () => {
     const dropdownAfterAvatarButton = page
       .locator('ix-application-header ix-button')
       .nth(1);
-    await expect(dropdownBeforeAvatarButton).toHaveText('before avatar');
-    await expect(dropdownAfterAvatarButton).toHaveText('after avatar');
+    await expect(dropdownBeforeAvatarButton).toHaveText(/before avatar/);
+    await expect(dropdownAfterAvatarButton).toHaveText(/after avatar/);
     await expect(dropdownBeforeAvatarButton).toBeVisible();
     await expect(dropdownAfterAvatarButton).toBeVisible();
   });
@@ -561,8 +561,8 @@ test.describe('cross app navigation', () => {
     const dropdownAfterAvatarButton = page
       .locator('ix-application-header ix-button')
       .nth(1);
-    await expect(dropdownBeforeAvatarButton).toHaveText('before avatar');
-    await expect(dropdownAfterAvatarButton).toHaveText('after avatar');
+    await expect(dropdownBeforeAvatarButton).toHaveText(/before avatar/);
+    await expect(dropdownAfterAvatarButton).toHaveText(/after avatar/);
     await expect(dropdownBeforeAvatarButton).toBeVisible();
     await expect(dropdownAfterAvatarButton).toBeVisible();
   });
@@ -588,4 +588,32 @@ test.describe('cross app navigation', () => {
       await expect(avatar).toBeVisible();
     });
   });
+});
+
+test('should update context menu visibility when breakpoint changes', async ({
+  page,
+  mount,
+}) => {
+  await page.setViewportSize(viewPorts.lg);
+  await mount(
+    `
+      <ix-application-header name="Test">
+        <ix-button>Action</ix-button>
+        <ix-avatar></ix-avatar>
+      </ix-application-header>
+      `
+  );
+  const header = page.locator('ix-application-header');
+  const contextMenu = header.locator('[data-testid="show-more"]');
+
+  await expect(header).toHaveClass(/breakpoint-lg/);
+  await expect(contextMenu).not.toBeVisible();
+
+  await page.setViewportSize(viewPorts.sm);
+  await expect(header).toHaveClass(/breakpoint-sm/);
+  await expect(contextMenu).toBeVisible();
+
+  await page.setViewportSize(viewPorts.lg);
+  await expect(header).toHaveClass(/breakpoint-lg/);
+  await expect(contextMenu).not.toBeVisible();
 });
