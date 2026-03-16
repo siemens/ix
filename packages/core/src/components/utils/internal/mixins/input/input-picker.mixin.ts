@@ -8,8 +8,8 @@
  */
 import { Method, MixedInCtor } from '@stencil/core';
 import { StencilLifecycle } from '../../component';
-import { MakeRef } from 'src/components/utils/make-ref';
-import { dropdownController } from 'src/components/dropdown/dropdown-controller';
+import { MakeRef } from './../../../../utils/make-ref';
+import { dropdownController } from './../../../../dropdown/dropdown-controller';
 
 export interface InputPickerMixinContract {
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null;

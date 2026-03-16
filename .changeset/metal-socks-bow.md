@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Add new component `ix-input-range` which can currently display range related inputs. Supported components: `ix-date-input` and `ix-time-input`
+Add new component `ix-range-field` which can currently display range related inputs. Supported components: `ix-date-input` and `ix-time-input`

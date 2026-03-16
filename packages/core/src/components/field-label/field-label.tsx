@@ -84,7 +84,7 @@ export class FormFieldLabel implements IxComponentInterface {
   componentWillRender() {
     this.checkForInternalState();
 
-    if (closestPassShadow(this.hostElement, 'ix-input-range')) {
+    if (closestPassShadow(this.hostElement, 'ix-range-field')) {
       this.textOverflow = 'no-wrap';
     }
   }
