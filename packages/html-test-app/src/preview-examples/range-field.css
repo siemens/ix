@@ -10,8 +10,3 @@
  * Styles get overwritten by html-test-app css files each build or dev task.
  * If you want to modify the example styles do this only inside the html-test-app
  */
-
-ix-input {
-  margin-bottom: 1rem;
-  width: 11rem;
-}

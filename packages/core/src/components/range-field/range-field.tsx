@@ -24,12 +24,12 @@ import { iconArrowRight } from '@siemens/ix-icons/icons';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
-  tag: 'ix-input-range',
-  styleUrl: 'input-range.scss',
+  tag: 'ix-range-field',
+  styleUrl: 'range-field.scss',
   shadow: true,
 })
-export class InputRange extends Mixin(...DefaultMixins) {
-  @Element() override hostElement!: HTMLIxInputRangeElement;
+export class RangeField extends Mixin(...DefaultMixins) {
+  @Element() override hostElement!: HTMLIxRangeFieldElement;
 
   /**
    * The type of the input range. If set to "time-range", the input range will be displayed as a time range.

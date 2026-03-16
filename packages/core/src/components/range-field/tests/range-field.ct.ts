@@ -14,14 +14,14 @@ import { expect } from '@utils/test';
 regressionTest('renders time-range', async ({ mount, page }) => {
   await mount(
     `
-    <ix-input-range type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 32rem">
       <ix-time-input required></ix-time-input>
       <ix-time-input helper-text="Hallo layout!"></ix-time-input>
-    </ix-input-range>
+    </ix-range-field>
     `
   );
 
-  const inputRangeElement = page.locator('ix-input-range');
+  const inputRangeElement = page.locator('ix-range-field');
 
   await expect(inputRangeElement).toBeVisible();
   await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -30,14 +30,14 @@ regressionTest('renders time-range', async ({ mount, page }) => {
 regressionTest('renders date-range', async ({ mount, page }) => {
   await mount(
     `
-    <ix-input-range type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem">
       <ix-date-input required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
   );
 
-  const inputRangeElement = page.locator('ix-input-range');
+  const inputRangeElement = page.locator('ix-range-field');
 
   await expect(inputRangeElement).toBeVisible();
   await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -56,14 +56,14 @@ regressionTest(
 
     await mount(
       `
-    <ix-input-range type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 32rem">
       <ix-time-input required></ix-time-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
     );
 
-    const inputRangeElement = page.locator('ix-input-range');
+    const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
     await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -76,14 +76,14 @@ regressionTest(
 regressionTest('hide arrow between range inputs', async ({ mount, page }) => {
   await mount(
     `
-    <ix-input-range type="date-range" style="width: 32rem" hide-arrow>
+    <ix-range-field type="date-range" style="width: 32rem" hide-arrow>
       <ix-date-input required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
   );
 
-  const inputRangeElement = page.locator('ix-input-range');
+  const inputRangeElement = page.locator('ix-range-field');
 
   const arrowElement = inputRangeElement.locator('.range-delimiter');
 
@@ -98,14 +98,14 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-input-range type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem">
       <ix-date-input required aria-label="first"></ix-date-input>
       <ix-date-input helper-text="Hallo layout!" aria-label="second"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
     );
 
-    const inputRangeElement = page.locator('ix-input-range');
+    const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
     await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -125,14 +125,14 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-input-range type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem">
       <ix-date-input label="first" required></ix-date-input>
       <ix-date-input label="second" helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
     );
 
-    const inputRangeElement = page.locator('ix-input-range');
+    const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
     await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -152,14 +152,14 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-input-range type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem">
       <ix-date-input required></ix-date-input>
       <ix-date-input label="second" helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
     );
 
-    const inputRangeElement = page.locator('ix-input-range');
+    const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
     await expect(inputRangeElement).toHaveClass(/hydrated/);
@@ -179,14 +179,14 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-input-range type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem">
       <ix-date-input label="second" required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
-    </ix-input-range>
+    </ix-range-field>
     `
     );
 
-    const inputRangeElement = page.locator('ix-input-range');
+    const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
     await expect(inputRangeElement).toHaveClass(/hydrated/);

@@ -1415,29 +1415,6 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 
 @ProxyCmp({
-  inputs: ['hideArrow', 'type']
-})
-@Component({
-  selector: 'ix-input-range',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hideArrow', 'type'],
-  standalone: false
-})
-export class IxInputRange {
-  protected el: HTMLIxInputRangeElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxInputRange extends Components.IxInputRange {}
-
-
-@ProxyCmp({
   inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value']
 })
 @Component({
@@ -2336,6 +2313,29 @@ export declare interface IxRadioGroup extends Components.IxRadioGroup {
    */
   valueChange: EventEmitter<CustomEvent<string>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['hideArrow', 'type']
+})
+@Component({
+  selector: 'ix-range-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hideArrow', 'type'],
+  standalone: false
+})
+export class IxRangeField {
+  protected el: HTMLIxRangeFieldElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxRangeField extends Components.IxRangeField {}
 
 
 @ProxyCmp({

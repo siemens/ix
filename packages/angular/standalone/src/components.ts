@@ -54,7 +54,6 @@ import { defineCustomElement as defineIxIconButton } from '@siemens/ix/component
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
-import { defineCustomElement as defineIxInputRange } from '@siemens/ix/components/ix-input-range.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
@@ -85,6 +84,7 @@ import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/co
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
+import { defineCustomElement as defineIxRangeField } from '@siemens/ix/components/ix-range-field.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -1516,29 +1516,6 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIxInputRange,
-  inputs: ['hideArrow', 'type']
-})
-@Component({
-  selector: 'ix-input-range',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hideArrow', 'type'],
-})
-export class IxInputRange {
-  protected el: HTMLIxInputRangeElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxInputRange extends Components.IxInputRange {}
-
-
-@ProxyCmp({
   defineCustomElementFn: defineIxKeyValue,
   inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value']
 })
@@ -2437,6 +2414,29 @@ export declare interface IxRadioGroup extends Components.IxRadioGroup {
    */
   valueChange: EventEmitter<CustomEvent<string>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxRangeField,
+  inputs: ['hideArrow', 'type']
+})
+@Component({
+  selector: 'ix-range-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hideArrow', 'type'],
+})
+export class IxRangeField {
+  protected el: HTMLIxRangeFieldElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxRangeField extends Components.IxRangeField {}
 
 
 @ProxyCmp({

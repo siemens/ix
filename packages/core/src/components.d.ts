@@ -2138,17 +2138,6 @@ export namespace Components {
      */
     interface IxInputGroup {
     }
-    interface IxInputRange {
-        /**
-          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
-          * @default false
-         */
-        "hideArrow": boolean;
-        /**
-          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
-         */
-        "type"?: 'time-range' | 'date-range';
-    }
     interface IxKeyValue {
         /**
           * ARIA label for the icon
@@ -3155,6 +3144,17 @@ export namespace Components {
           * Warning text for the field component
          */
         "warningText"?: string;
+    }
+    interface IxRangeField {
+        /**
+          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
+          * @default false
+         */
+        "hideArrow": boolean;
+        /**
+          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
+         */
+        "type"?: 'time-range' | 'date-range';
     }
     interface IxRow {
     }
@@ -5273,12 +5273,6 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
-    interface HTMLIxInputRangeElement extends Components.IxInputRange, HTMLStencilElement {
-    }
-    var HTMLIxInputRangeElement: {
-        prototype: HTMLIxInputRangeElement;
-        new (): HTMLIxInputRangeElement;
-    };
     interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
     }
     var HTMLIxKeyValueElement: {
@@ -5688,6 +5682,12 @@ declare global {
     var HTMLIxRadioGroupElement: {
         prototype: HTMLIxRadioGroupElement;
         new (): HTMLIxRadioGroupElement;
+    };
+    interface HTMLIxRangeFieldElement extends Components.IxRangeField, HTMLStencilElement {
+    }
+    var HTMLIxRangeFieldElement: {
+        prototype: HTMLIxRangeFieldElement;
+        new (): HTMLIxRangeFieldElement;
     };
     interface HTMLIxRowElement extends Components.IxRow, HTMLStencilElement {
     }
@@ -6112,7 +6112,6 @@ declare global {
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input": HTMLIxInputElement;
         "ix-input-group": HTMLIxInputGroupElement;
-        "ix-input-range": HTMLIxInputRangeElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
@@ -6145,6 +6144,7 @@ declare global {
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
+        "ix-range-field": HTMLIxRangeFieldElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -8353,17 +8353,6 @@ declare namespace LocalJSX {
      */
     interface IxInputGroup {
     }
-    interface IxInputRange {
-        /**
-          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
-          * @default false
-         */
-        "hideArrow"?: boolean;
-        /**
-          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
-         */
-        "type"?: 'time-range' | 'date-range';
-    }
     interface IxKeyValue {
         /**
           * ARIA label for the icon
@@ -9466,6 +9455,17 @@ declare namespace LocalJSX {
           * Warning text for the field component
          */
         "warningText"?: string;
+    }
+    interface IxRangeField {
+        /**
+          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
+          * @default false
+         */
+        "hideArrow"?: boolean;
+        /**
+          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
+         */
+        "type"?: 'time-range' | 'date-range';
     }
     interface IxRow {
     }
@@ -11196,10 +11196,6 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
     }
-    interface IxInputRangeAttributes {
-        "type": 'time-range' | 'date-range';
-        "hideArrow": boolean;
-    }
     interface IxKeyValueAttributes {
         "icon": string;
         "ariaLabelIcon": string;
@@ -11458,6 +11454,10 @@ declare namespace LocalJSX {
         "showTextAsTooltip": boolean;
         "direction": 'column' | 'row';
         "required": boolean;
+    }
+    interface IxRangeFieldAttributes {
+        "type": 'time-range' | 'date-range';
+        "hideArrow": boolean;
     }
     interface IxSelectAttributes {
         "name": string;
@@ -11774,7 +11774,6 @@ declare namespace LocalJSX {
         "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
         "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
         "ix-input-group": IxInputGroup;
-        "ix-input-range": Omit<IxInputRange, keyof IxInputRangeAttributes> & { [K in keyof IxInputRange & keyof IxInputRangeAttributes]?: IxInputRange[K] } & { [K in keyof IxInputRange & keyof IxInputRangeAttributes as `attr:${K}`]?: IxInputRangeAttributes[K] } & { [K in keyof IxInputRange & keyof IxInputRangeAttributes as `prop:${K}`]?: IxInputRange[K] };
         "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
         "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
         "ix-kpi": Omit<IxKpi, keyof IxKpiAttributes> & { [K in keyof IxKpi & keyof IxKpiAttributes]?: IxKpi[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `attr:${K}`]?: IxKpiAttributes[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `prop:${K}`]?: IxKpi[K] };
@@ -11807,6 +11806,7 @@ declare namespace LocalJSX {
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
         "ix-radio-group": Omit<IxRadioGroup, keyof IxRadioGroupAttributes> & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes]?: IxRadioGroup[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `attr:${K}`]?: IxRadioGroupAttributes[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `prop:${K}`]?: IxRadioGroup[K] };
+        "ix-range-field": Omit<IxRangeField, keyof IxRangeFieldAttributes> & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes]?: IxRangeField[K] } & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes as `attr:${K}`]?: IxRangeFieldAttributes[K] } & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes as `prop:${K}`]?: IxRangeField[K] };
         "ix-row": IxRow;
         "ix-select": Omit<IxSelect, keyof IxSelectAttributes> & { [K in keyof IxSelect & keyof IxSelectAttributes]?: IxSelect[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `attr:${K}`]?: IxSelectAttributes[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `prop:${K}`]?: IxSelect[K] };
         "ix-select-item": Omit<IxSelectItem, keyof IxSelectItemAttributes> & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes]?: IxSelectItem[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `attr:${K}`]?: IxSelectItemAttributes[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `prop:${K}`]?: IxSelectItem[K] } & OneOf<"value", IxSelectItem["value"], IxSelectItemAttributes["value"]>;
@@ -11911,7 +11911,6 @@ declare module "@stencil/core" {
              * Use the 'ix-input' component instead
              */
             "ix-input-group": LocalJSX.IntrinsicElements["ix-input-group"] & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
-            "ix-input-range": LocalJSX.IntrinsicElements["ix-input-range"] & JSXBase.HTMLAttributes<HTMLIxInputRangeElement>;
             "ix-key-value": LocalJSX.IntrinsicElements["ix-key-value"] & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
             "ix-key-value-list": LocalJSX.IntrinsicElements["ix-key-value-list"] & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IntrinsicElements["ix-kpi"] & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
@@ -11956,6 +11955,7 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-radio-group": LocalJSX.IntrinsicElements["ix-radio-group"] & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
+            "ix-range-field": LocalJSX.IntrinsicElements["ix-range-field"] & JSXBase.HTMLAttributes<HTMLIxRangeFieldElement>;
             "ix-row": LocalJSX.IntrinsicElements["ix-row"] & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
              * @form-ready 

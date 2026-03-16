@@ -7,21 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxInputRange, IxDateInput, IxTimeInput } from '@siemens/ix-react';
+import { IxRangeField, IxDateInput, IxTimeInput } from '@siemens/ix-react';
 import './input-range.scoped.css';
 
 export default () => {
   return (
     <>
-      <IxInputRange type="date-range" style="width: 32rem">
+      <IxRangeField type="date-range" style="width: 32rem">
         <IxDateInput label="Start date"></IxDateInput>
         <IxDateInput label="End date"></IxDateInput>
-      </IxInputRange>
+      </IxRangeField>
 
-      <IxInputRange type="time-range" style="width: 32rem">
+      <IxRangeField type="time-range" style="width: 32rem">
         <IxTimeInput label="Start time"></IxTimeInput>
         <IxTimeInput label="End time"></IxTimeInput>
-      </IxInputRange>
+      </IxRangeField>
     </>
   );
 };

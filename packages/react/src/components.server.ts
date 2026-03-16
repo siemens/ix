@@ -57,7 +57,6 @@ import { IxHelperText as IxHelperTextElement } from "@siemens/ix/components/ix-h
 import { IxIconButton as IxIconButtonElement } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement } from "@siemens/ix/components/ix-icon-toggle-button.js";
 import { IxInputGroup as IxInputGroupElement } from "@siemens/ix/components/ix-input-group.js";
-import { IxInputRange as IxInputRangeElement } from "@siemens/ix/components/ix-input-range.js";
 import { IxInput as IxInputElement } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement } from "@siemens/ix/components/ix-key-value.js";
@@ -89,6 +88,7 @@ import { IxProgressIndicator as IxProgressIndicatorElement } from "@siemens/ix/c
 import { IxPushCard as IxPushCardElement } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement } from "@siemens/ix/components/ix-radio-group.js";
 import { IxRadio as IxRadioElement } from "@siemens/ix/components/ix-radio.js";
+import { IxRangeField as IxRangeFieldElement } from "@siemens/ix/components/ix-range-field.js";
 import { IxRow as IxRowElement } from "@siemens/ix/components/ix-row.js";
 import { IxSelectItem as IxSelectItemElement } from "@siemens/ix/components/ix-select-item.js";
 import { IxSelect as IxSelectElement } from "@siemens/ix/components/ix-select.js";
@@ -1036,19 +1036,6 @@ export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGro
     serializeShadowRoot
 });
 
-export type IxInputRangeEvents = NonNullable<unknown>;
-
-export const IxInputRange: StencilReactComponent<IxInputRangeElement, IxInputRangeEvents> = /*@__PURE__*/ createComponent<IxInputRangeElement, IxInputRangeEvents>({
-    tagName: 'ix-input-range',
-    properties: {
-        type: 'type',
-        hideArrow: 'hide-arrow'
-    },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxInputRange as ReactWebComponent<IxInputRangeElement, IxInputRangeEvents>,
-    serializeShadowRoot
-});
-
 export type IxKeyValueEvents = NonNullable<unknown>;
 
 export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents>({
@@ -1584,6 +1571,19 @@ export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGro
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxRadioGroup as ReactWebComponent<IxRadioGroupElement, IxRadioGroupEvents>,
+    serializeShadowRoot
+});
+
+export type IxRangeFieldEvents = NonNullable<unknown>;
+
+export const IxRangeField: StencilReactComponent<IxRangeFieldElement, IxRangeFieldEvents> = /*@__PURE__*/ createComponent<IxRangeFieldElement, IxRangeFieldEvents>({
+    tagName: 'ix-range-field',
+    properties: {
+        type: 'type',
+        hideArrow: 'hide-arrow'
+    },
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxRangeField as ReactWebComponent<IxRangeFieldElement, IxRangeFieldEvents>,
     serializeShadowRoot
 });
 
