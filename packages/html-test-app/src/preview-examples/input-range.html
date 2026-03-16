@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input pattern example</title>
+    <link rel="stylesheet" href="./input-range.css" />
+  </head>
+  <body>
+    <ix-input-range type="date-range" style="width: 32rem">
+      <ix-date-input label="Start date"></ix-date-input>
+      <ix-date-input label="End date"></ix-date-input>
+    </ix-input-range>
+
+    <ix-input-range type="time-range" style="width: 32rem">
+      <ix-time-input label="Start time"></ix-time-input>
+      <ix-time-input label="End time"></ix-time-input>
+    </ix-input-range>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
