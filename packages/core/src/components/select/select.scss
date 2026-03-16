@@ -18,8 +18,6 @@
 :host {
   display: block;
   position: relative;
-  min-height: 2rem;
-  height: auto;
   width: 18rem;
   border-radius: var(--theme-input--border-radius);
 
@@ -34,6 +32,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    height: 2rem;
     background-color: var(--theme-input--background);
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
