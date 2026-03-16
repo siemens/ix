@@ -155,7 +155,6 @@ export class BreadcrumbItem
         'aria-label':
           this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
         ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
-        role: 'link',
       },
       href: this.href,
       target: this.target,

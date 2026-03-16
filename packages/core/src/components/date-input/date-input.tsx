@@ -269,13 +269,12 @@ export class DateInput
 
   private classObserver?: ClassMutationObserver;
 
-  /** @internal */
   public initialValue?: string;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -588,7 +587,7 @@ export class DateInput
             targetElement: this.datepickerRef,
             trapFocusInShadowDom: true,
           }}
-          callbackFocusElement={() => {
+          callbackFocusElement={async () => {
             this.datepickerRef.current?.focusActiveDay();
             return true;
           }}

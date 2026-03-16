@@ -30,7 +30,7 @@ export const FOCUS_KEYS = new Set([
 ]);
 
 export function queryElements(
-  dropdownElement: HTMLElement | ShadowRoot | undefined,
+  dropdownElement: HTMLElement | ShadowRoot | null | undefined,
   query: string
 ) {
   if (!dropdownElement) {

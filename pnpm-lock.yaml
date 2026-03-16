@@ -17704,9 +17704,9 @@ snapshots:
       acorn: 8.15.0
       acorn-walk: 8.3.4
 
-  acorn-jsx@5.3.2(acorn@8.15.0):
+  acorn-jsx@5.3.2(acorn@8.16.0):
     dependencies:
-      acorn: 8.15.0
+      acorn: 8.16.0
 
   acorn-walk@8.3.4:
     dependencies:
@@ -17719,8 +17719,7 @@ snapshots:
 
   acorn@8.15.0: {}
 
-  acorn@8.16.0:
-    optional: true
+  acorn@8.16.0: {}
 
   adjust-sourcemap-loader@4.0.0:
     dependencies:
@@ -19785,14 +19784,14 @@ snapshots:
 
   espree@10.4.0:
     dependencies:
-      acorn: 8.15.0
-      acorn-jsx: 5.3.2(acorn@8.15.0)
+      acorn: 8.16.0
+      acorn-jsx: 5.3.2(acorn@8.16.0)
       eslint-visitor-keys: 4.2.1
 
   espree@9.6.1:
     dependencies:
-      acorn: 8.15.0
-      acorn-jsx: 5.3.2(acorn@8.15.0)
+      acorn: 8.16.0
+      acorn-jsx: 5.3.2(acorn@8.16.0)
       eslint-visitor-keys: 3.4.3
 
   esprima@4.0.1: {}

@@ -25,6 +25,7 @@ import { DefaultMixins } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
@@ -540,12 +541,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private setupVisibilityObserver() {
-    let dropdownElement: Element | null = this.hostElement;
-    while (dropdownElement && dropdownElement.tagName !== 'IX-DROPDOWN') {
-      dropdownElement = dropdownElement.parentElement;
-    }
-
-    if (!dropdownElement) {
+    const dropdown = closestPassShadow(this.hostElement, 'ix-dropdown');
+    if (!dropdown) {
       return;
     }
 
@@ -553,7 +550,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       this.mutationObserverCallback(mutations)
     );
 
-    this.visibilityObserver.observe(dropdownElement, {
+    this.visibilityObserver.observe(dropdown, {
       attributes: true,
       attributeFilter: ['class', 'style'],
     });

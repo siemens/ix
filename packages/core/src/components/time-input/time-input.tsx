@@ -292,13 +292,12 @@ export class TimeInput
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
 
-  /** @internal */
   public initialValue?: string;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 

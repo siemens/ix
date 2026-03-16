@@ -1,0 +1,5 @@
+- main:
+  - img "Info"
+  - textbox "Date and time": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - text: Slot
+  - button "Toggle calendar"
