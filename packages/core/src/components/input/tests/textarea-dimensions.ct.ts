@@ -54,12 +54,6 @@ regressionTest(
     // Check that rows and cols attributes are applied
     await expect(textarea).toHaveAttribute('rows', '5');
     await expect(textarea).toHaveAttribute('cols', '30');
-
-    // When rows is set, height should be auto to allow browser natural sizing
-    await expect(textarea).toHaveAttribute('style', /.*height: auto.*/);
-
-    // Without textarea-width, cols should control width and not be overridden by inline fallback width
-    await expect(textarea).not.toHaveAttribute('style', /.*width:\s*100%.*/);
   }
 );
 
@@ -110,7 +104,10 @@ regressionTest(
       `<ix-textarea textarea-width="15em" textarea-height="8em"></ix-textarea>`
     );
 
-    const textarea = page.locator('ix-textarea textarea');
+    const hostElement = page.locator('ix-textarea');
+    await expect(hostElement).toHaveClass(/hydrated/);
+
+    const textarea = hostElement.locator('textarea');
 
     // Get textarea font size for conversion calculation
     const elementFontSize = await textarea.evaluate((el) => {

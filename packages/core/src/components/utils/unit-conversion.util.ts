@@ -8,25 +8,23 @@
  */
 
 /**
- * Normalizes CSS unit values used for dimension props.
+ * Normalizes a CSS dimension value.
  *
+ * - Negative values are rejected.
  * - Explicit CSS units (`px`, `rem`, `em`, `%`) are preserved.
  * - Unitless numeric values are converted to pixels.
  *
  * @param value - The CSS value to normalize (e.g., "16px", "1rem", "100%")
- * @param dimension - The target dimension (`width` or `height`)
- * @returns A normalized CSS value or undefined if parsing fails
+ * @returns A normalized CSS value, or `undefined` if the value is absent, negative, or cannot be parsed
  */
-export function convertToPx(
-  value: string | undefined,
-  _dimension: 'width' | 'height',
-  _element: HTMLElement
+export function normalizeCssDimension(
+  value: string | undefined
 ): string | undefined {
   if (!value) {
     return undefined;
   }
 
-  const unitRegex = /^(-?\d*\.?\d+)\s*(px|rem|em|%)?$/;
+  const unitRegex = /^(\d*\.?\d+)\s*(px|rem|em|%)?$/;
   const match = unitRegex.exec(value.trim());
 
   if (!match) {

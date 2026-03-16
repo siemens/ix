@@ -34,7 +34,7 @@ import {
   onInputBlurWithChange,
   checkInternalValidity,
 } from './input.util';
-import { convertToPx } from '../utils/unit-conversion.util';
+import { normalizeCssDimension } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 let sequentialInstanceId = 0;
@@ -333,15 +333,8 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  private getConvertedDimension(
-    value: string | undefined,
-    dimension: 'width' | 'height'
-  ): string | undefined {
-    return convertToPx(
-      value,
-      dimension,
-      this.textAreaRef.current || this.hostElement
-    );
+  private getConvertedDimension(value: string | undefined): string | undefined {
+    return normalizeCssDimension(value);
   }
 
   private getTextareaHeight(): string | undefined {
@@ -349,16 +342,9 @@ export class Textarea implements IxInputFieldComponent<string> {
       return this.manualHeight;
     }
 
-    const convertedHeight = this.getConvertedDimension(
-      this.textareaHeight,
-      'height'
-    );
+    const convertedHeight = this.getConvertedDimension(this.textareaHeight);
 
-    if (convertedHeight) {
-      return convertedHeight;
-    }
-
-    return this.textareaRows ? 'auto' : undefined;
+    return convertedHeight;
   }
 
   private getTextareaWidth(): string | undefined {
@@ -366,16 +352,9 @@ export class Textarea implements IxInputFieldComponent<string> {
       return this.manualWidth || '100%';
     }
 
-    const convertedWidth = this.getConvertedDimension(
-      this.textareaWidth,
-      'width'
-    );
+    const convertedWidth = this.getConvertedDimension(this.textareaWidth);
 
-    if (convertedWidth) {
-      return convertedWidth;
-    }
-
-    return this.textareaCols ? 'auto' : undefined;
+    return convertedWidth;
   }
 
   render() {
