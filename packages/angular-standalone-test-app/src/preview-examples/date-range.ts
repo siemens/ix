@@ -14,7 +14,7 @@ import { IxDateInput, IxRangeField } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxRangeField, IxDateInput],
   template: `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem" aria-label="date range">
       <ix-date-input label="Start date"></ix-date-input>
       <ix-date-input label="End date"></ix-date-input>
     </ix-range-field>

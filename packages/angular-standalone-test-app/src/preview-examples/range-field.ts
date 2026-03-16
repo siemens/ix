@@ -18,12 +18,12 @@ import {
   selector: 'app-example',
   imports: [IxRangeField, IxDateInput, IxTimeInput],
   template: `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 32rem" aria-label="Date range">
       <ix-date-input label="Start date"></ix-date-input>
       <ix-date-input label="End date"></ix-date-input>
     </ix-range-field>
 
-    <ix-range-field type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 32rem" aria-label="Time range">
       <ix-time-input label="Start time"></ix-time-input>
       <ix-time-input label="End time"></ix-time-input>
     </ix-range-field>

@@ -12,7 +12,7 @@ import { IxDateInput, IxRangeField } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxRangeField type="date-range" style="width: 32rem">
+  <IxRangeField type="date-range" style="width: 32rem" aria-label="date range">
     <IxDateInput label="Start date"></IxDateInput>
     <IxDateInput label="End date"></IxDateInput>
   </IxRangeField>

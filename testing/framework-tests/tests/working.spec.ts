@@ -7,3 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import './generated/tabs.spec';
+import './generated/time-range.spec';
+import './generated/date-range.spec';
+import './generated/range-field.spec';

@@ -11,7 +11,11 @@ import { IxDateInput, IxRangeField } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <IxRangeField type="date-range" style={{ width: '32rem' }}>
+    <IxRangeField
+      type="date-range"
+      style={{ width: '32rem' }}
+      aria-label="date range"
+    >
       <IxDateInput label="Start date"></IxDateInput>
       <IxDateInput label="End date"></IxDateInput>
     </IxRangeField>

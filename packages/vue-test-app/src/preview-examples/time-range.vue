@@ -12,7 +12,7 @@ import { IxRangeField, IxTimeInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxRangeField type="time-range" style="width: 32rem">
+  <IxRangeField type="time-range" style="width: 32rem" aria-label="Time range">
     <IxTimeInput label="Start time"></IxTimeInput>
     <IxTimeInput label="End time"></IxTimeInput>
   </IxRangeField>

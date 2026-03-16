@@ -1,0 +1,6 @@
+- main:
+  - group "Time range":
+    - textbox "Start time"
+    - button "Toggle time picker"
+    - textbox "End time": /\d+:\d+:\d+/
+    - button "Toggle time picker"

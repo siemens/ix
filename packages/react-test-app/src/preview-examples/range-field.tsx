@@ -12,12 +12,20 @@ import { IxDateInput, IxRangeField, IxTimeInput } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxRangeField type="date-range" style={{ width: '32rem' }}>
+      <IxRangeField
+        type="date-range"
+        style={{ width: '32rem' }}
+        aria-label="Date range"
+      >
         <IxDateInput label="Start date"></IxDateInput>
         <IxDateInput label="End date"></IxDateInput>
       </IxRangeField>
 
-      <IxRangeField type="time-range" style={{ width: '32rem' }}>
+      <IxRangeField
+        type="time-range"
+        style={{ width: '32rem' }}
+        aria-label="Time range"
+      >
         <IxTimeInput label="Start time"></IxTimeInput>
         <IxTimeInput label="End time"></IxTimeInput>
       </IxRangeField>

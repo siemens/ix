@@ -159,7 +159,7 @@ export class RangeField extends Mixin(...DefaultMixins) {
       <Host class={{ 'hide-arrow': this.hideArrow }} role="group">
         {!this.hideArrow && (
           <ix-icon
-            aria-hidden
+            aria-hidden="true"
             class={{
               'range-delimiter': true,
               'has-label': this.hasLabel,

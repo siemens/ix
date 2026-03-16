@@ -14,7 +14,7 @@ import { IxRangeField, IxTimeInput } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxRangeField, IxTimeInput],
   template: `
-    <ix-range-field type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 32rem" aria-label="Time range">
       <ix-time-input label="Start time"></ix-time-input>
       <ix-time-input label="End time"></ix-time-input>
     </ix-range-field>

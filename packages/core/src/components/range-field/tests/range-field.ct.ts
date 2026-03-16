@@ -1,6 +1,3 @@
-import { arrow } from '@floating-ui/dom';
-import { regressionTest } from '@utils/test';
-
 /*
  * SPDX-FileCopyrightText: 2026 Siemens AG
  *
@@ -9,7 +6,37 @@ import { regressionTest } from '@utils/test';
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@utils/test';
+import { regressionTest, expect } from '@utils/test';
+
+regressionTest(
+  'accessibility time-range',
+  async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+    <ix-range-field type="time-range" style="width: 32rem" aria-label="Time range">
+      <ix-time-input label="start" required></ix-time-input>
+      <ix-time-input label="end" helper-text="Hallo layout!"></ix-time-input>
+    </ix-range-field>
+  `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
+regressionTest(
+  'accessibility date-range',
+  async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+    <ix-range-field type="date-range" style="width: 32rem" aria-label="Date range">
+      <ix-date-input label="start" required></ix-date-input>
+      <ix-date-input label="end" helper-text="Hallo layout!"></ix-date-input>
+    </ix-range-field>
+  `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
 
 regressionTest('renders time-range', async ({ mount, page }) => {
   await mount(
