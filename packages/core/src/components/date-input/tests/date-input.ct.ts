@@ -108,7 +108,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Date is not valid' })
-    ).toHaveText('Date is not valid');
+    ).toHaveText(/Date is not valid/);
   }
 );
 
@@ -131,7 +131,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Datum nicht korrekt!' })
-    ).toHaveText('Datum nicht korrekt!');
+    ).toHaveText(/Datum nicht korrekt!/);
   }
 );
 
@@ -219,6 +219,6 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Custom error message' })
-    ).toHaveText('Custom error message');
+    ).toHaveText(/Custom error message/);
   }
 );

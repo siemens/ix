@@ -1,0 +1,4 @@
+- img
+- textbox: /\d+:\d+:\d+/
+- text: Slot
+- button "Toggle time picker"

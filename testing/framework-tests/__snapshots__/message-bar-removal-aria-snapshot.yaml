@@ -1,0 +1,4 @@
+- alert:
+  - img
+  - text: Message text
+  - button "Close"

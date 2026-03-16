@@ -1,0 +1,13 @@
+- text: First name
+- textbox: Jane
+- img
+- text: Valid first name Last name
+- textbox: Doe
+- img
+- text: Family name Email
+- textbox: info@
+- img
+- text: Not a valid email address Address
+- textbox
+- img
+- text: Required

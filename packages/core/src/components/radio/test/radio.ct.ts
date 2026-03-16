@@ -181,3 +181,19 @@ test.describe('accessibility & click handling', () => {
     await expect(radio).toHaveAttribute('aria-checked', 'true');
   });
 });
+
+regressionTest(
+  'disabled prop reflects to host attribute',
+  async ({ mount, page }) => {
+    await mount(`<ix-radio label="Test Radio"></ix-radio>`);
+    const radio = page.locator('ix-radio');
+    await radio.evaluate((item) => {
+      (item as HTMLElement & { disabled: boolean }).disabled = true;
+    });
+    await expect(radio).toHaveAttribute('disabled', '');
+    await radio.evaluate((item) => {
+      (item as HTMLElement & { disabled: boolean }).disabled = false;
+    });
+    await expect(radio).not.toHaveAttribute('disabled');
+  }
+);

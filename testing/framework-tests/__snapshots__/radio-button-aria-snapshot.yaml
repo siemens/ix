@@ -1,0 +1,6 @@
+- radio "Checked" [checked]
+- text: Checked
+- radio "Normal"
+- text: Normal
+- radio "Disabled" [disabled]
+- text: Disabled

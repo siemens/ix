@@ -1,0 +1,20 @@
+- heading "Size - XS" [level=2]
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/
+- heading "Size - SM" [level=2]
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/
+- heading "Size - MD" [level=2]
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/
+- heading "Size - LG" [level=2]
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/
+- heading "Size - XL" [level=2]
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/

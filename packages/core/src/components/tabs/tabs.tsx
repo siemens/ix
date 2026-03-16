@@ -481,7 +481,7 @@ export class Tabs {
 
   render() {
     return (
-      <Host>
+      <Host role="tablist">
         {this.showArrowPrevious && (
           <button
             class="arrow"

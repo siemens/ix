@@ -109,6 +109,7 @@ import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/compone
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 
 
+
 export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
   'variant',
   'icon',
@@ -438,12 +439,14 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange', undefined);
 
@@ -762,11 +765,13 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'textAlignment',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange', undefined);
 
@@ -1026,11 +1031,13 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange', undefined);
 
@@ -1039,6 +1046,7 @@ export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/
   'advanced',
   'itemCount',
   'hideItemCount',
+  'itemCountOptions',
   'count',
   'selectedPage',
   'i18nPage',
@@ -1318,11 +1326,13 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'minLength',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange', undefined);
 
@@ -1365,12 +1375,14 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ]);
 
 
@@ -1552,4 +1564,5 @@ export const IxWorkflowSteps: StencilVueComponent<JSX.IxWorkflowSteps> = /*@__PU
 ], [
   'stepSelected'
 ]);
+
 
