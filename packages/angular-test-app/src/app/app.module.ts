@@ -66,6 +66,7 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateRange from '../preview-examples/date-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
@@ -195,6 +196,7 @@ import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
+import RangeField from '../preview-examples/range-field';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
@@ -222,6 +224,7 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
+import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -300,6 +303,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CustomFieldValidation,
     DateDropdown,
     DateDropdownUserRange,
+    DateRange,
     DateInput,
     DateInputDisabled,
     DateInputLabel,
@@ -405,6 +409,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     RadioDisabled,
     RadioGroup,
     RadioValidation,
+    RangeField,
     PushCard,
     SelectEditable,
     SelectMultiple,
@@ -441,6 +446,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ThemeSwitcher,
     Tile,
     TimeInput,
+    TimeRange,
     Timepicker,
     ToastCustom,
     ToastPosition,

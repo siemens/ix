@@ -57,6 +57,7 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateRange from '../preview-examples/date-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
@@ -187,6 +188,7 @@ import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
+import RangeField from '../preview-examples/range-field';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
@@ -214,6 +216,7 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
+import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -445,6 +448,10 @@ const routes: Routes = [
       {
         path: 'date-dropdown-user-range',
         component: DateDropdownUserRange,
+      },
+      {
+        path: 'date-range',
+        component: DateRange,
       },
       {
         path: 'date-input',
@@ -783,6 +790,7 @@ const routes: Routes = [
       { path: 'radio-disabled', component: RadioDisabled },
       { path: 'radio-group', component: RadioGroup },
       { path: 'radio-validation', component: RadioValidation },
+      { path: 'range-field', component: RangeField },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
       { path: 'select-ng-model', component: SelectNgModel },
@@ -814,6 +822,7 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'time-input', component: TimeInput },
+      { path: 'time-range', component: TimeRange },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },

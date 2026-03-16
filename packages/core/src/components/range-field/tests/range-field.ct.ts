@@ -200,3 +200,91 @@ regressionTest(
     await expect(arrowElement).toHaveCSS('margin-top', '32px');
   }
 );
+
+regressionTest(
+  'focus and open second date picker element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-range-field type="date-range" style="width: 32rem">
+      <ix-date-input label="second" required value="2022/03/01"></ix-date-input>
+      <ix-date-input helper-text="Hallo layout!" value="2022/03/01"></ix-date-input>
+    </ix-range-field>
+    `
+    );
+
+    const inputRangeElement = page.locator('ix-range-field');
+
+    await expect(inputRangeElement).toBeVisible();
+    await expect(inputRangeElement).toHaveClass(/hydrated/);
+
+    const firstInput = page.locator('ix-date-input').first();
+    const secondInput = page.locator('ix-date-input').nth(1);
+
+    await firstInput.click();
+
+    const dropdown = firstInput.getByTestId('date-dropdown');
+    await expect(dropdown).toHaveClass(/show/);
+
+    const day = firstInput.getByRole('button', { name: '12 March' });
+    await day.click();
+
+    await expect(dropdown).not.toHaveClass(/show/);
+
+    const input = secondInput.locator('input');
+    await expect(input).toBeFocused();
+
+    const secondDropdown = secondInput.getByTestId('date-dropdown');
+    await expect(secondDropdown).toHaveClass(/show/);
+
+    const secondDay = secondInput.getByRole('button', { name: '12 March' });
+    await secondDay.click();
+
+    await expect(secondDropdown).not.toHaveClass(/show/);
+  }
+);
+
+regressionTest(
+  'focus and open second time picker element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-range-field type="time-range" style="width: 32rem">
+      <ix-time-input label="second" required value="10:11:12"></ix-time-input>
+      <ix-time-input helper-text="Hallo layout!" value="10:11:12"></ix-time-input>
+    </ix-range-field>
+    `
+    );
+
+    const inputRangeElement = page.locator('ix-range-field');
+
+    await expect(inputRangeElement).toBeVisible();
+    await expect(inputRangeElement).toHaveClass(/hydrated/);
+
+    const firstInput = page.locator('ix-time-input').first();
+    const secondInput = page.locator('ix-time-input').nth(1);
+
+    await firstInput.click();
+
+    const dropdown = firstInput.getByTestId('time-dropdown');
+    await expect(dropdown).toHaveClass(/show/);
+
+    const day = firstInput.getByRole('button', { name: 'sec: 15' });
+    await day.click();
+    await firstInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(dropdown).not.toHaveClass(/show/);
+
+    const input = secondInput.locator('input');
+    await expect(input).toBeFocused();
+
+    const secondDropdown = secondInput.getByTestId('time-dropdown');
+    await expect(secondDropdown).toHaveClass(/show/);
+
+    const secondDay = secondInput.getByRole('button', { name: 'sec: 15' });
+    await secondDay.click();
+    await secondInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(secondDropdown).not.toHaveClass(/show/);
+  }
+);

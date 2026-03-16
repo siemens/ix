@@ -122,6 +122,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-dropdown-user-range').then(
       (m) => m.default
     ),
+  'preview/date-range': () =>
+    import('../preview-examples/date-range').then((m) => m.default),
   'preview/date-input': () =>
     import('../preview-examples/date-input').then((m) => m.default),
   'preview/date-input-disabled': () =>
@@ -405,6 +407,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/radio-group').then((m) => m.default),
   'preview/radio-validation': () =>
     import('../preview-examples/radio-validation').then((m) => m.default),
+  'preview/range-field': () =>
+    import('../preview-examples/range-field').then((m) => m.default),
   'preview/select': () =>
     import('../preview-examples/select').then((m) => m.default),
   'preview/select-editable': () =>
@@ -459,6 +463,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/theme-switcher').then((m) => m.default),
   'preview/tile': () =>
     import('../preview-examples/tile').then((m) => m.default),
+  'preview/time-range': () =>
+    import('../preview-examples/time-range').then((m) => m.default),
   'preview/timepicker': () =>
     import('../preview-examples/timepicker').then((m) => m.default),
   'preview/toast': () =>
