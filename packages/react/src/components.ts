@@ -435,7 +435,8 @@ export type IxDatetimeInputEvents = {
     onValueChange: EventName<IxDatetimeInputCustomEvent<string | undefined>>,
     onValidityStateChange: EventName<IxDatetimeInputCustomEvent<DateTimeInputValidityState>>,
     onIxFocus: EventName<IxDatetimeInputCustomEvent<void>>,
-    onIxBlur: EventName<IxDatetimeInputCustomEvent<void>>
+    onIxBlur: EventName<IxDatetimeInputCustomEvent<void>>,
+    onIxChange: EventName<IxDatetimeInputCustomEvent<string | undefined>>
 };
 
 export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents> = /*@__PURE__*/ createComponent<IxDatetimeInputElement, IxDatetimeInputEvents>({
@@ -447,7 +448,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         onValueChange: 'valueChange',
         onValidityStateChange: 'validityStateChange',
         onIxFocus: 'ixFocus',
-        onIxBlur: 'ixBlur'
+        onIxBlur: 'ixBlur',
+        onIxChange: 'ixChange'
     } as IxDatetimeInputEvents,
     defineCustomElement: defineIxDatetimeInput
 });
