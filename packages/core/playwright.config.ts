@@ -62,7 +62,7 @@ const config: PlaywrightTestConfig = {
     command: 'pnpm run host-root',
     port: 8080,
   },
-  retries: process.env.CI ? 3 : 1,
+  retries: 3,
 };
 
 export default config;

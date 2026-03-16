@@ -142,6 +142,28 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datepicker-range').then((m) => m.default),
   'preview/datetimepicker': () =>
     import('../preview-examples/datetimepicker').then((m) => m.default),
+  'preview/datetime-input': () =>
+    import('../preview-examples/datetime-input').then((m) => m.default),
+  'preview/datetime-input-disabled': () =>
+    import('../preview-examples/datetime-input-disabled').then((m) => m.default),
+  'preview/datetime-input-label': () =>
+    import('../preview-examples/datetime-input-label').then((m) => m.default),
+  'preview/datetime-input-min-max-date': () =>
+    import('../preview-examples/datetime-input-min-max-date').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-readonly': () =>
+    import('../preview-examples/datetime-input-readonly').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-validation': () =>
+    import('../preview-examples/datetime-input-validation').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-with-slots': () =>
+    import('../preview-examples/datetime-input-with-slots').then(
+      (m) => m.default
+    ),
   'preview/drawer': () =>
     import('../preview-examples/drawer').then((m) => m.default),
   'preview/drawer-full-height': () =>
