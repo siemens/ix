@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -49,7 +50,12 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
 
@@ -67,8 +73,11 @@ import type { TimeInputValidityState } from './time-input.types';
   },
   formAssociated: true,
 })
-export class TimeInput implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTimeInputElement;
+export class TimeInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -316,7 +325,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -328,7 +337,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -355,7 +364,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -548,7 +557,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,

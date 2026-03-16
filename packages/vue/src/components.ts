@@ -53,6 +53,7 @@ import { defineCustomElement as defineIxIconButton } from '@siemens/ix/component
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
+import { defineCustomElement as defineIxInputRange } from '@siemens/ix/components/ix-input-range.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
@@ -801,6 +802,12 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
 
 
 export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
+
+
+export const IxInputRange: StencilVueComponent<JSX.IxInputRange> = /*@__PURE__*/ defineContainer<JSX.IxInputRange>('ix-input-range', defineIxInputRange, [
+  'type',
+  'hideArrow'
+]);
 
 
 export const IxKeyValue: StencilVueComponent<JSX.IxKeyValue> = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', defineIxKeyValue, [

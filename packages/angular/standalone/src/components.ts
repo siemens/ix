@@ -54,6 +54,7 @@ import { defineCustomElement as defineIxIconButton } from '@siemens/ix/component
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
+import { defineCustomElement as defineIxInputRange } from '@siemens/ix/components/ix-input-range.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
@@ -730,7 +731,7 @@ The event payload contains information about the selected date range.
 @ProxyCmp({
   defineCustomElementFn: defineIxDateInput,
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['openPicker', 'getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-date-input',
@@ -1512,6 +1513,29 @@ export class IxInputGroup {
 
 
 export declare interface IxInputGroup extends Components.IxInputGroup {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxInputRange,
+  inputs: ['hideArrow', 'type']
+})
+@Component({
+  selector: 'ix-input-range',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hideArrow', 'type'],
+})
+export class IxInputRange {
+  protected el: HTMLIxInputRangeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxInputRange extends Components.IxInputRange {}
 
 
 @ProxyCmp({
@@ -2730,7 +2754,7 @@ export declare interface IxTile extends Components.IxTile {}
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
   inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['openPicker', 'getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-time-input',

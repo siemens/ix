@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -47,8 +48,14 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 /**
  * @form-ready
@@ -64,8 +71,11 @@ import type { DateInputValidityState } from './date-input.types';
   },
   formAssociated: true,
 })
-export class DateInput implements IxInputFieldComponent<string | undefined> {
-  @Element() hostElement!: HTMLIxDateInputElement;
+export class DateInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -253,11 +263,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
-
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
-
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+
   private classObserver?: ClassMutationObserver;
 
   /** @internal */
@@ -281,7 +290,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -293,7 +302,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -313,7 +322,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -362,7 +371,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
-      this.inputElementRef.current?.focus();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
     }
 
     this.emitValidityStateChangeIfChanged();
@@ -516,7 +528,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
@@ -598,7 +614,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
-            // onKeyDown={(event) => this.handleDatePickerKeyDown(event)}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

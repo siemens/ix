@@ -55,6 +55,7 @@ import { IxHelperText as IxHelperTextElement, defineCustomElement as defineIxHel
 import { IxIconButton as IxIconButtonElement, defineCustomElement as defineIxIconButton } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement, defineCustomElement as defineIxIconToggleButton } from "@siemens/ix/components/ix-icon-toggle-button.js";
 import { IxInputGroup as IxInputGroupElement, defineCustomElement as defineIxInputGroup } from "@siemens/ix/components/ix-input-group.js";
+import { IxInputRange as IxInputRangeElement, defineCustomElement as defineIxInputRange } from "@siemens/ix/components/ix-input-range.js";
 import { IxInput as IxInputElement, defineCustomElement as defineIxInput } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement, defineCustomElement as defineIxKeyValueList } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement, defineCustomElement as defineIxKeyValue } from "@siemens/ix/components/ix-key-value.js";
@@ -736,6 +737,17 @@ export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGro
     react: React,
     events: {} as IxInputGroupEvents,
     defineCustomElement: defineIxInputGroup
+});
+
+export type IxInputRangeEvents = NonNullable<unknown>;
+
+export const IxInputRange: StencilReactComponent<IxInputRangeElement, IxInputRangeEvents> = /*@__PURE__*/ createComponent<IxInputRangeElement, IxInputRangeEvents>({
+    tagName: 'ix-input-range',
+    elementClass: IxInputRangeElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxInputRangeEvents,
+    defineCustomElement: defineIxInputRange
 });
 
 export type IxKeyValueEvents = NonNullable<unknown>;

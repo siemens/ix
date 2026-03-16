@@ -50,6 +50,7 @@ export const DIRECTIVES = [
   d.IxIconToggleButton,
   d.IxInput,
   d.IxInputGroup,
+  d.IxInputRange,
   d.IxKeyValue,
   d.IxKeyValueList,
   d.IxKpi,

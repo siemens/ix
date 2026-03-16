@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getElement } from '@stencil/core';
-import { HTMLIxFormComponentElement, IxFormComponent } from '.';
+import {
+  HTMLIxFormComponentElement,
+  isIxInputFieldComponent,
+  IxFormComponent,
+} from '.';
 import { IxComponentInterface } from '../internal';
 
 export type ClassMutationObserver = {
@@ -120,6 +124,10 @@ export function HookValidationLifecycle(options?: {
       checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
         if (skipValidation) {
+          return;
+        }
+
+        if (!isIxInputFieldComponent(host)) {
           return;
         }
 
