@@ -40,7 +40,7 @@
     padding: 0 0 0 vars.$small-space;
     box-shadow: var(--theme-inset-shadow-1) !important;
 
-    @include hover.hover {
+    &:hover:not(.readonly):not(.disabled) {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
     }
@@ -56,9 +56,6 @@
   .select.readonly,
   .select.disabled {
     box-shadow: none !important;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
 
     &,
     &:hover,
@@ -79,8 +76,7 @@
   }
 
   .select.disabled {
-    border-bottom: var(--theme-input--border-thickness) solid
-      var(--theme-color-weak-bdr);
+    border: 1px solid var(--theme-color-weak-bdr);
 
     input {
       color: var(--theme-color-weak-text);
@@ -88,8 +84,7 @@
   }
 
   .select.readonly {
-    border-bottom: var(--theme-input--border-thickness) solid
-      var(--theme-color-soft-bdr);
+    border: 1px solid var(--theme-color-std-bdr);
 
     input {
       color: var(--theme-color-std-text);
@@ -187,8 +182,6 @@
     @include text-truncation.ellipsis;
   }
 }
-
-
 
 @include form-component.host-valid;
 
