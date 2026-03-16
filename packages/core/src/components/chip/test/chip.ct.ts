@@ -116,7 +116,9 @@ regressionTest.describe('tooltip', () => {
       await expect(tooltip).toHaveText(/custom tooltip text/);
     }
   );
+});
 
+regressionTest.describe('accessibility', () => {
   regressionTest(
     'should apply aria-label from host to container',
     async ({ mount, page }) => {
@@ -162,6 +164,15 @@ regressionTest.describe('tooltip', () => {
       await mount('<ix-chip inactive>Content</ix-chip>');
       const container = page.locator('ix-chip .container');
       await expect(container).toHaveAttribute('aria-disabled', 'true');
+    }
+  );
+
+  regressionTest(
+    'inactive chip should not be in tab order (no tabindex)',
+    async ({ mount, page }) => {
+      await mount('<ix-chip inactive aria-label="Inactive">Content</ix-chip>');
+      const container = page.locator('ix-chip .container');
+      await expect(container).not.toHaveAttribute('tabindex', '0');
     }
   );
 });

@@ -16,8 +16,9 @@ import {
   h,
   Host,
   Prop,
+  Watch,
 } from '@stencil/core';
-import { a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 
 @Component({
@@ -103,14 +104,15 @@ export class Chip {
   private readonly containerElementRef = makeRef<HTMLElement>();
   private closeButtonLabel?: string;
 
-  componentWillLoad() {
-    // Save the value BEFORE removing the attribute
-    // (removeAttribute also clears the linked prop value)
+  @Watch('ariaLabelCloseButton')
+  private syncCloseButtonLabel() {
     this.closeButtonLabel = this.ariaLabelCloseButton;
-
-    // Remove custom aria-label-close-button attribute from host
     // This prop is consumed internally and should not appear as a DOM attribute
     this.hostElement.removeAttribute('aria-label-close-button');
+  }
+
+  componentWillLoad() {
+    this.syncCloseButtonLabel();
   }
 
   private getCloseButton() {
@@ -212,8 +214,8 @@ export class Chip {
           {...hostA11y}
           aria-label={effectiveLabel}
           role={containerRole}
-          aria-disabled={this.inactive ? 'true' : undefined}
-          tabIndex={this.closable ? undefined : 0}
+          aria-disabled={a11yBoolean(this.inactive)}
+          tabIndex={this.inactive ? undefined : this.closable ? undefined : 0}
           ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{

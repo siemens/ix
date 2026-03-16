@@ -19,33 +19,47 @@ export default () => {
         <IxChip
           icon={iconPrint}
           variant="primary"
+          outline
           closable
           aria-label="Primary category"
           ariaLabelCloseButton="Remove primary category"
         >
           Primary
         </IxChip>
-        <IxChip icon={iconPrint} variant="alarm" closable>
+        <IxChip
+          icon={iconPrint}
+          variant="alarm"
+          outline
+          closable
+          ariaLabelCloseButton="Remove alarm"
+        >
           Alarm
         </IxChip>
-        <IxChip icon={iconPrint} variant="critical">
+        <IxChip icon={iconPrint} variant="critical" outline>
           Critical
         </IxChip>
-        <IxChip icon={iconPrint} variant="warning">
+        <IxChip icon={iconPrint} variant="warning" outline>
           Warning
         </IxChip>
-        <IxChip icon={iconPrint} variant="info">
+        <IxChip
+          icon={iconPrint}
+          variant="info"
+          outline
+          tooltipText="Click to edit"
+          aria-label="Information tag"
+        >
           Info
         </IxChip>
-        <IxChip icon={iconPrint} variant="success">
+        <IxChip icon={iconPrint} variant="success" outline>
           Success
         </IxChip>
-        <IxChip icon={iconPrint} variant="neutral">
+        <IxChip icon={iconPrint} variant="neutral" outline>
           Neutral
         </IxChip>
         <IxChip
           icon={iconPrint}
           variant="custom"
+          outline
           background="#5C3FD6"
           chipColor="#FFFFFF"
           closable
@@ -54,7 +68,7 @@ export default () => {
         >
           Custom
         </IxChip>
-        <IxChip icon={iconPrint} variant="primary" closable>
+        <IxChip icon={iconPrint} variant="primary" outline closable>
           Chip with icon
         </IxChip>
       </div>
@@ -76,7 +90,12 @@ export default () => {
         <IxChip icon={iconPrint} variant="warning">
           Warning
         </IxChip>
-        <IxChip icon={iconPrint} variant="info" aria-label="Information tag">
+        <IxChip
+          icon={iconPrint}
+          variant="info"
+          tooltipText="Click to edit"
+          aria-label="Information tag"
+        >
           Info
         </IxChip>
         <IxChip icon={iconPrint} variant="success">
@@ -90,6 +109,8 @@ export default () => {
           background="#5C3FD6"
           chipColor="#FFFFFF"
           closable
+          aria-label="Custom chip"
+          ariaLabelCloseButton="Remove custom chip"
         >
           Custom
         </IxChip>
