@@ -843,10 +843,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private renderChip(item: HTMLIxSelectItemElement, index: number) {
     return (
-      <div
-        key={item.value}
-        ref={(el) => this.measureChip(index, el)}
-      >
+      <div key={item.value} ref={(el) => this.measureChip(index, el)}>
         <ix-filter-chip
           disabled={this.disabled || this.readonly}
           onCloseClick={(e) => {
@@ -880,8 +877,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     let usedWidth = 0;
 
     for (let i = 0; i < this.selectedItems.length; i++) {
-      const chipWidth =
-        this.chipWidths.get(i) || this.DEFAULT_CHIP_WIDTH;
+      const chipWidth = this.chipWidths.get(i) || this.DEFAULT_CHIP_WIDTH;
 
       if (usedWidth + chipWidth > availableWidth) {
         break;
@@ -1022,10 +1018,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             }}
           >
             <div class="input-container">
-              <div
-                class="chips"
-                ref={(ref) => (this.chipsContainerEl = ref!)}
-              >
+              <div class="chips" ref={(ref) => (this.chipsContainerEl = ref!)}>
                 {this.isMultipleMode &&
                   this.items.length !== 0 &&
                   (this.shouldDisplayAllChip()
