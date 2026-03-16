@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { test } from '@utils/test';
 import { expect } from '@playwright/test';
+import { test } from '@utils/test';
 
 test.describe('validation', () => {
   test.describe('ix-input', () => {
@@ -553,12 +553,10 @@ test.describe('ixChange event', () => {
       await input.focus();
       await calendarButton.click();
 
-      const dropdown = component.locator('ix-dropdown');
+      const dropdown = component.getByTestId('datetime-dropdown');
       await expect(dropdown).toBeVisible();
 
-      await component
-        .getByRole('button', { name: new RegExp(String.raw`^15\s.+$`) })
-        .click();
+      await component.getByRole('button', { name: /^15\s.+$/ }).click();
       await component.getByRole('button', { name: 'hr: 14' }).click();
       await component.getByRole('button', { name: 'min: 30' }).click();
       await component.getByRole('button', { name: 'sec: 45' }).click();
