@@ -108,16 +108,14 @@ export class RangeField extends Mixin(...DefaultMixins) {
       | Array<HTMLIxTimeInputElement>
       | Array<HTMLIxDateInputElement>;
 
-    this.hasLabel = this.elements.some((element) =>
-      element.hasAttribute('label')
-    );
+    this.hasLabel = this.elements.some((element) => !!element.label);
 
     if (!this.hasLabel) {
       return;
     }
 
     this.elements.forEach((element) => {
-      if (!element.hasAttribute('label')) {
+      if (!element.label) {
         element.classList.add('fallback-label-margin');
         return;
       }

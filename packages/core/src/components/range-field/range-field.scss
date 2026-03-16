@@ -16,11 +16,18 @@
 
   .range-delimiter {
     order: 2;
+    flex: 0 0 auto;
     margin-top: 0.25rem;
   }
 
   .range-delimiter.has-label {
     margin-top: 2rem;
+  }
+
+  ::slotted(:first-child),
+  ::slotted(:last-child) {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   ::slotted(:first-child) {
