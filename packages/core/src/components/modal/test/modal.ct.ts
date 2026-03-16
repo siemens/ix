@@ -382,7 +382,11 @@ regressionTest.describe('message utils', () => {
       await setupModalEnvironment(page);
       await page.evaluate(
         ([functionName]) => {
-          (globalThis as any).showMessage[functionName]('title', 'message', 'okay');
+          (globalThis as any).showMessage[functionName](
+            'title',
+            'message',
+            'okay'
+          );
         },
         [name]
       );

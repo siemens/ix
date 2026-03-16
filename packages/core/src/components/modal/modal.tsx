@@ -126,16 +126,31 @@ export class Modal {
     });
   }
 
+  private closeDialog<T = unknown>(
+    type: 'dismiss' | 'close',
+    reason: T,
+    emitter: EventEmitter
+  ) {
+    this.slideOutModal(() => {
+      this.modalVisible = false;
+      this.dialog!.close(JSON.stringify({ type, reason }, null, 2));
+      emitter.emit(reason);
+    });
+  }
+
+  private isInsideDialog(event: MouseEvent) {
+    return (
+      event.target !== this.dialog &&
+      event.composedPath().includes(this.dialog!)
+    );
+  }
+
   private onMouseDown(event: MouseEvent) {
-    this.isMouseDownInsideDialog =
-      this.isPointInsideDialog(event.clientX, event.clientY) ||
-      this.isDescendant(event.target as Node);
+    this.isMouseDownInsideDialog = this.isInsideDialog(event);
   }
 
   private onMouseUp(event: MouseEvent) {
-    const isMouseUpInsideDialog =
-      this.isPointInsideDialog(event.clientX, event.clientY) ||
-      this.isDescendant(event.target as Node);
+    const isMouseUpInsideDialog = this.isInsideDialog(event);
 
     if (
       this.closeOnBackdropClick &&
@@ -144,53 +159,6 @@ export class Modal {
     ) {
       this.dismissModal();
     }
-  }
-
-  private isPointInsideDialog(x: number, y: number): boolean {
-    const rect = this.dialog!.getBoundingClientRect();
-    return (
-      x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
-    );
-  }
-
-  private isDescendant(target: Node): boolean {
-    const dialog = this.dialog;
-
-    if (!target || !dialog || target === dialog) {
-      return false;
-    }
-
-    let current: Node | null = target;
-
-    while (current) {
-      if (current === dialog) {
-        return true;
-      }
-
-      const assignedSlot: unknown = Reflect.get(
-        current as object,
-        'assignedSlot'
-      );
-      if (assignedSlot instanceof HTMLSlotElement) {
-        current = assignedSlot;
-        continue;
-      }
-
-      if (current.parentNode) {
-        current = current.parentNode;
-        continue;
-      }
-
-      const root = current.getRootNode();
-      if (root instanceof ShadowRoot) {
-        current = root.host;
-        continue;
-      }
-
-      current = null;
-    }
-
-    return false;
   }
 
   /**
@@ -229,21 +197,7 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(() => {
-      this.modalVisible = false;
-      this.dialog!.close(
-        JSON.stringify(
-          {
-            type: 'dismiss',
-            reason,
-          },
-          null,
-          2
-        )
-      );
-
-      this.dialogDismiss.emit(reason);
-    });
+    this.closeDialog('dismiss', reason, this.dialogDismiss);
   }
 
   /**
@@ -255,21 +209,7 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(() => {
-      this.modalVisible = false;
-      this.dialog!.close(
-        JSON.stringify(
-          {
-            type: 'close',
-            reason,
-          },
-          null,
-          2
-        )
-      );
-
-      this.dialogClose.emit(reason);
-    });
+    this.closeDialog('close', reason, this.dialogClose);
   }
 
   componentWillLoad() {
