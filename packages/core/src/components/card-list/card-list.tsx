@@ -63,7 +63,6 @@ function CardListTitle(props: {
   styleUrl: 'card-list.scss',
   shadow: true,
 })
-
 export class CardList {
   /**
    * ARIA label for the card's expand button.
