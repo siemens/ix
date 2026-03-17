@@ -51,7 +51,7 @@ export class Pagination {
 
   /**
    * Number of items shown at once.
-   * Can only be changed in advaced mode.
+   * Can only be changed in advanced mode.
    */
   @Prop() itemCount = 15;
 
@@ -59,6 +59,14 @@ export class Pagination {
    * Hide item count in advanced mode
    */
   @Prop() hideItemCount = false;
+
+  /**
+   * Custom item count options for advanced mode.
+   * Provide an array of positive numbers to display in the items per page dropdown.
+   *
+   * @since 4.4.0
+   */
+  @Prop() itemCountOptions: number[] = [10, 15, 20, 40, 100];
 
   /**
    * Total number of pages
@@ -312,11 +320,12 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              <ix-select-item label="10" value="10"></ix-select-item>
-              <ix-select-item label="15" value="15"></ix-select-item>
-              <ix-select-item label="20" value="20"></ix-select-item>
-              <ix-select-item label="40" value="40"></ix-select-item>
-              <ix-select-item label="100" value="100"></ix-select-item>
+              {this.itemCountOptions.map((option) => (
+                <ix-select-item
+                  label={`${option}`}
+                  value={`${option}`}
+                ></ix-select-item>
+              ))}
             </ix-select>
           </span>
         )}
