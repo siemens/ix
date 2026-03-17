@@ -22,15 +22,15 @@ import { IxChip } from '@siemens/ix-vue';
         variant="primary"
         outline
         closable
-        aria-label="Primary category"
-        aria-label-close-button="Remove primary category"
-      >Primary</IxChip>
-      <IxChip :icon="iconPrint" variant="alarm" outline closable aria-label-close-button="Remove alarm">Alarm</IxChip>
-      <IxChip :icon="iconPrint" variant="critical" outline>Critical</IxChip>
-      <IxChip :icon="iconPrint" variant="warning" outline>Warning</IxChip>
-      <IxChip :icon="iconPrint" variant="info" outline tooltip-text="Click to edit" aria-label="Information tag">Info</IxChip>
-      <IxChip :icon="iconPrint" variant="success" outline>Success</IxChip>
-      <IxChip :icon="iconPrint" variant="neutral" outline>Neutral</IxChip>
+        aria-label="Engineering"
+        aria-label-close-button="Remove Engineering"
+      >Engineering</IxChip>
+      <IxChip :icon="iconPrint" variant="alarm" outline closable aria-label-close-button="Remove Urgent">Urgent</IxChip>
+      <IxChip :icon="iconPrint" variant="critical" outline>Overdue</IxChip>
+      <IxChip :icon="iconPrint" variant="warning" outline>Due soon</IxChip>
+      <IxChip :icon="iconPrint" variant="info" outline tooltip-text="Click to edit" aria-label="In review">In review</IxChip>
+      <IxChip :icon="iconPrint" variant="success" outline>Completed</IxChip>
+      <IxChip :icon="iconPrint" variant="neutral" outline>Draft</IxChip>
       <IxChip
         :icon="iconPrint"
         variant="custom"
@@ -38,34 +38,43 @@ import { IxChip } from '@siemens/ix-vue';
         background="#5C3FD6"
         chipColor="#FFFFFF"
         closable
-        aria-label="Custom chip"
-        aria-label-close-button="Remove custom chip"
+        aria-label="Project Alpha"
+        aria-label-close-button="Remove Project Alpha"
       >
-        Custom
+        Project Alpha
       </IxChip>
-      <IxChip :icon="iconPrint" variant="primary" outline closable>
-        Chip with icon
-      </IxChip>
+      <IxChip
+        :icon="iconPrint"
+        variant="primary"
+        outline
+        closable
+        aria-label-close-button="Remove Design"
+      >Design</IxChip>
     </div>
     <div class="chip-column">
-      <IxChip :icon="iconPrint" variant="primary" closable>Primary</IxChip>
-      <IxChip :icon="iconPrint" variant="alarm" closable aria-label-close-button="Remove alarm">Alarm</IxChip>
-      <IxChip :icon="iconPrint" variant="critical">Critical</IxChip>
-      <IxChip :icon="iconPrint" variant="warning">Warning</IxChip>
-      <IxChip :icon="iconPrint" variant="info" tooltip-text="Click to edit" aria-label="Information tag">Info</IxChip>
-      <IxChip :icon="iconPrint" variant="success">Success</IxChip>
-      <IxChip :icon="iconPrint" variant="neutral">Neutral</IxChip>
+      <IxChip
+        :icon="iconPrint"
+        variant="primary"
+        closable
+        aria-label-close-button="Remove Engineering"
+      >Engineering</IxChip>
+      <IxChip :icon="iconPrint" variant="alarm" closable aria-label-close-button="Remove Urgent">Urgent</IxChip>
+      <IxChip :icon="iconPrint" variant="critical">Overdue</IxChip>
+      <IxChip :icon="iconPrint" variant="warning">Due soon</IxChip>
+      <IxChip :icon="iconPrint" variant="info" tooltip-text="Click to edit" aria-label="In review">In review</IxChip>
+      <IxChip :icon="iconPrint" variant="success">Completed</IxChip>
+      <IxChip :icon="iconPrint" variant="neutral">Draft</IxChip>
       <IxChip
         variant="custom"
         background="#5C3FD6"
         chipColor="#FFFFFF"
         closable
-        aria-label="Custom chip"
-        aria-label-close-button="Remove custom chip"
+        aria-label="Project Alpha"
+        aria-label-close-button="Remove Project Alpha"
       >
-        Custom
+        Project Alpha
       </IxChip>
-      <IxChip variant="primary" closable>Chip without icon</IxChip>
+      <IxChip variant="primary" closable aria-label-close-button="Remove Design">Design</IxChip>
     </div>
   </div>
 </template>

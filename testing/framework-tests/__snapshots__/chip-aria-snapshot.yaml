@@ -1,35 +1,37 @@
 - main:
-  - group "Primary category":
+  - group "Engineering":
     - text: ""
-    - button "Remove primary category"
-  - group "Alarm":
+    - button "Remove Engineering"
+  - group "Urgent":
     - text: ""
-    - button "Close Small"
-  - button "Critical"
-  - button "Warning"
-  - button "Info"
-  - button "Success"
-  - button "Neutral"
-  - group "Custom chip":
+    - button "Remove Urgent"
+  - button "Overdue"
+  - button "Due soon"
+  - button "In review"
+  - tooltip
+  - button "Completed"
+  - button "Draft"
+  - group "Project Alpha":
     - text: ""
-    - button "Remove custom chip"
-  - group "Chip with icon":
+    - button "Remove Project Alpha"
+  - group "Design":
     - text: ""
-    - button "Close Small"
-  - group "Primary":
+    - button "Remove Design"
+  - group "Engineering":
     - text: ""
-    - button "Close Small"
-  - group "Alarm":
+    - button "Remove Engineering"
+  - group "Urgent":
     - text: ""
-    - button "Remove alarm"
-  - button "Critical"
-  - button "Warning"
-  - button "Information tag"
-  - button "Success"
-  - button "Neutral"
-  - group "Custom":
+    - button "Remove Urgent"
+  - button "Overdue"
+  - button "Due soon"
+  - button "In review"
+  - tooltip
+  - button "Completed"
+  - button "Draft"
+  - group "Project Alpha":
     - text: ""
-    - button "Close Small"
-  - group "Chip without icon":
+    - button "Remove Project Alpha"
+  - group "Design":
     - text: ""
-    - button "Close Small"
+    - button "Remove Design"

@@ -147,7 +147,11 @@ export class Chip {
         : this.hostElement.textContent?.trim();
 
     return (
-      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+      <ix-tooltip
+        for={this.containerElementRef.waitForCurrent()}
+        // accessible name for axe `aria-tooltip-name`
+        title={text}
+      >
         {text}
       </ix-tooltip>
     );

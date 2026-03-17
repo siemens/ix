@@ -21,40 +21,40 @@ export default () => {
           variant="primary"
           outline
           closable
-          aria-label="Primary category"
-          ariaLabelCloseButton="Remove primary category"
+          aria-label="Engineering"
+          ariaLabelCloseButton="Remove Engineering"
         >
-          Primary
+          Engineering
         </IxChip>
         <IxChip
           icon={iconPrint}
           variant="alarm"
           outline
           closable
-          ariaLabelCloseButton="Remove alarm"
+          ariaLabelCloseButton="Remove Urgent"
         >
-          Alarm
+          Urgent
         </IxChip>
         <IxChip icon={iconPrint} variant="critical" outline>
-          Critical
+          Overdue
         </IxChip>
         <IxChip icon={iconPrint} variant="warning" outline>
-          Warning
+          Due soon
         </IxChip>
         <IxChip
           icon={iconPrint}
           variant="info"
           outline
           tooltipText="Click to edit"
-          aria-label="Information tag"
+          aria-label="In review"
         >
-          Info
+          In review
         </IxChip>
         <IxChip icon={iconPrint} variant="success" outline>
-          Success
+          Completed
         </IxChip>
         <IxChip icon={iconPrint} variant="neutral" outline>
-          Neutral
+          Draft
         </IxChip>
         <IxChip
           icon={iconPrint}
@@ -63,59 +63,74 @@ export default () => {
           background="#5C3FD6"
           chipColor="#FFFFFF"
           closable
-          aria-label="Custom chip"
-          ariaLabelCloseButton="Remove custom chip"
+          aria-label="Project Alpha"
+          ariaLabelCloseButton="Remove Project Alpha"
         >
-          Custom
+          Project Alpha
         </IxChip>
-        <IxChip icon={iconPrint} variant="primary" outline closable>
-          Chip with icon
+        <IxChip
+          icon={iconPrint}
+          variant="primary"
+          outline
+          closable
+          ariaLabelCloseButton="Remove Design"
+        >
+          Design
         </IxChip>
       </div>
       <div className="chip-column">
-        <IxChip icon={iconPrint} variant="primary" closable>
-          Primary
+        <IxChip
+          icon={iconPrint}
+          variant="primary"
+          closable
+          ariaLabelCloseButton="Remove Engineering"
+        >
+          Engineering
         </IxChip>
         <IxChip
           icon={iconPrint}
           variant="alarm"
           closable
-          ariaLabelCloseButton="Remove alarm"
+          ariaLabelCloseButton="Remove Urgent"
         >
-          Alarm
+          Urgent
         </IxChip>
         <IxChip icon={iconPrint} variant="critical">
-          Critical
+          Overdue
         </IxChip>
         <IxChip icon={iconPrint} variant="warning">
-          Warning
+          Due soon
         </IxChip>
         <IxChip
           icon={iconPrint}
           variant="info"
           tooltipText="Click to edit"
-          aria-label="Information tag"
+          aria-label="In review"
         >
-          Info
+          In review
         </IxChip>
         <IxChip icon={iconPrint} variant="success">
-          Success
+          Completed
         </IxChip>
         <IxChip icon={iconPrint} variant="neutral">
-          Neutral
+          Draft
         </IxChip>
         <IxChip
           variant="custom"
           background="#5C3FD6"
           chipColor="#FFFFFF"
           closable
-          aria-label="Custom chip"
-          ariaLabelCloseButton="Remove custom chip"
+          aria-label="Project Alpha"
+          ariaLabelCloseButton="Remove Project Alpha"
         >
-          Custom
+          Project Alpha
         </IxChip>
-        <IxChip variant="primary" closable>
-          Chip without icon
+        <IxChip
+          variant="primary"
+          closable
+          ariaLabelCloseButton="Remove Design"
+        >
+          Design
         </IxChip>
       </div>
     </div>
