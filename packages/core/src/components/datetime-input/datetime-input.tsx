@@ -505,7 +505,7 @@ export class DatetimeInput
     return emitPickerValidityState(this);
   }
 
-  private _emitChange(value: string | undefined) {
+  private emitChange(value: string | undefined) {
     if (this.initialValue !== value) {
       this.ixChange.emit(value);
       this.initialValue = value;
@@ -578,7 +578,7 @@ export class DatetimeInput
 
     const displayValue = dateTimeCombined.toFormat(this.format);
     this.onInput(displayValue);
-    this._emitChange(displayValue);
+    this.emitChange(displayValue);
     this.closeDropdown();
   };
 
