@@ -13,6 +13,10 @@ import {
   regressionTest,
 } from '@utils/test';
 
+interface DateTimeInputElementWithEventFlag extends HTMLIxDatetimeInputElement {
+  _changeEventFired?: boolean;
+}
+
 const createAccessor = async (dateTimeInput: Locator) => {
   const accessor = {
     openByCalendar: async () => {
@@ -311,6 +315,175 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
     dateTimeInput.getByRole('button', { name: 'Confirm' })
   ).not.toBeVisible();
 });
+
+regressionTest(
+  'emits ixChange on blur when value changed',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    const ixChangePromise = dateTimeInput.evaluate((el) => {
+      return new Promise<string | undefined>((resolve) => {
+        el.addEventListener(
+          'ixChange',
+          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
+          { once: true }
+        );
+      });
+    });
+
+    await input.focus();
+    await input.fill('2024/06/20 16:45:00');
+    await input.blur();
+
+    const emittedValue = await ixChangePromise;
+    expect(emittedValue).toBe('2024/06/20 16:45:00');
+  }
+);
+
+regressionTest(
+  'emits ixChange when datetime is picked',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInputElement = page.locator('ix-datetime-input');
+    const dateTimeAccessor = await createAccessor(dateTimeInputElement);
+
+    const ixChangePromise = dateTimeInputElement.evaluate((el) => {
+      return new Promise<string | undefined>((resolve) => {
+        el.addEventListener(
+          'ixChange',
+          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
+          { once: true }
+        );
+      });
+    });
+
+    await dateTimeAccessor.openByCalendar();
+    await dateTimeAccessor.selectDay(15);
+    await dateTimeAccessor.selectTime(14, 30, 45);
+    await dateTimeAccessor.confirm();
+
+    const emittedValue = await ixChangePromise;
+    expect(emittedValue).toBe('2024/05/15 14:30:45');
+  }
+);
+
+regressionTest(
+  'does not emit ixChange when picker closed without changes',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const calendarButton = dateTimeInput.locator('ix-icon-button').first();
+
+    // Set up event listener that stores flag on the element itself
+    await dateTimeInput.evaluate((el: DateTimeInputElementWithEventFlag) => {
+      el._changeEventFired = false;
+      el.addEventListener('ixChange', () => {
+        el._changeEventFired = true;
+      });
+    });
+
+    await calendarButton.click();
+    await expect(
+      dateTimeInput.getByRole('button', { name: 'Confirm' })
+    ).toBeVisible();
+
+    // Close picker without confirming (press Escape key)
+    await page.keyboard.press('Escape');
+    await expect(
+      dateTimeInput.getByRole('button', { name: 'Confirm' })
+    ).not.toBeVisible();
+
+    // Wait a bit to ensure no event is fired
+    await page.waitForTimeout(100);
+
+    const eventFired = await dateTimeInput.evaluate(
+      (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
+    );
+    expect(eventFired).toBe(false);
+  }
+);
+
+regressionTest(
+  'does not emit ixChange on blur when value unchanged',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    // Set up event listener that stores flag on the element itself
+    await dateTimeInput.evaluate((el: DateTimeInputElementWithEventFlag) => {
+      el._changeEventFired = false;
+      el.addEventListener('ixChange', () => {
+        el._changeEventFired = true;
+      });
+    });
+
+    // Focus and blur without changing value
+    await input.focus();
+    await page.waitForTimeout(50);
+    await input.blur();
+    await page.waitForTimeout(100);
+
+    const eventFired = await dateTimeInput.evaluate(
+      (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
+    );
+    expect(eventFired).toBe(false);
+  }
+);
+
+regressionTest(
+  'does not emit ixChange when picker opened and toggled via calendar button',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const calendarButton = dateTimeInput.locator('ix-icon-button').first();
+
+    // Set up event listener that stores flag on the element itself
+    await dateTimeInput.evaluate((el: DateTimeInputElementWithEventFlag) => {
+      el._changeEventFired = false;
+      el.addEventListener('ixChange', () => {
+        el._changeEventFired = true;
+      });
+    });
+
+    // Open picker
+    await calendarButton.click();
+    await expect(
+      dateTimeInput.getByRole('button', { name: 'Confirm' })
+    ).toBeVisible();
+
+    // Close picker by clicking calendar button again (toggle off)
+    await calendarButton.click();
+    await expect(
+      dateTimeInput.getByRole('button', { name: 'Confirm' })
+    ).not.toBeVisible();
+
+    // Wait to ensure no event is fired
+    await page.waitForTimeout(100);
+
+    const eventFired = await dateTimeInput.evaluate(
+      (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
+    );
+    expect(eventFired).toBe(false);
+  }
+);
 
 regressionTest('picker syncs with input value', async ({ mount, page }) => {
   await mount(

@@ -729,7 +729,7 @@ The locale applied is always `en-US`.
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  outputs: ['valueChange', 'validityStateChange', 'ixFocus', 'ixBlur'],
+  outputs: ['valueChange', 'validityStateChange', 'ixFocus', 'ixBlur', 'ixChange'],
   standalone: false
 })
 export class IxDatetimeInput {
@@ -738,6 +738,7 @@ export class IxDatetimeInput {
   @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDatetimeInputDateTimeInputValidityState>>();
   @Output() ixFocus = new EventEmitter<CustomEvent<void>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string | undefined>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -764,6 +765,19 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
    * Emitted when the input loses focus
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitted when the date/time value changes via user interaction.
+
+Fires in two scenarios:
+- When the input loses focus (blur) and the value has changed
+- When a new date/time is selected in the picker and confirmed
+
+Does NOT fire when:
+- The picker is opened/closed without confirming a change
+- The input is blurred without modifying the value
+- The value is changed programmatically via the value property
+   */
+  ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
 
 

@@ -27,6 +27,8 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
+  onInputBlurWithChange,
+  onInputFocus,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -170,6 +172,20 @@ export class DatetimeInput
   /** Emitted when the input loses focus */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Emitted when the date/time value changes via user interaction.
+   *
+   * Fires in two scenarios:
+   * - When the input loses focus (blur) and the value has changed
+   * - When a new date/time is selected in the picker and confirmed
+   *
+   * Does NOT fire when:
+   * - The picker is opened/closed without confirming a change
+   * - The input is blurred without modifying the value
+   * - The value is changed programmatically via the value property
+   */
+  @Event() ixChange!: EventEmitter<string | undefined>;
+
   @State() isInputInvalid: boolean = false;
 
   @State() isInvalid: boolean = false;
@@ -193,6 +209,8 @@ export class DatetimeInput
   @State() time?: string | null = null;
 
   private classObserver?: ClassMutationObserver;
+
+  public initialValue?: string;
 
   public invalidReason?: string;
 
@@ -487,6 +505,13 @@ export class DatetimeInput
     return emitPickerValidityState(this);
   }
 
+  private emitChange(value: string | undefined) {
+    if (this.initialValue !== value) {
+      this.ixChange.emit(value);
+      this.initialValue = value;
+    }
+  }
+
   connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
@@ -510,6 +535,7 @@ export class DatetimeInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.initialValue = this.value;
   }
 
   private updatePaddings() {
@@ -552,6 +578,7 @@ export class DatetimeInput
 
     const displayValue = dateTimeCombined.toFormat(this.format);
     this.onInput(displayValue);
+    this.emitChange(displayValue);
     this.closeDropdown();
   };
 
@@ -579,7 +606,11 @@ export class DatetimeInput
           type="text"
           value={this.value ?? ''}
           onBlur={() => {
-            this.ixBlur.emit();
+            onInputBlurWithChange(
+              this,
+              this.inputElementRef.current,
+              this.value
+            );
             this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
@@ -589,7 +620,8 @@ export class DatetimeInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
+            onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
           onInput={(event) => {
