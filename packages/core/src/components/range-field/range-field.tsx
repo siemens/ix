@@ -34,7 +34,7 @@ export class RangeField extends Mixin(...DefaultMixins) {
   /**
    * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
    */
-  @Prop() type?: 'time-range' | 'date-range';
+  @Prop() type?: 'time-range' | 'date-range' | 'datetime-range';
 
   /**
    * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
@@ -47,9 +47,10 @@ export class RangeField extends Mixin(...DefaultMixins) {
 
   private elements?:
     | Array<HTMLIxTimeInputElement>
-    | Array<HTMLIxDateInputElement>;
+    | Array<HTMLIxDateInputElement>
+    | Array<HTMLIxDatetimeInputElement>;
 
-  override componentDidLoad(): void {
+  override componentWillLoad(): void {
     this.observeElements = new MutationObserver(() => {
       this.validateRangeElements();
     });
@@ -92,6 +93,10 @@ export class RangeField extends Mixin(...DefaultMixins) {
       validElements = Array.from(elements).every(
         (element) => element.tagName.toLowerCase() === 'ix-date-input'
       );
+    } else if (this.type === 'datetime-range') {
+      validElements = Array.from(elements).every(
+        (element) => element.tagName.toLowerCase() === 'ix-datetime-input'
+      );
     }
 
     if (!validElements) {
@@ -106,7 +111,8 @@ export class RangeField extends Mixin(...DefaultMixins) {
 
     this.elements = Array.from(elements) as
       | Array<HTMLIxTimeInputElement>
-      | Array<HTMLIxDateInputElement>;
+      | Array<HTMLIxDateInputElement>
+      | Array<HTMLIxDatetimeInputElement>;
 
     this.hasLabel = this.elements.some((element) => !!element.label);
 

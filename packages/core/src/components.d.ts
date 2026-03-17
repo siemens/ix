@@ -3328,7 +3328,7 @@ export namespace Components {
         /**
           * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
          */
-        "type"?: 'time-range' | 'date-range';
+        "type"?: 'time-range' | 'date-range' | 'datetime-range';
     }
     interface IxRow {
     }
@@ -9834,7 +9834,7 @@ declare namespace LocalJSX {
         /**
           * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
          */
-        "type"?: 'time-range' | 'date-range';
+        "type"?: 'time-range' | 'date-range' | 'datetime-range';
     }
     interface IxRow {
     }
@@ -11857,7 +11857,7 @@ declare namespace LocalJSX {
         "required": boolean;
     }
     interface IxRangeFieldAttributes {
-        "type": 'time-range' | 'date-range';
+        "type": 'time-range' | 'date-range' | 'datetime-range';
         "hideArrow": boolean;
     }
     interface IxSelectAttributes {
