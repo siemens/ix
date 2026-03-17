@@ -27,6 +27,10 @@ const meta = {
     },
     a11y: {
       test: 'error',
+      // aria-label-close-button is a custom component API (sets inner button aria-label), not a standard ARIA attribute
+      config: {
+        rules: [{ id: 'aria-valid-attr', enabled: false }],
+      },
     },
   },
 } satisfies Meta<Element>;
