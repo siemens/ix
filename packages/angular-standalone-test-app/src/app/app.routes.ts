@@ -124,6 +124,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
+  'preview/datetime-range': () =>
+    import('../preview-examples/datetime-range').then((m) => m.default),
   'preview/date-input': () =>
     import('../preview-examples/date-input').then((m) => m.default),
   'preview/date-input-disabled': () =>

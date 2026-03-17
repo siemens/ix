@@ -128,6 +128,8 @@ import './datetime-input-validation.spec.ts';
 import './datetime-input-with-slots-axe.spec.ts';
 import './datetime-input-with-slots.spec.ts';
 import './datetime-input.spec.ts';
+import './datetime-range-axe.spec.ts';
+import './datetime-range.spec.ts';
 import './datetimepicker-axe.spec.ts';
 import './datetimepicker.spec.ts';
 import './drawer-axe.spec.ts';

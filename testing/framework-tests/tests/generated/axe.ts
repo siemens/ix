@@ -63,6 +63,7 @@ import './datetime-input-min-max-date-axe.spec.ts';
 import './datetime-input-readonly-axe.spec.ts';
 import './datetime-input-validation-axe.spec.ts';
 import './datetime-input-with-slots-axe.spec.ts';
+import './datetime-range-axe.spec.ts';
 import './datetimepicker-axe.spec.ts';
 import './drawer-axe.spec.ts';
 import './drawer-full-height-axe.spec.ts';

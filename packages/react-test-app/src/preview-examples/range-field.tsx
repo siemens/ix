@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxDateInput, IxRangeField, IxTimeInput } from '@siemens/ix-react';
+import {
+  IxDateInput,
+  IxDatetimeInput,
+  IxRangeField,
+  IxTimeInput,
+} from '@siemens/ix-react';
 
 export default () => {
   return (
@@ -28,6 +33,15 @@ export default () => {
       >
         <IxTimeInput label="Start time"></IxTimeInput>
         <IxTimeInput label="End time"></IxTimeInput>
+      </IxRangeField>
+
+      <IxRangeField
+        type="datetime-range"
+        style={{ width: '32rem' }}
+        aria-label="Datetime range"
+      >
+        <IxDatetimeInput label="Start date and time"></IxDatetimeInput>
+        <IxDatetimeInput label="End date and time"></IxDatetimeInput>
       </IxRangeField>
     </>
   );

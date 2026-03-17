@@ -176,6 +176,7 @@ export const testIds = [
   "drawer-full-height",
   "divider",
   "datetimepicker",
+  "datetime-range",
   "datetime-input",
   "datetime-input-with-slots",
   "datetime-input-validation",

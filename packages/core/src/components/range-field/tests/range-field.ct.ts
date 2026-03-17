@@ -70,6 +70,22 @@ regressionTest('renders date-range', async ({ mount, page }) => {
   await expect(inputRangeElement).toHaveClass(/hydrated/);
 });
 
+regressionTest('renders datetime-range', async ({ mount, page }) => {
+  await mount(
+    `
+    <ix-range-field type="datetime-range" style="width: 32rem">
+      <ix-datetime-input required></ix-datetime-input>
+      <ix-datetime-input helper-text="Hallo layout!"></ix-datetime-input>
+    </ix-range-field>
+    `
+  );
+
+  const inputRangeElement = page.locator('ix-range-field');
+
+  await expect(inputRangeElement).toBeVisible();
+  await expect(inputRangeElement).toHaveClass(/hydrated/);
+});
+
 regressionTest(
   'throws error for combined type elements',
   async ({ mount, page }) => {

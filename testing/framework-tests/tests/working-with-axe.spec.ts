@@ -16,4 +16,5 @@ import './generated/datetime-input-with-slots-axe.spec';
 import './generated/tabs-axe.spec';
 import './generated/time-range-axe.spec';
 import './generated/date-range-axe.spec';
+import './generated/datetime-range-axe.spec';
 import './generated/range-field-axe.spec';

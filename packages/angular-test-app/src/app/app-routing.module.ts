@@ -58,6 +58,7 @@ import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
 import DateRange from '../preview-examples/date-range';
+import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
@@ -459,6 +460,10 @@ const routes: Routes = [
       {
         path: 'date-range',
         component: DateRange,
+      },
+      {
+        path: 'datetime-range',
+        component: DatetimeRange,
       },
       {
         path: 'date-input',

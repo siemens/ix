@@ -8,25 +8,10 @@
 -->
 
 <script setup lang="ts">
-import {
-  IxDateInput,
-  IxDatetimeInput,
-  IxRangeField,
-  IxTimeInput,
-} from '@siemens/ix-vue';
+import { IxDatetimeInput, IxRangeField } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxRangeField type="date-range" style="width: 32rem" aria-label="Date range">
-    <IxDateInput label="Start date"></IxDateInput>
-    <IxDateInput label="End date"></IxDateInput>
-  </IxRangeField>
-
-  <IxRangeField type="time-range" style="width: 32rem" aria-label="Time range">
-    <IxTimeInput label="Start time"></IxTimeInput>
-    <IxTimeInput label="End time"></IxTimeInput>
-  </IxRangeField>
-
   <IxRangeField
     type="datetime-range"
     style="width: 32rem"
