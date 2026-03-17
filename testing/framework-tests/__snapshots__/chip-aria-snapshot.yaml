@@ -1,37 +1,37 @@
 - main:
-  - group "Engineering":
-    - text: ""
-    - button "Remove Engineering"
-  - group "Urgent":
-    - text: ""
-    - button "Remove Urgent"
-  - button "Overdue"
-  - button "Due soon"
-  - button "In review"
-  - tooltip
-  - button "Completed"
-  - button "Draft"
-  - group "Project Alpha":
-    - text: ""
-    - button "Remove Project Alpha"
-  - group "Design":
-    - text: ""
-    - button "Remove Design"
-  - group "Engineering":
-    - text: ""
-    - button "Remove Engineering"
-  - group "Urgent":
-    - text: ""
-    - button "Remove Urgent"
-  - button "Overdue"
-  - button "Due soon"
-  - button "In review"
-  - tooltip
-  - button "Completed"
-  - button "Draft"
-  - group "Project Alpha":
-    - text: ""
-    - button "Remove Project Alpha"
-  - group "Design":
-    - text: ""
-    - button "Remove Design"
+    - group "Engineering":
+        - text: Engineering
+        - button "Remove Engineering"
+    - group "Urgent":
+        - text: Urgent
+        - button "Remove Urgent"
+    - button "Overdue"
+    - button "Due soon"
+    - button "In review"
+    - tooltip "Click to edit"
+    - button "Completed"
+    - button "Draft"
+    - group "Project Alpha":
+        - text: Project Alpha
+        - button "Remove Project Alpha"
+    - group "Design":
+        - text: Design
+        - button "Remove Design"
+    - group "Engineering":
+        - text: Engineering
+        - button "Remove Engineering"
+    - group "Urgent":
+        - text: Urgent
+        - button "Remove Urgent"
+    - button "Overdue"
+    - button "Due soon"
+    - button "In review"
+    - tooltip "Click to edit"
+    - button "Completed"
+    - button "Draft"
+    - group "Project Alpha":
+        - text: Project Alpha
+        - button "Remove Project Alpha"
+    - group "Design":
+        - text: Design
+        - button "Remove Design"
