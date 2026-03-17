@@ -76,18 +76,20 @@
   }
 
   .select.disabled {
-    border: 1px solid var(--theme-color-weak-bdr);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color--disabled);
 
     input {
-      color: var(--theme-color-weak-text);
+      color: var(--theme-input--color--disabled);
     }
   }
 
   .select.readonly {
-    border: 1px solid var(--theme-color-std-bdr);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color--readonly);
 
     input {
-      color: var(--theme-color-std-text);
+      color: var(--theme-input--color--readonly);
     }
   }
 

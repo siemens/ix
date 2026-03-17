@@ -87,7 +87,9 @@
       box-shadow: none;
       background-color: transparent;
       outline: none;
-      border: 1px solid var(--theme-color-std-bdr);
+      border: var(--theme-input--border-thickness)
+        solid
+        var(--theme-input--border-color--readonly);
 
       &::placeholder {
         color: transparent;
@@ -100,8 +102,8 @@
     box-shadow: none;
     background-color: transparent;
     outline: none;
-    border: none;
-    border: 1px solid var(--theme-color-weak-bdr);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color--disabled);
   }
 
   &:disabled::placeholder,
