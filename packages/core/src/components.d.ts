@@ -10801,6 +10801,7 @@ declare namespace LocalJSX {
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
+        "container": ElementReference;
         "enableTopLayer": boolean;
     }
     interface IxDropdownButtonAttributes {
