@@ -5127,6 +5127,7 @@ declare global {
         "validityStateChange": DateTimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string | undefined;
     }
     /**
      * @since 5.0.0
@@ -7661,6 +7662,10 @@ declare namespace LocalJSX {
           * Emitted when the input loses focus
          */
         "onIxBlur"?: (event: IxDatetimeInputCustomEvent<void>) => void;
+        /**
+          * Emitted when the date/time value changes via user interaction.  Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When a new date/time is selected in the picker and confirmed  Does NOT fire when: - The picker is opened/closed without confirming a change - The input is blurred without modifying the value - The value is changed programmatically via the value property
+         */
+        "onIxChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
           * Emitted when the input receives focus
          */
