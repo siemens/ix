@@ -2751,15 +2751,16 @@ export namespace Components {
          */
         "i18nPage": string;
         /**
-          * Number of items shown at once. Can only be changed in advaced mode.
+          * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
          */
         "itemCount": number;
         /**
-          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
-          * @since 4.3.0
+          * Custom item count options for advanced mode. Provide an array of positive numbers to display in the items per page dropdown.
+          * @since 4.4.0
+          * @default [10, 15, 20, 40, 100]
          */
-        "itemCountOptions"?: number[];
+        "itemCountOptions": number[];
         /**
           * Zero based index of currently selected page
           * @default 0
@@ -8894,13 +8895,14 @@ declare namespace LocalJSX {
          */
         "i18nPage"?: string;
         /**
-          * Number of items shown at once. Can only be changed in advaced mode.
+          * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
          */
         "itemCount"?: number;
         /**
-          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
-          * @since 4.3.0
+          * Custom item count options for advanced mode. Provide an array of positive numbers to display in the items per page dropdown.
+          * @since 4.4.0
+          * @default [10, 15, 20, 40, 100]
          */
         "itemCountOptions"?: number[];
         /**
