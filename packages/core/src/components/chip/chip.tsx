@@ -16,7 +16,6 @@ import {
   h,
   Host,
   Prop,
-  Watch,
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
@@ -102,18 +101,6 @@ export class Chip {
   @Event() closeChip!: EventEmitter;
 
   private readonly containerElementRef = makeRef<HTMLElement>();
-  private closeButtonLabel?: string;
-
-  @Watch('ariaLabelCloseButton')
-  private syncCloseButtonLabel() {
-    this.closeButtonLabel = this.ariaLabelCloseButton;
-    // This prop is consumed internally and should not appear as a DOM attribute
-    this.hostElement.removeAttribute('aria-label-close-button');
-  }
-
-  componentWillLoad() {
-    this.syncCloseButtonLabel();
-  }
 
   private getCloseButton() {
     return (
@@ -130,7 +117,7 @@ export class Chip {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
-          aria-label={this.closeButtonLabel}
+          aria-label={this.ariaLabelCloseButton}
         ></ix-icon-button>
       </div>
     );
