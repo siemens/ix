@@ -895,6 +895,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       <Host
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
+          readonly: this.readonly,
           disabled: this.disabled,
         }}
       >
