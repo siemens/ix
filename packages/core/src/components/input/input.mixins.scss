@@ -90,6 +90,12 @@
       margin-top: 0.25rem;
       margin-bottom: 0.25rem;
     }
+
+    // When hovering over the end slot (e.g. calendar/clock/eye icon), show field hover state
+    .input-wrapper:hover input:not(.readonly):not(.read-only):not(.disabled):not([readonly]):not([disabled]):not(:read-only) {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
+    }
   }
 
   :host(.disabled) {
@@ -108,7 +114,8 @@
       border-color: var(--theme-input--border-color--info);
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       border-color: var(--theme-input--border-color--info--hover) !important;
     }
 
@@ -125,7 +132,8 @@
       ) !important;
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       background-color: var(--theme-input--background--warning--hover);
       border-color: var(
         --theme-input--border-color--warning--active
@@ -145,7 +153,8 @@
       border-color: var(--theme-input--border-color--invalid) !important;
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       background-color: var(--theme-input--background--invalid--hover);
       border-color: var(--theme-input--border-color--invalid--hover) !important;
     }
