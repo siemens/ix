@@ -82,14 +82,14 @@ export class Tabs {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton?: string = 'Previous tab';
 
   /**
    * ARIA label for the chevron right icon button
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton?: string = 'Next tab';
 
   /**
    * `selected` property changed
