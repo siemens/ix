@@ -59,9 +59,6 @@ export const config: Config = {
   namespace: 'siemens-ix',
   watchIgnoredRegex: [/component-doc.json/],
   globalStyle: './scss/ix.scss',
-  devServer: {
-    port: 3334,
-  },
   minifyCss: false,
   plugins: [
     sass({
