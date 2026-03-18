@@ -24,7 +24,7 @@ export function normalizeCssDimension(
     return undefined;
   }
 
-  const unitRegex = /^(\d*\.?\d+)\s*(px|rem|em|%)?$/;
+  const unitRegex = /^(\d+(?:\.\d+)?)\s*(px|rem|em|%)?$/;
   const match = unitRegex.exec(value.trim());
 
   if (!match) {
