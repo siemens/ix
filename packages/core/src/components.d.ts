@@ -14,8 +14,9 @@ import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
-import { FilterState } from "./components/category-filter/filter-state";
-import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
+import { FilterAndSearchValue } from "./components/category-filter/filter-and-search-value";
+import { FilterCategory } from "./components/category-filter/filter-category";
+import { FilterOperand } from "./components/category-filter/filter-operand";
 import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -64,8 +65,9 @@ export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
-export { FilterState } from "./components/category-filter/filter-state";
-export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
+export { FilterAndSearchValue } from "./components/category-filter/filter-and-search-value";
+export { FilterCategory } from "./components/category-filter/filter-category";
+export { FilterOperand } from "./components/category-filter/filter-operand";
 export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -538,24 +540,19 @@ export namespace Components {
          */
         "ariaLabelFilterInput"?: string;
         /**
-          * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelOperatorButton"?: string;
-        /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
-          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration array of available filter categories. Each category has a key, label, and array of selectable values.
          */
-        "categories"?: {
-    [id: string]: {
-      label: string;
-      options: string[];
-    };
-  };
+        "categories"?: FilterCategory[];
+        /**
+          * If true, disables the free-text search functionality. When disabled, the "Search for ..." option will not appear in the dropdown.
+          * @default false
+         */
+        "disableSearch": boolean;
         /**
           * If true the filter will be in disabled state
           * @default false
@@ -568,9 +565,14 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of filter values to populate the component with.
          */
-        "filterState"?: FilterState;
+        "filterState"?: FilterAndSearchValue[];
+        /**
+          * If true, shows an error state inside the dropdown.
+          * @default false
+         */
+        "hasError": boolean;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
           * @default false
@@ -586,17 +588,37 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * If true, shows a loading spinner inside the dropdown.
+          * @default false
+         */
+        "isLoading": boolean;
+        /**
           * i18n
-          * @default 'Categories'
+          * @default 'Select a category'
          */
         "labelCategories": string;
         /**
-          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * Label for the operand selection dropdown header.
+          * @default 'Select an operator'
+         */
+        "labelOperands": string;
+        /**
+          * Label for the value selection dropdown header.
+          * @default 'Select a value'
+         */
+        "labelValues": string;
+        /**
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each key maps to a string representing the label to display.
           * @default {}
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
   };
+        /**
+          * List of available operands for filtering.
+          * @default [     { key: 'equals', label: 'equals (=)', symbol: '=' },     { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },     { key: 'contains', label: 'contains (∋)', symbol: '∋' },     { key: 'does not contain', label: 'does not contain (∌)', symbol: '∌' },     { key: 'starts with', label: 'starts with (⊦)', symbol: '⊦' },     { key: 'ends with', label: 'ends with (⊤)', symbol: '⊤' },     { key: 'is greater than', label: 'greater than (>)', symbol: '>' },     { key: 'is less than', label: 'less than (<)', symbol: '<' },     {       key: 'is greater than or equal to',       label: 'greater or equal (≥)',       symbol: '≥',     },     {       key: 'is less than or equal to',       label: 'less or equal (≤)',       symbol: '≤',     },   ]
+         */
+        "operands": FilterOperand[];
         /**
           * Placeholder text to be displayed in an empty input field.
          */
@@ -607,9 +629,9 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+          * If set, the operand step will be skipped and the specified operand will be used automatically. The value should match a `key` from the `operands` array.
          */
-        "staticOperator"?: LogicalFilterOperator;
+        "staticOperand"?: string;
         /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
@@ -1708,6 +1730,11 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * If true, suppresses the native browser tooltip (title attribute) on the chip. Useful when an external tooltip component is used instead.
+          * @default false
+         */
+        "hideNativeTooltip": boolean;
         /**
           * If true the filter chip will be in readonly mode
           * @default false
@@ -4663,7 +4690,7 @@ declare global {
     interface HTMLIxCategoryFilterElementEventMap {
         "categoryChanged": string;
         "inputChanged": InputState;
-        "filterChanged": FilterState;
+        "filterChanged": FilterAndSearchValue[];
         "filterCleared": void;
     }
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
@@ -6518,24 +6545,19 @@ declare namespace LocalJSX {
          */
         "ariaLabelFilterInput"?: string;
         /**
-          * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelOperatorButton"?: string;
-        /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
-          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration array of available filter categories. Each category has a key, label, and array of selectable values.
          */
-        "categories"?: {
-    [id: string]: {
-      label: string;
-      options: string[];
-    };
-  };
+        "categories"?: FilterCategory[];
+        /**
+          * If true, disables the free-text search functionality. When disabled, the "Search for ..." option will not appear in the dropdown.
+          * @default false
+         */
+        "disableSearch"?: boolean;
         /**
           * If true the filter will be in disabled state
           * @default false
@@ -6548,9 +6570,14 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of filter values to populate the component with.
          */
-        "filterState"?: FilterState;
+        "filterState"?: FilterAndSearchValue[];
+        /**
+          * If true, shows an error state inside the dropdown.
+          * @default false
+         */
+        "hasError"?: boolean;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
           * @default false
@@ -6566,12 +6593,27 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * If true, shows a loading spinner inside the dropdown.
+          * @default false
+         */
+        "isLoading"?: boolean;
+        /**
           * i18n
-          * @default 'Categories'
+          * @default 'Select a category'
          */
         "labelCategories"?: string;
         /**
-          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * Label for the operand selection dropdown header.
+          * @default 'Select an operator'
+         */
+        "labelOperands"?: string;
+        /**
+          * Label for the value selection dropdown header.
+          * @default 'Select a value'
+         */
+        "labelValues"?: string;
+        /**
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each key maps to a string representing the label to display.
           * @default {}
          */
         "nonSelectableCategories"?: {
@@ -6584,7 +6626,7 @@ declare namespace LocalJSX {
         /**
           * Event dispatched whenever the filter state changes.
          */
-        "onFilterChanged"?: (event: IxCategoryFilterCustomEvent<FilterState>) => void;
+        "onFilterChanged"?: (event: IxCategoryFilterCustomEvent<FilterAndSearchValue[]>) => void;
         /**
           * Event dispatched whenever the filter gets cleared.
          */
@@ -6593,6 +6635,11 @@ declare namespace LocalJSX {
           * Event dispatched whenever the text input changes.
          */
         "onInputChanged"?: (event: IxCategoryFilterCustomEvent<InputState>) => void;
+        /**
+          * List of available operands for filtering.
+          * @default [     { key: 'equals', label: 'equals (=)', symbol: '=' },     { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },     { key: 'contains', label: 'contains (∋)', symbol: '∋' },     { key: 'does not contain', label: 'does not contain (∌)', symbol: '∌' },     { key: 'starts with', label: 'starts with (⊦)', symbol: '⊦' },     { key: 'ends with', label: 'ends with (⊤)', symbol: '⊤' },     { key: 'is greater than', label: 'greater than (>)', symbol: '>' },     { key: 'is less than', label: 'less than (<)', symbol: '<' },     {       key: 'is greater than or equal to',       label: 'greater or equal (≥)',       symbol: '≥',     },     {       key: 'is less than or equal to',       label: 'less or equal (≤)',       symbol: '≤',     },   ]
+         */
+        "operands"?: FilterOperand[];
         /**
           * Placeholder text to be displayed in an empty input field.
          */
@@ -6603,9 +6650,9 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+          * If set, the operand step will be skipped and the specified operand will be used automatically. The value should match a `key` from the `operands` array.
          */
-        "staticOperator"?: LogicalFilterOperator;
+        "staticOperand"?: string;
         /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
@@ -7760,6 +7807,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * If true, suppresses the native browser tooltip (title attribute) on the chip. Useful when an external tooltip component is used instead.
+          * @default false
+         */
+        "hideNativeTooltip"?: boolean;
         /**
           * Close clicked
          */
@@ -10603,12 +10655,16 @@ declare namespace LocalJSX {
         "placeholder": string;
         "icon": string;
         "hideIcon": boolean;
-        "staticOperator": LogicalFilterOperator;
+        "staticOperand": string;
         "uniqueCategories": boolean;
         "labelCategories": string;
+        "labelOperands": string;
+        "labelValues": string;
         "i18nPlainText": string;
+        "disableSearch": boolean;
+        "isLoading": boolean;
+        "hasError": boolean;
         "ariaLabelResetButton": string;
-        "ariaLabelOperatorButton": string;
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
@@ -10872,6 +10928,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "readonly": boolean;
         "ariaLabelCloseIconButton": string;
+        "hideNativeTooltip": boolean;
     }
     interface IxFlipTileAttributes {
         "variant": FlipTileVariant;

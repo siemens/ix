@@ -19,16 +19,23 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { makeRef } from '../utils/make-ref';
-import { FilterState } from './filter-state';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { FilterAndSearchValue } from './filter-and-search-value';
+import { FilterCategory } from './filter-category';
+import { FilterOperand } from './filter-operand';
+import { FilterSelection } from './filter-selection';
 import { InputState } from './input-state';
-import { LogicalFilterOperator } from './logical-filter-operator';
+import { SearchQuery } from './search-query';
+
+const MAX_LABEL_DISPLAY_LENGTH = 20;
+const LABEL_DISPLAY_BUFFER = 3;
+const MAX_STRING_DISPLAY_LENGTH = 15;
 
 @Component({
   tag: 'ix-category-filter',
@@ -36,32 +43,37 @@ import { LogicalFilterOperator } from './logical-filter-operator';
   shadow: true,
 })
 export class CategoryFilter {
-  private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
-
-  private formKeyDownListener?: DisposableEventListener;
-  private preventDefaultListener?: DisposableEventListener;
-  private inputKeyDownListener?: DisposableEventListener;
   private focusInListener?: DisposableEventListener;
   private focusOutListener?: DisposableEventListener;
   private inputListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
-  private formElement?: HTMLFormElement;
-  private isScrollStateDirty?: boolean;
+  private tokenContainerEl?: HTMLDivElement;
+  private chipsResizeObserver?: ResizeObserver;
+  private chipWidths: Map<number, number> = new Map();
   private a11yAttributes?: A11yAttributes;
+
+  private readonly INPUT_MIN_WIDTH = 175;
+  private readonly MORE_CHIP_WIDTH = 100;
+  private readonly DEFAULT_CHIP_WIDTH = 140;
+  private readonly CHIP_MARGIN = 16;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
-  @State() showDropdown = false;
   @State() hasFocus = false;
-  @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
   @State() inputValue: string = '';
-  @State() category: string = '';
-  @State() filterTokens: Array<{
-    id: string;
-    value: string;
-    operator: LogicalFilterOperator;
-  }> = [];
+  @State() selectedCategory: FilterCategory | null = null;
+  @State() selectedOperand: FilterOperand | null = null;
+  @State() selectedValue: string | null = null;
+  @State() filterValues: FilterAndSearchValue[] = [];
+  @State() filteredOperands: FilterOperand[] = [];
+  @State() availableValuesForSelectedCategory: string[] = [];
+  @State() categoriesAvailableForSelection: FilterCategory[] = [];
+  @State() selectedIndex = -1;
+  @State() isDropdownOpen = false;
+  @State() visibleChipsCount = Infinity;
+  @State() showRemainingFilterValuesDropdown = false;
+  @State() placeholderState: string = '';
 
   /**
    * If true the filter will be in disabled state
@@ -74,9 +86,9 @@ export class CategoryFilter {
   @Prop() readonly = false;
 
   /**
-   * A set of search criteria to populate the component with.
+   * A set of filter values to populate the component with.
    */
-  @Prop() filterState?: FilterState;
+  @Prop() filterState?: FilterAndSearchValue[];
 
   /**
    * Placeholder text to be displayed in an empty input field.
@@ -84,22 +96,17 @@ export class CategoryFilter {
   @Prop() placeholder?: string;
 
   /**
-   * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.
-   * Each ID maps to an object with a label and an array of options to select from.
+   * Configuration array of available filter categories.
+   * Each category has a key, label, and array of selectable values.
    */
-  @Prop() categories?: {
-    [id: string]: {
-      label: string;
-      options: string[];
-    };
-  };
+  @Prop() categories?: FilterCategory[];
 
   /**
    * In certain use cases some categories may not be available for selection anymore.
    * To allow proper display of set filters with these categories this ID to label mapping can be populated.
    *
    * Configuration object hash used to supply labels to the filter chips in the input field.
-   * Each ID maps to a string representing the label to display.
+   * Each key maps to a string representing the label to display.
    */
   @Prop() nonSelectableCategories?: {
     [id: string]: string;
@@ -123,10 +130,10 @@ export class CategoryFilter {
   @Prop() hideIcon: boolean = false;
 
   /**
-   * If set categories will always be filtered via the respective logical operator.
-   * Toggling of the operator will not be available to the user.
+   * If set, the operand step will be skipped and the specified operand will be used automatically.
+   * The value should match a `key` from the `operands` array.
    */
-  @Prop() staticOperator?: LogicalFilterOperator;
+  @Prop() staticOperand?: string;
 
   /**
    * If set to true, prevents that a single category can be set more than once.
@@ -135,14 +142,64 @@ export class CategoryFilter {
   @Prop() uniqueCategories = false;
 
   /**
+   * List of available operands for filtering.
+   */
+  @Prop() operands: FilterOperand[] = [
+    { key: 'equals', label: 'equals (=)', symbol: '=' },
+    { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },
+    { key: 'contains', label: 'contains (∋)', symbol: '∋' },
+    { key: 'does not contain', label: 'does not contain (∌)', symbol: '∌' },
+    { key: 'starts with', label: 'starts with (⊦)', symbol: '⊦' },
+    { key: 'ends with', label: 'ends with (⊤)', symbol: '⊤' },
+    { key: 'is greater than', label: 'greater than (>)', symbol: '>' },
+    { key: 'is less than', label: 'less than (<)', symbol: '<' },
+    {
+      key: 'is greater than or equal to',
+      label: 'greater or equal (≥)',
+      symbol: '≥',
+    },
+    {
+      key: 'is less than or equal to',
+      label: 'less or equal (≤)',
+      symbol: '≤',
+    },
+  ];
+
+  /**
    * i18n
    */
-  @Prop() labelCategories = 'Categories';
+  @Prop() labelCategories = 'Select a category';
+
+  /**
+   * Label for the operand selection dropdown header.
+   */
+  @Prop() labelOperands = 'Select an operator';
+
+  /**
+   * Label for the value selection dropdown header.
+   */
+  @Prop() labelValues = 'Select a value';
 
   /**
    * i18n label for 'Filter by text'
    */
   @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
+
+  /**
+   * If true, disables the free-text search functionality.
+   * When disabled, the "Search for ..." option will not appear in the dropdown.
+   */
+  @Prop() disableSearch = false;
+
+  /**
+   * If true, shows a loading spinner inside the dropdown.
+   */
+  @Prop() isLoading = false;
+
+  /**
+   * If true, shows an error state inside the dropdown.
+   */
+  @Prop() hasError = false;
 
   /**
    * ARIA label for the reset button
@@ -151,14 +208,6 @@ export class CategoryFilter {
    * @since 3.2.0
    */
   @Prop() ariaLabelResetButton?: string;
-
-  /**
-   * ARIA label for the operator button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelOperatorButton?: string;
 
   /**
    * ARIA label for the filter input
@@ -189,24 +238,639 @@ export class CategoryFilter {
   /**
    * Event dispatched whenever the filter state changes.
    */
-  @Event() filterChanged!: EventEmitter<FilterState>;
+  @Event() filterChanged!: EventEmitter<FilterAndSearchValue[]>;
 
   /**
    * Event dispatched whenever the filter gets cleared.
    */
   @Event() filterCleared!: EventEmitter<void>;
 
-  get dropdown() {
-    return this.hostElement.shadowRoot!.querySelector('ix-dropdown');
+  @Watch('inputValue')
+  watchInputValue(newValue: string) {
+    this.handleFilterBehaviour(newValue);
+
+    const categoryKey = this.selectedCategory?.key ?? '';
+    const inputState = new InputState(newValue, categoryKey);
+    this.inputChanged.emit(inputState);
+  }
+
+  @Watch('filterValues')
+  watchFilterValues() {
+    this.chipWidths = new Map();
+    requestAnimationFrameNoNgZone(() => this.calculateVisibleChips());
   }
 
   @Watch('filterState')
-  watchFilterState(newValue: FilterState) {
-    this.setFilterState(newValue);
+  watchFilterState(newValue: FilterAndSearchValue[]) {
+    if (newValue) {
+      this.filterValues = [...newValue];
+    }
   }
 
-  private preventDefault(e: Event) {
+  private handleKeyDown(e: KeyboardEvent) {
+    if (e.defaultPrevented) {
+      return;
+    }
+
+    switch (e.code) {
+      case 'ArrowDown':
+      case 'ArrowUp':
+        this.handleArrowNavigation(e);
+        break;
+
+      case 'Enter':
+      case 'NumpadEnter':
+        this.handleEnterKey(e);
+        break;
+
+      case 'Backspace':
+        this.handleBackspace(e);
+        break;
+
+      case 'Escape':
+        this.isDropdownOpen = false;
+        this.showRemainingFilterValuesDropdown = false;
+        break;
+    }
+  }
+
+  private handleArrowNavigation(e: KeyboardEvent): void {
+    this.isDropdownOpen = true;
+    const itemCount = this.getDropdownItemCount();
+    if (itemCount === 0) {
+      return;
+    }
+
     e.preventDefault();
+    const direction = e.code === 'ArrowDown' ? 1 : -1;
+    this.selectedIndex =
+      direction > 0
+        ? Math.min(this.selectedIndex + 1, itemCount - 1)
+        : Math.max(this.selectedIndex - 1, 0);
+  }
+
+  private handleEnterKey(e: KeyboardEvent): void {
+    if (this.selectedIndex >= 0 && this.isDropdownOpen) {
+      this.selectDropdownItem(this.selectedIndex);
+      e.preventDefault();
+    } else {
+      this.combineFilter();
+    }
+  }
+
+  private handleBackspace(e: KeyboardEvent): void {
+    if (this.textInput?.current?.value) {
+      return;
+    }
+
+    e.preventDefault();
+
+    if (!this.selectedCategory && this.filterValues.length) {
+      this.removeFilterValue(this.filterValues.length - 1);
+      return;
+    }
+
+    if (this.selectedCategory && !this.selectedOperand) {
+      this.selectedCategory = null;
+      return;
+    }
+
+    if (this.selectedCategory && this.selectedOperand && !this.selectedValue) {
+      this.selectedOperand = null;
+      return;
+    }
+
+    this.selectedValue = null;
+  }
+
+  private handleFilterBehaviour(newValue: string) {
+    if (!this.categories) {
+      return;
+    }
+
+    if (newValue === '') {
+      this.filteredOperands = this.operands;
+      this.updateAvailableCategories();
+      this.availableValuesForSelectedCategory = this.selectedCategory
+        ? this.selectedCategory.values
+        : [];
+    }
+
+    if (!this.selectedCategory) {
+      this.categoriesAvailableForSelection = this.categories.filter(
+        (category) =>
+          category.label.toLowerCase().includes(newValue.toLowerCase())
+      );
+      if (this.uniqueCategories) {
+        this.categoriesAvailableForSelection =
+          this.categoriesAvailableForSelection.filter(
+            (cat) => !this.isCategoryAlreadySet(cat.key)
+          );
+      }
+    }
+    if (this.selectedCategory && !this.selectedOperand) {
+      this.filteredOperands = this.operands.filter((operand) =>
+        operand.label.toLowerCase().includes(newValue.toLowerCase())
+      );
+    }
+    if (this.selectedCategory && this.selectedOperand && !this.selectedValue) {
+      this.availableValuesForSelectedCategory =
+        this.selectedCategory.values.filter((value) =>
+          value.toLowerCase().includes(newValue.toLowerCase())
+        );
+    }
+  }
+
+  private isCategoryAlreadySet(categoryKey: string): boolean {
+    return this.filterValues.some(
+      (v): v is FilterSelection =>
+        v.type === 'filter' && v.category === categoryKey
+    );
+  }
+
+  private readonly resetFilter = (e?: Event) => {
+    const { defaultPrevented } = this.filterCleared.emit();
+    if (defaultPrevented) {
+      return;
+    }
+
+    e?.stopPropagation();
+    this.selectedCategory = null;
+    this.selectedOperand = null;
+    this.selectedValue = null;
+    this.filterValues = [];
+    this.isDropdownOpen = false;
+    this.showRemainingFilterValuesDropdown = false;
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.inputValue = '';
+    this.placeholderState = this.placeholder ?? '';
+    this.filterChanged.emit(this.filterValues);
+  };
+
+  private resetCurrentSelection() {
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.inputValue = '';
+    this.textInput?.current?.focus();
+
+    if (!this.selectedCategory) {
+      this.updateAvailableCategories();
+    } else if (!this.selectedOperand) {
+      this.filteredOperands = this.operands;
+      if (
+        this.categoriesAvailableForSelection.length === 0 &&
+        this.uniqueCategories
+      ) {
+        this.selectedCategory = null;
+        this.updateAvailableCategories();
+      }
+    } else {
+      this.availableValuesForSelectedCategory = this.filterExistingValues();
+      if (this.availableValuesForSelectedCategory.length === 0) {
+        this.selectedOperand = null;
+        this.selectedCategory = null;
+        this.filteredOperands = this.operands;
+      }
+    }
+  }
+
+  private renderDropdownContent() {
+    if (!this.categories) {
+      return this.renderPlainSuggestions();
+    }
+
+    if (!this.selectedCategory) {
+      return this.renderCategorySelection();
+    }
+    return this.selectedOperand
+      ? this.renderValueSelection()
+      : this.renderOperandSelection();
+  }
+
+  private renderCategorySelection() {
+    return (
+      <div>
+        {this.categoriesAvailableForSelection.length ? (
+          <div>
+            <ix-dropdown-header
+              label={this.labelCategories}
+            ></ix-dropdown-header>
+            {this.categoriesAvailableForSelection.map((category, index) => (
+              <ix-dropdown-item
+                onClick={() => this.selectCategory(category)}
+                label={category.label}
+                hover={index === this.selectedIndex}
+              ></ix-dropdown-item>
+            ))}
+          </div>
+        ) : (
+          this.renderEmptyState('category')
+        )}
+      </div>
+    );
+  }
+
+  private selectCategory(category: FilterCategory) {
+    this.selectedCategory = category;
+    this.availableValuesForSelectedCategory = category.values;
+    this.inputValue = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.textInput?.current?.focus();
+    this.placeholderState = '';
+    this.selectedIndex = -1;
+    this.categoryChanged.emit(category.key);
+
+    // If staticOperand is set, skip operand selection
+    if (this.staticOperand) {
+      const operand = this.operands.find((op) => op.key === this.staticOperand);
+      if (operand) {
+        this.selectedOperand = operand;
+        this.availableValuesForSelectedCategory = this.filterExistingValues();
+      }
+    }
+  }
+
+  private renderOperandSelection() {
+    return (
+      <div>
+        {this.filteredOperands.length ? (
+          <div>
+            <ix-dropdown-header label={this.labelOperands}></ix-dropdown-header>
+            {this.filteredOperands.map((operand, index) => (
+              <ix-dropdown-item
+                onClick={() => this.selectOperand(operand)}
+                label={operand.label}
+                hover={index === this.selectedIndex}
+              ></ix-dropdown-item>
+            ))}
+          </div>
+        ) : (
+          this.renderEmptyState('operand')
+        )}
+      </div>
+    );
+  }
+
+  private selectOperand(operand: FilterOperand) {
+    this.selectedOperand = operand;
+    this.inputValue = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.textInput?.current?.focus();
+    this.selectedIndex = -1;
+    this.availableValuesForSelectedCategory = this.filterExistingValues();
+  }
+
+  private filterExistingValues(): string[] {
+    if (!this.selectedCategory || !this.selectedOperand) {
+      return this.availableValuesForSelectedCategory;
+    }
+
+    const existingValues = this.filterValues
+      .filter(
+        (filter): filter is FilterSelection =>
+          filter.type === 'filter' &&
+          filter.category === this.selectedCategory!.key &&
+          filter.operand.key === this.selectedOperand!.key
+      )
+      .map((filter) => filter.value);
+
+    return this.selectedCategory.values.filter(
+      (value) => !existingValues.includes(value)
+    );
+  }
+
+  private renderValueSelection() {
+    return (
+      <div>
+        {this.availableValuesForSelectedCategory.length ? (
+          <div>
+            <ix-dropdown-header label={this.labelValues}></ix-dropdown-header>
+            {this.availableValuesForSelectedCategory.map((value, index) => (
+              <ix-dropdown-item
+                onClick={() => this.selectValue(value)}
+                label={value}
+                hover={index === this.selectedIndex}
+              ></ix-dropdown-item>
+            ))}
+          </div>
+        ) : (
+          this.renderEmptyState('value')
+        )}
+      </div>
+    );
+  }
+
+  private selectValue(value: string) {
+    this.selectedValue = value;
+    if (
+      !this.selectedCategory ||
+      !this.selectedOperand ||
+      !this.selectedValue
+    ) {
+      return;
+    }
+    this.combineFilter();
+  }
+
+  private renderPlainSuggestions() {
+    if (!this.suggestions?.length) {
+      return '';
+    }
+
+    const filtered = this.suggestions
+      .filter((s) => this.filterByInput(s))
+      .filter((s) => this.filterDuplicateTokens(s));
+
+    return (
+      <div>
+        {filtered.map((suggestion, index) => (
+          <ix-dropdown-item
+            label={suggestion}
+            hover={index === this.selectedIndex}
+            onClick={() => {
+              this.addSearchToken(suggestion);
+              this.textInput?.current?.focus();
+            }}
+          ></ix-dropdown-item>
+        ))}
+      </div>
+    );
+  }
+
+  private filterByInput(value: string): boolean {
+    if (!this.inputValue) {
+      return true;
+    }
+    return value.toLowerCase().includes(this.inputValue.toLowerCase());
+  }
+
+  private filterDuplicateTokens(value: string): boolean {
+    return !this.filterValues.some((v) => v.value === value);
+  }
+
+  private renderEmptyState(type: string) {
+    const emptyStateType = this.determineEmptyStateType(type);
+    return this.renderSpecificEmptyState(emptyStateType, type);
+  }
+
+  private determineEmptyStateType(type: string): string {
+    if (this.isAllValuesSelectedCase(type)) {
+      return 'allValuesSelected';
+    }
+    if (this.isNoValueMatchesCase(type)) {
+      return 'noValueMatches';
+    }
+    if (type === 'category' && this.inputValue) {
+      return 'noCategoryMatches';
+    }
+    return 'default';
+  }
+
+  private isAllValuesSelectedCase(type: string): boolean {
+    if (type !== 'value' || !this.selectedCategory || !this.selectedOperand) {
+      return false;
+    }
+    const availableValues = this.filterExistingValues();
+    return (
+      availableValues.length === 0 &&
+      this.selectedCategory.values.length > 0 &&
+      this.inputValue === ''
+    );
+  }
+
+  private isNoValueMatchesCase(type: string): boolean {
+    if (
+      type !== 'value' ||
+      !this.selectedCategory ||
+      !this.selectedOperand ||
+      !this.inputValue
+    ) {
+      return false;
+    }
+    return !this.selectedCategory.values.some((val) =>
+      val.toLowerCase().includes(this.inputValue.toLowerCase())
+    );
+  }
+
+  private renderSpecificEmptyState(emptyStateType: string, type: string) {
+    switch (emptyStateType) {
+      case 'allValuesSelected':
+        return (
+          <div class="empty-state">
+            <div>
+              <ix-typography format="body">
+                All values of this category have already been selected
+              </ix-typography>
+              <ix-typography format="body" class="light-text">
+                Remove a filter or select another category.
+              </ix-typography>
+            </div>
+            <ix-button
+              variant="secondary"
+              onClick={() => this.resetCurrentSelection()}
+            >
+              See all categories
+            </ix-button>
+          </div>
+        );
+      case 'noValueMatches':
+        return (
+          <div class="empty-state">
+            <div>
+              <ix-typography format="body">
+                The term you entered does not match with any value
+              </ix-typography>
+              <ix-typography format="body" class="light-text">
+                Remove a selected value or select another category.
+              </ix-typography>
+            </div>
+            <ix-button
+              variant="secondary"
+              onClick={() => this.resetCurrentSelection()}
+            >
+              See all options
+            </ix-button>
+          </div>
+        );
+      case 'noCategoryMatches':
+        return (
+          <div class="empty-state">
+            <div>
+              <ix-typography format="body">
+                The term you entered does not match with any category
+              </ix-typography>
+              <ix-typography format="body" class="light-text">
+                Remove your input to see all options.
+              </ix-typography>
+            </div>
+            <ix-button
+              variant="secondary"
+              onClick={() => this.resetCurrentSelection()}
+            >
+              See all options
+            </ix-button>
+          </div>
+        );
+      default: {
+        const messageMap: Record<string, string> = {
+          category: 'The term you entered does not match with any category',
+          operand: 'The term you entered does not match with any operand',
+          value: 'The term you entered does not match with any value',
+        };
+        const message = messageMap[type] || 'No matches found';
+        return (
+          <div class="empty-state">
+            <div>
+              <ix-typography format="body">{message}</ix-typography>
+              <ix-typography format="body" class="light-text">
+                Remove your input to see all options.
+              </ix-typography>
+            </div>
+            <ix-button
+              variant="secondary"
+              onClick={() => this.resetCurrentSelection()}
+            >
+              See all options
+            </ix-button>
+          </div>
+        );
+      }
+    }
+  }
+
+  private combineFilter() {
+    if (!this.selectedCategory || !this.selectedOperand) {
+      if (this.inputValue && !this.disableSearch) {
+        this.addSearchToken(this.inputValue);
+        return;
+      }
+      return;
+    }
+
+    const value = this.selectedValue ?? this.textInput?.current?.value ?? '';
+    if (!value.trim()) {
+      return;
+    }
+
+    this.filterValues = [
+      ...this.filterValues,
+      {
+        type: 'filter',
+        category: this.selectedCategory.key,
+        operand: this.selectedOperand,
+        value: value,
+      },
+    ];
+
+    this.filterChanged.emit(this.filterValues);
+    this.updateAvailableCategories();
+    this.clearLastSelection();
+    this.textInput?.current?.focus();
+  }
+
+  private addSearchToken(value: string) {
+    if (!value || this.filterValues.some((chip) => chip.value === value)) {
+      return;
+    }
+
+    this.filterValues = [...this.filterValues, { type: 'search', value }];
+    this.filterChanged.emit(this.filterValues);
+    this.isDropdownOpen = false;
+    this.showRemainingFilterValuesDropdown = false;
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.inputValue = '';
+    this.textInput?.current?.focus();
+  }
+
+  private getFilterChipLabel(value: FilterSelection): string {
+    const categoryLabel =
+      this.getCategoryLabel(value.category) ?? value.category;
+    const truncatedValue = this.truncateMiddle(
+      value.value,
+      MAX_LABEL_DISPLAY_LENGTH
+    );
+    return `${categoryLabel} ${value.operand.symbol} ${truncatedValue}`;
+  }
+
+  private getCategoryLabel(categoryKey: string): string | undefined {
+    const cat = this.categories?.find((c) => c.key === categoryKey);
+    if (cat) {
+      return cat.label;
+    }
+    return this.nonSelectableCategories?.[categoryKey];
+  }
+
+  private truncateMiddle(text: string, maxLength: number): string {
+    if (!text || text.length <= maxLength) {
+      return text;
+    }
+    const charsToShow = Math.floor((maxLength - LABEL_DISPLAY_BUFFER) / 2);
+    const start = text.substring(0, charsToShow);
+    const end = text.substring(text.length - charsToShow);
+    return `${start}...${end}`;
+  }
+
+  private removeFilterValue(index: number) {
+    this.filterValues = this.filterValues.filter((_, i) => i !== index);
+    this.filterChanged.emit(this.filterValues);
+    this.updateAvailableCategories();
+    requestAnimationFrameNoNgZone(() => this.calculateVisibleChips());
+  }
+
+  private getPreviewText(): string {
+    const categoryLabel = this.selectedCategory?.label;
+    const truncatedCategoryLabel =
+      categoryLabel && categoryLabel.length > MAX_LABEL_DISPLAY_LENGTH
+        ? this.truncateMiddle(categoryLabel, MAX_LABEL_DISPLAY_LENGTH)
+        : categoryLabel;
+
+    const parts = [
+      truncatedCategoryLabel,
+      this.selectedOperand?.label,
+      this.selectedValue,
+    ].filter(Boolean);
+    return parts.join(' ');
+  }
+
+  private getTooltipText(value: FilterSelection | SearchQuery): string {
+    if (value.type === 'search') {
+      return this.getSearchInformationText(value.value);
+    }
+    return `${value.category} ${value.operand.key} "${value.value}"`;
+  }
+
+  private getSearchInformationText(
+    inputString?: string,
+    plainText?: boolean
+  ): string {
+    const stringToTruncate = inputString ? inputString : this.inputValue;
+    const truncatedValue =
+      stringToTruncate.length > MAX_STRING_DISPLAY_LENGTH
+        ? stringToTruncate.substring(0, MAX_STRING_DISPLAY_LENGTH) + '...'
+        : stringToTruncate;
+    if (plainText) {
+      return truncatedValue;
+    }
+    return `Search for "${truncatedValue}"`;
+  }
+
+  private getIconColor() {
+    if (this.disabled) {
+      return 'color-component-1';
+    }
+    if (this.readonly) {
+      return 'color-std-txt';
+    }
+    return 'color-primary';
   }
 
   private onFocusIn() {
@@ -219,712 +883,398 @@ export class CategoryFilter {
 
   private onInput() {
     this.inputValue = this.textInput?.current?.value ?? '';
-    const inputState = new InputState(this.inputValue, this.category);
-    this.inputChanged.emit(inputState);
-
-    if (!this.dropdown?.show) {
-      this.openDropdown();
+    if (!this.isDropdownOpen) {
+      this.isDropdownOpen = true;
     }
+  }
+
+  private getDropdownItemCount(): number {
+    if (!this.categories) {
+      return this.getFilteredSuggestionCount();
+    }
+
+    if (!this.selectedCategory) {
+      return this.categoriesAvailableForSelection.length;
+    }
+    if (!this.selectedOperand) {
+      return this.filteredOperands.length;
+    }
+    return this.availableValuesForSelectedCategory.length;
+  }
+
+  private getFilteredSuggestionCount(): number {
+    if (!this.suggestions?.length) {
+      return 0;
+    }
+    return this.suggestions
+      .filter((s) => this.filterByInput(s))
+      .filter((s) => this.filterDuplicateTokens(s)).length;
+  }
+
+  private selectDropdownItem(index: number) {
+    if (!this.categories) {
+      // Plain suggestions mode
+      const filtered = this.suggestions
+        ?.filter((s) => this.filterByInput(s))
+        .filter((s) => this.filterDuplicateTokens(s));
+      if (filtered && filtered[index]) {
+        this.addSearchToken(filtered[index]);
+        this.textInput?.current?.focus();
+      }
+    } else if (!this.selectedCategory) {
+      if (this.categoriesAvailableForSelection[index]) {
+        this.selectCategory(this.categoriesAvailableForSelection[index]);
+      }
+    } else if (!this.selectedOperand) {
+      if (this.filteredOperands[index]) {
+        this.selectOperand(this.filteredOperands[index]);
+      }
+    } else {
+      if (this.availableValuesForSelectedCategory[index]) {
+        this.selectValue(this.availableValuesForSelectedCategory[index]);
+      }
+    }
+
+    this.selectedIndex = -1;
+    this.isDropdownOpen = true;
+    this.showRemainingFilterValuesDropdown = false;
+  }
+
+  private clearLastSelection() {
+    this.selectedCategory = null;
+    this.selectedOperand = null;
+    this.selectedValue = null;
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
+    this.inputValue = '';
+    this.placeholderState = this.placeholder ?? '';
+  }
+
+  private updateAvailableCategories(): void {
+    if (!this.categories) {
+      return;
+    }
+
+    if (!this.uniqueCategories) {
+      this.categoriesAvailableForSelection = [...this.categories];
+    } else {
+      this.categoriesAvailableForSelection = this.categories.filter(
+        (category) => !this.isCategoryAlreadySet(category.key)
+      );
+    }
+  }
+
+  private shouldShowSearchOption(): boolean {
+    if (this.disableSearch || !this.inputValue) {
+      return false;
+    }
+    const noCategorySelected = !this.selectedCategory;
+    const hasCategoryAndOperand =
+      this.selectedCategory !== null && this.selectedOperand !== null;
+    return noCategorySelected || hasCategoryAndOperand;
+  }
+
+  private additionalFilterValuesClicked(): void {
+    this.showRemainingFilterValuesDropdown =
+      !this.showRemainingFilterValuesDropdown;
+  }
+
+  // Chip overflow
+  private calculateVisibleChips() {
+    if (!this.tokenContainerEl || this.filterValues.length === 0) {
+      this.visibleChipsCount = Infinity;
+      return;
+    }
+
+    const containerWidth = this.tokenContainerEl.clientWidth;
+    const availableWidth =
+      containerWidth - this.INPUT_MIN_WIDTH - this.MORE_CHIP_WIDTH;
+
+    let visibleCount = 0;
+    let usedWidth = 0;
+
+    for (let i = 0; i < this.filterValues.length; i++) {
+      const chipWidth = this.chipWidths.get(i) || this.DEFAULT_CHIP_WIDTH;
+      if (usedWidth + chipWidth > availableWidth) {
+        break;
+      }
+      visibleCount++;
+      usedWidth += chipWidth;
+    }
+
+    if (visibleCount === this.filterValues.length) {
+      this.visibleChipsCount = visibleCount;
+      return;
+    }
+
+    this.visibleChipsCount = Math.max(1, visibleCount);
+  }
+
+  private measureChip(index: number, element: HTMLElement | undefined) {
+    if (!element) {
+      return;
+    }
+    requestAnimationFrameNoNgZone(() => {
+      const width = element.offsetWidth + this.CHIP_MARGIN;
+      if (this.chipWidths.get(index) !== width) {
+        this.chipWidths.set(index, width);
+        this.calculateVisibleChips();
+      }
+    });
   }
 
   componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
+    this.placeholderState = this.placeholder ?? '';
+    if (this.categories) {
+      this.categoriesAvailableForSelection = [...this.categories];
+    }
+    this.filteredOperands = this.operands;
   }
 
   componentDidLoad() {
-    setTimeout(() => {
-      if (this.filterState !== undefined) {
-        this.setFilterState(this.filterState);
-      }
+    if (this.filterState !== undefined) {
+      this.filterValues = [...this.filterState];
+    }
+
+    if (this.textInput?.current) {
+      this.focusInListener = addDisposableEventListener(
+        this.textInput.current,
+        'focusin',
+        () => this.onFocusIn()
+      );
+
+      this.focusOutListener = addDisposableEventListener(
+        this.textInput.current,
+        'focusout',
+        () => this.onFocusOut()
+      );
+
+      this.inputListener = addDisposableEventListener(
+        this.textInput.current,
+        'input',
+        () => this.onInput()
+      );
+    }
+
+    this.chipsResizeObserver = new ResizeObserver(() => {
+      this.chipWidths = new Map();
+      this.calculateVisibleChips();
     });
 
-    if (this.formElement !== undefined) {
-      this.formKeyDownListener = addDisposableEventListener(
-        this.formElement,
-        'keydown',
-        ((e: KeyboardEvent) =>
-          this.handleFormElementKeyDown(e)) as EventListener
-      );
-
-      this.preventDefaultListener = addDisposableEventListener(
-        this.formElement,
-        'submit',
-        this.preventDefault
-      );
-    }
-
-    if (this.textInput?.current == null) {
-      console.warn(
-        'ix-category-filter - unable to add event listeners to native input element'
-      );
-      return;
-    }
-
-    this.inputKeyDownListener = addDisposableEventListener(
-      this.textInput.current,
-      'keydown',
-      ((e: KeyboardEvent) => this.handleInputElementKeyDown(e)) as EventListener
-    );
-
-    this.focusInListener = addDisposableEventListener(
-      this.textInput.current,
-      'focusin',
-      () => this.onFocusIn()
-    );
-
-    this.focusOutListener = addDisposableEventListener(
-      this.textInput.current,
-      'focusout',
-      () => this.onFocusOut()
-    );
-
-    this.inputListener = addDisposableEventListener(
-      this.textInput.current,
-      'input',
-      () => this.onInput()
-    );
-  }
-
-  private setFilterState(state: FilterState) {
-    this.filterTokens = [];
-
-    for (const token of state.tokens) {
-      this.addToken(
-        token,
-        this.ID_CUSTOM_FILTER_VALUE,
-        this.categoryLogicalOperator,
-        false
-      );
-    }
-
-    for (const category of state.categories) {
-      this.addToken(category.value, category.id, category.operator, false);
-    }
-
-    this.emitFilterEvent();
-  }
-
-  private closeDropdown() {
-    if (this.disabled || this.readonly) {
-      return;
-    }
-
-    if (this.dropdown) {
-      this.dropdown.show = false;
-    }
-  }
-
-  private openDropdown() {
-    if (this.disabled || this.readonly) {
-      return;
-    }
-
-    if (this.dropdown) {
-      this.dropdown.show = true;
-    }
-  }
-
-  private handleFormElementKeyDown(e: KeyboardEvent) {
-    switch (e.code) {
-      case 'Enter':
-      case 'NumpadEnter':
-        if (!document.activeElement?.classList.contains('dropdown-item')) {
-          return;
-        }
-
-        const token = document.activeElement.getAttribute('data-id');
-
-        if (token === null) {
-          break;
-        }
-
-        if (this.hasCategorySelection()) {
-          if (this.category !== '') {
-            this.addToken(token, this.category);
-            this.textInput?.current?.focus();
-          } else if (
-            document.activeElement.classList.contains('category-item-id')
-          ) {
-            this.selectCategory(token);
-          }
-        } else {
-          this.addToken(token);
-        }
-
-        e.preventDefault();
-        break;
-
-      case 'ArrowUp':
-        this.focusPreviousItem();
-        e.preventDefault();
-        break;
-
-      case 'ArrowDown':
-        this.showDropdown = true;
-        this.focusNextItem();
-        e.preventDefault();
-        break;
-
-      case 'Escape':
-        this.closeDropdown();
-        break;
-    }
-  }
-
-  private focusPreviousItem() {
-    const sibling = document.activeElement?.previousSibling;
-    if (sibling instanceof HTMLElement) {
-      sibling.focus();
-    }
-  }
-
-  private focusNextItem() {
-    const sibling = document.activeElement?.nextSibling;
-    if (sibling instanceof HTMLElement) {
-      sibling.focus();
-    }
-  }
-
-  private focusElement(selector: string): boolean {
-    const item = this.hostElement.shadowRoot!.querySelector(selector);
-    if (item instanceof HTMLElement) {
-      item.focus();
-      return true;
-    }
-    return false;
-  }
-
-  private onArrowDown(e: KeyboardEvent) {
-    const baseSelector = `.category-item-${
-      this.category !== '' ? 'value' : 'id'
-    }`;
-    const fallbackSelector = '.category-item';
-
-    if (this.focusElement(baseSelector)) {
-      e.stopPropagation();
-      return;
-    }
-
-    if (this.suggestions?.length && this.focusElement(fallbackSelector)) {
-      e.stopPropagation();
-    }
-  }
-
-  private handleInputElementKeyDown(e: KeyboardEvent) {
-    switch (e.code) {
-      case 'ArrowDown': {
-        this.onArrowDown(e);
-        break;
-      }
-
-      case 'Backspace':
-        if (this.textInput?.current?.value !== '') {
-          return;
-        }
-
-        if (this.category !== '') {
-          this.category = '';
-          return;
-        }
-
-        const tokenCount = this.filterTokens.length;
-        if (tokenCount > 0) {
-          this.removeToken(tokenCount - 1);
-        }
-        break;
-
-      case 'Enter':
-      case 'NumpadEnter':
-        this.addToken(
-          this.inputValue,
-          this.category || this.ID_CUSTOM_FILTER_VALUE
-        );
-        e.preventDefault();
-        break;
-    }
-  }
-
-  private emitFilterEvent() {
-    const tokens = this.filterTokens
-      .filter((item) => item.id === this.ID_CUSTOM_FILTER_VALUE)
-      .map((item) => item.value);
-    const categories = this.filterTokens.filter(
-      (item) => item.id !== this.ID_CUSTOM_FILTER_VALUE
-    );
-    const filterState: FilterState = {
-      tokens,
-      categories,
-    };
-
-    this.filterChanged.emit(filterState);
-  }
-
-  private addToken(
-    token: string,
-    category: string = this.ID_CUSTOM_FILTER_VALUE,
-    operator = this.categoryLogicalOperator,
-    emitEvent = true
-  ) {
-    if (token === undefined || token === null) {
-      return;
-    }
-
-    const newToken = token.trim();
-
-    if (newToken === '') {
-      return;
-    }
-
-    if (this.hasToken(newToken)) {
-      return;
-    }
-
-    const pair = { id: category, value: newToken, operator };
-    this.filterTokens = [...this.filterTokens, pair];
-    if (this.textInput?.current) {
-      this.textInput.current.value = '';
-    }
-    this.inputValue = '';
-    this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
-
-    if (this.category !== '') {
-      this.category = '';
-    }
-
-    this.isScrollStateDirty = true;
-
-    if (emitEvent) {
-      this.emitFilterEvent();
-    }
-  }
-
-  private removeToken(index: number) {
-    this.filterTokens = this.filterTokens.filter((_, i) => i !== index);
-    this.emitFilterEvent();
-  }
-
-  private getCategoryIds() {
-    const ids = [];
-    for (const id in this.categories) {
-      if (Object.prototype.hasOwnProperty.call(this.categories, id)) {
-        ids.push(id);
-      }
-    }
-
-    return ids;
-  }
-
-  private selectCategory(category: string) {
-    this.category = category;
-    if (this.textInput?.current) {
-      this.textInput.current.value = '';
-    }
-    this.inputValue = '';
-    this.textInput?.current?.focus();
-    this.categoryChanged.emit(category);
-  }
-
-  private resetFilter(e: Event) {
-    const { defaultPrevented } = this.filterCleared.emit();
-
-    if (defaultPrevented) {
-      return;
-    }
-
-    e.stopPropagation();
-    this.closeDropdown();
-    this.filterTokens = [];
-    if (this.category) {
-      this.category = '';
-      this.categoryChanged.emit(undefined);
-    }
-
-    this.emitFilterEvent();
-  }
-
-  private filterMultiples(value: string) {
-    if (!this.uniqueCategories) {
-      return true;
-    }
-
-    const isCategoryAlreadySet = this.filterTokens.find(
-      (token) => token.id === value
-    );
-
-    return !isCategoryAlreadySet;
-  }
-
-  private hasToken(token: string) {
-    return this.filterTokens.some((filterToken) => {
-      const hasSameValue = filterToken.value === token;
-
-      if (!hasSameValue) {
-        return false;
-      }
-
-      if (this.category !== '') {
-        return this.category === filterToken.id;
-      }
-
-      if (filterToken.id) {
-        return filterToken.id === this.ID_CUSTOM_FILTER_VALUE;
-      }
-
-      return hasSameValue;
-    });
-  }
-
-  private filterDuplicateTokens(value: string) {
-    return !this.hasToken(value);
-  }
-
-  private filterByInput(value: string) {
-    if (this.inputValue === undefined || this.inputValue === '') {
-      return true;
-    }
-
-    return value.toLowerCase().indexOf(this.inputValue.toLowerCase()) !== -1;
-  }
-
-  private toggleCategoryOperator() {
-    switch (this.categoryLogicalOperator) {
-      case LogicalFilterOperator.EQUAL:
-        this.categoryLogicalOperator = LogicalFilterOperator.NOT_EQUAL;
-        break;
-
-      case LogicalFilterOperator.NOT_EQUAL:
-        this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
-        break;
-    }
-  }
-
-  private getFilterChipLabel(value: {
-    id: string;
-    value: string;
-    operator: LogicalFilterOperator;
-  }): string {
-    if (value.id === this.ID_CUSTOM_FILTER_VALUE) {
-      return value.value;
-    }
-
-    const operatorString =
-      value.operator === LogicalFilterOperator.EQUAL ? '=' : '!=';
-    const label =
-      this.categories?.[value.id]?.label ??
-      this.nonSelectableCategories?.[value.id] ??
-      value.id;
-
-    return `${label} ${operatorString} ${value.value}`;
-  }
-
-  private getFilteredSuggestions() {
-    if (!this.suggestions?.length) {
-      return [];
-    }
-
-    return this.suggestions
-      ?.filter((value) => this.filterByInput(value))
-      .filter((value) => this.filterDuplicateTokens(value));
-  }
-
-  private hasCategorySelection() {
-    return this.categories !== undefined;
-  }
-
-  private renderPlainSuggestions() {
-    return (
-      <div class="dropdown-item-container">
-        {this.getFilteredSuggestions().map((suggestion) => (
-          <button
-            class="dropdown-item"
-            data-id={suggestion}
-            onClick={() => {
-              this.addToken(suggestion);
-              this.textInput?.current?.focus();
-            }}
-            key={suggestion}
-            title={suggestion}
-          >
-            {suggestion}
-          </button>
-        ))}
-      </div>
-    );
-  }
-
-  private renderOperatorButton() {
-    if (this.staticOperator) {
-      return '';
-    }
-
-    const params: BaseButtonProps = {
-      type: 'button',
-      variant: 'subtle-tertiary',
-      iconOnly: true,
-      iconOval: false,
-      selected: false,
-      disabled: this.disabled || this.staticOperator !== undefined,
-      loading: false,
-      icon: '',
-      onClick: (e: Event) => {
-        e.stopPropagation();
-        this.toggleCategoryOperator();
-      },
-      extraClasses: {
-        'btn-icon-32': true,
-        'btn-toggle-operator': true,
-      },
-      ariaAttributes: { 'aria-label': this.ariaLabelOperatorButton },
-    };
-
-    return (
-      <BaseButton {...params}>
-        {this.categoryLogicalOperator === LogicalFilterOperator.NOT_EQUAL
-          ? '='
-          : '!='}
-      </BaseButton>
-    );
-  }
-
-  private getFilterOperatorString() {
-    let operator: LogicalFilterOperator;
-    if (this.staticOperator !== undefined) {
-      operator = this.staticOperator;
-    } else {
-      operator = this.categoryLogicalOperator;
-    }
-    return `${operator === LogicalFilterOperator.EQUAL ? '=' : '!='} `;
-  }
-
-  private renderCategoryValues() {
-    if (this.categories === undefined) {
-      return;
-    }
-
-    return (
-      <div class="dropdown-item-container">
-        {this.renderOperatorButton()}
-        <div class="dropdown-header">
-          {this.categories[this.category]?.label}
-        </div>
-        {this.categories[this.category]?.options
-          .filter((value) => this.filterByInput(value))
-          .filter((value) => this.filterDuplicateTokens(value))
-          .map((id) => (
-            <button
-              class="dropdown-item category-item-value"
-              data-id={id}
-              title={id}
-              key={id}
-              onClick={(e) => {
-                e.preventDefault();
-                this.addToken(id, this.category);
-                this.textInput?.current?.focus();
-              }}
-            >
-              {`${this.getFilterOperatorString()} ${id}`}
-            </button>
-          ))}
-      </div>
-    );
-  }
-
-  private renderDropdownContent() {
-    if (this.hasCategorySelection()) {
-      if (this.category !== '') {
-        return this.renderCategoryValues();
-      } else {
-        return this.renderCategorySelection();
-      }
-    } else return this.renderPlainSuggestions();
-  }
-
-  private renderCategorySelection() {
-    return (
-      <div class="dropdown-item-container">
-        {this.getCategoryIds()
-          ?.filter(
-            (id) =>
-              this.categories && this.filterByInput(this.categories[id].label)
-          )
-          .filter((id) => this.filterMultiples(id))
-          .map((id) => (
-            <button
-              class="dropdown-item category-item category-item-id"
-              data-id={id}
-              title={this.categories?.[id]?.label}
-              key={id}
-              onClick={(e) => {
-                e.preventDefault();
-                this.selectCategory(id);
-              }}
-              tabindex="0"
-            >
-              {this.categories?.[id]?.label}
-            </button>
-          ))}
-      </div>
-    );
-  }
-
-  private getDropdownHeader() {
-    if (this.categories !== undefined) {
-      if (this.category !== '') {
-        return undefined;
-      } else {
-        return this.labelCategories;
-      }
-    }
-
-    return this.i18nPlainText;
-  }
-
-  componentDidRender() {
-    if (this.isScrollStateDirty) {
-      this.textInput?.current?.scrollIntoView();
-      this.isScrollStateDirty = false;
+    if (this.tokenContainerEl) {
+      this.chipsResizeObserver.observe(this.tokenContainerEl);
     }
   }
 
   disconnectedCallback() {
-    if (this.preventDefaultListener) {
-      this.preventDefaultListener();
-    }
-    if (this.formKeyDownListener) {
-      this.formKeyDownListener();
-    }
-    if (this.inputKeyDownListener) {
-      this.inputKeyDownListener?.();
-    }
-    if (this.focusInListener) {
-      this.focusInListener();
-    }
-    if (this.focusOutListener) {
-      this.focusOutListener();
-    }
-    if (this.inputListener) {
-      this.inputListener();
-    }
+    this.focusInListener?.();
+    this.focusOutListener?.();
+    this.inputListener?.();
+    this.chipsResizeObserver?.disconnect();
   }
 
-  private getResetButton() {
+  private renderChips() {
+    const visibleCount = Math.min(
+      this.visibleChipsCount,
+      this.filterValues.length
+    );
+    const visibleItems = this.filterValues.slice(0, visibleCount);
+    const overflowCount = this.filterValues.length - visibleCount;
+
+    return [
+      ...visibleItems.map((value, index) => (
+        <div ref={(el) => this.measureChip(index, el)}>
+          <ix-filter-chip
+            disabled={this.disabled}
+            readonly={this.readonly}
+            hideNativeTooltip={true}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!this.readonly && !this.disabled) {
+                this.removeFilterValue(index);
+              }
+            }}
+            onCloseClick={() => this.removeFilterValue(index)}
+            data-tooltip={`filterValue-${index}`}
+          >
+            {value.type === 'filter'
+              ? this.getFilterChipLabel(value)
+              : this.getSearchInformationText(value.value, true)}
+          </ix-filter-chip>
+          <ix-tooltip for={`[data-tooltip=filterValue-${index}]`}>
+            {this.getTooltipText(value)}
+          </ix-tooltip>
+        </div>
+      )),
+      overflowCount > 0 ? this.renderOverflowChip(overflowCount) : null,
+    ];
+  }
+
+  private renderOverflowChip(overflowCount: number) {
     return (
-      <ix-icon-button
-        onClick={(e) => this.resetFilter(e)}
-        class={{
-          'reset-button': true,
-          'hide-reset-button':
-            !this.filterTokens.length && this.category === '',
-        }}
-        variant="tertiary"
-        oval
-        icon={iconClear}
-        iconColor="color-soft-text"
-        size="16"
-        aria-label={this.ariaLabelResetButton}
-      ></ix-icon-button>
+      <div>
+        <ix-filter-chip
+          readonly={true}
+          onClick={(e) => {
+            e.stopPropagation();
+            this.additionalFilterValuesClicked();
+          }}
+        >
+          {`+${overflowCount}`}
+        </ix-filter-chip>
+        <ix-dropdown
+          show={this.showRemainingFilterValuesDropdown}
+          closeBehavior="outside"
+        >
+          <div class="additionalValuesList">
+            {this.filterValues
+              .slice(this.visibleChipsCount)
+              .map((value, index) => (
+                <ix-filter-chip
+                  onCloseClick={() =>
+                    this.removeFilterValue(index + this.visibleChipsCount)
+                  }
+                >
+                  {value.type === 'filter'
+                    ? this.getFilterChipLabel(value)
+                    : value.value}
+                </ix-filter-chip>
+              ))}
+          </div>
+        </ix-dropdown>
+      </div>
     );
   }
 
-  private getIconColor() {
-    if (this.disabled) {
-      return 'color-componentn-1';
-    }
-
-    if (this.readonly) {
-      return 'color-std-txt';
-    }
-
-    return 'color-primary';
+  private hasActiveFilterOrCategory(): boolean {
+    return this.filterValues.length > 0 || this.selectedCategory !== null;
   }
 
   render() {
     return (
-      <Host>
-        <form ref={(el) => (this.formElement = el)}>
+      <Host onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}>
+        <div
+          read-only={this.readonly}
+          class={{
+            'input-container': true,
+            disabled: this.disabled,
+            focus: this.hasFocus,
+            readonly: this.readonly,
+            'no-icon': this.hideIcon,
+          }}
+        >
+          <ix-icon
+            color={this.getIconColor()}
+            class={{ 'display-none': this.hideIcon }}
+            name={this.icon ?? iconSearch}
+            size="16"
+          ></ix-icon>
           <div
-            read-only={this.readonly}
-            class={{
-              'input-container': true,
-              disabled: this.disabled,
-              focus: this.hasFocus,
-              readonly: this.readonly,
-              'no-icon': this.hideIcon,
-            }}
+            class="token-container"
+            ref={(el) => (this.tokenContainerEl = el)}
           >
-            <ix-icon
-              color={this.getIconColor()}
-              class={{ 'display-none': this.hideIcon }}
-              name={this.icon ?? iconSearch}
-              size="16"
-            ></ix-icon>
-            <div class="token-container">
-              <div class="list-unstyled">
-                {this.filterTokens.map((value, index) => (
-                  <span
-                    key={value.toString()}
-                    class={{
-                      animate__animated: true,
-                      animate__fadein: true,
-                    }}
-                  >
-                    <ix-filter-chip
-                      disabled={this.disabled}
-                      readonly={this.readonly}
-                      onClick={(e) => e.stopPropagation()}
-                      onCloseClick={() => this.removeToken(index)}
-                    >
-                      {this.getFilterChipLabel(value)}
-                    </ix-filter-chip>
-                  </span>
-                ))}
-                {this.categories === undefined ? (
-                  ''
-                ) : (
-                  <span
-                    class={{
-                      'category-preview': true,
-                      'display-none': this.category === '',
-                    }}
-                  >
-                    {this.categories[this.category]?.label}
-                  </span>
-                )}
-                <input
+            <div class="list-unstyled">
+              {this.renderChips()}
+              {this.categories !== undefined ? (
+                <span
                   class={{
-                    'text-input': true,
-                    'hide-placeholder':
-                      this.readonly || this.disabled || this.category !== '',
+                    'category-preview': true,
+                    'display-none': this.selectedCategory === null,
                   }}
-                  autocomplete="off"
-                  name="category-filter-input"
-                  disabled={this.disabled}
-                  readonly={this.readonly}
-                  ref={this.textInput}
-                  type="text"
-                  placeholder={this.placeholder}
-                  {...this.a11yAttributes}
-                  aria-label={this.ariaLabelFilterInput}
-                ></input>
-              </div>
+                >
+                  {this.getPreviewText()}
+                </span>
+              ) : (
+                ''
+              )}
+              <input
+                class={{
+                  'text-input': true,
+                  'hide-placeholder':
+                    this.readonly ||
+                    this.disabled ||
+                    this.selectedCategory !== null,
+                  'input-spacing': this.filterValues.length > 0,
+                }}
+                autocomplete="off"
+                name="category-filter-input"
+                disabled={this.disabled}
+                readonly={this.readonly}
+                ref={this.textInput}
+                type="text"
+                placeholder={this.placeholderState}
+                {...this.a11yAttributes}
+                aria-label={this.ariaLabelFilterInput}
+              ></input>
             </div>
-            {!this.readonly && !this.disabled && this.getResetButton()}
           </div>
-        </form>
+          {!this.readonly && !this.disabled && (
+            <ix-icon-button
+              onClick={(e) => this.resetFilter(e)}
+              class={{
+                'reset-button': true,
+                'hide-reset-button': !this.hasActiveFilterOrCategory(),
+              }}
+              variant="tertiary"
+              oval
+              icon={iconClear}
+              iconColor="color-soft-text"
+              size="16"
+              aria-label={this.ariaLabelResetButton}
+            ></ix-icon-button>
+          )}
+        </div>
 
         {this.disabled || this.readonly ? (
           ''
         ) : (
           <ix-dropdown
-            show={this.showDropdown}
+            show={this.isDropdownOpen}
             closeBehavior="outside"
-            offset={{ mainAxis: 2 }}
             anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
-            header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
           >
+            {this.shouldShowSearchOption() ? (
+              <div>
+                <ix-dropdown-item
+                  onClick={() => this.addSearchToken(this.inputValue)}
+                >
+                  {this.getSearchInformationText()}
+                </ix-dropdown-item>
+                <ix-divider></ix-divider>
+              </div>
+            ) : (
+              ''
+            )}
             {this.renderDropdownContent()}
+            {this.isLoading ? (
+              <ix-dropdown-item disabled={true}>
+                <div class="loading-container">
+                  <ix-spinner size="small"></ix-spinner>
+                  <span>Loading options...</span>
+                </div>
+              </ix-dropdown-item>
+            ) : (
+              ''
+            )}
+            {this.hasError ? (
+              <div class="error-container">
+                <ix-icon name="warning"></ix-icon>
+                <div class="text-container">
+                  <ix-typography format="body" text-color="std">
+                    Fetching failed
+                  </ix-typography>
+                  <ix-typography format="body" text-color="soft">
+                    Use free text search.
+                  </ix-typography>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </ix-dropdown>
         )}
       </Host>

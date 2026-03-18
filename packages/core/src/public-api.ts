@@ -6,9 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export * from './components/category-filter/filter-state';
-export * from './components/category-filter/input-state';
-export * from './components/category-filter/logical-filter-operator';
+export * from './components/category-filter/filter-and-search-value';
+export * from './components/category-filter/filter-category';
+export * from './components/category-filter/filter-operand';
+export * from './components/category-filter/filter-selection';
+export * from './components/category-filter/search-query';
 export { FlipTileVariant } from './components/flip-tile/flip-tile.types';
 export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';

@@ -278,12 +278,17 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'suggestions',
   'icon',
   'hideIcon',
-  'staticOperator',
+  'staticOperand',
   'uniqueCategories',
+  'operands',
   'labelCategories',
+  'labelOperands',
+  'labelValues',
   'i18nPlainText',
+  'disableSearch',
+  'isLoading',
+  'hasError',
   'ariaLabelResetButton',
-  'ariaLabelOperatorButton',
   'ariaLabelFilterInput',
   'enableTopLayer',
   'categoryChanged',
@@ -642,6 +647,7 @@ export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/
   'disabled',
   'readonly',
   'ariaLabelCloseIconButton',
+  'hideNativeTooltip',
   'closeClick'
 ], [
   'closeClick'
