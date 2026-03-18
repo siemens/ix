@@ -333,18 +333,12 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  private getConvertedDimension(value: string | undefined): string | undefined {
-    return normalizeCssDimension(value);
-  }
-
   private getTextareaHeight(): string | undefined {
     if (this.isManuallyResized) {
       return this.manualHeight;
     }
 
-    const convertedHeight = this.getConvertedDimension(this.textareaHeight);
-
-    return convertedHeight;
+    return normalizeCssDimension(this.textareaHeight);
   }
 
   private getTextareaWidth(): string | undefined {
@@ -352,9 +346,7 @@ export class Textarea implements IxInputFieldComponent<string> {
       return this.manualWidth || '100%';
     }
 
-    const convertedWidth = this.getConvertedDimension(this.textareaWidth);
-
-    return convertedWidth;
+    return normalizeCssDimension(this.textareaWidth);
   }
 
   render() {
