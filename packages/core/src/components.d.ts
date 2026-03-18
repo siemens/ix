@@ -711,7 +711,7 @@ export namespace Components {
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
           * @default 'Close chip'
          */
-        "ariaLabelCloseButton"?: string;
+        "ariaLabelCloseButton": string;
         /**
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
