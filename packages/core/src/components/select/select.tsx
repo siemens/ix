@@ -853,6 +853,7 @@ export class Select
       <Host
         id={this.getHostElementId()}
         class={{
+          readonly: this.readonly,
           disabled: this.disabled,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
