@@ -1922,6 +1922,9 @@ importers:
       '@siemens/ix-angular':
         specifier: workspace:*
         version: link:../../packages/angular/dist
+      '@siemens/ix-cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
       '@siemens/ix-echarts':
         specifier: workspace:*
         version: link:../../packages/echarts

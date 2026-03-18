@@ -15,11 +15,12 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@siemens/ix": "workspace:*",
-    "@siemens/ix-react": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
-    "@siemens/ix-vue": "workspace:*",
+    "@siemens/ix-cli": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-aggrid": "workspace:*"
+    "@siemens/ix-react": "workspace:*",
+    "@siemens/ix-vue": "workspace:*",
+    "@siemens/ix": "workspace:*"
   }
 }
