@@ -27,7 +27,7 @@
   "devDependencies": {
     "@angular/animations": "^20.1.4",
     "@angular/common": "^20.3.14",
-    "@angular/compiler": "^20.3.16",
+    "@angular/compiler": "^20.3.18",
     "@angular/compiler-cli": "^20.1.4",
     "@angular/core": "^20.3.17",
     "@angular/forms": "^20.1.4",

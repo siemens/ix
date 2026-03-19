@@ -110,7 +110,10 @@ export class DropdownButton {
               variant={this.variant}
               disabled={this.disabled}
               alignment="start"
-              ariaLabel={this.ariaLabelDropdownButton}
+              ariaLabelButton={
+                this.ariaLabelDropdownButton ??
+                (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
+              }
               tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>
@@ -139,6 +142,10 @@ export class DropdownButton {
                 variant={this.variant}
                 disabled={this.disabled}
                 tabIndex={this.disabled ? -1 : 0}
+                aria-label={
+                  this.ariaLabelDropdownButton ??
+                  (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
+                }
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
