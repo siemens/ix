@@ -8,13 +8,11 @@
  */
 import stencilSSR from '@stencil/ssr/next';
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  // Explicitly use webpack until @stencil/ssr adds Turbopack support
-  // This suppresses the migration warning
-  experimental: {
-    turbo: false,
-  },
+  turbopack: {},
 };
 
 export default stencilSSR({

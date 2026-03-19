@@ -227,6 +227,11 @@ export class ApplicationHeader {
     this.breakpoint = 'md';
   }
 
+  @Watch('breakpoint')
+  watchBreakpoint() {
+    this.updateHasSlotAssignedElementsStates();
+  }
+
   private checkLogoSlot() {
     const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
@@ -329,7 +334,9 @@ export class ApplicationHeader {
     this.hasOverflowSlotElements = hasSlottedElements(overflowSlot);
 
     this.hasOverflowContextMenu =
-      this.hasDefaultSlotElements || this.hasSecondarySlotElements;
+      this.hasOverflowSlotElements ||
+      (this.breakpoint === 'sm' &&
+        (this.hasDefaultSlotElements || this.hasSecondarySlotElements));
   }
 
   private onContentBgClick(e: MouseEvent) {
@@ -361,6 +368,7 @@ export class ApplicationHeader {
           'hide-bottom-border': this.hideBottomBorder,
         }}
         slot="application-header"
+        role="banner"
       >
         <div class="left-side">
           {this.appIcon && this.breakpoint !== 'sm' && (
@@ -429,26 +437,21 @@ export class ApplicationHeader {
             <ix-icon-button
               class={{
                 'context-menu': true,
-                'context-menu-visible':
-                  this.hasOverflowContextMenu || this.hasOverflowSlotElements,
+                'context-menu-visible': this.hasOverflowContextMenu,
               }}
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
-              aria-hidden={a11yBoolean(
-                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
-              )}
+              aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}
             ></ix-icon-button>
             <ix-dropdown
               data-overflow-dropdown
               class="dropdown"
               discoverAllSubmenus
               trigger={this.resolveContextMenuButton()}
-              aria-hidden={a11yBoolean(
-                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
-              )}
+              aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}
               enableTopLayer={this.enableTopLayer}
             >
               <div

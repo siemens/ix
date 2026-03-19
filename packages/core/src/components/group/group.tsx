@@ -89,7 +89,7 @@ export class Group {
   @Event() expandedChanged!: EventEmitter<boolean>;
 
   @State() itemSelected = false;
-  @State() slotSize = this.groupItems.length;
+  @State() slotSize = 0;
   @State() footerVisible = false;
 
   @State() showExpandCollapsedIcon = false;
@@ -210,6 +210,7 @@ export class Group {
       childList: true,
     });
     this.checkDropdownSlot();
+    this.slotSize = this.groupItems.length;
   }
 
   disconnectedCallback() {

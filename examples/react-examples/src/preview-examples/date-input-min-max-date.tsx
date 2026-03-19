@@ -12,9 +12,9 @@ import { IxDateInput } from '@siemens/ix-react';
 export default () => {
   return (
     <IxDateInput
-      minDate="2025/07/06"
-      maxDate="2025/07/14"
-      value="2025/07/07"
+      minDate="2026/02/01"
+      maxDate="2026/02/28"
+      value="2026/02/08"
     ></IxDateInput>
   );
 };

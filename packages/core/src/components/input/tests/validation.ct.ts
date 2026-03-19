@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { test } from '@utils/test';
 import { expect } from '@playwright/test';
+import { test } from '@utils/test';
 
 test.describe('validation', () => {
   test.describe('ix-input', () => {
@@ -358,6 +358,49 @@ test.describe('ixChange event', () => {
       const ixChangeEmitted = await page.evaluate(getIxChangeEmitted);
       expect(ixChangeEmitted).toBe(false);
     });
+
+    test('ix-datetime-input - should emit ixChange on blur when value changed', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      const ixChangePromise = component.evaluate(
+        createIxChangePromise<string | undefined>
+      );
+
+      await input.focus();
+      await input.fill('2024/06/15 14:30:00');
+      await input.blur();
+
+      const emittedValue = await ixChangePromise;
+      expect(emittedValue).toBe('2024/06/15 14:30:00');
+    });
+
+    test('ix-datetime-input - should NOT emit ixChange on blur when value unchanged', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      await component.evaluate(setupIxChangeEmittedListener);
+
+      await input.focus();
+      await input.blur();
+
+      const ixChangeEmitted = await page.evaluate(getIxChangeEmitted);
+      expect(ixChangeEmitted).toBe(false);
+    });
   });
 
   test.describe('on Enter keydown', () => {
@@ -492,6 +535,39 @@ test.describe('ixChange event', () => {
       expect(typeof emittedValue).toBe('string');
       expect(emittedValue).toContain('12:');
     });
+
+    test('ix-datetime-input - should emit ixChange when datetime is picked', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+      const calendarButton = component.locator('ix-icon-button').first();
+
+      await component.evaluate(setupIxChangeValueListener);
+
+      await input.focus();
+      await calendarButton.click();
+
+      const dropdown = component.getByTestId('datetime-dropdown');
+      await expect(dropdown).toBeVisible();
+
+      await component.getByRole('button', { name: /^15\s.+$/ }).click();
+      await component.getByRole('button', { name: 'hr: 14' }).click();
+      await component.getByRole('button', { name: 'min: 30' }).click();
+      await component.getByRole('button', { name: 'sec: 45' }).click();
+      await component.getByRole('button', { name: 'Confirm' }).click();
+
+      await page.waitForFunction(getIxChangeEmitted, { timeout: 5000 });
+
+      const emittedValue = await page.evaluate(getIxChangeValue<string>);
+      expect(emittedValue).toBeDefined();
+      expect(emittedValue).toBe('2024/05/15 14:30:45');
+    });
   });
 
   test.describe('programmatic value changes', () => {
@@ -556,6 +632,28 @@ test.describe('ixChange event', () => {
       const emitted = await page.evaluate(getIxChangeEmitted);
       expect(emitted).toBe(false);
     });
+
+    test('ix-datetime-input - should NOT emit ixChange on programmatic value change', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+
+      await component.evaluate(setupIxChangeEmittedListener);
+
+      await component.evaluate((el: any) => {
+        el.value = '2024/12/31 23:59:59';
+      });
+
+      await page.waitForTimeout(100);
+
+      const emitted = await page.evaluate(getIxChangeEmitted);
+      expect(emitted).toBe(false);
+    });
   });
 
   test.describe('disabled and readonly states', () => {
@@ -598,6 +696,49 @@ test.describe('ixChange event', () => {
         const emitted = await page.evaluate(getIxChangeEmitted);
         expect(emitted).toBe(false);
       });
+    });
+
+    test('ix-datetime-input - should NOT emit ixChange when disabled', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11" disabled></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      await component.evaluate(setupIxChangeEmittedListener);
+
+      try {
+        await input.focus({ timeout: 1000 });
+      } catch {
+        // Expected - disabled inputs cannot be focused
+      }
+
+      const emitted = await page.evaluate(getIxChangeEmitted);
+      expect(emitted).toBe(false);
+    });
+
+    test('ix-datetime-input - should NOT emit ixChange when readonly', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11" readonly></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      await component.evaluate(setupIxChangeEmittedListener);
+
+      await input.focus();
+      await input.blur();
+
+      const emitted = await page.evaluate(getIxChangeEmitted);
+      expect(emitted).toBe(false);
     });
   });
 
@@ -688,6 +829,52 @@ test.describe('ixChange event', () => {
           emittedValue === null ||
           Number.isNaN(emittedValue)
       ).toBe(true);
+    });
+
+    test('ix-datetime-input - should emit ixChange when changing from empty to value', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      const ixChangePromise = component.evaluate(
+        createIxChangePromise<string | undefined>
+      );
+
+      await input.focus();
+      await input.fill('2024/06/15 14:30:00');
+      await input.blur();
+
+      const emittedValue = await ixChangePromise;
+      expect(emittedValue).toBe('2024/06/15 14:30:00');
+    });
+
+    test('ix-datetime-input - should emit ixChange when changing from value to empty', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>'
+      );
+
+      const component = page.locator('ix-datetime-input');
+      const input = component.locator('input');
+
+      const ixChangePromise = component.evaluate(
+        createIxChangePromise<string | undefined>
+      );
+
+      await input.focus();
+      await input.fill('');
+      await input.blur();
+
+      const emittedValue = await ixChangePromise;
+      expect(emittedValue).toBe('');
     });
   });
 });

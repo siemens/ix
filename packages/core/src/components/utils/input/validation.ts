@@ -8,7 +8,7 @@
  */
 import { getElement } from '@stencil/core';
 import { HTMLIxFormComponentElement, IxFormComponent } from '.';
-import { IxComponent } from '../internal';
+import { IxComponentInterface } from '../internal';
 
 export type ClassMutationObserver = {
   destroy: () => void;
@@ -106,7 +106,7 @@ export function checkFieldClasses(
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
-  return (proto: IxComponent, methodName: string) => {
+  return (proto: IxComponentInterface, methodName: string) => {
     let checkIfRequiredFunction: (() => Promise<void>) | null;
     let classMutationObserver: ClassMutationObserver | null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
@@ -122,6 +122,8 @@ export function HookValidationLifecycle(options?: {
         if (skipValidation) {
           return;
         }
+
+        const validationElement = await host.getNativeInputElement?.();
 
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
@@ -150,6 +152,41 @@ export function HookValidationLifecycle(options?: {
             'ix-invalid--validity-invalid',
             !validityState.valid && touched
           );
+
+          const fieldWrapper =
+            host.shadowRoot?.querySelector('ix-field-wrapper');
+
+          if (validationElement && fieldWrapper) {
+            const ariaErrorMessageElement =
+              await fieldWrapper.getAriaErrorMessageElement();
+
+            const ariaHelperMessageElement =
+              await fieldWrapper.getAriaHelperMessageElement();
+
+            if (ariaHelperMessageElement) {
+              validationElement.setAttribute(
+                'aria-describedby',
+                `${ariaHelperMessageElement.id}`
+              );
+            }
+
+            if (!validityState.valid) {
+              validationElement?.setAttribute('aria-invalid', 'true');
+
+              if (ariaErrorMessageElement && !validityState.valid) {
+                validationElement.setAttribute(
+                  'aria-errormessage',
+                  `${ariaErrorMessageElement.id}`
+                );
+                validationElement.setAttribute(
+                  'aria-describedby',
+                  `${ariaErrorMessageElement.id}`
+                );
+              }
+            } else {
+              validationElement?.removeAttribute('aria-invalid');
+            }
+          }
         }
       };
 

@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
 /**
@@ -20,7 +20,7 @@ import { makeRef } from '../utils/make-ref';
   styleUrl: 'pill.scss',
   shadow: true,
 })
-export class Pill implements IxComponent {
+export class Pill implements IxComponentInterface {
   @Element() hostElement!: HTMLIxPillElement;
 
   /**

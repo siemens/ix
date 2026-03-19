@@ -29,6 +29,7 @@ import { makeRef } from '../utils/make-ref';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
@@ -403,6 +404,14 @@ export class CategoryFilter {
       this.category !== '' ? 'value' : 'id'
     }`;
     const fallbackSelector = '.category-item';
+
+    if (!this.dropdown?.show) {
+      this.openDropdown();
+      requestAnimationFrameNoNgZone(() => this.focusElement('.dropdown-item'));
+      e.stopPropagation();
+      e.preventDefault();
+      return;
+    }
 
     if (this.focusElement(baseSelector)) {
       e.stopPropagation();

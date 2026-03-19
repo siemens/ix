@@ -27,7 +27,7 @@
   --theme-input--background--warning--hover: var(--theme-color-component-warning);
   --theme-input--border-color: var(--theme-color-std-bdr);
   --theme-input--border-color--autofill: var(--theme-color-hard-bdr);
-  --theme-input--border-color--disabled: var(--theme-color-0);
+  --theme-input--border-color--disabled: var(--theme-color-weak-bdr);
   --theme-input--border-color--focus: var(--theme-color-dynamic);
   --theme-input--border-color--hover: var(--theme-color-dynamic);
   --theme-input--border-color--info: var(--theme-color-info);
@@ -36,12 +36,12 @@
   --theme-input--border-color--invalid: var(--theme-color-alarm-bdr);
   --theme-input--border-color--invalid--active: var(--theme-color-alarm-bdr);
   --theme-input--border-color--invalid--hover: var(--theme-color-alarm-bdr);
-  --theme-input--border-color--readonly: var(--theme-color-0);
+  --theme-input--border-color--readonly: var(--theme-color-std-bdr);
   --theme-input--border-color--warning: var(--theme-color-warning-bdr);
   --theme-input--border-color--warning--active: var(--theme-color-warning-bdr);
   --theme-input--border-color--warning--hover: var(--theme-color-warning-bdr);
   --theme-input--border-color-bottom--disabled: var(--theme-color-weak-bdr);
-  --theme-input--border-color-bottom--readonly: var(--theme-color-soft-bdr);
+  --theme-input--border-color-bottom--readonly: var(--theme-color-std-bdr);
   --theme-input--border-radius: var(--theme-small-border-radius);
   --theme-input--border-thickness: var(--theme-border-width-default);
   --theme-input--box-shadow: var(--theme-inset-shadow-1);

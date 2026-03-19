@@ -307,7 +307,6 @@ export class Input implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
-          htmlForLabel={this.inputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}

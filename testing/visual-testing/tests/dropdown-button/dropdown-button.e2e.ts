@@ -24,10 +24,10 @@ regressionTest.describe('basic', () => {
   regressionTest('dropdown should open', async ({ page }) => {
     await page.goto('dropdown-button/dropdown');
 
-    const triggerHandle = await page.waitForSelector('.dropdown-button');
-    await triggerHandle.click();
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await dropdownButton.click();
 
-    await page.waitForSelector('.dropdown.show');
+    await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.01,

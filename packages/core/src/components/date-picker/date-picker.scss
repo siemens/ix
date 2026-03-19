@@ -11,6 +11,8 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './../button/button-mixin' as button-mixin;
+
 :host {
   display: block;
   position: relative;
@@ -42,20 +44,6 @@
       color: var(--theme-menu-item--color);
       font-size: 14px;
       line-height: 20px;
-    }
-
-    .capitalize {
-      text-transform: capitalize;
-    }
-
-    .month-dropdown-item {
-      margin-left: 4px;
-      margin-right: 4px;
-
-      &:focus-visible {
-        outline: 1px solid var(--theme-color-focus-bdr);
-        outline-offset: var(--theme-btn--focus--outline-offset);
-      }
     }
 
     .arrowYear {
@@ -91,15 +79,6 @@
     }
   }
 
-  .wrapper {
-    display: flex;
-
-    .overflow {
-      overflow-y: scroll;
-      max-height: 250px;
-    }
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(7, 40px);
@@ -127,14 +106,7 @@
 
       &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
-        box-shadow: inset 0 0 0 1px var(--theme-color-inv-contrast-text);
-        background-color: var(--theme-datepicker-day--background--selected);
-        border: inset 1px solid
-          var(--theme-datepicker-day--border-color--selected);
-        color: var(--theme-datepicker-day--color--selected);
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0;
+        outline-offset: var(--theme-btn--focus--outline-offset);
       }
 
       &.today {
@@ -319,5 +291,28 @@
 
   .hidden {
     display: none;
+  }
+
+  .infinite-scrolling-spacer:first-of-type {
+    position: relative;
+    padding-bottom: 4rem;
+
+    .sentinel {
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      width: 50px;
+    }
+  }
+  .infinite-scrolling-spacer:last-of-type {
+    position: relative;
+    padding-top: 4rem;
+
+    .sentinel {
+      position: absolute;
+      top: 0;
+      height: 1px;
+      width: 50px;
+    }
   }
 }

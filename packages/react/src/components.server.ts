@@ -9,7 +9,7 @@
 
 // @ts-ignore - ignore potential type issues as the project is importing itself
 import * as clientComponents from "@siemens/ix";
-import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxDrawerCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDrawerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
@@ -34,6 +34,7 @@ import { IxCustomField as IxCustomFieldElement } from "@siemens/ix/components/ix
 import { IxDateDropdown as IxDateDropdownElement } from "@siemens/ix/components/ix-date-dropdown.js";
 import { IxDateInput as IxDateInputElement } from "@siemens/ix/components/ix-date-input.js";
 import { IxDatePicker as IxDatePickerElement } from "@siemens/ix/components/ix-date-picker.js";
+import { IxDatetimeInput as IxDatetimeInputElement } from "@siemens/ix/components/ix-datetime-input.js";
 import { IxDatetimePicker as IxDatetimePickerElement } from "@siemens/ix/components/ix-datetime-picker.js";
 import { IxDivider as IxDividerElement } from "@siemens/ix/components/ix-divider.js";
 import { IxDrawer as IxDrawerElement } from "@siemens/ix/components/ix-drawer.js";
@@ -242,7 +243,8 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         subtle: 'subtle',
         invisible: 'invisible',
         hideChevron: 'hide-chevron',
-        isDropdownTrigger: 'is-dropdown-trigger'
+        isDropdownTrigger: 'is-dropdown-trigger',
+        isCurrentPage: 'is-current-page'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxBreadcrumbItem as ReactWebComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>,
@@ -513,11 +515,8 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         variant: 'variant',
         loading: 'loading',
         showWeekNumbers: 'show-week-numbers',
-        ariaLabelDropdownButton: 'aria-label-dropdown-button',
-        customRangeDisabled: 'custom-range-disabled',
         locale: 'locale',
         weekStartIndex: 'week-start-index',
-        i18nCustomItem: 'i18n-custom-item',
         i18nDone: 'i18n-done',
         i18nNoRange: 'i18n-no-range',
         today: 'today',
@@ -588,6 +587,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         i18nDone: 'i18n-done',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        ariaLabelMonthSelection: 'aria-label-month-selection',
+        ariaLabelYearSelection: 'aria-label-year-selection',
         weekStartIndex: 'week-start-index',
         locale: 'locale',
         showWeekNumbers: 'show-week-numbers',
@@ -597,6 +598,51 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDatePicker as ReactWebComponent<IxDatePickerElement, IxDatePickerEvents>,
+    serializeShadowRoot
+});
+
+export type IxDatetimeInputEvents = {
+    onValueChange: EventName<IxDatetimeInputCustomEvent<string | undefined>>,
+    onValidityStateChange: EventName<IxDatetimeInputCustomEvent<DateTimeInputValidityState>>,
+    onIxFocus: EventName<IxDatetimeInputCustomEvent<void>>,
+    onIxBlur: EventName<IxDatetimeInputCustomEvent<void>>,
+    onIxChange: EventName<IxDatetimeInputCustomEvent<string | undefined>>
+};
+
+export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents> = /*@__PURE__*/ createComponent<IxDatetimeInputElement, IxDatetimeInputEvents>({
+    tagName: 'ix-datetime-input',
+    properties: {
+        name: 'name',
+        placeholder: 'placeholder',
+        value: 'value',
+        format: 'format',
+        locale: 'locale',
+        required: 'required',
+        disabled: 'disabled',
+        readonly: 'readonly',
+        minDate: 'min-date',
+        maxDate: 'max-date',
+        label: 'label',
+        helperText: 'helper-text',
+        invalidText: 'invalid-text',
+        infoText: 'info-text',
+        warningText: 'warning-text',
+        validText: 'valid-text',
+        showTextAsTooltip: 'show-text-as-tooltip',
+        i18nErrorDateTimeUnparsable: 'i-1-8n-error-date-time-unparsable',
+        i18nDone: 'i-1-8n-done',
+        i18nTime: 'i-1-8n-time',
+        ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
+        ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        ariaLabelCalendarButton: 'aria-label-calendar-button',
+        showWeekNumbers: 'show-week-numbers',
+        weekStartIndex: 'week-start-index',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment',
+        enableTopLayer: 'enable-top-layer'
+    },
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxDatetimeInput as ReactWebComponent<IxDatetimeInputElement, IxDatetimeInputEvents>,
     serializeShadowRoot
 });
 
@@ -625,7 +671,8 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         weekStartIndex: 'week-start-index',
         locale: 'locale',
-        showWeekNumbers: 'show-week-numbers'
+        showWeekNumbers: 'show-week-numbers',
+        embedded: 'embedded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDatetimePicker as ReactWebComponent<IxDatetimePickerElement, IxDatetimePickerEvents>,
@@ -663,7 +710,10 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     serializeShadowRoot
 });
 
-export type IxDropdownEvents = { onShowChanged: EventName<IxDropdownCustomEvent<boolean>> };
+export type IxDropdownEvents = {
+    onShowChange: EventName<IxDropdownCustomEvent<boolean>>,
+    onShowChanged: EventName<IxDropdownCustomEvent<boolean>>
+};
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
@@ -676,17 +726,23 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
+        disableFocusHandling: 'disable-focus-handling',
+        disableFocusTrap: 'disable-focus-trap',
+        enableTopLayer: 'enable-top-layer',
+        focusCheckedItem: 'focus-checked-item',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
-        suppressOverflowBehavior: 'suppress-overflow-behavior',
-        enableTopLayer: 'enable-top-layer'
+        suppressOverflowBehavior: 'suppress-overflow-behavior'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as ReactWebComponent<IxDropdownElement, IxDropdownEvents>,
     serializeShadowRoot
 });
 
-export type IxDropdownButtonEvents = NonNullable<unknown>;
+export type IxDropdownButtonEvents = {
+    onShowChange: EventName<IxDropdownButtonCustomEvent<boolean>>,
+    onShowChanged: EventName<IxDropdownButtonCustomEvent<boolean>>
+};
 
 export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',
@@ -698,7 +754,9 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         closeBehavior: 'close-behavior',
         placement: 'placement',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
-        enableTopLayer: 'enable-top-layer'
+        focusCheckedItem: 'focus-checked-item',
+        enableTopLayer: 'enable-top-layer',
+        suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownButton as ReactWebComponent<IxDropdownButtonElement, IxDropdownButtonEvents>,
@@ -720,6 +778,8 @@ export type IxDropdownItemEvents = NonNullable<unknown>;
 export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
     properties: {
+        ixFocusVisible: 'ix-focus-visible',
+        disableAriaSelectHandling: 'disable-aria-select-handling',
         label: 'label',
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
@@ -728,7 +788,8 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         disabled: 'disabled',
         checked: 'checked',
         isSubMenu: 'is-sub-menu',
-        suppressChecked: 'suppress-checked'
+        suppressChecked: 'suppress-checked',
+        hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownItem as ReactWebComponent<IxDropdownItemElement, IxDropdownItemEvents>,
@@ -1595,6 +1656,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         label: 'label',
         ariaLabelChevronDownIconButton: 'aria-label-chevron-down-icon-button',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
+        ariaLabelAddItem: 'aria-label-add-item',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',
@@ -1628,6 +1690,8 @@ export type IxSelectItemEvents = { onItemClick: EventName<IxSelectItemCustomEven
 export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     properties: {
+        ixFocusVisible: 'ix-focus-visible',
+        disableAriaSelectHandling: 'disable-aria-select-handling',
         label: 'label',
         value: 'value',
         selected: 'selected',
@@ -1821,7 +1885,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
         hideHeader: 'hide-header',
         textAlignment: 'text-alignment',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        ariaLabelTimeToggleButton: 'aria-label-time-toggle-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,

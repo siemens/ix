@@ -14,7 +14,7 @@ import {
   IxFormValidationState,
   ValidationResults,
 } from '../utils/input';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
@@ -26,7 +26,7 @@ import { IxComponent } from '../utils/internal';
   shadow: true,
 })
 export class CustomField
-  implements FieldWrapperInterface, IxFormValidationState, IxComponent
+  implements FieldWrapperInterface, IxFormValidationState, IxComponentInterface
 {
   @Element() hostElement!: HTMLIxCustomFieldElement;
   /**
