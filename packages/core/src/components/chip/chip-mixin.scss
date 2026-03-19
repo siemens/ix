@@ -144,14 +144,6 @@ $border-radius: 100px;
     }
 
     @if $interaction {
-      &.closable:has(.close-button:hover) {
-        background-color: var(--theme-chip-primary--background--hover);
-      }
-
-      &.closable:has(.close-button:active) {
-        background-color: var(--theme-chip-primary--background--active);
-      }
-
       &:not(.closable):hover:not(:focus-visible) {
         background-color: var(--theme-chip-primary--background--hover);
       }
@@ -189,14 +181,6 @@ $border-radius: 100px;
     }
 
     @if $interaction {
-      &.closable:has(.close-button:hover) {
-        background-color: var(--theme-chip-primary-outline--background--hover);
-      }
-
-      &.closable:has(.close-button:active) {
-        background-color: var(--theme-chip-primary-outline--background--active);
-      }
-
       &:not(.closable):hover:not(:focus-visible) {
         background-color: var(--theme-chip-primary-outline--background--hover);
       }
@@ -217,14 +201,11 @@ $border-radius: 100px;
       color: var(--theme-color-#{$color}--contrast);
 
       @if $interaction {
-        &.closable:has(.close-button:hover)::after,
         &:not(.closable):hover:not(:focus-visible)::after {
           @extend %after-overlay;
           background-color: rgba(0, 0, 0, 0.05);
         }
 
-        &.closable.active::after,
-        &.closable:has(.close-button:active)::after,
         &:not(.closable):active::after {
           @extend %after-overlay;
           background-color: rgba(0, 0, 0, 0.1);
@@ -240,14 +221,11 @@ $border-radius: 100px;
         }
 
         @if $interaction {
-          &.closable:has(.close-button:hover)::after,
           &:not(.closable):hover:not(:focus-visible)::after {
             @extend %after-overlay;
             background-color: rgba(0, 0, 0, 0.05);
           }
 
-          &.closable.active::after,
-          &.closable:has(.close-button:active)::after,
           &:not(.closable):active::after {
             @extend %after-overlay;
             background-color: rgba(0, 0, 0, 0.1);
@@ -277,18 +255,9 @@ $border-radius: 100px;
             display: none;
           }
 
-          &.closable:has(.close-button:hover) {
-            background-color: var(--theme-chip-outline--background--hover);
-          }
-
           &.closable.active::after,
           &.closable:has(.close-button:active)::after {
             display: none;
-          }
-
-          &.closable.active,
-          &.closable:has(.close-button:active) {
-            background-color: var(--theme-chip-outline--background--active);
           }
 
           &:not(.closable):hover:not(:focus-visible)::after {
