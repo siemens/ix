@@ -524,6 +524,10 @@ export namespace Components {
          */
         "showAllCount"?: number;
         /**
+          * Number of additional cards to reveal each time the "Show more" card is clicked. column position (maxVisibleCards + 1) after each click.
+         */
+        "showMoreStep"?: number;
+        /**
           * Suppress the overflow handling of child elements
           * @default false
          */
@@ -6521,6 +6525,10 @@ declare namespace LocalJSX {
          */
         "showAllCount"?: number;
         /**
+          * Number of additional cards to reveal each time the "Show more" card is clicked. column position (maxVisibleCards + 1) after each click.
+         */
+        "showMoreStep"?: number;
+        /**
           * Suppress the overflow handling of child elements
           * @default false
          */
@@ -10625,6 +10633,7 @@ declare namespace LocalJSX {
         "collapse": boolean;
         "listStyle": 'stack' | 'scroll';
         "maxVisibleCards": number;
+        "showMoreStep": number;
         "showAllCount": number;
         "suppressOverflowHandling": boolean;
         "hideShowAll": boolean;

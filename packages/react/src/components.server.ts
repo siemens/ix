@@ -324,6 +324,7 @@ export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEven
         collapse: 'collapse',
         listStyle: 'list-style',
         maxVisibleCards: 'max-visible-cards',
+        showMoreStep: 'show-more-step',
         showAllCount: 'show-all-count',
         suppressOverflowHandling: 'suppress-overflow-handling',
         hideShowAll: 'hide-show-all',

@@ -95,6 +95,12 @@ export class CardList {
   @Prop() maxVisibleCards = 12;
 
   /**
+   * Number of additional cards to reveal each time the "Show more" card is clicked.
+   * column position (maxVisibleCards + 1) after each click.
+   */
+  @Prop() showMoreStep?: number;
+
+  /**
    * Overwrite the default show all count.
    * */
   @Prop() showAllCount?: number;
@@ -141,13 +147,19 @@ export class CardList {
 
   @Element() hostElement!: HTMLIxCardListElement;
 
+  @State() private isShowingAll = false;
+  @State() private currentlyVisibleCards = 0;
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
   @State() private numberOfAllChildElements = 0;
   @State() private leftScrollDistance = 0;
   @State() private rightScrollDistance = 0;
+  @State() private showMoreCardWidth: string | undefined;
+  @State() private showMoreCardHeight: string | undefined;
 
   private observer?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
+  private observedCard?: Element;
 
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
@@ -155,7 +167,19 @@ export class CardList {
   }
 
   private onShowAllClick(event: MouseEvent) {
+    this.isShowingAll = true;
+    this.changeVisibilityOfSlotChildren();
     this.showAllClick.emit({
+      nativeEvent: event,
+    });
+  }
+
+  private onShowMoreCardClick(event: MouseEvent) {
+    const showMoreStep = this.showMoreStep ?? 0;
+    const step = showMoreStep > 0 ? showMoreStep : this.maxVisibleCards;
+    this.currentlyVisibleCards += step;
+    this.changeVisibilityOfSlotChildren();
+    this.showMoreCardClick.emit({
       nativeEvent: event,
     });
   }
@@ -169,21 +193,73 @@ export class CardList {
 
   private changeVisibilityOfSlotChildren() {
     const childElements = this.getListChildren();
+    if (this.currentlyVisibleCards === 0) {
+      this.currentlyVisibleCards = this.maxVisibleCards;
+    }
+
+    const visibleLimit = this.isShowingAll
+      ? childElements.length
+      : this.currentlyVisibleCards;
+
     childElements.forEach((element, index) => {
       if (element instanceof HTMLElement) {
-        if (index > this.maxVisibleCards - 1) {
+        if (index > visibleLimit - 1) {
           element.classList.add('display-none');
           return;
         }
         element.classList.remove('display-none');
       }
     });
-    this.hasOverflowingElements = childElements.length > this.maxVisibleCards;
-    this.numberOfOverflowingElements =
-      childElements.length - this.maxVisibleCards;
+
+    this.hasOverflowingElements = visibleLimit < childElements.length;
+    this.numberOfOverflowingElements = childElements.length - visibleLimit;
 
     this.numberOfAllChildElements = childElements.length;
+    this.observeFirstCard(childElements);
     this.detectOverflow();
+  }
+
+  private observeFirstCard(childElements: Element[]) {
+    const firstCard = childElements.find(
+      (el) =>
+        el instanceof HTMLElement && !el.classList.contains('display-none')
+    );
+
+    if (firstCard === this.observedCard) {
+      return;
+    }
+
+    this.cleanupResizeObserver();
+
+    if (!(firstCard instanceof HTMLElement)) {
+      return;
+    }
+
+    this.observedCard = firstCard;
+    this.measureCard(firstCard);
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.measureCard(firstCard);
+    });
+    this.resizeObserver.observe(firstCard);
+  }
+
+  private measureCard(card: HTMLElement) {
+    const { offsetWidth, offsetHeight } = card;
+    if (offsetWidth > 0) {
+      this.showMoreCardWidth = `${offsetWidth}px`;
+    }
+    if (offsetHeight > 0) {
+      this.showMoreCardHeight = `${offsetHeight}px`;
+    }
+  }
+
+  private cleanupResizeObserver() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
+    }
+    this.observedCard = undefined;
   }
 
   private registerOverflowHandler() {
@@ -286,6 +362,7 @@ export class CardList {
     if (this.observer) {
       this.observer.disconnect();
     }
+    this.cleanupResizeObserver();
   }
 
   render() {
@@ -320,20 +397,36 @@ export class CardList {
             onScroll={() => this.onCardListScroll()}
           >
             <slot
-              onSlotchange={() => this.changeVisibilityOfSlotChildren()}
+              onSlotchange={() => {
+                this.currentlyVisibleCards = this.maxVisibleCards;
+                this.isShowingAll = false;
+                this.changeVisibilityOfSlotChildren();
+              }}
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
                 class={{
                   Show__All__Card: true,
                 }}
-                onClick={(event) =>
-                  this.showMoreCardClick.emit({
-                    nativeEvent: event,
-                  })
-                }
+                style={{
+                  ...(this.showMoreCardWidth
+                    ? {
+                        '--ix-card-list-show-more-width':
+                          this.showMoreCardWidth,
+                      }
+                    : {}),
+                  ...(this.showMoreCardHeight
+                    ? {
+                        '--ix-card-list-show-more-height':
+                          this.showMoreCardHeight,
+                      }
+                    : {}),
+                }}
+                onClick={(event) => {
+                  this.onShowMoreCardClick(event);
+                }}
               >
-                <ix-card-content>
+                <ix-card-content class="Show__All__Card__Content">
                   <div class="Show__All__Card__Content">
                     <ix-icon
                       name={iconMoreMenu}
