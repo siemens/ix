@@ -3471,15 +3471,15 @@ export namespace Components {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
-          * @default 'Previous tab'
+          * @default 'Scroll tabs left'
          */
-        "ariaLabelChevronLeftIconButton"?: string;
+        "ariaLabelChevronLeftIconButton": string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
-          * @default 'Next tab'
+          * @default 'Scroll tabs right'
          */
-        "ariaLabelChevronRightIconButton"?: string;
+        "ariaLabelChevronRightIconButton": string;
         /**
           * Set layout width style
           * @default 'auto'
@@ -9691,13 +9691,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
-          * @default 'Previous tab'
+          * @default 'Scroll tabs left'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
-          * @default 'Next tab'
+          * @default 'Scroll tabs right'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
