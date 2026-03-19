@@ -26,8 +26,7 @@ export const showLoadingOverlay = () => {
   loadingOverlay.style.display = 'grid';
   loadingOverlay.style.placeItems = 'center';
   loadingOverlay.style.padding = '24px';
-  loadingOverlay.style.background =
-    'var(--theme-color-1, rgba(255, 255, 255, 0.96))';
+  loadingOverlay.style.background = 'var(--theme-color-1, #000028)';
   loadingOverlay.style.backdropFilter = 'blur(6px)';
   loadingOverlay.style.transition = 'opacity 180ms ease';
   loadingOverlay.style.opacity = '1';
@@ -37,15 +36,16 @@ export const showLoadingOverlay = () => {
   loadingPanel.style.maxWidth = '420px';
   loadingPanel.style.borderRadius = '16px';
   loadingPanel.style.padding = '24px';
-  loadingPanel.style.background = 'var(--theme-color-2, #ffffff)';
-  loadingPanel.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.18)';
+  loadingPanel.style.background = 'var(--theme-color-2, #23233c)';
+  loadingPanel.style.boxShadow =
+    'var(--theme-shadow-4, 0 0 2px 0 #000000, 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 12px 18px 0 rgba(0, 0, 0, 0.6))';
   loadingPanel.style.border =
-    '1px solid var(--theme-color-x-weak-bdr, rgba(0, 0, 0, 0.08))';
+    '1px solid var(--theme-color-x-weak-bdr, rgba(157, 157, 150, 0.15))';
   loadingPanel.style.display = 'grid';
   loadingPanel.style.justifyItems = 'center';
   loadingPanel.style.gap = '16px';
   loadingPanel.style.textAlign = 'center';
-  loadingPanel.style.color = 'var(--theme-color-std-text, #111111)';
+  loadingPanel.style.color = 'var(--theme-color-std-text, #ffffff)';
   loadingPanel.style.fontFamily = 'Siemens Sans, sans-serif';
 
   const loadingSpinner = document.createElementNS(
@@ -68,7 +68,7 @@ export const showLoadingOverlay = () => {
   loadingSpinnerTrack.setAttribute('fill', 'none');
   loadingSpinnerTrack.setAttribute(
     'stroke',
-    'var(--theme-color-x-weak-bdr, rgba(0, 0, 0, 0.12))'
+    'var(--theme-color-x-weak-bdr, rgba(157, 157, 150, 0.15))'
   );
   loadingSpinnerTrack.setAttribute('stroke-width', '6');
 
@@ -80,7 +80,7 @@ export const showLoadingOverlay = () => {
   loadingSpinnerArc.setAttribute('fill', 'none');
   loadingSpinnerArc.setAttribute(
     'stroke',
-    'var(--theme-color-primary, #007993)'
+    'var(--theme-color-primary, #00cccc)'
   );
   loadingSpinnerArc.setAttribute('stroke-width', '6');
   loadingSpinnerArc.setAttribute('stroke-linecap', 'round');
@@ -97,7 +97,7 @@ export const showLoadingOverlay = () => {
   loadingSpinnerCore.setAttribute('r', '4');
   loadingSpinnerCore.setAttribute(
     'fill',
-    'var(--theme-color-primary, #007993)'
+    'var(--theme-color-primary, #00cccc)'
   );
   loadingSpinnerCore.style.transformOrigin = '32px 32px';
   loadingSpinnerCore.style.animation =
