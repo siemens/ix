@@ -38,6 +38,8 @@ export type ToggleButtonVariant = Exclude<
 export class ToggleButton {
   @Element() hostElement!: HTMLIxToggleButtonElement;
 
+  private a11yAttributes: Record<string, string> = {};
+
   /**
    * Button variant.
    */
@@ -80,13 +82,15 @@ export class ToggleButton {
    */
   @Event() pressedChange!: EventEmitter<boolean>;
 
+  componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+  }
+
   private dispatchPressedChange() {
     this.pressedChange.emit(!this.pressed);
   }
 
   render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
@@ -99,10 +103,10 @@ export class ToggleButton {
       onClick: () => this.dispatchPressedChange(),
       type: 'button',
       ariaAttributes: {
-        ...a11y,
+        ...this.a11yAttributes,
         'aria-pressed': a11yBoolean(this.pressed),
         'aria-label':
-          a11y['aria-label'] ??
+          this.a11yAttributes['aria-label'] ??
           this.ariaLabelButton ??
           getFallbackLabelFromIconName(this.icon),
       },

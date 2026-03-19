@@ -120,6 +120,12 @@ export class Button
    */
   submitButtonElement?: HTMLButtonElement;
 
+  private a11yAttributes: Record<string, string> = {};
+
+  componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+  }
+
   @Listen('click', { capture: true })
   handleClick(event: Event) {
     if (this.disabled || this.loading) {
@@ -200,8 +206,8 @@ export class Button
       type: this.type,
       alignment: this.alignment,
       ariaAttributes: {
-        ...a11y,
-        'aria-label': a11y['aria-label'] ?? this.ariaLabelButton,
+        ...this.a11yAttributes,
+        'aria-label': this.a11yAttributes['aria-label'] ?? this.ariaLabelButton,
       },
       href: this.href,
       target: this.target,

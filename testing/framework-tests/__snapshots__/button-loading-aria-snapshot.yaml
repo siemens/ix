@@ -2,9 +2,8 @@
   - button "Button"
   - button "Button"
   - button "Toggle loading"
-  - button "Toggle loading"
   - button "Loading Button" [disabled]:
     - status "Loading"
-    - text: ""
+    - text: Button
   - button "Loading action" [disabled]:
     - status "Loading"

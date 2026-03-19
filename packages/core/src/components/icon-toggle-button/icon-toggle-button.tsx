@@ -90,6 +90,12 @@ export class IconToggleButton {
 
   @Element() hostElement!: HTMLIxIconToggleButtonElement;
 
+  private a11yAttributes: Record<string, string> = {};
+
+  componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+  }
+
   private dispatchPressedChange() {
     this.pressedChange.emit(!this.pressed);
   }
@@ -103,8 +109,6 @@ export class IconToggleButton {
   }
 
   render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: true,
@@ -117,9 +121,10 @@ export class IconToggleButton {
       onClick: () => this.dispatchPressedChange(),
       type: 'button',
       ariaAttributes: {
-        ...a11y,
+        ...this.a11yAttributes,
         'aria-pressed': a11yBoolean(this.pressed),
-        'aria-label': a11y['aria-label'] ?? this.ariaLabelIconButton,
+        'aria-label':
+          this.a11yAttributes['aria-label'] ?? this.ariaLabelIconButton,
       },
       extraClasses: {
         'icon-button': true,

@@ -83,9 +83,12 @@ export class IconButton extends Mixin(...DefaultMixins) {
   submitButtonElement!: HTMLButtonElement;
 
   private inheritAriaAttributes: A11yAttributes = {};
+  private a11yAttributes: Record<string, string> = {};
 
   override componentWillLoad(): Promise<void> | void {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+
   }
 
   override componentDidLoad() {
@@ -132,9 +135,9 @@ export class IconButton extends Mixin(...DefaultMixins) {
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: ariaAttributes,
       // ariaAttributes: {
-      //   ...a11y,
+      //   ...this.a11yAttributes,
       //   'aria-label':
-      //     a11y['aria-label'] ??
+      //     this.a11yAttributes['aria-label'] ??
       //     this.a11yLabel ??
       //     getFallbackLabelFromIconName(this.icon),
       // },
