@@ -254,6 +254,34 @@
           "path": "feat/block-cli/examples/datepicker-range.json"
         },
         {
+          "name": "datetime-input",
+          "path": "feat/block-cli/examples/datetime-input.json"
+        },
+        {
+          "name": "datetime-input-disabled",
+          "path": "feat/block-cli/examples/datetime-input-disabled.json"
+        },
+        {
+          "name": "datetime-input-label",
+          "path": "feat/block-cli/examples/datetime-input-label.json"
+        },
+        {
+          "name": "datetime-input-min-max-date",
+          "path": "feat/block-cli/examples/datetime-input-min-max-date.json"
+        },
+        {
+          "name": "datetime-input-readonly",
+          "path": "feat/block-cli/examples/datetime-input-readonly.json"
+        },
+        {
+          "name": "datetime-input-validation",
+          "path": "feat/block-cli/examples/datetime-input-validation.json"
+        },
+        {
+          "name": "datetime-input-with-slots",
+          "path": "feat/block-cli/examples/datetime-input-with-slots.json"
+        },
+        {
           "name": "datetimepicker",
           "path": "feat/block-cli/examples/datetimepicker.json"
         },

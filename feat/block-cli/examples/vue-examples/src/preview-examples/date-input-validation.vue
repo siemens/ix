@@ -14,7 +14,7 @@ import { IxDateInput } from '@siemens/ix-vue';
 <template>
   <div>
     <IxDateInput
-      value="1970/01/01"
+      value="2026/02/08"
       info-text="Info text"
       class="ix-info"
     ></IxDateInput>
@@ -22,7 +22,7 @@ import { IxDateInput } from '@siemens/ix-vue';
 
   <div>
     <IxDateInput
-      value="1970/01/01"
+      value="2026/02/08"
       warning-text="Warning text"
       class="ix-warning"
     ></IxDateInput>
@@ -30,7 +30,7 @@ import { IxDateInput } from '@siemens/ix-vue';
 
   <div>
     <IxDateInput
-      value="1970/01/01"
+      value="2026/02/08"
       valid-text="Valid text"
       class="ix-valid"
     ></IxDateInput>
@@ -38,7 +38,7 @@ import { IxDateInput } from '@siemens/ix-vue';
 
   <div>
     <IxDateInput
-      value="1970/01/01"
+      value="2026/02/08"
       invalid-text="Invalid text"
       class="ix-invalid"
     ></IxDateInput>
