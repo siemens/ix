@@ -69,7 +69,6 @@ export class CategoryFilter {
   @State() filteredOperands: FilterOperand[] = [];
   @State() availableValuesForSelectedCategory: string[] = [];
   @State() categoriesAvailableForSelection: FilterCategory[] = [];
-  @State() selectedIndex = -1;
   @State() isDropdownOpen = false;
   @State() visibleChipsCount = Infinity;
   @State() showRemainingFilterValuesDropdown = false;
@@ -280,7 +279,7 @@ export class CategoryFilter {
 
       case 'Enter':
       case 'NumpadEnter':
-        this.handleEnterKey(e);
+        this.handleEnterKey();
         break;
 
       case 'Backspace':
@@ -294,28 +293,59 @@ export class CategoryFilter {
     }
   }
 
-  private handleArrowNavigation(e: KeyboardEvent): void {
-    this.isDropdownOpen = true;
-    const itemCount = this.getDropdownItemCount();
-    if (itemCount === 0) {
-      return;
-    }
-
-    e.preventDefault();
-    const direction = e.code === 'ArrowDown' ? 1 : -1;
-    this.selectedIndex =
-      direction > 0
-        ? Math.min(this.selectedIndex + 1, itemCount - 1)
-        : Math.max(this.selectedIndex - 1, 0);
+  private focusFirstDropdownItem(): void {
+    requestAnimationFrameNoNgZone(() => {
+      const first =
+        this.hostElement.shadowRoot?.querySelector<HTMLIxDropdownItemElement>(
+          'ix-dropdown-item'
+        );
+      first?.shadowRoot?.querySelector<HTMLElement>('button')?.focus();
+    });
   }
 
-  private handleEnterKey(e: KeyboardEvent): void {
-    if (this.selectedIndex >= 0 && this.isDropdownOpen) {
-      this.selectDropdownItem(this.selectedIndex);
-      e.preventDefault();
-    } else {
-      this.combineFilter();
+  private handleArrowNavigation(e: KeyboardEvent): void {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const wasOpen = this.isDropdownOpen;
+    if (!wasOpen) {
+      this.isDropdownOpen = true;
     }
+
+    const navigate = () => {
+      const items = Array.from(
+        this.hostElement.shadowRoot?.querySelectorAll<HTMLIxDropdownItemElement>(
+          'ix-dropdown-item'
+        ) ?? []
+      );
+      if (!items.length) return;
+
+      const path = wasOpen ? e.composedPath() : [];
+      const currentIndex = items.findIndex((item) => path.includes(item));
+      const direction = e.code === 'ArrowDown' ? 1 : -1;
+      const nextIndex =
+        currentIndex < 0
+          ? direction > 0
+            ? 0
+            : items.length - 1
+          : currentIndex + direction;
+
+      if (nextIndex < 0 || nextIndex >= items.length) return;
+
+      items[nextIndex].shadowRoot
+        ?.querySelector<HTMLElement>('button')
+        ?.focus();
+    };
+
+    if (wasOpen) {
+      navigate();
+    } else {
+      requestAnimationFrameNoNgZone(navigate);
+    }
+  }
+
+  private handleEnterKey(): void {
+    this.combineFilter();
   }
 
   private handleBackspace(e: KeyboardEvent): void {
@@ -458,11 +488,10 @@ export class CategoryFilter {
             <ix-dropdown-header
               label={this.labelCategories}
             ></ix-dropdown-header>
-            {this.categoriesAvailableForSelection.map((category, index) => (
+            {this.categoriesAvailableForSelection.map((category) => (
               <ix-dropdown-item
                 onClick={() => this.selectCategory(category)}
                 label={category.label}
-                hover={index === this.selectedIndex}
               ></ix-dropdown-item>
             ))}
           </div>
@@ -480,9 +509,8 @@ export class CategoryFilter {
     if (this.textInput?.current) {
       this.textInput.current.value = '';
     }
-    this.textInput?.current?.focus();
+    this.focusFirstDropdownItem();
     this.placeholderState = '';
-    this.selectedIndex = -1;
     this.categoryChanged.emit(category.key);
 
     // If staticOperand is set, skip operand selection
@@ -501,11 +529,10 @@ export class CategoryFilter {
         {this.filteredOperands.length ? (
           <div>
             <ix-dropdown-header label={this.labelOperands}></ix-dropdown-header>
-            {this.filteredOperands.map((operand, index) => (
+            {this.filteredOperands.map((operand) => (
               <ix-dropdown-item
                 onClick={() => this.selectOperand(operand)}
                 label={operand.label}
-                hover={index === this.selectedIndex}
               ></ix-dropdown-item>
             ))}
           </div>
@@ -522,8 +549,7 @@ export class CategoryFilter {
     if (this.textInput?.current) {
       this.textInput.current.value = '';
     }
-    this.textInput?.current?.focus();
-    this.selectedIndex = -1;
+    this.focusFirstDropdownItem();
     this.availableValuesForSelectedCategory = this.filterExistingValues();
   }
 
@@ -552,11 +578,10 @@ export class CategoryFilter {
         {this.availableValuesForSelectedCategory.length ? (
           <div>
             <ix-dropdown-header label={this.labelValues}></ix-dropdown-header>
-            {this.availableValuesForSelectedCategory.map((value, index) => (
+            {this.availableValuesForSelectedCategory.map((value) => (
               <ix-dropdown-item
                 onClick={() => this.selectValue(value)}
                 label={value}
-                hover={index === this.selectedIndex}
               ></ix-dropdown-item>
             ))}
           </div>
@@ -590,10 +615,9 @@ export class CategoryFilter {
 
     return (
       <div>
-        {filtered.map((suggestion, index) => (
+        {filtered.map((suggestion) => (
           <ix-dropdown-item
             label={suggestion}
-            hover={index === this.selectedIndex}
             onClick={() => {
               this.addSearchToken(suggestion);
               this.textInput?.current?.focus();
@@ -888,58 +912,6 @@ export class CategoryFilter {
     }
   }
 
-  private getDropdownItemCount(): number {
-    if (!this.categories) {
-      return this.getFilteredSuggestionCount();
-    }
-
-    if (!this.selectedCategory) {
-      return this.categoriesAvailableForSelection.length;
-    }
-    if (!this.selectedOperand) {
-      return this.filteredOperands.length;
-    }
-    return this.availableValuesForSelectedCategory.length;
-  }
-
-  private getFilteredSuggestionCount(): number {
-    if (!this.suggestions?.length) {
-      return 0;
-    }
-    return this.suggestions
-      .filter((s) => this.filterByInput(s))
-      .filter((s) => this.filterDuplicateTokens(s)).length;
-  }
-
-  private selectDropdownItem(index: number) {
-    if (!this.categories) {
-      // Plain suggestions mode
-      const filtered = this.suggestions
-        ?.filter((s) => this.filterByInput(s))
-        .filter((s) => this.filterDuplicateTokens(s));
-      if (filtered && filtered[index]) {
-        this.addSearchToken(filtered[index]);
-        this.textInput?.current?.focus();
-      }
-    } else if (!this.selectedCategory) {
-      if (this.categoriesAvailableForSelection[index]) {
-        this.selectCategory(this.categoriesAvailableForSelection[index]);
-      }
-    } else if (!this.selectedOperand) {
-      if (this.filteredOperands[index]) {
-        this.selectOperand(this.filteredOperands[index]);
-      }
-    } else {
-      if (this.availableValuesForSelectedCategory[index]) {
-        this.selectValue(this.availableValuesForSelectedCategory[index]);
-      }
-    }
-
-    this.selectedIndex = -1;
-    this.isDropdownOpen = true;
-    this.showRemainingFilterValuesDropdown = false;
-  }
-
   private clearLastSelection() {
     this.selectedCategory = null;
     this.selectedOperand = null;
@@ -1152,9 +1124,25 @@ export class CategoryFilter {
     return this.filterValues.length > 0 || this.selectedCategory !== null;
   }
 
+  private getDropdownAriaDescription(): string | undefined {
+    if (!this.categories) {
+      return undefined;
+    }
+    if (!this.selectedCategory) {
+      return this.labelCategories;
+    }
+    if (!this.selectedOperand) {
+      return this.labelOperands;
+    }
+    return this.labelValues;
+  }
+
   render() {
     return (
-      <Host onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}>
+      <Host
+        onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}
+        role="combobox"
+      >
         <div
           read-only={this.readonly}
           class={{
@@ -1205,6 +1193,7 @@ export class CategoryFilter {
                 ref={this.textInput}
                 type="text"
                 placeholder={this.placeholderState}
+                onClick={() => (this.isDropdownOpen = true)}
                 {...this.a11yAttributes}
                 aria-label={this.ariaLabelFilterInput}
               ></input>
@@ -1234,8 +1223,8 @@ export class CategoryFilter {
             show={this.isDropdownOpen}
             closeBehavior="outside"
             anchor={this.textInput?.waitForCurrent()}
-            trigger={this.hostElement}
             enableTopLayer={this.enableTopLayer}
+            ariaDescription={this.getDropdownAriaDescription()}
           >
             {this.shouldShowSearchOption() ? (
               <div>
