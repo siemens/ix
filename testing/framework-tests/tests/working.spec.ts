@@ -8,3 +8,5 @@
  */
 import './generated/chip.spec';
 import './generated/tabs.spec';
+import './generated/tabs-overflow.spec';
+import './generated/tabs-rounded.spec';

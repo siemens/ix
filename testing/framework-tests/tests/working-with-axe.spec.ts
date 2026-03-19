@@ -8,3 +8,5 @@
  */
 import './generated/chip-axe.spec';
 import './generated/tabs-axe.spec';
+import './generated/tabs-overflow-axe.spec';
+import './generated/tabs-rounded-axe.spec';
