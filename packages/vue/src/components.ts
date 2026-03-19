@@ -84,6 +84,7 @@ import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/co
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
+import { defineCustomElement as defineIxRangeField } from '@siemens/ix/components/ix-range-field.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -1236,6 +1237,12 @@ export const IxRadioGroup: StencilVueComponent<JSX.IxRadioGroup> = /*@__PURE__*/
   'valueChange'
 ], [
   'valueChange'
+]);
+
+
+export const IxRangeField: StencilVueComponent<JSX.IxRangeField> = /*@__PURE__*/ defineContainer<JSX.IxRangeField>('ix-range-field', defineIxRangeField, [
+  'type',
+  'hideArrow'
 ]);
 
 

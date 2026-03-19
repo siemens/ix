@@ -79,6 +79,7 @@ import { defineCustomElement as ixProgressIndicator } from '@siemens/ix/componen
 import { defineCustomElement as ixPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as ixRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as ixRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
+import { defineCustomElement as ixRangeField } from '@siemens/ix/components/ix-range-field.js';
 import { defineCustomElement as ixRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as ixSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as ixSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -182,6 +183,7 @@ ixProgressIndicator();
 ixPushCard();
 ixRadio();
 ixRadioGroup();
+ixRangeField();
 ixRow();
 ixSelect();
 ixSelectItem();

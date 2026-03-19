@@ -59,6 +59,8 @@ import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
+import DateRange from './preview-examples/date-range';
+import DatetimeRange from './preview-examples/datetime-range';
 import DateInput from './preview-examples/date-input';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
@@ -95,7 +97,6 @@ import EchartsProgressArc from './preview-examples/echarts-progress-arc';
 import EchartsProgressCircle from './preview-examples/echarts-progress-circle';
 import EchartsSpecial3d from './preview-examples/echarts-special-3d';
 import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox';
-import EchartsZoom from './preview-examples/echarts-special-zoom';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
@@ -188,6 +189,7 @@ import RadioButton from './preview-examples/radio-button';
 import RadioDisabled from './preview-examples/radio-disabled';
 import RadioGroup from './preview-examples/radio-group';
 import RadioValidation from './preview-examples/radio-validation';
+import RangeField from './preview-examples/range-field';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
@@ -213,6 +215,7 @@ import TextareaRowCols from './preview-examples/textarea-rows-cols';
 import TextareaValidation from './preview-examples/textarea-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
+import TimeRange from './preview-examples/time-range';
 import Timepicker from './preview-examples/timepicker';
 import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
@@ -310,6 +313,8 @@ const routes: IxPreviewRoutes = {
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-range': DateRange,
+  '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
@@ -392,6 +397,7 @@ const routes: IxPreviewRoutes = {
   '/preview/radio-disabled': RadioDisabled,
   '/preview/radio-group': RadioGroup,
   '/preview/radio-validation': RadioValidation,
+  '/preview/range-field': RangeField,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
@@ -437,6 +443,7 @@ const routes: IxPreviewRoutes = {
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/theme-switcher': ThemeSwitcher,
   '/preview/tile': Tile,
+  '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,

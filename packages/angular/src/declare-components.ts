@@ -81,6 +81,7 @@ export const DIRECTIVES = [
   d.IxPushCard,
   d.IxRadio,
   d.IxRadioGroup,
+  d.IxRangeField,
   d.IxRow,
   d.IxSelect,
   d.IxSelectItem,

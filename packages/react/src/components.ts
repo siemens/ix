@@ -87,6 +87,7 @@ import { IxProgressIndicator as IxProgressIndicatorElement, defineCustomElement 
 import { IxPushCard as IxPushCardElement, defineCustomElement as defineIxPushCard } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement, defineCustomElement as defineIxRadioGroup } from "@siemens/ix/components/ix-radio-group.js";
 import { IxRadio as IxRadioElement, defineCustomElement as defineIxRadio } from "@siemens/ix/components/ix-radio.js";
+import { IxRangeField as IxRangeFieldElement, defineCustomElement as defineIxRangeField } from "@siemens/ix/components/ix-range-field.js";
 import { IxRow as IxRowElement, defineCustomElement as defineIxRow } from "@siemens/ix/components/ix-row.js";
 import { IxSelectItem as IxSelectItemElement, defineCustomElement as defineIxSelectItem } from "@siemens/ix/components/ix-select-item.js";
 import { IxSelect as IxSelectElement, defineCustomElement as defineIxSelect } from "@siemens/ix/components/ix-select.js";
@@ -1164,6 +1165,17 @@ export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGro
     react: React,
     events: { onValueChange: 'valueChange' } as IxRadioGroupEvents,
     defineCustomElement: defineIxRadioGroup
+});
+
+export type IxRangeFieldEvents = NonNullable<unknown>;
+
+export const IxRangeField: StencilReactComponent<IxRangeFieldElement, IxRangeFieldEvents> = /*@__PURE__*/ createComponent<IxRangeFieldElement, IxRangeFieldEvents>({
+    tagName: 'ix-range-field',
+    elementClass: IxRangeFieldElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxRangeFieldEvents,
+    defineCustomElement: defineIxRangeField
 });
 
 export type IxRowEvents = NonNullable<unknown>;
