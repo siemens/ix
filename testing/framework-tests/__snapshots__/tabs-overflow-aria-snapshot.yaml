@@ -1,0 +1,11 @@
+- main:
+  - tablist:
+    - tab "Overview"
+    - tab "Analytics"
+    - tab "Events"
+    - tab "Automation"
+    - tab "Data Sources"
+    - tab "Notifications"
+    - tab "History"
+    - tab "Settings"
+  - tabpanel "Example content"
