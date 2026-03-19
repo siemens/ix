@@ -15,6 +15,7 @@ import {
   closeModal as _closeModal,
   ModalInstance as IxModalInstance,
   ModalLoadingContext,
+  ModalLoadingOptions,
 } from '@siemens/ix';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 
@@ -33,8 +34,11 @@ export async function showModal(
   return _showModal(config);
 }
 
-export function showModalLoading(message: string): ModalLoadingContext {
-  return _showModalLoading(message);
+export function showModalLoading(
+  message: string,
+  options?: ModalLoadingOptions
+): ModalLoadingContext {
+  return _showModalLoading(message, options);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {
