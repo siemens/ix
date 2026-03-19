@@ -189,6 +189,10 @@ export class Button
       ?.focus();
   }
 
+  private ariaLabelForInnerControl(): string | undefined {
+    return this.a11yAttributes['aria-label'] ?? this.ariaLabelButton;
+  }
+
   override render() {
     const a11y = a11yHostAttributes(this.hostElement);
 
@@ -207,7 +211,7 @@ export class Button
       alignment: this.alignment,
       ariaAttributes: {
         ...this.a11yAttributes,
-        'aria-label': this.a11yAttributes['aria-label'] ?? this.ariaLabelButton,
+        'aria-label': this.ariaLabelForInnerControl(),
       },
       href: this.href,
       target: this.target,
