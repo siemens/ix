@@ -454,21 +454,21 @@ export declare interface IxCardTitle extends Components.IxCardTitle {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCategoryFilter,
-  inputs: ['ariaLabelFilterInput', 'ariaLabelOperatorButton', 'ariaLabelResetButton', 'categories', 'disabled', 'enableTopLayer', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'staticOperator', 'suggestions', 'uniqueCategories']
+  inputs: ['ariaLabelFilterInput', 'ariaLabelResetButton', 'categories', 'disableSearch', 'disabled', 'enableTopLayer', 'filterState', 'hasError', 'hideIcon', 'i18nPlainText', 'icon', 'isLoading', 'labelCategories', 'labelOperands', 'labelValues', 'nonSelectableCategories', 'operands', 'placeholder', 'readonly', 'staticOperand', 'suggestions', 'uniqueCategories']
 })
 @Component({
   selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelFilterInput', 'ariaLabelOperatorButton', 'ariaLabelResetButton', 'categories', 'disabled', 'enableTopLayer', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'staticOperator', 'suggestions', 'uniqueCategories'],
+  inputs: ['ariaLabelFilterInput', 'ariaLabelResetButton', 'categories', 'disableSearch', 'disabled', 'enableTopLayer', 'filterState', 'hasError', 'hideIcon', 'i18nPlainText', 'icon', 'isLoading', 'labelCategories', 'labelOperands', 'labelValues', 'nonSelectableCategories', 'operands', 'placeholder', 'readonly', 'staticOperand', 'suggestions', 'uniqueCategories'],
   outputs: ['categoryChanged', 'inputChanged', 'filterChanged', 'filterCleared'],
 })
 export class IxCategoryFilter {
   protected el: HTMLIxCategoryFilterElement;
   @Output() categoryChanged = new EventEmitter<CustomEvent<string>>();
   @Output() inputChanged = new EventEmitter<CustomEvent<IIxCategoryFilterInputState>>();
-  @Output() filterChanged = new EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>();
+  @Output() filterChanged = new EventEmitter<CustomEvent<IIxCategoryFilterFilterAndSearchValue[]>>();
   @Output() filterCleared = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -478,7 +478,7 @@ export class IxCategoryFilter {
 
 
 import type { InputState as IIxCategoryFilterInputState } from '@siemens/ix/components';
-import type { FilterState as IIxCategoryFilterFilterState } from '@siemens/ix/components';
+import type { FilterAndSearchValue as IIxCategoryFilterFilterAndSearchValue } from '@siemens/ix/components';
 
 export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
@@ -492,7 +492,7 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
    * Event dispatched whenever the filter state changes.
    */
-  filterChanged: EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>;
+  filterChanged: EventEmitter<CustomEvent<IIxCategoryFilterFilterAndSearchValue[]>>;
   /**
    * Event dispatched whenever the filter gets cleared.
    */
@@ -1181,14 +1181,14 @@ export declare interface IxFieldLabel extends Components.IxFieldLabel {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxFilterChip,
-  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly']
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'hideNativeTooltip', 'readonly']
 })
 @Component({
   selector: 'ix-filter-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly'],
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'hideNativeTooltip', 'readonly'],
   outputs: ['closeClick'],
 })
 export class IxFilterChip {
