@@ -126,18 +126,34 @@ export class Modal {
     });
   }
 
-  private onMouseDown(event: MouseEvent) {
-    this.isMouseDownInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
+  private closeDialog<T = unknown>(
+    type: 'dismiss' | 'close',
+    reason: T,
+    emitter: EventEmitter
+  ) {
+    this.slideOutModal(() => {
+      this.modalVisible = false;
+      this.dialog!.close(JSON.stringify({ type, reason }, null, 2));
+      emitter.emit(reason);
+    });
+  }
+
+  private isInsideDialog(event: MouseEvent) {
+    if (!this.dialog) {
+      return false;
+    }
+
+    return (
+      event.target !== this.dialog && event.composedPath().includes(this.dialog)
     );
   }
 
+  private onMouseDown(event: MouseEvent) {
+    this.isMouseDownInsideDialog = this.isInsideDialog(event);
+  }
+
   private onMouseUp(event: MouseEvent) {
-    const isMouseUpInsideDialog = this.isPointInsideDialog(
-      event.clientX,
-      event.clientY
-    );
+    const isMouseUpInsideDialog = this.isInsideDialog(event);
 
     if (
       this.closeOnBackdropClick &&
@@ -148,12 +164,6 @@ export class Modal {
     }
   }
 
-  private isPointInsideDialog(x: number, y: number): boolean {
-    const rect = this.dialog!.getBoundingClientRect();
-    return (
-      x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
-    );
-  }
   /**
    * Show the dialog
    */
@@ -167,7 +177,7 @@ export class Modal {
       this.modalVisible = true;
       dialog.showModal();
       this.slideInModal();
-    } catch (e) {
+    } catch {
       console.error('HTMLDialogElement not existing');
     }
   }
@@ -190,21 +200,7 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(() => {
-      this.modalVisible = false;
-      this.dialog!.close(
-        JSON.stringify(
-          {
-            type: 'dismiss',
-            reason,
-          },
-          null,
-          2
-        )
-      );
-
-      this.dialogDismiss.emit(reason);
-    });
+    this.closeDialog('dismiss', reason, this.dialogDismiss);
   }
 
   /**
@@ -216,21 +212,7 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(() => {
-      this.modalVisible = false;
-      this.dialog!.close(
-        JSON.stringify(
-          {
-            type: 'close',
-            reason,
-          },
-          null,
-          2
-        )
-      );
-
-      this.dialogClose.emit(reason);
-    });
+    this.closeDialog('close', reason, this.dialogClose);
   }
 
   componentWillLoad() {
