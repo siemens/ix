@@ -71,6 +71,8 @@ regressionTest.describe('input', () => {
     await page.goto('input/with-slots');
     const button = await page.waitForSelector('ix-button');
     await button.click();
+    // Move cursor away so no input shows hover state in the screenshot
+    await page.mouse.move(0, 0);
     await expect(page).toHaveScreenshot();
   });
 
