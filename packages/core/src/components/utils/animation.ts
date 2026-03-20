@@ -15,6 +15,23 @@ export default class Animation {
     xslow: number;
   } | null = null;
 
+  private static parseTime(raw: string, fallback: number) {
+    const value = raw.trim();
+
+    if (value.length === 0) return fallback;
+
+    const match = value.match(/^(-?\d*\.?\d+)(ms|s)?$/);
+
+    if (!match) return fallback;
+
+    const [, amount, unit = 'ms'] = match;
+    const parsed = Number(amount);
+
+    if (!Number.isFinite(parsed)) return fallback;
+
+    return unit === 's' ? parsed * 1000 : parsed;
+  }
+
   private static ensureCache() {
     if (this.#cache !== null) return;
 
@@ -30,7 +47,7 @@ export default class Animation {
     const read = (varName: string, fallback: number) => {
       const raw = styles.getPropertyValue(varName)?.trim();
       if (!raw) return fallback;
-      return Number.isFinite(raw) ? Number(raw) : fallback;
+      return this.parseTime(raw, fallback);
     };
 
     this.#cache = {
@@ -38,7 +55,7 @@ export default class Animation {
       default: read('--theme-default-time', this.#FALLBACKS.default),
       medium: read('--theme-medium-time', this.#FALLBACKS.medium),
       slow: read('--theme-slow-time', this.#FALLBACKS.slow),
-      xslow: read('--theme-xslow-time', this.#FALLBACKS.xslow),
+      xslow: read('--theme-x-slow-time', this.#FALLBACKS.xslow),
     };
   }
 

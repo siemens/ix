@@ -74,7 +74,7 @@ export class Toast {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseIconButton?: string;
+  @Prop() ariaLabelCloseIconButton?: string = 'Close toast';
 
   /**
    * Toast closed

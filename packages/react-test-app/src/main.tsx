@@ -9,8 +9,8 @@
 
 import './preview-examples/global.css';
 
-import { testIds } from 'framework-tests/tests/test-ids';
 import { IxApplicationContext } from '@siemens/ix-react';
+import { testIds } from 'framework-tests/tests/test-ids';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -33,13 +33,16 @@ import BlindVariants from './preview-examples/blind-variants';
 import Breadcrumb from './preview-examples/breadcrumb';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
-import ButtonTertiary from './preview-examples/button-tertiary';
-import ButtonSubtlePrimary from './preview-examples/button-subtle-primary';
-import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary';
-import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary';
+import buttonDangerPrimary from './preview-examples/button-danger-primary.tsx';
+import buttonDangerSecondary from './preview-examples/button-danger-secondary.tsx';
+import buttonDangerTertiary from './preview-examples/button-danger-tertiary.tsx';
 import ButtonGroup from './preview-examples/button-group';
 import ButtonLoading from './preview-examples/button-loading';
 import ButtonSecondary from './preview-examples/button-secondary';
+import ButtonSubtlePrimary from './preview-examples/button-subtle-primary';
+import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary';
+import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary';
+import ButtonTertiary from './preview-examples/button-tertiary';
 import ButtonTextIcon from './preview-examples/button-text-icon';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import ButtonWithLink from './preview-examples/button-with-link.tsx';
@@ -60,6 +63,11 @@ import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import DateInput from './preview-examples/date-input';
+import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
+import dateInputLabel from './preview-examples/date-input-label.tsx';
+import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
+import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
+import dateInputValidation from './preview-examples/date-input-validation.tsx';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
@@ -88,13 +96,13 @@ import EchartsProgressArc from './preview-examples/echarts-progress-arc';
 import EchartsProgressCircle from './preview-examples/echarts-progress-circle';
 import EchartsSpecial3d from './preview-examples/echarts-special-3d';
 import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox';
-import EchartsZoom from './preview-examples/echarts-special-zoom';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
+import eventListCustomItemHeightInNumber from './preview-examples/event-list-custom-item-height-in-number.tsx';
 import EventListFilled from './preview-examples/event-list-filled';
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
@@ -116,11 +124,11 @@ import GroupCustomEntry from './preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed';
 import HtmlTable from './preview-examples/html-table';
 import HtmlTableStriped from './preview-examples/html-table-striped';
-import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary';
 import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary';
 import Input from './preview-examples/input';
 import InputDisabled from './preview-examples/input-disabled';
 import InputLabel from './preview-examples/input-label';
@@ -195,6 +203,7 @@ import SpinnerLarge from './preview-examples/spinner-large';
 import SplitButton from './preview-examples/split-button';
 import SplitButtonIcons from './preview-examples/split-button-icons';
 import Tabs from './preview-examples/tabs';
+import TabsOverflow from './preview-examples/tabs-overflow';
 import TabsRounded from './preview-examples/tabs-rounded';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
@@ -206,22 +215,30 @@ import TextareaRowCols from './preview-examples/textarea-rows-cols';
 import TextareaValidation from './preview-examples/textarea-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
+import timeInputDisabled from './preview-examples/time-input-disabled.tsx';
+import timeInputLabel from './preview-examples/time-input-label.tsx';
+import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
+import timeInputValidation from './preview-examples/time-input-validation.tsx';
+import timeInputWithSlots from './preview-examples/time-input-with-slots.tsx';
+import timeInput from './preview-examples/time-input.tsx';
 import Timepicker from './preview-examples/timepicker';
+import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
+import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
 import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
-import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
+import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
 import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
-import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
-import TooltipWithIcon from './preview-examples/tooltip-with-icon';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate';
 import Tooltip from './preview-examples/tooltip';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
 import Upload from './preview-examples/upload';
@@ -232,30 +249,14 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import buttonDangerPrimary from './preview-examples/button-danger-primary.tsx';
-import buttonDangerTertiary from './preview-examples/button-danger-tertiary.tsx';
-import buttonDangerSecondary from './preview-examples/button-danger-secondary.tsx';
-import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
-import dateInputLabel from './preview-examples/date-input-label.tsx';
-import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
-import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
-import dateInputValidation from './preview-examples/date-input-validation.tsx';
-import eventListCustomItemHeightInNumber from './preview-examples/event-list-custom-item-height-in-number.tsx';
-import timeInput from './preview-examples/time-input.tsx';
-import timeInputDisabled from './preview-examples/time-input-disabled.tsx';
-import timeInputLabel from './preview-examples/time-input-label.tsx';
-import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
-import timeInputValidation from './preview-examples/time-input-validation.tsx';
-import timeInputWithSlots from './preview-examples/time-input-with-slots.tsx';
-import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
-import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
-import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
 
 const exampleNames = [...testIds, ...'validation'] as const;
 type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
+} & {
+  '/preview/tabs-overflow': React.ComponentType;
 };
 
 const routes: IxPreviewRoutes = {
@@ -412,6 +413,7 @@ const routes: IxPreviewRoutes = {
   '/preview/split-button': SplitButton,
   '/preview/tabs-rounded': TabsRounded,
   '/preview/tabs': Tabs,
+  '/preview/tabs-overflow': TabsOverflow,
   '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
   '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
   '/preview/textarea': Textarea,

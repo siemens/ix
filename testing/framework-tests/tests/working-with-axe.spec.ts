@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import './generated/tabs-axe.spec';
+import './generated/tabs-overflow-axe.spec';
+import './generated/tabs-rounded-axe.spec';
 
 // Pill tests
 import './generated/pill-axe.spec';
