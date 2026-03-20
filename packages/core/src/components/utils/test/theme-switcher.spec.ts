@@ -31,9 +31,7 @@ describe('ThemeSwitcher', () => {
 
     it('should set theme attribute', () => {
       themeSwitcher.setTheme(theme);
-      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
-        theme
-      );
+      expect(document.documentElement.dataset.ixTheme).toBe(theme);
     });
 
     it('should toggle theme attribute', () => {
@@ -41,12 +39,8 @@ describe('ThemeSwitcher', () => {
       themeSwitcher.setVariant('dark');
       themeSwitcher.toggleMode();
 
-      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
-        theme
-      );
-      expect(
-        document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('light');
+      expect(document.documentElement.dataset.ixTheme).toBe(theme);
+      expect(document.documentElement.dataset.ixColorSchema).toBe('light');
     });
   });
 
@@ -54,26 +48,18 @@ describe('ThemeSwitcher', () => {
     it('should set schema', () => {
       const schema = 'dark';
       themeSwitcher.setVariant(schema);
-      expect(
-        document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe(schema);
+      expect(document.documentElement.dataset.ixColorSchema).toBe(schema);
     });
     it('should toggle from default state using data attributes', () => {
       themeSwitcher.toggleMode();
-      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
-        'classic'
-      );
-      expect(
-        document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('light');
+      expect(document.documentElement.dataset.ixTheme).toBe('classic');
+      expect(document.documentElement.dataset.ixColorSchema).toBe('light');
     });
 
     it('should toggle schema via attribute', () => {
       themeSwitcher.setVariant('dark');
       themeSwitcher.toggleMode();
-      expect(
-        document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('light');
+      expect(document.documentElement.dataset.ixColorSchema).toBe('light');
     });
   });
 

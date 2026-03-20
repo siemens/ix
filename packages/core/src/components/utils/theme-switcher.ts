@@ -39,8 +39,7 @@ class ThemeSwitcher {
   }
 
   public getMode(): ThemeVariant {
-    const colorSchema =
-      document.documentElement.getAttribute(dataIxColorSchema);
+    const colorSchema = document.documentElement.dataset.ixColorSchema;
     if (colorSchema === 'dark' || colorSchema === 'light') {
       return colorSchema;
     }
@@ -84,8 +83,7 @@ class ThemeSwitcher {
 
   public toggleMode() {
     if (document.documentElement.hasAttribute(dataIxColorSchema)) {
-      const currentSchema =
-        document.documentElement.getAttribute(dataIxColorSchema)!;
+      const currentSchema = document.documentElement.dataset.ixColorSchema!;
       document.documentElement.setAttribute(
         dataIxColorSchema,
         currentSchema === 'dark' ? 'light' : 'dark'
@@ -119,17 +117,15 @@ class ThemeSwitcher {
     const bodyThemeClass = this.getThemeClassFromBody();
     return (
       bodyThemeClass ??
-      `theme-${
-        document.documentElement.getAttribute(dataIxTheme) || 'classic'
-      }-${
-        document.documentElement.getAttribute(dataIxColorSchema) ||
+      `theme-${document.documentElement.dataset.ixTheme || 'classic'}-${
+        document.documentElement.dataset.ixColorSchema ||
         getCurrentSystemAppearance()
       }`
     );
   }
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
-    if (document.documentElement.getAttribute(dataIxColorSchema)) {
+    if (document.documentElement.dataset.ixColorSchema) {
       document.documentElement.setAttribute(dataIxColorSchema, variant);
       return;
     }
