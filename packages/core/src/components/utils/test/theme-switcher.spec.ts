@@ -77,11 +77,11 @@ describe('ThemeSwitcher', () => {
   });
   describe('getMode', () => {
     it('should return dark when data-ix-color-schema is dark', () => {
-      document.documentElement.setAttribute('data-ix-color-schema', 'dark');
+      document.documentElement.dataset.ixColorSchema = 'dark';
       expect(themeSwitcher.getMode()).toBe('dark');
     });
     it('should return light when data-ix-color-schema is light', () => {
-      document.documentElement.setAttribute('data-ix-color-schema', 'light');
+      document.documentElement.dataset.ixColorSchema = 'light';
       expect(themeSwitcher.getMode()).toBe('light');
     });
     it('should return dark when body has dark theme class (legacy)', () => {

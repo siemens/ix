@@ -65,7 +65,7 @@ class ThemeSwitcher {
     if (this.isThemeClass(themeName)) {
       this.replaceThemeClass(themeName);
     } else {
-      document.documentElement.setAttribute(dataIxTheme, themeName);
+      document.documentElement.dataset.ixTheme = themeName;
     }
 
     if (systemAppearance) {
@@ -84,10 +84,8 @@ class ThemeSwitcher {
   public toggleMode() {
     if (document.documentElement.hasAttribute(dataIxColorSchema)) {
       const currentSchema = document.documentElement.dataset.ixColorSchema!;
-      document.documentElement.setAttribute(
-        dataIxColorSchema,
-        currentSchema === 'dark' ? 'light' : 'dark'
-      );
+      document.documentElement.dataset.ixColorSchema =
+        currentSchema === 'dark' ? 'light' : 'dark';
       return;
     }
     const bodyThemeClass = this.getThemeClassFromBody();
@@ -108,9 +106,9 @@ class ThemeSwitcher {
       ? 'light'
       : 'dark';
     if (!document.documentElement.hasAttribute(dataIxTheme)) {
-      document.documentElement.setAttribute(dataIxTheme, 'classic');
+      document.documentElement.dataset.ixTheme = 'classic';
     }
-    document.documentElement.setAttribute(dataIxColorSchema, newMode);
+    document.documentElement.dataset.ixColorSchema = newMode;
   }
 
   public getCurrentTheme() {
@@ -126,7 +124,7 @@ class ThemeSwitcher {
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
     if (document.documentElement.dataset.ixColorSchema) {
-      document.documentElement.setAttribute(dataIxColorSchema, variant);
+      document.documentElement.dataset.ixColorSchema = variant;
       return;
     }
     const bodyThemeClass = this.getThemeClassFromBody();
@@ -139,9 +137,9 @@ class ThemeSwitcher {
       return;
     }
     if (!document.documentElement.hasAttribute(dataIxTheme)) {
-      document.documentElement.setAttribute(dataIxTheme, 'classic');
+      document.documentElement.dataset.ixTheme = 'classic';
     }
-    document.documentElement.setAttribute(dataIxColorSchema, variant);
+    document.documentElement.dataset.ixColorSchema = variant;
   }
   private splitMutations(mutations: MutationRecord[]) {
     const classMutations = mutations.filter(
