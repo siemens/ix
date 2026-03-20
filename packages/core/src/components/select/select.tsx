@@ -234,6 +234,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
+  @State() visibleChipsCount = Infinity;
 
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
@@ -246,6 +247,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private arrowFocusController?: ArrowFocusController;
 
   private touched = false;
+  private chipsContainerEl?: HTMLDivElement;
+  private chipsResizeObserver?: ResizeObserver;
+  private chipWidths: Map<number, number> = new Map();
 
   private readonly itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
@@ -475,6 +479,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     this.inputElement && (this.inputElement.value = this.inputValue);
+
+    if (this.isMultipleMode) {
+      this.chipWidths = new Map();
+      requestAnimationFrameNoNgZone(() => this.calculateVisibleChips());
+    }
   }
 
   private emitValueChange(value: string | string[]) {
@@ -493,6 +502,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputElement?.value);
     });
+
+    this.chipsResizeObserver = new ResizeObserver(() => {
+      this.chipWidths = new Map();
+      this.calculateVisibleChips();
+    });
+
+    if (this.chipsContainerEl) {
+      this.chipsResizeObserver.observe(this.chipsContainerEl);
+    }
   }
 
   componentWillLoad() {
@@ -529,6 +547,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   disconnectedCallback() {
     this.cleanupResources();
+    this.chipsResizeObserver?.disconnect();
   }
 
   private itemExists(item: string | undefined) {
@@ -784,6 +803,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return '';
     }
 
+    if (this.selectedLabels?.length) {
+      return '';
+    }
+
     if (this.editable) {
       return this.i18nPlaceholderEditable;
     }
@@ -822,20 +845,94 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     );
   }
 
-  private renderChip(item: HTMLIxSelectItemElement) {
+  private renderChip(item: HTMLIxSelectItemElement, index: number) {
     return (
-      <ix-filter-chip
-        disabled={this.disabled || this.readonly}
-        key={item.value}
-        onCloseClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          this.itemClick(item.value);
-        }}
-      >
-        {item.label}
+      <div key={item.value} ref={(el) => this.measureChip(index, el)}>
+        <ix-filter-chip
+          disabled={this.disabled || this.readonly}
+          onCloseClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.itemClick(item.value);
+          }}
+        >
+          {item.label}
+        </ix-filter-chip>
+      </div>
+    );
+  }
+
+  private readonly TRIGGER_MIN_WIDTH = 64;
+  private readonly MORE_CHIP_WIDTH = 36;
+  private readonly DEFAULT_CHIP_WIDTH = 60;
+  private readonly CHIP_MARGIN = 4;
+
+  private calculateVisibleChips() {
+    if (!this.chipsContainerEl || this.selectedItems.length === 0) {
+      this.visibleChipsCount = Infinity;
+      return;
+    }
+
+    const containerWidth = this.chipsContainerEl.clientWidth;
+    const availableWidth =
+      containerWidth - this.TRIGGER_MIN_WIDTH - this.MORE_CHIP_WIDTH;
+
+    let visibleCount = 0;
+    let usedWidth = 0;
+
+    for (let i = 0; i < this.selectedItems.length; i++) {
+      const chipWidth = this.chipWidths.get(i) || this.DEFAULT_CHIP_WIDTH;
+
+      if (usedWidth + chipWidth > availableWidth) {
+        break;
+      }
+      visibleCount++;
+      usedWidth += chipWidth;
+    }
+
+    // If all chips fit, reclaim the reserved "+N" chip space
+    if (visibleCount === this.selectedItems.length) {
+      this.visibleChipsCount = visibleCount;
+      return;
+    }
+
+    // Ensure at least one chip is visible
+    this.visibleChipsCount = Math.max(1, visibleCount);
+  }
+
+  private measureChip(index: number, element: HTMLElement | undefined) {
+    if (!element) {
+      return;
+    }
+    requestAnimationFrameNoNgZone(() => {
+      const width = element.offsetWidth + this.CHIP_MARGIN;
+      if (this.chipWidths.get(index) !== width) {
+        this.chipWidths.set(index, width);
+        this.calculateVisibleChips();
+      }
+    });
+  }
+
+  private renderOverflowChip(overflowCount: number) {
+    return (
+      <ix-filter-chip readonly={true} key="overflow">
+        {`+${overflowCount}`}
       </ix-filter-chip>
     );
+  }
+
+  private renderChips() {
+    const visibleCount = Math.min(
+      this.visibleChipsCount,
+      this.selectedItems.length
+    );
+    const visibleItems = this.selectedItems.slice(0, visibleCount);
+    const overflowCount = this.selectedItems.length - visibleCount;
+
+    return [
+      ...visibleItems.map((item, index) => this.renderChip(item, index)),
+      overflowCount > 0 ? this.renderOverflowChip(overflowCount) : null,
+    ];
   }
 
   @HookValidationLifecycle()
@@ -926,12 +1023,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             }}
           >
             <div class="input-container">
-              <div class="chips">
+              <div class="chips" ref={(ref) => (this.chipsContainerEl = ref!)}>
                 {this.isMultipleMode &&
                   this.items.length !== 0 &&
                   (this.shouldDisplayAllChip()
                     ? this.renderAllChip()
-                    : this.selectedItems?.map((item) => this.renderChip(item)))}
+                    : this.renderChips())}
                 <div class="trigger">
                   <input
                     autocomplete="off"
