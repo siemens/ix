@@ -19,7 +19,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 
 const DEFAULT_TEXT_ON = 'On';
@@ -107,6 +107,8 @@ export class Toggle implements IxFormComponent<string> {
 
   private touched = false;
 
+  private hostA11y: A11yAttributes = {};
+
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
       return;
@@ -130,6 +132,7 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   componentWillLoad() {
+    this.hostA11y = a11yHostAttributes(this.hostElement);
     this.updateFormInternalValue();
   }
 
@@ -185,18 +188,20 @@ export class Toggle implements IxFormComponent<string> {
       this.textOn === DEFAULT_TEXT_ON &&
       this.textOff === DEFAULT_TEXT_OFF &&
       this.textIndeterminate === DEFAULT_TEXT_INDETERMINATE;
-    const ariaLabelAttr = this.hostElement.getAttribute('aria-label');
     const useToggleTextAsLabel = this.hideText || isDefaultLabels;
     const ariaLabel =
-      ariaLabelAttr ?? (useToggleTextAsLabel ? toggleText : undefined);
+      this.hostA11y['aria-label'] ??
+      (useToggleTextAsLabel ? toggleText : undefined);
 
     return (
       <Host
+        {...this.hostA11y}
         role="switch"
         tabindex={this.disabled ? -1 : 0}
         aria-label={ariaLabel}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-required={a11yBoolean(this.required)}
         class={{
           disabled: this.disabled,
         }}
