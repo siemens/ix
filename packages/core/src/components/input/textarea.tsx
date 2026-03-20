@@ -28,12 +28,16 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
+  getAriaAttributesForInput,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
   checkInternalValidity,
 } from './input.util';
+import { normalizeCssDimension } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
+
+let sequentialInstanceId = 0;
 
 /**
  * @form-ready
@@ -115,21 +119,25 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * The height of the textarea field (e.g. "52px").
+   * Will take precedence over `textareaRows` prop if both are set.
    */
   @Prop() textareaHeight?: string;
 
   /**
    * The width of the textarea field (e.g. "200px").
+   * Will take precedence over `textareaCols` prop if both are set.
    */
   @Prop() textareaWidth?: string;
 
   /**
    * The height of the textarea specified by number of rows.
+   * Will be overridden by `textareaHeight` prop if both are set.
    */
   @Prop() textareaRows?: number;
 
   /**
    * The width of the textarea specified by number of characters.
+   * Will be overridden by `textareaWidth` prop if both are set.
    */
   @Prop() textareaCols?: number;
 
@@ -179,14 +187,17 @@ export class Textarea implements IxInputFieldComponent<string> {
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
     this.initResizeObserver();
   });
+  private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
   private touched = false;
   /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
-  private manualHeight?: string;
-  private manualWidth?: string;
+  @State() private manualHeight?: string;
+  @State() private manualWidth?: string;
   private isProgrammaticResize = false;
+  private lastObservedInlineHeight?: string;
+  private lastObservedInlineWidth?: string;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -195,10 +206,10 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   @Watch('textareaHeight')
   @Watch('textareaWidth')
+  @Watch('textareaRows')
+  @Watch('textareaCols')
   onDimensionPropsChange() {
-    this.isManuallyResized = false;
-    this.manualHeight = undefined;
-    this.manualWidth = undefined;
+    this.resetManualResizeState();
     this.isProgrammaticResize = true;
   }
 
@@ -215,6 +226,24 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.resizeObserver?.disconnect();
   }
 
+  private resetManualResizeState() {
+    this.isManuallyResized = false;
+    this.manualHeight = undefined;
+    this.manualWidth = undefined;
+  }
+
+  private updateLastObservedInlineStyles(textarea: HTMLTextAreaElement) {
+    this.lastObservedInlineHeight = textarea.style.height;
+    this.lastObservedInlineWidth = textarea.style.width;
+  }
+
+  private hasInlineStyleChange(textarea: HTMLTextAreaElement) {
+    return (
+      textarea.style.height !== this.lastObservedInlineHeight ||
+      textarea.style.width !== this.lastObservedInlineWidth
+    );
+  }
+
   private initResizeObserver() {
     this.resizeObserver?.disconnect();
 
@@ -224,13 +253,25 @@ export class Textarea implements IxInputFieldComponent<string> {
     if (this.resizeBehavior === 'none') return;
 
     let isInitialResize = true;
+    this.updateLastObservedInlineStyles(textarea);
 
     this.resizeObserver = new ResizeObserver(() => {
       const textarea = this.textAreaRef.current;
-      if (!textarea) return;
+
+      if (!textarea) {
+        return;
+      }
 
       if (isInitialResize) {
         isInitialResize = false;
+        this.updateLastObservedInlineStyles(textarea);
+        return;
+      }
+
+      const hasInlineStyleChange = this.hasInlineStyleChange(textarea);
+      this.updateLastObservedInlineStyles(textarea);
+
+      if (!hasInlineStyleChange) {
         return;
       }
 
@@ -292,6 +333,22 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  private getTextareaHeight(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualHeight;
+    }
+
+    return normalizeCssDimension(this.textareaHeight);
+  }
+
+  private getTextareaWidth(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualWidth || '100%';
+    }
+
+    return normalizeCssDimension(this.textareaWidth);
+  }
+
   render() {
     return (
       <Host
@@ -301,6 +358,7 @@ export class Textarea implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
+          htmlForLabel={this.inputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -326,16 +384,13 @@ export class Textarea implements IxInputFieldComponent<string> {
           )}
           <div class="input-wrapper">
             <TextareaElement
+              id={this.inputId}
               minLength={this.minLength}
               maxLength={this.maxLength}
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
-              textareaHeight={
-                this.isManuallyResized ? this.manualHeight : this.textareaHeight
-              }
-              textareaWidth={
-                this.isManuallyResized ? this.manualWidth : this.textareaWidth
-              }
+              textareaHeight={this.getTextareaHeight()}
+              textareaWidth={this.getTextareaWidth()}
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}
@@ -344,6 +399,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               value={this.value}
               placeholder={this.placeholder}
               textAreaRef={this.textAreaRef}
+              ariaAttributes={getAriaAttributesForInput(this)}
               onFocus={() => onInputFocus(this, this.value)}
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
