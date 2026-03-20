@@ -2,10 +2,13 @@
   "name": "@siemens/ix-cli",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "type": "module",
   "bin": "dist/cli.mjs",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "READMEOSS.html"
   ],
   "scripts": {
     "build": "tsdown && cp src/ix-blocks.schema.json dist/",
