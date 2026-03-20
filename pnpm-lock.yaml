@@ -95,7 +95,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ^4.3.0
+        specifier: ^4.4.0
         version: link:../core
     devDependencies:
       '@esbuild/linux-arm64':
@@ -144,7 +144,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~4.3.0
+        specifier: ~4.4.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.2.0
@@ -860,7 +860,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~4.3.0
+        specifier: ~4.4.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.2.0
@@ -1118,7 +1118,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~4.3.0
+        specifier: ~4.4.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.2.0
