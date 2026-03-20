@@ -361,6 +361,8 @@ import './split-button-icons-axe.spec.ts';
 import './split-button-icons.spec.ts';
 import './split-button.spec.ts';
 import './tabs-axe.spec.ts';
+import './tabs-overflow-axe.spec.ts';
+import './tabs-overflow.spec.ts';
 import './tabs-rounded-axe.spec.ts';
 import './tabs-rounded.spec.ts';
 import './tabs.spec.ts';

@@ -241,6 +241,10 @@ export class DropdownButton
               class={'internal-button'}
               alignment="start"
               ref={(ref) => (ref!.tabIndex = -1)}
+              ariaLabelButton={
+                this.ariaLabelDropdownButton ??
+                (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
+              }
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -271,6 +275,10 @@ export class DropdownButton
                 {...commonProperties}
                 icon={this.icon}
                 ref={(ref) => (ref!.tabIndex = -1)}
+                aria-label={
+                  this.ariaLabelDropdownButton ??
+                  (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
+                }
               ></ix-icon-button>
               {!hideChevron && this.getTriangle()}
             </div>

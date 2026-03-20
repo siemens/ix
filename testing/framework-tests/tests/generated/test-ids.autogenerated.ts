@@ -45,6 +45,7 @@ export const testIds = [
   "textarea-disabled",
   "tabs",
   "tabs-rounded",
+  "tabs-overflow",
   "split-button",
   "split-button-icons",
   "spinner",

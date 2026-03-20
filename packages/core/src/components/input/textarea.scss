@@ -16,14 +16,14 @@
 @include form-component.host-info {
   textarea {
     border-color: var(--theme-input--border-color--info);
-  }
 
-  textarea:hover {
-    border-color: var(--theme-input--border-color--info--hover) !important;
-  }
+    &:hover {
+      border-color: var(--theme-input--border-color--info--hover) !important;
+    }
 
-  textarea:active {
-    border-color: var(--theme-input--border-color--info--active) !important;
+    &:active {
+      border-color: var(--theme-input--border-color--info--active) !important;
+    }
   }
 }
 
@@ -31,15 +31,15 @@
   textarea {
     background-color: var(--theme-input--background--warning);
     border-color: var(--theme-input--border-color--warning--active) !important;
-  }
 
-  textarea:hover {
-    background-color: var(--theme-input--background--warning--hover);
-    border-color: var(--theme-input--border-color--warning--hover) !important;
-  }
+    &:hover {
+      background-color: var(--theme-input--background--warning--hover);
+      border-color: var(--theme-input--border-color--warning--hover) !important;
+    }
 
-  textarea:active {
-    border-color: var(--theme-input--border-color--warning--active) !important;
+    &:active {
+      border-color: var(--theme-input--border-color--warning--active) !important;
+    }
   }
 }
 
@@ -47,14 +47,14 @@
   textarea {
     background-color: var(--theme-input--background--invalid);
     border-color: var(--theme-input--border-color--invalid) !important;
-  }
 
-  textarea:hover {
-    background-color: var(--theme-input--background--invalid--hover);
-    border-color: var(--theme-input--border-color--invalid--hover) !important;
-  }
+    &:hover {
+      background-color: var(--theme-input--background--invalid--hover);
+      border-color: var(--theme-input--border-color--invalid--hover) !important;
+    }
 
-  textarea:active {
-    border-color: var(--theme-input--border-color--invalid--active) !important;
+    &:active {
+      border-color: var(--theme-input--border-color--invalid--active) !important;
+    }
   }
 }
