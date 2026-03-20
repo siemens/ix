@@ -28,6 +28,75 @@ test.describe('Pill', () => {
   });
 });
 
+test.describe('accessibility', () => {
+  test('should apply aria-label to container when set on host', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill aria-label="Custom label">Content</ix-pill>');
+    const container = page.locator('ix-pill .container');
+    await expect(container).toHaveAttribute('aria-label', 'Custom label');
+
+    const host = page.locator('ix-pill');
+    await expect(host).not.toHaveAttribute('aria-label');
+  });
+
+  test('should apply aria-hidden to container when set on host', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill aria-hidden="true">Content</ix-pill>');
+    const container = page.locator('ix-pill .container');
+    await expect(container).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  test('should not apply aria-hidden when not set', async ({ mount, page }) => {
+    await mount('<ix-pill>Content</ix-pill>');
+    const container = page.locator('ix-pill .container');
+    await expect(container).not.toHaveAttribute('aria-hidden');
+  });
+
+  test('should apply role to container when set on host', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill role="status">Online</ix-pill>');
+    const container = page.locator('ix-pill .container');
+    await expect(container).toHaveAttribute('role', 'status');
+  });
+
+  test('should hide decorative icon from screen readers', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill icon="star">Content</ix-pill>', {
+      icons: { iconStar },
+    });
+    const icon = page.locator('ix-pill ix-icon');
+    await expect(icon).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  test('should not hide icon with aria-label-icon', async ({ mount, page }) => {
+    await mount(
+      '<ix-pill icon="star" aria-label-icon="Featured">Content</ix-pill>',
+      { icons: { iconStar } }
+    );
+    const icon = page.locator('ix-pill ix-icon');
+    await expect(icon).toHaveAttribute('aria-label', 'Featured');
+    await expect(icon).not.toHaveAttribute('aria-hidden');
+  });
+
+  test('should handle multiple ARIA attributes', async ({ mount, page }) => {
+    await mount(
+      '<ix-pill role="status" aria-label="System status" aria-live="polite">Online</ix-pill>'
+    );
+    const container = page.locator('ix-pill .container');
+    await expect(container).toHaveAttribute('role', 'status');
+    await expect(container).toHaveAttribute('aria-label', 'System status');
+    await expect(container).toHaveAttribute('aria-live', 'polite');
+  });
+});
+
 test.describe('tooltip', () => {
   test('should not display when tooltip-text attribute is absent', async ({
     mount,

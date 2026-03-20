@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
@@ -75,7 +76,10 @@ export class Pill implements IxComponent {
 
   private readonly containerElementRef = makeRef<HTMLElement>();
 
+  private a11yAttributes: A11yAttributes = {};
+
   componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
     this.checkIfContentAvailable();
   }
 
@@ -112,6 +116,14 @@ export class Pill implements IxComponent {
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
+
+    const hasAccessibleName = Boolean(
+      this.a11yAttributes['aria-label'] ||
+        this.a11yAttributes['aria-labelledby']
+    );
+    const containerRole =
+      this.a11yAttributes['role'] || (hasAccessibleName ? 'group' : undefined);
+
     return (
       <Host
         style={
@@ -126,6 +138,8 @@ export class Pill implements IxComponent {
         }}
       >
         <div
+          {...this.a11yAttributes}
+          role={containerRole}
           ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
@@ -153,6 +167,7 @@ export class Pill implements IxComponent {
               name={this.icon}
               size={'16'}
               aria-label={this.ariaLabelIcon}
+              aria-hidden={this.ariaLabelIcon ? undefined : 'true'}
             />
           )}
           <span class="slot-container">

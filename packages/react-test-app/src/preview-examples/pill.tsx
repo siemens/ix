@@ -26,18 +26,21 @@ export default () => {
       <IxPill className="styled">Label</IxPill>
 
       <IxPill icon={iconStar}>Label</IxPill>
-      <IxPill icon={iconStar}></IxPill>
+      <IxPill icon={iconStar} aria-label="Featured"></IxPill>
       <IxPill icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill variant="subtle-primary" alignLeft icon={iconStar} className="styled">
+      <IxPill
+        variant="subtle-primary"
+        alignLeft
+        icon={iconStar}
+        className="styled"
+      >
         Label
       </IxPill>
 
       <IxPill variant="alarm">Label</IxPill>
-      <IxPill variant="alarm">
-        Label
-      </IxPill>
+      <IxPill variant="alarm">Label</IxPill>
       <IxPill variant="alarm" className="styled">
         Label
       </IxPill>
@@ -55,7 +58,11 @@ export default () => {
       <IxPill icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
-      <IxPill variant="subtle-primary" icon={iconStar} className="styled-ellipsis-4">
+      <IxPill
+        variant="subtle-primary"
+        icon={iconStar}
+        className="styled-ellipsis-4"
+      >
         Label
       </IxPill>
       <IxPill className="styled-ellipsis-3">Label</IxPill>

@@ -22,7 +22,7 @@ import { IxPill } from '@siemens/ix-vue';
   <IxPill class="styled">Label</IxPill>
 
   <IxPill :icon="iconStar">Label</IxPill>
-  <IxPill :icon="iconStar"></IxPill>
+  <IxPill :icon="iconStar" aria-label="Featured"></IxPill>
   <IxPill :icon="iconStar" class="styled">Label</IxPill>
   <IxPill variant="subtle-primary" alignLeft :icon="iconStar" class="styled">Label</IxPill>
 

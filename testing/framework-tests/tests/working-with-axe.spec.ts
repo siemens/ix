@@ -9,3 +9,7 @@
 import './generated/tabs-axe.spec';
 import './generated/tabs-overflow-axe.spec';
 import './generated/tabs-rounded-axe.spec';
+
+// Pill tests
+import './generated/pill-axe.spec';
+import './generated/pill-variants-axe.spec';
