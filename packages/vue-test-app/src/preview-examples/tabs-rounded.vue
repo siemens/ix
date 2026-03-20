@@ -21,23 +21,23 @@ import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue';
 
 <template>
   <IxTabs rounded>
-    <IxTabItem>
-      <IxIcon :name="iconSuccess"></IxIcon>
+    <IxTabItem aria-label="Success">
+      <IxIcon :name="iconSuccess" aria-hidden="true"></IxIcon>
     </IxTabItem>
-    <IxTabItem :counter="200">
-      <IxIcon :name="iconTree"></IxIcon>
+    <IxTabItem :counter="200" aria-label="Tree">
+      <IxIcon :name="iconTree" aria-hidden="true"></IxIcon>
     </IxTabItem>
-    <IxTabItem>
-      <IxIcon :name="iconMaintenance"></IxIcon>
+    <IxTabItem aria-label="Maintenance">
+      <IxIcon :name="iconMaintenance" aria-hidden="true"></IxIcon>
     </IxTabItem>
-    <IxTabItem disabled :counter="24">
-      <IxIcon :name="iconSoundLoud"></IxIcon>
+    <IxTabItem disabled :counter="24" aria-label="Sound loud">
+      <IxIcon :name="iconSoundLoud" aria-hidden="true"></IxIcon>
     </IxTabItem>
-    <IxTabItem>
-      <IxIcon :name="iconHierarchy"></IxIcon>
+    <IxTabItem aria-label="Hierarchy">
+      <IxIcon :name="iconHierarchy" aria-hidden="true"></IxIcon>
     </IxTabItem>
-    <IxTabItem disabled>
-      <IxIcon :name="iconCalendarSettings"></IxIcon>
+    <IxTabItem disabled aria-label="Calendar settings">
+      <IxIcon :name="iconCalendarSettings" aria-hidden="true"></IxIcon>
     </IxTabItem>
   </IxTabs>
 </template>

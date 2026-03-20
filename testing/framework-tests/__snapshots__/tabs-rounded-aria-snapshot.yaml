@@ -1,8 +1,8 @@
 - main:
   - tablist:
-    - tab
-    - tab /\d+/
-    - tab
-    - tab /\d+/
-    - tab
-    - tab
+    - tab "Success"
+    - tab "Tree"
+    - tab "Maintenance"
+    - tab "Sound loud"
+    - tab "Hierarchy"
+    - tab "Calendar settings"
