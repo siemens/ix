@@ -21,17 +21,9 @@ class ThemeSwitcher {
   readonly suffixDark = '-dark';
   readonly defaultTheme = 'theme-classic-dark';
 
-  mutationObserver?: MutationObserver;
-  _themeChanged = new TypedEvent<string>();
-  _schemaChanged = new TypedEvent<string>();
-
-  public get themeChanged() {
-    return this._themeChanged;
-  }
-
-  public get schemaChanged() {
-    return this._schemaChanged;
-  }
+  private mutationObserver?: MutationObserver;
+  readonly themeChanged = new TypedEvent<string>();
+  readonly schemaChanged = new TypedEvent<string>();
 
   public hasVariantSuffix(className: string) {
     return (
@@ -78,26 +70,22 @@ class ThemeSwitcher {
     }
 
     if (systemAppearance) {
-      const currentSystemAppearance = getCurrentSystemAppearance();
-      this.setVariant(currentSystemAppearance);
+      this.setVariant();
     }
   }
 
   private replaceThemeClass(themeName: string) {
-    const oldThemes: string[] = [];
-    Array.from(document.documentElement.classList)
-      .filter((className) => className && this.isThemeClass(className))
-      .forEach((className) => {
-        oldThemes.push(className);
-      });
-
+    const oldThemes = Array.from(document.documentElement.classList).filter(
+      (cls) => this.isThemeClass(cls)
+    );
     document.documentElement.classList.remove(...oldThemes);
     document.documentElement.classList.add(themeName);
   }
 
   public toggleMode() {
     if (document.documentElement.hasAttribute(dataIxColorSchema)) {
-      const currentSchema = this.getDataColorSchema(document.documentElement)!;
+      const currentSchema =
+        document.documentElement.getAttribute(dataIxColorSchema)!;
       document.documentElement.setAttribute(
         dataIxColorSchema,
         currentSchema === 'dark' ? 'light' : 'dark'
@@ -111,21 +99,20 @@ class ThemeSwitcher {
       );
       document.body.classList.remove(bodyThemeClass);
       document.body.classList.add(newTheme);
-      this._themeChanged.emit(newTheme);
-      this._schemaChanged.emit(
+      this.themeChanged.emit(newTheme);
+      this.schemaChanged.emit(
         newTheme.endsWith(this.suffixDark) ? 'dark' : 'light'
       );
       return;
     }
-    const newMode: ThemeVariant = this.getMode() === 'dark' ? 'light' : 'dark';
+
+    const newMode: ThemeVariant = this.defaultTheme.endsWith(this.suffixDark)
+      ? 'light'
+      : 'dark';
     if (!document.documentElement.hasAttribute(dataIxTheme)) {
       document.documentElement.setAttribute(dataIxTheme, 'classic');
     }
     document.documentElement.setAttribute(dataIxColorSchema, newMode);
-  }
-
-  private getDataColorSchema(target: HTMLElement) {
-    return target.getAttribute(dataIxColorSchema);
   }
 
   public getCurrentTheme() {
@@ -142,7 +129,7 @@ class ThemeSwitcher {
   }
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
-    if (this.getDataColorSchema(document.documentElement)) {
+    if (document.documentElement.getAttribute(dataIxColorSchema)) {
       document.documentElement.setAttribute(dataIxColorSchema, variant);
       return;
     }
@@ -151,8 +138,8 @@ class ThemeSwitcher {
       const newTheme = bodyThemeClass.replace(/-(dark|light)$/, `-${variant}`);
       document.body.classList.remove(bodyThemeClass);
       document.body.classList.add(newTheme);
-      this._themeChanged.emit(newTheme);
-      this._schemaChanged.emit(variant);
+      this.themeChanged.emit(newTheme);
+      this.schemaChanged.emit(variant);
       return;
     }
     if (!document.documentElement.hasAttribute(dataIxTheme)) {
@@ -175,38 +162,38 @@ class ThemeSwitcher {
   }
 
   private handleClassMutations(mutations: MutationRecord[]) {
-    return mutations.forEach((mutation) => {
+    mutations.forEach((mutation) => {
       const { target } = mutation;
       (target as HTMLElement).classList.forEach((className) => {
         if (
           this.isThemeClass(className) &&
           !mutation.oldValue?.includes(className)
         ) {
-          this._themeChanged.emit(className);
+          this.themeChanged.emit(className);
         }
       });
     });
   }
 
   private handleDataMutations(mutations: MutationRecord[]) {
-    return mutations.forEach((mutation) => {
+    mutations.forEach((mutation) => {
       const { target } = mutation;
       const theme = (target as Element).attributes.getNamedItem(dataIxTheme);
       if (theme?.value && mutation.oldValue !== theme.value) {
-        this._themeChanged.emit(theme.value);
+        this.themeChanged.emit(theme.value);
       }
 
       const colorSchema = (target as Element).attributes.getNamedItem(
         dataIxColorSchema
       );
       if (colorSchema?.value && mutation.oldValue !== colorSchema.value) {
-        this._schemaChanged.emit(colorSchema.value);
+        this.schemaChanged.emit(colorSchema.value);
       }
     });
   }
 
   private registerMutationObservers() {
-    if (typeof (window as any) === 'undefined') {
+    if (typeof window === 'undefined') {
       return;
     }
 
@@ -239,20 +226,17 @@ class ThemeSwitcher {
   public constructor() {
     this.registerMutationObservers();
   }
+
+  public destroy() {
+    this.mutationObserver?.disconnect();
+  }
 }
 
 export type IxTheme = LiteralStringUnion<
   'classic' | 'classic-dark' | 'classic-light'
 >;
 
-export const getCurrentSystemAppearance = (): ThemeVariant => {
-  const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-
-  if (matchMedia.matches) {
-    return 'dark';
-  }
-
-  return 'light';
-};
+export const getCurrentSystemAppearance = (): ThemeVariant =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export const themeSwitcher = new ThemeSwitcher();

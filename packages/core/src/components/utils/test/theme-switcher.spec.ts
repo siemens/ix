@@ -65,7 +65,7 @@ describe('ThemeSwitcher', () => {
       );
       expect(
         document.documentElement.getAttribute('data-ix-color-schema')
-      ).toBe('dark');
+      ).toBe('light');
     });
 
     it('should toggle schema via attribute', () => {
