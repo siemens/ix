@@ -463,7 +463,7 @@ export class DateInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-hidden={this.ariaLabelCalendarButton}
+            aria-label={this.ariaLabelCalendarButton}
             tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
