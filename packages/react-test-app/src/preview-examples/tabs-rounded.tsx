@@ -21,22 +21,22 @@ export default () => {
   return (
     <IxTabs rounded>
       <IxTabItem>
-        <IxIcon name={iconSuccess} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconSuccess} aria-label="Success"></IxIcon>
       </IxTabItem>
       <IxTabItem counter={200}>
-        <IxIcon name={iconTree} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconTree} aria-label="Tree"></IxIcon>
       </IxTabItem>
       <IxTabItem>
-        <IxIcon name={iconMaintenance} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconMaintenance} aria-label="Maintenance"></IxIcon>
       </IxTabItem>
       <IxTabItem disabled counter={24}>
-        <IxIcon name={iconSoundLoud} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconSoundLoud} aria-label="Sound"></IxIcon>
       </IxTabItem>
       <IxTabItem>
-        <IxIcon name={iconHierarchy} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconHierarchy} aria-label="Hierarchy"></IxIcon>
       </IxTabItem>
       <IxTabItem disabled>
-        <IxIcon name={iconCalendarSettings} aria-hidden="true"></IxIcon>
+        <IxIcon name={iconCalendarSettings} aria-label="Calendar settings"></IxIcon>
       </IxTabItem>
     </IxTabs>
   );
