@@ -703,7 +703,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
-    regressionTest.beforeEach(async ({ mount }) => {
+    regressionTest.beforeEach(async ({ mount, page }) => {
       await mount(
         `
       <ix-button id="trigger">Open</ix-button>
@@ -716,6 +716,11 @@ regressionTest.describe('A11y', () => {
         {
           icons: { iconPrint },
         }
+      );
+      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
+        /hydrated/
       );
     });
 
