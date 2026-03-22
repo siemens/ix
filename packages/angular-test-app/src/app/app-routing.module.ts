@@ -127,11 +127,11 @@ import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
-import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
 import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -164,9 +164,9 @@ import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
-import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalClose from '../preview-examples/modal-close';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
@@ -183,7 +183,6 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
-import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
@@ -232,17 +231,18 @@ import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
-import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
 import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
@@ -366,10 +366,6 @@ const routes: Routes = [
         component: ButtonSubtlePrimary,
       },
       {
-        path: 'button-group',
-        component: ButtonGroup,
-      },
-      {
         path: 'button-loading',
         component: ButtonLoading,
       },
@@ -388,10 +384,6 @@ const routes: Routes = [
       {
         path: 'button-with-link',
         component: ButtonWithLink,
-      },
-      {
-        path: 'buttons',
-        component: Buttons,
       },
       {
         path: 'button-danger-primary',
@@ -513,10 +505,6 @@ const routes: Routes = [
       {
         path: 'datepicker-range',
         component: DatepickerRange,
-      },
-      {
-        path: 'datepicker',
-        component: Datepicker,
       },
       {
         path: 'datetimepicker',
@@ -850,7 +838,7 @@ const routes: Routes = [
       { path: 'textarea-legacy-readonly', component: TextareaLegacyReadonly },
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
-      { path: 'textarea-disabled', component: TextareaReadonly },
+      { path: 'textarea-readonly', component: TextareaReadonly },
       { path: 'textarea-rows-cols', component: TextareaRowsCols },
       { path: 'textarea-validation', component: TextareaValidation },
       { path: 'input', component: Input },
@@ -861,6 +849,8 @@ const routes: Routes = [
       { path: 'input-types', component: InputTypes },
       { path: 'input-validation', component: InputValidation },
       { path: 'input-with-slots', component: InputWithSlots },
+      { path: 'tooltip', component: Tooltip },
+      { path: 'tooltip-with-icon', component: TooltipWithIcon },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'time-input', component: TimeInput },
@@ -868,95 +858,6 @@ const routes: Routes = [
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
-      {
-        path: 'pill',
-        component: Pill,
-      },
-      { path: 'pill-variants', component: PillVariants },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
-      {
-        path: 'push-card',
-        component: PushCard,
-      },
-      {
-        path: 'select-editable',
-        component: SelectEditable,
-      },
-      {
-        path: 'select-multiple',
-        component: SelectMultiple,
-      },
-      {
-        path: 'select-ng-model',
-        component: SelectNgModel,
-      },
-      {
-        path: 'select',
-        component: Select,
-      },
-      {
-        path: 'settings',
-        component: Settings,
-      },
-      {
-        path: 'slider-error',
-        component: SliderError,
-      },
-      {
-        path: 'slider-marker',
-        component: SliderMarker,
-      },
-      {
-        path: 'slider-trace',
-        component: SliderTrace,
-      },
-      {
-        path: 'slider',
-        component: Slider,
-      },
-      {
-        path: 'spinner-large',
-        component: SpinnerLarge,
-      },
-      {
-        path: 'spinner',
-        component: Spinner,
-      },
-      {
-        path: 'split-button-icons',
-        component: SplitButtonIcons,
-      },
-      {
-        path: 'split-button',
-        component: SplitButton,
-      },
-      {
-        path: 'tabs-rounded',
-        component: TabsRounded,
-      },
-      {
-        path: 'tabs-overflow',
-        component: TabsOverflow,
-      },
-      {
-        path: 'tabs',
-        component: Tabs,
-      },
-      {
-        path: 'theme-switcher',
-        component: ThemeService,
-      },
-      {
-        path: 'tile',
-        component: Tile,
-      },
-      {
-        path: 'timepicker',
-        component: Timepicker,
-      },
       {
         path: 'toast-custom',
         component: ToastCustom,
@@ -977,8 +878,24 @@ const routes: Routes = [
         path: 'toggle-button-subtle-tertiary',
         component: ToggleButtonSubtleTertiary,
       },
-      { path: 'toggle-disabled', component: ToggleDisabled },
+      {
+        path: 'toggle-button-subtle-secondary',
+        component: ToggleButtonSubtleSecondary,
+      },
+      {
+        path: 'toggle-button-subtle-primary',
+        component: ToggleButtonSubtlePrimary,
+      },
+      {
+        path: 'toggle-checked',
+        component: ToggleChecked,
+      },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
+      { path: 'toggle-disabled', component: ToggleDisabled },
+      {
+        path: 'toggle-indeterminate',
+        component: ToggleIndeterminate,
+      },
       { path: 'toggle-ng-model', component: ToggleNgModel },
       { path: 'toggle', component: Toggle },
       { path: 'upload', component: Upload },
@@ -997,89 +914,7 @@ const routes: Routes = [
       },
       { path: 'number-input-validation', component: NumberInputValidation },
       { path: 'number-input-with-slots', component: NumberInputWithSlots },
-      { path: 'tooltip', component: Tooltip },
-      { path: 'tooltip-with-icon', component: TooltipWithIcon },
-      { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
-      { path: 'action-card', component: ActionCard },
-      { path: 'card', component: Card },
-      { path: 'card-list', component: CardList },
-      { path: 'empty-state', component: EmptyState },
-      { path: 'empty-state-compact', component: EmptyStateCompact },
-      { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
-      { path: 'key-value', component: KeyValue },
-      {
-        path: 'toggle-button-subtle-secondary',
-        component: ToggleButtonSubtleSecondary,
-      },
-      {
-        path: 'toggle-button-subtle-primary',
-        component: ToggleButtonSubtlePrimary,
-      },
-      {
-        path: 'toggle-button-secondary',
-        component: ToggleButtonSecondary,
-      },
-      {
-        path: 'toggle-checked',
-        component: ToggleChecked,
-      },
-      {
-        path: 'toggle-custom-label',
-        component: ToggleCustomLabel,
-      },
-      {
-        path: 'toggle-disabled',
-        component: ToggleDisabled,
-      },
-      {
-        path: 'toggle-indeterminate',
-        component: ToggleIndeterminate,
-      },
-      {
-        path: 'toggle-ng-model',
-        component: ToggleNgModel,
-      },
-      {
-        path: 'toggle',
-        component: Toggle,
-      },
-      {
-        path: 'tooltip',
-        component: Tooltip,
-      },
-      {
-        path: 'tree-custom',
-        component: TreeCustom,
-      },
-      {
-        path: 'tree',
-        component: Tree,
-      },
-      {
-        path: 'upload',
-        component: Upload,
-      },
-      {
-        path: 'validation',
-        component: Validation,
-      },
-      {
-        path: 'vertical-tabs-with-avatar',
-        component: VerticalTabsWithAvatar,
-      },
-      {
-        path: 'vertical-tabs',
-        component: VerticalTabs,
-      },
-      {
-        path: 'workflow-vertical',
-        component: WorkflowVertical,
-      },
-      {
-        path: 'workflow',
-        component: Workflow,
-      },
       { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
       { path: 'key-value-list-striped', component: KeyValueListStriped },
       { path: 'menu-category', component: MenuCategory },

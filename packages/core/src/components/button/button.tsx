@@ -17,6 +17,7 @@ import {
   Watch,
   Mixin,
 } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
@@ -42,6 +43,7 @@ export class Button
    * ARIA label for the button
    * Will be set as aria-label on the nested HTML button element
    *
+   * @deprecated Set the native `aria-label` on the ix-button host element. Will be removed in 5.0.0
    * @since 3.2.0
    */
   @Prop() ariaLabelButton?: string;
@@ -118,6 +120,12 @@ export class Button
    */
   submitButtonElement?: HTMLButtonElement;
 
+  private a11yAttributes: Record<string, string> = {};
+
+  override componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+  }
+
   @Listen('click', { capture: true })
   handleClick(event: Event) {
     if (this.disabled || this.loading) {
@@ -181,6 +189,10 @@ export class Button
       ?.focus();
   }
 
+  private ariaLabelForInnerControl(): string | undefined {
+    return this.a11yAttributes['aria-label'] ?? this.ariaLabelButton;
+  }
+
   override render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
@@ -196,7 +208,8 @@ export class Button
       type: this.type,
       alignment: this.alignment,
       ariaAttributes: {
-        'aria-label': this.ariaLabelButton,
+        ...this.a11yAttributes,
+        'aria-label': this.ariaLabelForInnerControl(),
       },
       href: this.href,
       target: this.target,

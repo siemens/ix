@@ -20,3 +20,27 @@ import './generated/tabs-overflow.spec';
 import './generated/tabs-rounded.spec';
 import './generated/tabs.spec';
 import './generated/time-range.spec';
+
+// Button tests - basic
+import './generated/buttons.spec';
+import './generated/button-secondary.spec';
+
+// Button tests - variants
+import './generated/button-tertiary.spec';
+import './generated/button-subtle-primary.spec';
+import './generated/button-subtle-secondary.spec';
+import './generated/button-subtle-tertiary.spec';
+
+// Button tests - danger
+import './generated/button-danger-tertiary.spec';
+import './generated/button-danger-primary.spec';
+import './generated/button-danger-secondary.spec';
+
+// Button tests - with icons
+import './generated/button-text-icon.spec';
+import './generated/button-with-icon.spec';
+
+// Button tests - states & special
+import './generated/button-loading.spec';
+import './generated/button-group.spec';
+import './generated/button-with-link.spec';

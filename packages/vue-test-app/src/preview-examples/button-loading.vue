@@ -33,12 +33,30 @@ function load(value: string) {
 
 <template>
   <div>
-    <IxButton variant="subtle-primary" :loading="toggle1" @click="load('1')"> Button </IxButton>
-    <IxButton variant="subtle-primary" :loading="toggle2" @click="load('2')" :icon="iconStar">
+    <IxButton variant="subtle-primary" :loading="toggle1" @click="load('1')">
       Button
     </IxButton>
-    <IxIconButton variant="subtle-primary" :loading="toggle3" @click="load('3')" :icon="iconStar"></IxIconButton>
+    <IxButton
+      variant="subtle-primary"
+      :loading="toggle2"
+      @click="load('2')"
+      :icon="iconStar"
+    >
+      Button
+    </IxButton>
+    <IxIconButton
+      variant="subtle-primary"
+      :loading="toggle3"
+      @click="load('3')"
+      :icon="iconStar"
+      aria-label="Toggle loading"
+    ></IxIconButton>
     <IxButton variant="subtle-primary" loading> Button </IxButton>
-    <IxIconButton variant="subtle-primary" loading></IxIconButton>
+    <IxIconButton
+      variant="subtle-primary"
+      loading
+      :icon="iconStar"
+      aria-label="Loading action"
+    ></IxIconButton>
   </div>
 </template>

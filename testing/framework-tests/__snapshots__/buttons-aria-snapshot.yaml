@@ -1,2 +1,3 @@
-- button "Button"
-- button "Button" [disabled]
+- main:
+  - button "Button"
+  - button "Button" [disabled]

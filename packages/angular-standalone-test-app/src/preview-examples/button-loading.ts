@@ -8,10 +8,12 @@
  */
 
 import { Component } from '@angular/core';
+import { IxButton, IxIconButton } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  template: './button-loading.html',
+  imports: [IxButton, IxIconButton],
+  templateUrl: './button-loading.html',
   styleUrls: ['./button-loading.css'],
 })
 export default class ButtonLoading {

@@ -120,7 +120,7 @@ export class IconButton extends Mixin(...DefaultMixins) {
       this.a11yLabel ??
       getFallbackLabelFromIconName(this.icon);
 
-    let ariaAttributes: A11yAttributes = this.inheritAriaAttributes;
+    let ariaAttributes: A11yAttributes = { ...this.inheritAriaAttributes };
     const ariaHidden = this.inheritAriaAttributes['aria-hidden'];
 
     if (ariaHidden !== 'true') {
