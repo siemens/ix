@@ -10,5 +10,5 @@
 import { IxToggle } from '@siemens/ix-react';
 
 export default () => {
-  return <IxToggle text-off="Offline" text-on="Online"></IxToggle>;
+  return <IxToggle text-off="Offline" text-on="Online" aria-label="Connection status"></IxToggle>;
 };

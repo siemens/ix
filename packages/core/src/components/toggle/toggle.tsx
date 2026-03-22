@@ -19,8 +19,12 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
+
+const DEFAULT_TEXT_ON = 'On';
+const DEFAULT_TEXT_OFF = 'Off';
+const DEFAULT_TEXT_INDETERMINATE = 'Mixed';
 
 /**
  * @form-ready
@@ -64,17 +68,17 @@ export class Toggle implements IxFormComponent<string> {
   /**
    * Text for on state
    */
-  @Prop() textOn = 'On';
+  @Prop() textOn = DEFAULT_TEXT_ON;
 
   /**
    * Text for off state
    */
-  @Prop() textOff = 'Off';
+  @Prop() textOff = DEFAULT_TEXT_OFF;
 
   /**
    * Text for indeterminate state
    */
-  @Prop() textIndeterminate = 'Mixed';
+  @Prop() textIndeterminate = DEFAULT_TEXT_INDETERMINATE;
 
   /**
    * Hide `on` and `off` text
@@ -103,6 +107,8 @@ export class Toggle implements IxFormComponent<string> {
 
   private touched = false;
 
+  private hostA11y: A11yAttributes = {};
+
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
       return;
@@ -126,6 +132,7 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   componentWillLoad() {
+    this.hostA11y = a11yHostAttributes(this.hostElement);
     this.updateFormInternalValue();
   }
 
@@ -176,46 +183,73 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
+
+    const isDefaultLabels =
+      this.textOn === DEFAULT_TEXT_ON &&
+      this.textOff === DEFAULT_TEXT_OFF &&
+      this.textIndeterminate === DEFAULT_TEXT_INDETERMINATE;
+    const useToggleTextAsLabel = this.hideText || isDefaultLabels;
+    const ariaLabel =
+      this.hostA11y['aria-label'] ??
+      (useToggleTextAsLabel ? toggleText : undefined);
+
     return (
       <Host
+        {...this.hostA11y}
         role="switch"
+        tabindex={this.disabled ? -1 : 0}
+        aria-label={ariaLabel}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-required={a11yBoolean(this.required)}
         class={{
           disabled: this.disabled,
         }}
         onBlur={() => this.ixBlur.emit()}
         onFocus={() => (this.touched = true)}
+        onKeyDown={(e: KeyboardEvent) => {
+          if (this.disabled) return;
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            this.onCheckedChange(!this.checked);
+          }
+        }}
+        onClick={() => {
+          if (!this.disabled) {
+            this.onCheckedChange(!this.checked);
+          }
+        }}
       >
-        <label class="wrapper">
-          <button
+        <div class="wrapper">
+          <div
             class={{
               switch: true,
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
-            onClick={() => this.onCheckedChange(!this.checked)}
-            tabindex={-1}
             aria-hidden="true"
           >
             <div class="slider"></div>
-          </button>
+          </div>
           <input
             type="checkbox"
+            aria-hidden="true"
+            tabindex={-1}
             disabled={this.disabled}
             indeterminate={this.indeterminate}
             checked={this.checked}
-            tabindex={0}
-            aria-hidden={a11yBoolean(true)}
-            aria-checked={a11yBoolean(this.checked)}
-            onChange={(event) =>
-              this.onCheckedChange((event.target as HTMLInputElement).checked)
-            }
+            onFocus={() => this.hostElement.focus()}
+            onClick={(e) => e.preventDefault()}
           />
           {!this.hideText && (
-            <ix-typography class="label">{toggleText}</ix-typography>
+            <ix-typography
+              class="label"
+              aria-hidden={isDefaultLabels ? 'true' : undefined}
+            >
+              {toggleText}
+            </ix-typography>
           )}
-        </label>
+        </div>
       </Host>
     );
   }

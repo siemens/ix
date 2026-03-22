@@ -16,12 +16,13 @@ SPDX-License-Identifier: MIT
   </head>
 
   <body style="padding: 2rem">
-    <ix-toggle text-off="Offline" text-on="Online" disabled checked></ix-toggle>
-    <ix-toggle text-off="Offline" text-on="Online" disabled></ix-toggle>
+    <ix-toggle text-off="Offline" text-on="Online" disabled checked aria-label="Connection status"></ix-toggle>
+    <ix-toggle text-off="Offline" text-on="Online" disabled aria-label="Connection status"></ix-toggle>
     <ix-toggle
       indeterminate
       disabled
       text-indeterminate="Indeterminate"
+      aria-label="Toggle"
     ></ix-toggle>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>

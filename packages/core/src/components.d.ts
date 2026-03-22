@@ -3973,17 +3973,17 @@ export namespace Components {
         "required": boolean;
         /**
           * Text for indeterminate state
-          * @default 'Mixed'
+          * @default DEFAULT_TEXT_INDETERMINATE
          */
         "textIndeterminate": string;
         /**
           * Text for off state
-          * @default 'Off'
+          * @default DEFAULT_TEXT_OFF
          */
         "textOff": string;
         /**
           * Text for on state
-          * @default 'On'
+          * @default DEFAULT_TEXT_ON
          */
         "textOn": string;
         /**
@@ -10209,17 +10209,17 @@ declare namespace LocalJSX {
         "required"?: boolean;
         /**
           * Text for indeterminate state
-          * @default 'Mixed'
+          * @default DEFAULT_TEXT_INDETERMINATE
          */
         "textIndeterminate"?: string;
         /**
           * Text for off state
-          * @default 'Off'
+          * @default DEFAULT_TEXT_OFF
          */
         "textOff"?: string;
         /**
           * Text for on state
-          * @default 'On'
+          * @default DEFAULT_TEXT_ON
          */
         "textOn"?: string;
         /**

@@ -17,6 +17,7 @@ import { waitForReadiness } from '../utils';
 test('tabs-overflow', async ({ page }) => {
   await page.goto('/preview/tabs-overflow');
 
+  // Ugly and not the reliable way to wait for Stencil to be ready
   await waitForReadiness(page);
 
   await expect(page.locator('body')).toMatchAriaSnapshot({
