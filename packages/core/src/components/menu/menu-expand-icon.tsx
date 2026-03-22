@@ -13,8 +13,8 @@ import {
 } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
-import { Breakpoint } from '../utils/breakpoints';
 import { a11yBoolean } from '../utils/a11y';
+import { Breakpoint } from '../utils/breakpoints';
 /**
  * @internal
  */

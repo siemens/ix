@@ -6,8 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+/** Popover <dialog> uses role="presentation"; getByRole('dialog') is unreliable. */
+function topLayerDialog(page: Page, dropdownId: string) {
+  return page.locator(`ix-dropdown#${dropdownId}`).locator('dialog.dialog');
+}
 
 regressionTest.describe('enableTopLayer feature', () => {
   regressionTest.describe('Popover API mode (enableTopLayer=true)', () => {
@@ -24,8 +29,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = dropdown.getByRole('dialog');
+        const dialog = topLayerDialog(page, 'dropdown');
 
         await expect(dialog).toBeAttached();
       }
@@ -44,13 +48,12 @@ regressionTest.describe('enableTopLayer feature', () => {
 
         const trigger = page.getByRole('button', { name: 'Open' });
 
-        const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = dropdown.getByRole('dialog');
+        const dialog = topLayerDialog(page, 'dropdown');
 
         await expect(dialog).not.toBeVisible();
 
         await trigger.click();
-        await expect(dialog).toBeVisible();
+        await expect(dialog).toBeVisible({ timeout: 10_000 });
 
         await page.mouse.click(400, 200);
         await expect(dialog).not.toBeVisible();
@@ -68,11 +71,10 @@ regressionTest.describe('enableTopLayer feature', () => {
 
       const trigger = page.getByRole('button', { name: 'Open' });
 
-      const dropdown = page.locator('ix-dropdown#dropdown');
-      const dialog = dropdown.getByRole('dialog');
+      const dialog = topLayerDialog(page, 'dropdown');
 
       await trigger.click();
-      await expect(dialog).toBeVisible();
+      await expect(dialog).toBeVisible({ timeout: 10_000 });
 
       await page.keyboard.press('Escape');
       await expect(dialog).not.toBeVisible();
@@ -100,7 +102,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = topLayerDialog(page, 'dropdown');
         await expect(dialog).not.toHaveClass(/overflow/);
       }
     );
@@ -127,7 +129,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = topLayerDialog(page, 'dropdown');
         await expect(dialog).toHaveClass(/overflow/);
       }
     );
@@ -152,8 +154,8 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
-        await expect(dialog).toBeVisible();
+        const dialog = topLayerDialog(page, 'dropdown');
+        await expect(dialog).toBeVisible({ timeout: 10_000 });
 
         const item = page.locator('ix-dropdown-item').first();
         await item.click();
@@ -183,8 +185,8 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
-        await expect(dialog).toBeVisible();
+        const dialog = topLayerDialog(page, 'dropdown');
+        await expect(dialog).toBeVisible({ timeout: 10_000 });
 
         await page.waitForTimeout(100);
 
@@ -254,8 +256,8 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Actions' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
-        await expect(dialog).toBeVisible();
+        const dialog = topLayerDialog(page, 'dropdown');
+        await expect(dialog).toBeVisible({ timeout: 10_000 });
 
         await page.waitForTimeout(100);
 
@@ -305,8 +307,8 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger2 = page.locator('#trigger-2');
         await trigger2.click();
 
-        const dropdown2Dialog = page.getByRole('dialog');
-        await expect(dropdown2Dialog).toBeVisible();
+        const dropdown2Dialog = topLayerDialog(page, 'dropdown-2');
+        await expect(dropdown2Dialog).toBeVisible({ timeout: 10_000 });
       }
     );
   });

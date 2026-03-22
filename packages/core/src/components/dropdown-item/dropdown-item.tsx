@@ -24,7 +24,10 @@ import {
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
-import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
+import {
+  IX_FOCUS_VISIBLE,
+  IX_FOCUS_VISIBLE_ACTIVE,
+} from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   ComponentIdMixin,
@@ -139,6 +142,7 @@ export class DropdownItem
           disabled: this.disabled,
           submenu: this.isSubMenu,
           [IX_FOCUS_VISIBLE]: !this.disabled,
+          [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
           'outline-visible': this.hasVisualFocus,
         }}
         onClick={() => {

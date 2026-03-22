@@ -41,14 +41,16 @@ export function detectKeyboardMode(
     );
   };
 
-  ref.addEventListener('keydown', onKeydown);
+  // Capture so keyboardMode is true before other keydown handlers (e.g. menu
+  // roving focus in rAF) run; bubble-only was too late vs trigger handlers.
+  ref.addEventListener('keydown', onKeydown, true);
   ref.addEventListener('touchstart', pointerDown, {
     passive: true,
   });
   ref.addEventListener('mousedown', pointerDown);
 
   const destroy = () => {
-    ref.removeEventListener('keydown', onKeydown);
+    ref.removeEventListener('keydown', onKeydown, true);
     ref.removeEventListener('touchstart', pointerDown);
     ref.removeEventListener('mousedown', pointerDown);
   };

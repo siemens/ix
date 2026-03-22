@@ -6,7 +6,7 @@
 - button "Eye"
 - spinbutton: "0"
 - textbox "Date of Birth"
-- button "Calendar"
+- button "Open calendar"
 - textbox "Appointment Time"
 - button "Toggle time picker"
 - button "Submit"

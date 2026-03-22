@@ -2649,9 +2649,8 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the menu expand icon
-          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
-          * @default 'Expand'
+          * Accessibility label when the menu is collapsed (expanded === false). When expanded, the control uses "Collapse menu".
+          * @default 'Expand menu'
          */
         "ixAriaLabel"?: string;
         /**
@@ -9112,9 +9111,8 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the menu expand icon
-          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
-          * @default 'Expand'
+          * Accessibility label when the menu is collapsed (expanded === false). When expanded, the control uses "Collapse menu".
+          * @default 'Expand menu'
          */
         "ixAriaLabel"?: string;
         /**

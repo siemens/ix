@@ -286,6 +286,7 @@ export class DatePicker
     }
 
     if (['PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+      event.preventDefault();
       switch (event.key) {
         case 'PageUp':
           this.navigateCalendar(-1, event.shiftKey);
@@ -457,12 +458,17 @@ export class DatePicker
   @Method()
   async focusFirstDayOfCurrentWeek(): Promise<void> {
     this.focusedDay = this.getFirstDayOfWeek(this.focusedDay);
+    // Same flag as month jumps: force componentDidRender to move real DOM focus to
+    // focusedDay. Otherwise a blur during render can clear isDayFocus and we skip
+    // .focus(), so Enter still acts on the previous cell (flaky CT).
+    this.monthChangedFromFocus = true;
   }
 
   /** @internal */
   @Method()
   async focusLastDayOfCurrentWeek(): Promise<void> {
     this.focusedDay = this.getLastDayOfWeek(this.focusedDay);
+    this.monthChangedFromFocus = true;
   }
 
   /** @internal */
@@ -855,33 +861,84 @@ export class DatePicker
 
     requestAnimationFrameNoNgZone(() => {
       const shadowRoot = this.hostElement.shadowRoot!;
+      const daysInMonth = this.getDaysInCurrentMonth();
+
+      // After Home/End (or arrows), real focus is on a day cell; a bubbling focusin can
+      // schedule this and must not snap focusedDay back to `.selected` (flaky CT).
+      const active = shadowRoot.activeElement as HTMLElement | null;
+      if (
+        active?.classList.contains('calendar-item') &&
+        active.dataset.calendarDay &&
+        !active.classList.contains('empty-day') &&
+        !active.classList.contains('disabled')
+      ) {
+        const domDay = parseInt(active.dataset.calendarDay, 10);
+        if (domDay >= 1 && domDay <= daysInMonth) {
+          if (this.focusedDay !== domDay) {
+            this.focusedDay = domDay;
+          }
+          return;
+        }
+      }
+
+      const from = this.currFromDate;
+      const selectedInView =
+        !!from &&
+        from.year === this.selectedYear &&
+        from.month - 1 === this.selectedMonth;
 
       const selectedDayElement = shadowRoot.querySelector(
         '.calendar-item.selected'
       ) as HTMLElement;
 
+      if (selectedDayElement) {
+        const d = selectedDayElement.dataset.calendarDay;
+        if (d) {
+          this.focusedDay = parseInt(d, 10);
+        }
+        return;
+      }
+
+      // Month changed via keyboard while selection stays in another month — keep roving day.
+      if (
+        !selectedInView &&
+        this.focusedDay >= 1 &&
+        this.focusedDay <= daysInMonth
+      ) {
+        const cell = shadowRoot.querySelector(
+          `#day-cell-${this.focusedDay}`
+        ) as HTMLElement | null;
+        if (cell && !cell.classList.contains('disabled')) {
+          return;
+        }
+      }
+
+      // Do not use `.today` before the branch above: when "today" falls in the visible
+      // month it would overwrite focusedDay (e.g. PageDown to October → day 1 on the 1st).
+
       const todayElement = shadowRoot.querySelector(
         '.calendar-item.today'
       ) as HTMLElement;
 
-      let dayElement = selectedDayElement ?? todayElement;
-
-      if (!dayElement) {
-        // This only happens if the user uses the year/month selector to pick a date
-        // and then switches to a month that has either today’s date or the selected
-        dayElement = shadowRoot.querySelector(
-          '.calendar-item.first-day'
-        ) as HTMLElement;
-      }
-
-      if (!dayElement) {
+      if (todayElement) {
+        const d = todayElement.dataset.calendarDay;
+        if (d) {
+          this.focusedDay = parseInt(d, 10);
+        }
         return;
       }
 
-      const currentDay = dayElement.dataset.calendarDay;
+      const firstDay = shadowRoot.querySelector(
+        '.calendar-item.first-day'
+      ) as HTMLElement;
 
-      if (currentDay) {
-        this.focusedDay = parseInt(currentDay, 10);
+      if (!firstDay) {
+        return;
+      }
+
+      const d = firstDay.dataset.calendarDay;
+      if (d) {
+        this.focusedDay = parseInt(d, 10);
       }
     });
   }
@@ -1052,10 +1109,15 @@ export class DatePicker
                           this.selectDay(day, target);
                         }}
                         onKeyDown={(e) => {
-                          const target = e.currentTarget as HTMLElement;
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            this.selectDay(day, target);
+                            // Use focusedDay, not closure `day`: after Home/End, tabindex
+                            // and state can briefly disagree with which cell still owns focus.
+                            const d = this.focusedDay;
+                            const cell = this.hostElement.shadowRoot?.querySelector(
+                              `#day-cell-${d}`
+                            ) as HTMLElement | null;
+                            this.selectDay(d, cell ?? (e.currentTarget as HTMLElement));
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}

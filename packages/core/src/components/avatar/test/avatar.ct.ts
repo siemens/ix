@@ -43,10 +43,10 @@ regressionTest.describe('embedded into header', () => {
     await avatar.click();
 
     const dropdown = avatar.locator('ix-dropdown');
-    await expect(dropdown).toHaveClass(/show/);
     await expect(
       dropdown.getByRole('menuitem', { name: 'Item 1' })
     ).toBeVisible();
+    await expect(dropdown).toHaveClass(/show/);
   });
 
   regressionTest('show user-info', async ({ page, mount }) => {
@@ -92,6 +92,10 @@ regressionTest.describe('embedded into header', () => {
       const avatar = page.locator('ix-avatar');
       await avatar.click();
 
+      const dropdown = avatar.locator('ix-dropdown');
+      await expect(
+        dropdown.getByRole('menuitem', { name: 'test' })
+      ).toBeVisible();
       await expect(avatar.locator('ix-divider')).toBeVisible();
     }
   );

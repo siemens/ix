@@ -370,7 +370,7 @@ export class Menu {
       return;
     }
 
-    this.setPinned(mode === 'lg');
+    this.setPinned(this.pinned || mode === 'lg');
     if (initial || mode !== this.breakpoint)
       this.toggleMenu(mode === 'lg' && this.startExpanded);
 
