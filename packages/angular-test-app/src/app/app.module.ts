@@ -41,13 +41,6 @@ import ButtonTertiary from '../preview-examples/button-tertiary';
 import ButtonSubtlePrimary from '../preview-examples/button-subtle-primary';
 import ButtonSubtleTertiary from '../preview-examples/button-subtle-tertiary';
 import ButtonSubtleSecondary from '../preview-examples/button-subtle-secondary';
-import ButtonDanger from '../preview-examples/button-danger';
-import ButtonDangerGhost from '../preview-examples/button-danger-ghost';
-import ButtonDangerOutline from '../preview-examples/button-danger-outline';
-import ButtonGhost from '../preview-examples/button-ghost';
-import ButtonGrey from '../preview-examples/button-grey';
-import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
-import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
 import ButtonGroup from '../preview-examples/button-group';
 import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
@@ -308,9 +301,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ButtonDangerPrimary,
     ButtonDangerSecondary,
     ButtonDangerTertiary,
-    ButtonDanger,
-    ButtonDangerGhost,
-    ButtonDangerOutline,
     Card,
     CardList,
     CategoryFilterSuggestions,

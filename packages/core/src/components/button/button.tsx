@@ -122,7 +122,7 @@ export class Button
 
   private a11yAttributes: Record<string, string> = {};
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
@@ -194,8 +194,6 @@ export class Button
   }
 
   override render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
