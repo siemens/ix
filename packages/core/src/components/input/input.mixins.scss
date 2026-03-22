@@ -80,7 +80,7 @@
     }
 
     .end-container {
-      right: var(--theme-input--border-thickness, 1px);
+      right: calc(var(--theme-input--border-thickness, 1px) + 0.125rem);
     }
 
     @include applySpacingToStartSlot;
