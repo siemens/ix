@@ -76,11 +76,11 @@
     }
 
     .start-container {
-      left: var(--theme-input--border-thickness, 1px);
+      left: var(--theme-input--border-thickness);
     }
 
     .end-container {
-      right: calc(var(--theme-input--border-thickness, 1px) + 0.125rem);
+      right: calc(var(--theme-input--border-thickness) + 0.125rem);
     }
 
     @include applySpacingToStartSlot;
@@ -91,7 +91,6 @@
       margin-bottom: 0.25rem;
     }
 
-    // When hovering over the end slot (e.g. calendar/clock/eye icon), show field hover state
     .input-wrapper:hover input:not(:disabled):not(:read-only) {
       border-color: var(--theme-input--border-color--hover) !important;
       background-color: var(--theme-input--background--hover);
