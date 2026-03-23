@@ -29,9 +29,8 @@ export class LoadingService {
   public showModalLoading(
     message: string | ModalLoadingOptions
   ): ModalLoadingContext {
-    if (typeof message === 'string') {
-      return showModalLoading(message);
-    }
-    return showModalLoading(message);
+    return showModalLoading(
+      message as string & ModalLoadingOptions
+    );
   }
 }

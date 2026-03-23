@@ -42,10 +42,7 @@ export function showModalLoading(options: ModalLoadingOptions): ModalLoadingCont
 export function showModalLoading(
   message: string | ModalLoadingOptions
 ): ModalLoadingContext {
-  if (typeof message === 'string') {
-    return _showModalLoading(message);
-  }
-  return _showModalLoading(message);
+  return _showModalLoading(message as string & ModalLoadingOptions);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {
