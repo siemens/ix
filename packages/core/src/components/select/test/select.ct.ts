@@ -304,12 +304,14 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   page,
 }) => {
   await mount(`
-        <ix-select value="2" editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-        </ix-select>
-        <ix-button>outside</ix-button>
+        <div style="display: flex; gap: 1rem;">
+          <ix-select value="2" editable>
+            <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+            <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+            <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+          </ix-select>
+          <ix-button>outside</ix-button>
+        </div>
     `);
 
   const selectElement = page.locator('ix-select');
