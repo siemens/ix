@@ -120,12 +120,23 @@ export class IconButton extends Mixin(...DefaultMixins) {
       this.a11yLabel ??
       getFallbackLabelFromIconName(this.icon);
 
-    let ariaAttributes: A11yAttributes = this.inheritAriaAttributes;
-    const ariaHidden = this.inheritAriaAttributes['aria-hidden'];
+    const ariaAttributes: A11yAttributes = { ...this.inheritAriaAttributes };
+    const ariaHidden = ariaAttributes['aria-hidden'];
+
+    if (ariaHidden === 'true') {
+      delete ariaAttributes['aria-label'];
+    }
 
     if (ariaHidden !== 'true') {
       ariaAttributes['aria-label'] = ariaLabel;
     }
+
+    const innerTabIndex =
+      ariaHidden === 'true'
+        ? -1
+        : this.hostElement.hasAttribute('tabindex')
+          ? this.hostElement.tabIndex
+          : undefined;
 
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: ariaAttributes,
@@ -141,10 +152,15 @@ export class IconButton extends Mixin(...DefaultMixins) {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),
-      tabIndex: this.hostElement.hasAttribute('tabindex')
-        ? this.hostElement.tabIndex
-        : undefined,
+      tabIndex: innerTabIndex,
     };
+
+    const hostTabIndex =
+      this.disabled || ariaHidden === 'true'
+        ? -1
+        : this.hostElement.hasAttribute('tabindex')
+          ? this.hostElement.tabIndex
+          : 0;
 
     return (
       <Host
@@ -152,7 +168,7 @@ export class IconButton extends Mixin(...DefaultMixins) {
           ...this.getIconSizeClass(),
           disabled: this.disabled || this.loading,
         }}
-        tabIndex={this.disabled ? -1 : 0}
+        tabIndex={hostTabIndex}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>

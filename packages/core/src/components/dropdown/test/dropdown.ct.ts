@@ -601,7 +601,7 @@ regressionTest(
     const header = page.locator('ix-application-header');
     await expect(header).toBeVisible();
 
-    const overflowTrigger = header.getByLabel('More Items');
+    const overflowTrigger = header.locator('[data-testid="show-more"]');
     await overflowTrigger.click();
 
     const overflowDropdown = header.locator('[data-overflow-dropdown]');

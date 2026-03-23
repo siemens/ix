@@ -170,6 +170,8 @@ $menu-expanded-width: 16rem;
 :host(.breakpoint-sm) {
   .menu:not(.expanded) {
     width: 0;
+    min-width: 0;
+    max-width: 0;
   }
 
   .menu-overlay {

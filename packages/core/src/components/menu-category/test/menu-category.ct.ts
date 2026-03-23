@@ -47,6 +47,7 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
   await categoryItem.click();
 
   const item = categoryItem.locator('ix-menu-item').nth(1);
+  await expect(item).toBeVisible();
   await item.evaluate((item: HTMLIxMenuItemElement) => (item.active = true));
   await expect(item).toHaveClass(/active/);
 
@@ -310,11 +311,13 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   const categoryElement = page.locator('ix-menu-category');
   await expect(categoryElement).toHaveClass(/hydrated/);
 
-  // Navigate to category
-  await page.keyboard.press('Tab');
+  const categoryButton = categoryElement.getByRole('button', {
+    name: 'Category label',
+  });
+
   await page.keyboard.press('Tab');
 
-  await expect(categoryElement).toBeFocused();
+  await expect(categoryButton).toBeFocused();
 
   const dropdown = categoryElement.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
@@ -322,8 +325,11 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   await page.keyboard.press(' ');
   await expect(dropdown).toBeVisible();
 
-  const item1 = categoryElement.locator('ix-menu-item').nth(0);
-  const item2 = categoryElement.locator('ix-menu-item').nth(1);
+  const nestedItems = categoryElement
+    .locator('ix-menu-item')
+    .filter({ hasText: 'Test' });
+  const item1 = nestedItems.nth(0);
+  const item2 = nestedItems.nth(1);
 
   // Focus trapping inside dropdown
   await expect(item1).toHaveVisibleFocus();
@@ -334,7 +340,7 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
 
   await page.keyboard.press('Escape');
   await expect(dropdown).not.toBeVisible();
-  await expect(categoryElement.locator('.category-parent')).toBeFocused();
+  await expect(categoryButton).toBeFocused();
 });
 
 test('should adjust height when items are added dynamically', async ({

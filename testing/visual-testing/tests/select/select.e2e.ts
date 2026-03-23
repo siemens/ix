@@ -31,7 +31,7 @@ regressionTest.describe('select', () => {
     await page.goto('select/mode-multiple');
     await page
       .getByLabel('normal-select')
-      .getByLabel('Open select dropdown')
+      .locator('[data-select-dropdown]')
       .click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -41,7 +41,7 @@ regressionTest.describe('select', () => {
     await page.goto('select/mode-multiple');
     await page
       .getByLabel('all-chip-select')
-      .getByLabel('Open select dropdown')
+      .locator('[data-select-dropdown]')
       .click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
