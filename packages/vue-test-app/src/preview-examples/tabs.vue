@@ -29,21 +29,21 @@ const changeTab = (tabId: number) => (selectedTab.value = tabId);
       aria-label="Example content"
       v-show="selectedTab === 0"
     >
-      Content 1
+      Content Tab 1
     </section>
     <section
       role="tabpanel"
       aria-label="Example content"
       v-show="selectedTab === 1"
     >
-      Content 2
+      Content Tab 2
     </section>
     <section
       role="tabpanel"
       aria-label="Example content"
       v-show="selectedTab === 2"
     >
-      Content 3
+      Content Tab 3
     </section>
   </div>
 </template>

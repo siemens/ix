@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 const createOnPageSelectedListener = (pagination: Locator) =>
@@ -48,6 +48,7 @@ regressionTest('open show number of page dropdown', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const element = page.locator('ix-pagination[advanced]');
+  await expect(element).toHaveClass(/hydrated/);
 
   await element.getByRole('button').nth(-1).click();
 
@@ -64,6 +65,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination');
+    await expect(pagination).toHaveClass(/hydrated/);
 
     const itemChanged = pagination.evaluate((elm) => {
       return new Promise<number>((resolve) => {
@@ -78,7 +80,6 @@ regressionTest(
     await pagination.locator('ix-dropdown-item').nth(3).click();
     await expect(pagination.locator('ix-dropdown')).not.toBeVisible();
 
-    await expect(pagination).toHaveClass(/hydrated/);
     expect(await itemChanged).toBe(40);
   }
 );
@@ -89,6 +90,7 @@ regressionTest('should not change page', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const pagination = page.locator('ix-pagination');
+  await expect(pagination).toHaveClass(/hydrated/);
 
   await pagination.evaluate((elm) => {
     elm.addEventListener('pageSelected', (event) => event.preventDefault());
@@ -107,6 +109,7 @@ regressionTest('should handle valid page input', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const pagination = page.locator('ix-pagination[advanced]');
+  await expect(pagination).toHaveClass(/hydrated/);
   const input = pagination.getByLabel('Page selection input');
 
   const pageSelected$ = pagination.evaluate(
@@ -133,6 +136,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination[advanced]');
+    await expect(pagination).toHaveClass(/hydrated/);
     const input = pagination.getByLabel('Page selection input');
 
     const pageSelected$ = createOnPageSelectedListener(pagination);
@@ -153,6 +157,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination[advanced]');
+    await expect(pagination).toHaveClass(/hydrated/);
     const input = pagination.getByLabel('Page selection input');
 
     const pageSelected$ = createOnPageSelectedListener(pagination);
@@ -162,5 +167,33 @@ regressionTest(
 
     await expect(input).toHaveValue('10');
     expect(await pageSelected$).toBe(9);
+  }
+);
+
+regressionTest(
+  'should use custom itemCountOptions',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+    await expect(pagination).toHaveClass(/hydrated/);
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [5, 25, 50, 100];
+    });
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-dropdown-item');
+    const expectedValues = ['5', '25', '50', '100'];
+    await expect(dropdownItems).toHaveCount(expectedValues.length);
+
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
+    }
   }
 );

@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+const textStyleDefault = {
+  color: '#ffffff',
+  fontFamily: 'Siemens Sans, sans-serif',
+};
+
 const colors = [
   '#00C1B6' /* theme-chart-3 */,
   '#85E9D2' /* theme-chart-2 */,
@@ -63,14 +68,10 @@ export default {
   theme: {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
-    textStyle: {},
+    textStyle: textStyleDefault,
     title: {
-      textStyle: {
-        color: '#ffffff',
-      },
-      subtextStyle: {
-        color: '#ffffff',
-      },
+      textStyle: textStyleDefault,
+      subtextStyle: textStyleDefault,
     },
     line: {
       itemStyle: {
@@ -186,16 +187,11 @@ export default {
       },
     },
     legend: {
-      textStyle: {
-        color: '#ffffff',
-      },
+      textStyle: textStyleDefault,
     },
     tooltip: {
       backgroundColor: '#000028cc',
       borderColor: '#ffffff40',
-      textStyle: {
-        color: '#ffffff',
-      },
       axisPointer: {
         lineStyle: {
           color: '#ffffff',
@@ -248,9 +244,6 @@ export default {
     dataZoom: {
       handleSize: 'undefined%',
       textStyle: {},
-    },
-    nameTextStyle: {
-      color: '#fff',
     },
     markPoint: {
       label: {
