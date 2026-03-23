@@ -114,6 +114,12 @@ export class IconButton extends Mixin(...DefaultMixins) {
     };
   }
 
+  private getExplicitHostTabIndex(): number | undefined {
+    return this.hostElement.hasAttribute('tabindex')
+      ? this.hostElement.tabIndex
+      : undefined;
+  }
+
   override render() {
     const ariaLabel =
       this.inheritAriaAttributes['aria-label'] ??
@@ -125,18 +131,16 @@ export class IconButton extends Mixin(...DefaultMixins) {
 
     if (ariaHidden === 'true') {
       delete ariaAttributes['aria-label'];
-    }
-
-    if (ariaHidden !== 'true') {
+    } else {
       ariaAttributes['aria-label'] = ariaLabel;
     }
 
-    const innerTabIndex =
-      ariaHidden === 'true'
-        ? -1
-        : this.hostElement.hasAttribute('tabindex')
-          ? this.hostElement.tabIndex
-          : undefined;
+    let innerTabIndex: number | undefined;
+    if (ariaHidden === 'true') {
+      innerTabIndex = -1;
+    } else {
+      innerTabIndex = this.getExplicitHostTabIndex();
+    }
 
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: ariaAttributes,
@@ -155,12 +159,12 @@ export class IconButton extends Mixin(...DefaultMixins) {
       tabIndex: innerTabIndex,
     };
 
-    const hostTabIndex =
-      this.disabled || ariaHidden === 'true'
-        ? -1
-        : this.hostElement.hasAttribute('tabindex')
-          ? this.hostElement.tabIndex
-          : 0;
+    let hostTabIndex: number;
+    if (this.disabled || ariaHidden === 'true') {
+      hostTabIndex = -1;
+    } else {
+      hostTabIndex = this.getExplicitHostTabIndex() ?? 0;
+    }
 
     return (
       <Host
