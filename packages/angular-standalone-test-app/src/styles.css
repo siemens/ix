@@ -6,3 +6,9 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+app-root {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}

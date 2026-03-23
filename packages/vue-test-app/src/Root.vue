@@ -189,6 +189,7 @@ import SplitButtonIcons from './preview-examples/split-button-icons.vue';
 import SplitButton from './preview-examples/split-button.vue';
 import TabsRounded from './preview-examples/tabs-rounded.vue';
 import Tabs from './preview-examples/tabs.vue';
+import TabsOverflow from './preview-examples/tabs-overflow.vue';
 import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
@@ -239,6 +240,8 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
+} & {
+  '/preview/tabs-overflow': any;
 };
 
 const routes: IxPreviewRoutes = {
@@ -367,6 +370,7 @@ const routes: IxPreviewRoutes = {
   '/preview/split-button': SplitButton,
   '/preview/split-button-icons': SplitButtonIcons,
   '/preview/tabs': Tabs,
+  '/preview/tabs-overflow': TabsOverflow,
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
   '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,

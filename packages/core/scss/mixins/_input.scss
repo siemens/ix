@@ -87,11 +87,9 @@
       box-shadow: none;
       background-color: transparent;
       outline: none;
-      border: none;
-      border-radius: 0;
-      border-bottom: var(--theme-input--border-thickness, 1px)
+      border: var(--theme-input--border-thickness)
         solid
-        var(--theme-input--border-color-bottom--readonly);
+        var(--theme-input--border-color--readonly);
 
       &::placeholder {
         color: transparent;
@@ -104,11 +102,8 @@
     box-shadow: none;
     background-color: transparent;
     outline: none;
-    border: none;
-    border-radius: 0;
-    color: var(--theme-input--color--disabled);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color-bottom--disabled);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color--disabled);
   }
 
   &:disabled::placeholder,
@@ -120,9 +115,12 @@
 @mixin element-textarea {
   & {
     min-height: 2rem;
-    height: 3.25rem;
     padding: calc(0.375rem - var(--theme-input--border-thickness))
       calc(0.5rem - var(--theme-input--border-thickness));
+
+    &:not([rows]) {
+      height: 3.25rem;
+    }
   }
 }
 
