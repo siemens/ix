@@ -143,8 +143,24 @@ export class Modal {
       return false;
     }
 
+    const path = event.composedPath();
+
+    if (!path.includes(this.dialog)) {
+      return false;
+    }
+
+    if (event.target !== this.dialog) {
+      return true;
+    }
+
+    const rect = this.dialog.getBoundingClientRect();
+    const { clientX, clientY } = event;
+
     return (
-      event.target !== this.dialog && event.composedPath().includes(this.dialog)
+      clientX >= rect.left &&
+      clientX <= rect.right &&
+      clientY >= rect.top &&
+      clientY <= rect.bottom
     );
   }
 
