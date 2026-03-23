@@ -38,7 +38,9 @@ export async function showModal(
 
 /** @deprecated Use ModalLoadingOptions object form instead */
 export function showModalLoading(message: string): ModalLoadingContext;
-export function showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+export function showModalLoading(
+  options: ModalLoadingOptions
+): ModalLoadingContext;
 export function showModalLoading(
   message: string | ModalLoadingOptions
 ): ModalLoadingContext {
