@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, waitForIxHydration } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { IxModalSize } from '@siemens/ix';
 import { iconInfo } from '@siemens/ix-icons/icons';
 
@@ -24,21 +24,13 @@ const screenWidths: IxModalSize[] = [
 
 screenWidths.forEach((size) => {
   regressionTest(`message size ${size}`, async ({ page, mount }) => {
-    await page.addInitScript(() => {
-      window.__ixApploadDispatched = false;
-
-      window.addEventListener('appload', () => {
-        window.__ixApploadDispatched = true;
-      });
-    });
-
     await mount(`<ix-button>Show Message</ix-button>`);
 
     const button = page.locator('ix-button');
     await button.evaluateHandle(
       (el, opt) => {
         el.addEventListener('click', () => {
-          window.showMessage({
+          void window.showMessage({
             messageTitle: 'Example title',
             message: 'message',
             icon: opt.icon,
@@ -55,7 +47,12 @@ screenWidths.forEach((size) => {
     );
 
     await button.click();
-    await page.waitForTimeout(500);
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+    await expect(modal).toHaveClass(/hydrated/);
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveCSS('opacity', '1');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
