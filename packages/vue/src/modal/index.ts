@@ -8,10 +8,10 @@ import {
   ModalLoadingContext,
   ModalLoadingOptions,
 } from '@siemens/ix';
-
-export type { ModalLoadingOptions };
 import { VNode } from 'vue';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
+
+export type { ModalLoadingOptions } from '@siemens/ix';
 
 // call defineCustomElement once at module level
 defineCustomElement();
