@@ -7,14 +7,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Injectable } from '@angular/core';
-import { showModalLoading, ModalLoadingContext } from '@siemens/ix';
+import {
+  showModalLoading,
+  ModalLoadingContext,
+  ModalLoadingOptions,
+} from '@siemens/ix';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
   /**
    * Displays a loading modal with a message
+   * @deprecated Use ModalLoadingOptions object form instead
    */
-  public showModalLoading(message: string): ModalLoadingContext {
+  public showModalLoading(message: string): ModalLoadingContext;
+
+  /**
+   * Displays a loading modal with a message
+   */
+  public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+
+  public showModalLoading(
+    message: string | ModalLoadingOptions
+  ): ModalLoadingContext {
+    if (typeof message === 'string') {
+      return showModalLoading(message);
+    }
     return showModalLoading(message);
   }
 }

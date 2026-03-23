@@ -13,7 +13,7 @@ import { IxButton, showModalLoading } from '@siemens/ix-react';
 export default () => {
   const startLoading = () => {
     let count = 0;
-    const progress: ModalLoadingContext = showModalLoading('Loading 0/2');
+    const progress: ModalLoadingContext = showModalLoading({ message: 'Loading 0/2' });
     const interval = setInterval(() => {
       count++;
       progress.update(`Loading ${count}/2`);

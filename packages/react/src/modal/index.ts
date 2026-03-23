@@ -15,7 +15,10 @@ import {
   closeModal as _closeModal,
   ModalInstance as IxModalInstance,
   ModalLoadingContext,
+  ModalLoadingOptions,
 } from '@siemens/ix';
+
+export type { ModalLoadingOptions };
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 
 // call defineCustomElement once at module level
@@ -33,7 +36,15 @@ export async function showModal(
   return _showModal(config);
 }
 
-export function showModalLoading(message: string): ModalLoadingContext {
+/** @deprecated Use ModalLoadingOptions object form instead */
+export function showModalLoading(message: string): ModalLoadingContext;
+export function showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+export function showModalLoading(
+  message: string | ModalLoadingOptions
+): ModalLoadingContext {
+  if (typeof message === 'string') {
+    return _showModalLoading(message);
+  }
   return _showModalLoading(message);
 }
 
