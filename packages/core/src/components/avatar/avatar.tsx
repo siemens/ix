@@ -197,6 +197,7 @@ export class Avatar {
       });
     });
   }
+
   private resolveTooltipTrigger() {
     return new Promise<HTMLElement>((resolve) => {
       readTask(() => {
@@ -266,7 +267,6 @@ export class Avatar {
             onShowChanged={(event) => {
               if (event.detail && this.tooltipRef.current) {
                 this.tooltipRef.current.hideTooltip(0);
-                this.hostElement.shadowRoot?.querySelector('button')?.blur();
               }
             }}
           >
