@@ -48,6 +48,8 @@ import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
 
+const ANCHOR_OFFSCREEN_CLOSE_MS = 300;
+
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',
@@ -138,6 +140,15 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * Optional element used as `IntersectionObserver` root to detect when the anchor
+   * has left a scroll/clipping region (e.g. AG Grid’s `.ag-center-cols-viewport`).
+   * Defaults to the browser viewport when unset.
+   *
+   * @since 4.4.0
+   */
+  @Prop() intersectionRoot?: ElementReference;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged!: EventEmitter<boolean>;
@@ -151,6 +162,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
+
+  private anchorVisibilityObserver?: IntersectionObserver;
+  private observedAnchorElement?: Element;
+  /** `null` = viewport; `HTMLElement` = custom root; `undefined` = observer not using cached pair */
+  private observedIoRoot?: HTMLElement | null;
+  private intersectionObserverRootEl: HTMLElement | null = null;
+  private offscreenCloseTimer?: ReturnType<typeof setTimeout>;
 
   private itemObserver? = new MutationObserver(() => {
     if (this.arrowFocusController) {
@@ -206,6 +224,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
+
+    this.teardownAnchorOffscreenTracking();
   }
 
   getAssignedSubmenuIds() {
@@ -389,6 +409,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     if (this.enableTopLayer) {
       await this.showDropdownAsync();
+      await this.syncAnchorVisibilityTracking();
       return;
     }
 
@@ -397,11 +418,26 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (this.anchorElement) {
       this.applyDropdownPosition();
     }
+    await this.syncAnchorVisibilityTracking();
   }
 
   @Watch('trigger')
   changedTrigger(newTriggerValue: ElementReference) {
     this.registerListener(newTriggerValue);
+  }
+
+  @Watch('anchor')
+  async changedAnchor() {
+    if (this.show) {
+      await this.syncAnchorVisibilityTracking();
+    }
+  }
+
+  @Watch('intersectionRoot')
+  async changedIntersectionRoot() {
+    if (this.show) {
+      await this.syncAnchorVisibilityTracking();
+    }
   }
 
   private destroyAutoUpdate() {
@@ -464,6 +500,121 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.arrowFocusController?.disconnect();
     this.itemObserver?.disconnect();
     this.disposeKeyListener?.();
+    this.teardownAnchorOffscreenTracking();
+  }
+
+  private teardownAnchorOffscreenTracking() {
+    this.clearOffscreenCloseTimer();
+    this.removeAnchorVisibilityObserver();
+  }
+
+  private clearOffscreenCloseTimer() {
+    if (this.offscreenCloseTimer !== undefined) {
+      clearTimeout(this.offscreenCloseTimer);
+      this.offscreenCloseTimer = undefined;
+    }
+  }
+
+  private removeAnchorVisibilityObserver() {
+    this.anchorVisibilityObserver?.disconnect();
+    this.anchorVisibilityObserver = undefined;
+    this.observedAnchorElement = undefined;
+    this.observedIoRoot = undefined;
+  }
+
+  private async resolveIntersectionObserverRoot() {
+    if (!this.intersectionRoot) {
+      this.intersectionObserverRootEl = null;
+      return;
+    }
+    const el = await findElement(this.intersectionRoot, this.hostElement);
+    this.intersectionObserverRootEl = el instanceof HTMLElement ? el : null;
+  }
+
+  private isAnchorFullyOutsideViewport(el: Element): boolean {
+    const r = el.getBoundingClientRect();
+    const vw = globalThis.innerWidth || document.documentElement.clientWidth;
+    const vh = globalThis.innerHeight || document.documentElement.clientHeight;
+    return r.bottom <= 0 || r.top >= vh || r.right <= 0 || r.left >= vw;
+  }
+
+  /** Geometry check matching IntersectionObserver `root` (viewport vs custom element). */
+  private isAnchorOutsideCloseRegion(el: Element): boolean {
+    const root = this.intersectionObserverRootEl;
+    if (!root) {
+      return this.isAnchorFullyOutsideViewport(el);
+    }
+    const r = el.getBoundingClientRect();
+    const br = root.getBoundingClientRect();
+    return (
+      r.bottom <= br.top ||
+      r.top >= br.bottom ||
+      r.right <= br.left ||
+      r.left >= br.right
+    );
+  }
+
+  private async syncAnchorVisibilityTracking() {
+    if (!this.show) {
+      return;
+    }
+    await this.resolveAnchorElement();
+    await this.resolveIntersectionObserverRoot();
+    this.attachAnchorVisibilityObserver();
+  }
+
+  private attachAnchorVisibilityObserver() {
+    if (!this.show || !this.anchorElement) {
+      this.teardownAnchorOffscreenTracking();
+      return;
+    }
+
+    const ioRoot = this.intersectionObserverRootEl;
+
+    if (
+      this.observedAnchorElement === this.anchorElement &&
+      this.anchorVisibilityObserver &&
+      this.observedIoRoot === ioRoot
+    ) {
+      return;
+    }
+
+    this.removeAnchorVisibilityObserver();
+    this.clearOffscreenCloseTimer();
+
+    const anchor = this.anchorElement;
+    this.observedAnchorElement = anchor;
+    this.observedIoRoot = ioRoot;
+
+    this.anchorVisibilityObserver = new IntersectionObserver(
+      (entries) => this.onAnchorIntersection(entries),
+      { root: ioRoot ?? null, threshold: 0 }
+    );
+
+    this.anchorVisibilityObserver.observe(anchor);
+  }
+
+  private onAnchorIntersection(entries: IntersectionObserverEntry[]) {
+    const entry = entries[0];
+    if (!entry) {
+      return;
+    }
+    if (entry.isIntersecting) {
+      this.clearOffscreenCloseTimer();
+      return;
+    }
+    if (this.offscreenCloseTimer !== undefined) {
+      return;
+    }
+    this.offscreenCloseTimer = globalThis.setTimeout(() => {
+      this.offscreenCloseTimer = undefined;
+      if (!this.show || !this.anchorElement) {
+        return;
+      }
+      if (this.isAnchorOutsideCloseRegion(this.anchorElement)) {
+        dropdownController.dismiss(this);
+      }
+    }, ANCHOR_OFFSCREEN_CLOSE_MS);
   }
 
   private async applyDropdownPosition() {
@@ -544,6 +695,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         ancestorResize: true,
         ancestorScroll: true,
         elementResize: true,
+        animationFrame: this.enableTopLayer,
       }
     );
   }
@@ -574,6 +726,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
+    if (this.show) {
+      await this.syncAnchorVisibilityTracking();
+    }
   }
 
   private isTriggerElement(element: HTMLElement) {

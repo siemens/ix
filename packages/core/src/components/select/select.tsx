@@ -28,6 +28,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { ElementReference } from '../utils/element-reference';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import { ArrowFocusController } from '../utils/focus';
@@ -202,6 +203,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * Root element for dropdown off-screen detection (e.g. grid scroll viewport).
+   * Passed to the internal `ix-dropdown`. See `ix-dropdown` `intersectionRoot`.
+   *
+   * @since 4.4.0
+   */
+  @Prop() intersectionRoot?: ElementReference;
 
   /**
    * Value changed
@@ -1015,6 +1024,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           enableTopLayer={this.enableTopLayer}
+          intersectionRoot={this.intersectionRoot}
           overwriteDropdownStyle={async () => {
             const styleOverwrites: Partial<CSSStyleDeclaration> = {};
 

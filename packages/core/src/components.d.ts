@@ -1370,6 +1370,11 @@ export namespace Components {
          */
         "ignoreRelatedSubmenu": boolean;
         /**
+          * Optional element used as `IntersectionObserver` root to detect when the anchor has left a scroll/clipping region (e.g. AG Grid’s `.ag-center-cols-viewport`). Defaults to the browser viewport when unset.
+          * @since 4.4.0
+         */
+        "intersectionRoot"?: ElementReference;
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -3188,6 +3193,11 @@ export namespace Components {
           * Info text for the select component
          */
         "infoText"?: string;
+        /**
+          * Root element for dropdown off-screen detection (e.g. grid scroll viewport). Passed to the internal `ix-dropdown`. See `ix-dropdown` `intersectionRoot`.
+          * @since 4.4.0
+         */
+        "intersectionRoot"?: ElementReference;
         /**
           * Error text for the select component
          */
@@ -7428,6 +7438,11 @@ declare namespace LocalJSX {
          */
         "ignoreRelatedSubmenu"?: boolean;
         /**
+          * Optional element used as `IntersectionObserver` root to detect when the anchor has left a scroll/clipping region (e.g. AG Grid’s `.ag-center-cols-viewport`). Defaults to the browser viewport when unset.
+          * @since 4.4.0
+         */
+        "intersectionRoot"?: ElementReference;
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -9380,6 +9395,11 @@ declare namespace LocalJSX {
          */
         "infoText"?: string;
         /**
+          * Root element for dropdown off-screen detection (e.g. grid scroll viewport). Passed to the internal `ix-dropdown`. See `ix-dropdown` `intersectionRoot`.
+          * @since 4.4.0
+         */
+        "intersectionRoot"?: ElementReference;
+        /**
           * Error text for the select component
          */
         "invalidText"?: string;
@@ -10826,6 +10846,7 @@ declare namespace LocalJSX {
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
         "enableTopLayer": boolean;
+        "intersectionRoot": ElementReference;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;
@@ -11277,6 +11298,7 @@ declare namespace LocalJSX {
         "dropdownMaxWidth": string;
         "collapseMultipleSelection": boolean;
         "enableTopLayer": boolean;
+        "intersectionRoot": ElementReference;
     }
     interface IxSelectItemAttributes {
         "label": string;

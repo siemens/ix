@@ -678,7 +678,8 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
         suppressOverflowBehavior: 'suppress-overflow-behavior',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        intersectionRoot: 'intersection-root'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as ReactWebComponent<IxDropdownElement, IxDropdownEvents>,
@@ -1605,7 +1606,8 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width',
         collapseMultipleSelection: 'collapse-multiple-selection',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        intersectionRoot: 'intersection-root'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,

@@ -540,6 +540,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'ignoreRelatedSubmenu',
   'suppressOverflowBehavior',
   'enableTopLayer',
+  'intersectionRoot',
   'showChanged'
 ], [
   'showChanged'
@@ -1201,6 +1202,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'dropdownMaxWidth',
   'collapseMultipleSelection',
   'enableTopLayer',
+  'intersectionRoot',
   'valueChange',
   'inputChange',
   'addItem',
