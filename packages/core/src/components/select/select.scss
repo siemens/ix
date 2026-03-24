@@ -16,9 +16,8 @@
 @use 'mixins/validation/form-component';
 
 :host {
-  display: block;
+  display: inline-block;
   position: relative;
-  width: 18rem;
   border-radius: var(--theme-input--border-radius);
 
   @include component.ix-component;
@@ -210,10 +209,12 @@
 @include form-component.host-warning {
   .select {
     border-color: var(--theme-input--border-color--warning);
+    background-color: var(--theme-input--background--warning);
   }
 
   .select:hover {
     border-color: var(--theme-input--border-color--warning--hover) !important;
+    background-color: var(--theme-input--background--warning--hover) !important;
   }
 
   .select:active {
