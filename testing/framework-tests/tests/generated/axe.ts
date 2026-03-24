@@ -165,6 +165,7 @@ import './slider-axe.spec.ts';
 import './slider-error-axe.spec.ts';
 import './slider-marker-axe.spec.ts';
 import './slider-trace-axe.spec.ts';
+import './slider-validation-axe.spec.ts';
 import './spinner-axe.spec.ts';
 import './spinner-large-axe.spec.ts';
 import './split-button-axe.spec.ts';
