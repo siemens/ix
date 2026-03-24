@@ -16,6 +16,7 @@ import { IxSlider } from '@siemens/ix-vue';
     <IxSlider
       label="Info"
       :value="10"
+      trace
       info-text="Info "
       class="ix-info"
     >
@@ -28,6 +29,7 @@ import { IxSlider } from '@siemens/ix-vue';
     <IxSlider
       label="Warning"
       :value="90"
+      trace
       warning-text="Warning text"
       class="ix-warning"
     >
@@ -40,6 +42,7 @@ import { IxSlider } from '@siemens/ix-vue';
     <IxSlider
       label="Valid"
       :value="10"
+      trace
       valid-text="Valid text"
       class="ix-valid"
     >
@@ -52,6 +55,7 @@ import { IxSlider } from '@siemens/ix-vue';
     <IxSlider
       label="Invalid"
       :value="100"
+      trace
       invalid-text="Invalid text"
       class="ix-invalid"
     >

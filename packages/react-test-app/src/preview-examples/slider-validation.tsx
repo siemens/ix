@@ -16,6 +16,7 @@ export default () => {
         <IxSlider
           label="Info"
           value={10}
+          trace
           infoText="Info text"
           className="ix-info"
         >
@@ -28,6 +29,7 @@ export default () => {
         <IxSlider
           label="Warning"
           value={90}
+          trace
           warningText="Warning text"
           className="ix-warning"
         >
@@ -40,6 +42,7 @@ export default () => {
         <IxSlider
           label="Valid"
           value={10}
+          trace
           validText="Valid text"
           className="ix-valid"
         >
@@ -52,6 +55,7 @@ export default () => {
         <IxSlider
           label="Invalid"
           value={100}
+          trace
           invalidText="Invalid text"
           className="ix-invalid"
         >
