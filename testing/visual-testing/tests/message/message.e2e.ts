@@ -30,14 +30,16 @@ screenWidths.forEach((size) => {
     await button.evaluateHandle(
       (el, opt) => {
         el.addEventListener('click', () => {
-          void window.showMessage({
-            messageTitle: 'Example title',
-            message: 'message',
-            icon: opt.icon,
-            size: opt.size,
-            centered: true,
-            actions: [],
-          });
+          window
+            .showMessage({
+              messageTitle: 'Example title',
+              message: 'message',
+              icon: opt.icon,
+              size: opt.size,
+              centered: true,
+              actions: [],
+            })
+            .catch(() => undefined);
         });
       },
       {
