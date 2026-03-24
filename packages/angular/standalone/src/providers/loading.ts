@@ -27,10 +27,11 @@ export class LoadingService extends BaseLoadingService {
   public override showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
 
   public override showModalLoading(
-    message: string | ModalLoadingOptions
+    messageOrOptions: string | ModalLoadingOptions
   ): ModalLoadingContext {
-    return super.showModalLoading(
-      message as string & ModalLoadingOptions
-    );
+    if (typeof messageOrOptions === 'string') {
+      return super.showModalLoading(messageOrOptions);
+    }
+    return super.showModalLoading(messageOrOptions);
   }
 }

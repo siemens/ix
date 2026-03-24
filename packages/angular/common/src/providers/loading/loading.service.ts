@@ -27,10 +27,11 @@ export class LoadingService {
   public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
 
   public showModalLoading(
-    message: string | ModalLoadingOptions
+    messageOrOptions: string | ModalLoadingOptions
   ): ModalLoadingContext {
-    return showModalLoading(
-      message as string & ModalLoadingOptions
-    );
+    if (typeof messageOrOptions === 'string') {
+      return showModalLoading(messageOrOptions);
+    }
+    return showModalLoading(messageOrOptions);
   }
 }

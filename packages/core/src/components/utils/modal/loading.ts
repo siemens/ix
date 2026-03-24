@@ -27,6 +27,7 @@ export type ModalLoadingOptions = {
    */
   centered?: boolean;
 };
+
 /**
  * Displays a loading modal with a message
  * @deprecated Use ModalLoadingOptions object form instead. Will be removed in v5.0.0.
@@ -41,18 +42,18 @@ export function showModalLoading(
 ): ModalLoadingContext;
 
 export function showModalLoading(
-  message: string | ModalLoadingOptions
+  messageOrOptions: string | ModalLoadingOptions
 ): ModalLoadingContext {
   const modal = document.createElement('ix-modal');
   modal.disableEscapeClose = true;
 
   const loading = document.createElement('ix-modal-loading');
 
-  if (typeof message === 'string') {
-    loading.innerText = message;
+  if (typeof messageOrOptions === 'string') {
+    loading.innerText = messageOrOptions;
   } else {
-    loading.innerText = message.message;
-    if (message.centered) {
+    loading.innerText = messageOrOptions.message;
+    if (messageOrOptions.centered) {
       modal.centered = true;
     }
   }
