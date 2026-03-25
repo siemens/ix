@@ -1,6 +1,7 @@
-const MINIMUM_LOADING_TIME_MS = 1000;
+const MINIMUM_LOADING_TIME_MS = 800;
 const OVERLAY_MESSAGE_TYPE = 'ix-preview-loading-overlay';
 const OVERLAY_MESSAGE_SOURCE = 'ix-react-blocks';
+let latestLoadingRequestId = 0;
 
 type LoadingOverlayHostMessage = {
   source: typeof OVERLAY_MESSAGE_SOURCE;
@@ -39,26 +40,37 @@ const notifyHost = (visible: boolean) => {
 };
 
 export const showLoadingOverlay = () => {
+  const loadingRequestId = ++latestLoadingRequestId;
   notifyHost(true);
 
-  const waitForWindowLoad =
-    document.readyState === 'complete'
-      ? Promise.resolve()
-      : new Promise<void>((resolve) => {
-          window.addEventListener('load', () => resolve(), { once: true });
-        });
+  const waitForDocumentReady =
+    document.readyState === 'loading'
+      ? new Promise<void>((resolve) => {
+          window.addEventListener('DOMContentLoaded', () => resolve(), {
+            once: true,
+          });
+        })
+      : Promise.resolve();
 
   const waitForMinimumDelay = new Promise<void>((resolve) => {
     window.setTimeout(resolve, MINIMUM_LOADING_TIME_MS);
   });
 
   return async (resourcesReady: Promise<unknown> = Promise.resolve()) => {
-    await Promise.all([waitForWindowLoad, waitForMinimumDelay, resourcesReady]);
+    await Promise.all([
+      waitForDocumentReady,
+      waitForMinimumDelay,
+      resourcesReady,
+    ]);
     await new Promise<void>((resolve) => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => resolve());
       });
     });
+
+    if (loadingRequestId !== latestLoadingRequestId) {
+      return;
+    }
 
     notifyHost(false);
   };
