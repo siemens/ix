@@ -251,9 +251,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private chipsEl: HTMLDivElement | undefined;
   private clearButtonEl: HTMLIxIconButtonElement | undefined;
   private chevronButtonEl: HTMLIxIconButtonElement | undefined;
-  private chipWidths = new Map<string, number>();
   private chipsResizeObserver?: ResizeObserver;
 
+  private readonly chipWidths = new Map<string, number>();
   private readonly CHIP_GAP = 4;
   private readonly RESERVED_INPUT_SPACE = 40;
 
