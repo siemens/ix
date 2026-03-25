@@ -28,6 +28,10 @@
           "path": "blocks/change-password.json"
         },
         {
+          "name": "password-criteria",
+          "path": "blocks/password-criteria.json"
+        },
+        {
           "name": "login-overlay",
           "path": "blocks/login-overlay.json"
         }
