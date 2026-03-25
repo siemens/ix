@@ -68,17 +68,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * Name of the input element
+   * Name of the input element.
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Placeholder of the input element
+   * Placeholder of the input element.
    */
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * Value of the input element
+   * Value of the input element.
    */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
@@ -114,17 +114,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * Required attribute
+   * Required attribute.
    */
   @Prop() required?: boolean;
 
   /**
-   * Helper text below the input field
+   * Helper text below the input field.
    */
   @Prop() helperText?: string;
 
   /**
-   * Label of the input field
+   * Label of the input field.
    */
   @Prop() label?: string;
 
@@ -137,48 +137,48 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
   /**
-   * Error text below the input field
+   * Error text below the input field.
    */
   @Prop({ reflect: true }) invalidText?: string;
 
   /**
-   * Readonly attribute
+   * Readonly attribute.
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * Disabled attribute
+   * Disabled attribute.
    */
   @Prop() disabled: boolean = false;
 
   /**
-   * Info text below the input field
+   * Info text below the input field.
    */
   @Prop() infoText?: string;
 
   /**
-   * Warning text below the input field
+   * Warning text below the input field.
    */
   @Prop() warningText?: string;
 
   /**
-   * Valid text below the input field
+   * Valid text below the input field.
    */
   @Prop() validText?: string;
 
   /**
-   * Show text as tooltip
+   * Show text as tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * I18n string for the error message when the date is not parsable
+   * I18n string for the error message when the date is not parsable.
    */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
 
   /**
-   * Shows week numbers displayed on the left side of the date picker
+   * Shows week numbers displayed on the left side of the date picker.
    *
    * @since 3.0.0
    */
@@ -186,7 +186,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -222,12 +222,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Input change event.
+   * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
@@ -237,7 +237,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
   /**
-   * Event emitted when the date input loses focus and the value has changed.
+   * Change event. Emitted when the date input loses focus and the value has changed.
+   *
    * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
