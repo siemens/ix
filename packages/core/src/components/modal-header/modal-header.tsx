@@ -52,7 +52,7 @@ export class ModalHeader {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseIconButton?: string;
+  @Prop() ariaLabelCloseIconButton?: string = 'Close modal';
 
   @Watch('icon')
   onIconChange(icon?: string) {

@@ -22,22 +22,25 @@ import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue';
 <template>
   <IxTabs rounded>
     <IxTabItem>
-      <IxIcon :name="iconSuccess"></IxIcon>
+      <IxIcon :name="iconSuccess" aria-label="Success"></IxIcon>
     </IxTabItem>
     <IxTabItem :counter="200">
-      <IxIcon :name="iconTree"></IxIcon>
+      <IxIcon :name="iconTree" aria-label="Tree"></IxIcon>
     </IxTabItem>
     <IxTabItem>
-      <IxIcon :name="iconMaintenance"></IxIcon>
+      <IxIcon :name="iconMaintenance" aria-label="Maintenance"></IxIcon>
     </IxTabItem>
     <IxTabItem disabled :counter="24">
-      <IxIcon :name="iconSoundLoud"></IxIcon>
+      <IxIcon :name="iconSoundLoud" aria-label="Sound"></IxIcon>
     </IxTabItem>
     <IxTabItem>
-      <IxIcon :name="iconHierarchy"></IxIcon>
+      <IxIcon :name="iconHierarchy" aria-label="Hierarchy"></IxIcon>
     </IxTabItem>
     <IxTabItem disabled>
-      <IxIcon :name="iconCalendarSettings"></IxIcon>
+      <IxIcon
+        :name="iconCalendarSettings"
+        aria-label="Calendar settings"
+      ></IxIcon>
     </IxTabItem>
   </IxTabs>
 </template>

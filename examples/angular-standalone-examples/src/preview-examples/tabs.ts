@@ -20,7 +20,6 @@ import { IxTabs, IxTabItem } from '@siemens/ix-angular/standalone';
         <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>
         <ix-tab-item (click)="changeTab(2)">Tab 3</ix-tab-item>
       </ix-tabs>
-
       <section role="tabpanel" aria-label="Example content">
         @if (selectedTab === 0) { Content Tab 1 } @else if (selectedTab === 1) {
         Content Tab 2 } @else if (selectedTab === 2) { Content Tab 3 }

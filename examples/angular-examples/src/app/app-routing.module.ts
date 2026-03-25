@@ -57,6 +57,8 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateRange from '../preview-examples/date-range';
+import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
@@ -194,6 +196,7 @@ import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
+import RangeField from '../preview-examples/range-field';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
@@ -209,6 +212,7 @@ import SpinnerLarge from '../preview-examples/spinner-large';
 import SplitButton from '../preview-examples/split-button';
 import SplitButtonIcons from '../preview-examples/split-button-icons';
 import Tabs from '../preview-examples/tabs';
+import TabsOverflow from '../preview-examples/tabs-overflow';
 import TabsRounded from '../preview-examples/tabs-rounded';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
@@ -221,6 +225,7 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
+import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -452,6 +457,14 @@ const routes: Routes = [
       {
         path: 'date-dropdown-user-range',
         component: DateDropdownUserRange,
+      },
+      {
+        path: 'date-range',
+        component: DateRange,
+      },
+      {
+        path: 'datetime-range',
+        component: DatetimeRange,
       },
       {
         path: 'date-input',
@@ -818,6 +831,7 @@ const routes: Routes = [
       { path: 'radio-disabled', component: RadioDisabled },
       { path: 'radio-group', component: RadioGroup },
       { path: 'radio-validation', component: RadioValidation },
+      { path: 'range-field', component: RangeField },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
       { path: 'select-ng-model', component: SelectNgModel },
@@ -829,6 +843,7 @@ const routes: Routes = [
       { path: 'split-button-icons', component: SplitButtonIcons },
       { path: 'split-button', component: SplitButton },
       { path: 'tabs', component: Tabs },
+      { path: 'tabs-overflow', component: TabsOverflow },
       { path: 'tabs-rounded', component: TabsRounded },
       { path: 'textarea-legacy', component: TextareaLegacy },
       { path: 'textarea-legacy-disabled', component: TextareaLegacyDisabled },
@@ -849,6 +864,7 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'time-input', component: TimeInput },
+      { path: 'time-range', component: TimeRange },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
@@ -920,6 +936,10 @@ const routes: Routes = [
       {
         path: 'tabs-rounded',
         component: TabsRounded,
+      },
+      {
+        path: 'tabs-overflow',
+        component: TabsOverflow,
       },
       {
         path: 'tabs',

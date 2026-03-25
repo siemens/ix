@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -47,8 +48,14 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
@@ -66,8 +73,11 @@ import type { DateInputValidityState } from './date-input.types';
   },
   formAssociated: true,
 })
-export class DateInput implements IxInputFieldComponent<string | undefined> {
-  @Element() hostElement!: HTMLIxDateInputElement;
+export class DateInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -137,7 +147,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCalendarButton?: string;
+  @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
   /**
    * Error text below the input field
@@ -197,13 +207,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * ARIA label for the previous month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelPreviousMonthButton?: string;
+  @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelNextMonthButton?: string;
+  @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
    * If false, pressing Enter will submit the form (if inside a form).
@@ -255,11 +265,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
-
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
-
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+
   private classObserver?: ClassMutationObserver;
 
   public initialValue?: string;
@@ -282,7 +291,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -294,7 +303,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -314,7 +323,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -363,7 +372,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
-      this.inputElementRef.current?.focus();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
     }
 
     this.emitValidityStateChangeIfChanged();
@@ -453,11 +465,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-hidden={this.ariaLabelCalendarButton}
+            aria-label={this.ariaLabelCalendarButton}
             tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
+            size="16"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
@@ -517,7 +530,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,

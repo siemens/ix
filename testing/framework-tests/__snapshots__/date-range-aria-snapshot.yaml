@@ -1,0 +1,6 @@
+- main:
+  - group "date range":
+    - textbox "Start date"
+    - button "Open calendar"
+    - textbox "End date"
+    - button "Open calendar"

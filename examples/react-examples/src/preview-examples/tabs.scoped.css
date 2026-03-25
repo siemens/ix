@@ -21,6 +21,12 @@
   display: none;
 }
 
-.tabs > div[data-tab-content].show {
+.tabs > div[data-tab-content].show,
+.tabs [data-tab-content].show {
   display: block;
 }
+
+.tabs [data-tab-content] {
+  display: none;
+}
+

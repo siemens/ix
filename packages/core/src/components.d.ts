@@ -782,6 +782,7 @@ export namespace Components {
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
+          * @default 'Close chip'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -1043,14 +1044,17 @@ export namespace Components {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -1123,6 +1127,7 @@ export namespace Components {
           * Name of the input element
          */
         "name"?: string;
+        "openPicker": () => Promise<void>;
         /**
           * Placeholder of the input element
          */
@@ -1472,10 +1477,12 @@ export namespace Components {
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -1566,6 +1573,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close drawer'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -1940,6 +1948,7 @@ export namespace Components {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -1950,6 +1959,7 @@ export namespace Components {
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
           * @since 3.2.0
+          * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -3014,6 +3024,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -3172,11 +3183,13 @@ export namespace Components {
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -3557,6 +3570,17 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    interface IxRangeField {
+        /**
+          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
+          * @default false
+         */
+        "hideArrow": boolean;
+        /**
+          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
+         */
+        "type"?: 'time-range' | 'date-range' | 'datetime-range';
+    }
     interface IxRow {
     }
     /**
@@ -3580,12 +3604,12 @@ export namespace Components {
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -3969,13 +3993,15 @@ export namespace Components {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
+          * @default 'Scroll tabs left'
          */
-        "ariaLabelChevronLeftIconButton"?: string;
+        "ariaLabelChevronLeftIconButton": string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
+          * @default 'Scroll tabs right'
          */
-        "ariaLabelChevronRightIconButton"?: string;
+        "ariaLabelChevronRightIconButton": string;
         /**
           * Set layout width style
           * @default 'auto'
@@ -4078,19 +4104,19 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The width of the textarea specified by number of characters.
+          * The width of the textarea specified by number of characters. Will be overridden by `textareaWidth` prop if both are set.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px").
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `textareaRows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
-          * The height of the textarea specified by number of rows.
+          * The height of the textarea specified by number of rows. Will be overridden by `textareaHeight` prop if both are set.
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px").
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `textareaCols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**
@@ -4237,6 +4263,7 @@ export namespace Components {
           * Name of the input element
          */
         "name"?: string;
+        "openPicker": () => Promise<void>;
         /**
           * Placeholder of the input element
          */
@@ -4383,6 +4410,7 @@ export namespace Components {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -6398,6 +6426,12 @@ declare global {
         prototype: HTMLIxRadioGroupElement;
         new (): HTMLIxRadioGroupElement;
     };
+    interface HTMLIxRangeFieldElement extends Components.IxRangeField, HTMLStencilElement {
+    }
+    var HTMLIxRangeFieldElement: {
+        prototype: HTMLIxRangeFieldElement;
+        new (): HTMLIxRangeFieldElement;
+    };
     interface HTMLIxRowElement extends Components.IxRow, HTMLStencilElement {
     }
     var HTMLIxRowElement: {
@@ -6902,6 +6936,7 @@ declare global {
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
+        "ix-range-field": HTMLIxRangeFieldElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -7667,6 +7702,7 @@ declare namespace LocalJSX {
     interface IxChip {
         /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
+          * @default 'Close chip'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -7936,14 +7972,17 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -8371,10 +8410,12 @@ declare namespace LocalJSX {
     interface IxDatetimePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -8475,6 +8516,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close drawer'
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -8875,6 +8917,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -8885,6 +8928,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
           * @since 3.2.0
+          * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -10032,6 +10076,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -10201,11 +10246,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -10622,6 +10669,17 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    interface IxRangeField {
+        /**
+          * Hides the arrow icon between the two input fields. This can be used when the input range is used in a context where the arrow icon is not desired, such as in a form field with a custom label.
+          * @default false
+         */
+        "hideArrow"?: boolean;
+        /**
+          * The type of the input range. If set to "time-range", the input range will be displayed as a time range.
+         */
+        "type"?: 'time-range' | 'date-range' | 'datetime-range';
+    }
     interface IxRow {
     }
     /**
@@ -10645,12 +10703,12 @@ declare namespace LocalJSX {
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -11061,11 +11119,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron left icon button
           * @since 3.2.0
+          * @default 'Scroll tabs left'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
           * @since 3.2.0
+          * @default 'Scroll tabs right'
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -11181,19 +11241,19 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The width of the textarea specified by number of characters.
+          * The width of the textarea specified by number of characters. Will be overridden by `textareaWidth` prop if both are set.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px").
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `textareaRows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
-          * The height of the textarea specified by number of rows.
+          * The height of the textarea specified by number of rows. Will be overridden by `textareaHeight` prop if both are set.
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px").
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `textareaCols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**
@@ -11494,6 +11554,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -12690,6 +12751,10 @@ declare namespace LocalJSX {
         "direction": 'column' | 'row';
         "required": boolean;
     }
+    interface IxRangeFieldAttributes {
+        "type": 'time-range' | 'date-range' | 'datetime-range';
+        "hideArrow": boolean;
+    }
     interface IxSelectAttributes {
         "name": string;
         "required": boolean;
@@ -13038,6 +13103,7 @@ declare namespace LocalJSX {
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
         "ix-radio-group": Omit<IxRadioGroup, keyof IxRadioGroupAttributes> & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes]?: IxRadioGroup[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `attr:${K}`]?: IxRadioGroupAttributes[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `prop:${K}`]?: IxRadioGroup[K] };
+        "ix-range-field": Omit<IxRangeField, keyof IxRangeFieldAttributes> & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes]?: IxRangeField[K] } & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes as `attr:${K}`]?: IxRangeFieldAttributes[K] } & { [K in keyof IxRangeField & keyof IxRangeFieldAttributes as `prop:${K}`]?: IxRangeField[K] };
         "ix-row": IxRow;
         "ix-select": Omit<IxSelect, keyof IxSelectAttributes> & { [K in keyof IxSelect & keyof IxSelectAttributes]?: IxSelect[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `attr:${K}`]?: IxSelectAttributes[K] } & { [K in keyof IxSelect & keyof IxSelectAttributes as `prop:${K}`]?: IxSelect[K] };
         "ix-select-item": Omit<IxSelectItem, keyof IxSelectItemAttributes> & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes]?: IxSelectItem[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `attr:${K}`]?: IxSelectItemAttributes[K] } & { [K in keyof IxSelectItem & keyof IxSelectItemAttributes as `prop:${K}`]?: IxSelectItem[K] } & OneOf<"value", IxSelectItem["value"], IxSelectItemAttributes["value"]>;
@@ -13429,6 +13495,7 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-radio-group": LocalJSX.IntrinsicElements["ix-radio-group"] & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
+            "ix-range-field": LocalJSX.IntrinsicElements["ix-range-field"] & JSXBase.HTMLAttributes<HTMLIxRangeFieldElement>;
             "ix-row": LocalJSX.IntrinsicElements["ix-row"] & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/select/guide.md

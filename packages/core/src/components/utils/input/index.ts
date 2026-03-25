@@ -107,3 +107,19 @@ export function isIxInputFieldComponent<T>(
     typeof obj.getNativeInputElement === 'function'
   );
 }
+
+export interface IxInputFieldWithPickerComponent<T>
+  extends IxInputFieldComponent<T> {
+  // Annotate as @Method()
+  openPicker(): Promise<void>;
+}
+
+export function isIxInputFieldWithPickerComponent<T>(
+  obj: HTMLElement | IxFormComponent<T>
+): obj is IxInputFieldWithPickerComponent<T> {
+  return (
+    isIxInputFieldComponent(obj) &&
+    'openPicker' in obj &&
+    typeof obj.openPicker === 'function'
+  );
+}

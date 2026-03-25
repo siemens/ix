@@ -17,6 +17,8 @@ import {
 } from '../utils/input';
 import { IxComponentInterface } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
+import { closestPassShadow } from '../utils/shadow-dom';
+import { State } from 'node_modules/@siemens/ix-icons/dist/types/stencil-public-runtime';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
@@ -50,6 +52,8 @@ export class FormFieldLabel implements IxComponentInterface {
 
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;
+
+  @State() textOverflow: 'wrap' | 'no-wrap' = 'wrap';
 
   private explicitIsInvalid: boolean | undefined = undefined;
 
@@ -85,6 +89,10 @@ export class FormFieldLabel implements IxComponentInterface {
 
   componentWillRender() {
     this.checkForInternalState();
+
+    if (closestPassShadow(this.hostElement, 'ix-range-field')) {
+      this.textOverflow = 'no-wrap';
+    }
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -195,7 +203,13 @@ export class FormFieldLabel implements IxComponentInterface {
 
   render() {
     return (
-      <Host onClick={() => this.focusOnClick()}>
+      <Host
+        onClick={() => this.focusOnClick()}
+        class={{
+          'text-overflow-wrap': this.textOverflow === 'wrap',
+          'text-overflow-no-wrap': this.textOverflow === 'no-wrap',
+        }}
+      >
         <label
           htmlFor={this.htmlFor}
           {...this.a11yAttributes}

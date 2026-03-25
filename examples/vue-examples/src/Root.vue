@@ -60,6 +60,8 @@ import CustomFieldValidation from './preview-examples/custom-field-validation.vu
 import CustomField from './preview-examples/custom-field.vue';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
+import DateRange from './preview-examples/date-range.vue';
+import DatetimeRange from './preview-examples/datetime-range.vue';
 import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
 import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
@@ -181,6 +183,7 @@ import RadioDisabled from './preview-examples/radio-disabled.vue';
 import RadioGroup from './preview-examples/radio-group.vue';
 import RadioValidation from './preview-examples/radio-validation.vue';
 import Radio from './preview-examples/radio.vue';
+import RangeField from './preview-examples/range-field.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
 import SelectValidation from './preview-examples/select-validation.vue';
@@ -196,6 +199,7 @@ import SplitButtonIcons from './preview-examples/split-button-icons.vue';
 import SplitButton from './preview-examples/split-button.vue';
 import TabsRounded from './preview-examples/tabs-rounded.vue';
 import Tabs from './preview-examples/tabs.vue';
+import TabsOverflow from './preview-examples/tabs-overflow.vue';
 import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
@@ -206,6 +210,7 @@ import TextareaFieldValidation from './preview-examples/textarea-validation.vue'
 import TextareaField from './preview-examples/textarea.vue';
 import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import Tile from './preview-examples/tile.vue';
+import TimeRange from './preview-examples/time-range.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
@@ -246,6 +251,8 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
+} & {
+  '/preview/tabs-overflow': any;
 };
 
 const routes: IxPreviewRoutes = {
@@ -292,6 +299,8 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-range': DateRange,
+  '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
@@ -363,6 +372,7 @@ const routes: IxPreviewRoutes = {
   '/preview/radio-disabled': RadioDisabled,
   '/preview/radio-group': RadioGroup,
   '/preview/radio-validation': RadioValidation,
+  '/preview/range-field': RangeField,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
@@ -374,6 +384,7 @@ const routes: IxPreviewRoutes = {
   '/preview/split-button': SplitButton,
   '/preview/split-button-icons': SplitButtonIcons,
   '/preview/tabs': Tabs,
+  '/preview/tabs-overflow': TabsOverflow,
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
   '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
@@ -391,6 +402,7 @@ const routes: IxPreviewRoutes = {
   '/preview/input-validation': InputValidation,
   '/preview/input-with-slots': InputWithSlots,
   '/preview/tile': Tile,
+  '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
   '/preview/toast-custom': ToastCustom,

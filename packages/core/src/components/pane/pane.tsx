@@ -219,7 +219,6 @@ export class Pane {
 
   componentWillLoad() {
     this.onExpandedChange();
-    this.setIcons();
 
     this.floating = this.variant === 'floating';
 
@@ -235,6 +234,7 @@ export class Pane {
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
     }
+    this.setIcons();
 
     this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -524,13 +524,14 @@ export class Pane {
   }
 
   private dispatchExpandedChangedEvent() {
+    const newExpandedValue = !this.expanded;
     const event = this.expandedChanged.emit({
       slot: this.currentSlot ?? '',
-      expanded: !this.expanded,
+      expanded: newExpandedValue,
     });
 
     if (!event.defaultPrevented) {
-      this.expanded = !this.expanded;
+      this.expanded = newExpandedValue;
     }
   }
 
@@ -618,6 +619,17 @@ export class Pane {
 
   render() {
     const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
+
+    let paneButtonAriaLabel: string;
+    if (this.ariaLabelCollapseCloseButton) {
+      paneButtonAriaLabel = this.ariaLabelCollapseCloseButton;
+    } else if (this.expanded) {
+      paneButtonAriaLabel =
+        this.isMobile || this.hideOnCollapse ? 'Close pane' : 'Collapse pane';
+    } else {
+      paneButtonAriaLabel = 'Expand pane';
+    }
+
     return (
       <Host
         class={{
@@ -693,7 +705,7 @@ export class Pane {
               variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
-              aria-label={this.ariaLabelCollapseCloseButton}
+              aria-label={paneButtonAriaLabel}
             />
             <div
               class={{

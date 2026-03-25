@@ -1,0 +1,16 @@
+- main:
+  - group "Date range":
+    - textbox "Start date"
+    - button "Open calendar"
+    - textbox "End date"
+    - button "Open calendar"
+  - group "Time range":
+    - textbox "Start time": /\d+:\d+:\d+/
+    - button "Toggle time picker"
+    - textbox "End time": /\d+:\d+:\d+/
+    - button "Toggle time picker"
+  - group "Datetime range":
+    - textbox "Start date and time"
+    - button "Toggle calendar"
+    - textbox "End date and time"
+    - button "Toggle calendar"

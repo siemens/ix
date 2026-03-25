@@ -70,6 +70,7 @@ export class MenuExpandIcon {
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         aria-hidden="true"
         variant="subtle-tertiary"
+        aria-label={this.expanded ? 'Collapse menu' : 'Expand menu'}
       ></ix-icon-button>
     );
   }

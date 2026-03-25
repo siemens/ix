@@ -189,6 +189,7 @@ export class Menu {
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
   private themeDisposer?: Disposable;
+  private themeNameDisposer?: Disposable;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -338,6 +339,10 @@ export class Menu {
     this.themeDisposer = themeSwitcher.schemaChanged.on(() => {
       this.updateThemeState();
     });
+
+    this.themeNameDisposer = themeSwitcher.themeChanged.on(() => {
+      this.updateThemeState();
+    });
   }
 
   componentDidRender() {
@@ -349,11 +354,11 @@ export class Menu {
 
   disconnectedCallback() {
     this.themeDisposer?.dispose();
+    this.themeNameDisposer?.dispose();
   }
 
   private updateThemeState() {
-    const currentTheme = themeSwitcher.getCurrentTheme();
-    this.isDarkMode = currentTheme.includes(themeSwitcher.suffixDark);
+    this.isDarkMode = themeSwitcher.getMode() === 'dark';
   }
 
   private setPinned(pinned: boolean) {

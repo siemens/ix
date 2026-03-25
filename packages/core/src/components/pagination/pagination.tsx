@@ -102,7 +102,7 @@ export class Pagination {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton?: string = 'Previous page';
 
   /**
    * ARIA label for the chevron right icon button
@@ -110,7 +110,7 @@ export class Pagination {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton?: string = 'Next page';
 
   /**
    * ARIA label for the page selection input
