@@ -17,7 +17,7 @@ export default () => {
           label="Info"
           value={10}
           trace
-          infoText="Info text"
+          info-text="Info text"
           className="ix-info"
         >
           <span slot="label-start">0</span>
