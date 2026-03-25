@@ -13,10 +13,10 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs example</title>
-    <script type="module" crossorigin src="../assets/global-C_dy4gBz.js"></script>
-    <script type="module" crossorigin src="../assets/init-BbGiJe2Q.js"></script>
-    <link rel="stylesheet" crossorigin href="../assets/global-DRBHDRDy.css">
-    <link rel="stylesheet" crossorigin href="../assets/tabs-DwyHd0AA.css">
+    <script type="module" crossorigin src="../assets/global-Cr1KQvOo.js"></script>
+    <script type="module" crossorigin src="../assets/init-DBI3EHNp.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/global-DB-Mu7F1.css">
+    <link rel="stylesheet" crossorigin href="../assets/tabs-CcAdORz5.css">
   </head>
   <body>
     <div class="tabs">
@@ -52,22 +52,16 @@ LICENSE file in the root directory of this source tree.
     <script>
       (async function () {
         await window.customElements.whenDefined('ix-tabs');
-        const tabs = document.querySelectorAll('ix-tab-item[data-tab-id]');
-
-        function registerClickListener(tab) {
-          tab.addEventListener('click', (tabContent) => {
-            const contentList = document.querySelectorAll('[data-tab-content]');
+        const container = document.querySelector('.tabs');
+        const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const contentList = container.querySelectorAll('[data-tab-content]');
             contentList.forEach((content) => {
-              if (content.dataset.tabContent === tab.dataset.tabId) {
-                content.classList.add('show');
-              } else {
-                content.classList.remove('show');
-              }
+              content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
             });
           });
-        }
-
-        tabs.forEach(registerClickListener);
+        });
       })();
     </script>
   </body>

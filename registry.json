@@ -242,6 +242,10 @@
           "path": "feat/block-cli/examples/date-input-with-slots.json"
         },
         {
+          "name": "date-range",
+          "path": "feat/block-cli/examples/date-range.json"
+        },
+        {
           "name": "datepicker",
           "path": "feat/block-cli/examples/datepicker.json"
         },
@@ -280,6 +284,10 @@
         {
           "name": "datetime-input-with-slots",
           "path": "feat/block-cli/examples/datetime-input-with-slots.json"
+        },
+        {
+          "name": "datetime-range",
+          "path": "feat/block-cli/examples/datetime-range.json"
         },
         {
           "name": "datetimepicker",
@@ -774,6 +782,10 @@
           "path": "feat/block-cli/examples/radio-validation.json"
         },
         {
+          "name": "range-field",
+          "path": "feat/block-cli/examples/range-field.json"
+        },
+        {
           "name": "select",
           "path": "feat/block-cli/examples/select.json"
         },
@@ -832,6 +844,10 @@
         {
           "name": "tabs",
           "path": "feat/block-cli/examples/tabs.json"
+        },
+        {
+          "name": "tabs-overflow",
+          "path": "feat/block-cli/examples/tabs-overflow.json"
         },
         {
           "name": "tabs-rounded",
@@ -900,6 +916,10 @@
         {
           "name": "time-input-with-slots",
           "path": "feat/block-cli/examples/time-input-with-slots.json"
+        },
+        {
+          "name": "time-range",
+          "path": "feat/block-cli/examples/time-range.json"
         },
         {
           "name": "timepicker",
