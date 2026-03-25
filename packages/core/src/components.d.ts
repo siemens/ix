@@ -4202,7 +4202,7 @@ export namespace Components {
         "uploadSuccessText": string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface IxValidationTooltip {
@@ -5904,7 +5904,7 @@ declare global {
         new (): HTMLIxUploadElement;
     };
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
@@ -10454,7 +10454,7 @@ declare namespace LocalJSX {
         "uploadSuccessText"?: string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface IxValidationTooltip {
@@ -11776,7 +11776,7 @@ declare module "@stencil/core" {
             "ix-typography": LocalJSX.IntrinsicElements["ix-typography"] & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IntrinsicElements["ix-upload"] & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**
-             * @deprecated Since 3.0.0. Will be removed with 4.0.0
+             * @deprecated Since 3.0.0. Will be removed with 5.0.0
              * Not maintained anymore.
              */
             "ix-validation-tooltip": LocalJSX.IntrinsicElements["ix-validation-tooltip"] & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
