@@ -23,7 +23,7 @@ LICENSE file in the root directory of this source tree.
       const btn = document.querySelector('ix-button');
       btn.addEventListener('click', () => {
         let count = 0;
-        const progress = showModalLoading('Loading 0/2');
+        const progress = showModalLoading({ message: 'Loading 0/2' });
         const interval = setInterval(() => {
           count++;
           progress.update(`Loading ${count}/2`);

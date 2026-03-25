@@ -30,7 +30,13 @@ regressionTest.describe('Animations', () => {
       return values;
     });
 
-    expect(animationDuration).toStrictEqual(['1000', '500', '300', '150', '0']);
+    expect(animationDuration).toStrictEqual([
+      '1000ms',
+      '500ms',
+      '300ms',
+      '150ms',
+      '0ms',
+    ]);
   });
 
   regressionTest('should respect reduce animation', async ({ mount, page }) => {
