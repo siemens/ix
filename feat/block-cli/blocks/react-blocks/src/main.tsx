@@ -8,6 +8,9 @@ import { showLoadingOverlay } from './loading-overlay';
 import Index from './routes/index';
 import LoginOverlay from './routes/login-overlay/login-overlay';
 import ChangePassword from './routes/change-password/change-password';
+import PasswordCriteria from './routes/password-criteria/password-criteria';
+import Upload from './routes/upload/upload';
+import ErrorPage from './routes/error-page/error-page';
 
 const getQueryParamsFromHash = () => {
   const [, queryString] = window.location.hash.split('?');
@@ -80,6 +83,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<Index />} />
         <Route path="/login-overlay" element={<LoginOverlay />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/password-criteria" element={<PasswordCriteria />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/error-page" element={<ErrorPage />} />
       </Routes>
     </HashRouter>
   </StrictMode>

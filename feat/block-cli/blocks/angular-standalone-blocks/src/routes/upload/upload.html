@@ -1,0 +1,21 @@
+<section class="panel" aria-label="Upload example">
+  <ix-upload multiple (filesChanged)="onFilesChanged($event)"></ix-upload>
+
+  <ul class="fileList" aria-label="Uploaded files">
+    <li *ngFor="let file of files" class="fileItem">
+      <span class="fileIcon" aria-hidden="true">
+        <ix-icon [name]="icons.iconTxtDocument" size="24"></ix-icon>
+      </span>
+
+      <span class="fileName">{{ file.name }}</span>
+
+      <ix-icon-button
+        [a11yLabel]="'Remove ' + file.name"
+        class="removeButton"
+        [icon]="icons.iconTrashcan"
+        (click)="removeFile(file.id)"
+        variant="tertiary"
+      ></ix-icon-button>
+    </li>
+  </ul>
+</section>

@@ -12,8 +12,20 @@
           "path": "feat/block-cli/blocks/change-password.json"
         },
         {
+          "name": "error-page",
+          "path": "feat/block-cli/blocks/error-page.json"
+        },
+        {
           "name": "login-overlay",
           "path": "feat/block-cli/blocks/login-overlay.json"
+        },
+        {
+          "name": "password-criteria",
+          "path": "feat/block-cli/blocks/password-criteria.json"
+        },
+        {
+          "name": "upload",
+          "path": "feat/block-cli/blocks/upload.json"
         }
       ],
       "examples": [
