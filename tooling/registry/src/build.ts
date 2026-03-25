@@ -112,6 +112,7 @@ const task = new Listr<Ctx>([
   {
     title: 'Copy registry templates to dist',
     task: async (ctx) => {
+      await fs.remove(ctx.dist);
       await fs.ensureDir(ctx.dist);
       await Promise.all([
         fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {

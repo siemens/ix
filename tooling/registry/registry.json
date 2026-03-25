@@ -28,6 +28,10 @@
           "path": "blocks/change-password.json"
         },
         {
+          "name": "error-page",
+          "path": "blocks/error-page.json"
+        },
+        {
           "name": "upload",
           "path": "blocks/upload.json"
         },
