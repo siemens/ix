@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { corporateThemeAvailable } from './generated/corporate-theme-availability';
-import { showLoadingOverlay } from './loading-overlay';
 
 import Index from './routes/index';
 import LoginOverlay from './routes/login-overlay/login-overlay';
@@ -78,11 +77,8 @@ const ensureCorporateThemeLoaded = () => {
 };
 
 const syncPreviewFrameState = () => {
-  const hideLoadingOverlay = showLoadingOverlay();
-  const themeLoadPromise = ensureCorporateThemeLoaded();
-
   applyThemeFromQueryParams();
-  void hideLoadingOverlay(themeLoadPromise);
+  void ensureCorporateThemeLoaded();
 };
 
 syncPreviewFrameState();
