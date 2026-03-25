@@ -1,5 +1,5 @@
 ---
-"@siemens/ix": major
+'@siemens/ix': major
 ---
 
 Reworked **ix-category-filter** with a new operand-based filter model.
@@ -12,3 +12,5 @@ Reworked **ix-category-filter** with a new operand-based filter model.
 - New props: `operands`, `staticOperand`, `labelOperands`, `labelValues`, `disableSearch`, `isLoading`, `hasError`
 
 For more information check out BREAKING_CHANGES.md.
+
+Closes #1255, closes #1342, closes #2426
