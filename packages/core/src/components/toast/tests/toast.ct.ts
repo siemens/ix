@@ -136,7 +136,7 @@ regressionTest(
     const toastEl = page.locator('ix-toast').first();
     await expect(toastEl).toHaveClass(/hydrated/);
     await expect(toastEl).toHaveAttribute('type', 'info');
-    for (const type of ['success', 'error', 'warning'] as const) {
+    for (const type of ['info', 'success', 'error', 'warning'] as const) {
       await page.evaluate((t) => {
         window.toast({ message: `${t} toast`, type: t });
       }, type);
