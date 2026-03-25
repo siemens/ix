@@ -248,6 +248,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private touched = false;
   private chipsContainerEl?: HTMLDivElement;
+  private clearButtonEl?: HTMLIxIconButtonElement;
   private chipsResizeObserver?: ResizeObserver;
   private chipWidths: Map<string, number> = new Map();
 
@@ -866,7 +867,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private readonly TRIGGER_MIN_WIDTH = 64;
-  private readonly MORE_CHIP_WIDTH = 36;
+  private readonly MORE_CHIP_WIDTH = 24;
   private readonly DEFAULT_CHIP_WIDTH = 60;
   private readonly CHIP_MARGIN = 4;
   private readonly INPUT_WIDTH = 10;
@@ -878,11 +879,20 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     const containerWidth = this.chipsContainerEl.clientWidth;
+    const isClearButtonVisible =
+      this.allowClear &&
+      !this.disabled &&
+      !this.readonly &&
+      (this.selectedLabels?.length || this.inputFilterText);
+    const clearButtonWidth = isClearButtonVisible
+      ? (this.clearButtonEl?.offsetWidth ?? 0)
+      : 0;
     const availableWidth =
       containerWidth -
       this.INPUT_WIDTH -
       this.TRIGGER_MIN_WIDTH -
-      this.MORE_CHIP_WIDTH;
+      this.MORE_CHIP_WIDTH -
+      clearButtonWidth;
 
     let visibleCount = 0;
     let usedWidth = 0;
@@ -1070,6 +1080,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     <ix-icon-button
                       key="clear"
                       class="clear"
+                      ref={(ref) => (this.clearButtonEl = ref!)}
                       icon={iconClear}
                       variant="subtle-tertiary"
                       oval
