@@ -9706,7 +9706,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * `selected` property changed
+          * Tab selection event. Event detail is the zero-based tab index. Fires when the user selects a tab, or when the tab list changes and the selected index is adjusted. Not emitted when `selected` is set from outside.
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
