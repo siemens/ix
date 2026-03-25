@@ -114,17 +114,32 @@ export class IconButton extends Mixin(...DefaultMixins) {
     };
   }
 
+  private getExplicitHostTabIndex(): number | undefined {
+    return this.hostElement.hasAttribute('tabindex')
+      ? this.hostElement.tabIndex
+      : undefined;
+  }
+
   override render() {
     const ariaLabel =
       this.inheritAriaAttributes['aria-label'] ??
       this.a11yLabel ??
       getFallbackLabelFromIconName(this.icon);
 
-    let ariaAttributes: A11yAttributes = this.inheritAriaAttributes;
-    const ariaHidden = this.inheritAriaAttributes['aria-hidden'];
+    const ariaAttributes: A11yAttributes = { ...this.inheritAriaAttributes };
+    const ariaHidden = ariaAttributes['aria-hidden'];
 
-    if (ariaHidden !== 'true') {
+    if (ariaHidden === 'true') {
+      delete ariaAttributes['aria-label'];
+    } else {
       ariaAttributes['aria-label'] = ariaLabel;
+    }
+
+    let innerTabIndex: number | undefined;
+    if (ariaHidden === 'true') {
+      innerTabIndex = -1;
+    } else {
+      innerTabIndex = this.getExplicitHostTabIndex();
     }
 
     const baseButtonProps: BaseButtonProps = {
@@ -141,10 +156,15 @@ export class IconButton extends Mixin(...DefaultMixins) {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),
-      tabIndex: this.hostElement.hasAttribute('tabindex')
-        ? this.hostElement.tabIndex
-        : undefined,
+      tabIndex: innerTabIndex,
     };
+
+    let hostTabIndex: number;
+    if (this.disabled || ariaHidden === 'true') {
+      hostTabIndex = -1;
+    } else {
+      hostTabIndex = this.getExplicitHostTabIndex() ?? 0;
+    }
 
     return (
       <Host
@@ -152,7 +172,7 @@ export class IconButton extends Mixin(...DefaultMixins) {
           ...this.getIconSizeClass(),
           disabled: this.disabled || this.loading,
         }}
-        tabIndex={this.disabled ? -1 : 0}
+        tabIndex={hostTabIndex}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>

@@ -14,7 +14,6 @@ import {
 import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Breakpoint } from '../utils/breakpoints';
-import { a11yBoolean } from '../utils/a11y';
 /**
  * @internal
  */
@@ -45,6 +44,7 @@ export class MenuExpandIcon {
     return (
       <button
         aria-hidden="true"
+        tabIndex={-1}
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -70,7 +70,6 @@ export class MenuExpandIcon {
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         aria-hidden="true"
         variant="subtle-tertiary"
-        aria-label={this.expanded ? 'Collapse menu' : 'Expand menu'}
       ></ix-icon-button>
     );
   }
@@ -98,8 +97,6 @@ export class MenuExpandIcon {
           expanded: this.expanded,
           'ix-focusable': true,
         }}
-        aria-label={this.ixAriaLabel}
-        aria-pressed={a11yBoolean(this.expanded)}
       >
         {this.getMenuIcon()}
       </Host>

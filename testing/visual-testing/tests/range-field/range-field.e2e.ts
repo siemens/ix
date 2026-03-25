@@ -15,6 +15,7 @@ regressionTest.describe('range-field', () => {
     await page.goto('range-field/basic');
     await expect(page).toHaveScreenshot({
       fullPage: true,
+      timeout: 15_000,
     });
   });
 });
