@@ -17,7 +17,7 @@ import { IxSlider } from '@siemens/ix-vue';
       label="Info"
       :value="10"
       trace
-      info-text="Info "
+      info-text="Info text"
       class="ix-info"
     >
       <span slot="label-start">0</span>
