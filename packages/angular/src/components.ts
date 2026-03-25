@@ -749,15 +749,15 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
-   * Time change
+   * Time change. Emitted when the time changes in the embedded time picker.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Date change
+   * Date change. Emitted when the date changes in the embedded date picker.
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Datetime selection event is fired after confirm button is pressed
+   * Datetime selection event. Emitted when the user confirms the selection via the Done button.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
@@ -2681,11 +2681,11 @@ export class IxTimePicker {
 
 export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
-   * Time event
+   * Time event. Emitted when the user confirms the selected time.
    */
   timeSelect: EventEmitter<CustomEvent<string>>;
   /**
-   * Time change event
+   * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
 }

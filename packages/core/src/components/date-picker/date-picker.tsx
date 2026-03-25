@@ -62,7 +62,7 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
+   * The selected starting date. If the date picker is not in range mode this is the selected date.
    * Format has to match the `format` property.
    */
   @Prop() from: string | undefined;
@@ -84,7 +84,7 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   /**
-   * The selected end date. If the the date-picker-rework is not in range mode this property has no impact.
+   * The selected end date. If the date picker is not in range mode this property has no impact.
    * Format has to match the `format` property.
    */
   @Prop() to: string | undefined;
@@ -123,14 +123,14 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 

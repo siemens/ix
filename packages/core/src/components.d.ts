@@ -967,18 +967,18 @@ export namespace Components {
      */
     interface IxDateInput {
         /**
-          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -1106,12 +1106,12 @@ export namespace Components {
     }
     interface IxDatePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -1136,7 +1136,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date picker is not in range mode this is the selected date. Format has to match the `format` property.
          */
         "from": string | undefined;
         /**
@@ -1174,7 +1174,7 @@ export namespace Components {
          */
         "singleSelection": boolean;
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the date picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to": string | undefined;
         /**
@@ -1212,12 +1212,12 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -1227,7 +1227,7 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `dateFormat` property.
          */
         "from"?: string;
         /**
@@ -1242,7 +1242,7 @@ export namespace Components {
          */
         "i18nTime": string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de'). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -1254,8 +1254,7 @@ export namespace Components {
          */
         "minDate"?: string;
         /**
-          * Show time reference input Time reference is default aligned with
-          * @see { this.timeFormat}
+          * Show AM/PM time reference control.
           * @default false
          */
         "showTimeReference": boolean;
@@ -1271,7 +1270,7 @@ export namespace Components {
          */
         "singleSelection": boolean;
         /**
-          * Select time with format string
+          * Selected time value for the embedded time picker. Format has to match the `timeFormat` property.
          */
         "time"?: string;
         /**
@@ -1280,11 +1279,11 @@ export namespace Components {
          */
         "timeFormat": string;
         /**
-          * Set time reference
+          * Time reference (AM or PM).
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the picker is not in range mode this property has no impact. Format has to match the `dateFormat` property.
          */
         "to"?: string;
         /**
@@ -3638,7 +3637,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format": string;
@@ -3791,7 +3790,7 @@ export namespace Components {
          */
         "embedded": boolean;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format": string;
@@ -3860,7 +3859,7 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Selected time value. Format has to match the `format` property.
          */
         "time"?: string;
     }
@@ -6999,18 +6998,18 @@ declare namespace LocalJSX {
      */
     interface IxDateInput {
         /**
-          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -7142,12 +7141,12 @@ declare namespace LocalJSX {
     }
     interface IxDatePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -7172,7 +7171,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date picker is not in range mode this is the selected date. Format has to match the `format` property.
          */
         "from"?: string | undefined;
         /**
@@ -7218,7 +7217,7 @@ declare namespace LocalJSX {
          */
         "singleSelection"?: boolean;
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the date picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to"?: string | undefined;
         /**
@@ -7256,12 +7255,12 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -7271,7 +7270,7 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `dateFormat` property.
          */
         "from"?: string;
         /**
@@ -7286,7 +7285,7 @@ declare namespace LocalJSX {
          */
         "i18nTime"?: string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de'). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -7298,20 +7297,19 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Date change
+          * Date change. Emitted when the date changes in the embedded date picker.
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event is fired after confirm button is pressed
+          * Datetime selection event. Emitted when the user confirms the selection via the Done button.
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change
+          * Time change. Emitted when the time changes in the embedded time picker.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
-          * Show time reference input Time reference is default aligned with
-          * @see { this.timeFormat}
+          * Show AM/PM time reference control.
           * @default false
          */
         "showTimeReference"?: boolean;
@@ -7327,7 +7325,7 @@ declare namespace LocalJSX {
          */
         "singleSelection"?: boolean;
         /**
-          * Select time with format string
+          * Selected time value for the embedded time picker. Format has to match the `timeFormat` property.
          */
         "time"?: string;
         /**
@@ -7336,11 +7334,11 @@ declare namespace LocalJSX {
          */
         "timeFormat"?: string;
         /**
-          * Set time reference
+          * Time reference (AM or PM).
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the picker is not in range mode this property has no impact. Format has to match the `dateFormat` property.
          */
         "to"?: string;
         /**
@@ -9869,7 +9867,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format"?: string;
@@ -10026,7 +10024,7 @@ declare namespace LocalJSX {
          */
         "embedded"?: boolean;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format"?: string;
@@ -10085,11 +10083,11 @@ declare namespace LocalJSX {
          */
         "minuteInterval"?: number;
         /**
-          * Time change event
+          * Time change event. Emitted when the selected time changes while interacting with the picker.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * Time event
+          * Time event. Emitted when the user confirms the selected time.
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
@@ -10099,7 +10097,7 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Selected time value. Format has to match the `format` property.
          */
         "time"?: string;
     }

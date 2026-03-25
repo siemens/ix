@@ -75,7 +75,7 @@ export class TimePicker {
   @Element() hostElement!: HTMLIxTimePickerElement;
 
   /**
-   * Format of time string
+   * Format of time string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    * Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
    */
@@ -192,7 +192,7 @@ export class TimePicker {
   }
 
   /**
-   * Select time with format string
+   * Selected time value.
    * Format has to match the `format` property.
    */
   @Prop() time?: string;
@@ -254,12 +254,12 @@ export class TimePicker {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
-   * Time event
+   * Time event. Emitted when the user confirms the selected time.
    */
   @Event() timeSelect!: EventEmitter<string>;
 
   /**
-   * Time change event
+   * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
   @Event() timeChange!: EventEmitter<string>;
 

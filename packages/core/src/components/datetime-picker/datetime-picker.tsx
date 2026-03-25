@@ -54,29 +54,29 @@ export class DatetimePicker
 
   /**
    * The selected starting date. If the picker is not in range mode this is the selected date.
-   * Format has to match the `format` property.
+   * Format has to match the `dateFormat` property.
    */
   @Prop() from?: string;
 
   /**
-   * The selected end date. If the the picker is not in range mode this property has no impact.
-   * Format has to match the `format` property.
+   * The selected end date. If the picker is not in range mode this property has no impact.
+   * Format has to match the `dateFormat` property.
    */
   @Prop() to?: string;
 
   /**
-   * Select time with format string
+   * Selected time value for the embedded time picker.
+   * Format has to match the `timeFormat` property.
    */
   @Prop() time?: string;
 
   /**
-   * Show time reference input
-   * Time reference is default aligned with @see {this.timeFormat}
+   * Show AM/PM time reference control.
    */
   @Prop() showTimeReference: boolean = false;
 
   /**
-   * Set time reference
+   * Time reference (AM or PM).
    */
   @Prop() timeReference?: 'AM' | 'PM';
 
@@ -93,14 +93,14 @@ export class DatetimePicker
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
@@ -111,7 +111,7 @@ export class DatetimePicker
   @Prop() weekStartIndex = 0;
 
   /**
-   * Format of time string
+   * Locale identifier (e.g. 'en' or 'de').
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
@@ -124,17 +124,17 @@ export class DatetimePicker
   @Prop() showWeekNumbers = false;
 
   /**
-   * Time change
+   * Time change. Emitted when the time changes in the embedded time picker.
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
-   * Date change
+   * Date change. Emitted when the date changes in the embedded date picker.
    */
   @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Datetime selection event is fired after confirm button is pressed
+   * Datetime selection event. Emitted when the user confirms the selection via the Done button.
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 

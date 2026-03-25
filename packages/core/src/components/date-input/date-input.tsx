@@ -129,8 +129,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() label?: string;
 
   /**
-   * ARIA label for the calendar icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the calendar icon button.
+   * Will be set as aria-label on the nested HTML button element.
    *
    * @since 3.2.0
    */
@@ -191,14 +191,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() weekStartIndex = 0;
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
