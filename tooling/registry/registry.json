@@ -28,6 +28,10 @@
           "path": "blocks/change-password.json"
         },
         {
+          "name": "upload",
+          "path": "blocks/upload.json"
+        },
+        {
           "name": "password-criteria",
           "path": "blocks/password-criteria.json"
         },

@@ -12,6 +12,11 @@ export const routes: Routes = [
       import('../routes/password-criteria/password-criteria').then((m) => m.PasswordCriteria),
   },
   {
+    path: 'upload',
+    loadComponent: () =>
+      import('../routes/upload/upload').then((m) => m.Upload),
+  },
+  {
     path: 'login-overlay',
     loadComponent: () =>
       import('../routes/login-overlay/login-overlay').then((m) => m.LoginOverlay),

@@ -1,0 +1,63 @@
+{
+  "$schema": "./../tooling/registry/schemas/block.schema.json",
+  "name": "upload",
+  "preview": "react-blocks/dist/ix/upload",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "target": "react/upload.tsx",
+          "source": "react-blocks/src/routes/upload/upload.tsx"
+        },
+        {
+          "target": "react/upload.module.css",
+          "source": "react-blocks/src/routes/upload/upload.module.css"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-react",
+          "version": "^4.0.0"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "target": "angular/upload.ts",
+          "source": "angular-standalone-blocks/src/routes/upload/upload.ts"
+        },
+        {
+          "target": "angular/upload.html",
+          "source": "angular-standalone-blocks/src/routes/upload/upload.html"
+        },
+        {
+          "target": "angular/upload.css",
+          "source": "angular-standalone-blocks/src/routes/upload/upload.css"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-angular",
+          "version": "^4.0.0"
+        }
+      ]
+    }
+  }
+}
