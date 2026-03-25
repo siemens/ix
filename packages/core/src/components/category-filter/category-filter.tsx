@@ -1225,6 +1225,9 @@ export class CategoryFilter {
             anchor={this.textInput?.waitForCurrent()}
             enableTopLayer={this.enableTopLayer}
             ariaDescription={this.getDropdownAriaDescription()}
+            onShowChanged={(e: CustomEvent<boolean>) => {
+              this.isDropdownOpen = e.detail;
+            }}
           >
             {this.shouldShowSearchOption() ? (
               <div>
