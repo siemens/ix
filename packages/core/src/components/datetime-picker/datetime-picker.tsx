@@ -134,7 +134,7 @@ export class DatetimePicker
   @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Datetime selection event. Emitted when the user confirms the selection via the Done button.
+   * Datetime selection event. Emitted when the user confirms the selection.
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 

@@ -7301,7 +7301,7 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event. Emitted when the user confirms the selection via the Done button.
+          * Datetime selection event. Emitted when the user confirms the selection.
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
