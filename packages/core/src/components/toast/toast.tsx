@@ -36,7 +36,7 @@ export class Toast {
   /**
    * Toast type
    */
-  @Prop() type: ToastType = 'info';
+  @Prop({ reflect: true }) type: ToastType = 'info';
 
   /**
    * Toast title
