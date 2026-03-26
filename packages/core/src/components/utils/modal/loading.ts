@@ -15,15 +15,49 @@ export type ModalLoadingContext = {
   finish: (text?: string, timeout?: number) => void;
 };
 
+export type ModalLoadingOptions = {
+  /**
+   * The text to show in the loading modal
+   */
+  message: string;
+
+  /**
+   * Whether the loading modal should be centered on the screen
+   * @default false
+   */
+  centered?: boolean;
+};
+
+/**
+ * Displays a loading modal with a message
+ * @deprecated Use ModalLoadingOptions object form instead. Will be removed in v5.0.0.
+ */
+export function showModalLoading(message: string): ModalLoadingContext;
+
 /**
  * Displays a loading modal with a message
  */
-export function showModalLoading(message: string) {
+export function showModalLoading(
+  message: ModalLoadingOptions
+): ModalLoadingContext;
+
+export function showModalLoading(
+  messageOrOptions: string | ModalLoadingOptions
+): ModalLoadingContext {
   const modal = document.createElement('ix-modal');
   modal.disableEscapeClose = true;
 
   const loading = document.createElement('ix-modal-loading');
-  loading.innerText = message;
+
+  if (typeof messageOrOptions === 'string') {
+    loading.innerText = messageOrOptions;
+  } else {
+    loading.innerText = messageOrOptions.message;
+    if (messageOrOptions.centered) {
+      modal.centered = true;
+    }
+  }
+
   modal.appendChild(loading);
 
   getCoreDelegate().attachView(modal);
