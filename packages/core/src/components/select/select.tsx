@@ -254,8 +254,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private chipsResizeObserver?: ResizeObserver;
 
   private readonly chipWidths = new Map<string, number>();
-  private readonly CHIP_GAP = 4;
-  private readonly RESERVED_INPUT_SPACE = 40;
 
   private readonly itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
@@ -576,29 +574,28 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     const chevronWidth = this.chevronButtonEl?.offsetWidth ?? 0;
     const clearWidth = this.clearButtonEl?.offsetWidth ?? 0;
-    const available =
-      this.chipsEl.clientWidth -
-      chevronWidth -
-      clearWidth -
-      this.RESERVED_INPUT_SPACE;
+    const chipGap = 4;
+    const reservedInputSpace = 40;
+    const availableWidth =
+      this.chipsEl.clientWidth - chevronWidth - clearWidth - reservedInputSpace;
+    const visibleItems = new Set<string>();
+    let usedWidth = 0;
 
-    let used = 0;
-    const visible = new Set<string>();
     for (const item of this.selectedItems) {
-      const width = (this.chipWidths.get(item.value) ?? 60) + this.CHIP_GAP;
+      const width = (this.chipWidths.get(item.value) ?? 60) + chipGap;
 
-      if (used + width <= available) {
-        used += width;
-        visible.add(item.value);
+      if (usedWidth + width <= availableWidth) {
+        usedWidth += width;
+        visibleItems.add(item.value);
       }
     }
 
-    if (visible.size === 0) {
-      visible.add(this.selectedItems[0].value);
+    if (visibleItems.size === 0) {
+      visibleItems.add(this.selectedItems[0].value);
     }
 
     this.visibleChipValues =
-      visible.size >= this.selectedItems.length ? null : visible;
+      visibleItems.size >= this.selectedItems.length ? null : visibleItems;
   }
 
   private itemExists(item: string | undefined) {
