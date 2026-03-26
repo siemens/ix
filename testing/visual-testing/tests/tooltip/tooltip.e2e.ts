@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, waitForIxHydration } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
@@ -20,9 +20,13 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
@@ -37,9 +41,13 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
@@ -54,9 +62,13 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
@@ -71,9 +83,13 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
@@ -95,9 +111,13 @@ regressionTest.describe('tooltip', () => {
       );
 
       await tooltipTriggerHandler.hover();
-      await page.waitForTimeout(500);
+      await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+        /visible/
+      );
 
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      await expect(page).toHaveScreenshot({
+        fullPage: true,
+        animations: 'disabled',
         threshold: 0.05,
       });
     }
@@ -109,9 +129,13 @@ regressionTest.describe('tooltip', () => {
     const tooltipTriggerHandler = await page.waitForSelector('#test');
 
     await tooltipTriggerHandler.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
     });
   });
@@ -128,9 +152,13 @@ regressionTest.describe('tooltip', () => {
 
     const trigger = await page.waitForSelector('#trigger');
     await trigger.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
     });
   });
@@ -147,9 +175,13 @@ regressionTest.describe('tooltip', () => {
 
     const trigger = await page.waitForSelector('#trigger');
     await trigger.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
     });
   });
@@ -166,9 +198,13 @@ regressionTest.describe('tooltip', () => {
 
     const trigger = await page.waitForSelector('#trigger');
     await trigger.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
     });
   });
@@ -185,9 +221,13 @@ regressionTest.describe('tooltip', () => {
 
     const trigger = await page.waitForSelector('#trigger');
     await trigger.hover();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-tooltip.visible').first()).toHaveClass(
+      /visible/
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
       threshold: 0.05,
     });
   });
@@ -240,7 +280,9 @@ regressionTest.describe('tooltip delay', () => {
 
         await expect(tooltip).toHaveClass(/visible/);
 
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+        await expect(page).toHaveScreenshot({
+          fullPage: true,
+          animations: 'disabled',
           threshold: 0.05,
         });
       }
