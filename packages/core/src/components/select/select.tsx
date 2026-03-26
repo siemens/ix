@@ -254,6 +254,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private chipsResizeObserver?: ResizeObserver;
 
   private readonly chipWidths = new Map<string, number>();
+  private readonly chipElementRefs = new Map<string, HTMLElement>();
 
   private readonly itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
@@ -535,6 +536,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentDidRender(): void {
+    this.setupArrowFocusController();
+    this.handleChipsOverflow();
+  }
+
+  private setupArrowFocusController() {
     if (
       !this.dropdownShow ||
       this.arrowFocusController ||
@@ -551,6 +557,34 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.arrowFocusController.wrap =
       !this.isAddItemVisible() && !this.visibleShadowItems.length;
+  }
+
+  private handleChipsOverflow() {
+    if (!this.isMultipleMode) {
+      return;
+    }
+
+    if (this.pendingChipValue !== null) {
+      const pendingValue = this.pendingChipValue;
+      const pendingEl = this.chipElementRefs.get(pendingValue);
+
+      if (pendingEl) {
+        requestAnimationFrameNoNgZone(() => {
+          this.chipWidths.set(pendingValue, pendingEl.offsetWidth);
+          this.calculateOverflow();
+          this.pendingChipValue = null;
+        });
+      }
+    } else {
+      for (const [value, el] of this.chipElementRefs) {
+        const isOverflow =
+          this.visibleChipValues !== null && !this.visibleChipValues.has(value);
+
+        if (!isOverflow) {
+          this.chipWidths.set(value, el.offsetWidth);
+        }
+      }
+    }
   }
 
   @Listen('ix-select-item:valueChange')
@@ -907,20 +941,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           display: isOverflow ? 'none' : undefined,
         }}
         ref={(el) => {
-          if (!el) {
-            return;
-          }
-
-          if (!isOverflow) {
-            this.chipWidths.set(item.value, el.offsetWidth);
-          }
-
-          if (isPending) {
-            requestAnimationFrameNoNgZone(() => {
-              this.chipWidths.set(item.value, el.offsetWidth);
-              this.calculateOverflow();
-              this.pendingChipValue = null;
-            });
+          if (el) {
+            this.chipElementRefs.set(item.value, el as HTMLElement);
+          } else {
+            this.chipElementRefs.delete(item.value);
           }
         }}
       >
