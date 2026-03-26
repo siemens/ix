@@ -252,6 +252,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private clearButtonEl: HTMLIxIconButtonElement | undefined;
   private chevronButtonEl: HTMLIxIconButtonElement | undefined;
   private chipsResizeObserver?: ResizeObserver;
+  private overflowChipEl: HTMLElement | undefined;
 
   private readonly chipWidths = new Map<string, number>();
   private readonly chipElementRefs = new Map<string, HTMLElement>();
@@ -610,22 +611,43 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     const clearWidth = this.clearButtonEl?.offsetWidth ?? 0;
     const chipGap = 4;
     const reservedInputSpace = 40;
-    const availableWidth =
-      this.chipsEl.clientWidth - chevronWidth - clearWidth - reservedInputSpace;
-    const visibleItems = new Set<string>();
-    let usedWidth = 0;
 
-    for (const item of this.selectedItems) {
-      const width = (this.chipWidths.get(item.value) ?? 60) + chipGap;
+    const computeVisibleItems = (extraReservedWidth: number) => {
+      const availableWidth =
+        this.chipsEl!.clientWidth -
+        chevronWidth -
+        clearWidth -
+        reservedInputSpace -
+        extraReservedWidth;
+      const visibleItems = new Set<string>();
+      let usedWidth = 0;
 
-      if (usedWidth + width <= availableWidth) {
-        usedWidth += width;
-        visibleItems.add(item.value);
+      for (const item of this.selectedItems) {
+        const width = (this.chipWidths.get(item.value) ?? 60) + chipGap;
+
+        if (usedWidth + width <= availableWidth) {
+          usedWidth += width;
+          visibleItems.add(item.value);
+        }
       }
-    }
 
-    if (visibleItems.size === 0) {
-      visibleItems.add(this.selectedItems[0].value);
+      if (visibleItems.size === 0) {
+        visibleItems.add(this.selectedItems[0].value);
+      }
+
+      return visibleItems;
+    };
+
+    // Check without +N chip first
+    let visibleItems = computeVisibleItems(0);
+
+    if (visibleItems.size < this.selectedItems.length) {
+      const overflowChipWidth = this.overflowChipEl
+        ? this.overflowChipEl.offsetWidth + chipGap
+        : 54;
+
+      // Also take +N chip into account if overflow occurs
+      visibleItems = computeVisibleItems(overflowChipWidth);
     }
 
     this.visibleChipValues =
@@ -675,6 +697,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     el: HTMLIxSelectItemElement | HTMLInputElement
   ) {
     if (this.isMultipleMode) {
+      if (this.editable) {
+        this.emitAddItem(this.inputFilterText);
+      }
       return;
     }
     const itemLabel = (el as HTMLIxSelectItemElement)?.label;
@@ -971,7 +996,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return [
       ...chips,
       overflowCount > 0 ? (
-        <ix-filter-chip readonly={true} key="overflow">
+        <ix-filter-chip
+          readonly={true}
+          key="overflow"
+          ref={(el) => (this.overflowChipEl = (el as HTMLElement) ?? undefined)}
+        >
           {`+${overflowCount}`}
         </ix-filter-chip>
       ) : null,
