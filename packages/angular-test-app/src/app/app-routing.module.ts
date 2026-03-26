@@ -197,6 +197,7 @@ import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
 import SliderTrace from '../preview-examples/slider-trace';
+import SliderValidation from '../preview-examples/slider-validation';
 import Spinner from '../preview-examples/spinner';
 import SpinnerLarge from '../preview-examples/spinner-large';
 import SplitButton from '../preview-examples/split-button';
@@ -865,6 +866,10 @@ const routes: Routes = [
         component: SliderTrace,
       },
       {
+        path: 'slider-validation',
+        component: SliderValidation,
+      },
+      {
         path: 'slider',
         component: Slider,
       },
@@ -1038,6 +1043,7 @@ const routes: Routes = [
       { path: 'slider-trace', component: SliderTrace },
       { path: 'slider-marker', component: SliderMarker },
       { path: 'slider-error', component: SliderError },
+      { path: 'slider-validation', component: SliderValidation },
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },

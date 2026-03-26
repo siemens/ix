@@ -198,6 +198,7 @@ import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
 import SliderMarker from './preview-examples/slider-marker';
 import SliderTrace from './preview-examples/slider-trace';
+import SliderValidation from './preview-examples/slider-validation';
 import Spinner from './preview-examples/spinner';
 import SpinnerLarge from './preview-examples/spinner-large';
 import SplitButton from './preview-examples/split-button';
@@ -406,6 +407,7 @@ const routes: IxPreviewRoutes = {
   '/preview/slider-error': SliderError,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-trace': SliderTrace,
+  '/preview/slider-validation': SliderValidation,
   '/preview/slider': Slider,
   '/preview/spinner-large': SpinnerLarge,
   '/preview/spinner': Spinner,

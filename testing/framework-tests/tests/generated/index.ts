@@ -331,6 +331,8 @@ import './slider-marker-axe.spec.ts';
 import './slider-marker.spec.ts';
 import './slider-trace-axe.spec.ts';
 import './slider-trace.spec.ts';
+import './slider-validation-axe.spec.ts';
+import './slider-validation.spec.ts';
 import './slider.spec.ts';
 import './spinner-axe.spec.ts';
 import './spinner-large-axe.spec.ts';

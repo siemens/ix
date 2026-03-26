@@ -50,6 +50,7 @@ export const testIds = [
   "spinner",
   "spinner-large",
   "slider",
+  "slider-validation",
   "slider-trace",
   "slider-marker",
   "slider-error",
