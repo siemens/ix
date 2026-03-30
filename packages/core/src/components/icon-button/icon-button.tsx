@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, Mixin } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
-import {
-  A11yAttributes,
-  a11yHostAttributes,
-  getFallbackLabelFromIconName,
-} from '../utils/a11y';
-import type { IconButtonVariant } from './icon-button.types';
+import { A11yAttributes, getFallbackLabelFromIconName } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
+import type { IconButtonVariant } from './icon-button.types';
 
 @Component({
   tag: 'ix-icon-button',
@@ -25,7 +25,10 @@ import { DefaultMixins } from '../utils/internal/component';
     delegatesFocus: true,
   },
 })
-export class IconButton extends Mixin(...DefaultMixins) {
+export class IconButton
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements InheritAriaAttributesMixinContract
+{
   @Element() override hostElement!: HTMLIxIconButtonElement;
 
   /**
@@ -81,12 +84,6 @@ export class IconButton extends Mixin(...DefaultMixins) {
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
   submitButtonElement!: HTMLButtonElement;
-
-  private inheritAriaAttributes: A11yAttributes = {};
-
-  override componentWillLoad(): Promise<void> | void {
-    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
-  }
 
   override componentDidLoad() {
     if (this.type === 'submit') {

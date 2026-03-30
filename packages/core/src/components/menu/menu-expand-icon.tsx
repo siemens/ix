@@ -21,9 +21,7 @@ import { a11yBoolean } from '../utils/a11y';
 @Component({
   tag: 'ix-menu-expand-icon',
   styleUrl: './menu-expand-icon.scss',
-  shadow: {
-    delegatesFocus: true,
-  },
+  shadow: true,
 })
 export class MenuExpandIcon {
   /** Whether the menu expand icon displays the expanded state or not */
@@ -35,16 +33,11 @@ export class MenuExpandIcon {
   /** Display as pinned */
   @Prop() pinned = false;
 
-  /**
-   * Accessibility label for the menu expand icon
-   * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
-   */
-  @Prop() ixAriaLabel?: string = 'Expand';
-
   getSmallScreenIcon() {
     return (
       <button
-        aria-hidden="true"
+        aria-label={this.expanded ? 'Collapse menu' : 'Expand menu'}
+        aria-pressed={a11yBoolean(this.expanded)}
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -67,24 +60,16 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
-        icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
-        aria-hidden="true"
-        variant="subtle-tertiary"
+        aria-pressed={a11yBoolean(this.expanded)}
         aria-label={this.expanded ? 'Collapse menu' : 'Expand menu'}
+        icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
+        variant="subtle-tertiary"
       ></ix-icon-button>
     );
   }
 
   getMenuIcon() {
-    if (this.pinned) {
-      return this.getLargeScreenIcon();
-    }
-
-    if (this.breakpoint === 'md') {
-      return this.getLargeScreenIcon();
-    }
-
-    if (this.breakpoint === 'lg') {
+    if (this.pinned || this.breakpoint === 'lg' || this.breakpoint === 'md') {
       return this.getLargeScreenIcon();
     }
 
@@ -98,8 +83,6 @@ export class MenuExpandIcon {
           expanded: this.expanded,
           'ix-focusable': true,
         }}
-        aria-label={this.ixAriaLabel}
-        aria-pressed={a11yBoolean(this.expanded)}
       >
         {this.getMenuIcon()}
       </Host>
