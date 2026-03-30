@@ -74,7 +74,7 @@ regressionTest.describe('category-filter', () => {
     await input.click();
     // close dropdown
     await input.click();
-    await input.fill('p');
+    await input.pressSequentially('p');
 
     await expect(page).toHaveScreenshot();
   });
