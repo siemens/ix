@@ -36,6 +36,10 @@ import { SearchQuery } from './search-query';
 const MAX_LABEL_DISPLAY_LENGTH = 20;
 const LABEL_DISPLAY_BUFFER = 3;
 const MAX_STRING_DISPLAY_LENGTH = 15;
+const INPUT_MIN_WIDTH = 175;
+const MORE_CHIP_WIDTH = 100;
+const DEFAULT_CHIP_WIDTH = 140;
+const CHIP_MARGIN = 16;
 
 @Component({
   tag: 'ix-category-filter',
@@ -52,11 +56,6 @@ export class CategoryFilter {
   private chipsResizeObserver?: ResizeObserver;
   private chipWidths: Map<number, number> = new Map();
   private a11yAttributes?: A11yAttributes;
-
-  private readonly inputMinWidth = 175;
-  private readonly moreChipWidth = 100;
-  private readonly defaultChipWidth = 140;
-  private readonly chipMargin = 16;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
@@ -960,14 +959,13 @@ export class CategoryFilter {
     }
 
     const containerWidth = this.tokenContainerEl.clientWidth;
-    const availableWidth =
-      containerWidth - this.inputMinWidth - this.moreChipWidth;
+    const availableWidth = containerWidth - INPUT_MIN_WIDTH - MORE_CHIP_WIDTH;
 
     let visibleCount = 0;
     let usedWidth = 0;
 
     for (let i = 0; i < this.filterValues.length; i++) {
-      const chipWidth = this.chipWidths.get(i) || this.defaultChipWidth;
+      const chipWidth = this.chipWidths.get(i) || DEFAULT_CHIP_WIDTH;
       if (usedWidth + chipWidth > availableWidth) {
         break;
       }
@@ -988,7 +986,7 @@ export class CategoryFilter {
       return;
     }
     requestAnimationFrameNoNgZone(() => {
-      const width = element.offsetWidth + this.chipMargin;
+      const width = element.offsetWidth + CHIP_MARGIN;
       if (this.chipWidths.get(index) !== width) {
         this.chipWidths.set(index, width);
         this.calculateVisibleChips();
