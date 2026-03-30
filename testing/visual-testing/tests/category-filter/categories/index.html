@@ -27,26 +27,27 @@ SPDX-License-Identifier: MIT
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-category-filter');
-        const categories = {
-          ID_1: {
+        const categories = [
+          {
+            key: 'ID_1',
             label: 'Vendor',
-            options: ['Apple', 'MS', 'Siemens'],
+            values: ['Apple', 'MS', 'Siemens'],
           },
-          ID_2: {
+          {
+            key: 'ID_2',
             label: 'Product',
-            options: ['iPhone X', 'Windows', 'APS'],
+            values: ['iPhone X', 'Windows', 'APS'],
           },
-        };
-        const filterState = {
-          tokens: ['Custom filter text'],
-          categories: [
-            {
-              id: 'ID_1',
-              value: 'IBM',
-              operator: 'Not equal',
-            },
-          ],
-        };
+        ];
+        const filterState = [
+          { type: 'search', value: 'Custom filter text' },
+          {
+            type: 'filter',
+            category: 'ID_1',
+            operand: { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },
+            value: 'IBM',
+          },
+        ];
         const categoryFilters = document.querySelectorAll('ix-category-filter');
         categoryFilters.forEach((categoryFilter) => {
           categoryFilter.categories = categories;
