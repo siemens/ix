@@ -579,10 +579,60 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
+          * i18n label for the button when all values of a category have been selected
+          * @default 'See all categories'
+         */
+        "i18nAllValuesSelectedButton": string;
+        /**
+          * i18n label for the header when all values of a category have been selected
+          * @default 'All values of this category have already been selected'
+         */
+        "i18nAllValuesSelectedHeader": string;
+        /**
+          * i18n label for the subtext when all values of a category have been selected
+          * @default 'Remove a filter or select another category.'
+         */
+        "i18nAllValuesSelectedSubtext": string;
+        /**
+          * i18n label for the header when no category matches the input
+          * @default 'The term you entered does not match with any category'
+         */
+        "i18nNoCategoryMatchHeader": string;
+        /**
+          * i18n fallback label when no matches are found
+          * @default 'No matches found'
+         */
+        "i18nNoMatchesFound": string;
+        /**
+          * i18n label for the header when no operand matches the input
+          * @default 'The term you entered does not match with any operand'
+         */
+        "i18nNoOperandMatchHeader": string;
+        /**
+          * i18n label for the header when no value matches the input
+          * @default 'The term you entered does not match with any value'
+         */
+        "i18nNoValueMatchHeader": string;
+        /**
           * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText": string;
+        /**
+          * i18n label for the subtext prompting to remove input to see all options
+          * @default 'Remove your input to see all options.'
+         */
+        "i18nRemoveInputSubtext": string;
+        /**
+          * i18n label for the subtext prompting to remove a selected value
+          * @default 'Remove a selected value or select another category.'
+         */
+        "i18nRemoveValueSubtext": string;
+        /**
+          * i18n label for the 'See all options' button
+          * @default 'See all options'
+         */
+        "i18nSeeAllOptions": string;
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
@@ -6600,10 +6650,60 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
+          * i18n label for the button when all values of a category have been selected
+          * @default 'See all categories'
+         */
+        "i18nAllValuesSelectedButton"?: string;
+        /**
+          * i18n label for the header when all values of a category have been selected
+          * @default 'All values of this category have already been selected'
+         */
+        "i18nAllValuesSelectedHeader"?: string;
+        /**
+          * i18n label for the subtext when all values of a category have been selected
+          * @default 'Remove a filter or select another category.'
+         */
+        "i18nAllValuesSelectedSubtext"?: string;
+        /**
+          * i18n label for the header when no category matches the input
+          * @default 'The term you entered does not match with any category'
+         */
+        "i18nNoCategoryMatchHeader"?: string;
+        /**
+          * i18n fallback label when no matches are found
+          * @default 'No matches found'
+         */
+        "i18nNoMatchesFound"?: string;
+        /**
+          * i18n label for the header when no operand matches the input
+          * @default 'The term you entered does not match with any operand'
+         */
+        "i18nNoOperandMatchHeader"?: string;
+        /**
+          * i18n label for the header when no value matches the input
+          * @default 'The term you entered does not match with any value'
+         */
+        "i18nNoValueMatchHeader"?: string;
+        /**
           * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText"?: string;
+        /**
+          * i18n label for the subtext prompting to remove input to see all options
+          * @default 'Remove your input to see all options.'
+         */
+        "i18nRemoveInputSubtext"?: string;
+        /**
+          * i18n label for the subtext prompting to remove a selected value
+          * @default 'Remove a selected value or select another category.'
+         */
+        "i18nRemoveValueSubtext"?: string;
+        /**
+          * i18n label for the 'See all options' button
+          * @default 'See all options'
+         */
+        "i18nSeeAllOptions"?: string;
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
@@ -10693,6 +10793,16 @@ declare namespace LocalJSX {
         "labelOperands": string;
         "labelValues": string;
         "i18nPlainText": string;
+        "i18nAllValuesSelectedHeader": string;
+        "i18nAllValuesSelectedSubtext": string;
+        "i18nAllValuesSelectedButton": string;
+        "i18nNoCategoryMatchHeader": string;
+        "i18nNoOperandMatchHeader": string;
+        "i18nNoValueMatchHeader": string;
+        "i18nNoMatchesFound": string;
+        "i18nRemoveValueSubtext": string;
+        "i18nRemoveInputSubtext": string;
+        "i18nSeeAllOptions": string;
         "disableSearch": boolean;
         "isLoading": boolean;
         "hasError": boolean;
