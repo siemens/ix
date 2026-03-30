@@ -1,5 +1,14 @@
 # @siemens/ix-aggrid
 
+## 4.0.2
+
+### Patch Changes
+
+- [#2389](https://github.com/siemens/ix/pull/2389) [`a773314`](https://github.com/siemens/ix/commit/a7733145460a90129a2896b1abdb9b892cf82dcc) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-aggrid** now properly uses `Siemens Sans` with `sans-serif` fallback.
+
+- Updated dependencies [[`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe), [`b0f7e21`](https://github.com/siemens/ix/commit/b0f7e2110a436a5467426417c0aacbc7bc37a90b), [`a88927f`](https://github.com/siemens/ix/commit/a88927faf284034ff2a7135528476cc29e837a59), [`a66629c`](https://github.com/siemens/ix/commit/a66629c5bd7ba377db9996ceb2bccd930c1df777), [`07501d6`](https://github.com/siemens/ix/commit/07501d6fb131bd228eadb865c4bd56149edb6e17), [`fb7e38d`](https://github.com/siemens/ix/commit/fb7e38df37cbe16f37a4f0e70f14eaccb32c05ff), [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5), [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9), [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e), [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c), [`72ef7ef`](https://github.com/siemens/ix/commit/72ef7ef34a5b716a2a827dd49e7357af3a92da30), [`a5f8477`](https://github.com/siemens/ix/commit/a5f84772b3055503205547cdf04e3bb2484c70d0), [`b38ca0a`](https://github.com/siemens/ix/commit/b38ca0a2548c189cd27c34beb9261b193de08af0), [`80cf574`](https://github.com/siemens/ix/commit/80cf5743952a01713ed51e8244ec5e504491b559), [`420de9b`](https://github.com/siemens/ix/commit/420de9b579b3cb7c2345e75e7339bcfc95c13b0f), [`c4c70a9`](https://github.com/siemens/ix/commit/c4c70a9d9f52f150a8b727f845b7aabf297e2939), [`a35d9b7`](https://github.com/siemens/ix/commit/a35d9b78409a0927193f4277f35b03490dd0d3d4), [`3551db0`](https://github.com/siemens/ix/commit/3551db057e91abe2d5dac1db83034a654e0a062b), [`d980365`](https://github.com/siemens/ix/commit/d9803655eae044f15c67520cffb797f217fa02aa), [`ed5ef88`](https://github.com/siemens/ix/commit/ed5ef889b0fe6e5e253692722644da69df0bd8a4), [`6741f86`](https://github.com/siemens/ix/commit/6741f866aea666cfd63d63f9f642c6cd7efd6e39), [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c), [`0933909`](https://github.com/siemens/ix/commit/09339098ba688b625034c30dc7318c7f3c5ed353), [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1), [`ef0c635`](https://github.com/siemens/ix/commit/ef0c635c9f4def8e350caaf0fa9bac84cdba3a61), [`ab2099e`](https://github.com/siemens/ix/commit/ab2099e468dfb70e7d4b640fcf631496acd5ee1d)]:
+  - @siemens/ix@4.4.0
+
 ## 4.0.1
 
 ### Patch Changes
