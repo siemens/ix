@@ -53,10 +53,10 @@ export class CategoryFilter {
   private chipWidths: Map<number, number> = new Map();
   private a11yAttributes?: A11yAttributes;
 
-  private readonly INPUT_MIN_WIDTH = 175;
-  private readonly MORE_CHIP_WIDTH = 100;
-  private readonly DEFAULT_CHIP_WIDTH = 140;
-  private readonly CHIP_MARGIN = 16;
+  private readonly inputMinWidth = 175;
+  private readonly moreChipWidth = 100;
+  private readonly defaultChipWidth = 140;
+  private readonly chipMargin = 16;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
@@ -961,13 +961,13 @@ export class CategoryFilter {
 
     const containerWidth = this.tokenContainerEl.clientWidth;
     const availableWidth =
-      containerWidth - this.INPUT_MIN_WIDTH - this.MORE_CHIP_WIDTH;
+      containerWidth - this.inputMinWidth - this.moreChipWidth;
 
     let visibleCount = 0;
     let usedWidth = 0;
 
     for (let i = 0; i < this.filterValues.length; i++) {
-      const chipWidth = this.chipWidths.get(i) || this.DEFAULT_CHIP_WIDTH;
+      const chipWidth = this.chipWidths.get(i) || this.defaultChipWidth;
       if (usedWidth + chipWidth > availableWidth) {
         break;
       }
@@ -988,7 +988,7 @@ export class CategoryFilter {
       return;
     }
     requestAnimationFrameNoNgZone(() => {
-      const width = element.offsetWidth + this.CHIP_MARGIN;
+      const width = element.offsetWidth + this.chipMargin;
       if (this.chipWidths.get(index) !== width) {
         this.chipWidths.set(index, width);
         this.calculateVisibleChips();
