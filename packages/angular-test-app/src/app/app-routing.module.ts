@@ -197,11 +197,13 @@ import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
 import SliderTrace from '../preview-examples/slider-trace';
+import SliderValidation from '../preview-examples/slider-validation';
 import Spinner from '../preview-examples/spinner';
 import SpinnerLarge from '../preview-examples/spinner-large';
 import SplitButton from '../preview-examples/split-button';
 import SplitButtonIcons from '../preview-examples/split-button-icons';
 import Tabs from '../preview-examples/tabs';
+import TabsOverflow from '../preview-examples/tabs-overflow';
 import TabsRounded from '../preview-examples/tabs-rounded';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
@@ -794,6 +796,7 @@ const routes: Routes = [
       { path: 'split-button-icons', component: SplitButtonIcons },
       { path: 'split-button', component: SplitButton },
       { path: 'tabs', component: Tabs },
+      { path: 'tabs-overflow', component: TabsOverflow },
       { path: 'tabs-rounded', component: TabsRounded },
       { path: 'textarea-legacy', component: TextareaLegacy },
       { path: 'textarea-legacy-disabled', component: TextareaLegacyDisabled },
@@ -863,6 +866,10 @@ const routes: Routes = [
         component: SliderTrace,
       },
       {
+        path: 'slider-validation',
+        component: SliderValidation,
+      },
+      {
         path: 'slider',
         component: Slider,
       },
@@ -885,6 +892,10 @@ const routes: Routes = [
       {
         path: 'tabs-rounded',
         component: TabsRounded,
+      },
+      {
+        path: 'tabs-overflow',
+        component: TabsOverflow,
       },
       {
         path: 'tabs',
@@ -1032,6 +1043,7 @@ const routes: Routes = [
       { path: 'slider-trace', component: SliderTrace },
       { path: 'slider-marker', component: SliderMarker },
       { path: 'slider-error', component: SliderError },
+      { path: 'slider-validation', component: SliderValidation },
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },

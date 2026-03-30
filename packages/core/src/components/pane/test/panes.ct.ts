@@ -132,3 +132,109 @@ regressionTest(
     await expect(removeEventListenerCalled).resolves.toBe('click');
   }
 );
+regressionTest(
+  'icon direction reacts correctly to slot and expanded state for all compositions',
+  async ({ mount, page }) => {
+    const paneSlots = [
+      { slot: 'left', expanded: false, expected: 'double-chevron-right' },
+      { slot: 'left', expanded: true, expected: 'double-chevron-left' },
+      { slot: 'right', expanded: false, expected: 'double-chevron-left' },
+      { slot: 'right', expanded: true, expected: 'double-chevron-right' },
+      { slot: 'top', expanded: false, expected: 'double-chevron-down' },
+      { slot: 'top', expanded: true, expected: 'double-chevron-up' },
+      { slot: 'bottom', expanded: false, expected: 'double-chevron-up' },
+      { slot: 'bottom', expanded: true, expected: 'double-chevron-down' },
+    ];
+
+    for (const paneSlot of paneSlots) {
+      await mount(`
+        <ix-pane
+          heading="TEST"
+          slot="${paneSlot.slot}"
+          expanded="${paneSlot.expanded}"
+        ></ix-pane>
+      `);
+
+      const pane = page.locator('ix-pane');
+      await expect(pane).toHaveClass(/hydrated/);
+
+      const iconButton = pane.locator('ix-icon-button');
+      await expect(iconButton).toBeVisible();
+
+      const iconValue = await iconButton.evaluate(
+        (el: HTMLIxIconButtonElement) => el.icon
+      );
+
+      expect(iconValue).toContain(paneSlot.expected);
+    }
+  }
+);
+
+regressionTest(
+  'dispatchExpandedChangedEvent toggles and emits correct value',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pane
+      heading="TEST"
+      composition="left"
+      expanded="false"
+    ></ix-pane>
+  `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    const emittedValue = await page.evaluate(() => {
+      return new Promise<boolean>((resolve) => {
+        const pane = document.querySelector('ix-pane')!;
+
+        pane.addEventListener(
+          'expandedChanged',
+          (event: CustomEvent<{ slot: string; expanded: boolean }>) => {
+            resolve(event.detail.expanded);
+          }
+        );
+
+        const button = pane.shadowRoot!.querySelector(
+          'ix-icon-button'
+        ) as HTMLElement;
+
+        button.click();
+      });
+    });
+
+    expect(emittedValue).toBe(true);
+
+    const finalState = await pane.evaluate(
+      (el: HTMLIxPaneElement) => el.expanded
+    );
+
+    expect(finalState).toBe(true);
+  }
+);
+
+regressionTest(
+  'pane closes with single click when expanded',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pane
+      heading="TEST"
+      composition="left"
+      expanded="true"
+    ></ix-pane>
+  `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    const iconButton = pane.locator('ix-icon-button');
+
+    await iconButton.click();
+
+    const isExpanded = await pane.evaluate(
+      (el: HTMLIxPaneElement) => el.expanded
+    );
+
+    expect(isExpanded).toBe(false);
+  }
+);

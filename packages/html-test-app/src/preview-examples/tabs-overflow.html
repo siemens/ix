@@ -1,0 +1,70 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs overflow example</title>
+    <link rel="stylesheet" href="./tabs.css" />
+  </head>
+  <body>
+    <div class="tabs" style="max-width: 340px;">
+      <ix-tabs layout="auto">
+        <ix-tab-item data-tab-id="overview">Overview</ix-tab-item>
+        <ix-tab-item data-tab-id="analytics">Analytics</ix-tab-item>
+        <ix-tab-item data-tab-id="events">Events</ix-tab-item>
+        <ix-tab-item data-tab-id="automation">Automation</ix-tab-item>
+        <ix-tab-item data-tab-id="data-sources">Data Sources</ix-tab-item>
+        <ix-tab-item data-tab-id="notifications">Notifications</ix-tab-item>
+        <ix-tab-item data-tab-id="history">History</ix-tab-item>
+        <ix-tab-item data-tab-id="settings">Settings</ix-tab-item>
+      </ix-tabs>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="overview" class="show">
+        Content Overview
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="analytics">
+        Content Analytics
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="events">
+        Content Events
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="automation">
+        Content Automation
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="data-sources">
+        Content Data Sources
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="notifications">
+        Content Notifications
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="history">
+        Content History
+      </section>
+      <section role="tabpanel" aria-label="Example content" data-tab-content="settings">
+        Content Settings
+      </section>
+    </div>
+
+    <script type="module">
+      await globalThis.customElements.whenDefined('ix-tabs');
+      const container = document.querySelector('.tabs');
+      const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const contentList = container.querySelectorAll('[data-tab-content]');
+          contentList.forEach((content) => {
+            content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
+          });
+        });
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

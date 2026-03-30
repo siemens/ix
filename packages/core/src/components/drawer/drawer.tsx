@@ -68,7 +68,7 @@ export class Drawer {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseButton?: string;
+  @Prop() ariaLabelCloseButton?: string = 'Close drawer';
 
   /**
    * Fire event after drawer is open

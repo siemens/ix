@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -20,10 +24,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
 
 type ManagedClass =
   (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
@@ -82,17 +82,19 @@ export class Tabs {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton = 'Scroll tabs left';
 
   /**
    * ARIA label for the chevron right icon button
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton = 'Scroll tabs right';
 
   /**
-   * `selected` property changed
+   * Tab selection event. Event detail is the zero-based tab index. Fires when
+   * the user selects a tab, or when the tab list changes and the selected index
+   * is adjusted. Not emitted when `selected` is set from outside.
    */
   @Event() selectedChange!: EventEmitter<number>;
 
@@ -106,16 +108,16 @@ export class Tabs {
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
   private readonly ARROW_WIDTH = 32;
+  /** Movement in px beyond which we treat as drag (not tap). */
+  private readonly TAP_THRESHOLD_PX = 10;
   private classObserver?: MutationObserver;
   private updateScheduled = false;
 
-  private clickAction: {
-    timeout: NodeJS.Timeout | null;
-    isClick: boolean;
-  } = {
-    timeout: null,
+  private readonly clickAction = {
     isClick: true,
   };
+
+  private isDragging = false;
 
   @Listen('resize', { target: 'window' })
   onWindowResize() {
@@ -274,6 +276,11 @@ export class Tabs {
       this.setTabAttributes(element, index);
     }
 
+    const overflow = this.showArrows();
+    tabs.forEach((el) => {
+      (el as HTMLElement).style.touchAction = overflow ? 'none' : '';
+    });
+
     this.renderArrows();
   }
 
@@ -286,7 +293,7 @@ export class Tabs {
           Math.ceil(tabWrapper.getBoundingClientRect().width) &&
         this.layout === 'auto'
       );
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -294,7 +301,7 @@ export class Tabs {
   private showPreviousArrow() {
     try {
       return this.showArrows() === true && this.scrollActionAmount < 0;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -314,7 +321,7 @@ export class Tabs {
         this.scrollActionAmount >
           (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
       );
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -376,7 +383,8 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (!this.clickAction.isClick || this.dragStop()) {
+    // Don't select if it was a drag
+    if (!this.clickAction.isClick) {
       return;
     }
 
@@ -388,44 +396,76 @@ export class Tabs {
     this.setSelected(index);
   }
 
-  private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
+  private dragStart(element: HTMLIxTabItemElement, event: PointerEvent) {
     if (!this.showArrows()) return;
     if (event.button > 0) return;
+    if (this.isDragging) return;
 
-    this.clickAction.timeout =
-      this.clickAction.timeout === null
-        ? setTimeout(() => (this.clickAction.isClick = false), 300)
-        : null;
+    event.preventDefault();
 
-    const tabPositionX = parseFloat(window.getComputedStyle(element).left);
-    const mousedownPositionX = event.clientX;
-    const move = (event: MouseEvent) =>
-      this.dragMove(event, tabPositionX, mousedownPositionX);
-    const windowClick = () => {
-      window.removeEventListener('mousemove', move, false);
-      window.removeEventListener('click', windowClick, false);
-      this.dragStop();
+    this.isDragging = true;
+    this.clickAction.isClick = true;
+
+    element.setPointerCapture(event.pointerId);
+
+    const pointerdownPositionX = event.clientX;
+    const initialScrollAmount = this.currentScrollAmount;
+
+    const move = (event: PointerEvent) =>
+      this.dragMove(event, pointerdownPositionX);
+
+    const cleanupPointerListeners = () => {
+      element.removeEventListener('pointermove', move, false);
+      element.removeEventListener('pointerup', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerCancel, false);
     };
-    window.addEventListener('click', windowClick);
-    window.addEventListener('mousemove', move, false);
+
+    const pointerUp = () => {
+      cleanupPointerListeners();
+      this.isDragging = false;
+      this.dragStop();
+      if (this.clickAction.isClick) {
+        const tabs = this.getTabs();
+        const index = tabs.indexOf(element);
+        if (index >= 0 && !element.disabled) {
+          this.clickTab(index);
+        }
+      }
+    };
+
+    const pointerCancel = () => {
+      cleanupPointerListeners();
+      this.isDragging = false;
+      this.scrollActionAmount = initialScrollAmount;
+      const tabsWrapper = this.getTabsWrapper();
+      if (tabsWrapper) {
+        tabsWrapper.setAttribute(
+          'style',
+          `transform: translateX(${initialScrollAmount}px);`
+        );
+      }
+      this.clickAction.isClick = true;
+    };
+
+    element.addEventListener('pointerup', pointerUp);
+    element.addEventListener('pointercancel', pointerCancel);
+    element.addEventListener('pointermove', move, false);
   }
 
-  private dragMove(event: MouseEvent, tabX: number, mousedownX: number) {
-    this.move(event.clientX + tabX - mousedownX);
+  private dragMove(event: PointerEvent, pointerdownX: number) {
+    const delta = event.clientX - pointerdownX;
+    if (Math.abs(delta) > this.TAP_THRESHOLD_PX) {
+      this.clickAction.isClick = false;
+    }
+    this.move(delta);
   }
 
   private dragStop() {
-    if (this.clickAction.timeout) {
-      clearTimeout(this.clickAction.timeout);
-      this.clickAction.timeout = null;
+    if (this.clickAction.isClick) {
+      return;
     }
 
-    if (this.clickAction.isClick) return false;
-
     this.currentScrollAmount = this.scrollActionAmount;
-    this.clickAction.isClick = true;
-
-    return true;
   }
 
   componentWillLoad() {
@@ -450,10 +490,23 @@ export class Tabs {
   componentDidLoad() {
     const tabs = this.getTabs();
     tabs.forEach((element) => {
-      element.addEventListener('mousedown', (event) =>
+      element.addEventListener('pointerdown', (event) =>
         this.dragStart(element, event)
       );
     });
+
+    const wrapper = this.getTabsWrapper();
+    if (wrapper) {
+      wrapper.addEventListener(
+        'touchstart',
+        (e) => {
+          if (this.showArrows()) {
+            e.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+    }
 
     this.observeSlotChanges();
   }
@@ -481,14 +534,14 @@ export class Tabs {
 
   render() {
     return (
-      <Host role="tablist">
+      <Host>
         {this.showArrowPrevious && (
           <button
             class="arrow"
             onClick={() => this.move(this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronLeftIconButton}
           >
-            <ix-icon name={iconChevronLeftSmall}></ix-icon>
+            <ix-icon name={iconChevronLeftSmall} aria-hidden="true"></ix-icon>
           </button>
         )}
         <div
@@ -500,7 +553,7 @@ export class Tabs {
             'shadow-both': this.showArrowNext && this.showArrowPrevious,
           }}
         >
-          <div class="items-content">
+          <div class="items-content" role="tablist">
             <slot></slot>
           </div>
         </div>
@@ -510,7 +563,7 @@ export class Tabs {
             onClick={() => this.move(-this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronRightIconButton}
           >
-            <ix-icon name={iconChevronRightSmall}></ix-icon>
+            <ix-icon name={iconChevronRightSmall} aria-hidden="true"></ix-icon>
           </button>
         )}
       </Host>

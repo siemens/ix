@@ -756,15 +756,15 @@ import type { DateInputValidityState as IIxDateInputDateInputValidityState } fro
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
-   * Input change event.
+   * Value change event. Emitted when the input value changes.
    */
   valueChange: EventEmitter<CustomEvent<string | undefined>>;
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Event emitted when the date input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the date input loses focus and the value has changed. @since 4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
@@ -806,13 +806,13 @@ Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
 The property strings are formatted according to the `format` property and not affected by the `locale` property.
 The locale applied is always `en-US`.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
+   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
 The property strings are formatted according to the `format` property and not affected by the `locale` property.
 The locale applied is always `en-US`.
    */
@@ -849,15 +849,15 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
-   * Time change
+   * Time change event. Emitted when the time changes in the embedded time picker.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Date change
+   * Date change event. Emitted when the date changes in the embedded date picker.
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Datetime selection event is fired after confirm button is pressed
+   * Datetime selection event. Emitted when the user confirms the selection.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
@@ -2635,7 +2635,9 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed
+   * Tab selection event. Event detail is the zero-based tab index. Fires when
+the user selects a tab, or when the tab list changes and the selected index
+is adjusted. Not emitted when `selected` is set from outside.
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }
@@ -2739,15 +2741,15 @@ import type { TimeInputValidityState as IIxTimeInputTimeInputValidityState } fro
 
 export declare interface IxTimeInput extends Components.IxTimeInput {
   /**
-   * Input change event.
+   * Value change event. Emitted when the input value changes.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Event emitted when the time input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the time input loses focus and the value has changed. @since 4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
@@ -2779,11 +2781,11 @@ export class IxTimePicker {
 
 export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
-   * Time event
+   * Time event. Emitted when the user confirms the selected time.
    */
   timeSelect: EventEmitter<CustomEvent<string>>;
   /**
-   * Time change event
+   * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
 }

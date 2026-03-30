@@ -6,9 +6,12 @@ import {
   closeModal as _closeModal,
   ModalInstance as IxModalInstance,
   ModalLoadingContext,
+  ModalLoadingOptions,
 } from '@siemens/ix';
 import { VNode } from 'vue';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
+
+export type { ModalLoadingOptions } from '@siemens/ix';
 
 // call defineCustomElement once at module level
 defineCustomElement();
@@ -28,8 +31,17 @@ export async function showModal(
   return _showModal(config);
 }
 
-export function showModalLoading(message: string): ModalLoadingContext {
-  return _showModalLoading(message);
+/** @deprecated Use ModalLoadingOptions object form instead */
+export function showModalLoading(message: string): ModalLoadingContext;
+export function showModalLoading(
+  options: ModalLoadingOptions
+): ModalLoadingContext;
+export function showModalLoading(
+  messageOrOptions: string | ModalLoadingOptions
+): ModalLoadingContext {
+  return typeof messageOrOptions === 'string'
+    ? _showModalLoading(messageOrOptions)
+    : _showModalLoading(messageOrOptions);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {

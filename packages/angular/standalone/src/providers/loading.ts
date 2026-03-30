@@ -9,7 +9,7 @@
 import { Injectable } from '@angular/core';
 import { LoadingService as BaseLoadingService } from '@siemens/ix-angular/common';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
-import { ModalLoadingContext } from '@siemens/ix';
+import { ModalLoadingContext, ModalLoadingOptions } from '@siemens/ix';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,17 @@ export class LoadingService extends BaseLoadingService {
     defineCustomElement();
   }
 
-  public override showModalLoading(message: string): ModalLoadingContext {
-    return super.showModalLoading(message);
+  /** @deprecated Use ModalLoadingOptions object form instead */
+  public override showModalLoading(message: string): ModalLoadingContext;
+
+  public override showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+
+  public override showModalLoading(
+    messageOrOptions: string | ModalLoadingOptions
+  ): ModalLoadingContext {
+    if (typeof messageOrOptions === 'string') {
+      return super.showModalLoading(messageOrOptions);
+    }
+    return super.showModalLoading(messageOrOptions);
   }
 }

@@ -19,6 +19,7 @@ type IxPreviewRoutes = {
   'preview/modal-by-instance': AngularComponent;
   'preview/modal-by-template': AngularComponent;
   'preview/select-ng-model': AngularComponent;
+  'preview/tabs-overflow': AngularComponent;
   'preview/toggle-ng-model': AngularComponent;
 };
 
@@ -425,6 +426,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/slider-marker').then((m) => m.default),
   'preview/slider-trace': () =>
     import('../preview-examples/slider-trace').then((m) => m.default),
+  'preview/slider-validation': () =>
+    import('../preview-examples/slider-validation').then((m) => m.default),
   'preview/spinner': () =>
     import('../preview-examples/spinner').then((m) => m.default),
   'preview/spinner-large': () =>
@@ -435,6 +438,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/split-button-icons').then((m) => m.default),
   'preview/tabs': () =>
     import('../preview-examples/tabs').then((m) => m.default),
+  'preview/tabs-overflow': () =>
+    import('../preview-examples/tabs-overflow').then((m) => m.default),
   'preview/tabs-rounded': () =>
     import('../preview-examples/tabs-rounded').then((m) => m.default),
   'preview/textarea': () =>

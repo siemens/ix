@@ -182,6 +182,7 @@ import Settings from './preview-examples/settings.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
 import SliderTrace from './preview-examples/slider-trace.vue';
+import SliderValidation from './preview-examples/slider-validation.vue';
 import Slider from './preview-examples/slider.vue';
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
@@ -189,6 +190,7 @@ import SplitButtonIcons from './preview-examples/split-button-icons.vue';
 import SplitButton from './preview-examples/split-button.vue';
 import TabsRounded from './preview-examples/tabs-rounded.vue';
 import Tabs from './preview-examples/tabs.vue';
+import TabsOverflow from './preview-examples/tabs-overflow.vue';
 import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
@@ -239,6 +241,8 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
+} & {
+  '/preview/tabs-overflow': any;
 };
 
 const routes: IxPreviewRoutes = {
@@ -367,6 +371,7 @@ const routes: IxPreviewRoutes = {
   '/preview/split-button': SplitButton,
   '/preview/split-button-icons': SplitButtonIcons,
   '/preview/tabs': Tabs,
+  '/preview/tabs-overflow': TabsOverflow,
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
   '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
@@ -439,6 +444,7 @@ const routes: IxPreviewRoutes = {
   '/preview/layout-auto-custom': LayoutAutoCustom,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-trace': SliderTrace,
+  '/preview/slider-validation': SliderValidation,
   '/preview/slider': Slider,
   '/preview/tabs-rounded': TabsRounded,
   '/preview/theme-switcher': ThemeSwitcher,

@@ -51,7 +51,7 @@
   }
 
   :host(:hover:not(.disabled):not(:disabled)) {
-      @content;
+    @content;
   }
 }
 
@@ -61,7 +61,7 @@
   }
 
   :host(:active:not(.disabled):not(:disabled)) {
-      @content;
+    @content;
   }
 }
 
