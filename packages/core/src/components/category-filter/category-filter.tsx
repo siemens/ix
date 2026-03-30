@@ -184,6 +184,62 @@ export class CategoryFilter {
   @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
 
   /**
+   * i18n label for the header when all values of a category have been selected
+   */
+  @Prop() i18nAllValuesSelectedHeader =
+    'All values of this category have already been selected';
+
+  /**
+   * i18n label for the subtext when all values of a category have been selected
+   */
+  @Prop() i18nAllValuesSelectedSubtext =
+    'Remove a filter or select another category.';
+
+  /**
+   * i18n label for the button when all values of a category have been selected
+   */
+  @Prop() i18nAllValuesSelectedButton = 'See all categories';
+
+  /**
+   * i18n label for the header when no category matches the input
+   */
+  @Prop() i18nNoCategoryMatchHeader =
+    'The term you entered does not match with any category';
+
+  /**
+   * i18n label for the header when no operand matches the input
+   */
+  @Prop() i18nNoOperandMatchHeader =
+    'The term you entered does not match with any operand';
+
+  /**
+   * i18n label for the header when no value matches the input
+   */
+  @Prop() i18nNoValueMatchHeader =
+    'The term you entered does not match with any value';
+
+  /**
+   * i18n fallback label when no matches are found
+   */
+  @Prop() i18nNoMatchesFound = 'No matches found';
+
+  /**
+   * i18n label for the subtext prompting to remove a selected value
+   */
+  @Prop() i18nRemoveValueSubtext =
+    'Remove a selected value or select another category.';
+
+  /**
+   * i18n label for the subtext prompting to remove input to see all options
+   */
+  @Prop() i18nRemoveInputSubtext = 'Remove your input to see all options.';
+
+  /**
+   * i18n label for the 'See all options' button
+   */
+  @Prop() i18nSeeAllOptions = 'See all options';
+
+  /**
    * If true, disables the free-text search functionality.
    * When disabled, the "Search for ..." option will not appear in the dropdown.
    */
@@ -689,17 +745,17 @@ export class CategoryFilter {
           <div class="empty-state">
             <div>
               <ix-typography format="body">
-                All values of this category have already been selected
+                {this.i18nAllValuesSelectedHeader}
               </ix-typography>
               <ix-typography format="body" class="light-text">
-                Remove a filter or select another category.
+                {this.i18nAllValuesSelectedSubtext}
               </ix-typography>
             </div>
             <ix-button
               variant="secondary"
               onClick={() => this.resetCurrentSelection()}
             >
-              See all categories
+              {this.i18nAllValuesSelectedButton}
             </ix-button>
           </div>
         );
@@ -708,17 +764,17 @@ export class CategoryFilter {
           <div class="empty-state">
             <div>
               <ix-typography format="body">
-                The term you entered does not match with any value
+                {this.i18nNoValueMatchHeader}
               </ix-typography>
               <ix-typography format="body" class="light-text">
-                Remove a selected value or select another category.
+                {this.i18nRemoveValueSubtext}
               </ix-typography>
             </div>
             <ix-button
               variant="secondary"
               onClick={() => this.resetCurrentSelection()}
             >
-              See all options
+              {this.i18nSeeAllOptions}
             </ix-button>
           </div>
         );
@@ -727,40 +783,40 @@ export class CategoryFilter {
           <div class="empty-state">
             <div>
               <ix-typography format="body">
-                The term you entered does not match with any category
+                {this.i18nNoCategoryMatchHeader}
               </ix-typography>
               <ix-typography format="body" class="light-text">
-                Remove your input to see all options.
+                {this.i18nRemoveInputSubtext}
               </ix-typography>
             </div>
             <ix-button
               variant="secondary"
               onClick={() => this.resetCurrentSelection()}
             >
-              See all options
+              {this.i18nSeeAllOptions}
             </ix-button>
           </div>
         );
       default: {
         const messageMap: Record<string, string> = {
-          category: 'The term you entered does not match with any category',
-          operand: 'The term you entered does not match with any operand',
-          value: 'The term you entered does not match with any value',
+          category: this.i18nNoCategoryMatchHeader,
+          operand: this.i18nNoOperandMatchHeader,
+          value: this.i18nNoValueMatchHeader,
         };
-        const message = messageMap[type] || 'No matches found';
+        const message = messageMap[type] || this.i18nNoMatchesFound;
         return (
           <div class="empty-state">
             <div>
               <ix-typography format="body">{message}</ix-typography>
               <ix-typography format="body" class="light-text">
-                Remove your input to see all options.
+                {this.i18nRemoveInputSubtext}
               </ix-typography>
             </div>
             <ix-button
               variant="secondary"
               onClick={() => this.resetCurrentSelection()}
             >
-              See all options
+              {this.i18nSeeAllOptions}
             </ix-button>
           </div>
         );
