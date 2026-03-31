@@ -31,6 +31,10 @@ export const InheritAriaAttributesMixin = <
   {
     @State() inheritAriaAttributes: A11yAttributes = {};
 
+    constructor(...args: any[]) {
+      super(...args);
+    }
+
     ignoreAriaAttributes(): A11yAttributeName[] {
       return [];
     }
