@@ -13,7 +13,7 @@ import {
   A11yAttributeName,
   A11yAttributes,
   a11yHostAttributes,
-} from 'src/components/utils/a11y';
+} from './../../../a11y';
 
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
