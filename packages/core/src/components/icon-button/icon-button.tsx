@@ -105,16 +105,17 @@ export class IconButton
 
   override render() {
     const fallbackAriaLabel = getFallbackLabelFromIconName(this.icon);
+    let ariaAttributes = this.inheritAriaAttributes || {};
 
-    if (this.inheritAriaAttributes['aria-label'] === undefined) {
-      this.inheritAriaAttributes = {
-        ...this.inheritAriaAttributes,
+    if (ariaAttributes['aria-label'] === undefined) {
+      ariaAttributes = {
+        ...ariaAttributes,
         'aria-label': fallbackAriaLabel,
       };
     }
 
     const baseButtonProps: BaseButtonProps = {
-      ariaAttributes: this.inheritAriaAttributes,
+      ariaAttributes: ariaAttributes,
       variant: this.variant,
       iconOnly: true,
       iconOval: this.oval,
