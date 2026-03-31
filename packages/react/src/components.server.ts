@@ -256,7 +256,6 @@ export type IxButtonEvents = NonNullable<unknown>;
 export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
     properties: {
-        ariaLabelButton: 'aria-label-button',
         variant: 'variant',
         disabled: 'disabled',
         type: 'type',
@@ -1001,7 +1000,6 @@ export type IxIconButtonEvents = NonNullable<unknown>;
 export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents>({
     tagName: 'ix-icon-button',
     properties: {
-        a11yLabel: 'a11y-label',
         variant: 'variant',
         oval: 'oval',
         icon: 'icon',

@@ -69,7 +69,7 @@ regressionTest(
 regressionTest.describe('A11y', () => {
   regressionTest('disabled', async ({ mount, page }) => {
     await mount('<ix-button disabled>Content</ix-button>');
-    const button = page.locator('button');
+    const button = page.locator('ix-button button');
     await expect(button).toHaveAttribute('aria-disabled');
     await page.locator('ix-button').evaluate((btn: HTMLButtonElement) => {
       btn.disabled = false;

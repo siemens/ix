@@ -303,14 +303,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxButton,
-  inputs: ['ariaLabelButton', 'disabled', 'form', 'href', 'icon', 'iconRight', 'loading', 'rel', 'target', 'type', 'variant']
+  inputs: ['disabled', 'form', 'href', 'icon', 'iconRight', 'loading', 'rel', 'target', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'disabled', 'form', 'href', 'icon', 'iconRight', 'loading', 'rel', 'target', 'type', 'variant'],
+  inputs: ['disabled', 'form', 'href', 'icon', 'iconRight', 'loading', 'rel', 'target', 'type', 'variant'],
 })
 export class IxButton {
   protected el: HTMLIxButtonElement;
@@ -1458,14 +1458,14 @@ export declare interface IxHelperText extends Components.IxHelperText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxIconButton,
-  inputs: ['a11yLabel', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant']
+  inputs: ['disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['a11yLabel', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant'],
+  inputs: ['disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLIxIconButtonElement;

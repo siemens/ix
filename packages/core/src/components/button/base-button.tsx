@@ -93,9 +93,13 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   children
 ) => {
   const extraClasses = props.extraClasses ?? {};
-
   const ariaAttributes = props.ariaAttributes ?? {};
-  if (!ariaAttributes['aria-disabled'] && props.disabled) {
+
+  if (
+    props.ariaAttributes &&
+    'aria-disabled' in props.ariaAttributes &&
+    props.disabled
+  ) {
     ariaAttributes['aria-disabled'] = 'true';
   }
 

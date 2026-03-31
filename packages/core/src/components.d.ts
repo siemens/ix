@@ -394,11 +394,6 @@ export namespace Components {
          */
         "alignment": 'center' | 'start';
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
-        /**
           * Disable the button
           * @default false
          */
@@ -2107,11 +2102,6 @@ export namespace Components {
         "warningText"?: string;
     }
     interface IxIconButton {
-        /**
-          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
         /**
           * Disabled
           * @default false
@@ -6691,11 +6681,6 @@ declare namespace LocalJSX {
          */
         "alignment"?: 'center' | 'start';
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
-        /**
           * Disable the button
           * @default false
          */
@@ -8524,11 +8509,6 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxIconButton {
-        /**
-          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
         /**
           * Disabled
           * @default false
@@ -11187,7 +11167,6 @@ declare namespace LocalJSX {
         "isCurrentPage": boolean;
     }
     interface IxButtonAttributes {
-        "ariaLabelButton": string;
         "variant": ButtonVariant;
         "disabled": boolean;
         "type": 'button' | 'submit';
@@ -11576,7 +11555,6 @@ declare namespace LocalJSX {
         "warningText": string;
     }
     interface IxIconButtonAttributes {
-        "a11yLabel": string;
         "variant": IconButtonVariant;
         "oval": boolean;
         "icon": string;

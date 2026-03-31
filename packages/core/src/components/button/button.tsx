@@ -22,6 +22,10 @@ import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 
 export type ButtonVariant =
   | `${BaseButtonVariant}`
@@ -35,17 +39,9 @@ export type ButtonVariant =
   styleUrl: './button.scss',
 })
 export class Button
-  extends Mixin(...DefaultMixins)
-  implements IxButtonComponent
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxButtonComponent, InheritAriaAttributesMixinContract
 {
-  /**
-   * ARIA label for the button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelButton?: string;
-
   /**
    * Button variant
    */
@@ -195,9 +191,7 @@ export class Button
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      ariaAttributes: {
-        'aria-label': this.ariaLabelButton,
-      },
+      ariaAttributes: this.inheritAriaAttributes,
       href: this.href,
       target: this.target,
       rel: this.rel,

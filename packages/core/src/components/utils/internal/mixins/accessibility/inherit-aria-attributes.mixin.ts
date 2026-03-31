@@ -97,14 +97,17 @@ export const InheritAriaAttributesMixin = <
     @Watch('aria-valuemin')
     @Watch('aria-valuenow')
     @Watch('aria-valuetext')
-    ariaAttributeChanged() {
-      const updatedAriaAttributes = a11yHostAttributes(
-        this.hostElement!,
-        this.ignoreAriaAttributes ? this.ignoreAriaAttributes() : []
-      );
+    ariaAttributeChanged(
+      newValue: string | null,
+      _: string | null,
+      propName: string
+    ) {
+      const updateAttribute = {
+        [propName]: newValue,
+      };
       this.inheritAriaAttributes = {
         ...this.inheritAriaAttributes,
-        ...updatedAriaAttributes,
+        ...updateAttribute,
       };
     }
   }
