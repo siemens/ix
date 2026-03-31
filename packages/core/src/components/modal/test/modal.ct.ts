@@ -59,7 +59,7 @@ async function createToggleExample(page: Page) {
     }
 
     setTimeout(() => {
-      (globalThis as Window).showModal({
+      window.showModal({
         content: createModalExample(),
         closeOnBackdropClick: true,
       });
@@ -90,7 +90,7 @@ async function createSelectOverflowExample(page: Page) {
 
     modal.appendChild(content);
 
-    (globalThis as Window).showModal({
+    window.showModal({
       content: modal,
       closeOnBackdropClick: true,
       animation: false,
@@ -109,7 +109,7 @@ regressionTest('closes on Escape key down', async ({ mount, page }) => {
       <ix-modal-header>Title</ix-modal-header>
       <ix-modal-content>Content</ix-modal-content>
     `;
-    (globalThis as Window).showModal({
+    window.showModal({
       content: elm,
     });
   });
@@ -260,7 +260,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
 
       await page.locator('[data-select-dropdown]').click();
 
-      const dropdownItem = page.getByRole('button', {
+      const dropdownItem = page.getByRole('option', {
         name: 'Item 1',
         exact: true,
       });
@@ -297,7 +297,7 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
       <ix-modal-content>Content</ix-modal-content>
     `;
 
-    (globalThis as Window)
+    window
       .showModal({
         content: elm,
         // Disable animation to get the direct animation end callback
@@ -305,11 +305,11 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
       })
       .then((instance: ModalInstance<unknown>) => {
         instance.onDismiss.on(() => {
-          const counter = (globalThis as Window).__counter;
+          const counter = window.__counter;
           if (counter) {
-            (globalThis as Window).__counter = counter + 1;
+            window.__counter = counter + 1;
           } else {
-            (globalThis as Window).__counter = 1;
+            window.__counter = 1;
           }
         });
       });
@@ -321,7 +321,7 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
   await iconButton.click();
   await expect(dialog).not.toBeVisible();
 
-  expect(await page.evaluate(() => (globalThis as Window).__counter)).toBe(1);
+  expect(await page.evaluate(() => window.__counter)).toBe(1);
 });
 
 regressionTest('button receives focus on load', async ({ mount, page }) => {
@@ -337,12 +337,12 @@ regressionTest('button receives focus on load', async ({ mount, page }) => {
         <ix-button autofocus>OK</ix-button>
       </ix-modal-footer>
     `;
-    (globalThis as Window).showModal({
+    window.showModal({
       content: elm,
     });
     const okButton = elm.querySelector('ix-button');
     okButton?.addEventListener('click', () => {
-      (globalThis as Window).dismissModal(elm);
+      window.dismissModal(elm);
     });
   });
 
