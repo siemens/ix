@@ -17,7 +17,7 @@ import {
 
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
-  ignoreAriaAttributes?(): A11yAttributeName[];
+  getIgnoredAriaAttributes?(): A11yAttributeName[];
 }
 
 export const InheritAriaAttributesMixin = <
@@ -35,14 +35,14 @@ export const InheritAriaAttributesMixin = <
       super(...args);
     }
 
-    ignoreAriaAttributes(): A11yAttributeName[] {
+    getIgnoredAriaAttributes(): A11yAttributeName[] {
       return [];
     }
 
     override componentWillLoad(): Promise<void> | void {
       this.inheritAriaAttributes = a11yHostAttributes(
         this.hostElement!,
-        this.ignoreAriaAttributes ? this.ignoreAriaAttributes() : []
+        this.getIgnoredAriaAttributes ? this.getIgnoredAriaAttributes() : []
       );
     }
 
@@ -102,6 +102,11 @@ export const InheritAriaAttributesMixin = <
       _: string | null,
       propName: string
     ) {
+      const ignoredAttributes = this.getIgnoredAriaAttributes();
+      if (ignoredAttributes.includes(propName as A11yAttributeName)) {
+        return;
+      }
+
       const updateAttribute = {
         [propName]: newValue,
       };
