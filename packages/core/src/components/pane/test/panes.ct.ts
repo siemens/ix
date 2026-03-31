@@ -95,6 +95,45 @@ regressionTest('close on click outside', async ({ page, mount }) => {
 });
 
 regressionTest(
+  'should not has listener when not expanded',
+  async ({ page, mount }) => {
+    await mount('');
+
+    const removeEventListenerCalled = page.evaluate(() => {
+      return new Promise<string>((resolve) => {
+        window.removeEventListener = (eventName: string) => {
+          resolve(eventName);
+        };
+      });
+    });
+
+    await mount(`
+    <ix-pane
+      expanded="true"
+      close-on-click-outside="true"
+      aria-label-collapse-close-button="myclose"
+    >
+      <button aria-label="test content">Test</button>
+    </ix-pane>
+    <button>Element outside</button>
+    `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    await pane.getByLabel('myclose').click();
+
+    const exampleContent = page.getByLabel('test content');
+    await expect(exampleContent).not.toBeVisible();
+
+    // Wait for the removeEventListener to be called.
+    // Not the perfect expect condition could potentially lead to false positives
+    // with additional listeners
+    await expect(removeEventListenerCalled).resolves.toBe('click');
+  }
+);
+
+regressionTest(
   'icon direction reacts correctly to slot and expanded state for all compositions',
   async ({ mount, page }) => {
     const paneSlots = [
