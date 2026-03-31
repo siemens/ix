@@ -71,10 +71,7 @@ regressionTest.describe('category-filter', () => {
     await page.goto('category-filter/categories');
     const input = page.locator('input').first();
 
-    await input.click();
-    // close dropdown
-    await input.click();
-    await input.pressSequentially('p');
+    await input.fill('p');
 
     await expect(page).toHaveScreenshot();
   });
