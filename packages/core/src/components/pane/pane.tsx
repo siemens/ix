@@ -34,6 +34,11 @@ import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import {
+  addGenericFocusTrap,
+  GenericFocusTrapResult,
+} from '../utils/focus/generic-focus-trap';
 import type {
   BorderlessChangedEvent,
   Composition,
@@ -172,6 +177,9 @@ export class Pane {
   private mutationObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
   private disposableWindowClick?: DisposableEventListener;
+  private disposableKeydown?: DisposableEventListener;
+  private focusTrap?: GenericFocusTrapResult;
+  private focusReturnElement?: HTMLElement;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -193,25 +201,50 @@ export class Pane {
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
+    this.disposableKeydown?.();
+    this.focusTrap?.destroy();
   }
 
   @Watch('expanded')
   onExpandedChange() {
     if (!this.closeOnClickOutside || !this.expanded) {
       this.disposableWindowClick?.();
+    } else {
+      this.disposableWindowClick = addDisposableEventListener(
+        window,
+        'click',
+        (event) => {
+          const path = event.composedPath?.() || [];
+          if (!path.includes(this.hostElement)) {
+            this.dispatchExpandedChangedEvent();
+          }
+        }
+      );
+    }
+
+    this.registerEscapeListener();
+
+    if (!this.floating) {
       return;
     }
 
-    this.disposableWindowClick = addDisposableEventListener(
-      window,
-      'click',
-      (event) => {
-        const path = event.composedPath?.() || [];
-        if (!path.includes(this.hostElement)) {
-          this.dispatchExpandedChangedEvent();
+    if (this.expanded) {
+      const activeElement = document.activeElement;
+      this.focusReturnElement =
+        activeElement instanceof HTMLElement ? activeElement : undefined;
+      this.focusTrap = addGenericFocusTrap(this.hostElement);
+    } else {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+      requestAnimationFrameNoNgZone(() => {
+        const elementToFocus = this.focusReturnElement;
+        this.focusReturnElement = undefined;
+
+        if (elementToFocus && typeof elementToFocus.focus === 'function') {
+          elementToFocus.focus();
         }
-      }
-    );
+      });
+    }
   }
 
   componentWillLoad() {
@@ -376,11 +409,7 @@ export class Pane {
         }
       },
       complete: () => {
-        if (this.expanded) {
-          this.showContent = true;
-        }
-
-        this.animations.delete(key);
+        this.onAnimationComplete(key);
       },
     });
 
@@ -403,15 +432,23 @@ export class Pane {
         }
       },
       onComplete: () => {
-        if (this.expanded) {
-          this.showContent = true;
-        }
-
-        this.animations.delete(key);
+        this.onAnimationComplete(key);
       },
     });
 
     this.animations.set(key, animation);
+  }
+
+  private onAnimationComplete(key: string) {
+    if (this.expanded) {
+      this.showContent = true;
+      if (this.floating) {
+        requestAnimationFrameNoNgZone(() => {
+          this.focusFirstSlottedElement();
+        });
+      }
+    }
+    this.animations.delete(key);
   }
 
   private removePadding() {
@@ -510,6 +547,13 @@ export class Pane {
       slot: this.currentSlot ?? '',
       variant: value,
     });
+
+    if (value !== 'floating') {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+    }
+
+    this.registerEscapeListener();
   }
 
   @Watch('borderless')
@@ -518,6 +562,45 @@ export class Pane {
       slot: this.currentSlot ?? '',
       borderless: value,
     });
+  }
+
+  private focusFirstSlottedElement() {
+    const autofocusEl =
+      this.hostElement.querySelector<HTMLElement>('[autofocus]');
+
+    if (autofocusEl) {
+      autofocusEl.focus();
+      return;
+    }
+
+    if (this.isMobile || this.hideOnCollapse) {
+      const closeBtn =
+        this.hostElement.shadowRoot?.querySelector<HTMLElement>('.title-icon');
+
+      if (closeBtn) {
+        closeBtn.focus();
+      }
+    }
+  }
+
+  private registerEscapeListener() {
+    this.disposableKeydown?.();
+    this.disposableKeydown = undefined;
+
+    if (!this.floating || !this.expanded) {
+      return;
+    }
+
+    this.disposableKeydown = addDisposableEventListener(
+      this.hostElement,
+      'keydown',
+      (event) => {
+        if ((event as KeyboardEvent).key !== 'Escape') {
+          return;
+        }
+        this.dispatchExpandedChangedEvent();
+      }
+    );
   }
 
   private dispatchExpandedChangedEvent() {
