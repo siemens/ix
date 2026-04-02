@@ -573,13 +573,11 @@ export class Pane {
       return;
     }
 
-    if (this.isMobile || this.hideOnCollapse) {
-      const closeBtn =
-        this.hostElement.shadowRoot?.querySelector<HTMLElement>('.title-icon');
+    const closeBtn =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>('.title-icon');
 
-      if (closeBtn) {
-        closeBtn.focus();
-      }
+    if (closeBtn) {
+      closeBtn.focus();
     }
   }
 

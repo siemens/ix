@@ -21,7 +21,21 @@ export interface GenericFocusTrapResult {
  */
 function isElementFocusable(el: HTMLElement): boolean {
   if (el.hidden) return false;
-  if ((el as HTMLInputElement).disabled) return false;
+
+  if ((el as HTMLInputElement).disabled) {
+    return false;
+  }
+
+  const style = window.getComputedStyle(el);
+
+  if (style.display === 'none' || style.visibility === 'hidden') {
+    return false;
+  }
+
+  if (style.position !== 'fixed' && el.offsetParent === null) {
+    return false;
+  }
+
   return el.tabIndex >= 0;
 }
 
@@ -125,19 +139,17 @@ export function addGenericFocusTrap(host: HTMLElement): GenericFocusTrapResult {
     if (focusable.length === 0) return;
 
     const active = getDeepActiveElement();
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+    const first = focusable.at(0);
+    const last = focusable.at(-1);
 
     if (event.shiftKey) {
       if (active === first) {
         event.preventDefault();
-        last.focus();
+        last?.focus();
       }
-    } else {
-      if (active === last) {
-        event.preventDefault();
-        first.focus();
-      }
+    } else if (active === last) {
+      event.preventDefault();
+      first?.focus();
     }
   };
 
