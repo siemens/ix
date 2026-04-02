@@ -21,7 +21,7 @@ test.describe('password input', () => {
   test.describe('eye icon visibility', () => {
     test('eye icon is visible for password type', async ({ mount }) => {
       await mount('<ix-input type="password" value="secret123"></ix-input>');
-      await expect(eyeButton).not.toHaveClass(/eye-hidden/);
+      await expect(eyeButton).toBeAttached();
       await expect(eyeButton).toBeVisible();
     });
 
@@ -35,8 +35,7 @@ test.describe('password input', () => {
     for (const { type, value } of nonPasswordInputTypes) {
       test(`eye icon is hidden for ${type} type`, async ({ mount }) => {
         await mount(`<ix-input type="${type}" value="${value}"></ix-input>`);
-        await expect(eyeButton).toHaveClass(/eye-hidden/);
-        await expect(eyeButton).not.toBeVisible();
+        await expect(eyeButton).not.toBeAttached();
       });
     }
 
@@ -46,8 +45,7 @@ test.describe('password input', () => {
       await mount(
         '<ix-input type="password" disabled value="secret"></ix-input>'
       );
-      await expect(eyeButton).toHaveClass(/eye-hidden/);
-      await expect(eyeButton).not.toBeVisible();
+      await expect(eyeButton).not.toBeAttached();
     });
 
     test('eye icon is visible when password input is readonly', async ({
@@ -56,7 +54,7 @@ test.describe('password input', () => {
       await mount(
         '<ix-input type="password" readonly value="secret"></ix-input>'
       );
-      await expect(eyeButton).not.toHaveClass(/eye-hidden/);
+      await expect(eyeButton).toBeAttached();
       await expect(eyeButton).toBeVisible();
     });
   });
