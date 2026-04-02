@@ -805,6 +805,32 @@ export class Select
     this.hasInputFocus = true;
   }
 
+  // Edge case Enter handling
+  private onInputKeyDown(event: KeyboardEvent) {
+    if (event.code !== 'Enter') {
+      return;
+    }
+
+    if (!this.editable || !this.inputFilterText) {
+      return;
+    }
+
+    if (this.isMultipleMode) {
+      this.emitAddItem(this.inputFilterText);
+      return;
+    }
+
+    const existingItem = this.itemExists(this.inputFilterText);
+    if (existingItem) {
+      this.itemClick(existingItem.value);
+    } else {
+      this.emitAddItem(this.inputFilterText);
+    }
+
+    this.dropdownShow = false;
+    this.updateSelection();
+  }
+
   private placeholderValue() {
     if (this.disabled) {
       return '';
@@ -1098,6 +1124,7 @@ export class Select
                     onFocus={() => this.onInputFocus()}
                     onBlur={(e) => this.onInputBlur(e)}
                     onInput={() => this.setItemFilter()}
+                    onKeyDown={(e) => this.onInputKeyDown(e)}
                   />
                   {this.allowClear &&
                   !this.disabled &&

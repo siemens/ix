@@ -465,7 +465,6 @@ test('type in a novel item name in multiple mode, click outside', async ({
   page,
 }) => {
   await mount(`
-<<<<<<< HEAD
         <div style="display: flex; gap: 1rem;">
           <ix-select value="2" mode="multiple">
             <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -474,14 +473,6 @@ test('type in a novel item name in multiple mode, click outside', async ({
           </ix-select>
           <ix-button>outside</ix-button>
         </div>
-=======
-      <ix-select value="2" mode="multiple">
-        <ix-select-item value="1" label="Item 1"></ix-select-item>
-        <ix-select-item value="2" label="Item 2"></ix-select-item>
-        <ix-select-item value="3" label="Item 3"></ix-select-item>
-      </ix-select>
-      <ix-button>outside</ix-button>
->>>>>>> main
     `);
 
   const selectCtrl = selectController(page.locator('ix-select'));
