@@ -572,7 +572,16 @@ export class Select
       return;
     }
 
-    if (this.pendingChipValue !== null) {
+    if (this.pendingChipValue === null) {
+      for (const [value, el] of this.chipElementRefs) {
+        const isOverflow =
+          this.visibleChipValues !== null && !this.visibleChipValues.has(value);
+
+        if (!isOverflow) {
+          this.chipWidths.set(value, el.offsetWidth);
+        }
+      }
+    } else {
       const pendingValue = this.pendingChipValue;
       const pendingEl = this.chipElementRefs.get(pendingValue);
 
@@ -582,15 +591,6 @@ export class Select
           this.calculateOverflow();
           this.pendingChipValue = null;
         });
-      }
-    } else {
-      for (const [value, el] of this.chipElementRefs) {
-        const isOverflow =
-          this.visibleChipValues !== null && !this.visibleChipValues.has(value);
-
-        if (!isOverflow) {
-          this.chipWidths.set(value, el.offsetWidth);
-        }
       }
     }
   }
