@@ -45,6 +45,40 @@ export function hasAnyText({
   );
 }
 
+export function resolveTextFromValidationState(
+  props: Readonly<{
+    isInvalid: boolean;
+    invalidText?: string;
+    isWarning: boolean;
+    warningText?: string;
+    isInfo: boolean;
+    infoText?: string;
+    isValid: boolean;
+    validText?: string;
+    helperText?: string;
+  }>
+) {
+  if (!hasAnyText(props)) return '';
+
+  if (props.isInvalid && props.invalidText && props.invalidText.trim() !== '') {
+    return props.invalidText;
+  }
+
+  if (props.isWarning && props.warningText && props.warningText.trim() !== '') {
+    return props.warningText;
+  }
+
+  if (props.isInfo && props.infoText && props.infoText.trim() !== '') {
+    return props.infoText;
+  }
+
+  if (props.isValid && props.validText && props.validText.trim() !== '') {
+    return props.validText;
+  }
+
+  return props.helperText || '';
+}
+
 export function HelperText(
   props: Readonly<{
     isInvalid: boolean;

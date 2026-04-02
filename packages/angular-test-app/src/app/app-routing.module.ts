@@ -57,6 +57,8 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateRange from '../preview-examples/date-range';
+import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
@@ -67,6 +69,13 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimeInput from '../preview-examples/datetime-input';
+import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
+import DatetimeInputLabel from '../preview-examples/datetime-input-label';
+import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
+import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
+import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
 import Divider from '../preview-examples/divider';
 import Drawer from '../preview-examples/drawer';
 import DrawerFullHeight from '../preview-examples/drawer-full-height';
@@ -187,6 +196,7 @@ import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
+import RangeField from '../preview-examples/range-field';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
@@ -197,6 +207,7 @@ import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
 import SliderTrace from '../preview-examples/slider-trace';
+import SliderValidation from '../preview-examples/slider-validation';
 import Spinner from '../preview-examples/spinner';
 import SpinnerLarge from '../preview-examples/spinner-large';
 import SplitButton from '../preview-examples/split-button';
@@ -215,6 +226,7 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
+import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -448,6 +460,14 @@ const routes: Routes = [
         component: DateDropdownUserRange,
       },
       {
+        path: 'date-range',
+        component: DateRange,
+      },
+      {
+        path: 'datetime-range',
+        component: DatetimeRange,
+      },
+      {
         path: 'date-input',
         component: DateInput,
       },
@@ -502,6 +522,34 @@ const routes: Routes = [
       {
         path: 'datetimepicker',
         component: Datetimepicker,
+      },
+      {
+        path: 'datetime-input',
+        component: DatetimeInput,
+      },
+      {
+        path: 'datetime-input-disabled',
+        component: DatetimeInputDisabled,
+      },
+      {
+        path: 'datetime-input-label',
+        component: DatetimeInputLabel,
+      },
+      {
+        path: 'datetime-input-min-max-date',
+        component: DatetimeInputMinMaxDate,
+      },
+      {
+        path: 'datetime-input-readonly',
+        component: DatetimeInputReadonly,
+      },
+      {
+        path: 'datetime-input-validation',
+        component: DatetimeInputValidation,
+      },
+      {
+        path: 'datetime-input-with-slots',
+        component: DatetimeInputWithSlots,
       },
       {
         path: 'divider',
@@ -784,6 +832,7 @@ const routes: Routes = [
       { path: 'radio-disabled', component: RadioDisabled },
       { path: 'radio-group', component: RadioGroup },
       { path: 'radio-validation', component: RadioValidation },
+      { path: 'range-field', component: RangeField },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
       { path: 'select-ng-model', component: SelectNgModel },
@@ -816,6 +865,7 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'time-input', component: TimeInput },
+      { path: 'time-range', component: TimeRange },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
@@ -863,6 +913,10 @@ const routes: Routes = [
       {
         path: 'slider-trace',
         component: SliderTrace,
+      },
+      {
+        path: 'slider-validation',
+        component: SliderValidation,
       },
       {
         path: 'slider',
@@ -1038,6 +1092,7 @@ const routes: Routes = [
       { path: 'slider-trace', component: SliderTrace },
       { path: 'slider-marker', component: SliderMarker },
       { path: 'slider-error', component: SliderError },
+      { path: 'slider-validation', component: SliderValidation },
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },

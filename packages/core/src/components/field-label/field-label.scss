@@ -14,3 +14,14 @@
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
 }
+
+:host(.text-overflow-no-wrap) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  ix-typography {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

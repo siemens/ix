@@ -1,11 +1,19 @@
-/*
- * SPDX-FileCopyrightText: 2026 Siemens AG
- * 
- * SPDX-License-Identifier: MIT
- * 
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+/\*
+
+## 3.0.2
+
+### Patch Changes
+
+- [#2403](https://github.com/siemens/ix/pull/2403) [`5e95ce7`](https://github.com/siemens/ix/commit/5e95ce73fe20d817bbdc75c8c190568c4747b708) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Use Siemens Sans font.
+
+* SPDX-FileCopyrightText: 2026 Siemens AG
+*
+* SPDX-License-Identifier: MIT
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+  \*/
+
 # @siemens/ix-echarts
 
 ## 3.0.1

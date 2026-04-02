@@ -12,8 +12,6 @@ import {
   iconCogwheel,
   iconInfo,
   iconLightDark,
-  iconNavigationLeft,
-  iconNavigationRight,
 } from '@siemens/ix-icons/icons';
 import {
   Component,
@@ -29,7 +27,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { animate } from 'animejs';
-import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
 import Animation from '../utils/animation';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -64,9 +61,6 @@ export class Menu {
    */
   @Prop() enableToggleTheme = false;
 
-  /** @internal */
-  @Prop() enableMapExpand = false;
-
   /**
    * Should only be set if you use ix-menu standalone
    */
@@ -76,13 +70,6 @@ export class Menu {
    * Should only be set if you use ix-menu standalone
    */
   @Prop() applicationDescription = '';
-
-  /**
-   * Accessibility i18n label for the burger menu of the sidebar
-   * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
-   */
-  @Prop({ attribute: 'i18n-expand-sidebar' }) i18nExpandSidebar =
-    'Expand sidebar';
 
   /**
    *  Toggle the expand state of the menu
@@ -138,7 +125,7 @@ export class Menu {
   /**
    * i18n label for 'Expand' button
    */
-  @Prop({ attribute: 'i18n-expand' }) i18nExpand = ' Expand';
+  @Prop({ attribute: 'i18n-expand' }) i18nExpand = 'Expand';
 
   /**
    * i18n label for 'Collapse' button
@@ -564,14 +551,6 @@ export class Menu {
     }
   }
 
-  private getCollapseText() {
-    return this.mapExpand ? this.i18nCollapse : this.i18nExpand;
-  }
-
-  private getCollapseIcon() {
-    return this.mapExpand ? iconNavigationLeft : iconNavigationRight;
-  }
-
   private isMenuItemClicked(event: Event) {
     if (event.target instanceof HTMLElement) {
       return event.target.tagName === 'IX-MENU-ITEM';
@@ -640,14 +619,6 @@ export class Menu {
     return this.breakpoint === 'sm' && this.expand === false;
   }
 
-  private sidebarToggle() {
-    this.mapExpandChange.emit(this.mapExpand);
-
-    this.hostElement.dispatchEvent(
-      new ApplicationSidebarToggleEvent(this.mapExpand)
-    );
-  }
-
   private async showAppSwitch() {
     const { defaultPrevented } = this.openAppSwitch.emit();
 
@@ -688,6 +659,8 @@ export class Menu {
               <ix-menu-expand-icon
                 breakpoint={this.breakpoint}
                 expanded={this.expand}
+                i18n-expand={this.i18nExpand}
+                i18n-collapse={this.i18nCollapse}
                 pinned={this.pinned}
                 class="menu-expand-icon"
                 onClick={async () => this.toggleMenu()}
@@ -778,16 +751,6 @@ export class Menu {
             <slot name="bottom"></slot>
           </div>
           <div id="popover-area"></div>
-          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="menu-collapse"
-              onClick={() => this.sidebarToggle()}
-              class="internal-tab bottom-tab"
-              icon={`${this.getCollapseIcon()}`}
-              label={this.getCollapseText()}
-            ></ix-menu-item>
-          ) : null}
           {this.about ? (
             <ix-menu-item
               disabled={this.isHiddenFromViewport()}

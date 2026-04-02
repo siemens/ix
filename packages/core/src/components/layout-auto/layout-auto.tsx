@@ -1,12 +1,12 @@
 import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 
 @Component({
   tag: 'ix-layout-auto',
   styleUrl: 'layout-auto.scss',
   shadow: true,
 })
-export class LayoutForm implements IxComponent {
+export class LayoutForm implements IxComponentInterface {
   @Element() hostElement!: HTMLIxLayoutAutoElement;
 
   /**

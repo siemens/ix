@@ -16,22 +16,22 @@ import { IxTabs, IxTabItem, IxIcon } from '@siemens/ix-angular/standalone';
   template: `
     <ix-tabs rounded>
       <ix-tab-item>
-        <ix-icon name="success"></ix-icon>
+        <ix-icon name="success" aria-label="Success"></ix-icon>
       </ix-tab-item>
       <ix-tab-item counter="200">
-        <ix-icon name="tree"></ix-icon>
+        <ix-icon name="tree" aria-label="Tree"></ix-icon>
       </ix-tab-item>
       <ix-tab-item>
-        <ix-icon name="maintenance"></ix-icon>
+        <ix-icon name="maintenance" aria-label="Maintenance"></ix-icon>
       </ix-tab-item>
       <ix-tab-item disabled counter="24">
-        <ix-icon name="sound-loud"></ix-icon>
+        <ix-icon name="sound-loud" aria-label="Sound"></ix-icon>
       </ix-tab-item>
       <ix-tab-item>
-        <ix-icon name="hierarchy"></ix-icon>
+        <ix-icon name="hierarchy" aria-label="Hierarchy"></ix-icon>
       </ix-tab-item>
       <ix-tab-item disabled>
-        <ix-icon name="calendar-settings"></ix-icon>
+        <ix-icon name="calendar-settings" aria-label="Calendar settings"></ix-icon>
       </ix-tab-item>
     </ix-tabs>
   `,

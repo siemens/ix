@@ -14,7 +14,7 @@ export default () => {
     <>
       <div>
         <IxDateInput
-          value="1970/01/01"
+          value="2026/02/08"
           infoText="Info text"
           className="ix-info"
         ></IxDateInput>
@@ -22,7 +22,7 @@ export default () => {
 
       <div>
         <IxDateInput
-          value="1970/01/01"
+          value="2026/02/08"
           warningText="Warning text"
           className="ix-warning"
         ></IxDateInput>
@@ -30,7 +30,7 @@ export default () => {
 
       <div>
         <IxDateInput
-          value="1970/01/01"
+          value="2026/02/08"
           validText="Valid text"
           className="ix-valid"
         ></IxDateInput>
@@ -38,7 +38,7 @@ export default () => {
 
       <div>
         <IxDateInput
-          value="1970/01/01"
+          value="2026/02/08"
           invalidText="Invalid text"
           className="ix-invalid"
         ></IxDateInput>

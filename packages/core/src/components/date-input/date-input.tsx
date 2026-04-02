@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -31,7 +32,6 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
-  onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
 import {
@@ -48,8 +48,14 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 /**
  * @form-ready
@@ -60,25 +66,30 @@ import type { DateInputValidityState } from './date-input.types';
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
-export class DateInput implements IxInputFieldComponent<string | undefined> {
-  @Element() hostElement!: HTMLIxDateInputElement;
+export class DateInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * Name of the input element
+   * Name of the input element.
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Placeholder of the input element
+   * Placeholder of the input element.
    */
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * Value of the input element
+   * Value of the input element.
    */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
@@ -114,71 +125,71 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * Required attribute
+   * Required attribute.
    */
   @Prop() required?: boolean;
 
   /**
-   * Helper text below the input field
+   * Helper text below the input field.
    */
   @Prop() helperText?: string;
 
   /**
-   * Label of the input field
+   * Label of the input field.
    */
   @Prop() label?: string;
 
   /**
-   * ARIA label for the calendar icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the calendar icon button.
+   * Will be set as aria-label on the nested HTML button element.
    *
    * @since 3.2.0
    */
   @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
   /**
-   * Error text below the input field
+   * Error text below the input field.
    */
   @Prop({ reflect: true }) invalidText?: string;
 
   /**
-   * Readonly attribute
+   * Readonly attribute.
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * Disabled attribute
+   * Disabled attribute.
    */
   @Prop() disabled: boolean = false;
 
   /**
-   * Info text below the input field
+   * Info text below the input field.
    */
   @Prop() infoText?: string;
 
   /**
-   * Warning text below the input field
+   * Warning text below the input field.
    */
   @Prop() warningText?: string;
 
   /**
-   * Valid text below the input field
+   * Valid text below the input field.
    */
   @Prop() validText?: string;
 
   /**
-   * Show text as tooltip
+   * Show text as tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * I18n string for the error message when the date is not parsable
+   * I18n string for the error message when the date is not parsable.
    */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
 
   /**
-   * Shows week numbers displayed on the left side of the date picker
+   * Shows week numbers displayed on the left side of the date picker.
    *
    * @since 3.0.0
    */
@@ -186,19 +197,19 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
    */
   @Prop() weekStartIndex = 0;
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
@@ -222,12 +233,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Input change event.
+   * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
@@ -237,7 +248,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
   /**
-   * Event emitted when the date input loses focus and the value has changed.
+   * Change event. Emitted when the date input loses focus and the value has changed.
+   *
    * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
@@ -252,20 +264,18 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
-
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
-
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+
   private classObserver?: ClassMutationObserver;
 
-  /** @internal */
   public initialValue?: string;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -280,7 +290,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -292,7 +302,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -312,7 +322,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -361,6 +371,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
     }
 
     this.emitValidityStateChangeIfChanged();
@@ -389,8 +403,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    onEnterKeyChangeEmit(event, this, this.value);
-
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -406,6 +418,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -430,8 +443,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
-            this.initialValue = this.value;
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -453,13 +464,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            aria-label={this.ariaLabelCalendarButton}
+            tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             size="16"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -517,7 +529,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
@@ -529,6 +545,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+        }}
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
         }}
       >
         <ix-field-wrapper
@@ -559,6 +585,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
+          focusTrapOptions={{
+            targetElement: this.datepickerRef,
+            trapFocusInShadowDom: true,
+          }}
+          callbackFocusElement={async () => {
+            this.datepickerRef.current?.focusActiveDay();
+            return true;
+          }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
         >
           <ix-date-picker
             ref={this.datepickerRef}

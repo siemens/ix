@@ -45,7 +45,7 @@ function getAngularConfig() {
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
-  globalScript: './src/setup.ts',
+  suppressReservedPublicNameWarnings: true,
   extras: {
     enableImportInjection: true,
     addGlobalStyleToComponents: false,

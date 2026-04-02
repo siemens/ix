@@ -57,11 +57,9 @@ regressionTest.describe('select', () => {
     await page.goto('select/mode-multiple-overflow');
 
     const inputHandle = await page.waitForSelector('div.chips');
-
-    await page.type(
-      '[data-testid="input"]',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    );
+    const select = page.locator('ix-select');
+    await select.locator('input').fill('123');
+    await select.locator('input').click();
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
@@ -69,7 +67,7 @@ regressionTest.describe('select', () => {
     }, inputHandle);
 
     await page.waitForSelector('div.chips.__SCROLLED__');
-    await page.locator('[data-testid="input"]').blur();
+    await select.locator('input').blur();
 
     await page.waitForTimeout(500);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -140,7 +138,7 @@ regressionTest.describe('select', () => {
   regressionTest('centered overflow', async ({ page }) => {
     await page.goto('select/centered-overflow');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    const lastItem = await page.locator('.dropdown-item').last();
+    const lastItem = page.locator('ix-select').locator('ix-select-item').last();
     await lastItem.scrollIntoViewIfNeeded();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

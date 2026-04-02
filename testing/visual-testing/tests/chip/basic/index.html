@@ -13,6 +13,11 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <style>
+      ix-chip {
+        margin-left: 0.25rem;
+      }
+    </style>
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import { iconPrint } from '@siemens/ix-icons/icons';
@@ -36,8 +41,12 @@ SPDX-License-Identifier: MIT
         Primary
       </ix-chip>
 
-      <ix-chip variant="critical" closable outline> Critical </ix-chip>
-      <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
+      <ix-chip variant="critical" closable outline>
+        Critical
+      </ix-chip>
+      <ix-chip variant="alarm" icon="print">
+        Alarm with icon
+      </ix-chip>
       <ix-chip
         variant="alarm"
         icon="print"
@@ -79,15 +88,27 @@ SPDX-License-Identifier: MIT
           max-width: 300px;
         "
       >
-        <ix-chip icon="print" variant="primary" outline closable
-          >Primary</ix-chip
+        <ix-chip icon="print" variant="primary" outline closable>
+          Primary
+        </ix-chip>
+        <ix-chip icon="print" variant="alarm" outline closable>
+          Alarm
+        </ix-chip>
+        <ix-chip icon="print" variant="critical" outline>
+          Critical
+        </ix-chip>
+        <ix-chip icon="print" variant="warning" outline>
+          Warning
+        </ix-chip>
+        <ix-chip icon="print" variant="info" outline>
+          Info
+        </ix-chip>
+        <ix-chip icon="print" variant="success" outline>
+          Success
+        </ix-chip>
+        <ix-chip icon="print" variant="neutral" outline class="chip-left-margin"
+          >Neutral</ix-chip
         >
-        <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
-        <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
-        <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
-        <ix-chip icon="print" variant="info" outline>Info</ix-chip>
-        <ix-chip icon="print" variant="success" outline>Success</ix-chip>
-        <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
         <ix-chip
           icon="print"
           variant="custom"

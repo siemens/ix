@@ -1,0 +1,14 @@
+- main:
+  - textbox "Info": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - button "Toggle calendar"
+  - text: Info text
+  - textbox "Warning": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - button "Toggle calendar"
+  - text: Warning text
+  - textbox "Valid": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - button "Toggle calendar"
+  - text: Valid text
+  - alert:
+    - textbox "Invalid": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+    - button "Toggle calendar"
+    - text: Invalid text

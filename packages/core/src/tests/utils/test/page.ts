@@ -6,16 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import AxeBuilder from '@axe-core/playwright';
 import {
+  TestInfo as _TestInfo,
+  expect as baseExpect,
   ElementHandle,
+  Locator,
   Page,
   PageScreenshotOptions,
   test as testBase,
-  TestInfo as _TestInfo,
-  expect,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
-import AxeBuilder from '@axe-core/playwright';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -189,6 +190,45 @@ export const regressionTest = testBase.extend<{
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
     await use((selector, config) => mountComponent(page, selector, config));
+  },
+});
+
+export const expect = baseExpect.extend({
+  async toHaveVisibleFocus(
+    locator: Locator,
+    activeDescendantElementLocator?: Locator
+  ) {
+    let pass = true;
+    const errors: string[] = [];
+
+    try {
+      await baseExpect(locator).toHaveClass(/ix-focused/);
+    } catch (e: any) {
+      pass = false;
+      errors.push(e.message);
+    }
+
+    if (activeDescendantElementLocator) {
+      try {
+        const activeDescendantId =
+          await activeDescendantElementLocator.evaluate((el) =>
+            el.getAttribute('aria-activedescendant')
+          );
+        await baseExpect(activeDescendantElementLocator).toHaveAttribute(
+          'aria-activedescendant',
+          activeDescendantId!
+        );
+      } catch (e: any) {
+        pass = false;
+        errors.push(e.message);
+      }
+    }
+
+    return {
+      pass,
+      message: () =>
+        errors.join('\n') || 'Expected element to have visible focus',
+    };
   },
 });
 

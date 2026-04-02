@@ -12,12 +12,16 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('radiobutton', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`radiobutton/basic`);
+    await page.goto(`radiobutton/basic`, {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('basic hover checked', async ({ page }) => {
-    await page.goto(`radiobutton/basic`);
+    await page.goto(`radiobutton/basic`, {
+      skipIxHydrationCheck: true,
+    });
 
     const noCheckedCheckbox = await page.waitForSelector(
       'label[for="checkbox_1_1"]'
@@ -29,7 +33,9 @@ regressionTest.describe('radiobutton', () => {
   });
 
   regressionTest('basic hover unchecked', async ({ page }) => {
-    await page.goto(`radiobutton/basic`);
+    await page.goto(`radiobutton/basic`, {
+      skipIxHydrationCheck: true,
+    });
 
     const noCheckedCheckbox = await page.waitForSelector(
       'label[for="checkbox_1_2"]'
@@ -41,12 +47,16 @@ regressionTest.describe('radiobutton', () => {
   });
 
   regressionTest('no checked', async ({ page }) => {
-    await page.goto(`radiobutton/no-checked`);
+    await page.goto(`radiobutton/no-checked`, {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('long text', async ({ page }) => {
-    await page.goto(`radiobutton/long-text`);
+    await page.goto(`radiobutton/long-text`, {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

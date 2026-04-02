@@ -123,6 +123,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-dropdown-user-range').then(
       (m) => m.default
     ),
+  'preview/date-range': () =>
+    import('../preview-examples/date-range').then((m) => m.default),
+  'preview/datetime-range': () =>
+    import('../preview-examples/datetime-range').then((m) => m.default),
   'preview/date-input': () =>
     import('../preview-examples/date-input').then((m) => m.default),
   'preview/date-input-disabled': () =>
@@ -143,6 +147,28 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datepicker-range').then((m) => m.default),
   'preview/datetimepicker': () =>
     import('../preview-examples/datetimepicker').then((m) => m.default),
+  'preview/datetime-input': () =>
+    import('../preview-examples/datetime-input').then((m) => m.default),
+  'preview/datetime-input-disabled': () =>
+    import('../preview-examples/datetime-input-disabled').then((m) => m.default),
+  'preview/datetime-input-label': () =>
+    import('../preview-examples/datetime-input-label').then((m) => m.default),
+  'preview/datetime-input-min-max-date': () =>
+    import('../preview-examples/datetime-input-min-max-date').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-readonly': () =>
+    import('../preview-examples/datetime-input-readonly').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-validation': () =>
+    import('../preview-examples/datetime-input-validation').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-with-slots': () =>
+    import('../preview-examples/datetime-input-with-slots').then(
+      (m) => m.default
+    ),
   'preview/drawer': () =>
     import('../preview-examples/drawer').then((m) => m.default),
   'preview/drawer-full-height': () =>
@@ -406,6 +432,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/radio-group').then((m) => m.default),
   'preview/radio-validation': () =>
     import('../preview-examples/radio-validation').then((m) => m.default),
+  'preview/range-field': () =>
+    import('../preview-examples/range-field').then((m) => m.default),
   'preview/select': () =>
     import('../preview-examples/select').then((m) => m.default),
   'preview/select-editable': () =>
@@ -426,6 +454,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/slider-marker').then((m) => m.default),
   'preview/slider-trace': () =>
     import('../preview-examples/slider-trace').then((m) => m.default),
+  'preview/slider-validation': () =>
+    import('../preview-examples/slider-validation').then((m) => m.default),
   'preview/spinner': () =>
     import('../preview-examples/spinner').then((m) => m.default),
   'preview/spinner-large': () =>
@@ -462,6 +492,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/theme-switcher').then((m) => m.default),
   'preview/tile': () =>
     import('../preview-examples/tile').then((m) => m.default),
+  'preview/time-range': () =>
+    import('../preview-examples/time-range').then((m) => m.default),
   'preview/timepicker': () =>
     import('../preview-examples/timepicker').then((m) => m.default),
   'preview/toast': () =>
