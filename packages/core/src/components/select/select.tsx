@@ -475,14 +475,20 @@ export class Select
 
     this.inputElement && (this.inputElement.value = this.inputValue);
 
-    if (this.isMultipleMode) {
-      const currentValues = new Set(this.selectedItems.map((i) => i.value));
-      for (const key of this.chipWidths.keys()) {
-        if (!currentValues.has(key)) this.chipWidths.delete(key);
-      }
-      if (this.pendingChipValue === null) {
-        this.calculateOverflow();
-      }
+    this.handleUpdateSelectionMutlipleMode();
+  }
+
+  private handleUpdateSelectionMutlipleMode() {
+    if (!this.isMultipleMode) {
+      return;
+    }
+
+    const currentValues = new Set(this.selectedItems.map((i) => i.value));
+    for (const key of this.chipWidths.keys()) {
+      if (!currentValues.has(key)) this.chipWidths.delete(key);
+    }
+    if (this.pendingChipValue === null) {
+      this.calculateOverflow();
     }
   }
 
