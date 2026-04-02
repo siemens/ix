@@ -54,13 +54,13 @@ regressionTest.describe('category-filter', () => {
       await page.goto('category-filter/categories');
       await page.locator('input').first().click();
 
-      const vendorButton = page.getByRole('button', { name: 'Vendor' });
+      const vendorButton = page.getByRole('menuitem', { name: 'Vendor' });
       await vendorButton.click();
 
-      const operandButton = page.getByRole('button', { name: 'equals (=)' });
+      const operandButton = page.getByRole('menuitem', { name: 'equals (=)' });
       await operandButton.click();
 
-      const filterButton = page.getByRole('button', { name: 'Apple' });
+      const filterButton = page.getByRole('menuitem', { name: 'Apple' });
       await filterButton.click();
 
       await expect(page).toHaveScreenshot();

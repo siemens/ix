@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import path from 'path';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';

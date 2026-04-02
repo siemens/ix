@@ -7,14 +7,14 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { HelperText as HelperTextUtil } from '../field-wrapper/helper-text-util';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 
 @Component({
   tag: 'ix-helper-text',
   styleUrl: 'helper-text.scss',
   shadow: true,
 })
-export class HelperText implements IxComponent {
+export class HelperText implements IxComponentInterface {
   @Element() hostElement!: HTMLIxHelperTextElement;
   /**
    * The id of the form element that the label is associated with

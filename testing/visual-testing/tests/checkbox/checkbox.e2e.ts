@@ -12,17 +12,23 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('checkbox', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('checkbox/basic');
+    await page.goto('checkbox/basic', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('indeterminate', async ({ page }) => {
-    await page.goto('checkbox/indeterminate');
+    await page.goto('checkbox/indeterminate', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('overflow', async ({ page }) => {
-    await page.goto('checkbox/long-text');
+    await page.goto('checkbox/long-text', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });

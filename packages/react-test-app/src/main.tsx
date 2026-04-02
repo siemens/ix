@@ -62,6 +62,8 @@ import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
+import DateRange from './preview-examples/date-range';
+import DatetimeRange from './preview-examples/datetime-range';
 import DateInput from './preview-examples/date-input';
 import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
 import dateInputLabel from './preview-examples/date-input-label.tsx';
@@ -70,6 +72,13 @@ import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
 import dateInputValidation from './preview-examples/date-input-validation.tsx';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
+import DatetimeInput from './preview-examples/datetime-input';
+import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
+import DatetimeInputLabel from './preview-examples/datetime-input-label';
+import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date';
+import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
+import DatetimeInputValidation from './preview-examples/datetime-input-validation';
+import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
 import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
@@ -189,6 +198,7 @@ import RadioButton from './preview-examples/radio-button';
 import RadioDisabled from './preview-examples/radio-disabled';
 import RadioGroup from './preview-examples/radio-group';
 import RadioValidation from './preview-examples/radio-validation';
+import RangeField from './preview-examples/range-field';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
@@ -222,6 +232,7 @@ import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
 import timeInputValidation from './preview-examples/time-input-validation.tsx';
 import timeInputWithSlots from './preview-examples/time-input-with-slots.tsx';
 import timeInput from './preview-examples/time-input.tsx';
+import TimeRange from './preview-examples/time-range';
 import Timepicker from './preview-examples/timepicker';
 import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
 import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
@@ -305,6 +316,8 @@ const routes: IxPreviewRoutes = {
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-range': DateRange,
+  '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
@@ -387,6 +400,7 @@ const routes: IxPreviewRoutes = {
   '/preview/radio-disabled': RadioDisabled,
   '/preview/radio-group': RadioGroup,
   '/preview/radio-validation': RadioValidation,
+  '/preview/range-field': RangeField,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
@@ -434,6 +448,7 @@ const routes: IxPreviewRoutes = {
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/theme-switcher': ThemeSwitcher,
   '/preview/tile': Tile,
+  '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,
@@ -459,6 +474,13 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-validation': NumberInputValidation,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/datetime-input': DatetimeInput,
+  '/preview/datetime-input-disabled': DatetimeInputDisabled,
+  '/preview/datetime-input-label': DatetimeInputLabel,
+  '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
+  '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-validation': DatetimeInputValidation,
+  '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
   '/preview/tree': Tree,
   '/preview/upload': Upload,
   '/preview/validation': Validation,

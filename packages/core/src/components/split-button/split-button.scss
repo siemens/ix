@@ -9,37 +9,33 @@
 @use 'mixins/shadow-dom/component';
 @use 'legacy/components/button-group';
 
+@use './../utils/focus/focus-proxy';
+
 :host {
-  display: inline-block;
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  .left-button {
+    width: calc(100% - 2rem);
+    --ix-button-border-radius-right: 0;
+  }
+
+  .right-button {
+    width: 2rem;
+    --ix-dropdown-button-border-radius-left: 0;
+  }
 
   @include component.ix-component;
-
-  .btn-group {
-    position: relative;
-    display: inline-flex;
-    vertical-align: middle;
-    width: 100%;
-
-    > ix-button:nth-child(1),
-    > ix-icon-button:nth-child(1) {
-      width: calc(100% - 2rem);
-      --ix-button-border-radius-right: 0;
-    }
-
-    > ix-icon-button:nth-child(2) {
-      width: 2rem;
-      --ix-button-border-radius-left: 0;
-    }
-  }
-
-  .middle-gap {
-    gap: 0.125rem;
-  }
 
   .left-button-border {
     border-top-width: 0.125rem;
     border-right-width: 0;
     border-left-width: 0.125rem;
     border-bottom-width: 0.125rem;
+
+    margin-right: 0.125rem;
   }
+
+  @include focus-proxy.focus-proxy;
 }

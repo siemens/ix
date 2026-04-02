@@ -1,0 +1,3 @@
+- main:
+  - textbox "Meeting schedule": /\d+\.\d+\.\d+ \d+:\d+/
+  - button "Toggle calendar"

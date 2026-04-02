@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { EventEmitter } from '@stencil/core';
-import { IxComponent } from '../internal';
+import { IxComponentInterface } from '../internal';
 
 export * from './validation';
 
@@ -57,7 +57,7 @@ export interface IxFormValidationState {
   isWarning: boolean;
 }
 
-export interface IxFormComponent<T = string> extends IxComponent {
+export interface IxFormComponent<T = string> extends IxComponentInterface {
   // Private internal
   formInternals: ElementInternals;
 
@@ -105,5 +105,21 @@ export function isIxInputFieldComponent<T>(
     typeof obj.getAssociatedFormElement === 'function' &&
     'getNativeInputElement' in obj &&
     typeof obj.getNativeInputElement === 'function'
+  );
+}
+
+export interface IxInputFieldWithPickerComponent<T>
+  extends IxInputFieldComponent<T> {
+  // Annotate as @Method()
+  openPicker(): Promise<void>;
+}
+
+export function isIxInputFieldWithPickerComponent<T>(
+  obj: HTMLElement | IxFormComponent<T>
+): obj is IxInputFieldWithPickerComponent<T> {
+  return (
+    isIxInputFieldComponent(obj) &&
+    'openPicker' in obj &&
+    typeof obj.openPicker === 'function'
   );
 }

@@ -29,6 +29,7 @@ import { defineCustomElement as defineIxCustomField } from '@siemens/ix/componen
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -83,6 +84,7 @@ import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/co
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
+import { defineCustomElement as defineIxRangeField } from '@siemens/ix/components/ix-range-field.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -201,6 +203,7 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'invisible',
   'hideChevron',
   'isDropdownTrigger',
+  'isCurrentPage',
   'itemClick'
 ], [
   'itemClick'
@@ -208,7 +211,6 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
 
 
 export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button', defineIxButton, [
-  'ariaLabelButton',
   'variant',
   'disabled',
   'type',
@@ -408,12 +410,9 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'variant',
   'loading',
   'showWeekNumbers',
-  'ariaLabelDropdownButton',
-  'customRangeDisabled',
   'dateRangeOptions',
   'locale',
   'weekStartIndex',
-  'i18nCustomItem',
   'i18nDone',
   'i18nNoRange',
   'today',
@@ -477,6 +476,8 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'i18nDone',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
+  'ariaLabelMonthSelection',
+  'ariaLabelYearSelection',
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
@@ -490,6 +491,49 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'dateChange',
   'dateRangeChange',
   'dateSelect'
+]);
+
+
+export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput>('ix-datetime-input', defineIxDatetimeInput, [
+  'name',
+  'placeholder',
+  'value',
+  'format',
+  'locale',
+  'required',
+  'disabled',
+  'readonly',
+  'minDate',
+  'maxDate',
+  'label',
+  'helperText',
+  'invalidText',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorDateTimeUnparsable',
+  'i18nDone',
+  'i18nTime',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
+  'ariaLabelCalendarButton',
+  'showWeekNumbers',
+  'weekStartIndex',
+  'suppressSubmitOnEnter',
+  'textAlignment',
+  'enableTopLayer',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur',
+  'ixChange'
+], [
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur',
+  'ixChange'
 ]);
 
 
@@ -511,6 +555,7 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
+  'embedded',
   'timeChange',
   'dateChange',
   'dateSelect'
@@ -549,15 +594,29 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'placement',
   'positioningStrategy',
   'header',
+  'disableFocusHandling',
+  'disableFocusTrap',
+  'enableTopLayer',
+  'focusCheckedItem',
+  'keyboardActivationKeys',
+  'keyboardItemTriggerKeys',
   'offset',
   'overwriteDropdownStyle',
   'discoverAllSubmenus',
   'ignoreRelatedSubmenu',
   'suppressOverflowBehavior',
-  'enableTopLayer',
-  'showChanged'
+  'focusHost',
+  'focusTrapOptions',
+  'callbackFocusElement',
+  'showChange',
+  'showChanged',
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ], [
-  'showChanged'
+  'showChange',
+  'showChanged',
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ]);
 
 
@@ -569,7 +628,14 @@ export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__
   'closeBehavior',
   'placement',
   'ariaLabelDropdownButton',
-  'enableTopLayer'
+  'focusCheckedItem',
+  'enableTopLayer',
+  'suppressAriaActiveDescendant',
+  'showChange',
+  'showChanged'
+], [
+  'showChange',
+  'showChanged'
 ]);
 
 
@@ -579,6 +645,8 @@ export const IxDropdownHeader: StencilVueComponent<JSX.IxDropdownHeader> = /*@__
 
 
 export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>('ix-dropdown-item', defineIxDropdownItem, [
+  'ixFocusVisible',
+  'disableAriaSelectHandling',
   'label',
   'icon',
   'ariaLabelIcon',
@@ -588,6 +656,7 @@ export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE
   'checked',
   'isSubMenu',
   'suppressChecked',
+  'hasVisualFocus',
   'itemClick'
 ], [
   'itemClick'
@@ -729,7 +798,6 @@ export const IxHelperText: StencilVueComponent<JSX.IxHelperText> = /*@__PURE__*/
 
 
 export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
-  'a11yLabel',
   'variant',
   'oval',
   'icon',
@@ -843,10 +911,8 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
   'showSettings',
   'showAbout',
   'enableToggleTheme',
-  'enableMapExpand',
   'applicationName',
   'applicationDescription',
-  'i18nExpandSidebar',
   'expand',
   'startExpanded',
   'pinned',
@@ -1186,6 +1252,12 @@ export const IxRadioGroup: StencilVueComponent<JSX.IxRadioGroup> = /*@__PURE__*/
 ]);
 
 
+export const IxRangeField: StencilVueComponent<JSX.IxRangeField> = /*@__PURE__*/ defineContainer<JSX.IxRangeField>('ix-range-field', defineIxRangeField, [
+  'type',
+  'hideArrow'
+]);
+
+
 export const IxRow: StencilVueComponent<JSX.IxRow> = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', defineIxRow);
 
 
@@ -1195,6 +1267,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'label',
   'ariaLabelChevronDownIconButton',
   'ariaLabelClearIconButton',
+  'ariaLabelAddItem',
   'warningText',
   'infoText',
   'invalidText',
@@ -1231,6 +1304,8 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
+  'ixFocusVisible',
+  'disableAriaSelectHandling',
   'label',
   'value',
   'selected',
@@ -1388,6 +1463,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'hideHeader',
   'textAlignment',
   'enableTopLayer',
+  'ariaLabelTimeToggleButton',
   'valueChange',
   'validityStateChange',
   'ixFocus',

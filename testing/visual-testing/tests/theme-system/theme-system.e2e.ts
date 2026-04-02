@@ -12,7 +12,9 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('theme-system', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('theme-system/basic');
+    await page.goto('theme-system/basic', {
+      skipIxHydrationCheck: true,
+    });
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });

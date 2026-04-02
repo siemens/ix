@@ -132,6 +132,7 @@ regressionTest(
     await expect(removeEventListenerCalled).resolves.toBe('click');
   }
 );
+
 regressionTest(
   'icon direction reacts correctly to slot and expanded state for all compositions',
   async ({ mount, page }) => {

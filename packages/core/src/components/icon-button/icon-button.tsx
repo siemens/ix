@@ -7,30 +7,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
+import { getFallbackLabelFromIconName } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
 import {
-  a11yHostAttributes,
-  getFallbackLabelFromIconName,
-} from '../utils/a11y';
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { IconButtonVariant } from './icon-button.types';
 
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class IconButton {
-  @Element() hostElement!: HTMLIxIconButtonElement;
-
-  /**
-   * Accessibility label for the icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-   */
-  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
+export class IconButton
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxIconButtonElement;
 
   /**
    * Variant of button
@@ -78,7 +77,7 @@ export class IconButton {
    */
   submitButtonElement!: HTMLButtonElement;
 
-  componentDidLoad() {
+  override componentDidLoad() {
     if (this.type === 'submit') {
       const submitButton = document.createElement('button');
       submitButton.style.display = 'none';
@@ -104,16 +103,19 @@ export class IconButton {
     };
   }
 
-  render() {
-    const a11y = a11yHostAttributes(this.hostElement);
+  override render() {
+    const fallbackAriaLabel = getFallbackLabelFromIconName(this.icon);
+    let ariaAttributes = this.inheritAriaAttributes || {};
+
+    if (ariaAttributes['aria-label'] === undefined) {
+      ariaAttributes = {
+        ...ariaAttributes,
+        'aria-label': fallbackAriaLabel,
+      };
+    }
 
     const baseButtonProps: BaseButtonProps = {
-      ariaAttributes: {
-        'aria-label':
-          a11y['aria-label'] ??
-          this.a11yLabel ??
-          getFallbackLabelFromIconName(this.icon),
-      },
+      ariaAttributes: ariaAttributes,
       variant: this.variant,
       iconOnly: true,
       iconOval: this.oval,
@@ -137,6 +139,7 @@ export class IconButton {
           ...this.getIconSizeClass(),
           disabled: this.disabled || this.loading,
         }}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>

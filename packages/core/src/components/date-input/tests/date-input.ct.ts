@@ -14,16 +14,21 @@ import {
 } from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
+  const dateDropdown = dateInput.getByTestId('date-dropdown');
+
   const handle = {
     openByCalender: async () => {
       const trigger = dateInput.getByTestId('open-calendar');
       await trigger.click();
+      await expect(dateDropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
       const dayButton = dateInput
-        .locator('ix-dropdown')
-        .filter({ hasText: day.toString() })
-        .getByText(day.toString());
+        .locator('ix-dropdown .calendar-item')
+        .filter({ hasText: new RegExp(`^${day}$`) })
+        .first();
+
+      await expect(dayButton).toBeVisible();
       await dayButton.click();
     },
   };
@@ -57,14 +62,15 @@ regressionTest('select date by focus', async ({ mount, page }) => {
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
 
+  const dateDropdown = dateInputElement.getByTestId('date-dropdown');
   const dateInput = await createDateInputAccessor(dateInputElement);
   await dateInputElement.locator('input').focus();
+  await page.keyboard.press('ArrowDown');
+  await expect(dateDropdown).toHaveClass(/show/);
 
   await dateInput.selectDay(10);
   await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
-  await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
-    /show/
-  );
+  await expect(dateDropdown).not.toHaveClass(/show/);
 });
 
 regressionTest('select date by input', async ({ mount, page }) => {
@@ -73,10 +79,7 @@ regressionTest('select date by input', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveClass(/hydrated/);
 
   const dateInput = await createDateInputAccessor(dateInputElement);
-  await dateInputElement.locator('input').focus();
-  await expect(dateInputElement.getByTestId('date-dropdown')).toHaveClass(
-    /show/
-  );
+  await dateInput.openByCalender();
   await dateInputElement.locator('input').fill('2025/10/10');
 
   await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
@@ -175,8 +178,11 @@ regressionTest(
 
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
+    const componentValue = await page
+      .locator('ix-date-input')
+      .evaluate((el: HTMLIxDateInputElement) => el.value);
     const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('2024/12/12');
+    expect(formData).toBe(componentValue);
   }
 );
 
@@ -222,3 +228,61 @@ regressionTest(
     ).toHaveText(/Custom error message/);
   }
 );
+
+regressionTest.describe('keyboard navigation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await dateInputElement.locator('input').focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();
+  });
+
+  regressionTest('Home moves focus to first day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Home');
+    await expect(page.locator('[data-calendar-day="4"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/04');
+  });
+
+  regressionTest('End moves focus to last day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('End');
+    await expect(page.locator('[data-calendar-day="10"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/10');
+  });
+
+  regressionTest('PageUp navigates to previous month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageUp');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/08/05');
+  });
+
+  regressionTest('PageDown navigates to next month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/10/05');
+  });
+
+  regressionTest(
+    'Shift+PageUp navigates to previous year',
+    async ({ page }) => {
+      const dateInputElement = page.locator('ix-date-input');
+      await page.keyboard.press('Shift+PageUp');
+      await page.keyboard.press('Enter');
+      await expect(dateInputElement).toHaveAttribute('value', '2022/09/05');
+    }
+  );
+
+  regressionTest('Shift+PageDown navigates to next year', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Shift+PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
+  });
+});

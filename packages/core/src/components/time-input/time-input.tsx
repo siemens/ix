@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -49,7 +50,13 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { MakeRef, makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
 
 /**
@@ -61,11 +68,16 @@ import type { TimeInputValidityState } from './time-input.types';
 @Component({
   tag: 'ix-time-input',
   styleUrl: 'time-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
-export class TimeInput implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTimeInputElement;
+export class TimeInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -233,6 +245,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * ARIA label for the time picker toggle button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -273,19 +293,24 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
 
-  /** @internal */
   public initialValue?: string;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+      this.show = true;
+      requestAnimationFrameNoNgZone(() => {
+        this.timePickerRef.current?.focus();
+      });
+    }
     onEnterKeyChangeEmit(event, this, this.value);
 
     handleSubmitOnEnterKeydown(
@@ -300,7 +325,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -312,7 +337,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -339,7 +364,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -421,6 +446,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -448,7 +474,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -467,13 +492,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            tabindex={-1}
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             size="16"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
-            aria-label="Toggle time picker"
+            aria-label={this.ariaLabelTimeToggleButton}
             aria-expanded={this.show}
           ></ix-icon-button>
         </SlotEnd>
@@ -532,7 +558,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
@@ -544,6 +574,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+        }}
+        onFocusout={() => {
+          this.closeDropdown();
         }}
       >
         <ix-field-wrapper
@@ -573,6 +606,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+          }}
+          focusTrapOptions={{
+            targetElement: this.timePickerRef,
+            trapFocusInShadowDom: true,
           }}
         >
           <ix-time-picker

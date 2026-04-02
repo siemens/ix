@@ -84,15 +84,14 @@ regressionTest.describe('progress-indicator', () => {
         .locator('ix-progress-indicator')
         .all();
 
-      await Promise.all(
-        progressIndicators.map(
-          async (locator) =>
-            await locator.evaluate((el: HTMLIxProgressIndicatorElement) => {
-              el.label = 'Progress Indicator';
-              el.helperText = 'A helper text for the progress indicator';
-            })
-        )
-      );
+      for (const locator of progressIndicators) {
+        await locator.evaluate((el: HTMLIxProgressIndicatorElement) => {
+          el.label = 'Progress Indicator';
+          el.helperText = 'A helper text for the progress indicator';
+        });
+      }
+
+      await page.waitForTimeout(1000);
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
