@@ -245,9 +245,15 @@ export class Upload {
   render() {
     const disabled = this.disabled || this.state === UploadFileState.LOADING;
     const directoryAttributes = this.webkitdirectory
-      ? ({ webkitdirectory: true, directory: true } as Record<string, boolean>)
+      ? ({ webkitdirectory: true, directory: true, multiple: true } as Record<
+          string,
+          boolean
+        >)
       : {};
-    const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
+    const defaultAriaLabel = this.webkitdirectory
+      ? 'Upload folder'
+      : 'Upload files';
+    const { 'aria-label': ariaLabel = defaultAriaLabel, ...a11y } = this.a11y;
     return (
       <Host {...a11y} aria-disabled={disabled}>
         <div
@@ -257,7 +263,6 @@ export class Upload {
               this.state !== UploadFileState.LOADING && this.isFileOver,
             checking: this.state === UploadFileState.LOADING,
             disabled: this.disabled,
-            'folder-upload': this.webkitdirectory,
             multiline: this.multiline,
           }}
           onDrop={(e) => {
