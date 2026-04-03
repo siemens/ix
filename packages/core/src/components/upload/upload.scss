@@ -73,6 +73,7 @@
 
     ix-button {
       margin-inline-start: vars.$default-space;
+      flex-shrink: 0;
     }
 
     .upload-browser {

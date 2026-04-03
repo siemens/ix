@@ -1962,6 +1962,7 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     properties: {
         accept: 'accept',
         multiple: 'multiple',
+        webkitdirectory: 'webkitdirectory',
         multiline: 'multiline',
         disabled: 'disabled',
         state: 'state',

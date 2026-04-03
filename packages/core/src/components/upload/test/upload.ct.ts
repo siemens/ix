@@ -16,3 +16,34 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(upload).toHaveClass(/hydrated/);
   await expect(upload).toBeVisible();
 });
+
+regressionTest(
+  'enables folder upload when webkitdirectory is set',
+  async ({ mount, page }) => {
+    await mount(`<ix-upload webkitdirectory></ix-upload>`);
+    const upload = page.locator('ix-upload');
+
+    const inputAttributes = await upload.evaluate((element) => {
+      const input = element.shadowRoot?.querySelector(
+        '#upload-browser'
+      ) as HTMLInputElement | null;
+
+      if (!input) {
+        return null;
+      }
+
+      return {
+        buttonText: element.shadowRoot
+          ?.querySelector('ix-button')
+          ?.textContent?.trim(),
+        hasWebkitdirectory: input.hasAttribute('webkitdirectory'),
+        hasDirectory: input.hasAttribute('directory'),
+      };
+    });
+
+    expect(inputAttributes).not.toBeNull();
+    expect(inputAttributes?.buttonText).toBe('Upload folder…');
+    expect(inputAttributes?.hasWebkitdirectory).toBe(true);
+    expect(inputAttributes?.hasDirectory).toBe(true);
+  }
+);

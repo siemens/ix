@@ -40,6 +40,11 @@ export class Upload {
   @Prop() multiple = false;
 
   /**
+   * If webkitdirectory is true the user can drop or select a folder containing one or more files
+   */
+  @Prop() webkitdirectory = false;
+
+  /**
    * Whether the text should wrap to more than one line
    */
   @Prop() multiline = false;
@@ -239,6 +244,9 @@ export class Upload {
 
   render() {
     const disabled = this.disabled || this.state === UploadFileState.LOADING;
+    const directoryAttributes = this.webkitdirectory
+      ? ({ webkitdirectory: true, directory: true } as Record<string, boolean>)
+      : {};
     const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
     return (
       <Host {...a11y} aria-disabled={disabled}>
@@ -249,6 +257,7 @@ export class Upload {
               this.state !== UploadFileState.LOADING && this.isFileOver,
             checking: this.state === UploadFileState.LOADING,
             disabled: this.disabled,
+            'folder-upload': this.webkitdirectory,
             multiline: this.multiline,
           }}
           onDrop={(e) => {
@@ -268,6 +277,7 @@ export class Upload {
               type="file"
               class="upload-browser"
               id="upload-browser"
+              {...directoryAttributes}
               tabindex="-1"
               onChange={(e) => {
                 this.fileChangeEvent(e);
