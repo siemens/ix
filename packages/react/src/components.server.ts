@@ -212,7 +212,7 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@
 });
 
 export type IxBreadcrumbEvents = {
-    onItemClick: EventName<IxBreadcrumbCustomEvent<string>>,
+    onItemClick: EventName<IxBreadcrumbCustomEvent<{ label: string; index: number }>>,
     onNextClick: EventName<IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>>
 };
 
@@ -244,7 +244,8 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         invisible: 'invisible',
         hideChevron: 'hide-chevron',
         isDropdownTrigger: 'is-dropdown-trigger',
-        isCurrentPage: 'is-current-page'
+        isCurrentPage: 'is-current-page',
+        itemIndex: 'item-index'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxBreadcrumbItem as ReactWebComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>,

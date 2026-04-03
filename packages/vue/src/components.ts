@@ -204,6 +204,7 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'hideChevron',
   'isDropdownTrigger',
   'isCurrentPage',
+  'itemIndex',
   'itemClick'
 ], [
   'itemClick'

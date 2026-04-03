@@ -70,7 +70,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
   /**
    * Crumb item clicked event
    */
-  @Event() itemClick!: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<{ label: string; index: number }>;
 
   /**
    * Next item clicked event
@@ -85,8 +85,8 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
   private mutationObserver?: MutationObserver;
   private inheritAriaAttributes: A11yAttributes = {};
 
-  private onItemClick(item: string) {
-    this.itemClick.emit(item);
+  private onItemClick(label: string, index: number) {
+    this.itemClick.emit({ label, index });
   }
 
   override componentDidLoad() {
@@ -120,6 +120,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
       breadcrumbItem.hideChevron = isLastItem && !shouldShowDropdown;
       breadcrumbItem.isDropdownTrigger = shouldShowDropdown;
       breadcrumbItem.isCurrentPage = isLastItem;
+      breadcrumbItem.itemIndex = index;
 
       if (shouldShowDropdown) {
         breadcrumbItem.invisible = true;
@@ -168,12 +169,13 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
               .slice(0, this.items.length - this.visibleItemCount)
               .map((item) => {
                 const label = item.label ?? item.innerText;
+                const itemIndex = this.items.indexOf(item);
 
                 return (
                   <ix-dropdown-item
                     label={label}
                     onClick={() => {
-                      this.onItemClick(label);
+                      this.onItemClick(label, itemIndex);
                     }}
                     onItemClick={(event) => event.stopPropagation()}
                   ></ix-dropdown-item>

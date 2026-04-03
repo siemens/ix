@@ -176,7 +176,7 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@
 });
 
 export type IxBreadcrumbEvents = {
-    onItemClick: EventName<IxBreadcrumbCustomEvent<string>>,
+    onItemClick: EventName<IxBreadcrumbCustomEvent<{ label: string; index: number }>>,
     onNextClick: EventName<IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>>
 };
 

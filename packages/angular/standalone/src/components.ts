@@ -257,7 +257,7 @@ export declare interface IxBlind extends Components.IxBlind {
 })
 export class IxBreadcrumb {
   protected el: HTMLIxBreadcrumbElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<string>>();
+  @Output() itemClick = new EventEmitter<CustomEvent<{ label: string; index: number }>>();
   @Output() nextClick = new EventEmitter<CustomEvent<{ event: UIEvent; item: string }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -270,7 +270,7 @@ export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
   /**
    * Crumb item clicked event
    */
-  itemClick: EventEmitter<CustomEvent<string>>;
+  itemClick: EventEmitter<CustomEvent<{ label: string; index: number }>>;
   /**
    * Next item clicked event
    */

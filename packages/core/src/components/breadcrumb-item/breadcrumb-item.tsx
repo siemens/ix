@@ -95,8 +95,11 @@ export class BreadcrumbItem
   /** @internal */
   @Prop() isCurrentPage = false;
 
+  /** @internal */
+  @Prop() itemIndex: number = -1;
+
   /**@internal */
-  @Event() itemClick!: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<{ label: string; index: number }>;
 
   @State() inheritAriaAttributes: A11yAttributes = {};
 
@@ -180,7 +183,12 @@ export class BreadcrumbItem
         class={{
           'hide-chevron': this.hideChevron,
         }}
-        onClick={() => this.itemClick.emit(this.label)}
+        onClick={() =>
+          this.itemClick.emit({
+            label: this.label ?? this.hostElement.innerText,
+            index: this.itemIndex,
+          })
+        }
       >
         <BaseButton
           {...props}

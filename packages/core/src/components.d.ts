@@ -369,6 +369,10 @@ export namespace Components {
          */
         "isDropdownTrigger": boolean;
         /**
+          * @default -1
+         */
+        "itemIndex": number;
+        /**
           * Breadcrumb label
          */
         "label"?: string;
@@ -4842,7 +4846,7 @@ declare global {
         new (): HTMLIxBlindElement;
     };
     interface HTMLIxBreadcrumbElementEventMap {
-        "itemClick": string;
+        "itemClick": { label: string; index: number };
         "nextClick": { event: UIEvent; item: string };
     }
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
@@ -4860,7 +4864,7 @@ declare global {
         new (): HTMLIxBreadcrumbElement;
     };
     interface HTMLIxBreadcrumbItemElementEventMap {
-        "itemClick": string;
+        "itemClick": { label: string; index: number };
     }
     interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBreadcrumbItemElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbItemElement, ev: IxBreadcrumbItemCustomEvent<HTMLIxBreadcrumbItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6606,7 +6610,7 @@ declare namespace LocalJSX {
         /**
           * Crumb item clicked event
          */
-        "onItemClick"?: (event: IxBreadcrumbCustomEvent<string>) => void;
+        "onItemClick"?: (event: IxBreadcrumbCustomEvent<{ label: string; index: number }>) => void;
         /**
           * Next item clicked event
          */
@@ -6655,10 +6659,14 @@ declare namespace LocalJSX {
          */
         "isDropdownTrigger"?: boolean;
         /**
+          * @default -1
+         */
+        "itemIndex"?: number;
+        /**
           * Breadcrumb label
          */
         "label"?: string;
-        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
+        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<{ label: string; index: number }>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
           * @since 4.0.0
@@ -11165,6 +11173,7 @@ declare namespace LocalJSX {
         "hideChevron": boolean;
         "isDropdownTrigger": boolean;
         "isCurrentPage": boolean;
+        "itemIndex": number;
     }
     interface IxButtonAttributes {
         "variant": ButtonVariant;
