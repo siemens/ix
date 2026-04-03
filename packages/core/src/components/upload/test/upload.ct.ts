@@ -20,7 +20,9 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest(
   'enables folder upload when webkitdirectory is set',
   async ({ mount, page }) => {
-    await mount(`<ix-upload webkitdirectory></ix-upload>`);
+    await mount(
+      `<ix-upload webkitdirectory i18n-upload-file="Upload folder…"></ix-upload>`
+    );
     const upload = page.locator('ix-upload');
 
     const inputAttributes = await upload.evaluate((element) => {
