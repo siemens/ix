@@ -167,9 +167,8 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
             ></ix-icon>
             {this.items
               .slice(0, this.items.length - this.visibleItemCount)
-              .map((item) => {
+              .map((item, itemIndex) => {
                 const label = item.label ?? item.innerText;
-                const itemIndex = this.items.indexOf(item);
 
                 return (
                   <ix-dropdown-item
