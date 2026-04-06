@@ -229,23 +229,23 @@ regressionTest(
 
     const clickedEvents: { label: string; index: number }[] = [];
     await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
-      (window as any).__breadcrumbClicks = [];
+      (globalThis as any).__breadcrumbClicks = [];
       bc.addEventListener('itemClick', (e: Event) => {
         const customEvent = e as CustomEvent<{ label: string; index: number }>;
-        (window as any).__breadcrumbClicks.push(customEvent.detail);
+        (globalThis as any).__breadcrumbClicks.push(customEvent.detail);
       });
     });
 
     await page.locator('ix-breadcrumb-item').nth(0).click();
     const firstClick = await page.evaluate(
-      () => (window as any).__breadcrumbClicks[0]
+      () => (globalThis as any).__breadcrumbClicks[0]
     );
     expect(firstClick.label).toBe('Home');
     expect(firstClick.index).toBe(0);
 
     await page.locator('ix-breadcrumb-item').nth(1).click();
     const secondClick = await page.evaluate(
-      () => (window as any).__breadcrumbClicks[1]
+      () => (globalThis as any).__breadcrumbClicks[1]
     );
     expect(secondClick.label).toBe('Home');
     expect(secondClick.index).toBe(1);
