@@ -805,7 +805,6 @@ export class Select
     this.hasInputFocus = true;
   }
 
-  // Edge case Enter handling
   private onInputKeyDown(event: KeyboardEvent) {
     if (event.code !== 'Enter') {
       return;
@@ -814,6 +813,8 @@ export class Select
     if (!this.editable || !this.inputFilterText) {
       return;
     }
+
+    event.stopPropagation();
 
     if (this.isMultipleMode) {
       this.emitAddItem(this.inputFilterText);
