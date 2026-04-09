@@ -10,7 +10,7 @@
       <span class="fileName">{{ file.name }}</span>
 
       <ix-icon-button
-        [a11yLabel]="'Remove ' + file.name"
+        [ariaLabel]="'Remove ' + file.name"
         class="removeButton"
         [icon]="icons.iconTrashcan"
         (click)="removeFile(file.id)"

@@ -838,6 +838,10 @@
           "path": "feat/block-cli/examples/slider-trace.json"
         },
         {
+          "name": "slider-validation",
+          "path": "feat/block-cli/examples/slider-validation.json"
+        },
+        {
           "name": "spinner",
           "path": "feat/block-cli/examples/spinner.json"
         },
