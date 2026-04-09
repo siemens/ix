@@ -63,17 +63,17 @@ export class DatePicker
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * If true disables date range selection (from/to).
+   * If true, disables date range selection (from/to).
    */
   @Prop() singleSelection: boolean = false;
 
   /**
-   * Corner style
+   * Corner style.
    */
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
+   * The selected starting date. If the date picker is not in range mode, this is the selected date.
    * Format has to match the `format` property.
    */
   @Prop() from: string | undefined;
@@ -95,7 +95,7 @@ export class DatePicker
   }
 
   /**
-   * The selected end date. If the the date-picker-rework is not in range mode this property has no impact.
+   * The selected end date. If the date picker is not in range mode, this property has no impact.
    * Format has to match the `format` property.
    */
   @Prop() to: string | undefined;
@@ -129,20 +129,20 @@ export class DatePicker
   @Prop() maxDate = '';
 
   /**
-   * Text of date select button
+   * Text of the date select button.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string =
     'Change calendar view to previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string =
     'Change calendar view to next month';
@@ -165,7 +165,7 @@ export class DatePicker
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -184,7 +184,7 @@ export class DatePicker
   }
 
   /**
-   * Shows week numbers displayed on the left side of the date picker
+   * Shows week numbers displayed on the left side of the date picker.
    *
    * @since 3.0.0
    */
@@ -213,14 +213,14 @@ export class DatePicker
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
+   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
    */

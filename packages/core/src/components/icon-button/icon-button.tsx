@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, Mixin } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
-import {
-  A11yAttributes,
-  a11yHostAttributes,
-  getFallbackLabelFromIconName,
-} from '../utils/a11y';
-import type { IconButtonVariant } from './icon-button.types';
+import { getFallbackLabelFromIconName } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
+import type { IconButtonVariant } from './icon-button.types';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
@@ -29,16 +29,11 @@ import { DefaultMixins } from '../utils/internal/component';
     delegatesFocus: true,
   },
 })
-export class IconButton extends Mixin(...DefaultMixins) {
+export class IconButton
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements InheritAriaAttributesMixinContract
+{
   @Element() override hostElement!: HTMLIxIconButtonElement;
-
-  /**
-   * Accessibility label for the icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-   */
-  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Variant of button
@@ -86,12 +81,6 @@ export class IconButton extends Mixin(...DefaultMixins) {
    */
   submitButtonElement!: HTMLButtonElement;
 
-  private inheritAriaAttributes: A11yAttributes = {};
-
-  override componentWillLoad(): Promise<void> | void {
-    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
-  }
-
   override componentDidLoad() {
     if (this.type === 'submit') {
       const submitButton = document.createElement('button');
@@ -119,16 +108,14 @@ export class IconButton extends Mixin(...DefaultMixins) {
   }
 
   override render() {
-    const ariaLabel =
-      this.inheritAriaAttributes['aria-label'] ??
-      this.a11yLabel ??
-      getFallbackLabelFromIconName(this.icon);
+    const fallbackAriaLabel = getFallbackLabelFromIconName(this.icon);
+    let ariaAttributes = this.inheritAriaAttributes || {};
 
-    let ariaAttributes: A11yAttributes = this.inheritAriaAttributes;
-    const ariaHidden = this.inheritAriaAttributes['aria-hidden'];
-
-    if (ariaHidden !== 'true') {
-      ariaAttributes['aria-label'] = ariaLabel;
+    if (ariaAttributes['aria-label'] === undefined) {
+      ariaAttributes = {
+        ...ariaAttributes,
+        'aria-label': fallbackAriaLabel,
+      };
     }
 
     const baseButtonProps: BaseButtonProps = {

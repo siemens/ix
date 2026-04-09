@@ -32,14 +32,14 @@ async function setupModalEnvironment(page: Page) {
       script.type = 'module';
       script.innerHTML = `
         import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
-        window.showModal = ix.showModal;
-        window.dismissModal = ix.dismissModal;
+        globalThis.showModal = ix.showModal;
+        globalThis.dismissModal = ix.dismissModal;
 
-        window.showMessage = ix.showMessage;
-        window.showMessage.info = ix.showMessage.info;
-        window.showMessage.error = ix.showMessage.error;
-        window.showMessage.success = ix.showMessage.success;
-        window.showMessage.question = ix.showMessage.question;
+        globalThis.showMessage = ix.showMessage;
+        globalThis.showMessage.info = ix.showMessage.info;
+        globalThis.showMessage.error = ix.showMessage.error;
+        globalThis.showMessage.success = ix.showMessage.success;
+        globalThis.showMessage.question = ix.showMessage.question;
       `;
       document.getElementById('mount')?.appendChild(script);
       resolve();
@@ -64,6 +64,37 @@ async function createToggleExample(page: Page) {
         closeOnBackdropClick: true,
       });
     }, 2000);
+  });
+}
+
+async function createSelectOverflowExample(page: Page) {
+  await page.evaluate(() => {
+    const modal = document.createElement('ix-modal');
+    modal.setAttribute('size', '360');
+
+    const content = document.createElement('ix-modal-content');
+    content.innerHTML = '<div style="height: 12rem;"></div>';
+
+    const select = document.createElement('ix-select');
+    select.setAttribute('id', 'overflow-select');
+    select.style.width = '100%';
+
+    for (let i = 1; i <= 20; i++) {
+      const item = document.createElement('ix-select-item');
+      item.setAttribute('value', `${i}`);
+      item.setAttribute('label', `Item ${i}`);
+      select.appendChild(item);
+    }
+
+    content.appendChild(select);
+
+    modal.appendChild(content);
+
+    window.showModal({
+      content: modal,
+      closeOnBackdropClick: true,
+      animation: false,
+    });
   });
 }
 
@@ -213,6 +244,45 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       await expect(page.locator('ix-modal dialog')).toBeVisible();
     }
   );
+
+  regressionTest(
+    'should stay open when selecting ix-select dropdown item outside modal bounds',
+    async ({ mount, page }) => {
+      await mount(`<ix-button>Some background noise</ix-button>`);
+
+      await setupModalEnvironment(page);
+      await createSelectOverflowExample(page);
+
+      await page.waitForTimeout(100);
+
+      const modalDialog = page.locator('ix-modal dialog');
+      await expect(modalDialog).toBeVisible();
+
+      await page.locator('[data-select-dropdown]').click();
+
+      const dropdownItem = page.getByRole('option', {
+        name: 'Item 1',
+        exact: true,
+      });
+      await expect(dropdownItem).toBeVisible();
+
+      const modalBox = await modalDialog.boundingBox();
+      const itemBox = await dropdownItem.boundingBox();
+
+      if (!modalBox || !itemBox) {
+        throw new Error('Could not resolve bounds for modal or dropdown item');
+      }
+
+      expect(itemBox.y + itemBox.height / 2).toBeGreaterThan(
+        modalBox.y + modalBox.height
+      );
+
+      await dropdownItem.click();
+
+      await page.waitForTimeout(100);
+      await expect(modalDialog).toBeVisible();
+    }
+  );
 });
 
 regressionTest('emits one event on close', async ({ mount, page }) => {
@@ -312,7 +382,11 @@ regressionTest.describe('message utils', () => {
       await setupModalEnvironment(page);
       await page.evaluate(
         ([functionName]) => {
-          (window.showMessage as any)[functionName]('title', 'message', 'okay');
+          (globalThis as any).showMessage[functionName](
+            'title',
+            'message',
+            'okay'
+          );
         },
         [name]
       );

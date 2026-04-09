@@ -169,7 +169,7 @@ describe('icon-button', () => {
     it('should have an aria label', async () => {
       const page = await newSpecPage({
         components: [IconButton],
-        html: `<ix-icon-button a11y-label="some label"></ix-icon-button>`,
+        html: `<ix-icon-button aria-label="some label"></ix-icon-button>`,
       });
 
       await page.waitForChanges();

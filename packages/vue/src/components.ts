@@ -212,7 +212,6 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
 
 
 export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button', defineIxButton, [
-  'ariaLabelButton',
   'variant',
   'disabled',
   'type',
@@ -581,6 +580,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'placement',
   'positioningStrategy',
   'header',
+  'suppressTriggerVisibilityCheck',
   'disableFocusHandling',
   'disableFocusTrap',
   'enableTopLayer',
@@ -784,7 +784,6 @@ export const IxHelperText: StencilVueComponent<JSX.IxHelperText> = /*@__PURE__*/
 
 
 export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
-  'a11yLabel',
   'variant',
   'oval',
   'icon',
@@ -898,10 +897,8 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
   'showSettings',
   'showAbout',
   'enableToggleTheme',
-  'enableMapExpand',
   'applicationName',
   'applicationDescription',
-  'i18nExpandSidebar',
   'expand',
   'startExpanded',
   'pinned',

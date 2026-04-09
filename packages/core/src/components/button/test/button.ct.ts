@@ -66,16 +66,15 @@ regressionTest(
   }
 );
 
-regressionTest.describe('A11y', () => {
-  regressionTest('disabled', async ({ mount, page }) => {
-    await mount('<ix-button disabled>Content</ix-button>');
-    const button = page.locator('button');
-    await expect(button).toHaveAttribute('aria-disabled');
-    await page.locator('ix-button').evaluate((btn: HTMLButtonElement) => {
-      btn.disabled = false;
-    });
-    await expect(button).not.toHaveAttribute('aria-disabled');
+regressionTest('disabled', async ({ mount, page }) => {
+  await mount('<ix-button disabled>Content</ix-button>');
+  const button = page.locator('ix-button');
+  const innerButton = button.locator('button');
+  await expect(innerButton).toHaveAttribute('aria-disabled', 'true');
+  await page.locator('ix-button').evaluate((btn: HTMLButtonElement) => {
+    btn.disabled = false;
   });
+  await expect(innerButton).toHaveAttribute('aria-disabled', 'false');
 });
 
 regressionTest(

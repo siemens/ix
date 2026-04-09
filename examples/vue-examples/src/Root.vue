@@ -192,6 +192,7 @@ import Settings from './preview-examples/settings.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
 import SliderTrace from './preview-examples/slider-trace.vue';
+import SliderValidation from './preview-examples/slider-validation.vue';
 import Slider from './preview-examples/slider.vue';
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
@@ -465,6 +466,7 @@ const routes: IxPreviewRoutes = {
   '/preview/layout-auto-custom': LayoutAutoCustom,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-trace': SliderTrace,
+  '/preview/slider-validation': SliderValidation,
   '/preview/slider': Slider,
   '/preview/tabs-rounded': TabsRounded,
   '/preview/theme-switcher': ThemeSwitcher,

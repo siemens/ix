@@ -39,18 +39,18 @@ export class DatetimePicker
   @Element() hostElement!: HTMLIxDatetimePickerElement;
 
   /**
-   * If true disables date range selection (from/to).
+   * If true, disables date range selection (from/to).
    */
   @Prop() singleSelection = false;
 
   /**
-   * The earliest date that can be selected by the date picker.
+   * The earliest date that can be selected.
    * If not set there will be no restriction.
    */
   @Prop() minDate?: string;
 
   /**
-   * The latest date that can be selected by the date picker.
+   * The latest date that can be selected.
    * If not set there will be no restriction.
    */
   @Prop() maxDate?: string;
@@ -68,71 +68,71 @@ export class DatetimePicker
   @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
-   * The selected starting date. If the picker is not in range mode this is the selected date.
-   * Format has to match the `format` property.
+   * The selected starting date. If the picker is not in range mode, this is the selected date.
+   * Format has to match the `dateFormat` property.
    */
   @Prop() from?: string;
 
   /**
-   * The selected end date. If the the picker is not in range mode this property has no impact.
-   * Format has to match the `format` property.
+   * The selected end date. If the picker is not in range mode, this property has no impact.
+   * Format has to match the `dateFormat` property.
    */
   @Prop() to?: string;
 
   /**
-   * Select time with format string
+   * Selected time value for the embedded time picker.
+   * Format has to match the `timeFormat` property.
    */
   @Prop() time?: string;
 
   /**
-   * Show time reference input
-   * Time reference is default aligned with @see {this.timeFormat}
+   * Show AM/PM time reference control.
    */
   @Prop() showTimeReference: boolean = false;
 
   /**
-   * Set time reference
+   * Time reference (AM or PM).
    */
   @Prop() timeReference?: 'AM' | 'PM';
 
   /**
-   * Text of date select button
+   * Text of the date select button.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
   /**
-   * Top label of time picker
+   * Top label of the time picker.
    *
    * @since 3.0.0
    */
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
-   * ARIA label for the previous month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
-   * ARIA label for the next month icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
    */
   @Prop() weekStartIndex = 0;
 
   /**
-   * Format of time string
+   * Locale identifier (e.g. 'en' or 'de').
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 
   /**
-   * Shows week numbers displayed on the left side of the date picker
+   * Shows week numbers displayed on the left side of the date picker.
    *
    * @since 3.0.0
    */
@@ -142,17 +142,17 @@ export class DatetimePicker
   @Prop() embedded = false;
 
   /**
-   * Time change
+   * Time change event. Emitted when the time changes in the embedded time picker.
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
-   * Date change
+   * Date change event. Emitted when the date changes in the embedded date picker.
    */
   @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Datetime selection event is fired after confirm button is pressed
+   * Datetime selection event. Emitted when the user confirms the selection.
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 

@@ -257,7 +257,6 @@ export type IxButtonEvents = NonNullable<unknown>;
 export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
     properties: {
-        ariaLabelButton: 'aria-label-button',
         variant: 'variant',
         disabled: 'disabled',
         type: 'type',
@@ -727,6 +726,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
+        suppressTriggerVisibilityCheck: 'suppress-trigger-visibility-check',
         disableFocusHandling: 'disable-focus-handling',
         disableFocusTrap: 'disable-focus-trap',
         enableTopLayer: 'enable-top-layer',
@@ -1002,7 +1002,6 @@ export type IxIconButtonEvents = NonNullable<unknown>;
 export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents>({
     tagName: 'ix-icon-button',
     properties: {
-        a11yLabel: 'a11y-label',
         variant: 'variant',
         oval: 'oval',
         icon: 'icon',
@@ -1180,10 +1179,8 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__P
         showSettings: 'show-settings',
         showAbout: 'show-about',
         enableToggleTheme: 'enable-toggle-theme',
-        enableMapExpand: 'enable-map-expand',
         applicationName: 'application-name',
         applicationDescription: 'application-description',
-        i18nExpandSidebar: 'i18n-expand-sidebar',
         expand: 'expand',
         startExpanded: 'start-expanded',
         pinned: 'pinned',

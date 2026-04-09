@@ -425,11 +425,6 @@ export namespace Components {
          */
         "alignment": 'center' | 'start';
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
-        /**
           * Disable the button
           * @default false
          */
@@ -1042,23 +1037,23 @@ export namespace Components {
      */
     interface IxDateInput {
         /**
-          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Disabled attribute
+          * Disabled attribute.
           * @default false
          */
         "disabled": boolean;
@@ -1085,20 +1080,20 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * Helper text below the input field
+          * Helper text below the input field.
          */
         "helperText"?: string;
         /**
-          * I18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
         "i18nErrorDateUnparsable": string;
         /**
-          * Info text below the input field
+          * Info text below the input field.
          */
         "infoText"?: string;
         /**
-          * Error text below the input field
+          * Error text below the input field.
          */
         "invalidText"?: string;
         /**
@@ -1106,7 +1101,7 @@ export namespace Components {
          */
         "isTouched": () => Promise<boolean>;
         /**
-          * Label of the input field
+          * Label of the input field.
          */
         "label"?: string;
         /**
@@ -1124,29 +1119,29 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * Name of the input element
+          * Name of the input element.
          */
         "name"?: string;
         "openPicker": () => Promise<void>;
         /**
-          * Placeholder of the input element
+          * Placeholder of the input element.
          */
         "placeholder"?: string;
         /**
-          * Readonly attribute
+          * Readonly attribute.
           * @default false
          */
         "readonly": boolean;
         /**
-          * Required attribute
+          * Required attribute.
          */
         "required"?: boolean;
         /**
-          * Show text as tooltip
+          * Show text as tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
@@ -1162,20 +1157,20 @@ export namespace Components {
          */
         "textAlignment": 'start' | 'end';
         /**
-          * Valid text below the input field
+          * Valid text below the input field.
          */
         "validText"?: string;
         /**
-          * Value of the input element
+          * Value of the input element.
           * @default ''
          */
         "value"?: string;
         /**
-          * Warning text below the input field
+          * Warning text below the input field.
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1191,12 +1186,12 @@ export namespace Components {
          */
         "ariaLabelMonthSelection"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -1207,7 +1202,7 @@ export namespace Components {
          */
         "ariaLabelYearSelection"?: string;
         /**
-          * Corner style
+          * Corner style.
           * @default 'rounded'
          */
         "corners": DateTimeCardCorners;
@@ -1230,7 +1225,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date picker is not in range mode, this is the selected date. Format has to match the `format` property.
          */
         "from": string | undefined;
         /**
@@ -1238,7 +1233,7 @@ export namespace Components {
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
-          * Text of date select button
+          * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone": string;
@@ -1259,18 +1254,18 @@ export namespace Components {
         "minDate": string;
         "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
         /**
-          * If true disables date range selection (from/to).
+          * If true, disables date range selection (from/to).
           * @default false
          */
         "singleSelection": boolean;
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the date picker is not in range mode, this property has no impact. Format has to match the `format` property.
          */
         "to": string | undefined;
         /**
@@ -1279,7 +1274,7 @@ export namespace Components {
         "today": string;
         "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1476,12 +1471,12 @@ export namespace Components {
      */
     interface IxDatetimePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -1495,53 +1490,52 @@ export namespace Components {
          */
         "embedded": boolean;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode, this is the selected date. Format has to match the `dateFormat` property.
          */
         "from"?: string;
         "getDatepickerElement": () => Promise<HTMLIxDatePickerElement | undefined>;
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
-          * Text of date select button
+          * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone": string;
         /**
-          * Top label of time picker
+          * Top label of the time picker.
           * @since 3.0.0
           * @default 'Time'
          */
         "i18nTime": string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de'). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * The latest date that can be selected. If not set there will be no restriction.
          */
         "maxDate"?: string;
         /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * The earliest date that can be selected. If not set there will be no restriction.
          */
         "minDate"?: string;
         /**
-          * Show time reference input Time reference is default aligned with
-          * @see { this.timeFormat}
+          * Show AM/PM time reference control.
           * @default false
          */
         "showTimeReference": boolean;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
         /**
-          * If true disables date range selection (from/to).
+          * If true, disables date range selection (from/to).
           * @default false
          */
         "singleSelection": boolean;
         /**
-          * Select time with format string
+          * Selected time value for the embedded time picker. Format has to match the `timeFormat` property.
          */
         "time"?: string;
         /**
@@ -1550,15 +1544,15 @@ export namespace Components {
          */
         "timeFormat": string;
         /**
-          * Set time reference
+          * Time reference (AM or PM).
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the picker is not in range mode, this property has no impact. Format has to match the `dateFormat` property.
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1715,6 +1709,12 @@ export namespace Components {
           * @default false
          */
         "suppressOverflowBehavior": boolean;
+        /**
+          * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
+          * @since 5.0.0
+          * @default false
+         */
+        "suppressTriggerVisibilityCheck": boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -2252,11 +2252,6 @@ export namespace Components {
      */
     interface IxIconButton {
         /**
-          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
-        /**
           * Disabled
           * @default false
          */
@@ -2600,10 +2595,6 @@ export namespace Components {
          */
         "applicationName"?: string;
         /**
-          * @default false
-         */
-        "enableMapExpand": boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
           * @default false
          */
@@ -2620,15 +2611,9 @@ export namespace Components {
         "i18nCollapse": string;
         /**
           * i18n label for 'Expand' button
-          * @default ' Expand'
+          * @default 'Expand'
          */
         "i18nExpand": string;
-        /**
-          * Accessibility i18n label for the burger menu of the sidebar
-          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
-          * @default 'Expand sidebar'
-         */
-        "i18nExpandSidebar": string;
         /**
           * i18n label for 'About & legal information' button
           * @default 'About & legal information'
@@ -2832,11 +2817,15 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the menu expand icon
-          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
+          * i18n label for 'Collapse' button
+          * @default 'Collapse'
+         */
+        "i18nCollapse": string;
+        /**
+          * i18n label for 'Expand' button
           * @default 'Expand'
          */
-        "ixAriaLabel"?: string;
+        "i18nExpand": string;
         /**
           * Display as pinned
           * @default false
@@ -4157,7 +4146,7 @@ export namespace Components {
          */
         "ariaLabelTimeToggleButton"?: string;
         /**
-          * Disabled attribute
+          * Disabled attribute.
           * @default false
          */
         "disabled": boolean;
@@ -4172,7 +4161,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format": string;
@@ -4184,7 +4173,7 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * Helper text below the input field
+          * Helper text below the input field.
          */
         "helperText"?: string;
         /**
@@ -4194,51 +4183,51 @@ export namespace Components {
          */
         "hideHeader": boolean;
         /**
-          * Interval for hour selection
+          * Interval for hour selection.
           * @default 1
          */
         "hourInterval": number;
         /**
-          * I18n string for the error message when the time is not parsable
+          * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
         "i18nErrorTimeUnparsable": string;
         /**
-          * Text for time-picker hour column header
+          * Text for the time picker hour column header.
           * @default 'hr'
          */
         "i18nHourColumnHeader": string;
         /**
-          * Text for time-picker millisecond column header
+          * Text for the time picker millisecond column header.
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader": string;
         /**
-          * Text for time-picker minute column header
+          * Text for the time picker minute column header.
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
         /**
-          * Text for time-picker second column header
+          * Text for the time picker second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;
         /**
-          * Text of time-picker time select button
+          * Text of the time picker confirm button.
           * @default 'Confirm'
          */
         "i18nSelectTime": string;
         /**
-          * Text for time-picker top label
+          * Text for the time picker top label.
           * @default 'Time'
          */
         "i18nTime": string;
         /**
-          * Info text below the input field
+          * Info text below the input field.
          */
         "infoText"?: string;
         /**
-          * Error text below the input field
+          * Error text below the input field.
          */
         "invalidText"?: string;
         /**
@@ -4246,44 +4235,44 @@ export namespace Components {
          */
         "isTouched": () => Promise<boolean>;
         /**
-          * Label of the input field
+          * Label of the input field.
          */
         "label"?: string;
         /**
-          * Interval for millisecond selection
+          * Interval for millisecond selection.
           * @default 100
          */
         "millisecondInterval": number;
         /**
-          * Interval for minute selection
+          * Interval for minute selection.
           * @default 1
          */
         "minuteInterval": number;
         /**
-          * Name of the input element
+          * Name of the input element.
          */
         "name"?: string;
         "openPicker": () => Promise<void>;
         /**
-          * Placeholder of the input element
+          * Placeholder of the input element.
          */
         "placeholder"?: string;
         /**
-          * Readonly attribute
+          * Readonly attribute.
           * @default false
          */
         "readonly": boolean;
         /**
-          * Required attribute
+          * Required attribute.
          */
         "required"?: boolean;
         /**
-          * Interval for second selection
+          * Interval for second selection.
           * @default 1
          */
         "secondInterval": number;
         /**
-          * Show text as tooltip
+          * Show text as tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -4297,16 +4286,16 @@ export namespace Components {
          */
         "textAlignment": 'start' | 'end';
         /**
-          * Valid text below the input field
+          * Valid text below the input field.
          */
         "validText"?: string;
         /**
-          * Value of the input element
+          * Value of the input element.
           * @default ''
          */
         "value": string;
         /**
-          * Warning text below the input field
+          * Warning text below the input field.
          */
         "warningText"?: string;
     }
@@ -4316,7 +4305,7 @@ export namespace Components {
      */
     interface IxTimePicker {
         /**
-          * Corner style
+          * Corner style.
           * @default 'rounded'
          */
         "corners": TimePickerCorners;
@@ -4325,12 +4314,12 @@ export namespace Components {
          */
         "dateTimePickerAppearance": boolean;
         /**
-          * Embedded style (for use in other components)
+          * Embedded style (for use in other components).
           * @default false
          */
         "embedded": boolean;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format": string;
@@ -4345,61 +4334,61 @@ export namespace Components {
          */
         "hideHeader": boolean;
         /**
-          * Interval for hour selection
+          * Interval for hour selection.
           * @since 3.2.0
           * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval": number;
         /**
-          * Text of the time confirm button
+          * Text of the time confirm button.
           * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime": string;
         /**
-          * Text for top header
+          * Text for the top header.
           * @default HEADER_DEFAULT
          */
         "i18nHeader": string;
         /**
-          * Text for hour column header
+          * Text for the hour column header.
           * @default 'hr'
          */
         "i18nHourColumnHeader": string;
         /**
-          * Text for millisecond column header
+          * Text for the millisecond column header.
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader": string;
         /**
-          * Text for minute column header
+          * Text for the minute column header.
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
         /**
-          * Text for second column header
+          * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;
         /**
-          * Interval for millisecond selection
+          * Interval for millisecond selection.
           * @since 3.2.0
           * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval": number;
         /**
-          * Interval for minute selection
+          * Interval for minute selection.
           * @since 3.2.0
           * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval": number;
         /**
-          * Interval for second selection
+          * Interval for second selection.
           * @since 3.2.0
           * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval": number;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Selected time value. Format has to match the `format` property.
          */
         "time"?: string;
     }
@@ -4761,7 +4750,7 @@ export namespace Components {
         "uploadSuccessText": string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface IxValidationTooltip {
@@ -6805,7 +6794,7 @@ declare global {
         new (): HTMLIxUploadElement;
     };
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
@@ -7300,11 +7289,6 @@ declare namespace LocalJSX {
           * @default 'center'
          */
         "alignment"?: 'center' | 'start';
-        /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
         /**
           * Disable the button
           * @default false
@@ -7970,23 +7954,23 @@ declare namespace LocalJSX {
      */
     interface IxDateInput {
         /**
-          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Disabled attribute
+          * Disabled attribute.
           * @default false
          */
         "disabled"?: boolean;
@@ -8006,24 +7990,24 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Helper text below the input field
+          * Helper text below the input field.
          */
         "helperText"?: string;
         /**
-          * I18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
         "i18nErrorDateUnparsable"?: string;
         /**
-          * Info text below the input field
+          * Info text below the input field.
          */
         "infoText"?: string;
         /**
-          * Error text below the input field
+          * Error text below the input field.
          */
         "invalidText"?: string;
         /**
-          * Label of the input field
+          * Label of the input field.
          */
         "label"?: string;
         /**
@@ -8041,43 +8025,43 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Name of the input element
+          * Name of the input element.
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the date input loses focus and the value has changed.
+          * Change event. Emitted when the date input loses focus and the value has changed.
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
-          * Validation state change event.
+          * Validation state change event. Emitted when the validation state changes.
          */
         "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateInputValidityState>) => void;
         /**
-          * Input change event.
+          * Value change event. Emitted when the input value changes.
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
-          * Placeholder of the input element
+          * Placeholder of the input element.
          */
         "placeholder"?: string;
         /**
-          * Readonly attribute
+          * Readonly attribute.
           * @default false
          */
         "readonly"?: boolean;
         /**
-          * Required attribute
+          * Required attribute.
          */
         "required"?: boolean;
         /**
-          * Show text as tooltip
+          * Show text as tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
@@ -8093,20 +8077,20 @@ declare namespace LocalJSX {
          */
         "textAlignment"?: 'start' | 'end';
         /**
-          * Valid text below the input field
+          * Valid text below the input field.
          */
         "validText"?: string;
         /**
-          * Value of the input element
+          * Value of the input element.
           * @default ''
          */
         "value"?: string;
         /**
-          * Warning text below the input field
+          * Warning text below the input field.
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8122,12 +8106,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelMonthSelection"?: string;
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -8138,7 +8122,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelYearSelection"?: string;
         /**
-          * Corner style
+          * Corner style.
           * @default 'rounded'
          */
         "corners"?: DateTimeCardCorners;
@@ -8158,11 +8142,11 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date picker is not in range mode, this is the selected date. Format has to match the `format` property.
          */
         "from"?: string | undefined;
         /**
-          * Text of date select button
+          * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -8185,26 +8169,26 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
-          * If true disables date range selection (from/to).
+          * If true, disables date range selection (from/to).
           * @default false
          */
         "singleSelection"?: boolean;
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the date picker is not in range mode, this property has no impact. Format has to match the `format` property.
          */
         "to"?: string | undefined;
         /**
@@ -8212,7 +8196,7 @@ declare namespace LocalJSX {
          */
         "today"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8409,12 +8393,12 @@ declare namespace LocalJSX {
      */
     interface IxDatetimePicker {
         /**
-          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
-          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
           * @default 'Previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
@@ -8428,63 +8412,62 @@ declare namespace LocalJSX {
          */
         "embedded"?: boolean;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode, this is the selected date. Format has to match the `dateFormat` property.
          */
         "from"?: string;
         /**
-          * Text of date select button
+          * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone"?: string;
         /**
-          * Top label of time picker
+          * Top label of the time picker.
           * @since 3.0.0
           * @default 'Time'
          */
         "i18nTime"?: string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de'). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * The latest date that can be selected. If not set there will be no restriction.
          */
         "maxDate"?: string;
         /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * The earliest date that can be selected. If not set there will be no restriction.
          */
         "minDate"?: string;
         /**
-          * Date change
+          * Date change event. Emitted when the date changes in the embedded date picker.
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event is fired after confirm button is pressed
+          * Datetime selection event. Emitted when the user confirms the selection.
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change
+          * Time change event. Emitted when the time changes in the embedded time picker.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
-          * Show time reference input Time reference is default aligned with
-          * @see { this.timeFormat}
+          * Show AM/PM time reference control.
           * @default false
          */
         "showTimeReference"?: boolean;
         /**
-          * Shows week numbers displayed on the left side of the date picker
+          * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
-          * If true disables date range selection (from/to).
+          * If true, disables date range selection (from/to).
           * @default false
          */
         "singleSelection"?: boolean;
         /**
-          * Select time with format string
+          * Selected time value for the embedded time picker. Format has to match the `timeFormat` property.
          */
         "time"?: string;
         /**
@@ -8493,15 +8476,15 @@ declare namespace LocalJSX {
          */
         "timeFormat"?: string;
         /**
-          * Set time reference
+          * Time reference (AM or PM).
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the picker is not in range mode, this property has no impact. Format has to match the `dateFormat` property.
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8674,6 +8657,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressOverflowBehavior"?: boolean;
+        /**
+          * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
+          * @since 5.0.0
+          * @default false
+         */
+        "suppressTriggerVisibilityCheck"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -9248,11 +9237,6 @@ declare namespace LocalJSX {
      */
     interface IxIconButton {
         /**
-          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
-        /**
           * Disabled
           * @default false
          */
@@ -9603,10 +9587,6 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * @default false
-         */
-        "enableMapExpand"?: boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
           * @default false
          */
@@ -9623,15 +9603,9 @@ declare namespace LocalJSX {
         "i18nCollapse"?: string;
         /**
           * i18n label for 'Expand' button
-          * @default ' Expand'
+          * @default 'Expand'
          */
         "i18nExpand"?: string;
-        /**
-          * Accessibility i18n label for the burger menu of the sidebar
-          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
-          * @default 'Expand sidebar'
-         */
-        "i18nExpandSidebar"?: string;
         /**
           * i18n label for 'About & legal information' button
           * @default 'About & legal information'
@@ -9867,11 +9841,15 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the menu expand icon
-          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
+          * i18n label for 'Collapse' button
+          * @default 'Collapse'
+         */
+        "i18nCollapse"?: string;
+        /**
+          * i18n label for 'Expand' button
           * @default 'Expand'
          */
-        "ixAriaLabel"?: string;
+        "i18nExpand"?: string;
         /**
           * Display as pinned
           * @default false
@@ -11134,7 +11112,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * `selected` property changed
+          * Tab selection event. Event detail is the zero-based tab index. Fires when the user selects a tab, or when the tab list changes and the selected index is adjusted. Not emitted when `selected` is set from outside.
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
@@ -11294,7 +11272,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelTimeToggleButton"?: string;
         /**
-          * Disabled attribute
+          * Disabled attribute.
           * @default false
          */
         "disabled"?: boolean;
@@ -11309,12 +11287,12 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format"?: string;
         /**
-          * Helper text below the input field
+          * Helper text below the input field.
          */
         "helperText"?: string;
         /**
@@ -11324,106 +11302,106 @@ declare namespace LocalJSX {
          */
         "hideHeader"?: boolean;
         /**
-          * Interval for hour selection
+          * Interval for hour selection.
           * @default 1
          */
         "hourInterval"?: number;
         /**
-          * I18n string for the error message when the time is not parsable
+          * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
         "i18nErrorTimeUnparsable"?: string;
         /**
-          * Text for time-picker hour column header
+          * Text for the time picker hour column header.
           * @default 'hr'
          */
         "i18nHourColumnHeader"?: string;
         /**
-          * Text for time-picker millisecond column header
+          * Text for the time picker millisecond column header.
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader"?: string;
         /**
-          * Text for time-picker minute column header
+          * Text for the time picker minute column header.
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
         /**
-          * Text for time-picker second column header
+          * Text for the time picker second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
         /**
-          * Text of time-picker time select button
+          * Text of the time picker confirm button.
           * @default 'Confirm'
          */
         "i18nSelectTime"?: string;
         /**
-          * Text for time-picker top label
+          * Text for the time picker top label.
           * @default 'Time'
          */
         "i18nTime"?: string;
         /**
-          * Info text below the input field
+          * Info text below the input field.
          */
         "infoText"?: string;
         /**
-          * Error text below the input field
+          * Error text below the input field.
          */
         "invalidText"?: string;
         /**
-          * Label of the input field
+          * Label of the input field.
          */
         "label"?: string;
         /**
-          * Interval for millisecond selection
+          * Interval for millisecond selection.
           * @default 100
          */
         "millisecondInterval"?: number;
         /**
-          * Interval for minute selection
+          * Interval for minute selection.
           * @default 1
          */
         "minuteInterval"?: number;
         /**
-          * Name of the input element
+          * Name of the input element.
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the time input loses focus and the value has changed.
+          * Change event. Emitted when the time input loses focus and the value has changed.
           * @since 4.4.0
          */
         "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
-          * Validation state change event.
+          * Validation state change event. Emitted when the validation state changes.
          */
         "onValidityStateChange"?: (event: IxTimeInputCustomEvent<TimeInputValidityState>) => void;
         /**
-          * Input change event.
+          * Value change event. Emitted when the input value changes.
          */
         "onValueChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         /**
-          * Placeholder of the input element
+          * Placeholder of the input element.
          */
         "placeholder"?: string;
         /**
-          * Readonly attribute
+          * Readonly attribute.
           * @default false
          */
         "readonly"?: boolean;
         /**
-          * Required attribute
+          * Required attribute.
          */
         "required"?: boolean;
         /**
-          * Interval for second selection
+          * Interval for second selection.
           * @default 1
          */
         "secondInterval"?: number;
         /**
-          * Show text as tooltip
+          * Show text as tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -11437,16 +11415,16 @@ declare namespace LocalJSX {
          */
         "textAlignment"?: 'start' | 'end';
         /**
-          * Valid text below the input field
+          * Valid text below the input field.
          */
         "validText"?: string;
         /**
-          * Value of the input element
+          * Value of the input element.
           * @default ''
          */
         "value"?: string;
         /**
-          * Warning text below the input field
+          * Warning text below the input field.
          */
         "warningText"?: string;
     }
@@ -11456,7 +11434,7 @@ declare namespace LocalJSX {
      */
     interface IxTimePicker {
         /**
-          * Corner style
+          * Corner style.
           * @default 'rounded'
          */
         "corners"?: TimePickerCorners;
@@ -11465,12 +11443,12 @@ declare namespace LocalJSX {
          */
         "dateTimePickerAppearance"?: boolean;
         /**
-          * Embedded style (for use in other components)
+          * Embedded style (for use in other components).
           * @default false
          */
         "embedded"?: boolean;
         /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format"?: string;
@@ -11481,69 +11459,69 @@ declare namespace LocalJSX {
          */
         "hideHeader"?: boolean;
         /**
-          * Interval for hour selection
+          * Interval for hour selection.
           * @since 3.2.0
           * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval"?: number;
         /**
-          * Text of the time confirm button
+          * Text of the time confirm button.
           * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime"?: string;
         /**
-          * Text for top header
+          * Text for the top header.
           * @default HEADER_DEFAULT
          */
         "i18nHeader"?: string;
         /**
-          * Text for hour column header
+          * Text for the hour column header.
           * @default 'hr'
          */
         "i18nHourColumnHeader"?: string;
         /**
-          * Text for millisecond column header
+          * Text for the millisecond column header.
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader"?: string;
         /**
-          * Text for minute column header
+          * Text for the minute column header.
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
         /**
-          * Text for second column header
+          * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
         /**
-          * Interval for millisecond selection
+          * Interval for millisecond selection.
           * @since 3.2.0
           * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval"?: number;
         /**
-          * Interval for minute selection
+          * Interval for minute selection.
           * @since 3.2.0
           * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval"?: number;
         /**
-          * Time change event
+          * Time change event. Emitted when the selected time changes while interacting with the picker.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * Time event
+          * Time event. Emitted when the user confirms the selected time.
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * Interval for second selection
+          * Interval for second selection.
           * @since 3.2.0
           * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval"?: number;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Selected time value. Format has to match the `format` property.
          */
         "time"?: string;
     }
@@ -11919,7 +11897,7 @@ declare namespace LocalJSX {
         "uploadSuccessText"?: string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
      * Not maintained anymore.
      */
     interface IxValidationTooltip {
@@ -12059,7 +12037,6 @@ declare namespace LocalJSX {
         "isCurrentPage": boolean;
     }
     interface IxButtonAttributes {
-        "ariaLabelButton": string;
         "variant": ButtonVariant;
         "disabled": boolean;
         "type": 'button' | 'submit';
@@ -12317,6 +12294,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "positioningStrategy": 'absolute' | 'fixed';
         "header": string;
+        "suppressTriggerVisibilityCheck": boolean;
         "disableFocusHandling": boolean;
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
@@ -12448,7 +12426,6 @@ declare namespace LocalJSX {
         "warningText": string;
     }
     interface IxIconButtonAttributes {
-        "a11yLabel": string;
         "variant": IconButtonVariant;
         "oval": boolean;
         "icon": string;
@@ -12525,10 +12502,8 @@ declare namespace LocalJSX {
         "showSettings": boolean;
         "showAbout": boolean;
         "enableToggleTheme": boolean;
-        "enableMapExpand": boolean;
         "applicationName": string;
         "applicationDescription": string;
-        "i18nExpandSidebar": string;
         "expand": boolean;
         "startExpanded": boolean;
         "pinned": boolean;
@@ -12576,10 +12551,11 @@ declare namespace LocalJSX {
         "tooltipText": string;
     }
     interface IxMenuExpandIconAttributes {
+        "i18nExpand": string;
+        "i18nCollapse": string;
         "expanded": boolean;
         "breakpoint": Breakpoint;
         "pinned": boolean;
-        "ixAriaLabel": string;
     }
     interface IxMenuItemAttributes {
         "label": string;
@@ -13582,7 +13558,7 @@ declare module "@stencil/core" {
              */
             "ix-upload": LocalJSX.IntrinsicElements["ix-upload"] & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**
-             * @deprecated Since 3.0.0. Will be removed with 4.0.0
+             * @deprecated Since 3.0.0. Will be removed with 5.0.0
              * Not maintained anymore.
              */
             "ix-validation-tooltip": LocalJSX.IntrinsicElements["ix-validation-tooltip"] & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;

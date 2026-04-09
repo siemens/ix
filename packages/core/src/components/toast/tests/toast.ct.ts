@@ -125,3 +125,24 @@ regressionTest('verify isPaused method', async ({ mount, page }) => {
   }, toastHandle);
   expect(paused).toBe(false);
 });
+
+regressionTest(
+  'reflects type property to attribute',
+  async ({ mount, page }) => {
+    await mount('');
+    await page.evaluate(() => {
+      window.toast({ message: 'Default type toast' });
+    });
+    const toastEl = page.locator('ix-toast').first();
+    await expect(toastEl).toHaveClass(/hydrated/);
+    await expect(toastEl).toHaveAttribute('type', 'info');
+    for (const type of ['info', 'success', 'error', 'warning'] as const) {
+      await page.evaluate((t) => {
+        window.toast({ message: `${t} toast`, type: t });
+      }, type);
+      const lastToast = page.locator('ix-toast').last();
+      await expect(lastToast).toHaveClass(/hydrated/);
+      await expect(lastToast).toHaveAttribute('type', type);
+    }
+  }
+);

@@ -83,17 +83,17 @@ export class TimeInput
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * Name of the input element
+   * Name of the input element.
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Placeholder of the input element
+   * Placeholder of the input element.
    */
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * Value of the input element
+   * Value of the input element.
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
@@ -102,119 +102,119 @@ export class TimeInput
   }
 
   /**
-   * Format of time string
+   * Format of time string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'TT';
 
   /**
-   * Required attribute
+   * Required attribute.
    */
   @Prop() required?: boolean;
 
   /**
-   * Helper text below the input field
+   * Helper text below the input field.
    */
   @Prop() helperText?: string;
 
   /**
-   * Label of the input field
+   * Label of the input field.
    */
   @Prop() label?: string;
 
   /**
-   * Error text below the input field
+   * Error text below the input field.
    */
   @Prop({ reflect: true }) invalidText?: string;
 
   /**
-   * Readonly attribute
+   * Readonly attribute.
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * Disabled attribute
+   * Disabled attribute.
    */
   @Prop() disabled: boolean = false;
 
   /**
-   * Info text below the input field
+   * Info text below the input field.
    */
   @Prop() infoText?: string;
 
   /**
-   * Warning text below the input field
+   * Warning text below the input field.
    */
   @Prop() warningText?: string;
 
   /**
-   * Valid text below the input field
+   * Valid text below the input field.
    */
   @Prop() validText?: string;
 
   /**
-   * Show text as tooltip
+   * Show text as tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * I18n string for the error message when the time is not parsable
+   * I18n string for the error message when the time is not parsable.
    */
   @Prop({ attribute: 'i18n-error-time-unparsable' }) i18nErrorTimeUnparsable =
     'Time is not valid';
 
   /**
-   * Interval for hour selection
+   * Interval for hour selection.
    */
   @Prop() hourInterval: number = 1;
 
   /**
-   * Interval for minute selection
+   * Interval for minute selection.
    */
   @Prop() minuteInterval: number = 1;
 
   /**
-   * Interval for second selection
+   * Interval for second selection.
    */
   @Prop() secondInterval: number = 1;
 
   /**
-   * Interval for millisecond selection
+   * Interval for millisecond selection.
    */
   @Prop() millisecondInterval: number = 100;
 
   /**
-   * Text of time-picker time select button
+   * Text of the time picker confirm button.
    */
   @Prop({ attribute: 'i18n-select-time' }) i18nSelectTime: string = 'Confirm';
 
   /**
-   * Text for time-picker top label
+   * Text for the time picker top label.
    */
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
-   * Text for time-picker hour column header
+   * Text for the time picker hour column header.
    */
   @Prop({ attribute: 'i18n-hour-column-header' }) i18nHourColumnHeader: string =
     'hr';
 
   /**
-   * Text for time-picker minute column header
+   * Text for the time picker minute column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-minute-column-header' })
   i18nMinuteColumnHeader: string = 'min';
 
   /**
-   * Text for time-picker second column header
+   * Text for the time picker second column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-second-column-header' })
   i18nSecondColumnHeader: string = 'sec';
 
   /**
-   * Text for time-picker millisecond column header
+   * Text for the time picker millisecond column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
@@ -255,12 +255,12 @@ export class TimeInput
   @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
 
   /**
-   * Input change event.
+   * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
 
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   @Event() validityStateChange!: EventEmitter<TimeInputValidityState>;
 
@@ -271,7 +271,8 @@ export class TimeInput
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the time input loses focus and the value has changed.
+   * Change event. Emitted when the time input loses focus and the value has changed.
+   *
    * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
