@@ -27,8 +27,8 @@ import { IxChip } from '@siemens/ix-angular/standalone';
         <ix-chip
           icon="print"
           variant="custom"
-          background="var(--theme-chart-7)"
-          chip-color="var(--theme-chart-1)"
+          background="var(--theme-chart-12)"
+          chip-color="var(--theme-chart-4)"
           closable
           >Custom</ix-chip
         >
@@ -44,9 +44,10 @@ import { IxChip } from '@siemens/ix-angular/standalone';
         <ix-chip icon="print" variant="success" outline>Success</ix-chip>
         <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
         <ix-chip
+          icon="print"
           variant="custom"
-          background="var(--theme-chart-7)"
-          chip-color="var(--theme-chart-1)"
+          background="var(--theme-chart-12)"
+          chip-color="var(--theme-chart-4)"
           outline
           closable
           >Custom</ix-chip
