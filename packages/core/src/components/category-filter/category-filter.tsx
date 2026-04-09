@@ -1152,12 +1152,6 @@ export class CategoryFilter {
             disabled={this.disabled}
             readonly={this.readonly}
             hideNativeTooltip={true}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (!this.readonly && !this.disabled) {
-                this.removeFilterValue(index);
-              }
-            }}
             onCloseClick={() => this.removeFilterValue(index)}
             data-tooltip={`filterValue-${index}`}
           >
