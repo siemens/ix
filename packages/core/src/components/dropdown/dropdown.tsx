@@ -27,6 +27,7 @@ import {
   Method,
   Prop,
   Watch,
+  State,
   Mixin,
 } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
@@ -117,6 +118,13 @@ export class Dropdown
    * An optional header shown at the top of the dropdown
    */
   @Prop() header?: string;
+
+  /**
+   * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
+   *
+   * @since 5.0.0
+   */
+  @Prop() suppressTriggerVisibilityCheck = false;
 
   /**
    * Suppress automatic focus when the dropdown is shown
@@ -225,6 +233,8 @@ export class Dropdown
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
+  @State() fallbackPlacement?: AlignedPlacement;
+
   /**
    * Will be fired only after dropdown changed visibility to "true"
    *
@@ -240,20 +250,15 @@ export class Dropdown
   @Event() experimentalFocusNextElement!: EventEmitter<void>;
 
   private autoUpdateCleanup?: () => void;
-
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
+  private intersectObserverTrigger?: IntersectionObserver;
   private triggerElement?: Element;
   private anchorElement?: Element;
-
   private forwardQueryElement: HTMLElement | null = null;
-
   private dropdownElementId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
-
   private keyboardNavigationCleanup?: () => void;
-
   private focusUtilities?: FocusTrapResult;
-
-  private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   override connectedCallback(): void {
     dropdownController.connected(this);
@@ -495,10 +500,78 @@ export class Dropdown
 
   private async registerListener(element: ElementReference) {
     this.triggerElement = await this.resolveElement(element);
-    if (this.triggerElement) {
-      this.addEventListenersFor();
-      this.discoverSubmenu();
+
+    if (!this.triggerElement) {
+      return;
     }
+
+    this.addEventListenersFor();
+    this.discoverSubmenu();
+  }
+
+  private addObserverForTriggerVisibility() {
+    if (this.intersectObserverTrigger) {
+      this.intersectObserverTrigger.disconnect();
+    }
+
+    if (this.suppressTriggerVisibilityCheck) {
+      return;
+    }
+
+    if (!this.triggerElement) {
+      return;
+    }
+
+    this.intersectObserverTrigger = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            dropdownController.dismiss(this);
+            return;
+          }
+
+          const isTopHidden =
+            entry.intersectionRect.top > entry.boundingClientRect.top;
+          const isBottomHidden =
+            entry.intersectionRect.bottom < entry.boundingClientRect.bottom;
+          const isLeftHidden =
+            entry.intersectionRect.left > entry.boundingClientRect.left;
+          const isRightHidden =
+            entry.intersectionRect.right < entry.boundingClientRect.right;
+
+          this.fallbackPlacement = undefined;
+
+          if (isTopHidden) {
+            this.fallbackPlacement = this.createFallbackPlacement('bottom');
+          }
+
+          if (isBottomHidden) {
+            this.fallbackPlacement = this.createFallbackPlacement('top');
+          }
+
+          if (isLeftHidden) {
+            this.fallbackPlacement = this.createFallbackPlacement('right');
+          }
+
+          if (isRightHidden) {
+            this.fallbackPlacement = this.createFallbackPlacement('left');
+          }
+        });
+      },
+      {
+        threshold: [0, 0.5, 1],
+      }
+    );
+
+    this.intersectObserverTrigger.observe(this.anchorElement!);
+  }
+
+  private createFallbackPlacement(
+    side: 'top' | 'right' | 'bottom' | 'left'
+  ): AlignedPlacement {
+    const alignment = this.placement.endsWith('-end') ? 'end' : 'start';
+
+    return `${side}-${alignment}`;
   }
 
   private async resolveElement(element: ElementReference) {
@@ -597,6 +670,7 @@ export class Dropdown
       popover.showPopover();
     }
 
+    this.addObserverForTriggerVisibility();
     this.applyDropdownPosition();
   }
 
@@ -646,6 +720,7 @@ export class Dropdown
   }
 
   private cleanupOnHide() {
+    this.intersectObserverTrigger?.disconnect();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.focusUtilities?.destroy();
@@ -717,7 +792,16 @@ export class Dropdown
       );
     }
 
-    positionConfig.placement = isSubmenu ? 'right-start' : this.placement;
+    let placement = this.placement;
+
+    if (
+      this.suppressTriggerVisibilityCheck === false &&
+      this.fallbackPlacement
+    ) {
+      placement = this.fallbackPlacement;
+    }
+
+    positionConfig.placement = isSubmenu ? 'right-start' : placement;
 
     positionConfig.middleware = [
       ...(positionConfig.middleware?.filter(Boolean) || []),
@@ -740,6 +824,10 @@ export class Dropdown
           targetElement,
           positionConfig
         );
+
+        this.hostElement.dataset.ixDropdownPlacement =
+          computeResponse.placement;
+
         Object.assign(targetElement.style, {
           top: '0',
           left: '0',
