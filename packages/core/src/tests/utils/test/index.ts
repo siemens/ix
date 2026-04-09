@@ -9,6 +9,7 @@
 
 import { Locator, Page } from '@playwright/test';
 export * from './page';
+export * from './screen-reader';
 
 export const viewPorts = {
   sm: {

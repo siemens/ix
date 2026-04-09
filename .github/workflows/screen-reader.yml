@@ -1,4 +1,4 @@
-name: Toast Screen Reader
+name: Screen Reader
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  toast-screen-reader:
+  screen-reader:
     timeout-minutes: 20
     runs-on: macos-latest
     steps:
@@ -25,5 +25,5 @@ jobs:
       - name: Build core package
         run: pnpm build --cache-dir=.turbo --filter @siemens/ix
 
-      - name: Run toast screen reader test
-        run: pnpm --filter @siemens/ix exec playwright test --config playwright-sr.config.ts src/components/toast/tests/toast.sr.ts --reporter list
+      - name: Run screen reader test
+        run: pnpm --filter @siemens/ix exec playwright test --config playwright-sr.config.ts --reporter list

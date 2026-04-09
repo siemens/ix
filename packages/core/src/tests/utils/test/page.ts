@@ -17,6 +17,10 @@ import {
   test as testBase,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
+import {
+  createScreenReaderController,
+  type ScreenReaderController,
+} from './screen-reader';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -128,6 +132,7 @@ export const regressionTest = testBase.extend<{
     appendTo?: ElementHandle<Element>
   ) => Promise<ElementHandle<HTMLElement>>;
   makeAxeBuilder: () => AxeBuilder;
+  screenReader: ScreenReaderController;
 }>({
   makeAxeBuilder: async ({ page }, use) => {
     const makeAxeBuilder = () =>
@@ -136,6 +141,15 @@ export const regressionTest = testBase.extend<{
         .exclude('#commonly-reused-element-with-known-issue');
 
     await use(makeAxeBuilder);
+  },
+  screenReader: async ({}, use) => {
+    const screenReader = await createScreenReaderController();
+
+    try {
+      await use(screenReader);
+    } finally {
+      await screenReader.stop();
+    }
   },
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
