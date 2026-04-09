@@ -371,6 +371,8 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         i18nAllValuesSelectedHeader: 'i-1-8n-all-values-selected-header',
         i18nAllValuesSelectedSubtext: 'i-1-8n-all-values-selected-subtext',
         i18nAllValuesSelectedButton: 'i-1-8n-all-values-selected-button',
+        i18nAllCategoriesSelectedHeader: 'i-1-8n-all-categories-selected-header',
+        i18nAllCategoriesSelectedSubtext: 'i-1-8n-all-categories-selected-subtext',
         i18nNoCategoryMatchHeader: 'i-1-8n-no-category-match-header',
         i18nNoOperandMatchHeader: 'i-1-8n-no-operand-match-header',
         i18nNoValueMatchHeader: 'i-1-8n-no-value-match-header',

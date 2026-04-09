@@ -290,6 +290,8 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'i18nAllValuesSelectedHeader',
   'i18nAllValuesSelectedSubtext',
   'i18nAllValuesSelectedButton',
+  'i18nAllCategoriesSelectedHeader',
+  'i18nAllCategoriesSelectedSubtext',
   'i18nNoCategoryMatchHeader',
   'i18nNoOperandMatchHeader',
   'i18nNoValueMatchHeader',

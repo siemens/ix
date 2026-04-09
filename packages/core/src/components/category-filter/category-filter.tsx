@@ -201,6 +201,17 @@ export class CategoryFilter {
   @Prop() i18nAllValuesSelectedButton = 'See all categories';
 
   /**
+   * i18n label for the header when all categories have been selected
+   */
+  @Prop() i18nAllCategoriesSelectedHeader = 'All categories have been selected';
+
+  /**
+   * i18n label for the subtext when all categories have been selected
+   */
+  @Prop() i18nAllCategoriesSelectedSubtext =
+    'Remove a filter to free up a category.';
+
+  /**
    * i18n label for the header when no category matches the input
    */
   @Prop() i18nNoCategoryMatchHeader =
@@ -709,7 +720,19 @@ export class CategoryFilter {
     if (type === 'category' && this.inputValue) {
       return 'noCategoryMatches';
     }
+    if (type === 'category' && this.isAllCategoriesSelectedCase()) {
+      return 'allCategoriesSelected';
+    }
     return 'default';
+  }
+
+  private isAllCategoriesSelectedCase(): boolean {
+    return (
+      this.uniqueCategories &&
+      !!this.categories &&
+      this.categories.length > 0 &&
+      this.categories.every((cat) => this.isCategoryAlreadySet(cat.key))
+    );
   }
 
   private isAllValuesSelectedCase(type: string): boolean {
@@ -776,6 +799,19 @@ export class CategoryFilter {
             >
               {this.i18nSeeAllOptions}
             </ix-button>
+          </div>
+        );
+      case 'allCategoriesSelected':
+        return (
+          <div class="empty-state">
+            <div>
+              <ix-typography format="body">
+                {this.i18nAllCategoriesSelectedHeader}
+              </ix-typography>
+              <ix-typography format="body" class="light-text">
+                {this.i18nAllCategoriesSelectedSubtext}
+              </ix-typography>
+            </div>
           </div>
         );
       case 'noCategoryMatches':

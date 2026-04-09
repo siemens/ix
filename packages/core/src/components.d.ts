@@ -585,6 +585,16 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
+          * i18n label for the header when all categories have been selected
+          * @default 'All categories have been selected'
+         */
+        "i18nAllCategoriesSelectedHeader": string;
+        /**
+          * i18n label for the subtext when all categories have been selected
+          * @default 'Remove a filter to free up a category.'
+         */
+        "i18nAllCategoriesSelectedSubtext": string;
+        /**
           * i18n label for the button when all values of a category have been selected
           * @default 'See all categories'
          */
@@ -6964,6 +6974,16 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
+          * i18n label for the header when all categories have been selected
+          * @default 'All categories have been selected'
+         */
+        "i18nAllCategoriesSelectedHeader"?: string;
+        /**
+          * i18n label for the subtext when all categories have been selected
+          * @default 'Remove a filter to free up a category.'
+         */
+        "i18nAllCategoriesSelectedSubtext"?: string;
+        /**
           * i18n label for the button when all values of a category have been selected
           * @default 'See all categories'
          */
@@ -11369,6 +11389,8 @@ declare namespace LocalJSX {
         "i18nAllValuesSelectedHeader": string;
         "i18nAllValuesSelectedSubtext": string;
         "i18nAllValuesSelectedButton": string;
+        "i18nAllCategoriesSelectedHeader": string;
+        "i18nAllCategoriesSelectedSubtext": string;
         "i18nNoCategoryMatchHeader": string;
         "i18nNoOperandMatchHeader": string;
         "i18nNoValueMatchHeader": string;
