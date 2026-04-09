@@ -1,0 +1,29 @@
+name: Toast Screen Reader
+
+on:
+  push:
+    branches:
+      - 'poc/automated-screen-reader-test'
+  workflow_dispatch:
+
+jobs:
+  toast-screen-reader:
+    timeout-minutes: 20
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Set up Guidepup environment
+        run: pnpm dlx @guidepup/setup --ci
+
+      - name: Install Playwright WebKit
+        run: pnpm --filter @siemens/ix exec playwright install webkit
+
+      - name: Build core package
+        run: pnpm build --cache-dir=.turbo --filter @siemens/ix
+
+      - name: Run toast screen reader test
+        run: pnpm --filter @siemens/ix exec playwright test --config playwright-sr.config.ts src/components/toast/tests/toast.sr.ts --reporter list

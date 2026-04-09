@@ -23,8 +23,9 @@
   "exclude": [
     "node_modules",
     "playwright.config.ts",
-    "playwright-ct.config.ts",
+    "playwright-sr.config.ts",
     "src/**/*.ct.ts",
+    "src/**/*.sr.ts",
     "src/**/*.e2e.ts",
     "src/**/*.mock.ts"
   ]

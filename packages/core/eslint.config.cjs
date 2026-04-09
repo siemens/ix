@@ -22,7 +22,7 @@ module.exports = [
     ignores: [
       'stencil.config.ts',
       'playwright.config.ts',
-      'playwright-ct.config.ts',
+      'playwright-sr.config.ts',
       'src/components.d.ts',
       'scripts/build',
       'scripts/e2e',

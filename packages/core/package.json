@@ -89,6 +89,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "catalog:",
+    "@guidepup/guidepup": "^0.24.1",
+    "@guidepup/playwright": "^0.15.0",
     "@playwright/test": "catalog:",
     "@siemens/ix-icons": "catalog:",
     "@stencil-community/eslint-plugin": "^0.10.0",
