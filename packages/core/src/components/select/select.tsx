@@ -282,11 +282,11 @@ export class Select
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
   private touched = false;
-  private chipsEl: HTMLDivElement | undefined;
-  private clearButtonEl: HTMLIxIconButtonElement | undefined;
-  private chevronButtonEl: HTMLIxIconButtonElement | undefined;
+  private chipsEl?: HTMLDivElement;
+  private clearButtonEl?: HTMLIxIconButtonElement;
+  private chevronButtonEl?: HTMLIxIconButtonElement;
   private chipsResizeObserver?: ResizeObserver;
-  private overflowChipEl: HTMLElement | undefined;
+  private overflowChipEl?: HTMLElement;
 
   private readonly chipWidths = new Map<string, number>();
   private readonly chipElementRefs = new Map<string, HTMLElement>();
