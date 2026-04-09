@@ -958,9 +958,9 @@ export class CategoryFilter {
 
   private getTooltipText(value: FilterSelection | SearchQuery): string {
     if (value.type === 'search') {
-      return this.getSearchInformationText(value.value);
+      return value.value;
     }
-    return `${value.category} ${value.operand.key} "${value.value}"`;
+    return `${this.getCategoryLabel(value.category)} ${value.operand.key} "${value.value}"`;
   }
 
   private getSearchInformationText(
