@@ -18,6 +18,7 @@ type IxPreviewRoutes = {
   '': AngularComponent;
   'preview/modal-by-instance': AngularComponent;
   'preview/modal-by-template': AngularComponent;
+  'preview/ngx-datatable': AngularComponent;
   'preview/select-ng-model': AngularComponent;
   'preview/tabs-overflow': AngularComponent;
   'preview/toggle-ng-model': AngularComponent;
@@ -386,6 +387,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/modal-sizes': () =>
     import('../preview-examples/modal-sizes').then((m) => m.default),
+  'preview/ngx-datatable': () =>
+    import('../preview-examples/ngx-datatable').then((m) => m.default),
   'preview/number-input': () =>
     import('../preview-examples/number-input').then((m) => m.default),
   'preview/number-input-disabled': () =>

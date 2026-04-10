@@ -14,6 +14,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IxModule } from '@siemens/ix-angular';
+import { provideIxDatatableConfig } from '@siemens/ix-angular';
+import {
+  DatatableComponent,
+  DatatableFooterDirective,
+  DataTableFooterTemplateDirective,
+} from '@siemens/ngx-datatable';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
@@ -262,6 +268,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import NgxDatatable from '../preview-examples/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -509,19 +516,23 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ProgressIndicatorCircularSizes,
     ProgressIndicatorCircularStatus,
     ProgressIndicatorCircular,
+    NgxDatatable
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     IxModule.forRoot(),
     AgGridModule,
+    DatatableComponent,
+    DatatableFooterDirective,
+    DataTableFooterTemplateDirective,
     FormsModule,
     ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts,
     }),
   ],
-  providers: [],
+  providers: [provideIxDatatableConfig()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

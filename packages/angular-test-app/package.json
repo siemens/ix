@@ -28,6 +28,7 @@
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "catalog:",
+    "@siemens/ngx-datatable": "^25.0.0",
     "ag-grid-angular": "^33.1.1",
     "ag-grid-community": "^33.1.1",
     "echarts": "5.4.3",

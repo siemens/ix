@@ -253,6 +253,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import NgxDatatable from '../preview-examples/ngx-datatable';
 
 const routes: Routes = [
   {
@@ -1125,6 +1126,10 @@ const routes: Routes = [
         path: 'progress-indicator-circular',
         component: ProgressIndicatorCircular,
       },
+      {
+        path: 'ngx-datatable',
+        component: NgxDatatable,
+      }
     ],
   },
 ];

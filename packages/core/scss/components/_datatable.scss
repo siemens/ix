@@ -1,0 +1,481 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// ngx-datatable theme styles adapted from siemens/element
+// https://github.com/siemens/element/blob/main/projects/element-theme/src/styles/components/_datatable.scss
+
+@use '../common-variables' as vars;
+
+// IX icon SVG data URIs for ngx-datatable icon overrides
+// Icons sourced from @siemens/ix-icons
+$_ix-icon-sort-ascending: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><desc>sort-ascending</desc><g id='Page-1' stroke='none' stroke-width='1' fill='currentColor' fill-rule='evenodd'><g id='add' transform='translate(64.000000, 106.666667)'><path d='M399.082027,100.52224 L368.915413,130.688853 L320,81.77344 L320,320 L277.333333,320 L277.333333,81.77088 L228.41536,130.688853 L198.248747,100.52224 L298.666667,-2.84217094e-14 L399.082027,100.52224 Z M106.666667,64 L-1.42108547e-14,64 L-1.42108547e-14,106.666667 L106.666667,106.666667 L106.666667,64 Z M149.333333,170.666667 L-1.42108547e-14,170.666667 L-1.42108547e-14,213.333333 L149.333333,213.333333 L149.333333,170.666667 Z M-1.42108547e-14,320 L192,320 L192,277.333333 L-1.42108547e-14,277.333333 L-1.42108547e-14,320 Z' id='Shape'/></g></g></svg>");
+$_ix-icon-sort-descending: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><desc>sort-descending</desc><g id='Page-1' stroke='none' stroke-width='1' fill='currentColor' fill-rule='evenodd'><g id='add' transform='translate(64.000000, 106.666667)'><path d='M-4.26325641e-14,213.333333 L106.666667,213.333333 L106.666667,256 L-4.26325641e-14,256 L-4.26325641e-14,213.333333 Z M-4.26325641e-14,149.333333 L149.333333,149.333333 L149.333333,106.666667 L-4.26325641e-14,106.666667 L-4.26325641e-14,149.333333 Z M-4.26325641e-14,42.6666667 L192,42.6666667 L192,-2.84217094e-14 L-4.26325641e-14,-2.84217094e-14 L-4.26325641e-14,42.6666667 Z M368.916693,189.31904 L320,238.235733 L320,-2.84217094e-14 L277.333333,-2.84217094e-14 L277.333333,238.235733 L228.41664,189.31904 L198.250027,219.485653 L298.666667,320 L399.083307,219.485653 L368.916693,189.31904 Z' id='Shape'/></g></g></svg>");
+$_ix-icon-chevron-down-small: url("data:image/svg+xml,%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='currentColor' stroke-width='1' fill='currentColor' fill-rule='evenodd'%3E%3Cg transform='translate(134.186667, 187.520000)'%3E%3Cpolygon points='121.813333 151.893333 0 30.2933333 30.2933333 0 121.813333 91.7333333 213.333333 0 243.626667 30.2933333'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+$_ix-icon-chevron-left-small: url("data:image/svg+xml,%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='currentColor' stroke-width='1' fill='currentColor' fill-rule='evenodd'%3E%3Cg transform='translate(172.586667, 134.186667)'%3E%3Cpolygon points='121.6 243.626667 0 121.813333 121.6 0 151.893333 30.2933333 60.16 121.813333 151.893333 213.333333'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+$_ix-icon-chevron-right-small: url("data:image/svg+xml,%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='currentColor' stroke-width='1' fill='currentColor' fill-rule='evenodd'%3E%3Cg transform='translate(187.520000, 134.186667)'%3E%3Cpolygon points='30.2933333 243.626667 0 213.333333 91.7333333 121.813333 0 30.2933333 30.2933333 0 151.893333 121.813333'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+$_ix-icon-chevron-left-bar-small: url("data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M149.333 384H192V128H149.333V384ZM193.919 256.001L315.519 377.814L345.813 347.521L254.079 256.001L345.813 164.481L315.519 134.188L193.919 256.001Z'/%3E%3C/svg%3E");
+$_ix-icon-chevron-right-bar-small: url("data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M320 384H362.667V128H320V384ZM166.188 347.52L196.481 377.813L318.081 256L196.481 134.186L166.188 164.48L257.921 256L166.188 347.52Z'/%3E%3C/svg%3E");
+
+@mixin _ix-datatable-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  vertical-align: middle;
+}
+
+// Icon CSS classes used by the ngx-datatable cssClasses configuration
+.ix-datatable-icon-sort-asc {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-sort-ascending;
+}
+
+.ix-datatable-icon-sort-desc {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-sort-descending;
+}
+
+.ix-datatable-icon-pager-left {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-left-small;
+}
+
+.ix-datatable-icon-pager-right {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-right-small;
+}
+
+.ix-datatable-icon-pager-prev {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-left-bar-small;
+}
+
+.ix-datatable-icon-pager-next {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-right-bar-small;
+}
+
+.ix-datatable-icon-tree-expanded {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-down-small;
+}
+
+.ix-datatable-icon-tree-collapsed {
+  @include _ix-datatable-icon;
+  mask-image: $_ix-icon-chevron-right-small;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -100%;
+  }
+}
+
+$datatable-header-border-color: var(--theme-color-weak-bdr) !default;
+$datatable-header-background-color: transparent !default;
+$datatable-header-color: var(--theme-table-header-cell--color) !default;
+$datatable-row-border-color: var(--theme-color-weak-bdr) !default;
+$datatable-footer-background-color: transparent !default;
+
+$datatable-summary-background-color: var(--theme-table-data-row-alt--background) !default;
+
+$datatable-header-height: 40px !default;
+$datatable-cell-min-width: 40px !default;
+$datatable-body-row-min-height: 48px !default;
+
+$datatable-ghost-cell-container-background: var(--theme-color-2) !default;
+$datatable-ghost-cell-strip-background: var(--theme-color-1--hover) !default;
+$datatable-ghost-cell-strip-background-image: linear-gradient(
+  90deg,
+  var(--theme-color-1--hover) 0%,
+  var(--theme-color-1--active) 25%,
+  var(--theme-color-1--hover) 50%
+) !default;
+
+
+.ngx-datatable.ix-datatable {
+  background-color: var(--theme-color-2);
+  border-radius: var(--theme-default-border-radius, 4px);
+
+  &.table-custom {
+    --ix-datatable-row-min-height: 24px;
+  }
+
+  .ghost-cell-container {
+    background: $datatable-ghost-cell-container-background;
+  }
+
+  .ghost-cell-strip {
+    background: $datatable-ghost-cell-strip-background;
+    background-image: $datatable-ghost-cell-strip-background-image;
+  }
+
+  // any kind of selection: apply a row hover state
+  &:is(
+    .single-selection,
+    .multi-selection,
+    .multi-click-selection,
+    .cell-selection,
+    .checkbox-selection
+  ) {
+    .datatable-row-wrapper {
+      .datatable-body-row:hover {
+        background-color: var(--theme-table-data-row--background--hover);
+      }
+    }
+  }
+
+  // any selection type but 'cell'
+  &:is(.single-selection, .multi-selection, .multi-click-selection, .checkbox-selection) {
+    .datatable-body-row {
+      &.active {
+        &,
+        .datatable-row-group {
+          background-color: var(--theme-table-data-row--background--active);
+        }
+      }
+    }
+  }
+
+  // solely 'cell' selection type
+  &.cell-selection {
+    .datatable-body-cell {
+      &.active,
+      &.active .datatable-row-group,
+      &:focus,
+      &:focus .datatable-row-group {
+        background-color: var(--theme-table-data-cell--background--active);
+      }
+    }
+  }
+
+  // not 'cell' selection type
+  &:not(.cell-selection) {
+    .datatable-body-row {
+      &:focus,
+      &:focus .datatable-row-group {
+        background-color: var(--theme-table-data-row--background--active);
+      }
+    }
+  }
+
+  // 'checkbox' selection
+  :is(.datatable-header-cell, .datatable-body-cell) {
+    label.datatable-checkbox {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 1.125rem;
+      block-size: 1.125rem;
+      margin-block: 0;
+      margin-inline: 0 16px;
+      position: relative;
+      flex-shrink: 0;
+
+      &:not(:has(input:checked)):not(:has(input:indeterminate)) {
+        border: var(--theme-checkbox--border-thickness) solid
+          var(--theme-checkbox-unchecked--border-color);
+      }
+
+      &:has(input:checked)::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--theme-checkbox-checked--background);
+        mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+          url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==');
+        mask-composite: subtract;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        pointer-events: none;
+      }
+
+      &:has(input:indeterminate)::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--theme-color-dynamic);
+        mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+          url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iNCIgeTE9IjkiIHgyPSIxNCIgeTI9IjkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+');
+        mask-composite: subtract;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        pointer-events: none;
+      }
+
+      > input {
+        inline-size: 1rem;
+        block-size: 1rem;
+        margin: 0;
+        appearance: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .datatable-header-cell {
+    label.datatable-checkbox {
+      > input {
+        inset-block: 0;
+      }
+    }
+  }
+
+  // Global Row Styles
+  :is(.datatable-header, .datatable-body) {
+    ghost-loader:not(.ghost-overlay) {
+      display: flex;
+      flex: 1 1 0;
+
+      :is(.ghost-cell-strip, .ghost-element, .ghost-loader) {
+        display: flex;
+        flex: 1 1 0;
+        inline-size: unset !important; // stylelint-disable-line declaration-no-important
+      }
+    }
+
+    .ghost-cell-strip {
+      animation-name: shimmer !important; // stylelint-disable-line declaration-no-important
+      animation-duration: 1.6s !important; // stylelint-disable-line declaration-no-important
+      animation-timing-function: ease-in-out !important; // stylelint-disable-line declaration-no-important
+      background-size: 200% 100%;
+      background-position-x: 100%;
+    }
+
+    :is(.datatable-header-cell, .datatable-body-cell) {
+      display: flex;
+      align-items: center;
+      padding-block: 0;
+      padding-inline: 4px;
+      min-inline-size: $datatable-cell-min-width;
+      line-height: 1.429;
+
+      > div {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+      }
+
+      &:first-child {
+        padding-inline-start: 0.75rem;
+      }
+
+      &:last-child {
+        padding-inline-end: 0.75rem;
+      }
+    }
+
+    .datatable-header-cell {
+      .datatable-header-cell-template-wrap {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        .datatable-header-cell-wrapper {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .horizontal-overflow {
+      .datatable-row-left {
+        .datatable-body-cell:last-child,
+        .datatable-header-cell:last-child {
+          box-shadow: 0 0 8px var(--theme-color-shadow-1, rgba(0, 0, 0, 0.15));
+          clip-path: inset(0 -8px 0 0);
+        }
+      }
+
+      .datatable-row-right {
+        .datatable-body-cell:first-child,
+        .datatable-header-cell:first-child {
+          box-shadow: 0 0 8px var(--theme-color-shadow-1, rgba(0, 0, 0, 0.15));
+          clip-path: inset(0 0 0 -8px);
+        }
+      }
+    }
+  }
+
+  // Header Styles
+  .datatable-header {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border-block-end: 4px solid $datatable-header-border-color;
+    background-color: $datatable-header-background-color;
+    color: $datatable-header-color;
+    block-size: $datatable-header-height;
+    vertical-align: baseline;
+    font-size: vars.$font-size-default;
+    font-weight: vars.$font-weight-bold;
+    line-height: vars.$line-height-l;
+    user-select: none;
+
+    .sort-btn {
+      color: $datatable-header-color !important; // stylelint-disable-line declaration-no-important
+      margin-inline-start: 0.125rem;
+    }
+
+    // Resizable handle
+    .resizeable:hover {
+      .resize-handle {
+        background-color: var(--theme-color-x-weak-bdr);
+        inline-size: 2px;
+        border-radius: 2px;
+        padding-block: 0;
+        padding-inline: 2px;
+      }
+    }
+
+    .datatable-header-inner {
+      block-size: 100%;
+    }
+
+    :is(.datatable-row-left, .datatable-row-right) {
+      background-color: var(--theme-color-2);
+      display: flex;
+
+      .datatable-header-cell {
+        flex-shrink: 0;
+      }
+    }
+
+    .datatable-header-cell:focus-visible {
+      outline: 2px solid var(--theme-color-dynamic);
+      outline-offset: -2px;
+    }
+  }
+
+  // Summary Styles
+  .datatable-summary-row .datatable-body-row {
+    background-color: $datatable-summary-background-color;
+    font-weight: vars.$font-weight-bold;
+  }
+
+  // Body Styles
+  .datatable-body {
+    .datatable-row-wrapper {
+      min-block-size: var(--ix-datatable-row-min-height, #{$datatable-body-row-min-height});
+      justify-content: center;
+      padding: 0;
+      inline-size: 100%;
+    }
+
+    .datatable-body-row,
+    .datatable-group-header {
+      border-block-end: 1px solid $datatable-row-border-color;
+      inline-size: 100% !important; // stylelint-disable-line declaration-no-important
+      min-inline-size: fit-content;
+
+      .datatable-body-cell-label {
+        overflow: inherit;
+        text-overflow: ellipsis;
+        inline-size: 100%;
+      }
+
+      &.datatable-body-row:hover:not(.active) {
+        background-color: var(--theme-table-data-row--background--hover);
+
+        :is(.datatable-row-left, .datatable-row-right) {
+          background-color: var(--theme-table-data-row--background--hover);
+        }
+      }
+
+      :is(.datatable-row-left, .datatable-row-right) {
+        background-color: var(--theme-color-2);
+      }
+    }
+
+    .datatable-group-header {
+      .datatable-group-cell {
+        display: flex;
+        align-items: center;
+        padding-inline-start: 0.5rem;
+      }
+    }
+
+    .datatable-body-cell,
+    .datatable-body-row {
+      &:focus-visible {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          content: '';
+          inset: 0;
+          z-index: 9;
+          pointer-events: none; // Otherwise this can block mouse events if the focus is on a row/cell.
+          outline: 2px solid var(--theme-color-dynamic);
+          outline-offset: -2px;
+        }
+      }
+    }
+  }
+
+  // Footer Styles
+  .datatable-footer {
+    display: flex;
+    align-items: flex-end;
+    flex: 1;
+    align-content: flex-end;
+    background-color: $datatable-footer-background-color;
+    color: var(--theme-color-soft-text);
+    font-size: 0.75rem;
+    position: relative;
+    z-index: 11;
+
+    .datatable-footer-inner {
+      background-color: var(--theme-color-2);
+      padding-inline-start: 0.5rem;
+      padding-inline-end: 0.25rem;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: '';
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        inline-size: 100%;
+        block-size: 1px;
+        background-color: var(--theme-color-0);
+      }
+    }
+  }
+
+  > div {
+    block-size: unset !important; // stylelint-disable-line declaration-no-important
+    min-block-size: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Tree view icon styles
+  .datatable-tree-button {
+    border: 0;
+    background: none;
+    margin-inline: 0.25rem;
+    padding: 0;
+
+    &[disabled] {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--theme-color-dynamic);
+      outline-offset: -2px;
+    }
+  }
+}

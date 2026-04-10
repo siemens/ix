@@ -1,0 +1,40 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+
+<ngx-datatable
+  class="ix-datatable"
+  [rows]="rows"
+  [columns]="columns"
+  columnMode="force"
+  [selectionType]="'checkbox'"
+  [ghostLoadingIndicator]="loading"
+  [externalPaging]="true"
+  [count]="count"
+  [offset]="offset"
+  [limit]="limit"
+  [(selected)]="selected"
+>
+  <ngx-datatable-footer>
+    <ng-template
+      ngx-datatable-footer-template
+      let-rowCount="rowCount"
+      let-pageSize="pageSize"
+      let-curPage="curPage"
+      let-offset="offset"
+    >
+      <ix-pagination
+        style="margin-inline-start: auto"
+        [count]="totalPages"
+        [selectedPage]="offset"
+        (pageSelected)="onPageSelected($event.detail)"
+      ></ix-pagination>
+    </ng-template>
+  </ngx-datatable-footer>
+</ngx-datatable>
