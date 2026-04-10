@@ -75,8 +75,9 @@ function collectFromElement(el: HTMLElement, into: HTMLElement[]): void {
 
   if (isElementFocusable(el)) {
     into.push(el);
-    return;
   }
+
+  collectFocusable(el, into);
 
   collectFocusable(el, into);
 }
