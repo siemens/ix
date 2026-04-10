@@ -40,8 +40,8 @@ export default () => {
         <IxChip
           icon={iconPrint}
           variant="custom"
-          background="var(--theme-chart-12)"
-          chipColor="var(--theme-chart-4)"
+          background="var(--theme-chart-11)"
+          chipColor="var(--theme-color-inv-std-text)"
           closable
         >
           Custom
@@ -75,8 +75,8 @@ export default () => {
         <IxChip
           icon={iconPrint}
           variant="custom"
-          background="var(--theme-chart-12)"
-          chipColor="var(--theme-chart-4)"
+          background="var(--theme-chart-11)"
+          chipColor="var(--theme-color-inv-std-text)"
           outline
           closable
         >
