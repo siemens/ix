@@ -76,7 +76,7 @@ export default () => {
           icon={iconPrint}
           variant="custom"
           background="var(--theme-chart-11)"
-          chipColor="var(--theme-color-inv-std-text)"
+          chipColor="var(--theme-chip-outline--color)"
           outline
           closable
         >
