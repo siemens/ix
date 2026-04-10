@@ -59,6 +59,44 @@ test('renders', async ({ mount, page }) => {
   await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 });
 
+test('does not open the dropdown when disabled', async ({ mount, page }) => {
+  await mount(`
+    <ix-select disabled>
+      <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const dropdown = select.locator('ix-dropdown');
+
+  await expect(select).toHaveClass(/hydrated/);
+  await expect(dropdown).not.toHaveClass(/show/);
+
+  await select.locator('.select').click();
+
+  await expect(dropdown).not.toHaveClass(/show/);
+});
+
+test('does not open the dropdown when readonly', async ({ mount, page }) => {
+  await mount(`
+    <ix-select readonly>
+      <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const dropdown = select.locator('ix-dropdown');
+
+  await expect(select).toHaveClass(/hydrated/);
+  await expect(dropdown).not.toHaveClass(/show/);
+
+  await select.locator('.select').click();
+
+  await expect(dropdown).not.toHaveClass(/show/);
+});
+
 test('editable mode', async ({ mount, page }) => {
   await mount(`
         <ix-select editable>

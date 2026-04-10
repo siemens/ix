@@ -883,7 +883,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
 
 
 @ProxyCmp({
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -891,7 +891,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
