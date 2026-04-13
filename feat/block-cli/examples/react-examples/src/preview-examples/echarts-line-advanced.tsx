@@ -10,22 +10,36 @@
 import './echarts-line-advanced.scoped.css';
 
 import { useEffect, useState } from 'react';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
+function useEChartTheme() {
+  const [theme, setTheme] = useState(resolveEChartThemeName);
+
+  useEffect(() => {
+    const disposer = themeSwitcher.themeChanged.on(() => {
+      setTheme(resolveEChartThemeName());
+    });
+
+    return () => {
+      disposer.dispose();
+    };
+  }, []);
+
+  return theme;
+}
+
 export default function EchartsLineAdvanced() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
-
-  useEffect(() => {
-    themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(theme);
-    });
-  }, []);
+  const theme = useEChartTheme();
 
   const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
     (2013 + i).toString()
