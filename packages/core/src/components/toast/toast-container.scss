@@ -7,31 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
 :host {
   @include component.ix-component;
-}
 
-#toast-container {
-  > :not(:last-child) {
+  display: block;
+  position: fixed;
+  z-index: var(--theme-z-index-toast);
+
+  ::slotted(*:not(:last-child)) {
     margin-block-end: vars.$default-space;
   }
 }
 
-.toast-container {
-  display: block;
-  position: fixed;
-  z-index: var(--theme-z-index-toast);
-}
-
-.toast-container--top-right {
+:host(.toast-container--top-right) {
   right: 1rem;
   top: 2rem;
 }
 
-.toast-container--bottom-right {
+:host(.toast-container--bottom-right) {
   right: 1rem;
   bottom: 2rem;
 }

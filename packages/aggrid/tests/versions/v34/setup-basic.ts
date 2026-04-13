@@ -13,8 +13,9 @@ import {
 } from 'ag-grid-community-34';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { getIxTheme } from '@siemens/ix-aggrid';
-import { COLUMN_DEFS, ROW_DATA } from '../utils/test/basic.const';
+import { COLUMN_DEFS, ROW_DATA } from '../../utils/test/basic.const';
 import * as agGridCommunity34 from 'ag-grid-community-34';
+import './../../utils/test/runtime/main';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -28,7 +29,7 @@ const gridOptions = {
   },
   suppressCellFocus: true,
   theme: theme,
-};
+} satisfies agGridCommunity34.GridOptions;
 
 const myGridElement = document.querySelector('#testGrid') as HTMLElement;
 createGrid(myGridElement, gridOptions);

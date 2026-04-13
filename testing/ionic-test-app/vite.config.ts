@@ -1,5 +1,4 @@
 import path from 'path';
-import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import fs from 'fs-extra';
@@ -35,7 +34,7 @@ export default defineConfig(async () => {
   copyAdditionalThemeIfPresent();
   return {
     base: './',
-    plugins: [react(), legacy()],
+    plugins: [react()],
     test: {
       globals: true,
       environment: 'jsdom',

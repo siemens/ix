@@ -27,8 +27,7 @@ export default () => {
   const [useSystemTheme, setUseSystemTheme] = useState(false);
 
   useEffect(() => {
-    themeSwitcher.setTheme('classic');
-    themeSwitcher.setVariant(selectedVariant);
+    themeSwitcher.setTheme('classic', selectedVariant);
   }, []);
 
   const onValueChange = (event: CustomEvent<string | string[]>) => {
@@ -38,7 +37,7 @@ export default () => {
 
     const newVariant = event.detail as ThemeVariant;
 
-    themeSwitcher.setVariant(newVariant);
+    themeSwitcher.setColorSchema(newVariant);
     setSelectedVariant(newVariant);
   };
 
@@ -60,9 +59,9 @@ export default () => {
     setUseSystemTheme(checked);
 
     if (checked) {
-      themeSwitcher.setVariant();
+      themeSwitcher.setColorSchema('system');
     } else {
-      themeSwitcher.setVariant(selectedVariant);
+      themeSwitcher.setColorSchema(selectedVariant);
     }
   };
 

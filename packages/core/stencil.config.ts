@@ -23,8 +23,14 @@ import { storybookOutputTarget } from './scripts/build/storybook';
 
 const corePackageName = '@siemens/ix';
 
+const excludeDevelopmentComponents = ['ix-playground'];
+
 function getAngularConfig() {
-  const excludeComponents = ['ix-tree', 'ix-icon'];
+  const excludeComponents = [
+    ...excludeDevelopmentComponents,
+    'ix-tree',
+    'ix-icon',
+  ];
   const config = [
     angularOutputTarget({
       componentCorePackage: corePackageName,
@@ -60,6 +66,7 @@ export const config: Config = {
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
     browserHeadless: 'shell',
   },
+  excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
   watchIgnoredRegex: [
     /component-doc\.json/,
@@ -79,6 +86,7 @@ export const config: Config = {
   outputTargets: [
     storybookOutputTarget({
       dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+      excludeComponents: excludeDevelopmentComponents,
     }),
     vueOutputTarget({
       componentCorePackage: corePackageName,
@@ -86,7 +94,7 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: ['ix-icon'],
+      excludeComponents: [...excludeDevelopmentComponents, 'ix-icon'],
       componentModels: [
         {
           elements: [
@@ -110,7 +118,12 @@ export const config: Config = {
     reactOutputTarget({
       stencilPackageName: corePackageName,
       outDir: '../react/src',
-      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
+      excludeComponents: [
+        ...excludeDevelopmentComponents,
+        'ix-tree',
+        'ix-tree-item',
+        'ix-icon',
+      ],
       hydrateModule: '@siemens/ix/hydrate',
       clientModule: '@siemens/ix',
       serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },

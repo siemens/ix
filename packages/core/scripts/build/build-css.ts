@@ -40,15 +40,11 @@ function collectThemeFiles() {
     .map((schema) => {
       return files
         .filter((themeName) => fse.existsSync(themePath(themeName, schema)))
-        .map(
-          (themeName) => (
-            {
-              filePath: fse.realpathSync(themePath(themeName, schema)),
-              themeName,
-              schema,
-            }
-          )
-        );
+        .map((themeName) => ({
+          filePath: fse.realpathSync(themePath(themeName, schema)),
+          themeName,
+          schema,
+        }));
     })
     .flat();
   return themeFiles;
@@ -71,8 +67,8 @@ function compileThemes() {
   });
 }
 
-function compileCore() {
-  const coreCss = path.join(SCSS, 'ix-core.scss');
+function compileCore(input: string, output: string) {
+  const coreCss = path.join(SCSS, input);
   console.log(`Compile core SCSS (${coreCss})`);
   const { css } = sass.compile(coreCss, {
     sourceMap: false,
@@ -85,7 +81,7 @@ function compileCore() {
 
   return [
     {
-      path: path.join(DIST_CSS, 'siemens-ix-core.css'),
+      path: path.join(DIST_CSS, output),
       css,
     },
   ];
@@ -105,7 +101,15 @@ function copyDistCssToDist() {
   }[] = [];
 
   cssFiles = [...cssFiles, ...compileThemes()];
-  cssFiles = [...cssFiles, ...compileCore()];
+  cssFiles = [
+    ...cssFiles,
+    ...compileCore('ix-core.scss', 'siemens-ix-core.css'),
+  ];
+
+  cssFiles = [
+    ...cssFiles,
+    ...compileCore('ix-standalone.scss', 'siemens-ix-standalone.css'),
+  ];
 
   const optimizedCss = await Promise.all(
     cssFiles.map(async (result) => {

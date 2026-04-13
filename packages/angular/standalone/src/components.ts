@@ -135,14 +135,14 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxApplication,
-  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance']
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme']
 })
 @Component({
   selector: 'ix-application',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme'],
 })
 export class IxApplication {
   protected el: HTMLIxApplicationElement;
@@ -2950,7 +2950,7 @@ export declare interface IxToast extends Components.IxToast {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToastContainer,
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['position'],
   methods: ['showToast']
 })
 @Component({
@@ -2958,7 +2958,7 @@ export declare interface IxToast extends Components.IxToast {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['position'],
 })
 export class IxToastContainer {
   protected el: HTMLIxToastContainerElement;

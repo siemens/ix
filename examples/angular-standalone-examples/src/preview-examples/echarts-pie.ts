@@ -7,10 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -22,8 +26,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-pie.html',
   styleUrls: ['./echarts-pie.css'],
 })
-export default class EchartsPie implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsPie implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   data = [
     { value: 29.4, name: 'China' },
@@ -35,41 +40,50 @@ export default class EchartsPie implements OnInit {
     { value: 31.5, name: 'Other' },
   ];
 
-  options: EChartsOption = {
-    tooltip: {
-      trigger: 'item',
-    },
-    legend: {
-      icon: 'rect',
-      bottom: '0',
-      left: '0',
-    },
-    series: [
-      {
-        name: 'CO2 emissions from<',
-        type: 'pie',
-        radius: '80%',
-        data: this.data,
-        label: {
-          show: true,
-          color: getComputedCSSProperty('color-neutral'),
-        },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
+  options: EChartsOption = this.getOptions();
+
+  private getOptions(): EChartsOption {
+    return {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        icon: 'rect',
+        bottom: '0',
+        left: '0',
+      },
+      series: [
+        {
+          name: 'CO2 emissions from<',
+          type: 'pie',
+          radius: '80%',
+          data: this.data,
+          label: {
+            show: true,
+            color: getComputedCSSProperty('color-neutral'),
+          },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
           },
         },
-      },
-    ],
-  };
+      ],
+    };
+  }
 
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
+      this.options = this.getOptions();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

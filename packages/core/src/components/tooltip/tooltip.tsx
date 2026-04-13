@@ -27,10 +27,10 @@ import {
   State,
 } from '@stencil/core';
 import { resolveSelector } from '../utils/find-element';
-import { ElementReference } from 'src/components';
 import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 import { addDisposableEventListenerAsArray } from '../utils/disposable-event-listener';
+import { ElementReference } from '../utils/element-reference';
 
 type ArrowPosition = {
   top?: string;
