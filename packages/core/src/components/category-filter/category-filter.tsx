@@ -25,6 +25,8 @@ import {
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { makeRef } from '../utils/make-ref';
+import { IX_FOCUS_VISIBLE_ACTIVE } from '../utils/focus/focus-utilities';
+import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { FilterAndSearchValue } from './filter-and-search-value';
 import { FilterCategory } from './filter-category';
@@ -334,6 +336,19 @@ export class CategoryFilter {
 
   private handleKeyDown(e: KeyboardEvent) {
     if (e.defaultPrevented) {
+      // Still handle Enter for focused empty-state button, since the
+      // dropdown's keyboard handler calls preventDefault before us
+      if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+        this.handleEmptyStateButtonEnter();
+        // ArrowDown for empty state needs to be handled sepparately since dropdown keyboard nav only works with dropdown-item
+      } else if (e.code === 'ArrowDown') {
+        const seeAllOptionsButton =
+          this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+            `.empty-state ix-button`
+          );
+
+        seeAllOptionsButton?.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+      }
       return;
     }
 
@@ -345,7 +360,9 @@ export class CategoryFilter {
 
       case 'Enter':
       case 'NumpadEnter':
-        this.handleEnterKey();
+        if (!this.handleEmptyStateButtonEnter()) {
+          this.handleEnterKey();
+        }
         break;
 
       case 'Backspace':
@@ -359,14 +376,62 @@ export class CategoryFilter {
     }
   }
 
+  private handleEmptyStateButtonEnter(): boolean {
+    const focusedButton =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+        `.empty-state ix-button.${IX_FOCUS_VISIBLE_ACTIVE}`
+      );
+    if (focusedButton) {
+      focusedButton.click();
+      return true;
+    }
+    return false;
+  }
+
   private focusFirstDropdownItem(): void {
     requestAnimationFrameNoNgZone(() => {
       const first =
         this.hostElement.shadowRoot?.querySelector<HTMLIxDropdownItemElement>(
           'ix-dropdown-item'
         );
-      first?.shadowRoot?.querySelector<HTMLElement>('button')?.focus();
+      first?.focus();
     });
+  }
+
+  private getNavigableItems(): HTMLElement[] {
+    const items = Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+        'ix-dropdown-item'
+      ) ?? []
+    );
+    const emptyStateButton =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+        '.empty-state ix-button'
+      );
+    if (emptyStateButton) {
+      items.push(emptyStateButton);
+    }
+    return items;
+  }
+
+  private setNavigationFocus(item: HTMLElement): void {
+    // Remove visual focus from any previously focused empty-state button
+    this.hostElement.shadowRoot
+      ?.querySelector(`.empty-state ix-button.${IX_FOCUS_VISIBLE_ACTIVE}`)
+      ?.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
+
+    if (item.tagName === 'IX-BUTTON') {
+      // Don't call .focus() on ix-button — delegatesFocus would steal
+      // real DOM focus from the input. Instead, clear dropdown item
+      // visual focus and manually set the class.
+      removeVisibleFocus();
+      item.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+    } else {
+      // For dropdown items, .focus() triggers the monkey-patched focus
+      // which adds ix-focused via updateFocusState without moving real
+      // DOM focus (no tabindex, delegatesFocus: false).
+      item.focus();
+    }
   }
 
   private handleArrowNavigation(e: KeyboardEvent): void {
@@ -379,11 +444,7 @@ export class CategoryFilter {
     }
 
     const navigate = () => {
-      const items = Array.from(
-        this.hostElement.shadowRoot?.querySelectorAll<HTMLIxDropdownItemElement>(
-          'ix-dropdown-item'
-        ) ?? []
-      );
+      const items = this.getNavigableItems();
       if (!items.length) return;
 
       const path = wasOpen ? e.composedPath() : [];
@@ -398,9 +459,7 @@ export class CategoryFilter {
 
       if (nextIndex < 0 || nextIndex >= items.length) return;
 
-      items[nextIndex].shadowRoot
-        ?.querySelector<HTMLElement>('button')
-        ?.focus();
+      this.setNavigationFocus(items[nextIndex]);
     };
 
     if (wasOpen) {
@@ -576,6 +635,7 @@ export class CategoryFilter {
       this.textInput.current.value = '';
     }
     this.focusFirstDropdownItem();
+    this.textInput?.current?.focus();
     this.placeholderState = '';
     this.categoryChanged.emit(category.key);
 
@@ -616,6 +676,7 @@ export class CategoryFilter {
       this.textInput.current.value = '';
     }
     this.focusFirstDropdownItem();
+    this.textInput?.current?.focus();
     this.availableValuesForSelectedCategory = this.filterExistingValues();
   }
 
