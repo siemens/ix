@@ -12,7 +12,7 @@
     "outDir": "./dist",
     "lib": ["dom", "es2020"],
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es2017",
     "skipLibCheck": true
   },

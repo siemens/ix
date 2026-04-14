@@ -135,19 +135,11 @@ const IxNavLinkTab = ({
 
 const App: React.FC = () => {
   useSearchParamChanged('preview-theme', (newValue) => {
-    console.log('New theme:', newValue);
     if (!newValue) {
       return;
     }
 
-    document.body.classList.remove(
-      'theme-brand-dark',
-      'theme-brand-light',
-      'theme-classic-dark',
-      'theme-classic-light'
-    );
-
-    document.body.classList.add(newValue);
+    document.documentElement.setAttribute('data-ix-theme', newValue);
   });
   return (
     <IxApplicationContext>
@@ -155,9 +147,18 @@ const App: React.FC = () => {
         <HashRouter>
           <IxApplication breakpoints={['sm']}>
             <IxApplicationHeader name="My App">
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
 
               <IxDropdownButton variant="subtle-tertiary" label="Select config">
                 <IxDropdownItem label="Config 1"></IxDropdownItem>

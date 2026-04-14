@@ -21,7 +21,7 @@ type RangeStoryArgs = Element & {
 
 function rangeFieldRender(
   args: RangeStoryArgs,
-  inputTag: 'ix-time-input' | 'ix-date-input'
+  inputTag: 'ix-time-input' | 'ix-date-input' | 'ix-datetime-input'
 ) {
   const { startLabel, endLabel, startValue, endValue, ...rangeFieldArgs } =
     args;
@@ -56,6 +56,12 @@ const meta = {
     endLabel: { control: { type: 'text' } },
     startValue: { control: { type: 'text' } },
     endValue: { control: { type: 'text' } },
+    type: {
+      control: {
+        type: 'select',
+      },
+      options: ['time-range', 'date-range', 'datetime-range'],
+    },
   }),
   parameters: {},
 } satisfies Meta<RangeStoryArgs>;
@@ -63,7 +69,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<RangeStoryArgs>;
 
-export const Label: Story = {
+export const TimeRange: Story = {
   render: (args) => rangeFieldRender(args, 'ix-time-input'),
   args: {
     type: 'time-range',
@@ -74,7 +80,7 @@ export const Label: Story = {
   },
 };
 
-export const NoLabel: Story = {
+export const DateRange: Story = {
   render: (args) => rangeFieldRender(args, 'ix-date-input'),
   args: {
     type: 'date-range',
@@ -83,12 +89,21 @@ export const NoLabel: Story = {
   },
 };
 
-export const NoArrow: Story = {
-  render: (args) => rangeFieldRender(args, 'ix-date-input'),
+export const DateTimeRange: Story = {
+  render: (args) => rangeFieldRender(args, 'ix-datetime-input'),
   args: {
-    type: 'date-range',
-    startValue: '2026/03/16',
-    endValue: '2026/03/23',
+    type: 'datetime-range',
+    startValue: '2026/03/16 09:00:00',
+    endValue: '2026/03/23 16:00:00',
+  },
+};
+
+export const HideArrow: Story = {
+  render: (args) => rangeFieldRender(args, 'ix-datetime-input'),
+  args: {
+    type: 'datetime-range',
+    startValue: '2026/03/16 09:00:00',
+    endValue: '2026/03/23 16:00:00',
     hideArrow: true,
   },
 };

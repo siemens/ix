@@ -10,17 +10,8 @@
 @use 'theme/core/components' as components;
 @use 'mixins/reduce-motion' as rm;
 
-@use 'common-variables' as vars;
-
-/* Import global stylings for Web Components */
-@use './../src/components/toast/styles/toast-container';
-
-/* Legacy typography will be removed in 4.0.0 */
-@use 'legacy/mixins/fonts' as legacy-font-mixins;
-@use 'legacy/fonts' as legacy-fonts;
-
 /* Common */
-@use 'z-index';
+@use 'misc/z-index';
 
 /* Global legacy style components  */
 @use 'legacy/components/input';
@@ -34,39 +25,6 @@
 @use 'components/table';
 @use 'components/fonts';
 @use 'components/button-group';
+@use 'misc/normalize';
 
-@use 'mixins/scrollbar';
-@use 'mixins/fonts' as font-mixins;
-@use 'normalize';
-
-:root {
-  --ix-safe-area-inset-top: 0rem;
-  --ix-safe-area-inset-right: 0rem;
-  --ix-safe-area-inset-bottom: 0rem;
-  --ix-safe-area-inset-left: 0rem;
-}
-
-:not([data-ix-theme]) body:not([data-ix-theme]),
-[data-ix-theme] {
-  --animate-duration: var(--theme-default-time);
-  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
-    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-  color: var(--theme-color-std-text);
-
-  @include common.setVars;
-  @include components.setComponentVars;
-  @include rm.reduce-motion;
-}
-
-body {
-  color: var(--theme-color-std-text);
-  background-color: var(--theme-color-1);
-  margin: 0;
-  @include font-mixins.typography-body;
-}
-
-body:not(.disable-scrollbar) {
-  @include scrollbar.scrollbar;
-}
+@use 'standalone';

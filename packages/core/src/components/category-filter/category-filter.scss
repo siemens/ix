@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 @use '../button/button';
 @use 'legacy/components/dropdown';
 @use 'legacy/mixins/fonts' as legacy-fonts;

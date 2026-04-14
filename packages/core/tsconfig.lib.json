@@ -16,7 +16,6 @@
     "jsxFactory": "h",
     "preserveSymlinks": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
     "strict": true
   },
   "include": ["src", "../../testing/visual-regressions/tests/_test"],
