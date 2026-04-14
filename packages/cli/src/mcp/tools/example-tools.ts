@@ -39,6 +39,8 @@ export const exampleTools: ToolDefinition[] = [
     schema: searchExamplesSchema,
     handler: async (args, context) => {
       try {
+        const parsedArgs = searchExamplesSchema.parse(args);
+
         const examplesFramework =
           context.framework === 'angular'
             ? ('angular-standalone' as const)
@@ -46,10 +48,10 @@ export const exampleTools: ToolDefinition[] = [
 
         const results = await searchExamples({
           baseUrl: context.registryUrl,
-          query: args.query,
+          query: parsedArgs.query,
           framework: examplesFramework,
           version: context.registryRef,
-          limit: args.limit || 10,
+          limit: parsedArgs.limit || 10,
         });
 
         if (results.length === 0) {
@@ -57,7 +59,7 @@ export const exampleTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`No examples found matching "${args.query}" for ${context.framework}.
+                text: dedent`No examples found matching "${parsedArgs.query}" for ${context.framework}.
 
                 Try different search terms like:
                 - Component names (button, input, modal, select)
@@ -114,7 +116,7 @@ export const exampleTools: ToolDefinition[] = [
           content: [
             {
               type: 'text',
-              text: dedent`Found ${results.length} example(s) matching "${args.query}" for ${context.framework}:
+              text: dedent`Found ${results.length} example(s) matching "${parsedArgs.query}" for ${context.framework}:
 
               ${resultsList}
               ${exampleDetails}
@@ -151,6 +153,8 @@ export const exampleTools: ToolDefinition[] = [
     schema: getExampleCodeSchema,
     handler: async (args, context) => {
       try {
+        const parsedArgs = getExampleCodeSchema.parse(args);
+
         const examplesFramework =
           context.framework === 'angular'
             ? ('angular-standalone' as const)
@@ -165,11 +169,11 @@ export const exampleTools: ToolDefinition[] = [
         );
         const exampleEntry = examplesRegistry.versions[
           selectedVersion
-        ]?.examples.find((example) => example.name === args.exampleName);
+        ]?.examples.find((example) => example.name === parsedArgs.exampleName);
 
         if (!exampleEntry) {
           throw new Error(
-            `Example '${args.exampleName}' not found for version '${selectedVersion}'`
+            `Example '${parsedArgs.exampleName}' not found for version '${selectedVersion}'`
           );
         }
 

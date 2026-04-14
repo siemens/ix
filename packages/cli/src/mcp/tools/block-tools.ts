@@ -28,12 +28,14 @@ export const blockTools: ToolDefinition[] = [
     schema: searchBlocksSchema,
     handler: async (args, context) => {
       try {
+        const parsedArgs = searchBlocksSchema.parse(args);
+
         const results = await searchBlocks({
           baseUrl: context.registryUrl,
-          query: args.query,
+          query: parsedArgs.query,
           framework: context.framework,
           version: context.registryRef,
-          limit: args.limit || 10,
+          limit: parsedArgs.limit || 10,
         });
 
         if (results.length === 0) {
@@ -41,7 +43,7 @@ export const blockTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`No blocks found matching "${args.query}".
+                text: dedent`No blocks found matching "${parsedArgs.query}".
 
                 Try different search terms like:
                 - Component names (button, form, modal)
@@ -106,7 +108,7 @@ export const blockTools: ToolDefinition[] = [
           content: [
             {
               type: 'text',
-              text: dedent`Found ${results.length} block(s) matching "${args.query}" for ${context.framework}:
+              text: dedent`Found ${results.length} block(s) matching "${parsedArgs.query}" for ${context.framework}:
 
               ${resultsList}
               ${blockDetails}

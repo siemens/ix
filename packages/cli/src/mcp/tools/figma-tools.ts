@@ -27,7 +27,8 @@ export const figmaTools: ToolDefinition[] = [
     schema: getFigmaComponentMappingSchema,
     handler: async (args) => {
       try {
-        const mapping = await getFigmaComponentMapping(args.query);
+        const parsedArgs = getFigmaComponentMappingSchema.parse(args);
+        const mapping = await getFigmaComponentMapping(parsedArgs.query);
 
         if (mapping.results.length === 0) {
           if (mapping.queryType === 'figma-id') {
@@ -35,7 +36,7 @@ export const figmaTools: ToolDefinition[] = [
               content: [
                 {
                   type: 'text',
-                  text: dedent`No IX component found for Figma main component ID "${args.query}".
+                  text: dedent`No IX component found for Figma main component ID "${parsedArgs.query}".
 
                   The Figma main component ID may not be mapped yet, or the format may be incorrect.
                   Figma main component IDs should be in the format "12345:67890" or "12345-67890".
@@ -51,7 +52,7 @@ export const figmaTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`Component "${args.query}" not found or has no Figma main component ID mappings.
+                text: dedent`Component "${parsedArgs.query}" not found or has no Figma main component ID mappings.
 
                 Use "search_component_api" to find available components.
                 `,
@@ -80,7 +81,7 @@ export const figmaTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`Found ${mapping.results.length} IX component(s) for Figma main component ID "${args.query}":
+                text: dedent`Found ${mapping.results.length} IX component(s) for Figma main component ID "${parsedArgs.query}":
 
                 ${componentsList}
 
