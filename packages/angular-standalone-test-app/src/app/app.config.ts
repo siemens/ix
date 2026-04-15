@@ -11,7 +11,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideIxDatatableConfig } from '@siemens/ix-angular/common';
+import { provideIxDatatableConfig } from '@siemens/ix-angular-datatable';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideIxDatatableConfig()],

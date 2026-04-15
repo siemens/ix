@@ -20,13 +20,6 @@ export {
 export { ToastConfig, ToastService } from './providers/toast';
 export { MessageService } from './providers/message';
 export { LoadingService } from './providers/loading';
-export {
-  provideIxDatatableConfig,
-  IX_DATATABLE_CONFIG,
-  type IxDatatableConfig,
-  type IxDatatableMessages,
-  type IxDatatableCssClasses,
-} from '@siemens/ix-angular/common';
 export * from './directives/control-value-accessors';
 export { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 export * from './module';

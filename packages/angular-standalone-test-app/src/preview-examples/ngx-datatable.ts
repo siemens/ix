@@ -15,6 +15,7 @@ import {
   TableColumn,
 } from '@siemens/ngx-datatable';
 import { IxPagination } from '@siemens/ix-angular/standalone';
+import { IxDatatableInteractionDirective } from '@siemens/ix-angular-datatable';
 
 @Component({
   selector: 'app-example',
@@ -23,6 +24,7 @@ import { IxPagination } from '@siemens/ix-angular/standalone';
     DatatableFooterDirective,
     DataTableFooterTemplateDirective,
     IxPagination,
+    IxDatatableInteractionDirective
   ],
   templateUrl: './ngx-datatable.html',
   styleUrls: ['./ngx-datatable.css'],

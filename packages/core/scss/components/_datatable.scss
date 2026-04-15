@@ -354,8 +354,8 @@ $datatable-ghost-cell-strip-background-image: linear-gradient(
     }
 
     .datatable-header-cell:focus-visible {
-      outline: 2px solid var(--theme-color-dynamic);
-      outline-offset: -2px;
+      outline: var(--theme-dynamic-bdr-2);
+      outline-offset: calc(-1 * var(--theme-focus-outline-offset));
     }
   }
 
@@ -418,8 +418,8 @@ $datatable-ghost-cell-strip-background-image: linear-gradient(
           inset: 0;
           z-index: 9;
           pointer-events: none; // Otherwise this can block mouse events if the focus is on a row/cell.
-          outline: 2px solid var(--theme-color-dynamic);
-          outline-offset: -2px;
+          outline: var(--theme-dynamic-bdr-2);
+          outline-offset: calc(-1 * var(--theme-focus-outline-offset));
         }
       }
     }
@@ -433,7 +433,7 @@ $datatable-ghost-cell-strip-background-image: linear-gradient(
     align-content: flex-end;
     background-color: $datatable-footer-background-color;
     color: var(--theme-color-soft-text);
-    font-size: 0.75rem;
+    font-size: vars.$font-size-s;
     position: relative;
     z-index: 11;
 
@@ -474,8 +474,8 @@ $datatable-ghost-cell-strip-background-image: linear-gradient(
     }
 
     &:focus-visible {
-      outline: 2px solid var(--theme-color-dynamic);
-      outline-offset: -2px;
+      outline: var(--theme-dynamic-bdr-2);
+      outline-offset: calc(-1 * var(--theme-focus-outline-offset));
     }
   }
 }

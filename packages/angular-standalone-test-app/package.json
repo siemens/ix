@@ -24,6 +24,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-angular-datatable": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "catalog:",
     "@siemens/ngx-datatable": "^25.0.0",

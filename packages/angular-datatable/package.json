@@ -1,0 +1,35 @@
+{
+  "name": "@siemens/ix-angular-datatable",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/angular-datatable"
+  },
+  "version": "4.4.0",
+  "description": "Providers and interaction helpers for @siemens/ngx-datatable in Angular",
+  "scripts": {
+    "build": "ng-packagr -c tsconfig.json"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=20.0.0",
+    "@siemens/ngx-datatable": ">=24.0.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^20.3.14",
+    "@angular/compiler": "^20.3.18",
+    "@angular/compiler-cli": "^20.1.4",
+    "@angular/core": "^20.3.18",
+    "ng-packagr": "^20.1.0",
+    "tslib": "^2.3.0",
+    "typescript": "~5.8.2"
+  },
+  "publishConfig": {
+    "directory": "dist"
+  }
+}

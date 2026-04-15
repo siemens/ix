@@ -48,6 +48,7 @@ jobs:
             unittests:
               - packages/core/**
               - packages/angular/**
+              - packages/angular-datatable/**
               - packages/react/**
               - packages/vue/**
               - packages/angular-test-app/**

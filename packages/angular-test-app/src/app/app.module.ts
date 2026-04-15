@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IxModule } from '@siemens/ix-angular';
-import { provideIxDatatableConfig } from '@siemens/ix-angular';
+import { provideIxDatatableConfig } from '@siemens/ix-angular-datatable';
 import {
   DatatableComponent,
   DatatableFooterDirective,
