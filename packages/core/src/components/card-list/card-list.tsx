@@ -10,7 +10,7 @@ import {
   State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
+import { iconChevronUp, iconMoreMenu } from '@siemens/ix-icons/icons';
 
 function CardListTitle(props: {
   label?: string;
@@ -29,10 +29,10 @@ function CardListTitle(props: {
   return (
     <div class="CardList_Title">
       <ix-icon-button
-        variant="tertiary"
-        icon={iconChevronDown}
+        variant="subtle-tertiary"
+        icon={iconChevronUp}
         onClick={props.onClick}
-        iconColor="color-primary"
+        iconColor="color-std-text"
         class={{
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
