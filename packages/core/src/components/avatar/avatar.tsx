@@ -243,6 +243,19 @@ export class Avatar
     });
   }
 
+  private resolveTooltipTrigger() {
+    return new Promise<HTMLElement>((resolve) => {
+      readTask(() => {
+        const button = this.hostElement.shadowRoot!.querySelector('button');
+        if (button) {
+          resolve(button);
+        } else {
+          resolve(this.hostElement);
+        }
+      });
+    });
+  }
+
   private onDropdownClick(event: MouseEvent) {
     if (event.target === this.dropdownElement) {
       event.preventDefault();
@@ -302,7 +315,7 @@ export class Avatar
         {!!tooltipText && (
           <ix-tooltip
             ref={this.tooltipRef}
-            for={this.hostElement}
+            for={this.resolveTooltipTrigger()}
             aria-hidden={a11yBoolean(ariaHidden)}
             aria-label={this.ariaLabelTooltip}
           >

@@ -142,7 +142,7 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
     tagName: 'ix-application',
     properties: {
         theme: 'theme',
-        themeSystemAppearance: 'theme-system-appearance',
+        colorSchema: 'color-schema',
         forceBreakpoint: 'force-breakpoint'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1946,11 +1946,7 @@ export type IxToastContainerEvents = NonNullable<unknown>;
 
 export const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents>({
     tagName: 'ix-toast-container',
-    properties: {
-        containerId: 'container-id',
-        containerClass: 'container-class',
-        position: 'position'
-    },
+    properties: { position: 'position' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxToastContainer as ReactWebComponent<IxToastContainerElement, IxToastContainerEvents>,
     serializeShadowRoot

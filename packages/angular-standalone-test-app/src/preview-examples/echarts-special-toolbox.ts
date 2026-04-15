@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
-import { registerTheme } from '@siemens/ix-echarts';
+import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -22,8 +22,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-special-toolbox.html',
   styleUrls: ['./echarts-special-toolbox.css'],
 })
-export default class EchartsSpecialToolbox implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsSpecialToolbox implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   options: EChartsOption = {
     toolbox: {
@@ -60,8 +61,12 @@ export default class EchartsSpecialToolbox implements OnInit {
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

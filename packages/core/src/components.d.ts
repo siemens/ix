@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card.types";
-import { IxTheme } from "./components/utils/theme-switcher";
+import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
@@ -52,14 +52,13 @@ import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
 import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
-import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { RefreshTreeOptions } from "./components/tree/tree.types";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card.types";
-export { IxTheme } from "./components/utils/theme-switcher";
+export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
@@ -105,7 +104,6 @@ export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
 export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
-export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { RefreshTreeOptions } from "./components/tree/tree.types";
@@ -163,18 +161,19 @@ export namespace Components {
          */
         "breakpoints": Breakpoint[];
         /**
+          * Color schema of the theme
+          * @since 5.0.0
+          * @default 'system'
+         */
+        "colorSchema"?: ThemeVariant;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
         /**
           * Application theme
          */
-        "theme"?: IxTheme;
-        /**
-          * Use the system appearance dark or light
-          * @default false
-         */
-        "themeSystemAppearance": boolean;
+        "theme"?: string;
     }
     interface IxApplicationHeader {
         /**
@@ -4179,14 +4178,7 @@ export namespace Components {
     }
     interface IxToastContainer {
         /**
-          * @default 'toast-container'
-         */
-        "containerClass": string;
-        /**
-          * @default 'toast-container'
-         */
-        "containerId": string;
-        /**
+          * Position of the toast container. Determines where the toasts will be displayed on the screen.
           * @default 'bottom-right'
          */
         "position": 'bottom-right' | 'top-right';
@@ -6434,18 +6426,19 @@ declare namespace LocalJSX {
          */
         "breakpoints"?: Breakpoint[];
         /**
+          * Color schema of the theme
+          * @since 5.0.0
+          * @default 'system'
+         */
+        "colorSchema"?: ThemeVariant;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
           * Application theme
          */
-        "theme"?: IxTheme;
-        /**
-          * Use the system appearance dark or light
-          * @default false
-         */
-        "themeSystemAppearance"?: boolean;
+        "theme"?: string;
     }
     interface IxApplicationHeader {
         /**
@@ -10732,14 +10725,7 @@ declare namespace LocalJSX {
     }
     interface IxToastContainer {
         /**
-          * @default 'toast-container'
-         */
-        "containerClass"?: string;
-        /**
-          * @default 'toast-container'
-         */
-        "containerId"?: string;
-        /**
+          * Position of the toast container. Determines where the toasts will be displayed on the screen.
           * @default 'bottom-right'
          */
         "position"?: 'bottom-right' | 'top-right';
@@ -11124,8 +11110,8 @@ declare namespace LocalJSX {
         "passive": boolean;
     }
     interface IxApplicationAttributes {
-        "theme": IxTheme;
-        "themeSystemAppearance": boolean;
+        "theme": string;
+        "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
     }
     interface IxApplicationHeaderAttributes {
@@ -12052,8 +12038,6 @@ declare namespace LocalJSX {
         "ariaLabelCloseIconButton": string;
     }
     interface IxToastContainerAttributes {
-        "containerId": string;
-        "containerClass": string;
         "position": 'bottom-right' | 'top-right';
     }
     interface IxToggleAttributes {

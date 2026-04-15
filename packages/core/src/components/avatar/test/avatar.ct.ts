@@ -154,4 +154,73 @@ regressionTest.describe('embedded into header', () => {
       await expect(tooltip).toHaveText(/other text/);
     }
   );
+
+  regressionTest(
+    'tooltip should only appear when hovering the button, not hovering entire host element',
+    async ({ page, mount }) => {
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" aria-label-tooltip="avatarTooltip">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      const button = avatar.locator('button').first();
+      const tooltip = avatar.getByLabel('avatarTooltip');
+      const dropdownItem = page.getByText('Item 1');
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await page.mouse.move(0, 0);
+      await button.click();
+      await expect(avatar.locator('ix-dropdown')).toHaveClass(/show/);
+
+      await dropdownItem.hover();
+      await expect(tooltip).not.toHaveClass(/visible/);
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+    }
+  );
+
+  regressionTest(
+    'tooltip should stay hidden when dropdown opens and focus changes',
+    async ({ page, mount }) => {
+      await mount(`
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" aria-label-tooltip="avatarTooltip">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `);
+
+      const avatar = page.locator('ix-avatar');
+      const button = avatar.locator('button').first();
+      const tooltip = avatar.getByLabel('avatarTooltip');
+      const dropdown = avatar.locator('ix-dropdown');
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await button.click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(tooltip).not.toHaveClass(/visible/);
+
+      await page.locator('body').hover();
+      await expect(tooltip).not.toHaveClass(/visible/);
+
+      await page.keyboard.press('Escape');
+      await expect(dropdown).not.toHaveClass(/show/);
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+    }
+  );
 });

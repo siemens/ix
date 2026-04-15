@@ -171,7 +171,6 @@ export class Menu {
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
-  private themeDisposer?: Disposable;
   private themeNameDisposer?: Disposable;
 
   // FBC IAM workaround #488
@@ -319,10 +318,6 @@ export class Menu {
 
     this.updateThemeState();
 
-    this.themeDisposer = themeSwitcher.schemaChanged.on(() => {
-      this.updateThemeState();
-    });
-
     this.themeNameDisposer = themeSwitcher.themeChanged.on(() => {
       this.updateThemeState();
     });
@@ -336,7 +331,6 @@ export class Menu {
   }
 
   disconnectedCallback() {
-    this.themeDisposer?.dispose();
     this.themeNameDisposer?.dispose();
   }
 

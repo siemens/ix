@@ -11,7 +11,16 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('theme-system', () => {
-  regressionTest('basic', async ({ page }) => {
+  regressionTest('system - dark', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('theme-system/basic', {
+      skipIxHydrationCheck: true,
+    });
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
+
+  regressionTest('system - light', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
     await page.goto('theme-system/basic', {
       skipIxHydrationCheck: true,
     });

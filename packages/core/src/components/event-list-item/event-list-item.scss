@@ -11,7 +11,7 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/shadow-dom/host-disabled';
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 
 $default-event-list-item-height: 2.5rem;
 

@@ -126,7 +126,7 @@ export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/
 
 export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__*/ defineContainer<JSX.IxApplication>('ix-application', defineIxApplication, [
   'theme',
-  'themeSystemAppearance',
+  'colorSchema',
   'forceBreakpoint',
   'breakpoints',
   'appSwitchConfig'
@@ -1504,8 +1504,6 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
 
 
 export const IxToastContainer: StencilVueComponent<JSX.IxToastContainer> = /*@__PURE__*/ defineContainer<JSX.IxToastContainer>('ix-toast-container', defineIxToastContainer, [
-  'containerId',
-  'containerClass',
   'position'
 ]);
 

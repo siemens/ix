@@ -4,8 +4,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "@utils/test": ["tests/utils/test"]
+      "@utils/test": ["./tests/utils/test"]
     }
   },
-  "include": ["tests"]
+  "include": ["tests", "src/css.d.ts"]
 }

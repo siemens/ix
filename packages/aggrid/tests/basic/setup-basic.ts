@@ -9,6 +9,7 @@
 import {
   AllCommunityModule,
   createGrid,
+  GridOptions,
   ModuleRegistry,
 } from 'ag-grid-community';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
@@ -28,7 +29,7 @@ const gridOptions = {
   },
   suppressCellFocus: true,
   theme: theme,
-};
+} satisfies GridOptions;
 
 const myGridElement = document.querySelector('#testGrid') as HTMLElement;
 createGrid(myGridElement, gridOptions);

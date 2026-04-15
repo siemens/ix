@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -30,11 +34,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 function gridConfig() {
   return {
@@ -55,42 +55,55 @@ function gridConfig() {
   };
 }
 
-const options = {
-  tooltip: {},
-  visualMap: {
-    show: false,
-    dimension: 2,
-    min: -1,
-    max: 1,
-  },
-  xAxis3D: gridConfig(),
-  yAxis3D: gridConfig(),
-  zAxis3D: gridConfig(),
-  grid3D: {
-    viewControl: {
-      projection: 'orthographic',
+function getOptions(): EChartsOption {
+  return {
+    tooltip: {},
+    visualMap: {
+      show: false,
+      dimension: 2,
+      min: -1,
+      max: 1,
     },
-  },
-  series: [
-    {
-      type: 'surface',
-      equation: {
-        x: {
-          step: 0.05,
-        },
-        y: {
-          step: 0.05,
-        },
-        z: (x: number, y: number): string | number => {
-          if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) {
-            return '-';
-          }
-          return Math.sin(x * Math.PI) * Math.sin(y * Math.PI);
-        },
+    xAxis3D: gridConfig(),
+    yAxis3D: gridConfig(),
+    zAxis3D: gridConfig(),
+    grid3D: {
+      viewControl: {
+        projection: 'orthographic',
       },
-    } as any,
-  ],
-} as EChartsOption;
+    },
+    series: [
+      {
+        type: 'surface',
+        equation: {
+          x: {
+            step: 0.05,
+          },
+          y: {
+            step: 0.05,
+          },
+          z: (x: number, y: number): string | number => {
+            if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) {
+              return '-';
+            }
+            return Math.sin(x * Math.PI) * Math.sin(y * Math.PI);
+          },
+        },
+      } as any,
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-special-3d.css"></style>
