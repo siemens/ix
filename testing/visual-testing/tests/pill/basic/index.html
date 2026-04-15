@@ -13,6 +13,11 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <style>
+     ix-pill {
+        margin-left: 0.25rem;
+      }
+    </style>
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import { iconPrint } from '@siemens/ix-icons/icons';
@@ -23,50 +28,43 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        position: relative;
-        margin-top: 2rem;
-      "
-    >
-      <ix-pill outline> Primary </ix-pill>
-      <ix-pill icon="print">Primary with icon</ix-pill>
-      <ix-pill icon="print" style="width: 10rem" onClose="{console.log}">
-        Primary
-      </ix-pill>
-
-      <ix-pill variant="critical" icon="print" outline> Critical </ix-pill>
-      <ix-pill variant="alarm" icon="print"> Alarm with icon </ix-pill>
-      <ix-pill
+    <div style="text-align: center; margin-top: 2rem">
+      <ix-pill outline> Primary </ix-pill
+      ><ix-pill icon="print">Primary with icon</ix-pill
+      ><ix-pill
+        icon="print"
+        style="width: 10rem"
+        onClose="{console.log}"
+        >Primary</ix-pill
+      ><ix-pill
+        variant="critical"
+        icon="print"
+        outline
+      >
+        Critical </ix-pill
+      ><ix-pill variant="alarm" icon="print">
+        Alarm with icon </ix-pill
+      ><ix-pill
         variant="alarm"
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Alarm
-      </ix-pill>
-      <ix-pill
+        >Alarm</ix-pill
+      ><ix-pill
         variant="warning"
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Warning
-      </ix-pill>
-      <ix-pill
+        >Warning</ix-pill
+      ><ix-pill
         background="purple"
         pill-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Custom
-      </ix-pill>
-
-      <ix-pill
+        >Custom</ix-pill
+      ><ix-pill
         background="purple"
         pill-color="green"
         variant="custom"
@@ -74,55 +72,43 @@ SPDX-License-Identifier: MIT
         style="width: 10rem"
         onClose="{console.log}"
         outline
+        >Custom</ix-pill
       >
-        Custom
-      </ix-pill>
     </div>
 
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        position: relative;
-        margin-top: 2rem;
-      "
-    >
-      <ix-pill align-left outline> Primary </ix-pill>
-      <ix-pill align-left icon="print">Primary with icon</ix-pill>
-      <ix-pill
+    <div style="text-align: center; margin-top: 2rem">
+      <ix-pill align-left outline> Primary </ix-pill
+      ><ix-pill align-left icon="print"
+        >Primary with icon</ix-pill
+      ><ix-pill
         align-left
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Primary
-      </ix-pill>
-
-      <ix-pill align-left variant="critical" icon="print" outline>
-        Critical
-      </ix-pill>
-      <ix-pill align-left variant="alarm" icon="print">
-        Alarm with icon
-      </ix-pill>
-      <ix-pill
+        >Primary</ix-pill
+      ><ix-pill
+        align-left
+        variant="critical"
+        icon="print"
+        outline
+        >Critical</ix-pill
+      ><ix-pill align-left variant="alarm" icon="print"
+        >Alarm with icon</ix-pill
+      ><ix-pill
         align-left
         variant="alarm"
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Alarm
-      </ix-pill>
-      <ix-pill
+        >Alarm</ix-pill
+      ><ix-pill
         align-left
         variant="warning"
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Alarm
-      </ix-pill>
-      <ix-pill
+        >Alarm</ix-pill
+      ><ix-pill
         align-left
         background="purple"
         pill-color="green"
@@ -130,11 +116,8 @@ SPDX-License-Identifier: MIT
         icon="print"
         style="width: 10rem"
         onClose="{console.log}"
-      >
-        Custom
-      </ix-pill>
-
-      <ix-pill
+        >Custom</ix-pill
+      ><ix-pill
         align-left
         background="purple"
         pill-color="green"
@@ -143,9 +126,8 @@ SPDX-License-Identifier: MIT
         style="width: 10rem"
         onClose="{console.log}"
         outline
+        >Custom</ix-pill
       >
-        Custom
-      </ix-pill>
     </div>
     <div
       style="
@@ -167,9 +149,20 @@ SPDX-License-Identifier: MIT
         margin-top: 2rem;
       "
     >
-      <ix-pill align-left icon="print" style="width: 10rem"></ix-pill>
-      <ix-pill outline align-left icon="print" style="width: 10rem"></ix-pill>
-      <ix-pill align-left style="width: 10rem">Primary</ix-pill>
+      <ix-pill
+        align-left
+        icon="print"
+        style="width: 10rem"
+      ></ix-pill>
+      <ix-pill
+        outline
+        align-left
+        icon="print"
+        style="width: 10rem"
+      ></ix-pill>
+      <ix-pill align-left style="width: 10rem"
+        >Primary</ix-pill
+      >
     </div>
     <div style="text-align: center; margin-top: 2rem">
       <ix-pill>Label</ix-pill>

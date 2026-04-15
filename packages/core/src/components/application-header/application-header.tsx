@@ -365,6 +365,7 @@ export class ApplicationHeader {
           'hide-bottom-border': this.hideBottomBorder,
         }}
         slot="application-header"
+        role="banner"
       >
         <div class="left-side">
           {this.appIcon && this.breakpoint !== 'sm' && (

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +26,15 @@ LICENSE file in the root directory of this source tree.
       import {
         getComputedCSSProperty,
         registerTheme,
+        resolveEChartThemeName,
       } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
-      function initChart(theme, options) {
+      function initChart(options) {
+        const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme);
         myChart.setOption(options);
 
@@ -47,52 +49,58 @@ LICENSE file in the root directory of this source tree.
         { value: 6.11, name: 'Other' },
       ];
 
-      const options = {
-        tooltip: {
-          trigger: 'item',
-        },
-        legend: {
-          icon: 'rect',
-          bottom: '0',
-          left: '0',
-        },
-        series: [
-          {
-            name: 'OS Share',
-            type: 'pie',
-            radius: ['60%', '90%'],
-            label: {
-              show: true,
-              color: getComputedCSSProperty('color-neutral'),
-            },
-            emphasis: {
+      function getOptions() {
+        return {
+          tooltip: {
+            trigger: 'item',
+          },
+          legend: {
+            icon: 'rect',
+            bottom: '0',
+            left: '0',
+          },
+          series: [
+            {
+              name: 'OS Share',
+              type: 'pie',
+              radius: ['60%', '90%'],
               label: {
                 show: true,
-                fontSize: 25,
-                fontWeight: 'bold',
+                color: getComputedCSSProperty('color-neutral'),
               },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: 25,
+                  fontWeight: 'bold',
+                },
+              },
+              labelLine: {
+                show: true,
+              },
+              data: data,
             },
-            labelLine: {
-              show: true,
-            },
-            data: data,
-          },
-        ],
-      };
+          ],
+        };
+      }
 
       // providing echarts is in this case optional
       registerTheme(echarts);
 
-      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      var myChart = initChart(getOptions());
 
-      themeSwitcher.themeChanged.on((theme) => {
+      const disposer = themeSwitcher.themeChanged.on(() => {
         myChart.dispose();
-        myChart = initChart(theme, options);
+        myChart = initChart(getOptions());
       });
 
       window.onresize = function () {
         myChart.resize();
       };
+
+      window.addEventListener('unload', () => {
+        disposer.dispose();
+      });
     </script>
   </body>
 </html>

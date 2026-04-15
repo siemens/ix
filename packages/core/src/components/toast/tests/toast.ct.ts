@@ -31,6 +31,28 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'sets live-region attributes for screen reader announcements',
+  async ({ mount, page }) => {
+    await mount('');
+
+    await page.evaluate(() => {
+      window.toast({
+        title: 'Info',
+        message: 'Toast announcement',
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('role', 'alert');
+    await expect(toast).toHaveAttribute('aria-live', 'polite');
+    await expect(toast).toHaveAttribute('aria-atomic', 'true');
+    await expect(toast).toContainText('Info');
+    await expect(toast).toContainText('Toast announcement');
+  }
+);
+
+regressionTest(
   'should be visible through overlays',
   async ({ mount, page }) => {
     await mount(`
@@ -125,3 +147,24 @@ regressionTest('verify isPaused method', async ({ mount, page }) => {
   }, toastHandle);
   expect(paused).toBe(false);
 });
+
+regressionTest(
+  'reflects type property to attribute',
+  async ({ mount, page }) => {
+    await mount('');
+    await page.evaluate(() => {
+      window.toast({ message: 'Default type toast' });
+    });
+    const toastEl = page.locator('ix-toast').first();
+    await expect(toastEl).toHaveClass(/hydrated/);
+    await expect(toastEl).toHaveAttribute('type', 'info');
+    for (const type of ['info', 'success', 'error', 'warning'] as const) {
+      await page.evaluate((t) => {
+        window.toast({ message: `${t} toast`, type: t });
+      }, type);
+      const lastToast = page.locator('ix-toast').last();
+      await expect(lastToast).toHaveClass(/hydrated/);
+      await expect(lastToast).toHaveAttribute('type', type);
+    }
+  }
+);

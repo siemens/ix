@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +23,7 @@ LICENSE file in the root directory of this source tree.
       const btn = document.querySelector('ix-button');
       btn.addEventListener('click', () => {
         let count = 0;
-        const progress = showModalLoading('Loading 0/2');
+        const progress = showModalLoading({ message: 'Loading 0/2' });
         const interval = setInterval(() => {
           count++;
           progress.update(`Loading ${count}/2`);

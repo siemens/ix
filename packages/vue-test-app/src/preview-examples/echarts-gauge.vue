@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -29,11 +33,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 const value = 45.3;
 
@@ -45,99 +45,112 @@ function getGaugeColor(value: number) {
   }
 }
 
-const options: EChartsOption = {
-  series: [
-    {
-      id: '1',
-      type: 'gauge',
-      axisLine: {
-        show: true,
-        lineStyle: {
-          width: 18,
-          color: [[1, getComputedCSSProperty('color-neutral-40')]],
-        },
-      },
-      axisTick: {
-        show: false,
-      },
-      radius: '75%',
-      center: ['50%', '60%'],
-      startAngle: 180,
-      endAngle: 0,
-      splitNumber: 1,
-      splitLine: {
-        show: true,
-      },
-      axisLabel: {
-        show: true,
-        distance: 30,
-        fontSize: 16,
-        color: getComputedCSSProperty('color-std-text'),
-      },
-      progress: {
-        show: true,
-        overlap: false,
-        width: 35,
-        itemStyle: {
-          borderMiterLimit: 16,
-          color: getGaugeColor(value),
-        },
-      },
-      pointer: {
-        show: false,
-      },
-      data: [
-        {
-          value: value,
-          title: {
-            show: false,
-          },
-          detail: {
-            show: true,
-            offsetCenter: [0, -70],
-            overflow: 'break',
-            fontSize: '1.5rem',
-            width: 250,
-            lineHeight: 35,
-            color: getComputedCSSProperty('color-soft-text'),
-            formatter: '{value}Mbps \nNetwork Speed',
-          },
-          pointer: {
-            show: false,
+function getOptions(): EChartsOption {
+  return {
+    series: [
+      {
+        id: '1',
+        type: 'gauge',
+        axisLine: {
+          show: true,
+          lineStyle: {
+            width: 18,
+            color: [[1, getComputedCSSProperty('color-neutral-40')]],
           },
         },
-      ],
-    },
-    {
-      id: '2',
-      type: 'gauge',
-      splitLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        show: false,
-      },
-      axisLine: {
-        show: true,
-        lineStyle: {
-          width: 5,
-          color: [
-            [0.25, getComputedCSSProperty('color-alarm')],
-            [0.6, getComputedCSSProperty('color-warning')],
-            [1, getComputedCSSProperty('color-success')],
-          ],
+        axisTick: {
+          show: false,
         },
+        radius: '75%',
+        center: ['50%', '60%'],
+        startAngle: 180,
+        endAngle: 0,
+        splitNumber: 1,
+        splitLine: {
+          show: true,
+        },
+        axisLabel: {
+          show: true,
+          distance: 30,
+          fontSize: 16,
+          color: getComputedCSSProperty('color-std-text'),
+        },
+        progress: {
+          show: true,
+          overlap: false,
+          width: 35,
+          itemStyle: {
+            borderMiterLimit: 16,
+            color: getGaugeColor(value),
+          },
+        },
+        pointer: {
+          show: false,
+        },
+        data: [
+          {
+            value: value,
+            title: {
+              show: false,
+            },
+            detail: {
+              show: true,
+              offsetCenter: [0, -70],
+              overflow: 'break',
+              fontSize: '1.5rem',
+              width: 250,
+              lineHeight: 35,
+              color: getComputedCSSProperty('color-soft-text'),
+              formatter: '{value}Mbps \nNetwork Speed',
+            },
+            pointer: {
+              show: false,
+            },
+          },
+        ],
       },
-      radius: '80%',
-      center: ['50%', '60%'],
-      startAngle: 180,
-      endAngle: 0,
-    },
-  ],
-} as EChartsOption;
+      {
+        id: '2',
+        type: 'gauge',
+        splitLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          show: false,
+        },
+        axisLine: {
+          show: true,
+          lineStyle: {
+            width: 5,
+            color: [
+              [0.25, getComputedCSSProperty('color-alarm')],
+              [0.6, getComputedCSSProperty('color-warning')],
+              [1, getComputedCSSProperty('color-success')],
+            ],
+          },
+        },
+        radius: '80%',
+        center: ['50%', '60%'],
+        startAngle: 180,
+        endAngle: 0,
+      },
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-gauge.css"></style>

@@ -1,5 +1,115 @@
 # @siemens/ix
 
+## 4.4.0
+
+### Minor Changes
+
+- [#2453](https://github.com/siemens/ix/pull/2453) [`a88927f`](https://github.com/siemens/ix/commit/a88927faf284034ff2a7135528476cc29e837a59) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option _centered_ to **ix-modal-loading**.
+
+- [#2364](https://github.com/siemens/ix/pull/2364) [`fb7e38d`](https://github.com/siemens/ix/commit/fb7e38df37cbe16f37a4f0e70f14eaccb32c05ff) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Add property **itemCountOptions** to \*\*ix-pagination.
+
+  Fixes #2103
+
+- [#2352](https://github.com/siemens/ix/pull/2352) [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9) Thanks [@danielleroux](https://github.com/danielleroux)! - If an icon is provided via import like `<IxIcon name={iconDocument}></IxIcon>` the fallback will now be resolved. Works only if https://github.com/siemens/ix-icons/pull/112 is merged and released
+
+### Patch Changes
+
+- [#2336](https://github.com/siemens/ix/pull/2336) [`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Trigger **validityStateChange** events everytime values change for **ix-input**, **ix-number-input**, **ix-textarea**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #2315 and #2323
+
+- [#2419](https://github.com/siemens/ix/pull/2419) [`b0f7e21`](https://github.com/siemens/ix/commit/b0f7e2110a436a5467426417c0aacbc7bc37a90b) Thanks [@danielleroux](https://github.com/danielleroux)! - CSS variables updated:
+  `--theme-color-secondary--hover` from `#002E38` to `#002639`
+  `--theme-color-secondary--active` from `#00252E` to `#001D2B`
+
+- [#2391](https://github.com/siemens/ix/pull/2391) [`a66629c`](https://github.com/siemens/ix/commit/a66629c5bd7ba377db9996ceb2bccd930c1df777) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Prevent redundant eye icon in **ix-input**s of type password rendered by Microsoft user agents.
+
+  Fixes #2367.
+
+- [#2404](https://github.com/siemens/ix/pull/2404) [`07501d6`](https://github.com/siemens/ix/commit/07501d6fb131bd228eadb865c4bd56149edb6e17) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Keep user input if select items change in _ix-select_.
+
+  Fixes #1716
+
+- [#2259](https://github.com/siemens/ix/pull/2259) [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Make sure custom **ix-tree-item**s allow selection via mouse click.
+
+  Fixes #2098
+
+- [#2355](https://github.com/siemens/ix/pull/2355) [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add change event to **ix-input**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #1811
+
+- [#2357](https://github.com/siemens/ix/pull/2357) [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Toggle theme mode will work in _ix-menu_.
+
+  Fixes #2326
+
+- [#2441](https://github.com/siemens/ix/pull/2441) [`72ef7ef`](https://github.com/siemens/ix/commit/72ef7ef34a5b716a2a827dd49e7357af3a92da30) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Unify hover behavior for input end slots and use 16px icon in end-slot icon buttons.
+
+  **Affected components:** ix-input (password toggle), ix-date-input (calendar), ix-time-input (clock).
+
+- [#2408](https://github.com/siemens/ix/pull/2408) [`a5f8477`](https://github.com/siemens/ix/commit/a5f84772b3055503205547cdf04e3bb2484c70d0) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Reflect disabled state to DOM for **ix-group-item**.
+
+  Reflect disabled state to DOM for **ix-group-item**.
+
+  Fixes #2370
+
+- [#2422](https://github.com/siemens/ix/pull/2422) [`b38ca0a`](https://github.com/siemens/ix/commit/b38ca0a2548c189cd27c34beb9261b193de08af0) Thanks [@khathija-ahamadi](https://github.com/khathija-ahamadi)! - Prevent dragging of **ix-upload** element itself.
+
+  Fixes #2390
+
+- [#2410](https://github.com/siemens/ix/pull/2410) [`80cf574`](https://github.com/siemens/ix/commit/80cf5743952a01713ed51e8244ec5e504491b559) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Make sure contained elements don't close **ix-modal** unintentionally if _closeOnBackdropClick_ is set.
+
+  Fixes #2401
+
+- [#2434](https://github.com/siemens/ix/pull/2434) [`420de9b`](https://github.com/siemens/ix/commit/420de9b579b3cb7c2345e75e7339bcfc95c13b0f) Thanks [@danielleroux](https://github.com/danielleroux)! - Update color tokens from input elements
+
+- [#2363](https://github.com/siemens/ix/pull/2363) [`c4c70a9`](https://github.com/siemens/ix/commit/c4c70a9d9f52f150a8b727f845b7aabf297e2939) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed a floating point precision error when using stepper buttons in **ix-number-input**. Closes #2360
+
+- [#2381](https://github.com/siemens/ix/pull/2381) [`a35d9b7`](https://github.com/siemens/ix/commit/a35d9b78409a0927193f4277f35b03490dd0d3d4) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Show overflow context menu only if neccessary (small viewport or explicit overflow content) in _ix-application-header_.
+
+  Fixes #2346
+
+- [#2377](https://github.com/siemens/ix/pull/2377) [`3551db0`](https://github.com/siemens/ix/commit/3551db057e91abe2d5dac1db83034a654e0a062b) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Submit forms with submit button element, only if button is accessible in light DOM to prevent error.
+
+  Fixes #2362
+
+- [#2440](https://github.com/siemens/ix/pull/2440) [`d980365`](https://github.com/siemens/ix/commit/d9803655eae044f15c67520cffb797f217fa02aa) Thanks [@danielleroux](https://github.com/danielleroux)! - Add missing time unit to css variables `--theme-default-time`, `--theme-medium-time`, `--theme-short-time`, `--theme-slow-time` and `--theme-x-slow-time`
+
+- [#2361](https://github.com/siemens/ix/pull/2361) [`ed5ef88`](https://github.com/siemens/ix/commit/ed5ef889b0fe6e5e253692722644da69df0bd8a4) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add default strings for ARIA attributes for:
+
+  - **ix-chip**
+  - **ix-date-input**
+  - **ix-date-picker**
+  - **ix-datetime-picker**
+  - **ix-drawer**
+  - **ix-dropdown-button**
+  - **ix-expanding-search**
+  - **ix-modal-header**
+  - **ix-pagination**
+  - **ix-pane**
+  - **ix-select**
+  - **ix-tabs**
+  - **ix-toast**
+  - **ix-tree-item**
+
+- [#2416](https://github.com/siemens/ix/pull/2416) [`6741f86`](https://github.com/siemens/ix/commit/6741f866aea666cfd63d63f9f642c6cd7efd6e39) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Esure correct icon orientaion and single-click close behavior in **ix-pane**.
+
+  Fixes #2325
+
+- [#2357](https://github.com/siemens/ix/pull/2357) [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - _Theme switcher_ correctly supports legacy CSS theme class based approach.
+
+- [#2293](https://github.com/siemens/ix/pull/2293) [`0933909`](https://github.com/siemens/ix/commit/09339098ba688b625034c30dc7318c7f3c5ed353) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Make sure property `textareaRows` is applied when set on **ix-textarea**.
+  Properties `textareaHeight` and `textareaWidth` handle units like REM, EM, px, and % correctly.
+
+  Fixes #1975
+
+- [#2375](https://github.com/siemens/ix/pull/2375) [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Enable keyboard interaction (toggle submenu) on **ix-menu-item** while NVDA screen reader is active.
+
+- [#2382](https://github.com/siemens/ix/pull/2382) [`ef0c635`](https://github.com/siemens/ix/commit/ef0c635c9f4def8e350caaf0fa9bac84cdba3a61) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Enable touch scrolling for **ix-tabs** on mobile devices using Pointer Events API.
+
+  Fixes #1296
+
+- [#2457](https://github.com/siemens/ix/pull/2457) [`ab2099e`](https://github.com/siemens/ix/commit/ab2099e468dfb70e7d4b640fcf631496acd5ee1d) Thanks [@SaiYugandhar03](https://github.com/SaiYugandhar03)! - Reflect the `type` as string property to the DOM of an `ix-toast`
+
 ## 4.3.0
 
 ### Minor Changes

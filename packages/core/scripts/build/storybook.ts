@@ -29,6 +29,7 @@ function kebabToCamelCase(str: string): string {
 
 export function storybookOutputTarget(config: {
   dist: string;
+  excludeComponents?: string[];
 }): OutputTargetCustom {
   const outputTarget: OutputTargetCustom = {
     type: 'custom',
@@ -40,6 +41,9 @@ export function storybookOutputTarget(config: {
       docs: JsonDocs
     ) => {
       const storyBookDefine = docs.components
+        .filter(
+          (component) => !config.excludeComponents?.includes(component.tag)
+        )
         .map((component) => {
           return `import { defineCustomElement as ${kebabToCamelCase(
             component.tag
@@ -48,6 +52,9 @@ export function storybookOutputTarget(config: {
         .join('\n');
 
       const callDefine = docs.components
+        .filter(
+          (component) => !config.excludeComponents?.includes(component.tag)
+        )
         .map((component) => {
           return `${kebabToCamelCase(component.tag)}();`;
         })

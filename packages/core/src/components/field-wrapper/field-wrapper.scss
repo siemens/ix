@@ -1,4 +1,4 @@
-@use "./field-wrapper.mixins.scss";
+@use './field-wrapper.mixins.scss';
 
 :host {
   display: flex;
@@ -20,7 +20,7 @@
     position: relative;
     justify-content: space-between;
     gap: 1rem;
-    width: min-content;
+    width: 100%;
     min-width: 100%;
   }
 

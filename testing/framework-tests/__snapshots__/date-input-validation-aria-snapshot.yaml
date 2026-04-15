@@ -1,16 +1,16 @@
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"
 - img
 - text: Info text
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"
 - img
 - text: Warning text
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"
 - img
 - text: Valid text
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"
 - img
 - text: Invalid text

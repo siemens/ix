@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -70,6 +70,10 @@
 
       &--time-picker {
         padding: 0 vars.$default-space;
+      }
+
+      &--no-padding {
+        padding: 0;
       }
     }
 

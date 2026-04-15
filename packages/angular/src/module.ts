@@ -26,8 +26,9 @@ import { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 import { IxSelectValueAccessorDirective } from './directives/control-value-accessors/select-value-accessor';
 import { IxRadioValueAccessorDirective } from './directives/control-value-accessors/radio-value-accessor';
 import { IxBooleanValueAccessorDirective } from './directives/control-value-accessors/boolean-value-accessor';
-import { IxDateValueAccessorDirective } from './directives/control-value-accessors/date-value-accessor';
+import { IxDateValueAccessorDirective } from './directives/control-value-accessors';
 import { IxTimeValueAccessorDirective } from './directives/control-value-accessors/time-value-accessor';
+import { IxDatetimeValueAccessorDirective } from './directives/control-value-accessors/datetime-value-accessor';
 
 const DECLARATIONS = [
   ...DIRECTIVES,
@@ -40,6 +41,7 @@ const DECLARATIONS = [
   IxBooleanValueAccessorDirective,
   IxDateValueAccessorDirective,
   IxTimeValueAccessorDirective,
+  IxDatetimeValueAccessorDirective,
 ];
 
 @NgModule({

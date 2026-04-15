@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   ClassMutationObserver,
@@ -15,15 +15,16 @@ import {
   HTMLIxFormComponentElement,
   isIxInputFieldComponent,
 } from '../utils/input';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-field-label',
   styleUrl: 'field-label.scss',
   shadow: true,
 })
-export class FormFieldLabel implements IxComponent {
+export class FormFieldLabel implements IxComponentInterface {
   @Element() hostElement!: HTMLIxFieldLabelElement;
 
   /**
@@ -44,6 +45,8 @@ export class FormFieldLabel implements IxComponent {
 
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;
+
+  @State() textOverflow: 'wrap' | 'no-wrap' = 'wrap';
 
   private explicitIsInvalid: boolean | undefined = undefined;
 
@@ -79,6 +82,10 @@ export class FormFieldLabel implements IxComponent {
 
   componentWillRender() {
     this.checkForInternalState();
+
+    if (closestPassShadow(this.hostElement, 'ix-range-field')) {
+      this.textOverflow = 'no-wrap';
+    }
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -189,7 +196,13 @@ export class FormFieldLabel implements IxComponent {
 
   render() {
     return (
-      <Host onClick={() => this.focusOnClick()}>
+      <Host
+        onClick={() => this.focusOnClick()}
+        class={{
+          'text-overflow-wrap': this.textOverflow === 'wrap',
+          'text-overflow-no-wrap': this.textOverflow === 'no-wrap',
+        }}
+      >
         <label
           htmlFor={this.htmlFor}
           {...this.a11yAttributes}

@@ -296,22 +296,6 @@ regressionTest(
   }
 );
 
-regressionTest('should have correct aria label', async ({ mount, page }) => {
-  await mount(`
-    <ix-menu pinned>
-      <ix-menu-item>Random</ix-menu-item>
-    </ix-menu>
-  `);
-
-  const expandButton = page.locator('ix-menu').locator('ix-menu-expand-icon');
-
-  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
-
-  await expandButton.click();
-
-  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
-});
-
 regressionTest(
   'should collapse category when menu is programmatically collapsed',
   async ({ mount, page }) => {
@@ -328,8 +312,8 @@ regressionTest(
   `,
       {
         icons: {
-          iconRocket,
           iconGlobe,
+          iconRocket,
         },
       }
     );

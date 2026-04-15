@@ -20,6 +20,7 @@ regressionTest.describe('time picker', () => {
 
   regressionTest('formats', async ({ page }) => {
     await page.goto('time-picker/formats');
+    await page.mouse.click(0, 0);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixels: 25,
     });
