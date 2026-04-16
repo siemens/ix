@@ -52,6 +52,7 @@ export class CategoryFilter {
   private focusInListener?: DisposableEventListener;
   private focusOutListener?: DisposableEventListener;
   private inputListener?: DisposableEventListener;
+  private arrowKeyListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
   private tokenContainerEl?: HTMLDivElement;
@@ -256,7 +257,7 @@ export class CategoryFilter {
    * If true, disables the free-text search functionality.
    * When disabled, the "Search for ..." option will not appear in the dropdown.
    */
-  @Prop() disableSearch = false;
+  @Prop() disableFreeTextSearch = false;
 
   /**
    * If true, shows a loading spinner inside the dropdown.
@@ -341,13 +342,6 @@ export class CategoryFilter {
       if (e.code === 'Enter' || e.code === 'NumpadEnter') {
         this.handleEmptyStateButtonEnter();
         // ArrowDown for empty state needs to be handled sepparately since dropdown keyboard nav only works with dropdown-item
-      } else if (e.code === 'ArrowDown') {
-        const seeAllOptionsButton =
-          this.hostElement.shadowRoot?.querySelector<HTMLElement>(
-            `.empty-state ix-button`
-          );
-
-        seeAllOptionsButton?.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
       }
       return;
     }
@@ -394,7 +388,72 @@ export class CategoryFilter {
         this.hostElement.shadowRoot?.querySelector<HTMLIxDropdownItemElement>(
           'ix-dropdown-item'
         );
-      first?.focus();
+      removeVisibleFocus();
+      first?.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+    });
+  }
+
+  private clearAllDropdownVisualFocus(): void {
+    removeVisibleFocus();
+    this.hostElement.shadowRoot
+      ?.querySelectorAll<HTMLElement>(`.${IX_FOCUS_VISIBLE_ACTIVE}`)
+      .forEach((el) => el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE));
+  }
+
+  private handleInputArrowKey(e: KeyboardEvent): void {
+    if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') {
+      return;
+    }
+
+    const emptyStateButton =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+        '.empty-state ix-button'
+      );
+    if (!emptyStateButton) {
+      return;
+    }
+
+    const dropdownItems = Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+        'ix-dropdown-item'
+      ) ?? []
+    );
+
+    const buttonFocused = emptyStateButton.classList.contains(
+      IX_FOCUS_VISIBLE_ACTIVE
+    );
+    const focusedIndex = dropdownItems.findIndex((item) =>
+      item.classList.contains(IX_FOCUS_VISIBLE_ACTIVE)
+    );
+    const atLastItem =
+      focusedIndex >= 0 && focusedIndex === dropdownItems.length - 1;
+
+    if (e.code === 'ArrowDown' && (atLastItem || buttonFocused)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if (atLastItem) {
+        this.clearAllDropdownVisualFocus();
+        emptyStateButton.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+      }
+    } else if (e.code === 'ArrowUp' && buttonFocused) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      this.clearAllDropdownVisualFocus();
+      dropdownItems.at(-1)?.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+    }
+  }
+
+  private focusFirstResultItem(): void {
+    requestAnimationFrameNoNgZone(() => {
+      const first =
+        this.hostElement.shadowRoot?.querySelector<HTMLIxDropdownItemElement>(
+          'ix-dropdown-item:not(.search-token-item)'
+        );
+      if (!first) {
+        return;
+      }
+      removeVisibleFocus();
+      first.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
     });
   }
 
@@ -415,21 +474,14 @@ export class CategoryFilter {
   }
 
   private setNavigationFocus(item: HTMLElement): void {
-    // Remove visual focus from any previously focused empty-state button
     this.hostElement.shadowRoot
       ?.querySelector(`.empty-state ix-button.${IX_FOCUS_VISIBLE_ACTIVE}`)
       ?.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
 
     if (item.tagName === 'IX-BUTTON') {
-      // Don't call .focus() on ix-button — delegatesFocus would steal
-      // real DOM focus from the input. Instead, clear dropdown item
-      // visual focus and manually set the class.
       removeVisibleFocus();
       item.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
     } else {
-      // For dropdown items, .focus() triggers the monkey-patched focus
-      // which adds ix-focused via updateFocusState without moving real
-      // DOM focus (no tabindex, delegatesFocus: false).
       item.focus();
     }
   }
@@ -534,6 +586,10 @@ export class CategoryFilter {
           value.toLowerCase().includes(newValue.toLowerCase())
         );
     }
+
+    if (newValue) {
+      this.focusFirstResultItem();
+    }
   }
 
   private isCategoryAlreadySet(categoryKey: string): boolean {
@@ -550,18 +606,23 @@ export class CategoryFilter {
     }
 
     e?.stopPropagation();
+
     this.selectedCategory = null;
     this.selectedOperand = null;
     this.selectedValue = null;
     this.filterValues = [];
     this.isDropdownOpen = false;
     this.showRemainingFilterValuesDropdown = false;
+    this.inputValue = '';
+    this.placeholderState = this.placeholder ?? '';
+    this.categoriesAvailableForSelection = this.categories ?? [];
+
     if (this.textInput?.current) {
       this.textInput.current.value = '';
     }
-    this.inputValue = '';
-    this.placeholderState = this.placeholder ?? '';
+
     this.filterChanged.emit(this.filterValues);
+    this.textInput?.current?.focus();
   };
 
   private resetCurrentSelection() {
@@ -923,7 +984,7 @@ export class CategoryFilter {
 
   private combineFilter() {
     if (!this.selectedCategory || !this.selectedOperand) {
-      if (this.inputValue && !this.disableSearch) {
+      if (this.inputValue && !this.disableFreeTextSearch) {
         this.addSearchToken(this.inputValue);
         return;
       }
@@ -1090,7 +1151,7 @@ export class CategoryFilter {
   }
 
   private shouldShowSearchOption(): boolean {
-    if (this.disableSearch || !this.inputValue) {
+    if (this.disableFreeTextSearch || !this.inputValue) {
       return false;
     }
     const noCategorySelected = !this.selectedCategory;
@@ -1179,6 +1240,12 @@ export class CategoryFilter {
         'input',
         () => this.onInput()
       );
+
+      this.arrowKeyListener = addDisposableEventListener(
+        this.textInput.current,
+        'keydown',
+        (e: Event) => this.handleInputArrowKey(e as KeyboardEvent)
+      );
     }
 
     this.chipsResizeObserver = new ResizeObserver(() => {
@@ -1195,6 +1262,7 @@ export class CategoryFilter {
     this.focusInListener?.();
     this.focusOutListener?.();
     this.inputListener?.();
+    this.arrowKeyListener?.();
     this.chipsResizeObserver?.disconnect();
   }
 
@@ -1329,7 +1397,6 @@ export class CategoryFilter {
                     this.readonly ||
                     this.disabled ||
                     this.selectedCategory !== null,
-                  'input-spacing': this.filterValues.length > 0,
                 }}
                 autocomplete="off"
                 name="category-filter-input"
@@ -1351,8 +1418,7 @@ export class CategoryFilter {
                 'reset-button': true,
                 'hide-reset-button': !this.hasActiveFilterOrCategory(),
               }}
-              variant="tertiary"
-              oval
+              variant="subtle-tertiary"
               icon={iconClear}
               iconColor="color-soft-text"
               size="16"
@@ -1377,6 +1443,7 @@ export class CategoryFilter {
             {this.shouldShowSearchOption() ? (
               <div>
                 <ix-dropdown-item
+                  class="search-token-item"
                   onClick={() => this.addSearchToken(this.inputValue)}
                 >
                   {this.getSearchInformationText()}

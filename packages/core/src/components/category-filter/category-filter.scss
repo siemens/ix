@@ -29,6 +29,7 @@
     position: absolute;
     top: vars.$tiny-space;
     right: vars.$tiny-space;
+    border-radius: var(--theme-input--border-radius);
   }
 
   .reset-button.hide-reset-button {
@@ -114,10 +115,6 @@
     &.hide-placeholder::placeholder {
       opacity: 0;
     }
-  }
-
-  .input-spacing {
-    margin-left: 8px;
   }
 
   .list-unstyled {

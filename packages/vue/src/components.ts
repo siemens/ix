@@ -299,7 +299,7 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'i18nRemoveValueSubtext',
   'i18nRemoveInputSubtext',
   'i18nSeeAllOptions',
-  'disableSearch',
+  'disableFreeTextSearch',
   'isLoading',
   'hasError',
   'ariaLabelResetButton',

@@ -380,7 +380,7 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         i18nRemoveValueSubtext: 'i-1-8n-remove-value-subtext',
         i18nRemoveInputSubtext: 'i-1-8n-remove-input-subtext',
         i18nSeeAllOptions: 'i-1-8n-see-all-options',
-        disableSearch: 'disable-search',
+        disableFreeTextSearch: 'disable-free-text-search',
         isLoading: 'is-loading',
         hasError: 'has-error',
         ariaLabelResetButton: 'aria-label-reset-button',
