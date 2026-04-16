@@ -153,7 +153,13 @@ regressionTest.describe('suppressTopLayer feature', () => {
         await trigger.click();
 
         const dropdown = page.locator('#dropdown');
-        await expect(dropdown).toHaveClass(/show/);
+        await expect
+          .poll(() =>
+            dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+              Boolean(dropdownElement.show)
+            )
+          )
+          .toBe(true);
 
         const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();

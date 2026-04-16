@@ -36,7 +36,15 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   await expect(menuAvatar).toBeVisible();
   await menuAvatar.click();
 
-  await expect(menuAvatar.locator('ix-dropdown')).toHaveClass(/show/);
+  await expect
+    .poll(() =>
+      menuAvatar
+        .locator('ix-dropdown')
+        .evaluate((dropdownElement: HTMLIxDropdownElement) =>
+          Boolean(dropdownElement.show)
+        )
+    )
+    .toBe(true);
 
   const menuAvatarItem = menuAvatar.locator('ix-menu-avatar-item').nth(0);
   await menuAvatarItem.click();
@@ -44,12 +52,24 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   const dropdown1 = page.locator('#d1');
   const dropdown2 = page.locator('#d2');
 
-  await expect(dropdown1).toHaveClass(/show/);
+  await expect
+    .poll(() =>
+      dropdown1.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
 
   const dropdown2Trigger = dropdown1
     .locator('ix-dropdown-item')
     .filter({ hasText: 'SubMenuItem 4' });
   await dropdown2Trigger.click();
 
-  await expect(dropdown2).toHaveClass(/show/);
+  await expect
+    .poll(() =>
+      dropdown2.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
 });

@@ -87,7 +87,13 @@ regressionTest.describe('date dropdown tests', () => {
       await dateDropdown.click();
 
       const dropdown = dateDropdown.locator('#date-dropdown');
-      await expect(dropdown).toHaveClass(/show/);
+      await expect
+        .poll(() =>
+          dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+            Boolean(dropdownElement.show)
+          )
+        )
+        .toBe(true);
 
       const intervalOptionsButton = dateDropdown.getByRole('button', {
         name: /Last 7 days/,
@@ -95,9 +101,15 @@ regressionTest.describe('date dropdown tests', () => {
       await intervalOptionsButton.click();
 
       await page.keyboard.press('Escape');
-      await expect(dateDropdown.locator('#date-dropdown')).not.toHaveClass(
-        /show/
-      );
+      await expect
+        .poll(() =>
+          dateDropdown
+            .locator('#date-dropdown')
+            .evaluate((dropdownElement: HTMLIxDropdownElement) =>
+              Boolean(dropdownElement.show)
+            )
+        )
+        .toBe(false);
 
       const dateRangeRegex = /\d{4}\/\d{2}\/\d{2} - \d{4}\/\d{2}\/\d{2}/;
 

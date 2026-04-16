@@ -222,12 +222,24 @@ regressionTest('dropdown trigger', async ({ mount, page }) => {
   const item1 = tree.locator('ix-tree-item').nth(1);
   const dropdown1 = item1.locator('ix-dropdown');
   await item1.click();
-  await expect(dropdown1).toHaveClass(/show/);
+  await expect
+    .poll(() =>
+      dropdown1.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
 
   const item2 = tree.locator('ix-tree-item').nth(2);
   const dropdown2 = item2.locator('ix-dropdown');
   await item2.click();
-  await expect(dropdown2).toHaveClass(/show/);
+  await expect
+    .poll(() =>
+      dropdown2.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
 });
 
 regressionTest(
