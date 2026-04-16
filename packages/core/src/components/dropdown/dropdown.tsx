@@ -53,6 +53,10 @@ import {
   hasKeyboardMode,
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
@@ -72,8 +76,8 @@ let sequenceId = 0;
   shadow: true,
 })
 export class Dropdown
-  extends Mixin(...DefaultMixins)
-  implements DropdownInterface
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements DropdownInterface, TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxDropdownElement;
 
@@ -139,14 +143,6 @@ export class Dropdown
    * @since 4.3.0
    */
   @Prop() disableFocusTrap = false;
-
-  /**
-   * Enable Popover API rendering for top-layer positioning.
-   *
-   * @default false in v4.x, will default to true in v5.0.0
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
@@ -619,7 +615,7 @@ export class Dropdown
       }
       this.cleanupOnHide();
 
-      if (this.enableTopLayer) {
+      if (this.useTopLayer) {
         await this.hideDialog();
       }
 
@@ -661,7 +657,7 @@ export class Dropdown
       this.triggerElement.ariaExpanded = 'true';
     }
 
-    if (this.enableTopLayer) {
+    if (this.useTopLayer) {
       const popover = await this.dialogRef.waitForCurrent();
       if (!popover) {
         return;
@@ -754,7 +750,7 @@ export class Dropdown
   }
 
   private async applyDropdownPosition() {
-    const targetElement: HTMLElement = this.enableTopLayer
+    const targetElement: HTMLElement = this.useTopLayer
       ? await this.dialogRef.waitForCurrent()
       : this.hostElement;
 
@@ -776,7 +772,7 @@ export class Dropdown
 
     let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
-    if (this.enableTopLayer) {
+    if (this.useTopLayer) {
       // Popover API only supports fixed positioning
       strategy = 'fixed';
     }
@@ -986,10 +982,10 @@ export class Dropdown
           'dropdown-menu': true,
           show: this.show,
           // overflow handling not needed when using top-layer
-          overflow: !this.suppressOverflowBehavior && !this.enableTopLayer,
+          overflow: !this.suppressOverflowBehavior && !this.useTopLayer,
         }}
         style={
-          this.enableTopLayer
+          this.useTopLayer
             ? {}
             : {
                 margin: '0',
@@ -999,7 +995,7 @@ export class Dropdown
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
-        {this.enableTopLayer ? (
+        {this.useTopLayer ? (
           <dialog
             role="presentation"
             ref={this.dialogRef}
