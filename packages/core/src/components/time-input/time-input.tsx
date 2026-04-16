@@ -58,6 +58,10 @@ import {
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 
 /**
  * @since 3.2.0
@@ -74,8 +78,11 @@ import type { TimeInputValidityState } from './time-input.types';
   formAssociated: true,
 })
 export class TimeInput
-  extends Mixin(...DefaultMixins, InputPickerMixin)
-  implements IxInputFieldComponent<string>, InputPickerMixinContract
+  extends Mixin(...DefaultMixins, InputPickerMixin, TopLayerMixin)
+  implements
+    IxInputFieldComponent<string>,
+    InputPickerMixinContract,
+    TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
@@ -235,14 +242,6 @@ export class TimeInput
    * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * ARIA label for the time picker toggle button
@@ -601,7 +600,7 @@ export class TimeInput
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {

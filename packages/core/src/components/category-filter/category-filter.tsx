@@ -15,6 +15,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -25,6 +26,11 @@ import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { makeRef } from '../utils/make-ref';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
@@ -36,7 +42,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
   styleUrl: 'category-filter.scss',
   shadow: true,
 })
-export class CategoryFilter {
+export class CategoryFilter
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements TopLayerMixinContract
+{
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
   private formKeyDownListener?: DisposableEventListener;
@@ -51,7 +60,7 @@ export class CategoryFilter {
   private isScrollStateDirty?: boolean;
   private a11yAttributes?: A11yAttributes;
 
-  @Element() hostElement!: HTMLIxCategoryFilterElement;
+  @Element() override hostElement!: HTMLIxCategoryFilterElement;
 
   @State() showDropdown = false;
   @State() hasFocus = false;
@@ -170,14 +179,6 @@ export class CategoryFilter {
   @Prop() ariaLabelFilterInput?: string;
 
   /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
-
-  /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
   @Event() categoryChanged!: EventEmitter<string>;
@@ -228,11 +229,11 @@ export class CategoryFilter {
     }
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     setTimeout(() => {
       if (this.filterState !== undefined) {
         this.setFilterState(this.filterState);
@@ -788,14 +789,14 @@ export class CategoryFilter {
     return this.i18nPlainText;
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (this.isScrollStateDirty) {
       this.textInput?.current?.scrollIntoView();
       this.isScrollStateDirty = false;
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     if (this.preventDefaultListener) {
       this.preventDefaultListener();
     }
@@ -847,7 +848,7 @@ export class CategoryFilter {
     return 'color-primary';
   }
 
-  render() {
+  override render() {
     return (
       <Host>
         <form ref={(el) => (this.formElement = el)}>
@@ -931,7 +932,7 @@ export class CategoryFilter {
             anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
-            enableTopLayer={this.enableTopLayer}
+            suppressTopLayer={this.suppressTopLayer}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>

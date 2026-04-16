@@ -12,6 +12,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -44,6 +45,11 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
 
@@ -62,9 +68,10 @@ import { DateTimeInputValidityState } from './datetime-input.types';
   formAssociated: true,
 })
 export class DatetimeInput
-  implements IxInputFieldComponent<string | undefined>
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements IxInputFieldComponent<string | undefined>, TopLayerMixinContract
 {
-  @Element() hostElement!: HTMLIxDatetimeInputElement;
+  @Element() override hostElement!: HTMLIxDatetimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /** Name of the form control for form submission */
@@ -154,11 +161,6 @@ export class DatetimeInput
 
   /** Text alignment within the input field */
   @Prop() textAlignment: 'start' | 'end' = 'start';
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /** Emitted when the datetime value changes. Payload is display format or undefined */
   @Event() valueChange!: EventEmitter<string | undefined>;
@@ -512,7 +514,7 @@ export class DatetimeInput
     }
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -524,7 +526,7 @@ export class DatetimeInput
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -546,7 +548,7 @@ export class DatetimeInput
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -647,7 +649,7 @@ export class DatetimeInput
     );
   }
 
-  render() {
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
@@ -682,7 +684,7 @@ export class DatetimeInput
           class="datetime-dropdown"
           closeBehavior="outside"
           data-testid="datetime-dropdown"
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           ref={this.dropdownElementRef}
           show={this.show}
           suppressOverflowBehavior

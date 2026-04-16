@@ -24,7 +24,6 @@ const createAccessor = async (dateTimeInput: Locator) => {
       const trigger = dateTimeInput.locator('ix-icon-button').first();
       await trigger.click();
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect(dropdown).toBeVisible();
       await expect(dropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
@@ -55,7 +54,6 @@ const createAccessor = async (dateTimeInput: Locator) => {
     },
     expectCalendarToBeVisible: async () => {
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect(dropdown).toBeVisible();
       await expect(dropdown).toHaveClass(/show/);
     },
     expectToHaveErrorMessage: async (message: string) => {

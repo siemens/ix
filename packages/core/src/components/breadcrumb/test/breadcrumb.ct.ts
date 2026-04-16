@@ -73,7 +73,7 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
   const dropdownItem2 = showHiddenButton.getByRole('menuitem', {
     name: /Item 2/,
   });
-  await expect(dropdownElement).toBeVisible();
+  await expect(dropdownElement).toHaveClass(/show/);
   await expect(dropdownItem1).toBeVisible();
   await expect(dropdownItem2).toBeVisible();
 });
@@ -120,7 +120,7 @@ regressionTest('should show next items', async ({ mount, page }) => {
 
   const item1 = lastItem.getByRole('menuitem', { name: /Next Item 1/ });
   const item2 = lastItem.getByRole('menuitem', { name: /Next Item 2/ });
-  await expect(dropdownElement).toBeVisible();
+  await expect(dropdownElement).toHaveClass(/show/);
 
   await expect(item1).toHaveText(/Next Item 1/);
   await expect(item2).toHaveText(/Next Item 2/);
@@ -163,7 +163,6 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('ArrowDown');
 
     const previousDropdown = previousButton.locator('ix-dropdown');
-    await expect(previousDropdown).toBeVisible();
     await expect(previousDropdown).toHaveClass(/show/);
 
     const item1 = previousButton.getByRole('menuitem', { name: 'Item 1' });
@@ -199,7 +198,6 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('ArrowDown');
 
     const nextDropdown = nextButton.locator('ix-dropdown');
-    await expect(nextDropdown).toBeVisible();
     await expect(nextDropdown).toHaveClass(/show/);
 
     const item1 = nextButton.getByRole('menuitem', { name: 'Next Item 1' });

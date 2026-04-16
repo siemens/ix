@@ -36,6 +36,10 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { closestPassShadow } from '../utils/shadow-dom';
 
 @Component({
@@ -46,8 +50,16 @@ import { closestPassShadow } from '../utils/shadow-dom';
   },
 })
 export class DropdownButton
-  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
-  implements AriaActiveDescendantMixinContract, ComponentIdMixinContract
+  extends Mixin(
+    ...DefaultMixins,
+    ComponentIdMixin,
+    AriaActiveDescendantMixin,
+    TopLayerMixin
+  )
+  implements
+    AriaActiveDescendantMixinContract,
+    ComponentIdMixinContract,
+    TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxDropdownButtonElement;
 
@@ -95,14 +107,6 @@ export class DropdownButton
    * @since 5.0.0
    */
   @Prop() focusCheckedItem: boolean = false;
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
@@ -293,7 +297,7 @@ export class DropdownButton
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}

@@ -22,6 +22,10 @@ import {
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
@@ -31,7 +35,10 @@ import { createMutationObserver } from '../utils/mutation-observer';
     delegatesFocus: true,
   },
 })
-export class Breadcrumb extends Mixin(...DefaultMixins) {
+export class Breadcrumb
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements TopLayerMixinContract
+{
   @Element() override hostElement!: HTMLIxBreadcrumbElement;
 
   /**
@@ -58,14 +65,6 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
    * with conditionally hidden previous items
    */
   @Prop() ariaLabelPreviousButton = 'Show previous breadcrumb items';
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Crumb item clicked event
@@ -156,7 +155,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
             label="..."
             variant="tertiary"
             class="previous-button"
-            enableTopLayer={this.enableTopLayer}
+            suppressTopLayer={this.suppressTopLayer}
           >
             <ix-icon
               slot="button-label"
@@ -190,7 +189,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
             label={labelLastItem.label ?? labelLastItem.innerText}
             class="next-button"
             variant="tertiary"
-            enableTopLayer={this.enableTopLayer}
+            suppressTopLayer={this.suppressTopLayer}
             aria-current="page"
           >
             <ix-icon

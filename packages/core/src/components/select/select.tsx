@@ -51,6 +51,10 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
+import {
   FocusProxy,
   PROXY_LIST_ID_SUFFIX,
   PROXY_LISTITEM_ID_SUFFIX,
@@ -71,11 +75,17 @@ let selectId = 0;
   formAssociated: true,
 })
 export class Select
-  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  extends Mixin(
+    ...DefaultMixins,
+    ComponentIdMixin,
+    AriaActiveDescendantMixin,
+    TopLayerMixin
+  )
   implements
     IxInputFieldComponent<string | string[]>,
     AriaActiveDescendantMixinContract,
-    ComponentIdMixinContract
+    ComponentIdMixinContract,
+    TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
@@ -228,14 +238,6 @@ export class Select
    * Show "all" chip when all items are selected in multiple mode
    */
   @Prop() collapseMultipleSelection = false;
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Value changed
@@ -991,7 +993,7 @@ export class Select
           }}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           overwriteDropdownStyle={async () => {
             const styleOverwrites: Partial<CSSStyleDeclaration> = {};
 

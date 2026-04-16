@@ -34,6 +34,10 @@ import type {
   DateRangeChangeEvent,
 } from './date-dropdown.types';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { BaseButton } from '../button/base-button';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
@@ -44,10 +48,11 @@ import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
   shadow: true,
 })
 export class DateDropdown
-  extends Mixin(...DefaultMixins)
+  extends Mixin(...DefaultMixins, TopLayerMixin)
   implements
     Omit<IxDatePickerComponent, 'corners'>,
-    Omit<IxButtonComponent, 'type' | 'icon'>
+    Omit<IxButtonComponent, 'type' | 'icon'>,
+    TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxDateDropdownElement;
 
@@ -181,14 +186,6 @@ export class DateDropdown
 
   /** @internal */
   @Prop() today = DateTime.now().toISO();
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * EventEmitter for date range change events.
@@ -367,7 +364,7 @@ export class DateDropdown
           trigger={this.triggerRef.waitForCurrent()}
           closeBehavior="outside"
           placement="bottom-start"
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {
             this.show = show;

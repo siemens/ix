@@ -18,13 +18,13 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
         <ix-menu-avatar-item label="test" id="submenu-01"></ix-menu-avatar-item>
       </ix-menu-avatar>
     </ix-menu>
-    <ix-dropdown trigger="submenu-01" id="d1">
+    <ix-dropdown trigger="submenu-01" id="d1" suppress-top-layer="true">
       <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
       <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
       <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
       <ix-dropdown-item id="submenu-02">SubMenuItem 4</ix-dropdown-item>
     </ix-dropdown>
-    <ix-dropdown trigger="submenu-02" id="d2">
+    <ix-dropdown trigger="submenu-02" id="d2" suppress-top-layer="true">
       <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
       <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
       <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
@@ -36,7 +36,7 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   await expect(menuAvatar).toBeVisible();
   await menuAvatar.click();
 
-  await expect(menuAvatar.locator('ix-dropdown')).toBeVisible();
+  await expect(menuAvatar.locator('ix-dropdown')).toHaveClass(/show/);
 
   const menuAvatarItem = menuAvatar.locator('ix-menu-avatar-item').nth(0);
   await menuAvatarItem.click();
@@ -44,12 +44,12 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   const dropdown1 = page.locator('#d1');
   const dropdown2 = page.locator('#d2');
 
-  await expect(dropdown1).toBeVisible();
+  await expect(dropdown1).toHaveClass(/show/);
 
   const dropdown2Trigger = dropdown1
     .locator('ix-dropdown-item')
     .filter({ hasText: 'SubMenuItem 4' });
   await dropdown2Trigger.click();
 
-  await expect(dropdown2).toBeVisible();
+  await expect(dropdown2).toHaveClass(/show/);
 });

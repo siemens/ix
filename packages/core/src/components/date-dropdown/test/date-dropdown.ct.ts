@@ -203,7 +203,9 @@ regressionTest('set date from a button', async ({ mount, page }) => {
 });
 
 regressionTest('select different year', async ({ mount, page }) => {
-  await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
+  await mount(
+    `<ix-date-dropdown from="2024/02/16" suppress-top-layer="true"></ix-date-dropdown>`
+  );
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
 
   await expect(dateDropdown).toHaveClass(/hydrated/);

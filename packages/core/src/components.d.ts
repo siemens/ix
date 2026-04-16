@@ -219,12 +219,6 @@ export namespace Components {
          */
         "companyLogoAlt"?: string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Hides the bottom border of the header
           * @since 4.0.0
           * @default false
@@ -244,6 +238,12 @@ export namespace Components {
           * @default false
          */
         "showMenu"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
     }
     interface IxApplicationSidebar {
     }
@@ -314,12 +314,6 @@ export namespace Components {
          */
         "ariaLabelPreviousButton": string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Items will be accessible through a dropdown
           * @default []
          */
@@ -329,6 +323,12 @@ export namespace Components {
           * @default false
          */
         "subtle": boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Excess items will get hidden inside of dropdown
           * @default 9
@@ -567,12 +567,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * A set of search criteria to populate the component with.
          */
         "filterState"?: FilterState;
@@ -619,6 +613,12 @@ export namespace Components {
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * If set to true, prevents that a single category can be set more than once. An already set category will not appear in the category dropdown if set to true.
           * @default false
@@ -874,12 +874,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -934,6 +928,12 @@ export namespace Components {
          */
         "singleSelection": boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @default ''
          */
@@ -978,12 +978,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
         /**
           * Focuses the input field
          */
@@ -1073,6 +1067,12 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
+        /**
           * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'start'
          */
@@ -1128,12 +1128,6 @@ export namespace Components {
           * @default false
          */
         "embedded": boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
         "focusActiveDay": () => Promise<void>;
         "focusFirstDayOfCurrentWeek": () => Promise<void>;
         "focusLastDayOfCurrentWeek": () => Promise<void>;
@@ -1182,6 +1176,12 @@ export namespace Components {
           * @default false
          */
         "singleSelection": boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * The selected end date. If the date picker is not in range mode, this property has no impact. Format has to match the `format` property.
          */
@@ -1250,11 +1250,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-         */
-        "enableTopLayer": boolean;
         /**
           * Focus the native input element
          */
@@ -1360,6 +1355,12 @@ export namespace Components {
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Text alignment within the input field
           * @default 'start'
@@ -1551,12 +1552,6 @@ export namespace Components {
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
-          * Enable Popover API rendering for top-layer positioning.
-          * @default false in v4.x, will default to true in v5.0.0
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
           * @since 5.0.0
           * @default false
@@ -1620,6 +1615,12 @@ export namespace Components {
          */
         "suppressOverflowBehavior": boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
+        /**
           * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
           * @since 5.0.0
           * @default false
@@ -1651,12 +1652,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
           * @since 5.0.0
           * @default false
@@ -1680,6 +1675,12 @@ export namespace Components {
           * @default false
          */
         "suppressAriaActiveDescendant": boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Button variant
           * @default 'primary'
@@ -2559,12 +2560,6 @@ export namespace Components {
          */
         "bottom"?: string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Control the visibility of the logout button
           * @default false
          */
@@ -2582,6 +2577,12 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
           * @since 4.3.0.
@@ -3384,12 +3385,6 @@ export namespace Components {
          */
         "editable": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -3472,6 +3467,12 @@ export namespace Components {
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Valid text for the select component
          */
@@ -3651,12 +3652,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -3673,6 +3668,12 @@ export namespace Components {
           * Icon of the button on the right
          */
         "splitIcon"?: string;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Color variant of button
           * @default 'primary'
@@ -3887,12 +3888,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer": boolean;
-        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -4016,6 +4011,12 @@ export namespace Components {
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer": boolean;
         /**
           * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'start'
@@ -6484,12 +6485,6 @@ declare namespace LocalJSX {
          */
         "companyLogoAlt"?: string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Hides the bottom border of the header
           * @since 4.0.0
           * @default false
@@ -6518,6 +6513,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "showMenu"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
     }
     interface IxApplicationSidebar {
     }
@@ -6592,12 +6593,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousButton"?: string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Items will be accessible through a dropdown
           * @default []
          */
@@ -6615,6 +6610,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "subtle"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Excess items will get hidden inside of dropdown
           * @default 9
@@ -6871,12 +6872,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * A set of search criteria to populate the component with.
          */
         "filterState"?: FilterState;
@@ -6939,6 +6934,12 @@ declare namespace LocalJSX {
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * If set to true, prevents that a single category can be set more than once. An already set category will not appear in the category dropdown if set to true.
           * @default false
@@ -7213,12 +7214,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -7273,6 +7268,12 @@ declare namespace LocalJSX {
          */
         "singleSelection"?: boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @default ''
          */
@@ -7317,12 +7318,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
         /**
           * The `id` of a `<form>` element to associate this element with.
          */
@@ -7415,6 +7410,12 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
+        /**
           * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'start'
          */
@@ -7471,12 +7472,6 @@ declare namespace LocalJSX {
          */
         "embedded"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -7527,6 +7522,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "singleSelection"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * The selected end date. If the date picker is not in range mode, this property has no impact. Format has to match the `format` property.
          */
@@ -7594,11 +7595,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-         */
-        "enableTopLayer"?: boolean;
         /**
           * The `id` of a `<form>` element to associate this element with.
          */
@@ -7704,6 +7700,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Text alignment within the input field
           * @default 'start'
@@ -7907,12 +7909,6 @@ declare namespace LocalJSX {
          */
         "discoverAllSubmenus"?: boolean;
         /**
-          * Enable Popover API rendering for top-layer positioning.
-          * @default false in v4.x, will default to true in v5.0.0
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
           * @since 5.0.0
           * @default false
@@ -7990,6 +7986,12 @@ declare namespace LocalJSX {
          */
         "suppressOverflowBehavior"?: boolean;
         /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
+        /**
           * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
           * @since 5.0.0
           * @default false
@@ -8016,12 +8018,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
         /**
           * If true, the dropdown will try to focus checked items first when opened via keyboard, otherwise it will always focus the first focusable item.
           * @since 5.0.0
@@ -8053,6 +8049,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressAriaActiveDescendant"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Button variant
           * @default 'primary'
@@ -8997,12 +8999,6 @@ declare namespace LocalJSX {
          */
         "bottom"?: string;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Control the visibility of the logout button
           * @default false
          */
@@ -9024,6 +9020,12 @@ declare namespace LocalJSX {
           * Logout click
          */
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
           * @since 4.3.0.
@@ -9894,12 +9896,6 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
@@ -9988,6 +9984,12 @@ declare namespace LocalJSX {
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Valid text for the select component
          */
@@ -10180,12 +10182,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -10206,6 +10202,12 @@ declare namespace LocalJSX {
           * Icon of the button on the right
          */
         "splitIcon"?: string;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Color variant of button
           * @default 'primary'
@@ -10435,12 +10437,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Enable Popover API rendering for dropdown.
-          * @default false
-          * @since 4.3.0
-         */
-        "enableTopLayer"?: boolean;
-        /**
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
@@ -10567,6 +10563,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Suppress Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "suppressTopLayer"?: boolean;
         /**
           * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'start'
@@ -11115,6 +11117,7 @@ declare namespace LocalJSX {
         "forceBreakpoint": Breakpoint | undefined;
     }
     interface IxApplicationHeaderAttributes {
+        "suppressTopLayer": boolean;
         "name": string;
         "nameSuffix": string;
         "companyLogo": string;
@@ -11127,7 +11130,6 @@ declare namespace LocalJSX {
         "ariaLabelMenuExpandIconButton": string;
         "ariaLabelAppSwitchIconButton": string;
         "ariaLabelMoreMenuIconButton": string;
-        "enableTopLayer": boolean;
     }
     interface IxAvatarAttributes {
         "a11yLabel": string;
@@ -11146,10 +11148,10 @@ declare namespace LocalJSX {
         "variant": BlindVariant;
     }
     interface IxBreadcrumbAttributes {
+        "suppressTopLayer": boolean;
         "visibleItemCount": number;
         "subtle": boolean;
         "ariaLabelPreviousButton": string;
-        "enableTopLayer": boolean;
     }
     interface IxBreadcrumbItemAttributes {
         "ariaLabelButton": string;
@@ -11201,6 +11203,7 @@ declare namespace LocalJSX {
         "i18nMoreCards": string;
     }
     interface IxCategoryFilterAttributes {
+        "suppressTopLayer": boolean;
         "disabled": boolean;
         "readonly": boolean;
         "placeholder": string;
@@ -11213,7 +11216,6 @@ declare namespace LocalJSX {
         "ariaLabelResetButton": string;
         "ariaLabelOperatorButton": string;
         "ariaLabelFilterInput": string;
-        "enableTopLayer": boolean;
     }
     interface IxCheckboxAttributes {
         "name": string;
@@ -11280,6 +11282,7 @@ declare namespace LocalJSX {
         "showTextAsTooltip": boolean;
     }
     interface IxDateDropdownAttributes {
+        "suppressTopLayer": boolean;
         "disabled": boolean;
         "format": string;
         "singleSelection": boolean;
@@ -11296,9 +11299,9 @@ declare namespace LocalJSX {
         "i18nDone": string;
         "i18nNoRange": string;
         "today": string;
-        "enableTopLayer": boolean;
     }
     interface IxDateInputAttributes {
+        "suppressTopLayer": boolean;
         "name": string;
         "placeholder": string;
         "value": string;
@@ -11324,9 +11327,9 @@ declare namespace LocalJSX {
         "ariaLabelNextMonthButton": string;
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
-        "enableTopLayer": boolean;
     }
     interface IxDatePickerAttributes {
+        "suppressTopLayer": boolean;
         "format": string;
         "singleSelection": boolean;
         "corners": DateTimeCardCorners;
@@ -11344,7 +11347,6 @@ declare namespace LocalJSX {
         "showWeekNumbers": boolean;
         "embedded": boolean;
         "today": string;
-        "enableTopLayer": boolean;
     }
     interface IxDateTimeCardAttributes {
         "embedded": boolean;
@@ -11355,6 +11357,7 @@ declare namespace LocalJSX {
         "noPadding": boolean;
     }
     interface IxDatetimeInputAttributes {
+        "suppressTopLayer": boolean;
         "name": string;
         "placeholder": string;
         "value": string;
@@ -11382,7 +11385,6 @@ declare namespace LocalJSX {
         "weekStartIndex": number;
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
-        "enableTopLayer": boolean;
     }
     interface IxDatetimePickerAttributes {
         "singleSelection": boolean;
@@ -11414,6 +11416,7 @@ declare namespace LocalJSX {
         "ariaLabelCloseButton": string;
     }
     interface IxDropdownAttributes {
+        "suppressTopLayer": boolean;
         "suppressAutomaticPlacement": boolean;
         "show": boolean;
         "trigger": ElementReference;
@@ -11425,13 +11428,13 @@ declare namespace LocalJSX {
         "suppressTriggerVisibilityCheck": boolean;
         "disableFocusHandling": boolean;
         "disableFocusTrap": boolean;
-        "enableTopLayer": boolean;
         "focusCheckedItem": boolean;
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
     }
     interface IxDropdownButtonAttributes {
+        "suppressTopLayer": boolean;
         "variant": DropdownButtonVariant;
         "disabled": boolean;
         "label": string | null;
@@ -11440,7 +11443,6 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "focusCheckedItem": boolean;
-        "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }
     interface IxDropdownHeaderAttributes {
@@ -11658,6 +11660,7 @@ declare namespace LocalJSX {
         "expanded": boolean;
     }
     interface IxMenuAvatarAttributes {
+        "suppressTopLayer": boolean;
         "top": string;
         "bottom": string;
         "image": string;
@@ -11666,7 +11669,6 @@ declare namespace LocalJSX {
         "ariaLabelTooltip": string;
         "i18nLogout": string;
         "hideLogoutButton": boolean;
-        "enableTopLayer": boolean;
     }
     interface IxMenuAvatarItemAttributes {
         "icon": string;
@@ -11860,6 +11862,7 @@ declare namespace LocalJSX {
         "hideArrow": boolean;
     }
     interface IxSelectAttributes {
+        "suppressTopLayer": boolean;
         "name": string;
         "required": boolean;
         "label": string;
@@ -11887,7 +11890,6 @@ declare namespace LocalJSX {
         "dropdownWidth": string;
         "dropdownMaxWidth": string;
         "collapseMultipleSelection": boolean;
-        "enableTopLayer": boolean;
     }
     interface IxSelectItemAttributes {
         "ixFocusVisible": boolean;
@@ -11920,6 +11922,7 @@ declare namespace LocalJSX {
         "hideTrack": boolean;
     }
     interface IxSplitButtonAttributes {
+        "suppressTopLayer": boolean;
         "variant": SplitButtonVariant;
         "closeBehavior": string;
         "label": string;
@@ -11931,7 +11934,6 @@ declare namespace LocalJSX {
         "disableButton": boolean;
         "disableDropdownButton": boolean;
         "placement": AlignedPlacement;
-        "enableTopLayer": boolean;
     }
     interface IxTabItemAttributes {
         "selected": boolean;
@@ -11978,6 +11980,7 @@ declare namespace LocalJSX {
         "size": 'small' | 'medium' | 'big';
     }
     interface IxTimeInputAttributes {
+        "suppressTopLayer": boolean;
         "name": string;
         "placeholder": string;
         "value": string;
@@ -12006,7 +12009,6 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
-        "enableTopLayer": boolean;
         "ariaLabelTimeToggleButton": string;
     }
     interface IxTimePickerAttributes {

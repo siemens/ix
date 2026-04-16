@@ -134,6 +134,7 @@ export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__
 
 
 export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
+  'suppressTopLayer',
   'name',
   'nameSuffix',
   'companyLogo',
@@ -146,7 +147,6 @@ export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> =
   'ariaLabelMenuExpandIconButton',
   'ariaLabelAppSwitchIconButton',
   'ariaLabelMoreMenuIconButton',
-  'enableTopLayer',
   'menuToggle',
   'openAppSwitch'
 ], [
@@ -179,11 +179,11 @@ export const IxBlind: StencilVueComponent<JSX.IxBlind> = /*@__PURE__*/ defineCon
 
 
 export const IxBreadcrumb: StencilVueComponent<JSX.IxBreadcrumb> = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-breadcrumb', defineIxBreadcrumb, [
+  'suppressTopLayer',
   'visibleItemCount',
   'nextItems',
   'subtle',
   'ariaLabelPreviousButton',
-  'enableTopLayer',
   'itemClick',
   'nextClick'
 ], [
@@ -271,6 +271,7 @@ export const IxCardTitle: StencilVueComponent<JSX.IxCardTitle> = /*@__PURE__*/ d
 
 
 export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', defineIxCategoryFilter, [
+  'suppressTopLayer',
   'disabled',
   'readonly',
   'filterState',
@@ -287,7 +288,6 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'ariaLabelResetButton',
   'ariaLabelOperatorButton',
   'ariaLabelFilterInput',
-  'enableTopLayer',
   'categoryChanged',
   'inputChanged',
   'filterChanged',
@@ -384,6 +384,7 @@ export const IxCustomField: StencilVueComponent<JSX.IxCustomField> = /*@__PURE__
 
 
 export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
+  'suppressTopLayer',
   'disabled',
   'format',
   'singleSelection',
@@ -401,7 +402,6 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'i18nDone',
   'i18nNoRange',
   'today',
-  'enableTopLayer',
   'dateRangeChange'
 ], [
   'dateRangeChange'
@@ -409,6 +409,7 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
 
 
 export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxDateInput, JSX.IxDateInput["value"]>('ix-date-input', defineIxDateInput, [
+  'suppressTopLayer',
   'name',
   'placeholder',
   'value',
@@ -434,7 +435,6 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ariaLabelNextMonthButton',
   'suppressSubmitOnEnter',
   'textAlignment',
-  'enableTopLayer',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -451,6 +451,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
 
 
 export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
+  'suppressTopLayer',
   'format',
   'singleSelection',
   'corners',
@@ -468,7 +469,6 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'showWeekNumbers',
   'embedded',
   'today',
-  'enableTopLayer',
   'dateChange',
   'dateRangeChange',
   'dateSelect'
@@ -480,6 +480,7 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
 
 
 export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput>('ix-datetime-input', defineIxDatetimeInput, [
+  'suppressTopLayer',
   'name',
   'placeholder',
   'value',
@@ -507,7 +508,6 @@ export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PU
   'weekStartIndex',
   'suppressSubmitOnEnter',
   'textAlignment',
-  'enableTopLayer',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -571,6 +571,7 @@ export const IxDrawer: StencilVueComponent<JSX.IxDrawer> = /*@__PURE__*/ defineC
 
 
 export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-dropdown', defineIxDropdown, [
+  'suppressTopLayer',
   'suppressAutomaticPlacement',
   'show',
   'trigger',
@@ -582,7 +583,6 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'suppressTriggerVisibilityCheck',
   'disableFocusHandling',
   'disableFocusTrap',
-  'enableTopLayer',
   'focusCheckedItem',
   'keyboardActivationKeys',
   'keyboardItemTriggerKeys',
@@ -607,6 +607,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
 
 
 export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__PURE__*/ defineContainer<JSX.IxDropdownButton>('ix-dropdown-button', defineIxDropdownButton, [
+  'suppressTopLayer',
   'variant',
   'disabled',
   'label',
@@ -615,7 +616,6 @@ export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__
   'placement',
   'ariaLabelDropdownButton',
   'focusCheckedItem',
-  'enableTopLayer',
   'suppressAriaActiveDescendant',
   'showChange',
   'showChanged'
@@ -956,6 +956,7 @@ export const IxMenuAboutNews: StencilVueComponent<JSX.IxMenuAboutNews> = /*@__PU
 
 
 export const IxMenuAvatar: StencilVueComponent<JSX.IxMenuAvatar> = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-menu-avatar', defineIxMenuAvatar, [
+  'suppressTopLayer',
   'top',
   'bottom',
   'image',
@@ -964,7 +965,6 @@ export const IxMenuAvatar: StencilVueComponent<JSX.IxMenuAvatar> = /*@__PURE__*/
   'ariaLabelTooltip',
   'i18nLogout',
   'hideLogoutButton',
-  'enableTopLayer',
   'logoutClick'
 ], [
   'logoutClick'
@@ -1247,6 +1247,7 @@ export const IxRow: StencilVueComponent<JSX.IxRow> = /*@__PURE__*/ defineContain
 
 
 export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect["value"]>('ix-select', defineIxSelect, [
+  'suppressTopLayer',
   'name',
   'required',
   'label',
@@ -1274,7 +1275,6 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'dropdownWidth',
   'dropdownMaxWidth',
   'collapseMultipleSelection',
-  'enableTopLayer',
   'valueChange',
   'inputChange',
   'addItem',
@@ -1332,6 +1332,7 @@ export const IxSpinner: StencilVueComponent<JSX.IxSpinner> = /*@__PURE__*/ defin
 
 
 export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('ix-split-button', defineIxSplitButton, [
+  'suppressTopLayer',
   'variant',
   'closeBehavior',
   'label',
@@ -1343,7 +1344,6 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'disableButton',
   'disableDropdownButton',
   'placement',
-  'enableTopLayer',
   'buttonClick'
 ], [
   'buttonClick'
@@ -1419,6 +1419,7 @@ export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineConta
 
 
 export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ defineContainer<JSX.IxTimeInput>('ix-time-input', defineIxTimeInput, [
+  'suppressTopLayer',
   'name',
   'placeholder',
   'value',
@@ -1447,7 +1448,6 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'suppressSubmitOnEnter',
   'hideHeader',
   'textAlignment',
-  'enableTopLayer',
   'ariaLabelTimeToggleButton',
   'valueChange',
   'validityStateChange',

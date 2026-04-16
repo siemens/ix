@@ -56,6 +56,10 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 
 /**
  * @form-ready
@@ -72,8 +76,11 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
   formAssociated: true,
 })
 export class DateInput
-  extends Mixin(...DefaultMixins, InputPickerMixin)
-  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
+  extends Mixin(...DefaultMixins, InputPickerMixin, TopLayerMixin)
+  implements
+    IxInputFieldComponent<string | undefined>,
+    InputPickerMixinContract,
+    TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
@@ -223,14 +230,6 @@ export class DateInput
    * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Value change event. Emitted when the input value changes.
@@ -579,7 +578,7 @@ export class DateInput
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {

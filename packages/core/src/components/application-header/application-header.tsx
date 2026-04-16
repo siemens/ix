@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   readTask,
   State,
@@ -28,6 +29,11 @@ import {
 } from '../utils/application-layout/context';
 import { Breakpoint, getCurrentBreakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
@@ -43,8 +49,11 @@ import { Disposable } from '../utils/typed-event';
   styleUrl: 'application-header.scss',
   shadow: true,
 })
-export class ApplicationHeader {
-  @Element() hostElement!: HTMLIxApplicationHeaderElement;
+export class ApplicationHeader
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements TopLayerMixinContract
+{
+  @Element() override hostElement!: HTMLIxApplicationHeaderElement;
 
   /**
    * Application name
@@ -133,14 +142,6 @@ export class ApplicationHeader {
   @Prop() ariaLabelMoreMenuIconButton?: string;
 
   /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
-
-  /**
    * Event emitted when the menu toggle button is clicked
    */
   @Event() menuToggle!: EventEmitter<boolean>;
@@ -174,7 +175,7 @@ export class ApplicationHeader {
     return this.hostElement.shadowRoot!.querySelector('.dropdown-content');
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.breakpoint = getCurrentBreakpoint();
 
     useContextConsumer(
@@ -204,11 +205,11 @@ export class ApplicationHeader {
     this.updateHasSlotAssignedElementsStates();
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.attachSiemensLogoIfLoaded();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this.menuDisposable?.dispose();
     this.modeDisposable?.dispose();
   }
@@ -342,7 +343,7 @@ export class ApplicationHeader {
     }
   }
 
-  render() {
+  override render() {
     const hasApplicationContextAvailable = !!this.applicationLayoutContext;
 
     const showMenuByApplicationFrame =
@@ -449,7 +450,7 @@ export class ApplicationHeader {
               discoverAllSubmenus
               trigger={this.resolveContextMenuButton()}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}
-              enableTopLayer={this.enableTopLayer}
+              suppressTopLayer={this.suppressTopLayer}
             >
               <div
                 class="dropdown-content"

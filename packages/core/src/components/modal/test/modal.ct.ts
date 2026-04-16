@@ -157,7 +157,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       // Wait for modal to appear
       await page.waitForTimeout(500);
 
-      const modalDialog = page.locator('ix-modal dialog');
+      const modalDialog = page.locator('ix-modal dialog.modal').first();
       const toggle = page.locator('#toggle');
       await expect(toggle).toBeVisible();
 
@@ -195,7 +195,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       // Wait for modal to appear
       await page.waitForTimeout(500);
 
-      const modalDialog = page.locator('ix-modal dialog');
+      const modalDialog = page.locator('ix-modal dialog.modal').first();
       await expect(modalDialog).toBeVisible();
 
       // Get bounding box of the modal to find a point inside it
@@ -255,7 +255,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
 
       await page.waitForTimeout(100);
 
-      const modalDialog = page.locator('ix-modal dialog');
+      const modalDialog = page.locator('ix-modal dialog.modal').first();
       await expect(modalDialog).toBeVisible();
 
       await page.locator('[data-select-dropdown]').click();

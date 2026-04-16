@@ -30,7 +30,7 @@ regressionTest('renders', async ({ mount, page }) => {
   </ix-split-button>
 
   <ix-group header="Title" sub-header="Subtitle">
-    <ix-dropdown slot="dropdown">
+    <ix-dropdown slot="dropdown" suppress-top-layer="true">
       <ix-dropdown-item label="Item 1" icon="pin" />
       <ix-dropdown-item label="Item 2" icon="star" />
       <ix-dropdown-item label="Item 3" icon="heart" />
@@ -39,7 +39,7 @@ regressionTest('renders', async ({ mount, page }) => {
   </ix-group>
 
   <ix-group header="Title" sub-header="Subtitle">
-    <ix-dropdown slot="dropdown">
+    <ix-dropdown slot="dropdown" suppress-top-layer="true">
       <ix-dropdown-item label="Item 1" icon="pin" />
       <ix-dropdown-item label="Item 2" icon="star" />
       <ix-dropdown-item label="Item 3" icon="heart" />
@@ -88,32 +88,47 @@ regressionTest('renders', async ({ mount, page }) => {
 function expectToBeVisible(elements: Locator[], index: number) {
   return Promise.all(
     elements.map(async (element, i) => {
-      let ef = expect(element);
-      if (i !== index) {
-        ef = ef.not;
-      }
-      await ef.toBeVisible();
+      await expect
+        .poll(() =>
+          element.evaluate((dropdown: HTMLIxDropdownElement) => dropdown.show)
+        )
+        .toBe(i === index);
     })
   );
 }
 
 regressionTest('trigger toggles', async ({ mount, page }) => {
   await mount(`<ix-button id="trigger">Open</ix-button>
-    <ix-dropdown trigger="trigger" trigger-toggles="true">
+    <ix-dropdown
+      trigger="trigger"
+      trigger-toggles="true"
+      suppress-top-layer="true"
+    >
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-dropdown>
   `);
 
-  await page.locator('ix-button').click();
   const dropdown = page.locator('.dropdown-menu');
-  await expect(dropdown).toHaveClass(/show/);
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/hydrated/);
 
   await page.locator('ix-button').click();
-  const after = page.locator('.dropdown-menu');
-  await expect(after).not.toHaveClass(/show/);
-  await expect(dropdown).not.toBeVisible();
+  await expect
+    .poll(() =>
+      dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
+
+  await page.locator('ix-button').click();
+  await expect
+    .poll(() =>
+      dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(false);
 });
 
 regressionTest.describe('Close behavior', () => {
@@ -129,7 +144,12 @@ regressionTest.describe('Close behavior', () => {
 
     return mount(`
       <ix-button id="level-1">Trigger</ix-button>
-      <ix-dropdown id="dropdown-level-1" trigger="level-1" ${closeBehavior}>
+      <ix-dropdown
+        id="dropdown-level-1"
+        trigger="level-1"
+        suppress-top-layer="true"
+        ${closeBehavior}
+      >
         <ix-dropdown-item>Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
         <ix-dropdown-item>Item 3</ix-dropdown-item>
@@ -248,6 +268,8 @@ regressionTest('Prevent closing', async ({ page, mount }) => {
       <ix-dropdown-item id="item-1">Item 1</ix-dropdown-item>
     </ix-dropdown>`);
 
+  const dropdown = page.locator('ix-dropdown');
+
   const header = await page.locator('ix-dropdown-header');
   header.evaluate((h) =>
     h.addEventListener('click', (event) => {
@@ -255,11 +277,29 @@ regressionTest('Prevent closing', async ({ page, mount }) => {
     })
   );
   await page.locator('#trigger').click();
-  await expect(header).toBeVisible();
+  await expect
+    .poll(() =>
+      dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
   await header.click();
-  await expect(header).toBeVisible();
+  await expect
+    .poll(() =>
+      dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(true);
   await page.locator('#item-1').click();
-  await expect(header).not.toBeVisible();
+  await expect
+    .poll(() =>
+      dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+        Boolean(dropdownElement.show)
+      )
+    )
+    .toBe(false);
 });
 
 regressionTest.describe('Nested dropdowns 1/3', () => {
@@ -275,38 +315,59 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
         close-behavior="${config?.closeBehavior ?? 'both'}"
         id="dropdown-1"
         trigger="trigger-dropdown-1"
+        suppress-top-layer="true"
       >
         <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
         <ix-dropdown-item id="trigger-dropdown-3">Item 3</ix-dropdown-item>
       </ix-dropdown>
 
-      <ix-dropdown trigger="trigger-dropdown-2" id="dropdown-2">
+      <ix-dropdown
+        trigger="trigger-dropdown-2"
+        id="dropdown-2"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 1.1</ix-dropdown-item>
         <ix-dropdown-item>Item 1.2</ix-dropdown-item>
         <ix-dropdown-item>Item 1.3</ix-dropdown-item>
       </ix-dropdown>
 
-      <ix-dropdown trigger="trigger-dropdown-3" id="dropdown-3">
+      <ix-dropdown
+        trigger="trigger-dropdown-3"
+        id="dropdown-3"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 3.1</ix-dropdown-item>
         <ix-dropdown-item>Item 3.2</ix-dropdown-item>
         <ix-dropdown-item id="trigger-dropdown-4">Item 3.3</ix-dropdown-item>
       </ix-dropdown>
 
-      <ix-dropdown trigger="trigger-dropdown-4" id="dropdown-4">
+      <ix-dropdown
+        trigger="trigger-dropdown-4"
+        id="dropdown-4"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 3.3.1</ix-dropdown-item>
         <ix-dropdown-item>Item 3.3.2</ix-dropdown-item>
         <ix-dropdown-item>Item 3.3.3</ix-dropdown-item>
       </ix-dropdown>
 
       <ix-button id="trigger-dropdown-5">Trigger 5</ix-button>
-      <ix-dropdown id="dropdown-5" trigger="trigger-dropdown-5">
+      <ix-dropdown
+        id="dropdown-5"
+        trigger="trigger-dropdown-5"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
         <ix-dropdown-item id="trigger-dropdown-6">Item 3</ix-dropdown-item>
       </ix-dropdown>
 
-      <ix-dropdown id="dropdown-6" trigger="trigger-dropdown-6">
+      <ix-dropdown
+        id="dropdown-6"
+        trigger="trigger-dropdown-6"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
         <ix-dropdown-item>Item 3</ix-dropdown-item>
@@ -466,7 +527,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdown1).toBeVisible();
+      await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
       await expect(dropdown2).toBeVisible();
@@ -495,9 +556,9 @@ regressionTest.describe('nested dropdown 2/3', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <button id="trigger1">${button1Text}</button>
-      <ix-dropdown trigger="trigger1">
+      <ix-dropdown trigger="trigger1" suppress-top-layer="true">
         <button id="trigger2">${button2Text}</button>
-        <ix-dropdown trigger="trigger2">
+        <ix-dropdown trigger="trigger2" suppress-top-layer="true">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         </ix-dropdown>
       </ix-dropdown>
@@ -527,10 +588,7 @@ regressionTest.describe('nested dropdown 2/3', () => {
         dd.show = true;
       });
     }
-    await page.evaluate(() => {
-      const trigger = document.getElementById('trigger2') as HTMLButtonElement;
-      trigger.click();
-    });
+    await trigger2.click();
     await expect
       .poll(() =>
         nestedDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
@@ -545,12 +603,22 @@ regressionTest.describe('nested dropdown 3/3', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <ix-button id="trigger-dropdown-1">Trigger 1</ix-button>
-      <ix-dropdown id="dropdown-1" close-behavior="outside" trigger="trigger-dropdown-1">
+      <ix-dropdown
+        id="dropdown-1"
+        close-behavior="outside"
+        trigger="trigger-dropdown-1"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
       </ix-dropdown>
 
-      <ix-dropdown trigger="trigger-dropdown-2" id="dropdown-2" close-behavior="inside">
+      <ix-dropdown
+        trigger="trigger-dropdown-2"
+        id="dropdown-2"
+        close-behavior="inside"
+        suppress-top-layer="true"
+      >
         <ix-dropdown-item>Item 1.1</ix-dropdown-item>
         <ix-dropdown-item>Item 1.2</ix-dropdown-item>
         <ix-dropdown-item>Item 1.3</ix-dropdown-item>
@@ -588,7 +656,7 @@ regressionTest(
           ></ix-dropdown-item>
         </ix-dropdown-button>
       </ix-application-header>
-      <ix-dropdown id="submenu" trigger="submenu-01">
+      <ix-dropdown id="submenu" trigger="submenu-01" suppress-top-layer="true">
         <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
         <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
         <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
@@ -605,7 +673,6 @@ regressionTest(
     await overflowTrigger.click();
 
     const overflowDropdown = header.locator('[data-overflow-dropdown]');
-    await expect(overflowDropdown).toBeVisible();
     await expect(overflowDropdown).toHaveClass(/show/);
 
     const trigger = page.getByRole('button', { name: 'Trigger' }).nth(0);
@@ -614,7 +681,6 @@ regressionTest(
     await expect(trigger).toBeVisible();
 
     const triggerDropdown = page.locator('ix-dropdown-button ix-dropdown');
-    await expect(triggerDropdown).toBeVisible();
     await expect(triggerDropdown).toHaveClass(/show/);
 
     const submenuTrigger = page.getByRole('menuitem', {
@@ -633,7 +699,7 @@ regressionTest.describe('resolve during element connect', () => {
     await mount(
       `
     <ix-button id="trigger">Open</ix-button>
-    <ix-dropdown trigger="trigger">
+    <ix-dropdown trigger="trigger" suppress-top-layer="true">
       <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       <ix-dropdown-item>Custom</ix-dropdown-item>
@@ -680,7 +746,11 @@ regressionTest.describe('resolve during element connect', () => {
 
 regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await mount(`<ix-button id="trigger">Open</ix-button>
-        <ix-dropdown closeBehavior="outside" trigger="trigger">
+        <ix-dropdown
+          closeBehavior="outside"
+          trigger="trigger"
+          suppress-top-layer="true"
+        >
           <ix-dropdown-item id="item-1">Item level 1</ix-dropdown-item>
           <ix-dropdown-button label="Nested">
             <ix-dropdown-item id="item-1">Item level 2</ix-dropdown-item>
@@ -787,7 +857,7 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
 
     <dialog id="dialog" class="dialog">
       <ix-button id="trigger">Open</ix-button>
-      <ix-dropdown id="dropdown" trigger="trigger">
+      <ix-dropdown id="dropdown" trigger="trigger" suppress-top-layer="true">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown>
@@ -1106,7 +1176,7 @@ regressionTest.describe('dropdown transition visibility', () => {
         class="manual-dropdown"
         trigger="transform-trigger"
         positioning-strategy="fixed"
-        enable-top-layer
+        suppress-top-layer="false"
       >
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
@@ -1167,7 +1237,13 @@ regressionTest.describe('dropdown transition visibility', () => {
     await expect(dropdown).not.toHaveClass(/show/);
 
     await triggerButton.click();
-    await expect(dropdown).toHaveClass(/show/);
+    await expect
+      .poll(() =>
+        dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
+          Boolean(dropdownElement.show)
+        )
+      )
+      .toBe(true);
   });
 
   regressionTest(

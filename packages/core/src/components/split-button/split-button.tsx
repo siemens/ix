@@ -33,6 +33,10 @@ import {
   AriaActiveDescendantMixin,
   AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 
 @Component({
   tag: 'ix-split-button',
@@ -40,8 +44,8 @@ import {
   shadow: true,
 })
 export class SplitButton
-  extends Mixin(...DefaultMixins, AriaActiveDescendantMixin)
-  implements AriaActiveDescendantMixinContract
+  extends Mixin(...DefaultMixins, AriaActiveDescendantMixin, TopLayerMixin)
+  implements AriaActiveDescendantMixinContract, TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxSplitButtonElement;
 
@@ -107,14 +111,6 @@ export class SplitButton
    * Placement of the dropdown
    */
   @Prop() placement: AlignedPlacement = 'bottom-start';
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Button clicked
@@ -227,7 +223,7 @@ export class SplitButton
           class="right-button"
           aria-label={this.ariaLabelSplitIconButton}
           icon={this.splitIcon ?? iconContextMenu}
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
           closeBehavior={this.closeBehavior}
           disabled={this.isDisabledIcon}
           suppressAriaActiveDescendant={true}

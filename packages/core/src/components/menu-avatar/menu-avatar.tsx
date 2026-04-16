@@ -14,10 +14,16 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   State,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
@@ -26,8 +32,11 @@ import { getSlottedElements } from '../utils/shadow-dom';
   styleUrl: 'menu-avatar.scss',
   shadow: true,
 })
-export class MenuAvatar {
-  @Element() hostElement!: HTMLIxMenuAvatarElement;
+export class MenuAvatar
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements TopLayerMixinContract
+{
+  @Element() override hostElement!: HTMLIxMenuAvatarElement;
 
   /**
    * First line of text
@@ -74,14 +83,6 @@ export class MenuAvatar {
   @Prop() hideLogoutButton: boolean = false;
 
   /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
-
-  /**
    * Control the visibility of the dropdown menu
    */
   @State() showContextMenu: boolean = false;
@@ -103,7 +104,7 @@ export class MenuAvatar {
     this.showContextMenu = elements.length !== 0;
   }
 
-  render() {
+  override render() {
     const tooltipText = this.tooltipText ?? this.top;
     const ariaHidden = tooltipText === this.top;
 
@@ -144,7 +145,7 @@ export class MenuAvatar {
               this.tooltipRef.current.hideTooltip(0);
             }
           }}
-          enableTopLayer={this.enableTopLayer}
+          suppressTopLayer={this.suppressTopLayer}
         >
           <slot onSlotchange={() => this.onSlotChange()}></slot>
           {!this.hideLogoutButton && (

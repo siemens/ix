@@ -34,6 +34,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import {
+  TopLayerMixin,
+  TopLayerMixinContract,
+} from '../utils/internal/mixins/top-layer.mixin';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -48,8 +52,8 @@ interface CalendarWeek {
   },
 })
 export class DatePicker
-  extends Mixin(...DefaultMixins)
-  implements IxDatePickerComponent
+  extends Mixin(...DefaultMixins, TopLayerMixin)
+  implements IxDatePickerComponent, TopLayerMixinContract
 {
   @Element() override hostElement!: HTMLIxDatePickerElement;
 
@@ -192,14 +196,6 @@ export class DatePicker
 
   /** @internal */
   @Prop() today = DateTime.now().toISO();
-
-  /**
-   * Enable Popover API rendering for dropdown.
-   *
-   * @default false
-   * @since 4.3.0
-   */
-  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
