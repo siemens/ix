@@ -16,7 +16,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
-import { ModalConfig } from './modal';
+import { assignModalPropsFromConfig, ModalConfig } from './modal';
 
 export type MessageConfig<T> = Omit<
   ModalConfig<T, unknown>,
@@ -169,7 +169,7 @@ export async function showMessage<T>(config: MessageConfig<T>) {
   );
 
   setA11yAttributes(dialogRef, config);
-  Object.assign(dialogRef, config);
+  assignModalPropsFromConfig(dialogRef, config);
 
   dialogRef.showModal();
   return onMessageAction;

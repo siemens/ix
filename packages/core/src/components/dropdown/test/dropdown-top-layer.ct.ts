@@ -6,8 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+/** Popover `<dialog>` uses `role="presentation"`, so tests target it via CSS instead of `getByRole('dialog')`. */
+function popoverDialog(dropdownHost: Locator) {
+  return dropdownHost.locator('dialog');
+}
 
 regressionTest.describe('suppressTopLayer feature', () => {
   regressionTest.describe('Popover API mode (suppressTopLayer=false)', () => {
@@ -25,7 +31,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         await trigger.click();
 
         const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = dropdown.getByRole('dialog');
+        const dialog = popoverDialog(dropdown);
 
         await expect(dialog).toBeAttached();
       }
@@ -45,7 +51,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
 
         const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = dropdown.getByRole('dialog');
+        const dialog = popoverDialog(dropdown);
 
         await expect(dialog).not.toBeVisible();
 
@@ -69,7 +75,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
       const trigger = page.getByRole('button', { name: 'Open' });
 
       const dropdown = page.locator('ix-dropdown#dropdown');
-      const dialog = dropdown.getByRole('dialog');
+      const dialog = popoverDialog(dropdown);
 
       await trigger.click();
       await expect(dialog).toBeVisible();
@@ -100,7 +106,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
         await expect(dialog).not.toHaveClass(/overflow/);
       }
     );
@@ -127,7 +133,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
         await expect(dialog).toHaveClass(/overflow/);
       }
     );
@@ -161,7 +167,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
           )
           .toBe(true);
 
-        const dialog = page.getByRole('dialog');
+        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
         await expect(dialog).toBeVisible();
 
         const item = page.locator('ix-dropdown-item').first();
@@ -192,7 +198,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -263,7 +269,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Actions' });
         await trigger.click();
 
-        const dialog = page.getByRole('dialog');
+        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -316,7 +322,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
           const trigger2 = page.locator('#trigger-2');
           await trigger2.click();
 
-          const dropdown2Dialog = page.getByRole('dialog');
+          const dropdown2Dialog = popoverDialog(page.locator('ix-dropdown#dropdown-2'));
           await expect(dropdown2Dialog).toBeVisible();
         }
       );

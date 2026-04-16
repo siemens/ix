@@ -340,6 +340,7 @@ export class MenuCategory
         </div>
         <ix-dropdown
           ref={this.dropdownRef}
+          suppressTopLayer={true}
           closeBehavior={'both'}
           show={this.showDropdown}
           onShowChange={({ detail: dropdownShow }) => {

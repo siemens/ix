@@ -16,11 +16,7 @@ export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
  * Set accessibility attributes on modal element
  */
 export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
-  const ariaDescribedby = config.ariaDescribedby;
-  const ariaLabelledby = config.ariaLabelledby;
-
-  delete config['ariaDescribedby'];
-  delete config['ariaLabelledby'];
+  const { ariaDescribedby, ariaLabelledby } = config;
 
   if (ariaDescribedby) {
     element.setAttribute('aria-describedby', ariaDescribedby);
@@ -28,6 +24,48 @@ export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
 
   if (ariaLabelledby) {
     element.setAttribute('aria-labelledby', ariaLabelledby);
+  }
+}
+
+/** Modal config keys that map 1:1 onto `HTMLIxModalElement` (unlike `animation` / `backdrop`). */
+const MODAL_CONFIG_PASSTHROUGH = [
+  'beforeDismiss',
+  'centered',
+  'closeOnBackdropClick',
+  'isNonBlocking',
+  'size',
+] as const;
+
+type ModalConfigPassthroughKey = (typeof MODAL_CONFIG_PASSTHROUGH)[number];
+
+/**
+ * Applies {@link ModalConfig} fields to `ix-modal` without copying unrelated keys
+ * (for example `content`, or message-specific fields from {@link MessageConfig}).
+ */
+export function assignModalPropsFromConfig(
+  dialogRef: HTMLIxModalElement,
+  config: Pick<
+    ModalConfig,
+    ModalConfigPassthroughKey | 'animation' | 'backdrop'
+  >
+) {
+  for (const key of MODAL_CONFIG_PASSTHROUGH) {
+    const value = config[key];
+    if (value !== undefined) {
+      (dialogRef as unknown as Record<ModalConfigPassthroughKey, unknown>)[
+        key
+      ] = value;
+    }
+  }
+
+  const { animation, backdrop } = config;
+
+  if (typeof animation === 'boolean') {
+    dialogRef.disableAnimation = !animation;
+  }
+
+  if (typeof backdrop === 'boolean') {
+    dialogRef.hideBackdrop = !backdrop;
   }
 }
 
@@ -167,7 +205,7 @@ export async function showModal<T>(
   }
 
   setA11yAttributes(dialogRef, config);
-  Object.assign(dialogRef, config);
+  assignModalPropsFromConfig(dialogRef, config);
 
   await dialogRef.showModal();
   dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {

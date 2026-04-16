@@ -18,6 +18,14 @@ import { regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
 
+async function expectDropdownShown(dropdown: Locator) {
+  await expect
+    .poll(() =>
+      dropdown.evaluate((el: HTMLIxDropdownElement) => Boolean(el.show))
+    )
+    .toBe(true);
+}
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
@@ -179,12 +187,14 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await page.mouse.click(400, 200);
     await expect(dropdownLevel1).not.toBeVisible();
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await dropdownLevel1_Item1.click();
@@ -199,6 +209,7 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await page.mouse.click(400, 200);
@@ -216,12 +227,14 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await page.mouse.click(400, 200);
     await expect(dropdownLevel1).not.toBeVisible();
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await dropdownLevel1_Item1.click();
@@ -242,6 +255,7 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await page.mouse.click(400, 200);
@@ -251,6 +265,7 @@ regressionTest.describe('Close behavior', () => {
     await expect(dropdownLevel1).not.toBeVisible();
 
     await triggerButton.click();
+    await expectDropdownShown(dropdownLevel1);
     await expect(dropdownLevel1).toBeVisible();
 
     await dropdownLevel1_Item1.click({
@@ -406,9 +421,11 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     setupTest(page);
 
     await triggerDropdown1.click();
+    await expectDropdownShown(dropdown1);
     await expect(dropdown1).toBeVisible();
 
     await triggerDropdown3.click();
+    await expectDropdownShown(dropdown3);
     await expect(dropdown3).toBeVisible();
 
     await triggerDropdown5.click();
@@ -423,16 +440,20 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     setupTest(page);
 
     await triggerDropdown1.click();
+    await expectDropdownShown(dropdown1);
     await expect(dropdown1).toBeVisible();
 
     await triggerDropdown2.click();
+    await expectDropdownShown(dropdown2);
     await expect(dropdown2).toBeVisible();
 
     await triggerDropdown3.click();
     await expect(dropdown2).not.toBeVisible();
+    await expectDropdownShown(dropdown3);
     await expect(dropdown3).toBeVisible();
 
     await triggerDropdown4.click();
+    await expectDropdownShown(dropdown4);
     await expect(dropdown4).toBeVisible();
 
     await triggerDropdown3.click();
@@ -447,16 +468,20 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
+      await expectDropdownShown(dropdown1);
       await expect(dropdown1).toBeVisible();
 
       await triggerDropdown2.click();
+      await expectDropdownShown(dropdown2);
       await expect(dropdown2).toBeVisible();
 
       await triggerDropdown3.click();
       await expect(dropdown2).not.toBeVisible();
+      await expectDropdownShown(dropdown3);
       await expect(dropdown3).toBeVisible();
 
       await triggerDropdown4.click();
+      await expectDropdownShown(dropdown4);
       await expect(dropdown4).toBeVisible();
 
       await page.keyboard.press('Escape');
@@ -475,16 +500,20 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
+      await expectDropdownShown(dropdown1);
       await expect(dropdown1).toBeVisible();
 
       await triggerDropdown2.click();
+      await expectDropdownShown(dropdown2);
       await expect(dropdown2).toBeVisible();
 
       await triggerDropdown3.click();
       await expect(dropdown2).not.toBeVisible();
+      await expectDropdownShown(dropdown3);
       await expect(dropdown3).toBeVisible();
 
       await triggerDropdown4.click();
+      await expectDropdownShown(dropdown4);
       await expect(dropdown4).toBeVisible();
 
       await page.keyboard.press('Escape');
@@ -501,16 +530,20 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
+      await expectDropdownShown(dropdown1);
       await expect(dropdown1).toBeVisible();
 
       await triggerDropdown2.click();
+      await expectDropdownShown(dropdown2);
       await expect(dropdown2).toBeVisible();
 
       await triggerDropdown3.click();
       await expect(dropdown2).not.toBeVisible();
+      await expectDropdownShown(dropdown3);
       await expect(dropdown3).toBeVisible();
 
       await triggerDropdown4.click();
+      await expectDropdownShown(dropdown4);
       await expect(dropdown4).toBeVisible();
 
       await page.keyboard.press('Escape');
@@ -527,16 +560,20 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
+      await expectDropdownShown(dropdown1);
       await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
+      await expectDropdownShown(dropdown2);
       await expect(dropdown2).toBeVisible();
 
       await triggerDropdown3.click();
       await expect(dropdown2).not.toBeVisible();
+      await expectDropdownShown(dropdown3);
       await expect(dropdown3).toBeVisible();
 
       await triggerDropdown4.click();
+      await expectDropdownShown(dropdown4);
       await expect(dropdown4).toBeVisible();
 
       await page.keyboard.press('Escape');

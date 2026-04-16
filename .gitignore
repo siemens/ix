@@ -21,6 +21,9 @@ node_modules
 *.sublime-workspace
 .obsidian
 
+# Editor Local History (VS Code / Cursor extension) — file snapshots, not repo source
+.history/
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
