@@ -322,7 +322,9 @@ regressionTest.describe('suppressTopLayer feature', () => {
           const trigger2 = page.locator('#trigger-2');
           await trigger2.click();
 
-          const dropdown2Dialog = popoverDialog(page.locator('ix-dropdown#dropdown-2'));
+          const dropdown2Dialog = popoverDialog(
+            page.locator('ix-dropdown#dropdown-2')
+          );
           await expect(dropdown2Dialog).toBeVisible();
         }
       );
