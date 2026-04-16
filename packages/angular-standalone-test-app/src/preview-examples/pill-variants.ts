@@ -23,64 +23,64 @@ import {
     <ix-layout-grid>
       <ix-row>
         <ix-col>
-          <ix-pill icon="info"> Primary </ix-pill>
+          <ix-pill variant="primary" icon="info">Primary</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="subtle-primary" icon="info"> Primary </ix-pill>
-        </ix-col>
-      </ix-row>
-
-      <ix-row>
-        <ix-col>
-          <ix-pill variant="alarm" icon="info"> Alarm </ix-pill>
-        </ix-col>
-        <ix-col>
-          <ix-pill variant="alarm" icon="info"> Alarm </ix-pill>
+          <ix-pill variant="primary" outline icon="info">Primary</ix-pill>
         </ix-col>
       </ix-row>
 
       <ix-row>
         <ix-col>
-          <ix-pill variant="critical" icon="info"> Critical </ix-pill>
+          <ix-pill variant="alarm" icon="info">Alarm</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="critical" icon="info"> Critical </ix-pill>
-        </ix-col>
-      </ix-row>
-
-      <ix-row>
-        <ix-col>
-          <ix-pill variant="warning" icon="info"> Warning </ix-pill>
-        </ix-col>
-        <ix-col>
-          <ix-pill variant="warning" icon="info"> Warning </ix-pill>
+          <ix-pill variant="alarm" outline icon="info">Alarm</ix-pill>
         </ix-col>
       </ix-row>
 
       <ix-row>
         <ix-col>
-          <ix-pill variant="success" icon="info"> Success </ix-pill>
+          <ix-pill variant="critical" icon="info">Critical</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="success" icon="info"> Success </ix-pill>
-        </ix-col>
-      </ix-row>
-
-      <ix-row>
-        <ix-col>
-          <ix-pill variant="info" icon="info"> Info </ix-pill>
-        </ix-col>
-        <ix-col>
-          <ix-pill variant="info" icon="info"> Info </ix-pill>
+          <ix-pill variant="critical" outline icon="info">Critical</ix-pill>
         </ix-col>
       </ix-row>
 
       <ix-row>
         <ix-col>
-          <ix-pill variant="neutral" icon="info"> Neutral </ix-pill>
+          <ix-pill variant="warning" icon="info">Warning</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="neutral" icon="info"> Neutral </ix-pill>
+          <ix-pill variant="warning" outline icon="info">Warning</ix-pill>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
+          <ix-pill variant="info" icon="info">Info</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="info" outline icon="info">Info</ix-pill>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
+          <ix-pill variant="neutral" icon="info">Neutral</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="neutral" outline icon="info">Neutral</ix-pill>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
+          <ix-pill variant="success" icon="info">Success</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="success" outline icon="info">Success</ix-pill>
         </ix-col>
       </ix-row>
 
@@ -88,17 +88,19 @@ import {
         <ix-col>
           <ix-pill
             variant="custom"
-            color="color-soft-text"
-            background="purple"
+            pill-color="var(--theme-color-inv-std-text)"
+            background="var(--theme-color-dynamic)"
             icon="info"
-          >
-            Custom
-          </ix-pill>
+          >Custom</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="custom" color="color-soft-text" background="purple" icon="info">
-            Custom
-          </ix-pill>
+          <ix-pill
+            variant="custom"
+            outline
+            pill-color="var(--theme-color-dynamic)"
+            background="var(--theme-color-dynamic)"
+            icon="info"
+          >Custom</ix-pill>
         </ix-col>
       </ix-row>
     </ix-layout-grid>

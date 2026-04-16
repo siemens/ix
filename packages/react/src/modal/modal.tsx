@@ -16,20 +16,26 @@ export interface ModalRef {
   modalElement: HTMLIxModalElement | null;
 }
 
-export const Modal = React.forwardRef<ModalRef, React.PropsWithChildren>(
-  (props, ref) => {
-    const wrapperRef = useRef<HTMLIxModalElement | null>(null);
+export const Modal = React.forwardRef<
+  ModalRef,
+  React.PropsWithChildren<React.ComponentProps<typeof IxModal>>
+>((props, ref) => {
+  const { children, ...ixModalProps } = props;
+  const wrapperRef = useRef<HTMLIxModalElement | null>(null);
 
-    useImperativeHandle(ref, () => ({
-      close(result: unknown) {
-        wrapperRef.current?.closeModal(result);
-      },
-      dismiss(result?: unknown) {
-        wrapperRef.current?.dismissModal(result);
-      },
-      modalElement: null,
-    }));
+  useImperativeHandle(ref, () => ({
+    close(result: unknown) {
+      wrapperRef.current?.closeModal(result);
+    },
+    dismiss(result?: unknown) {
+      wrapperRef.current?.dismissModal(result);
+    },
+    modalElement: null,
+  }));
 
-    return <IxModal ref={wrapperRef}>{props.children}</IxModal>;
-  }
-);
+  return (
+    <IxModal ref={wrapperRef} {...ixModalProps}>
+      {children}
+    </IxModal>
+  );
+});

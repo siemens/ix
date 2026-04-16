@@ -16,6 +16,6 @@ import {
 @Component({
   selector: 'app-example',
   imports: [IxToggle, IxBooleanValueAccessorDirective],
-  template: ` <ix-toggle checked></ix-toggle> `,
+  template: ` <ix-toggle checked aria-label="Toggle"></ix-toggle> `,
 })
 export default class ToggleChecked {}
