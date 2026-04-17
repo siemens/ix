@@ -89,7 +89,7 @@
   }
 
   .text-input {
-    width: auto;
+    width: 100%;
     height: 1.75rem;
     min-height: vars.$large-space;
     background: transparent;
@@ -118,6 +118,7 @@
   }
 
   .list-unstyled {
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     height: 100%;
