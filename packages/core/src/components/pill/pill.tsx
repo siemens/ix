@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
 import { IxComponentInterface } from '../utils/internal';
+import { DefaultMixins } from '../utils/internal/component';
+import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 
 @Component({
@@ -16,8 +18,11 @@ import { makeRef } from '../utils/make-ref';
   styleUrl: 'pill.scss',
   shadow: true,
 })
-export class Pill implements IxComponentInterface {
-  @Element() hostElement!: HTMLIxPillElement;
+export class Pill
+  extends Mixin(...DefaultMixins)
+  implements IxComponentInterface
+{
+  @Element() override hostElement!: HTMLIxPillElement;
 
   /**
    * Pill variant
@@ -75,7 +80,7 @@ export class Pill implements IxComponentInterface {
 
   private readonly containerElementRef = makeRef<HTMLElement>();
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.checkIfContentAvailable();
   }
 
@@ -97,13 +102,16 @@ export class Pill implements IxComponentInterface {
         : this.hostElement.textContent?.trim();
 
     return (
-      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+      <ix-tooltip
+        for={this.containerElementRef.waitForCurrent()}
+        aria-label={text || undefined}
+      >
         {text}
       </ix-tooltip>
     );
   }
 
-  render() {
+  override render() {
     let customStyle = {};
 
     if (this.variant === 'custom') {
@@ -112,6 +120,20 @@ export class Pill implements IxComponentInterface {
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
+
+    const hasAccessibleName =
+      this.hostElement.hasAttribute('aria-label') ||
+      this.hostElement.hasAttribute('aria-labelledby');
+
+    let hostRole: string | undefined = undefined;
+    if (this.hostElement.hasAttribute('role')) {
+      hostRole = this.hostElement.getAttribute('role') ?? undefined;
+    } else if (hasAccessibleName) {
+      hostRole = 'group';
+    }
+
+    const iconIsDecorative = !this.ariaLabelIcon?.trim();
+
     return (
       <Host
         style={
@@ -124,6 +146,7 @@ export class Pill implements IxComponentInterface {
         class={{
           'align-left': this.alignLeft,
         }}
+        role={hostRole}
       >
         <div
           ref={this.containerElementRef}
@@ -153,6 +176,7 @@ export class Pill implements IxComponentInterface {
               name={this.icon}
               size={'16'}
               aria-label={this.ariaLabelIcon}
+              aria-hidden={a11yBoolean(iconIsDecorative)}
             />
           )}
           <span class="slot-container">

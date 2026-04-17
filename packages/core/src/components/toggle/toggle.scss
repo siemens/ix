@@ -21,10 +21,6 @@
 
   @include component.ix-component;
 
-  input[type='checkbox'] {
-    display: none;
-  }
-
   .wrapper {
     display: flex;
     align-items: flex-start;
@@ -144,11 +140,16 @@
   .wrapper {
     cursor: pointer;
   }
+}
 
-  .switch:focus-visible > .slider {
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
-    outline-offset: 0.0625rem;
-  }
+:host(:focus),
+:host(:focus-visible) {
+  outline: none;
+}
+
+:host(:not(.disabled):focus-visible) .switch > .slider {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: 0.0625rem;
 }
 
 :host(.disabled) {

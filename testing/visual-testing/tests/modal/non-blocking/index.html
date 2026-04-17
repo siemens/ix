@@ -1,0 +1,48 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Modal non-blocking</title>
+    <style>
+      main {
+        min-height: 100vh;
+        padding: 1rem;
+        background: var(--theme-color-soft-below);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <ix-typography id="behind" format="body" text-color="std">
+        Content behind the dialog (no dimmed lightbox when non-blocking).
+      </ix-typography>
+      <ix-button id="behind-btn">Behind</ix-button>
+      <ix-modal is-non-blocking="true">
+        <ix-modal-header>Non-blocking</ix-modal-header>
+        <ix-modal-content>Panel content</ix-modal-content>
+        <ix-modal-footer>
+          <ix-button variant="secondary">Cancel</ix-button>
+          <ix-button autofocus>OK</ix-button>
+        </ix-modal-footer>
+      </ix-modal>
+    </main>
+    <script>
+      (async () => {
+        await globalThis.customElements.whenDefined('ix-modal');
+        const modal = document.querySelector('ix-modal');
+        modal.showModal();
+      })();
+    </script>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
