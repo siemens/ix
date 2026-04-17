@@ -6,23 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-/** Popover `<dialog>` uses `role="presentation"`, so tests target it via CSS instead of `getByRole('dialog')`. */
-function popoverDialog(dropdownHost: Locator) {
-  return dropdownHost.locator('dialog');
-}
-
-regressionTest.describe('suppressTopLayer feature', () => {
-  regressionTest.describe('Popover API mode (suppressTopLayer=false)', () => {
+regressionTest.describe('enableTopLayer feature', () => {
+  regressionTest.describe('Popover API mode (enableTopLayer=true)', () => {
     regressionTest(
       'renders with dialog popover structure',
       async ({ mount, page }) => {
         await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" suppress-top-layer="false" aria-label="Menu">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true" aria-label="Menu">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
@@ -31,7 +25,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         await trigger.click();
 
         const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = popoverDialog(dropdown);
+        const dialog = dropdown.getByRole('dialog');
 
         await expect(dialog).toBeAttached();
       }
@@ -42,7 +36,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
       async ({ mount, page }) => {
         await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" suppress-top-layer="false">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
@@ -51,7 +45,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
 
         const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = popoverDialog(dropdown);
+        const dialog = dropdown.getByRole('dialog');
 
         await expect(dialog).not.toBeVisible();
 
@@ -66,7 +60,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
     regressionTest('Escape key closes dropdown', async ({ mount, page }) => {
       await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" suppress-top-layer="false" header="Menu">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true" header="Menu">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
@@ -75,7 +69,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
       const trigger = page.getByRole('button', { name: 'Open' });
 
       const dropdown = page.locator('ix-dropdown#dropdown');
-      const dialog = popoverDialog(dropdown);
+      const dialog = dropdown.getByRole('dialog');
 
       await trigger.click();
       await expect(dialog).toBeVisible();
@@ -92,7 +86,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         <ix-dropdown
           id="dropdown"
           trigger="trigger"
-          suppress-top-layer="false"
+          enable-top-layer="true"
           suppress-overflow-behavior="true"
           header="Menu"
         >
@@ -106,7 +100,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
+        const dialog = page.getByRole('dialog');
         await expect(dialog).not.toHaveClass(/overflow/);
       }
     );
@@ -119,7 +113,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         <ix-dropdown
           id="dropdown"
           trigger="trigger"
-          suppress-top-layer="false"
+          enable-top-layer="true"
           suppress-overflow-behavior="false"
           header="Menu"
         >
@@ -133,7 +127,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toHaveClass(/overflow/);
       }
     );
@@ -146,7 +140,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         <ix-dropdown
           id="dropdown"
           trigger="trigger"
-          suppress-top-layer="false"
+          enable-top-layer="true"
           close-behavior="both"
           header="Menu"
         >
@@ -158,16 +152,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dropdown = page.locator('#dropdown');
-        await expect
-          .poll(() =>
-            dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-              Boolean(dropdownElement.show)
-            )
-          )
-          .toBe(true);
-
-        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
         const item = page.locator('ix-dropdown-item').first();
@@ -187,7 +172,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         <ix-dropdown
           id="dropdown"
           trigger="trigger"
-          suppress-top-layer="false"
+          enable-top-layer="true"
           header="Menu"
         >
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
@@ -198,7 +183,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -216,7 +201,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
     );
 
     regressionTest(
-      'escapes CSS stacking context - dropdown is fully visible and not hidden (suppressTopLayer=false)',
+      'escapes CSS stacking context - dropdown is fully visible and not hidden (enableTopLayer=true)',
       async ({ mount, page }) => {
         await mount(`
         <style>
@@ -251,7 +236,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
             <ix-dropdown
               id="dropdown"
               trigger="trigger"
-              suppress-top-layer="false"
+              enable-top-layer="true"
               header="Actions"
             >
               <ix-dropdown-item label="Edit"></ix-dropdown-item>
@@ -269,7 +254,7 @@ regressionTest.describe('suppressTopLayer feature', () => {
         const trigger = page.getByRole('button', { name: 'Actions' });
         await trigger.click();
 
-        const dialog = popoverDialog(page.locator('ix-dropdown#dropdown'));
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -295,39 +280,34 @@ regressionTest.describe('suppressTopLayer feature', () => {
     );
   });
 
-  regressionTest.describe(
-    'Nested dropdowns with mixed suppressTopLayer',
-    () => {
-      regressionTest(
-        'parent with suppressTopLayer=true, child with suppressTopLayer=false',
-        async ({ mount, page }) => {
-          await mount(`
-          <ix-button id="trigger-1">Trigger 1</ix-button>
-          <ix-dropdown id="dropdown-1" trigger="trigger-1" suppress-top-layer="true">
-            <ix-dropdown-item id="trigger-2">Item 1</ix-dropdown-item>
-          </ix-dropdown>
+  regressionTest.describe('Nested dropdowns with mixed enableTopLayer', () => {
+    regressionTest(
+      'parent with enableTopLayer=false, child with enableTopLayer=true',
+      async ({ mount, page }) => {
+        await mount(`
+        <ix-button id="trigger-1">Trigger 1</ix-button>
+        <ix-dropdown id="dropdown-1" trigger="trigger-1" enable-top-layer="false">
+          <ix-dropdown-item id="trigger-2">Item 1</ix-dropdown-item>
+        </ix-dropdown>
 
-          <ix-dropdown id="dropdown-2" trigger="trigger-2" suppress-top-layer="false" header="Submenu">
-            <ix-dropdown-item>Item 1.1</ix-dropdown-item>
-            <ix-dropdown-item>Item 1.2</ix-dropdown-item>
-          </ix-dropdown>
-        `);
+        <ix-dropdown id="dropdown-2" trigger="trigger-2" enable-top-layer="true" header="Submenu">
+          <ix-dropdown-item>Item 1.1</ix-dropdown-item>
+          <ix-dropdown-item>Item 1.2</ix-dropdown-item>
+        </ix-dropdown>
+      `);
 
-          const trigger1 = page.getByRole('button', { name: 'Trigger 1' });
-          await trigger1.click();
+        const trigger1 = page.getByRole('button', { name: 'Trigger 1' });
+        await trigger1.click();
 
-          const dropdown1 = page.locator('.dropdown-menu.show').first();
-          await expect(dropdown1).toBeVisible();
+        const dropdown1 = page.locator('.dropdown-menu.show').first();
+        await expect(dropdown1).toBeVisible();
 
-          const trigger2 = page.locator('#trigger-2');
-          await trigger2.click();
+        const trigger2 = page.locator('#trigger-2');
+        await trigger2.click();
 
-          const dropdown2Dialog = popoverDialog(
-            page.locator('ix-dropdown#dropdown-2')
-          );
-          await expect(dropdown2Dialog).toBeVisible();
-        }
-      );
-    }
-  );
+        const dropdown2Dialog = page.getByRole('dialog');
+        await expect(dropdown2Dialog).toBeVisible();
+      }
+    );
+  });
 });

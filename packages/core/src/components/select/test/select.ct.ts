@@ -721,7 +721,7 @@ test.describe('Dropdown width', () => {
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="35rem" dropdown-max-width="25rem" suppress-top-layer="true">
+    await mount(`<ix-select value="1" dropdown-width="35rem" dropdown-max-width="25rem">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -740,7 +740,7 @@ test.describe('Dropdown width', () => {
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem" dropdown-max-width="35rem" suppress-top-layer="true">
+    await mount(`<ix-select value="1" dropdown-width="25rem" dropdown-max-width="35rem">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -759,7 +759,7 @@ test.describe('Dropdown width', () => {
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem" suppress-top-layer="true">
+    await mount(`<ix-select value="1" dropdown-width="25rem">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -778,7 +778,7 @@ test.describe('Dropdown width', () => {
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-max-width="35rem" suppress-top-layer="true">
+    await mount(`<ix-select value="1" dropdown-max-width="35rem">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -797,7 +797,7 @@ test.describe('Dropdown width', () => {
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" suppress-top-layer="true">
+    await mount(`<ix-select value="1">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -819,7 +819,7 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   mount,
   page,
 }) => {
-  await mount(`<ix-select value="1" dropdown-max-width="10000rem" suppress-top-layer="true">
+  await mount(`<ix-select value="1" dropdown-max-width="10000rem">
     <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
   </ix-select>`);
 

@@ -500,13 +500,7 @@ test.describe('cross app navigation', () => {
     const dropdown = page.locator(
       'ix-application-header ix-dropdown[data-overflow-dropdown]'
     );
-    await expect
-      .poll(() =>
-        dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-          Boolean(dropdownElement.show)
-        )
-      )
-      .toBe(true);
+    await expect(dropdown).toBeVisible();
 
     const dropdownBeforeAvatarButton = page
       .locator('ix-application-header ix-button')
@@ -559,13 +553,7 @@ test.describe('cross app navigation', () => {
     const dropdown = page.locator(
       'ix-application-header ix-dropdown[data-overflow-dropdown]'
     );
-    await expect
-      .poll(() =>
-        dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-          Boolean(dropdownElement.show)
-        )
-      )
-      .toBe(true);
+    await expect(dropdown).toBeVisible();
 
     const dropdownBeforeAvatarButton = page
       .locator('ix-application-header ix-button')

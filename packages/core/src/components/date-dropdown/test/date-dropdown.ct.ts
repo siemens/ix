@@ -87,13 +87,7 @@ regressionTest.describe('date dropdown tests', () => {
       await dateDropdown.click();
 
       const dropdown = dateDropdown.locator('#date-dropdown');
-      await expect
-        .poll(() =>
-          dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-            Boolean(dropdownElement.show)
-          )
-        )
-        .toBe(true);
+      await expect(dropdown).toHaveClass(/show/);
 
       const intervalOptionsButton = dateDropdown.getByRole('button', {
         name: /Last 7 days/,
@@ -101,15 +95,9 @@ regressionTest.describe('date dropdown tests', () => {
       await intervalOptionsButton.click();
 
       await page.keyboard.press('Escape');
-      await expect
-        .poll(() =>
-          dateDropdown
-            .locator('#date-dropdown')
-            .evaluate((dropdownElement: HTMLIxDropdownElement) =>
-              Boolean(dropdownElement.show)
-            )
-        )
-        .toBe(false);
+      await expect(dateDropdown.locator('#date-dropdown')).not.toHaveClass(
+        /show/
+      );
 
       const dateRangeRegex = /\d{4}\/\d{2}\/\d{2} - \d{4}\/\d{2}\/\d{2}/;
 
@@ -215,9 +203,7 @@ regressionTest('set date from a button', async ({ mount, page }) => {
 });
 
 regressionTest('select different year', async ({ mount, page }) => {
-  await mount(
-    `<ix-date-dropdown from="2024/02/16" suppress-top-layer="true"></ix-date-dropdown>`
-  );
+  await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
 
   await expect(dateDropdown).toHaveClass(/hydrated/);

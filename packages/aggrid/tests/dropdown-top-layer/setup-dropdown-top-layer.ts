@@ -29,7 +29,7 @@ class DropdownButtonRenderer {
   init(params: ICellRendererParams) {
     const element = document.createElement('ix-dropdown-button');
     element.label = params.value;
-    element.suppressTopLayer = false;
+    element.enableTopLayer = true;
     element.innerHTML = `
         <ix-dropdown-item label="Edit"></ix-dropdown-item>
         <ix-dropdown-item label="Delete"></ix-dropdown-item>
@@ -51,7 +51,7 @@ class SelectRenderer {
   init(params: ICellRendererParams) {
     this.eGui = document.createElement('div');
     this.eGui.innerHTML = `
-      <ix-select value="${params.value}" suppress-top-layer="false">
+      <ix-select value="${params.value}" enable-top-layer="true">
         <ix-select-item label="Active" value="active"></ix-select-item>
         <ix-select-item label="Inactive" value="inactive"></ix-select-item>
         <ix-select-item label="Pending" value="pending"></ix-select-item>

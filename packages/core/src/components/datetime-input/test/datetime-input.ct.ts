@@ -24,13 +24,8 @@ const createAccessor = async (dateTimeInput: Locator) => {
       const trigger = dateTimeInput.locator('ix-icon-button').first();
       await trigger.click();
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect
-        .poll(() =>
-          dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-            Boolean(dropdownElement.show)
-          )
-        )
-        .toBe(true);
+      await expect(dropdown).toBeVisible();
+      await expect(dropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
       // Day cells have aria-label like "15 May" (month index: day)
@@ -60,13 +55,8 @@ const createAccessor = async (dateTimeInput: Locator) => {
     },
     expectCalendarToBeVisible: async () => {
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect
-        .poll(() =>
-          dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-            Boolean(dropdownElement.show)
-          )
-        )
-        .toBe(true);
+      await expect(dropdown).toBeVisible();
+      await expect(dropdown).toHaveClass(/show/);
     },
     expectToHaveErrorMessage: async (message: string) => {
       const input = dateTimeInput.getByRole('textbox');

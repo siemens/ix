@@ -129,7 +129,7 @@ regressionTest.describe('aggrid', () => {
     ).toMatchSnapshot();
   });
 
-  regressionTest.describe('dropdown top layer (suppressTopLayer=false)', () => {
+  regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {
     regressionTest(
       'dropdown-button in cell should appear above other rows',
       async ({ page }) => {

@@ -129,13 +129,7 @@ regressionTest(
     await page.keyboard.press('ArrowDown');
 
     const dropdown = button.locator('ix-dropdown');
-    await expect
-      .poll(() =>
-        dropdown.evaluate((dropdownElement: HTMLIxDropdownElement) =>
-          Boolean(dropdownElement.show)
-        )
-      )
-      .toBe(true);
+    await expect(dropdown).toBeVisible();
 
     await expect(button).toHaveAttribute('aria-activedescendant', 'acc-1');
 

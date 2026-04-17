@@ -61,7 +61,7 @@ async function setupModalEnvironment(page: Page) {
 
 // Native `<dialog>` inside the modal (single dialog per test in this file).
 function modalPanel(page: Page) {
-  return page.locator('ix-modal').getByRole('dialog').first();
+  return page.getByRole('dialog');
 }
 
 async function waitForModalDialogOpen(page: Page) {
