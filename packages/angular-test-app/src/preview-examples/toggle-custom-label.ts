@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-toggle text-off="Offline" text-on="Online"></ix-toggle> `,
+  template: ` <ix-toggle text-off="Offline" text-on="Online" aria-label="Connection status"></ix-toggle> `,
 })
 export default class ToggleCustomLabel {}

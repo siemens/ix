@@ -1,6 +1,7 @@
-- button "Button"
-- button "Button"
-- button "Button"
-- button "Button"
-- button "Button"
-- button "Button"
+- main:
+  - button "Button"
+  - button "Button"
+  - button "Button"
+  - button "Button"
+  - button "Button"
+  - button "Button"

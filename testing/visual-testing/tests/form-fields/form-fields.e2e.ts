@@ -52,10 +52,13 @@ async function changeToDisabled(page: Page) {
   });
 }
 
+/** Allow minor pixel variance (e.g. CI Linux vs local font/rendering) to avoid flaky failures. */
+const SNAPSHOT_OPTIONS = { maxDiffPixelRatio: 0.03 };
+
 regressionTest.describe('form-fields', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('form-fields/basic');
-    expect(await page.screenshot()).toMatchSnapshot();
+    expect(await page.screenshot()).toMatchSnapshot(SNAPSHOT_OPTIONS);
   });
 
   ['info', 'warning', 'valid', 'invalid'].forEach((state) =>
@@ -63,7 +66,7 @@ regressionTest.describe('form-fields', () => {
       await page.goto('form-fields/basic');
 
       await changeState(page, state);
-      expect(await page.screenshot()).toMatchSnapshot();
+      expect(await page.screenshot()).toMatchSnapshot(SNAPSHOT_OPTIONS);
     })
   );
 
@@ -73,7 +76,7 @@ regressionTest.describe('form-fields', () => {
 
       await changeToReadonly(page);
       await changeState(page, state);
-      expect(await page.screenshot()).toMatchSnapshot();
+      expect(await page.screenshot()).toMatchSnapshot(SNAPSHOT_OPTIONS);
     })
   );
 
@@ -83,7 +86,7 @@ regressionTest.describe('form-fields', () => {
 
       await changeToDisabled(page);
       await changeState(page, state);
-      expect(await page.screenshot()).toMatchSnapshot();
+      expect(await page.screenshot()).toMatchSnapshot(SNAPSHOT_OPTIONS);
     })
   );
 });

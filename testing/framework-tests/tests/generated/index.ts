@@ -277,6 +277,8 @@ import './modal-close-axe.spec.ts';
 import './modal-close.spec.ts';
 import './modal-form-ix-button-submit-axe.spec.ts';
 import './modal-form-ix-button-submit.spec.ts';
+import './modal-non-blocking-axe.spec.ts';
+import './modal-non-blocking.spec.ts';
 import './modal-sizes-axe.spec.ts';
 import './modal-sizes.spec.ts';
 import './modal.spec.ts';
