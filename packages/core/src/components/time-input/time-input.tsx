@@ -16,6 +16,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -49,7 +50,13 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { MakeRef, makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
 
 /**
@@ -61,25 +68,30 @@ import type { TimeInputValidityState } from './time-input.types';
 @Component({
   tag: 'ix-time-input',
   styleUrl: 'time-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
-export class TimeInput implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTimeInputElement;
+export class TimeInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * Name of the input element
+   * Name of the input element.
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Placeholder of the input element
+   * Placeholder of the input element.
    */
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * Value of the input element
+   * Value of the input element.
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
@@ -88,119 +100,119 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   /**
-   * Format of time string
+   * Format of time string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'TT';
 
   /**
-   * Required attribute
+   * Required attribute.
    */
   @Prop() required?: boolean;
 
   /**
-   * Helper text below the input field
+   * Helper text below the input field.
    */
   @Prop() helperText?: string;
 
   /**
-   * Label of the input field
+   * Label of the input field.
    */
   @Prop() label?: string;
 
   /**
-   * Error text below the input field
+   * Error text below the input field.
    */
   @Prop({ reflect: true }) invalidText?: string;
 
   /**
-   * Readonly attribute
+   * Readonly attribute.
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * Disabled attribute
+   * Disabled attribute.
    */
   @Prop() disabled: boolean = false;
 
   /**
-   * Info text below the input field
+   * Info text below the input field.
    */
   @Prop() infoText?: string;
 
   /**
-   * Warning text below the input field
+   * Warning text below the input field.
    */
   @Prop() warningText?: string;
 
   /**
-   * Valid text below the input field
+   * Valid text below the input field.
    */
   @Prop() validText?: string;
 
   /**
-   * Show text as tooltip
+   * Show text as tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * I18n string for the error message when the time is not parsable
+   * I18n string for the error message when the time is not parsable.
    */
   @Prop({ attribute: 'i18n-error-time-unparsable' }) i18nErrorTimeUnparsable =
     'Time is not valid';
 
   /**
-   * Interval for hour selection
+   * Interval for hour selection.
    */
   @Prop() hourInterval: number = 1;
 
   /**
-   * Interval for minute selection
+   * Interval for minute selection.
    */
   @Prop() minuteInterval: number = 1;
 
   /**
-   * Interval for second selection
+   * Interval for second selection.
    */
   @Prop() secondInterval: number = 1;
 
   /**
-   * Interval for millisecond selection
+   * Interval for millisecond selection.
    */
   @Prop() millisecondInterval: number = 100;
 
   /**
-   * Text of time-picker time select button
+   * Text of the time picker confirm button.
    */
   @Prop({ attribute: 'i18n-select-time' }) i18nSelectTime: string = 'Confirm';
 
   /**
-   * Text for time-picker top label
+   * Text for the time picker top label.
    */
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
-   * Text for time-picker hour column header
+   * Text for the time picker hour column header.
    */
   @Prop({ attribute: 'i18n-hour-column-header' }) i18nHourColumnHeader: string =
     'hr';
 
   /**
-   * Text for time-picker minute column header
+   * Text for the time picker minute column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-minute-column-header' })
   i18nMinuteColumnHeader: string = 'min';
 
   /**
-   * Text for time-picker second column header
+   * Text for the time picker second column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-second-column-header' })
   i18nSecondColumnHeader: string = 'sec';
 
   /**
-   * Text for time-picker millisecond column header
+   * Text for the time picker millisecond column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
@@ -233,12 +245,20 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Input change event.
+   * ARIA label for the time picker toggle button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
+
+  /**
+   * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
 
   /**
-   * Validation state change event.
+   * Validation state change event. Emitted when the validation state changes.
    */
   @Event() validityStateChange!: EventEmitter<TimeInputValidityState>;
 
@@ -249,7 +269,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the time input loses focus and the value has changed.
+   * Change event. Emitted when the time input loses focus and the value has changed.
+   *
    * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
@@ -272,13 +293,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
 
-  /** @internal */
   public initialValue?: string;
-  /** @internal */
+
   public invalidReason?: string;
-  /** @internal */
+
   public touched = false;
-  /** @internal */
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -289,6 +309,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+      this.show = true;
+      requestAnimationFrameNoNgZone(() => {
+        this.timePickerRef.current?.focus();
+      });
+    }
     onEnterKeyChangeEmit(event, this, this.value);
 
     handleSubmitOnEnterKeydown(
@@ -303,7 +329,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -315,7 +341,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -342,7 +368,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -424,6 +450,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         ></SlotStart>
         <input
+          aria-haspopup="true"
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
@@ -472,12 +499,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            tabindex={-1}
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
+            size="16"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
-            aria-label="Toggle time picker"
+            aria-label={this.ariaLabelTimeToggleButton}
             aria-expanded={this.show}
           ></ix-icon-button>
         </SlotEnd>
@@ -536,7 +565,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
@@ -548,6 +581,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+        }}
+        onFocusout={() => {
+          this.closeDropdown();
         }}
       >
         <ix-field-wrapper
@@ -581,6 +617,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+          }}
+          focusTrapOptions={{
+            targetElement: this.timePickerRef,
+            trapFocusInShadowDom: true,
           }}
         >
           <ix-time-picker

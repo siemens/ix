@@ -1,2 +1,2 @@
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"

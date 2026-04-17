@@ -76,11 +76,11 @@
     }
 
     .start-container {
-      left: 0;
+      left: var(--theme-input--border-thickness);
     }
 
     .end-container {
-      right: 0;
+      right: calc(var(--theme-input--border-thickness) + 0.125rem);
     }
 
     @include applySpacingToStartSlot;
@@ -89,6 +89,11 @@
     .bottom-text {
       margin-top: 0.25rem;
       margin-bottom: 0.25rem;
+    }
+
+    .input-wrapper:hover input:not(:disabled):not(:read-only) {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
     }
   }
 
@@ -108,7 +113,8 @@
       border-color: var(--theme-input--border-color--info);
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       border-color: var(--theme-input--border-color--info--hover) !important;
     }
 
@@ -125,7 +131,8 @@
       ) !important;
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       background-color: var(--theme-input--background--warning--hover);
       border-color: var(
         --theme-input--border-color--warning--active
@@ -145,7 +152,8 @@
       border-color: var(--theme-input--border-color--invalid) !important;
     }
 
-    input:hover {
+    input:hover,
+    .input-wrapper:hover input {
       background-color: var(--theme-input--background--invalid--hover);
       border-color: var(--theme-input--border-color--invalid--hover) !important;
     }

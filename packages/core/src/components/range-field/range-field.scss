@@ -1,0 +1,48 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+
+:host {
+  @include component.ix-component();
+  display: inline-flex;
+  position: relative;
+  gap: 0.25rem;
+
+  .range-delimiter {
+    order: 2;
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+  }
+
+  .range-delimiter.has-label {
+    margin-top: 2rem;
+  }
+
+  ::slotted(:first-child),
+  ::slotted(:last-child) {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  ::slotted(:first-child) {
+    order: 1;
+  }
+
+  ::slotted(:last-child) {
+    order: 3;
+  }
+
+  ::slotted(.fallback-label-margin) {
+    margin-top: 1.8rem;
+  }
+}
+
+:host(.hide-arrow) {
+  gap: 0.5rem;
+}

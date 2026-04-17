@@ -258,7 +258,6 @@ export class Upload {
           }}
           onDragOver={(e) => this.fileOver(e)}
           onDragLeave={() => this.fileLeave()}
-          draggable={!this.disabled}
         >
           {this.renderUploadState()}
           <div>

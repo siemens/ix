@@ -7,67 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
-import { ToastConfig } from './toast-utils';
 import type { ShowToastResult } from './toast-container.types';
+import { ToastConfig } from './toast-utils';
 
 @Component({
   tag: 'ix-toast-container',
-  styleUrl: './styles/toast-container.scss',
+  styleUrl: './toast-container.scss',
   shadow: true,
 })
 export class ToastContainer {
-  /**
-   */
-  @Prop() containerId = 'toast-container';
+  @Element() hostElement!: HTMLIxToastContainerElement;
 
   /**
-   */
-  @Prop() containerClass = 'toast-container';
-
-  /**
+   * Position of the toast container. Determines where the toasts will be displayed on the screen.
    */
   @Prop() position: 'bottom-right' | 'top-right' = 'bottom-right';
-
-  private readonly PREFIX_POSITION_CLASS = 'toast-container--';
-
-  get hostContainer() {
-    return new Promise<HTMLElement>((resolve) => {
-      const interval = setInterval(() => {
-        const containerElement = document.getElementById(this.containerId);
-        if (containerElement) {
-          clearInterval(interval);
-          resolve(containerElement);
-        }
-      });
-    });
-  }
-
-  componentDidLoad() {
-    if (!document.getElementById(this.containerId)) {
-      const toastContainer = document.createElement('div');
-      toastContainer.id = this.containerId;
-      toastContainer.classList.add(this.containerClass);
-      toastContainer.classList.add(
-        `${this.PREFIX_POSITION_CLASS}${this.position}`
-      );
-      document.body.appendChild(toastContainer);
-    }
-  }
-
-  @Watch('position')
-  onPositionChange(newPosition: string, oldPosition: string) {
-    const toastContainer = document.getElementById(this.containerId);
-    if (!toastContainer) {
-      console.warn('No toast container found, cannot configure toast position');
-      return;
-    }
-    toastContainer.classList.remove(
-      `${this.PREFIX_POSITION_CLASS}${oldPosition}`
-    );
-    toastContainer.classList.add(`${this.PREFIX_POSITION_CLASS}${newPosition}`);
-  }
 
   /**
    * Display a toast message
@@ -90,6 +46,7 @@ export class ToastContainer {
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
     toast.hideIcon = config.hideIcon ?? false;
+
     toast.addEventListener(
       'closeToast',
       (event: CustomEvent<any | undefined>) => {
@@ -111,7 +68,7 @@ export class ToastContainer {
       toast.appendChild(config.action);
     }
 
-    (await this.hostContainer).appendChild(toast);
+    this.hostElement.appendChild(toast);
 
     return {
       onClose,

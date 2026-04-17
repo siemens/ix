@@ -18,10 +18,14 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { DefaultMixins } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
@@ -69,13 +73,15 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class TimePicker {
-  @Element() hostElement!: HTMLIxTimePickerElement;
+export class TimePicker extends Mixin(...DefaultMixins) {
+  @Element() override hostElement!: HTMLIxTimePickerElement;
 
   /**
-   * Format of time string
+   * Format of time string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    * Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
    */
@@ -91,17 +97,17 @@ export class TimePicker {
   }
 
   /**
-   * Corner style
+   * Corner style.
    */
   @Prop() corners: TimePickerCorners = 'rounded';
 
   /**
-   * Embedded style (for use in other components)
+   * Embedded style (for use in other components).
    */
   @Prop() embedded = false;
 
   /**
-   * @internal Temporary prop needed until datetime-picker is reworked for new design
+   * @internal Temporary prop needed until datetime-picker is reworked for new design.
    */
   @Prop() dateTimePickerAppearance: boolean = false;
 
@@ -113,7 +119,7 @@ export class TimePicker {
   @Prop() hideHeader: boolean = false;
 
   /**
-   * Interval for hour selection
+   * Interval for hour selection.
    *
    * @since 3.2.0
    */
@@ -134,7 +140,7 @@ export class TimePicker {
   }
 
   /**
-   * Interval for minute selection
+   * Interval for minute selection.
    *
    * @since 3.2.0
    */
@@ -151,7 +157,7 @@ export class TimePicker {
   }
 
   /**
-   * Interval for second selection
+   * Interval for second selection.
    *
    * @since 3.2.0
    */
@@ -168,7 +174,7 @@ export class TimePicker {
   }
 
   /**
-   * Interval for millisecond selection
+   * Interval for millisecond selection.
    *
    * @since 3.2.0
    */
@@ -192,7 +198,7 @@ export class TimePicker {
   }
 
   /**
-   * Select time with format string
+   * Selected time value.
    * Format has to match the `format` property.
    */
   @Prop() time?: string;
@@ -216,50 +222,50 @@ export class TimePicker {
   }
 
   /**
-   * Text of the time confirm button
+   * Text of the time confirm button.
    */
   @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime =
     CONFIRM_BUTTON_DEFAULT;
 
   /**
-   * Text for top header
+   * Text for the top header.
    */
   @Prop({ attribute: 'i18n-header' }) i18nHeader: string = HEADER_DEFAULT;
 
   /**
-   * Text for hour column header
+   * Text for the hour column header.
    */
   @Prop({ attribute: 'i18n-column-header' }) i18nHourColumnHeader: string =
     'hr';
 
   /**
-   * Text for minute column header
+   * Text for the minute column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-minute-column-header' })
   i18nMinuteColumnHeader: string = 'min';
 
   /**
-   * Text for second column header
+   * Text for the second column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-second-column-header' })
   i18nSecondColumnHeader: string = 'sec';
 
   /**
-   * Text for millisecond column header
+   * Text for the millisecond column header.
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
-   * Time event
+   * Time event. Emitted when the user confirms the selected time.
    */
   @Event() timeSelect!: EventEmitter<string>;
 
   /**
-   * Time change event
+   * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
   @Event() timeChange!: EventEmitter<string>;
 
@@ -291,7 +297,7 @@ export class TimePicker {
   private visibilityObserver?: MutationObserver;
   private focusScrollAlignment: 'start' | 'end' = 'start';
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.initPicker();
   }
 
@@ -323,34 +329,39 @@ export class TimePicker {
     this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.updateScrollPositions();
     this.setupVisibilityObserver();
   }
 
-  componentDidRender() {
-    if (this.isUnitFocused) {
-      const elementContainer = this.getElementContainer(
-        this.focusedUnit,
-        this.focusedValue
+  override componentDidRender() {
+    if (!this.isUnitFocused) {
+      return;
+    }
+    const elementContainer = this.getElementContainer(
+      this.focusedUnit,
+      this.focusedValue
+    );
+    const elementList = this.getElementList(this.focusedUnit);
+
+    if (!elementContainer) {
+      return;
+    }
+
+    if (hasKeyboardMode()) {
+      elementContainer.focus({ preventScroll: true });
+    }
+
+    if (!this.isElementVisible(elementContainer, elementList)) {
+      this.scrollElementIntoView(
+        elementContainer,
+        elementList,
+        this.focusScrollAlignment
       );
-      const elementList = this.getElementList(this.focusedUnit);
-
-      if (elementContainer) {
-        elementContainer.focus({ preventScroll: true });
-
-        if (!this.isElementVisible(elementContainer, elementList)) {
-          this.scrollElementIntoView(
-            elementContainer,
-            elementList,
-            this.focusScrollAlignment
-          );
-        }
-      }
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     if (this.visibilityObserver) {
       this.visibilityObserver.disconnect();
     }
@@ -530,12 +541,8 @@ export class TimePicker {
   }
 
   private setupVisibilityObserver() {
-    let dropdownElement: Element | null = this.hostElement;
-    while (dropdownElement && dropdownElement.tagName !== 'IX-DROPDOWN') {
-      dropdownElement = dropdownElement.parentElement;
-    }
-
-    if (!dropdownElement) {
+    const dropdown = closestPassShadow(this.hostElement, 'ix-dropdown');
+    if (!dropdown) {
       return;
     }
 
@@ -543,7 +550,7 @@ export class TimePicker {
       this.mutationObserverCallback(mutations)
     );
 
-    this.visibilityObserver.observe(dropdownElement, {
+    this.visibilityObserver.observe(dropdown, {
       attributes: true,
       attributeFilter: ['class', 'style'],
     });
@@ -893,22 +900,7 @@ export class TimePicker {
     return ':';
   }
 
-  private getElementContainerTabIndex(
-    number: number,
-    descriptorUnit: TimePickerDescriptorUnit
-  ): string {
-    const descriptor = this.timePickerDescriptors.find(
-      (d) => d.unit === descriptorUnit
-    );
-
-    if (number === descriptor?.focusedValue) {
-      return '0';
-    }
-
-    return '-1';
-  }
-
-  render() {
+  override render() {
     return (
       <Host>
         <ix-date-time-card
@@ -922,60 +914,72 @@ export class TimePicker {
             <ix-typography format="body">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
-            {this.timePickerDescriptors.map((descriptor, index: number) => (
-              <div class="flex">
-                <div class={{ columns: true, hidden: descriptor.hidden }}>
-                  <div class="column-header" title={descriptor.header}>
-                    {descriptor.header}
-                  </div>
+            {this.timePickerDescriptors.map((descriptor, index: number) => {
+              return (
+                <div class="flex">
                   <div
-                    data-element-list-id={descriptor.unit}
-                    class="element-list"
-                    tabIndex={-1}
+                    class={{ columns: true, hidden: descriptor.hidden }}
+                    hidden={descriptor.hidden}
                   >
-                    {descriptor.numberArray.map((number) => {
-                      return (
-                        <button
-                          data-element-container-id={`${descriptor.unit}-${number}`}
-                          class={{
-                            selected: this.isSelected(descriptor.unit, number),
-                            'element-container': true,
-                          }}
-                          onClick={() => {
-                            this.select(descriptor.unit, number);
-                          }}
-                          onFocus={() =>
-                            this.onUnitCellFocus(descriptor.unit, number)
-                          }
-                          onBlur={(e) =>
-                            this.onUnitCellBlur(descriptor.unit, e)
-                          }
-                          tabindex={this.getElementContainerTabIndex(
-                            number,
-                            descriptor.unit
-                          )}
-                          aria-label={`${descriptor.header}: ${number}`}
-                        >
-                          {this.formatUnitValue(descriptor.unit, number)}
-                        </button>
-                      );
-                    })}
-                    <div class="element-list-padding"></div>
-                  </div>
-                </div>
+                    <div class="column-header" title={descriptor.header}>
+                      {descriptor.header}
+                    </div>
+                    <div
+                      data-element-list-id={descriptor.unit}
+                      class="element-list"
+                    >
+                      {descriptor.numberArray.map((number) => {
+                        const tabIndex = this.isSelected(
+                          descriptor.unit,
+                          number
+                        )
+                          ? 0
+                          : -1;
 
-                {index !== this.timePickerDescriptors.length - 1 && (
-                  <div
-                    class={{
-                      'column-separator': true,
-                      hidden: descriptor.hidden,
-                    }}
-                  >
-                    {this.getColumnSeparator(index)}
+                        return (
+                          <button
+                            data-element-container-id={`${descriptor.unit}-${number}`}
+                            class={{
+                              selected: this.isSelected(
+                                descriptor.unit,
+                                number
+                              ),
+                              'element-container': true,
+                            }}
+                            onClick={() => {
+                              this.select(descriptor.unit, number);
+                            }}
+                            onFocus={() =>
+                              this.onUnitCellFocus(descriptor.unit, number)
+                            }
+                            onBlur={(e) =>
+                              this.onUnitCellBlur(descriptor.unit, e)
+                            }
+                            aria-label={`${descriptor.header}: ${number}`}
+                            tabindex={tabIndex}
+                            autofocus={tabIndex === 0}
+                          >
+                            {this.formatUnitValue(descriptor.unit, number)}
+                          </button>
+                        );
+                      })}
+                      <div class="element-list-padding"></div>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {index !== this.timePickerDescriptors.length - 1 && (
+                    <div
+                      class={{
+                        'column-separator': true,
+                        hidden: descriptor.hidden,
+                      }}
+                    >
+                      {this.getColumnSeparator(index)}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
             {this.timeRef && (
               <div class="flex">

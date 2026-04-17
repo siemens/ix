@@ -1,0 +1,44 @@
+diff --git a/internal/stencil-ext-modules.d.ts b/internal/stencil-ext-modules.d.ts
+index 06c9b3b1d22a2675ff0f2f69ac072f3accd02b2c..ba53835c98f01604049764e4e7d4481c99e01348 100644
+--- a/internal/stencil-ext-modules.d.ts
++++ b/internal/stencil-ext-modules.d.ts
+@@ -1,19 +1,30 @@
+-declare module '*.css' {
+-  const src: string;
+-  export default src;
+-}
++// Note: Commented out broad '*.css' declaration to allow CSS Modules (*.module.css) support
++// in projects using Vite or other bundlers that use CSS Modules
++// declare module '*.css' {
++//   const src: string;
++//   export default src;
++// }
+ 
+ declare module '*.svg' {
+   const src: string;
+   export default src;
+ }
+ 
+-declare module '*.txt' {
+-  const src: string;
+-  export default src;
+-}
++/**
++ * Patched to comment out '*.css' declaration for monorepo CSS Modules support.
++ * The broad '*.css' pattern conflicts with Vite's CSS Module typing (*.module.css).
++ * This is necessary because:
++ * - @siemens/ix is built with Stencil and exports these types
++ * - TypeScript's wildcard matching means '*.css' matches '*.module.css' 
++ * - This prevents proper CSS Module support in consuming packages
++ * See: https://github.com/ionic-team/stencil/issues/3315
++ */
++// declare module '*.css' {
++//   const src: string;
++//   export default src;
++// }
+ 
+-declare module '*.frag' {
++declare module '*.svg' {
+   const src: string;
+   export default src;
+ }

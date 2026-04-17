@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,13 +23,17 @@ LICENSE file in the root directory of this source tree.
     <script type="module" src="./init.js"></script>
 
     <script type="module">
-      import { registerTheme } from '@siemens/ix-echarts';
+      import {
+        registerTheme,
+        resolveEChartThemeName,
+      } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
-      function initChart(theme, options) {
+      function initChart(options) {
+        const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme);
         myChart.setOption(options);
 
@@ -72,16 +76,20 @@ LICENSE file in the root directory of this source tree.
       // providing echarts is in this case optional
       registerTheme(echarts);
 
-      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      var myChart = initChart(options);
 
-      themeSwitcher.themeChanged.on((theme) => {
+      const disposer = themeSwitcher.themeChanged.on(() => {
         myChart.dispose();
-        myChart = initChart(theme, options);
+        myChart = initChart(options);
       });
 
       window.onresize = function () {
         myChart.resize();
       };
+
+      window.addEventListener('unload', () => {
+        disposer.dispose();
+      });
     </script>
   </body>
 </html>

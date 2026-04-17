@@ -17,14 +17,14 @@ regressionTest.describe('menu-about-news', () => {
   });
 
   regressionTest('mobile', async ({ page }) => {
+    await page.setViewportSize(viewPorts.sm);
     await page.goto('menu-about-news/basic');
-    page.setViewportSize(viewPorts.sm);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('z-index', async ({ page }) => {
+    await page.setViewportSize(viewPorts.sm);
     await page.goto('menu-about-news/basic');
-    page.setViewportSize(viewPorts.sm);
 
     const burgerMenu = page.locator(
       'ix-application-header ix-menu-expand-icon'

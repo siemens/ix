@@ -15,11 +15,17 @@ import {
   Listen,
   Prop,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 
 export type ButtonVariant =
   | `${BaseButtonVariant}`
@@ -32,15 +38,10 @@ export type ButtonVariant =
   },
   styleUrl: './button.scss',
 })
-export class Button implements IxButtonComponent {
-  /**
-   * ARIA label for the button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelButton?: string;
-
+export class Button
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxButtonComponent, InheritAriaAttributesMixinContract
+{
   /**
    * Button variant
    */
@@ -106,7 +107,7 @@ export class Button implements IxButtonComponent {
    */
   @Prop() rel?: string;
 
-  @Element() hostElement!: HTMLIxButtonElement;
+  @Element() override hostElement!: HTMLIxButtonElement;
 
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
@@ -121,7 +122,7 @@ export class Button implements IxButtonComponent {
     }
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     if (this.type !== 'submit') {
       return;
     }
@@ -148,7 +149,7 @@ export class Button implements IxButtonComponent {
     }
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (
       this.submitButtonElement &&
       !this.hostElement.contains(this.submitButtonElement)
@@ -176,7 +177,7 @@ export class Button implements IxButtonComponent {
       ?.focus();
   }
 
-  render() {
+  override render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
@@ -190,10 +191,7 @@ export class Button implements IxButtonComponent {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: 0,
-      ariaAttributes: {
-        'aria-label': this.ariaLabelButton,
-      },
+      ariaAttributes: this.inheritAriaAttributes,
       href: this.href,
       target: this.target,
       rel: this.rel,
@@ -204,6 +202,7 @@ export class Button implements IxButtonComponent {
         class={{
           disabled: this.disabled || this.loading,
         }}
+        tabIndex={this.disabled || this.loading ? -1 : 0}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>

@@ -6,9 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 
-export interface IxOverlayComponent extends IxComponent {
+export interface IxOverlayComponent extends IxComponentInterface {
   isPresent(): boolean;
 
   willPresent?(): boolean;

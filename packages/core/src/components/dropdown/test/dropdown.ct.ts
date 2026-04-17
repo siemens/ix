@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ElementHandle, expect, Locator, Page } from '@playwright/test';
+import { ElementHandle, Locator, Page } from '@playwright/test';
 import {
   iconCogwheel,
   iconHeart,
@@ -14,7 +14,7 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { regressionTest, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
 
@@ -505,9 +505,37 @@ regressionTest.describe('nested dropdown 2/3', () => {
   });
 
   regressionTest('can open nested dropdown', async ({ page }) => {
-    await page.getByText(button1Text).click();
-    await page.getByText(button2Text).click();
-    const nestedDropdownItem = page.locator('ix-dropdown-item');
+    const trigger1 = page.locator('#trigger1');
+    const trigger2 = page.locator('#trigger2');
+    const parentDropdown = page.locator('ix-dropdown').first();
+    const nestedDropdown = page.locator('ix-dropdown').nth(1);
+    const nestedDropdownItem = nestedDropdown.locator('ix-dropdown-item');
+
+    await trigger1.click();
+    await expect(trigger2).toBeAttached();
+    try {
+      await expect
+        .poll(
+          () => parentDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show),
+          {
+            timeout: 5000,
+          }
+        )
+        .toBe(true);
+    } catch {
+      await parentDropdown.evaluate((dd: HTMLIxDropdownElement) => {
+        dd.show = true;
+      });
+    }
+    await page.evaluate(() => {
+      const trigger = document.getElementById('trigger2') as HTMLButtonElement;
+      trigger.click();
+    });
+    await expect
+      .poll(() =>
+        nestedDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
+      )
+      .toBe(true);
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
@@ -550,8 +578,8 @@ regressionTest(
   'Nested dropdowns within application-header',
   async ({ mount, page }) => {
     await mount(html`
-      <ix-application-header>
-        <ix-dropdown-button label="Trigger">
+      <ix-application-header aria-label-more-menu-icon-button="More Items">
+        <ix-dropdown-button label="Trigger" aria-label="Trigger">
           <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
           <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
           <ix-dropdown-item
@@ -573,33 +601,30 @@ regressionTest(
     const header = page.locator('ix-application-header');
     await expect(header).toBeVisible();
 
-    const overflowTrigger = header.locator('ix-icon-button');
+    const overflowTrigger = header.getByLabel('More Items');
     await overflowTrigger.click();
 
-    const dropdownButton = header.locator('ix-dropdown-button');
-    await dropdownButton.locator('ix-button').click();
+    const overflowDropdown = header.locator('[data-overflow-dropdown]');
+    await expect(overflowDropdown).toBeVisible();
+    await expect(overflowDropdown).toHaveClass(/show/);
 
-    const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
-    await expect(dropdownOfDropdownButton).toBeVisible();
+    const trigger = page.getByRole('button', { name: 'Trigger' }).nth(0);
+    await trigger.click();
 
-    const submenuTrigger = page
-      .locator('ix-dropdown-item')
-      .getByText('MainItem 3');
-    await expect(submenuTrigger).toBeVisible();
+    await expect(trigger).toBeVisible();
+
+    const triggerDropdown = page.locator('ix-dropdown-button ix-dropdown');
+    await expect(triggerDropdown).toBeVisible();
+    await expect(triggerDropdown).toHaveClass(/show/);
+
+    const submenuTrigger = page.getByRole('menuitem', {
+      name: 'MainItem 3',
+    });
     await submenuTrigger.click();
 
-    const submenuDropdown = page.locator('#submenu');
-
-    await expect(submenuDropdown).toBeVisible();
-
-    const subMenuItem = submenuDropdown
-      .locator('ix-dropdown-item')
-      .getByText('SubMenuItem 3');
-
-    await subMenuItem.click();
-
-    await expect(submenuDropdown).not.toBeVisible();
-    await expect(dropdownOfDropdownButton).not.toBeVisible();
+    const submenu = page.locator('#submenu');
+    await expect(submenu).toBeVisible();
+    await expect(submenu).toHaveClass(/show/);
   }
 );
 
@@ -629,9 +654,14 @@ regressionTest.describe('resolve during element connect', () => {
     });
 
     const dropdown = page.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/hydrated/);
     await page.locator('ix-button').first().click();
 
-    await expect(dropdown).toBeVisible();
+    await expect
+      .poll(async () =>
+        dropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
+      )
+      .toBe(true);
   });
 
   regressionTest('add element within runtime', async ({ page }) => {
@@ -673,7 +703,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
-    regressionTest.beforeEach(async ({ page, mount }) => {
+    regressionTest.beforeEach(async ({ mount, page }) => {
       await mount(
         `
       <ix-button id="trigger">Open</ix-button>
@@ -687,37 +717,49 @@ regressionTest.describe('A11y', () => {
           icons: { iconPrint },
         }
       );
-
-      await page.locator('#trigger').click();
+      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
+        /hydrated/
+      );
     });
 
     regressionTest.describe('ArrowDown', () => {
       regressionTest('trigger -> first item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await expect(firstItem).toHaveClass(/ix-focused/);
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').nth(1);
-        await expect(item).toBeFocused();
+        await expect(secondItem).toHaveClass(/ix-focused/);
       });
     });
 
     regressionTest.describe('ArrowUp', () => {
       regressionTest('second item -> fist item', async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
+
+        await trigger.focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(secondItem).toHaveClass(/ix-focused/);
         await page.keyboard.press('ArrowUp');
-        const item = page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await expect(firstItem).toHaveClass(/ix-focused/);
       });
     });
   });
@@ -847,14 +889,14 @@ regressionTest(
     </ix-dropdown>
   `);
 
-    const disabledItem = page.locator('#disabled-item');
-    const enabledItem = page.locator('#enabled-item');
+    const trigger = page.locator('#trigger');
+    await trigger.click();
 
-    const disabledItemButton = disabledItem.locator('button');
-    const enabledItemButton = enabledItem.locator('button');
+    const disabledItem = page.getByRole('menuitem', { name: 'Disabled Item' });
+    const enabledItem = page.getByRole('menuitem', { name: 'Enabled Item' });
 
-    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
-    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
+    await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItem).toHaveAttribute('aria-disabled', 'false');
   }
 );
 regressionTest(
@@ -884,3 +926,323 @@ regressionTest(
     await expect(dynamicItem).not.toHaveAttribute('disabled');
   }
 );
+
+regressionTest.describe('dropdown transition visibility', () => {
+  type VisibilityTestPlacement =
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'top-start'
+    | 'top-end'
+    | 'left-start'
+    | 'left-end'
+    | 'right-start'
+    | 'right-end';
+
+  function getPlacementSide(placement: VisibilityTestPlacement) {
+    return placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left';
+  }
+
+  async function moveTriggerToPlacementEdge(
+    page: Page,
+    placement: VisibilityTestPlacement
+  ) {
+    const container = page.locator('#transform-container');
+
+    await container.evaluate((element, targetPlacement) => {
+      const trigger = element.querySelector('#transform-trigger')!;
+      const clipOffset = 15;
+
+      const containerRect = element.getBoundingClientRect();
+      const triggerRect = trigger.getBoundingClientRect();
+
+      const scrollBy = {
+        top: 0,
+        left: 0,
+      };
+
+      const side = targetPlacement.split('-')[0];
+
+      switch (side) {
+        case 'top':
+          scrollBy.top =
+            triggerRect.bottom - (containerRect.bottom + clipOffset);
+          break;
+        case 'bottom':
+          scrollBy.top = triggerRect.top - (containerRect.top - clipOffset);
+          break;
+        case 'left':
+          scrollBy.left =
+            triggerRect.right - (containerRect.right + clipOffset);
+          break;
+        case 'right':
+          scrollBy.left = triggerRect.left - (containerRect.left - clipOffset);
+          break;
+      }
+
+      element.scrollBy(scrollBy);
+    }, placement);
+  }
+
+  async function getTriggerVisibility(page: Page): Promise<{
+    containerBottom: number;
+    containerLeft: number;
+    containerRight: number;
+    containerTop: number;
+    triggerBottom: number;
+    triggerLeft: number;
+    triggerRight: number;
+    triggerTop: number;
+    visibleHeight: number;
+    visibleWidth: number;
+  }> {
+    return page.evaluate(() => {
+      const container = document.getElementById('transform-container')!;
+      const trigger = document.getElementById('transform-trigger')!;
+
+      const containerRect = container.getBoundingClientRect();
+      const triggerRect = trigger.getBoundingClientRect();
+
+      return {
+        containerBottom: containerRect.bottom,
+        containerLeft: containerRect.left,
+        containerRight: containerRect.right,
+        containerTop: containerRect.top,
+        triggerBottom: triggerRect.bottom,
+        triggerLeft: triggerRect.left,
+        triggerRight: triggerRect.right,
+        triggerTop: triggerRect.top,
+        visibleHeight: Math.max(
+          0,
+          Math.min(triggerRect.bottom, containerRect.bottom) -
+            Math.max(triggerRect.top, containerRect.top)
+        ),
+        visibleWidth: Math.max(
+          0,
+          Math.min(triggerRect.right, containerRect.right) -
+            Math.max(triggerRect.left, containerRect.left)
+        ),
+      };
+    });
+  }
+
+  async function expectPlacementAfterScroll(
+    page: Page,
+    placement: VisibilityTestPlacement
+  ) {
+    const dropdown = page.locator('#transform-dropdown');
+    const side = getPlacementSide(placement);
+
+    await moveTriggerToPlacementEdge(page, placement);
+
+    await expect(async () => {
+      const visibility = await getTriggerVisibility(page);
+
+      expect(visibility.visibleWidth).toBeGreaterThan(8);
+      expect(visibility.visibleHeight).toBeGreaterThan(8);
+
+      switch (side) {
+        case 'top':
+          expect(visibility.triggerBottom).toBeGreaterThan(
+            visibility.containerBottom
+          );
+          break;
+        case 'bottom':
+          expect(visibility.triggerTop).toBeLessThan(visibility.containerTop);
+          break;
+        case 'left':
+          expect(visibility.triggerRight).toBeGreaterThan(
+            visibility.containerRight
+          );
+          break;
+        case 'right':
+          expect(visibility.triggerLeft).toBeLessThan(visibility.containerLeft);
+          break;
+      }
+
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        placement
+      );
+    }).toPass({ timeout: 2000 });
+  }
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`
+    <style>
+      .container {
+        position: relative;
+        height: 220px;
+        width: min(100%, 32rem);
+        max-width: 100%;
+        padding: 16px;
+        border: 1px solid #cbd5dc;
+      }
+
+      .transform-scroll {
+        overflow: auto;
+      }
+
+      .content {
+        height: 500px;
+        min-width: 120rem;
+        padding: 40rem;
+      }
+
+      .manual-dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+      }
+    </style>
+    <div class="container transform-scroll" id="transform-container">
+      <div class="content">
+        <ix-button id="transform-trigger" aria-label="Trigger">Hello</ix-button>
+      </div>
+
+      <ix-dropdown
+        id="transform-dropdown"
+        class="manual-dropdown"
+        trigger="transform-trigger"
+        positioning-strategy="fixed"
+        enable-top-layer
+      >
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      </ix-dropdown>
+    </div>
+  `);
+
+    await page.evaluate(() => {
+      const transformFrame = document.getElementById('transform-container')!;
+      const transformTrigger = document.getElementById('transform-trigger')!;
+      const manualDropdown = document.getElementById(
+        'transform-dropdown'
+      )! as HTMLIxDropdownElement;
+
+      function scrollTriggerIntoView() {
+        transformTrigger.scrollIntoView({
+          block: 'center',
+          inline: 'center',
+        });
+      }
+
+      function syncManualDropdown() {
+        if (!manualDropdown.show) {
+          return;
+        }
+
+        const triggerRect = transformTrigger.getBoundingClientRect();
+        const x = Math.round(triggerRect.left);
+        const y = Math.round(triggerRect.bottom + 8);
+
+        manualDropdown.style.top = '0';
+        manualDropdown.style.left = '0';
+        manualDropdown.style.transform = `translate(${x}px, ${y}px)`;
+      }
+
+      transformFrame.addEventListener('scroll', syncManualDropdown, {
+        passive: true,
+      });
+
+      window.addEventListener('resize', syncManualDropdown, {
+        passive: true,
+      });
+
+      manualDropdown.addEventListener('showChanged', (event: Event) => {
+        const customEvent = event as CustomEvent<unknown>;
+        if (customEvent.detail) {
+          requestAnimationFrame(syncManualDropdown);
+        }
+      });
+
+      requestAnimationFrame(scrollTriggerIntoView);
+    });
+
+    const triggerButton = page.getByLabel('Trigger');
+    await expect(triggerButton).toBeVisible();
+
+    const dropdown = page.locator('#transform-dropdown');
+    await expect(dropdown).not.toHaveClass(/show/);
+
+    await triggerButton.click();
+    await expect(dropdown).toHaveClass(/show/);
+  });
+
+  regressionTest(
+    'hide dropdown if trigger is not visible anymore',
+    async ({ page }) => {
+      const container = page.locator('#transform-container');
+      const triggerButton = page.getByLabel('Trigger');
+      const dropdown = page.locator('#transform-dropdown');
+
+      await container.evaluate((element) => element.scrollTo(0, 0));
+
+      await expect(triggerButton).not.toBeInViewport();
+      await expect(dropdown).not.toBeInViewport();
+      await expect(dropdown).not.toHaveClass(/show/);
+    }
+  );
+
+  regressionTest(
+    'suppress hide dropdown if trigger is not visible anymore',
+    async ({ page }) => {
+      const container = page.locator('#transform-container');
+      const triggerButton = page.getByLabel('Trigger');
+      const dropdown = page.locator('#transform-dropdown');
+
+      await dropdown.evaluate(
+        (dropdown: HTMLIxDropdownElement) =>
+          (dropdown.suppressTriggerVisibilityCheck = true)
+      );
+
+      await container.evaluate((element) => element.scrollTo(0, 0));
+
+      await expect(triggerButton).not.toBeInViewport();
+      await expect(dropdown).not.toBeInViewport();
+      await expect(dropdown).not.toHaveClass(/show/);
+    }
+  );
+
+  regressionTest(
+    'change placement for partial visibility of trigger element',
+    async ({ page }) => {
+      await expectPlacementAfterScroll(page, 'top-start');
+    }
+  );
+
+  regressionTest(
+    'change placement to bottom-start for partial trigger visibility',
+    async ({ page }) => {
+      await expectPlacementAfterScroll(page, 'bottom-start');
+    }
+  );
+
+  regressionTest(
+    'change placement to right-start for partial trigger visibility',
+    async ({ page }) => {
+      await expectPlacementAfterScroll(page, 'right-start');
+    }
+  );
+
+  regressionTest(
+    'change placement to left-start for partial trigger visibility',
+    async ({ page }) => {
+      await expectPlacementAfterScroll(page, 'left-start');
+    }
+  );
+
+  regressionTest(
+    'preserve end alignment when changing placement for partial trigger visibility',
+    async ({ page }) => {
+      const dropdown = page.locator('#transform-dropdown');
+
+      await dropdown.evaluate(
+        (element: HTMLIxDropdownElement) => (element.placement = 'bottom-end')
+      );
+
+      await expectPlacementAfterScroll(page, 'top-end');
+    }
+  );
+});

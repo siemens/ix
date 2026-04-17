@@ -20,6 +20,9 @@ SPDX-License-Identifier: MIT
       crossorigin="anonymous"
     />
     <style>
+      body {
+        --bs-font-sans-serif: var(--theme-font-family);
+      }
       .section {
         text-decoration: underline;
         margin-top: 1rem;
@@ -27,7 +30,7 @@ SPDX-License-Identifier: MIT
       }
     </style>
   </head>
-  <body data-ix-theme="classic">
+  <body>
     <h2 class="section">Just an iX component</h2>
     <ix-button>Button</ix-button>
     <h2 class="section">Table</h2>

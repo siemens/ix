@@ -8,7 +8,7 @@
  */
 
 import { FunctionalComponent, h } from '@stencil/core';
-import { A11yAttributes } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { ButtonVariant } from './button';
 import { AnchorInterface } from './button.interface';
 
@@ -93,11 +93,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   children
 ) => {
   const extraClasses = props.extraClasses ?? {};
-
   const ariaAttributes = props.ariaAttributes ?? {};
-  if (!ariaAttributes['aria-disabled'] && props.disabled) {
-    ariaAttributes['aria-disabled'] = 'true';
-  }
 
   const iconIsDecorative = isIconDecorative(ariaAttributes, children);
 
@@ -154,6 +150,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     return (
       <a
         {...commonAttributes}
+        aria-disabled={a11yBoolean(props.disabled)}
         href={props.disabled ? undefined : props.href}
         target={props.target}
         role="button"
@@ -169,6 +166,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   return (
     <button
       {...commonAttributes}
+      aria-disabled={a11yBoolean(props.disabled)}
       onClick={(e: Event) => handleOnClick(e, props)}
       type={props.type}
     >

@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 @use './../button/button-mixin';
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/scrollbar';
+
+@use '../utils/focus/focus-proxy' as focus-proxy;
 
 :host {
   display: flex;
@@ -115,7 +117,14 @@
 
   @include button-mixin.btn-base-variant('tertiary');
 
+  button:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+
   .avatar {
     transform: scale(0.8);
   }
+
+  @include focus-proxy.focus-proxy();
 }

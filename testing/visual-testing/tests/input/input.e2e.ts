@@ -12,12 +12,16 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('input', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('input/basic');
+    await page.goto('input/basic', {
+      skipIxHydrationCheck: true,
+    });
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('hover', async ({ page }) => {
-    await page.goto('input/basic');
+    await page.goto('input/basic', {
+      skipIxHydrationCheck: true,
+    });
     const input = await page.waitForSelector('input');
     await input.hover();
 
@@ -26,7 +30,9 @@ regressionTest.describe('input', () => {
   });
 
   regressionTest('focus', async ({ page }) => {
-    await page.goto('input/basic');
+    await page.goto('input/basic', {
+      skipIxHydrationCheck: true,
+    });
     const input = await page.waitForSelector('input');
     await input.focus();
 
@@ -35,7 +41,9 @@ regressionTest.describe('input', () => {
   });
 
   regressionTest('with value', async ({ page }) => {
-    await page.goto('input/basic');
+    await page.goto('input/basic', {
+      skipIxHydrationCheck: true,
+    });
     const input = await page.waitForSelector('input');
     await input.fill('Example content');
 
@@ -44,24 +52,32 @@ regressionTest.describe('input', () => {
   });
 
   regressionTest('readonly', async ({ page }) => {
-    await page.goto('input/readonly');
+    await page.goto('input/readonly', {
+      skipIxHydrationCheck: true,
+    });
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('readonly and hover', async ({ page }) => {
-    await page.goto('input/readonly');
+    await page.goto('input/readonly', {
+      skipIxHydrationCheck: true,
+    });
     const input = await page.waitForSelector('input');
     await input.hover();
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('disabled', async ({ page }) => {
-    await page.goto('input/disabled');
+    await page.goto('input/disabled', {
+      skipIxHydrationCheck: true,
+    });
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('disabled and hover', async ({ page }) => {
-    await page.goto('input/disabled');
+    await page.goto('input/disabled', {
+      skipIxHydrationCheck: true,
+    });
     const input = await page.waitForSelector('input');
     await input.hover();
     await expect(page.locator('.inputs')).toHaveScreenshot();
@@ -71,6 +87,8 @@ regressionTest.describe('input', () => {
     await page.goto('input/with-slots');
     const button = await page.waitForSelector('ix-button');
     await button.click();
+    // Move cursor away so no input shows hover state in the screenshot
+    await page.mouse.move(0, 0);
     await expect(page).toHaveScreenshot();
   });
 

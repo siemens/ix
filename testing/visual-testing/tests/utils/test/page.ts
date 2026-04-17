@@ -15,9 +15,24 @@ import {
   expect,
 } from '@playwright/test';
 
+declare global {
+  interface Window {
+    __ixApploadDispatched?: boolean;
+  }
+}
+
 export type AdditionalPageConfig = {
   icons?: Record<string, string>;
   bodyPadding?: boolean | string;
+  checkIxHydration?: boolean;
+};
+
+export type IxGotoOptions = Parameters<Page['goto']>[1] & {
+  skipIxHydrationCheck?: boolean;
+};
+
+type IxPage = Omit<Page, 'goto'> & {
+  goto: (url: string, options?: IxGotoOptions) => ReturnType<Page['goto']>;
 };
 
 interface TestInfo extends _TestInfo {
@@ -32,6 +47,20 @@ export type Mount = (
   }
 ) => Promise<ElementHandle<HTMLElement>>;
 
+export async function waitForIxHydration(page: Page): Promise<void> {
+  const timeout = process.env.CI ? 15_000 : 5_000;
+  await page.waitForFunction(
+    () => {
+      return window.__ixApploadDispatched === true;
+    },
+    null,
+    {
+      timeout: timeout,
+    }
+  );
+  await page.waitForTimeout(1000);
+}
+
 function getThemeMetaData(testInfo: TestInfo): {
   theme: string;
   colorSchema: string;
@@ -45,33 +74,49 @@ function getThemeMetaData(testInfo: TestInfo): {
   };
 }
 
-async function extendPageFixture(page: Page, testInfo: TestInfo) {
+async function extendPageFixture(
+  page: Page,
+  testInfo: TestInfo
+): Promise<IxPage> {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
   const { theme, colorSchema } = getThemeMetaData(testInfo);
   testInfo.annotations.push({
     type: `theme-${theme}-${colorSchema}`,
   });
-  page.goto = async (url: string, options) => {
+  const ixGoto: IxPage['goto'] = async (url: string, options) => {
     if (testInfo.componentTest === true) {
       return originalGoto(url, options);
     }
+
+    await page.addInitScript(() => {
+      window.__ixApploadDispatched = false;
+
+      window.addEventListener('appload', () => {
+        window.__ixApploadDispatched = true;
+      });
+    });
 
     const response = await originalGoto(
       `/tests/${url}/index.html?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
 
-    await page.waitForTimeout(1000);
+    if (!options?.skipIxHydrationCheck) {
+      await waitForIxHydration(page);
+    }
     return response;
   };
+  const ixPage = Object.assign(page, {
+    goto: ixGoto,
+  });
 
   page.screenshot = async (options?: PageScreenshotOptions) => {
     await page.waitForTimeout(150);
     return originalScreenshot(options);
   };
 
-  return page;
+  return ixPage;
 }
 
 async function mountComponent(
@@ -80,11 +125,22 @@ async function mountComponent(
   config?: {
     icons?: Record<string, string>;
     bodyPadding?: boolean | string;
+    checkIxHydration?: boolean;
   }
 ): Promise<ElementHandle<HTMLElement>> {
+  if (config?.checkIxHydration === true) {
+    await page.addInitScript(() => {
+      window.__ixApploadDispatched = false;
+
+      window.addEventListener('appload', () => {
+        window.__ixApploadDispatched = true;
+      });
+    });
+  }
+
   await page.mouse.move(9999, 9999);
 
-  return page.evaluateHandle(
+  const elementHandle = await page.evaluateHandle(
     async ({ componentSelector, config }) => {
       await window.customElements.whenDefined('ix-button');
       const mount = document.querySelector('#mount');
@@ -102,9 +158,16 @@ async function mountComponent(
     },
     { componentSelector: selector, config }
   );
+
+  if (config?.checkIxHydration === true) {
+    await waitForIxHydration(page);
+  }
+
+  return elementHandle;
 }
 
 export const regressionTest = testBase.extend<{
+  page: IxPage;
   mount: (
     selector: string,
     config?: AdditionalPageConfig
@@ -166,6 +229,7 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `/tests/utils/ct/index.html?theme=${theme}&colorSchema=${colorSchema}`
     );
+
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });

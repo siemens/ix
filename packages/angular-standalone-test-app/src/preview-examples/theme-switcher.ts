@@ -45,8 +45,7 @@ export default class ThemeSwitcher implements OnInit {
   useSystemTheme = false;
 
   ngOnInit() {
-    themeSwitcher.setTheme('classic');
-    themeSwitcher.setVariant(this.selectedVariant);
+    themeSwitcher.setTheme('classic', this.selectedVariant);
   }
 
   onValueChange(event: Event) {
@@ -57,7 +56,7 @@ export default class ThemeSwitcher implements OnInit {
     const customEvent = event as CustomEvent<string>;
     const newVariant = customEvent.detail as ThemeVariant;
 
-    themeSwitcher.setVariant(newVariant);
+    themeSwitcher.setColorSchema(newVariant);
 
     this.selectedVariant = newVariant;
   }
@@ -77,9 +76,9 @@ export default class ThemeSwitcher implements OnInit {
     this.useSystemTheme = checked;
 
     if (checked) {
-      themeSwitcher.setVariant();
+      themeSwitcher.setColorSchema('system');
     } else {
-      themeSwitcher.setVariant(this.selectedVariant);
+      themeSwitcher.setColorSchema(this.selectedVariant);
     }
   }
 }

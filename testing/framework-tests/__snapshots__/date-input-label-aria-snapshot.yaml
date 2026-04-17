@@ -1,4 +1,4 @@
 - text: Begin
 - textbox: /\d+\/\d+\/\d+/
-- button "Calendar"
+- button "Open calendar"
 - text: Some helper text

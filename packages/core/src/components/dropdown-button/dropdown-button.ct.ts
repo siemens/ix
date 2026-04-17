@@ -102,3 +102,43 @@ regressionTest(
     await expect(dynamicButton).not.toHaveAttribute('disabled');
   }
 );
+
+regressionTest(
+  'handle visible focus in combination with aria-activedescendant',
+  async ({ page, mount }) => {
+    await mount(`
+    <ix-dropdown-button label="Open">
+      <ix-dropdown-item id="acc-1" label="Test1"></ix-dropdown-item>
+      <ix-dropdown-item id="acc-2" label="Test2"></ix-dropdown-item>
+      <ix-dropdown-item id="acc-3" label="Test3"></ix-dropdown-item>
+    </ix-dropdown-button>
+  `);
+    const button = page.locator('ix-dropdown-button');
+    const item2 = page.locator('#acc-2');
+
+    const $onClickItem2 = item2.evaluateHandle(
+      (el) =>
+        new Promise<void>((resolve) => {
+          el.addEventListener('click', () => resolve());
+        })
+    );
+
+    await expect(button).toHaveClass(/hydrated/);
+
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown');
+
+    const dropdown = button.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    await expect(button).toHaveAttribute('aria-activedescendant', 'acc-1');
+
+    await page.keyboard.press('ArrowDown');
+    await expect(button).toHaveAttribute('aria-activedescendant', 'acc-2');
+
+    await page.keyboard.press('Enter');
+
+    await $onClickItem2;
+    await expect(dropdown).not.toBeVisible();
+  }
+);
