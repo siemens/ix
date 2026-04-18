@@ -19,18 +19,27 @@ inputs:
     description: 'Total number of shards for parallel test execution'
     required: false
     default: ''
+  skipTestsetup:
+    description: 'Whether to skip the test setup step (installing browsers, etc.)'
+    required: false
+    default: 'false'
+
 runs:
   using: 'composite'
   steps:
     - name: Install Playwright Browsers
+      if: ${{ inputs.skipTestsetup == 'false' }}
       shell: bash
       env:
         PROJECT_NAME: ${{ inputs.projectName }}
       run: pnpm run test.setup --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Build
+      if: ${{ inputs.shardIndex != '' && inputs.shardTotal != '' }}
       shell: bash
-      run: pnpm run build --cache-dir=.turbo
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm run build --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Test
       shell: bash
@@ -40,6 +49,7 @@ runs:
         SHARD_TOTAL: ${{ inputs.shardTotal }}
       run: |
         if [ -n "$SHARD_INDEX" ] && [ -n "$SHARD_TOTAL" ]; then
+          pnpm run build --cache-dir=.turbo --filter "${{ inputs.projectName == 'visual-testing' && '@siemens/ix' || inputs.projectName }}"
           pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARD_INDEX/$SHARD_TOTAL
         else
           pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME

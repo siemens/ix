@@ -11,6 +11,7 @@ import type { IxModalSize } from '../../modal/modal.types';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
+export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
 /**
  * Set accessibility attributes on modal element
  */
@@ -48,7 +49,7 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   backdrop?: boolean;
   /**
-   * Dismiss modal on backdrop click
+   * Dismiss modal on backdrop click (ignored when **`isNonBlocking`** is `true`)
    */
   closeOnBackdropClick?: boolean;
   /**
@@ -59,6 +60,11 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    * Center modal vertically
    */
   centered?: boolean;
+  /**
+   * Non-modal dialog: page stays interactive, no lightbox or focus trap; `aria-modal` is `false`.
+   * Set before calling `showModal()`; changing while open is unsupported.
+   */
+  isNonBlocking?: boolean;
   /**
    * Element to attach modal to
    *
@@ -176,16 +182,6 @@ export async function showModal<T>(
       await delegate.removeView(dialogRef);
     }
   );
-
-  requestAnimationFrame(() => {
-    const autofocusElement = dialogRef.querySelector(
-      '[autofocus],[auto-focus]'
-    );
-
-    if (autofocusElement) {
-      (autofocusElement as HTMLIxButtonElement).focus();
-    }
-  });
 
   return {
     htmlElement: dialogRef,

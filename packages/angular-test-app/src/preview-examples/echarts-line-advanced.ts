@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { registerTheme, getComputedCSSProperty } from '@siemens/ix-echarts';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  registerTheme,
+  getComputedCSSProperty,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -19,8 +23,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-line-advanced.html',
   styleUrls: ['./echarts-line-advanced.css'],
 })
-export default class EchartsLineAdvanced implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsLineAdvanced implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
 
@@ -29,51 +34,60 @@ export default class EchartsLineAdvanced implements OnInit {
     156.48, 168.52,
   ];
 
-  options: EChartsOption = {
-    tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: this.dates },
-    yAxis: {
-      type: 'value',
-      splitLine: { lineStyle: { type: 'dashed' } },
-    },
-    series: [
-      {
-        type: 'line',
-        data: this.stockData,
-        smooth: true,
-        lineStyle: { width: 4, shadowBlur: 10 },
-        areaStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: getComputedCSSProperty('color-primary'),
+  options: EChartsOption = this.getOptions();
+
+  private getOptions(): EChartsOption {
+    return {
+      tooltip: { trigger: 'axis' },
+      xAxis: { type: 'category', data: this.dates },
+      yAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { type: 'dashed' } },
+      },
+      series: [
+        {
+          type: 'line',
+          data: this.stockData,
+          smooth: true,
+          lineStyle: { width: 4, shadowBlur: 10 },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              {
+                offset: 0,
+                color: getComputedCSSProperty('color-primary'),
+              },
+              { offset: 1, color: 'transparent' },
+            ]),
+          },
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
+              { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
+            ],
+            label: {
+              fontWeight: 'bold',
+              color: getComputedCSSProperty('color-inv-contrast-text'),
             },
-            { offset: 1, color: 'transparent' },
-          ]),
-        },
-        markPoint: {
-          data: [
-            { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
-            { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
-          ],
-          label: {
-            fontWeight: 'bold',
-            color: getComputedCSSProperty('color-inv-contrast-text'),
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Avg' }],
+            lineStyle: { type: 'dashed' },
           },
         },
-        markLine: {
-          data: [{ type: 'average', name: 'Avg' }],
-          lineStyle: { type: 'dashed' },
-        },
-      },
-    ],
-  };
+      ],
+    };
+  }
 
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
+      this.options = this.getOptions();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,8 +54,7 @@ LICENSE file in the root directory of this source tree.
       const toggleSystem = document.getElementById('system');
 
       setTimeout(() => {
-        themeSwitcher.setTheme('classic');
-        themeSwitcher.setVariant(selectedVariant);
+        themeSwitcher.setTheme('classic', selectedVariant);
       });
 
       for (const variant of variants) {
@@ -90,7 +89,7 @@ LICENSE file in the root directory of this source tree.
           return;
         }
 
-        themeSwitcher.setVariant(variant);
+        themeSwitcher.setColorSchema(variant);
 
         selectedVariant = variant;
       });
@@ -99,9 +98,9 @@ LICENSE file in the root directory of this source tree.
         useSystemTheme = checked;
 
         if (checked) {
-          themeSwitcher.setVariant();
+          themeSwitcher.setColorSchema('system');
         } else {
-          themeSwitcher.setVariant(selectedVariant);
+          themeSwitcher.setColorSchema(selectedVariant);
 
           themeSelect.value = selectedVariant;
         }

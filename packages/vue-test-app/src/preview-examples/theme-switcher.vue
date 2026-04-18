@@ -25,8 +25,7 @@ const selectedVariant = ref<ThemeVariant>('dark');
 const useSystemTheme = ref(false);
 
 onMounted(() => {
-  themeSwitcher.setTheme('classic');
-  themeSwitcher.setVariant(selectedVariant.value);
+  themeSwitcher.setTheme('classic', selectedVariant.value);
 });
 
 const valueChange = (event: CustomEvent<string | string[]>) => {
@@ -36,7 +35,7 @@ const valueChange = (event: CustomEvent<string | string[]>) => {
 
   const newVariant = event.detail as ThemeVariant;
 
-  themeSwitcher.setVariant(newVariant);
+  themeSwitcher.setColorSchema(newVariant);
 
   selectedVariant.value = newVariant;
 };
@@ -56,9 +55,9 @@ const systemChange = (event: CustomEvent<boolean>) => {
   useSystemTheme.value = checked;
 
   if (checked) {
-    themeSwitcher.setVariant();
+    themeSwitcher.setColorSchema('system');
   } else {
-    themeSwitcher.setVariant(selectedVariant.value);
+    themeSwitcher.setColorSchema(selectedVariant.value);
   }
 };
 </script>

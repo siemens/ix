@@ -19,7 +19,14 @@ regressionTest.describe('aggrid', () => {
     });
 
     regressionTest('v34', async ({ page }) => {
-      await page.goto('basic-v34/basic-v34.html');
+      await page.goto('versions/v34/basic.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('v35', async ({ page }) => {
+      await page.goto('versions/v35/basic.html');
 
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

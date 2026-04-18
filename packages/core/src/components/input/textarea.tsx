@@ -358,7 +358,6 @@ export class Textarea implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
-          htmlForLabel={this.inputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}

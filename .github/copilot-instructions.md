@@ -52,6 +52,14 @@ pnpm visual-regression --filter @siemens/ix-aggrid  # Specific package
 - Prerelease mode uses `.changeset/pre.json`
 - Snapshot releases for PR testing: comment `/release` on PRs
 - Version bumps trigger framework wrapper regeneration
+- Any change that is relevant for end users must include a changeset in `.changeset/`. This includes public API changes, user-visible behavior changes, styling or theming changes, accessibility changes, and bug fixes that materially affect consumers.
+- If the impact is unclear, prefer adding a changeset or explicitly call out why one is not needed.
+
+## Copilot Review Expectations
+
+- GitHub Copilot code review should treat a missing changeset as a review issue when a pull request contains user-facing or consumer-relevant changes.
+- When reviewing pull requests, explicitly check for release-note significance, especially for changes to component behavior, public APIs, design tokens, themes, accessibility, generated wrappers, or documentation that affects usage.
+- When a changeset is not required, state that the change is internal-only and why.
 
 ## Critical Patterns
 

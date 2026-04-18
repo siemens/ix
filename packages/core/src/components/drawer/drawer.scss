@@ -8,7 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/shadows';
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 
 :host {
 

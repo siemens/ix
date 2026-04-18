@@ -38,7 +38,9 @@ function CustomModal() {
         <IxButton variant="subtle-primary" onClick={() => dismiss()}>
           Cancel
         </IxButton>
-        <IxButton onClick={() => close()}>OK</IxButton>
+        <IxButton autoFocus onClick={() => close()}>
+          OK
+        </IxButton>
       </IxModalFooter>
     </Modal>
   );

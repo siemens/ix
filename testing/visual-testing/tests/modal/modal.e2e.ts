@@ -55,6 +55,18 @@ regressionTest.describe('modal', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('non-blocking', async ({ page }) => {
+    await page.goto('modal/non-blocking');
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveCSS('opacity', '1');
+    await expect(modal).toHaveClass(/non-blocking/);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
 
 regressionTest('modal with dropdown', async ({ mount, page }) => {

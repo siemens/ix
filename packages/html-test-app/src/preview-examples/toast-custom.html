@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@ LICENSE file in the root directory of this source tree.
     <ix-button id="toastMessageButton">
       Trigger toast with custom message
     </ix-button>
-    
+
     <ix-button id="toastActionButton">
       Trigger toast with action button
     </ix-button>
@@ -52,7 +52,7 @@ LICENSE file in the root directory of this source tree.
             const template = document.getElementById('custom-toast-message');
             const templateContent = template.content.cloneNode(true);
             customModal.appendChild(templateContent);
-            
+
             const customModalAction = document.createElement('div');
             const templateAction = document.getElementById('custom-toast-action');
             const templateContentAction = templateAction.content.cloneNode(true);
@@ -64,7 +64,7 @@ LICENSE file in the root directory of this source tree.
               type: 'success',
             });
           });
-          
+
         document
           .getElementById('toastActionButton')
           .addEventListener('click', async () => {

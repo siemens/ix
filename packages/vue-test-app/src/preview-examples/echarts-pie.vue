@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -29,11 +33,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 const data = [
   { value: 29.4, name: 'China' },
@@ -45,35 +45,48 @@ const data = [
   { value: 31.5, name: 'Other' },
 ];
 
-const options: EChartsOption = {
-  tooltip: {
-    trigger: 'item',
-  },
-  legend: {
-    icon: 'rect',
-    bottom: '0',
-    left: '0',
-  },
-  series: [
-    {
-      name: 'CO2 emissions from<',
-      type: 'pie',
-      radius: '80%',
-      data: data,
-      label: {
-        show: true,
-        color: getComputedCSSProperty('color-neutral'),
-      },
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
+function getOptions(): EChartsOption {
+  return {
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      icon: 'rect',
+      bottom: '0',
+      left: '0',
+    },
+    series: [
+      {
+        name: 'CO2 emissions from<',
+        type: 'pie',
+        radius: '80%',
+        data: data,
+        label: {
+          show: true,
+          color: getComputedCSSProperty('color-neutral'),
+        },
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
         },
       },
-    },
-  ],
-} as EChartsOption;
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-pie.css"></style>

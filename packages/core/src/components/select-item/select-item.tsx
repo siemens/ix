@@ -17,20 +17,33 @@ import {
   Method,
   Prop,
   Watch,
+  Mixin,
 } from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import {
+  IX_FOCUS_VISIBLE,
+  IX_FOCUS_VISIBLE_ACTIVE,
+} from '../utils/focus/focus-utilities';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { makeRef } from '../utils/make-ref';
 import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
-import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { DefaultMixins } from '../utils/internal/component';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem implements DropdownItemWrapper {
-  @Element() hostElement!: HTMLIxSelectItemElement;
+export class SelectItem
+  extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
+  implements DropdownItemWrapper
+{
+  @Element() override hostElement!: HTMLIxSelectItemElement;
 
   /**
    * Displayed name of the item
@@ -60,30 +73,21 @@ export class SelectItem implements DropdownItemWrapper {
   @Event() itemClick!: EventEmitter<string>;
 
   private componentLoaded = false;
+  private readonly dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
+
+  private inheritAriaAttributes: A11yAttributes = {};
+
+  override componentDidLoad(): void {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
+  }
 
   /** @internal */
   @Method()
   async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
-    return this.dropdownItem!;
+    return this.dropdownItemRef.waitForCurrent();
   }
 
-  /**
-   * @internal
-   * @param event
-   */
-  @Method()
-  async onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    this.itemClick.emit(this.value);
-  }
-
-  get dropdownItem() {
-    return this.hostElement.querySelector('ix-dropdown-item');
-  }
-
-  componentDidRender() {
+  override componentDidRender() {
     if (this.value === undefined || this.value === null) {
       console.warn('ix-select-item must have a `value` property');
     }
@@ -114,16 +118,31 @@ export class SelectItem implements DropdownItemWrapper {
     }
   }
 
-  render() {
+  override render() {
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-label': this.inheritAriaAttributes['aria-label'] ?? this.label,
+    };
     return (
-      <Host>
+      <Host
+        {...ariaAttributes}
+        id={this.getHostElementId()}
+        class={{
+          [IX_FOCUS_VISIBLE]: true,
+        }}
+        aria-hidden="true"
+        role="presentation"
+      >
         <ix-dropdown-item
+          aria-hidden="true"
+          role="option"
           class={{
             'select-item-checked': this.selected,
+            [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
           }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
-          onItemClick={(e) => this.onItemClick(e)}
+          ref={this.dropdownItemRef}
         ></ix-dropdown-item>
       </Host>
     );
