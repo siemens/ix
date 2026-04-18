@@ -42,7 +42,6 @@ regressionTest(
         hasDirectory: input.hasAttribute('directory'),
       };
     });
-
     expect(inputAttributes).not.toBeNull();
     expect(inputAttributes?.buttonText).toBe('Upload folder…');
     expect(inputAttributes?.hasWebkitDirectory).toBe(true);
