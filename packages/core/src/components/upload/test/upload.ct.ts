@@ -18,10 +18,10 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'enables folder upload when webkitdirectory is set',
+  'enables folder upload when directoryUpload is set',
   async ({ mount, page }) => {
     await mount(
-      `<ix-upload webkitdirectory i18n-upload-file="Upload folder…"></ix-upload>`
+      `<ix-upload directoryUpload i18n-upload-file="Upload folder…"></ix-upload>`
     );
     const upload = page.locator('ix-upload');
 
@@ -38,14 +38,14 @@ regressionTest(
         buttonText: element.shadowRoot
           ?.querySelector('ix-button')
           ?.textContent?.trim(),
-        hasWebkitdirectory: input.hasAttribute('webkitdirectory'),
+        hasDirectoryUpload: input.hasAttribute('directoryUpload'),
         hasDirectory: input.hasAttribute('directory'),
       };
     });
 
     expect(inputAttributes).not.toBeNull();
     expect(inputAttributes?.buttonText).toBe('Upload folder…');
-    expect(inputAttributes?.hasWebkitdirectory).toBe(true);
+    expect(inputAttributes?.hasDirectoryUpload).toBe(true);
     expect(inputAttributes?.hasDirectory).toBe(true);
   }
 );
