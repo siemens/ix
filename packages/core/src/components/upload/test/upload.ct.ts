@@ -21,7 +21,7 @@ regressionTest(
   'enables folder upload when directoryUpload is set',
   async ({ mount, page }) => {
     await mount(
-      `<ix-upload directoryUpload i18n-upload-file="Upload folder…"></ix-upload>`
+      `<ix-upload directory-upload i18n-upload-file="Upload folder…"></ix-upload>`
     );
     const upload = page.locator('ix-upload');
 
@@ -38,14 +38,14 @@ regressionTest(
         buttonText: element.shadowRoot
           ?.querySelector('ix-button')
           ?.textContent?.trim(),
-        hasDirectoryUpload: input.hasAttribute('directoryUpload'),
+        hasWebkitDirectory: input.hasAttribute('webkitdirectory'),
         hasDirectory: input.hasAttribute('directory'),
       };
     });
 
     expect(inputAttributes).not.toBeNull();
     expect(inputAttributes?.buttonText).toBe('Upload folder…');
-    expect(inputAttributes?.hasDirectoryUpload).toBe(true);
+    expect(inputAttributes?.hasWebkitDirectory).toBe(true);
     expect(inputAttributes?.hasDirectory).toBe(true);
   }
 );
