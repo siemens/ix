@@ -2994,7 +2994,7 @@ export declare interface IxTypography extends Components.IxTypography {}
 
 
 @ProxyCmp({
-  inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText', 'webkitdirectory'],
+  inputs: ['accept', 'directoryUpload', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
   methods: ['setFilesToUpload']
 })
 @Component({
@@ -3002,7 +3002,7 @@ export declare interface IxTypography extends Components.IxTypography {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText', 'webkitdirectory'],
+  inputs: ['accept', 'directoryUpload', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
   outputs: ['filesChanged'],
   standalone: false
 })

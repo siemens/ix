@@ -40,9 +40,9 @@ export class Upload {
   @Prop() multiple = false;
 
   /**
-   * If webkitdirectory is true the user can drop or select a folder containing one or more files
+   * If directoryUpload is true the user can drop or select a folder containing one or more files
    */
-  @Prop() webkitdirectory = false;
+  @Prop() directoryUpload = false;
 
   /**
    * Whether the text should wrap to more than one line
@@ -244,13 +244,13 @@ export class Upload {
 
   render() {
     const disabled = this.disabled || this.state === UploadFileState.LOADING;
-    const directoryAttributes = this.webkitdirectory
+    const directoryAttributes = this.directoryUpload
       ? ({ webkitdirectory: true, directory: true, multiple: true } as Record<
           string,
           boolean
         >)
       : {};
-    const defaultAriaLabel = this.webkitdirectory
+    const defaultAriaLabel = this.directoryUpload
       ? 'Upload folder'
       : 'Upload files';
     const { 'aria-label': ariaLabel = defaultAriaLabel, ...a11y } = this.a11y;

@@ -2032,7 +2032,7 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     properties: {
         accept: 'accept',
         multiple: 'multiple',
-        webkitdirectory: 'webkitdirectory',
+        directoryUpload: 'directory-upload',
         multiline: 'multiline',
         disabled: 'disabled',
         state: 'state',

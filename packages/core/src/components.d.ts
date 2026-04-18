@@ -4390,6 +4390,11 @@ export namespace Components {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @default false
+         */
+        "directoryUpload": boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -4444,11 +4449,6 @@ export namespace Components {
           * @default 'Upload successful'
          */
         "uploadSuccessText": string;
-        /**
-          * If webkitdirectory is true the user can drop or select a folder containing one or more files
-          * @default false
-         */
-        "webkitdirectory": boolean;
     }
     /**
      * @deprecated Since 3.0.0. Will be removed with 5.0.0
@@ -10955,6 +10955,11 @@ declare namespace LocalJSX {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @default false
+         */
+        "directoryUpload"?: boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -11008,11 +11013,6 @@ declare namespace LocalJSX {
           * @default 'Upload successful'
          */
         "uploadSuccessText"?: string;
-        /**
-          * If webkitdirectory is true the user can drop or select a folder containing one or more files
-          * @default false
-         */
-        "webkitdirectory"?: boolean;
     }
     /**
      * @deprecated Since 3.0.0. Will be removed with 5.0.0
@@ -12076,7 +12076,7 @@ declare namespace LocalJSX {
     interface IxUploadAttributes {
         "accept": string;
         "multiple": boolean;
-        "webkitdirectory": boolean;
+        "directoryUpload": boolean;
         "multiline": boolean;
         "disabled": boolean;
         "state": UploadFileState;
