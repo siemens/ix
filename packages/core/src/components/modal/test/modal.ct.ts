@@ -59,9 +59,9 @@ async function setupModalEnvironment(page: Page) {
   );
 }
 
-// Native `<dialog>` inside the modal (single dialog per test in this file).
+// Native `<dialog class="modal">` inside `ix-modal` (exclude select listbox popovers).
 function modalPanel(page: Page) {
-  return page.getByRole('dialog');
+  return page.locator('dialog.modal');
 }
 
 async function waitForModalDialogOpen(page: Page) {

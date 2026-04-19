@@ -14,17 +14,9 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { regressionTest, viewPorts, expect } from '@utils/test';
+import { dropdownPanel, regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
-
-/**
- * Popover surface for `ix-dropdown` in top-layer mode (`<dialog popover>`).
- * Uses `.first()` so nested `ix-dropdown` dialogs inside the menu do not break strict locators.
- */
-function dropdownPanel(dropdown: Locator) {
-  return dropdown.locator('dialog').first();
-}
 
 function expectDropdownPanelVisibility(
   dropdownHosts: Locator[],

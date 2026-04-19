@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 const createOnPageSelectedListener = (pagination: Locator) =>
   pagination.evaluate(
@@ -53,8 +53,8 @@ regressionTest('open show number of page dropdown', async ({ mount, page }) => {
 
   const dropdown = element.locator('ix-dropdown');
 
-  await expect(dropdown).toBeVisible();
   await expect(dropdown).toHaveClass(/show/);
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 });
 
 regressionTest(
@@ -78,7 +78,9 @@ regressionTest(
     await pagination.locator('[data-select-dropdown]').click();
 
     await pagination.locator('ix-dropdown-item').nth(3).click();
-    await expect(pagination.locator('ix-dropdown')).not.toHaveClass(/show/);
+    const pageSizeDropdown = pagination.locator('ix-dropdown');
+    await expect(pageSizeDropdown).not.toHaveClass(/show/);
+    await expect(dropdownPanel(pageSizeDropdown)).not.toBeVisible();
 
     expect(await itemChanged).toBe(20);
   }

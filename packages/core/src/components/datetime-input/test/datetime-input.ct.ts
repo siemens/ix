@@ -8,6 +8,7 @@
  */
 import { Locator, expect } from '@playwright/test';
 import {
+  dropdownPanel,
   getFormValue,
   preventFormSubmission,
   regressionTest,
@@ -24,8 +25,8 @@ const createAccessor = async (dateTimeInput: Locator) => {
       const trigger = dateTimeInput.locator('ix-icon-button').first();
       await trigger.click();
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect(dropdown).toBeVisible();
       await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdownPanel(dropdown)).toBeVisible();
     },
     selectDay: async (day: number) => {
       // Day cells have aria-label like "15 May" (month index: day)
@@ -55,8 +56,8 @@ const createAccessor = async (dateTimeInput: Locator) => {
     },
     expectCalendarToBeVisible: async () => {
       const dropdown = dateTimeInput.locator('> ix-dropdown');
-      await expect(dropdown).toBeVisible();
       await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdownPanel(dropdown)).toBeVisible();
     },
     expectToHaveErrorMessage: async (message: string) => {
       const input = dateTimeInput.getByRole('textbox');
@@ -710,8 +711,20 @@ regressionTest('form-ready - initial value', async ({ mount, page }) => {
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/12/25 10:00:00');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  await expect(dateTimeInput).toHaveClass(/hydrated/);
+
+  // Form-associated value can land shortly after hydration; avoid racing
+  // getFormValue's fixed delay alone.
+  await expect
+    .poll(
+      () =>
+        formElement.evaluate((form: HTMLFormElement) =>
+          new FormData(form).get('appointment-time')
+        ),
+      { timeout: 5000 }
+    )
+    .toBe('2024/12/25 10:00:00');
 });
 
 regressionTest(

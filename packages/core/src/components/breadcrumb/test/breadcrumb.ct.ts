@@ -6,16 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-import { Locator } from '@playwright/test';
-import { regressionTest, expect } from '@utils/test';
+import { dropdownPanel, regressionTest, expect } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -64,16 +55,16 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
 
   await showHiddenButton.click();
 
-  await expect(showHiddenButton.locator('ix-dropdown')).toHaveClass(/show/);
+  const overflowDropdown = showHiddenButton.locator('ix-dropdown');
+  await expect(overflowDropdown).toHaveClass(/show/);
+  await expect(dropdownPanel(overflowDropdown)).toBeVisible();
 
-  const dropdownElement = breadcrumb.locator('ix-dropdown').nth(0);
   const dropdownItem1 = showHiddenButton.getByRole('menuitem', {
     name: /Item 1/,
   });
   const dropdownItem2 = showHiddenButton.getByRole('menuitem', {
     name: /Item 2/,
   });
-  await expect(dropdownElement).toBeVisible();
   await expect(dropdownItem1).toBeVisible();
   await expect(dropdownItem2).toBeVisible();
 });
@@ -117,22 +108,14 @@ regressionTest('should show next items', async ({ mount, page }) => {
   const dropdownElement = lastItem.locator('ix-dropdown');
 
   await expect(dropdownElement).toHaveClass(/show/);
+  await expect(dropdownPanel(dropdownElement)).toBeVisible();
 
   const item1 = lastItem.getByRole('menuitem', { name: /Next Item 1/ });
   const item2 = lastItem.getByRole('menuitem', { name: /Next Item 2/ });
-  await expect(dropdownElement).toBeVisible();
 
   await expect(item1).toHaveText(/Next Item 1/);
   await expect(item2).toHaveText(/Next Item 2/);
 });
-
-async function getByControlsBy(locator: Locator, component: Locator) {
-  const controlsById = await locator.evaluate((element) => {
-    console.log(element.getAttribute('aria-controls'));
-    return element.getAttribute('aria-controls');
-  });
-  return component.locator(`#${controlsById}`);
-}
 
 regressionTest.describe('keyboard navigation', () => {
   regressionTest('previous items', async ({ mount, page }) => {
@@ -163,8 +146,8 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('ArrowDown');
 
     const previousDropdown = previousButton.locator('ix-dropdown');
-    await expect(previousDropdown).toBeVisible();
     await expect(previousDropdown).toHaveClass(/show/);
+    await expect(dropdownPanel(previousDropdown)).toBeVisible();
 
     const item1 = previousButton.getByRole('menuitem', { name: 'Item 1' });
     await expect(item1).toBeVisible();
@@ -199,8 +182,8 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('ArrowDown');
 
     const nextDropdown = nextButton.locator('ix-dropdown');
-    await expect(nextDropdown).toBeVisible();
     await expect(nextDropdown).toHaveClass(/show/);
+    await expect(dropdownPanel(nextDropdown)).toBeVisible();
 
     const item1 = nextButton.getByRole('menuitem', { name: 'Next Item 1' });
     await expect(item1).toBeVisible();

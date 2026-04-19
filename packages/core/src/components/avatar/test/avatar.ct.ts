@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest, viewPorts } from '@utils/test';
+import { dropdownPanel, regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('embedded into header', () => {
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
@@ -44,6 +44,7 @@ regressionTest.describe('embedded into header', () => {
 
     const dropdown = avatar.locator('ix-dropdown');
     await expect(dropdown).toHaveClass(/show/);
+    await expect(dropdownPanel(dropdown)).toBeVisible();
     await expect(
       dropdown.getByRole('menuitem', { name: 'Item 1' })
     ).toBeVisible();

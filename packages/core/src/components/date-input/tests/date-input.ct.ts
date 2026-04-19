@@ -23,9 +23,10 @@ const createDateInputAccessor = async (dateInput: Locator) => {
       await expect(dateDropdown).toHaveClass(/show/);
     },
     selectDay: async (day: number) => {
-      const dayButton = dateInput
-        .locator('ix-dropdown .calendar-item')
-        .filter({ hasText: new RegExp(`^${day}$`) })
+      const picker = dateDropdown.locator('ix-date-picker');
+      await expect(picker).toBeVisible();
+      const dayButton = picker
+        .getByText(new RegExp(`^${day}$`))
         .first();
 
       await expect(dayButton).toBeVisible();

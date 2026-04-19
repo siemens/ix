@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 function getSplitButtonExample(props: {
   disableDropdownButton?: boolean;
@@ -96,7 +96,8 @@ regressionTest(
     await dropdownButton.click();
     await page.keyboard.press('ArrowDown');
 
-    await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
+    const splitDropdown = dropdownButton.locator('ix-dropdown');
+    await expect(dropdownPanel(splitDropdown)).toBeVisible();
 
     const activeDescendant = await dropdownButton.getAttribute(
       'aria-activedescendant'
@@ -112,9 +113,12 @@ regressionTest(
     await expect(dropdownItem1).toHaveClass(/ix-focused/);
 
     await page.keyboard.press('ArrowDown');
-    const item2 = splitButton.getByRole('menuitem', { name: 'Item 1' });
+    const activeDescendantItem2 = await dropdownButton.getAttribute(
+      'aria-activedescendant'
+    );
+    const item2 = splitButton.getByRole('menuitem', { name: 'Item 2' });
     await expect(item2).toBeVisible();
-    await expect(item2).toHaveAttribute('id', activeDescendant!);
+    await expect(item2).toHaveAttribute('id', activeDescendantItem2!);
 
     const dropdownItem2 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 2/,

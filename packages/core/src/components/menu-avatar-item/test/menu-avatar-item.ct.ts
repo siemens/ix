@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 const html = String.raw;
 
@@ -34,9 +34,12 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
 
   const menuAvatar = page.locator('ix-menu-avatar');
   await expect(menuAvatar).toBeVisible();
+  await expect(menuAvatar).toHaveClass(/hydrated/);
   await menuAvatar.click();
 
-  await expect(menuAvatar.locator('ix-dropdown')).toBeVisible();
+  const menuAvatarDropdown = menuAvatar.locator('ix-dropdown');
+  await expect(menuAvatarDropdown).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(menuAvatarDropdown)).toBeVisible();
 
   const menuAvatarItem = menuAvatar.locator('ix-menu-avatar-item').nth(0);
   await menuAvatarItem.click();
@@ -44,12 +47,14 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   const dropdown1 = page.locator('#d1');
   const dropdown2 = page.locator('#d2');
 
-  await expect(dropdown1).toBeVisible();
+  await expect(dropdown1).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(dropdown1)).toBeVisible();
 
   const dropdown2Trigger = dropdown1
     .locator('ix-dropdown-item')
     .filter({ hasText: 'SubMenuItem 4' });
-  await dropdown2Trigger.click();
+  await dropdown2Trigger.click({ force: true });
 
-  await expect(dropdown2).toBeVisible();
+  await expect(dropdown2).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(dropdown2)).toBeVisible();
 });

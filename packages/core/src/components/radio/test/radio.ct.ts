@@ -84,9 +84,18 @@ test('Radio button should not cause layout shift when checked', async ({
 
   await page.waitForSelector('ix-radio', { state: 'attached' });
 
-  const initialBounds = await page.$eval('#element-below', (el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, left: rect.left };
+  // Measure spacing from the radio to the element below instead of absolute
+  // coordinates so small global shifts (scrollbar, subpixel layout) do not
+  // flake the test while still catching real layout movement between them.
+  const initialGap = await page.evaluate(() => {
+    const radio = document.querySelector('ix-radio')!.getBoundingClientRect();
+    const below = document
+      .querySelector('#element-below')!
+      .getBoundingClientRect();
+    return {
+      vertical: below.top - radio.bottom,
+      horizontal: below.left - radio.left,
+    };
   });
 
   await page.click('ix-radio');
@@ -96,13 +105,19 @@ test('Radio button should not cause layout shift when checked', async ({
     return radio?.getAttribute('aria-checked') === 'true';
   });
 
-  const newBounds = await page.$eval('#element-below', (el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, left: rect.left };
+  const newGap = await page.evaluate(() => {
+    const radio = document.querySelector('ix-radio')!.getBoundingClientRect();
+    const below = document
+      .querySelector('#element-below')!
+      .getBoundingClientRect();
+    return {
+      vertical: below.top - radio.bottom,
+      horizontal: below.left - radio.left,
+    };
   });
 
-  expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
-  expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
+  expect(newGap.vertical).toBeCloseTo(initialGap.vertical, 0);
+  expect(newGap.horizontal).toBeCloseTo(initialGap.horizontal, 0);
 });
 
 test('Clicking label (including padding) checks the radio', async ({

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { dropdownPanel, test } from '@utils/test';
 
 test.describe('validation', () => {
   test.describe('ix-input', () => {
@@ -521,7 +521,7 @@ test.describe('ixChange event', () => {
       await clockButton.click();
 
       const dropdown = page.getByTestId('time-dropdown');
-      await expect(dropdown).toBeVisible();
+      await expect(dropdownPanel(dropdown)).toBeVisible();
 
       const timePicker = component.locator('ix-time-picker');
       await timePicker.locator('[data-element-container-id="hour-12"]').click();
@@ -554,7 +554,7 @@ test.describe('ixChange event', () => {
       await calendarButton.click();
 
       const dropdown = component.getByTestId('datetime-dropdown');
-      await expect(dropdown).toBeVisible();
+      await expect(dropdownPanel(dropdown)).toBeVisible();
 
       await component.getByRole('button', { name: /^15\s.+$/ }).click();
       await component.getByRole('button', { name: 'hr: 14' }).click();

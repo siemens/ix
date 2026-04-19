@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 regressionTest.describe('time input tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
@@ -48,17 +48,18 @@ regressionTest.describe('time input tests', () => {
   regressionTest(
     'clock icon click should open the dropdown',
     async ({ page }) => {
-      await expect(
-        page.locator('ix-dropdown[data-testid="time-dropdown"]')
-      ).not.toHaveClass(/show/);
+      const timeDropdown = page.locator(
+        'ix-dropdown[data-testid="time-dropdown"]'
+      );
+      await expect(timeDropdown).not.toHaveClass(/show/);
+      await expect(dropdownPanel(timeDropdown)).not.toBeVisible();
 
       await page
         .locator('ix-icon-button[data-testid="open-time-picker"]')
         .click();
 
-      await expect(
-        page.locator('ix-dropdown[data-testid="time-dropdown"]')
-      ).toHaveClass(/show/);
+      await expect(timeDropdown).toHaveClass(/show/);
+      await expect(dropdownPanel(timeDropdown)).toBeVisible();
 
       await expect(page.locator('ix-time-picker')).toBeVisible();
     }
@@ -93,9 +94,11 @@ regressionTest.describe('time input tests', () => {
 
       await page.locator('ix-time-picker ix-button').click();
 
-      await expect(
-        page.locator('ix-dropdown[data-testid="time-dropdown"]')
-      ).not.toHaveClass(/show/);
+      const timeDropdown = page.locator(
+        'ix-dropdown[data-testid="time-dropdown"]'
+      );
+      await expect(timeDropdown).not.toHaveClass(/show/);
+      await expect(dropdownPanel(timeDropdown)).not.toBeVisible();
 
       await expect(page.locator('input')).toHaveValue('12:30:45');
     }
@@ -117,6 +120,7 @@ regressionTest.describe('time input tests', () => {
       await input.click();
 
       await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdownPanel(dropdown)).toBeVisible();
 
       await expect(page.locator('ix-time-picker')).toBeVisible();
 
@@ -128,6 +132,7 @@ regressionTest.describe('time input tests', () => {
       await iconButton.click();
 
       await expect(dropdown).not.toHaveClass(/show/);
+      await expect(dropdownPanel(dropdown)).not.toBeVisible();
 
       await expect(input).toHaveClass(/is-invalid/);
       await expect(fieldWrapper).toContainText('Time is not valid');
@@ -135,6 +140,7 @@ regressionTest.describe('time input tests', () => {
       await iconButton.click();
 
       await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdownPanel(dropdown)).toBeVisible();
 
       await page
         .locator('ix-time-picker [data-element-container-id="second-30"]')

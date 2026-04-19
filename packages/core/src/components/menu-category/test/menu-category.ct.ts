@@ -44,6 +44,10 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
     (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
   );
 
+  // Expand the menu rail first so category items are in the document flow (not
+  // only inside a closed dropdown); otherwise the second item stays hidden and
+  // Playwright cannot click it reliably.
+  await expandMenuButton.click();
   await categoryItem.click();
 
   const item = categoryItem.locator('ix-menu-item').nth(1);
@@ -90,7 +94,7 @@ regressionTest('should expand items', async ({ mount, page }) => {
     'menu-items menu-items--expanded'
   );
   const dropdown = menuCategory.locator('ix-dropdown');
-  await expect(dropdown).not.toBeVisible();
+  await expect(dropdown).not.toHaveClass(/show/);
 });
 
 regressionTest('should show items as dropdown', async ({ mount, page }) => {
@@ -114,7 +118,7 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
   await menuCategory.hover();
 
   const dropdown = menuCategory.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
   await expect(menuCategory.locator('.menu-items')).toHaveClass(
     'menu-items menu-items--collapsed'
   );
@@ -288,12 +292,12 @@ regressionTest('collapse after category blur', async ({ mount, page }) => {
   await categoryElement.hover();
 
   const dropdown = categoryElement.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 
   await categoryElement.hover();
   await menuItem.hover();
 
-  await expect(dropdown).not.toBeVisible();
+  await expect(dropdown).not.toHaveClass(/show/);
 });
 
 regressionTest('show category if item are focused', async ({ mount, page }) => {
@@ -317,10 +321,10 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   await expect(categoryElement).toBeFocused();
 
   const dropdown = categoryElement.locator('ix-dropdown');
-  await expect(dropdown).not.toBeVisible();
+  await expect(dropdown).not.toHaveClass(/show/);
 
   await page.keyboard.press(' ');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 
   const item1 = categoryElement.locator('ix-menu-item').nth(0);
   const item2 = categoryElement.locator('ix-menu-item').nth(1);
@@ -333,7 +337,7 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   await expect(item1).toHaveVisibleFocus();
 
   await page.keyboard.press('Escape');
-  await expect(dropdown).not.toBeVisible();
+  await expect(dropdown).not.toHaveClass(/show/);
   await expect(categoryElement.locator('.category-parent')).toBeFocused();
 });
 

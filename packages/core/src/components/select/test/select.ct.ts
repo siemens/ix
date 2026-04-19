@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  dropdownPanel,
+  getFormValue,
+  preventFormSubmission,
+  test,
+} from '@utils/test';
 import { selectController } from './select-controller';
 
 test('a test', async ({ mount, page }) => {
@@ -34,7 +39,7 @@ test('a test', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
 
   const dropdown = ctrl.getDropdownLocator();
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await item1.click();
   await expect(ctrl.getInputLocator()).toHaveValue('Item 1');
@@ -53,7 +58,7 @@ test('renders', async ({ mount, page }) => {
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
   await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
@@ -72,10 +77,12 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
 
   await expect(select).toHaveClass(/hydrated/);
   await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dropdownPanel(dropdown)).not.toBeVisible();
 
   await select.locator('.select').click();
 
   await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dropdownPanel(dropdown)).not.toBeVisible();
 });
 
 test('does not open the dropdown when readonly', async ({ mount, page }) => {
@@ -91,10 +98,12 @@ test('does not open the dropdown when readonly', async ({ mount, page }) => {
 
   await expect(select).toHaveClass(/hydrated/);
   await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dropdownPanel(dropdown)).not.toBeVisible();
 
   await select.locator('.select').click();
 
   await expect(dropdown).not.toHaveClass(/show/);
+  await expect(dropdownPanel(dropdown)).not.toBeVisible();
 });
 
 test('editable mode', async ({ mount, page }) => {
@@ -111,7 +120,7 @@ test('editable mode', async ({ mount, page }) => {
   await page.getByTestId('input').fill('Not existing');
 
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
   await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
@@ -146,7 +155,7 @@ test('single selection', async ({ mount, page }) => {
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await expect(
     page.locator('ix-select-item').nth(0).locator('ix-icon.checkmark')
@@ -172,7 +181,7 @@ test('multiple selection', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   const chips = element.locator('.chips');
 
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   const item1 = element.locator('ix-select-item').nth(0);
   const item3 = element.locator('ix-select-item').nth(2);
@@ -203,7 +212,7 @@ test('multiple mode filter reset', async ({ mount, page }) => {
 
   await page.locator('[data-select-dropdown]').click();
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await element.locator('input').fill('Item 1');
 
@@ -220,7 +229,7 @@ test('multiple mode filter reset', async ({ mount, page }) => {
   await item1.click();
 
   await expect(element.locator('input')).toHaveValue('');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
   await expect(item1).toBeVisible();
   await expect(item2).toBeVisible();
   await expect(item3).toBeVisible();
@@ -242,7 +251,7 @@ test('filter', async ({ mount, page }) => {
 
   await page.locator('[data-select-dropdown]').click();
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await element.locator('input').fill('abc');
 
@@ -269,17 +278,19 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await selectCtrl.focusInput();
   await page.keyboard.press('ArrowDown');
 
-  await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+  await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
 
   await page.keyboard.press('Escape');
   // Short timeout to allow for the closing animation to finish
   await page.waitForTimeout(100);
-  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+  await expect(
+    dropdownPanel(selectCtrl.getDropdownLocator())
+  ).not.toBeVisible();
 
   await selectCtrl.focusInput();
   await selectCtrl.fillInput('1');
   await page.keyboard.press('ArrowDown');
-  await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+  await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
 
   const item1 = page
     .locator('ix-select')
@@ -312,7 +323,7 @@ test('filter works when typing exact text of manually selected item', async ({
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = page.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   await page.locator('input').clear();
   await page.locator('input').pressSequentially('Item 3');
@@ -338,7 +349,7 @@ test('remove text from input and reselect the element', async ({
   const element = page.locator('ix-select');
   await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
   const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   const item2 = element.locator('ix-select-item', { hasText: 'Item 2' });
   await item2.click();
@@ -401,7 +412,9 @@ test('type in a novel item name in editable mode, click outside and reopen the s
 
   await externalButton.click();
 
-  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+  await expect(
+    dropdownPanel(selectCtrl.getDropdownLocator())
+  ).not.toBeVisible();
   await expect(selectCtrl.getInputLocator()).toHaveValue('Item 2');
 
   await selectCtrl.clickDropdownChevron();
@@ -453,7 +466,9 @@ test('type in a novel item name in multiple mode, click outside', async ({
   await selectCtrl.fillInput('test');
 
   await externalButton.click();
-  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+  await expect(
+    dropdownPanel(selectCtrl.getDropdownLocator())
+  ).not.toBeVisible();
   await expect(selectCtrl.getInputLocator()).toHaveValue('');
 });
 
@@ -645,7 +660,7 @@ test.describe('Enter selection with non-existing and existing items', () => {
     // Test existing item selection
     await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 1');
-    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+    await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
 
     const existingItem = page.getByRole('option', { name: 'Item 1' });
     await expect(existingItem).toBeVisible();
@@ -656,13 +671,15 @@ test.describe('Enter selection with non-existing and existing items', () => {
     );
     await selectCtrl.pressEnter();
 
-    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    await expect(
+      dropdownPanel(selectCtrl.getDropdownLocator())
+    ).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
     // Test non-existing item selection (creates new item in editable mode)
     await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 3');
-    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+    await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
 
     const addItemButton = await selectCtrl.getAddItemDropdownItemLocator();
     await expect(addItemButton).toBeVisible();
@@ -670,7 +687,9 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.arrowDown();
     await selectCtrl.pressEnter();
 
-    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    await expect(
+      dropdownPanel(selectCtrl.getDropdownLocator())
+    ).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 
@@ -697,7 +716,9 @@ test.describe('Enter selection with non-existing and existing items', () => {
     );
     await selectCtrl.pressEnter();
 
-    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    await expect(
+      dropdownPanel(selectCtrl.getDropdownLocator())
+    ).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
     // Test non-existing item - should not create new item in non-editable mode
@@ -711,7 +732,7 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.arrowDown(true);
     await selectCtrl.pressEnter();
 
-    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+    await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 });
@@ -730,9 +751,10 @@ test.describe('Dropdown width', () => {
     await page.locator('[data-select-dropdown]').click();
 
     const dropdown = select.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    const panel = dropdownPanel(dropdown);
+    await expect(panel).toBeVisible();
 
-    const box = await dropdown.boundingBox();
+    const box = await panel.boundingBox();
     expect(box?.width).toBe(16 * 25);
   });
 
@@ -749,9 +771,10 @@ test.describe('Dropdown width', () => {
     await page.locator('[data-select-dropdown]').click();
 
     const dropdown = select.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    const panel = dropdownPanel(dropdown);
+    await expect(panel).toBeVisible();
 
-    const box = await dropdown.boundingBox();
+    const box = await panel.boundingBox();
     expect(box?.width).toBe(16 * 25);
   });
 
@@ -768,9 +791,10 @@ test.describe('Dropdown width', () => {
     await page.locator('[data-select-dropdown]').click();
 
     const dropdown = select.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    const panel = dropdownPanel(dropdown);
+    await expect(panel).toBeVisible();
 
-    const box = await dropdown.boundingBox();
+    const box = await panel.boundingBox();
     expect(box?.width).toBe(16 * 25);
   });
 
@@ -787,9 +811,10 @@ test.describe('Dropdown width', () => {
     await page.locator('[data-select-dropdown]').click();
 
     const dropdown = select.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    const panel = dropdownPanel(dropdown);
+    await expect(panel).toBeVisible();
 
-    const box = await dropdown.boundingBox();
+    const box = await panel.boundingBox();
     expect(box?.width).toBe(16 * 35);
   });
 
@@ -806,9 +831,10 @@ test.describe('Dropdown width', () => {
     await page.locator('[data-select-dropdown]').click();
 
     const dropdown = select.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    const panel = dropdownPanel(dropdown);
+    await expect(panel).toBeVisible();
 
-    const box = await dropdown.boundingBox();
+    const box = await panel.boundingBox();
     const pageWidth = page.viewportSize()?.width;
 
     expect(box?.width).toBe(pageWidth);
@@ -828,9 +854,10 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = select.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  const panel = dropdownPanel(dropdown);
+  await expect(panel).toBeVisible();
 
-  const box = await dropdown.boundingBox();
+  const box = await panel.boundingBox();
   const pageWidth = page.viewportSize()?.width;
 
   expect(box?.width).toBe(pageWidth);
@@ -861,7 +888,7 @@ test('dropdown can be opened after clearing select in editable mode', async ({
 
   await page.locator('[data-select-dropdown]').click();
   const dropdown = selectElement.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 });
 
 test('should not show add icon when spaces are entered at the start of input', async ({
@@ -907,7 +934,7 @@ test('should trim the value before saving', async ({ mount, page }) => {
 
   await selectCtrl.focusInput();
   await selectCtrl.fillInput('   Item 7');
-  await expect(selectCtrl.getDropdownLocator()).toHaveClass(/show/);
+  await expect(dropdownPanel(selectCtrl.getDropdownLocator())).toBeVisible();
 
   const item7 = page.getByRole('option', { name: 'Item 7' });
   await expect(item7).toBeVisible();
@@ -919,7 +946,9 @@ test('should trim the value before saving', async ({ mount, page }) => {
   );
   await selectCtrl.pressEnter();
 
-  await expect(selectCtrl.getDropdownLocator()).not.toHaveClass(/show/);
+  await expect(
+    dropdownPanel(selectCtrl.getDropdownLocator())
+  ).not.toBeVisible();
   await expect(inputLocator).toHaveValue('Item 7');
 });
 
@@ -965,13 +994,13 @@ test('last select item can be accessed via scrolling', async ({
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = select.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
 
   const lastItem = page.locator('ix-select-item').last();
   await lastItem.evaluate((item) => {
     item.scrollIntoView();
   });
-  await expect(lastItem).toBeVisible();
+  await expect(lastItem).toBeInViewport();
 });
 
 test('last select item can be accessed via scrolling when select placed at center of the page', async ({
@@ -995,12 +1024,12 @@ test('last select item can be accessed via scrolling when select placed at cente
   await page.locator('[data-select-dropdown]').click();
 
   const dropdown = select.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdownPanel(dropdown)).toBeVisible();
   const lastItem = page.locator('ix-select-item').last();
   await lastItem.evaluate((item) => {
     item.scrollIntoView();
   });
-  await expect(lastItem).toBeVisible();
+  await expect(lastItem).toBeInViewport();
 });
 
 test('should display "All" chip when all items are selected in multiple mode', async ({

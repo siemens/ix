@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -16,12 +16,17 @@ regressionTest('renders', async ({ mount, page }) => {
   </ix-dropdown-button>
   `);
 
-  await page.locator('ix-dropdown-button').click();
-  const item = page.locator('ix-dropdown-item');
+  const button = page.locator('ix-dropdown-button');
+  await expect(button).toHaveClass(/hydrated/);
+  await button.click();
+  const dropdown = button.locator('ix-dropdown');
+  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(dropdown)).toBeVisible();
+  const item = button.getByRole('menuitem', { name: 'Test' });
   await expect(item).toBeVisible();
 
   await item.click();
-  await expect(item).not.toBeVisible();
+  await expect(dropdownPanel(dropdown)).not.toBeVisible();
 });
 
 regressionTest('close behavior - outside', async ({ mount, page }) => {
@@ -31,8 +36,13 @@ regressionTest('close behavior - outside', async ({ mount, page }) => {
   </ix-dropdown-button>
   `);
 
-  await page.locator('ix-dropdown-button').click();
-  const item = page.locator('ix-dropdown-item');
+  const button = page.locator('ix-dropdown-button');
+  await expect(button).toHaveClass(/hydrated/);
+  await button.click();
+  const dropdown = button.locator('ix-dropdown');
+  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(dropdown)).toBeVisible();
+  const item = button.getByRole('menuitem', { name: 'Test' });
   await expect(item).toBeVisible();
 
   await item.click();
@@ -49,10 +59,18 @@ regressionTest('submenu', async ({ mount, page }) => {
     </ix-dropdown>
   `);
 
-  await page.locator('ix-dropdown-button').click();
-  const item = page.locator('ix-dropdown-item').first();
+  const button = page.locator('ix-dropdown-button');
+  await expect(button).toHaveClass(/hydrated/);
+  await button.click();
+  const rootDropdown = button.locator('ix-dropdown');
+  await expect(rootDropdown).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(rootDropdown)).toBeVisible();
+  const item = button.getByRole('menuitem', { name: 'Test' });
   await item.click();
-  const subItem = page.locator('ix-dropdown-item').last();
+  const subDropdown = page.locator('ix-dropdown[trigger="submenu"]');
+  await expect(subDropdown).toHaveClass(/hydrated/);
+  await expect(dropdownPanel(subDropdown)).toBeVisible();
+  const subItem = subDropdown.getByRole('menuitem', { name: 'Subitem' });
   await subItem.click();
 
   await expect(subItem).toBeVisible();
@@ -129,7 +147,8 @@ regressionTest(
     await page.keyboard.press('ArrowDown');
 
     const dropdown = button.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    await expect(dropdown).toHaveClass(/hydrated/);
+    await expect(dropdownPanel(dropdown)).toBeVisible();
 
     await expect(button).toHaveAttribute('aria-activedescendant', 'acc-1');
 
@@ -139,6 +158,6 @@ regressionTest(
     await page.keyboard.press('Enter');
 
     await $onClickItem2;
-    await expect(dropdown).not.toBeVisible();
+    await expect(dropdownPanel(dropdown)).not.toBeVisible();
   }
 );

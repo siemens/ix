@@ -129,11 +129,11 @@ regressionTest.describe('aggrid', () => {
     ).toMatchSnapshot();
   });
 
-  regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {
+  regressionTest.describe('dropdown in aggrid cells', () => {
     regressionTest(
       'dropdown-button in cell should appear above other rows',
       async ({ page }) => {
-        await page.goto('dropdown-top-layer/dropdown-top-layer.html');
+        await page.goto('dropdown-in-aggrid/dropdown-in-aggrid.html');
 
         const dropdownButton = page
           .locator('.ag-row[row-index="5"]')
@@ -153,7 +153,7 @@ regressionTest.describe('aggrid', () => {
     regressionTest(
       'select in cell should appear above other rows',
       async ({ page }) => {
-        await page.goto('dropdown-top-layer/dropdown-top-layer.html');
+        await page.goto('dropdown-in-aggrid/dropdown-in-aggrid.html');
 
         const select = page
           .locator('.ag-row[row-index="8"]')

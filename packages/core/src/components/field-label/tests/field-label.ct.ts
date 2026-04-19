@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { dropdownPanel, regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-field-label>My Label</ix-field-label>`);
@@ -213,7 +213,9 @@ regressionTest(
 
     await selectElement.click();
 
-    await expect(selectElement.locator('ix-dropdown')).toHaveClass(/show/);
+    const selectDropdown = selectElement.locator('ix-dropdown');
+    await expect(selectDropdown).toHaveClass(/show/);
+    await expect(dropdownPanel(selectDropdown)).toBeVisible();
 
     const firstOption = page.getByRole('option', { name: 'Item 1' });
     await firstOption.click();
