@@ -406,7 +406,6 @@ export class DateInput
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
-
   private handleInputKeyDown(event: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
       event,
