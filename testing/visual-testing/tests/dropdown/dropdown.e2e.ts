@@ -86,8 +86,21 @@ regressionTest.describe('dropdown', () => {
 
   regressionTest('centered overflow', async ({ page }) => {
     await page.goto('dropdown/centered-overflow');
-    const lastItem = await page.locator('.dropdown-item').last();
-    await lastItem.scrollIntoViewIfNeeded();
+    await waitForOpenDropdownPanel(page);
+
+    const host = page.locator('ix-dropdown.show').first();
+    await expect(host).toBeVisible();
+    const menuHandle = await host.elementHandle();
+    if (!menuHandle) {
+      throw new Error('dropdown host not found');
+    }
+
+    await page.evaluate((menuElement) => {
+      menuElement.scrollTop = 9999;
+      menuElement.classList.add('__SCROLLED__');
+    }, menuHandle);
+
+    await expect(host).toHaveClass(/__SCROLLED__/);
     await expect(page).toHaveScreenshot();
   });
 });
