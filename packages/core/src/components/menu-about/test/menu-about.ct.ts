@@ -28,6 +28,29 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(aboutAndLegal).toHaveClass(/hydrated/);
 });
 
+regressionTest(
+  'should show only the first tab content on initial render',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+
+    const element = page.locator('#aboutAndLegal');
+    await element.click();
+
+    const aboutItems = page.locator('ix-menu-about-item');
+    await expect(aboutItems.first()).toHaveClass(/hydrated/);
+
+    await expect(aboutItems.first()).toHaveCSS('display', 'block');
+    await expect(aboutItems.last()).toHaveCSS('display', 'none');
+  }
+);
+
 regressionTest('active-tab-label', async ({ mount, page }) => {
   await mount(`
     <ix-application>
@@ -46,8 +69,12 @@ regressionTest('active-tab-label', async ({ mount, page }) => {
   const tabItems = page.locator('ix-tab-item');
   await expect(tabItems.first()).toHaveClass(/hydrated/);
 
-  await expect(tabItems.first()).not.toHaveClass(/\bselected\b/);
-  await expect(tabItems.last()).toHaveClass(/\bselected\b/);
+  await expect(tabItems.first()).not.toHaveAttribute('selected', 'true');
+  await expect(tabItems.last()).toHaveAttribute('selected', 'true');
+
+  const aboutItems = page.locator('ix-menu-about-item');
+  await expect(aboutItems.first()).toHaveCSS('display', 'none');
+  await expect(aboutItems.last()).toHaveCSS('display', 'block');
 });
 
 regressionTest('should not change tab', async ({ mount, page }) => {
