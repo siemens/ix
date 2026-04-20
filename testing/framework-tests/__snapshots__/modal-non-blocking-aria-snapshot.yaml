@@ -1,0 +1,4 @@
+- main:
+  - text: Content behind the dialog
+  - button "Behind control"
+  - button "Show non-blocking modal"

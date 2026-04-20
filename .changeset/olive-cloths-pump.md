@@ -5,4 +5,11 @@
 '@siemens/ix-vue': major
 ---
 
-Remove property `ariaLabelButton` from **ix-button** and property `a11yLabel` (attribute **a11y-label**) from **ix-icon-button**. Use the native `aria-label` attribute on the host element instead.
+Remove legacy accessible-name properties from button components. Set the native `aria-label` attribute on the host element instead; it is applied to the inner interactive surface.
+
+- **ix-button**: `ariaLabelButton` (**aria-label-button**)
+- **ix-icon-button**: `a11yLabel` (**a11y-label**)
+- **ix-toggle-button**: `ariaLabelButton` (**aria-label-button**)
+- **ix-icon-toggle-button**: `ariaLabelIconButton` (**aria-label-icon-button**)
+
+See [Breaking changes v5](../BREAKING_CHANGES/v5.md) for migration examples.

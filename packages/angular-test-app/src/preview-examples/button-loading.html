@@ -6,9 +6,27 @@
   Button
 </ix-button>
 
-<ix-icon-button variant="subtle-primary" (click)="toggle3()" [loading]="loading3" icon="star">
-</ix-icon-button>
+<ix-button
+  variant="subtle-primary"
+  (click)="toggle3()"
+  [loading]="loading3"
+  icon="star"
+  aria-label="Star"
+></ix-button>
+
+<ix-icon-button
+  variant="subtle-primary"
+  (click)="toggle4()"
+  [loading]="loading4"
+  icon="star"
+  aria-label="Toggle loading"
+></ix-icon-button>
 
 <ix-button variant="subtle-primary" loading> Button </ix-button>
 
-<ix-icon-button variant="subtle-primary" loading icon="star"></ix-icon-button>
+<ix-icon-button
+  variant="subtle-primary"
+  loading
+  icon="star"
+  aria-label="Loading action"
+></ix-icon-button>

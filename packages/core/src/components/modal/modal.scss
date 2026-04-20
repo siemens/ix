@@ -126,7 +126,8 @@
   }
 }
 
-:host(.no-backdrop) {
+:host(.no-backdrop),
+:host(.non-blocking) {
   dialog::backdrop {
     background-color: transparent !important;
     backdrop-filter: none !important;

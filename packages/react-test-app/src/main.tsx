@@ -170,6 +170,7 @@ import MessageBar from './preview-examples/message-bar';
 import MessageBarRemoval from './preview-examples/message-bar-removal.tsx';
 import Modal from './preview-examples/modal';
 import ModalClose from './preview-examples/modal-close.tsx';
+import ModalNonBlockingPreview from './preview-examples/modal-non-blocking.tsx';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
@@ -409,6 +410,7 @@ const routes: IxPreviewRoutes = {
   '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
   '/preview/modal': Modal,
   '/preview/modal-close': ModalClose,
+  '/preview/modal-non-blocking': ModalNonBlockingPreview,
   '/preview/pagination-advanced': PaginationAdvanced,
   '/preview/pagination': Pagination,
   '/preview/pane': Pane,

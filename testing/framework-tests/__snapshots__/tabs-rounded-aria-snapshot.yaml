@@ -1,8 +1,16 @@
 - main:
   - tablist:
-    - tab
-    - tab /\d+/
-    - tab
-    - tab /\d+/
-    - tab
-    - tab
+    - tab "Success":
+      - img "Success"
+    - tab "Tree 200":
+      - img "Tree"
+      - text: "200"
+    - tab "Maintenance":
+      - img "Maintenance"
+    - tab "Sound 24":
+      - img "Sound"
+      - text: "24"
+    - tab "Hierarchy":
+      - img "Hierarchy"
+    - tab "Calendar settings":
+      - img "Calendar settings"

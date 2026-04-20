@@ -45,7 +45,7 @@ export function showModalLoading(
   messageOrOptions: string | ModalLoadingOptions
 ): ModalLoadingContext {
   const modal = document.createElement('ix-modal');
-  modal.disableEscapeClose = true;
+  modal.beforeDismiss = () => false;
 
   const loading = document.createElement('ix-modal-loading');
 

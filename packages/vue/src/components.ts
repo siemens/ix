@@ -804,7 +804,6 @@ export const IxIconToggleButton: StencilVueComponent<JSX.IxIconToggleButton> = /
   'size',
   'disabled',
   'loading',
-  'ariaLabelIconButton',
   'pressedChange'
 ], [
   'pressedChange'
@@ -1046,7 +1045,7 @@ export const IxModal: StencilVueComponent<JSX.IxModal> = /*@__PURE__*/ defineCon
   'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'disableEscapeClose',
+  'isNonBlocking',
   'dialogClose',
   'dialogDismiss'
 ], [
@@ -1536,7 +1535,6 @@ export const IxToggleButton: StencilVueComponent<JSX.IxToggleButton> = /*@__PURE
   'icon',
   'iconRight',
   'pressed',
-  'ariaLabelButton',
   'pressedChange'
 ], [
   'pressedChange'

@@ -14,16 +14,18 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { BaseButtonVariant } from '../button/base-button.types';
 import { ButtonVariant } from '../button/button';
+import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
 import {
-  a11yBoolean,
-  a11yHostAttributes,
-  getFallbackLabelFromIconName,
-} from '../utils/a11y';
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 
 export type ToggleButtonVariant = Exclude<
   ButtonVariant,
@@ -35,8 +37,11 @@ export type ToggleButtonVariant = Exclude<
   shadow: true,
   styleUrl: './toggle-button.scss',
 })
-export class ToggleButton {
-  @Element() hostElement!: HTMLIxToggleButtonElement;
+export class ToggleButton
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxToggleButtonElement;
 
   /**
    * Button variant.
@@ -70,12 +75,6 @@ export class ToggleButton {
   @Prop() pressed = false;
 
   /**
-   * ARIA label that will be set on the native HTML button element
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelButton?: string;
-
-  /**
    * Pressed change event
    */
   @Event() pressedChange!: EventEmitter<boolean>;
@@ -84,9 +83,7 @@ export class ToggleButton {
     this.pressedChange.emit(!this.pressed);
   }
 
-  render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-
+  override render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
@@ -99,10 +96,10 @@ export class ToggleButton {
       onClick: () => this.dispatchPressedChange(),
       type: 'button',
       ariaAttributes: {
+        ...this.inheritAriaAttributes,
         'aria-pressed': a11yBoolean(this.pressed),
         'aria-label':
-          a11y['aria-label'] ??
-          this.ariaLabelButton ??
+          this.inheritAriaAttributes['aria-label'] ??
           getFallbackLabelFromIconName(this.icon),
       },
     };

@@ -61,6 +61,7 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'pnpm run host-root',
     port: 8080,
+    reuseExistingServer: !process.env.CI,
   },
   retries: 3,
 };

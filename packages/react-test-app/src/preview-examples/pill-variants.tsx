@@ -18,10 +18,12 @@ export default () => {
       <IxLayoutGrid>
         <IxRow>
           <IxCol>
-            <IxPill icon={iconInfo}>Primary</IxPill>
+            <IxPill variant="primary" icon={iconInfo}>
+              Primary
+            </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="subtle-primary" icon={iconInfo}>
+            <IxPill variant="primary" outline icon={iconInfo}>
               Primary
             </IxPill>
           </IxCol>
@@ -34,7 +36,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="alarm" icon={iconInfo}>
+            <IxPill variant="alarm" outline icon={iconInfo}>
               Alarm
             </IxPill>
           </IxCol>
@@ -47,7 +49,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="critical" icon={iconInfo}>
+            <IxPill variant="critical" outline icon={iconInfo}>
               Critical
             </IxPill>
           </IxCol>
@@ -60,7 +62,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="warning" icon={iconInfo}>
+            <IxPill variant="warning" outline icon={iconInfo}>
               Warning
             </IxPill>
           </IxCol>
@@ -68,25 +70,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="success" icon={iconInfo}>
-              Success
-            </IxPill>
-          </IxCol>
-          <IxCol>
-            <IxPill variant="success" icon={iconInfo}>
-              Success
-            </IxPill>
-          </IxCol>
-        </IxRow>
-
-        <IxRow>
-          <IxCol>
             <IxPill variant="info" icon={iconInfo}>
               Info
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="info" icon={iconInfo}>
+            <IxPill variant="info" outline icon={iconInfo}>
               Info
             </IxPill>
           </IxCol>
@@ -99,8 +88,21 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="neutral" icon={iconInfo}>
+            <IxPill variant="neutral" outline icon={iconInfo}>
               Neutral
+            </IxPill>
+          </IxCol>
+        </IxRow>
+
+        <IxRow>
+          <IxCol>
+            <IxPill variant="success" icon={iconInfo}>
+              Success
+            </IxPill>
+          </IxCol>
+          <IxCol>
+            <IxPill variant="success" outline icon={iconInfo}>
+              Success
             </IxPill>
           </IxCol>
         </IxRow>
@@ -109,15 +111,21 @@ export default () => {
           <IxCol>
             <IxPill
               variant="custom"
-              color="color-soft-text"
-              background="purple"
+              pillColor="var(--theme-color-inv-std-text)"
+              background="var(--theme-color-dynamic)"
               icon={iconInfo}
             >
               Custom
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="custom" color="color-soft-text" background="purple" icon={iconInfo}>
+            <IxPill
+              variant="custom"
+              outline
+              pillColor="var(--theme-color-dynamic)"
+              background="var(--theme-color-dynamic)"
+              icon={iconInfo}
+            >
               Custom
             </IxPill>
           </IxCol>
