@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('split-button', () => {
   regressionTest('basic', async ({ page }) => {
@@ -18,7 +18,7 @@ regressionTest.describe('split-button', () => {
     const dropdownButton = button.locator('ix-icon-button');
     await expect(dropdownButton).toBeVisible();
     await dropdownButton.click();
-    await expect(button.locator('.dropdown-menu.show')).toBeVisible();
+    await waitForOpenDropdownPanel(button);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.02,
     });

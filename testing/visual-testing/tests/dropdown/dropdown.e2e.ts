@@ -8,14 +8,14 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('dropdown', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('dropdown/basic');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await expect(page).toHaveScreenshot();
   });
@@ -24,7 +24,7 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/checked');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await expect(page).toHaveScreenshot();
   });
@@ -32,14 +32,19 @@ regressionTest.describe('dropdown', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('dropdown/overflow');
 
-    const menuHandle = await page.waitForSelector('.dropdown-menu.show');
+    const host = page.locator('ix-dropdown.show').first();
+    await expect(host).toBeVisible();
+    const menuHandle = await host.elementHandle();
+    if (!menuHandle) {
+      throw new Error('dropdown host not found');
+    }
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
       menuElement.classList.add('__SCROLLED__');
     }, menuHandle);
 
-    await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
+    await expect(host).toHaveClass(/__SCROLLED__/);
     await expect(page).toHaveScreenshot();
   });
 
@@ -47,7 +52,7 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/disabled');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await expect(page).toHaveScreenshot();
   });
@@ -56,10 +61,10 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/multiple');
 
     await page.locator('#trigger-a').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await page.locator('#trigger-b').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await expect(page).toHaveScreenshot();
   });
@@ -74,7 +79,7 @@ regressionTest.describe('dropdown', () => {
     });
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await expect(page).toHaveScreenshot();
   });

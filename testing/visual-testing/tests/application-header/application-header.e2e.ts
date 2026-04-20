@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('application header: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -69,11 +69,8 @@ regressionTest.describe('application header: basic', () => {
       await expect(contextMenu).toBeVisible();
       await contextMenu.click();
 
-      const dropdown = page
-        .locator('ix-application-header')
-        .locator('[data-overflow-dropdown]');
-
-      await expect(dropdown).toBeVisible();
+      const header = page.locator('ix-application-header');
+      await waitForOpenDropdownPanel(header);
       await expect(page).toHaveScreenshot();
     }
   );

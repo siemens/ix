@@ -8,14 +8,14 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('dropdown-quick-actions', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('dropdown-quick-actions/basic');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

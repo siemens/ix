@@ -8,7 +8,10 @@
  */
 
 import { Locator, expect } from '@playwright/test';
-import { dropdownPanel } from '@utils/test';
+
+function dropdownPanel(dropdown: Locator): Locator {
+  return dropdown.locator('dialog').first();
+}
 
 export function selectController(select: Locator) {
   const input = select.locator('input');

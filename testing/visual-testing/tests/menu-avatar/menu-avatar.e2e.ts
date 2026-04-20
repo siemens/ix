@@ -8,15 +8,16 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('menu-avatar', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-avatar/basic');
     await page.locator('ix-menu-expand-icon').click();
     await page.waitForSelector('.expanded');
-    await page.locator('ix-menu-avatar').click();
-    await page.waitForSelector('ix-dropdown.show');
+    const avatar = page.locator('ix-menu-avatar');
+    await avatar.click();
+    await waitForOpenDropdownPanel(avatar);
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -28,7 +29,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
+    await waitForOpenDropdownPanel(avatar);
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -40,7 +41,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
+    await waitForOpenDropdownPanel(avatar);
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

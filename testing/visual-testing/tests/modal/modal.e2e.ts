@@ -16,7 +16,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/basic');
 
     const modal = page.locator('ix-modal');
-    const dialog = modal.locator('dialog');
+    const dialog = modal.locator('dialog.modal');
     await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
     await expect(dialog).toBeVisible();
@@ -31,7 +31,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/icon');
 
     const modal = page.locator('ix-modal');
-    const dialog = modal.locator('dialog');
+    const dialog = modal.locator('dialog.modal');
     await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
     await expect(dialog).toBeVisible();
@@ -46,7 +46,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/basic');
 
     const modal = page.locator('ix-modal');
-    const dialog = modal.locator('dialog');
+    const dialog = modal.locator('dialog.modal');
 
     await expect(dialog).toBeVisible();
     await page.keyboard.down('Escape');
@@ -60,7 +60,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/non-blocking');
 
     const modal = page.locator('ix-modal');
-    const dialog = modal.locator('dialog');
+    const dialog = modal.locator('dialog.modal');
     await expect(dialog).toBeVisible();
     await expect(dialog).toHaveCSS('opacity', '1');
     await expect(modal).toHaveClass(/non-blocking/);
@@ -95,7 +95,7 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
-  const dialog = modal.locator('dialog');
+  const dialog = modal.locator('dialog.modal');
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   await expect(modal).toHaveClass(/hydrated/);
   await expect(dialog).toBeVisible();
@@ -150,7 +150,7 @@ regressionTest('modal should show centered', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
-  const dialog = modal.locator('dialog');
+  const dialog = modal.locator('dialog.modal');
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   await expect(modal).toHaveClass(/hydrated/);
   await expect(dialog).toBeVisible();

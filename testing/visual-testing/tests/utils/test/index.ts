@@ -7,8 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 export * from './page';
+
+/**
+ * Waits until an opened `ix-dropdown` panel is visible: Popover `dialog` (default)
+ * or the host when `suppress-top-layer` is used (e.g. visual overflow fixtures).
+ */
+export async function waitForOpenDropdownPanel(
+  scope: Page | Locator
+): Promise<void> {
+  const host = scope.locator('ix-dropdown.show').first();
+  await expect(async () => {
+    const dialog = host.locator('dialog.dialog[role="presentation"]');
+    if ((await dialog.count()) > 0) {
+      await expect(dialog.first()).toBeVisible();
+    } else {
+      await expect(host).toBeVisible();
+    }
+  }).toPass({ timeout: 15000 });
+}
 
 export const viewPorts = {
   sm: {

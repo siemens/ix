@@ -45,7 +45,7 @@ export default defineConfig({
   projects: buildProjectsWithThemes(),
 
   snapshotPathTemplate:
-    '{testDir}/__screenshots__/{testFilePath}/{arg}-{projectName}-{platform}{ext}',
+    '{testDir}/__screenshots__/{testFilePath}/{arg}-{projectName}-linux{ext}',
 
   /* Run your local dev server before starting the tests */
   webServer: {

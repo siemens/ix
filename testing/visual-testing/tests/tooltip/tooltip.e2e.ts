@@ -8,7 +8,11 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, waitForIxHydration } from '@utils/test';
+import {
+  regressionTest,
+  waitForIxHydration,
+  waitForOpenDropdownPanel,
+} from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
@@ -196,7 +200,7 @@ regressionTest.describe('tooltip', () => {
     await page.goto('tooltip/dropdown');
 
     await page.locator('ix-button[id="trigger"]').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await waitForOpenDropdownPanel(page);
 
     await page.locator('#item1').hover();
 

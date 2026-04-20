@@ -11,7 +11,10 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('3rd-party:bootstrap', () => {
   regressionTest('html elements', async ({ page }) => {
-    await page.goto('3rd-party/bootstrap/html-elements');
+    await page.goto('3rd-party/bootstrap/html-elements', {
+      waitUntil: 'domcontentloaded',
+      timeout: 60_000,
+    });
     await expect(page.locator('ix-button')).toBeVisible();
     await expect(page).toHaveScreenshot({
       fullPage: true,

@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {
@@ -34,7 +34,7 @@ regressionTest.describe('blind', () => {
     await page.goto('blind/header-actions');
     await page.locator('#context-menu').click();
     await page.waitForTimeout(800);
-    await page.waitForSelector('ix-dropdown.show');
+    await waitForOpenDropdownPanel(page);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
