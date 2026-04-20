@@ -310,6 +310,9 @@ export class TimeInput
 
   private handleInputKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowDown') {
+      if (!this.isInteractive) {
+        return;
+      }
       this.show = true;
       requestAnimationFrameNoNgZone(() => {
         this.timePickerRef.current?.focus();
@@ -478,9 +481,9 @@ export class TimeInput
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            if (this.isInteractive) {
-              this.openDropdown();
-            }
+            // if (this.isInteractive) {
+            //   this.openDropdown();
+            // }
             this.ixFocus.emit();
           }}
           onBlur={() => {

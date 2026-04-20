@@ -270,6 +270,10 @@ export class DateInput
 
   private classObserver?: ClassMutationObserver;
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   public initialValue?: string;
 
   public invalidReason?: string;
@@ -402,9 +406,6 @@ export class DateInput
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
-  private get isInteractive() {
-    return !this.readonly && !this.disabled;
-  }
 
   private handleInputKeyDown(event: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
@@ -448,9 +449,7 @@ export class DateInput
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            if (this.isInteractive) {
-              this.openDropdown();
-            }
+
             this.ixFocus.emit();
           }}
           onBlur={() => {

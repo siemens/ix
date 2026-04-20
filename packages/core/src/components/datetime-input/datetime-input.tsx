@@ -626,9 +626,6 @@ export class DatetimeInput
           }}
           onFocus={async () => {
             onInputFocus(this, this.value);
-            if (this.isInteractive) {
-              await this.openDropdown();
-            }
             this.ixFocus.emit();
           }}
           onInput={(event) => {

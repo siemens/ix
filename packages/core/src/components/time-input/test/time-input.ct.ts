@@ -197,7 +197,6 @@ regressionTest.describe('time input tests', () => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
 
-      // Set readonly FIRST
       await timeInputElement.evaluate((el: any) => {
         el.readonly = true;
       });
@@ -206,14 +205,12 @@ regressionTest.describe('time input tests', () => {
         'readonly'
       );
 
-      // Then set invalid value (this will trigger focus but dropdown shouldn't open)
       await timeInputElement.evaluate((el: any) => {
         el.value = 'invalid-time';
       });
 
       await expect(timeInputElement.locator('input')).toHaveClass(/is-invalid/);
 
-      // Try to focus manually - dropdown should still NOT open
       await timeInputElement.locator('input').focus();
       await page.waitForTimeout(500);
       await expect(
