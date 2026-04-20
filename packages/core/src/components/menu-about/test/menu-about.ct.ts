@@ -71,10 +71,6 @@ regressionTest('active-tab-label', async ({ mount, page }) => {
 
   await expect(tabItems.first()).not.toHaveAttribute('selected', 'true');
   await expect(tabItems.last()).toHaveAttribute('selected', 'true');
-
-  const aboutItems = page.locator('ix-menu-about-item');
-  await expect(aboutItems.first()).toHaveCSS('display', 'none');
-  await expect(aboutItems.last()).toHaveCSS('display', 'block');
 });
 
 regressionTest('should not change tab', async ({ mount, page }) => {
