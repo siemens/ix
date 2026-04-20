@@ -25,9 +25,7 @@ const createDateInputAccessor = async (dateInput: Locator) => {
     selectDay: async (day: number) => {
       const picker = dateDropdown.locator('ix-date-picker');
       await expect(picker).toBeVisible();
-      const dayButton = picker
-        .getByText(new RegExp(`^${day}$`))
-        .first();
+      const dayButton = picker.getByText(new RegExp(`^${day}$`)).first();
 
       await expect(dayButton).toBeVisible();
       await dayButton.click();
