@@ -271,6 +271,9 @@ export class Select
   @State() isInfo = false;
   @State() isWarning = false;
 
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: (event: Event) => void;
+
   private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
@@ -280,6 +283,25 @@ export class Select
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
   private touched = false;
+
+  
+  private get parentForm(): HTMLFormElement | null {
+    return this.hostElement.closest('form');
+  }
+
+  private isFormNoValidate(): boolean {
+    const form = this.parentForm;
+    if (!form) {
+      return false;
+    }
+    const noValidateAttributes = [
+      'novalidate',
+      'data-novalidate',
+      'ngnovalidate',
+    ];
+
+    return noValidateAttributes.some((attr) => form.hasAttribute(attr));
+  }
 
   get nonShadowItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
@@ -339,6 +361,31 @@ export class Select
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
+    this.syncValidationClasses();
+  }
+
+    override connectedCallback(): void {
+    const form = this.parentForm;
+    if (form) {
+      this.formSubmitHandler = (event: Event) => {
+        this.formSubmissionAttempted = true;
+        this.touched = true;
+        this.syncValidationClasses();
+        if (this.required && !this.hasValue()) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.hostElement.focus();
+          return false;
+        }
+      };
+      form.addEventListener('submit', this.formSubmitHandler, {
+        capture: true,
+      });
+    }
+
+    this.hostElement.addEventListener('invalid', (event: Event) => {
+      event.preventDefault();
+    });
   }
 
   updateFormInternalValue(value: string | string[]) {
@@ -495,6 +542,39 @@ export class Select
     }
   }
 
+  syncValidationClasses() {
+    if (this.isFormNoValidate()) {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.formInternals.setValidity({});
+      return;
+    }
+
+    if (this.required) {
+      const isRequiredInvalid =
+        !this.hasValue() && (this.touched || this.formSubmissionAttempted);
+
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+      this.isInvalid = isRequiredInvalid;
+
+      if (isRequiredInvalid) {
+        const message =
+          this.invalidText && this.invalidText.trim().length > 0
+            ? this.invalidText
+            : ' ';
+
+        this.formInternals.setValidity({ valueMissing: true }, message);
+      } else {
+        this.formInternals.setValidity({});
+      }
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.formInternals.setValidity({});
+    }
+  }
+
   override componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
@@ -517,12 +597,20 @@ export class Select
   override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+    this.syncValidationClasses();
   }
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
 
     this.proxyListObserver?.disconnect();
+    
+    const form = this.parentForm;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler, {
+        capture: true,
+      });
+    }
   }
 
   @Listen('ix-select-item:valueChange')
@@ -645,6 +733,8 @@ export class Select
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
+    this.touched = false;
+    this.formSubmissionAttempted = false;
     const emptyValue = this.isSingleMode ? '' : [];
     this.value = emptyValue;
     this.emitValueChange(emptyValue);
@@ -655,6 +745,7 @@ export class Select
     this.ixBlur.emit();
     this.touched = true;
     this.hasInputFocus = false;
+    this.syncValidationClasses();
 
     if (this.editable) {
       return;
@@ -859,6 +950,15 @@ export class Select
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
         tabIndex={this.disabled ? -1 : 0}
+        onFocus={(event: FocusEvent) => {
+          if (
+            this.inputElement &&
+            event.target === this.hostElement &&
+            !this.dropdownShow
+          ) {
+            this.inputElement.focus();
+          }
+        }}
       >
         <ix-field-wrapper
           required={this.required}
@@ -910,6 +1010,7 @@ export class Select
                     class={{
                       'allow-clear':
                         this.allowClear && !!this.selectedLabels?.length,
+                      'ix-invalid': this.isInvalid
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue ?? ''}
