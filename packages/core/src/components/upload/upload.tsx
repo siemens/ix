@@ -204,7 +204,11 @@ export class Upload {
       case UploadFileState.SELECT_FILE:
         return (
           <span class="state">
-            <span class="upload-text">{this.selectFileText}</span>
+            <span class="upload-text">
+              {this.directoryUpload
+                ? '+ Drag folder here or…'
+                : this.selectFileText}
+            </span>
           </span>
         );
       case UploadFileState.LOADING:
@@ -296,7 +300,7 @@ export class Upload {
               onClick={() => this.inputElement.click()}
               disabled={disabled}
             >
-              {this.i18nUploadFile}
+              {this.directoryUpload ? 'Upload folder…' : this.i18nUploadFile}
             </ix-button>
           </div>
         </div>

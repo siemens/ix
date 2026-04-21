@@ -20,12 +20,10 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest(
   'enables folder upload when directoryUpload is set',
   async ({ mount, page }) => {
-    await mount(
-      `<ix-upload directory-upload i18n-upload-file="Upload folder…"></ix-upload>`
-    );
+    await mount(`<ix-upload directory-upload></ix-upload>`);
     const upload = page.locator('ix-upload');
 
-    const inputAttributes = await upload.evaluate((element) => {
+    const attrs = await upload.evaluate((element) => {
       const input = element.shadowRoot?.querySelector(
         '#upload-browser'
       ) as HTMLInputElement | null;
@@ -38,13 +36,42 @@ regressionTest(
         buttonText: element.shadowRoot
           ?.querySelector('ix-button')
           ?.textContent?.trim(),
+        selectFileText: element.shadowRoot
+          ?.querySelector('.upload-text')
+          ?.textContent?.trim(),
         hasWebkitDirectory: input.hasAttribute('webkitdirectory'),
         hasDirectory: input.hasAttribute('directory'),
       };
     });
-    expect(inputAttributes).not.toBeNull();
-    expect(inputAttributes?.buttonText).toBe('Upload folder…');
-    expect(inputAttributes?.hasWebkitDirectory).toBe(true);
-    expect(inputAttributes?.hasDirectory).toBe(true);
+
+    expect(attrs).not.toBeNull();
+    expect(attrs?.selectFileText).toBe('+ Drag folder here or…');
+    expect(attrs?.buttonText).toBe('Upload folder…');
+    expect(attrs?.hasWebkitDirectory).toBe(true);
+    expect(attrs?.hasDirectory).toBe(true);
+  }
+);
+
+regressionTest(
+  'allows overriding folder upload texts',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-upload directory-upload select-file-text="Custom drag text" i18n-upload-file="Custom button"></ix-upload>`
+    );
+    const upload = page.locator('ix-upload');
+
+    const texts = await upload.evaluate((element) => {
+      return {
+        buttonText: element.shadowRoot
+          ?.querySelector('ix-button')
+          ?.textContent?.trim(),
+        selectFileText: element.shadowRoot
+          ?.querySelector('.upload-text')
+          ?.textContent?.trim(),
+      };
+    });
+
+    expect(texts?.selectFileText).toBe('Custom drag text');
+    expect(texts?.buttonText).toBe('Custom button');
   }
 );
