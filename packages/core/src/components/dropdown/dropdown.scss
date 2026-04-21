@@ -33,6 +33,15 @@
   }
 }
 
+:host(.top-layer) {
+  // In top-layer mode the dialog itself renders the panel visuals.
+  // Reset host panel styling to avoid a phantom spacing block.
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
 $dropdown-offset: 3rem;
 
 :host(.overflow) {

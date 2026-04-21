@@ -981,6 +981,7 @@ export class Dropdown
         class={{
           'dropdown-menu': true,
           show: this.show,
+          'top-layer': this.useTopLayer,
           // overflow handling not needed when using top-layer
           overflow: !this.suppressOverflowBehavior && !this.useTopLayer,
         }}
