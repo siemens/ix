@@ -62,7 +62,7 @@ export class Upload {
   /**
    * Will be used by state = UploadFileState.SELECT_FILE
    */
-  @Prop() selectFileText = '+ Drag files here or…';
+  @Prop() selectFileText?: string;
 
   /**
    * Will be used by state = UploadFileState.LOADING
@@ -80,9 +80,9 @@ export class Upload {
   @Prop() uploadSuccessText = 'Upload successful';
 
   /**
-   * Label for upload file button
+   * Label for upload file or folder button
    */
-  @Prop({ attribute: 'i18n-upload-file' }) i18nUploadFile = 'Upload file…';
+  @Prop({ attribute: 'i18n-upload-file' }) i18nUploadFile?: string;
 
   /**
    * Text for disabled state
@@ -205,9 +205,10 @@ export class Upload {
         return (
           <span class="state">
             <span class="upload-text">
-              {this.directoryUpload
-                ? '+ Drag folder here or…'
-                : this.selectFileText}
+              {this.selectFileText ??
+                (this.directoryUpload
+                  ? '+ Drag folder here or…'
+                  : '+ Drag files here or…')}
             </span>
           </span>
         );
@@ -300,7 +301,10 @@ export class Upload {
               onClick={() => this.inputElement.click()}
               disabled={disabled}
             >
-              {this.directoryUpload ? 'Upload folder…' : this.i18nUploadFile}
+              {this.i18nUploadFile ??
+                (this.directoryUpload
+                  ? 'Upload folder…'
+                  : 'Upload file…')}
             </ix-button>
           </div>
         </div>
