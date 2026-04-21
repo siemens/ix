@@ -284,7 +284,6 @@ export class Select
   private inputElement?: HTMLInputElement;
   private touched = false;
 
-  
   private get parentForm(): HTMLFormElement | null {
     return this.hostElement.closest('form');
   }
@@ -364,7 +363,7 @@ export class Select
     this.syncValidationClasses();
   }
 
-    override connectedCallback(): void {
+  override connectedCallback(): void {
     const form = this.parentForm;
     if (form) {
       this.formSubmitHandler = (event: Event) => {
@@ -604,7 +603,7 @@ export class Select
     super.disconnectedCallback();
 
     this.proxyListObserver?.disconnect();
-    
+
     const form = this.parentForm;
     if (form && this.formSubmitHandler) {
       form.removeEventListener('submit', this.formSubmitHandler, {
@@ -1010,7 +1009,7 @@ export class Select
                     class={{
                       'allow-clear':
                         this.allowClear && !!this.selectedLabels?.length,
-                      'ix-invalid': this.isInvalid
+                      'ix-invalid': this.isInvalid,
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue ?? ''}
