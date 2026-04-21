@@ -4405,10 +4405,9 @@ export namespace Components {
          */
         "i18nUploadDisabled": string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
-        "i18nUploadFile": string;
+        "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
           * @default 'Checking files…'
@@ -4426,9 +4425,8 @@ export namespace Components {
         "multiple": boolean;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
-        "selectFileText": string;
+        "selectFileText"?: string;
         /**
           * Set files
           * @param obj
@@ -10970,8 +10968,7 @@ declare namespace LocalJSX {
          */
         "i18nUploadDisabled"?: string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
         "i18nUploadFile"?: string;
         /**
@@ -10995,7 +10992,6 @@ declare namespace LocalJSX {
         "onFilesChanged"?: (event: IxUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
         "selectFileText"?: string;
         /**
