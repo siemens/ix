@@ -1323,7 +1323,7 @@ test('input does not clear when slotchange fires before inputFilterText is set',
     const select = document.querySelector('ix-select');
     const item = select?.querySelector('ix-select-item');
     if (item && select) {
-      select.removeChild(item);
+      item.remove();
       select.appendChild(item);
     }
   });
