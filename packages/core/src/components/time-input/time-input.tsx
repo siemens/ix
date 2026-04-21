@@ -481,9 +481,6 @@ export class TimeInput
           }}
           onFocus={async () => {
             this.initialValue = this.value;
-            // if (this.isInteractive) {
-            //   this.openDropdown();
-            // }
             this.ixFocus.emit();
           }}
           onBlur={() => {
