@@ -302,9 +302,7 @@ export class Upload {
               disabled={disabled}
             >
               {this.i18nUploadFile ??
-                (this.directoryUpload
-                  ? 'Upload folder…'
-                  : 'Upload file…')}
+                (this.directoryUpload ? 'Upload folder…' : 'Upload file…')}
             </ix-button>
           </div>
         </div>
