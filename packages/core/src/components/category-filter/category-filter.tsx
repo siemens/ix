@@ -933,6 +933,9 @@ export class CategoryFilter
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             suppressTopLayer={this.suppressTopLayer}
+            overwriteDropdownStyle={async () => ({
+              minWidth: '10rem',
+            })}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>
