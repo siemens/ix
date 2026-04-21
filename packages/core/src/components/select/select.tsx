@@ -447,7 +447,10 @@ export class Select
       (item) => item.label ?? item.value
     );
 
-    if (this.dropdownShow && this.inputFilterText) {
+    if (
+      this.dropdownShow &&
+      (this.inputFilterText || this.inputElement?.value)
+    ) {
       return;
     }
 

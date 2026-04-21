@@ -1293,3 +1293,42 @@ test('listbox proxy: selected value stays aria-selected when another row has foc
     'false'
   );
 });
+
+test('input does not clear when slotchange fires before inputFilterText is set', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const input = page.getByTestId('input');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  await page.evaluate(() => {
+    const ixSelect = document.querySelector('ix-select');
+    const inputEl = ixSelect?.shadowRoot?.querySelector<HTMLInputElement>(
+      '[data-testid="input"]'
+    );
+    if (inputEl) inputEl.value = 'Item 1';
+  });
+
+  await expect(input).toHaveValue('Item 1');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const item = select?.querySelector('ix-select-item');
+    if (item && select) {
+      select.removeChild(item);
+      select.appendChild(item);
+    }
+  });
+
+  await page.waitForTimeout(100);
+
+  await expect(input).toHaveValue('Item 1');
+});
