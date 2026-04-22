@@ -4410,9 +4410,8 @@ export namespace Components {
         "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
-        "loadingText": string;
+        "loadingText"?: string;
         /**
           * Whether the text should wrap to more than one line
           * @default false
@@ -10973,7 +10972,6 @@ declare namespace LocalJSX {
         "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
         "loadingText"?: string;
         /**

@@ -67,7 +67,7 @@ export class Upload {
   /**
    * Will be used by state = UploadFileState.LOADING
    */
-  @Prop() loadingText = 'Checking files…';
+  @Prop() loadingText?: string;
 
   /**
    * Will be used by state = UploadFileState.UPLOAD_FAILED
@@ -216,7 +216,10 @@ export class Upload {
         return (
           <span class="state">
             <ix-spinner variant="primary"></ix-spinner>
-            <span class="upload-text">{this.loadingText}</span>
+            <span class="upload-text">
+              {this.loadingText ??
+                (this.directoryUpload ? 'Checking folder…' : 'Checking files…')}
+            </span>
           </span>
         );
       case UploadFileState.UPLOAD_FAILED:
