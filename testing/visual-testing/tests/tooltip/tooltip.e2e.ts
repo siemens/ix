@@ -8,11 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import {
-  regressionTest,
-  waitForIxHydration,
-  waitForOpenDropdownPanel,
-} from '@utils/test';
+import { regressionTest, waitForOpenDropdownPanel } from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
