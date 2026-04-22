@@ -38,6 +38,13 @@ export function removeVisibleFocus() {
   });
 }
 
+export function setVisibleFocus(element: Element) {
+  removeVisibleFocus();
+  element.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+  (element as unknown as FocusVisibleMixinContract).ixFocusVisible = true;
+  currentFocus = [element];
+}
+
 export type IxFocusVisibleChangeEventDetail = {
   currentFocus: Element[];
 };

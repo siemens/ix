@@ -15,18 +15,37 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { makeRef } from '../utils/make-ref';
 import { IX_FOCUS_VISIBLE_ACTIVE } from '../utils/focus/focus-utilities';
-import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
+import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import {
+  removeVisibleFocus,
+  setVisibleFocus,
+} from '../utils/internal/mixins/setup.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { FilterAndSearchValue } from './filter-and-search-value';
 import { FilterCategory } from './filter-category';
@@ -43,24 +62,30 @@ const MORE_CHIP_WIDTH = 100;
 const DEFAULT_CHIP_WIDTH = 140;
 const CHIP_MARGIN = 16;
 
+let categoryFilterId = 0;
+
 @Component({
   tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
   shadow: true,
 })
-export class CategoryFilter {
+export class CategoryFilter
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements AriaActiveDescendantMixinContract, ComponentIdMixinContract
+{
   private focusInListener?: DisposableEventListener;
   private focusOutListener?: DisposableEventListener;
   private inputListener?: DisposableEventListener;
   private arrowKeyListener?: DisposableEventListener;
 
+  private readonly hostId = `ix-category-filter-${categoryFilterId++}`;
   private readonly textInput? = makeRef<HTMLInputElement>();
   private tokenContainerEl?: HTMLDivElement;
   private chipsResizeObserver?: ResizeObserver;
   private chipWidths: Map<number, number> = new Map();
   private a11yAttributes?: A11yAttributes;
 
-  @Element() hostElement!: HTMLIxCategoryFilterElement;
+  @Element() override hostElement!: HTMLIxCategoryFilterElement;
 
   @State() hasFocus = false;
   @State() inputValue: string = '';
@@ -254,6 +279,14 @@ export class CategoryFilter {
   @Prop() i18nSeeAllOptions = 'See all options';
 
   /**
+   * i18n label prefix for the close button on each filter chip.
+   * The chip's full label will be appended, e.g. "Remove Status equals Active".
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelRemoveChip = 'Remove';
+
+  /**
    * If true, disables the free-text search functionality.
    * When disabled, the "Search for ..." option will not appear in the dropdown.
    */
@@ -337,11 +370,8 @@ export class CategoryFilter {
 
   private handleKeyDown(e: KeyboardEvent) {
     if (e.defaultPrevented) {
-      // Still handle Enter for focused empty-state button, since the
-      // dropdown's keyboard handler calls preventDefault before us
       if (e.code === 'Enter' || e.code === 'NumpadEnter') {
         this.handleEmptyStateButtonEnter();
-        // ArrowDown for empty state needs to be handled sepparately since dropdown keyboard nav only works with dropdown-item
       }
       return;
     }
@@ -388,8 +418,9 @@ export class CategoryFilter {
         this.hostElement.shadowRoot?.querySelector<HTMLIxDropdownItemElement>(
           'ix-dropdown-item'
         );
-      removeVisibleFocus();
-      first?.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+      if (first) {
+        setVisibleFocus(first);
+      }
     });
   }
 
@@ -452,8 +483,7 @@ export class CategoryFilter {
       if (!first) {
         return;
       }
-      removeVisibleFocus();
-      first.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+      setVisibleFocus(first);
     });
   }
 
@@ -475,8 +505,10 @@ export class CategoryFilter {
 
   private setNavigationFocus(item: HTMLElement): void {
     this.hostElement.shadowRoot
-      ?.querySelector(`.empty-state ix-button.${IX_FOCUS_VISIBLE_ACTIVE}`)
-      ?.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
+      ?.querySelectorAll<HTMLElement>(
+        `ix-dropdown-item.${IX_FOCUS_VISIBLE_ACTIVE}, .empty-state ix-button.${IX_FOCUS_VISIBLE_ACTIVE}`
+      )
+      .forEach((el) => el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE));
 
     if (item.tagName === 'IX-BUTTON') {
       removeVisibleFocus();
@@ -487,20 +519,28 @@ export class CategoryFilter {
   }
 
   private handleArrowNavigation(e: KeyboardEvent): void {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
     const wasOpen = this.isDropdownOpen;
     if (!wasOpen) {
+      if (!this.hasFocus) {
+        return;
+      }
       this.isDropdownOpen = true;
     }
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
 
     const navigate = () => {
       const items = this.getNavigableItems();
       if (!items.length) return;
 
       const path = wasOpen ? e.composedPath() : [];
-      const currentIndex = items.findIndex((item) => path.includes(item));
+      let currentIndex = items.findIndex((item) => path.includes(item));
+      if (currentIndex < 0 && wasOpen) {
+        currentIndex = items.findIndex((item) =>
+          item.classList.contains(IX_FOCUS_VISIBLE_ACTIVE)
+        );
+      }
       const direction = e.code === 'ArrowDown' ? 1 : -1;
       const nextIndex =
         currentIndex < 0
@@ -509,7 +549,9 @@ export class CategoryFilter {
             : items.length - 1
           : currentIndex + direction;
 
-      if (nextIndex < 0 || nextIndex >= items.length) return;
+      if (nextIndex < 0 || nextIndex >= items.length) {
+        return;
+      }
 
       this.setNavigationFocus(items[nextIndex]);
     };
@@ -1116,6 +1158,7 @@ export class CategoryFilter {
 
   private onFocusOut() {
     this.hasFocus = false;
+    this.isDropdownOpen = false;
   }
 
   private onInput() {
@@ -1208,7 +1251,7 @@ export class CategoryFilter {
     });
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
     this.placeholderState = this.placeholder ?? '';
     if (this.categories) {
@@ -1217,7 +1260,8 @@ export class CategoryFilter {
     this.filteredOperands = this.operands;
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
+    super.componentDidLoad();
     if (this.filterState !== undefined) {
       this.filterValues = [...this.filterState];
     }
@@ -1258,12 +1302,136 @@ export class CategoryFilter {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback();
     this.focusInListener?.();
     this.focusOutListener?.();
     this.inputListener?.();
     this.arrowKeyListener?.();
     this.chipsResizeObserver?.disconnect();
+  }
+
+  override componentDidRender() {
+    this.updateAriaProxyListbox();
+  }
+
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.textInput?.waitForCurrent() ?? null;
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.isDropdownOpen;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return PROXY_LISTITEM_ID_SUFFIX;
+  }
+
+  private getProxyableDropdownItems(): HTMLIxDropdownItemElement[] {
+    return Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLIxDropdownItemElement>(
+        'ix-dropdown-item'
+      ) ?? []
+    );
+  }
+
+  private getEmptyStateAnnouncementText(): string | null {
+    if (!this.isDropdownOpen) {
+      return null;
+    }
+
+    if (!this.categories) {
+      return null;
+    }
+
+    if (!this.selectedCategory) {
+      if (this.categoriesAvailableForSelection.length === 0) {
+        return this.inputValue
+          ? this.i18nNoCategoryMatchHeader
+          : this.isAllCategoriesSelectedCase()
+            ? this.i18nAllCategoriesSelectedHeader
+            : null;
+      }
+      return null;
+    }
+
+    if (!this.selectedOperand) {
+      return this.filteredOperands.length === 0
+        ? this.i18nNoOperandMatchHeader
+        : null;
+    }
+
+    if (this.availableValuesForSelectedCategory.length === 0) {
+      return this.inputValue
+        ? this.i18nNoValueMatchHeader
+        : this.i18nAllValuesSelectedHeader;
+    }
+
+    return null;
+  }
+
+  private updateAriaProxyListbox() {
+    const proxyList = this.hostElement.shadowRoot?.getElementById(
+      `${this.hostId}-${PROXY_LIST_ID_SUFFIX}`
+    );
+
+    if (!proxyList) {
+      return;
+    }
+
+    const items = this.getProxyableDropdownItems();
+    if (items.length === 0) {
+      proxyList.innerHTML = '';
+      const message = this.getEmptyStateAnnouncementText();
+      if (message) {
+        const emptyStateItemId = `${this.hostId}-empty-state-option`;
+        const li = document.createElement('li');
+
+        li.id = emptyStateItemId;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-disabled', 'true');
+        li.textContent = message;
+        proxyList.appendChild(li);
+
+        this.textInput?.current?.setAttribute(
+          'aria-activedescendant',
+          emptyStateItemId
+        );
+      } else {
+        this.textInput?.current?.removeAttribute('aria-activedescendant');
+      }
+      return;
+    }
+
+    this.textInput?.current?.removeAttribute('aria-activedescendant');
+
+    updateFocusProxyList(proxyList, items, (item, proxyElement) => {
+      proxyElement.setAttribute('role', 'option');
+      const label = item.label ?? item.textContent?.trim() ?? '';
+
+      proxyElement.textContent = label;
+      proxyElement.setAttribute(
+        'aria-label',
+        item.getAttribute('aria-label') || label
+      );
+      proxyElement.addEventListener('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        item.click();
+      });
+
+      item.ariaHidden = 'true';
+    });
+  }
+
+  @Watch('isDropdownOpen')
+  watchDropdownOpen(open: boolean) {
+    if (!open) {
+      this.clearActiveDescendant();
+    }
   }
 
   private renderChips() {
@@ -1283,6 +1451,7 @@ export class CategoryFilter {
             hideNativeTooltip={true}
             onCloseClick={() => this.removeFilterValue(index)}
             data-tooltip={`filterValue-${index}`}
+            ariaLabelCloseIconButton={`${this.ariaLabelRemoveChip} ${this.getTooltipText(value)}`}
           >
             {value.type === 'filter'
               ? this.getFilterChipLabel(value)
@@ -1302,9 +1471,19 @@ export class CategoryFilter {
       <div>
         <ix-filter-chip
           readonly={true}
-          onClick={(e) => {
+          tabIndex={0}
+          role="button"
+          aria-haspopup="listbox"
+          aria-expanded={a11yBoolean(this.showRemainingFilterValuesDropdown)}
+          onClick={(e: MouseEvent) => {
             e.stopPropagation();
             this.additionalFilterValuesClicked();
+          }}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.additionalFilterValuesClicked();
+            }
           }}
         >
           {`+${overflowCount}`}
@@ -1321,6 +1500,7 @@ export class CategoryFilter {
                   onCloseClick={() =>
                     this.removeFilterValue(index + this.visibleChipsCount)
                   }
+                  ariaLabelCloseIconButton={`${this.ariaLabelRemoveChip} ${this.getTooltipText(value)}`}
                 >
                   {value.type === 'filter'
                     ? this.getFilterChipLabel(value)
@@ -1350,12 +1530,9 @@ export class CategoryFilter {
     return this.labelValues;
   }
 
-  render() {
+  override render() {
     return (
-      <Host
-        onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}
-        role="combobox"
-      >
+      <Host onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}>
         <div
           read-only={this.readonly}
           class={{
@@ -1391,6 +1568,7 @@ export class CategoryFilter {
                 ''
               )}
               <input
+                id={`${this.hostId}-input`}
                 class={{
                   'text-input': true,
                   'hide-placeholder':
@@ -1404,6 +1582,11 @@ export class CategoryFilter {
                 readonly={this.readonly}
                 ref={this.textInput}
                 type="text"
+                role="combobox"
+                aria-controls={`${this.hostId}-${PROXY_LIST_ID_SUFFIX}`}
+                aria-expanded={a11yBoolean(this.isDropdownOpen)}
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
                 placeholder={this.placeholderState}
                 onClick={() => (this.isDropdownOpen = true)}
                 {...this.a11yAttributes}
@@ -1479,6 +1662,13 @@ export class CategoryFilter {
             ) : (
               ''
             )}
+            <FocusProxy
+              hostId={this.hostId}
+              otherProps={{
+                'aria-hidden': a11yBoolean(!this.isDropdownOpen),
+                hidden: this.disabled || this.readonly,
+              }}
+            ></FocusProxy>
           </ix-dropdown>
         )}
       </Host>

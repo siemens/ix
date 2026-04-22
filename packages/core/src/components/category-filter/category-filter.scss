@@ -17,6 +17,7 @@
 @use 'mixins/shadows';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use '../utils/focus/focus-proxy' as focus-proxy;
 
 :host {
   display: block;
@@ -24,6 +25,7 @@
   height: auto;
 
   @include component.ix-component;
+  @include focus-proxy.focus-proxy;
 
   .reset-button {
     position: absolute;

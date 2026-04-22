@@ -545,6 +545,12 @@ export namespace Components {
          */
         "ariaLabelFilterInput"?: string;
         /**
+          * i18n label prefix for the close button on each filter chip. The chip's full label will be appended, e.g. "Remove Status equals Active".
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "ariaLabelRemoveChip": string;
+        /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
@@ -6924,6 +6930,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelFilterInput"?: string;
         /**
+          * i18n label prefix for the close button on each filter chip. The chip's full label will be appended, e.g. "Remove Status equals Active".
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "ariaLabelRemoveChip"?: string;
+        /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
@@ -11376,6 +11388,7 @@ declare namespace LocalJSX {
         "i18nRemoveValueSubtext": string;
         "i18nRemoveInputSubtext": string;
         "i18nSeeAllOptions": string;
+        "ariaLabelRemoveChip": string;
         "disableFreeTextSearch": boolean;
         "isLoading": boolean;
         "hasError": boolean;
