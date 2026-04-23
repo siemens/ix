@@ -9,7 +9,7 @@
 
 // @ts-ignore - ignore potential type issues as the project is importing itself
 import * as clientComponents from "@siemens/ix";
-import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDrawerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterAndSearchValue, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDrawerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
@@ -350,7 +350,7 @@ export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleE
 export type IxCategoryFilterEvents = {
     onCategoryChanged: EventName<IxCategoryFilterCustomEvent<string>>,
     onInputChanged: EventName<IxCategoryFilterCustomEvent<InputState>>,
-    onFilterChanged: EventName<IxCategoryFilterCustomEvent<FilterState>>,
+    onFilterChanged: EventName<IxCategoryFilterCustomEvent<FilterAndSearchValue[]>>,
     onFilterCleared: EventName<IxCategoryFilterCustomEvent<void>>
 };
 
@@ -362,12 +362,29 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         placeholder: 'placeholder',
         icon: 'icon',
         hideIcon: 'hide-icon',
-        staticOperator: 'static-operator',
+        staticOperand: 'static-operand',
         uniqueCategories: 'unique-categories',
         labelCategories: 'label-categories',
+        labelOperands: 'label-operands',
+        labelValues: 'label-values',
         i18nPlainText: 'i18n-plain-text',
+        i18nAllValuesSelectedHeader: 'i-1-8n-all-values-selected-header',
+        i18nAllValuesSelectedSubtext: 'i-1-8n-all-values-selected-subtext',
+        i18nAllValuesSelectedButton: 'i-1-8n-all-values-selected-button',
+        i18nAllCategoriesSelectedHeader: 'i-1-8n-all-categories-selected-header',
+        i18nAllCategoriesSelectedSubtext: 'i-1-8n-all-categories-selected-subtext',
+        i18nNoCategoryMatchHeader: 'i-1-8n-no-category-match-header',
+        i18nNoOperandMatchHeader: 'i-1-8n-no-operand-match-header',
+        i18nNoValueMatchHeader: 'i-1-8n-no-value-match-header',
+        i18nNoMatchesFound: 'i-1-8n-no-matches-found',
+        i18nRemoveValueSubtext: 'i-1-8n-remove-value-subtext',
+        i18nRemoveInputSubtext: 'i-1-8n-remove-input-subtext',
+        i18nSeeAllOptions: 'i-1-8n-see-all-options',
+        ariaLabelRemoveChip: 'aria-label-remove-chip',
+        disableFreeTextSearch: 'disable-free-text-search',
+        isLoading: 'is-loading',
+        hasError: 'has-error',
         ariaLabelResetButton: 'aria-label-reset-button',
-        ariaLabelOperatorButton: 'aria-label-operator-button',
         ariaLabelFilterInput: 'aria-label-filter-input',
         enableTopLayer: 'enable-top-layer'
     },
@@ -894,7 +911,8 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
     properties: {
         disabled: 'disabled',
         readonly: 'readonly',
-        ariaLabelCloseIconButton: 'aria-label-close-icon-button'
+        ariaLabelCloseIconButton: 'aria-label-close-icon-button',
+        hideNativeTooltip: 'hide-native-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxFilterChip as ReactWebComponent<IxFilterChipElement, IxFilterChipEvents>,

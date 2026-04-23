@@ -43,6 +43,13 @@ export class FilterChip {
   @Prop() ariaLabelCloseIconButton?: string;
 
   /**
+   * If true, suppresses the native browser tooltip (title attribute) on the chip.
+   * Useful when an external tooltip component is used instead.
+   * @default false
+   */
+  @Prop() hideNativeTooltip: boolean = false;
+
+  /**
    * Close clicked
    */
   @Event() closeClick!: EventEmitter<void>;
@@ -57,7 +64,9 @@ export class FilterChip {
     return (
       <Host
         class={{ disabled: this.disabled, readonly: this.readonly }}
-        title={this.hostElement.textContent}
+        title={
+          this.hideNativeTooltip ? undefined : this.hostElement.textContent
+        }
       >
         <div class="slot-container">
           <slot></slot>

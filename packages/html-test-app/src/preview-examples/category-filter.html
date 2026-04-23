@@ -18,30 +18,23 @@ LICENSE file in the root directory of this source tree.
     <ix-category-filter placeholder="Filter by"></ix-category-filter>
 
     <script>
-      const uniqueCategories = true;
-      const filterState = {
-        tokens: ['Custom filter text'],
-        categories: [
-          {
-            id: 'ID_1',
-            value: 'IBM',
-            operator: 'Not equal',
-          },
-        ],
-      };
-      const categories = {
-        ID_1: {
-          label: 'Vendor',
-          options: ['Apple', 'MS', 'Siemens'],
+      const filterState = [
+        { type: 'search', value: 'Custom filter text' },
+        {
+          type: 'filter',
+          category: 'ID_1',
+          operand: { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },
+          value: 'IBM',
         },
-        ID_2: {
-          label: 'Product',
-          options: ['iPhone X', 'Windows', 'APS'],
-        },
-      };
+      ];
+
+      const categories = [
+        { key: 'ID_1', label: 'Vendor', values: ['Apple', 'MS', 'Siemens'] },
+        { key: 'ID_2', label: 'Product', values: ['iPhone X', 'Windows', 'APS'] },
+      ];
 
       const categoryFilter = document.querySelector('ix-category-filter');
-      categoryFilter.uniqueCategories = uniqueCategories;
+      categoryFilter.uniqueCategories = true;
       categoryFilter.filterState = filterState;
       categoryFilter.categories = categories;
     </script>

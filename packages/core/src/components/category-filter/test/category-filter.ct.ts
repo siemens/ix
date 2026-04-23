@@ -25,20 +25,22 @@ regressionTest.describe('category-preview test', () => {
 
     const categoryFilter = page.locator('ix-category-filter');
     await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
-      el.categories = {
-        ID_1: {
+      el.categories = [
+        {
+          key: 'ID_1',
           label: 'Vendor',
-          options: ['Apple', 'MS', 'Siemens'],
+          values: ['Apple', 'MS', 'Siemens'],
         },
-        ID_2: {
+        {
+          key: 'ID_2',
           label: 'Product',
-          options: ['iPhone X', 'Windows', 'APS'],
+          values: ['iPhone X', 'Windows', 'APS'],
         },
-      };
+      ];
     });
   });
 
-  regressionTest('add token', async ({ page }) => {
+  regressionTest('add search token via Enter', async ({ page }) => {
     const token = 'Test';
     await page.waitForSelector('ix-category-filter');
     const input = page.locator('input').first();
@@ -49,27 +51,24 @@ regressionTest.describe('category-preview test', () => {
     await expect(chip).toContainText(token);
   });
 
-  regressionTest('clear category-preview', async ({ page }) => {
+  regressionTest('clear filter via reset button', async ({ page }) => {
     const categoryFilter = page.locator('ix-category-filter');
-    await categoryFilter.locator('input').first().click();
-    await categoryFilter.locator('.category-item').first().click();
+    const input = categoryFilter.locator('input').first();
 
-    const categoryPreviewPromise = categoryFilter.evaluate(
-      (element: HTMLIxCategoryFilterElement) => {
-        return new Promise((resolve) => {
-          function onCategoryChanged(event: CustomEvent) {
-            resolve(event.detail);
-          }
+    // Add a search token first
+    await input.click();
+    await input.fill('Test');
+    await page.keyboard.press('Enter');
 
-          element.addEventListener('categoryChanged', onCategoryChanged);
-        });
-      }
-    );
+    // Verify chip exists
+    const chip = page.locator('ix-filter-chip').first();
+    await expect(chip).toContainText('Test');
 
+    // Click reset button
     await page.locator('ix-icon-button').first().click();
-    const categoryPreview = await categoryPreviewPromise;
 
-    expect(categoryPreview).toEqual(null);
+    // Verify chips are cleared
+    await expect(page.locator('ix-filter-chip')).toHaveCount(0);
   });
 });
 
@@ -79,16 +78,18 @@ regressionTest.describe('focus behavior', () => {
 
     const categoryFilter = page.locator('ix-category-filter');
     await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
-      el.categories = {
-        ID_1: {
+      el.categories = [
+        {
+          key: 'ID_1',
           label: 'Vendor',
-          options: ['Apple', 'MS', 'Siemens'],
+          values: ['Apple', 'MS', 'Siemens'],
         },
-        ID_2: {
+        {
+          key: 'ID_2',
           label: 'Product',
-          options: ['iPhone X', 'Windows', 'APS'],
+          values: ['iPhone X', 'Windows', 'APS'],
         },
-      };
+      ];
     });
   });
 
@@ -97,10 +98,7 @@ regressionTest.describe('focus behavior', () => {
     async ({ page }) => {
       const categoryFilter = page.locator('ix-category-filter');
       await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
-        el.filterState = {
-          tokens: ['Test'],
-          categories: [],
-        };
+        el.filterState = [{ type: 'search', value: 'Test' }];
       });
 
       const input = page.locator('input').first();
@@ -109,7 +107,7 @@ regressionTest.describe('focus behavior', () => {
   );
 
   regressionTest(
-    'should focus input when adding token programmatically and input was already focused',
+    'should focus input when adding token and input was already focused',
     async ({ page }) => {
       const input = page.locator('input').first();
 

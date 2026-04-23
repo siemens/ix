@@ -8,6 +8,10 @@
  */
 
 import { Component } from '@angular/core';
+import {
+  FilterAndSearchValue,
+  FilterCategory,
+} from '@siemens/ix';
 
 @Component({
   standalone: false,
@@ -23,24 +27,19 @@ import { Component } from '@angular/core';
 })
 export default class CategoryFilter {
   uniqueCategories = true;
-  filterState = {
-    tokens: ['Custom filter text'],
-    categories: [
-      {
-        id: 'ID_1',
-        value: 'IBM',
-        operator: 'Not equal',
-      },
-    ],
-  };
-  categories = {
-    ID_1: {
-      label: 'Vendor',
-      options: ['Apple', 'MS', 'Siemens'],
+
+  filterState: FilterAndSearchValue[] = [
+    { type: 'search', value: 'Custom filter text' },
+    {
+      type: 'filter',
+      category: 'ID_1',
+      operand: { key: 'does not equal', label: 'does not equal (≠)', symbol: '≠' },
+      value: 'IBM',
     },
-    ID_2: {
-      label: 'Product',
-      options: ['iPhone X', 'Windows', 'APS'],
-    },
-  };
+  ];
+
+  categories: FilterCategory[] = [
+    { key: 'ID_1', label: 'Vendor', values: ['Apple', 'MS', 'Siemens'] },
+    { key: 'ID_2', label: 'Product', values: ['iPhone X', 'Windows', 'APS'] },
+  ];
 }
