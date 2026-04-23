@@ -26,7 +26,7 @@ const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
 };
 
 onMounted(() => {
-  input.value?.toggleAbout(true);
+  (input.value as any).$el?.toggleAbout(true);
 });
 </script>
 
