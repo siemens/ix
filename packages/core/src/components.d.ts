@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card.types";
-import { IxTheme } from "./components/utils/theme-switcher";
+import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
@@ -52,14 +52,13 @@ import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
 import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
-import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { RefreshTreeOptions } from "./components/tree/tree.types";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card.types";
-export { IxTheme } from "./components/utils/theme-switcher";
+export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
@@ -105,7 +104,6 @@ export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
 export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
-export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { RefreshTreeOptions } from "./components/tree/tree.types";
@@ -163,18 +161,19 @@ export namespace Components {
          */
         "breakpoints": Breakpoint[];
         /**
+          * Color schema of the theme
+          * @since 5.0.0
+          * @default 'system'
+         */
+        "colorSchema"?: ThemeVariant;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
         /**
           * Application theme
          */
-        "theme"?: IxTheme;
-        /**
-          * Use the system appearance dark or light
-          * @default false
-         */
-        "themeSystemAppearance": boolean;
+        "theme"?: string;
     }
     interface IxApplicationHeader {
         /**
@@ -1625,6 +1624,12 @@ export namespace Components {
          */
         "suppressOverflowBehavior": boolean;
         /**
+          * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
+          * @since 5.0.0
+          * @default false
+         */
+        "suppressTriggerVisibilityCheck": boolean;
+        /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: ElementReference;
@@ -2146,11 +2151,6 @@ export namespace Components {
         "variant": IconButtonVariant;
     }
     interface IxIconToggleButton {
-        /**
-          * ARIA label for the icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelIconButton"?: string;
         /**
           * Disable the button
           * @default false
@@ -2765,7 +2765,7 @@ export namespace Components {
          */
         "closeModal": <T = unknown>(reason: T) => Promise<void>;
         /**
-          * Dismiss modal on backdrop click
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
           * @default false
          */
         "closeOnBackdropClick": boolean;
@@ -2775,11 +2775,6 @@ export namespace Components {
          */
         "disableAnimation": boolean;
         /**
-          * If set to true the modal cannot be closed by pressing the Escape key
-          * @default false
-         */
-        "disableEscapeClose": boolean;
-        /**
           * Dismiss the dialog
          */
         "dismissModal": <T = unknown>(reason?: T) => Promise<void>;
@@ -2788,6 +2783,11 @@ export namespace Components {
           * @default false
          */
         "hideBackdrop": boolean;
+        /**
+          * Non-modal dialog: page stays interactive, no lightbox or focus trap; `aria-modal` is `false`. Set before calling `showModal()`; changing while open is unsupported.
+          * @default false
+         */
+        "isNonBlocking": boolean;
         /**
           * Show the dialog
          */
@@ -4177,14 +4177,7 @@ export namespace Components {
     }
     interface IxToastContainer {
         /**
-          * @default 'toast-container'
-         */
-        "containerClass": string;
-        /**
-          * @default 'toast-container'
-         */
-        "containerId": string;
-        /**
+          * Position of the toast container. Determines where the toasts will be displayed on the screen.
           * @default 'bottom-right'
          */
         "position": 'bottom-right' | 'top-right';
@@ -4252,11 +4245,6 @@ export namespace Components {
         "value": string;
     }
     interface IxToggleButton {
-        /**
-          * ARIA label that will be set on the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
         /**
           * Disable the button
           * @default false
@@ -6432,18 +6420,19 @@ declare namespace LocalJSX {
          */
         "breakpoints"?: Breakpoint[];
         /**
+          * Color schema of the theme
+          * @since 5.0.0
+          * @default 'system'
+         */
+        "colorSchema"?: ThemeVariant;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
           * Application theme
          */
-        "theme"?: IxTheme;
-        /**
-          * Use the system appearance dark or light
-          * @default false
-         */
-        "themeSystemAppearance"?: boolean;
+        "theme"?: string;
     }
     interface IxApplicationHeader {
         /**
@@ -7999,6 +7988,12 @@ declare namespace LocalJSX {
          */
         "suppressOverflowBehavior"?: boolean;
         /**
+          * By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
+          * @since 5.0.0
+          * @default false
+         */
+        "suppressTriggerVisibilityCheck"?: boolean;
+        /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: ElementReference;
@@ -8557,11 +8552,6 @@ declare namespace LocalJSX {
         "variant"?: IconButtonVariant;
     }
     interface IxIconToggleButton {
-        /**
-          * ARIA label for the icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelIconButton"?: string;
         /**
           * Disable the button
           * @default false
@@ -9232,7 +9222,7 @@ declare namespace LocalJSX {
          */
         "centered"?: boolean;
         /**
-          * Dismiss modal on backdrop click
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
           * @default false
          */
         "closeOnBackdropClick"?: boolean;
@@ -9242,15 +9232,15 @@ declare namespace LocalJSX {
          */
         "disableAnimation"?: boolean;
         /**
-          * If set to true the modal cannot be closed by pressing the Escape key
-          * @default false
-         */
-        "disableEscapeClose"?: boolean;
-        /**
           * Hide the backdrop behind the modal dialog
           * @default false
          */
         "hideBackdrop"?: boolean;
+        /**
+          * Non-modal dialog: page stays interactive, no lightbox or focus trap; `aria-modal` is `false`. Set before calling `showModal()`; changing while open is unsupported.
+          * @default false
+         */
+        "isNonBlocking"?: boolean;
         /**
           * Dialog close
          */
@@ -10728,14 +10718,7 @@ declare namespace LocalJSX {
     }
     interface IxToastContainer {
         /**
-          * @default 'toast-container'
-         */
-        "containerClass"?: string;
-        /**
-          * @default 'toast-container'
-         */
-        "containerId"?: string;
-        /**
+          * Position of the toast container. Determines where the toasts will be displayed on the screen.
           * @default 'bottom-right'
          */
         "position"?: 'bottom-right' | 'top-right';
@@ -10808,11 +10791,6 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IxToggleButton {
-        /**
-          * ARIA label that will be set on the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelButton"?: string;
         /**
           * Disable the button
           * @default false
@@ -11120,8 +11098,8 @@ declare namespace LocalJSX {
         "passive": boolean;
     }
     interface IxApplicationAttributes {
-        "theme": IxTheme;
-        "themeSystemAppearance": boolean;
+        "theme": string;
+        "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
     }
     interface IxApplicationHeaderAttributes {
@@ -11433,6 +11411,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "positioningStrategy": 'absolute' | 'fixed';
         "header": string;
+        "suppressTriggerVisibilityCheck": boolean;
         "disableFocusHandling": boolean;
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
@@ -11583,7 +11562,6 @@ declare namespace LocalJSX {
         "size": '24' | '16' | '12';
         "disabled": boolean;
         "loading": boolean;
-        "ariaLabelIconButton": string;
     }
     interface IxInputAttributes {
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
@@ -11734,7 +11712,7 @@ declare namespace LocalJSX {
         "hideBackdrop": boolean;
         "closeOnBackdropClick": boolean;
         "centered": boolean;
-        "disableEscapeClose": boolean;
+        "isNonBlocking": boolean;
     }
     interface IxModalHeaderAttributes {
         "hideClose": boolean;
@@ -12048,8 +12026,6 @@ declare namespace LocalJSX {
         "ariaLabelCloseIconButton": string;
     }
     interface IxToastContainerAttributes {
-        "containerId": string;
-        "containerClass": string;
         "position": 'bottom-right' | 'top-right';
     }
     interface IxToggleAttributes {
@@ -12071,7 +12047,6 @@ declare namespace LocalJSX {
         "icon": string;
         "iconRight": string;
         "pressed": boolean;
-        "ariaLabelButton": string;
     }
     interface IxTooltipAttributes {
         "for": ElementReference | ElementReference[];

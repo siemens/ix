@@ -31,22 +31,35 @@ LICENSE file in the root directory of this source tree.
   <body>
     <div id="main"></div>
     <script type="module">
-      import { registerTheme } from '../dist/index.js';
+      import { registerTheme, resolveEChartThemeName } from '../dist/index.js';
 
-      function getTheme() {
+      function applyThemeFromSearchParams() {
         const searchParams = new URLSearchParams(location.search);
+        const theme = searchParams.get('theme');
+        const colorSchema = searchParams.get('colorSchema');
 
-        if (!searchParams.has('theme')) {
-          return 'theme-brand-dark';
+        if (!theme) {
+          document.documentElement.dataset.ixTheme = 'brand';
+          document.documentElement.dataset.ixColorSchema = 'dark';
+          return;
         }
 
-        return searchParams.get('theme');
+        if (theme.startsWith('theme-')) {
+          const [, resolvedTheme, resolvedColorSchema] = theme.split('-');
+          document.documentElement.dataset.ixTheme = resolvedTheme ?? 'brand';
+          document.documentElement.dataset.ixColorSchema =
+            resolvedColorSchema ?? 'dark';
+          return;
+        }
+
+        document.documentElement.dataset.ixTheme = theme;
+        document.documentElement.dataset.ixColorSchema = colorSchema ?? 'dark';
       }
 
       registerTheme(echarts);
+      applyThemeFromSearchParams();
 
-      const theme = getTheme();
-
+      const theme = resolveEChartThemeName();
       // Configure the background color to enhance contrast
       document.body.style.backgroundColor = theme.includes('dark')
         ? 'black'

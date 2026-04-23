@@ -23,7 +23,9 @@ import { iconClose } from '@siemens/ix-icons/icons';
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class ModalHeader {
   @Element() hostElement!: HTMLIxModalHeaderElement;

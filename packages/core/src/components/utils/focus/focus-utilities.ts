@@ -63,6 +63,23 @@ export function queryElements(
   return items;
 }
 
+export type DomFocusOptions = Parameters<HTMLElement['focus']>[0];
+
+/** `focusVisible` is supported in Firefox 104+; omitted from some TypeScript DOM typings. */
+export type IxFocusOptions = DomFocusOptions & { focusVisible?: boolean };
+
+export function tryFocusElement(
+  element: Element | HTMLElement,
+  options?: IxFocusOptions
+) {
+  if (!(element instanceof HTMLElement)) {
+    return;
+  }
+  try {
+    element.focus(options as DomFocusOptions);
+  } catch {}
+}
+
 export type FocusVisibleConfig = {
   trapFocus?: boolean;
   trapFocusInShadowDom?: boolean;
@@ -141,12 +158,15 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 };
 
-export const focusElement = (element: HTMLElement | null | undefined) => {
+export const focusElement = (
+  element: HTMLElement | null | undefined,
+  options?: DomFocusOptions
+) => {
   if (!element) {
     return;
   }
 
-  element.focus();
+  element.focus(options);
 };
 
 const focusableBase = ':not([tabindex^="-"]):not([hidden]):not([disabled])';

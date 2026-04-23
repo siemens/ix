@@ -192,7 +192,12 @@ export class Toast {
     progressBarClass.push('toast-progress-bar--animated');
 
     return (
-      <Host class="animate__animated animate__fadeIn">
+      <Host
+        role="alert"
+        aria-live="polite"
+        aria-atomic="true"
+        class="animate__animated animate__fadeIn"
+      >
         <div
           class="toast-body"
           onPointerLeave={() => {

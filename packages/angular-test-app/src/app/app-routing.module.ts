@@ -168,6 +168,7 @@ import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
+import ModalNonBlocking from '../preview-examples/modal-non-blocking';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -367,10 +368,6 @@ const routes: Routes = [
         component: ButtonSubtlePrimary,
       },
       {
-        path: 'button-group',
-        component: ButtonGroup,
-      },
-      {
         path: 'button-loading',
         component: ButtonLoading,
       },
@@ -389,10 +386,6 @@ const routes: Routes = [
       {
         path: 'button-with-link',
         component: ButtonWithLink,
-      },
-      {
-        path: 'buttons',
-        component: Buttons,
       },
       {
         path: 'button-danger-primary',
@@ -799,6 +792,10 @@ const routes: Routes = [
         component: ModalByInstance,
       },
       {
+        path: 'modal',
+        component: ModalByInstance,
+      },
+      {
         path: 'modal-close',
         component: ModalClose,
       },
@@ -813,6 +810,10 @@ const routes: Routes = [
       {
         path: 'modal-sizes',
         component: ModalSizes,
+      },
+      {
+        path: 'modal-non-blocking',
+        component: ModalNonBlocking,
       },
       {
         path: 'pagination-advanced',
@@ -1005,6 +1006,7 @@ const routes: Routes = [
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-with-icon', component: TooltipWithIcon },
       { path: 'modal-by-instance', component: ModalByInstance },
+      { path: 'modal', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
       { path: 'card', component: Card },
@@ -1097,6 +1099,7 @@ const routes: Routes = [
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },
       { path: 'modal-sizes', component: ModalSizes },
+      { path: 'modal-non-blocking', component: ModalNonBlocking },
       { path: 'validation-select', component: ValidationSelect },
       { path: 'input-form-validation', component: InputFormValidation },
       { path: 'form-validation', component: FormValidation },

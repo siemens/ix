@@ -138,6 +138,7 @@ import './message-bar-removal-axe.spec.ts';
 import './modal-axe.spec.ts';
 import './modal-close-axe.spec.ts';
 import './modal-form-ix-button-submit-axe.spec.ts';
+import './modal-non-blocking-axe.spec.ts';
 import './modal-sizes-axe.spec.ts';
 import './number-input-axe.spec.ts';
 import './number-input-disabled-axe.spec.ts';

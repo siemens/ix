@@ -126,7 +126,7 @@ export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/
 
 export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__*/ defineContainer<JSX.IxApplication>('ix-application', defineIxApplication, [
   'theme',
-  'themeSystemAppearance',
+  'colorSchema',
   'forceBreakpoint',
   'breakpoints',
   'appSwitchConfig'
@@ -580,6 +580,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'placement',
   'positioningStrategy',
   'header',
+  'suppressTriggerVisibilityCheck',
   'disableFocusHandling',
   'disableFocusTrap',
   'enableTopLayer',
@@ -804,7 +805,6 @@ export const IxIconToggleButton: StencilVueComponent<JSX.IxIconToggleButton> = /
   'size',
   'disabled',
   'loading',
-  'ariaLabelIconButton',
   'pressedChange'
 ], [
   'pressedChange'
@@ -1046,7 +1046,7 @@ export const IxModal: StencilVueComponent<JSX.IxModal> = /*@__PURE__*/ defineCon
   'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'disableEscapeClose',
+  'isNonBlocking',
   'dialogClose',
   'dialogDismiss'
 ], [
@@ -1504,8 +1504,6 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
 
 
 export const IxToastContainer: StencilVueComponent<JSX.IxToastContainer> = /*@__PURE__*/ defineContainer<JSX.IxToastContainer>('ix-toast-container', defineIxToastContainer, [
-  'containerId',
-  'containerClass',
   'position'
 ]);
 
@@ -1538,7 +1536,6 @@ export const IxToggleButton: StencilVueComponent<JSX.IxToggleButton> = /*@__PURE
   'icon',
   'iconRight',
   'pressed',
-  'ariaLabelButton',
   'pressedChange'
 ], [
   'pressedChange'

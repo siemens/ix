@@ -12,5 +12,5 @@ import { IxToggle } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxToggle checked />
+  <IxToggle checked aria-label="Toggle" />
 </template>

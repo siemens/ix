@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -29,11 +33,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 const data = [
   { value: 72.17, name: 'Windows' },
@@ -43,38 +43,51 @@ const data = [
   { value: 6.11, name: 'Other' },
 ];
 
-const options: EChartsOption = {
-  tooltip: {
-    trigger: 'item',
-  },
-  legend: {
-    icon: 'rect',
-    bottom: '0',
-    left: '0',
-  },
-  series: [
-    {
-      name: 'OS Share',
-      type: 'pie',
-      radius: ['60%', '90%'],
-      label: {
-        show: true,
-        color: getComputedCSSProperty('color-neutral'),
-      },
-      emphasis: {
+function getOptions(): EChartsOption {
+  return {
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      icon: 'rect',
+      bottom: '0',
+      left: '0',
+    },
+    series: [
+      {
+        name: 'OS Share',
+        type: 'pie',
+        radius: ['60%', '90%'],
         label: {
           show: true,
-          fontSize: 25,
-          fontWeight: 'bold',
+          color: getComputedCSSProperty('color-neutral'),
         },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 25,
+            fontWeight: 'bold',
+          },
+        },
+        labelLine: {
+          show: true,
+        },
+        data: data,
       },
-      labelLine: {
-        show: true,
-      },
-      data: data,
-    },
-  ],
-} as EChartsOption;
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-circle.css"></style>

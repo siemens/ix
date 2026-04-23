@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   ClassMutationObserver,
@@ -18,7 +18,6 @@ import {
 import { IxComponentInterface } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { closestPassShadow } from '../utils/shadow-dom';
-import { State } from 'node_modules/@siemens/ix-icons/dist/types/stencil-public-runtime';
 
 @Component({
   tag: 'ix-field-label',

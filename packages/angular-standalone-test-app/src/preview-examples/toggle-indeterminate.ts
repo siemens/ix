@@ -16,6 +16,6 @@ import {
 @Component({
   selector: 'app-example',
   imports: [IxToggle, IxBooleanValueAccessorDirective],
-  template: ` <ix-toggle indeterminate></ix-toggle> `,
+  template: ` <ix-toggle indeterminate aria-label="Toggle"></ix-toggle> `,
 })
 export default class ToggleIndeterminate {}

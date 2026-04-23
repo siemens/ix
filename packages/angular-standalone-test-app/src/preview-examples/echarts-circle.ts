@@ -7,10 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -22,8 +26,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-circle.html',
   styleUrls: ['./echarts-circle.css'],
 })
-export default class EchartsCircle implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsCircle implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   data = [
     { value: 72.17, name: 'Windows' },
@@ -33,44 +38,53 @@ export default class EchartsCircle implements OnInit {
     { value: 6.11, name: 'Other' },
   ];
 
-  options: EChartsOption = {
-    tooltip: {
-      trigger: 'item',
-    },
-    legend: {
-      icon: 'rect',
-      bottom: '0',
-      left: '0',
-    },
-    series: [
-      {
-        name: 'OS Share',
-        type: 'pie',
-        radius: ['60%', '90%'],
-        label: {
-          show: true,
-          color: getComputedCSSProperty('color-neutral'),
-        },
-        emphasis: {
+  options: EChartsOption = this.getOptions();
+
+  private getOptions(): EChartsOption {
+    return {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        icon: 'rect',
+        bottom: '0',
+        left: '0',
+      },
+      series: [
+        {
+          name: 'OS Share',
+          type: 'pie',
+          radius: ['60%', '90%'],
           label: {
             show: true,
-            fontSize: 25,
-            fontWeight: 'bold',
+            color: getComputedCSSProperty('color-neutral'),
           },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 25,
+              fontWeight: 'bold',
+            },
+          },
+          labelLine: {
+            show: true,
+          },
+          data: this.data,
         },
-        labelLine: {
-          show: true,
-        },
-        data: this.data,
-      },
-    ],
-  };
+      ],
+    };
+  }
 
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
+      this.options = this.getOptions();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

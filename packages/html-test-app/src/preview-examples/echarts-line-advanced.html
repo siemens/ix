@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +26,15 @@ LICENSE file in the root directory of this source tree.
       import {
         registerTheme,
         getComputedCSSProperty,
+        resolveEChartThemeName,
       } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
-      function initChart(theme, options) {
+      function initChart(options) {
+        const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme);
         myChart.setOption(options);
 
@@ -48,59 +50,65 @@ LICENSE file in the root directory of this source tree.
         104.38, 156.48, 168.52,
       ];
 
-      const options = {
-        tooltip: { trigger: 'axis' },
-        xAxis: { type: 'category', data: dates },
-        yAxis: {
-          type: 'value',
-          splitLine: { lineStyle: { type: 'dashed' } },
-        },
-        series: [
-          {
-            type: 'line',
-            data: stockData,
-            smooth: true,
-            lineStyle: { width: 4, shadowBlur: 10 },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: getComputedCSSProperty('color-primary'),
+      function getOptions() {
+        return {
+          tooltip: { trigger: 'axis' },
+          xAxis: { type: 'category', data: dates },
+          yAxis: {
+            type: 'value',
+            splitLine: { lineStyle: { type: 'dashed' } },
+          },
+          series: [
+            {
+              type: 'line',
+              data: stockData,
+              smooth: true,
+              lineStyle: { width: 4, shadowBlur: 10 },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: getComputedCSSProperty('color-primary'),
+                  },
+                  { offset: 1, color: 'transparent' },
+                ]),
+              },
+              markPoint: {
+                data: [
+                  { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
+                  { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
+                ],
+                label: {
+                  fontWeight: 'bold',
+                  color: getComputedCSSProperty('color-inv-contrast-text'),
                 },
-                { offset: 1, color: 'transparent' },
-              ]),
-            },
-            markPoint: {
-              data: [
-                { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
-                { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
-              ],
-              label: {
-                fontWeight: 'bold',
-                color: getComputedCSSProperty('color-inv-contrast-text'),
+              },
+              markLine: {
+                data: [{ type: 'average', name: 'Avg' }],
+                lineStyle: { type: 'dashed' },
               },
             },
-            markLine: {
-              data: [{ type: 'average', name: 'Avg' }],
-              lineStyle: { type: 'dashed' },
-            },
-          },
-        ],
-      };
+          ],
+        };
+      }
 
       // providing echarts is in this case optional
       registerTheme(echarts);
 
-      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      var myChart = initChart(getOptions());
 
-      themeSwitcher.themeChanged.on((theme) => {
+      const disposer = themeSwitcher.themeChanged.on(() => {
         myChart.dispose();
-        myChart = initChart(theme, options);
+        myChart = initChart(getOptions());
       });
 
       window.onresize = function () {
         myChart.resize();
       };
+
+      window.addEventListener('unload', () => {
+        disposer.dispose();
+      });
     </script>
   </body>
 </html>

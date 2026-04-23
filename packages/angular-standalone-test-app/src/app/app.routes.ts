@@ -386,6 +386,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/modal-sizes': () =>
     import('../preview-examples/modal-sizes').then((m) => m.default),
+  'preview/modal-non-blocking': () =>
+    import('../preview-examples/modal-non-blocking').then((m) => m.default),
   'preview/number-input': () =>
     import('../preview-examples/number-input').then((m) => m.default),
   'preview/number-input-disabled': () =>

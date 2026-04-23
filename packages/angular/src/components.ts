@@ -31,14 +31,14 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
-  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance']
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme']
 })
 @Component({
   selector: 'ix-application',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme'],
   standalone: false
 })
 export class IxApplication {
@@ -883,7 +883,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
 
 
 @ProxyCmp({
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -891,7 +891,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
@@ -1378,14 +1378,14 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelIconButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant']
 })
 @Component({
   selector: 'ix-icon-toggle-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIconButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant'],
   outputs: ['pressedChange'],
   standalone: false
 })
@@ -1979,7 +1979,7 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
 
 
 @ProxyCmp({
-  inputs: ['beforeDismiss', 'centered', 'closeOnBackdropClick', 'disableAnimation', 'disableEscapeClose', 'hideBackdrop', 'size'],
+  inputs: ['beforeDismiss', 'centered', 'closeOnBackdropClick', 'disableAnimation', 'hideBackdrop', 'isNonBlocking', 'size'],
   methods: ['showModal', 'dismissModal', 'closeModal']
 })
 @Component({
@@ -1987,7 +1987,7 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['beforeDismiss', 'centered', 'closeOnBackdropClick', 'disableAnimation', 'disableEscapeClose', 'hideBackdrop', 'size'],
+  inputs: ['beforeDismiss', 'centered', 'closeOnBackdropClick', 'disableAnimation', 'hideBackdrop', 'isNonBlocking', 'size'],
   outputs: ['dialogClose', 'dialogDismiss'],
   standalone: false
 })
@@ -2824,7 +2824,7 @@ export declare interface IxToast extends Components.IxToast {
 
 
 @ProxyCmp({
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['position'],
   methods: ['showToast']
 })
 @Component({
@@ -2832,7 +2832,7 @@ export declare interface IxToast extends Components.IxToast {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['position'],
   standalone: false
 })
 export class IxToastContainer {
@@ -2883,14 +2883,14 @@ export declare interface IxToggle extends Components.IxToggle {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelButton', 'disabled', 'icon', 'iconRight', 'loading', 'pressed', 'variant']
+  inputs: ['disabled', 'icon', 'iconRight', 'loading', 'pressed', 'variant']
 })
 @Component({
   selector: 'ix-toggle-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'disabled', 'icon', 'iconRight', 'loading', 'pressed', 'variant'],
+  inputs: ['disabled', 'icon', 'iconRight', 'loading', 'pressed', 'variant'],
   outputs: ['pressedChange'],
   standalone: false
 })

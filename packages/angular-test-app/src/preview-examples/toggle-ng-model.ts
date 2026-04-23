@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
+  template: ` <ix-toggle [(ngModel)]="checked" aria-label="Toggle"></ix-toggle>`,
 })
 export default class Toggle {
   checked = false;
