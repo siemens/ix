@@ -22,7 +22,7 @@ export const TopLayerMixin = <B extends MixedInCtor<StencilLifecycle>>(
      * Suppress Popover API rendering for dropdown.
      *
      * @default false
-     * @since 4.3.0
+     * @since 5.0.0
      */
     @Prop() suppressTopLayer: boolean = false;
 

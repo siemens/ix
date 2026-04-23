@@ -53,7 +53,8 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   const dropdown2Trigger = dropdown1
     .locator('ix-dropdown-item')
     .filter({ hasText: 'SubMenuItem 4' });
-  await dropdown2Trigger.click({ force: true });
+  await dropdown2Trigger.scrollIntoViewIfNeeded();
+  await dropdown2Trigger.click();
 
   await expect(dropdown2).toHaveClass(/hydrated/);
   await expect(dropdownPanel(dropdown2)).toBeVisible();
