@@ -60,12 +60,6 @@ export const config: Config = {
     enableImportInjection: true,
     addGlobalStyleToComponents: false,
   },
-  testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
-    setupFilesAfterEnv: [],
-    browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
-    browserHeadless: 'shell',
-  },
   excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
   watchIgnoredRegex: [

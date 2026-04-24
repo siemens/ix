@@ -1,12 +1,55 @@
-import { newSpecPage } from '@stencil/core/testing';
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 type ThemeSwitcherModule = typeof import('../theme-switcher');
+
+const originalGetComputedStyle = Object.getOwnPropertyDescriptor(
+  globalThis,
+  'getComputedStyle'
+);
+const originalGlobalMutationObserver = Object.getOwnPropertyDescriptor(
+  globalThis,
+  'MutationObserver'
+);
+const originalWindowMutationObserver = Object.getOwnPropertyDescriptor(
+  window,
+  'MutationObserver'
+);
+const originalMatchMedia = Object.getOwnPropertyDescriptor(
+  window,
+  'matchMedia'
+);
+const originalComputedStyleMap = Object.getOwnPropertyDescriptor(
+  document.documentElement,
+  'computedStyleMap'
+);
+
+function restoreProperty(
+  target: object,
+  key: string,
+  descriptor?: PropertyDescriptor
+) {
+  if (descriptor) {
+    Object.defineProperty(target, key, descriptor);
+    return;
+  }
+
+  Reflect.deleteProperty(target, key);
+}
 
 describe('ThemeSwitcher', () => {
   let mediaChangeListener: ((event: MediaQueryListEvent) => void) | undefined;
   let mutationCallback: MutationCallback | undefined;
-  let disconnectMock: jest.Mock;
-  let removeEventListenerMock: jest.Mock;
+  let disconnectMock: ReturnType<typeof vi.fn>;
+  let removeEventListenerMock: ReturnType<typeof vi.fn>;
 
   const setComputedStyleValues = ({
     colorSchema,
@@ -20,8 +63,8 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(globalThis, 'getComputedStyle', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
-        getPropertyValue: jest.fn((propertyName: string) => {
+      value: vi.fn(() => ({
+        getPropertyValue: vi.fn((propertyName: string) => {
           const values: Record<string, string | undefined> = {
             '--theme-color-schema': colorSchema,
             '--theme-name': theme,
@@ -35,8 +78,8 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(document.documentElement, 'computedStyleMap', {
       configurable: true,
       value: withTypedOm
-        ? jest.fn(() => ({
-            get: jest.fn((propertyName: string) => {
+        ? vi.fn(() => ({
+            get: vi.fn((propertyName: string) => {
               const values: Record<string, string | undefined> = {
                 '--theme-color-schema': colorSchema,
                 '--theme-name': theme,
@@ -56,35 +99,32 @@ describe('ThemeSwitcher', () => {
   const loadThemeSwitcher = async (): Promise<ThemeSwitcherModule> =>
     import('../theme-switcher');
 
-  beforeEach(async () => {
-    jest.resetModules();
-
-    await newSpecPage({
-      html: '<div></div>',
-      components: [],
-    });
+  beforeEach(() => {
+    vi.resetModules();
 
     mediaChangeListener = undefined;
     mutationCallback = undefined;
-    disconnectMock = jest.fn();
-    removeEventListenerMock = jest.fn();
+    disconnectMock = vi.fn();
+    removeEventListenerMock = vi.fn();
 
     document.documentElement.removeAttribute('data-ix-theme');
     document.documentElement.removeAttribute('data-ix-color-schema');
 
     setComputedStyleValues();
 
+    class MutationObserverMock {
+      observe = vi.fn();
+      disconnect = disconnectMock;
+
+      constructor(callback: MutationCallback) {
+        mutationCallback = callback;
+      }
+    }
+
     Object.defineProperty(globalThis, 'MutationObserver', {
       configurable: true,
       writable: true,
-      value: jest.fn().mockImplementation((callback: MutationCallback) => {
-        mutationCallback = callback;
-
-        return {
-          observe: jest.fn(),
-          disconnect: disconnectMock,
-        };
-      }),
+      value: MutationObserverMock,
     });
 
     Object.defineProperty(window, 'MutationObserver', {
@@ -96,9 +136,9 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(window, 'matchMedia', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
+      value: vi.fn(() => ({
         matches: false,
-        addEventListener: jest.fn(
+        addEventListener: vi.fn(
           (
             eventName: string,
             listener: (event: MediaQueryListEvent) => void
@@ -114,7 +154,24 @@ describe('ThemeSwitcher', () => {
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    restoreProperty(globalThis, 'getComputedStyle', originalGetComputedStyle);
+    restoreProperty(
+      globalThis,
+      'MutationObserver',
+      originalGlobalMutationObserver
+    );
+    restoreProperty(window, 'MutationObserver', originalWindowMutationObserver);
+    restoreProperty(window, 'matchMedia', originalMatchMedia);
+    restoreProperty(
+      document.documentElement,
+      'computedStyleMap',
+      originalComputedStyleMap
+    );
+
+    document.documentElement.removeAttribute('data-ix-theme');
+    document.documentElement.removeAttribute('data-ix-color-schema');
+
+    vi.restoreAllMocks();
   });
 
   it('returns the explicit color schema from the dataset', async () => {
@@ -157,9 +214,9 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(window, 'matchMedia', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
+      value: vi.fn(() => ({
         matches: true,
-        addEventListener: jest.fn(
+        addEventListener: vi.fn(
           (
             eventName: string,
             listener: (event: MediaQueryListEvent) => void
@@ -169,7 +226,7 @@ describe('ThemeSwitcher', () => {
             }
           }
         ),
-        removeEventListener: jest.fn(),
+        removeEventListener: vi.fn(),
       })),
     });
 
@@ -229,9 +286,9 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(window, 'matchMedia', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
+      value: vi.fn(() => ({
         matches: true,
-        addEventListener: jest.fn(
+        addEventListener: vi.fn(
           (
             eventName: string,
             listener: (event: MediaQueryListEvent) => void
@@ -241,7 +298,7 @@ describe('ThemeSwitcher', () => {
             }
           }
         ),
-        removeEventListener: jest.fn(),
+        removeEventListener: vi.fn(),
       })),
     });
 
@@ -276,9 +333,9 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(window, 'matchMedia', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
+      value: vi.fn(() => ({
         matches: true,
-        addEventListener: jest.fn(
+        addEventListener: vi.fn(
           (
             eventName: string,
             listener: (event: MediaQueryListEvent) => void
@@ -288,7 +345,7 @@ describe('ThemeSwitcher', () => {
             }
           }
         ),
-        removeEventListener: jest.fn(),
+        removeEventListener: vi.fn(),
       })),
     });
 
@@ -301,7 +358,7 @@ describe('ThemeSwitcher', () => {
 
   it('emits theme changes for attribute mutations', async () => {
     const { themeSwitcher } = await loadThemeSwitcher();
-    const listener = jest.fn();
+    const listener = vi.fn();
 
     themeSwitcher.themeChanged.on(listener);
 
@@ -320,7 +377,7 @@ describe('ThemeSwitcher', () => {
           previousSibling: null,
           removedNodes: [] as unknown as NodeList,
           target: document.documentElement,
-        } as unknown as MutationRecord,
+        } as MutationRecord,
       ],
       {} as MutationObserver
     );
@@ -337,9 +394,9 @@ describe('ThemeSwitcher', () => {
     Object.defineProperty(window, 'matchMedia', {
       configurable: true,
       writable: true,
-      value: jest.fn(() => ({
+      value: vi.fn(() => ({
         matches: true,
-        addEventListener: jest.fn(
+        addEventListener: vi.fn(
           (
             eventName: string,
             listener: (event: MediaQueryListEvent) => void
@@ -349,12 +406,12 @@ describe('ThemeSwitcher', () => {
             }
           }
         ),
-        removeEventListener: jest.fn(),
+        removeEventListener: vi.fn(),
       })),
     });
 
     const { themeSwitcher } = await loadThemeSwitcher();
-    const listener = jest.fn();
+    const listener = vi.fn();
 
     themeSwitcher.themeChanged.on(listener);
 
@@ -373,7 +430,7 @@ describe('ThemeSwitcher', () => {
           previousSibling: null,
           removedNodes: [] as unknown as NodeList,
           target: document.documentElement,
-        } as unknown as MutationRecord,
+        } as MutationRecord,
       ],
       {} as MutationObserver
     );
@@ -388,7 +445,7 @@ describe('ThemeSwitcher', () => {
 
   it('emits theme changes for system appearance updates', async () => {
     const { themeSwitcher } = await loadThemeSwitcher();
-    const listener = jest.fn();
+    const listener = vi.fn();
 
     document.documentElement.dataset.ixTheme = 'classic';
     document.documentElement.dataset.ixColorSchema = 'dark';

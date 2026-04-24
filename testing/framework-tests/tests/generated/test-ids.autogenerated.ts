@@ -89,6 +89,7 @@ export const testIds = [
   "number-input-disabled",
   "modal",
   "modal-sizes",
+  "modal-non-blocking",
   "modal-form-ix-button-submit",
   "modal-close",
   "message",
