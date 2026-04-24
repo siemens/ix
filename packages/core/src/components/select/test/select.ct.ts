@@ -1332,3 +1332,28 @@ test('input does not clear when slotchange fires before inputFilterText is set',
 
   await expect(input).toHaveValue('Item 1');
 });
+
+test('selected label preserved when item is temporarily removed from DOM', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select value="1">
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const input = page.getByTestId('input');
+  await expect(input).toHaveValue('Item 1');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const item1 = select?.querySelector('ix-select-item[value="1"]');
+    if (item1) item1.remove();
+  });
+
+  await page.waitForTimeout(50);
+
+  await expect(input).toHaveValue('Item 1');
+});

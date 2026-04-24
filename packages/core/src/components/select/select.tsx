@@ -456,7 +456,7 @@ export class Select
 
     if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0] ?? '';
-    } else {
+    } else if (!this.hasValue()) {
       this.inputValue = '';
     }
 
