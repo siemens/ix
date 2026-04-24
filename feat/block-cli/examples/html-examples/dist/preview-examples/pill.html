@@ -13,27 +13,29 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pill example</title>
-    <script type="module" crossorigin src="../assets/pill-B7QbJt3Q.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global-CtBDOAVb.js">
-    <link rel="modulepreload" crossorigin href="../assets/init-BauzXIH0.js">
-    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-d_uyGuVH.js">
+    <script type="module" crossorigin src="../assets/pill-Bt53d5Gz.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-B1t25MFd.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-D7MT-x0x.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-CHGGo5Rf.js">
     <link rel="modulepreload" crossorigin href="../assets/index-BWsIQ1EH.js">
-    <link rel="stylesheet" crossorigin href="../assets/global-DAPuJzeH.css">
+    <link rel="stylesheet" crossorigin href="../assets/global-BlKxImya.css">
     <link rel="stylesheet" crossorigin href="../assets/pill-DXxFlxnT.css">
   </head>
   <body>
-    <ix-pill variant="custom" color="white" background="purple">Label</ix-pill>
+    <ix-pill
+      variant="custom"
+      pill-color="var(--theme-color-inv-std-text)"
+      background="var(--theme-color-dynamic)"
+      >Label</ix-pill>
 
     <ix-pill tooltip-text="Custom tooltip text">Label</ix-pill>
-    <ix-pill variant="subtle-primary" tooltip-text>Label</ix-pill>
     <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
-    <ix-pill icon="star"></ix-pill>
+    <ix-pill icon="star" aria-label="Featured"></ix-pill>
     <ix-pill icon="star" class="styled">Label</ix-pill>
-    <ix-pill variant="subtle-primary" align-left icon="star" class="styled">Label</ix-pill>
+    <ix-pill variant="primary" outline align-left icon="star" class="styled">Label</ix-pill>
 
-    <ix-pill variant="alarm">Label</ix-pill>
     <ix-pill variant="alarm">Label</ix-pill>
     <ix-pill variant="alarm" class="styled">Label</ix-pill>
 
@@ -43,8 +45,8 @@ LICENSE file in the root directory of this source tree.
       Label
     </ix-pill>
     <ix-pill icon="star" class="styled-ellipsis-4">Label</ix-pill>
-    <ix-pill variant="subtle-primary" icon="star" class="styled-ellipsis-4">Label</ix-pill>
+    <ix-pill variant="primary" outline icon="star" class="styled-ellipsis-4">Label</ix-pill>
     <ix-pill class="styled-ellipsis-3">Label</ix-pill>
-    <ix-pill variant="subtle-primary" class="styled-ellipsis-3">Label</ix-pill>
+    <ix-pill variant="primary" outline class="styled-ellipsis-3">Label</ix-pill>
   </body>
 </html>

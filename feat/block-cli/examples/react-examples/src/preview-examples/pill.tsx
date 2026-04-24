@@ -15,29 +15,33 @@ import { IxPill } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxPill variant="custom" color="white" background="purple">
+      <IxPill
+        variant="custom"
+        pillColor="var(--theme-color-inv-std-text)"
+        background="var(--theme-color-dynamic)"
+      >
         Label
       </IxPill>
 
       <IxPill tooltipText="Custom tooltip text">Label</IxPill>
-      <IxPill variant="subtle-primary" tooltipText>
-        Label
-      </IxPill>
       <IxPill className="styled">Label</IxPill>
 
       <IxPill icon={iconStar}>Label</IxPill>
-      <IxPill icon={iconStar}></IxPill>
+      <IxPill icon={iconStar} aria-label="Featured"></IxPill>
       <IxPill icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill variant="subtle-primary" alignLeft icon={iconStar} className="styled">
+      <IxPill
+        variant="primary"
+        outline
+        alignLeft
+        icon={iconStar}
+        className="styled"
+      >
         Label
       </IxPill>
 
       <IxPill variant="alarm">Label</IxPill>
-      <IxPill variant="alarm">
-        Label
-      </IxPill>
       <IxPill variant="alarm" className="styled">
         Label
       </IxPill>
@@ -55,11 +59,16 @@ export default () => {
       <IxPill icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
-      <IxPill variant="subtle-primary" icon={iconStar} className="styled-ellipsis-4">
+      <IxPill
+        variant="primary"
+        outline
+        icon={iconStar}
+        className="styled-ellipsis-4"
+      >
         Label
       </IxPill>
       <IxPill className="styled-ellipsis-3">Label</IxPill>
-      <IxPill variant="subtle-primary" className="styled-ellipsis-3">
+      <IxPill variant="primary" outline className="styled-ellipsis-3">
         Label
       </IxPill>
     </>

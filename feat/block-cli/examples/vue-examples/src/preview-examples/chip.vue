@@ -17,7 +17,7 @@ import { IxChip } from '@siemens/ix-vue';
 <template>
   <div class="chip">
     <div class="chip-column">
-      <IxChip :icon="iconPrint" variant="subtle-primary" closable>
+      <IxChip :icon="iconPrint" variant="primary" closable>
         Primary
       </IxChip>
       <IxChip :icon="iconPrint" variant="alarm" closable>
@@ -28,25 +28,38 @@ import { IxChip } from '@siemens/ix-vue';
       <IxChip :icon="iconPrint" variant="info"> Info </IxChip>
       <IxChip :icon="iconPrint" variant="success"> Success </IxChip>
       <IxChip :icon="iconPrint" variant="neutral"> Neutral </IxChip>
-      <IxChip :icon="iconPrint" variant="custom" background="#FF00FF" closable>
+      <IxChip
+        :icon="iconPrint"
+        variant="custom"
+        background="var(--theme-chart-11)"
+        chip-color="var(--theme-color-inv-std-text)"
+        closable
+      >
         Custom
       </IxChip>
-      <IxChip :icon="iconPrint" variant="subtle-primary" closable>
+      <IxChip :icon="iconPrint" variant="primary" closable>
         Chip with icon
       </IxChip>
     </div>
-    <div className="chip-column">
-      <IxChip :icon="iconPrint" variant="primary" closable> Primary </IxChip>
-      <IxChip :icon="iconPrint" variant="alarm" closable> Alarm </IxChip>
-      <IxChip :icon="iconPrint" variant="critical"> Critical </IxChip>
-      <IxChip :icon="iconPrint" variant="warning"> Warning </IxChip>
-      <IxChip :icon="iconPrint" variant="info"> Info </IxChip>
-      <IxChip :icon="iconPrint" variant="success"> Success </IxChip>
-      <IxChip :icon="iconPrint" variant="neutral"> Neutral </IxChip>
-      <IxChip variant="custom" background="#FF00FF" chip-color="black" closable>
+    <div class="chip-column">
+      <IxChip :icon="iconPrint" variant="primary" outline closable> Primary </IxChip>
+      <IxChip :icon="iconPrint" variant="alarm" outline closable> Alarm </IxChip>
+      <IxChip :icon="iconPrint" variant="critical" outline> Critical </IxChip>
+      <IxChip :icon="iconPrint" variant="warning" outline> Warning </IxChip>
+      <IxChip :icon="iconPrint" variant="info" outline> Info </IxChip>
+      <IxChip :icon="iconPrint" variant="success" outline> Success </IxChip>
+      <IxChip :icon="iconPrint" variant="neutral" outline> Neutral </IxChip>
+      <IxChip
+        :icon="iconPrint"
+        variant="custom"
+        background="var(--theme-chart-11)"
+        chip-color="var(--theme-chip-outline--color)"
+        outline
+        closable
+      >
         Custom
       </IxChip>
-      <IxChip variant="subtle-primary" closable> Chip without icon </IxChip>
+      <IxChip variant="primary" outline closable>Chip without icon</IxChip>
     </div>
   </div>
 </template>

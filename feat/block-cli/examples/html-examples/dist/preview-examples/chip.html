@@ -13,32 +13,19 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chip example</title>
-    <script type="module" crossorigin src="../assets/chip-CEwVEvKm.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global-CtBDOAVb.js">
-    <link rel="modulepreload" crossorigin href="../assets/init-BauzXIH0.js">
-    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-d_uyGuVH.js">
+    <script type="module" crossorigin src="../assets/chip-CXDepWbX.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-B1t25MFd.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-D7MT-x0x.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-CHGGo5Rf.js">
     <link rel="modulepreload" crossorigin href="../assets/index-BWsIQ1EH.js">
-    <link rel="stylesheet" crossorigin href="../assets/global-DAPuJzeH.css">
+    <link rel="stylesheet" crossorigin href="../assets/global-BlKxImya.css">
     <link rel="stylesheet" crossorigin href="../assets/chip-D5t6aRjr.css">
   </head>
   <body>
     <div class="chip">
       <div class="chip-column">
-        <ix-chip icon="print" variant="subtle-primary" closable>Primary</ix-chip
+        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip
         >
-        <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
-        <ix-chip icon="print" variant="critical">Critical</ix-chip>
-        <ix-chip icon="print" variant="warning">Warning</ix-chip>
-        <ix-chip icon="print" variant="info">Info</ix-chip>
-        <ix-chip icon="print" variant="success">Success</ix-chip>
-        <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
-        <ix-chip icon="print" variant="custom" background="#FF00FF" closable>Custom</ix-chip
-        >
-        <ix-chip icon="print" variant="subtle-primary" closable>Chip with icon
-        </ix-chip>
-      </div>
-      <div class="chip-column">
-        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
         <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
         <ix-chip icon="print" variant="critical">Critical</ix-chip>
         <ix-chip icon="print" variant="warning">Warning</ix-chip>
@@ -46,13 +33,34 @@ LICENSE file in the root directory of this source tree.
         <ix-chip icon="print" variant="success">Success</ix-chip>
         <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
         <ix-chip
+          icon="print"
           variant="custom"
-          background="#FF00FF"
-          chip-color="black"
+          background="var(--theme-chart-11)"
+          chip-color="var(--theme-color-inv-std-text)"
           closable
           >Custom</ix-chip
         >
-        <ix-chip variant="subtle-primary" closable>Chip without icon </ix-chip>
+        <ix-chip icon="print" variant="primary" closable>Chip with icon
+        </ix-chip>
+      </div>
+      <div class="chip-column">
+        <ix-chip icon="print" variant="primary" outline closable>Primary</ix-chip>
+        <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
+        <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
+        <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
+        <ix-chip icon="print" variant="info" outline>Info</ix-chip>
+        <ix-chip icon="print" variant="success" outline>Success</ix-chip>
+        <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="custom"
+          background="var(--theme-chart-11)"
+          chip-color="var(--theme-chip-outline--color)"
+          outline
+          closable
+          >Custom</ix-chip
+        >
+        <ix-chip variant="primary" outline closable>Chip without icon</ix-chip>
       </div>
     </div>
   </body>

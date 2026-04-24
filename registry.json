@@ -686,6 +686,10 @@
           "path": "feat/block-cli/examples/modal-form-ix-button-submit.json"
         },
         {
+          "name": "modal-non-blocking",
+          "path": "feat/block-cli/examples/modal-non-blocking.json"
+        },
+        {
           "name": "modal-sizes",
           "path": "feat/block-cli/examples/modal-sizes.json"
         },
