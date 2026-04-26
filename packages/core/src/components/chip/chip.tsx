@@ -189,10 +189,15 @@ export class Chip
       !!this.inheritAriaAttributes['aria-label']?.trim() ||
       !!this.inheritAriaAttributes['aria-labelledby']?.trim();
 
+    const hasTooltip =
+      !!this.tooltipText || this.hostElement.hasAttribute('tooltip-text');
+
+    const needsGroupRole = hasAccessibleName && (showClose || hasTooltip);
+
     let hostRole: string | undefined;
     if (this.hostElement.hasAttribute('role')) {
       hostRole = this.hostElement.getAttribute('role') ?? undefined;
-    } else if (hasAccessibleName) {
+    } else if (needsGroupRole) {
       hostRole = 'group';
     }
 

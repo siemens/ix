@@ -18,7 +18,7 @@ $close-inset: 4px;
 
 @mixin chip-focus-outline {
   &:focus-visible {
-    outline: 1px solid #199fff;
+    outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-btn--focus--outline-offset);
   }
 }
@@ -311,11 +311,11 @@ $close-inset: 4px;
 }
 
 .chip-wrap.custom:not(.outline) .chip-main:hover::after {
-  background-color: rgba(0, 0, 40, 0.1);
+  background-color: color-mix(in srgb, var(--theme-color-std-text) 10%, transparent);
 }
 
 .chip-wrap.custom:not(.outline) .chip-main:active::after {
-  background-color: rgba(0, 0, 40, 0.2);
+  background-color: color-mix(in srgb, var(--theme-color-std-text) 20%, transparent);
 }
 
 .chip-wrap.custom:not(.outline) .chip-close {
@@ -323,9 +323,9 @@ $close-inset: 4px;
 }
 
 .chip-wrap.custom:not(.outline) .chip-close:hover {
-  background-color: rgba(0, 0, 40, 0.1);
+  background-color: color-mix(in srgb, var(--theme-color-std-text) 10%, transparent);
 }
 
 .chip-wrap.custom:not(.outline) .chip-close:active {
-  background-color: rgba(0, 0, 40, 0.2);
+  background-color: color-mix(in srgb, var(--theme-color-std-text) 20%, transparent);
 }
