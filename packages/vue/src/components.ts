@@ -337,6 +337,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'inactive',
   'closable',
   'icon',
+  'ariaLabelIcon',
   'background',
   'chipColor',
   'outline',

@@ -8,8 +8,8 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import { genericRender, makeArgTypes } from './utils/generic-render';
 import { html } from 'lit';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxChip & {
   defaultSlot: string;
