@@ -290,17 +290,7 @@ export class Select
   }
 
   private isFormNoValidate(): boolean {
-    const form = this.parentForm;
-    if (!form) {
-      return false;
-    }
-    const noValidateAttributes = [
-      'novalidate',
-      'data-novalidate',
-      'ngnovalidate',
-    ];
-
-    return noValidateAttributes.some((attr) => form.hasAttribute(attr));
+    return this.parentForm?.noValidate ?? false;
   }
 
   get nonShadowItems() {
@@ -386,6 +376,10 @@ export class Select
 
     this.hostElement.addEventListener('invalid', (event: Event) => {
       event.preventDefault();
+      this.formSubmissionAttempted = true;
+      this.touched = true;
+      this.syncValidationClasses();
+      this.hostElement.focus();
     });
   }
 
