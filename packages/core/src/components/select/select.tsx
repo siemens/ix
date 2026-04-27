@@ -732,11 +732,11 @@ export class Select
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.touched = false;
-    this.formSubmissionAttempted = false;
+    this.touched = true;
     const emptyValue = this.isSingleMode ? '' : [];
     this.value = emptyValue;
     this.emitValueChange(emptyValue);
+    this.syncValidationClasses();
     this.dropdownShow = false;
   }
 
