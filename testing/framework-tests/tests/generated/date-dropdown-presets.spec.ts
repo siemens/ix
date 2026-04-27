@@ -14,13 +14,13 @@
 import { test, expect } from '@playwright/test';
 import { waitForReadiness } from '../utils';
 
-test('date-dropdown-user-range', async ({ page }) => {
-  await page.goto('/preview/date-dropdown-user-range');
+test('date-dropdown-presets', async ({ page }) => {
+  await page.goto('/preview/date-dropdown-presets');
 
   // Ugly and not the reliable way to wait for Stencil to be ready
   await waitForReadiness(page);
 
   await expect(page.locator('body')).toMatchAriaSnapshot({
-    name: 'date-dropdown-user-range.aria-snapshot.yaml',
+    name: 'date-dropdown-presets.aria-snapshot.yaml',
   });
 });

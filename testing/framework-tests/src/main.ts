@@ -15,6 +15,24 @@ import test from 'node:test';
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const __generatedTestsPath = path.join(__dirname, '..', 'tests', 'generated');
 
+/**
+ * Extra axe rules to disable for specific preview IDs.
+ * `pnpm run build` wipes `tests/generated` and rewrites every `*-axe.spec.ts` from this map (do not hand-edit generated files).
+ */
+const AXE_EXTRA_DISABLED_RULES: Record<string, readonly string[]> = {
+  // Scrollable hour/minute/second columns: focus is on cells, not the overflow container (axe scrollable-region-focusable).
+  'timepicker-min-max-time': ['scrollable-region-focusable'],
+};
+
+function axeDisabledRulesForTestId(testId: string): string {
+  const rules = [
+    'page-has-heading-one',
+    ...(AXE_EXTRA_DISABLED_RULES[testId] ?? []),
+  ];
+  const separator = "', '";
+  return `['${rules.join(separator)}']`;
+}
+
 async function main() {
   const testIds = await resolveTestIds();
 
@@ -113,7 +131,7 @@ test('${testId} - accessibility check', async ({ page }) => {
   // Ugly and not the reliable way to wait for Stencil to be ready
   await waitForReadiness(page);
 
-  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
+  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(${axeDisabledRulesForTestId(testId)}).analyze();
 
   expect(accessibilityScanResults.violations).toEqual([]);
 });

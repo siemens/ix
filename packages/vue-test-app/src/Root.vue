@@ -58,7 +58,7 @@ import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.v
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
-import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
+import DateDropdownPresets from './preview-examples/date-dropdown-presets.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateRange from './preview-examples/date-range.vue';
 import DatetimeRange from './preview-examples/datetime-range.vue';
@@ -213,6 +213,7 @@ import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import Tile from './preview-examples/tile.vue';
 import TimeRange from './preview-examples/time-range.vue';
 import Timepicker from './preview-examples/timepicker.vue';
+import TimepickerMinMaxTime from './preview-examples/timepicker-min-max-time.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
@@ -299,7 +300,7 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
-  '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-dropdown-presets': DateDropdownPresets,
   '/preview/date-range': DateRange,
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
@@ -405,6 +406,7 @@ const routes: IxPreviewRoutes = {
   '/preview/tile': Tile,
   '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
+  '/preview/timepicker-min-max-time': TimepickerMinMaxTime,
   '/preview/toast': Toast,
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,

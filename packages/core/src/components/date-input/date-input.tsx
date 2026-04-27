@@ -446,12 +446,12 @@ export class DateInput
             this.ixFocus.emit();
           }}
           onBlur={() => {
+            this.touched = true;
             onInputBlurWithChange(
               this,
               this.inputElementRef.current,
               this.value
             );
-            this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}

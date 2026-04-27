@@ -1912,9 +1912,11 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         secondInterval: 'second-interval',
         millisecondInterval: 'millisecond-interval',
         time: 'time',
+        minTime: 'min-time',
+        maxTime: 'max-time',
         i18nConfirmTime: 'i18n-confirm-time',
         i18nHeader: 'i18n-header',
-        i18nHourColumnHeader: 'i18n-column-header',
+        i18nHourColumnHeader: 'i18n-hour-column-header',
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'

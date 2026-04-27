@@ -119,8 +119,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/date-dropdown': () =>
     import('../preview-examples/date-dropdown').then((m) => m.default),
-  'preview/date-dropdown-user-range': () =>
-    import('../preview-examples/date-dropdown-user-range').then(
+  'preview/date-dropdown-presets': () =>
+    import('../preview-examples/date-dropdown-presets').then(
       (m) => m.default
     ),
   'preview/date-range': () =>
@@ -498,6 +498,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/time-range').then((m) => m.default),
   'preview/timepicker': () =>
     import('../preview-examples/timepicker').then((m) => m.default),
+  'preview/timepicker-min-max-time': () =>
+    import('../preview-examples/timepicker-min-max-time').then(
+      (m) => m.default
+    ),
   'preview/toast': () =>
     import('../preview-examples/toast').then((m) => m.default),
   'preview/toast-custom': () =>
