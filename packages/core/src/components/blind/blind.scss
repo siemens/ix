@@ -21,6 +21,50 @@
         var(--theme-blind-base--border-color);
     }
 
+    @if $variant != 'filled' and $variant != 'outline' {
+      .blind-header-wrapper {
+        background-color: var(--theme-color-#{$variant});
+        border-radius: var(--theme-blind--border-radius)
+          var(--theme-blind--border-radius) 0 0;
+      }
+
+      &:has(.blind-content.hide) .blind-header-wrapper {
+        border-radius: var(--theme-blind--border-radius);
+      }
+
+      .blind-content {
+        border-left: solid 1px var(--theme-color-#{$variant});
+        border-right: solid 1px var(--theme-color-#{$variant});
+        border-bottom: solid 1px var(--theme-color-#{$variant});
+        border-radius: 0 0 calc(var(--theme-blind--border-radius) - 1px)
+          calc(var(--theme-blind--border-radius) - 1px);
+
+        &.hide {
+          border: none;
+        }
+      }
+
+      &:has(.blind-header:hover) {
+        .blind-header-wrapper {
+          background-color: var(--theme-color-#{$variant}--hover);
+        }
+      }
+
+      &:has(.blind-header:hover):has(.blind-content.hide) {
+        background-color: var(--theme-color-#{$variant}--hover);
+      }
+
+      &:has(.blind-header:active) {
+        .blind-header-wrapper {
+          background-color: var(--theme-color-#{$variant}--active);
+        }
+      }
+
+      &:has(.blind-header:active):has(.blind-content.hide) {
+        background-color: var(--theme-color-#{$variant}--active);
+      }
+    }
+
     .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
@@ -57,8 +101,14 @@
 
     @if $variant == 'outline' {
       border-color: var(--theme-color-soft-bdr);
+    } @else if $variant == 'filled' {
+      background-color: var(--theme-blind-base--background);
     } @else {
       background-color: var(--theme-blind-base--background);
+
+      &:has(.blind-content.hide) {
+        background-color: var(--theme-color-#{$variant});
+      }
     }
   }
 }
