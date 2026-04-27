@@ -551,16 +551,15 @@ export class Select
     }
 
     if (this.required) {
-      const isRequiredInvalid =
-        !this.hasValue() && (this.touched || this.formSubmissionAttempted);
+      const isMissingValue = !this.hasValue();
+      const showVisualFeedback =
+        isMissingValue && (this.touched || this.formSubmissionAttempted);
 
       this.hostElement.classList.toggle(
         'ix-invalid--required',
-        isRequiredInvalid
+        showVisualFeedback
       );
-      this.isInvalid = isRequiredInvalid;
-
-      if (isRequiredInvalid) {
+      if (isMissingValue) {
         const message =
           this.invalidText && this.invalidText.trim().length > 0
             ? this.invalidText
