@@ -16,9 +16,40 @@
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
     @if $variant == 'outline' {
-      border: solid
-        var(--theme-blind--border-thickness)
-        var(--theme-blind-base--border-color);
+      .blind-header-wrapper {
+        border-top: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-left: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-right: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-radius: var(--theme-blind--border-radius) var(--theme-blind--border-radius) 0 0;
+      }
+
+      &:has(.blind-content.hide) .blind-header-wrapper {
+        border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-radius: var(--theme-blind--border-radius);
+      }
+
+      &:has(.blind-header:hover):not(:has(.blind-content.hide)),
+      &:has(.blind-header:active):not(:has(.blind-content.hide)) {
+        .blind-header-wrapper {
+          border-color: transparent;
+          overflow: visible;
+        }
+
+        .blind-header {
+          top: calc(-1 * var(--theme-blind--border-thickness));
+          left: calc(-1 * var(--theme-blind--border-thickness));
+          width: calc(100% + 2 * var(--theme-blind--border-thickness));
+          height: calc(3rem + var(--theme-blind--border-thickness));
+          min-height: calc(3rem + var(--theme-blind--border-thickness));
+        }
+      }
+
+      .blind-content:not(.hide) {
+        border-left: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-right: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+        border-radius: 0 0 var(--theme-blind--border-radius) var(--theme-blind--border-radius);
+      }
     }
 
     @if $variant != 'filled' and $variant != 'outline' {
@@ -74,6 +105,13 @@
     .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
+        width: 100%;
+        border: none;
+
+        @include hover.focus-visible {
+          outline: solid var(--theme-blind--border-thickness) var(--theme-color-focus-bdr);
+          outline-offset: calc(-1 * var(--theme-blind--border-thickness));
+        }
       } @else {
         background-color: var(--theme-color-#{$variant});
       }
@@ -105,11 +143,9 @@
       }
     }
 
-    @if $variant == 'outline' {
-      border-color: var(--theme-color-soft-bdr);
-    } @else if $variant == 'filled' {
+    @if $variant == 'filled' {
       background-color: var(--theme-blind-base--background);
-    } @else {
+    } @else if $variant != 'outline' {
       background-color: var(--theme-blind-base--background);
 
       &:has(.blind-content.hide) {
