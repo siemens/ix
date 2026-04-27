@@ -34,6 +34,14 @@
   }
 }
 
+@function get-border-color($variant) {
+  @if $variant == 'alarm' or $variant == 'warning' {
+    @return var(--theme-color-#{$variant}-bdr);
+  } @else {
+    @return var(--theme-color-#{$variant});
+  }
+}
+
 @each $variant in card-vars.$ix-card-variants {
   :host(.card-#{$variant}) {
     ix-card-content {
@@ -45,9 +53,9 @@
     @if $variant != 'outline' and $variant != 'filled' {
       ix-card-accordion {
         --theme-push-card-#{$variant}-accordion-frame--border-width: 0;
-        border-left: solid 1px var(--theme-color-#{$variant});
-        border-right: solid 1px var(--theme-color-#{$variant});
-        border-bottom: solid 1px var(--theme-color-#{$variant});
+        border-left: solid 1px get-border-color($variant);
+        border-right: solid 1px get-border-color($variant);
+        border-bottom: solid 1px get-border-color($variant);
         border-radius: 0 0 calc(var(--theme-push-card--border-radius) + 1px)
           calc(var(--theme-push-card--border-radius) + 1px);
       }
