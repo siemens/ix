@@ -273,6 +273,7 @@ export class Select
 
   private formSubmissionAttempted = false;
   private formSubmitHandler?: (event: Event) => void;
+  private associatedForm: HTMLFormElement | null = null;
 
   private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
@@ -364,7 +365,8 @@ export class Select
   }
 
   override connectedCallback(): void {
-    const form = this.parentForm;
+    this.associatedForm = this.parentForm;
+    const form = this.associatedForm;
     if (form) {
       this.formSubmitHandler = (event: Event) => {
         this.formSubmissionAttempted = true;
@@ -604,12 +606,16 @@ export class Select
 
     this.proxyListObserver?.disconnect();
 
-    const form = this.parentForm;
-    if (form && this.formSubmitHandler) {
-      form.removeEventListener('submit', this.formSubmitHandler, {
-        capture: true,
-      });
+    if (this.associatedForm && this.formSubmitHandler) {
+      this.associatedForm.removeEventListener(
+        'submit',
+        this.formSubmitHandler,
+        {
+          capture: true,
+        }
+      );
     }
+    this.associatedForm = null;
   }
 
   @Listen('ix-select-item:valueChange')
