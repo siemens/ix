@@ -13,14 +13,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
-@function get-border-color($variant) {
-  @if $variant == 'alarm' or $variant == 'warning' {
-    @return var(--theme-color-#{$variant}-bdr);
-  } @else {
-    @return var(--theme-color-#{$variant});
-  }
-}
-
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
     @if $variant == 'outline' {
@@ -41,11 +33,17 @@
       }
 
       .blind-content {
-        border-left: solid 1px get-border-color($variant);
-        border-right: solid 1px get-border-color($variant);
-        border-bottom: solid 1px get-border-color($variant);
-        border-radius: 0 0 calc(var(--theme-blind--border-radius) - 1px)
-          calc(var(--theme-blind--border-radius) - 1px);
+        @if $variant == 'alarm' or $variant == 'warning' {
+          border-left: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant}-bdr);
+          border-right: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant}-bdr);
+          border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant}-bdr);
+        } @else {
+          border-left: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
+          border-right: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
+          border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
+        }
+        border-radius: 0 0 calc(var(--theme-blind--border-radius) - var(--theme-blind--border-thickness))
+          calc(var(--theme-blind--border-radius) - var(--theme-blind--border-thickness));
 
         &.hide {
           border: none;
