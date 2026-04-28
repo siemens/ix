@@ -15,6 +15,16 @@
 
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
+    @if $variant != 'outline' {
+      background-color: var(--theme-blind-base--background);
+    }
+
+    @if $variant != 'filled' {
+      &:has(.blind-content.hide) .blind-header-wrapper {
+        border-radius: var(--theme-blind--border-radius);
+      }
+    }
+
     @if $variant == 'outline' {
       .blind-header-wrapper {
         border-top: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
@@ -25,7 +35,6 @@
 
       &:has(.blind-content.hide) .blind-header-wrapper {
         border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
-        border-radius: var(--theme-blind--border-radius);
       }
 
       &:has(.blind-header:hover):not(:has(.blind-content.hide)),
@@ -57,10 +66,6 @@
           var(--theme-blind--border-radius) 0 0;
       }
 
-      &:has(.blind-content.hide) .blind-header-wrapper {
-        border-radius: var(--theme-blind--border-radius);
-      }
-
       .blind-content {
         @if $variant == 'alarm' or $variant == 'warning' {
           border-left: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant}-bdr);
@@ -71,32 +76,31 @@
           border-right: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
           border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
         }
-        border-radius: 0 0 calc(var(--theme-blind--border-radius) - var(--theme-blind--border-thickness))
-          calc(var(--theme-blind--border-radius) - var(--theme-blind--border-thickness));
+        border-radius: 0 0 var(--theme-blind--border-radius) var(--theme-blind--border-radius);
 
         &.hide {
           border: none;
         }
       }
 
-      &:has(.blind-header:hover) {
-        .blind-header-wrapper {
-          background-color: var(--theme-color-#{$variant}--hover);
-        }
-      }
-
-      &:has(.blind-header:hover):has(.blind-content.hide) {
+      &:has(.blind-header:hover) .blind-header-wrapper {
         background-color: var(--theme-color-#{$variant}--hover);
       }
 
-      &:has(.blind-header:active) {
-        .blind-header-wrapper {
-          background-color: var(--theme-color-#{$variant}--active);
-        }
+      &:has(.blind-header:active) .blind-header-wrapper {
+        background-color: var(--theme-color-#{$variant}--active);
       }
 
-      &:has(.blind-header:active):has(.blind-content.hide) {
-        background-color: var(--theme-color-#{$variant}--active);
+      &:has(.blind-content.hide) {
+        background-color: var(--theme-color-#{$variant});
+
+        &:has(.blind-header:hover) {
+          background-color: var(--theme-color-#{$variant}--hover);
+        }
+
+        &:has(.blind-header:active) {
+          background-color: var(--theme-color-#{$variant}--active);
+        }
       }
     }
 
@@ -138,16 +142,6 @@
       .blind-header-title-label,
       .blind-header-title-sublabel {
         color: var(--theme-color-#{$variant}--contrast);
-      }
-    }
-
-    @if $variant == 'filled' {
-      background-color: var(--theme-blind-base--background);
-    } @else if $variant != 'outline' {
-      background-color: var(--theme-blind-base--background);
-
-      &:has(.blind-content.hide) {
-        background-color: var(--theme-color-#{$variant});
       }
     }
   }
