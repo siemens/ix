@@ -105,6 +105,10 @@
           border: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
           border-top: none;
         }
+
+        &.hide {
+          border: none;
+        }
       }
     }
 
