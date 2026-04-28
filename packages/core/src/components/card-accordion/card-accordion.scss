@@ -69,6 +69,8 @@
   .expand-content.show {
     grid-template-rows: 14.75rem;
     opacity: 1;
+    border-radius: var(--ix-card-accordion-expand-content--border-radius, 0);
+    overflow: var(--ix-card-accordion-expand-content--overflow, visible);
   }
 
   .expand-content-inner {

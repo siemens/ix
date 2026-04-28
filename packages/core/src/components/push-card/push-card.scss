@@ -42,20 +42,15 @@
         var(--theme-push-card-#{$variant}-accordion--border-color);
     }
 
-    @if $variant != 'outline' and $variant != 'filled' {
-      ix-card-accordion {
-        --theme-push-card-#{$variant}-accordion-frame--border-width: 0;
-        @if $variant == 'alarm' or $variant == 'warning' {
-          border-left: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant}-bdr);
-          border-right: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant}-bdr);
-          border-bottom: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant}-bdr);
-        } @else {
-          border-left: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant});
-          border-right: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant});
-          border-bottom: solid var(--theme-push-card--border-width) var(--theme-color-#{$variant});
-        }
-        border-radius: 0 0 calc(var(--theme-push-card--border-radius) + var(--theme-push-card--border-width))
-          calc(var(--theme-push-card--border-radius) + var(--theme-push-card--border-width));
+    ix-card-accordion {
+      --theme-push-card-#{$variant}-accordion--background--hover: var(--theme-push-card-#{$variant}-accordion--background);
+      --theme-push-card-#{$variant}-accordion--background--active: var(--theme-push-card-#{$variant}-accordion--background);
+      --theme-push-card-#{$variant}-accordion-frame--border-color: var(--theme-push-card-#{$variant}-accordion--background);
+      --ix-card-accordion-expand-content--border-radius: 0 0 var(--theme-default-border-radius) var(--theme-default-border-radius);
+      --ix-card-accordion-expand-content--overflow: hidden;
+
+      @if $variant == 'outline' or $variant == 'filled' {
+        --ix-card-background: var(--theme-color-component-1);
       }
     }
   }
