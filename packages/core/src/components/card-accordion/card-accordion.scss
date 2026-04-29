@@ -132,14 +132,13 @@
       );
     }
 
-    .expand-content.show {
-      border: var(
-          --theme-push-card-#{$variant}-accordion-frame--border-width,
-          0px
-        )
-        solid
-        var(--theme-push-card-#{$variant}-accordion-frame--border-color);
-      border-top: none;
+    @if $variant != filled and $variant != outline {
+      .expand-content.show {
+        border: var(--theme-border-width-default)
+          solid
+          var(--theme-push-card-#{$variant}-accordion-frame--border-color);
+        border-top: none;
+      }
     }
 
     .expand-content.show .expand-content-body {

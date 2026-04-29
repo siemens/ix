@@ -52,6 +52,21 @@
       @if $variant == 'outline' or $variant == 'filled' {
         --ix-card-background: var(--theme-color-component-1);
       }
+
+      @if $variant == 'outline' {
+        --theme-push-card-outline-accordion-frame--border-color: var(--theme-color-soft-bdr);
+      }
+    }
+
+    @if $variant == 'outline' {
+      ix-card {
+        --ix-card-border-color: var(--theme-color-soft-bdr);
+
+        &:hover,
+        &:active {
+          --ix-card-border-color: var(--theme-color-soft-bdr);
+        }
+      }
     }
   }
 }
