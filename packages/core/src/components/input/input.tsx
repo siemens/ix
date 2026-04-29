@@ -353,27 +353,26 @@ export class Input implements IxInputFieldComponent<string> {
               slotEndRef={this.slotEndRef}
               onSlotChange={() => this.updatePaddings()}
             >
-              {this.type === 'password' && !this.disabled && (
-                <ix-icon-button
-                  color="color-weak-text"
-                  class={{
-                    'password-eye': true,
-                  }}
-                  variant="tertiary"
-                  size="16"
-                  icon={
-                    this.inputType === 'password' ? iconEye : iconEyeCancelled
+              <ix-icon-button
+                color="color-weak-text"
+                class={{
+                  'password-eye': true,
+                  'eye-hidden': this.type !== 'password' || this.disabled,
+                }}
+                variant="tertiary"
+                size="16"
+                icon={
+                  this.inputType === 'password' ? iconEye : iconEyeCancelled
+                }
+                onClick={() => {
+                  if (this.inputType === 'password') {
+                    this.inputType = 'text';
+                    return;
                   }
-                  onClick={() => {
-                    if (this.inputType === 'password') {
-                      this.inputType = 'text';
-                      return;
-                    }
 
-                    this.inputType = 'password';
-                  }}
-                ></ix-icon-button>
-              )}
+                  this.inputType = 'password';
+                }}
+              ></ix-icon-button>
             </SlotEnd>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (
