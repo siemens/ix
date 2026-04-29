@@ -18,7 +18,7 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "es2017"],
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -30,11 +30,10 @@
     "rootDir": "./",
     "strictPropertyInitialization": false,
     "target": "es2015",
-    "baseUrl": ".",
     "plugins": [],
     "skipLibCheck": true,
     "paths": {
-      "@siemens/ix-angular/common": ["common/src/index.ts"]
+      "@siemens/ix-angular/common": ["./common/src/index.ts"]
     }
   },
   "exclude": ["node_modules"],

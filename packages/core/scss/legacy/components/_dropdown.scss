@@ -9,7 +9,7 @@
 
 @use 'mixins/hover';
 @use 'legacy/mixins/fonts';
-@use 'common-variables' as vars;
+@use 'misc/common-variables' as vars;
 
 .dropdown-group {
   margin: 0.687rem;

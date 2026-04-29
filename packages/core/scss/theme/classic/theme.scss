@@ -23,8 +23,9 @@
     @include as_dark_variables.setVars();
   }
 
-  body[class*='theme-classic'],
   [data-ix-theme='classic'] {
+    --theme-name: classic;
+    --theme-color-schema: dark;
     @include as_dark_variables.setVars();
   }
 }
@@ -35,8 +36,9 @@
     color-scheme: light;
   }
 
-  body[class*='theme-classic'],
   [data-ix-theme='classic'] {
+    --theme-name: classic;
+    --theme-color-schema: light;
     @include as_light_variables.setVars();
   }
 }
@@ -47,37 +49,29 @@
     color-scheme: light dark;
   }
 
-  :root,
-  html,
-  body {
-    &[data-ix-theme='classic'] {
-      &,
-      &[data-ix-color-schema='dark'] {
+  [data-ix-theme='classic'] {
+    --theme-name: classic;
+
+    &[data-ix-color-schema='dark'] {
+      --theme-color-schema: dark;
+      @include as_dark_variables.setVars();
+    }
+
+    &[data-ix-color-schema='light'] {
+      --theme-color-schema: light;
+      @include as_light_variables.setVars();
+    }
+
+    &[data-ix-color-schema='system'] {
+      @media (prefers-color-scheme: dark) {
+        --theme-color-schema: dark;
         @include as_dark_variables.setVars();
       }
 
-      &[data-ix-color-schema='light'] {
+      @media (prefers-color-scheme: light) {
+        --theme-color-schema: light;
         @include as_light_variables.setVars();
       }
-
-      &[data-ix-color-schema='system'] {
-        @media (prefers-color-scheme: dark) {
-          @include as_dark_variables.setVars();
-        }
-
-        @media (prefers-color-scheme: light) {
-          @include as_light_variables.setVars();
-        }
-      }
     }
-  }
-
-  :not([data-ix-theme]) body:not([class*='theme-']):not([data-ix-theme]),
-  body[class*='theme-classic-dark'] {
-    @include as_dark_variables.setVars();
-  }
-
-  body[class*='theme-classic-light'] {
-    @include as_light_variables.setVars();
   }
 }

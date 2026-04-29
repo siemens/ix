@@ -17,17 +17,33 @@ import { devices } from '@playwright/test';
 // require('dotenv').config();
 
 let THEMES = [
-  'theme-classic-light',
-  'theme-classic-dark',
-  'theme-brand-light',
-  'theme-brand-dark',
+  {
+    name: 'theme-classic-light',
+    theme: 'classic',
+    colorSchema: 'light',
+  },
+  {
+    name: 'theme-classic-dark',
+    theme: 'classic',
+    colorSchema: 'dark',
+  },
+  {
+    name: 'theme-brand-light',
+    theme: 'brand',
+    colorSchema: 'light',
+  },
+  {
+    name: 'theme-brand-dark',
+    theme: 'brand',
+    colorSchema: 'dark',
+  },
 ];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
     return [
       {
-        name: `chromium - ${theme}`,
+        name: `chromium - ${theme.name}`,
         use: {
           ...devices['Desktop Chrome'],
         },
@@ -77,8 +93,8 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: buildProjectsWithThemes(),
   webServer: {
-    command: 'pnpm host-root',
-    port: 8080,
+    command: 'pnpm vite',
+    port: 5173,
   },
 };
 

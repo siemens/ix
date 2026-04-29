@@ -31,6 +31,28 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'sets live-region attributes for screen reader announcements',
+  async ({ mount, page }) => {
+    await mount('');
+
+    await page.evaluate(() => {
+      window.toast({
+        title: 'Info',
+        message: 'Toast announcement',
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('role', 'alert');
+    await expect(toast).toHaveAttribute('aria-live', 'polite');
+    await expect(toast).toHaveAttribute('aria-atomic', 'true');
+    await expect(toast).toContainText('Info');
+    await expect(toast).toContainText('Toast announcement');
+  }
+);
+
+regressionTest(
   'should be visible through overlays',
   async ({ mount, page }) => {
     await mount(`

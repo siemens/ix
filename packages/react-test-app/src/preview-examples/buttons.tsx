@@ -15,9 +15,7 @@ export default () => {
   return (
     <>
       <IxButton>Button</IxButton>
-      <IxButton disabled>
-        Button
-      </IxButton>
+      <IxButton disabled>Button</IxButton>
     </>
   );
 };

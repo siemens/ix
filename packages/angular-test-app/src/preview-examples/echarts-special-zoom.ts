@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { registerTheme, getComputedCSSProperty } from '@siemens/ix-echarts';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  registerTheme,
+  getComputedCSSProperty,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -19,8 +23,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-special-zoom.html',
   styleUrls: ['./echarts-special-zoom.css'],
 })
-export default class EchartsSpecialZoom implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsSpecialZoom implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   //create some random data
   private base = +new Date(1968, 9, 3);
@@ -29,56 +34,60 @@ export default class EchartsSpecialZoom implements OnInit {
 
   data: number[] = [0];
 
-  options: EChartsOption = {
-    toolbox: {
-      feature: {
-        dataZoom: {
-          yAxisIndex: 'none',
+  options: EChartsOption = this.getOptions();
+
+  private getOptions(): EChartsOption {
+    return {
+      toolbox: {
+        feature: {
+          dataZoom: {
+            yAxisIndex: 'none',
+          },
         },
       },
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: this.date,
-    },
-    yAxis: {
-      type: 'value',
-      boundaryGap: [0, '100%'],
-    },
-    dataZoom: [
-      {
-        type: 'inside',
-        start: 0,
-        end: 10,
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: this.date,
       },
-      {
-        start: 0,
-        end: 10,
+      yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%'],
       },
-    ],
-    series: [
-      {
-        name: 'Synthetic data',
-        type: 'line',
-        symbol: 'none',
-        sampling: 'lttb',
-        areaStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: getComputedCSSProperty('color-primary'),
-            },
-            {
-              offset: 1,
-              color: 'transparent',
-            },
-          ]),
+      dataZoom: [
+        {
+          type: 'inside',
+          start: 0,
+          end: 10,
         },
-        data: this.data,
-      },
-    ],
-  };
+        {
+          start: 0,
+          end: 10,
+        },
+      ],
+      series: [
+        {
+          name: 'Synthetic data',
+          type: 'line',
+          symbol: 'none',
+          sampling: 'lttb',
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              {
+                offset: 0,
+                color: getComputedCSSProperty('color-primary'),
+              },
+              {
+                offset: 1,
+                color: 'transparent',
+              },
+            ]),
+          },
+          data: this.data,
+        },
+      ],
+    };
+  }
 
   generateData(): void {
     for (let i = 1; i < 20000; i++) {
@@ -92,11 +101,17 @@ export default class EchartsSpecialZoom implements OnInit {
 
   ngOnInit() {
     this.generateData();
+    this.options = this.getOptions();
 
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
+      this.options = this.getOptions();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

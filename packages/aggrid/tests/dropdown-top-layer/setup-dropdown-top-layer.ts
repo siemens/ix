@@ -92,7 +92,7 @@ const gridOptions = {
   rowData: ROW_DATA,
   theme: theme,
   suppressCellFocus: true,
-};
+} satisfies agGridCommunity.GridOptions;
 
 const myGridElement = document.querySelector('#testGrid') as HTMLElement;
 createGrid(myGridElement, gridOptions);

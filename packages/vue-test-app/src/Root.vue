@@ -14,6 +14,7 @@ import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
+import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
@@ -58,7 +59,7 @@ import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.v
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
-import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
+import DateDropdownPresets from './preview-examples/date-dropdown-presets.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateRange from './preview-examples/date-range.vue';
 import DatetimeRange from './preview-examples/datetime-range.vue';
@@ -189,6 +190,7 @@ import SelectMultiple from './preview-examples/select-multiple.vue';
 import SelectValidation from './preview-examples/select-validation.vue';
 import Select from './preview-examples/select.vue';
 import Settings from './preview-examples/settings.vue';
+import SettingsLegacy from './preview-examples/settings-legacy.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
 import SliderTrace from './preview-examples/slider-trace.vue';
@@ -213,6 +215,7 @@ import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import Tile from './preview-examples/tile.vue';
 import TimeRange from './preview-examples/time-range.vue';
 import Timepicker from './preview-examples/timepicker.vue';
+import TimepickerMinMaxTime from './preview-examples/timepicker-min-max-time.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
@@ -252,13 +255,12 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
-} & {
-  '/preview/tabs-overflow': any;
-};
+} & {};
 
 const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
+  '/preview/about-and-legal-legacy': AboutAndLegalLegacy,
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
@@ -299,7 +301,7 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
-  '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-dropdown-presets': DateDropdownPresets,
   '/preview/date-range': DateRange,
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
@@ -358,9 +360,9 @@ const routes: IxPreviewRoutes = {
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
   '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
   '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
-  '/preview/icon-toggle-button-subtle-secondary': IconToggleButtonSubtleSecondary,
-  '/preview/icon-toggle-button-subtle-primary':
-    IconToggleButtonSubtlePrimary,
+  '/preview/icon-toggle-button-subtle-secondary':
+    IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary': IconToggleButtonSubtlePrimary,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
@@ -405,6 +407,7 @@ const routes: IxPreviewRoutes = {
   '/preview/tile': Tile,
   '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
+  '/preview/timepicker-min-max-time': TimepickerMinMaxTime,
   '/preview/toast': Toast,
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,
@@ -415,6 +418,7 @@ const routes: IxPreviewRoutes = {
   '/preview/tree-custom': TreeCustom,
   '/preview/popover-news': PopoverNews,
   '/preview/settings': Settings,
+  '/preview/settings-legacy': SettingsLegacy,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
   '/preview/modal-close': ModalClose,

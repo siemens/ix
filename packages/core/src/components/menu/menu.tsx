@@ -171,7 +171,6 @@ export class Menu {
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
-  private themeDisposer?: Disposable;
   private themeNameDisposer?: Disposable;
 
   // FBC IAM workaround #488
@@ -319,10 +318,6 @@ export class Menu {
 
     this.updateThemeState();
 
-    this.themeDisposer = themeSwitcher.schemaChanged.on(() => {
-      this.updateThemeState();
-    });
-
     this.themeNameDisposer = themeSwitcher.themeChanged.on(() => {
       this.updateThemeState();
     });
@@ -336,7 +331,6 @@ export class Menu {
   }
 
   disconnectedCallback() {
-    this.themeDisposer?.dispose();
     this.themeNameDisposer?.dispose();
   }
 
@@ -395,13 +389,13 @@ export class Menu {
 
     if (!this.popoverArea?.contains(this.aboutNewsPopover)) {
       const showMore = () => {
-        if (this.aboutNewsPopover?.aboutItemLabel && this.about) {
-          this.about.activeTabLabel = this.aboutNewsPopover.aboutItemLabel;
+        if (this.aboutNewsPopover?.activeAboutTabKey && this.about) {
+          this.about.activeTabKey = this.aboutNewsPopover.activeAboutTabKey;
           this.toggleAbout(true);
         }
       };
 
-      this.aboutNewsPopover.addEventListener('showMore', showMore.bind(this));
+      this.aboutNewsPopover.addEventListener('showMore', () => showMore());
       document.body.appendChild(this.aboutNewsPopover);
     }
   }

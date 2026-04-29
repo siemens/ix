@@ -8,6 +8,7 @@
  */
 
 export { default as registerTheme } from './register';
+export { resolveEChartThemeName } from './theme-util';
 export { default as getComputedCSSProperty } from './computecss';
 export { default as brandDark } from './themes/brand-dark';
 export { default as brandLight } from './themes/brand-light';

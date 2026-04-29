@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +26,15 @@ LICENSE file in the root directory of this source tree.
       import {
         getComputedCSSProperty,
         registerTheme,
+        resolveEChartThemeName,
       } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
-      function initChart(theme, options) {
+      function initChart(options) {
+        const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme);
         myChart.setOption(options);
 
@@ -41,85 +43,91 @@ LICENSE file in the root directory of this source tree.
 
       const value = 68;
 
-      const options = {
-        series: [
-          {
-            id: '1',
-            type: 'gauge',
-            axisLine: {
-              show: true,
-              lineStyle: {
-                width: 15,
-                color: [[1, getComputedCSSProperty('color-neutral-40')]],
+      function getOptions() {
+        return {
+          series: [
+            {
+              id: '1',
+              type: 'gauge',
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  width: 15,
+                  color: [[1, getComputedCSSProperty('color-neutral-40')]],
+                },
               },
-            },
-            axisTick: {
-              show: false,
-            },
-            radius: '100%',
-            startAngle: 90,
-            endAngle: -270,
-            splitLine: {
-              show: false,
-            },
-            axisLabel: {
-              show: false,
-            },
-            progress: {
-              show: true,
-              overlap: false,
-              width: 35,
-              itemStyle: {
-                borderMiterLimit: 16,
-                color: getComputedCSSProperty('color-success'),
+              axisTick: {
+                show: false,
               },
-            },
-            pointer: {
-              show: false,
-            },
-            data: [
-              {
-                value: value,
-                detail: {
-                  offsetCenter: [0, 0],
-                  fontSize: '2rem',
-                  fontWeight: 'normal',
-                  color: getComputedCSSProperty('color-soft-text'),
-                  rich: {
-                    valueStyle: {
-                      fontSize: '2rem',
-                      color: getComputedCSSProperty('color-soft-text'),
-                      fontWeight: 'bold',
+              radius: '100%',
+              startAngle: 90,
+              endAngle: -270,
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              progress: {
+                show: true,
+                overlap: false,
+                width: 35,
+                itemStyle: {
+                  borderMiterLimit: 16,
+                  color: getComputedCSSProperty('color-success'),
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              data: [
+                {
+                  value: value,
+                  detail: {
+                    offsetCenter: [0, 0],
+                    fontSize: '2rem',
+                    fontWeight: 'normal',
+                    color: getComputedCSSProperty('color-soft-text'),
+                    rich: {
+                      valueStyle: {
+                        fontSize: '2rem',
+                        color: getComputedCSSProperty('color-soft-text'),
+                        fontWeight: 'bold',
+                      },
+                      textStyle: {
+                        fontSize: '1.5rem',
+                        color: getComputedCSSProperty('color-soft-text'),
+                      },
                     },
-                    textStyle: {
-                      fontSize: '1.5rem',
-                      color: getComputedCSSProperty('color-soft-text'),
-                    },
+                    formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,
                   },
-                  formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,
+                  pointer: {
+                    show: false,
+                  },
                 },
-                pointer: {
-                  show: false,
-                },
-              },
-            ],
-          },
-        ],
-      };
+              ],
+            },
+          ],
+        };
+      }
 
       // providing echarts is in this case optional
       registerTheme(echarts);
 
-      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      var myChart = initChart(getOptions());
 
-      themeSwitcher.themeChanged.on((theme) => {
+      const disposer = themeSwitcher.themeChanged.on(() => {
         myChart.dispose();
-        myChart = initChart(theme, options);
+        myChart = initChart(getOptions());
       });
 
       window.onresize = function () {
         myChart.resize();
       };
+
+      window.addEventListener('unload', () => {
+        disposer.dispose();
+      });
     </script>
   </body>
 </html>

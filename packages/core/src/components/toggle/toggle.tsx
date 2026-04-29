@@ -16,10 +16,16 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 
 /**
@@ -31,10 +37,13 @@ import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
   shadow: true,
   formAssociated: true,
 })
-export class Toggle implements IxFormComponent<string> {
+export class Toggle
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxFormComponent<string>, InheritAriaAttributesMixinContract
+{
   @AttachInternals() formInternals!: ElementInternals;
 
-  @Element() hostElement!: HTMLIxToggleElement;
+  @Element() override hostElement!: HTMLIxToggleElement;
 
   /**
    * Name of the checkbox component
@@ -125,7 +134,8 @@ export class Toggle implements IxFormComponent<string> {
     }
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
+    super.componentWillLoad();
     this.updateFormInternalValue();
   }
 
@@ -166,7 +176,14 @@ export class Toggle implements IxFormComponent<string> {
     /** This function is intentionally empty */
   }
 
-  render() {
+  private resolveAriaLabel(): string | undefined {
+    if (this.inheritAriaAttributes['aria-labelledby']) {
+      return undefined;
+    }
+    return this.inheritAriaAttributes['aria-label'];
+  }
+
+  override render() {
     let toggleText = this.textOff;
 
     if (this.checked) {
@@ -176,46 +193,57 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
+
+    const ariaLabel = this.resolveAriaLabel();
+
+    const ariaChecked = this.indeterminate
+      ? 'mixed'
+      : a11yBoolean(this.checked);
+
     return (
       <Host
+        {...this.inheritAriaAttributes}
         role="switch"
-        aria-checked={a11yBoolean(this.checked)}
+        tabindex={this.disabled ? -1 : 0}
+        aria-label={ariaLabel}
+        aria-checked={ariaChecked}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-required={a11yBoolean(this.required)}
         class={{
           disabled: this.disabled,
         }}
         onBlur={() => this.ixBlur.emit()}
         onFocus={() => (this.touched = true)}
+        onKeyDown={(e: KeyboardEvent) => {
+          if (this.disabled) return;
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            this.onCheckedChange(!this.checked);
+          }
+        }}
+        onClick={() => {
+          if (!this.disabled) {
+            this.onCheckedChange(!this.checked);
+          }
+        }}
       >
-        <label class="wrapper">
-          <button
+        <div class="wrapper">
+          <div
             class={{
               switch: true,
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
-            onClick={() => this.onCheckedChange(!this.checked)}
-            tabindex={-1}
             aria-hidden="true"
           >
             <div class="slider"></div>
-          </button>
-          <input
-            type="checkbox"
-            disabled={this.disabled}
-            indeterminate={this.indeterminate}
-            checked={this.checked}
-            tabindex={0}
-            aria-hidden={a11yBoolean(true)}
-            aria-checked={a11yBoolean(this.checked)}
-            onChange={(event) =>
-              this.onCheckedChange((event.target as HTMLInputElement).checked)
-            }
-          />
+          </div>
           {!this.hideText && (
-            <ix-typography class="label">{toggleText}</ix-typography>
+            <ix-typography class="label" aria-hidden="true">
+              {toggleText}
+            </ix-typography>
           )}
-        </label>
+        </div>
       </Host>
     );
   }

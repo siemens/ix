@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/web-components-vite';
-import { withThemeByClassName } from '@storybook/addon-themes';
 import { defineCustomElement } from '@siemens/ix-icons/components/ix-icon.js';
 import './define-custom-elements';
 import './define-internal-custom-elements';
@@ -14,22 +13,54 @@ declare const window: Window & {
 preloadIcons();
 defineCustomElement();
 
-const additionalTheme: Record<string, string> = {};
+const additionalThemes: string[] = [];
+const colorSchemas = ['dark', 'light'] as const;
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
 
   if (hasAdditionalTheme) {
-    additionalTheme['brand-dark'] = 'theme-brand-dark';
-    additionalTheme['brand-light'] = 'theme-brand-light';
+    additionalThemes.push('brand');
   }
 
   return hasAdditionalTheme;
 }
 
 const hasAdditionalTheme = addAdditionalThemeIfExist();
+const themes = ['classic', ...additionalThemes];
+const defaultTheme = hasAdditionalTheme ? 'brand' : 'classic';
 
 const preview: Preview = {
+  globalTypes: {
+    ixTheme: {
+      name: 'Theme',
+      description: 'IX theme name',
+      toolbar: {
+        icon: 'paintbrush',
+        dynamicTitle: true,
+        items: themes.map((theme) => ({
+          title: theme,
+          value: theme,
+        })),
+      },
+    },
+    ixColorSchema: {
+      name: 'Color schema',
+      description: 'IX color schema',
+      toolbar: {
+        icon: 'contrast',
+        dynamicTitle: true,
+        items: colorSchemas.map((colorSchema) => ({
+          title: colorSchema,
+          value: colorSchema,
+        })),
+      },
+    },
+  },
+  initialGlobals: {
+    ixTheme: defaultTheme,
+    ixColorSchema: 'dark',
+  },
   parameters: {
     controls: {
       matchers: {
@@ -50,15 +81,22 @@ const preview: Preview = {
     },
   },
   decorators: [
-    withThemeByClassName({
-      defaultTheme: hasAdditionalTheme ? 'brand-dark' : 'classic-dark',
-      themes: {
-        'classic-dark': 'theme-classic-dark',
-        'classic-light': 'theme-classic-light',
-        ...additionalTheme,
-      },
-      parentSelector: 'body',
-    }),
+    (Story, context) => {
+      const theme =
+        typeof context.globals['ixTheme'] === 'string'
+          ? context.globals['ixTheme']
+          : defaultTheme;
+      const colorSchema =
+        context.globals['ixColorSchema'] === 'light' ? 'light' : 'dark';
+
+      document.documentElement.setAttribute('data-ix-theme', theme);
+      document.documentElement.setAttribute(
+        'data-ix-color-schema',
+        colorSchema
+      );
+
+      return Story();
+    },
   ],
 };
 

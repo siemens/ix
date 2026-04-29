@@ -48,6 +48,13 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
   @Prop() aboutItemLabel?: string;
 
   /**
+   * Defines which tab should be active, used when the about news is used in combination with ix-menu-about
+   *
+   * @since 5.0.0
+   */
+  @Prop() activeAboutTabKey?: string;
+
+  /**
    * Show More button is pressed
    */
   @Event() showMore!: EventEmitter<MouseEvent>;
@@ -98,13 +105,13 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         <div class="slot-container">
           <slot></slot>
         </div>
-        {this.aboutItemLabel ? (
+        {this.activeAboutTabKey ? (
           <div class="cui-popover-news-footer">
             <ix-button
               variant="primary"
-              onClick={(e) => {
+              onClick={(event) => {
                 this.show = false;
-                this.showMore.emit(e);
+                this.showMore.emit(event);
               }}
             >
               {this.i18nShowMore}

@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-toggle indeterminate></ix-toggle> `,
+  template: ` <ix-toggle indeterminate aria-label="Toggle"></ix-toggle> `,
 })
 export default class ToggleIndeterminate {}

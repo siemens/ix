@@ -7,15 +7,37 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import { iconClose } from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Mixin,
+  Prop,
+} from '@stencil/core';
 import type { TabClickDetail } from './tab-item.types';
+import { a11yBoolean } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 @Component({
   tag: 'ix-tab-item',
   styleUrl: 'tab-item.scss',
   shadow: true,
 })
-export class TabItem {
+export class TabItem
+  extends Mixin(...DefaultMixins, ComponentIdMixin, BaseTabMixin)
+  implements BaseTabMixinContract, ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxTabItemElement;
+
   /**
    * Set selected tab
    */
@@ -27,19 +49,11 @@ export class TabItem {
   @Prop() disabled = false;
 
   /**
-   * Set small size tab
+   * Set icon of the tab
+   *
+   * @since 5.0.0
    */
-  @Prop() small = false;
-
-  /**
-   * Set icon only tab
-   */
-  @Prop() icon = false;
-
-  /**
-   * Set rounded tab
-   */
-  @Prop() rounded = false;
+  @Prop() icon?: string;
 
   /**
    * Set counter value
@@ -47,87 +61,172 @@ export class TabItem {
   @Prop() counter?: number;
 
   /**
-   * Set layout width style
+   * If the tab can be closed
+   *
+   * @since 5.0.0
    */
-  @Prop() layout: 'auto' | 'stretched' = 'auto';
+  @Prop() closable = false;
 
   /**
-   * Set selected placement
+   * Tab label
+   *
+   * @since 5.0.0
    */
+  @Prop() label?: string;
+
+  /**
+   * Aria label for the close button, important for accessibility
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelCloseButton: string = 'Close tab';
+
+  /** @internal */
   @Prop() placement: 'bottom' | 'top' = 'bottom';
+
+  /** @internal */
+  @Prop() rounded = false;
+
+  /** @internal */
+  @Prop() small = false;
+
+  /** @internal */
+  @Prop() layout: 'auto' | 'stretched' = 'auto';
+
+  /** @internal */
+  @Prop() iconOnly = false;
 
   /**
    * Emitted when the tab is clicked.
    */
   @Event() tabClick!: EventEmitter<TabClickDetail>;
 
-  private tabItemClasses(props: {
-    selected: boolean;
-    disabled: boolean;
-    small: boolean;
-    icon: boolean;
-    circle: boolean;
-    layout: 'auto' | 'stretched';
-    placement: 'bottom' | 'top';
-  }) {
-    return {
-      selected: props.selected,
-      disabled: props.disabled,
-      'small-tab': props.small,
-      icon: props.small,
-      stretched: props.layout === 'stretched',
-      bottom: props.placement === 'bottom',
-      top: props.placement === 'top',
-      circle: props.circle,
-    };
+  /**
+   * Emitted when the tab's close button is clicked.
+   */
+  @Event() tabClose!: EventEmitter<TabClickDetail>;
+
+  private onTabSelect(event: Event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    if (this.disabled) {
+      event.preventDefault();
+      return;
+    }
+
+    const clientEvent = this.tabClick.emit({
+      tabKey: this.tabKey,
+      nativeEvent: event,
+    });
+
+    if (clientEvent.defaultPrevented) {
+      event.stopPropagation();
+    }
   }
 
-  render() {
+  override render() {
+    let variant: 'normal' | 'icon-only' | 'rounded' = 'normal';
+
+    if (this.rounded) {
+      variant = 'rounded';
+    } else if (this.icon || this.label === undefined) {
+      variant = 'icon-only';
+    } else {
+      variant = 'normal';
+    }
+
     return (
       <Host
+        id={this.getHostElementId()}
         role="tab"
-        class={this.tabItemClasses({
+        aria-selected={a11yBoolean(this.selected)}
+        tabIndex={this.selected && !this.disabled ? 0 : -1}
+        class={{
           selected: this.selected,
           disabled: this.disabled,
-          small: this.small,
-          icon: this.icon,
-          layout: this.layout,
-          placement: this.placement,
+          'small-tab': this.small,
+          'icon-only': this.iconOnly,
+          stretched: this.layout === 'stretched',
+          bottom: this.placement === 'bottom',
+          top: this.placement === 'top',
           circle: this.rounded,
-        })}
-        tabIndex={0}
-        onClick={(event: MouseEvent) => {
-          if (event.defaultPrevented) return;
-
-          const clientEvent = this.tabClick.emit({
-            nativeEvent: event,
-          });
-
-          if (clientEvent.defaultPrevented) {
-            event.stopPropagation();
+        }}
+        onClick={(event: MouseEvent) => this.onTabSelect(event)}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            this.onTabSelect(event);
+          }
+          if (this.closable && event.key === 'Delete') {
+            event.preventDefault();
+            this.tabClose.emit({
+              tabKey: this.tabKey,
+              nativeEvent: event,
+            });
           }
         }}
       >
-        <div
-          class={{
-            circle: this.rounded,
-            text: !this.rounded,
-            selected: this.selected,
-            disabled: this.disabled,
-          }}
-        >
-          <slot></slot>
-        </div>
-        <div
-          class={{
-            counter: true,
-            selected: this.selected,
-            hidden: !(this.rounded && this.counter !== undefined),
-            disabled: this.disabled,
-          }}
-        >
-          {this.counter}
-        </div>
+        {variant === 'rounded' && (
+          <div
+            class={{
+              circle: true,
+            }}
+          >
+            {this.icon && <ix-icon name={this.icon} size="16"></ix-icon>}
+          </div>
+        )}
+        {this.icon && variant !== 'rounded' && (
+          <ix-icon name={this.icon} size="16" class={'tab-icon'}></ix-icon>
+        )}
+        {(variant === 'normal' || variant === 'icon-only') && (
+          <div
+            class={{
+              text: !!this.label,
+              selected: this.selected,
+              disabled: this.disabled,
+            }}
+          >
+            {this.label}
+            <slot></slot>
+          </div>
+        )}
+
+        {variant === 'rounded' && this.counter !== undefined && (
+          <div
+            class={{
+              counter: true,
+              selected: this.selected,
+              disabled: this.disabled,
+            }}
+          >
+            {this.counter}
+          </div>
+        )}
+
+        {this.counter && variant !== 'rounded' && (
+          <ix-pill variant="primary" outline class={'tab-counter'}>
+            {this.counter}
+          </ix-pill>
+        )}
+        {this.closable && variant !== 'rounded' && (
+          <ix-icon-button
+            aria-label={this.ariaLabelCloseButton}
+            class={'close-tab'}
+            size="12"
+            variant="subtle-tertiary"
+            icon={iconClose}
+            onClick={(event) => {
+              event.stopPropagation();
+              event.preventDefault();
+
+              this.tabClose.emit({
+                tabKey: this.tabKey,
+                nativeEvent: event,
+              });
+            }}
+          ></ix-icon-button>
+        )}
       </Host>
     );
   }

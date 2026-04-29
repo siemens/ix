@@ -134,6 +134,7 @@ export class DropdownButton
     breadcrumb: boolean;
     datePicker: boolean;
     splitButton: boolean;
+    tabs: boolean;
   };
 
   private getTriangle() {
@@ -174,6 +175,7 @@ export class DropdownButton
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
       datePicker: !!closestPassShadow(this.hostElement, 'ix-date-picker'),
       splitButton: !!closestPassShadow(this.hostElement, 'ix-split-button'),
+      tabs: !!closestPassShadow(this.hostElement, 'ix-tabs'),
     };
   }
 
@@ -221,7 +223,8 @@ export class DropdownButton
     const hideChevron =
       this.hostContext?.breadcrumb ||
       this.hostContext?.datePicker ||
-      this.hostContext?.splitButton;
+      this.hostContext?.splitButton ||
+      this.hostContext?.tabs;
 
     return (
       <Host
@@ -229,6 +232,7 @@ export class DropdownButton
           disabled: this.disabled,
           'host-context-breadcrumb': !!this.hostContext?.breadcrumb,
           'host-context-date-picker': !!this.hostContext?.datePicker,
+          'host-context-tabs': !!this.hostContext?.tabs,
         }}
         ref={this.dropdownAnchor}
         tabIndex={this.disabled ? -1 : 0}

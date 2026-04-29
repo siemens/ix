@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "@siemens/ix": "~4.4.0",
-    "@stencil/react-output-target": "^1.2.0",
+    "@stencil/react-output-target": "^1.5.0",
     "tslib": "*"
   }
 }

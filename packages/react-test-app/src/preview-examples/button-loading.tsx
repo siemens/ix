@@ -17,9 +17,11 @@ export default () => {
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
+  const [toggle4, setToggle4] = useState(false);
   return (
     <>
       <IxButton
+        variant="subtle-primary"
         onClick={() => {
           setToggle(true);
           setTimeout(() => {
@@ -27,12 +29,12 @@ export default () => {
           }, 2500);
         }}
         loading={toggle}
-        outline
       >
         Button
       </IxButton>
 
       <IxButton
+        variant="subtle-primary"
         onClick={() => {
           setToggle2(true);
           setTimeout(() => {
@@ -40,13 +42,13 @@ export default () => {
           }, 2500);
         }}
         loading={toggle2}
-        outline
         icon={iconStar}
       >
         Button
       </IxButton>
 
       <IxButton
+        variant="subtle-primary"
         onClick={() => {
           setToggle3(true);
           setTimeout(() => {
@@ -54,25 +56,31 @@ export default () => {
           }, 2500);
         }}
         loading={toggle3}
-        outline
         icon={iconStar}
+        aria-label="Star"
       ></IxButton>
 
       <IxIconButton
+        variant="subtle-primary"
         onClick={() => {
-          setToggle(true);
+          setToggle4(true);
           setTimeout(() => {
-            setToggle(false);
+            setToggle4(false);
           }, 2500);
         }}
-        loading={toggle}
-        outline
+        loading={toggle4}
         icon={iconStar}
+        aria-label="Toggle loading"
       ></IxIconButton>
       <IxButton variant="subtle-primary" loading>
         Button
       </IxButton>
-      <IxIconButton variant="subtle-primary" loading></IxIconButton>
+      <IxIconButton
+        variant="subtle-primary"
+        loading
+        icon={iconStar}
+        aria-label="Loading action"
+      ></IxIconButton>
     </>
   );
 };
