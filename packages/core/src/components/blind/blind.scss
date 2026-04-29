@@ -19,20 +19,13 @@
     .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
-        @include hover.ghost-hover-pressed;
-      } @else if $variant == 'filled' {
-        background-color: var(--theme-color-component-1);
-
-        @include hover.hover {
-          background-color: var(--theme-color-component-1--hover);
-        }
-
-        @include hover.active {
-          background-color: var(--theme-color-component-1--active);
-        }
       } @else {
         background-color: var(--theme-color-#{$variant});
+      }
 
+      @if $variant == 'filled' or $variant == 'outline' {
+        @include hover.ghost-hover-pressed;
+      } @else {
         @include hover.hover {
           background-color: var(--theme-color-#{$variant}--hover);
         }
