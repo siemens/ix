@@ -13,11 +13,18 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxMenuAboutItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-vue';
-import { useTemplateRef, onMounted } from 'vue';
+import { onMounted, ref, useTemplateRef } from 'vue';
 
 const input = useTemplateRef<HTMLIxMenuElement>('menu');
+const activeTabKey = ref('tab-1');
+
+const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
+  activeTabKey.value = event.detail ?? 'tab-1';
+};
+
 onMounted(() => {
   input.value?.toggleAbout(true);
 });
@@ -30,8 +37,24 @@ onMounted(() => {
     </IxApplicationHeader>
     <IxMenu ref="menu">
       <IxMenuAbout>
-        <IxMenuAboutItem label="Tab 1">Content 1</IxMenuAboutItem>
-        <IxMenuAboutItem label="Tab 2">Content 2</IxMenuAboutItem>
+        <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
+          <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
+          <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
+        </IxTabs>
+        <section
+          v-if="activeTabKey === 'tab-1'"
+          role="tabpanel"
+          aria-label="About and legal content"
+        >
+          Content 1
+        </section>
+        <section
+          v-if="activeTabKey === 'tab-2'"
+          role="tabpanel"
+          aria-label="About and legal content"
+        >
+          Content 2
+        </section>
       </IxMenuAbout>
     </IxMenu>
   </IxApplication>

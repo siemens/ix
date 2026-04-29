@@ -18,6 +18,8 @@ export default class Settings implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })
   menuRef!: ElementRef<HTMLIxMenuElement>;
 
+  activeTabKey = 'tab-1';
+
   ngAfterViewInit() {
     const { nativeElement } = this.menuRef;
     nativeElement.toggleSettings(true);

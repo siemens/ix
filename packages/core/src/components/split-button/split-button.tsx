@@ -20,7 +20,6 @@ import {
   Build,
 } from '@stencil/core';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
-import { AlignedPlacement } from '../dropdown/placement';
 import {
   FocusProxy,
   PROXY_LIST_ID_SUFFIX,
@@ -106,11 +105,6 @@ export class SplitButton
    * @since 4.1.0
    */
   @Prop() disableDropdownButton = false;
-
-  /**
-   * Placement of the dropdown
-   */
-  @Prop() placement: AlignedPlacement = 'bottom-start';
 
   /**
    * Button clicked

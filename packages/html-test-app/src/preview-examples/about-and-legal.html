@@ -20,9 +20,26 @@ LICENSE file in the root directory of this source tree.
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
       <ix-menu>
-        <ix-menu-about>
-          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
-          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+        <ix-menu-about suppress-legacy-tabs>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+            <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+          </ix-tabs>
+          <section
+            role="tabpanel"
+            aria-label="About and legal content"
+            data-tab-content="tab-1"
+          >
+            Content 1
+          </section>
+          <section
+            role="tabpanel"
+            aria-label="About and legal content"
+            data-tab-content="tab-2"
+            hidden
+          >
+            Content 2
+          </section>
         </ix-menu-about>
       </ix-menu>
     </ix-application>
@@ -30,7 +47,20 @@ LICENSE file in the root directory of this source tree.
     <script>
       (async function () {
         await window.customElements.whenDefined('ix-menu');
+        await window.customElements.whenDefined('ix-tabs');
         const instance = document.querySelector('ix-menu');
+        const about = instance.querySelector('ix-menu-about');
+        const tabs = about.querySelector('ix-tabs');
+        const updateVisibleContent = (tabKey) => {
+          about.querySelectorAll('[data-tab-content]').forEach((content) => {
+            content.hidden = content.dataset.tabContent !== tabKey;
+          });
+        };
+
+        updateVisibleContent(tabs.activeTabKey ?? 'tab-1');
+        tabs.addEventListener('tabChange', (event) => {
+          updateVisibleContent(event.detail ?? 'tab-1');
+        });
         await instance.toggleAbout(true);
       })();
     </script>

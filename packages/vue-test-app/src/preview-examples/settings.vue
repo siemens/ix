@@ -14,11 +14,17 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuSettings,
-  IxMenuSettingsItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-vue';
 import { nextTick, onMounted, ref } from 'vue';
 
 const menu = ref<HTMLRefElement<HTMLIxMenuElement>>();
+const activeTabKey = ref('tab-1');
+
+const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
+  activeTabKey.value = event.detail ?? 'tab-1';
+};
 
 onMounted(async () => {
   await nextTick();
@@ -33,8 +39,24 @@ onMounted(async () => {
     </IxApplicationHeader>
     <IxMenu ref="menu">
       <IxMenuSettings>
-        <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>
-        <IxMenuSettingsItem label="Example Setting 2"></IxMenuSettingsItem>
+        <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
+          <IxTabItem tabKey="tab-1">Example Setting 1</IxTabItem>
+          <IxTabItem tabKey="tab-2">Example Setting 2</IxTabItem>
+        </IxTabs>
+        <section
+          v-if="activeTabKey === 'tab-1'"
+          role="tabpanel"
+          aria-label="Settings content"
+        >
+          Example Setting 1 content
+        </section>
+        <section
+          v-if="activeTabKey === 'tab-2'"
+          role="tabpanel"
+          aria-label="Settings content"
+        >
+          Example Setting 2 content
+        </section>
       </IxMenuSettings>
     </IxMenu>
   </IxApplication>

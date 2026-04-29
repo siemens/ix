@@ -8,43 +8,42 @@
  */
 
 import './../../drawer/test/animejs.mock';
-import { newSpecPage } from '@stencil/core/testing';
+import { render, h } from '@stencil/vitest';
 import { fireEvent } from '@testing-library/dom';
-import { MessageBar } from '../message-bar';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('ix-message-bar', () => {
-  let page: any;
-  let messageBar: HTMLIxMessageBarElement;
-  let closeButton: HTMLIxIconButtonElement;
-
-  beforeEach(async () => {
-    page = await newSpecPage({
-      components: [MessageBar],
-      html: '<ix-message-bar type="danger"></ix-message-bar>',
-    });
-
-    messageBar = document.querySelector('ix-message-bar')!;
-    closeButton = messageBar.shadowRoot!.querySelector(
+  async function setup() {
+    const rendered = await render(<ix-message-bar></ix-message-bar>);
+    const messageBar = rendered.root as HTMLIxMessageBarElement;
+    const closeButton = messageBar.shadowRoot!.querySelector(
       '[data-testid="close-btn"]'
-    )!;
-  });
+    ) as HTMLElement;
 
-  it('closes the alert message bar', (done) => {
-    messageBar.addEventListener('closedChange', () => {
-      done();
-    });
+    return { ...rendered, messageBar, closeButton };
+  }
+
+  it('closes the alert message bar', async () => {
+    const { closeButton, spyOnEvent, waitForChanges } = await setup();
+    const closedSpy = spyOnEvent('closedChange');
+
     fireEvent.click(closeButton);
+
+    await waitForChanges();
+
+    expect(closedSpy).toHaveReceivedEvent();
   });
 
-  it('emits an event when the message is dismissed', (done) => {
-    const mockCallback = jest.fn(() => {
-      done();
-    });
+  it('emits an event when the message is dismissed', async () => {
+    const { closeButton, waitForChanges } = await setup();
+    const mockCallback = vi.fn();
     window.addEventListener('closedChange', mockCallback);
 
     fireEvent.click(closeButton);
-    page.waitForChanges().then(() => {
-      window.removeEventListener('closedChange', mockCallback);
-    });
+    await waitForChanges();
+
+    window.removeEventListener('closedChange', mockCallback);
+
+    expect(mockCallback).toHaveBeenCalled();
   });
 });

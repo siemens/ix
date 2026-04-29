@@ -445,12 +445,12 @@ export class DateInput
             this.ixFocus.emit();
           }}
           onBlur={() => {
+            this.touched = true;
             onInputBlurWithChange(
               this,
               this.inputElementRef.current,
               this.value
             );
-            this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
@@ -463,8 +463,9 @@ export class DateInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-label={this.ariaLabelCalendarButton}
             tabindex={-1}
+            ref={(ref) => (ref!.tabIndex = -1)}
+            aria-label={this.ariaLabelCalendarButton}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"

@@ -24,10 +24,10 @@ import {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu>
-      <IxMenuAbout>
-        <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
+      <IxMenuAbout enableLegacyTabs activeTabKey="tab-1">
+        <IxMenuAboutItem tabKey="tab-1" label="Example"> </IxMenuAboutItem>
       </IxMenuAbout>
-      <IxMenuAboutNews label="Test" show about-item-label="Example">
+      <IxMenuAboutNews label="Test" show activeAboutTabKey="tab-1">
         Test
       </IxMenuAboutNews>
     </IxMenu>

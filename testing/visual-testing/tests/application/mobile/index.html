@@ -79,15 +79,30 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Test 21</ix-menu-item>
         <ix-menu-item>Test 22</ix-menu-item>
         <ix-menu-item>Test 23</ix-menu-item>
-        <ix-menu-about>
-          <ix-menu-about-item>Item 1</ix-menu-about-item>
-          <ix-menu-about-item>Item 1</ix-menu-about-item>
-          <ix-menu-about-item>Item 1</ix-menu-about-item>
+        <ix-menu-about active-tab-key="tab1">
+          <ix-menu-about-item tab-key="tab1" label="Item 1"
+            >Item 1</ix-menu-about-item
+          >
+          <ix-menu-about-item tab-key="tab2" label="Item 2"
+            >Item 2</ix-menu-about-item
+          >
+          <ix-menu-about-item tab-key="tab3" label="Item 3"
+            >Item 3</ix-menu-about-item
+          >
         </ix-menu-about>
-        <ix-menu-settings>
-          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
-          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
-          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+        <ix-menu-settings active-tab-key="tab1">
+          <ix-menu-settings-item
+            tab-key="tab1"
+            label="Tab 1"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            tab-key="tab2"
+            label="Tab 2"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            tab-key="tab3"
+            label="Tab 3"
+          ></ix-menu-settings-item>
         </ix-menu-settings>
       </ix-menu>
       <div class="debug-element"></div>

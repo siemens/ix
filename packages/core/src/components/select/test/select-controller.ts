@@ -8,7 +8,7 @@
  */
 
 import { Locator, expect } from '@playwright/test';
-import { getDropdownDialog } from '@utils/test';
+import { getDropdownDialog } from '../../../tests/utils/test';
 
 export function selectController(select: Locator) {
   const input = select.locator('input');

@@ -6,6 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import { describe, expect, it } from 'vitest';
 import {
   DropdownItemWrapper,
   hasDropdownItemWrapperImplemented,
@@ -15,11 +17,11 @@ describe('dropdown-controller', () => {
   it('check wrapper interface implementation', () => {
     const noWrapperElement = {} as DropdownItemWrapper;
     const wrapperElement = {
-      getDropdownItemElement: () => {},
-    } as DropdownItemWrapper;
+      getDropdownItemElement: () => Promise.resolve(undefined),
+    } as unknown as DropdownItemWrapper;
 
-    expect(hasDropdownItemWrapperImplemented(null)).toBeFalsy();
-    expect(hasDropdownItemWrapperImplemented(noWrapperElement)).toBeFalsy();
-    expect(hasDropdownItemWrapperImplemented(wrapperElement)).toBeTruthy();
+    expect(hasDropdownItemWrapperImplemented(null)).toBe(false);
+    expect(hasDropdownItemWrapperImplemented(noWrapperElement)).toBe(false);
+    expect(hasDropdownItemWrapperImplemented(wrapperElement)).toBe(true);
   });
 });
