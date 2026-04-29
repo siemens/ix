@@ -178,11 +178,6 @@ export class Chip
       centerContent: this.centerContent,
     };
 
-    const closeIconStyle =
-      this.variant === 'custom'
-        ? ({ color: this.chipColor } as Record<string, string | undefined>)
-        : undefined;
-
     const iconIsDecorative = !this.ariaLabelIcon?.trim();
 
     const hasAccessibleName =
@@ -251,7 +246,6 @@ export class Chip
               type="button"
               class="chip-close"
               aria-label={this.ariaLabelCloseButton}
-              style={closeIconStyle}
               onClick={(event) => {
                 this.closeChip.emit(event);
                 event.stopPropagation();
