@@ -84,9 +84,6 @@ test('Radio button should not cause layout shift when checked', async ({
 
   await page.waitForSelector('ix-radio', { state: 'attached' });
 
-  // Measure spacing from the radio to the element below instead of absolute
-  // coordinates so small global shifts (scrollbar, subpixel layout) do not
-  // flake the test while still catching real layout movement between them.
   const initialGap = await page.evaluate(() => {
     const radio = document.querySelector('ix-radio')!.getBoundingClientRect();
     const below = document

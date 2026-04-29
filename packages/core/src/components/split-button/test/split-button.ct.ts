@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { dropdownPanel, regressionTest } from '@utils/test';
+import { getDropdownDialog, regressionTest } from '@utils/test';
 
 function getSplitButtonExample(props: {
   disableDropdownButton?: boolean;
@@ -97,7 +97,7 @@ regressionTest(
     await page.keyboard.press('ArrowDown');
 
     const splitDropdown = dropdownButton.locator('ix-dropdown');
-    await expect(dropdownPanel(splitDropdown)).toBeVisible();
+    await expect(getDropdownDialog(splitDropdown)).toBeVisible();
 
     const activeDescendant = await dropdownButton.getAttribute(
       'aria-activedescendant'

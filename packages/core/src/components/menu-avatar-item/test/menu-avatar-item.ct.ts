@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { dropdownPanel, regressionTest } from '@utils/test';
+import { getDropdownDialog, regressionTest } from '@utils/test';
 
 const html = String.raw;
 
@@ -39,7 +39,7 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
 
   const menuAvatarDropdown = menuAvatar.locator('ix-dropdown');
   await expect(menuAvatarDropdown).toHaveClass(/hydrated/);
-  await expect(dropdownPanel(menuAvatarDropdown)).toBeVisible();
+  await expect(getDropdownDialog(menuAvatarDropdown)).toBeVisible();
 
   const menuAvatarItem = menuAvatar.locator('ix-menu-avatar-item').nth(0);
   await menuAvatarItem.click();
@@ -48,7 +48,7 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   const dropdown2 = page.locator('#d2');
 
   await expect(dropdown1).toHaveClass(/hydrated/);
-  await expect(dropdownPanel(dropdown1)).toBeVisible();
+  await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
   const dropdown2Trigger = dropdown1
     .locator('ix-dropdown-item')
@@ -57,5 +57,5 @@ regressionTest('Nested dropdowns', async ({ mount, page }) => {
   await dropdown2Trigger.click();
 
   await expect(dropdown2).toHaveClass(/hydrated/);
-  await expect(dropdownPanel(dropdown2)).toBeVisible();
+  await expect(getDropdownDialog(dropdown2)).toBeVisible();
 });

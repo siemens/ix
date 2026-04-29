@@ -8,7 +8,7 @@
  */
 import { Locator, expect } from '@playwright/test';
 import {
-  dropdownPanel,
+  getDropdownDialog,
   getFormValue,
   preventFormSubmission,
   regressionTest,
@@ -26,7 +26,7 @@ const createAccessor = async (dateTimeInput: Locator) => {
       await trigger.click();
       const dropdown = dateTimeInput.locator('> ix-dropdown');
       await expect(dropdown).toHaveClass(/show/);
-      await expect(dropdownPanel(dropdown)).toBeVisible();
+      await expect(getDropdownDialog(dropdown)).toBeVisible();
     },
     selectDay: async (day: number) => {
       // Day cells have aria-label like "15 May" (month index: day)
@@ -57,7 +57,7 @@ const createAccessor = async (dateTimeInput: Locator) => {
     expectCalendarToBeVisible: async () => {
       const dropdown = dateTimeInput.locator('> ix-dropdown');
       await expect(dropdown).toHaveClass(/show/);
-      await expect(dropdownPanel(dropdown)).toBeVisible();
+      await expect(getDropdownDialog(dropdown)).toBeVisible();
     },
     expectToHaveErrorMessage: async (message: string) => {
       const input = dateTimeInput.getByRole('textbox');

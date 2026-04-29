@@ -14,7 +14,7 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { dropdownPanel, regressionTest, viewPorts, expect } from '@utils/test';
+import { getDropdownDialog, regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
 
@@ -24,7 +24,7 @@ function expectDropdownPanelVisibility(
 ) {
   return Promise.all(
     dropdownHosts.map(async (host, i) => {
-      const panel = dropdownPanel(host);
+      const panel = getDropdownDialog(host);
       let assertion = expect(panel);
       if (i !== visibleIndex) {
         assertion = assertion.not;
@@ -113,10 +113,10 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
   await expect(page.locator('ix-button')).toHaveClass(/hydrated/);
   await expect(dropdown).toHaveClass(/hydrated/);
   await page.locator('ix-button').click();
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
 
   await page.locator('ix-button').click();
-  await expect(dropdownPanel(dropdown)).not.toBeVisible();
+  await expect(getDropdownDialog(dropdown)).not.toBeVisible();
 });
 
 regressionTest.describe('Close behavior', () => {
@@ -164,16 +164,16 @@ regressionTest.describe('Close behavior', () => {
     await setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await page.mouse.click(400, 200);
-    await expect(dropdownPanel(dropdownLevel1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).not.toBeVisible();
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownPanel(dropdownLevel1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).not.toBeVisible();
   });
 
   regressionTest(' = inside', async ({ mount, page }) => {
@@ -184,13 +184,13 @@ regressionTest.describe('Close behavior', () => {
     await setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await page.mouse.click(400, 200);
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownPanel(dropdownLevel1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).not.toBeVisible();
   });
 
   regressionTest(' = outside', async ({ mount, page }) => {
@@ -201,16 +201,16 @@ regressionTest.describe('Close behavior', () => {
     await setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await page.mouse.click(400, 200);
-    await expect(dropdownPanel(dropdownLevel1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).not.toBeVisible();
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
   });
 
   regressionTest(' = false', async ({ mount, page }) => {
@@ -227,21 +227,21 @@ regressionTest.describe('Close behavior', () => {
     await setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await page.mouse.click(400, 200);
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).not.toBeVisible();
 
     await triggerButton.click();
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
 
     await dropdownLevel1_Item1.click({
       force: true,
     });
-    await expect(dropdownPanel(dropdownLevel1)).toBeVisible();
+    await expect(getDropdownDialog(dropdownLevel1)).toBeVisible();
   });
 });
 
@@ -263,11 +263,11 @@ regressionTest('Prevent closing', async ({ page, mount }) => {
     })
   );
   await page.locator('#trigger').click();
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
   await header.click();
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
   await page.locator('#item-1').click();
-  await expect(dropdownPanel(dropdown)).not.toBeVisible();
+  await expect(getDropdownDialog(dropdown)).not.toBeVisible();
 });
 
 regressionTest.describe('Nested dropdowns 1/3', () => {
@@ -355,15 +355,15 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     await setupTest(page);
 
     await triggerDropdown1.click();
-    await expect(dropdownPanel(dropdown1)).toBeVisible();
+    await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
     await triggerDropdown3.click();
-    await expect(dropdownPanel(dropdown3)).toBeVisible();
+    await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
     await triggerDropdown5.click();
-    await expect(dropdownPanel(dropdown5)).toBeVisible();
-    await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-    await expect(dropdownPanel(dropdown3)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown5)).toBeVisible();
+    await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
   });
 
   regressionTest('close assigned submenu', async ({ mount, page }) => {
@@ -372,21 +372,21 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     await setupTest(page);
 
     await triggerDropdown1.click();
-    await expect(dropdownPanel(dropdown1)).toBeVisible();
+    await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
     await triggerDropdown2.click();
-    await expect(dropdownPanel(dropdown2)).toBeVisible();
+    await expect(getDropdownDialog(dropdown2)).toBeVisible();
 
     await triggerDropdown3.click();
-    await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-    await expect(dropdownPanel(dropdown3)).toBeVisible();
+    await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
     await triggerDropdown4.click();
-    await expect(dropdownPanel(dropdown4)).toBeVisible();
+    await expect(getDropdownDialog(dropdown4)).toBeVisible();
 
     await triggerDropdown3.click();
-    await expect(dropdownPanel(dropdown3)).not.toBeVisible();
-    await expect(dropdownPanel(dropdown4)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown4)).not.toBeVisible();
   });
 
   regressionTest.describe('close by Escape with close behavior', () => {
@@ -396,24 +396,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       await setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdownPanel(dropdown1)).toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
       await triggerDropdown2.click();
-      await expect(dropdownPanel(dropdown2)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).toBeVisible();
 
       await triggerDropdown3.click();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
       await triggerDropdown4.click();
-      await expect(dropdownPanel(dropdown4)).toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).toBeVisible();
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown4)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).not.toBeVisible();
     });
 
     regressionTest(' = inside', async ({ mount, page }) => {
@@ -424,24 +424,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       await setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdownPanel(dropdown1)).toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
       await triggerDropdown2.click();
-      await expect(dropdownPanel(dropdown2)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).toBeVisible();
 
       await triggerDropdown3.click();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
       await triggerDropdown4.click();
-      await expect(dropdownPanel(dropdown4)).toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).toBeVisible();
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown4)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).not.toBeVisible();
     });
 
     regressionTest(' = outside', async ({ mount, page }) => {
@@ -450,24 +450,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       await setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdownPanel(dropdown1)).toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
       await triggerDropdown2.click();
-      await expect(dropdownPanel(dropdown2)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).toBeVisible();
 
       await triggerDropdown3.click();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
       await triggerDropdown4.click();
-      await expect(dropdownPanel(dropdown4)).toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).toBeVisible();
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown4)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).not.toBeVisible();
     });
 
     regressionTest(' = false', async ({ mount, page }) => {
@@ -476,24 +476,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       await setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdownPanel(dropdown1)).toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).toBeVisible();
 
       await triggerDropdown2.click();
-      await expect(dropdownPanel(dropdown2)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).toBeVisible();
 
       await triggerDropdown3.click();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).toBeVisible();
 
       await triggerDropdown4.click();
-      await expect(dropdownPanel(dropdown4)).toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).toBeVisible();
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown2)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown3)).not.toBeVisible();
-      await expect(dropdownPanel(dropdown4)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown3)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown4)).not.toBeVisible();
     });
   });
 });
@@ -526,10 +526,10 @@ regressionTest.describe('nested dropdown 2/3', () => {
 
     await trigger1.click();
     await expect(trigger2).toBeAttached();
-    await expect(dropdownPanel(parentDropdown)).toBeVisible();
+    await expect(getDropdownDialog(parentDropdown)).toBeVisible();
 
     await trigger2.click();
-    await expect(dropdownPanel(nestedDropdown)).toBeVisible();
+    await expect(getDropdownDialog(nestedDropdown)).toBeVisible();
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
@@ -568,8 +568,8 @@ regressionTest.describe('nested dropdown 3/3', () => {
     await triggerDropdown2.click({ force: true });
     await triggerDropdown1.click();
 
-    await expect(dropdownPanel(dropdown1)).not.toBeVisible();
-    await expect(dropdownPanel(dropdown2)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown1)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown2)).not.toBeVisible();
   });
 });
 
@@ -604,7 +604,7 @@ regressionTest(
     await overflowTrigger.click();
 
     const overflowDropdown = header.locator('[data-overflow-dropdown]');
-    await expect(dropdownPanel(overflowDropdown)).toBeVisible();
+    await expect(getDropdownDialog(overflowDropdown)).toBeVisible();
     await expect(overflowDropdown).toHaveClass(/show/);
 
     const trigger = page.getByRole('button', { name: 'Trigger' }).nth(0);
@@ -613,7 +613,7 @@ regressionTest(
     await expect(trigger).toBeVisible();
 
     const triggerDropdown = page.locator('ix-dropdown-button ix-dropdown');
-    await expect(dropdownPanel(triggerDropdown)).toBeVisible();
+    await expect(getDropdownDialog(triggerDropdown)).toBeVisible();
     await expect(triggerDropdown).toHaveClass(/show/);
 
     const submenuTrigger = page.getByRole('menuitem', {
@@ -622,7 +622,7 @@ regressionTest(
     await submenuTrigger.click();
 
     const submenu = page.locator('#submenu');
-    await expect(dropdownPanel(submenu)).toBeVisible();
+    await expect(getDropdownDialog(submenu)).toBeVisible();
     await expect(submenu).toHaveClass(/show/);
   }
 );
@@ -673,7 +673,7 @@ regressionTest.describe('resolve during element connect', () => {
     const dropdown = page.locator('ix-dropdown');
     await page.locator('ix-button').first().click();
 
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
   });
 });
 
@@ -691,7 +691,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toHaveClass(/hydrated/);
   await trigger.click();
 
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
 
   await dropdown.evaluate((dd) => {
     dd.removeChild(dd.querySelector('ix-dropdown-button')!);
@@ -699,7 +699,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 
   await trigger.click();
   await trigger.click();
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
 });
 
 regressionTest.describe('A11y', () => {
@@ -807,9 +807,9 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
-  const panel = dropdownPanel(dropdown);
+  const panel = getDropdownDialog(dropdown);
   await expect(trigger).toBeVisible();
-  await expect(dropdownPanel(dropdown)).toBeVisible();
+  await expect(getDropdownDialog(dropdown)).toBeVisible();
 
   // Animation timeout
   await page.waitForTimeout(250);
@@ -846,7 +846,7 @@ regressionTest(
     await expect(dropdown).toHaveClass(/hydrated/);
     await page.locator('#trigger').click();
 
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
     const lastItem = dropdown.locator('ix-dropdown-item').last();
     await lastItem.evaluate((item) => {
       item.scrollIntoView();
@@ -876,7 +876,7 @@ regressionTest(
     await expect(dropdown).toHaveClass(/hydrated/);
     await page.locator('#trigger').click();
 
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
     const lastItem = dropdown.locator('ix-dropdown-item').last();
     await lastItem.evaluate((item) => {
       item.scrollIntoView();
@@ -899,7 +899,7 @@ regressionTest(
     await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
     await expect(dropdown).toHaveClass(/hydrated/);
     await page.locator('#trigger').click();
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
 
     const disabledItem = page.getByRole('menuitem', { name: 'Disabled Item' });
     const enabledItem = page.getByRole('menuitem', { name: 'Enabled Item' });
@@ -1172,11 +1172,11 @@ regressionTest.describe('dropdown transition visibility', () => {
     await expect(triggerButton).toBeVisible();
 
     const dropdown = page.locator('#transform-dropdown');
-    await expect(dropdownPanel(dropdown)).not.toBeVisible();
+    await expect(getDropdownDialog(dropdown)).not.toBeVisible();
 
     await triggerButton.click();
     await expect(async () => {
-      await expect(dropdownPanel(dropdown)).toBeVisible();
+      await expect(getDropdownDialog(dropdown)).toBeVisible();
     }).toPass({ timeout: 10000 });
   });
 
@@ -1190,7 +1190,7 @@ regressionTest.describe('dropdown transition visibility', () => {
       await container.evaluate((element) => element.scrollTo(0, 0));
 
       await expect(triggerButton).not.toBeInViewport();
-      await expect(dropdownPanel(dropdown)).not.toBeVisible();
+      await expect(getDropdownDialog(dropdown)).not.toBeVisible();
     }
   );
 

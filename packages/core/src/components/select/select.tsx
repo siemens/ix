@@ -375,10 +375,7 @@ export class Select
       this.value = oldValue;
       return;
     }
-    // Clear the filter before updateSelection: when the dropdown is open,
-    // updateSelection bails out while inputFilterText is set, so inputValue
-    // never syncs and the combobox can keep showing the filter text (flaky
-    // with Stencil re-renders vs direct DOM clears in clearInput).
+
     if (this.isMultipleMode && this.inputFilterText) {
       this.clearInput();
       this.removeHiddenAttributeFromItems();

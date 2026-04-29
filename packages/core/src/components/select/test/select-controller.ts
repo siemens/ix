@@ -8,10 +8,7 @@
  */
 
 import { Locator, expect } from '@playwright/test';
-
-function dropdownPanel(dropdown: Locator): Locator {
-  return dropdown.locator('dialog').first();
-}
+import { getDropdownDialog } from '@utils/test';
 
 export function selectController(select: Locator) {
   const input = select.locator('input');
@@ -24,7 +21,7 @@ export function selectController(select: Locator) {
       throw new Error('Dropdown has no open handle');
     }
     await element.waitForElementState('stable');
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
   };
 
   return {

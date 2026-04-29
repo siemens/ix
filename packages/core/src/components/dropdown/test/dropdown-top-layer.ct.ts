@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { dropdownPanel, regressionTest } from '@utils/test';
+import { getDropdownDialog, regressionTest } from '@utils/test';
 
 regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
   regressionTest.describe(
@@ -29,7 +29,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(dropdown).toHaveClass(/hydrated/);
           await trigger.click();
 
-          await expect(dropdownPanel(dropdown)).toBeAttached();
+          await expect(getDropdownDialog(dropdown)).toBeAttached();
         }
       );
 
@@ -48,7 +48,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(trigger).toHaveClass(/hydrated/);
           const dropdown = page.locator('ix-dropdown#dropdown');
           await expect(dropdown).toHaveClass(/hydrated/);
-          const dialog = dropdownPanel(dropdown);
+          const dialog = getDropdownDialog(dropdown);
 
           await expect(dialog).not.toBeVisible();
 
@@ -73,7 +73,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
         await expect(trigger).toHaveClass(/hydrated/);
         const dropdown = page.locator('ix-dropdown#dropdown');
         await expect(dropdown).toHaveClass(/hydrated/);
-        const dialog = dropdownPanel(dropdown);
+        const dialog = getDropdownDialog(dropdown);
 
         await trigger.click();
         await expect(dialog).toBeVisible();
@@ -104,7 +104,9 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(trigger).toHaveClass(/hydrated/);
           await trigger.click();
 
-          const dialog = dropdownPanel(page.locator('ix-dropdown#dropdown'));
+          const dialog = getDropdownDialog(
+            page.locator('ix-dropdown#dropdown')
+          );
           await expect(dialog).not.toHaveClass(/overflow/);
         }
       );
@@ -131,7 +133,9 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(trigger).toHaveClass(/hydrated/);
           await trigger.click();
 
-          const dialog = dropdownPanel(page.locator('ix-dropdown#dropdown'));
+          const dialog = getDropdownDialog(
+            page.locator('ix-dropdown#dropdown')
+          );
           await expect(dialog).toHaveClass(/overflow/);
         }
       );
@@ -158,7 +162,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(dropdown).toHaveClass(/hydrated/);
           await trigger.click();
 
-          const dialog = dropdownPanel(dropdown);
+          const dialog = getDropdownDialog(dropdown);
           await expect(dialog).toBeVisible();
 
           const item = page.locator('ix-dropdown-item').first();
@@ -191,7 +195,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(dropdown).toHaveClass(/hydrated/);
           await trigger.click();
 
-          const dialog = dropdownPanel(dropdown);
+          const dialog = getDropdownDialog(dropdown);
           await expect(dialog).toBeVisible();
 
           await page.waitForTimeout(100);
@@ -264,7 +268,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await expect(dropdown).toHaveClass(/hydrated/);
           await trigger.click();
 
-          const dialog = dropdownPanel(dropdown);
+          const dialog = getDropdownDialog(dropdown);
           await expect(dialog).toBeVisible();
 
           await page.waitForTimeout(100);
@@ -393,7 +397,7 @@ regressionTest.describe('ix-dropdown top-layer (suppressTopLayer)', () => {
           await trigger2.click();
 
           const dropdown2 = page.locator('ix-dropdown#dropdown-2');
-          await expect(dropdownPanel(dropdown2)).toBeVisible();
+          await expect(getDropdownDialog(dropdown2)).toBeVisible();
         }
       );
     }

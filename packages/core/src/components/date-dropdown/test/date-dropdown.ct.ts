@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { dropdownPanel, regressionTest } from '@utils/test';
+import { getDropdownDialog, regressionTest } from '@utils/test';
 import { DateTime } from 'luxon';
 import { DateDropdownOption } from '../date-dropdown.types';
 
@@ -214,7 +214,7 @@ regressionTest('select different year', async ({ mount, page }) => {
   await expect(dateDropdownTrigger).toBeVisible();
 
   const datePickerDropdown = dateDropdown.getByTestId('date-dropdown');
-  await expect(dropdownPanel(datePickerDropdown)).toBeVisible();
+  await expect(getDropdownDialog(datePickerDropdown)).toBeVisible();
 
   const datepicker = datePickerDropdown.locator('ix-date-picker');
 

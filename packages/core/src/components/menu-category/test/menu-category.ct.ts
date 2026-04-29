@@ -44,9 +44,6 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
     (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
   );
 
-  // Expand the menu rail first so category items are in the document flow (not
-  // only inside a closed dropdown); otherwise the second item stays hidden and
-  // Playwright cannot click it reliably.
   await expandMenuButton.click();
   await categoryItem.click();
 

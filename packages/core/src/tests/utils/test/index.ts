@@ -46,9 +46,8 @@ export const getFormValue = async (
 };
 
 /**
- * Popover surface for `ix-dropdown` in top-layer mode (`<dialog popover>`).
  * Uses `.first()` so nested `ix-dropdown` dialogs inside the menu do not break strict locators.
  */
-export function dropdownPanel(dropdown: Locator): Locator {
+export function getDropdownDialog(dropdown: Locator): Locator {
   return dropdown.locator('dialog').first();
 }

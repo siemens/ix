@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { dropdownPanel, test, viewPorts } from '@utils/test';
+import { getDropdownDialog, test, viewPorts } from '@utils/test';
 import { ApplicationLayoutContext } from '../../utils/application-layout/context';
 import { ContextType } from '../../utils/context';
 
@@ -500,7 +500,7 @@ test.describe('cross app navigation', () => {
     const dropdown = page.locator(
       'ix-application-header ix-dropdown[data-overflow-dropdown]'
     );
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
 
     const dropdownBeforeAvatarButton = page
       .locator('ix-application-header ix-button')
@@ -553,7 +553,7 @@ test.describe('cross app navigation', () => {
     const dropdown = page.locator(
       'ix-application-header ix-dropdown[data-overflow-dropdown]'
     );
-    await expect(dropdownPanel(dropdown)).toBeVisible();
+    await expect(getDropdownDialog(dropdown)).toBeVisible();
 
     const dropdownBeforeAvatarButton = page
       .locator('ix-application-header ix-button')
