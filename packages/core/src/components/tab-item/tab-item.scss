@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
@@ -17,24 +16,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px vars.$large-space;
   line-height: 20px;
   font-size: 14px;
   font-weight: bold;
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
   touch-action: none; // Disable default touch behaviors for drag
+  border: 1px solid transparent;
+
+  height: 2.5rem;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+
+  padding: 0.625rem 1.5rem;
+  gap: 0.5rem;
 
   @include component.ix-component;
-
-  &::after {
-    content: '';
-    position: absolute;
-    background-color: var(--theme-tab-indicator--background);
-    width: 100%;
-    height: var(--theme-tab-indicator--height);
-    left: 0;
-  }
 
   .text {
     @include text-truncation.ellipsis;
@@ -45,6 +42,10 @@
     }
 
     vertical-align: middle;
+  }
+
+  slot {
+    white-space: nowrap;
   }
 
   .circle {
@@ -102,8 +103,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: vars.$tiny-space;
-    padding-right: vars.$tiny-space;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
     font-size: 12px;
     line-height: 14px;
     color: var(--theme-pill-outline--color);
@@ -125,19 +126,9 @@
 }
 
 :host(.circle) {
-  height: 72px;
-}
-
-:host(.top) {
-  &::after {
-    top: 0;
-  }
-}
-
-:host(.bottom) {
-  &::after {
-    bottom: 0;
-  }
+  height: 4.5rem;
+  min-height: 4.5rem;
+  max-height: 4.5rem;
 }
 
 :host(.stretched) {
@@ -165,22 +156,11 @@
   }
 }
 
-:host(:focus-visible) {
-  outline: 0px solid var(--focus--border-color);
-
-  .circle {
-    outline: 1px solid var(--focus--border-color);
-  }
-}
-
-:host(:focus-visible:not(.circle)) {
-  outline: 1px solid var(--focus--border-color);
-}
-
 :host(.disabled) {
   cursor: default;
   color: var(--theme-tab--color--disabled);
   background-color: var(--theme-tab--background--disabled);
+  pointer-events: none;
 
   &::after {
     background-color: var(--theme-tab-indicator--background--disabled);
@@ -192,19 +172,49 @@
   color: var(--theme-tab--color--selected);
 
   &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
     background-color: var(--theme-tab-indicator--background--selected);
   }
 }
 
-:host(.icon) {
-  padding: vars.$large-space vars.$small-space;
+:host(.selected.bottom:not(.disabled)) {
+  background-color: var(--theme-tab--background--selected);
+  color: var(--theme-tab--color--selected);
+
+  &::after {
+    top: calc(100% - 1px);
+  }
+}
+
+:host(.selected.top:not(.disabled)) {
+  &::after {
+    top: -1px;
+  }
+}
+
+:host(.icon-only) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0.5rem;
 }
 
 :host(.small-tab) {
-  height: 32px;
-  padding: vars.$default-space;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  padding: 1rem;
 }
 
 :host(.small-tab.icon) {
-  padding: vars.$default-space vars.$tiny-space;
+  padding: 1rem 0.25rem;
+}
+
+:host(:focus-visible) {
+  outline: none;
+  border: 1px solid var(--theme-color-focus-bdr);
 }

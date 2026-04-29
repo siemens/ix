@@ -15,49 +15,49 @@ import { makeArgTypes } from './utils/generic-render';
 type Element = Components.IxTabs;
 
 const baseTabs = () => html`
-  <ix-tab-item>Overview</ix-tab-item>
-  <ix-tab-item>Analytics</ix-tab-item>
-  <ix-tab-item>Events</ix-tab-item>
-  <ix-tab-item disabled>Settings</ix-tab-item>
+  <ix-tab-item tab-key="overview" label="Overview"></ix-tab-item>
+  <ix-tab-item tab-key="analytics" label="Analytics"></ix-tab-item>
+  <ix-tab-item tab-key="events" label="Events"></ix-tab-item>
+  <ix-tab-item tab-key="settings" label="Settings" disabled></ix-tab-item>
 `;
 
 const iconTabs = () => html`
-  <ix-tab-item>
+  <ix-tab-item tab-key="success">
     <ix-icon name="success"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item counter="12">
+  <ix-tab-item tab-key="tree" counter="12">
     <ix-icon name="tree"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item>
+  <ix-tab-item tab-key="maintenance">
     <ix-icon name="maintenance"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item disabled counter="4">
+  <ix-tab-item tab-key="sound" disabled counter="4">
     <ix-icon name="sound-loud"></ix-icon>
   </ix-tab-item>
 `;
 
 const overflowTabs = () => html`
-  <ix-tab-item>Overview</ix-tab-item>
-  <ix-tab-item>Analytics</ix-tab-item>
-  <ix-tab-item>Events</ix-tab-item>
-  <ix-tab-item>Automation</ix-tab-item>
-  <ix-tab-item>Data Sources</ix-tab-item>
-  <ix-tab-item>Notifications</ix-tab-item>
-  <ix-tab-item>History</ix-tab-item>
-  <ix-tab-item>Settings</ix-tab-item>
+  <ix-tab-item tab-key="overview" label="Overview"></ix-tab-item>
+  <ix-tab-item tab-key="analytics" label="Analytics"></ix-tab-item>
+  <ix-tab-item tab-key="events" label="Events"></ix-tab-item>
+  <ix-tab-item tab-key="automation" label="Automation"></ix-tab-item>
+  <ix-tab-item tab-key="datasources" label="Data Sources"></ix-tab-item>
+  <ix-tab-item tab-key="notifications" label="Notifications"></ix-tab-item>
+  <ix-tab-item tab-key="history" label="History"></ix-tab-item>
+  <ix-tab-item tab-key="settings" label="Settings"></ix-tab-item>
 `;
 
 const meta = {
   title: 'Example/Tabs',
   tags: [],
-  render: ({ small, rounded, selected, layout, placement }) => html`
+  render: ({ small, rounded, activeTabKey, layout, placement }) => html`
     <ix-tabs
       ?small=${small}
       ?rounded=${rounded}
-      .selected=${selected}
+      active-tab-key=${activeTabKey}
       layout=${layout}
       placement=${placement}
-      @selectedChange=${action('selectedChange')}
+      @tabChange=${action('tabChange')}
     >
       ${rounded ? iconTabs() : baseTabs()}
     </ix-tabs>
@@ -70,7 +70,7 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    selected: 0,
+    activeTabKey: 'overview',
     layout: 'auto',
     placement: 'bottom',
     rounded: false,
@@ -88,6 +88,7 @@ export const Small: Story = {
 export const Rounded: Story = {
   args: {
     ...Default.args,
+    activeTabKey: 'success',
     rounded: true,
   },
 };
@@ -106,10 +107,10 @@ export const TopPlacement: Story = {
   },
 };
 
-export const DisabledSelectedFallback: Story = {
+export const DisabledTabActive: Story = {
   args: {
     ...Default.args,
-    selected: 3,
+    activeTabKey: 'settings',
   },
 };
 
@@ -117,15 +118,15 @@ export const Overflow: Story = {
   args: {
     ...Default.args,
   },
-  render: ({ small, rounded, selected, layout, placement }) => html`
+  render: ({ small, rounded, activeTabKey, layout, placement }) => html`
     <div style="width: 340px;">
       <ix-tabs
         ?small=${small}
         ?rounded=${rounded}
-        .selected=${selected}
+        active-tab-key=${activeTabKey}
         layout=${layout}
         placement=${placement}
-        @selectedChange=${action('selectedChange')}
+        @tabChange=${action('tabChange')}
       >
         ${overflowTabs()}
       </ix-tabs>

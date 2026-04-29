@@ -1,16 +1,10 @@
 - main:
   - tablist:
-    - tab "Success":
-      - img "Success"
-    - tab "Tree 200":
-      - img "Tree"
-      - text: "200"
-    - tab "Maintenance":
-      - img "Maintenance"
-    - tab "Sound 24":
-      - img "Sound"
-      - text: "24"
-    - tab "Hierarchy":
-      - img "Hierarchy"
-    - tab "Calendar settings":
-      - img "Calendar settings"
+    - tab
+    - tab /\d+/
+    - tab
+    - tab /\d+/
+    - tab
+    - tab
+  - button "Show all tabs":
+    - button "Open dropdown"

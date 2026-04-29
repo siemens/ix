@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import AboutAndLegal from '../preview-examples/about-and-legal';
+import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
@@ -56,7 +57,7 @@ import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot'
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
-import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateDropdownPresets from '../preview-examples/date-dropdown-presets';
 import DateRange from '../preview-examples/date-range';
 import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
@@ -204,6 +205,7 @@ import SelectMultiple from '../preview-examples/select-multiple';
 import SelectNgModel from '../preview-examples/select-ng-model';
 import SelectValidation from '../preview-examples/select-validation';
 import Settings from '../preview-examples/settings';
+import SettingsLegacy from '../preview-examples/settings-legacy';
 import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
@@ -229,6 +231,7 @@ import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
 import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
+import TimepickerMinMaxTime from '../preview-examples/timepicker-min-max-time';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
@@ -262,6 +265,10 @@ const routes: Routes = [
       {
         path: 'about-and-legal',
         component: AboutAndLegal,
+      },
+      {
+        path: 'about-and-legal-legacy',
+        component: AboutAndLegalLegacy,
       },
       {
         path: 'action-card',
@@ -449,8 +456,8 @@ const routes: Routes = [
         component: DateDropdown,
       },
       {
-        path: 'date-dropdown-user-range',
-        component: DateDropdownUserRange,
+        path: 'date-dropdown-presets',
+        component: DateDropdownPresets,
       },
       {
         path: 'date-range',
@@ -840,6 +847,7 @@ const routes: Routes = [
       { path: 'select-validation', component: SelectValidation },
       { path: 'select', component: Select },
       { path: 'settings', component: Settings },
+      { path: 'settings-legacy', component: SettingsLegacy },
       { path: 'spinner', component: Spinner },
       { path: 'spinner-large', component: SpinnerLarge },
       { path: 'split-button-icons', component: SplitButtonIcons },
@@ -868,6 +876,7 @@ const routes: Routes = [
       { path: 'time-input', component: TimeInput },
       { path: 'time-range', component: TimeRange },
       { path: 'timepicker', component: Timepicker },
+      { path: 'timepicker-min-max-time', component: TimepickerMinMaxTime },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
       {

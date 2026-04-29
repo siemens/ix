@@ -35,29 +35,41 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-tabs rounded placement="top">
-      <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
-      <ix-tab-item counter="{200}"><ix-icon name="tree"></ix-icon></ix-tab-item>
-      <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
-      <ix-tab-item disabled counter="{24}"
-        ><ix-icon name="sound-loud"></ix-icon
+    <!-- Rounded top placement with icon prop -->
+    <ix-tabs rounded placement="top" active-tab-key="r-top-1">
+      <ix-tab-item tab-key="r-top-1" icon="success"></ix-tab-item>
+      <ix-tab-item tab-key="r-top-2" icon="tree" counter="200"></ix-tab-item>
+      <ix-tab-item tab-key="r-top-3" icon="maintenance"></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-4"
+        icon="sound-loud"
+        disabled
+        counter="24"
       ></ix-tab-item>
-      <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
-      <ix-tab-item disabled
-        ><ix-icon name="calendar-settings"></ix-icon
+      <ix-tab-item tab-key="r-top-5" icon="hierarchy"></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-6"
+        icon="calendar-settings"
+        disabled
       ></ix-tab-item>
     </ix-tabs>
 
-    <ix-tabs rounded>
-      <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
-      <ix-tab-item counter="{200}"><ix-icon name="tree"></ix-icon></ix-tab-item>
-      <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
-      <ix-tab-item disabled counter="{24}"
-        ><ix-icon name="sound-loud"></ix-icon
+    <!-- Rounded bottom placement with icon prop -->
+    <ix-tabs rounded active-tab-key="r-bot-1">
+      <ix-tab-item tab-key="r-bot-1" icon="success"></ix-tab-item>
+      <ix-tab-item tab-key="r-bot-2" icon="tree" counter="200"></ix-tab-item>
+      <ix-tab-item tab-key="r-bot-3" icon="maintenance"></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-4"
+        icon="sound-loud"
+        disabled
+        counter="24"
       ></ix-tab-item>
-      <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
-      <ix-tab-item disabled
-        ><ix-icon name="calendar-settings"></ix-icon
+      <ix-tab-item tab-key="r-bot-5" icon="hierarchy"></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-6"
+        icon="calendar-settings"
+        disabled
       ></ix-tab-item>
     </ix-tabs>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>

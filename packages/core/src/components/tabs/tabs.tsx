@@ -7,10 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
+import { iconMoreMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -18,39 +15,27 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-
-type ManagedClass =
-  (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
-
-const TAB_MANAGED_CLASSES = {
-  SELECTED: 'selected',
-  DISABLED: 'disabled',
-  SMALL_TAB: 'small-tab',
-  ICON: 'icon',
-  STRETCHED: 'stretched',
-  BOTTOM: 'bottom',
-  TOP: 'top',
-  CIRCLE: 'circle',
-  HYDRATED: 'hydrated',
-} as const;
-
-const MANAGED_CLASSES_SET = new Set(
-  Object.values(TAB_MANAGED_CLASSES) as ManagedClass[]
-);
+import { makeRef } from '../utils/make-ref';
+import { TabClickDetail } from '../tab-item/tab-item.types';
+import { emitEvent } from '../utils/event';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { DefaultMixins } from '../utils/internal/component';
+import { InheritAriaAttributesMixin } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class Tabs {
-  @Element() hostElement!: HTMLIxTabsElement;
+export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
+  @Element() override hostElement!: HTMLIxTabsElement;
 
   /**
    * Set tab items to small size
@@ -63,11 +48,6 @@ export class Tabs {
   @Prop() rounded = false;
 
   /**
-   * Set default selected tab by index
-   */
-  @Prop({ mutable: true }) selected = 0;
-
-  /**
    * Set layout width style
    */
   @Prop() layout: 'auto' | 'stretched' = 'auto';
@@ -78,494 +58,309 @@ export class Tabs {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
-   * ARIA label for the chevron left icon button
+   * Aria label for the overflow menu button.
    *
-   * @since 3.2.0
+   * @since 5.0.0
    */
-  @Prop() ariaLabelChevronLeftIconButton = 'Scroll tabs left';
+  @Prop() ariaLabelMoreTabs = 'Show all tabs';
 
   /**
-   * ARIA label for the chevron right icon button
+   * Active tab key.
    *
-   * @since 3.2.0
+   * @since 5.0.0
    */
-  @Prop() ariaLabelChevronRightIconButton = 'Scroll tabs right';
+  @Prop({ mutable: true, reflect: true }) activeTabKey?: string;
 
   /**
-   * Tab selection event. Event detail is the zero-based tab index. Fires when
-   * the user selects a tab, or when the tab list changes and the selected index
-   * is adjusted. Not emitted when `selected` is set from outside.
+   * Keyboard interaction behavior:
+   * automatic:  A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.
+   * manual: A tabs widget where users activate a tab and display its panel by pressing Space or Enter.
+   *
+   * @since 5.0.0
    */
-  @Event() selectedChange!: EventEmitter<number>;
+  @Prop() keyboardNavigation: 'automatic' | 'manual' = 'automatic';
 
-  @State() totalItems = 0;
-  @State() currentScrollAmount = 0;
-  @State() scrollAmount = 100;
-  @State() scrollActionAmount = 0;
-  @State() showArrowPrevious = false;
-  @State() showArrowNext = false;
+  /**
+   * Tab selection event. Event detail contains the new active tab key.
+   *
+   * @since 5.0.0
+   */
+  @Event() tabChange!: EventEmitter<string | undefined>;
 
-  private windowStartSize = window.innerWidth;
+  /**
+   * Tab close event. Event detail contains the closed tab key.
+   *
+   * @since 5.0.0
+   */
+  @Event() tabClose!: EventEmitter<string | undefined>;
+
+  @State() private isTabsOverflow = false;
+  @State() private overflowMenuItems: {
+    tabKey: string;
+    label: string;
+    icon?: string;
+    disabled?: boolean;
+  }[] = [];
+
   private resizeObserver?: ResizeObserver;
-  private readonly ARROW_WIDTH = 32;
-  /** Movement in px beyond which we treat as drag (not tap). */
-  private readonly TAP_THRESHOLD_PX = 10;
-  private classObserver?: MutationObserver;
-  private updateScheduled = false;
+  private itemsObserver?: MutationObserver;
 
-  private readonly clickAction = {
-    isClick: true,
-  };
+  private readonly tabsContainerRef = makeRef<HTMLDivElement>();
+  private readonly tabsRef = makeRef<HTMLDivElement>();
 
-  private isDragging = false;
-
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    this.totalItems = 0;
-    this.totalItems = this.getTabs().length;
-
-    if (this.windowStartSize === 0)
-      return (this.windowStartSize = window.innerWidth);
-    this.move(this.windowStartSize - window.innerWidth);
-    this.windowStartSize = window.innerWidth;
-  }
-
-  private getTabs() {
+  private get tabs() {
     return Array.from(this.hostElement.querySelectorAll('ix-tab-item'));
   }
 
-  private getTab(tabIndex: number) {
-    return this.getTabs()[tabIndex];
-  }
-
-  private getTabsWrapper() {
-    return this.hostElement.shadowRoot?.querySelector('.items-content');
-  }
-
-  private getTabsContainer() {
-    return this.hostElement.shadowRoot?.querySelector('.tab-items');
-  }
-
-  private initResizeObserver() {
-    const parentElement = this.hostElement.parentElement;
-    if (!parentElement) return;
-    this.resizeObserver = new ResizeObserver(() => {
-      this.renderArrows();
-    });
-    this.resizeObserver.observe(parentElement);
-  }
-
-  private observeSlotChanges() {
-    this.classObserver?.disconnect();
-
-    this.classObserver = new MutationObserver(() => {
-      this.scheduleTabUpdate();
-    });
-
-    this.classObserver.observe(this.hostElement, {
+  override componentDidLoad() {
+    this.itemsObserver = new MutationObserver(() =>
+      this.onComponentChildrenChange()
+    );
+    this.itemsObserver.observe(this.hostElement, {
       childList: true,
       subtree: true,
-      attributes: true,
-      attributeFilter: ['class'],
-    });
-  }
-
-  private scheduleTabUpdate() {
-    if (this.updateScheduled) return;
-    this.updateScheduled = true;
-
-    requestAnimationFrame(() => {
-      this.updateTabAttributes();
-      this.updateScheduled = false;
-    });
-  }
-
-  private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
-    const isSelected = index === this.selected;
-    const isDisabled = element.disabled;
-
-    if (this.small) element.setAttribute('small', 'true');
-
-    if (this.rounded) element.setAttribute('rounded', 'true');
-
-    element.setAttribute('layout', this.layout);
-    element.setAttribute('selected', isSelected.toString());
-    element.setAttribute('placement', this.placement);
-    element.toggleAttribute('disabled', isDisabled);
-
-    this.applyRequiredClasses(element, isSelected, isDisabled);
-  }
-
-  private applyRequiredClasses(
-    element: HTMLIxTabItemElement,
-    isSelected: boolean,
-    isDisabled: boolean
-  ) {
-    const requiredClasses = new Set(
-      this.buildRequiredClasses(isSelected, isDisabled)
-    );
-    const { classList } = element;
-
-    for (const cls of requiredClasses) {
-      classList.add(cls);
-    }
-
-    for (const managedClass of MANAGED_CLASSES_SET) {
-      if (!requiredClasses.has(managedClass)) {
-        classList.remove(managedClass);
-      }
-    }
-  }
-
-  private buildRequiredClasses(
-    isSelected: boolean,
-    isDisabled: boolean
-  ): string[] {
-    const classConditions = {
-      [TAB_MANAGED_CLASSES.HYDRATED]: true,
-      [TAB_MANAGED_CLASSES.SELECTED]: isSelected,
-      [TAB_MANAGED_CLASSES.DISABLED]: isDisabled,
-      [TAB_MANAGED_CLASSES.SMALL_TAB]: this.small,
-      [TAB_MANAGED_CLASSES.STRETCHED]: this.layout === 'stretched',
-      [TAB_MANAGED_CLASSES.BOTTOM]: this.placement === 'bottom',
-      [TAB_MANAGED_CLASSES.TOP]: this.placement === 'top',
-      [TAB_MANAGED_CLASSES.CIRCLE]: this.rounded,
-    };
-
-    return Object.entries(classConditions)
-      .filter(([, condition]) => condition)
-      .map(([className]) => className);
-  }
-
-  private ensureSelectedIndex() {
-    if (this.totalItems === 0) {
-      console.warn('ix-tabs: No tabs available for selection');
-      this.selected = -1;
-      return;
-    }
-
-    if (this.selected < this.totalItems) {
-      return;
-    }
-
-    const originalIndex = this.selected;
-    const previousIndex = originalIndex - 1;
-
-    if (previousIndex >= 0 && previousIndex < this.totalItems) {
-      this.updateSelected(previousIndex);
-      return;
-    }
-
-    if (this.totalItems > 0) {
-      this.updateSelected(0);
-    }
-  }
-
-  private updateSelected(index: number) {
-    this.selected = index;
-    this.selectedChange.emit(index);
-  }
-
-  private updateTabAttributes() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    this.ensureSelectedIndex();
-
-    for (const [index, element] of tabs.entries()) {
-      this.setTabAttributes(element, index);
-    }
-
-    const overflow = this.showArrows();
-    tabs.forEach((el) => {
-      (el as HTMLElement).style.touchAction = overflow ? 'none' : '';
     });
 
-    this.renderArrows();
+    this.resizeObserver = new ResizeObserver(() => this.onComponentResize());
+    this.resizeObserver.observe(this.hostElement);
+
+    this.onComponentResize();
   }
 
-  private showArrows() {
-    try {
-      const tabWrapper = this.getTabsWrapper();
-      return (
-        tabWrapper &&
-        tabWrapper.scrollWidth >
-          Math.ceil(tabWrapper.getBoundingClientRect().width) &&
-        this.layout === 'auto'
-      );
-    } catch {
-      return false;
+  override componentWillLoad() {
+    this.onComponentChildrenChange();
+    if (this.activeTabKey) {
+      this.setTabActive(this.activeTabKey);
     }
   }
 
-  private showPreviousArrow() {
-    try {
-      return this.showArrows() === true && this.scrollActionAmount < 0;
-    } catch {
-      return false;
+  override disconnectedCallback() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
+    if (this.itemsObserver) {
+      this.itemsObserver.disconnect();
     }
   }
 
-  private showNextArrow() {
-    try {
-      const tabWrapper = this.getTabsWrapper();
+  @Watch('activeTabKey')
+  onActiveTabChange(tabKey: string | undefined, oldTabKey: string | undefined) {
+    const activeTab = this.tabs.find((tab) => tab.selected);
 
-      if (!tabWrapper) {
-        return false;
-      }
-
-      const tabWrapperRect = tabWrapper.getBoundingClientRect();
-
-      return (
-        this.showArrows() === true &&
-        this.scrollActionAmount >
-          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
-      );
-    } catch {
-      return false;
-    }
-  }
-
-  private move(amount: number, click = false) {
-    const tabsWrapper = this.getTabsWrapper();
-
-    if (!tabsWrapper) {
+    if (activeTab?.tabKey === tabKey) {
       return;
     }
 
-    const tabsWrapperVisibleWidth = tabsWrapper.getBoundingClientRect().width;
-    const maxScrollWidth =
-      -this.currentScrollAmount +
-      tabsWrapperVisibleWidth -
-      tabsWrapper.scrollWidth;
-
-    amount = amount < maxScrollWidth ? maxScrollWidth : amount;
-    amount += this.currentScrollAmount;
-    amount = Math.min(amount, 0);
-
-    const styles = [
-      `transform: translateX(${amount}px);`,
-      click ? 'transition: all ease-in-out 400ms;' : '',
-    ].join('');
-
-    tabsWrapper.setAttribute('style', styles);
-
-    if (click) this.currentScrollAmount = this.scrollActionAmount = amount;
-    else this.scrollActionAmount = amount;
+    this.emitTabChangeEvent(tabKey, oldTabKey);
   }
 
-  @Watch('selected')
-  onSelectedChange(newValue: number) {
-    if (!this.showArrows()) return;
+  private setTabActive(tabKey: string | undefined) {
+    const tabs = this.tabs;
 
-    const tab = this.getTab(newValue);
-    const container = this.getTabsContainer();
-
-    if (!tab || !container) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const tabRect = tab.getBoundingClientRect();
-    const tabLeftRelative = tabRect.left - containerRect.left;
-    const tabRightRelative = tabLeftRelative + tabRect.width;
-
-    if (tabLeftRelative < this.ARROW_WIDTH) {
-      this.move(-tabLeftRelative + this.ARROW_WIDTH, true);
-    } else if (tabRightRelative > containerRect.width - this.ARROW_WIDTH) {
-      this.move(
-        containerRect.width - tabRightRelative - this.ARROW_WIDTH,
-        true
-      );
-    }
-  }
-
-  private setSelected(index: number) {
-    this.selected = index;
-  }
-
-  private clickTab(index: number) {
-    // Don't select if it was a drag
-    if (!this.clickAction.isClick) {
+    if (tabKey === undefined) {
+      tabs.forEach((tab) => (tab.selected = false));
+      this.onComponentChildrenChange();
+      this.activeTabKey = undefined;
       return;
     }
 
-    const { defaultPrevented } = this.selectedChange.emit(index);
-    if (defaultPrevented) {
+    const newTab = tabs.find((tab) => tab.tabKey === tabKey);
+    if (!newTab) {
       return;
     }
 
-    this.setSelected(index);
-  }
-
-  private dragStart(element: HTMLIxTabItemElement, event: PointerEvent) {
-    if (!this.showArrows()) return;
-    if (event.button > 0) return;
-    if (this.isDragging) return;
-
-    event.preventDefault();
-
-    this.isDragging = true;
-    this.clickAction.isClick = true;
-
-    element.setPointerCapture(event.pointerId);
-
-    const pointerdownPositionX = event.clientX;
-    const initialScrollAmount = this.currentScrollAmount;
-
-    const move = (event: PointerEvent) =>
-      this.dragMove(event, pointerdownPositionX);
-
-    const cleanupPointerListeners = () => {
-      element.removeEventListener('pointermove', move, false);
-      element.removeEventListener('pointerup', pointerUp, false);
-      element.removeEventListener('pointercancel', pointerCancel, false);
-    };
-
-    const pointerUp = () => {
-      cleanupPointerListeners();
-      this.isDragging = false;
-      this.dragStop();
-      if (this.clickAction.isClick) {
-        const tabs = this.getTabs();
-        const index = tabs.indexOf(element);
-        if (index >= 0 && !element.disabled) {
-          this.clickTab(index);
-        }
-      }
-    };
-
-    const pointerCancel = () => {
-      cleanupPointerListeners();
-      this.isDragging = false;
-      this.scrollActionAmount = initialScrollAmount;
-      const tabsWrapper = this.getTabsWrapper();
-      if (tabsWrapper) {
-        tabsWrapper.setAttribute(
-          'style',
-          `transform: translateX(${initialScrollAmount}px);`
-        );
-      }
-      this.clickAction.isClick = true;
-    };
-
-    element.addEventListener('pointerup', pointerUp);
-    element.addEventListener('pointercancel', pointerCancel);
-    element.addEventListener('pointermove', move, false);
-  }
-
-  private dragMove(event: PointerEvent, pointerdownX: number) {
-    const delta = event.clientX - pointerdownX;
-    if (Math.abs(delta) > this.TAP_THRESHOLD_PX) {
-      this.clickAction.isClick = false;
-    }
-    this.move(delta);
-  }
-
-  private dragStop() {
-    if (this.clickAction.isClick) {
+    if (newTab.disabled) {
       return;
     }
 
-    this.currentScrollAmount = this.scrollActionAmount;
-  }
+    tabs.forEach((tab) => (tab.selected = false));
+    newTab.selected = true;
 
-  componentWillLoad() {
-    this.initResizeObserver();
-  }
+    this.onComponentChildrenChange();
+    this.activeTabKey = newTab.tabKey;
 
-  componentDidRender() {
-    this.updateTabAttributes();
-  }
-
-  componentWillRender() {
-    this.renderArrows();
-  }
-
-  private renderArrows() {
-    requestAnimationFrameNoNgZone(() => {
-      this.showArrowNext = this.showNextArrow();
-      this.showArrowPrevious = this.showPreviousArrow();
-    });
-  }
-
-  componentDidLoad() {
-    const tabs = this.getTabs();
-    tabs.forEach((element) => {
-      element.addEventListener('pointerdown', (event) =>
-        this.dragStart(element, event)
-      );
+    newTab.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
     });
 
-    const wrapper = this.getTabsWrapper();
-    if (wrapper) {
-      wrapper.addEventListener(
-        'touchstart',
-        (e) => {
-          if (this.showArrows()) {
-            e.preventDefault();
-          }
-        },
-        { passive: false }
-      );
+    return this.activeTabKey;
+  }
+
+  private onComponentChildrenChange() {
+    const tabItems = this.tabs;
+
+    tabItems.forEach((tab) => {
+      const propertiesToInherit = {
+        layout: this.layout,
+        small: this.small,
+        rounded: this.rounded,
+        placement: this.placement,
+        iconOnly: tabItems.every((t) => !t.label && !!t.icon),
+      };
+
+      Object.assign(tab, propertiesToInherit);
+    });
+
+    this.overflowMenuItems = Array.from(tabItems).map((item) => ({
+      tabKey: item.tabKey,
+      label: item.label || item.textContent || '',
+      icon: item.icon,
+      disabled: item.disabled,
+    }));
+
+    const isTabSelected = tabItems.some((tab) => tab.selected);
+    if (!isTabSelected && tabItems.length > 0 && hasKeyboardMode()) {
+      tabItems[0].focus();
+      this.emitTabChangeEvent(tabItems[0].tabKey);
+    }
+  }
+
+  private onComponentResize() {
+    const tabContainer = this.tabsRef.current;
+    if (!tabContainer) {
+      return;
     }
 
-    this.observeSlotChanges();
+    const isOverflowing = tabContainer.scrollWidth > tabContainer.clientWidth;
+    this.isTabsOverflow = isOverflowing;
   }
 
-  disconnectedCallback() {
-    this.resizeObserver?.disconnect();
-    this.classObserver?.disconnect();
-  }
-
-  @Listen('tabClick')
-  onTabClick(event: CustomEvent) {
+  private onTabClick(event: CustomEvent<TabClickDetail>) {
     if (event.defaultPrevented) {
       return;
     }
 
-    const target = event.target;
-    const tabs = this.getTabs();
+    if (event.detail.tabKey === undefined) {
+      return;
+    }
 
-    tabs.forEach((tab, index) => {
-      if (!tab.disabled && tab === target) {
-        this.clickTab(index);
-      }
-    });
+    this.emitTabChangeEvent(event.detail.tabKey);
   }
 
-  render() {
+  private emitTabChangeEvent(
+    tabKey: string | undefined,
+    oldTabKey = this.activeTabKey
+  ) {
+    emitEvent(
+      () => {
+        const newKey = this.setTabActive(tabKey);
+        return {
+          new: newKey,
+          old: oldTabKey,
+        };
+      },
+      this.tabChange,
+      (oldKey) => this.setTabActive(oldKey)
+    );
+  }
+
+  private onTabsNavigate(event: KeyboardEvent) {
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.getAttribute('role') === 'tablist'
+    ) {
+      return;
+    }
+
+    const tabs = this.tabs.filter((tab) => !tab.disabled);
+    let currentIndex = tabs.findIndex((tab) => tab.selected);
+
+    if (this.keyboardNavigation === 'manual') {
+      currentIndex = tabs.findIndex((tab) => tab === document.activeElement);
+    }
+
+    const activeTab = (tab: HTMLIxTabItemElement) => {
+      tab.focus();
+      if (this.keyboardNavigation === 'automatic') {
+        this.emitTabChangeEvent(tab.tabKey);
+      }
+    };
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+
+      if (currentIndex === -1) {
+        return;
+      }
+
+      const indexOffset = event.key === 'ArrowRight' ? 1 : -1;
+      const nextIndex =
+        (currentIndex + indexOffset + tabs.length) % tabs.length;
+
+      const nextTab = tabs[nextIndex];
+      activeTab(nextTab);
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault();
+      activeTab(tabs[0]);
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault();
+      activeTab(tabs[tabs.length - 1]);
+    }
+  }
+
+  override render() {
     return (
-      <Host>
-        {this.showArrowPrevious && (
-          <button
-            class="arrow"
-            onClick={() => this.move(this.scrollAmount, true)}
-            aria-label={this.ariaLabelChevronLeftIconButton}
-          >
-            <ix-icon name={iconChevronLeftSmall} aria-hidden="true"></ix-icon>
-          </button>
-        )}
+      <Host
+        onTabClick={(event: CustomEvent<TabClickDetail>) =>
+          this.onTabClick(event)
+        }
+        class={{
+          small: this.small,
+        }}
+      >
         <div
+          ref={this.tabsContainerRef}
           class={{
-            'tab-items': true,
-            'overflow-shadow': true,
-            'shadow-left': this.showArrowPrevious,
-            'shadow-right': this.showArrowNext,
-            'shadow-both': this.showArrowNext && this.showArrowPrevious,
+            'tabs-container': true,
+            top: this.placement === 'top',
+            bottom: this.placement === 'bottom',
           }}
         >
-          <div class="items-content" role="tablist">
-            <slot></slot>
-          </div>
-        </div>
-        {this.showArrowNext && (
-          <button
-            class="arrow right"
-            onClick={() => this.move(-this.scrollAmount, true)}
-            aria-label={this.ariaLabelChevronRightIconButton}
+          <div
+            class={{
+              'overflow-shadow-container': true,
+              'overflow-shadow': this.isTabsOverflow,
+            }}
           >
-            <ix-icon name={iconChevronRightSmall} aria-hidden="true"></ix-icon>
-          </button>
-        )}
+            <div
+              role="tablist"
+              {...this.inheritAriaAttributes}
+              ref={this.tabsRef}
+              class={{
+                tabs: true,
+              }}
+              tabIndex={this.isTabsOverflow ? 0 : -1}
+              onKeyDown={(event: KeyboardEvent) => this.onTabsNavigate(event)}
+            >
+              <slot></slot>
+            </div>
+          </div>
+          <ix-dropdown-button
+            ariaLabel={this.ariaLabelMoreTabs}
+            icon={iconMoreMenu}
+            class={{
+              'tabs-context-menu': true,
+            }}
+            variant="subtle-tertiary"
+          >
+            {this.overflowMenuItems.map((item) => (
+              <ix-dropdown-item
+                key={item.tabKey}
+                checked={item.tabKey === this.activeTabKey}
+                icon={item.icon}
+                label={item.label}
+                disabled={item.disabled}
+                onClick={() => (this.activeTabKey = item.tabKey)}
+              ></ix-dropdown-item>
+            ))}
+          </ix-dropdown-button>
+        </div>
       </Host>
     );
   }
