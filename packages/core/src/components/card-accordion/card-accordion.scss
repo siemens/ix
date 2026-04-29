@@ -139,6 +139,7 @@
         )
         solid
         var(--theme-push-card-#{$variant}-accordion-frame--border-color);
+      border-top: none;
     }
 
     .expand-content.show .expand-content-body {

@@ -57,45 +57,30 @@
       }
     }
 
-    // Header wrapper with borders (reactive to hover/active)
-    @if $variant != 'filled' {
+    // Header wrapper with borders (only for outline variant)
+    @if $variant == 'outline' {
       .blind-header-wrapper {
+        border: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
         border-bottom: none;
         border-radius: var(--theme-blind--border-radius) var(--theme-blind--border-radius) 0 0;
 
-        @if $variant == 'outline' {
-          border: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
-          border-bottom: none;
+        @include hover.hover {
+          border-color: var(--theme-color-ghost--hover);
+        }
 
-          @include hover.hover {
-            border-color: var(--theme-color-ghost--hover);
-          }
-
-          @include hover.active {
-            border-color: var(--theme-color-ghost--active);
-          }
-        } @else {
-          border: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
-          border-bottom: none;
-
-          @include hover.hover {
-            border-color: var(--theme-color-#{$variant}--hover);
-          }
-
-          @include hover.active {
-            border-color: var(--theme-color-#{$variant}--active);
-          }
+        @include hover.active {
+          border-color: var(--theme-color-ghost--active);
         }
       }
 
-      // Inner header button - no border-radius when wrapper has border
       .blind-header {
         border-radius: 0;
       }
+    }
 
-      // Blind content with borders (non-reactive, stays default)
+    // Blind content with borders (non-reactive, stays default)
+    @if $variant != 'filled' {
       .blind-content {
-        border-top: none;
         border-radius: 0 0 var(--theme-blind--border-radius) var(--theme-blind--border-radius);
 
         @if $variant == 'outline' {
@@ -269,38 +254,19 @@ $blind-variants: (
   @include blind($variant);
 }
 
-// Handle collapsed state for variants with borders (not filled)
+// Handle collapsed state for outline variant
 // When collapsed, header wrapper needs bottom border and full border-radius
-@each $variant in $blind-variants {
-  @if $variant == 'outline' {
-    :host(.blind-#{$variant}[collapsed]) {
-      .blind-header-wrapper {
-        border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
-        border-radius: var(--theme-blind--border-radius);
+:host(.blind-outline[collapsed]) {
+  .blind-header-wrapper {
+    border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-soft-bdr);
+    border-radius: var(--theme-blind--border-radius);
 
-        @include hover.hover {
-          border-color: var(--theme-color-ghost--hover);
-        }
-
-        @include hover.active {
-          border-color: var(--theme-color-ghost--active);
-        }
-      }
+    @include hover.hover {
+      border-color: var(--theme-color-ghost--hover);
     }
-  } @else if $variant != 'filled' {
-    :host(.blind-#{$variant}[collapsed]) {
-      .blind-header-wrapper {
-        border-bottom: solid var(--theme-blind--border-thickness) var(--theme-color-#{$variant});
-        border-radius: var(--theme-blind--border-radius);
 
-        @include hover.hover {
-          border-color: var(--theme-color-#{$variant}--hover);
-        }
-
-        @include hover.active {
-          border-color: var(--theme-color-#{$variant}--active);
-        }
-      }
+    @include hover.active {
+      border-color: var(--theme-color-ghost--active);
     }
   }
 }
