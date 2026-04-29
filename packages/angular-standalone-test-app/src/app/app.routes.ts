@@ -19,7 +19,6 @@ type IxPreviewRoutes = {
   'preview/modal-by-instance': AngularComponent;
   'preview/modal-by-template': AngularComponent;
   'preview/select-ng-model': AngularComponent;
-  'preview/tabs-overflow': AngularComponent;
   'preview/toggle-ng-model': AngularComponent;
 };
 
@@ -27,6 +26,8 @@ export const routePaths: IxPreviewRoutes = {
   '': () => import('../playground/playground').then((m) => m.default),
   'preview/about-and-legal': () =>
     import('../preview-examples/about-and-legal').then((m) => m.default),
+  'preview/about-and-legal-legacy': () =>
+    import('../preview-examples/about-and-legal-legacy').then((m) => m.default),
   'preview/action-card': () =>
     import('../preview-examples/action-card').then((m) => m.default),
   'preview/add-icons': () =>
@@ -70,7 +71,9 @@ export const routePaths: IxPreviewRoutes = {
   'preview/button-subtle-tertiary': () =>
     import('../preview-examples/button-subtle-tertiary').then((m) => m.default),
   'preview/button-subtle-secondary': () =>
-    import('../preview-examples/button-subtle-secondary').then((m) => m.default),
+    import('../preview-examples/button-subtle-secondary').then(
+      (m) => m.default
+    ),
   'preview/button-group': () =>
     import('../preview-examples/button-group').then((m) => m.default),
   'preview/button-loading': () =>
@@ -150,7 +153,9 @@ export const routePaths: IxPreviewRoutes = {
   'preview/datetime-input': () =>
     import('../preview-examples/datetime-input').then((m) => m.default),
   'preview/datetime-input-disabled': () =>
-    import('../preview-examples/datetime-input-disabled').then((m) => m.default),
+    import('../preview-examples/datetime-input-disabled').then(
+      (m) => m.default
+    ),
   'preview/datetime-input-label': () =>
     import('../preview-examples/datetime-input-label').then((m) => m.default),
   'preview/datetime-input-min-max-date': () =>
@@ -448,6 +453,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/select-validation').then((m) => m.default),
   'preview/settings': () =>
     import('../preview-examples/settings').then((m) => m.default),
+  'preview/settings-legacy': () =>
+    import('../preview-examples/settings-legacy').then((m) => m.default),
   'preview/slider': () =>
     import('../preview-examples/slider').then((m) => m.default),
   'preview/slider-error': () =>
@@ -589,7 +596,9 @@ export const routePaths: IxPreviewRoutes = {
   'preview/button-danger-tertiary': () =>
     import('../preview-examples/button-danger-tertiary').then((m) => m.default),
   'preview/button-danger-secondary': () =>
-    import('../preview-examples/button-danger-secondary').then((m) => m.default),
+    import('../preview-examples/button-danger-secondary').then(
+      (m) => m.default
+    ),
   'preview/date-input-min-max-date': () =>
     import('../preview-examples/date-input-min-max-date').then(
       (m) => m.default

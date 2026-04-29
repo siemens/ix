@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import AboutAndLegal from '../preview-examples/about-and-legal';
+import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
@@ -204,6 +205,7 @@ import SelectMultiple from '../preview-examples/select-multiple';
 import SelectNgModel from '../preview-examples/select-ng-model';
 import SelectValidation from '../preview-examples/select-validation';
 import Settings from '../preview-examples/settings';
+import SettingsLegacy from '../preview-examples/settings-legacy';
 import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
@@ -263,6 +265,10 @@ const routes: Routes = [
       {
         path: 'about-and-legal',
         component: AboutAndLegal,
+      },
+      {
+        path: 'about-and-legal-legacy',
+        component: AboutAndLegalLegacy,
       },
       {
         path: 'action-card',
@@ -841,6 +847,7 @@ const routes: Routes = [
       { path: 'select-validation', component: SelectValidation },
       { path: 'select', component: Select },
       { path: 'settings', component: Settings },
+      { path: 'settings-legacy', component: SettingsLegacy },
       { path: 'spinner', component: Spinner },
       { path: 'spinner-large', component: SpinnerLarge },
       { path: 'split-button-icons', component: SplitButtonIcons },

@@ -14,6 +14,7 @@ import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
+import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
@@ -189,6 +190,7 @@ import SelectMultiple from './preview-examples/select-multiple.vue';
 import SelectValidation from './preview-examples/select-validation.vue';
 import Select from './preview-examples/select.vue';
 import Settings from './preview-examples/settings.vue';
+import SettingsLegacy from './preview-examples/settings-legacy.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
 import SliderTrace from './preview-examples/slider-trace.vue';
@@ -253,13 +255,12 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
-} & {
-  '/preview/tabs-overflow': any;
-};
+} & {};
 
 const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
+  '/preview/about-and-legal-legacy': AboutAndLegalLegacy,
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
@@ -359,9 +360,9 @@ const routes: IxPreviewRoutes = {
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
   '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
   '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
-  '/preview/icon-toggle-button-subtle-secondary': IconToggleButtonSubtleSecondary,
-  '/preview/icon-toggle-button-subtle-primary':
-    IconToggleButtonSubtlePrimary,
+  '/preview/icon-toggle-button-subtle-secondary':
+    IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary': IconToggleButtonSubtlePrimary,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
@@ -417,6 +418,7 @@ const routes: IxPreviewRoutes = {
   '/preview/tree-custom': TreeCustom,
   '/preview/popover-news': PopoverNews,
   '/preview/settings': Settings,
+  '/preview/settings-legacy': SettingsLegacy,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
   '/preview/modal-close': ModalClose,

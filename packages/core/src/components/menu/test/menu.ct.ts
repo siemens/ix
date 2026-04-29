@@ -169,7 +169,7 @@ regressionTest('should open and close settings', async ({ mount, page }) => {
   let settings = page.locator('ix-menu-settings');
   await expect(settings).toBeVisible();
 
-  const closeButton = settings.getByRole('button');
+  const closeButton = settings.getByRole('button', { name: 'Close Settings' });
   await closeButton.click();
   await expect(settings).not.toBeVisible();
 
@@ -214,7 +214,7 @@ regressionTest('should open and close about', async ({ mount, page }) => {
   let about = page.locator('ix-menu-about');
   await expect(about).toBeVisible();
 
-  const closeButton = about.getByRole('button');
+  const closeButton = about.getByRole('button', { name: 'Close About' });
   await closeButton.click();
   await expect(about).not.toBeVisible();
 

@@ -189,9 +189,9 @@ regressionTest.describe('basic navigation mobile', () => {
           <ix-menu-item>Test 1</ix-menu-item>
           <ix-menu-item>Test 1</ix-menu-item>
           <ix-menu-settings>
-            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
-            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
-            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+            <ix-menu-settings-item tab-key="tab1">Item 1</ix-menu-settings-item>
+            <ix-menu-settings-item tab-key="tab2">Item 1</ix-menu-settings-item>
+            <ix-menu-settings-item tab-key="tab3">Item 1</ix-menu-settings-item>
           </ix-menu-settings>
         </ix-menu>
         <div class="debug-element"></div>

@@ -1,4 +1,6 @@
 import './about-and-legal-axe.spec.ts';
+import './about-and-legal-legacy-axe.spec.ts';
+import './about-and-legal-legacy.spec.ts';
 import './about-and-legal.spec.ts';
 import './action-card-axe.spec.ts';
 import './action-card.spec.ts';
@@ -345,6 +347,8 @@ import './select-validation-axe.spec.ts';
 import './select-validation.spec.ts';
 import './select.spec.ts';
 import './settings-axe.spec.ts';
+import './settings-legacy-axe.spec.ts';
+import './settings-legacy.spec.ts';
 import './settings.spec.ts';
 import './slider-axe.spec.ts';
 import './slider-error-axe.spec.ts';

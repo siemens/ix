@@ -12,12 +12,14 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxMenuAboutItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-react';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 export default () => {
   const ref = useRef<HTMLIxMenuElement>(null);
+  const [activeTabKey, setActiveTabKey] = useState('tab-1');
 
   useLayoutEffect(() => {
     const element = ref.current;
@@ -32,9 +34,24 @@ export default () => {
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
       <IxMenu ref={ref}>
-        <IxMenuAbout>
-          <IxMenuAboutItem label="Tab 1">Content 1</IxMenuAboutItem>
-          <IxMenuAboutItem label="Tab 2">Content 2</IxMenuAboutItem>
+        <IxMenuAbout suppressLegacyTabs>
+          <IxTabs
+            activeTabKey={activeTabKey}
+            onTabChange={({ detail }) => setActiveTabKey(detail ?? 'tab-1')}
+          >
+            <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
+            <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
+          </IxTabs>
+          {activeTabKey === 'tab-1' ? (
+            <section role="tabpanel" aria-label="About and legal content">
+              Content 1
+            </section>
+          ) : null}
+          {activeTabKey === 'tab-2' ? (
+            <section role="tabpanel" aria-label="About and legal content">
+              Content 2
+            </section>
+          ) : null}
         </IxMenuAbout>
       </IxMenu>
     </IxApplication>

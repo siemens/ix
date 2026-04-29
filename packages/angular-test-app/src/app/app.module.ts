@@ -20,6 +20,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
+import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
@@ -214,6 +215,7 @@ import SelectMultiple from '../preview-examples/select-multiple';
 import SelectNgModel from '../preview-examples/select-ng-model';
 import SelectValidation from '../preview-examples/select-validation';
 import Settings from '../preview-examples/settings';
+import SettingsLegacy from '../preview-examples/settings-legacy';
 import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
 import SliderMarker from '../preview-examples/slider-marker';
@@ -275,6 +277,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     InputFormValidation,
     AppComponent,
     AboutAndLegal,
+    AboutAndLegalLegacy,
     ActionCard,
     AddIcons,
     AgGrid,
@@ -441,6 +444,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     SelectValidation,
     Select,
     Settings,
+    SettingsLegacy,
     SliderError,
     SliderMarker,
     SliderTrace,

@@ -1,4 +1,5 @@
 import './about-and-legal-axe.spec.ts';
+import './about-and-legal-legacy-axe.spec.ts';
 import './action-card-axe.spec.ts';
 import './add-icons-axe.spec.ts';
 import './aggrid-axe.spec.ts';
@@ -172,6 +173,7 @@ import './select-editable-axe.spec.ts';
 import './select-multiple-axe.spec.ts';
 import './select-validation-axe.spec.ts';
 import './settings-axe.spec.ts';
+import './settings-legacy-axe.spec.ts';
 import './slider-axe.spec.ts';
 import './slider-error-axe.spec.ts';
 import './slider-marker-axe.spec.ts';

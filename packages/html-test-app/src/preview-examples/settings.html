@@ -20,13 +20,26 @@ LICENSE file in the root directory of this source tree.
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
       <ix-menu>
-        <ix-menu-settings>
-          <ix-menu-settings-item
-            label="Example Setting 1"
-          ></ix-menu-settings-item>
-          <ix-menu-settings-item
-            label="Example Setting 2"
-          ></ix-menu-settings-item>
+        <ix-menu-settings suppress-legacy-tabs>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1">Example Setting 1</ix-tab-item>
+            <ix-tab-item tab-key="tab-2">Example Setting 2</ix-tab-item>
+          </ix-tabs>
+          <section
+            role="tabpanel"
+            aria-label="Settings content"
+            data-tab-content="tab-1"
+          >
+            Example Setting 1 content
+          </section>
+          <section
+            role="tabpanel"
+            aria-label="Settings content"
+            data-tab-content="tab-2"
+            hidden
+          >
+            Example Setting 2 content
+          </section>
         </ix-menu-settings>
       </ix-menu>
     </ix-application>
@@ -34,7 +47,20 @@ LICENSE file in the root directory of this source tree.
     <script>
       (async function () {
         await window.customElements.whenDefined('ix-menu');
+        await window.customElements.whenDefined('ix-tabs');
         const menu = document.querySelector('ix-menu');
+        const settings = menu.querySelector('ix-menu-settings');
+        const tabs = settings.querySelector('ix-tabs');
+        const updateVisibleContent = (tabKey) => {
+          settings.querySelectorAll('[data-tab-content]').forEach((content) => {
+            content.hidden = content.dataset.tabContent !== tabKey;
+          });
+        };
+
+        updateVisibleContent(tabs.activeTabKey ?? 'tab-1');
+        tabs.addEventListener('tabChange', (event) => {
+          updateVisibleContent(event.detail ?? 'tab-1');
+        });
         await menu.toggleSettings(true);
       })();
     </script>

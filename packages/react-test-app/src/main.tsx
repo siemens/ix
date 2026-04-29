@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
+import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
@@ -205,6 +206,7 @@ import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
 import SelecValidation from './preview-examples/select-validation';
 import Settings from './preview-examples/settings';
+import SettingsLegacy from './preview-examples/settings-legacy';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
 import SliderMarker from './preview-examples/slider-marker';
@@ -269,9 +271,7 @@ type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
-} & {
-  '/preview/tabs-overflow': React.ComponentType;
-};
+} & {};
 
 const routes: IxPreviewRoutes = {
   '/': App,
@@ -279,6 +279,7 @@ const routes: IxPreviewRoutes = {
   '/preview/grid-size': GridSize,
   '/preview/grid': Grid,
   '/preview/about-and-legal': AboutAndLegal,
+  '/preview/about-and-legal-legacy': AboutAndLegalLegacy,
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
@@ -421,6 +422,7 @@ const routes: IxPreviewRoutes = {
   '/preview/popover-news': PopoverNews,
   '/preview/push-card': PushCard,
   '/preview/settings': Settings,
+  '/preview/settings-legacy': SettingsLegacy,
   '/preview/slider-error': SliderError,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-trace': SliderTrace,

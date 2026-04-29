@@ -38,6 +38,7 @@ import {
   getTimePickerColumnSeparator,
 } from './time-picker-display';
 import { isFormat12Hour, LUXON_FORMAT_PATTERNS } from './time-picker-format';
+import { isSelectableForUnitWithinBounds } from './time-picker-range';
 import { findNextSelectableRingValue } from './time-picker-step-focus';
 import type {
   TimePickerCorners,
@@ -278,12 +279,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this._time = timeFormat;
   }
 
-  /** Earliest selectable time (`format` tokens). Invalid non-empty values are ignored (`console.warn`).
+  /** Earliest selectable time (`format` tokens). Invalid non-empty values are ignored.
    *
    * @since 5.0.0 */
   @Prop() minTime?: string;
 
-  /** Latest selectable time (`format` tokens). Invalid non-empty values are ignored (`console.warn`).
+  /** Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
    *
    * @since 5.0.0 */
   @Prop() maxTime?: string;
@@ -810,9 +811,17 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return false;
     }
     if (bounds) {
-      return isWithinTimePickerConstraints(candidate, bounds.min, bounds.max);
+      return this.isSelectableForUnitWithinBounds(unit, candidate, bounds);
     }
     return this.isWithinTimeConstraints(candidate);
+  }
+
+  private isSelectableForUnitWithinBounds(
+    unit: TimePickerDescriptorUnit,
+    candidate: DateTime,
+    bounds: { min: DateTime | null; max: DateTime | null }
+  ): boolean {
+    return isSelectableForUnitWithinBounds(unit, candidate, bounds);
   }
 
   /** Provisional `unit` for cross-column base: roving cell, earlier descriptors, else displayed digits. */
