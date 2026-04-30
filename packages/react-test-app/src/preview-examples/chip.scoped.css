@@ -11,6 +11,95 @@
  * If you want to modify the example styles do this only inside the html-test-app
  */
 
+.chip-page {
+  box-sizing: border-box;
+  max-width: 56rem;
+  padding: 1rem 1.5rem 2.5rem;
+  overflow: auto;
+  height: 100%;
+}
+
+.chip-page__header {
+  margin-bottom: 2rem;
+}
+
+.chip-page__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.chip-page__lede {
+  margin: 0;
+  max-width: 42rem;
+  line-height: 1.5;
+  color: var(--theme-color-std-text);
+}
+
+.chip-section {
+  margin-bottom: 2.5rem;
+}
+
+.chip-section__title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.chip-section__description {
+  margin: 0 0 0.75rem;
+  max-width: 48rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--theme-color-std-text);
+}
+
+.chip-pair-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem 2rem;
+  align-items: center;
+}
+
+.chip-pair-grid__colhead {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  margin-bottom: 0.25rem;
+}
+
+.chip-pair-grid__narrow {
+  min-width: 0;
+  max-width: 20rem;
+}
+
+.chip-page__suggestions {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.25rem;
+  background: var(--theme-color-soft-bg);
+  border: 1px solid var(--theme-color-soft-bdr);
+}
+
+.chip-page__suggestions-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.chip-page__suggestions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.chip-page__suggestions li {
+  margin-bottom: 0.35rem;
+}
+
+/* Legacy layout (if reused elsewhere) */
 .chip {
   display: flex;
   gap: 2rem;
