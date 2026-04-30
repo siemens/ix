@@ -11,12 +11,13 @@
  * If you want to modify the example styles do this only inside the html-test-app
  */
 
+/* Chip examples matrix (e.g. React /preview/chip-examples) — keep in sync with consumers */
 .chip-page {
   box-sizing: border-box;
   max-width: 56rem;
   padding: 1rem 1.5rem 2.5rem;
-  overflow: auto;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .chip-page__header {
@@ -27,13 +28,6 @@
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-}
-
-.chip-page__lede {
-  margin: 0;
-  max-width: 42rem;
-  line-height: 1.5;
-  color: var(--theme-color-std-text);
 }
 
 .chip-section {
@@ -74,32 +68,7 @@
   max-width: 20rem;
 }
 
-.chip-page__suggestions {
-  margin-top: 2rem;
-  padding: 1rem 1.25rem;
-  border-radius: 0.25rem;
-  background: var(--theme-color-soft-bg);
-  border: 1px solid var(--theme-color-soft-bdr);
-}
-
-.chip-page__suggestions-title {
-  margin: 0 0 0.5rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.chip-page__suggestions ul {
-  margin: 0;
-  padding-left: 1.25rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.chip-page__suggestions li {
-  margin-bottom: 0.35rem;
-}
-
-/* Legacy layout (if reused elsewhere) */
+/* Legacy two-column layout (/preview/chip framework snapshot) */
 .chip {
   display: flex;
   gap: 2rem;

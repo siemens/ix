@@ -53,6 +53,7 @@ import CategoryFilter from './preview-examples/category-filter.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
+import ChipExamples from './preview-examples/chip-examples.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
@@ -255,7 +256,9 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
-} & {};
+} & {
+  '/preview/chip-examples': any;
+};
 
 const routes: IxPreviewRoutes = {
   '/': App,
@@ -298,6 +301,7 @@ const routes: IxPreviewRoutes = {
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
   '/preview/chip': Chip,
+  '/preview/chip-examples': ChipExamples,
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,

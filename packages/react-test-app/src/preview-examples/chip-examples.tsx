@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Temporary React test app page: `/preview/chip-examples` (remove when UX review is done).
+ * Chip matrix preview: `/preview/chip-examples` in React, Vue, and Angular test apps (remove when UX review is done).
  */
 
 import { iconPrint } from '@siemens/ix-icons/icons';

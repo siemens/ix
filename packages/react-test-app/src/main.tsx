@@ -272,7 +272,9 @@ type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
-} & {};
+} & {
+  '/preview/chip-examples': React.ComponentType;
+};
 
 const routes: IxPreviewRoutes = {
   '/': App,
