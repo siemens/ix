@@ -64,3 +64,4 @@ import './generated/pill-variants.spec';
 
 // Chip tests
 import './generated/chip.spec';
+import './generated/chip-examples.spec';

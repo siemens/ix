@@ -38,6 +38,7 @@ import './category-filter-suggestions-axe.spec.ts';
 import './checkbox-axe.spec.ts';
 import './checkbox-indeterminate-axe.spec.ts';
 import './chip-axe.spec.ts';
+import './chip-examples-axe.spec.ts';
 import './content-axe.spec.ts';
 import './content-header-axe.spec.ts';
 import './content-header-no-back-axe.spec.ts';
