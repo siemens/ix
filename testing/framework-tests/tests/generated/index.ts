@@ -77,8 +77,6 @@ import './checkbox-indeterminate-axe.spec.ts';
 import './checkbox-indeterminate.spec.ts';
 import './checkbox.spec.ts';
 import './chip-axe.spec.ts';
-import './chip-examples-axe.spec.ts';
-import './chip-examples.spec.ts';
 import './chip.spec.ts';
 import './content-axe.spec.ts';
 import './content-header-axe.spec.ts';
