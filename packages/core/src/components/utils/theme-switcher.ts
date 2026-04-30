@@ -21,17 +21,30 @@ export type ThemeChangeEventDetail = {
 class ThemeSwitcher {
   private mutationObserver?: MutationObserver;
   private mediaQueryList?: MediaQueryList;
+  private lastEmittedSnapshot?: string;
+
+  private getSnapshot(): string {
+    return `${this.getTheme()}-${this.getMode()}`;
+  }
+
   private emitThemeChange(isMediaChange: boolean) {
-    this.themeChanged.emit({
+    const snapshot = this.getSnapshot();
+    if (snapshot === this.lastEmittedSnapshot && !isMediaChange) return;
+    this.lastEmittedSnapshot = snapshot;
+
+    const detail: ThemeChangeEventDetail = {
       theme: this.getTheme(),
       colorSchema: this.getColorSchema(),
       mode: this.getMode(),
       isMediaChange,
-    });
+    };
+    this.themeChanged.emit(detail);
   }
+
   private readonly handleMediaQueryChange = () => {
     this.emitThemeChange(true);
   };
+
   readonly themeChanged = new TypedEvent<ThemeChangeEventDetail>();
 
   /**
@@ -89,18 +102,15 @@ class ThemeSwitcher {
 
   public setTheme(themeName: string, colorSchema?: ThemeVariant) {
     document.documentElement.dataset.ixTheme = themeName;
-    if (!colorSchema) {
-      this.setColorSchema(this.getColorSchema());
-      return;
-    }
-
-    this.setColorSchema(colorSchema);
+    document.documentElement.dataset.ixColorSchema =
+      colorSchema ?? this.getColorSchema();
+    this.emitThemeChange(false);
   }
 
   public toggleMode() {
     const newMode: ThemeMode = this.getMode() === 'dark' ? 'light' : 'dark';
-
     document.documentElement.dataset.ixColorSchema = newMode;
+    this.emitThemeChange(false);
   }
 
   public getTheme() {
@@ -118,6 +128,7 @@ class ThemeSwitcher {
 
   public setColorSchema(variant: ThemeVariant = getCurrentSystemAppearance()) {
     document.documentElement.dataset.ixColorSchema = variant;
+    this.emitThemeChange(false);
   }
 
   public constructor() {
