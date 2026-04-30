@@ -278,7 +278,9 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await selectCtrl.focusInput();
   await page.keyboard.press('ArrowDown');
 
-  await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+  await expect(
+    getDropdownDialog(selectCtrl.getDropdownLocator())
+  ).toBeVisible();
 
   await page.keyboard.press('Escape');
   // Short timeout to allow for the closing animation to finish
@@ -290,7 +292,9 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await selectCtrl.focusInput();
   await selectCtrl.fillInput('1');
   await page.keyboard.press('ArrowDown');
-  await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+  await expect(
+    getDropdownDialog(selectCtrl.getDropdownLocator())
+  ).toBeVisible();
 
   const item1 = page
     .locator('ix-select')
@@ -660,7 +664,9 @@ test.describe('Enter selection with non-existing and existing items', () => {
     // Test existing item selection
     await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 1');
-    await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+    await expect(
+      getDropdownDialog(selectCtrl.getDropdownLocator())
+    ).toBeVisible();
 
     const existingItem = page.getByRole('option', { name: 'Item 1' });
     await expect(existingItem).toBeVisible();
@@ -679,7 +685,9 @@ test.describe('Enter selection with non-existing and existing items', () => {
     // Test non-existing item selection (creates new item in editable mode)
     await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 3');
-    await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+    await expect(
+      getDropdownDialog(selectCtrl.getDropdownLocator())
+    ).toBeVisible();
 
     const addItemButton = await selectCtrl.getAddItemDropdownItemLocator();
     await expect(addItemButton).toBeVisible();
@@ -732,7 +740,9 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.arrowDown(true);
     await selectCtrl.pressEnter();
 
-    await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+    await expect(
+      getDropdownDialog(selectCtrl.getDropdownLocator())
+    ).toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 });
@@ -934,7 +944,9 @@ test('should trim the value before saving', async ({ mount, page }) => {
 
   await selectCtrl.focusInput();
   await selectCtrl.fillInput('   Item 7');
-  await expect(getDropdownDialog(selectCtrl.getDropdownLocator())).toBeVisible();
+  await expect(
+    getDropdownDialog(selectCtrl.getDropdownLocator())
+  ).toBeVisible();
 
   const item7 = page.getByRole('option', { name: 'Item 7' });
   await expect(item7).toBeVisible();

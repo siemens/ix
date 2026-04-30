@@ -14,7 +14,12 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { getDropdownDialog, regressionTest, viewPorts, expect } from '@utils/test';
+import {
+  getDropdownDialog,
+  regressionTest,
+  viewPorts,
+  expect,
+} from '@utils/test';
 
 const html = String.raw;
 
