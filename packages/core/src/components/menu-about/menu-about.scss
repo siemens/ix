@@ -9,6 +9,7 @@
 
 @use 'misc/common-variables' as vars;
 @use 'legacy/fonts';
+@use 'mixins/shadow-dom/component';
 
 :host {
   display: block;
@@ -19,6 +20,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
+
+  @include component.ix-component;
 
   .about-header {
     display: flex;
@@ -36,9 +39,5 @@
 
   ix-tabs {
     margin-bottom: 1.5rem;
-  }
-
-  ix-menu-about-item {
-    display: none;
   }
 }

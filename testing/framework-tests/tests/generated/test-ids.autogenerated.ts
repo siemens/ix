@@ -24,6 +24,7 @@ export const testIds = [
   "toast-position",
   "toast-custom",
   "timepicker",
+  "timepicker-min-max-time",
   "timepicker-intervals",
   "timepicker-format-adjusted",
   "time-range",
@@ -56,6 +57,7 @@ export const testIds = [
   "slider-marker",
   "slider-error",
   "settings",
+  "settings-legacy",
   "select",
   "select-validation",
   "select-multiple",
@@ -199,7 +201,7 @@ export const testIds = [
   "date-input-label",
   "date-input-disabled",
   "date-dropdown",
-  "date-dropdown-user-range",
+  "date-dropdown-presets",
   "custom-field",
   "custom-field-validation",
   "content",
@@ -245,5 +247,6 @@ export const testIds = [
   "aggrid",
   "add-icons",
   "action-card",
-  "about-and-legal"
+  "about-and-legal",
+  "about-and-legal-legacy"
 ] as const;

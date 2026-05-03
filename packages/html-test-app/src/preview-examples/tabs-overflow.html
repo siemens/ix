@@ -15,39 +15,72 @@ Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs).
     <link rel="stylesheet" href="./tabs.css" />
   </head>
   <body>
-    <div class="tabs" style="max-width: 340px;">
-      <ix-tabs layout="auto">
-        <ix-tab-item data-tab-id="overview">Overview</ix-tab-item>
-        <ix-tab-item data-tab-id="analytics">Analytics</ix-tab-item>
-        <ix-tab-item data-tab-id="events">Events</ix-tab-item>
-        <ix-tab-item data-tab-id="automation">Automation</ix-tab-item>
-        <ix-tab-item data-tab-id="data-sources">Data Sources</ix-tab-item>
-        <ix-tab-item data-tab-id="notifications">Notifications</ix-tab-item>
-        <ix-tab-item data-tab-id="history">History</ix-tab-item>
-        <ix-tab-item data-tab-id="settings">Settings</ix-tab-item>
+    <div class="tabs" style="max-width: 340px">
+      <ix-tabs active-tab-key="overview" layout="auto">
+        <ix-tab-item tab-key="overview">Overview</ix-tab-item>
+        <ix-tab-item tab-key="analytics">Analytics</ix-tab-item>
+        <ix-tab-item tab-key="events">Events</ix-tab-item>
+        <ix-tab-item tab-key="automation">Automation</ix-tab-item>
+        <ix-tab-item tab-key="data-sources">Data Sources</ix-tab-item>
+        <ix-tab-item tab-key="notifications">Notifications</ix-tab-item>
+        <ix-tab-item tab-key="history">History</ix-tab-item>
+        <ix-tab-item tab-key="settings">Settings</ix-tab-item>
       </ix-tabs>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="overview" class="show">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="overview"
+        class="show"
+      >
         Content Overview
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="analytics">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="analytics"
+      >
         Content Analytics
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="events">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="events"
+      >
         Content Events
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="automation">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="automation"
+      >
         Content Automation
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="data-sources">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="data-sources"
+      >
         Content Data Sources
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="notifications">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="notifications"
+      >
         Content Notifications
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="history">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="history"
+      >
         Content History
       </section>
-      <section role="tabpanel" aria-label="Example content" data-tab-content="settings">
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="settings"
+      >
         Content Settings
       </section>
     </div>
@@ -55,14 +88,21 @@ Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs).
     <script type="module">
       await globalThis.customElements.whenDefined('ix-tabs');
       const container = document.querySelector('.tabs');
-      const tabs = container.querySelectorAll('ix-tab-item[data-tab-id]');
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          const contentList = container.querySelectorAll('[data-tab-content]');
-          contentList.forEach((content) => {
-            content.classList.toggle('show', content.dataset.tabContent === tab.dataset.tabId);
-          });
+      const tabs = container.querySelector('ix-tabs');
+      const updateVisibleContent = (tabKey) => {
+        const contentList = container.querySelectorAll('[data-tab-content]');
+        contentList.forEach((content) => {
+          content.classList.toggle(
+            'show',
+            content.dataset.tabContent === tabKey
+          );
         });
+      };
+
+      updateVisibleContent(tabs.activeTabKey);
+
+      tabs.addEventListener('tabChange', (event) => {
+        updateVisibleContent(event.detail);
       });
     </script>
     <script type="module" src="./init.js"></script>

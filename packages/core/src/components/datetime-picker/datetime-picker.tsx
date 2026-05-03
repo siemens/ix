@@ -14,9 +14,12 @@ import {
   EventEmitter,
   h,
   Host,
+  State,
   Prop,
   Method,
+  Watch,
 } from '@stencil/core';
+import { DateTime } from 'luxon';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import type {
@@ -33,6 +36,9 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
+  /** Used when `dateFormat` has no date prefix before time tokens (Luxon `[HhmsaSZ]`). */
+  private static readonly defaultDateOnlyFormat = 'yyyy/LL/dd';
+
   @Element() hostElement!: HTMLIxDatetimePickerElement;
 
   /**
@@ -63,6 +69,20 @@ export class DatetimePicker
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
+
+  /**
+   * Earliest selectable time (`timeFormat` tokens). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() minTime?: string;
+
+  /**
+   * Latest selectable time (`timeFormat` tokens). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() maxTime?: string;
 
   /**
    * The selected starting date. If the picker is not in range mode, this is the selected date.
@@ -155,6 +175,142 @@ export class DatetimePicker
 
   private datePickerElement?: HTMLIxDatePickerElement;
   private timePickerElement?: HTMLIxTimePickerElement;
+  @State() private selectedFromDate?: string;
+
+  private hasTimeConstraintsConfigured(): boolean {
+    return !!(this.minTime?.trim() || this.maxTime?.trim());
+  }
+
+  private warnIfRangeModeIgnoresTimeConstraints(): void {
+    if (this.singleSelection || !this.hasTimeConstraintsConfigured()) {
+      return;
+    }
+
+    console.warn(
+      '[ix-datetime-picker] `minTime`/`maxTime` are ignored when range selection is enabled (`singleSelection=false`).'
+    );
+  }
+
+  @Watch('from')
+  watchFromPropHandler(value: string | undefined) {
+    this.selectedFromDate = value;
+  }
+
+  @Watch('singleSelection')
+  watchSingleSelectionPropHandler() {
+    this.warnIfRangeModeIgnoresTimeConstraints();
+  }
+
+  @Watch('minTime')
+  watchMinTimePropHandler() {
+    this.warnIfRangeModeIgnoresTimeConstraints();
+  }
+
+  @Watch('maxTime')
+  watchMaxTimePropHandler() {
+    this.warnIfRangeModeIgnoresTimeConstraints();
+  }
+
+  componentWillLoad() {
+    this.selectedFromDate = this.from;
+    this.warnIfRangeModeIgnoresTimeConstraints();
+  }
+
+  private get dateOnlyFormat(): string {
+    const timeTokenIndex = this.dateFormat.search(/[HhmsaSZ]/);
+    if (timeTokenIndex === -1) {
+      return this.dateFormat;
+    }
+
+    let end = timeTokenIndex;
+    while (end > 0 && " \t'T".includes(this.dateFormat[end - 1])) {
+      end--;
+    }
+
+    const prefix = this.dateFormat.slice(0, end).trimEnd();
+    return prefix === '' ? DatetimePicker.defaultDateOnlyFormat : prefix;
+  }
+
+  private parseDateValue(value: string | undefined): DateTime | null {
+    if (!value) {
+      return null;
+    }
+
+    let parsed = DateTime.fromFormat(value, this.dateFormat, {
+      locale: this.locale,
+    });
+
+    if (!parsed.isValid) {
+      parsed = DateTime.fromFormat(value, this.dateOnlyFormat, {
+        locale: this.locale,
+      });
+    }
+
+    if (!parsed.isValid) {
+      return null;
+    }
+
+    return parsed;
+  }
+
+  private parseDateConstraint(
+    value: string | undefined,
+    boundary: 'start' | 'end'
+  ): DateTime | null {
+    const parsed = this.parseDateValue(value);
+    if (!parsed) {
+      return null;
+    }
+
+    return boundary === 'start' ? parsed.startOf('day') : parsed.endOf('day');
+  }
+
+  private getSelectedFromDateTime(): DateTime | null {
+    const parsed = this.parseDateValue(this.selectedFromDate);
+    if (!parsed) {
+      return null;
+    }
+
+    return parsed.startOf('day');
+  }
+
+  private getEffectiveTimeConstraints(): {
+    minTime: string | undefined;
+    maxTime: string | undefined;
+  } {
+    if (!this.singleSelection) {
+      return { minTime: undefined, maxTime: undefined };
+    }
+
+    const hasDateBounds = !!(this.minDate || this.maxDate);
+    if (!hasDateBounds) {
+      return {
+        minTime: this.minTime,
+        maxTime: this.maxTime,
+      };
+    }
+
+    const selectedFromDate = this.getSelectedFromDateTime();
+    if (!selectedFromDate?.isValid) {
+      return { minTime: undefined, maxTime: undefined };
+    }
+
+    const minDate = this.parseDateConstraint(this.minDate, 'start');
+    const maxDate = this.parseDateConstraint(this.maxDate, 'end');
+
+    const applyMinTime =
+      !!minDate?.isValid &&
+      !!selectedFromDate?.isValid &&
+      selectedFromDate.hasSame(minDate, 'day');
+
+    const applyMaxTime =
+      !!maxDate?.isValid && selectedFromDate.hasSame(maxDate, 'day');
+
+    return {
+      minTime: applyMinTime ? this.minTime : undefined,
+      maxTime: applyMaxTime ? this.maxTime : undefined,
+    };
+  }
 
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
@@ -172,6 +328,11 @@ export class DatetimePicker
     event.stopPropagation();
 
     const { detail: date } = event;
+    if (typeof date === 'string') {
+      this.selectedFromDate = date;
+    } else {
+      this.selectedFromDate = date?.from;
+    }
     this.dateChange.emit(date);
   }
 
@@ -196,6 +357,8 @@ export class DatetimePicker
   }
 
   render() {
+    const { minTime, maxTime } = this.getEffectiveTimeConstraints();
+
     return (
       <Host>
         <ix-date-time-card
@@ -242,6 +405,8 @@ export class DatetimePicker
                   onTimeChange={(event) => this.onTimeChange(event)}
                   format={this.timeFormat}
                   time={this.time}
+                  minTime={minTime}
+                  maxTime={maxTime}
                   {...{
                     tabIndex: this.embedded ? -1 : 0,
                     [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,

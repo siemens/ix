@@ -15,5 +15,5 @@
     "moduleResolution": "bundler",
     "target": "es2017",
     "skipLibCheck": true
-  },
+  }
 }

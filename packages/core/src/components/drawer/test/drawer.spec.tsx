@@ -8,82 +8,68 @@
  */
 
 import './animejs.mock';
-import { newSpecPage } from '@stencil/core/testing';
+import { render, h } from '@stencil/vitest';
 import { fireEvent } from '@testing-library/dom';
-import { Drawer } from '../drawer';
+import { describe, expect, it } from 'vitest';
 
 describe('ix-drawer', () => {
-  let page: any;
-  let drawer: HTMLIxDrawerElement;
-  let container: HTMLDivElement;
+  async function setup() {
+    const rendered = await render(<ix-drawer>Example Content</ix-drawer>);
+    const drawer = rendered.root as HTMLIxDrawerElement;
 
-  beforeEach(async () => {
-    page = await newSpecPage({
-      components: [Drawer],
-      html: '<ix-drawer>Example Content</ix-drawer>',
-    });
-
-    drawer = document.querySelector('ix-drawer')!;
-    container = document.querySelector('[data-testid="container"]')!;
-  });
+    return { ...rendered, drawer };
+  }
 
   it('opens the drawer', async () => {
+    const { drawer, waitForChanges } = await setup();
+
     drawer.show = true;
-    await page.waitForChanges();
+    await waitForChanges();
 
-    expect(drawer.show).toBeTruthy();
-
-    await page.waitForChanges();
-    expect(drawer.innerText).toContain('Example Content');
+    expect(drawer.show).toBe(true);
+    expect(drawer).toHaveTextContent('Example Content');
   });
 
   it('closes the drawer', async () => {
+    const { drawer, waitForChanges } = await setup();
+
     drawer.show = true;
-    await page.waitForChanges();
+    await waitForChanges();
 
     const closeButton = drawer.shadowRoot!.querySelector(
       '[data-testid="close-button"]'
     )!;
     fireEvent.click(closeButton);
 
-    await page.waitForChanges();
-    expect(drawer.show).toBeFalsy();
-    expect(drawer.innerHTML).not.toContain('toggle');
+    await waitForChanges();
+    expect(drawer.show).toBe(false);
   });
 
   it('drawer is displayed at full height, if fullHeight is set to true', async () => {
-    drawer.toggleDrawer();
-    await page.waitForChanges();
+    const { drawer, waitForChanges } = await setup();
 
     drawer.fullHeight = true;
-    await page.waitForChanges();
+    await waitForChanges();
 
-    expect(container.style.height.includes('100%')).toBeTruthy();
+    expect(drawer.style.height.includes('100%')).toBe(true);
   });
 
   it('drawer is NOT displayed at full height, if fullHeight is set to false', async () => {
-    drawer.toggleDrawer();
-    await page.waitForChanges();
+    const { drawer, waitForChanges } = await setup();
 
     drawer.fullHeight = false;
-    await page.waitForChanges();
+    await waitForChanges();
 
-    expect(container.style.height.includes('auto')).toBeTruthy();
+    expect(drawer.style.height.includes('auto')).toBe(true);
   });
 
   it('emits an event, when show changed', async () => {
-    const mockCallback = jest.fn();
-    window.addEventListener('open', mockCallback);
+    const { drawer, spyOnEvent, waitForChanges } = await setup();
+    const openSpy = spyOnEvent('open');
 
-    drawer.toggleDrawer();
-    await page.waitForChanges();
+    drawer.show = true;
+    await waitForChanges();
 
-    const closeButton = drawer.shadowRoot!.querySelector(
-      '[data-testid="close-button"]'
-    )!;
-    fireEvent.click(closeButton);
-
-    window.removeEventListener('open', mockCallback);
-    expect(mockCallback).toHaveBeenCalled();
+    expect(openSpy).toHaveReceivedEvent();
   });
 });

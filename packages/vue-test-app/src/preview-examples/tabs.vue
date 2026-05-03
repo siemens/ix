@@ -11,37 +11,40 @@
 import { IxTabItem, IxTabs } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
-const selectedTab = ref(0);
-const changeTab = (tabId: number) => (selectedTab.value = tabId);
+const activeTabKey = ref('tab-1');
+
+const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
+  activeTabKey.value = event.detail ?? 'tab-1';
+};
 </script>
 
 <style scoped src="./tabs.css"></style>
 
 <template>
   <div class="tabs">
-    <IxTabs :selected="selectedTab">
-      <IxTabItem @click="changeTab(0)">Tab 1</IxTabItem>
-      <IxTabItem @click="changeTab(1)">Tab 2</IxTabItem>
-      <IxTabItem @click="changeTab(2)">Tab 3</IxTabItem>
+    <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
+      <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
+      <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
+      <IxTabItem tabKey="tab-3">Tab 3</IxTabItem>
     </IxTabs>
     <section
       role="tabpanel"
       aria-label="Example content"
-      v-show="selectedTab === 0"
+      v-show="activeTabKey === 'tab-1'"
     >
       Content Tab 1
     </section>
     <section
       role="tabpanel"
       aria-label="Example content"
-      v-show="selectedTab === 1"
+      v-show="activeTabKey === 'tab-2'"
     >
       Content Tab 2
     </section>
     <section
       role="tabpanel"
       aria-label="Example content"
-      v-show="selectedTab === 2"
+      v-show="activeTabKey === 'tab-3'"
     >
       Content Tab 3
     </section>
