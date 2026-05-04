@@ -197,6 +197,8 @@ $outline-border-width: 0.0625rem;
   }
 
   &.primary:not(.outline) {
+    color: var(--theme-chip-primary--color);
+
     .chip-main {
       @include chip-main-interactive-states(
         var(--theme-color-primary),
@@ -207,6 +209,8 @@ $outline-border-width: 0.0625rem;
     }
 
     .chip-close {
+      color: inherit;
+
       @include chip-close-surface(
         var(--theme-chip-close-btn--background),
         var(--theme-chip-primary--background--hover),
@@ -216,24 +220,27 @@ $outline-border-width: 0.0625rem;
   }
 
   &.primary.outline {
-    color: var(--theme-chip-outline--color);
+    color: var(--theme-chip-primary-outline--color--display);
     background-color: var(--theme-chip-primary-outline--background);
-    border: solid $outline-border-width var(--theme-chip-primary-outline--border-color);
+    border: solid $outline-border-width
+      var(--theme-chip-primary-outline--border-color);
 
     .chip-main {
       @include chip-main-interactive-states(
         transparent,
         var(--theme-chip-primary-outline--background--hover),
         var(--theme-chip-primary-outline--background--active),
-        var(--theme-chip-outline--color)
+        var(--theme-chip-primary-outline--color--display)
       );
+    }
 
-      .with-icon {
-        color: var(--theme-color-primary);
-      }
+    &.icon .with-icon {
+      color: var(--theme-color-primary);
     }
 
     .chip-close {
+      color: inherit;
+
       @include chip-close-hover-active-states(
         var(--theme-chip-primary-outline--background--hover),
         var(--theme-chip-primary-outline--background--active)
@@ -243,6 +250,8 @@ $outline-border-width: 0.0625rem;
 
   @each $color in $predefined-chips {
     &.#{$color}:not(.outline) {
+      color: var(--theme-color-#{$color}--contrast);
+
       .chip-main {
         @include chip-main-interactive-states(
           var(--theme-color-#{$color}),
@@ -253,6 +262,8 @@ $outline-border-width: 0.0625rem;
       }
 
       .chip-close {
+        color: inherit;
+
         @include chip-close-surface(
           var(--theme-chip-close-btn--background),
           var(--theme-color-#{$color}--hover),
@@ -282,6 +293,15 @@ $outline-border-width: 0.0625rem;
           color: var(--theme-color-#{$color});
         }
       }
+
+      .chip-close {
+        color: inherit;
+
+        @include chip-close-hover-active-states(
+          var(--theme-chip-outline--background--hover),
+          var(--theme-chip-outline--background--active)
+        );
+      }
     }
   }
 
@@ -303,6 +323,15 @@ $outline-border-width: 0.0625rem;
         var(--theme-chip-outline--background--active)
       );
     }
+
+    .chip-close {
+      color: inherit;
+
+      @include chip-close-hover-active-states(
+        var(--theme-chip-outline--background--hover),
+        var(--theme-chip-outline--background--active)
+      );
+    }
   }
 
   &.custom:not(.outline) {
@@ -320,27 +349,21 @@ $outline-border-width: 0.0625rem;
       }
 
       &:hover::after {
-        background-color: color-mix(
-          in srgb,
-          var(--theme-color-std-text) 10%,
-          transparent
-        );
+        background-color: color-mix(in srgb, currentColor 10%, transparent);
       }
 
       &:active::after {
-        background-color: color-mix(
-          in srgb,
-          var(--theme-color-std-text) 20%,
-          transparent
-        );
+        background-color: color-mix(in srgb, currentColor 20%, transparent);
       }
     }
 
     .chip-close {
+      color: inherit;
+
       @include chip-close-surface(
         var(--theme-chip-close-btn--background),
-        color-mix(in srgb, var(--theme-color-std-text) 10%, transparent),
-        color-mix(in srgb, var(--theme-color-std-text) 20%, transparent)
+        color-mix(in srgb, currentColor 10%, transparent),
+        color-mix(in srgb, currentColor 20%, transparent)
       );
     }
   }

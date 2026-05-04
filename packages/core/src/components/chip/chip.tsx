@@ -153,6 +153,9 @@ export class Chip
 
     if (this.variant === 'custom') {
       customMainStyle.color = this.chipColor;
+      if (this.chipColor) {
+        customWrapStyle.color = this.chipColor;
+      }
       if (this.outline && this.background) {
         customWrapStyle.borderColor = this.background;
       } else if (!this.outline && this.background) {
