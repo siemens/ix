@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/text-truncation';
-@use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -22,13 +21,12 @@
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
   touch-action: none; // Disable default touch behaviors for drag
-  border: 1px solid transparent;
 
   height: 2.5rem;
   min-height: 2.5rem;
   max-height: 2.5rem;
 
-  padding: 0.625rem 1.5rem;
+  padding: 0.0625rem 1.5rem;
   gap: 0.5rem;
 
   @include component.ix-component;
@@ -80,10 +78,6 @@
       background-color: var(--theme-animated-tab-circle--background--active);
     }
 
-    &:active {
-      background-color: var(--theme-animated-tab-circle--background--active);
-    }
-
     &.disabled {
       background-color: var(--theme-animated-tab-circle--background--disabled);
       border-color: var(--theme-animated-tab-circle--border-color--disabled);
@@ -125,6 +119,10 @@
   }
 }
 
+:host(:not(.disabled)) {
+  cursor: pointer;
+}
+
 :host(.circle) {
   height: 4.5rem;
   min-height: 4.5rem;
@@ -135,36 +133,6 @@
   flex-basis: 100%;
   width: 100%;
   @include text-truncation.ellipsis;
-}
-
-:host(:hover:not(.circle):not(.disabled):not(.selected)) {
-  background-color: var(--theme-tab--background--hover);
-  color: var(--theme-tab-color-hover);
-  cursor: pointer;
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--hover);
-  }
-}
-
-:host(:active:not(.circle):not(.disabled):not(.selected)) {
-  background-color: var(--theme-tab--background--active);
-  color: var(--theme-tab-color--active);
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--active);
-  }
-}
-
-:host(.disabled) {
-  cursor: default;
-  color: var(--theme-tab--color--disabled);
-  background-color: var(--theme-tab--background--disabled);
-  pointer-events: none;
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--disabled);
-  }
 }
 
 :host(.selected:not(.disabled)) {
@@ -186,13 +154,34 @@
   color: var(--theme-tab--color--selected);
 
   &::after {
-    top: calc(100% - 1px);
+    bottom: 0px;
   }
 }
 
 :host(.selected.top:not(.disabled)) {
   &::after {
-    top: -1px;
+    top: 0px;
+  }
+}
+
+:host(:hover:not(.circle):not(.disabled)) {
+  background-color: var(--theme-tab--background--hover);
+  color: var(--theme-tab-color-hover);
+}
+
+:host(:active:not(.circle):not(.disabled)) {
+  background-color: var(--theme-tab--background--active);
+  color: var(--theme-tab-color--active);
+}
+
+:host(.disabled) {
+  cursor: default;
+  color: var(--theme-tab--color--disabled);
+  background-color: var(--theme-tab--background--disabled);
+  pointer-events: none;
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--disabled);
   }
 }
 
@@ -215,6 +204,6 @@
 }
 
 :host(:focus-visible) {
-  outline: none;
-  border: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: -1px;
+  outline: 1px solid var(--theme-color-focus-bdr);
 }
