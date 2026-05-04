@@ -233,7 +233,6 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
       const isOverflowing = tabContainer.scrollWidth > tabContainer.clientWidth;
       this.isTabsOverflow = isOverflowing;
     });
-    // this.isTabsOverflow = isOverflowing;
   }
 
   private onTabClick(event: CustomEvent<TabClickDetail>) {
@@ -343,6 +342,7 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
               ref={this.tabsRef}
               class={{
                 tabs: true,
+                'tabs-stretched': this.layout === 'stretched',
               }}
               tabIndex={this.isTabsOverflow ? 0 : -1}
               onKeyDown={(event: KeyboardEvent) => this.onTabsNavigate(event)}
@@ -350,7 +350,7 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
               <slot></slot>
             </div>
           </div>
-          {this.isTabsOverflow && (
+          {this.isTabsOverflow && this.layout !== 'stretched' && (
             <ix-dropdown-button
               ariaLabel={this.ariaLabelMoreTabs}
               icon={iconMoreMenu}
