@@ -43,7 +43,7 @@ export class IxPlayground {
   render() {
     return (
       <Host>
-        <ix-tab-panels>
+        <ix-tab-set>
           <ix-tabs
             activeTabKey={this.activeTabKey}
             keyboardNavigation="manual"
@@ -80,7 +80,7 @@ export class IxPlayground {
           <ix-tab-panel tabKey="tab-4">Content 4</ix-tab-panel>
           <ix-tab-panel tabKey="tab-5">Content 5</ix-tab-panel>
           <ix-tab-panel tabKey="tab-6">Content 6</ix-tab-panel>
-        </ix-tab-panels>
+        </ix-tab-set>
       </Host>
     );
   }

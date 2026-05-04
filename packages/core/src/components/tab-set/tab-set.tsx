@@ -15,12 +15,12 @@ import { queryElements } from '../utils/focus/focus-utilities';
  * @since 5.0.0
  * */
 @Component({
-  tag: 'ix-tab-panels',
-  styleUrl: 'tab-panels.scss',
+  tag: 'ix-tab-set',
+  styleUrl: 'tab-set.scss',
   shadow: true,
 })
-export class TabPanels {
-  @Element() hostElement!: HTMLIxTabPanelsElement;
+export class TabSet {
+  @Element() hostElement!: HTMLIxTabSetElement;
 
   private get tabPanels() {
     return Array.from(

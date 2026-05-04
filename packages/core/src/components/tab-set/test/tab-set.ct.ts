@@ -11,7 +11,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
-    <ix-tab-panels>
+    <ix-tab-set>
       <ix-tabs active-tab-key="tab-1">
         <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
         <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
@@ -20,7 +20,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
       <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
       <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
       <ix-tab-panel tab-key="tab-3">Content 3</ix-tab-panel>
-    </ix-tab-panels>
+    </ix-tab-set>
   `);
 
   const accessibilityScanResults = await makeAxeBuilder().analyze();
@@ -29,17 +29,17 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
 
 regressionTest('renders all components', async ({ mount, page }) => {
   await mount(`
-    <ix-tab-panels>
+    <ix-tab-set>
       <ix-tabs active-tab-key="tab-1">
         <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
         <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
       </ix-tabs>
       <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
       <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
-    </ix-tab-panels>
+    </ix-tab-set>
   `);
 
-  await expect(page.locator('ix-tab-panels')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-tab-set')).toHaveClass(/\bhydrated\b/);
   await expect(page.locator('ix-tabs')).toHaveClass(/\bhydrated\b/);
   await expect(page.locator('ix-tab-panel').nth(0)).toHaveClass(/\bhydrated\b/);
   await expect(page.locator('ix-tab-panel').nth(1)).toHaveClass(/\bhydrated\b/);
@@ -49,7 +49,7 @@ regressionTest(
   'should show active panel and hide inactive panels',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-1">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
@@ -58,7 +58,7 @@ regressionTest(
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
         <ix-tab-panel tab-key="tab-3">Content 3</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     const panels = page.locator('ix-tab-panel');
@@ -73,7 +73,7 @@ regressionTest(
   'should toggle panel visibility on tab click',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-1">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
@@ -82,7 +82,7 @@ regressionTest(
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
         <ix-tab-panel tab-key="tab-3">Content 3</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     const panels = page.locator('ix-tab-panel');
@@ -105,14 +105,14 @@ regressionTest(
   'should update panel visibility when activeTabKey changes programmatically',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-1">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
         </ix-tabs>
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     const panels = page.locator('ix-tab-panel');
@@ -133,14 +133,14 @@ regressionTest(
   'should set aria-labelledby on tab-panel referencing tab-item id',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-1">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
         </ix-tabs>
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     const firstTabItem = page.locator('ix-tab-item').nth(0);
@@ -157,7 +157,7 @@ regressionTest(
   'should handle initial state with second tab active',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-2">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
@@ -166,7 +166,7 @@ regressionTest(
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
         <ix-tab-panel tab-key="tab-3">Content 3</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     const panels = page.locator('ix-tab-panel');
@@ -181,19 +181,19 @@ regressionTest(
   'should update when panels are added dynamically',
   async ({ mount, page }) => {
     await mount(`
-      <ix-tab-panels>
+      <ix-tab-set>
         <ix-tabs active-tab-key="tab-1">
           <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
           <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
         </ix-tabs>
         <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
         <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
-      </ix-tab-panels>
+      </ix-tab-set>
     `);
 
     await page.evaluate(() => {
-      const panels = document.querySelector('ix-tab-panels')!;
-      const tabs = panels.querySelector('ix-tabs')!;
+      const tabSet = document.querySelector('ix-tab-set')!;
+      const tabs = tabSet.querySelector('ix-tabs')!;
 
       const newTabItem = document.createElement('ix-tab-item');
       newTabItem.setAttribute('tab-key', 'tab-3');
@@ -203,7 +203,7 @@ regressionTest(
       const newPanel = document.createElement('ix-tab-panel');
       newPanel.setAttribute('tab-key', 'tab-3');
       newPanel.textContent = 'Content 3';
-      panels.appendChild(newPanel);
+      tabSet.appendChild(newPanel);
     });
 
     const panels = page.locator('ix-tab-panel');
