@@ -52,23 +52,11 @@
     align-items: center;
     height: 3rem;
     width: 3rem;
-    background-color: var(--theme-animated-tab-indicator--background);
+    background-color: var(--theme-animated-tab-circle--background);
     border-radius: 50%;
     border: 2px solid var(--theme-animated-tab-circle--border-color);
     color: var(--theme-an…icon--color);
     cursor: pointer;
-
-    &.selected:not(.disabled) {
-      background-color: var(--theme-animated-tab-circle--background--selected);
-      color: var(--theme-animated-tab-icon--color--selected);
-      border-color: var(--theme-animated-tab-circle--border-color--selected);
-
-      &:hover {
-        background-color: var(
-          --theme-animated-tab-circle--background--selected
-        );
-      }
-    }
 
     &:hover {
       background-color: var(--theme-animated-tab-circle--background--hover);
@@ -147,6 +135,16 @@
     height: 2px;
     background-color: var(--theme-tab-indicator--background--selected);
   }
+
+  .circle {
+    background-color: var(--theme-animated-tab-circle--background--selected);
+    color: var(--theme-animated-tab-icon--color--selected);
+    border-color: var(--theme-animated-tab-circle--border-color--selected);
+
+    &:hover {
+      background-color: var(--theme-animated-tab-circle--background--selected);
+    }
+  }
 }
 
 :host(.selected.bottom:not(.disabled)) {
@@ -203,7 +201,16 @@
   padding: 1rem 0.25rem;
 }
 
-:host(:focus-visible) {
-  outline-offset: -1px;
-  outline: 1px solid var(--theme-color-focus-bdr);
+:host(:not(.circle):focus-visible) {
+  outline-offset: -0.0625rem;
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+}
+
+:host(.circle:focus-visible) {
+  outline: none;
+
+  .circle {
+    outline-offset: 0.125rem;
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  }
 }
