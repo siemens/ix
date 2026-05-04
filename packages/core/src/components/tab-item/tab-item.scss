@@ -65,12 +65,6 @@
     &:active {
       background-color: var(--theme-animated-tab-circle--background--active);
     }
-
-    &.disabled {
-      background-color: var(--theme-animated-tab-circle--background--disabled);
-      border-color: var(--theme-animated-tab-circle--border-color--disabled);
-      cursor: default;
-    }
   }
 
   .counter {
@@ -180,6 +174,12 @@
 
   &::after {
     background-color: var(--theme-tab-indicator--background--disabled);
+  }
+
+  .circle {
+    background-color: var(--theme-animated-tab-circle--background--disabled);
+    border-color: var(--theme-animated-tab-circle--border-color--disabled);
+    cursor: default;
   }
 }
 

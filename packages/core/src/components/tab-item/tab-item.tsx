@@ -175,6 +175,7 @@ export class TabItem
             }}
           >
             {this.icon && <ix-icon name={this.icon} size="16"></ix-icon>}
+            <slot></slot>
           </div>
         )}
         {this.icon && variant !== 'rounded' && (
