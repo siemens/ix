@@ -1269,6 +1269,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       {descriptor.header}
                     </div>
                     <div
+                      role="listbox"
                       data-element-list-id={descriptor.unit}
                       class="element-list"
                       tabindex={-1}
