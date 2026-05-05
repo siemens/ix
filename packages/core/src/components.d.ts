@@ -1360,6 +1360,7 @@ export namespace Components {
           * Name of the form control for form submission
          */
         "name"?: string;
+        "openPicker": () => Promise<void>;
         /**
           * Placeholder text when input is empty
          */
