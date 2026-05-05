@@ -38,12 +38,12 @@ const createAccessor = async (dateTimeInput: Locator) => {
     selectTime: async (hour: number, minute: number, second: number) => {
       // Time buttons have aria-label like "hr: 14", "min: 30", "sec: 45"
       // getByRole pierces shadow DOM automatically
-      await dateTimeInput.getByRole('button', { name: `hr: ${hour}` }).click();
+      await dateTimeInput.getByRole('option', { name: `hr: ${hour}` }).click();
       await dateTimeInput
-        .getByRole('button', { name: `min: ${minute}` })
+        .getByRole('option', { name: `min: ${minute}` })
         .click();
       await dateTimeInput
-        .getByRole('button', { name: `sec: ${second}` })
+        .getByRole('option', { name: `sec: ${second}` })
         .click();
     },
     confirm: async () => {
@@ -213,7 +213,7 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel(/^10\s.+$/);
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const selectedHour = dateTimeInputElement.getByRole('button', {
+  const selectedHour = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
   await expect(selectedHour).toHaveClass(/selected/);
@@ -301,12 +301,8 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   await dateTimeAccessor.openByCalendar();
 
   await dateTimeAccessor.selectDay(15);
-
-  await dateTimeInputElement.getByRole('button', { name: 'hr: 14' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'min: 30' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'sec: 45' }).click();
-
-  await page.getByRole('button', { name: 'Confirm' }).click();
+  await dateTimeAccessor.selectTime(14, 30, 45);
+  await dateTimeAccessor.confirm();
 
   const dateTimeInput = page.locator('ix-datetime-input');
   await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
@@ -494,18 +490,18 @@ regressionTest('picker syncs with input value', async ({ mount, page }) => {
   const dateTimeAccessor = await createAccessor(dateTimeInputElement);
   await dateTimeAccessor.openByCalendar();
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const selectedDay = dateTimeInputElement.getByRole('button', {
+  const selectedDay = dateTimeInputElement.getByRole('gridcell', {
     name: '15 May',
   });
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 30',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 45',
   });
 
@@ -535,13 +531,13 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel('20 May');
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 15',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 45',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 30',
   });
 

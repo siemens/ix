@@ -269,7 +269,7 @@ regressionTest(
     const dropdown = firstInput.getByTestId('date-dropdown');
     await expect(dropdown).toHaveClass(/show/);
 
-    const day = firstInput.getByRole('button', { name: '12 March' });
+    const day = firstInput.getByRole('gridcell', { name: '12 March' });
     await day.click();
 
     await expect(dropdown).not.toHaveClass(/show/);
@@ -280,7 +280,7 @@ regressionTest(
     const secondDropdown = secondInput.getByTestId('date-dropdown');
     await expect(secondDropdown).toHaveClass(/show/);
 
-    const secondDay = secondInput.getByRole('button', { name: '12 March' });
+    const secondDay = secondInput.getByRole('gridcell', { name: '12 March' });
     await secondDay.click();
 
     await expect(secondDropdown).not.toHaveClass(/show/);
@@ -312,7 +312,7 @@ regressionTest(
     const dropdown = firstInput.getByTestId('time-dropdown');
     await expect(dropdown).toHaveClass(/show/);
 
-    const day = firstInput.getByRole('button', { name: 'sec: 15' });
+    const day = firstInput.getByRole('option', { name: 'sec: 15' });
     await day.click();
     await firstInput.getByRole('button', { name: 'Confirm' }).click();
 
@@ -324,7 +324,7 @@ regressionTest(
     const secondDropdown = secondInput.getByTestId('time-dropdown');
     await expect(secondDropdown).toHaveClass(/show/);
 
-    const secondDay = secondInput.getByRole('button', { name: 'sec: 15' });
+    const secondDay = secondInput.getByRole('option', { name: 'sec: 15' });
     await secondDay.click();
     await secondInput.getByRole('button', { name: 'Confirm' }).click();
 

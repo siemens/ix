@@ -16,7 +16,7 @@ function timePickerCell(
   unit: 'hr' | 'min' | 'sec',
   value: number
 ) {
-  return picker.getByRole('button', {
+  return picker.getByRole('option', {
     name: `${unit}: ${value}`,
     exact: true,
   });
