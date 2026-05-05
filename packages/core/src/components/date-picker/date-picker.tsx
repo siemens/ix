@@ -1050,6 +1050,11 @@ export class DatePicker
                     return day ? (
                       <div
                         role="gridcell"
+                        aria-selected={
+                          this.getUtilitiesBasedOnDay(day).isSelected()
+                            ? 'true'
+                            : 'false'
+                        }
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
