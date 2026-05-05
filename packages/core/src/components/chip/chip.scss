@@ -225,6 +225,14 @@ $outline-border-width: 0.0625rem;
     border: solid $outline-border-width
       var(--theme-chip-primary-outline--border-color);
 
+    &:hover:not(.inactive) {
+      border-color: var(--theme-chip-primary-outline--border-color--hover);
+    }
+
+    &:active:not(.inactive) {
+      border-color: var(--theme-chip-primary-outline--border-color--active);
+    }
+
     .chip-main {
       @include chip-main-interactive-states(
         transparent,
@@ -236,6 +244,14 @@ $outline-border-width: 0.0625rem;
 
     &.icon .with-icon {
       color: var(--theme-color-primary);
+    }
+
+    &:hover:not(.inactive).icon .with-icon {
+      color: var(--theme-chip-primary-outline--color--hover);
+    }
+
+    &:active:not(.inactive).icon .with-icon {
+      color: var(--theme-chip-primary-outline--color--active);
     }
 
     .chip-close {
