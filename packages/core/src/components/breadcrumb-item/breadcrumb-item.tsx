@@ -18,6 +18,7 @@ import {
   Prop,
   State,
   Mixin,
+  Watch,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
@@ -27,6 +28,7 @@ import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 import { DefaultMixins } from '../utils/internal/component';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 @Component({
   tag: 'ix-breadcrumb-item',
@@ -74,6 +76,13 @@ export class BreadcrumbItem
   @Prop() target?: AnchorTarget = '_self';
 
   /**
+   * Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
+   *
+   * @since 5.0.0
+   */
+  @Prop() breadcrumbKey!: string;
+
+  /**
    * Specifies the relationship between the current document and the linked document when href is provided.
    *
    * @since 4.0.0
@@ -96,7 +105,7 @@ export class BreadcrumbItem
   @Prop() isCurrentPage = false;
 
   /**@internal */
-  @Event() itemClick!: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<BreadcrumbClick>;
 
   @State() inheritAriaAttributes: A11yAttributes = {};
 
@@ -109,9 +118,20 @@ export class BreadcrumbItem
       'role',
       'aria-label',
     ]);
+    this.validateProps();
   }
 
   override componentDidRender(): void {}
+
+  @Watch('breadcrumbKey')
+  validateProps() {
+    if (!this.breadcrumbKey) {
+      console.warn(
+        '[IxBreadcrumbItem] The "breadcrumbKey" prop is required for breadcrumb items to function properly.',
+        this.hostElement
+      );
+    }
+  }
 
   animationFadeIn() {
     animate(this.hostElement, {
@@ -180,7 +200,12 @@ export class BreadcrumbItem
         class={{
           'hide-chevron': this.hideChevron,
         }}
-        onClick={() => this.itemClick.emit(this.label)}
+        onClick={() =>
+          this.itemClick.emit({
+            breadcrumbKey: this.breadcrumbKey,
+            label: this.label ?? this.hostElement.innerText,
+          })
+        }
       >
         <BaseButton
           {...props}

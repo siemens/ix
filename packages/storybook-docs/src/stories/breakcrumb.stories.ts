@@ -19,10 +19,10 @@ const meta = {
   render: ({ ghost, visibleItemCount }) => {
     return html`
       <ix-breadcrumb ?ghost=${ghost} visible-item-count=${visibleItemCount}>
-        <ix-breadcrumb-item>Item 1</ix-breadcrumb-item>
-        <ix-breadcrumb-item>Item 2</ix-breadcrumb-item>
-        <ix-breadcrumb-item>Item 3</ix-breadcrumb-item>
-        <ix-breadcrumb-item>Item 4</ix-breadcrumb-item>
+        <ix-breadcrumb-item breadcrumb-key="item-1">Item 1</ix-breadcrumb-item>
+        <ix-breadcrumb-item breadcrumb-key="item-2">Item 2</ix-breadcrumb-item>
+        <ix-breadcrumb-item breadcrumb-key="item-3">Item 3</ix-breadcrumb-item>
+        <ix-breadcrumb-item breadcrumb-key="item-4">Item 4</ix-breadcrumb-item>
       </ix-breadcrumb>
     `;
   },
