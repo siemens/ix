@@ -12,9 +12,18 @@ import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
 export default () => {
   return (
     <IxBreadcrumb>
-      <IxBreadcrumbItem label="Item 1"></IxBreadcrumbItem>
-      <IxBreadcrumbItem label="Item 2"></IxBreadcrumbItem>
-      <IxBreadcrumbItem label="Item 3"></IxBreadcrumbItem>
+      <IxBreadcrumbItem
+        label="Item 1"
+        breadcrumbKey="item-1"
+      ></IxBreadcrumbItem>
+      <IxBreadcrumbItem
+        label="Item 2"
+        breadcrumbKey="item-2"
+      ></IxBreadcrumbItem>
+      <IxBreadcrumbItem
+        label="Item 3"
+        breadcrumbKey="item-3"
+      ></IxBreadcrumbItem>
     </IxBreadcrumb>
   );
 };

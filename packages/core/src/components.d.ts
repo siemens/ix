@@ -10,6 +10,7 @@ import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
+import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
@@ -62,6 +63,7 @@ export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
+export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
@@ -321,9 +323,10 @@ export namespace Components {
         "enableTopLayer": boolean;
         /**
           * Items will be accessible through a dropdown
+          * @since 5.0.0
           * @default []
          */
-        "nextItems": string[];
+        "nextItems": BreadcrumbClick[];
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
           * @default false
@@ -342,6 +345,11 @@ export namespace Components {
           * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
+        /**
+          * Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
+          * @since 5.0.0
+         */
+        "breadcrumbKey": string;
         /**
           * @default false
          */
@@ -4928,8 +4936,11 @@ declare global {
         new (): HTMLIxBlindElement;
     };
     interface HTMLIxBreadcrumbElementEventMap {
-        "itemClick": string;
-        "nextClick": { event: UIEvent; item: string };
+        "itemClick": BreadcrumbClick;
+        "nextClick": {
+    event: UIEvent;
+    item: BreadcrumbClick;
+  };
     }
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBreadcrumbElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbElement, ev: IxBreadcrumbCustomEvent<HTMLIxBreadcrumbElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4946,7 +4957,7 @@ declare global {
         new (): HTMLIxBreadcrumbElement;
     };
     interface HTMLIxBreadcrumbItemElementEventMap {
-        "itemClick": string;
+        "itemClick": BreadcrumbClick;
     }
     interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBreadcrumbItemElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbItemElement, ev: IxBreadcrumbItemCustomEvent<HTMLIxBreadcrumbItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6715,17 +6726,23 @@ declare namespace LocalJSX {
         "enableTopLayer"?: boolean;
         /**
           * Items will be accessible through a dropdown
+          * @since 5.0.0
           * @default []
          */
-        "nextItems"?: string[];
+        "nextItems"?: BreadcrumbClick[];
         /**
           * Crumb item clicked event
+          * @since 5.0.0
          */
-        "onItemClick"?: (event: IxBreadcrumbCustomEvent<string>) => void;
+        "onItemClick"?: (event: IxBreadcrumbCustomEvent<BreadcrumbClick>) => void;
         /**
           * Next item clicked event
+          * @since 5.0.0
          */
-        "onNextClick"?: (event: IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>) => void;
+        "onNextClick"?: (event: IxBreadcrumbCustomEvent<{
+    event: UIEvent;
+    item: BreadcrumbClick;
+  }>) => void;
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
           * @default false
@@ -6744,6 +6761,11 @@ declare namespace LocalJSX {
           * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
+        /**
+          * Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
+          * @since 5.0.0
+         */
+        "breadcrumbKey": string;
         /**
           * @default false
          */
@@ -6773,7 +6795,7 @@ declare namespace LocalJSX {
           * Breadcrumb label
          */
         "label"?: string;
-        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
+        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<BreadcrumbClick>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
           * @since 4.0.0
@@ -11368,6 +11390,7 @@ declare namespace LocalJSX {
         "icon": string;
         "href": string;
         "target": AnchorTarget;
+        "breadcrumbKey": string;
         "rel": string;
         "subtle": boolean;
         "invisible": boolean;
@@ -12353,7 +12376,7 @@ declare namespace LocalJSX {
         "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
         "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
         "ix-breadcrumb": Omit<IxBreadcrumb, keyof IxBreadcrumbAttributes> & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes]?: IxBreadcrumb[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `attr:${K}`]?: IxBreadcrumbAttributes[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `prop:${K}`]?: IxBreadcrumb[K] };
-        "ix-breadcrumb-item": Omit<IxBreadcrumbItem, keyof IxBreadcrumbItemAttributes> & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes]?: IxBreadcrumbItem[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `attr:${K}`]?: IxBreadcrumbItemAttributes[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `prop:${K}`]?: IxBreadcrumbItem[K] };
+        "ix-breadcrumb-item": Omit<IxBreadcrumbItem, keyof IxBreadcrumbItemAttributes> & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes]?: IxBreadcrumbItem[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `attr:${K}`]?: IxBreadcrumbItemAttributes[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `prop:${K}`]?: IxBreadcrumbItem[K] } & OneOf<"breadcrumbKey", IxBreadcrumbItem["breadcrumbKey"], IxBreadcrumbItemAttributes["breadcrumbKey"]>;
         "ix-button": Omit<IxButton, keyof IxButtonAttributes> & { [K in keyof IxButton & keyof IxButtonAttributes]?: IxButton[K] } & { [K in keyof IxButton & keyof IxButtonAttributes as `attr:${K}`]?: IxButtonAttributes[K] } & { [K in keyof IxButton & keyof IxButtonAttributes as `prop:${K}`]?: IxButton[K] };
         "ix-card": Omit<IxCard, keyof IxCardAttributes> & { [K in keyof IxCard & keyof IxCardAttributes]?: IxCard[K] } & { [K in keyof IxCard & keyof IxCardAttributes as `attr:${K}`]?: IxCardAttributes[K] } & { [K in keyof IxCard & keyof IxCardAttributes as `prop:${K}`]?: IxCard[K] };
         "ix-card-accordion": Omit<IxCardAccordion, keyof IxCardAccordionAttributes> & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes]?: IxCardAccordion[K] } & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes as `attr:${K}`]?: IxCardAccordionAttributes[K] } & { [K in keyof IxCardAccordion & keyof IxCardAccordionAttributes as `prop:${K}`]?: IxCardAccordion[K] };

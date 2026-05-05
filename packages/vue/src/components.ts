@@ -198,6 +198,7 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'icon',
   'href',
   'target',
+  'breadcrumbKey',
   'rel',
   'subtle',
   'invisible',

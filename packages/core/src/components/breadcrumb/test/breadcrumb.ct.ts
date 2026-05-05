@@ -20,9 +20,9 @@ import { regressionTest, expect } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
   const breadcrumb = page.locator('ix-breadcrumb');
   const breadcrumbItem1 = page.locator('ix-breadcrumb-item').nth(0);
@@ -37,9 +37,9 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest('should show hidden items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb visible-item-count="2">
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
 
   const breadcrumb = page.locator('ix-breadcrumb');
@@ -48,6 +48,7 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
   await breadcrumb.evaluate((breadcrumbElement: HTMLIxBreadcrumbElement) => {
     const item = document.createElement('ix-breadcrumb-item');
     item.label = 'NewItem';
+    item.breadcrumbKey = 'new-item';
 
     breadcrumbElement.appendChild(item);
   });
@@ -81,9 +82,9 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
 regressionTest('should change label', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
   const breadcrumbItem = page.locator('ix-breadcrumb-item').nth(2);
 
@@ -98,13 +99,16 @@ regressionTest('should change label', async ({ mount, page }) => {
 regressionTest('should show next items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
   const breadcrumb = page.locator('ix-breadcrumb');
   await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
-    bc.nextItems = ['Next Item 1', 'Next Item 2'];
+    bc.nextItems = [
+      { label: 'Next Item 1', breadcrumbKey: 'next-item-1' },
+      { label: 'Next Item 2', breadcrumbKey: 'next-item-2' },
+    ];
   });
 
   await page.waitForTimeout(1000);
@@ -138,17 +142,20 @@ regressionTest.describe('keyboard navigation', () => {
   regressionTest('previous items', async ({ mount, page }) => {
     await mount(`
   <ix-breadcrumb visible-item-count="3">
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 4"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 5"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 6"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 4" breadcrumb-key="item-4"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 5" breadcrumb-key="item-5"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 6" breadcrumb-key="item-6"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
 
     const breadcrumb = page.locator('ix-breadcrumb');
     await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
-      bc.nextItems = ['Next Item 1', 'Next Item 2'];
+      bc.nextItems = [
+        { label: 'Next Item 1', breadcrumbKey: 'next-item-1' },
+        { label: 'Next Item 2', breadcrumbKey: 'next-item-2' },
+      ];
     });
 
     const previousButton = breadcrumb.getByLabel(
@@ -174,17 +181,20 @@ regressionTest.describe('keyboard navigation', () => {
   regressionTest('next items', async ({ mount, page }) => {
     await mount(`
   <ix-breadcrumb visible-item-count="3">
-    <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 4"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 5"></ix-breadcrumb-item>
-    <ix-breadcrumb-item label="Item 6" aria-label="Item 6"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 4" breadcrumb-key="item-4"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 5" breadcrumb-key="item-5"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 6" breadcrumb-key="item-6" aria-label="Item 6"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
 
     const breadcrumb = page.locator('ix-breadcrumb');
     await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
-      bc.nextItems = ['Next Item 1', 'Next Item 2'];
+      bc.nextItems = [
+        { label: 'Next Item 1', breadcrumbKey: 'next-item-1' },
+        { label: 'Next Item 2', breadcrumbKey: 'next-item-2' },
+      ];
     });
 
     await page.waitForTimeout(500);
