@@ -146,12 +146,17 @@ export class RangeField extends Mixin(...DefaultMixins) {
       return;
     }
 
-    if (
-      evt.detail &&
-      evt.target === firstElement &&
-      isIxInputFieldComponent(firstElement) &&
-      isIxInputFieldComponent(secondElement)
-    ) {
+    if (evt.detail && evt.target === firstElement) {
+      if (!isIxInputFieldComponent(firstElement)) {
+        if (Build.isDev) {
+          console.warn(
+            'First element is not an input field component.',
+            firstElement
+          );
+        }
+        return;
+      }
+
       if (!isIxInputFieldComponent(secondElement)) {
         if (Build.isDev) {
           console.warn(
