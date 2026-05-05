@@ -1270,6 +1270,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                     </div>
                     <div
                       role="listbox"
+                      aria-label={descriptor.header}
                       data-element-list-id={descriptor.unit}
                       class="element-list"
                       tabindex={-1}
@@ -1287,14 +1288,18 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                           this.buildCandidateBaseBeforeUnit(descriptor.unit)
                         );
 
+                        const selected = this.isSelected(
+                          descriptor.unit,
+                          number
+                        );
+
                         return (
                           <button
+                            role="option"
+                            aria-selected={selected}
                             data-element-container-id={`${descriptor.unit}-${number}`}
                             class={{
-                              selected: this.isSelected(
-                                descriptor.unit,
-                                number
-                              ),
+                              selected,
                               'element-container': true,
                               disabled,
                             }}
