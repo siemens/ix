@@ -7,13 +7,9 @@
 
 /* eslint-disable */
 
-import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent, type HydrateModule, type SerializeShadowRootOptions } from '@stencil/react-output-target/ssr';
-
 // @ts-ignore - ignore potential type issues as the project is importing itself
 import * as clientComponents from "@siemens/ix";
 import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDrawerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
-import type { Components } from "@siemens/ix/components";
 import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
@@ -116,12 +112,14 @@ import { IxUpload as IxUploadElement } from "@siemens/ix/components/ix-upload.js
 import { IxValidationTooltip as IxValidationTooltipElement } from "@siemens/ix/components/ix-validation-tooltip.js";
 import { IxWorkflowStep as IxWorkflowStepElement } from "@siemens/ix/components/ix-workflow-step.js";
 import { IxWorkflowSteps as IxWorkflowStepsElement } from "@siemens/ix/components/ix-workflow-steps.js";
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
+import { createComponent, type HydrateModule, type ReactWebComponent, type SerializeShadowRootOptions } from '@stencil/react-output-target/ssr';
 
 export const serializeShadowRoot: SerializeShadowRootOptions = { "scoped": [], "default": "declarative-shadow-dom" };
 
 export type IxActionCardEvents = NonNullable<unknown>;
 
-export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCardEvents, Components.IxActionCard> = /*@__PURE__*/ createComponent<IxActionCardElement, IxActionCardEvents, Components.IxActionCard>({
+export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCardEvents> = /*@__PURE__*/ createComponent<IxActionCardElement, IxActionCardEvents>({
     tagName: 'ix-action-card',
     properties: {
         variant: 'variant',
@@ -134,13 +132,13 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
         passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxActionCard as StencilReactComponent<IxActionCardElement, IxActionCardEvents, Components.IxActionCard>,
+    clientModule: clientComponents.IxActionCard as ReactWebComponent<IxActionCardElement, IxActionCardEvents>,
     serializeShadowRoot
 });
 
 export type IxApplicationEvents = NonNullable<unknown>;
 
-export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplicationEvents, Components.IxApplication> = /*@__PURE__*/ createComponent<IxApplicationElement, IxApplicationEvents, Components.IxApplication>({
+export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplicationEvents> = /*@__PURE__*/ createComponent<IxApplicationElement, IxApplicationEvents>({
     tagName: 'ix-application',
     properties: {
         theme: 'theme',
@@ -148,7 +146,7 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
         forceBreakpoint: 'force-breakpoint'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxApplication as StencilReactComponent<IxApplicationElement, IxApplicationEvents, Components.IxApplication>,
+    clientModule: clientComponents.IxApplication as ReactWebComponent<IxApplicationElement, IxApplicationEvents>,
     serializeShadowRoot
 });
 
@@ -157,7 +155,7 @@ export type IxApplicationHeaderEvents = {
     onOpenAppSwitch: EventName<IxApplicationHeaderCustomEvent<void>>
 };
 
-export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents, Components.IxApplicationHeader> = /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents, Components.IxApplicationHeader>({
+export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents> = /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
     tagName: 'ix-application-header',
     properties: {
         name: 'name',
@@ -175,13 +173,13 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxApplicationHeader as StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents, Components.IxApplicationHeader>,
+    clientModule: clientComponents.IxApplicationHeader as ReactWebComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>,
     serializeShadowRoot
 });
 
 export type IxAvatarEvents = NonNullable<unknown>;
 
-export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Components.IxAvatar> = /*@__PURE__*/ createComponent<IxAvatarElement, IxAvatarEvents, Components.IxAvatar>({
+export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = /*@__PURE__*/ createComponent<IxAvatarElement, IxAvatarEvents>({
     tagName: 'ix-avatar',
     properties: {
         a11yLabel: 'a11y-label',
@@ -193,13 +191,13 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Co
         ariaLabelTooltip: 'aria-label-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxAvatar as StencilReactComponent<IxAvatarElement, IxAvatarEvents, Components.IxAvatar>,
+    clientModule: clientComponents.IxAvatar as ReactWebComponent<IxAvatarElement, IxAvatarEvents>,
     serializeShadowRoot
 });
 
 export type IxBlindEvents = { onCollapsedChange: EventName<IxBlindCustomEvent<boolean>> };
 
-export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>({
+export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents>({
     tagName: 'ix-blind',
     properties: {
         collapsed: 'collapsed',
@@ -209,7 +207,7 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Compo
         variant: 'variant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxBlind as StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>,
+    clientModule: clientComponents.IxBlind as ReactWebComponent<IxBlindElement, IxBlindEvents>,
     serializeShadowRoot
 });
 
@@ -218,7 +216,7 @@ export type IxBreadcrumbEvents = {
     onNextClick: EventName<IxBreadcrumbCustomEvent<{ event: UIEvent; item: BreadcrumbClick; }>>
 };
 
-export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcrumbEvents, Components.IxBreadcrumb> = /*@__PURE__*/ createComponent<IxBreadcrumbElement, IxBreadcrumbEvents, Components.IxBreadcrumb>({
+export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcrumbEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbElement, IxBreadcrumbEvents>({
     tagName: 'ix-breadcrumb',
     properties: {
         visibleItemCount: 'visible-item-count',
@@ -227,13 +225,13 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxBreadcrumb as StencilReactComponent<IxBreadcrumbElement, IxBreadcrumbEvents, Components.IxBreadcrumb>,
+    clientModule: clientComponents.IxBreadcrumb as ReactWebComponent<IxBreadcrumbElement, IxBreadcrumbEvents>,
     serializeShadowRoot
 });
 
 export type IxBreadcrumbItemEvents = NonNullable<unknown>;
 
-export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem>({
+export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>({
     tagName: 'ix-breadcrumb-item',
     properties: {
         ariaLabelButton: 'aria-label-button',
@@ -250,13 +248,13 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         isCurrentPage: 'is-current-page'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxBreadcrumbItem as StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem>,
+    clientModule: clientComponents.IxBreadcrumbItem as ReactWebComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>,
     serializeShadowRoot
 });
 
 export type IxButtonEvents = NonNullable<unknown>;
 
-export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents, Components.IxButton> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents, Components.IxButton>({
+export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
     properties: {
         variant: 'variant',
@@ -273,13 +271,13 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents, Co
         rel: 'rel'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxButton as StencilReactComponent<IxButtonElement, IxButtonEvents, Components.IxButton>,
+    clientModule: clientComponents.IxButton as ReactWebComponent<IxButtonElement, IxButtonEvents>,
     serializeShadowRoot
 });
 
 export type IxCardEvents = NonNullable<unknown>;
 
-export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents, Components.IxCard> = /*@__PURE__*/ createComponent<IxCardElement, IxCardEvents, Components.IxCard>({
+export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__PURE__*/ createComponent<IxCardElement, IxCardEvents>({
     tagName: 'ix-card',
     properties: {
         variant: 'variant',
@@ -287,13 +285,13 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents, Componen
         passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCard as StencilReactComponent<IxCardElement, IxCardEvents, Components.IxCard>,
+    clientModule: clientComponents.IxCard as ReactWebComponent<IxCardElement, IxCardEvents>,
     serializeShadowRoot
 });
 
 export type IxCardAccordionEvents = NonNullable<unknown>;
 
-export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents, Components.IxCardAccordion> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents, Components.IxCardAccordion>({
+export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents>({
     tagName: 'ix-card-accordion',
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
@@ -301,17 +299,17 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
         variant: 'variant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCardAccordion as StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents, Components.IxCardAccordion>,
+    clientModule: clientComponents.IxCardAccordion as ReactWebComponent<IxCardAccordionElement, IxCardAccordionEvents>,
     serializeShadowRoot
 });
 
 export type IxCardContentEvents = NonNullable<unknown>;
 
-export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardContentEvents, Components.IxCardContent> = /*@__PURE__*/ createComponent<IxCardContentElement, IxCardContentEvents, Components.IxCardContent>({
+export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardContentEvents> = /*@__PURE__*/ createComponent<IxCardContentElement, IxCardContentEvents>({
     tagName: 'ix-card-content',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCardContent as StencilReactComponent<IxCardContentElement, IxCardContentEvents, Components.IxCardContent>,
+    clientModule: clientComponents.IxCardContent as ReactWebComponent<IxCardContentElement, IxCardContentEvents>,
     serializeShadowRoot
 });
 
@@ -321,7 +319,7 @@ export type IxCardListEvents = {
     onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>
 };
 
-export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents, Components.IxCardList> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents, Components.IxCardList>({
+export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents>({
     tagName: 'ix-card-list',
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
@@ -337,17 +335,17 @@ export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEven
         i18nMoreCards: 'i18n-more-cards'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCardList as StencilReactComponent<IxCardListElement, IxCardListEvents, Components.IxCardList>,
+    clientModule: clientComponents.IxCardList as ReactWebComponent<IxCardListElement, IxCardListEvents>,
     serializeShadowRoot
 });
 
 export type IxCardTitleEvents = NonNullable<unknown>;
 
-export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleEvents, Components.IxCardTitle> = /*@__PURE__*/ createComponent<IxCardTitleElement, IxCardTitleEvents, Components.IxCardTitle>({
+export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleEvents> = /*@__PURE__*/ createComponent<IxCardTitleElement, IxCardTitleEvents>({
     tagName: 'ix-card-title',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCardTitle as StencilReactComponent<IxCardTitleElement, IxCardTitleEvents, Components.IxCardTitle>,
+    clientModule: clientComponents.IxCardTitle as ReactWebComponent<IxCardTitleElement, IxCardTitleEvents>,
     serializeShadowRoot
 });
 
@@ -358,7 +356,7 @@ export type IxCategoryFilterEvents = {
     onFilterCleared: EventName<IxCategoryFilterCustomEvent<void>>
 };
 
-export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents, Components.IxCategoryFilter> = /*@__PURE__*/ createComponent<IxCategoryFilterElement, IxCategoryFilterEvents, Components.IxCategoryFilter>({
+export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents> = /*@__PURE__*/ createComponent<IxCategoryFilterElement, IxCategoryFilterEvents>({
     tagName: 'ix-category-filter',
     properties: {
         disabled: 'disabled',
@@ -376,7 +374,7 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCategoryFilter as StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents, Components.IxCategoryFilter>,
+    clientModule: clientComponents.IxCategoryFilter as ReactWebComponent<IxCategoryFilterElement, IxCategoryFilterEvents>,
     serializeShadowRoot
 });
 
@@ -386,7 +384,7 @@ export type IxCheckboxEvents = {
     onIxBlur: EventName<IxCheckboxCustomEvent<void>>
 };
 
-export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEvents, Components.IxCheckbox> = /*@__PURE__*/ createComponent<IxCheckboxElement, IxCheckboxEvents, Components.IxCheckbox>({
+export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEvents> = /*@__PURE__*/ createComponent<IxCheckboxElement, IxCheckboxEvents>({
     tagName: 'ix-checkbox',
     properties: {
         name: 'name',
@@ -398,13 +396,13 @@ export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEven
         required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCheckbox as StencilReactComponent<IxCheckboxElement, IxCheckboxEvents, Components.IxCheckbox>,
+    clientModule: clientComponents.IxCheckbox as ReactWebComponent<IxCheckboxElement, IxCheckboxEvents>,
     serializeShadowRoot
 });
 
 export type IxCheckboxGroupEvents = NonNullable<unknown>;
 
-export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents, Components.IxCheckboxGroup> = /*@__PURE__*/ createComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents, Components.IxCheckboxGroup>({
+export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents>({
     tagName: 'ix-checkbox-group',
     properties: {
         helperText: 'helper-text',
@@ -418,13 +416,13 @@ export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCh
         required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCheckboxGroup as StencilReactComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents, Components.IxCheckboxGroup>,
+    clientModule: clientComponents.IxCheckboxGroup as ReactWebComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents>,
     serializeShadowRoot
 });
 
 export type IxChipEvents = { onCloseChip: EventName<IxChipCustomEvent<any>> };
 
-export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Components.IxChip> = /*@__PURE__*/ createComponent<IxChipElement, IxChipEvents, Components.IxChip>({
+export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__PURE__*/ createComponent<IxChipElement, IxChipEvents>({
     tagName: 'ix-chip',
     properties: {
         variant: 'variant',
@@ -439,13 +437,13 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Componen
         ariaLabelCloseButton: 'aria-label-close-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxChip as StencilReactComponent<IxChipElement, IxChipEvents, Components.IxChip>,
+    clientModule: clientComponents.IxChip as ReactWebComponent<IxChipElement, IxChipEvents>,
     serializeShadowRoot
 });
 
 export type IxColEvents = NonNullable<unknown>;
 
-export const IxCol: StencilReactComponent<IxColElement, IxColEvents, Components.IxCol> = /*@__PURE__*/ createComponent<IxColElement, IxColEvents, Components.IxCol>({
+export const IxCol: StencilReactComponent<IxColElement, IxColEvents> = /*@__PURE__*/ createComponent<IxColElement, IxColEvents>({
     tagName: 'ix-col',
     properties: {
         size: 'size',
@@ -454,23 +452,23 @@ export const IxCol: StencilReactComponent<IxColElement, IxColEvents, Components.
         sizeLg: 'size-lg'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCol as StencilReactComponent<IxColElement, IxColEvents, Components.IxCol>,
+    clientModule: clientComponents.IxCol as ReactWebComponent<IxColElement, IxColEvents>,
     serializeShadowRoot
 });
 
 export type IxContentEvents = NonNullable<unknown>;
 
-export const IxContent: StencilReactComponent<IxContentElement, IxContentEvents, Components.IxContent> = /*@__PURE__*/ createComponent<IxContentElement, IxContentEvents, Components.IxContent>({
+export const IxContent: StencilReactComponent<IxContentElement, IxContentEvents> = /*@__PURE__*/ createComponent<IxContentElement, IxContentEvents>({
     tagName: 'ix-content',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxContent as StencilReactComponent<IxContentElement, IxContentEvents, Components.IxContent>,
+    clientModule: clientComponents.IxContent as ReactWebComponent<IxContentElement, IxContentEvents>,
     serializeShadowRoot
 });
 
 export type IxContentHeaderEvents = { onBackButtonClick: EventName<IxContentHeaderCustomEvent<void>> };
 
-export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader> = /*@__PURE__*/ createComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader>({
+export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents> = /*@__PURE__*/ createComponent<IxContentHeaderElement, IxContentHeaderEvents>({
     tagName: 'ix-content-header',
     properties: {
         variant: 'variant',
@@ -479,13 +477,13 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         hasBackButton: 'has-back-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxContentHeader as StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader>,
+    clientModule: clientComponents.IxContentHeader as ReactWebComponent<IxContentHeaderElement, IxContentHeaderEvents>,
     serializeShadowRoot
 });
 
 export type IxCustomFieldEvents = NonNullable<unknown>;
 
-export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustomFieldEvents, Components.IxCustomField> = /*@__PURE__*/ createComponent<IxCustomFieldElement, IxCustomFieldEvents, Components.IxCustomField>({
+export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustomFieldEvents> = /*@__PURE__*/ createComponent<IxCustomFieldElement, IxCustomFieldEvents>({
     tagName: 'ix-custom-field',
     properties: {
         required: 'required',
@@ -498,13 +496,13 @@ export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustom
         showTextAsTooltip: 'show-text-as-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxCustomField as StencilReactComponent<IxCustomFieldElement, IxCustomFieldEvents, Components.IxCustomField>,
+    clientModule: clientComponents.IxCustomField as ReactWebComponent<IxCustomFieldElement, IxCustomFieldEvents>,
     serializeShadowRoot
 });
 
 export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
 
-export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown>({
+export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents>({
     tagName: 'ix-date-dropdown',
     properties: {
         disabled: 'disabled',
@@ -526,7 +524,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDateDropdown as StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown>,
+    clientModule: clientComponents.IxDateDropdown as ReactWebComponent<IxDateDropdownElement, IxDateDropdownEvents>,
     serializeShadowRoot
 });
 
@@ -536,7 +534,7 @@ export type IxDateInputEvents = {
     onIxChange: EventName<IxDateInputCustomEvent<string | undefined>>
 };
 
-export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputEvents, Components.IxDateInput> = /*@__PURE__*/ createComponent<IxDateInputElement, IxDateInputEvents, Components.IxDateInput>({
+export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputEvents> = /*@__PURE__*/ createComponent<IxDateInputElement, IxDateInputEvents>({
     tagName: 'ix-date-input',
     properties: {
         name: 'name',
@@ -567,7 +565,7 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDateInput as StencilReactComponent<IxDateInputElement, IxDateInputEvents, Components.IxDateInput>,
+    clientModule: clientComponents.IxDateInput as ReactWebComponent<IxDateInputElement, IxDateInputEvents>,
     serializeShadowRoot
 });
 
@@ -577,7 +575,7 @@ export type IxDatePickerEvents = {
     onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
 };
 
-export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker>({
+export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents>({
     tagName: 'ix-date-picker',
     properties: {
         format: 'format',
@@ -600,7 +598,7 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDatePicker as StencilReactComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker>,
+    clientModule: clientComponents.IxDatePicker as ReactWebComponent<IxDatePickerElement, IxDatePickerEvents>,
     serializeShadowRoot
 });
 
@@ -612,7 +610,7 @@ export type IxDatetimeInputEvents = {
     onIxChange: EventName<IxDatetimeInputCustomEvent<string | undefined>>
 };
 
-export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents, Components.IxDatetimeInput> = /*@__PURE__*/ createComponent<IxDatetimeInputElement, IxDatetimeInputEvents, Components.IxDatetimeInput>({
+export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents> = /*@__PURE__*/ createComponent<IxDatetimeInputElement, IxDatetimeInputEvents>({
     tagName: 'ix-datetime-input',
     properties: {
         name: 'name',
@@ -647,7 +645,7 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDatetimeInput as StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents, Components.IxDatetimeInput>,
+    clientModule: clientComponents.IxDatetimeInput as ReactWebComponent<IxDatetimeInputElement, IxDatetimeInputEvents>,
     serializeShadowRoot
 });
 
@@ -657,7 +655,7 @@ export type IxDatetimePickerEvents = {
     onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
 };
 
-export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker>({
+export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents>({
     tagName: 'ix-datetime-picker',
     properties: {
         singleSelection: 'single-selection',
@@ -682,17 +680,17 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         embedded: 'embedded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDatetimePicker as StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker>,
+    clientModule: clientComponents.IxDatetimePicker as ReactWebComponent<IxDatetimePickerElement, IxDatetimePickerEvents>,
     serializeShadowRoot
 });
 
 export type IxDividerEvents = NonNullable<unknown>;
 
-export const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents, Components.IxDivider> = /*@__PURE__*/ createComponent<IxDividerElement, IxDividerEvents, Components.IxDivider>({
+export const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents> = /*@__PURE__*/ createComponent<IxDividerElement, IxDividerEvents>({
     tagName: 'ix-divider',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDivider as StencilReactComponent<IxDividerElement, IxDividerEvents, Components.IxDivider>,
+    clientModule: clientComponents.IxDivider as ReactWebComponent<IxDividerElement, IxDividerEvents>,
     serializeShadowRoot
 });
 
@@ -701,7 +699,7 @@ export type IxDrawerEvents = {
     onDrawerClose: EventName<IxDrawerCustomEvent<any>>
 };
 
-export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents, Components.IxDrawer> = /*@__PURE__*/ createComponent<IxDrawerElement, IxDrawerEvents, Components.IxDrawer>({
+export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = /*@__PURE__*/ createComponent<IxDrawerElement, IxDrawerEvents>({
     tagName: 'ix-drawer',
     properties: {
         show: 'show',
@@ -713,7 +711,7 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents, Co
         ariaLabelCloseButton: 'aria-label-close-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDrawer as StencilReactComponent<IxDrawerElement, IxDrawerEvents, Components.IxDrawer>,
+    clientModule: clientComponents.IxDrawer as ReactWebComponent<IxDrawerElement, IxDrawerEvents>,
     serializeShadowRoot
 });
 
@@ -722,7 +720,7 @@ export type IxDropdownEvents = {
     onShowChanged: EventName<IxDropdownCustomEvent<boolean>>
 };
 
-export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents, Components.IxDropdown> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents, Components.IxDropdown>({
+export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
     properties: {
         suppressAutomaticPlacement: 'suppress-automatic-placement',
@@ -743,7 +741,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         suppressOverflowBehavior: 'suppress-overflow-behavior'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDropdown as StencilReactComponent<IxDropdownElement, IxDropdownEvents, Components.IxDropdown>,
+    clientModule: clientComponents.IxDropdown as ReactWebComponent<IxDropdownElement, IxDropdownEvents>,
     serializeShadowRoot
 });
 
@@ -752,7 +750,7 @@ export type IxDropdownButtonEvents = {
     onShowChanged: EventName<IxDropdownButtonCustomEvent<boolean>>
 };
 
-export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents, Components.IxDropdownButton> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents, Components.IxDropdownButton>({
+export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',
     properties: {
         variant: 'variant',
@@ -767,23 +765,23 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDropdownButton as StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents, Components.IxDropdownButton>,
+    clientModule: clientComponents.IxDropdownButton as ReactWebComponent<IxDropdownButtonElement, IxDropdownButtonEvents>,
     serializeShadowRoot
 });
 
 export type IxDropdownHeaderEvents = NonNullable<unknown>;
 
-export const IxDropdownHeader: StencilReactComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents, Components.IxDropdownHeader> = /*@__PURE__*/ createComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents, Components.IxDropdownHeader>({
+export const IxDropdownHeader: StencilReactComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents> = /*@__PURE__*/ createComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents>({
     tagName: 'ix-dropdown-header',
     properties: { label: 'label' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDropdownHeader as StencilReactComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents, Components.IxDropdownHeader>,
+    clientModule: clientComponents.IxDropdownHeader as ReactWebComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents>,
     serializeShadowRoot
 });
 
 export type IxDropdownItemEvents = NonNullable<unknown>;
 
-export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents, Components.IxDropdownItem> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents, Components.IxDropdownItem>({
+export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
     properties: {
         ixFocusVisible: 'ix-focus-visible',
@@ -800,23 +798,23 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDropdownItem as StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents, Components.IxDropdownItem>,
+    clientModule: clientComponents.IxDropdownItem as ReactWebComponent<IxDropdownItemElement, IxDropdownItemEvents>,
     serializeShadowRoot
 });
 
 export type IxDropdownQuickActionsEvents = NonNullable<unknown>;
 
-export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents, Components.IxDropdownQuickActions> = /*@__PURE__*/ createComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents, Components.IxDropdownQuickActions>({
+export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents> = /*@__PURE__*/ createComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents>({
     tagName: 'ix-dropdown-quick-actions',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxDropdownQuickActions as StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents, Components.IxDropdownQuickActions>,
+    clientModule: clientComponents.IxDropdownQuickActions as ReactWebComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents>,
     serializeShadowRoot
 });
 
 export type IxEmptyStateEvents = { onActionClick: EventName<IxEmptyStateCustomEvent<void>> };
 
-export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState>({
+export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents>({
     tagName: 'ix-empty-state',
     properties: {
         layout: 'layout',
@@ -827,13 +825,13 @@ export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptySta
         ariaLabelEmptyStateIcon: 'aria-label-empty-state-icon'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxEmptyState as StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState>,
+    clientModule: clientComponents.IxEmptyState as ReactWebComponent<IxEmptyStateElement, IxEmptyStateEvents>,
     serializeShadowRoot
 });
 
 export type IxEventListEvents = NonNullable<unknown>;
 
-export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListEvents, Components.IxEventList> = /*@__PURE__*/ createComponent<IxEventListElement, IxEventListEvents, Components.IxEventList>({
+export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListEvents> = /*@__PURE__*/ createComponent<IxEventListElement, IxEventListEvents>({
     tagName: 'ix-event-list',
     properties: {
         itemHeight: 'item-height',
@@ -842,13 +840,13 @@ export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListE
         chevron: 'chevron'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxEventList as StencilReactComponent<IxEventListElement, IxEventListEvents, Components.IxEventList>,
+    clientModule: clientComponents.IxEventList as ReactWebComponent<IxEventListElement, IxEventListEvents>,
     serializeShadowRoot
 });
 
 export type IxEventListItemEvents = { onItemClick: EventName<IxEventListItemCustomEvent<any>> };
 
-export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents, Components.IxEventListItem> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents, Components.IxEventListItem>({
+export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents>({
     tagName: 'ix-event-list-item',
     properties: {
         variant: 'variant',
@@ -858,13 +856,13 @@ export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEv
         chevron: 'chevron'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxEventListItem as StencilReactComponent<IxEventListItemElement, IxEventListItemEvents, Components.IxEventListItem>,
+    clientModule: clientComponents.IxEventListItem as ReactWebComponent<IxEventListItemElement, IxEventListItemEvents>,
     serializeShadowRoot
 });
 
 export type IxExpandingSearchEvents = { onValueChange: EventName<IxExpandingSearchCustomEvent<string>> };
 
-export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents, Components.IxExpandingSearch> = /*@__PURE__*/ createComponent<IxExpandingSearchElement, IxExpandingSearchEvents, Components.IxExpandingSearch>({
+export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents> = /*@__PURE__*/ createComponent<IxExpandingSearchElement, IxExpandingSearchEvents>({
     tagName: 'ix-expanding-search',
     properties: {
         icon: 'icon',
@@ -877,13 +875,13 @@ export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, 
         ariaLabelSearchInput: 'aria-label-search-input'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxExpandingSearch as StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents, Components.IxExpandingSearch>,
+    clientModule: clientComponents.IxExpandingSearch as ReactWebComponent<IxExpandingSearchElement, IxExpandingSearchEvents>,
     serializeShadowRoot
 });
 
 export type IxFieldLabelEvents = NonNullable<unknown>;
 
-export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLabelEvents, Components.IxFieldLabel> = /*@__PURE__*/ createComponent<IxFieldLabelElement, IxFieldLabelEvents, Components.IxFieldLabel>({
+export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLabelEvents> = /*@__PURE__*/ createComponent<IxFieldLabelElement, IxFieldLabelEvents>({
     tagName: 'ix-field-label',
     properties: {
         required: 'required',
@@ -891,13 +889,13 @@ export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLab
         isInvalid: 'is-invalid'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxFieldLabel as StencilReactComponent<IxFieldLabelElement, IxFieldLabelEvents, Components.IxFieldLabel>,
+    clientModule: clientComponents.IxFieldLabel as ReactWebComponent<IxFieldLabelElement, IxFieldLabelEvents>,
     serializeShadowRoot
 });
 
 export type IxFilterChipEvents = { onCloseClick: EventName<IxFilterChipCustomEvent<void>> };
 
-export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterChipEvents, Components.IxFilterChip> = /*@__PURE__*/ createComponent<IxFilterChipElement, IxFilterChipEvents, Components.IxFilterChip>({
+export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterChipEvents> = /*@__PURE__*/ createComponent<IxFilterChipElement, IxFilterChipEvents>({
     tagName: 'ix-filter-chip',
     properties: {
         disabled: 'disabled',
@@ -905,13 +903,13 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxFilterChip as StencilReactComponent<IxFilterChipElement, IxFilterChipEvents, Components.IxFilterChip>,
+    clientModule: clientComponents.IxFilterChip as ReactWebComponent<IxFilterChipElement, IxFilterChipEvents>,
     serializeShadowRoot
 });
 
 export type IxFlipTileEvents = { onToggle: EventName<IxFlipTileCustomEvent<number>> };
 
-export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents, Components.IxFlipTile> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents, Components.IxFlipTile>({
+export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     properties: {
         variant: 'variant',
@@ -921,17 +919,17 @@ export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEven
         ariaLabelEyeIconButton: 'aria-label-eye-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxFlipTile as StencilReactComponent<IxFlipTileElement, IxFlipTileEvents, Components.IxFlipTile>,
+    clientModule: clientComponents.IxFlipTile as ReactWebComponent<IxFlipTileElement, IxFlipTileEvents>,
     serializeShadowRoot
 });
 
 export type IxFlipTileContentEvents = NonNullable<unknown>;
 
-export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents, Components.IxFlipTileContent> = /*@__PURE__*/ createComponent<IxFlipTileContentElement, IxFlipTileContentEvents, Components.IxFlipTileContent>({
+export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents> = /*@__PURE__*/ createComponent<IxFlipTileContentElement, IxFlipTileContentEvents>({
     tagName: 'ix-flip-tile-content',
     properties: { contentVisible: 'content-visible' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxFlipTileContent as StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents, Components.IxFlipTileContent>,
+    clientModule: clientComponents.IxFlipTileContent as ReactWebComponent<IxFlipTileContentElement, IxFlipTileContentEvents>,
     serializeShadowRoot
 });
 
@@ -941,7 +939,7 @@ export type IxGroupEvents = {
     onExpandedChanged: EventName<IxGroupCustomEvent<boolean>>
 };
 
-export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents, Components.IxGroup> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents, Components.IxGroup>({
+export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents>({
     tagName: 'ix-group',
     properties: {
         suppressHeaderSelection: 'suppress-header-selection',
@@ -953,23 +951,23 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents, Compo
         expandOnHeaderClick: 'expand-on-header-click'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxGroup as StencilReactComponent<IxGroupElement, IxGroupEvents, Components.IxGroup>,
+    clientModule: clientComponents.IxGroup as ReactWebComponent<IxGroupElement, IxGroupEvents>,
     serializeShadowRoot
 });
 
 export type IxGroupContextMenuEvents = NonNullable<unknown>;
 
-export const IxGroupContextMenu: StencilReactComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents, Components.IxGroupContextMenu> = /*@__PURE__*/ createComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents, Components.IxGroupContextMenu>({
+export const IxGroupContextMenu: StencilReactComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents> = /*@__PURE__*/ createComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents>({
     tagName: 'ix-group-context-menu',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxGroupContextMenu as StencilReactComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents, Components.IxGroupContextMenu>,
+    clientModule: clientComponents.IxGroupContextMenu as ReactWebComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents>,
     serializeShadowRoot
 });
 
 export type IxGroupItemEvents = { onSelectedChanged: EventName<IxGroupItemCustomEvent<HTMLIxGroupItemElement>> };
 
-export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemEvents, Components.IxGroupItem> = /*@__PURE__*/ createComponent<IxGroupItemElement, IxGroupItemEvents, Components.IxGroupItem>({
+export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemEvents> = /*@__PURE__*/ createComponent<IxGroupItemElement, IxGroupItemEvents>({
     tagName: 'ix-group-item',
     properties: {
         icon: 'icon',
@@ -983,13 +981,13 @@ export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemE
         index: 'index'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxGroupItem as StencilReactComponent<IxGroupItemElement, IxGroupItemEvents, Components.IxGroupItem>,
+    clientModule: clientComponents.IxGroupItem as ReactWebComponent<IxGroupItemElement, IxGroupItemEvents>,
     serializeShadowRoot
 });
 
 export type IxHelperTextEvents = NonNullable<unknown>;
 
-export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTextEvents, Components.IxHelperText> = /*@__PURE__*/ createComponent<IxHelperTextElement, IxHelperTextEvents, Components.IxHelperText>({
+export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTextEvents> = /*@__PURE__*/ createComponent<IxHelperTextElement, IxHelperTextEvents>({
     tagName: 'ix-helper-text',
     properties: {
         htmlFor: 'html-for',
@@ -1000,13 +998,13 @@ export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTe
         warningText: 'warning-text'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxHelperText as StencilReactComponent<IxHelperTextElement, IxHelperTextEvents, Components.IxHelperText>,
+    clientModule: clientComponents.IxHelperText as ReactWebComponent<IxHelperTextElement, IxHelperTextEvents>,
     serializeShadowRoot
 });
 
 export type IxIconButtonEvents = NonNullable<unknown>;
 
-export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>({
+export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents>({
     tagName: 'ix-icon-button',
     properties: {
         variant: 'variant',
@@ -1019,13 +1017,13 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         loading: 'loading'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
+    clientModule: clientComponents.IxIconButton as ReactWebComponent<IxIconButtonElement, IxIconButtonEvents>,
     serializeShadowRoot
 });
 
 export type IxIconToggleButtonEvents = { onPressedChange: EventName<IxIconToggleButtonCustomEvent<boolean>> };
 
-export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents, Components.IxIconToggleButton> = /*@__PURE__*/ createComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents, Components.IxIconToggleButton>({
+export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents> = /*@__PURE__*/ createComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents>({
     tagName: 'ix-icon-toggle-button',
     properties: {
         variant: 'variant',
@@ -1039,7 +1037,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
         loading: 'loading'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxIconToggleButton as StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents, Components.IxIconToggleButton>,
+    clientModule: clientComponents.IxIconToggleButton as ReactWebComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents>,
     serializeShadowRoot
 });
 
@@ -1050,7 +1048,7 @@ export type IxInputEvents = {
     onIxChange: EventName<IxInputCustomEvent<string>>
 };
 
-export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents, Components.IxInput> = /*@__PURE__*/ createComponent<IxInputElement, IxInputEvents, Components.IxInput>({
+export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@__PURE__*/ createComponent<IxInputElement, IxInputEvents>({
     tagName: 'ix-input',
     properties: {
         type: 'type',
@@ -1075,23 +1073,23 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents, Compo
         textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxInput as StencilReactComponent<IxInputElement, IxInputEvents, Components.IxInput>,
+    clientModule: clientComponents.IxInput as ReactWebComponent<IxInputElement, IxInputEvents>,
     serializeShadowRoot
 });
 
 export type IxInputGroupEvents = NonNullable<unknown>;
 
-export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents, Components.IxInputGroup> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents, Components.IxInputGroup>({
+export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents>({
     tagName: 'ix-input-group',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxInputGroup as StencilReactComponent<IxInputGroupElement, IxInputGroupEvents, Components.IxInputGroup>,
+    clientModule: clientComponents.IxInputGroup as ReactWebComponent<IxInputGroupElement, IxInputGroupEvents>,
     serializeShadowRoot
 });
 
 export type IxKeyValueEvents = NonNullable<unknown>;
 
-export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue>({
+export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents>({
     tagName: 'ix-key-value',
     properties: {
         icon: 'icon',
@@ -1101,23 +1099,23 @@ export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEven
         value: 'value'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxKeyValue as StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue>,
+    clientModule: clientComponents.IxKeyValue as ReactWebComponent<IxKeyValueElement, IxKeyValueEvents>,
     serializeShadowRoot
 });
 
 export type IxKeyValueListEvents = NonNullable<unknown>;
 
-export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>({
+export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents>({
     tagName: 'ix-key-value-list',
     properties: { striped: 'striped' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxKeyValueList as StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>,
+    clientModule: clientComponents.IxKeyValueList as ReactWebComponent<IxKeyValueListElement, IxKeyValueListEvents>,
     serializeShadowRoot
 });
 
 export type IxKpiEvents = NonNullable<unknown>;
 
-export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents, Components.IxKpi> = /*@__PURE__*/ createComponent<IxKpiElement, IxKpiEvents, Components.IxKpi>({
+export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents> = /*@__PURE__*/ createComponent<IxKpiElement, IxKpiEvents>({
     tagName: 'ix-kpi',
     properties: {
         label: 'label',
@@ -1129,23 +1127,23 @@ export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents, Components.
         orientation: 'orientation'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxKpi as StencilReactComponent<IxKpiElement, IxKpiEvents, Components.IxKpi>,
+    clientModule: clientComponents.IxKpi as ReactWebComponent<IxKpiElement, IxKpiEvents>,
     serializeShadowRoot
 });
 
 export type IxLayoutAutoEvents = NonNullable<unknown>;
 
-export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents, Components.IxLayoutAuto> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents, Components.IxLayoutAuto>({
+export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents>({
     tagName: 'ix-layout-auto',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxLayoutAuto as StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents, Components.IxLayoutAuto>,
+    clientModule: clientComponents.IxLayoutAuto as ReactWebComponent<IxLayoutAutoElement, IxLayoutAutoEvents>,
     serializeShadowRoot
 });
 
 export type IxLayoutGridEvents = NonNullable<unknown>;
 
-export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents, Components.IxLayoutGrid> = /*@__PURE__*/ createComponent<IxLayoutGridElement, IxLayoutGridEvents, Components.IxLayoutGrid>({
+export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents> = /*@__PURE__*/ createComponent<IxLayoutGridElement, IxLayoutGridEvents>({
     tagName: 'ix-layout-grid',
     properties: {
         noMargin: 'no-margin',
@@ -1153,13 +1151,13 @@ export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGr
         columns: 'columns'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxLayoutGrid as StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents, Components.IxLayoutGrid>,
+    clientModule: clientComponents.IxLayoutGrid as ReactWebComponent<IxLayoutGridElement, IxLayoutGridEvents>,
     serializeShadowRoot
 });
 
 export type IxLinkButtonEvents = NonNullable<unknown>;
 
-export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton> = /*@__PURE__*/ createComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton>({
+export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents> = /*@__PURE__*/ createComponent<IxLinkButtonElement, IxLinkButtonEvents>({
     tagName: 'ix-link-button',
     properties: {
         disabled: 'disabled',
@@ -1167,7 +1165,7 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
         target: 'target'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxLinkButton as StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton>,
+    clientModule: clientComponents.IxLinkButton as ReactWebComponent<IxLinkButtonElement, IxLinkButtonEvents>,
     serializeShadowRoot
 });
 
@@ -1179,7 +1177,7 @@ export type IxMenuEvents = {
     onOpenAbout: EventName<IxMenuCustomEvent<void>>
 };
 
-export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents, Components.IxMenu> = /*@__PURE__*/ createComponent<IxMenuElement, IxMenuEvents, Components.IxMenu>({
+export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__PURE__*/ createComponent<IxMenuElement, IxMenuEvents>({
     tagName: 'ix-menu',
     properties: {
         showSettings: 'show-settings',
@@ -1197,7 +1195,7 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents, Componen
         i18nCollapse: 'i18n-collapse'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenu as StencilReactComponent<IxMenuElement, IxMenuEvents, Components.IxMenu>,
+    clientModule: clientComponents.IxMenu as ReactWebComponent<IxMenuElement, IxMenuEvents>,
     serializeShadowRoot
 });
 
@@ -1206,7 +1204,7 @@ export type IxMenuAboutEvents = {
     onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>>
 };
 
-export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents, Components.IxMenuAbout> = /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents, Components.IxMenuAbout>({
+export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents> = /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents>({
     tagName: 'ix-menu-about',
     properties: {
         suppressLegacyTabs: 'suppress-legacy-tabs',
@@ -1216,20 +1214,20 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuAbout as StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents, Components.IxMenuAbout>,
+    clientModule: clientComponents.IxMenuAbout as ReactWebComponent<IxMenuAboutElement, IxMenuAboutEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuAboutItemEvents = { onLabelChange: EventName<IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>> };
 
-export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem>({
+export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents>({
     tagName: 'ix-menu-about-item',
     properties: {
         tabKey: 'tab-key',
         label: 'label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuAboutItem as StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem>,
+    clientModule: clientComponents.IxMenuAboutItem as ReactWebComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents>,
     serializeShadowRoot
 });
 
@@ -1238,7 +1236,7 @@ export type IxMenuAboutNewsEvents = {
     onClosePopover: EventName<IxMenuAboutNewsCustomEvent<void>>
 };
 
-export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents, Components.IxMenuAboutNews> = /*@__PURE__*/ createComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents, Components.IxMenuAboutNews>({
+export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents> = /*@__PURE__*/ createComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents>({
     tagName: 'ix-menu-about-news',
     properties: {
         show: 'show',
@@ -1249,13 +1247,13 @@ export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMe
         expanded: 'expanded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuAboutNews as StencilReactComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents, Components.IxMenuAboutNews>,
+    clientModule: clientComponents.IxMenuAboutNews as ReactWebComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuAvatarEvents = { onLogoutClick: EventName<IxMenuAvatarCustomEvent<any>> };
 
-export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents, Components.IxMenuAvatar> = /*@__PURE__*/ createComponent<IxMenuAvatarElement, IxMenuAvatarEvents, Components.IxMenuAvatar>({
+export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarElement, IxMenuAvatarEvents>({
     tagName: 'ix-menu-avatar',
     properties: {
         top: 'top',
@@ -1269,26 +1267,26 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuAvatar as StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents, Components.IxMenuAvatar>,
+    clientModule: clientComponents.IxMenuAvatar as ReactWebComponent<IxMenuAvatarElement, IxMenuAvatarEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuAvatarItemEvents = { onItemClick: EventName<IxMenuAvatarItemCustomEvent<MouseEvent>> };
 
-export const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents, Components.IxMenuAvatarItem> = /*@__PURE__*/ createComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents, Components.IxMenuAvatarItem>({
+export const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents>({
     tagName: 'ix-menu-avatar-item',
     properties: {
         icon: 'icon',
         label: 'label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuAvatarItem as StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents, Components.IxMenuAvatarItem>,
+    clientModule: clientComponents.IxMenuAvatarItem as ReactWebComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuCategoryEvents = NonNullable<unknown>;
 
-export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory> = /*@__PURE__*/ createComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory>({
+export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents> = /*@__PURE__*/ createComponent<IxMenuCategoryElement, IxMenuCategoryEvents>({
     tagName: 'ix-menu-category',
     properties: {
         label: 'label',
@@ -1297,13 +1295,13 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
         tooltipText: 'tooltip-text'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuCategory as StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory>,
+    clientModule: clientComponents.IxMenuCategory as ReactWebComponent<IxMenuCategoryElement, IxMenuCategoryEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuItemEvents = NonNullable<unknown>;
 
-export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEvents, Components.IxMenuItem> = /*@__PURE__*/ createComponent<IxMenuItemElement, IxMenuItemEvents, Components.IxMenuItem>({
+export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEvents> = /*@__PURE__*/ createComponent<IxMenuItemElement, IxMenuItemEvents>({
     tagName: 'ix-menu-item',
     properties: {
         label: 'label',
@@ -1320,7 +1318,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         isCategory: 'is-category'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuItem as StencilReactComponent<IxMenuItemElement, IxMenuItemEvents, Components.IxMenuItem>,
+    clientModule: clientComponents.IxMenuItem as ReactWebComponent<IxMenuItemElement, IxMenuItemEvents>,
     serializeShadowRoot
 });
 
@@ -1329,7 +1327,7 @@ export type IxMenuSettingsEvents = {
     onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>>
 };
 
-export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents, Components.IxMenuSettings> = /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents, Components.IxMenuSettings>({
+export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
     tagName: 'ix-menu-settings',
     properties: {
         suppressLegacyTabs: 'suppress-legacy-tabs',
@@ -1339,20 +1337,20 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuSettings as StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents, Components.IxMenuSettings>,
+    clientModule: clientComponents.IxMenuSettings as ReactWebComponent<IxMenuSettingsElement, IxMenuSettingsEvents>,
     serializeShadowRoot
 });
 
 export type IxMenuSettingsItemEvents = NonNullable<unknown>;
 
-export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem>({
+export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents>({
     tagName: 'ix-menu-settings-item',
     properties: {
         tabKey: 'tab-key',
         label: 'label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMenuSettingsItem as StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem>,
+    clientModule: clientComponents.IxMenuSettingsItem as ReactWebComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents>,
     serializeShadowRoot
 });
 
@@ -1361,14 +1359,14 @@ export type IxMessageBarEvents = {
     onCloseAnimationCompleted: EventName<IxMessageBarCustomEvent<any>>
 };
 
-export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents, Components.IxMessageBar> = /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents, Components.IxMessageBar>({
+export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents> = /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents>({
     tagName: 'ix-message-bar',
     properties: {
         type: 'type',
         persistent: 'persistent'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMessageBar as StencilReactComponent<IxMessageBarElement, IxMessageBarEvents, Components.IxMessageBar>,
+    clientModule: clientComponents.IxMessageBar as ReactWebComponent<IxMessageBarElement, IxMessageBarEvents>,
     serializeShadowRoot
 });
 
@@ -1377,7 +1375,7 @@ export type IxModalEvents = {
     onDialogDismiss: EventName<IxModalCustomEvent<any>>
 };
 
-export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents, Components.IxModal> = /*@__PURE__*/ createComponent<IxModalElement, IxModalEvents, Components.IxModal>({
+export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@__PURE__*/ createComponent<IxModalElement, IxModalEvents>({
     tagName: 'ix-modal',
     properties: {
         size: 'size',
@@ -1388,33 +1386,33 @@ export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents, Compo
         isNonBlocking: 'is-non-blocking'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxModal as StencilReactComponent<IxModalElement, IxModalEvents, Components.IxModal>,
+    clientModule: clientComponents.IxModal as ReactWebComponent<IxModalElement, IxModalEvents>,
     serializeShadowRoot
 });
 
 export type IxModalContentEvents = NonNullable<unknown>;
 
-export const IxModalContent: StencilReactComponent<IxModalContentElement, IxModalContentEvents, Components.IxModalContent> = /*@__PURE__*/ createComponent<IxModalContentElement, IxModalContentEvents, Components.IxModalContent>({
+export const IxModalContent: StencilReactComponent<IxModalContentElement, IxModalContentEvents> = /*@__PURE__*/ createComponent<IxModalContentElement, IxModalContentEvents>({
     tagName: 'ix-modal-content',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxModalContent as StencilReactComponent<IxModalContentElement, IxModalContentEvents, Components.IxModalContent>,
+    clientModule: clientComponents.IxModalContent as ReactWebComponent<IxModalContentElement, IxModalContentEvents>,
     serializeShadowRoot
 });
 
 export type IxModalFooterEvents = NonNullable<unknown>;
 
-export const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalFooterEvents, Components.IxModalFooter> = /*@__PURE__*/ createComponent<IxModalFooterElement, IxModalFooterEvents, Components.IxModalFooter>({
+export const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalFooterEvents> = /*@__PURE__*/ createComponent<IxModalFooterElement, IxModalFooterEvents>({
     tagName: 'ix-modal-footer',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxModalFooter as StencilReactComponent<IxModalFooterElement, IxModalFooterEvents, Components.IxModalFooter>,
+    clientModule: clientComponents.IxModalFooter as ReactWebComponent<IxModalFooterElement, IxModalFooterEvents>,
     serializeShadowRoot
 });
 
 export type IxModalHeaderEvents = { onCloseClick: EventName<IxModalHeaderCustomEvent<MouseEvent>> };
 
-export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents, Components.IxModalHeader> = /*@__PURE__*/ createComponent<IxModalHeaderElement, IxModalHeaderEvents, Components.IxModalHeader>({
+export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents> = /*@__PURE__*/ createComponent<IxModalHeaderElement, IxModalHeaderEvents>({
     tagName: 'ix-modal-header',
     properties: {
         hideClose: 'hide-close',
@@ -1424,7 +1422,7 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
         iconColor: 'icon-color'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxModalHeader as StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents, Components.IxModalHeader>,
+    clientModule: clientComponents.IxModalHeader as ReactWebComponent<IxModalHeaderElement, IxModalHeaderEvents>,
     serializeShadowRoot
 });
 
@@ -1435,7 +1433,7 @@ export type IxNumberInputEvents = {
     onIxChange: EventName<IxNumberInputCustomEvent<number>>
 };
 
-export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumberInputEvents, Components.IxNumberInput> = /*@__PURE__*/ createComponent<IxNumberInputElement, IxNumberInputEvents, Components.IxNumberInput>({
+export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumberInputEvents> = /*@__PURE__*/ createComponent<IxNumberInputElement, IxNumberInputEvents>({
     tagName: 'ix-number-input',
     properties: {
         name: 'name',
@@ -1462,7 +1460,7 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         allowEmptyValueChange: 'allow-empty-value-change'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxNumberInput as StencilReactComponent<IxNumberInputElement, IxNumberInputEvents, Components.IxNumberInput>,
+    clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,
     serializeShadowRoot
 });
 
@@ -1471,7 +1469,7 @@ export type IxPaginationEvents = {
     onItemCountChanged: EventName<IxPaginationCustomEvent<number>>
 };
 
-export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginationEvents, Components.IxPagination> = /*@__PURE__*/ createComponent<IxPaginationElement, IxPaginationEvents, Components.IxPagination>({
+export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginationEvents> = /*@__PURE__*/ createComponent<IxPaginationElement, IxPaginationEvents>({
     tagName: 'ix-pagination',
     properties: {
         advanced: 'advanced',
@@ -1487,7 +1485,7 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         ariaLabelPageSelection: 'aria-label-page-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxPagination as StencilReactComponent<IxPaginationElement, IxPaginationEvents, Components.IxPagination>,
+    clientModule: clientComponents.IxPagination as ReactWebComponent<IxPaginationElement, IxPaginationEvents>,
     serializeShadowRoot
 });
 
@@ -1497,7 +1495,7 @@ export type IxPaneEvents = {
     onBorderlessChanged: EventName<IxPaneCustomEvent<BorderlessChangedEvent>>
 };
 
-export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents, Components.IxPane> = /*@__PURE__*/ createComponent<IxPaneElement, IxPaneEvents, Components.IxPane>({
+export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__PURE__*/ createComponent<IxPaneElement, IxPaneEvents>({
     tagName: 'ix-pane',
     properties: {
         heading: 'heading',
@@ -1515,13 +1513,13 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents, Componen
         isMobile: 'is-mobile'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxPane as StencilReactComponent<IxPaneElement, IxPaneEvents, Components.IxPane>,
+    clientModule: clientComponents.IxPane as ReactWebComponent<IxPaneElement, IxPaneEvents>,
     serializeShadowRoot
 });
 
 export type IxPaneLayoutEvents = NonNullable<unknown>;
 
-export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents, Components.IxPaneLayout> = /*@__PURE__*/ createComponent<IxPaneLayoutElement, IxPaneLayoutEvents, Components.IxPaneLayout>({
+export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents> = /*@__PURE__*/ createComponent<IxPaneLayoutElement, IxPaneLayoutEvents>({
     tagName: 'ix-pane-layout',
     properties: {
         layout: 'layout',
@@ -1529,13 +1527,13 @@ export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayo
         borderless: 'borderless'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxPaneLayout as StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents, Components.IxPaneLayout>,
+    clientModule: clientComponents.IxPaneLayout as ReactWebComponent<IxPaneLayoutElement, IxPaneLayoutEvents>,
     serializeShadowRoot
 });
 
 export type IxPillEvents = NonNullable<unknown>;
 
-export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents, Components.IxPill> = /*@__PURE__*/ createComponent<IxPillElement, IxPillEvents, Components.IxPill>({
+export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__PURE__*/ createComponent<IxPillElement, IxPillEvents>({
     tagName: 'ix-pill',
     properties: {
         variant: 'variant',
@@ -1548,13 +1546,13 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents, Componen
         tooltipText: 'tooltip-text'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxPill as StencilReactComponent<IxPillElement, IxPillEvents, Components.IxPill>,
+    clientModule: clientComponents.IxPill as ReactWebComponent<IxPillElement, IxPillEvents>,
     serializeShadowRoot
 });
 
 export type IxProgressIndicatorEvents = NonNullable<unknown>;
 
-export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents, Components.IxProgressIndicator> = /*@__PURE__*/ createComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents, Components.IxProgressIndicator>({
+export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents> = /*@__PURE__*/ createComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents>({
     tagName: 'ix-progress-indicator',
     properties: {
         type: 'type',
@@ -1569,13 +1567,13 @@ export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorEleme
         showTextAsTooltip: 'show-text-as-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxProgressIndicator as StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents, Components.IxProgressIndicator>,
+    clientModule: clientComponents.IxProgressIndicator as ReactWebComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents>,
     serializeShadowRoot
 });
 
 export type IxPushCardEvents = NonNullable<unknown>;
 
-export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEvents, Components.IxPushCard> = /*@__PURE__*/ createComponent<IxPushCardElement, IxPushCardEvents, Components.IxPushCard>({
+export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEvents> = /*@__PURE__*/ createComponent<IxPushCardElement, IxPushCardEvents>({
     tagName: 'ix-push-card',
     properties: {
         icon: 'icon',
@@ -1588,7 +1586,7 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
         passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxPushCard as StencilReactComponent<IxPushCardElement, IxPushCardEvents, Components.IxPushCard>,
+    clientModule: clientComponents.IxPushCard as ReactWebComponent<IxPushCardElement, IxPushCardEvents>,
     serializeShadowRoot
 });
 
@@ -1598,7 +1596,7 @@ export type IxRadioEvents = {
     onIxBlur: EventName<IxRadioCustomEvent<void>>
 };
 
-export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents, Components.IxRadio> = /*@__PURE__*/ createComponent<IxRadioElement, IxRadioEvents, Components.IxRadio>({
+export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@__PURE__*/ createComponent<IxRadioElement, IxRadioEvents>({
     tagName: 'ix-radio',
     properties: {
         name: 'name',
@@ -1609,13 +1607,13 @@ export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents, Compo
         required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxRadio as StencilReactComponent<IxRadioElement, IxRadioEvents, Components.IxRadio>,
+    clientModule: clientComponents.IxRadio as ReactWebComponent<IxRadioElement, IxRadioEvents>,
     serializeShadowRoot
 });
 
 export type IxRadioGroupEvents = { onValueChange: EventName<IxRadioGroupCustomEvent<string>> };
 
-export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGroupEvents, Components.IxRadioGroup> = /*@__PURE__*/ createComponent<IxRadioGroupElement, IxRadioGroupEvents, Components.IxRadioGroup>({
+export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGroupEvents> = /*@__PURE__*/ createComponent<IxRadioGroupElement, IxRadioGroupEvents>({
     tagName: 'ix-radio-group',
     properties: {
         helperText: 'helper-text',
@@ -1630,30 +1628,30 @@ export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGro
         required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxRadioGroup as StencilReactComponent<IxRadioGroupElement, IxRadioGroupEvents, Components.IxRadioGroup>,
+    clientModule: clientComponents.IxRadioGroup as ReactWebComponent<IxRadioGroupElement, IxRadioGroupEvents>,
     serializeShadowRoot
 });
 
 export type IxRangeFieldEvents = NonNullable<unknown>;
 
-export const IxRangeField: StencilReactComponent<IxRangeFieldElement, IxRangeFieldEvents, Components.IxRangeField> = /*@__PURE__*/ createComponent<IxRangeFieldElement, IxRangeFieldEvents, Components.IxRangeField>({
+export const IxRangeField: StencilReactComponent<IxRangeFieldElement, IxRangeFieldEvents> = /*@__PURE__*/ createComponent<IxRangeFieldElement, IxRangeFieldEvents>({
     tagName: 'ix-range-field',
     properties: {
         type: 'type',
         hideArrow: 'hide-arrow'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxRangeField as StencilReactComponent<IxRangeFieldElement, IxRangeFieldEvents, Components.IxRangeField>,
+    clientModule: clientComponents.IxRangeField as ReactWebComponent<IxRangeFieldElement, IxRangeFieldEvents>,
     serializeShadowRoot
 });
 
 export type IxRowEvents = NonNullable<unknown>;
 
-export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents, Components.IxRow> = /*@__PURE__*/ createComponent<IxRowElement, IxRowEvents, Components.IxRow>({
+export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents> = /*@__PURE__*/ createComponent<IxRowElement, IxRowEvents>({
     tagName: 'ix-row',
     properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxRow as StencilReactComponent<IxRowElement, IxRowEvents, Components.IxRow>,
+    clientModule: clientComponents.IxRow as ReactWebComponent<IxRowElement, IxRowEvents>,
     serializeShadowRoot
 });
 
@@ -1664,7 +1662,7 @@ export type IxSelectEvents = {
     onIxBlur: EventName<IxSelectCustomEvent<void>>
 };
 
-export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Components.IxSelect> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents, Components.IxSelect>({
+export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents>({
     tagName: 'ix-select',
     properties: {
         name: 'name',
@@ -1697,13 +1695,13 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Co
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxSelect as StencilReactComponent<IxSelectElement, IxSelectEvents, Components.IxSelect>,
+    clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,
     serializeShadowRoot
 });
 
 export type IxSelectItemEvents = { onItemClick: EventName<IxSelectItemCustomEvent<string>> };
 
-export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem>({
+export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     properties: {
         ixFocusVisible: 'ix-focus-visible',
@@ -1714,13 +1712,13 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         hover: 'hover'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxSelectItem as StencilReactComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem>,
+    clientModule: clientComponents.IxSelectItem as ReactWebComponent<IxSelectItemElement, IxSelectItemEvents>,
     serializeShadowRoot
 });
 
 export type IxSliderEvents = { onValueChange: EventName<IxSliderCustomEvent<number>> };
 
-export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents, Components.IxSlider> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents, Components.IxSlider>({
+export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
     properties: {
         helperText: 'helper-text',
@@ -1740,13 +1738,13 @@ export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents, Co
         error: 'error'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxSlider as StencilReactComponent<IxSliderElement, IxSliderEvents, Components.IxSlider>,
+    clientModule: clientComponents.IxSlider as ReactWebComponent<IxSliderElement, IxSliderEvents>,
     serializeShadowRoot
 });
 
 export type IxSpinnerEvents = NonNullable<unknown>;
 
-export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents, Components.IxSpinner> = /*@__PURE__*/ createComponent<IxSpinnerElement, IxSpinnerEvents, Components.IxSpinner>({
+export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents> = /*@__PURE__*/ createComponent<IxSpinnerElement, IxSpinnerEvents>({
     tagName: 'ix-spinner',
     properties: {
         variant: 'variant',
@@ -1754,13 +1752,13 @@ export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents,
         hideTrack: 'hide-track'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxSpinner as StencilReactComponent<IxSpinnerElement, IxSpinnerEvents, Components.IxSpinner>,
+    clientModule: clientComponents.IxSpinner as ReactWebComponent<IxSpinnerElement, IxSpinnerEvents>,
     serializeShadowRoot
 });
 
 export type IxSplitButtonEvents = { onButtonClick: EventName<IxSplitButtonCustomEvent<MouseEvent>> };
 
-export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents, Components.IxSplitButton> = /*@__PURE__*/ createComponent<IxSplitButtonElement, IxSplitButtonEvents, Components.IxSplitButton>({
+export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents> = /*@__PURE__*/ createComponent<IxSplitButtonElement, IxSplitButtonEvents>({
     tagName: 'ix-split-button',
     properties: {
         variant: 'variant',
@@ -1776,7 +1774,7 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxSplitButton as StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents, Components.IxSplitButton>,
+    clientModule: clientComponents.IxSplitButton as ReactWebComponent<IxSplitButtonElement, IxSplitButtonEvents>,
     serializeShadowRoot
 });
 
@@ -1785,7 +1783,7 @@ export type IxTabItemEvents = {
     onTabClose: EventName<IxTabItemCustomEvent<TabClickDetail>>
 };
 
-export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem>({
+export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents>({
     tagName: 'ix-tab-item',
     properties: {
         tabKey: 'tab-key',
@@ -1803,7 +1801,7 @@ export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents,
         iconOnly: 'icon-only'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTabItem as StencilReactComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem>,
+    clientModule: clientComponents.IxTabItem as ReactWebComponent<IxTabItemElement, IxTabItemEvents>,
     serializeShadowRoot
 });
 
@@ -1812,7 +1810,7 @@ export type IxTabsEvents = {
     onTabClose: EventName<IxTabsCustomEvent<string | undefined>>
 };
 
-export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents, Components.IxTabs> = /*@__PURE__*/ createComponent<IxTabsElement, IxTabsEvents, Components.IxTabs>({
+export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__PURE__*/ createComponent<IxTabsElement, IxTabsEvents>({
     tagName: 'ix-tabs',
     properties: {
         small: 'small',
@@ -1824,7 +1822,7 @@ export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents, Componen
         keyboardNavigation: 'keyboard-navigation'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTabs as StencilReactComponent<IxTabsElement, IxTabsEvents, Components.IxTabs>,
+    clientModule: clientComponents.IxTabs as ReactWebComponent<IxTabsElement, IxTabsEvents>,
     serializeShadowRoot
 });
 
@@ -1835,7 +1833,7 @@ export type IxTextareaEvents = {
     onIxChange: EventName<IxTextareaCustomEvent<string>>
 };
 
-export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEvents, Components.IxTextarea> = /*@__PURE__*/ createComponent<IxTextareaElement, IxTextareaEvents, Components.IxTextarea>({
+export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEvents> = /*@__PURE__*/ createComponent<IxTextareaElement, IxTextareaEvents>({
     tagName: 'ix-textarea',
     properties: {
         name: 'name',
@@ -1860,17 +1858,17 @@ export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEven
         minLength: 'min-length'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTextarea as StencilReactComponent<IxTextareaElement, IxTextareaEvents, Components.IxTextarea>,
+    clientModule: clientComponents.IxTextarea as ReactWebComponent<IxTextareaElement, IxTextareaEvents>,
     serializeShadowRoot
 });
 
 export type IxTileEvents = NonNullable<unknown>;
 
-export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents, Components.IxTile> = /*@__PURE__*/ createComponent<IxTileElement, IxTileEvents, Components.IxTile>({
+export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__PURE__*/ createComponent<IxTileElement, IxTileEvents>({
     tagName: 'ix-tile',
     properties: { size: 'size' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTile as StencilReactComponent<IxTileElement, IxTileEvents, Components.IxTile>,
+    clientModule: clientComponents.IxTile as ReactWebComponent<IxTileElement, IxTileEvents>,
     serializeShadowRoot
 });
 
@@ -1880,7 +1878,7 @@ export type IxTimeInputEvents = {
     onIxChange: EventName<IxTimeInputCustomEvent<string>>
 };
 
-export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputEvents, Components.IxTimeInput> = /*@__PURE__*/ createComponent<IxTimeInputElement, IxTimeInputEvents, Components.IxTimeInput>({
+export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputEvents> = /*@__PURE__*/ createComponent<IxTimeInputElement, IxTimeInputEvents>({
     tagName: 'ix-time-input',
     properties: {
         name: 'name',
@@ -1917,7 +1915,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         ariaLabelTimeToggleButton: 'aria-label-time-toggle-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTimeInput as StencilReactComponent<IxTimeInputElement, IxTimeInputEvents, Components.IxTimeInput>,
+    clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,
     serializeShadowRoot
 });
 
@@ -1926,7 +1924,7 @@ export type IxTimePickerEvents = {
     onTimeChange: EventName<IxTimePickerCustomEvent<string>>
 };
 
-export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>({
+export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents>({
     tagName: 'ix-time-picker',
     properties: {
         format: 'format',
@@ -1949,13 +1947,13 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTimePicker as StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>,
+    clientModule: clientComponents.IxTimePicker as ReactWebComponent<IxTimePickerElement, IxTimePickerEvents>,
     serializeShadowRoot
 });
 
 export type IxToastEvents = { onCloseToast: EventName<IxToastCustomEvent<any>> };
 
-export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents, Components.IxToast> = /*@__PURE__*/ createComponent<IxToastElement, IxToastEvents, Components.IxToast>({
+export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@__PURE__*/ createComponent<IxToastElement, IxToastEvents>({
     tagName: 'ix-toast',
     properties: {
         type: 'type',
@@ -1968,17 +1966,17 @@ export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents, Compo
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxToast as StencilReactComponent<IxToastElement, IxToastEvents, Components.IxToast>,
+    clientModule: clientComponents.IxToast as ReactWebComponent<IxToastElement, IxToastEvents>,
     serializeShadowRoot
 });
 
 export type IxToastContainerEvents = NonNullable<unknown>;
 
-export const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents, Components.IxToastContainer> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents, Components.IxToastContainer>({
+export const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents>({
     tagName: 'ix-toast-container',
     properties: { position: 'position' },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxToastContainer as StencilReactComponent<IxToastContainerElement, IxToastContainerEvents, Components.IxToastContainer>,
+    clientModule: clientComponents.IxToastContainer as ReactWebComponent<IxToastContainerElement, IxToastContainerEvents>,
     serializeShadowRoot
 });
 
@@ -1987,7 +1985,7 @@ export type IxToggleEvents = {
     onIxBlur: EventName<IxToggleCustomEvent<void>>
 };
 
-export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents, Components.IxToggle> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents, Components.IxToggle>({
+export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',
     properties: {
         name: 'name',
@@ -2002,13 +2000,13 @@ export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents, Co
         required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxToggle as StencilReactComponent<IxToggleElement, IxToggleEvents, Components.IxToggle>,
+    clientModule: clientComponents.IxToggle as ReactWebComponent<IxToggleElement, IxToggleEvents>,
     serializeShadowRoot
 });
 
 export type IxToggleButtonEvents = { onPressedChange: EventName<IxToggleButtonCustomEvent<boolean>> };
 
-export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxToggleButtonEvents, Components.IxToggleButton> = /*@__PURE__*/ createComponent<IxToggleButtonElement, IxToggleButtonEvents, Components.IxToggleButton>({
+export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxToggleButtonEvents> = /*@__PURE__*/ createComponent<IxToggleButtonElement, IxToggleButtonEvents>({
     tagName: 'ix-toggle-button',
     properties: {
         variant: 'variant',
@@ -2019,13 +2017,13 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
         pressed: 'pressed'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxToggleButton as StencilReactComponent<IxToggleButtonElement, IxToggleButtonEvents, Components.IxToggleButton>,
+    clientModule: clientComponents.IxToggleButton as ReactWebComponent<IxToggleButtonElement, IxToggleButtonEvents>,
     serializeShadowRoot
 });
 
 export type IxTooltipEvents = NonNullable<unknown>;
 
-export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents, Components.IxTooltip> = /*@__PURE__*/ createComponent<IxTooltipElement, IxTooltipEvents, Components.IxTooltip>({
+export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents> = /*@__PURE__*/ createComponent<IxTooltipElement, IxTooltipEvents>({
     tagName: 'ix-tooltip',
     properties: {
         for: 'for',
@@ -2037,13 +2035,13 @@ export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents,
         animationFrame: 'animation-frame'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTooltip as StencilReactComponent<IxTooltipElement, IxTooltipEvents, Components.IxTooltip>,
+    clientModule: clientComponents.IxTooltip as ReactWebComponent<IxTooltipElement, IxTooltipEvents>,
     serializeShadowRoot
 });
 
 export type IxTypographyEvents = NonNullable<unknown>;
 
-export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypographyEvents, Components.IxTypography> = /*@__PURE__*/ createComponent<IxTypographyElement, IxTypographyEvents, Components.IxTypography>({
+export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypographyEvents> = /*@__PURE__*/ createComponent<IxTypographyElement, IxTypographyEvents>({
     tagName: 'ix-typography',
     properties: {
         format: 'format',
@@ -2052,13 +2050,13 @@ export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypograp
         textDecoration: 'text-decoration'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxTypography as StencilReactComponent<IxTypographyElement, IxTypographyEvents, Components.IxTypography>,
+    clientModule: clientComponents.IxTypography as ReactWebComponent<IxTypographyElement, IxTypographyEvents>,
     serializeShadowRoot
 });
 
 export type IxUploadEvents = { onFilesChanged: EventName<IxUploadCustomEvent<Array<File>>> };
 
-export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents, Components.IxUpload> = /*@__PURE__*/ createComponent<IxUploadElement, IxUploadEvents, Components.IxUpload>({
+export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = /*@__PURE__*/ createComponent<IxUploadElement, IxUploadEvents>({
     tagName: 'ix-upload',
     properties: {
         accept: 'accept',
@@ -2074,13 +2072,13 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents, Co
         i18nUploadDisabled: 'i18n-upload-disabled'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxUpload as StencilReactComponent<IxUploadElement, IxUploadEvents, Components.IxUpload>,
+    clientModule: clientComponents.IxUpload as ReactWebComponent<IxUploadElement, IxUploadEvents>,
     serializeShadowRoot
 });
 
 export type IxValidationTooltipEvents = NonNullable<unknown>;
 
-export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents, Components.IxValidationTooltip> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents, Components.IxValidationTooltip>({
+export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
     tagName: 'ix-validation-tooltip',
     properties: {
         message: 'message',
@@ -2088,13 +2086,13 @@ export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipEleme
         suppressAutomaticPlacement: 'suppress-automatic-placement'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxValidationTooltip as StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents, Components.IxValidationTooltip>,
+    clientModule: clientComponents.IxValidationTooltip as ReactWebComponent<IxValidationTooltipElement, IxValidationTooltipEvents>,
     serializeShadowRoot
 });
 
 export type IxWorkflowStepEvents = NonNullable<unknown>;
 
-export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents, Components.IxWorkflowStep> = /*@__PURE__*/ createComponent<IxWorkflowStepElement, IxWorkflowStepEvents, Components.IxWorkflowStep>({
+export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepElement, IxWorkflowStepEvents>({
     tagName: 'ix-workflow-step',
     properties: {
         vertical: 'vertical',
@@ -2105,13 +2103,13 @@ export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWork
         position: 'position'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxWorkflowStep as StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents, Components.IxWorkflowStep>,
+    clientModule: clientComponents.IxWorkflowStep as ReactWebComponent<IxWorkflowStepElement, IxWorkflowStepEvents>,
     serializeShadowRoot
 });
 
 export type IxWorkflowStepsEvents = { onStepSelected: EventName<IxWorkflowStepsCustomEvent<number>> };
 
-export const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents, Components.IxWorkflowSteps> = /*@__PURE__*/ createComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents, Components.IxWorkflowSteps>({
+export const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents>({
     tagName: 'ix-workflow-steps',
     properties: {
         vertical: 'vertical',
@@ -2119,6 +2117,6 @@ export const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWo
         selectedIndex: 'selected-index'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxWorkflowSteps as StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents, Components.IxWorkflowSteps>,
+    clientModule: clientComponents.IxWorkflowSteps as ReactWebComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents>,
     serializeShadowRoot
 });
