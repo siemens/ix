@@ -209,7 +209,6 @@ export const testIds = [
   "content-header-with-slot",
   "content-header-no-back",
   "chip",
-  "chip-examples",
   "checkbox",
   "checkbox-indeterminate",
   "category-filter",

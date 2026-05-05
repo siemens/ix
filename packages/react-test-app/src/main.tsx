@@ -55,7 +55,6 @@ import CategoryFilterSuggestions from './preview-examples/category-filter-sugges
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
-import ChipExamples from './preview-examples/chip-examples';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
@@ -272,8 +271,6 @@ type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
-} & {
-  '/preview/chip-examples': React.ComponentType;
 };
 
 const routes: IxPreviewRoutes = {
@@ -319,7 +316,6 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/chip': Chip,
-  '/preview/chip-examples': ChipExamples,
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-presets': DateDropdownPresets,

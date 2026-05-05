@@ -11,7 +11,6 @@
  * If you want to modify the example styles do this only inside the html-test-app
  */
 
-/* Chip examples matrix (e.g. React /preview/chip-examples) — keep in sync with consumers */
 .chip-page {
   box-sizing: border-box;
   max-width: 56rem;

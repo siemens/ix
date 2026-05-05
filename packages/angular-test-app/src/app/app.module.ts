@@ -59,7 +59,6 @@ import CategoryFilterSuggestions from '../preview-examples/category-filter-sugge
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
-import ChipExamples from '../preview-examples/chip-examples';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
@@ -317,7 +316,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CheckboxIndeterminate,
     Checkbox,
     Chip,
-    ChipExamples,
     CustomField,
     CustomFieldValidation,
     DateDropdown,

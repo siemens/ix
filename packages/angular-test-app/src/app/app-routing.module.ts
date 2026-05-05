@@ -50,7 +50,6 @@ import CategoryFilterSuggestions from '../preview-examples/category-filter-sugge
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
-import ChipExamples from '../preview-examples/chip-examples';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
@@ -451,10 +450,6 @@ const routes: Routes = [
       {
         path: 'chip',
         component: Chip,
-      },
-      {
-        path: 'chip-examples',
-        component: ChipExamples,
       },
       {
         path: 'date-dropdown',

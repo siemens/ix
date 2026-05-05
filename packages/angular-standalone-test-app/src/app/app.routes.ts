@@ -20,7 +20,6 @@ type IxPreviewRoutes = {
   'preview/modal-by-template': AngularComponent;
   'preview/select-ng-model': AngularComponent;
   'preview/toggle-ng-model': AngularComponent;
-  'preview/chip-examples': AngularComponent;
 };
 
 export const routePaths: IxPreviewRoutes = {
@@ -105,8 +104,6 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/checkbox-indeterminate').then((m) => m.default),
   'preview/chip': () =>
     import('../preview-examples/chip').then((m) => m.default),
-  'preview/chip-examples': () =>
-    import('../preview-examples/chip-examples').then((m) => m.default),
   'preview/content': () =>
     import('../preview-examples/content').then((m) => m.default),
   'preview/content-header': () =>
