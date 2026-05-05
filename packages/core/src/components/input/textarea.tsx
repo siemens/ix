@@ -190,6 +190,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   });
   private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
   private touched = false;
+  private isClearing = false;
   /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;
@@ -292,11 +293,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
-    if (
-      this.textAreaRef.current &&
-      this.touched &&
-      !(this as { isClearing?: boolean }).isClearing
-    ) {
+    if (this.textAreaRef.current && this.touched && !this.isClearing) {
       checkInternalValidity(this, this.textAreaRef.current);
     }
   }
@@ -323,6 +320,7 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * Returns the validity state of the textarea field.
+   * @since 5.1.0
    */
   @Method()
   async getValidityState(): Promise<ValidityState> {
@@ -350,6 +348,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
+   * @since 5.1.0
    */
   @Method()
   async clear(): Promise<void> {

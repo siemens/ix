@@ -2221,6 +2221,7 @@ export namespace Components {
         "allowedCharactersPattern"?: string;
         /**
           * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+          * @since 5.1.0
          */
         "clear": () => Promise<void>;
         /**
@@ -2900,6 +2901,7 @@ export namespace Components {
         "allowedCharactersPattern"?: string;
         /**
           * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+          * @since 5.1.0
          */
         "clear": () => Promise<void>;
         /**
@@ -3854,6 +3856,7 @@ export namespace Components {
     interface IxTextarea {
         /**
           * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+          * @since 5.1.0
          */
         "clear": () => Promise<void>;
         /**
@@ -3872,6 +3875,7 @@ export namespace Components {
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
         /**
           * Returns the validity state of the textarea field.
+          * @since 5.1.0
          */
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;

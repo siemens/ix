@@ -334,7 +334,7 @@ export async function clearInputValue<T>(
       : ('' as unknown as T);
   const compAny = comp as IxInputFieldComponent<T> & {
     touched: boolean;
-    isClearing?: boolean;
+    isClearing: boolean;
     updateFormInternalValue: (value: T) => void;
     valueChange: { emit: (value: T) => void };
   };

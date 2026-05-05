@@ -197,6 +197,7 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
+  private isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -239,11 +240,7 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (
-      this.inputRef.current &&
-      this.touched &&
-      !(this as { isClearing?: boolean }).isClearing
-    ) {
+    if (this.inputRef.current && this.touched && !this.isClearing) {
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -297,6 +294,7 @@ export class Input implements IxInputFieldComponent<string> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
+   * @since 5.1.0
    */
   @Method()
   async clear(): Promise<void> {

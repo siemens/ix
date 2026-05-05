@@ -912,7 +912,7 @@ test.describe('prevent initial require validation', async () => {
   });
 });
 
-test.describe.only('clear() method', () => {
+test.describe('clear() method', () => {
   const clearTestConfigs = [
     {
       selector: 'ix-input',
@@ -1025,7 +1025,7 @@ test.describe.only('clear() method', () => {
   );
 });
 
-test.describe.only('getValidityState() method', () => {
+test.describe('getValidityState() method', () => {
   ['ix-input', 'ix-textarea'].forEach((selector) => {
     test.describe(selector, () => {
       test('should return valid state when field is valid', async ({
