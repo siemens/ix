@@ -669,10 +669,10 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: /^15\s.+/ })
+      dateTimeInput.getByRole('gridcell', { name: /^15\s.+/ })
     ).toHaveClass(/disabled/);
     await expect(
-      dateTimeInput.getByRole('button', { name: /^30\s.+/ })
+      dateTimeInput.getByRole('gridcell', { name: /^30\s.+/ })
     ).toHaveClass(/disabled/);
   }
 );
@@ -741,7 +741,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026/02/15 12:00:00');
@@ -797,10 +797,10 @@ regressionTest(
     await acc.openByCalendar();
 
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 13', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
     ).not.toBeDisabled();
   }
 );
@@ -826,7 +826,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 13', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
     ).toHaveClass(/selected/);
   }
 );
@@ -875,7 +875,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toBeDisabled();
     await acc.selectTime(17, 30, 0);
     await acc.confirm();
@@ -903,10 +903,10 @@ regressionTest(
     await expect(input).not.toHaveClass(/is-invalid/);
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toBeDisabled();
 
     await acc.selectTime(16, 0, 0);
@@ -932,13 +932,13 @@ regressionTest(
 
     await acc.openByCalendar();
     await dateTimeInput
-      .getByRole('button', { name: 'hr: 13', exact: true })
+      .getByRole('option', { name: 'hr: 13', exact: true })
       .click();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'min: 5', exact: true })
+      dateTimeInput.getByRole('option', { name: 'min: 5', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'min: 10', exact: true })
+      dateTimeInput.getByRole('option', { name: 'min: 10', exact: true })
     ).not.toBeDisabled();
   }
 );
@@ -1007,7 +1007,7 @@ regressionTest('minTime without maxTime', async ({ mount, page }) => {
 
   await acc.openByCalendar();
   await expect(
-    dateTimeInput.getByRole('button', { name: 'hr: 10', exact: true })
+    dateTimeInput.getByRole('option', { name: 'hr: 10', exact: true })
   ).toBeDisabled();
   await page.keyboard.press('Escape');
   await input.fill('2026/02/15 10:00:00');
@@ -1043,7 +1043,7 @@ regressionTest('maxTime without minTime', async ({ mount, page }) => {
 
   await acc.openByCalendar();
   await expect(
-    dateTimeInput.getByRole('button', { name: 'hr: 20', exact: true })
+    dateTimeInput.getByRole('option', { name: 'hr: 20', exact: true })
   ).toBeDisabled();
   await page.keyboard.press('Escape');
   await input.fill('2026/02/15 20:00:00');
@@ -1077,7 +1077,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('15-02-2026 12:00:00');
@@ -1160,7 +1160,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026-02-15 12:00');
@@ -1201,7 +1201,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026-02-15T12:00:00');
@@ -1244,7 +1244,7 @@ regressionTest(
     await dateTimeAccessor.openByCalendar();
 
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toHaveClass(/selected/);
 
     await dateTimeAccessor.selectTime(14, 0, 0);
@@ -1368,7 +1368,7 @@ regressionTest(
     const acc = await createAccessor(dateTimeInput);
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toHaveClass(/selected/);
 
     await acc.selectTime(17, 0, 0);
