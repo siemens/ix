@@ -26,9 +26,7 @@ import {
   IxFormValidationState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import {
-  clearRadioGroupValidationState,
-} from '../radio/radio-validation';
+import { clearRadioGroupValidationState } from '../radio/radio-validation';
 
 /**
  * @form-ready
@@ -39,7 +37,8 @@ import {
   shadow: true,
 })
 export class RadiobuttonGroup
-  implements FieldWrapperInterface, IxFormValidationState {
+  implements FieldWrapperInterface, IxFormValidationState
+{
   @Element() hostElement!: HTMLIxRadioGroupElement;
   /**
    * Show text below the field component
@@ -268,10 +267,7 @@ export class RadiobuttonGroup
   }
 
   private clearValidationState() {
-    clearRadioGroupValidationState(
-      this.hostElement,
-      this.radiobuttonElements
-    );
+    clearRadioGroupValidationState(this.hostElement, this.radiobuttonElements);
   }
 
   render() {
