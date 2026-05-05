@@ -34,6 +34,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  clearInputValue,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -238,7 +239,11 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (this.inputRef.current && this.touched) {
+    if (
+      this.inputRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -287,6 +292,15 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this);
   }
 
   render() {

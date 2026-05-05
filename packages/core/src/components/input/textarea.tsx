@@ -29,6 +29,7 @@ import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   getAriaAttributesForInput,
+  clearInputValue,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -291,7 +292,11 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
-    if (this.textAreaRef.current && this.touched) {
+    if (
+      this.textAreaRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
       checkInternalValidity(this, this.textAreaRef.current);
     }
   }
@@ -317,6 +322,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
+   * Returns the validity state of the textarea field.
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return textarea.validity;
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -331,6 +345,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this);
   }
 
   private getTextareaHeight(): string | undefined {

@@ -911,3 +911,158 @@ test.describe('prevent initial require validation', async () => {
     });
   });
 });
+
+test.describe.only('clear() method', () => {
+  const clearTestConfigs = [
+    {
+      selector: 'ix-input',
+      initialValue: 'test',
+      validValue: 'valid',
+      valueWithInitial: 'initial',
+      expectedClearedValue: '',
+    },
+    {
+      selector: 'ix-number-input',
+      initialValue: '42',
+      validValue: '100',
+      valueWithInitial: '100',
+      expectedClearedValue: undefined,
+    },
+    {
+      selector: 'ix-textarea',
+      initialValue: 'test',
+      validValue: 'valid',
+      valueWithInitial: 'initial',
+      expectedClearedValue: '',
+    },
+  ];
+
+  clearTestConfigs.forEach(
+    ({
+      selector,
+      initialValue,
+      validValue,
+      valueWithInitial,
+      expectedClearedValue,
+    }) => {
+      test.describe(selector, () => {
+        test('should clear value and reset validation state', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<${selector} required value="${initialValue}"></${selector}>`
+          );
+
+          const component = page.locator(selector);
+          await expect(component).toHaveClass(/hydrated/);
+          const input = component.locator(getInputSelector(selector));
+
+          await input.fill('');
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid/);
+
+          await input.fill(validValue);
+          await input.blur();
+          await expect(component).not.toHaveClass(/ix-invalid/);
+
+          await component.evaluate((el: any) => el.clear());
+
+          await expect(input).toHaveValue('');
+          await expect(component).not.toHaveClass(/ix-invalid/);
+        });
+
+        test('should emit valueChange event when cleared', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<${selector} value="${valueWithInitial}"></${selector}>`
+          );
+
+          const component = page.locator(selector);
+          await expect(component).toHaveClass(/hydrated/);
+
+          const valueChangePromise = component.evaluate(
+            (el) =>
+              new Promise<string | number | undefined>((resolve) => {
+                el.addEventListener('valueChange', ((e: CustomEvent) => {
+                  resolve(e.detail);
+                }) as EventListener);
+              })
+          );
+
+          await component.evaluate((el: any) => el.clear());
+
+          const emittedValue = await valueChangePromise;
+          if (expectedClearedValue === undefined) {
+            expect(emittedValue == null).toBe(true);
+          } else {
+            expect(emittedValue).toBe(expectedClearedValue);
+          }
+        });
+
+        test('should remove invalid class when clearing invalid field', async ({
+          mount,
+          page,
+        }) => {
+          await mount(`<${selector} required></${selector}>`);
+
+          const component = page.locator(selector);
+          await expect(component).toHaveClass(/hydrated/);
+          const input = component.locator(getInputSelector(selector));
+
+          await input.focus();
+          await input.fill('');
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid--required/);
+
+          await component.evaluate((el: any) => el.clear());
+          await expect(component).not.toHaveClass(/ix-invalid/);
+        });
+      });
+    }
+  );
+});
+
+test.describe.only('getValidityState() method', () => {
+  ['ix-input', 'ix-textarea'].forEach((selector) => {
+    test.describe(selector, () => {
+      test('should return valid state when field is valid', async ({
+        mount,
+        page,
+      }) => {
+        await mount(`<${selector} value="valid content"></${selector}>`);
+
+        const component = page.locator(selector);
+        await expect(component).toHaveClass(/hydrated/);
+
+        const validityState = await component.evaluate(async (el: any) => {
+          const state = await el.getValidityState();
+          return { valid: state.valid, valueMissing: state.valueMissing };
+        });
+
+        expect(validityState.valid).toBe(true);
+        expect(validityState.valueMissing).toBe(false);
+      });
+
+      test('should return invalid state when required field is empty', async ({
+        mount,
+        page,
+      }) => {
+        await mount(`<${selector} required value=""></${selector}>`);
+
+        const component = page.locator(selector);
+        await expect(component).toHaveClass(/hydrated/);
+
+        const validityState = await component.evaluate(async (el: any) => {
+          const state = await el.getValidityState();
+          return { valid: state.valid, valueMissing: state.valueMissing };
+        });
+
+        expect(validityState.valid).toBe(false);
+        expect(validityState.valueMissing).toBe(true);
+      });
+    });
+  });
+});
