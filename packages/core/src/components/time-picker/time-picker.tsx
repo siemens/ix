@@ -270,7 +270,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop() time?: string;
 
   @Watch('time')
-  watchTimePropHandler(newValue: string) {
+  watchTimePropHandler(newValue: string | undefined) {
+    if (newValue === undefined || newValue === '') {
+      this._time = this.getDefaultTime();
+      return;
+    }
+
     const timeFormat = DateTime.fromFormat(newValue, this.format);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');

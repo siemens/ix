@@ -21,13 +21,17 @@ export interface TreeItem<T> {
   data: T;
   hasChildren: boolean;
   children: TreeItemId[];
+  disabled?: boolean;
 }
 
 export interface TreeItemVisual<T> extends TreeItem<T> {
   level: number;
+  posinset?: number;
+  setsize?: number;
 }
 
 export interface TreeItemContext {
   isExpanded: boolean;
   isSelected: boolean;
+  isDisabled?: boolean;
 }

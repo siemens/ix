@@ -519,6 +519,12 @@ export namespace Components {
          */
         "i18nShowAll": string;
         /**
+          * i18n show less button
+          * @since 5.0.0
+          * @default 'Show less'
+         */
+        "i18nShowLess": string;
+        /**
           * Name the card list
          */
         "label"?: string;
@@ -1332,9 +1338,19 @@ export namespace Components {
          */
         "maxDate"?: string;
         /**
+          * Latest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+          * @since 5.0.0
+         */
+        "maxTime"?: string;
+        /**
           * Minimum allowed date (matching format or date-only, e.g., "2026/01/20")
          */
         "minDate"?: string;
+        /**
+          * Earliest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+          * @since 5.0.0
+         */
+        "minTime"?: string;
         /**
           * Name of the form control for form submission
          */
@@ -1570,7 +1586,7 @@ export namespace Components {
         "discoverSubmenu": () => Promise<void>;
         /**
           * Enable Popover API rendering for top-layer positioning.
-          * @default false in v4.x, will default to true in v5.0.0
+          * @default false in v5.x, will default to true in v6.0.0
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
@@ -4461,6 +4477,12 @@ export namespace Components {
          */
         "context"?: TreeItemContext;
         /**
+          * Disable tree item
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * Has tree item children
           * @default false
          */
@@ -6937,6 +6959,12 @@ declare namespace LocalJSX {
          */
         "i18nShowAll"?: string;
         /**
+          * i18n show less button
+          * @since 5.0.0
+          * @default 'Show less'
+         */
+        "i18nShowLess"?: string;
+        /**
           * Name the card list
          */
         "label"?: string;
@@ -7786,9 +7814,19 @@ declare namespace LocalJSX {
          */
         "maxDate"?: string;
         /**
+          * Latest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+          * @since 5.0.0
+         */
+        "maxTime"?: string;
+        /**
           * Minimum allowed date (matching format or date-only, e.g., "2026/01/20")
          */
         "minDate"?: string;
+        /**
+          * Earliest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+          * @since 5.0.0
+         */
+        "minTime"?: string;
         /**
           * Name of the form control for form submission
          */
@@ -8056,7 +8094,7 @@ declare namespace LocalJSX {
         "discoverAllSubmenus"?: boolean;
         /**
           * Enable Popover API rendering for top-layer positioning.
-          * @default false in v4.x, will default to true in v5.0.0
+          * @default false in v5.x, will default to true in v6.0.0
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
@@ -11160,6 +11198,12 @@ declare namespace LocalJSX {
          */
         "context"?: TreeItemContext;
         /**
+          * Disable tree item
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * Has tree item children
           * @default false
          */
@@ -11432,6 +11476,7 @@ declare namespace LocalJSX {
         "suppressOverflowHandling": boolean;
         "hideShowAll": boolean;
         "i18nShowAll": string;
+        "i18nShowLess": string;
         "i18nMoreCards": string;
     }
     interface IxCategoryFilterAttributes {
@@ -11599,6 +11644,8 @@ declare namespace LocalJSX {
         "readonly": boolean;
         "minDate": string;
         "maxDate": string;
+        "minTime": string;
+        "maxTime": string;
         "label": string;
         "helperText": string;
         "invalidText": string;
@@ -12327,6 +12374,7 @@ declare namespace LocalJSX {
     interface IxTreeItemAttributes {
         "text": string;
         "hasChildren": boolean;
+        "disabled": boolean;
         "ariaLabelChevronIcon": string;
     }
     interface IxTypographyAttributes {
