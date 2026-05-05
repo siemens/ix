@@ -1019,6 +1019,7 @@ export class DatePicker
             ></ix-icon-button>
           </div>
           <div
+            role="grid"
             class={{
               grid: true,
               'grid--show-week-numbers': this.showWeekNumbers,
@@ -1041,7 +1042,7 @@ export class DatePicker
                   {week.dayNumbers.map((day) => {
                     return day ? (
                       <div
-                        role="button"
+                        role="gridcell"
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
