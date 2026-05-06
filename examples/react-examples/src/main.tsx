@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
+import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
@@ -61,7 +62,7 @@ import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
-import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
+import DateDropdownPresets from './preview-examples/date-dropdown-presets';
 import DateRange from './preview-examples/date-range';
 import DatetimeRange from './preview-examples/datetime-range';
 import DateInput from './preview-examples/date-input';
@@ -205,6 +206,7 @@ import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
 import SelecValidation from './preview-examples/select-validation';
 import Settings from './preview-examples/settings';
+import SettingsLegacy from './preview-examples/settings-legacy';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
 import SliderMarker from './preview-examples/slider-marker';
@@ -237,6 +239,7 @@ import TimeRange from './preview-examples/time-range';
 import Timepicker from './preview-examples/timepicker';
 import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
 import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
+import timepickerMinMaxTime from './preview-examples/timepicker-min-max-time.tsx';
 import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
@@ -268,9 +271,7 @@ type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
-} & {
-  '/preview/tabs-overflow': React.ComponentType;
-};
+} & {};
 
 const routes: IxPreviewRoutes = {
   '/': App,
@@ -278,6 +279,7 @@ const routes: IxPreviewRoutes = {
   '/preview/grid-size': GridSize,
   '/preview/grid': Grid,
   '/preview/about-and-legal': AboutAndLegal,
+  '/preview/about-and-legal-legacy': AboutAndLegalLegacy,
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
@@ -316,7 +318,7 @@ const routes: IxPreviewRoutes = {
   '/preview/chip': Chip,
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
-  '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/date-dropdown-presets': DateDropdownPresets,
   '/preview/date-range': DateRange,
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
@@ -420,6 +422,7 @@ const routes: IxPreviewRoutes = {
   '/preview/popover-news': PopoverNews,
   '/preview/push-card': PushCard,
   '/preview/settings': Settings,
+  '/preview/settings-legacy': SettingsLegacy,
   '/preview/slider-error': SliderError,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-trace': SliderTrace,
@@ -522,6 +525,7 @@ const routes: IxPreviewRoutes = {
   '/preview/time-input-with-slots': timeInputWithSlots,
   '/preview/timepicker-format-adjusted': timepickerFormatAdjusted,
   '/preview/timepicker-intervals': timepickerIntervals,
+  '/preview/timepicker-min-max-time': timepickerMinMaxTime,
   '/preview/toggle-button-primary': toggleButtonPrimary,
 };
 

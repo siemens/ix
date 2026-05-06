@@ -10,6 +10,43 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@mixin tab-border($position) {
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--theme-tab-indicator--background);
+    width: 100%;
+    height: var(--theme-tab-indicator--height);
+    left: 0;
+    bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--theme-tab-indicator--background--selected);
+    width: var(--ix-tab-active-indicator-width);
+    height: var(--theme-tab-indicator--height);
+    left: 0;
+    bottom: 0;
+    transform: translateX(var(--ix-tab-active-indicator-offset));
+  }
+
+  @if $position == 'top' {
+    &::before,
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+  } @else if $position == 'bottom' {
+    &::before,
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
+
 :host {
   width: auto;
   display: flex;
@@ -18,81 +55,64 @@
 
   @include component.ix-component;
 
-  .tab-items {
-    overflow: hidden;
+  .tabs-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    &.top {
+      @include tab-border('top');
+    }
+
+    &.bottom {
+      @include tab-border('bottom');
+    }
+  }
+
+  .tabs {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: auto;
     scroll-behavior: smooth;
     width: 100%;
-    touch-action: pan-y; // Allow vertical scroll but prevent horizontal touch gestures
+    touch-action: pan-y;
 
-    .items-content {
-      display: flex;
-      align-items: center;
-      touch-action: none; // Disable all default touch behaviors for drag
+    padding-right: 2.75rem;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
-  .arrow {
-    // unset button styles first
-    all: unset;
-
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto 0;
-    border-radius: 4px;
-    color: var(--theme-btn-tertiary--color);
-    background-color: var(--theme-btn-tertiary--background);
-    z-index: 2;
-
-    &:hover {
-      color: var(--theme-btn-tertiary--color--hover);
-      background-color: var(--theme-btn-tertiary--background--hover);
-    }
-
-    &:active {
-      color: var(--theme-btn-tertiary--color--active);
-      background-color: var(--theme-btn-tertiary--background--active);
-    }
-
-    &.right {
-      left: auto;
-      right: 0;
-    }
+  .tabs:focus-visible {
+    outline-offset: -1px;
+    outline: 1px solid var(--theme-color-focus-bdr);
   }
 
-  .overflow-shadow {
+  .tabs-context-menu {
+    margin-right: 0.5rem;
+  }
+
+  .overflow-shadow-container {
     display: block;
     position: relative;
     height: 100%;
     width: 100%;
     pointer-events: all;
+    overflow: auto;
+  }
 
-    &.shadow-left {
-      mask-image: linear-gradient(90deg, transparent 0px, black 45px);
-    }
-
-    &.shadow-right {
-      mask-image: linear-gradient(
-        90deg,
-        black calc(100% - 45px),
-        transparent 100%
-      );
-    }
-
-    &.shadow-both {
-      mask-image: linear-gradient(
-        90deg,
-        transparent 0px,
-        black 45px,
-        black calc(100% - 45px),
-        transparent 100%
-      );
-    }
+  .overflow-shadow {
+    mask-image: linear-gradient(
+      90deg,
+      black calc(100% - 45px),
+      transparent 100%
+    );
   }
 }

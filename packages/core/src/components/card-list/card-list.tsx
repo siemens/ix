@@ -3,6 +3,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
   Listen,
@@ -11,6 +12,7 @@ import {
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 function CardListTitle(props: {
   label?: string;
@@ -20,6 +22,8 @@ function CardListTitle(props: {
   onShowAllClick: (e: MouseEvent) => void;
   showAllLabel: string;
   showAllCounter: number;
+  labelShowLess: string;
+  showLess: boolean;
   hideShowAll: boolean;
 }) {
   if (!props.label) {
@@ -48,10 +52,18 @@ function CardListTitle(props: {
           variant="tertiary"
           onClick={props.onShowAllClick}
         >
-          <span>{props.showAllLabel}</span>
-          <span>
-            {!isNaN(props.showAllCounter) ? ` (${props.showAllCounter})` : null}
-          </span>
+          {props.showLess ? (
+            props.labelShowLess
+          ) : (
+            <Fragment>
+              <span>{props.showAllLabel}</span>
+              <span>
+                {!isNaN(props.showAllCounter)
+                  ? ` (${props.showAllCounter})`
+                  : null}
+              </span>
+            </Fragment>
+          )}
         </ix-button>
       )}
     </div>
@@ -119,6 +131,13 @@ export class CardList {
   @Prop({ attribute: 'i18n-show-all' }) i18nShowAll = 'Show all';
 
   /**
+   * i18n show less button
+   *
+   * @since 5.0.0
+   */
+  @Prop({ attribute: 'i18n-show-less' }) i18nShowLess = 'Show less';
+
+  /**
    * i18n More cards available
    */
   @Prop({ attribute: 'i18n-more-cards' }) i18nMoreCards =
@@ -132,19 +151,26 @@ export class CardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() showAllClick!: EventEmitter<{
+  @Event({
+    cancelable: true,
+  })
+  showAllClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
   /**
    * Fire event when the show more card is clicked.
    */
-  @Event() showMoreCardClick!: EventEmitter<{
+  @Event({
+    cancelable: true,
+  })
+  showMoreCardClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
   @Element() hostElement!: HTMLIxCardListElement;
 
+  @State() private isShowingAll = false;
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
   @State() private numberOfAllChildElements = 0;
@@ -158,10 +184,21 @@ export class CardList {
     this.collapseChanged.emit(this.collapse);
   }
 
-  private onShowAllClick(event: MouseEvent) {
-    this.showAllClick.emit({
+  private handleClick(emitter: EventEmitter, event: MouseEvent) {
+    const { defaultPrevented } = emitter.emit({
       nativeEvent: event,
     });
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    this.isShowingAll = !this.isShowingAll;
+    this.changeVisibilityOfSlotChildren();
+  }
+
+  private onShowAllClick(event: MouseEvent) {
+    this.handleClick(this.showAllClick, event);
   }
 
   private getListChildren() {
@@ -173,21 +210,24 @@ export class CardList {
 
   private changeVisibilityOfSlotChildren() {
     const childElements = this.getListChildren();
+    const visibleLimit = this.isShowingAll
+      ? childElements.length
+      : this.maxVisibleCards;
+
     childElements.forEach((element, index) => {
       if (element instanceof HTMLElement) {
-        if (index > this.maxVisibleCards - 1) {
+        if (index > visibleLimit - 1) {
           element.classList.add('display-none');
           return;
         }
         element.classList.remove('display-none');
       }
     });
-    this.hasOverflowingElements = childElements.length > this.maxVisibleCards;
-    this.numberOfOverflowingElements =
-      childElements.length - this.maxVisibleCards;
 
+    this.hasOverflowingElements = visibleLimit < childElements.length;
+    this.numberOfOverflowingElements = childElements.length - visibleLimit;
     this.numberOfAllChildElements = childElements.length;
-    this.detectOverflow();
+    requestAnimationFrameNoNgZone(() => this.detectOverflow());
   }
 
   private registerOverflowHandler() {
@@ -203,7 +243,7 @@ export class CardList {
       }
     );
 
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       this.changeVisibilityOfSlotChildren();
     });
   }
@@ -304,6 +344,8 @@ export class CardList {
               ? this.numberOfAllChildElements
               : this.showAllCount
           }
+          showLess={this.isShowingAll}
+          labelShowLess={this.i18nShowLess}
           onClick={() => this.onCardListVisibilityToggle()}
           onShowAllClick={(e) => this.onShowAllClick(e)}
           hideShowAll={this.hideShowAll}
@@ -324,18 +366,18 @@ export class CardList {
             onScroll={() => this.onCardListScroll()}
           >
             <slot
-              onSlotchange={() => this.changeVisibilityOfSlotChildren()}
+              onSlotchange={() => {
+                this.changeVisibilityOfSlotChildren();
+              }}
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
                 class={{
                   Show__All__Card: true,
                 }}
-                onClick={(event) =>
-                  this.showMoreCardClick.emit({
-                    nativeEvent: event,
-                  })
-                }
+                onClick={(event) => {
+                  this.handleClick(this.showMoreCardClick, event);
+                }}
               >
                 <ix-card-content>
                   <div class="Show__All__Card__Content">

@@ -59,7 +59,7 @@ export default () => {
         height: '40rem',
       }}
     >
-      <IxTree root="root" model={model}></IxTree>
+      <IxTree root="root" model={model} aria-label="Sample tree"></IxTree>
     </div>
   );
 };

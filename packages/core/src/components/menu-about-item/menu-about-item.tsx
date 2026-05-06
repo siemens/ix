@@ -13,20 +13,25 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   Watch,
 } from '@stencil/core';
+import { BaseTabMixin, BaseTabMixinContract } from '../tab-item/tab.mixin';
 import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+ * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
  */
 @Component({
   tag: 'ix-menu-about-item',
-  styleUrl: 'menu-about-item.css',
-  shadow: true,
+  shadow: false,
 })
-export class MenuAboutItem {
+export class MenuAboutItem
+  extends Mixin(BaseTabMixin)
+  implements BaseTabMixinContract
+{
   /**
    * About Item label
    */
@@ -46,10 +51,12 @@ export class MenuAboutItem {
     });
   }
 
-  render() {
+  override render() {
     return (
       <Host>
-        <slot></slot>
+        <ix-tab-panel tabKey={this.tabKey}>
+          <slot></slot>
+        </ix-tab-panel>
       </Host>
     );
   }

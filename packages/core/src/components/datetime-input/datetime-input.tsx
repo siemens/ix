@@ -31,6 +31,10 @@ import {
   onInputFocus,
 } from '../input/input.util';
 import {
+  getTimePickerConstraintBounds,
+  isWithinTimePickerConstraints,
+} from '../time-picker/time-picker-constraints';
+import {
   ClassMutationObserver,
   HookValidationLifecycle,
   IxInputFieldComponent,
@@ -46,6 +50,10 @@ import {
 } from '../utils/input/picker-input.util';
 import { makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
+import {
+  getLuxonDateOnlyFormatMask,
+  getLuxonTimeFormatMask,
+} from '../utils/luxon-datetime-format-masks';
 
 /**
  * @since 5.0.0
@@ -100,6 +108,20 @@ export class DatetimeInput
 
   /** Maximum allowed date (matching format or date-only, e.g., "2026/12/31") */
   @Prop() maxDate?: string;
+
+  /**
+   * Earliest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() minTime?: string;
+
+  /**
+   * Latest selectable time (tokens matching the time portion of `format`). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() maxTime?: string;
 
   /** Label text displayed above the input */
   @Prop() label?: string;
@@ -223,7 +245,16 @@ export class DatetimeInput
   @Watch('value')
   watchValuePropHandler(newValue: string) {
     this.onInput(newValue);
-    this.syncPickerState();
+  }
+
+  @Watch('minTime')
+  watchMinTimePropHandler() {
+    this.revalidateCurrentValue();
+  }
+
+  @Watch('maxTime')
+  watchMaxTimePropHandler() {
+    this.revalidateCurrentValue();
   }
 
   private get combinedFormat(): string {
@@ -231,13 +262,11 @@ export class DatetimeInput
   }
 
   private get dateOnlyFormat(): string {
-    const timeTokenIndex = this.format.search(/[HhmsaSZ]/);
-    if (timeTokenIndex === -1) return this.format;
-    let end = timeTokenIndex;
-    while (end > 0 && " \t'T".includes(this.format[end - 1])) {
-      end--;
-    }
-    return this.format.slice(0, end);
+    return getLuxonDateOnlyFormatMask(this.format);
+  }
+
+  private get timeOnlyFormat(): string {
+    return getLuxonTimeFormatMask(this.format);
   }
 
   private syncPickerState() {
@@ -252,8 +281,8 @@ export class DatetimeInput
     });
 
     if (dateTime.isValid) {
-      this.from = dateTime.toFormat(this.format);
-      this.time = dateTime.toFormat(this.format);
+      this.from = dateTime.toFormat(this.dateOnlyFormat);
+      this.time = dateTime.toFormat(this.timeOnlyFormat);
     } else {
       this.from = null;
       this.time = null;
@@ -265,6 +294,8 @@ export class DatetimeInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
+      this.from = null;
+      this.time = null;
       this.emitValidityStateChangeIfChanged();
       this.formInternals.setFormValue(null);
       this.valueChange.emit(value);
@@ -279,21 +310,20 @@ export class DatetimeInput
       locale: this.locale,
     });
 
-    const minDateTime = this.parseConstraintDate(this.minDate, 'start');
-    const maxDateTime = this.parseConstraintDate(this.maxDate, 'end');
-
-    const validationResult = this.validateConstraints(
-      dateTime,
-      minDateTime,
-      maxDateTime
-    );
+    const validationResult = this.computeConstraintValidation(dateTime);
 
     this.isInputInvalid = validationResult.isInvalid;
     this.invalidReason = validationResult.reason;
 
-    if (this.isInputInvalid) {
+    if (dateTime.isValid) {
+      this.from = dateTime.toFormat(this.dateOnlyFormat);
+      this.time = dateTime.toFormat(this.timeOnlyFormat);
+    } else {
       this.from = null;
       this.time = null;
+    }
+
+    if (this.isInputInvalid) {
       this.formInternals.setFormValue(null);
     } else {
       this.formInternals.setFormValue(value);
@@ -329,7 +359,9 @@ export class DatetimeInput
   private validateConstraints(
     dateTime: DateTime,
     minDateTime: DateTime | null,
-    maxDateTime: DateTime | null
+    maxDateTime: DateTime | null,
+    minTime: DateTime | null,
+    maxTime: DateTime | null
   ): { isInvalid: boolean; reason: string | undefined } {
     const isFormatInvalid = !dateTime.isValid;
     const isBeforeMin = !!(
@@ -342,19 +374,96 @@ export class DatetimeInput
       dateTime.isValid &&
       dateTime > maxDateTime
     );
+    const isOutsideTimeWindow =
+      dateTime.isValid &&
+      !isWithinTimePickerConstraints(dateTime, minTime, maxTime);
 
-    const isInvalid = isFormatInvalid || isBeforeMin || isAfterMax;
+    const isInvalid =
+      isFormatInvalid || isBeforeMin || isAfterMax || isOutsideTimeWindow;
 
     let reason: string | undefined;
     if (isBeforeMin) {
       reason = 'rangeUnderflow';
     } else if (isAfterMax) {
       reason = 'rangeOverflow';
+    } else if (isOutsideTimeWindow) {
+      reason = 'customError';
     } else if (isFormatInvalid) {
       reason = dateTime.invalidReason || undefined;
     }
 
     return { isInvalid, reason };
+  }
+
+  private getTimeConstraintBoundsForDate(
+    dateTime: DateTime,
+    minDateTime: DateTime | null,
+    maxDateTime: DateTime | null
+  ): { min: DateTime | null; max: DateTime | null } {
+    if (!dateTime.isValid) {
+      return { min: null, max: null };
+    }
+
+    const bounds = getTimePickerConstraintBounds(
+      this.minTime,
+      this.maxTime,
+      this.timeOnlyFormat,
+      dateTime.startOf('day')
+    );
+
+    const hasDateBounds = !!(minDateTime?.isValid || maxDateTime?.isValid);
+    if (!hasDateBounds) {
+      return bounds;
+    }
+
+    const applyMinTime =
+      !!minDateTime?.isValid && dateTime.hasSame(minDateTime, 'day');
+    const applyMaxTime =
+      !!maxDateTime?.isValid && dateTime.hasSame(maxDateTime, 'day');
+
+    return {
+      min: applyMinTime ? bounds.min : null,
+      max: applyMaxTime ? bounds.max : null,
+    };
+  }
+
+  private computeConstraintValidation(dateTime: DateTime): {
+    isInvalid: boolean;
+    reason: string | undefined;
+  } {
+    const minDateTime = this.parseConstraintDate(this.minDate, 'start');
+    const maxDateTime = this.parseConstraintDate(this.maxDate, 'end');
+    const { min: minTime, max: maxTime } = this.getTimeConstraintBoundsForDate(
+      dateTime,
+      minDateTime,
+      maxDateTime
+    );
+    return this.validateConstraints(
+      dateTime,
+      minDateTime,
+      maxDateTime,
+      minTime,
+      maxTime
+    );
+  }
+
+  private revalidateCurrentValue() {
+    if (!this.value || !this.format) {
+      return;
+    }
+
+    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
+      locale: this.locale,
+    });
+    if (!dateTime.isValid) {
+      return;
+    }
+
+    const validationResult = this.computeConstraintValidation(dateTime);
+
+    this.isInputInvalid = validationResult.isInvalid;
+    this.invalidReason = validationResult.reason;
+    this.emitValidityStateChangeIfChanged();
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
@@ -373,8 +482,8 @@ export class DatetimeInput
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
-        this.from = now.toFormat(this.format);
-        this.time = now.toFormat(this.format);
+        this.from = now.toFormat(this.dateOnlyFormat);
+        this.time = now.toFormat(this.timeOnlyFormat);
       }
     }
   }
@@ -526,12 +635,6 @@ export class DatetimeInput
 
   componentWillLoad(): void {
     this.onInput(this.value);
-    if (this.isInputInvalid) {
-      this.from = null;
-      this.time = null;
-    } else {
-      this.syncPickerState();
-    }
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
@@ -562,12 +665,16 @@ export class DatetimeInput
       return;
     }
 
-    const dateOnly = DateTime.fromFormat(from, this.format, {
+    const dateOnly = DateTime.fromFormat(from, this.dateOnlyFormat, {
       locale: this.locale,
     });
-    const timeOnly = DateTime.fromFormat(time, this.format, {
+    const timeOnly = DateTime.fromFormat(time, this.timeOnlyFormat, {
       locale: this.locale,
     });
+
+    if (!dateOnly.isValid || !timeOnly.isValid) {
+      return;
+    }
 
     const dateTimeCombined = dateOnly.set({
       hour: timeOnly.hour,
@@ -708,19 +815,21 @@ export class DatetimeInput
           <ix-datetime-picker
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            dateFormat={this.format}
+            dateFormat={this.dateOnlyFormat}
             embedded
             from={this.from ?? ''}
             i18nDone={this.i18nDone}
             i18nTime={this.i18nTime}
             locale={this.locale}
             maxDate={this.maxDate}
+            maxTime={this.maxTime}
             minDate={this.minDate}
+            minTime={this.minTime}
             ref={this.datetimePickerRef}
             showWeekNumbers={this.showWeekNumbers}
             singleSelection
             time={this.time ?? ''}
-            timeFormat={this.format}
+            timeFormat={this.timeOnlyFormat}
             weekStartIndex={this.weekStartIndex}
             onDateSelect={this.handleDateSelect}
           ></ix-datetime-picker>

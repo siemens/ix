@@ -59,14 +59,20 @@ SPDX-License-Identifier: MIT
         <ix-menu-settings>
           <ix-menu-settings-item
             label="Example Setting 1"
+            tab-key="tab1"
           ></ix-menu-settings-item>
           <ix-menu-settings-item
             label="Example Setting 2"
+            tab-key="tab2"
           ></ix-menu-settings-item>
         </ix-menu-settings>
         <ix-menu-about>
-          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
-          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab1" label="Tab 1"
+            >Content 1</ix-menu-about-item
+          >
+          <ix-menu-about-item tab-key="tab2" label="Tab 2"
+            >Content 2</ix-menu-about-item
+          >
         </ix-menu-about>
       </ix-menu>
     </ix-application>

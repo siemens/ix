@@ -32,7 +32,7 @@ const lastSevenDays = new Date(
   templateUrl: './date-dropdown-user-range.html',
 })
 export default class DateDropdownUserRange {
-  dateDropdownOptions: DateDropdownOption[] = [
+  dateRangeOptions: DateDropdownOption[] = [
     {
       id: 'last-7',
       label: 'Last 7 days',

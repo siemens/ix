@@ -107,16 +107,18 @@ const IxNavLinkMenuItem = ({
 
 const IxNavLinkTab = ({
   to,
-  children,
+  icon,
   counter,
+  children,
 }: {
   to: string;
-  children: any;
+  icon: string;
   counter?: number;
+  children?: any;
 }) => (
   <NavLink to={to}>
     {(props) => (
-      <IxTabItem icon selected={props.isActive} counter={counter}>
+      <IxTabItem icon={icon} selected={props.isActive} counter={counter}>
         {children}
       </IxTabItem>
     )}
@@ -188,15 +190,13 @@ const App: React.FC = () => {
               </Routes>
             </IonRouterOutlet>
             <IxTabs layout="stretched" placement="top" rounded slot="bottom">
-              <IxNavLinkTab to="home">
-                <IxIcon name={iconTree}></IxIcon>
-              </IxNavLinkTab>
-              <IxNavLinkTab to="demo">
-                <IxIcon name={iconStar}></IxIcon>
-              </IxNavLinkTab>
-              <IxNavLinkTab to="other" counter={4}>
-                <IxIcon name={iconBulb}></IxIcon>
-              </IxNavLinkTab>
+              <IxNavLinkTab to="home" icon={iconTree}></IxNavLinkTab>
+              <IxNavLinkTab to="demo" icon={iconStar}></IxNavLinkTab>
+              <IxNavLinkTab
+                to="other"
+                icon={iconBulb}
+                counter={4}
+              ></IxNavLinkTab>
             </IxTabs>
           </IxApplication>
         </HashRouter>
