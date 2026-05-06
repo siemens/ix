@@ -182,3 +182,69 @@ export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('
 
 export const buildFocusableQueryString = (additionalSelector = '') =>
   `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}`;
+
+/**
+ * Returns the deepest currently focused element by piercing all shadow roots.
+ */
+export function getDeepActiveElement(): Element | null {
+  let el: Element | null = document.activeElement;
+  while (el?.shadowRoot?.activeElement) {
+    el = el.shadowRoot.activeElement;
+  }
+  return el;
+}
+
+function isDeepElementFocusable(el: HTMLElement): boolean {
+  if (el.hidden) return false;
+  if (el.hasAttribute('disabled')) return false;
+  return el.tabIndex >= 0;
+}
+
+function collectDeepFocusableFromElement(
+  el: HTMLElement,
+  into: HTMLElement[]
+): void {
+  if (el.shadowRoot) {
+    collectDeepFocusableInOrder(el.shadowRoot, into);
+    return;
+  }
+
+  if (isDeepElementFocusable(el)) {
+    into.push(el);
+  }
+
+  collectDeepFocusableInOrder(el, into);
+}
+
+function collectDeepFocusableInOrder(
+  root: Element | ShadowRoot,
+  into: HTMLElement[]
+): void {
+  for (const child of Array.from(root.children)) {
+    const el = child as HTMLElement;
+
+    if (el.tagName === 'SLOT') {
+      for (const assigned of (el as HTMLSlotElement).assignedElements({
+        flatten: true,
+      })) {
+        collectDeepFocusableFromElement(assigned as HTMLElement, into);
+      }
+      continue;
+    }
+
+    collectDeepFocusableFromElement(el, into);
+  }
+}
+
+/**
+ * Collects all focusable elements in DOM order, traversing shadow roots and
+ * expanding slot assignments. Use this for shadow-aware focus traps where both
+ * shadow DOM and slotted light DOM elements must be considered.
+ */
+export function collectFocusableElementsInOrder(
+  host: HTMLElement
+): HTMLElement[] {
+  const result: HTMLElement[] = [];
+  collectDeepFocusableInOrder(host.shadowRoot ?? host, result);
+  return result;
+}

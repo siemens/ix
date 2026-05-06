@@ -35,10 +35,7 @@ import {
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import {
-  addGenericFocusTrap,
-  GenericFocusTrapResult,
-} from '../utils/focus/generic-focus-trap';
+import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import type {
   BorderlessChangedEvent,
   Composition,
@@ -178,7 +175,7 @@ export class Pane {
   private resizeObserver?: ResizeObserver;
   private disposableWindowClick?: DisposableEventListener;
   private disposableKeydown?: DisposableEventListener;
-  private focusTrap?: GenericFocusTrapResult;
+  private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
 
   get currentSlot() {
@@ -206,7 +203,7 @@ export class Pane {
   }
 
   @Watch('expanded')
-  onExpandedChange() {
+  async onExpandedChange() {
     if (!this.closeOnClickOutside || !this.expanded) {
       this.disposableWindowClick?.();
     } else {
@@ -232,7 +229,9 @@ export class Pane {
       const activeElement = document.activeElement;
       this.focusReturnElement =
         activeElement instanceof HTMLElement ? activeElement : undefined;
-      this.focusTrap = addGenericFocusTrap(this.hostElement);
+      this.focusTrap = await addFocusTrap(this.hostElement, {
+        trapFocusInShadowDom: 'both',
+      });
     } else {
       this.focusTrap?.destroy();
       this.focusTrap = undefined;

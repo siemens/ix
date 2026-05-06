@@ -8,7 +8,12 @@
  */
 
 import { isMakeRef, MakeRef } from '../make-ref';
-import { focusableQueryString, queryElements } from './focus-utilities';
+import {
+  collectFocusableElementsInOrder,
+  focusableQueryString,
+  getDeepActiveElement,
+  queryElements,
+} from './focus-utilities';
 
 export interface FocusTrapResult {
   destroy: () => void;
@@ -19,7 +24,7 @@ export const TRAP_FOCUS_INCLUDE_ATTRIBUTE = 'data-ix-focus-trap-include';
 
 export type FocusTrapOptions = {
   targetElement?: HTMLElement | MakeRef<any>;
-  trapFocusInShadowDom?: boolean;
+  trapFocusInShadowDom?: boolean | 'both';
   excludeElements?: boolean;
 };
 
@@ -41,6 +46,28 @@ export const addFocusTrap = async (
     const keyboardEvent = event as KeyboardEvent;
 
     if (keyboardEvent.key === 'Tab') {
+      if (options?.trapFocusInShadowDom === 'both') {
+        const focusableElements = collectFocusableElementsInOrder(ref);
+        if (focusableElements.length === 0) return;
+
+        const first = focusableElements[0];
+        const last = focusableElements[focusableElements.length - 1];
+        const active = getDeepActiveElement();
+
+        if (keyboardEvent.shiftKey) {
+          if (active === first) {
+            keyboardEvent.preventDefault();
+            last.focus();
+          }
+        } else if (active === last) {
+          keyboardEvent.preventDefault();
+          first.focus();
+        }
+
+        event.stopImmediatePropagation();
+        return;
+      }
+
       const focusTrapRoot = options?.trapFocusInShadowDom
         ? ref.shadowRoot
         : ref;
