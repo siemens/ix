@@ -2819,7 +2819,7 @@ export namespace Components {
     }
     interface IxModal {
         /**
-          * Is called before the modal is dismissed  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
@@ -9435,7 +9435,7 @@ declare namespace LocalJSX {
     }
     interface IxModal {
         /**
-          * Is called before the modal is dismissed  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
