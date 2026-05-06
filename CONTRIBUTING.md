@@ -54,6 +54,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Unit testing](#unit-testing)
     - [Visual regression testing](#visual-regression-testing)
     - [Modify and preview documentation](#modify-and-preview-documentation)
+      - [JSDoc and Markdown in API reference](#jsdoc-and-markdown-in-api-reference)
       - [Preview and example code](#preview-and-example-code)
     - [Submit Pull Request](#submit-pull-request)
   - [Attribution](#attribution)
@@ -301,6 +302,16 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.58.1-no
 The documentation source is maintained in a separate repository: [siemens/ix-docs](https://github.com/siemens/ix-docs). This repository contains all relevant markdown files and Figma assets.
 
 If you need to update only the preview or code examples, you can do so by following the instructions in the next section.
+
+#### JSDoc and Markdown in API reference
+
+API text is rendered as **Markdown** on the documentation site (e.g. ReactMarkdown for tables generated from Stencil `component-doc.json` and from TypeDoc summaries in `packages/documentation/scripts/typedoc-generator.ts`).
+
+- **Bold:** use `**text**` (e.g. to emphasize a sibling prop name: `**isNonBlocking**`).
+- **Inline code:** use single backticks: `` `showModal()` ``, `` `aria-modal` ``, `` `true` ``.
+- **Avoid** wrapping inline code in bold with adjacent `**` in a way that nests bold and code (e.g. `` **`prop`** `` can break parsing and show as `****` or empty segments). Prefer **`**propName**`** without inner backticks when referring to another prop, or use only backticks for identifiers.
+
+**Periods and tags:** Stencil often joins consecutive `*` lines with a space — end each sentence (or each line that must not run into the next) with a **`.`**. Short label-style one-liners (e.g. “Modal size”) usually have **no** trailing period. For **`@deprecated`** and **`@since`**, do **not** put a trailing period on the tag line. Use a **`.`** at the end of **`-` list items** when the item is a full sentence.
 
 #### Preview and example code
 

@@ -36,7 +36,7 @@ export class ModalHeader {
   @Prop() hideClose = false;
 
   /**
-   * Icon of the Header
+   * Icon of the header
    */
   @Prop() icon?: string;
 
@@ -46,8 +46,8 @@ export class ModalHeader {
   @Prop() ariaLabelIcon?: string;
 
   /**
-   * ARIA label for the close icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the close icon button.
+   * Will be set as aria-label on the nested HTML button element.
    *
    * @since 3.2.0
    */
@@ -70,8 +70,8 @@ export class ModalHeader {
   @Prop() iconColor?: string;
 
   /**
-   * Emits when close icon is clicked and closes the modal
-   * Can be prevented, in which case only the event is triggered, and the modal remains open
+   * Emits when the close icon is clicked and closes the modal.
+   * Can be prevented, in which case only the event is triggered, and the modal remains open.
    */
   @Event() closeClick!: EventEmitter<MouseEvent>;
 

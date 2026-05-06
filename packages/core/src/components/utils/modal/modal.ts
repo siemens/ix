@@ -49,11 +49,11 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   backdrop?: boolean;
   /**
-   * Dismiss modal on backdrop click (ignored when **`isNonBlocking`** is `true`)
+   * Dismiss modal on backdrop click (ignored when **isNonBlocking** is `true`).
    */
   closeOnBackdropClick?: boolean;
   /**
-   * Called before modal is dismissed
+   * Called before modal is dismissed.
    */
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   /**
@@ -66,31 +66,13 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   isNonBlocking?: boolean;
   /**
-   * Element to attach modal to
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
-   */
-  container?: string | HTMLElement;
-  /**
    * Modal content
    */
   content: CONTENT | string;
   /**
-   * Allow closing with Escape key
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
-   */
-  keyboard?: boolean;
-  /**
    * Modal size
    */
   size?: IxModalSize;
-  /**
-   * Modal title
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
-   */
-  title?: string;
 }
 
 export interface ModalInstance<TReason = any> {
@@ -99,11 +81,11 @@ export interface ModalInstance<TReason = any> {
    */
   htmlElement: HTMLIxModalElement;
   /**
-   * Event that fires when closing the modal
+   * Event that fires when closing the modal.
    */
   onClose: TypedEvent<TReason>;
   /**
-   * Event that fires when dismissing the modal
+   * Event that fires when dismissing the modal.
    */
   onDismiss: TypedEvent<TReason>;
 }

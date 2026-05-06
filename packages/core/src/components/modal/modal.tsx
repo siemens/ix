@@ -52,15 +52,15 @@ export class Modal {
 
   /**
    * Dismiss modal on backdrop click (outside the dialog panel).
-   * Ignored when **`isNonBlocking`** is `true`.
+   * Ignored when **isNonBlocking** is `true`.
    */
   @Prop() closeOnBackdropClick = false;
 
   /**
    * Is called before the modal is dismissed.
    *
-   * - Return `true` to proceed in dismissing the modal
-   * - Return `false` to abort in dismissing the modal
+   * - Return `true` to proceed in dismissing the modal.
+   * - Return `false` to abort in dismissing the modal.
    */
   @Prop() beforeDismiss?: (reason?: unknown) => boolean | Promise<boolean>;
 
