@@ -18,6 +18,10 @@ import {
   TSConfigReader,
   UnionType,
 } from 'typedoc';
+import {
+  expandJsdocNewlinesForMarkdown,
+  serializeMarkdownForJsx,
+} from './utils/escape';
 import { toKebabCase } from './utils/string-utils';
 
 // TypeDoc ReflectionKind constants
@@ -130,24 +134,6 @@ function getPropertyType(property: any): string {
     );
     return 'unknown';
   }
-}
-
-/**
- * Markdown (e.g. ReactMarkdown / CommonMark) collapses a single `\n` inside a
- * paragraph into a space. TypeDoc and Stencil keep `\n` between JSDoc `*`
- * lines. Map those single line breaks to paragraph breaks so multi-line
- * summaries render as separate lines without relying on trailing periods.
- */
-function expandJsdocNewlinesForMarkdown(text: string): string {
-  if (!text) {
-    return text;
-  }
-  const paragraphBoundary = '\uE000';
-  return text
-    .replace(/\n{2,}/g, paragraphBoundary)
-    .replace(/\n/g, '\n\n')
-    .split(paragraphBoundary)
-    .join('\n\n');
 }
 
 /**
@@ -508,7 +494,7 @@ function generatePropertyMDX(
     return {
       name: prop.name,
       singleFramework: framework,
-      docs: escapeBackticks(prop.comment),
+      docsJson: serializeMarkdownForJsx(prop.comment),
       type: escapeBackticks(prop.type),
       default: prop.defaultValue
         ? escapeBackticks(prop.defaultValue)

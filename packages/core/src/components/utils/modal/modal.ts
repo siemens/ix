@@ -49,7 +49,7 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   backdrop?: boolean;
   /**
-   * Dismiss modal on backdrop click (ignored when **isNonBlocking** is `true`).
+   * Dismiss modal on backdrop click (ignored when **isNonBlocking** is `true`)
    */
   closeOnBackdropClick?: boolean;
   /**
