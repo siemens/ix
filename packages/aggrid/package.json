@@ -50,10 +50,8 @@
     "typescript": "^5.8.3",
     "vite": "catalog:"
   },
-  "dependencies": {
-    "@siemens/ix": "^4.4.0"
-  },
   "peerDependencies": {
+    "@siemens/ix": "^4.4.0",
     "ag-grid-community": "^33 || ^34 || ^35"
   }
 }

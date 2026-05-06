@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { IxTimePicker } from '@siemens/ix-react';
+
+function TimepickerMinMaxTimePreview() {
+  return (
+    <IxTimePicker
+      format="HH:mm:ss"
+      time="12:00:00"
+      minTime="09:00:00"
+      maxTime="17:30:00"
+    />
+  );
+}
+
+export default TimepickerMinMaxTimePreview;

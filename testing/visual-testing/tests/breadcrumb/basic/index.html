@@ -24,21 +24,43 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <ix-breadcrumb>
-      <ix-breadcrumb-item icon="home" label="Root"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Level 1"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        icon="home"
+        label="Root"
+        breadcrumb-key="root"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Level 1"
+        breadcrumb-key="level-1"
+      ></ix-breadcrumb-item>
       <ix-breadcrumb-item
         label="Level 2 with artificial overflow"
+        breadcrumb-key="level-2"
       ></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Level 3"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Level 3"
+        breadcrumb-key="level-3"
+      ></ix-breadcrumb-item>
     </ix-breadcrumb>
 
     <ix-breadcrumb subtle>
-      <ix-breadcrumb-item icon="home" label="Root"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Level 1"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        icon="home"
+        label="Root"
+        breadcrumb-key="subtle-root"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Level 1"
+        breadcrumb-key="subtle-level-1"
+      ></ix-breadcrumb-item>
       <ix-breadcrumb-item
         label="Level 2 with artificial overflow"
+        breadcrumb-key="subtle-level-2"
       ></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Level 3"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Level 3"
+        breadcrumb-key="subtle-level-3"
+      ></ix-breadcrumb-item>
     </ix-breadcrumb>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>

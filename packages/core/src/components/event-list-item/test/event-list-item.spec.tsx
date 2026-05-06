@@ -7,16 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { newSpecPage } from '@stencil/core/testing';
-import { EventListItem } from '../event-list-item';
+import { render, h } from '@stencil/vitest';
+import { describe, expect, it } from 'vitest';
 
 describe('event-list-item', () => {
   it('renders', async () => {
-    const page = await newSpecPage({
-      components: [EventListItem],
-      html: '<event-list-item></event-list-item>',
-    });
+    const { root } = await render(<ix-event-list-item></ix-event-list-item>);
 
-    expect(page.root).toEqualHtml('<event-list-item></event-list-item>');
+    expect(root.tagName).toBe('IX-EVENT-LIST-ITEM');
+    expect(root).toHaveClass('hydrated');
+    expect(root.shadowRoot?.querySelector('[role="listitem"]')).not.toBeNull();
   });
 });

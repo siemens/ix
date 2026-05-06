@@ -243,6 +243,11 @@ export class Avatar
     });
   }
 
+  private resolveTooltipTrigger() {
+    // fallback to host element if component is used outside of the application header, and thus has no button element as trigger
+    return this.resolveAvatarTrigger().catch(() => this.hostElement);
+  }
+
   private onDropdownClick(event: MouseEvent) {
     if (event.target === this.dropdownElement) {
       event.preventDefault();
@@ -302,7 +307,7 @@ export class Avatar
         {!!tooltipText && (
           <ix-tooltip
             ref={this.tooltipRef}
-            for={this.hostElement}
+            for={this.resolveTooltipTrigger()}
             aria-hidden={a11yBoolean(ariaHidden)}
             aria-label={this.ariaLabelTooltip}
           >

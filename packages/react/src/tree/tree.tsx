@@ -47,6 +47,7 @@ export const IxTree = React.forwardRef(
         const rootNode = ReactDOM.createRoot(treeItem);
         treeItem.hasChildren = data.hasChildren;
         treeItem.context = context[data.id];
+        treeItem.disabled = data.disabled || false;
 
         if (props.renderItem) {
           rootNode.render(props.renderItem(data.data));
@@ -55,6 +56,7 @@ export const IxTree = React.forwardRef(
         update((itemData, newContext) => {
           treeItem.context = newContext[itemData.id];
           treeItem.hasChildren = itemData.hasChildren;
+          treeItem.disabled = itemData.disabled || false;
 
           if (props.renderItem) {
             rootNode.render(props.renderItem(itemData.data));

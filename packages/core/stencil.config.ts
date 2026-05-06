@@ -24,6 +24,8 @@ const excludeDevelopmentComponents = ['ix-playground'];
 function getAngularConfig() {
   const excludeComponents = [
     ...excludeDevelopmentComponents,
+    'ix-tab-panel',
+    'ix-tab-panels',
     'ix-tree',
     'ix-icon',
   ];
@@ -56,12 +58,6 @@ export const config: Config = {
     enableImportInjection: true,
     addGlobalStyleToComponents: false,
   },
-  testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
-    setupFilesAfterEnv: [],
-    browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
-    browserHeadless: 'shell',
-  },
   excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
   watchIgnoredRegex: [/component-doc.json/],
@@ -86,7 +82,12 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: [...excludeDevelopmentComponents, 'ix-icon'],
+      excludeComponents: [
+        ...excludeDevelopmentComponents,
+        'ix-icon',
+        'ix-tab-panel',
+        'ix-tab-panels',
+      ],
       componentModels: [
         {
           elements: [
@@ -112,6 +113,8 @@ export const config: Config = {
       outDir: '../react/src',
       excludeComponents: [
         ...excludeDevelopmentComponents,
+        'ix-tab-panel',
+        'ix-tab-panels',
         'ix-tree',
         'ix-tree-item',
         'ix-icon',

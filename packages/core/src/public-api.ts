@@ -17,6 +17,7 @@ export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';
 export * from './components/tree/tree-model';
 export * from './components/tree/tree.types';
+export * from './components/breadcrumb/breadcrumb.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
 export { ElementReference } from './components/utils/element-reference';
