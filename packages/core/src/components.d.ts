@@ -4518,6 +4518,12 @@ export namespace Components {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
+          * @default false
+         */
+        "directoryUpload": boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -4528,15 +4534,13 @@ export namespace Components {
          */
         "i18nUploadDisabled": string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
-        "i18nUploadFile": string;
+        "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
-        "loadingText": string;
+        "loadingText"?: string;
         /**
           * Whether the text should wrap to more than one line
           * @default false
@@ -4549,9 +4553,8 @@ export namespace Components {
         "multiple": boolean;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
-        "selectFileText": string;
+        "selectFileText"?: string;
         /**
           * Set files
           * @param obj
@@ -11247,6 +11250,12 @@ declare namespace LocalJSX {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
+          * @default false
+         */
+        "directoryUpload"?: boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -11257,13 +11266,11 @@ declare namespace LocalJSX {
          */
         "i18nUploadDisabled"?: string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
         "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
         "loadingText"?: string;
         /**
@@ -11282,7 +11289,6 @@ declare namespace LocalJSX {
         "onFilesChanged"?: (event: IxUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
         "selectFileText"?: string;
         /**
@@ -12386,6 +12392,7 @@ declare namespace LocalJSX {
     interface IxUploadAttributes {
         "accept": string;
         "multiple": boolean;
+        "directoryUpload": boolean;
         "multiline": boolean;
         "disabled": boolean;
         "state": UploadFileState;
