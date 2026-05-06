@@ -2819,7 +2819,7 @@ export namespace Components {
     }
     interface IxModal {
         /**
-          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal. - Return `false` to abort in dismissing the modal.
+          * Is called before the modal is dismissed  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
@@ -2871,7 +2871,7 @@ export namespace Components {
     }
     interface IxModalHeader {
         /**
-          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Close modal'
          */
@@ -9435,7 +9435,7 @@ declare namespace LocalJSX {
     }
     interface IxModal {
         /**
-          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal. - Return `false` to abort in dismissing the modal.
+          * Is called before the modal is dismissed  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
@@ -9483,7 +9483,7 @@ declare namespace LocalJSX {
     }
     interface IxModalHeader {
         /**
-          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Close modal'
          */
@@ -9506,7 +9506,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Emits when the close icon is clicked and closes the modal. Can be prevented, in which case only the event is triggered, and the modal remains open.
+          * Emits when the close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }

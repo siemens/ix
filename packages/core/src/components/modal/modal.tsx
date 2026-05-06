@@ -57,7 +57,7 @@ export class Modal {
   @Prop() closeOnBackdropClick = false;
 
   /**
-   * Is called before the modal is dismissed
+   * Is called before the modal is dismissed.
    *
    * - Return `true` to proceed in dismissing the modal
    * - Return `false` to abort in dismissing the modal

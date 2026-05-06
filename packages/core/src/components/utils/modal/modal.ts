@@ -53,7 +53,7 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   closeOnBackdropClick?: boolean;
   /**
-   * Called before modal is dismissed.
+   * Called before modal is dismissed
    */
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   /**
@@ -81,11 +81,11 @@ export interface ModalInstance<TReason = any> {
    */
   htmlElement: HTMLIxModalElement;
   /**
-   * Event that fires when closing the modal.
+   * Event that fires when closing the modal
    */
   onClose: TypedEvent<TReason>;
   /**
-   * Event that fires when dismissing the modal.
+   * Event that fires when dismissing the modal
    */
   onDismiss: TypedEvent<TReason>;
 }
