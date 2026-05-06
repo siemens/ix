@@ -119,7 +119,7 @@ export class Radio implements IxFormComponent<string> {
   }
 
   private syncValidationClasses() {
-    if (isFormNoValidate(this.hostElement) || !this.required) {
+    if (isFormNoValidate(this.hostElement)) {
       this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
       return;
     }
@@ -246,7 +246,7 @@ export class Radio implements IxFormComponent<string> {
     this.touched = false;
     this.formSubmissionAttempted = false;
     this.updateFormInternalValue();
-    this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+    this.syncValidationClasses();
   }
 
   render() {

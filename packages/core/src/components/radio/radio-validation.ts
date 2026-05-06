@@ -10,6 +10,7 @@
 interface RadioElement extends HTMLElement {
   required: boolean;
   checked: boolean;
+  clear(): Promise<void>;
 }
 
 export function isFormNoValidate(element: HTMLElement): boolean {
@@ -50,9 +51,10 @@ export function applyRadioValidation(
   const anyChecked = targets.some((el) => el.checked);
   const shouldShowError = !anyChecked && (touched || formSubmissionAttempted);
 
-  targets.forEach((el) => {
-    el.classList.toggle('ix-invalid--required', shouldShowError);
-    el.classList.toggle('ix-invalid', shouldShowError);
+  radiosArr.forEach((el) => {
+    const isTarget = targets.includes(el);
+    el.classList.toggle('ix-invalid--required', isTarget && shouldShowError);
+    el.classList.toggle('ix-invalid', isTarget && shouldShowError);
   });
 
   if (group) {

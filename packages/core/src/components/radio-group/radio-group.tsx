@@ -261,7 +261,7 @@ export class RadiobuttonGroup
   async clear(): Promise<void> {
     this.touched = false;
     this.radiobuttonElements.forEach((radio) => {
-      radio.checked = false;
+      radio.clear();
     });
     this.clearValidationState();
   }
