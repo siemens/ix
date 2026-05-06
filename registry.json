@@ -34,6 +34,10 @@
           "path": "feat/block-cli/examples/about-and-legal.json"
         },
         {
+          "name": "about-and-legal-legacy",
+          "path": "feat/block-cli/examples/about-and-legal-legacy.json"
+        },
+        {
           "name": "action-card",
           "path": "feat/block-cli/examples/action-card.json"
         },
@@ -220,6 +224,10 @@
         {
           "name": "date-dropdown",
           "path": "feat/block-cli/examples/date-dropdown.json"
+        },
+        {
+          "name": "date-dropdown-presets",
+          "path": "feat/block-cli/examples/date-dropdown-presets.json"
         },
         {
           "name": "date-dropdown-user-range",
@@ -826,6 +834,10 @@
           "path": "feat/block-cli/examples/settings.json"
         },
         {
+          "name": "settings-legacy",
+          "path": "feat/block-cli/examples/settings-legacy.json"
+        },
+        {
           "name": "slider",
           "path": "feat/block-cli/examples/slider.json"
         },
@@ -952,6 +964,10 @@
         {
           "name": "timepicker-intervals",
           "path": "feat/block-cli/examples/timepicker-intervals.json"
+        },
+        {
+          "name": "timepicker-min-max-time",
+          "path": "feat/block-cli/examples/timepicker-min-max-time.json"
         },
         {
           "name": "toast",
