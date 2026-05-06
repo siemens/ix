@@ -133,6 +133,24 @@ function getPropertyType(property: any): string {
 }
 
 /**
+ * Markdown (e.g. ReactMarkdown / CommonMark) collapses a single `\n` inside a
+ * paragraph into a space. TypeDoc and Stencil keep `\n` between JSDoc `*`
+ * lines. Map those single line breaks to paragraph breaks so multi-line
+ * summaries render as separate lines without relying on trailing periods.
+ */
+function expandJsdocNewlinesForMarkdown(text: string): string {
+  if (!text) {
+    return text;
+  }
+  const paragraphBoundary = '\uE000';
+  return text
+    .replace(/\n{2,}/g, paragraphBoundary)
+    .replace(/\n/g, '\n\n')
+    .split(paragraphBoundary)
+    .join('\n\n');
+}
+
+/**
  * TypeDoc splits JSDoc into display parts (`text`, `code` for backticks, etc.).
  * We emit Markdown for ReactMarkdown: wrap `code` parts in backticks again.
  */
@@ -154,13 +172,13 @@ function commentDisplayPartsToMarkdown(parts: any[] | undefined): string {
         }
         break;
       case 'inline-tag':
-        result += `{${item.tag} ${item.text}}`;
+        result += `{${item.tag}${item.text ? ` ${item.text}` : ''}}`;
         break;
       default:
         result += item.text ?? '';
     }
   }
-  return result;
+  return expandJsdocNewlinesForMarkdown(result);
 }
 
 function extractCommentTags(
