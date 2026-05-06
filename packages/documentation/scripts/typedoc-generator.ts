@@ -157,9 +157,11 @@ function commentDisplayPartsToMarkdown(parts: any[] | undefined): string {
           result += `\`${item.text}\``;
         }
         break;
-      case 'inline-tag':
-        result += `{${item.tag}${item.text ? ` ${item.text}` : ''}}`;
+      case 'inline-tag': {
+        const inlineBody = item.text ? ' ' + item.text : '';
+        result += '{' + item.tag + inlineBody + '}';
         break;
+      }
       default:
         result += item.text ?? '';
     }

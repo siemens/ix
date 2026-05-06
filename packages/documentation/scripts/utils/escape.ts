@@ -61,8 +61,8 @@ export function expandJsdocNewlinesForMarkdown(text: string): string {
   }
   const paragraphBoundary = '\uE000';
   return text
-    .replace(/\n{2,}/g, paragraphBoundary)
-    .replace(/\n/g, '\n\n')
+    .replaceAll(/\n{2,}/g, paragraphBoundary)
+    .replaceAll('\n', '\n\n')
     .split(paragraphBoundary)
     .join('\n\n');
 }

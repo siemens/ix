@@ -14,7 +14,6 @@ import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
 import {
-  escapeBackticks,
   expandJsdocNewlinesForMarkdown,
   parseJSDocsToMarkdown,
   serializeMarkdownForJsx,
