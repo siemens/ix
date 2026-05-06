@@ -207,6 +207,7 @@
 @include form-component.host-warning {
   .select {
     border-color: var(--theme-input--border-color--warning);
+    background-color: var(--theme-input--background--warning);
   }
 
   .select:hover {
