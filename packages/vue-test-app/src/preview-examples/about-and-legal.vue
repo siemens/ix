@@ -36,7 +36,7 @@ onMounted(() => {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuAbout>
+      <IxMenuAbout suppressLegacyTabs>
         <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
           <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
           <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
