@@ -41,6 +41,8 @@ export class Upload {
 
   /**
    * If directoryUpload is true the user can drop or select a folder containing one or more files
+   *
+   * @since 5.1.0
    */
   @Prop() directoryUpload = false;
 

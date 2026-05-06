@@ -4391,6 +4391,7 @@ export namespace Components {
         "accept"?: string;
         /**
           * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
           * @default false
          */
         "directoryUpload": boolean;
@@ -10953,6 +10954,7 @@ declare namespace LocalJSX {
         "accept"?: string;
         /**
           * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
           * @default false
          */
         "directoryUpload"?: boolean;

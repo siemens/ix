@@ -23,32 +23,14 @@ regressionTest(
     await mount(`<ix-upload directory-upload></ix-upload>`);
     const upload = page.locator('ix-upload');
 
-    const attrs = await upload.evaluate((element) => {
-      const input = element.shadowRoot?.querySelector(
-        '#upload-browser'
-      ) as HTMLInputElement | null;
+    const input = upload.locator('#upload-browser');
+    const button = upload.locator('ix-button');
+    const selectFileText = upload.locator('.upload-text');
 
-      if (!input) {
-        return null;
-      }
-
-      return {
-        buttonText: element.shadowRoot
-          ?.querySelector('ix-button')
-          ?.textContent?.trim(),
-        selectFileText: element.shadowRoot
-          ?.querySelector('.upload-text')
-          ?.textContent?.trim(),
-        hasWebkitDirectory: input.hasAttribute('webkitdirectory'),
-        hasDirectory: input.hasAttribute('directory'),
-      };
-    });
-
-    expect(attrs).not.toBeNull();
-    expect(attrs?.selectFileText).toBe('+ Drag folder here or…');
-    expect(attrs?.buttonText).toBe('Upload folder…');
-    expect(attrs?.hasWebkitDirectory).toBe(true);
-    expect(attrs?.hasDirectory).toBe(true);
+    await expect(selectFileText).toHaveText('+ Drag folder here or…');
+    await expect(button).toHaveText('Upload folder…');
+    await expect(input).toHaveAttribute('webkitdirectory', '');
+    await expect(input).toHaveAttribute('directory', '');
   }
 );
 
@@ -60,18 +42,10 @@ regressionTest(
     );
     const upload = page.locator('ix-upload');
 
-    const texts = await upload.evaluate((element) => {
-      return {
-        buttonText: element.shadowRoot
-          ?.querySelector('ix-button')
-          ?.textContent?.trim(),
-        selectFileText: element.shadowRoot
-          ?.querySelector('.upload-text')
-          ?.textContent?.trim(),
-      };
-    });
+    const button = upload.locator('ix-button');
+    const selectFileText = upload.locator('.upload-text');
 
-    expect(texts?.selectFileText).toBe('Custom drag text');
-    expect(texts?.buttonText).toBe('Custom button');
+    await expect(selectFileText).toHaveText('Custom drag text');
+    await expect(button).toHaveText('Custom button');
   }
 );
