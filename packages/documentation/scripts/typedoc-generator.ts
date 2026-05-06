@@ -494,7 +494,7 @@ function generatePropertyMDX(
     return {
       name: prop.name,
       singleFramework: framework,
-      docsJson: serializeMarkdownForJsx(prop.comment),
+      docs: serializeMarkdownForJsx(prop.comment),
       type: escapeBackticks(prop.type),
       default: prop.defaultValue
         ? escapeBackticks(prop.defaultValue)

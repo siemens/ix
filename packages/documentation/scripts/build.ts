@@ -352,7 +352,7 @@ async function generateApiMarkdown() {
       props: props.map((prop) => ({
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
-        docsJson: serializeMarkdownForJsx(
+        docs: serializeMarkdownForJsx(
           expandJsdocNewlinesForMarkdown(
             parseJSDocsToMarkdown(prop.docs ?? '')
           )
@@ -365,7 +365,7 @@ async function generateApiMarkdown() {
       events: events.map((event) => ({
         ...event,
         docsTags: convertDocsTagsToTSXElement(component.tag, event.docsTags),
-        docsJson: serializeMarkdownForJsx(
+        docs: serializeMarkdownForJsx(
           expandJsdocNewlinesForMarkdown(
             parseJSDocsToMarkdown(event.docs ?? '')
           )
@@ -377,7 +377,7 @@ async function generateApiMarkdown() {
       slots: slots.map((tag) => ({
         ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
-        docsJson: serializeMarkdownForJsx(
+        docs: serializeMarkdownForJsx(
           expandJsdocNewlinesForMarkdown(
             parseJSDocsToMarkdown(tag.docs ?? '')
           )
