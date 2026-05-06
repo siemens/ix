@@ -190,7 +190,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   });
   private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
   private touched = false;
-  private isClearing = false;
+  private readonly isClearing = false;
   /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;

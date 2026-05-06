@@ -207,7 +207,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
-  private isClearing = false;
+  private readonly isClearing = false;
   /** @internal */
   public initialValue?: number;
 
@@ -302,7 +302,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const parsedValue = this.convertNumberStringToFloat(inputValue);
 
-    if (parsedValue !== undefined) {
+    if (parsedValue !== undefined && this.inputRef.current) {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
@@ -471,6 +471,16 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Method()
   async clear(): Promise<void> {
     return clearInputValue(this, { defaultValue: undefined });
+  }
+
+  /**
+   * Returns the validity state of the number input field.
+   * @since 5.1.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const input = await this.inputRef.waitForCurrent();
+    return input.validity;
   }
 
   render() {

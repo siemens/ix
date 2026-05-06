@@ -2918,6 +2918,11 @@ export namespace Components {
           * Returns the native input element used under the hood
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Returns the validity state of the number input field.
+          * @since 5.1.0
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the input field

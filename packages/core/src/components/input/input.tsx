@@ -197,7 +197,7 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
-  private isClearing = false;
+  private readonly isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 

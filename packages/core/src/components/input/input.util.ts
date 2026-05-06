@@ -342,7 +342,9 @@ export async function clearInputValue<T>(
   compAny.touched = false;
   compAny.updateFormInternalValue(defaultValue as T);
   compAny.valueChange.emit(defaultValue as T);
-  comp.hostElement.classList.remove('ix-invalid--validity-invalid');
-  comp.hostElement.classList.remove('ix-invalid--required');
+  comp.hostElement.classList.remove(
+    'ix-invalid--validity-invalid',
+    'ix-invalid--required'
+  );
   compAny.isClearing = false;
 }
