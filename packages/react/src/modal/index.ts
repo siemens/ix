@@ -32,11 +32,17 @@ export type ModalConfig = {
   content: React.ReactNode | string;
 };
 
-export async function showModal(
+export const showModal = async (
   config: Omit<IxModalConfig, 'content'> & ModalConfig
-) {
+) => {
   return _showModal(config);
-}
+};
+
+// export async function showModal(
+//   config: Omit<IxModalConfig, 'content'> & ModalConfig
+// ) {
+//   return _showModal(config);
+// }
 
 /** @deprecated Use ModalLoadingOptions object form instead */
 export function showModalLoading(message: string): ModalLoadingContext;
