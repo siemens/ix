@@ -2830,7 +2830,7 @@ export namespace Components {
          */
         "closeModal": <T = unknown>(reason: T) => Promise<void>;
         /**
-          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **isNonBlocking** is `true`.
           * @default false
          */
         "closeOnBackdropClick": boolean;
@@ -2884,7 +2884,7 @@ export namespace Components {
          */
         "hideClose": boolean;
         /**
-          * Icon of the Header
+          * Icon of the header
          */
         "icon"?: string;
         /**
@@ -9436,7 +9436,7 @@ declare namespace LocalJSX {
          */
         "centered"?: boolean;
         /**
-          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **isNonBlocking** is `true`.
           * @default false
          */
         "closeOnBackdropClick"?: boolean;
@@ -9490,7 +9490,7 @@ declare namespace LocalJSX {
          */
         "hideClose"?: boolean;
         /**
-          * Icon of the Header
+          * Icon of the header
          */
         "icon"?: string;
         /**
@@ -9498,7 +9498,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
+          * Emits when the close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
