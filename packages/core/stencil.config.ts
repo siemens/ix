@@ -110,7 +110,8 @@ export const config: Config = {
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
-      outDir: '../react/src',
+      outDir: '../react/src/components',
+      esModules: true,
       excludeComponents: [
         ...excludeDevelopmentComponents,
         'ix-tab-panel',

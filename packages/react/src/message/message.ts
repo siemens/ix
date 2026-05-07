@@ -1,8 +1,5 @@
-import {
-  MessageConfig,
-  TypedEvent,
-  showMessage as _showMessage,
-} from '@siemens/ix';
+import type { MessageConfig, TypedEvent } from '@siemens/ix';
+import { showMessage as _showMessage } from '@siemens/ix/components';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 
 // call defineCustomElement once at module level
