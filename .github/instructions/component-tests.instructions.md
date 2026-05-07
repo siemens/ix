@@ -224,7 +224,7 @@ await element.evaluate(
 
 ```typescript
 await page.evaluate(() => {
-  const container = document.querySelector('ix-tab-panels')!;
+  const container = document.querySelector('ix-tab-set')!;
   const newPanel = document.createElement('ix-tab-panel');
   newPanel.setAttribute('tab-key', 'tab-3');
   newPanel.textContent = 'Content 3';
@@ -265,7 +265,7 @@ await expect(arrowButton).not.toBeVisible();
 
 ## Hidden attribute convention
 
-IX components use the `hidden` HTML attribute for visibility toggling (e.g., tab panels). Test with attribute assertions, not CSS visibility:
+IX components use the `hidden` HTML attribute for visibility toggling (e.g., tab set). Test with attribute assertions, not CSS visibility:
 
 ```typescript
 // Panel is visible (no hidden attribute)

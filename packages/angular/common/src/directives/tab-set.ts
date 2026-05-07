@@ -46,15 +46,15 @@ export class TabPanelBaseDirective implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    const panelsElement = this.el.closest('ix-tab-panels');
+    const tabSetElement = this.el.closest('ix-tab-set');
 
-    if (!panelsElement) {
+    if (!tabSetElement) {
       this.syncRenderedContent();
       return;
     }
 
     this.tabChangeSubscription = fromEvent(
-      panelsElement,
+      tabSetElement,
       'tabChange'
     ).subscribe(() => this.syncRenderedContent());
 
@@ -89,7 +89,7 @@ export class TabPanelBaseDirective implements AfterViewInit, OnDestroy {
     }
 
     const tabsElement = this.el
-      .closest('ix-tab-panels')
+      .closest('ix-tab-set')
       ?.querySelector('ix-tabs');
     const activeTabKey = tabsElement?.activeTabKey;
     const shouldRenderContent =
@@ -115,8 +115,8 @@ export class TabPanelBaseDirective implements AfterViewInit, OnDestroy {
 }
 
 @Directive()
-export class TabPanelsBaseDirective {
-  protected el: HTMLIxTabPanelsElement;
+export class TabSetBaseDirective {
+  protected el: HTMLIxTabSetElement;
 
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();

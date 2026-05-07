@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import {
   TabPanelBaseDirective,
-  TabPanelsBaseDirective,
+  TabSetBaseDirective,
 } from '@siemens/ix-angular/common';
 import type { Components } from '@siemens/ix';
 import { ProxyCmp } from './angular-component-lib/utils';
@@ -46,16 +46,16 @@ export declare interface IxTabPanel extends Components.IxTabPanel {}
 
 @ProxyCmp({})
 @Component({
-  selector: 'ix-tab-panels',
+  selector: 'ix-tab-set',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: [],
   standalone: false,
 })
-export class IxTabPanels extends TabPanelsBaseDirective {
+export class IxTabSet extends TabSetBaseDirective {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     super(c, r, z);
   }
 }
 
-export declare interface IxTabPanels extends Components.IxTabPanels {}
+export declare interface IxTabSet extends Components.IxTabSet {}

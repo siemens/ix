@@ -22,16 +22,16 @@ const baseTabs = () => html`
 `;
 
 const iconTabs = () => html`
-  <ix-tab-item tab-key="success">
+  <ix-tab-item tab-key="success" label="Success">
     <ix-icon name="success"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item tab-key="tree" counter="12">
+  <ix-tab-item tab-key="tree" label="Tree" counter="12">
     <ix-icon name="tree"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item tab-key="maintenance">
+  <ix-tab-item tab-key="maintenance" label="Maintenance">
     <ix-icon name="maintenance"></ix-icon>
   </ix-tab-item>
-  <ix-tab-item tab-key="sound" disabled counter="4">
+  <ix-tab-item tab-key="sound" label="Sound" disabled counter="4">
     <ix-icon name="sound-loud"></ix-icon>
   </ix-tab-item>
 `;
