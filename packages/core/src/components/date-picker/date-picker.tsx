@@ -1024,7 +1024,7 @@ export class DatePicker
               'grid--show-week-numbers': this.showWeekNumbers,
             }}
           >
-            <div role="row" style={{ display: 'contents' }}>
+            <div role="row">
               {this.showWeekNumbers && (
                 <div class="calendar-item week-day" role="columnheader"></div>
               )}
@@ -1040,7 +1040,7 @@ export class DatePicker
             </div>
             {this.calendar.map((week) => {
               return (
-                <div role="row" style={{ display: 'contents' }}>
+                <div role="row">
                   {this.showWeekNumbers && (
                     <div class="calendar-item week-number" role="rowheader">
                       {week.weekNumber}
