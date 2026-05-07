@@ -148,10 +148,6 @@ function commentDisplayPartsToMarkdown(parts: any[] | undefined): string {
   let result = '';
   for (const item of parts) {
     switch (item.kind) {
-      case 'text':
-      case 'relative-link':
-        result += item.text ?? '';
-        break;
       case 'code':
         if (item.text != null) {
           result += `\`${item.text}\``;
