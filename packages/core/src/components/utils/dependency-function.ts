@@ -7,18 +7,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type CustomElementDependency = {
-  tag: string;
+export type CustomElementDependency<Tag extends string = string> = {
+  tag: Tag;
   define: () => Promise<void> | void;
 };
 
-export type DependencyFunction<TArgs extends unknown[], TResult> = {
-  (...args: TArgs): Promise<Awaited<TResult>>;
-  readonly dependencies: readonly CustomElementDependency[];
+type CustomElementDependencies = readonly CustomElementDependency[];
+
+type DependencyDefinitions<TDependencies extends CustomElementDependencies> = {
+  readonly [Index in keyof TDependencies]: TDependencies[Index] extends CustomElementDependency<
+    infer Tag
+  >
+    ? CustomElementDependency<Tag>
+    : never;
+};
+
+type DependencyFunctionCallback = (...args: never[]) => Promise<unknown>;
+
+export type DependencyFunction<
+  TCallback extends DependencyFunctionCallback,
+  TDependencies extends CustomElementDependencies,
+> = TCallback & {
+  readonly dependencies: DependencyDefinitions<TDependencies>;
   ensureDependencies: () => Promise<void>;
   withDependencies: (
-    dependencies: readonly CustomElementDependency[]
-  ) => DependencyFunction<TArgs, TResult>;
+    dependencies: DependencyDefinitions<TDependencies>
+  ) => DependencyFunction<TCallback, TDependencies>;
 };
 
 async function ensureCustomElementDependencies(
@@ -36,9 +50,7 @@ async function ensureCustomElementDependencies(
   }
 
   for (const dependency of dependencies) {
-    if (!registry.get(dependency.tag)) {
-      await dependency.define();
-    }
+    await dependency.define();
   }
 
   await Promise.all(
@@ -46,14 +58,19 @@ async function ensureCustomElementDependencies(
   );
 }
 
-export function createDependencyFunction<TArgs extends unknown[], TResult>(
-  callback: (...args: TArgs) => Promise<TResult> | TResult,
-  dependencies: readonly CustomElementDependency[]
-): DependencyFunction<TArgs, TResult> {
+export function createDependencyFunction<
+  TCallback extends DependencyFunctionCallback,
+  const TDependencies extends CustomElementDependencies,
+>(
+  callback: TCallback,
+  dependencies: TDependencies
+): DependencyFunction<TCallback, TDependencies> {
   const createFunction = (
-    activeDependencies: readonly CustomElementDependency[]
-  ): DependencyFunction<TArgs, TResult> => {
-    const dependencyDefinitions = Object.freeze([...activeDependencies]);
+    activeDependencies: DependencyDefinitions<TDependencies>
+  ): DependencyFunction<TCallback, TDependencies> => {
+    const dependencyDefinitions = Object.freeze([
+      ...activeDependencies,
+    ]) as DependencyDefinitions<TDependencies>;
     let ensureDependenciesPromise: Promise<void> | undefined;
 
     const ensureDependencies = () => {
@@ -69,10 +86,10 @@ export function createDependencyFunction<TArgs extends unknown[], TResult>(
       return ensureDependenciesPromise;
     };
 
-    const dependencyFunction = (async (...args: TArgs) => {
+    const dependencyFunction = (async (...args: Parameters<TCallback>) => {
       await ensureDependencies();
       return callback(...args);
-    }) as DependencyFunction<TArgs, TResult>;
+    }) as DependencyFunction<TCallback, TDependencies>;
 
     Object.defineProperties(dependencyFunction, {
       dependencies: {
@@ -83,7 +100,7 @@ export function createDependencyFunction<TArgs extends unknown[], TResult>(
         value: ensureDependencies,
       },
       withDependencies: {
-        value: (nextDependencies: readonly CustomElementDependency[]) =>
+        value: (nextDependencies: DependencyDefinitions<TDependencies>) =>
           createFunction(nextDependencies),
       },
     });
@@ -91,5 +108,5 @@ export function createDependencyFunction<TArgs extends unknown[], TResult>(
     return dependencyFunction;
   };
 
-  return createFunction(dependencies);
+  return createFunction(dependencies as DependencyDefinitions<TDependencies>);
 }

@@ -8,30 +8,38 @@
  */
 import { Injectable } from '@angular/core';
 import { LoadingService as BaseLoadingService } from '@siemens/ix-angular/common';
-import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
-import { ModalLoadingContext, ModalLoadingOptions } from '@siemens/ix';
+import {
+  createShowModalLoading,
+  ModalLoadingContext,
+  ModalLoadingOptions,
+} from '@siemens/ix';
+import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
+import { defineCustomElement as defineIxModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
+
+const showModalLoadingWithDependencies = createShowModalLoading([
+  { tag: 'ix-modal', define: defineIxModal },
+  { tag: 'ix-modal-loading', define: defineIxModalLoading },
+]);
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoadingService extends BaseLoadingService {
-  constructor() {
-    super();
-
-    defineCustomElement();
-  }
-
   /** @deprecated Use ModalLoadingOptions object form instead */
-  public override showModalLoading(message: string): ModalLoadingContext;
+  public override showModalLoading(
+    message: string
+  ): Promise<ModalLoadingContext>;
 
-  public override showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+  public override showModalLoading(
+    options: ModalLoadingOptions
+  ): Promise<ModalLoadingContext>;
 
   public override showModalLoading(
     messageOrOptions: string | ModalLoadingOptions
-  ): ModalLoadingContext {
+  ): Promise<ModalLoadingContext> {
     if (typeof messageOrOptions === 'string') {
-      return super.showModalLoading(messageOrOptions);
+      return showModalLoadingWithDependencies(messageOrOptions);
     }
-    return super.showModalLoading(messageOrOptions);
+    return showModalLoadingWithDependencies(messageOrOptions);
   }
 }

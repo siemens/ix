@@ -8,11 +8,21 @@
  */
 
 export {
+  createShowModalLoading,
   showModalLoading,
   ModalLoadingContext,
   ModalLoadingOptions,
+  ShowModalLoading,
+  ShowModalLoadingDependencies,
 } from './loading';
-export { MessageConfig, showMessage } from './message';
+export {
+  createShowMessage,
+  MessageConfig,
+  ShowMessage,
+  ShowMessageDependencies,
+  ShowMessageVariant,
+  showMessage,
+} from './message';
 export {
   closeModal,
   dismissModal,

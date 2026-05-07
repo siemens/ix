@@ -142,9 +142,7 @@ export function dismissModal(element: Element, dismissResult?: any) {
  * Show modal with given configuration
  */
 export const showModal = createDependencyFunction(
-  async function showModal<T>(
-    config: ModalConfig<T>
-  ): Promise<ModalInstance<T>> {
+  async function <T>(config: ModalConfig<T>): Promise<ModalInstance<T>> {
     const delegate = resolveDelegate();
     let dialogRef: HTMLIxModalElement | undefined;
     const onClose = new TypedEvent<T>();

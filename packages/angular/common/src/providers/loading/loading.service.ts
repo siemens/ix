@@ -19,16 +19,18 @@ export class LoadingService {
    * Displays a loading modal with a message
    * @deprecated Use ModalLoadingOptions object form instead
    */
-  public showModalLoading(message: string): ModalLoadingContext;
+  public showModalLoading(message: string): Promise<ModalLoadingContext>;
 
   /**
    * Displays a loading modal with a message
    */
-  public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
+  public showModalLoading(
+    options: ModalLoadingOptions
+  ): Promise<ModalLoadingContext>;
 
   public showModalLoading(
     messageOrOptions: string | ModalLoadingOptions
-  ): ModalLoadingContext {
+  ): Promise<ModalLoadingContext> {
     if (typeof messageOrOptions === 'string') {
       return showModalLoading(messageOrOptions);
     }
