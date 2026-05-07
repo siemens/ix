@@ -9,13 +9,13 @@
 
 import { render, waitFor } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { LazyTabPanelsExample } from './lazy-tab-panels';
+import { LazyTabSetExample } from './lazy-tab-set';
 
 test('should only mount the active tab panel content', async () => {
   const onMount = vi.fn();
   const onUnmount = vi.fn();
   const { getByText, queryByText } = render(
-    <LazyTabPanelsExample onMount={onMount} onUnmount={onUnmount} />
+    <LazyTabSetExample onMount={onMount} onUnmount={onUnmount} />
   );
 
   await waitFor(() => {

@@ -13,7 +13,7 @@ import {
   type StencilVueComponent,
 } from '@stencil/vue-output-target/runtime';
 import { defineCustomElement as defineIxTabPanel } from '@siemens/ix/components/ix-tab-panel.js';
-import { defineCustomElement as defineIxTabPanels } from '@siemens/ix/components/ix-tab-panels.js';
+import { defineCustomElement as defineIxTabSet } from '@siemens/ix/components/ix-tab-set.js';
 import {
   defineComponent,
   h,
@@ -38,14 +38,11 @@ const InternalIxTabPanel: StencilVueComponent<JSX.IxTabPanel> =
     ['tabKey']
   );
 
-const InternalIxTabPanels: StencilVueComponent<JSX.IxTabPanels> =
+const InternalIxTabSet: StencilVueComponent<JSX.IxTabSet> =
   // eslint-disable-next-line no-inline-comments
-  /*@__PURE__*/ defineContainer<JSX.IxTabPanels>(
-    'ix-tab-panels',
-    defineIxTabPanels
-  );
+  /*@__PURE__*/ defineContainer<JSX.IxTabSet>('ix-tab-set', defineIxTabSet);
 
-const ixTabPanelsActiveKey = Symbol('ix-tab-panels-active-key');
+const ixTabSetActiveKey = Symbol('ix-tab-set-active-key');
 
 type HTMLRefElement<T> = { $el: T };
 
@@ -116,21 +113,21 @@ function findTabState(children: VNode[]): {
   return { firstTabKey };
 }
 
-export const IxTabPanels = defineComponent({
-  name: 'IxTabPanels',
+export const IxTabSet = defineComponent({
+  name: 'IxTabSet',
   inheritAttrs: false,
   setup(_, { attrs, slots }) {
-    const panelsRef = ref<HTMLRefElement<HTMLIxTabPanelsElement>>();
+    const tabSetRef = ref<HTMLRefElement<HTMLIxTabSetElement>>();
     const initialState = findTabState(normalizeChildren(slots.default?.()));
     const activeTabKey = ref<string | undefined>(
       initialState.activeTabKey ?? initialState.firstTabKey
     );
 
-    provide(ixTabPanelsActiveKey, activeTabKey);
+    provide(ixTabSetActiveKey, activeTabKey);
 
     const syncActiveTabKey = () => {
-      const panelsElement = panelsRef.value?.$el;
-      const tabsElement = panelsElement?.querySelector('ix-tabs');
+      const tabSetElement = tabSetRef.value?.$el;
+      const tabsElement = tabSetElement?.querySelector('ix-tabs');
       const slotState = findTabState(normalizeChildren(slots.default?.()));
 
       activeTabKey.value =
@@ -144,11 +141,11 @@ export const IxTabPanels = defineComponent({
     };
 
     const attachListener = () => {
-      panelsRef.value?.$el.addEventListener('tabChange', handleTabChange);
+      tabSetRef.value?.$el.addEventListener('tabChange', handleTabChange);
     };
 
     const detachListener = () => {
-      panelsRef.value?.$el.removeEventListener('tabChange', handleTabChange);
+      tabSetRef.value?.$el.removeEventListener('tabChange', handleTabChange);
     };
 
     onMounted(async () => {
@@ -168,10 +165,10 @@ export const IxTabPanels = defineComponent({
 
     return () =>
       h(
-        InternalIxTabPanels,
+        InternalIxTabSet,
         {
           ...attrs,
-          ref: panelsRef,
+          ref: tabSetRef,
         },
         slots
       );
@@ -189,7 +186,7 @@ export const IxTabPanel = defineComponent({
   },
   setup(props, { attrs, slots }) {
     const activeTabKey = inject<Ref<string | undefined> | null>(
-      ixTabPanelsActiveKey,
+      ixTabSetActiveKey,
       null
     );
 

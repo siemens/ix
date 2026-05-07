@@ -3815,7 +3815,7 @@ export namespace Components {
     /**
      * @since 5.0.0
      */
-    interface IxTabPanels {
+    interface IxTabSet {
     }
     interface IxTabs {
         /**
@@ -6138,11 +6138,11 @@ declare global {
     /**
      * @since 5.0.0
      */
-    interface HTMLIxTabPanelsElement extends Components.IxTabPanels, HTMLStencilElement {
+    interface HTMLIxTabSetElement extends Components.IxTabSet, HTMLStencilElement {
     }
-    var HTMLIxTabPanelsElement: {
-        prototype: HTMLIxTabPanelsElement;
-        new (): HTMLIxTabPanelsElement;
+    var HTMLIxTabSetElement: {
+        prototype: HTMLIxTabSetElement;
+        new (): HTMLIxTabSetElement;
     };
     interface HTMLIxTabsElementEventMap {
         "tabChange": string | undefined;
@@ -6504,7 +6504,7 @@ declare global {
         "ix-split-button": HTMLIxSplitButtonElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tab-panel": HTMLIxTabPanelElement;
-        "ix-tab-panels": HTMLIxTabPanelsElement;
+        "ix-tab-set": HTMLIxTabSetElement;
         "ix-tabs": HTMLIxTabsElement;
         "ix-textarea": HTMLIxTextareaElement;
         "ix-tile": HTMLIxTileElement;
@@ -10508,7 +10508,7 @@ declare namespace LocalJSX {
     /**
      * @since 5.0.0
      */
-    interface IxTabPanels {
+    interface IxTabSet {
     }
     interface IxTabs {
         /**
@@ -12519,7 +12519,7 @@ declare namespace LocalJSX {
         "ix-split-button": Omit<IxSplitButton, keyof IxSplitButtonAttributes> & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes]?: IxSplitButton[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `attr:${K}`]?: IxSplitButtonAttributes[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `prop:${K}`]?: IxSplitButton[K] };
         "ix-tab-item": Omit<IxTabItem, keyof IxTabItemAttributes> & { [K in keyof IxTabItem & keyof IxTabItemAttributes]?: IxTabItem[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `attr:${K}`]?: IxTabItemAttributes[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `prop:${K}`]?: IxTabItem[K] } & OneOf<"tabKey", IxTabItem["tabKey"], IxTabItemAttributes["tabKey"]>;
         "ix-tab-panel": Omit<IxTabPanel, keyof IxTabPanelAttributes> & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes]?: IxTabPanel[K] } & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes as `attr:${K}`]?: IxTabPanelAttributes[K] } & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes as `prop:${K}`]?: IxTabPanel[K] } & OneOf<"tabKey", IxTabPanel["tabKey"], IxTabPanelAttributes["tabKey"]>;
-        "ix-tab-panels": IxTabPanels;
+        "ix-tab-set": IxTabSet;
         "ix-tabs": Omit<IxTabs, keyof IxTabsAttributes> & { [K in keyof IxTabs & keyof IxTabsAttributes]?: IxTabs[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `attr:${K}`]?: IxTabsAttributes[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `prop:${K}`]?: IxTabs[K] };
         "ix-textarea": Omit<IxTextarea, keyof IxTextareaAttributes> & { [K in keyof IxTextarea & keyof IxTextareaAttributes]?: IxTextarea[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `attr:${K}`]?: IxTextareaAttributes[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `prop:${K}`]?: IxTextarea[K] };
         "ix-tile": Omit<IxTile, keyof IxTileAttributes> & { [K in keyof IxTile & keyof IxTileAttributes]?: IxTile[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `attr:${K}`]?: IxTileAttributes[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `prop:${K}`]?: IxTile[K] };
@@ -12693,7 +12693,7 @@ declare module "@stencil/core" {
             /**
              * @since 5.0.0
              */
-            "ix-tab-panels": LocalJSX.IntrinsicElements["ix-tab-panels"] & JSXBase.HTMLAttributes<HTMLIxTabPanelsElement>;
+            "ix-tab-set": LocalJSX.IntrinsicElements["ix-tab-set"] & JSXBase.HTMLAttributes<HTMLIxTabSetElement>;
             "ix-tabs": LocalJSX.IntrinsicElements["ix-tabs"] & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
              * @form-ready 
