@@ -56,9 +56,7 @@ export function showModalLoading(
 export function showModalLoading(
   messageOrOptions: string | ModalLoadingOptions
 ): Promise<ModalLoadingContext> {
-  return typeof messageOrOptions === 'string'
-    ? showModalLoadingWithDependencies(messageOrOptions)
-    : showModalLoadingWithDependencies(messageOrOptions);
+  return showModalLoadingWithDependencies(messageOrOptions);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {
