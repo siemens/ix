@@ -1,13 +1,15 @@
 import {
-  ModalConfig as IxModalConfig,
+  type ModalConfig as IxModalConfig,
+  type ModalInstance as IxModalInstance,
+  type ModalLoadingContext,
+  type ModalLoadingOptions,
+} from '@siemens/ix';
+import {
+  closeModal as _closeModal,
+  dismissModal as _dismissModal,
   showModal as _showModal,
   showModalLoading as _showModalLoading,
-  dismissModal as _dismissModal,
-  closeModal as _closeModal,
-  ModalInstance as IxModalInstance,
-  ModalLoadingContext,
-  ModalLoadingOptions,
-} from '@siemens/ix';
+} from '@siemens/ix/components';
 import { VNode } from 'vue';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 
