@@ -25,7 +25,7 @@ function getAngularConfig() {
   const excludeComponents = [
     ...excludeDevelopmentComponents,
     'ix-tab-panel',
-    'ix-tab-panels',
+    'ix-tab-set',
     'ix-tree',
     'ix-icon',
   ];
@@ -86,7 +86,7 @@ export const config: Config = {
         ...excludeDevelopmentComponents,
         'ix-icon',
         'ix-tab-panel',
-        'ix-tab-panels',
+        'ix-tab-set',
       ],
       componentModels: [
         {
@@ -114,7 +114,7 @@ export const config: Config = {
       excludeComponents: [
         ...excludeDevelopmentComponents,
         'ix-tab-panel',
-        'ix-tab-panels',
+        'ix-tab-set',
         'ix-tree',
         'ix-tree-item',
         'ix-icon',
