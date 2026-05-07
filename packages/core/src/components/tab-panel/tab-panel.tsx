@@ -34,6 +34,10 @@ export class TabPanel
    */
   @Prop({ reflect: true }) tabKey!: string;
 
+  override connectedCallback(): void {
+    this.hostElement.hidden = true;
+  }
+
   override render() {
     return (
       <Host role="tabpanel" id={this.getHostElementId()}>
