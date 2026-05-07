@@ -10,8 +10,6 @@
  */
 import { defineCustomElement as defineIxApplicationSidebar } from '@siemens/ix/components/ix-application-sidebar.js';
 import { defineCustomElement as defineIxApplicationSwitchModal } from '@siemens/ix/components/ix-application-switch-modal.js';
-import { defineCustomElement as defineIxBurgerMenu } from '@siemens/ix/components/ix-menu-expand-icon.js';
-import { defineCustomElement as defineIxDateTimeCard } from '@siemens/ix/components/ix-date-time-card.js';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon.js';
 
 /**
@@ -20,6 +18,4 @@ import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/component
  */
 defineIxApplicationSwitchModal();
 defineIxApplicationSidebar();
-defineIxDateTimeCard();
-defineIxBurgerMenu();
 defineIxIcon();
