@@ -208,7 +208,6 @@
   .select {
     border-color: var(--theme-input--border-color--warning);
     background-color: var(--theme-input--background--warning);
-    box-shadow: none;
   }
 
   .select:hover {
@@ -224,7 +223,6 @@
   .select {
     border-color: var(--theme-input--border-color--invalid);
     background-color: var(--theme-input--background--invalid);
-    box-shadow: none;
   }
 
   .select:hover {
