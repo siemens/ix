@@ -732,6 +732,11 @@ export namespace Components {
          */
         "ariaLabelCloseButton"?: string;
         /**
+          * Accessible name for the leading icon. When unset, the icon is treated as decorative (hidden from assistive tech) when the default slot supplies a visible label.
+          * @since 5.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
@@ -7218,6 +7223,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelCloseButton"?: string;
         /**
+          * Accessible name for the leading icon. When unset, the icon is treated as decorative (hidden from assistive tech) when the default slot supplies a visible label.
+          * @since 5.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
@@ -11532,6 +11542,7 @@ declare namespace LocalJSX {
         "inactive": boolean;
         "closable": boolean;
         "icon": string;
+        "ariaLabelIcon": string;
         "background": string | undefined;
         "chipColor": string | undefined;
         "outline": boolean;

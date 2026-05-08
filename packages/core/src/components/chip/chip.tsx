@@ -15,8 +15,15 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean, type A11yAttributeName } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 
 @Component({
@@ -24,8 +31,11 @@ import { makeRef } from '../utils/make-ref';
   styleUrl: 'chip.scss',
   shadow: true,
 })
-export class Chip {
-  @Element() hostElement!: HTMLIxChipElement;
+export class Chip
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxChipElement;
 
   /**
    * Chip variant
@@ -55,6 +65,14 @@ export class Chip {
    * Show icon
    */
   @Prop() icon?: string;
+
+  /**
+   * Accessible name for the leading icon.
+   * When unset, the icon is treated as decorative (hidden from assistive tech) when the default slot supplies a visible label.
+   *
+   * @since 5.0.0
+   */
+  @Prop() ariaLabelIcon?: string;
 
   /**
    * Custom background color.
@@ -101,25 +119,12 @@ export class Chip {
 
   private readonly containerElementRef = makeRef<HTMLElement>();
 
-  private getCloseButton() {
-    return (
-      <div class="close-button-container">
-        <ix-icon-button
-          type="button"
-          variant="subtle-tertiary"
-          icon={iconCloseSmall}
-          class="close-button"
-          oval
-          size="16"
-          style={this.variant === 'custom' ? { color: this.chipColor } : {}}
-          onClick={(event) => {
-            this.closeChip.emit(event);
-            event.stopPropagation();
-          }}
-          aria-label={this.ariaLabelCloseButton}
-        ></ix-icon-button>
-      </div>
-    );
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return ['role'];
+  }
+
+  override componentWillLoad() {
+    super.componentWillLoad();
   }
 
   private getTooltip() {
@@ -133,76 +138,130 @@ export class Chip {
         : this.hostElement.textContent?.trim();
 
     return (
-      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+      <ix-tooltip
+        for={this.containerElementRef.waitForCurrent()}
+        aria-label={text || undefined}
+      >
         {text}
       </ix-tooltip>
     );
   }
 
-  render() {
-    let customStyle = {};
+  override render() {
+    const customWrapStyle: Record<string, string | undefined> = {};
+    const customMainStyle: Record<string, string | undefined> = {};
 
     if (this.variant === 'custom') {
-      customStyle = {
-        color: this.chipColor,
-        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
-      };
+      customMainStyle.color = this.chipColor;
+      if (this.chipColor) {
+        customWrapStyle.color = this.chipColor;
+      }
+      if (this.outline && this.background) {
+        customWrapStyle.borderColor = this.background;
+      } else if (!this.outline && this.background) {
+        customMainStyle.backgroundColor = this.background;
+      }
+    }
+
+    const showClose = !this.inactive && this.closable;
+    const wrapClasses = {
+      'chip-wrap': true,
+      outline: this.outline,
+      inactive: this.inactive,
+      alarm: this.variant === 'alarm',
+      critical: this.variant === 'critical',
+      info: this.variant === 'info',
+      neutral: this.variant === 'neutral',
+      primary: this.variant === 'primary',
+      success: this.variant === 'success',
+      warning: this.variant === 'warning',
+      custom: this.variant === 'custom',
+      closable: this.closable,
+      icon: !!this.icon,
+      centerContent: this.centerContent,
+    };
+
+    const iconIsDecorative = !this.ariaLabelIcon?.trim();
+
+    const hasAccessibleName =
+      !!this.inheritAriaAttributes['aria-label']?.trim() ||
+      !!this.inheritAriaAttributes['aria-labelledby']?.trim();
+
+    const hasTooltip =
+      !!this.tooltipText || this.hostElement.hasAttribute('tooltip-text');
+
+    const needsGroupRole = hasAccessibleName && (showClose || hasTooltip);
+
+    let hostRole: string | undefined;
+    if (this.hostElement.hasAttribute('role')) {
+      hostRole = this.hostElement.getAttribute('role') ?? undefined;
+    } else if (needsGroupRole) {
+      hostRole = 'group';
     }
 
     return (
       <Host
-        tabIndex="-1"
+        role={hostRole}
         class={{
           inactive: this.inactive,
         }}
-        style={
-          this.variant === 'custom'
-            ? {
-                '--ix-icon-button-color': this.chipColor,
-              }
-            : {}
-        }
       >
         <div
           ref={this.containerElementRef}
-          style={{ ...customStyle }}
-          class={{
-            container: true,
-            outline: this.outline,
-            inactive: this.inactive,
-            alarm: this.variant === 'alarm',
-            critical: this.variant === 'critical',
-            info: this.variant === 'info',
-            neutral: this.variant === 'neutral',
-            primary: this.variant === 'primary',
-            success: this.variant === 'success',
-            warning: this.variant === 'warning',
-            custom: this.variant === 'custom',
-            closable: this.closable,
-            icon: !!this.icon,
-            centerContent: this.centerContent,
-          }}
+          class={wrapClasses}
+          style={customWrapStyle}
         >
-          <div class="content-wrapper">
-            {this.icon && (
+          <button
+            type="button"
+            class="chip-main"
+            {...this.inheritAriaAttributes}
+            disabled={this.inactive}
+            style={customMainStyle}
+          >
+            <div class="content-wrapper">
+              {this.icon && (
+                <ix-icon
+                  class={{
+                    'with-icon': true,
+                  }}
+                  name={this.icon}
+                  size={'24'}
+                  aria-label={this.ariaLabelIcon}
+                  aria-hidden={a11yBoolean(iconIsDecorative)}
+                  style={
+                    this.variant === 'custom'
+                      ? {
+                          color: this.outline
+                            ? this.background
+                            : this.chipColor,
+                        }
+                      : undefined
+                  }
+                />
+              )}
+              <span class="slot-container">
+                <slot></slot>
+              </span>
+            </div>
+          </button>
+          {showClose && (
+            <button
+              type="button"
+              class="chip-close"
+              aria-label={this.ariaLabelCloseButton}
+              onClick={(event) => {
+                this.closeChip.emit(event);
+                event.stopPropagation();
+              }}
+            >
               <ix-icon
-                class={{
-                  'with-icon': true,
-                }}
-                name={this.icon}
-                size={'24'}
-                style={
-                  this.variant === 'custom'
-                    ? { color: this.outline ? this.background : this.chipColor }
-                    : undefined
-                }
+                class="chip-close__icon"
+                name={iconCloseSmall}
+                size="16"
+                aria-hidden="true"
               />
-            )}
-            <span class="slot-container">
-              <slot></slot>
-            </span>
-          </div>
-          {this.inactive === false && this.closable && this.getCloseButton()}
+            </button>
+          )}
         </div>
         {this.getTooltip()}
       </Host>

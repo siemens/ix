@@ -1,41 +1,31 @@
-- img
-- text: Primary
-- button "Close Small"
-- img
-- text: Alarm
-- button "Close Small"
-- img
-- text: Critical
-- img
-- text: Warning
-- img
-- text: Info
-- img
-- text: Success
-- img
-- text: Neutral
-- img
-- text: Custom
-- button "Close Small"
-- img
-- text: Chip with icon
-- button "Close Small"
-- img
-- text: Primary
-- button "Close Small"
-- img
-- text: Alarm
-- button "Close Small"
-- img
-- text: Critical
-- img
-- text: Warning
-- img
-- text: Info
-- img
-- text: Success
-- img
-- text: Neutral Custom
-- button "Close Small"
-- text: Chip without icon
-- button "Close Small"
+- main:
+  - button "Primary"
+  - button "Close chip"
+  - button "Alarm"
+  - button "Close chip"
+  - button "Critical"
+  - button "Warning"
+  - group:
+    - button "In review": Info
+    - tooltip "Open details for this status"
+  - button "Success"
+  - button "Neutral"
+  - button "Custom"
+  - button "Close chip"
+  - button "Chip with icon"
+  - button "Close chip"
+  - button "Primary"
+  - button "Close chip"
+  - button "Alarm"
+  - button "Close chip"
+  - button "Critical"
+  - button "Warning"
+  - group:
+    - button "In review": Info
+    - tooltip "Open details for this status"
+  - button "Success"
+  - button "Neutral"
+  - button "Custom"
+  - button "Close chip"
+  - button "Chip without icon"
+  - button "Close chip"

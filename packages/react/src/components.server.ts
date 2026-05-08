@@ -431,6 +431,7 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Componen
         inactive: 'inactive',
         closable: 'closable',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         background: 'background',
         chipColor: 'chip-color',
         outline: 'outline',
