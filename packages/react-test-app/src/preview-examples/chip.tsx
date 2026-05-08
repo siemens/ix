@@ -28,7 +28,12 @@ export default () => {
         <IxChip icon={iconPrint} variant="warning">
           Warning
         </IxChip>
-        <IxChip icon={iconPrint} variant="info">
+        <IxChip
+          icon={iconPrint}
+          variant="info"
+          tooltipText="Open details for this status"
+          aria-label="In review"
+        >
           Info
         </IxChip>
         <IxChip icon={iconPrint} variant="success">
@@ -63,7 +68,13 @@ export default () => {
         <IxChip icon={iconPrint} variant="warning" outline>
           Warning
         </IxChip>
-        <IxChip icon={iconPrint} variant="info" outline>
+        <IxChip
+          icon={iconPrint}
+          variant="info"
+          outline
+          tooltipText="Open details for this status"
+          aria-label="In review"
+        >
           Info
         </IxChip>
         <IxChip icon={iconPrint} variant="success" outline>

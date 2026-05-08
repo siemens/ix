@@ -255,7 +255,7 @@ type IxPreviewRoutes = {
   '/': any;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
-} & {};
+};
 
 const routes: IxPreviewRoutes = {
   '/': App,
