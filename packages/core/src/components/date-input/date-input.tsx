@@ -25,6 +25,7 @@ import {
 import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
+  clearInputValue,
   DisposableChangesAndVisibilityObservers,
   PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
@@ -41,6 +42,7 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  shouldSuppressInternalValidation,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
@@ -94,6 +96,9 @@ export class DateInput
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    if (!newValue && this.required && !this.isClearing) {
+      this.touched = true;
+    }
     this.onInput(newValue);
   }
 
@@ -128,6 +133,11 @@ export class DateInput
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    this.syncValidationClasses();
+  }
 
   /**
    * Helper text below the input field.
@@ -276,6 +286,8 @@ export class DateInput
 
   public touched = false;
 
+  private isClearing = false;
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -332,6 +344,44 @@ export class DateInput
     this.from = this.value;
   }
 
+  /**
+   * Clears the input value and resets the touched state.
+   *
+   * Unlike clearing the value directly, this method restores the initial,
+   * non-invalid state and removes visible validation errors.
+   *
+   * @since 5.1.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this, {
+      setClearing: (isClearing) => {
+        this.isClearing = isClearing;
+      },
+      syncValidationClasses: () => this.syncValidationClasses(),
+      additionalCleanup: () => {
+        this.from = undefined;
+      },
+    });
+  }
+
+  private async syncValidationClasses(): Promise<void> {
+    const skipValidation = await shouldSuppressInternalValidation(this);
+    if (skipValidation) {
+      return;
+    }
+
+    const hasValue = !!this.value;
+    if (this.required) {
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        !hasValue && this.touched
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+  }
+
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -356,6 +406,20 @@ export class DateInput
     }
 
     if (!this.format) {
+      return;
+    }
+
+    const suppressValidation = await shouldSuppressInternalValidation(this);
+    if (suppressValidation) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
+      this.emitValidityStateChangeIfChanged();
+      this.valueChange.emit(value);
       return;
     }
 

@@ -988,6 +988,11 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
+          * Clears the input value and resets the touched state.  Unlike clearing the value directly, this method restores the initial, non-invalid state and removes visible validation errors.
+          * @since 5.1.0
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute.
           * @default false
          */

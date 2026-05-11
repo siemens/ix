@@ -55,6 +55,11 @@ export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    return;
+  }
+
   const validityState = input.validity;
   const currentValidityState = !comp.hostElement.classList.contains(
     'ix-invalid--validity-invalid'
@@ -74,11 +79,6 @@ export async function checkInternalValidity<T>(
   }
 
   if (comp.value === null || comp.value === undefined) {
-    return;
-  }
-
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
     return;
   }
 
@@ -322,4 +322,62 @@ export async function emitPickerValidityStateChangeIfChanged(
     valueMissing: currentValueMissing,
     invalidReason: context.invalidReason,
   });
+}
+
+export interface ClearableInputComponent<T> {
+  value?: T;
+  hostElement: HTMLElement;
+  touched?: boolean;
+  isInputInvalid?: boolean;
+  invalidReason?: string;
+  updateFormInternalValue?: (value: T) => void;
+  valueChange?: { emit: (value: T) => void };
+}
+
+export async function clearInputValue<T>(
+  comp: ClearableInputComponent<T>,
+  options?: {
+    defaultValue?: T;
+    additionalCleanup?: () => void;
+    emitValueChange?: boolean;
+    setClearing?: (isClearing: boolean) => void;
+    syncValidationClasses?: () => void | Promise<void>;
+  }
+): Promise<void> {
+  const emptyValue = options?.defaultValue ?? ('' as T);
+
+  options?.setClearing?.(true);
+
+  if ('touched' in comp) {
+    comp.touched = false;
+  }
+
+  if ('isInputInvalid' in comp) {
+    comp.isInputInvalid = false;
+  }
+
+  if ('invalidReason' in comp) {
+    comp.invalidReason = undefined;
+  }
+
+  comp.hostElement.classList.remove(
+    'ix-invalid--required',
+    'ix-invalid--validity-invalid',
+    'ix-invalid--validity-patternMismatch'
+  );
+
+  options?.additionalCleanup?.();
+
+  comp.updateFormInternalValue?.(emptyValue);
+  comp.value = emptyValue;
+
+  if (options?.emitValueChange) {
+    comp.valueChange?.emit(emptyValue);
+  }
+
+  if (typeof options?.syncValidationClasses === 'function') {
+    await options.syncValidationClasses();
+  }
+
+  options?.setClearing?.(false);
 }
