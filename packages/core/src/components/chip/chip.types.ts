@@ -7,17 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type ChipVariant =
-  | 'primary'
-  | 'alarm'
-  | 'critical'
-  | 'warning'
-  | 'info'
-  | 'neutral'
-  | 'success'
-  | 'custom';
-
-export const CHIP_VARIANTS: readonly ChipVariant[] = [
+export const CHIP_VARIANTS = [
   'primary',
   'alarm',
   'critical',
@@ -26,4 +16,6 @@ export const CHIP_VARIANTS: readonly ChipVariant[] = [
   'neutral',
   'success',
   'custom',
-];
+] as const;
+
+export type ChipVariant = (typeof CHIP_VARIANTS)[number];

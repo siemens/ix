@@ -141,25 +141,51 @@ export class Chip
     );
   }
 
+  private getCustomStyles(variant: ChipVariant): {
+    wrap: Record<string, string | undefined>;
+    main: Record<string, string | undefined>;
+  } {
+    const wrap: Record<string, string | undefined> = {};
+    const main: Record<string, string | undefined> = {};
+
+    if (variant !== 'custom') {
+      return { wrap, main };
+    }
+
+    main.color = this.chipColor;
+    if (this.chipColor) {
+      wrap.color = this.chipColor;
+    }
+    if (this.outline && this.background) {
+      wrap.borderColor = this.background;
+    } else if (!this.outline && this.background) {
+      main.backgroundColor = this.background;
+    }
+
+    return { wrap, main };
+  }
+
+  private getIconStyle(variant: ChipVariant) {
+    if (variant !== 'custom') {
+      return undefined;
+    }
+    return { color: this.outline ? this.background : this.chipColor };
+  }
+
+  private getHostRole(needsGroupRole: boolean): string | undefined {
+    if (this.hostElement.hasAttribute('role')) {
+      return this.hostElement.getAttribute('role') ?? undefined;
+    }
+    return needsGroupRole ? 'group' : undefined;
+  }
+
   override render() {
     const variant: ChipVariant = CHIP_VARIANTS.includes(this.variant)
       ? this.variant
       : 'primary';
 
-    const customWrapStyle: Record<string, string | undefined> = {};
-    const customMainStyle: Record<string, string | undefined> = {};
-
-    if (variant === 'custom') {
-      customMainStyle.color = this.chipColor;
-      if (this.chipColor) {
-        customWrapStyle.color = this.chipColor;
-      }
-      if (this.outline && this.background) {
-        customWrapStyle.borderColor = this.background;
-      } else if (!this.outline && this.background) {
-        customMainStyle.backgroundColor = this.background;
-      }
-    }
+    const { wrap: customWrapStyle, main: customMainStyle } =
+      this.getCustomStyles(variant);
 
     const showClose = !this.inactive && this.closable;
     const wrapClasses = {
@@ -190,16 +216,9 @@ export class Chip
 
     const needsGroupRole = hasAccessibleName && (showClose || hasTooltip);
 
-    let hostRole: string | undefined;
-    if (this.hostElement.hasAttribute('role')) {
-      hostRole = this.hostElement.getAttribute('role') ?? undefined;
-    } else if (needsGroupRole) {
-      hostRole = 'group';
-    }
-
     return (
       <Host
-        role={hostRole}
+        role={this.getHostRole(needsGroupRole)}
         class={{
           inactive: this.inactive,
         }}
@@ -226,15 +245,7 @@ export class Chip
                   size={'24'}
                   aria-label={this.ariaLabelIcon}
                   aria-hidden={a11yBoolean(iconIsDecorative)}
-                  style={
-                    variant === 'custom'
-                      ? {
-                          color: this.outline
-                            ? this.background
-                            : this.chipColor,
-                        }
-                      : undefined
-                  }
+                  style={this.getIconStyle(variant)}
                 />
               )}
               <span class="slot-container">
