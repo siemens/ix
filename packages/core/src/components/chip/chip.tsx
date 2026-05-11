@@ -25,6 +25,7 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
+import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 @Component({
   tag: 'ix-chip',
@@ -38,17 +39,10 @@ export class Chip
   @Element() override hostElement!: HTMLIxChipElement;
 
   /**
-   * Chip variant
+   * Chip variant.
+   * Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
    */
-  @Prop({ reflect: true }) variant:
-    | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom' = 'primary';
+  @Prop({ reflect: true }) variant: ChipVariant = 'primary';
 
   /**
    * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)
@@ -148,10 +142,14 @@ export class Chip
   }
 
   override render() {
+    const variant: ChipVariant = CHIP_VARIANTS.includes(this.variant)
+      ? this.variant
+      : 'primary';
+
     const customWrapStyle: Record<string, string | undefined> = {};
     const customMainStyle: Record<string, string | undefined> = {};
 
-    if (this.variant === 'custom') {
+    if (variant === 'custom') {
       customMainStyle.color = this.chipColor;
       if (this.chipColor) {
         customWrapStyle.color = this.chipColor;
@@ -168,14 +166,14 @@ export class Chip
       'chip-wrap': true,
       outline: this.outline,
       inactive: this.inactive,
-      alarm: this.variant === 'alarm',
-      critical: this.variant === 'critical',
-      info: this.variant === 'info',
-      neutral: this.variant === 'neutral',
-      primary: this.variant === 'primary',
-      success: this.variant === 'success',
-      warning: this.variant === 'warning',
-      custom: this.variant === 'custom',
+      alarm: variant === 'alarm',
+      critical: variant === 'critical',
+      info: variant === 'info',
+      neutral: variant === 'neutral',
+      primary: variant === 'primary',
+      success: variant === 'success',
+      warning: variant === 'warning',
+      custom: variant === 'custom',
       closable: this.closable,
       icon: !!this.icon,
       centerContent: this.centerContent,
@@ -229,7 +227,7 @@ export class Chip
                   aria-label={this.ariaLabelIcon}
                   aria-hidden={a11yBoolean(iconIsDecorative)}
                   style={
-                    this.variant === 'custom'
+                    variant === 'custom'
                       ? {
                           color: this.outline
                             ? this.background
