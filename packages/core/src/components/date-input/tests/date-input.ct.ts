@@ -36,6 +36,14 @@ const createDateInputAccessor = async (dateInput: Locator) => {
   return handle;
 };
 
+const expectNoVisualValidation = async (
+  dateInput: Locator,
+  input: Locator
+) => {
+  await expect(input).not.toHaveClass(/is-invalid/);
+  await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
@@ -550,8 +558,31 @@ regressionTest.describe('date-input validation scenarios', () => {
       await input.press('Delete');
       await input.blur();
 
-      await expect(input).not.toHaveClass(/is-invalid/);
-      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+      await expectNoVisualValidation(dateInput, input);
+    }
+  );
+
+  regressionTest(
+    'novalidate form suppresses visual validation for invalid date input and deselects previously selected date in picker',
+    async ({ page, mount }) => {
+      await mount(`
+        <form novalidate>
+          <ix-date-input value="2024/05/05"></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = page.locator('input');
+      const dateInputAccessor = await createDateInputAccessor(dateInput);
+
+      await input.fill('2025/10/10/10');
+      await input.blur();
+
+      await expectNoVisualValidation(dateInput, input);
+
+      await dateInputAccessor.openByCalender();
+
+      await expect(dateInput.locator('.calendar-item.selected')).toHaveCount(0);
     }
   );
 

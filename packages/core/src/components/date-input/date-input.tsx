@@ -47,8 +47,10 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  focusInputIfKeyboardMode,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  resetPickerValueIfInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -57,7 +59,6 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
-import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 /**
  * @form-ready
@@ -98,6 +99,7 @@ export class DateInput
   @Watch('value') watchValuePropHandler(newValue: string) {
     if (!newValue && this.required && !this.isClearing) {
       this.touched = true;
+      this.syncValidationClasses();
     }
     this.onInput(newValue);
   }
@@ -135,8 +137,8 @@ export class DateInput
   @Prop() required?: boolean;
 
   @Watch('required')
-  onRequiredChange() {
-    this.syncValidationClasses();
+  async onRequiredChange() {
+    await this.syncValidationClasses();
   }
 
   /**
@@ -394,14 +396,69 @@ export class DateInput
     return Promise.resolve(this.formInternals.form);
   }
 
+  private getDateValidation(value: string): {
+    isValid: boolean;
+    invalidReason?: string;
+  } {
+    const date = DateTime.fromFormat(value, this.format);
+    const minDate = DateTime.fromFormat(this.minDate, this.format);
+    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+
+    return {
+      isValid: date.isValid && !(date < minDate) && !(date > maxDate),
+      invalidReason: date.invalidReason ?? undefined,
+    };
+  }
+
+  private handleEmptyInput(value: string | undefined): void {
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.emitValidityStateChangeIfChanged();
+    this.updateFormInternalValue(value);
+    this.valueChange.emit(value);
+  }
+
+  private handleSuppressedValidationInput(value: string): void {
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.updateFormInternalValue(value);
+
+    resetPickerValueIfInvalid(
+      value,
+      (currentValue) => this.getDateValidation(currentValue).isValid,
+      () => {
+        this.from = undefined;
+      }
+    );
+
+    this.closeDropdown();
+    focusInputIfKeyboardMode(this.inputElementRef.current);
+    this.emitValidityStateChangeIfChanged();
+    this.valueChange.emit(value);
+  }
+
+  private handleValidatedInput(value: string): void {
+    const validation = this.getDateValidation(value);
+
+    this.isInputInvalid = !validation.isValid;
+
+    if (this.isInputInvalid) {
+      this.invalidReason = validation.invalidReason;
+      this.from = undefined;
+    } else {
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
+      focusInputIfKeyboardMode(this.inputElementRef.current);
+    }
+
+    this.emitValidityStateChangeIfChanged();
+    this.valueChange.emit(value);
+  }
+
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
-      this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
+      this.handleEmptyInput(value);
       return;
     }
 
@@ -411,38 +468,11 @@ export class DateInput
 
     const suppressValidation = await shouldSuppressInternalValidation(this);
     if (suppressValidation) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
-      this.emitValidityStateChangeIfChanged();
-      this.valueChange.emit(value);
+      this.handleSuppressedValidationInput(value);
       return;
     }
 
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
-
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
-
-    if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason ?? undefined;
-      this.from = undefined;
-    } else {
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
-    }
-
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    this.handleValidatedInput(value);
   }
 
   onCalenderClick(event: Event) {
