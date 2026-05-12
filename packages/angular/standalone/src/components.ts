@@ -734,7 +734,7 @@ The event payload contains information about the selected date range.
 @ProxyCmp({
   defineCustomElementFn: defineIxDateInput,
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['openPicker', 'clear', 'getNativeInputElement', 'focusInput']
+  methods: ['clear', 'getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-date-input',
