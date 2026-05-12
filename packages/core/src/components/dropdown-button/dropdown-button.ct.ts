@@ -104,6 +104,38 @@ regressionTest(
 );
 
 regressionTest(
+  'should not render focus outline on trigger while dropdown is expanded',
+  async ({ page, mount }) => {
+    await mount(`
+    <ix-dropdown-button label="Open">
+      <ix-dropdown-item id="item-1" label="Test1"></ix-dropdown-item>
+      <ix-dropdown-item id="item-2" label="Test2"></ix-dropdown-item>
+    </ix-dropdown-button>
+  `);
+
+    const button = page.locator('ix-dropdown-button');
+
+    await page.keyboard.press('Tab');
+
+    const triggerOutlineBeforeOpen = await button.evaluate(
+      (el) => getComputedStyle(el).outlineStyle
+    );
+    expect(triggerOutlineBeforeOpen).not.toBe('none');
+
+    await page.keyboard.press('Enter');
+
+    const dropdown = button.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+
+    const triggerOutlineAfterOpen = await button.evaluate(
+      (el) => getComputedStyle(el).outlineStyle
+    );
+    expect(triggerOutlineAfterOpen).toBe('none');
+  }
+);
+
+regressionTest(
   'handle visible focus in combination with aria-activedescendant',
   async ({ page, mount }) => {
     await mount(`

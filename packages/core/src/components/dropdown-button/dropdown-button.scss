@@ -134,6 +134,13 @@
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
 
+// When the dropdown is open, the active dropdown item indicates focus via
+// `aria-activedescendant`. Suppress the trigger's focus ring so focus is not
+// rendered on both the trigger and the active descendant at the same time.
+:host([aria-expanded='true']:focus-visible) {
+  outline: none;
+}
+
 :host(.disabled) {
   pointer-events: none;
 }
