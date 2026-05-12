@@ -18,12 +18,6 @@
   height: 2.5rem;
   align-items: center;
   background-color: transparent;
-  // The host clips its content to hide the breadcrumb-item enter animation
-  // (it animates from `translateX(-100%)`). Inline padding is added so the
-  // focus outline of items flush with the host edges is not clipped together
-  // with the animation. The clearance equals the focus outline-offset plus
-  // the 1px outline width. We also opt into `overflow: clip` (rather than
-  // `hidden`) so the host does not establish a scroll container.
   padding-inline: calc(var(--theme-focus-outline-offset) + 1px);
   overflow: clip;
 
