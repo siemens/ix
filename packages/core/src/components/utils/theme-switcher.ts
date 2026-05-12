@@ -23,22 +23,26 @@ class ThemeSwitcher {
   private mediaQueryList?: MediaQueryList;
   private lastEmittedSnapshot?: string;
 
-  private getSnapshot(): string {
-    return `${this.getTheme()}-${this.getMode()}`;
-  }
-
   private emitThemeChange(isMediaChange: boolean) {
-    const snapshot = this.getSnapshot();
+    const theme = this.getTheme();
+    const colorSchema = this.getColorSchema();
+    const mode = this.getMode();
+    const snapshot = `${theme}-${colorSchema}-${mode}`;
+
     if (snapshot === this.lastEmittedSnapshot && !isMediaChange) return;
     this.lastEmittedSnapshot = snapshot;
 
     const detail: ThemeChangeEventDetail = {
-      theme: this.getTheme(),
-      colorSchema: this.getColorSchema(),
-      mode: this.getMode(),
+      theme,
+      colorSchema,
+      mode,
       isMediaChange,
     };
     this.themeChanged.emit(detail);
+
+    if (typeof document !== 'undefined') {
+      document.dispatchEvent(new CustomEvent('ix-theme-change', { detail }));
+    }
   }
 
   private readonly handleMediaQueryChange = () => {
