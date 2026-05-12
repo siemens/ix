@@ -1748,6 +1748,7 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -1775,6 +1776,11 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * Role of the host surface (`menuitem` or `option`). Use `option` when the item represents a listbox option (e.g. inside select).
+          * @default 'menuitem'
+         */
+        "itemRole": string;
         /**
           * @default false
          */
@@ -3560,6 +3566,7 @@ export namespace Components {
     }
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -8281,6 +8288,7 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -8306,6 +8314,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * Role of the host surface (`menuitem` or `option`). Use `option` when the item represents a listbox option (e.g. inside select).
+          * @default 'menuitem'
+         */
+        "itemRole"?: string;
         /**
           * @default false
          */
@@ -10233,6 +10246,7 @@ declare namespace LocalJSX {
     }
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -11757,6 +11771,7 @@ declare namespace LocalJSX {
         "hover": boolean;
         "disabled": boolean;
         "checked": boolean;
+        "itemRole": string;
         "isSubMenu": boolean;
         "suppressChecked": boolean;
         "hasVisualFocus": boolean;

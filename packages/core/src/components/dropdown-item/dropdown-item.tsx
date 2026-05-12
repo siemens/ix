@@ -83,6 +83,12 @@ export class DropdownItem
    */
   @Prop({ reflect: true }) checked = false;
 
+  /**
+   * Role of the host surface (`menuitem` or `option`).
+   * Use `option` when the item represents a listbox option (e.g. inside select).
+   */
+  @Prop() itemRole: string = 'menuitem';
+
   /** @internal */
   @Prop() isSubMenu = false;
 
@@ -130,7 +136,7 @@ export class DropdownItem
     return (
       <Host
         id={id}
-        role={'menuitem'}
+        role={this.itemRole}
         aria-disabled={a11yBoolean(this.disabled)}
         aria-label={this.hostElement.ariaLabel ?? this.ariaLabelButton}
         class={{

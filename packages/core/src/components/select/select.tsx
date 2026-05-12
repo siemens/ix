@@ -31,6 +31,12 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+import {
   IX_FOCUS_VISIBLE_ACTIVE,
   queryElements,
 } from '../utils/focus/focus-utilities';
@@ -39,23 +45,17 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { DefaultMixins } from '../utils/internal/component';
 import {
-  AriaActiveDescendantMixinContract,
   AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
-import {
-  FocusProxy,
-  PROXY_LIST_ID_SUFFIX,
-  PROXY_LISTITEM_ID_SUFFIX,
-  updateFocusProxyList,
-} from '../utils/focus/focus-proxy';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 let selectId = 0;
 
@@ -828,10 +828,17 @@ export class Select
         proxyElement.role = 'option';
         proxyElement.innerText = item.label ?? '';
         proxyElement.ariaLabel =
-          item.getAttribute('aria-label') || item.label || '';
-        proxyElement.ariaSelected =
-          item.getAttribute('aria-selected') || 'false';
-        proxyElement.ariaChecked = item.getAttribute('aria-checked') || 'false';
+          item.getAttribute('aria-label') ||
+          item.label ||
+          (item.tagName === 'IX-SELECT-ITEM'
+            ? (item as HTMLIxSelectItemElement).value
+            : '') ||
+          '';
+        const selected =
+          item.tagName === 'IX-SELECT-ITEM'
+            ? (item as HTMLIxSelectItemElement).selected
+            : (item as HTMLIxDropdownItemElement).checked;
+        proxyElement.ariaSelected = a11yBoolean(!!selected);
         // Forward clicks from the proxy element to the actual dropdown item
         proxyElement.addEventListener('click', (event) => {
           event.stopPropagation();
