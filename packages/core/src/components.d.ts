@@ -35,6 +35,7 @@ import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -89,6 +90,7 @@ export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -1744,6 +1746,7 @@ export namespace Components {
         "checked": boolean;
         /**
           * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+          * @since 5.0.0
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -1772,10 +1775,11 @@ export namespace Components {
          */
         "isSubMenu": boolean;
         /**
-          * Role of the host surface (`menuitem` or `option`). Use `option` when the item represents a listbox option (e.g. inside select).
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
           * @default 'menuitem'
          */
-        "itemRole": string;
+        "itemRole": IxDropdownItemRole;
         /**
           * @default false
          */
@@ -3562,6 +3566,7 @@ export namespace Components {
     interface IxSelectItem {
         /**
           * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+          * @since 5.0.0
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -8277,6 +8282,7 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         /**
           * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+          * @since 5.0.0
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -8303,10 +8309,11 @@ declare namespace LocalJSX {
          */
         "isSubMenu"?: boolean;
         /**
-          * Role of the host surface (`menuitem` or `option`). Use `option` when the item represents a listbox option (e.g. inside select).
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
           * @default 'menuitem'
          */
-        "itemRole"?: string;
+        "itemRole"?: IxDropdownItemRole;
         /**
           * @default false
          */
@@ -10235,6 +10242,7 @@ declare namespace LocalJSX {
     interface IxSelectItem {
         /**
           * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+          * @since 5.0.0
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -11752,7 +11760,7 @@ declare namespace LocalJSX {
         "hover": boolean;
         "disabled": boolean;
         "checked": boolean;
-        "itemRole": string;
+        "itemRole": IxDropdownItemRole;
         "isSubMenu": boolean;
         "suppressChecked": boolean;
         "hasVisualFocus": boolean;

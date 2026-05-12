@@ -32,6 +32,8 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 
+export type IxDropdownItemRole = 'menuitem' | 'option';
+
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
@@ -84,10 +86,12 @@ export class DropdownItem
   @Prop({ reflect: true }) checked = false;
 
   /**
-   * Role of the host surface (`menuitem` or `option`).
-   * Use `option` when the item represents a listbox option (e.g. inside select).
+   * Role of the host surface.
+   * Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+   *
+   * @since 5.0.0
    */
-  @Prop() itemRole: string = 'menuitem';
+  @Prop() itemRole: IxDropdownItemRole = 'menuitem';
 
   /** @internal */
   @Prop() isSubMenu = false;
