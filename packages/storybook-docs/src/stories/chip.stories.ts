@@ -33,6 +33,28 @@ function chipMatrixLabel(variant: ChipMatrixVariant): string {
     : variant.charAt(0).toUpperCase() + variant.slice(1);
 }
 
+/** Default chip styling (omit `variant`). */
+function chipMatrixDefaultPair(
+  closable: boolean,
+  showIcon: boolean
+): TemplateResult {
+  const label = 'Default';
+
+  if (showIcon) {
+    return html`
+      <ix-chip icon=${CHIP_MATRIX_ICON} ?closable=${closable}>${label}</ix-chip>
+      <ix-chip icon=${CHIP_MATRIX_ICON} outline ?closable=${closable}
+        >${label}</ix-chip
+      >
+    `;
+  }
+
+  return html`
+    <ix-chip ?closable=${closable}>${label}</ix-chip>
+    <ix-chip outline ?closable=${closable}>${label}</ix-chip>
+  `;
+}
+
 function chipMatrixPair(
   variant: ChipMatrixVariant,
   closable: boolean,
@@ -113,6 +135,7 @@ function chipMatrixOverview(): TemplateResult {
     showIcon: boolean
   ): TemplateResult => html`
     ${colheads}
+    ${chipMatrixDefaultPair(closable, showIcon)}
     ${CHIP_MATRIX_VARIANTS.map((v) => chipMatrixPair(v, closable, showIcon))}
   `;
 
@@ -201,9 +224,22 @@ function chipMatrixOverview(): TemplateResult {
       )}
       ${section(
         'Tooltips',
-        'tooltip-text as custom string; aria-label where the chip name should differ from visible text.',
+        'tooltip-text as custom string; aria-label where the chip name should differ from visible text. Includes default styling (no `variant`).',
         html`
           ${colheads}
+          <ix-chip
+            icon=${CHIP_MATRIX_ICON}
+            tooltip-text="Full details: status, owner, and last update."
+            aria-label="Filter: in review"
+            >In review</ix-chip
+          >
+          <ix-chip
+            icon=${CHIP_MATRIX_ICON}
+            outline
+            tooltip-text="Full details: status, owner, and last update."
+            aria-label="Filter: in review"
+            >In review</ix-chip
+          >
           <ix-chip
             icon=${CHIP_MATRIX_ICON}
             variant="info"
@@ -392,7 +428,7 @@ export const Overview_design_reference: Story = {
     docs: {
       description: {
         story:
-          'All predefined variants (filled + outline), closable and icon combinations, tooltips, inactive, centered layout, accessible icon name, custom close label, and long label. Replaces the temporary chip-examples preview routes.',
+          'Default chip (no `variant`), all predefined variants (filled + outline), closable and icon combinations, tooltips, inactive, centered layout, accessible icon name, custom close label, and long label. Replaces the temporary chip-examples preview routes.',
       },
     },
   },
