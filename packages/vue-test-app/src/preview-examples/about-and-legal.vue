@@ -18,7 +18,7 @@ import {
 } from '@siemens/ix-vue';
 import { onMounted, ref, useTemplateRef } from 'vue';
 
-const input = useTemplateRef<HTMLIxMenuElement>('menu');
+const input = useTemplateRef<InstanceType<typeof IxMenu>>('menu');
 const activeTabKey = ref('tab-1');
 
 const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
@@ -26,7 +26,7 @@ const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
 };
 
 onMounted(() => {
-  input.value?.toggleAbout(true);
+  input.value?.$el?.toggleAbout(true);
 });
 </script>
 
@@ -36,7 +36,7 @@ onMounted(() => {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuAbout>
+      <IxMenuAbout suppressLegacyTabs>
         <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
           <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
           <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>

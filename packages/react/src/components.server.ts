@@ -431,6 +431,7 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Componen
         inactive: 'inactive',
         closable: 'closable',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         background: 'background',
         chipColor: 'chip-color',
         outline: 'outline',
@@ -2063,6 +2064,7 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents, Co
     properties: {
         accept: 'accept',
         multiple: 'multiple',
+        directoryUpload: 'directory-upload',
         multiline: 'multiline',
         disabled: 'disabled',
         state: 'state',

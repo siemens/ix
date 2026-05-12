@@ -22,9 +22,9 @@ import React, {
   useState,
 } from 'react';
 import InternalIxTabPanel from './internal-tab-panel';
-import InternalIxTabPanels from './internal-tab-panels';
+import InternalIxTabSet from './internal-tab-set';
 
-const TabPanelsContext = createContext<string | undefined | null>(null);
+const TabSetContext = createContext<string | undefined | null>(null);
 
 function assignRef<T>(ref: ForwardedRef<T>, value: T | null) {
   if (typeof ref === 'function') {
@@ -62,30 +62,30 @@ function findActiveTabKey(children: ReactNode): string | undefined {
   return undefined;
 }
 
-export type IxTabPanelsProps = PropsWithChildren<
-  React.ComponentProps<typeof InternalIxTabPanels>
+export type IxTabSetProps = PropsWithChildren<
+  React.ComponentProps<typeof InternalIxTabSet>
 >;
 
-export const IxTabPanels = forwardRef<HTMLIxTabPanelsElement, IxTabPanelsProps>(
+export const IxTabSet = forwardRef<HTMLIxTabSetElement, IxTabSetProps>(
   ({ children, ...props }, ref) => {
-    const panelsRef = useRef<HTMLIxTabPanelsElement | null>(null);
+    const tabSetRef = useRef<HTMLIxTabSetElement | null>(null);
     const [activeTabKey, setActiveTabKey] = useState(() =>
       findActiveTabKey(children)
     );
 
     useLayoutEffect(() => {
-      const panelsElement = panelsRef.current;
+      const tabSetElement = tabSetRef.current;
 
       const syncActiveTabKey = () => {
         setActiveTabKey(
-          panelsElement?.querySelector('ix-tabs')?.activeTabKey ??
+          tabSetElement?.querySelector('ix-tabs')?.activeTabKey ??
             findActiveTabKey(children)
         );
       };
 
       syncActiveTabKey();
 
-      if (!panelsElement) {
+      if (!tabSetElement) {
         return;
       }
 
@@ -93,30 +93,30 @@ export const IxTabPanels = forwardRef<HTMLIxTabPanelsElement, IxTabPanelsProps>(
         setActiveTabKey((event as CustomEvent<string | undefined>).detail);
       };
 
-      panelsElement.addEventListener('tabChange', handleTabChange);
+      tabSetElement.addEventListener('tabChange', handleTabChange);
 
       return () => {
-        panelsElement.removeEventListener('tabChange', handleTabChange);
+        tabSetElement.removeEventListener('tabChange', handleTabChange);
       };
     }, [children]);
 
     return (
-      <TabPanelsContext.Provider value={activeTabKey}>
-        <InternalIxTabPanels
+      <TabSetContext.Provider value={activeTabKey}>
+        <InternalIxTabSet
           ref={(element) => {
-            panelsRef.current = element;
+            tabSetRef.current = element;
             assignRef(ref, element);
           }}
           {...props}
         >
           {children}
-        </InternalIxTabPanels>
-      </TabPanelsContext.Provider>
+        </InternalIxTabSet>
+      </TabSetContext.Provider>
     );
   }
 );
 
-IxTabPanels.displayName = 'IxTabPanels';
+IxTabSet.displayName = 'IxTabSet';
 
 export type IxTabPanelProps = PropsWithChildren<
   React.ComponentProps<typeof InternalIxTabPanel>
@@ -124,7 +124,7 @@ export type IxTabPanelProps = PropsWithChildren<
 
 export const IxTabPanel = forwardRef<HTMLIxTabPanelElement, IxTabPanelProps>(
   ({ children, tabKey, ...props }, ref) => {
-    const activeTabKey = useContext(TabPanelsContext);
+    const activeTabKey = useContext(TabSetContext);
     const shouldRenderChildren =
       activeTabKey === null ? true : activeTabKey === tabKey;
 

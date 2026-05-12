@@ -7,16 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import path from 'path';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
+import path from 'path';
 import {
   Application,
   IntrinsicType,
+  ParameterReflection,
   ReferenceType,
   TSConfigReader,
   UnionType,
 } from 'typedoc';
+import {
+  expandJsdocNewlinesForMarkdown,
+  serializeMarkdownForJsx,
+} from './utils/escape';
 import { toKebabCase } from './utils/string-utils';
 
 // TypeDoc ReflectionKind constants
@@ -131,6 +136,35 @@ function getPropertyType(property: any): string {
   }
 }
 
+/**
+ * TypeDoc splits JSDoc into display parts (`text`, `code` for backticks, etc.).
+ * We emit Markdown for ReactMarkdown: wrap `code` parts in backticks again.
+ */
+function commentDisplayPartsToMarkdown(parts: any[] | undefined): string {
+  if (!parts?.length) {
+    return '';
+  }
+
+  let result = '';
+  for (const item of parts) {
+    switch (item.kind) {
+      case 'code':
+        if (item.text != null) {
+          result += `\`${item.text}\``;
+        }
+        break;
+      case 'inline-tag': {
+        const inlineBody = item.text ? ' ' + item.text : '';
+        result += '{' + item.tag + inlineBody + '}';
+        break;
+      }
+      default:
+        result += item.text ?? '';
+    }
+  }
+  return expandJsdocNewlinesForMarkdown(result);
+}
+
 function extractCommentTags(
   property: any
 ): Array<{ tag: string; text?: string }> {
@@ -142,10 +176,7 @@ function extractCommentTags(
 
   for (const tag of property.comment.blockTags) {
     const tagName = tag.tag.substring(1); // Remove @ symbol
-    const tagText = tag.content
-      .filter((content: any) => content.kind === 'text')
-      .map((content: any) => content.text)
-      .join('');
+    const tagText = commentDisplayPartsToMarkdown(tag.content);
 
     tags.push({ tag: tagName, text: tagText });
   }
@@ -157,11 +188,8 @@ function getCommentSummary(property: any): string {
   const summary =
     property?.comment?.summary ?? property?.signatures?.[0]?.comment?.summary;
 
-  if (summary) {
-    return summary
-      .filter((summary: any) => summary.kind === 'text')
-      .map((summary: any) => summary.text)
-      .join('');
+  if (summary?.length) {
+    return commentDisplayPartsToMarkdown(summary);
   }
 
   return '';
@@ -201,7 +229,7 @@ function processFunctionSignature(
   return {
     name: functionName,
     parameters:
-      signature.parameters?.map((param) => ({
+      signature.parameters?.map((param: ParameterReflection) => ({
         name: param.name,
         type: getPropertyType(param),
         optional: param.flags?.isOptional,
@@ -464,7 +492,7 @@ function generatePropertyMDX(
     return {
       name: prop.name,
       singleFramework: framework,
-      docs: escapeBackticks(prop.comment),
+      docs: serializeMarkdownForJsx(prop.comment),
       type: escapeBackticks(prop.type),
       default: prop.defaultValue
         ? escapeBackticks(prop.defaultValue)

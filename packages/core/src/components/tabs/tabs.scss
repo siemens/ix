@@ -90,6 +90,10 @@
     }
   }
 
+  .tabs.tabs-stretched {
+    padding-right: 0px;
+  }
+
   .tabs:focus-visible {
     outline-offset: -1px;
     outline: 1px solid var(--theme-color-focus-bdr);

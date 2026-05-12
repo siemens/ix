@@ -6,8 +6,54 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
+import { regressionTest } from '@utils/test';
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start;">
+      <ix-chip>Label</ix-chip>
+      <ix-chip variant="primary" closable>Primary closable</ix-chip>
+      <ix-chip variant="primary" outline closable>Primary outline closable</ix-chip>
+      <ix-chip variant="warning" closable>Warning closable</ix-chip>
+      <ix-chip variant="info" outline>Info outline</ix-chip>
+      <ix-chip closable aria-label="Filter: status">Status</ix-chip>
+      <ix-chip inactive>Inactive</ix-chip>
+      <ix-chip
+        variant="custom"
+        background="var(--theme-color-secondary)"
+        chip-color="var(--theme-color-std-text)"
+        closable
+      >Custom filled</ix-chip>
+      <ix-chip
+        variant="custom"
+        background="var(--theme-color-primary)"
+        chip-color="var(--theme-color-primary--contrast)"
+        outline
+        closable
+      >Custom outline</ix-chip>
+    </div>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest(
+  'forwards host aria-label to main button and sets group role',
+  async ({ mount, page }) => {
+    await mount(`<ix-chip closable aria-label="Project Alpha">PA</ix-chip>`);
+    const chip = page.locator('ix-chip');
+    await expect(chip).toHaveAttribute('role', 'group');
+
+    await expect(
+      page.getByRole('button', { name: 'Project Alpha' })
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Close chip' })
+    ).toBeVisible();
+  }
+);
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);

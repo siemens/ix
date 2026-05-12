@@ -9,7 +9,7 @@
 
 import { useLayoutEffect, useState } from 'react';
 import { IxButton, IxTabItem, IxTabs } from '../..';
-import { IxTabPanel, IxTabPanels } from './../../tabs';
+import { IxTabPanel, IxTabSet } from './../../tabs';
 
 type TabContentProps = {
   label: string;
@@ -29,7 +29,7 @@ function TabContent({ label, onMount, onUnmount }: TabContentProps) {
   return <div>{label}</div>;
 }
 
-export function LazyTabPanelsExample({
+export function LazyTabSetExample({
   onMount,
   onUnmount,
 }: Omit<TabContentProps, 'label'>) {
@@ -39,7 +39,7 @@ export function LazyTabPanelsExample({
     <>
       <IxButton onClick={() => setActiveTabKey('tab-1')}>Open Tab 1</IxButton>
 
-      <IxTabPanels>
+      <IxTabSet>
         <IxTabs activeTabKey={activeTabKey} layout="auto">
           <IxTabItem tabKey="tab-1" label="Tab 1"></IxTabItem>
           <IxTabItem tabKey="tab-2" label="Tab 2"></IxTabItem>
@@ -67,7 +67,7 @@ export function LazyTabPanelsExample({
             onUnmount={onUnmount}
           />
         </IxTabPanel>
-      </IxTabPanels>
+      </IxTabSet>
     </>
   );
 }

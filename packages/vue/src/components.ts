@@ -339,6 +339,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'inactive',
   'closable',
   'icon',
+  'ariaLabelIcon',
   'background',
   'chipColor',
   'outline',
@@ -1618,6 +1619,7 @@ export const IxTypography: StencilVueComponent<JSX.IxTypography> = /*@__PURE__*/
 export const IxUpload: StencilVueComponent<JSX.IxUpload> = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload', defineIxUpload, [
   'accept',
   'multiple',
+  'directoryUpload',
   'multiline',
   'disabled',
   'state',
