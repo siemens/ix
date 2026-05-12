@@ -405,7 +405,10 @@ export class DateInput
     const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
     return {
-      isValid: date.isValid && !(date < minDate) && !(date > maxDate),
+      isValid:
+        date.isValid &&
+        (!minDate.isValid || date >= minDate) &&
+        (!maxDate.isValid || date <= maxDate),
       invalidReason: date.invalidReason ?? undefined,
     };
   }
