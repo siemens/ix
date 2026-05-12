@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -71,6 +72,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -776,17 +778,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant
+          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
           * @default 'primary'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     interface IxCol {
         /**
@@ -7279,17 +7274,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant
+          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
           * @default 'primary'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     interface IxCol {
         /**
@@ -11546,14 +11534,7 @@ declare namespace LocalJSX {
         "required": boolean;
     }
     interface IxChipAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "inactive": boolean;
         "closable": boolean;
         "icon": string;

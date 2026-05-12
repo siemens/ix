@@ -61,6 +61,51 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
+regressionTest.describe('default variant fallback', () => {
+  regressionTest(
+    'applies primary styling when no variant attribute is set',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip>Default</ix-chip>`);
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('variant', 'primary');
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+    }
+  );
+
+  regressionTest(
+    'falls back to primary styling when variant is empty',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip variant="">Empty variant</ix-chip>`);
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+    }
+  );
+
+  regressionTest(
+    'falls back to primary styling when variant is unknown',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip variant="not-a-variant">Bad variant</ix-chip>`);
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+    }
+  );
+
+  regressionTest(
+    'applies primary outline styling when only the outline attribute is set',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip outline>Default outline</ix-chip>`);
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveClass(/hydrated/);
+      const wrap = chip.locator('.chip-wrap');
+      await expect(wrap).toHaveClass(/primary/);
+      await expect(wrap).toHaveClass(/outline/);
+    }
+  );
+});
+
 regressionTest.describe('chip test', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
