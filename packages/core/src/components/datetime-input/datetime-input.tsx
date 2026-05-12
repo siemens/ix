@@ -12,6 +12,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -48,12 +49,17 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
 import {
   getLuxonDateOnlyFormatMask,
   getLuxonTimeFormatMask,
 } from '../utils/luxon-datetime-format-masks';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
 
 /**
  * @since 5.0.0
@@ -70,9 +76,10 @@ import {
   formAssociated: true,
 })
 export class DatetimeInput
-  implements IxInputFieldComponent<string | undefined>
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
 {
-  @Element() hostElement!: HTMLIxDatetimeInputElement;
+  @Element() override hostElement!: HTMLIxDatetimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /** Name of the form control for form submission */
@@ -621,7 +628,7 @@ export class DatetimeInput
     }
   }
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -633,7 +640,7 @@ export class DatetimeInput
       );
   }
 
-  componentWillLoad(): void {
+  override componentWillLoad(): void {
     this.onInput(this.value);
 
     this.checkClassList();
@@ -649,7 +656,7 @@ export class DatetimeInput
     );
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -688,6 +695,10 @@ export class DatetimeInput
     this.emitChange(displayValue);
     this.closeDropdown();
   };
+
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
 
   private renderInput() {
     return (
@@ -747,6 +758,7 @@ export class DatetimeInput
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
             icon={iconCalendar}
+            size="16"
             onClick={(event) => this.onCalendarClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -754,7 +766,7 @@ export class DatetimeInput
     );
   }
 
-  render() {
+  override render() {
     const invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
