@@ -17,8 +17,8 @@ regressionTest.describe('menu-settings', () => {
     await settings.click();
     await page.waitForTimeout(500);
 
-    //Click is needed otherwise tab item is still hovered
-    await page.getByText('First Label - ').click();
+    // Click is needed otherwise tab item is still hovered.
+    await page.getByRole('heading', { name: 'Settings' }).click();
     await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
 
     await expect(page).toHaveScreenshot({
