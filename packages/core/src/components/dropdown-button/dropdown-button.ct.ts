@@ -114,13 +114,12 @@ regressionTest(
   `);
 
     const button = page.locator('ix-dropdown-button');
+    await expect(button).toHaveClass(/hydrated/);
 
     await page.keyboard.press('Tab');
+    await expect(button).toBeFocused();
 
-    const triggerOutlineBeforeOpen = await button.evaluate(
-      (el) => getComputedStyle(el).outlineStyle
-    );
-    expect(triggerOutlineBeforeOpen).not.toBe('none');
+    await expect(button).not.toHaveCSS('outline-style', 'none');
 
     await page.keyboard.press('Enter');
 
@@ -128,10 +127,7 @@ regressionTest(
     await expect(dropdown).toBeVisible();
     await expect(button).toHaveAttribute('aria-expanded', 'true');
 
-    const triggerOutlineAfterOpen = await button.evaluate(
-      (el) => getComputedStyle(el).outlineStyle
-    );
-    expect(triggerOutlineAfterOpen).toBe('none');
+    await expect(button).toHaveCSS('outline-style', 'none');
   }
 );
 
