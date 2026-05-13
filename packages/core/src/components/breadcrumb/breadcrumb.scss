@@ -18,8 +18,6 @@
   height: 2.5rem;
   align-items: center;
   background-color: transparent;
-  padding-inline: calc(var(--theme-focus-outline-offset) + 1px);
-  overflow: clip;
 
   @include component.ix-component;
 
