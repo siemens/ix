@@ -28,7 +28,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.25.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^5.2.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "catalog:",
