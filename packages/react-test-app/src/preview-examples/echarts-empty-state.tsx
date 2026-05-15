@@ -9,7 +9,7 @@
 
 import './echarts-empty-state.scoped.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { themeSwitcher } from '@siemens/ix';
 import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
@@ -18,8 +18,10 @@ import { EChartsOption } from 'echarts';
 import { IxEmptyState } from '@siemens/ix-react';
 import { iconInfo } from '@siemens/ix-icons/icons';
 
+registerTheme(echarts);
+
 function useEChartTheme() {
-  const [theme, setTheme] = useState(resolveEChartThemeName);
+  const [theme, setTheme] = useState(() => resolveEChartThemeName());
 
   useEffect(() => {
     const disposer = themeSwitcher.themeChanged.on(() => {
@@ -35,9 +37,35 @@ function useEChartTheme() {
 }
 
 export default function Echarts() {
-  registerTheme(echarts);
-
   const theme = useEChartTheme();
+  const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const chartInstanceRef = useRef<echarts.ECharts | null>(null);
+  const [isChartReady, setIsChartReady] = useState(false);
+
+  useEffect(() => {
+    const chartContainer = chartContainerRef.current;
+
+    if (!chartContainer) {
+      return;
+    }
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+
+      if (width === 0 || height === 0) {
+        return;
+      }
+
+      setIsChartReady(true);
+      chartInstanceRef.current?.resize();
+    });
+
+    observer.observe(chartContainer);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const data = {
     weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -61,7 +89,7 @@ export default function Echarts() {
   };
 
   return (
-    <div className="echarts">
+    <div ref={chartContainerRef} className="echarts">
       {data.value.length === 0 && (
         <div className="empty-state-container">
           <IxEmptyState
@@ -73,7 +101,20 @@ export default function Echarts() {
           />
         </div>
       )}
-      <ReactEcharts option={options} theme={theme} className="echarts" />
+      {isChartReady ? (
+        <ReactEcharts
+          onChartReady={(instance) => {
+            chartInstanceRef.current = instance;
+
+            requestAnimationFrame(() => {
+              instance.resize();
+            });
+          }}
+          style={{ height: '100%', width: '100%' }}
+          option={options}
+          theme={theme}
+        />
+      ) : null}
     </div>
   );
 }

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import {
@@ -27,6 +27,7 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./echarts-special-zoom.css'],
 })
 export default class EchartsSpecialZoom implements OnDestroy, OnInit {
+  private readonly ngZone = inject(NgZone);
   theme = resolveEChartThemeName();
   private themeChangeDisposer?: { dispose: () => void };
 
@@ -110,8 +111,10 @@ export default class EchartsSpecialZoom implements OnDestroy, OnInit {
     registerTheme(echarts);
 
     this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
-      this.theme = resolveEChartThemeName();
-      this.options = this.getOptions();
+      this.ngZone.run(() => {
+        this.theme = resolveEChartThemeName();
+        this.options = this.getOptions();
+      });
     });
   }
 

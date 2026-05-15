@@ -33,12 +33,21 @@ LICENSE file in the root directory of this source tree.
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
+      function scheduleChartResize(chart) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            chart?.resize();
+          });
+        });
+      }
+
       function initChart(options) {
         const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme, {
           renderer: 'svg',
         });
         myChart.setOption(options);
+        scheduleChartResize(myChart);
 
         return myChart;
       }

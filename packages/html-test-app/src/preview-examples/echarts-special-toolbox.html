@@ -32,6 +32,14 @@ LICENSE file in the root directory of this source tree.
       // Wait for init.js to complete (including theme CSS loading)
       await globalThis.ixInitPromise;
 
+      function scheduleChartResize(chart) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            chart?.resize();
+          });
+        });
+      }
+
       const data = {
         months: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         values: [150, 230, 224, 218, 135, 147, 260],
@@ -41,6 +49,7 @@ LICENSE file in the root directory of this source tree.
         const theme = resolveEChartThemeName();
         var myChart = echarts.init(document.querySelector('#main'), theme);
         myChart.setOption(options);
+        scheduleChartResize(myChart);
 
         return myChart;
       }

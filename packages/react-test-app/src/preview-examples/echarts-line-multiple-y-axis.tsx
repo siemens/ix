@@ -9,7 +9,7 @@
 
 import './echarts-line-multiple-y-axis.scoped.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { themeSwitcher } from '@siemens/ix';
 import {
   getComputedCSSProperty,
@@ -21,8 +21,10 @@ import * as echarts from 'echarts';
 import { EChartsOption, SeriesOption } from 'echarts';
 import { YAXisOption } from 'echarts/types/dist/shared';
 
+registerTheme(echarts);
+
 function useEChartTheme() {
-  const [theme, setTheme] = useState(resolveEChartThemeName);
+  const [theme, setTheme] = useState(() => resolveEChartThemeName());
 
   useEffect(() => {
     const disposer = themeSwitcher.themeChanged.on(() => {
@@ -38,9 +40,35 @@ function useEChartTheme() {
 }
 
 export default function EchartsLineMultipleYAxis() {
-  registerTheme(echarts);
-
   const theme = useEChartTheme();
+  const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const chartInstanceRef = useRef<echarts.ECharts | null>(null);
+  const [isChartReady, setIsChartReady] = useState(false);
+
+  useEffect(() => {
+    const chartContainer = chartContainerRef.current;
+
+    if (!chartContainer) {
+      return;
+    }
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+
+      if (width === 0 || height === 0) {
+        return;
+      }
+
+      setIsChartReady(true);
+      chartInstanceRef.current?.resize();
+    });
+
+    observer.observe(chartContainer);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const months = [
     'Jan',
@@ -154,5 +182,22 @@ export default function EchartsLineMultipleYAxis() {
     ],
   };
 
-  return <ReactEcharts option={options} theme={theme} className="echarts" />;
+  return (
+    <div ref={chartContainerRef} className="echarts">
+      {isChartReady ? (
+        <ReactEcharts
+          onChartReady={(instance) => {
+            chartInstanceRef.current = instance;
+
+            requestAnimationFrame(() => {
+              instance.resize();
+            });
+          }}
+          style={{ height: '100%', width: '100%' }}
+          option={options}
+          theme={theme}
+        />
+      ) : null}
+    </div>
+  );
 }

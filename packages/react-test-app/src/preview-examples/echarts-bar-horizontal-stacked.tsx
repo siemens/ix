@@ -9,15 +9,17 @@
 
 import './echarts-bar-horizontal-stacked.scoped.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { themeSwitcher } from '@siemens/ix';
 import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import { BarSeriesOption, EChartsOption } from 'echarts';
 
+registerTheme(echarts);
+
 function useEChartTheme() {
-  const [theme, setTheme] = useState(resolveEChartThemeName);
+  const [theme, setTheme] = useState(() => resolveEChartThemeName());
 
   useEffect(() => {
     const disposer = themeSwitcher.themeChanged.on(() => {
@@ -33,9 +35,35 @@ function useEChartTheme() {
 }
 
 export default function EchartsBarHorizontalStacked() {
-  registerTheme(echarts);
-
   const theme = useEChartTheme();
+  const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const chartInstanceRef = useRef<echarts.ECharts | null>(null);
+  const [isChartReady, setIsChartReady] = useState(false);
+
+  useEffect(() => {
+    const chartContainer = chartContainerRef.current;
+
+    if (!chartContainer) {
+      return;
+    }
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+
+      if (width === 0 || height === 0) {
+        return;
+      }
+
+      setIsChartReady(true);
+      chartInstanceRef.current?.resize();
+    });
+
+    observer.observe(chartContainer);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const data = {
     years: ['2023', '2022', '2021', '2020', '2019'],
@@ -78,5 +106,22 @@ export default function EchartsBarHorizontalStacked() {
     series: series,
   };
 
-  return <ReactEcharts option={options} theme={theme} className="echarts" />;
+  return (
+    <div ref={chartContainerRef} className="echarts">
+      {isChartReady ? (
+        <ReactEcharts
+          onChartReady={(instance) => {
+            chartInstanceRef.current = instance;
+
+            requestAnimationFrame(() => {
+              instance.resize();
+            });
+          }}
+          style={{ height: '100%', width: '100%' }}
+          option={options}
+          theme={theme}
+        />
+      ) : null}
+    </div>
+  );
 }
