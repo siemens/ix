@@ -60,12 +60,7 @@ function SliderExample() {
         <span slot="label-end">100</span>
       </IxSlider>
 
-      <IxSlider
-        className="invalid"
-        trace
-        trace-reference={50}
-        marker={[0, 25, 50, 75, 100]}
-      >
+      <IxSlider trace trace-reference={50} marker={[0, 25, 50, 75, 100]} error>
         <span slot="label-start">0</span>
         <span slot="label-end">100</span>
       </IxSlider>
