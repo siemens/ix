@@ -3506,6 +3506,11 @@ export namespace Components {
          */
         "i18nPlaceholderEditable": string;
         /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem": string;
+        /**
           * Select list header
           * @default 'Select an option'
          */
@@ -10170,6 +10175,11 @@ declare namespace LocalJSX {
          */
         "i18nPlaceholderEditable"?: string;
         /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem"?: string;
+        /**
           * Select list header
           * @default 'Select an option'
          */
@@ -12192,6 +12202,7 @@ declare namespace LocalJSX {
         "i18nSelectListHeader": string;
         "i18nNoMatches": string;
         "i18nAllSelected": string;
+        "i18nRemoveSelectedItem": string;
         "hideListHeader": boolean;
         "dropdownWidth": string;
         "dropdownMaxWidth": string;

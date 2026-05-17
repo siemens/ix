@@ -209,6 +209,13 @@ export class Select
   @Prop({ attribute: 'i18n-all-selected' }) i18nAllSelected = 'All';
 
   /**
+   * Prefix for the accessible name of the close control on a selected chip in multiple mode.
+   * The chip label or value is appended (e.g. "Remove Item 1").
+   */
+  @Prop({ attribute: 'i18n-remove-selected-item' }) i18nRemoveSelectedItem =
+    'Remove';
+
+  /**
    * Hide list header
    */
   @Prop() hideListHeader = false;
@@ -706,11 +713,19 @@ export class Select
     );
   }
 
+  private getRemoveChipAriaLabel(item: HTMLIxSelectItemElement): string {
+    const name = (item.label ?? item.value)?.toString().trim();
+    if (!name) {
+      return this.i18nRemoveSelectedItem;
+    }
+    return `${this.i18nRemoveSelectedItem} ${name}`;
+  }
+
   private renderAllChip() {
     return (
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
-        ariaLabelCloseIconButton={this.i18nAllSelected}
+        ariaLabelCloseIconButton={`${this.i18nRemoveSelectedItem} ${this.i18nAllSelected}`}
         onCloseClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -727,6 +742,7 @@ export class Select
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
         key={item.value}
+        ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
         onCloseClick={() => {
           this.itemClick(item.value);
           this.inputElement?.focus();

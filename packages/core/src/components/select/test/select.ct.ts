@@ -1241,6 +1241,33 @@ test('listbox proxy: aria-selected reflects value, not keyboard focus alone', as
   );
 });
 
+test('multiple mode: chip close button accessible name includes item label', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple">
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2'];
+  });
+
+  const chips = select.locator('ix-filter-chip');
+  await expect(chips).toHaveCount(2);
+
+  await expect(
+    chips.filter({ hasText: 'Item 1' }).locator('ix-icon-button')
+  ).toHaveAttribute('aria-label', 'Remove Item 1');
+  await expect(
+    chips.filter({ hasText: 'Item 2' }).locator('ix-icon-button')
+  ).toHaveAttribute('aria-label', 'Remove Item 2');
+});
+
 test('listbox proxy: selected value stays aria-selected when another row has focus', async ({
   mount,
   page,
