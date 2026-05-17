@@ -1,13 +1,36 @@
-<ix-application>
-  <ix-application-header>
-    <div class="placeholder-logo" slot="logo"></div>
-  </ix-application-header>
-  <ix-menu>
-    <ix-menu-about activeTabKey="tab-1">
-      <ix-menu-about-item tabKey="tab-1" label="Example"> </ix-menu-about-item>
-    </ix-menu-about>
-    <ix-menu-about-news label="Test" show activeAboutTabKey="tab-1">
-      Test
-    </ix-menu-about-news>
-  </ix-menu>
-</ix-application>
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popover news example</title>
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header>
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-about suppressLegacyTabs>
+          <ix-tabs activeTabKey="tab-1">
+            <ix-tab-item tabKey="tab-1" label="Example"></ix-tab-item>
+          </ix-tabs>
+          <section role="tabpanel" data-tab-content="tab-1"></section>
+        </ix-menu-about>
+        <ix-menu-about-news label="Test" show activeAboutTabKey="tab-1">
+          Test
+        </ix-menu-about-news>
+      </ix-menu>
+    </ix-application>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

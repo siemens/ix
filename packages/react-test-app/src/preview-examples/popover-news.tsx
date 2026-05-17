@@ -12,8 +12,9 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxMenuAboutItem,
   IxMenuAboutNews,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-react';
 
 export default () => {
@@ -23,10 +24,11 @@ export default () => {
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
       <IxMenu>
-        <IxMenuAbout activeTabKey="tab-1">
-          <IxMenuAboutItem tabKey="tab-1" label="Example">
-            {' '}
-          </IxMenuAboutItem>
+        <IxMenuAbout suppressLegacyTabs>
+          <IxTabs activeTabKey="tab-1">
+            <IxTabItem tabKey="tab-1" label="Example" />
+          </IxTabs>
+          <section role="tabpanel" data-tab-content="tab-1"></section>
         </IxMenuAbout>
         <IxMenuAboutNews label="Test" show activeAboutTabKey="tab-1">
           Test

@@ -13,7 +13,8 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxMenuAboutItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-angular/standalone';
 
 @Component({
@@ -23,7 +24,8 @@ import {
     IxApplicationHeader,
     IxMenu,
     IxMenuAbout,
-    IxMenuAboutItem,
+    IxTabs,
+    IxTabItem,
   ],
   templateUrl: './about-and-legal-legacy.html',
 })

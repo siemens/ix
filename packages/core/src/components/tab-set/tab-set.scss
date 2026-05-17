@@ -7,8 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
 :host {
   @include component.ix-component;
+}
+
+::slotted(ix-tabs) {
+  margin-bottom: vars.$large-space;
 }

@@ -272,14 +272,6 @@ export class Menu {
     return this.hostElement.querySelector('ix-menu-settings');
   }
 
-  get isSettingsEmpty(): boolean {
-    return (
-      Array.from(
-        this.hostElement.shadowRoot!.querySelectorAll('ix-menu-settings-item')
-      ).length === 0
-    );
-  }
-
   get tabsContainer() {
     return this.hostElement;
   }
@@ -390,7 +382,10 @@ export class Menu {
     if (!this.popoverArea?.contains(this.aboutNewsPopover)) {
       const showMore = () => {
         if (this.aboutNewsPopover?.activeAboutTabKey && this.about) {
-          this.about.activeTabKey = this.aboutNewsPopover.activeAboutTabKey;
+          const tabs = this.about.querySelector('ix-tabs');
+          if (tabs) {
+            tabs.activeTabKey = this.aboutNewsPopover.activeAboutTabKey;
+          }
           this.toggleAbout(true);
         }
       };

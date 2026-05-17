@@ -42,16 +42,6 @@ export class BreadcrumbItem
   @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
-   * ARIA label for the button
-   * Will be set as aria-label for the nested HTML button element
-   *
-   * @since 3.2.0
-   *
-   * @deprecated Use `aria-label` attribute directly on the component instead.
-   */
-  @Prop() ariaLabelButton?: string;
-
-  /**
    * Breadcrumb label
    */
   @Prop() label?: string;
@@ -145,7 +135,6 @@ export class BreadcrumbItem
         requestAnimationFrameNoNgZone(() => {
           const ariaLabel =
             this.inheritAriaAttributes['aria-label'] ??
-            this.ariaLabelButton ??
             this.label ??
             this.hostElement.innerText;
           this.hostElement.setAttribute('aria-label', ariaLabel);
@@ -172,8 +161,7 @@ export class BreadcrumbItem
       },
       ariaAttributes: {
         ...this.inheritAriaAttributes,
-        'aria-label':
-          this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
+        'aria-label': this.inheritAriaAttributes['aria-label'],
         ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
       },
       href: this.href,
@@ -189,7 +177,6 @@ export class BreadcrumbItem
       ...this.inheritAriaAttributes,
       'aria-label':
         this.inheritAriaAttributes['aria-label'] ??
-        this.ariaLabelButton ??
         this.label ??
         this.hostElement.innerText,
     };
