@@ -60,14 +60,12 @@ import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/component
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
-import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
 import { defineCustomElement as defineIxMenuAboutNews } from '@siemens/ix/components/ix-menu-about-news.js';
 import { defineCustomElement as defineIxMenuAvatar } from '@siemens/ix/components/ix-menu-avatar.js';
 import { defineCustomElement as defineIxMenuAvatarItem } from '@siemens/ix/components/ix-menu-avatar-item.js';
 import { defineCustomElement as defineIxMenuCategory } from '@siemens/ix/components/ix-menu-category.js';
 import { defineCustomElement as defineIxMenuItem } from '@siemens/ix/components/ix-menu-item.js';
 import { defineCustomElement as defineIxMenuSettings } from '@siemens/ix/components/ix-menu-settings.js';
-import { defineCustomElement as defineIxMenuSettingsItem } from '@siemens/ix/components/ix-menu-settings-item.js';
 import { defineCustomElement as defineIxMessageBar } from '@siemens/ix/components/ix-message-bar.js';
 import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
@@ -904,7 +902,6 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
 
 export const IxMenuAbout: StencilVueComponent<JSX.IxMenuAbout> = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-menu-about', defineIxMenuAbout, [
   'suppressLegacyTabs',
-  'activeTabKey',
   'label',
   'ariaLabelCloseButton',
   'show',
@@ -913,15 +910,6 @@ export const IxMenuAbout: StencilVueComponent<JSX.IxMenuAbout> = /*@__PURE__*/ d
 ], [
   'tabChange',
   'close'
-]);
-
-
-export const IxMenuAboutItem: StencilVueComponent<JSX.IxMenuAboutItem> = /*@__PURE__*/ defineContainer<JSX.IxMenuAboutItem>('ix-menu-about-item', defineIxMenuAboutItem, [
-  'tabKey',
-  'label',
-  'labelChange'
-], [
-  'labelChange'
 ]);
 
 
@@ -994,7 +982,6 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
 
 export const IxMenuSettings: StencilVueComponent<JSX.IxMenuSettings> = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>('ix-menu-settings', defineIxMenuSettings, [
   'suppressLegacyTabs',
-  'activeTabKey',
   'label',
   'ariaLabelCloseButton',
   'show',
@@ -1003,15 +990,6 @@ export const IxMenuSettings: StencilVueComponent<JSX.IxMenuSettings> = /*@__PURE
 ], [
   'tabChange',
   'close'
-]);
-
-
-export const IxMenuSettingsItem: StencilVueComponent<JSX.IxMenuSettingsItem> = /*@__PURE__*/ defineContainer<JSX.IxMenuSettingsItem>('ix-menu-settings-item', defineIxMenuSettingsItem, [
-  'tabKey',
-  'label',
-  'labelChange'
-], [
-  'labelChange'
 ]);
 
 

@@ -13,10 +13,8 @@ import {
   Element,
   Event,
   EventEmitter,
-  forceUpdate,
   h,
   Host,
-  Listen,
   Prop,
 } from '@stencil/core';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
@@ -30,21 +28,12 @@ export class MenuAbout {
   @Element() hostElement!: HTMLIxMenuAboutElement;
 
   /**
-   * Whether to suppress legacy tabs (ix-menu-about-item) and use slotted tabs
-   * (ix-tab-item) instead
+   * When `false`, applies legacy layout styling for older integrations.
+   * Slotted `ix-tabs` / `ix-tab-item` content is always used in v5.
    *
    * @since 5.0.0
    */
-  @Prop() suppressLegacyTabs = false;
-
-  /**
-   * Active tab used for legacy ix-menu-about-item integrations
-   *
-   * @deprecated since 5.0.0, only used for legacy ix-menu-about-item
-   * integrations
-   * @since 5.0.0
-   */
-  @Prop({ mutable: true }) activeTabKey?: string;
+  @Prop() suppressLegacyTabs = true;
 
   /**
    * Content of the header
@@ -70,54 +59,68 @@ export class MenuAbout {
    */
   @Event() close!: EventEmitter<CustomCloseEvent>;
 
-  private itemsObserver?: MutationObserver;
+  private previousTabKey?: string;
+  private tabsTabChangeListener?: (event: Event) => void;
 
-  private get items() {
-    return Array.from(this.hostElement.querySelectorAll('ix-menu-about-item'));
+  componentDidLoad() {
+    this.bindTabsTabChange();
   }
 
-  componentWillLoad() {
-    this.itemsObserver = new MutationObserver(() => this.onItemsChange());
-
-    this.itemsObserver.observe(this.hostElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['label'],
-    });
-    this.onItemsChange();
+  componentDidUpdate() {
+    this.bindTabsTabChange();
   }
 
   disconnectedCallback() {
-    this.itemsObserver?.disconnect();
+    this.unbindTabsTabChange();
   }
 
-  private onItemsChange() {
-    if (this.suppressLegacyTabs) {
+  private bindTabsTabChange() {
+    this.unbindTabsTabChange();
+
+    const tabs = this.hostElement.querySelector('ix-tabs');
+    if (!tabs) {
       return;
     }
-    if (this.activeTabKey === undefined && this.items.length > 0) {
-      this.activeTabKey = this.items[0].tabKey;
-    }
+
+    this.previousTabKey = tabs.activeTabKey;
+    this.tabsTabChangeListener = (event: Event) =>
+      this.forwardTabsTabChange(event as CustomEvent<string | undefined>, tabs);
+    tabs.addEventListener('tabChange', this.tabsTabChangeListener);
   }
 
-  @Listen('labelChange')
-  handleLabelChange() {
-    if (this.suppressLegacyTabs) {
+  private unbindTabsTabChange() {
+    const tabs = this.hostElement.querySelector('ix-tabs');
+    if (tabs && this.tabsTabChangeListener) {
+      tabs.removeEventListener('tabChange', this.tabsTabChangeListener);
+    }
+    this.tabsTabChangeListener = undefined;
+  }
+
+  private forwardTabsTabChange(
+    event: CustomEvent<string | undefined>,
+    tabs: HTMLIxTabsElement
+  ) {
+    event.stopImmediatePropagation();
+
+    const newKey = event.detail;
+    if (newKey === undefined) {
       return;
     }
-    forceUpdate(this);
+
+    const oldKey = this.previousTabKey;
+    const { defaultPrevented } = this.tabChange.emit(newKey);
+
+    if (defaultPrevented) {
+      tabs.activeTabKey = oldKey;
+      return;
+    }
+
+    this.previousTabKey = newKey;
   }
 
   render() {
     return (
-      <Host
-        slot={'ix-menu-about'}
-        class={{
-          show: this.show,
-          ['legacy-tabs']: !this.suppressLegacyTabs,
-        }}
-      >
+      <Host slot={'ix-menu-about'} class={{ show: this.show }}>
         <div class={'about-header'}>
           <h2 class="text-h2">{this.label}</h2>
           <ix-icon-button
@@ -134,22 +137,9 @@ export class MenuAbout {
             }
           ></ix-icon-button>
         </div>
-        {!this.suppressLegacyTabs ? (
-          <ix-tab-set>
-            <ix-tabs activeTabKey={this.activeTabKey}>
-              {this.items.map(({ label, tabKey }) => (
-                <ix-tab-item
-                  tabKey={tabKey}
-                  selected={tabKey === this.activeTabKey}
-                  label={label}
-                ></ix-tab-item>
-              ))}
-            </ix-tabs>
-            <slot></slot>
-          </ix-tab-set>
-        ) : (
+        <ix-tab-set>
           <slot></slot>
-        )}
+        </ix-tab-set>
       </Host>
     );
   }

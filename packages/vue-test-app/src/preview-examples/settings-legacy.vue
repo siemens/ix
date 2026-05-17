@@ -14,7 +14,8 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuSettings,
-  IxMenuSettingsItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-vue';
 import { nextTick, onMounted, ref } from 'vue';
 
@@ -29,18 +30,20 @@ onMounted(async () => {
 <template>
   <IxApplication>
     <IxApplicationHeader>
-      <div className="placeholder-logo" slot="logo"></div>
+      <div class="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuSettings enableLegacyTabs activeTabKey="tab-1">
-        <IxMenuSettingsItem
-          tabKey="tab-1"
-          label="Example Setting 1"
-        ></IxMenuSettingsItem>
-        <IxMenuSettingsItem
-          tabKey="tab-2"
-          label="Example Setting 2"
-        ></IxMenuSettingsItem>
+      <IxMenuSettings suppress-legacy-tabs>
+        <IxTabs active-tab-key="tab-1">
+          <IxTabItem tab-key="tab-1" label="Example Setting 1" />
+          <IxTabItem tab-key="tab-2" label="Example Setting 2" />
+        </IxTabs>
+        <section role="tabpanel" data-tab-content="tab-1">
+          Example Setting 1 content
+        </section>
+        <section role="tabpanel" data-tab-content="tab-2" hidden>
+          Example Setting 2 content
+        </section>
       </IxMenuSettings>
     </IxMenu>
   </IxApplication>

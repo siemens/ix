@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings legacy example</title>
+    <title>Settings example</title>
   </head>
   <body>
     <ix-application>
@@ -20,15 +20,17 @@ LICENSE file in the root directory of this source tree.
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
       <ix-menu>
-        <ix-menu-settings active-tab-key="tab-1">
-          <ix-menu-settings-item
-            tab-key="tab-1"
-            label="Example Setting 1"
-          ></ix-menu-settings-item>
-          <ix-menu-settings-item
-            tab-key="tab-2"
-            label="Example Setting 2"
-          ></ix-menu-settings-item>
+        <ix-menu-settings suppress-legacy-tabs>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1" label="Example Setting 1"></ix-tab-item>
+            <ix-tab-item tab-key="tab-2" label="Example Setting 2"></ix-tab-item>
+          </ix-tabs>
+          <section role="tabpanel" data-tab-content="tab-1">
+            Example Setting 1 content
+          </section>
+          <section role="tabpanel" data-tab-content="tab-2" hidden>
+            Example Setting 2 content
+          </section>
         </ix-menu-settings>
       </ix-menu>
     </ix-application>
