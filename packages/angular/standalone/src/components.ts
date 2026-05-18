@@ -506,7 +506,8 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCheckbox,
-  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-checkbox',
@@ -546,7 +547,8 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCheckboxGroup,
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'warningText']
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'warningText'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-checkbox-group',
