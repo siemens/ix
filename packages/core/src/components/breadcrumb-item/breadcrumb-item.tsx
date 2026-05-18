@@ -20,14 +20,11 @@ import {
   Mixin,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 import { DefaultMixins } from '../utils/internal/component';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 @Component({
@@ -110,7 +107,14 @@ export class BreadcrumbItem
   @State() inheritAriaAttributes: A11yAttributes = {};
 
   override componentDidLoad() {
-    this.animationFadeIn();
+    // `innerText` is not available during `componentWillLoad`, so the
+    // `aria-label` is assigned here, after slotted content has rendered.
+    const ariaLabel =
+      this.inheritAriaAttributes['aria-label'] ??
+      this.ariaLabelButton ??
+      this.label ??
+      this.hostElement.innerText;
+    this.hostElement.setAttribute('aria-label', ariaLabel);
   }
 
   override componentWillLoad() {
@@ -131,27 +135,6 @@ export class BreadcrumbItem
         this.hostElement
       );
     }
-  }
-
-  animationFadeIn() {
-    animate(this.hostElement, {
-      duration: Animation.defaultTime,
-      opacity: [0, 1],
-      translateX: ['-100%', '0%'],
-      easing: 'linear',
-      onComplete: () => {
-        // this.hostElement.innerText is not available in componentWillLoad,
-        // so we need to set aria-label in onComplete callback to ensure it is set after the content is rendered.
-        requestAnimationFrameNoNgZone(() => {
-          const ariaLabel =
-            this.inheritAriaAttributes['aria-label'] ??
-            this.ariaLabelButton ??
-            this.label ??
-            this.hostElement.innerText;
-          this.hostElement.setAttribute('aria-label', ariaLabel);
-        });
-      },
-    });
   }
 
   override render() {
