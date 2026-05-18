@@ -415,8 +415,8 @@ export class TimeInput
   }
 
   /**
-    * Clears the input value, resets the touched state, and removes visible
-    * validation errors.
+   * Clears the input value, resets the touched state, and removes visible
+   * validation errors.
    *
    * @since 5.1.0
    */

@@ -283,9 +283,7 @@ regressionTest.describe('time input validation tests', () => {
       const input = timeInput.locator('input');
 
       await expect(timeInput).toHaveAttribute('required');
-      await expect(timeInput.locator('ix-field-label')).toHaveText(
-        'MyLabel*'
-      );
+      await expect(timeInput.locator('ix-field-label')).toHaveText('MyLabel*');
 
       await input.fill('');
       await input.blur();
