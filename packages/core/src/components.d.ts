@@ -35,6 +35,7 @@ import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -89,6 +90,7 @@ export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -1743,6 +1745,7 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -1770,6 +1773,12 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
+          * @default 'menuitem'
+         */
+        "itemRole": IxDropdownItemRole;
         /**
           * @default false
          */
@@ -3496,6 +3505,12 @@ export namespace Components {
          */
         "i18nPlaceholderEditable": string;
         /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem": string;
+        /**
           * Select list header
           * @default 'Select an option'
          */
@@ -3555,6 +3570,7 @@ export namespace Components {
     }
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -8269,6 +8285,7 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -8294,6 +8311,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
+          * @default 'menuitem'
+         */
+        "itemRole"?: IxDropdownItemRole;
         /**
           * @default false
          */
@@ -10150,6 +10173,12 @@ declare namespace LocalJSX {
          */
         "i18nPlaceholderEditable"?: string;
         /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem"?: string;
+        /**
           * Select list header
           * @default 'Select an option'
          */
@@ -10221,6 +10250,7 @@ declare namespace LocalJSX {
     }
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -11738,6 +11768,7 @@ declare namespace LocalJSX {
         "hover": boolean;
         "disabled": boolean;
         "checked": boolean;
+        "itemRole": IxDropdownItemRole;
         "isSubMenu": boolean;
         "suppressChecked": boolean;
         "hasVisualFocus": boolean;
@@ -12169,6 +12200,7 @@ declare namespace LocalJSX {
         "i18nSelectListHeader": string;
         "i18nNoMatches": string;
         "i18nAllSelected": string;
+        "i18nRemoveSelectedItem": string;
         "hideListHeader": boolean;
         "dropdownWidth": string;
         "dropdownMaxWidth": string;
