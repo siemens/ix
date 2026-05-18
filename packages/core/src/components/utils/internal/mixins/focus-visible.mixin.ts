@@ -32,7 +32,6 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
      * Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
      *
      * @internal
-     * @since 5.0.0
      */
     @Prop() disableAriaSelectHandling: boolean = false;
 

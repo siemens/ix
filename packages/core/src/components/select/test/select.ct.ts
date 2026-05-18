@@ -1261,10 +1261,10 @@ test('multiple mode: chip close button accessible name includes item label', asy
   await expect(chips).toHaveCount(2);
 
   await expect(
-    chips.filter({ hasText: 'Item 1' }).locator('ix-icon-button')
+    chips.filter({ hasText: 'Item 1' }).locator('ix-icon-button button')
   ).toHaveAttribute('aria-label', 'Remove Item 1');
   await expect(
-    chips.filter({ hasText: 'Item 2' }).locator('ix-icon-button')
+    chips.filter({ hasText: 'Item 2' }).locator('ix-icon-button button')
   ).toHaveAttribute('aria-label', 'Remove Item 2');
 });
 

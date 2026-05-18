@@ -211,6 +211,8 @@ export class Select
   /**
    * Prefix for the accessible name of the close control on a selected chip in multiple mode.
    * The chip label or value is appended (e.g. "Remove Item 1").
+   *
+   * @since 5.0.0
    */
   @Prop({ attribute: 'i18n-remove-selected-item' }) i18nRemoveSelectedItem =
     'Remove';
@@ -841,19 +843,19 @@ export class Select
       ariaActiveDescendantHelper!,
       this.focusableItems,
       (item, proxyElement) => {
-        proxyElement.role = 'option';
-        proxyElement.innerText = item.label ?? '';
-        proxyElement.ariaLabel =
+        const isSelectItem = item.tagName === 'IX-SELECT-ITEM';
+        const ariaLabel =
           item.getAttribute('aria-label') ||
           item.label ||
-          (item.tagName === 'IX-SELECT-ITEM'
-            ? (item as HTMLIxSelectItemElement).value
-            : '') ||
+          (isSelectItem ? (item as HTMLIxSelectItemElement).value : '') ||
           '';
-        const selected =
-          item.tagName === 'IX-SELECT-ITEM'
-            ? (item as HTMLIxSelectItemElement).selected
-            : (item as HTMLIxDropdownItemElement).checked;
+        const selected = isSelectItem
+          ? (item as HTMLIxSelectItemElement).selected
+          : (item as HTMLIxDropdownItemElement).checked;
+
+        proxyElement.role = 'option';
+        proxyElement.innerText = item.label ?? '';
+        proxyElement.ariaLabel = ariaLabel;
         proxyElement.ariaSelected = a11yBoolean(!!selected);
         // Forward clicks from the proxy element to the actual dropdown item
         proxyElement.addEventListener('click', (event) => {

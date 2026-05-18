@@ -31,8 +31,7 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
-
-export type IxDropdownItemRole = 'menuitem' | 'option';
+import type { IxDropdownItemRole } from './dropdown-item.types';
 
 @Component({
   tag: 'ix-dropdown-item',
