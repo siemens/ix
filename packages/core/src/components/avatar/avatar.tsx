@@ -38,7 +38,9 @@ import {
   AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
-function DefaultAvatar(props: Readonly<{ initials?: string; ariaLabel?: string }>) {
+function DefaultAvatar(
+  props: Readonly<{ initials?: string; ariaLabel?: string }>
+) {
   const { initials } = props;
 
   if (initials) {
