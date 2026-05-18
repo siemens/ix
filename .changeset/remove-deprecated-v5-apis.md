@@ -1,5 +1,8 @@
 ---
+'@siemens/ix-angular': major
+'@siemens/ix-react': major
 '@siemens/ix': major
+'@siemens/ix-vue': major
 ---
 
 Remove pre-v5 deprecated components, properties, and the `showModalLoading` string overload.
