@@ -8,6 +8,29 @@
  */
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
+import { hasKeyboardMode } from '../internal/mixins/setup.mixin';
+
+export function focusInputIfKeyboardMode(
+  inputElement: HTMLInputElement | null | undefined
+): void {
+  if (hasKeyboardMode()) {
+    inputElement?.focus();
+  }
+}
+
+export function resetPickerValueIfInvalid(
+  value: string,
+  isValid: (value: string) => boolean,
+  resetPickerValue: () => void
+): boolean {
+  const valid = isValid(value);
+
+  if (!valid) {
+    resetPickerValue();
+  }
+
+  return valid;
+}
 
 export async function openDropdown(dropdownElementRef: any) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();

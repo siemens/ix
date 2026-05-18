@@ -26,10 +26,12 @@ import { DateTime } from 'luxon';
 import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
+  ClearableInputComponent,
   DisposableChangesAndVisibilityObservers,
   PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  clearInputValue,
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
@@ -47,10 +49,12 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  shouldSuppressInternalValidation,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  focusInputIfKeyboardMode,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
@@ -79,7 +83,10 @@ import type { TimeInputValidityState } from './time-input.types';
 })
 export class TimeInput
   extends Mixin(...DefaultMixins, InputPickerMixin)
-  implements IxInputFieldComponent<string>, InputPickerMixinContract
+  implements
+    IxInputFieldComponent<string>,
+    InputPickerMixinContract,
+    ClearableInputComponent<string>
 {
   @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
@@ -100,7 +107,16 @@ export class TimeInput
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    if (!newValue && this.required && !this.isClearing) {
+      this.touched = true;
+      this.syncValidationClasses();
+    }
     this.onInput(newValue);
+  }
+
+  @Watch('required')
+  async onRequiredChange() {
+    await this.syncValidationClasses();
   }
 
   /**
@@ -327,6 +343,8 @@ export class TimeInput
 
   public touched = false;
 
+  private isClearing = false;
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -349,7 +367,11 @@ export class TimeInput
   }
 
   updateFormInternalValue(value: string): void {
-    this.formInternals.setFormValue(value);
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
     this.value = value;
   }
 
@@ -390,6 +412,42 @@ export class TimeInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+  }
+
+  /**
+    * Clears the input value, resets the touched state, and removes visible
+    * validation errors.
+   *
+   * @since 5.1.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this, {
+      setClearing: (isClearing) => {
+        this.isClearing = isClearing;
+      },
+      syncValidationClasses: () => this.syncValidationClasses(),
+      additionalCleanup: () => {
+        this.time = null;
+      },
+    });
+  }
+
+  private async syncValidationClasses(): Promise<void> {
+    const skipValidation = await shouldSuppressInternalValidation(this);
+    if (skipValidation) {
+      return;
+    }
+
+    const hasValue = !!this.value;
+    if (this.required) {
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        !hasValue && this.touched
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
   }
 
   /** @internal */
@@ -471,18 +529,27 @@ export class TimeInput
     this.syncPickerTimeFromValue();
   }
 
-  async onInput(value: string) {
-    this.value = value;
-    if (!value) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
-      this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-      this.syncPickerTimeFromValue();
-      return;
-    }
+  private handleEmptyInput(value: string): void {
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.emitValidityStateChangeIfChanged();
+    this.updateFormInternalValue(value);
+    this.valueChange.emit(value);
+    this.syncPickerTimeFromValue();
+  }
 
+  private handleSuppressedValidationInput(value: string): void {
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.updateFormInternalValue(value);
+
+    focusInputIfKeyboardMode(this.inputElementRef.current);
+    this.emitValidityStateChangeIfChanged();
+    this.valueChange.emit(value);
+    this.syncPickerTimeFromValue();
+  }
+
+  private handleValidatedInput(value: string): void {
     const validity = this.validateNonEmptyValue(value);
     if (!validity) {
       this.syncPickerTimeFromValue();
@@ -496,6 +563,22 @@ export class TimeInput
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
     this.syncPickerTimeFromValue();
+  }
+
+  async onInput(value: string) {
+    this.value = value;
+    if (!value) {
+      this.handleEmptyInput(value);
+      return;
+    }
+
+    const suppressValidation = await shouldSuppressInternalValidation(this);
+    if (suppressValidation) {
+      this.handleSuppressedValidationInput(value);
+      return;
+    }
+
+    this.handleValidatedInput(value);
   }
 
   onTimeIconClick(event: Event) {
@@ -560,12 +643,12 @@ export class TimeInput
             this.ixFocus.emit();
           }}
           onBlur={() => {
+            this.touched = true;
             onInputBlurWithChange(
               this,
               this.inputElementRef.current,
               this.value
             );
-            this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}

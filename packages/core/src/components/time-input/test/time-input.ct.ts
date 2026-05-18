@@ -270,3 +270,354 @@ regressionTest.describe('time input min/max tests', () => {
     }
   );
 });
+
+regressionTest.describe('time input validation tests', () => {
+  regressionTest(
+    'required attribute reflects and shows label marker',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input required label="MyLabel" format="HH:mm:ss" value="09:10:11"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await expect(timeInput).toHaveAttribute('required');
+      await expect(timeInput.locator('ix-field-label')).toHaveText(
+        'MyLabel*'
+      );
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'required input > invalid input > removing value with keyboard > stays invalid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'required input > invalid input > clear > valid again',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await timeInput.evaluate(async (el: HTMLIxTimeInputElement) => {
+        await el.clear();
+      });
+
+      await expect(input).toHaveValue('');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'required input > invalid input > programmatically setting it to empty > stays invalid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'required input > valid input > removing value with keyboard > invalid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.focus();
+      await input.blur();
+      await input.fill('');
+      await input.blur();
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'required input > valid input > clear > valid again',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('10:20:30');
+      await input.blur();
+
+      await timeInput.evaluate(async (el: HTMLIxTimeInputElement) => {
+        await el.clear();
+      });
+
+      await expect(input).toHaveValue('');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'required input > valid input > programmatically setting it to empty > invalid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('10:20:30');
+      await input.blur();
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'not required input > invalid input > removing value with keyboard > valid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'not required input > invalid input > clear > valid again',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await timeInput.evaluate(async (el: HTMLIxTimeInputElement) => {
+        await el.clear();
+      });
+
+      await expect(input).toHaveValue('');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'not required input > invalid input > programmatically setting it to empty > valid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'not required input > valid input > removing value with keyboard > valid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'not required input > valid input > clear > valid again',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('10:20:30');
+      await input.blur();
+
+      await timeInput.evaluate(async (el: HTMLIxTimeInputElement) => {
+        await el.clear();
+      });
+
+      await expect(input).toHaveValue('');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'not required input > valid input > programmatically setting it to empty > valid',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form suppresses validation classes',
+    async ({ mount, page }) => {
+      await mount(
+        `<form novalidate>
+          <ix-time-input value="09:10:11" format="HH:mm:ss" required></ix-time-input>
+        </form>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'validation works after switching between required and non-required',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.locator('input');
+
+      await input.fill('');
+      await input.blur();
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.required = true;
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.required = false;
+      });
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+});

@@ -3980,6 +3980,11 @@ export namespace Components {
          */
         "ariaLabelTimeToggleButton"?: string;
         /**
+          * Clears the input value, resets the touched state, and removes visible validation errors.
+          * @since 5.1.0
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute.
           * @default false
          */
