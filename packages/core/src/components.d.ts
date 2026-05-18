@@ -3490,11 +3490,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Show error state and message
-          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
-         */
-        "error"?: boolean | string;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Show text below the field component
@@ -9931,11 +9926,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Show error state and message
-          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
-         */
-        "error"?: boolean | string;
-        /**
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
@@ -11828,7 +11818,6 @@ declare namespace LocalJSX {
         "trace": boolean;
         "traceReference": number;
         "disabled": boolean;
-        "error": string;
     }
     interface IxSpinnerAttributes {
         "variant": 'primary' | 'secondary';

@@ -1282,7 +1282,6 @@ export const IxSlider: StencilVueComponent<JSX.IxSlider> = /*@__PURE__*/ defineC
   'trace',
   'traceReference',
   'disabled',
-  'error',
   'valueChange'
 ], [
   'valueChange'

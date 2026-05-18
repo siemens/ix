@@ -61,7 +61,7 @@ function SliderExample() {
       </IxSlider>
 
       <IxSlider
-        className="invalid"
+        className="ix-invalid"
         trace
         trace-reference={50}
         marker={[0, 25, 50, 75, 100]}
