@@ -16,15 +16,17 @@ import {
   h,
   Host,
   Prop,
-  State,
   Mixin,
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 @Component({
@@ -33,8 +35,8 @@ import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
   shadow: true,
 })
 export class BreadcrumbItem
-  extends Mixin(...DefaultMixins)
-  implements AnchorInterface
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements AnchorInterface, InheritAriaAttributesMixinContract
 {
   @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
@@ -104,28 +106,10 @@ export class BreadcrumbItem
   /**@internal */
   @Event() itemClick!: EventEmitter<BreadcrumbClick>;
 
-  @State() inheritAriaAttributes: A11yAttributes = {};
-
-  override componentDidLoad() {
-    // `innerText` is not available during `componentWillLoad`, so the
-    // `aria-label` is assigned here, after slotted content has rendered.
-    const ariaLabel =
-      this.inheritAriaAttributes['aria-label'] ??
-      this.ariaLabelButton ??
-      this.label ??
-      this.hostElement.innerText;
-    this.hostElement.setAttribute('aria-label', ariaLabel);
-  }
-
   override componentWillLoad() {
-    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
-      'role',
-      'aria-label',
-    ]);
+    super.componentWillLoad();
     this.validateProps();
   }
-
-  override componentDidRender(): void {}
 
   @Watch('breadcrumbKey')
   validateProps() {
@@ -138,6 +122,20 @@ export class BreadcrumbItem
   }
 
   override render() {
+    if (this.invisible) {
+      return <Host class={'invisible'} aria-hidden></Host>;
+    }
+
+    const fallbackAriaLabel =
+      this.label ?? this.hostElement.textContent?.trim();
+
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-label':
+        this.inheritAriaAttributes['aria-label'] ?? fallbackAriaLabel,
+      ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
+    };
+
     const props: BaseButtonProps = {
       variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
@@ -153,28 +151,10 @@ export class BreadcrumbItem
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: {
-        ...this.inheritAriaAttributes,
-        'aria-label':
-          this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
-        ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
-      },
+      ariaAttributes,
       href: this.href,
       target: this.target,
       rel: this.rel,
-    };
-
-    if (this.invisible) {
-      return <Host class={'invisible'} aria-hidden></Host>;
-    }
-
-    const ariaAttributes = {
-      ...this.inheritAriaAttributes,
-      'aria-label':
-        this.inheritAriaAttributes['aria-label'] ??
-        this.ariaLabelButton ??
-        this.label ??
-        this.hostElement.innerText,
     };
 
     return (
@@ -186,7 +166,7 @@ export class BreadcrumbItem
         onClick={() =>
           this.itemClick.emit({
             breadcrumbKey: this.breadcrumbKey,
-            label: this.label ?? this.hostElement.innerText,
+            label: this.label ?? this.hostElement.textContent?.trim() ?? '',
           })
         }
       >
