@@ -18,20 +18,6 @@ export function focusInputIfKeyboardMode(
   }
 }
 
-export function resetPickerValueIfInvalid(
-  value: string,
-  isValid: (value: string) => boolean,
-  resetPickerValue: () => void
-): boolean {
-  const valid = isValid(value);
-
-  if (!valid) {
-    resetPickerValue();
-  }
-
-  return valid;
-}
-
 export async function openDropdown(dropdownElementRef: any) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');

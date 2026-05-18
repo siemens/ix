@@ -356,11 +356,11 @@ export async function clearInputValue<T>(
     comp.invalidReason = undefined;
   }
 
-  comp.hostElement.classList.remove(
-    'ix-invalid--required',
-    'ix-invalid--validity-invalid',
-    'ix-invalid--validity-patternMismatch'
-  );
+  Array.from(comp.hostElement.classList).forEach((className) => {
+    if (className.startsWith('ix-invalid--')) {
+      comp.hostElement.classList.remove(className);
+    }
+  });
 
   options?.additionalCleanup?.();
 

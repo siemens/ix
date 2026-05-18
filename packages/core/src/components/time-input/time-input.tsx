@@ -54,7 +54,6 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
-  focusInputIfKeyboardMode,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
@@ -114,11 +113,6 @@ export class TimeInput
     this.onInput(newValue);
   }
 
-  @Watch('required')
-  async onRequiredChange() {
-    await this.syncValidationClasses();
-  }
-
   /**
    * Format of time string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
@@ -153,6 +147,11 @@ export class TimeInput
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  async onRequiredChange() {
+    await this.syncValidationClasses();
+  }
 
   /**
    * Helper text below the input field.
@@ -543,7 +542,6 @@ export class TimeInput
     this.invalidReason = undefined;
     this.updateFormInternalValue(value);
 
-    focusInputIfKeyboardMode(this.inputElementRef.current);
     this.emitValidityStateChangeIfChanged();
     this.valueChange.emit(value);
     this.syncPickerTimeFromValue();
