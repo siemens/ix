@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { defineCustomElement as defineIxApplicationSwitchModal } from '@siemens/ix/components/ix-application-switch-modal.js';
-import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/components/ix-field-label.js';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon.js';
 
 /**
@@ -15,5 +14,4 @@ import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/component
  * components are registered before they are used.
  */
 defineIxApplicationSwitchModal();
-defineIxFieldLabel();
 defineIxIcon();

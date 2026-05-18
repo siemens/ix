@@ -16,7 +16,6 @@
     "dist"
   ],
   "type": "module",
-  "sideEffects": false,
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "exports": {
