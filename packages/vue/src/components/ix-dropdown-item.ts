@@ -16,6 +16,7 @@ export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE
   'hover',
   'disabled',
   'checked',
+  'itemRole',
   'isSubMenu',
   'suppressChecked',
   'hasVisualFocus',

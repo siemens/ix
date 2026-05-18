@@ -31,6 +31,7 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         hover: 'hover',
         disabled: 'disabled',
         checked: 'checked',
+        itemRole: 'item-role',
         isSubMenu: 'is-sub-menu',
         suppressChecked: 'suppress-checked',
         hasVisualFocus: 'has-visual-focus'

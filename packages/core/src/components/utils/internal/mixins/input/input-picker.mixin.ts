@@ -13,6 +13,7 @@ import { dropdownController } from './../../../../dropdown/dropdown-controller';
 
 export interface InputPickerMixinContract {
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null;
+  /** @internal */
   openPicker?(): Promise<void>;
 }
 
@@ -25,6 +26,7 @@ export const InputPickerMixin = <B extends MixedInCtor<StencilLifecycle>>(
   {
     abstract getPickerElement(): MakeRef<HTMLIxDropdownElement> | null;
 
+    /** @internal */
     @Method()
     async openPicker(): Promise<void> {
       const pickerRef = this.getPickerElement();
