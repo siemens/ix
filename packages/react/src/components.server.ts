@@ -796,6 +796,7 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         hover: 'hover',
         disabled: 'disabled',
         checked: 'checked',
+        itemRole: 'item-role',
         isSubMenu: 'is-sub-menu',
         suppressChecked: 'suppress-checked',
         hasVisualFocus: 'has-visual-focus'
@@ -1691,6 +1692,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Co
         i18nSelectListHeader: 'i18n-select-list-header',
         i18nNoMatches: 'i18n-no-matches',
         i18nAllSelected: 'i18n-all-selected',
+        i18nRemoveSelectedItem: 'i18n-remove-selected-item',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width',
