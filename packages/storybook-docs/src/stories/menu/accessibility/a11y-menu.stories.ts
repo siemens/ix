@@ -154,21 +154,11 @@ export const FullLayout: Story = {
         <ix-menu-item icon="globe" label="Item 3"></ix-menu-item>
       </ix-menu-category>
       <ix-menu-item slot="bottom" icon="info" label="Info"></ix-menu-item>
-      <ix-menu-about suppress-legacy-tabs>
-        <ix-tabs active-tab-key="about-1">
-          <ix-tab-item tab-key="about-1" label="About Item 1"
-            >About Item 1</ix-tab-item
-          >
-        </ix-tabs>
-        <section role="tabpanel" data-tab-content="about-1"></section>
+      <ix-menu-about>
+        <ix-menu-about-item label="About Item 1"></ix-menu-about-item>
       </ix-menu-about>
-      <ix-menu-settings suppress-legacy-tabs>
-        <ix-tabs active-tab-key="settings-1">
-          <ix-tab-item tab-key="settings-1" label="Settings Item 1"
-            >Settings Item 1</ix-tab-item
-          >
-        </ix-tabs>
-        <section role="tabpanel" data-tab-content="settings-1"></section>
+      <ix-menu-settings>
+        <ix-menu-settings-item label="Settings Item 1"></ix-menu-settings-item>
       </ix-menu-settings>
     </ix-menu>`;
   },

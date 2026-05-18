@@ -13,8 +13,7 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxTabItem,
-  IxTabs,
+  IxMenuAboutItem,
 } from '@siemens/ix-vue';
 import { onMounted, useTemplateRef } from 'vue';
 
@@ -27,16 +26,16 @@ onMounted(() => {
 <template>
   <IxApplication>
     <IxApplicationHeader>
-      <div class="placeholder-logo" slot="logo"></div>
+      <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuAbout suppress-legacy-tabs>
-        <IxTabs active-tab-key="tab-1">
-          <IxTabItem tab-key="tab-1" label="Tab 1" />
-          <IxTabItem tab-key="tab-2" label="Tab 2" />
-        </IxTabs>
-        <section role="tabpanel" data-tab-content="tab-1">Content 1</section>
-        <section role="tabpanel" data-tab-content="tab-2" hidden>Content 2</section>
+      <IxMenuAbout enableLegacyTabs activeTabKey="tab-1">
+        <IxMenuAboutItem tabKey="tab-1" label="Tab 1"
+          >Content 1</IxMenuAboutItem
+        >
+        <IxMenuAboutItem tabKey="tab-2" label="Tab 2"
+          >Content 2</IxMenuAboutItem
+        >
       </IxMenuAbout>
     </IxMenu>
   </IxApplication>

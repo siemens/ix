@@ -13,9 +13,8 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
+  IxMenuAboutItem,
   IxMenuAboutNews,
-  IxTabItem,
-  IxTabs,
 } from '@siemens/ix-angular/standalone';
 
 @Component({
@@ -25,8 +24,7 @@ import {
     IxApplicationHeader,
     IxMenu,
     IxMenuAbout,
-    IxTabs,
-    IxTabItem,
+    IxMenuAboutItem,
     IxMenuAboutNews,
   ],
   templateUrl: './popover-news.html',

@@ -12,8 +12,7 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
-  IxTabItem,
-  IxTabs,
+  IxMenuAboutItem,
 } from '@siemens/ix-react';
 import { useLayoutEffect, useRef } from 'react';
 
@@ -33,17 +32,13 @@ export default () => {
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
       <IxMenu ref={ref}>
-        <IxMenuAbout suppressLegacyTabs>
-          <IxTabs activeTabKey="tab-1">
-            <IxTabItem tabKey="tab-1" label="Tab 1" />
-            <IxTabItem tabKey="tab-2" label="Tab 2" />
-          </IxTabs>
-          <section role="tabpanel" data-tab-content="tab-1">
+        <IxMenuAbout activeTabKey="tab-1">
+          <IxMenuAboutItem tabKey="tab-1" label="Tab 1">
             Content 1
-          </section>
-          <section role="tabpanel" data-tab-content="tab-2" hidden>
+          </IxMenuAboutItem>
+          <IxMenuAboutItem tabKey="tab-2" label="Tab 2">
             Content 2
-          </section>
+          </IxMenuAboutItem>
         </IxMenuAbout>
       </IxMenu>
     </IxApplication>

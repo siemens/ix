@@ -41,7 +41,7 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-import { CustomCloseEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -96,7 +96,7 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-export { CustomCloseEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -2469,6 +2469,12 @@ export namespace Components {
     }
     interface IxMenuAbout {
         /**
+          * Active tab used for legacy ix-menu-about-item integrations
+          * @deprecated since 5.0.0, only used for legacy ix-menu-about-item integrations
+          * @since 5.0.0
+         */
+        "activeTabKey"?: string;
+        /**
           * Aria label for close button
           * @default 'Close About'
          */
@@ -2483,11 +2489,25 @@ export namespace Components {
          */
         "show": boolean;
         /**
-          * When `false`, applies legacy layout styling for older integrations. Slotted `ix-tabs` / `ix-tab-item` content is always used in v5.
+          * Whether to suppress legacy tabs (ix-menu-about-item) and use slotted tabs (ix-tab-item) instead
           * @since 5.0.0
-          * @default true
+          * @default false
          */
         "suppressLegacyTabs": boolean;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
+     */
+    interface IxMenuAboutItem {
+        /**
+          * About Item label
+         */
+        "label"?: string;
+        /**
+          * Key of the tab, used for identifying the tab in events
+          * @since 5.0.0
+         */
+        "tabKey": string;
     }
     interface IxMenuAboutNews {
         /**
@@ -2679,6 +2699,12 @@ export namespace Components {
     }
     interface IxMenuSettings {
         /**
+          * Active tab used for legacy ix-menu-settings-item integrations
+          * @deprecated since 5.0.0, only used for legacy ix-menu-settings-item integrations
+          * @since 5.0.0
+         */
+        "activeTabKey"?: string;
+        /**
           * Aria label for close button
           * @default 'Close Settings'
          */
@@ -2693,11 +2719,25 @@ export namespace Components {
          */
         "show": boolean;
         /**
-          * When `false`, applies legacy layout styling for older integrations. Slotted `ix-tabs` / `ix-tab-item` content is always used in v5.
+          * Whether to suppress legacy tabs (ix-menu-settings-item) and use slotted tabs (ix-tab-item) instead
           * @since 5.0.0
-          * @default true
+          * @default false
          */
         "suppressLegacyTabs": boolean;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+     */
+    interface IxMenuSettingsItem {
+        /**
+          * Settings Item label
+         */
+        "label"?: string;
+        /**
+          * Key of the tab, used for identifying the tab in events
+          * @since 5.0.0
+         */
+        "tabKey": string;
     }
     interface IxMessageBar {
         /**
@@ -4643,6 +4683,10 @@ export interface IxMenuAboutCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutElement;
 }
+export interface IxMenuAboutItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAboutItemElement;
+}
 export interface IxMenuAboutNewsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutNewsElement;
@@ -4662,6 +4706,10 @@ export interface IxMenuCategoryCustomEvent<T> extends CustomEvent<T> {
 export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
+}
+export interface IxMenuSettingsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsItemElement;
 }
 export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5509,6 +5557,26 @@ declare global {
         prototype: HTMLIxMenuAboutElement;
         new (): HTMLIxMenuAboutElement;
     };
+    interface HTMLIxMenuAboutItemElementEventMap {
+        "labelChange": CustomLabelChangeEvent;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
+     */
+    interface HTMLIxMenuAboutItemElement extends Components.IxMenuAboutItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxMenuAboutItemElement: {
+        prototype: HTMLIxMenuAboutItemElement;
+        new (): HTMLIxMenuAboutItemElement;
+    };
     interface HTMLIxMenuAboutNewsElementEventMap {
         "showMore": MouseEvent;
         "closePopover": void;
@@ -5607,6 +5675,26 @@ declare global {
     var HTMLIxMenuSettingsElement: {
         prototype: HTMLIxMenuSettingsElement;
         new (): HTMLIxMenuSettingsElement;
+    };
+    interface HTMLIxMenuSettingsItemElementEventMap {
+        "labelChange": CustomLabelChangeEvent;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+     */
+    interface HTMLIxMenuSettingsItemElement extends Components.IxMenuSettingsItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuSettingsItemElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsItemElement, ev: IxMenuSettingsItemCustomEvent<HTMLIxMenuSettingsItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuSettingsItemElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsItemElement, ev: IxMenuSettingsItemCustomEvent<HTMLIxMenuSettingsItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxMenuSettingsItemElement: {
+        prototype: HTMLIxMenuSettingsItemElement;
+        new (): HTMLIxMenuSettingsItemElement;
     };
     interface HTMLIxMessageBarElementEventMap {
         "closedChange": any;
@@ -6256,6 +6344,7 @@ declare global {
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
+        "ix-menu-about-item": HTMLIxMenuAboutItemElement;
         "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
@@ -6263,6 +6352,7 @@ declare global {
         "ix-menu-expand-icon": HTMLIxMenuExpandIconElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
+        "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
         "ix-message-bar": HTMLIxMessageBarElement;
         "ix-modal": HTMLIxModalElement;
         "ix-modal-content": HTMLIxModalContentElement;
@@ -8815,6 +8905,12 @@ declare namespace LocalJSX {
     }
     interface IxMenuAbout {
         /**
+          * Active tab used for legacy ix-menu-about-item integrations
+          * @deprecated since 5.0.0, only used for legacy ix-menu-about-item integrations
+          * @since 5.0.0
+         */
+        "activeTabKey"?: string;
+        /**
           * Aria label for close button
           * @default 'Close About'
          */
@@ -8838,11 +8934,29 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * When `false`, applies legacy layout styling for older integrations. Slotted `ix-tabs` / `ix-tab-item` content is always used in v5.
+          * Whether to suppress legacy tabs (ix-menu-about-item) and use slotted tabs (ix-tab-item) instead
           * @since 5.0.0
-          * @default true
+          * @default false
          */
         "suppressLegacyTabs"?: boolean;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
+     */
+    interface IxMenuAboutItem {
+        /**
+          * About Item label
+         */
+        "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>) => void;
+        /**
+          * Key of the tab, used for identifying the tab in events
+          * @since 5.0.0
+         */
+        "tabKey": string;
     }
     interface IxMenuAboutNews {
         /**
@@ -9050,6 +9164,12 @@ declare namespace LocalJSX {
     }
     interface IxMenuSettings {
         /**
+          * Active tab used for legacy ix-menu-settings-item integrations
+          * @deprecated since 5.0.0, only used for legacy ix-menu-settings-item integrations
+          * @since 5.0.0
+         */
+        "activeTabKey"?: string;
+        /**
           * Aria label for close button
           * @default 'Close Settings'
          */
@@ -9073,11 +9193,26 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * When `false`, applies legacy layout styling for older integrations. Slotted `ix-tabs` / `ix-tab-item` content is always used in v5.
+          * Whether to suppress legacy tabs (ix-menu-settings-item) and use slotted tabs (ix-tab-item) instead
           * @since 5.0.0
-          * @default true
+          * @default false
          */
         "suppressLegacyTabs"?: boolean;
+    }
+    /**
+     * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+     */
+    interface IxMenuSettingsItem {
+        /**
+          * Settings Item label
+         */
+        "label"?: string;
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>) => void;
+        /**
+          * Key of the tab, used for identifying the tab in events
+          * @since 5.0.0
+         */
+        "tabKey": string;
     }
     interface IxMessageBar {
         /**
@@ -11564,9 +11699,14 @@ declare namespace LocalJSX {
     }
     interface IxMenuAboutAttributes {
         "suppressLegacyTabs": boolean;
+        "activeTabKey": string;
         "label": string;
         "ariaLabelCloseButton": string;
         "show": boolean;
+    }
+    interface IxMenuAboutItemAttributes {
+        "tabKey": string;
+        "label": string;
     }
     interface IxMenuAboutNewsAttributes {
         "show": boolean;
@@ -11620,9 +11760,14 @@ declare namespace LocalJSX {
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;
+        "activeTabKey": string;
         "label": string;
         "ariaLabelCloseButton": string;
         "show": boolean;
+    }
+    interface IxMenuSettingsItemAttributes {
+        "tabKey": string;
+        "label": string;
     }
     interface IxMessageBarAttributes {
         "type": | 'alarm'
@@ -12102,6 +12247,7 @@ declare namespace LocalJSX {
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
+        "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
         "ix-menu-about-news": Omit<IxMenuAboutNews, keyof IxMenuAboutNewsAttributes> & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes]?: IxMenuAboutNews[K] } & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes as `attr:${K}`]?: IxMenuAboutNewsAttributes[K] } & { [K in keyof IxMenuAboutNews & keyof IxMenuAboutNewsAttributes as `prop:${K}`]?: IxMenuAboutNews[K] };
         "ix-menu-avatar": Omit<IxMenuAvatar, keyof IxMenuAvatarAttributes> & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes]?: IxMenuAvatar[K] } & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes as `attr:${K}`]?: IxMenuAvatarAttributes[K] } & { [K in keyof IxMenuAvatar & keyof IxMenuAvatarAttributes as `prop:${K}`]?: IxMenuAvatar[K] };
         "ix-menu-avatar-item": Omit<IxMenuAvatarItem, keyof IxMenuAvatarItemAttributes> & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes]?: IxMenuAvatarItem[K] } & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes as `attr:${K}`]?: IxMenuAvatarItemAttributes[K] } & { [K in keyof IxMenuAvatarItem & keyof IxMenuAvatarItemAttributes as `prop:${K}`]?: IxMenuAvatarItem[K] };
@@ -12109,6 +12255,7 @@ declare namespace LocalJSX {
         "ix-menu-expand-icon": Omit<IxMenuExpandIcon, keyof IxMenuExpandIconAttributes> & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes]?: IxMenuExpandIcon[K] } & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes as `attr:${K}`]?: IxMenuExpandIconAttributes[K] } & { [K in keyof IxMenuExpandIcon & keyof IxMenuExpandIconAttributes as `prop:${K}`]?: IxMenuExpandIcon[K] };
         "ix-menu-item": Omit<IxMenuItem, keyof IxMenuItemAttributes> & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes]?: IxMenuItem[K] } & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes as `attr:${K}`]?: IxMenuItemAttributes[K] } & { [K in keyof IxMenuItem & keyof IxMenuItemAttributes as `prop:${K}`]?: IxMenuItem[K] };
         "ix-menu-settings": Omit<IxMenuSettings, keyof IxMenuSettingsAttributes> & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes]?: IxMenuSettings[K] } & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes as `attr:${K}`]?: IxMenuSettingsAttributes[K] } & { [K in keyof IxMenuSettings & keyof IxMenuSettingsAttributes as `prop:${K}`]?: IxMenuSettings[K] };
+        "ix-menu-settings-item": Omit<IxMenuSettingsItem, keyof IxMenuSettingsItemAttributes> & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes]?: IxMenuSettingsItem[K] } & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes as `attr:${K}`]?: IxMenuSettingsItemAttributes[K] } & { [K in keyof IxMenuSettingsItem & keyof IxMenuSettingsItemAttributes as `prop:${K}`]?: IxMenuSettingsItem[K] } & OneOf<"tabKey", IxMenuSettingsItem["tabKey"], IxMenuSettingsItemAttributes["tabKey"]>;
         "ix-message-bar": Omit<IxMessageBar, keyof IxMessageBarAttributes> & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes]?: IxMessageBar[K] } & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes as `attr:${K}`]?: IxMessageBarAttributes[K] } & { [K in keyof IxMessageBar & keyof IxMessageBarAttributes as `prop:${K}`]?: IxMessageBar[K] };
         "ix-modal": Omit<IxModal, keyof IxModalAttributes> & { [K in keyof IxModal & keyof IxModalAttributes]?: IxModal[K] } & { [K in keyof IxModal & keyof IxModalAttributes as `attr:${K}`]?: IxModalAttributes[K] } & { [K in keyof IxModal & keyof IxModalAttributes as `prop:${K}`]?: IxModal[K] };
         "ix-modal-content": IxModalContent;
@@ -12233,6 +12380,10 @@ declare module "@stencil/core" {
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
+            /**
+             * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
+             */
+            "ix-menu-about-item": LocalJSX.IntrinsicElements["ix-menu-about-item"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IntrinsicElements["ix-menu-about-news"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IntrinsicElements["ix-menu-avatar"] & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IntrinsicElements["ix-menu-avatar-item"] & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
@@ -12240,6 +12391,10 @@ declare module "@stencil/core" {
             "ix-menu-expand-icon": LocalJSX.IntrinsicElements["ix-menu-expand-icon"] & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
             "ix-menu-item": LocalJSX.IntrinsicElements["ix-menu-item"] & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IntrinsicElements["ix-menu-settings"] & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
+            /**
+             * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+             */
+            "ix-menu-settings-item": LocalJSX.IntrinsicElements["ix-menu-settings-item"] & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
             "ix-message-bar": LocalJSX.IntrinsicElements["ix-message-bar"] & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
             "ix-modal": LocalJSX.IntrinsicElements["ix-modal"] & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-content": LocalJSX.IntrinsicElements["ix-modal-content"] & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;

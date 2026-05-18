@@ -70,8 +70,8 @@ export default function ApplicationAdvancedExample() {
             Network
           </IxMenuItem>
         </IxMenuCategory>
-        <IxMenuSettings suppressLegacyTabs></IxMenuSettings>
-        <IxMenuAbout suppressLegacyTabs></IxMenuAbout>
+        <IxMenuSettings></IxMenuSettings>
+        <IxMenuAbout></IxMenuAbout>
       </IxMenu>
       <IxContent>
         <IxContentHeader

@@ -1609,14 +1609,14 @@ export declare interface IxMenu extends Components.IxMenu {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCloseButton', 'label', 'suppressLegacyTabs']
+  inputs: ['activeTabKey', 'ariaLabelCloseButton', 'label', 'suppressLegacyTabs']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseButton', 'label', 'suppressLegacyTabs'],
+  inputs: ['activeTabKey', 'ariaLabelCloseButton', 'label', 'suppressLegacyTabs'],
   outputs: ['tabChange', 'close'],
   standalone: false
 })
@@ -1642,6 +1642,38 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
    * About and Legal closed
    */
   close: EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['label', 'tabKey']
+})
+@Component({
+  selector: 'ix-menu-about-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label', { name: 'tabKey', required: true }],
+  outputs: ['labelChange'],
+  standalone: false
+})
+export class IxMenuAboutItem {
+  protected el: HTMLIxMenuAboutItemElement;
+  @Output() labelChange = new EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CustomLabelChangeEvent as IIxMenuAboutItemCustomLabelChangeEvent } from '@siemens/ix';
+
+export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
+  /**
+   * Label changed
+   */
+  labelChange: EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>;
 }
 
 
@@ -1787,14 +1819,14 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCloseButton', 'label', 'suppressLegacyTabs']
+  inputs: ['activeTabKey', 'ariaLabelCloseButton', 'label', 'suppressLegacyTabs']
 })
 @Component({
   selector: 'ix-menu-settings',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseButton', 'label', 'suppressLegacyTabs'],
+  inputs: ['activeTabKey', 'ariaLabelCloseButton', 'label', 'suppressLegacyTabs'],
   outputs: ['tabChange', 'close'],
   standalone: false
 })
@@ -1821,6 +1853,29 @@ export declare interface IxMenuSettings extends Components.IxMenuSettings {
    */
   close: EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['label', 'tabKey']
+})
+@Component({
+  selector: 'ix-menu-settings-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label', { name: 'tabKey', required: true }],
+  standalone: false
+})
+export class IxMenuSettingsItem {
+  protected el: HTMLIxMenuSettingsItemElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {}
 
 
 @ProxyCmp({
