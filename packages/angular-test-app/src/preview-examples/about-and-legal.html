@@ -3,7 +3,7 @@
     <div class="placeholder-logo" slot="logo"></div>
   </ix-application-header>
   <ix-menu #menu>
-    <ix-menu-about>
+    <ix-menu-about suppressLegacyTabs>
       <ix-tabs
         [activeTabKey]="activeTabKey"
         (tabChange)="activeTabKey = $event.detail ?? 'tab-1'"

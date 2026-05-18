@@ -34,7 +34,7 @@ export default () => {
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
       <IxMenu ref={ref}>
-        <IxMenuAbout>
+        <IxMenuAbout suppressLegacyTabs>
           <IxTabs
             activeTabKey={activeTabKey}
             onTabChange={({ detail }) => setActiveTabKey(detail ?? 'tab-1')}
