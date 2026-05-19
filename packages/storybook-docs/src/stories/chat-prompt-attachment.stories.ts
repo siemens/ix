@@ -82,6 +82,6 @@ export const Failed: Story = {
 
 export const LongFileName: Story = {
   args: {
-    fileName: 'meeting_notes_summary_01_with_a_very_long_name.txt',
+    fileName: 'meeting_notes_summary_02_with_a_very_long_name.txt',
   },
 };
