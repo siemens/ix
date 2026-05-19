@@ -3149,6 +3149,8 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxPlayground {
+    }
     /**
      * @since 3.2.0
      */
@@ -3201,6 +3203,87 @@ export namespace Components {
           * @default 0
          */
         "value": number;
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface IxPromptInput {
+        /**
+          * Specifies whether the prompt input is disabled.
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Disclaimer text displayed below the prompt input.
+          * @since 5.0.0
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer": string;
+        /**
+          * Focuses the prompt input.
+          * @since 5.0.0
+         */
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Returns the native textarea element used by the prompt input.
+          * @since 5.0.0
+         */
+        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @since 5.0.0
+          * @default false
+         */
+        "insertLineBreakOnEnter": boolean;
+        /**
+          * The maximum length of the prompt input.
+          * @since 5.0.0
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @since 5.0.0
+          * @default 6
+         */
+        "maxRows": number;
+        /**
+          * Minimum number of visible text rows.
+          * @since 5.0.0
+          * @default 1
+         */
+        "minRows": number;
+        /**
+          * The name of the prompt input.
+          * @since 5.0.0
+         */
+        "name"?: string;
+        /**
+          * The placeholder text for the prompt input.
+          * @since 5.0.0
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder": string;
+        /**
+          * Specifies whether the prompt input is readonly.
+          * @since 5.0.0
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * Accessible label for the native textarea.
+          * @since 5.0.0
+          * @default 'Prompt input'
+         */
+        "textareaLabel": string;
+        /**
+          * The value of the prompt input.
+          * @since 5.0.0
+          * @default ''
+         */
+        "value": string;
     }
     interface IxPushCard {
         /**
@@ -4730,6 +4813,10 @@ export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
 }
+export interface IxPromptInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPromptInputElement;
+}
 export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxRadioElement;
@@ -5836,6 +5923,12 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundElement: {
+        prototype: HTMLIxPlaygroundElement;
+        new (): HTMLIxPlaygroundElement;
+    };
     /**
      * @since 3.2.0
      */
@@ -5844,6 +5937,31 @@ declare global {
     var HTMLIxProgressIndicatorElement: {
         prototype: HTMLIxProgressIndicatorElement;
         new (): HTMLIxProgressIndicatorElement;
+    };
+    interface HTMLIxPromptInputElementEventMap {
+        "valueChange": string;
+        "ixBlur": void;
+        "ixChange": string;
+        "promptSubmit": string;
+        "actionClick": 'start' | 'end';
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface HTMLIxPromptInputElement extends Components.IxPromptInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPromptInputElementEventMap>(type: K, listener: (this: HTMLIxPromptInputElement, ev: IxPromptInputCustomEvent<HTMLIxPromptInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPromptInputElementEventMap>(type: K, listener: (this: HTMLIxPromptInputElement, ev: IxPromptInputCustomEvent<HTMLIxPromptInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPromptInputElement: {
+        prototype: HTMLIxPromptInputElement;
+        new (): HTMLIxPromptInputElement;
     };
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
@@ -6359,7 +6477,9 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground": HTMLIxPlaygroundElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
+        "ix-prompt-input": HTMLIxPromptInputElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
@@ -9656,6 +9776,8 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    interface IxPlayground {
+    }
     /**
      * @since 3.2.0
      */
@@ -9708,6 +9830,105 @@ declare namespace LocalJSX {
           * @default 0
          */
         "value"?: number;
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface IxPromptInput {
+        /**
+          * Specifies whether the prompt input is disabled.
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Disclaimer text displayed below the prompt input.
+          * @since 5.0.0
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer"?: string;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @since 5.0.0
+          * @default false
+         */
+        "insertLineBreakOnEnter"?: boolean;
+        /**
+          * The maximum length of the prompt input.
+          * @since 5.0.0
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @since 5.0.0
+          * @default 6
+         */
+        "maxRows"?: number;
+        /**
+          * Minimum number of visible text rows.
+          * @since 5.0.0
+          * @default 1
+         */
+        "minRows"?: number;
+        /**
+          * The name of the prompt input.
+          * @since 5.0.0
+         */
+        "name"?: string;
+        /**
+          * Event emitted when one of the default action buttons is clicked.
+          * @since 5.0.0
+         */
+        "onActionClick"?: (event: IxPromptInputCustomEvent<'start' | 'end'>) => void;
+        /**
+          * Event emitted when the prompt input loses focus.
+          * @since 5.0.0
+         */
+        "onIxBlur"?: (event: IxPromptInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the prompt input loses focus and the value has changed.
+          * @since 5.0.0
+         */
+        "onIxChange"?: (event: IxPromptInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the prompt is submitted by the send button or Enter key.
+          * @since 5.0.0
+         */
+        "onPromptSubmit"?: (event: IxPromptInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the value of the prompt input changes.
+          * @since 5.0.0
+         */
+        "onValueChange"?: (event: IxPromptInputCustomEvent<string>) => void;
+        /**
+          * The placeholder text for the prompt input.
+          * @since 5.0.0
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the prompt input is readonly.
+          * @since 5.0.0
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * Accessible label for the native textarea.
+          * @since 5.0.0
+          * @default 'Prompt input'
+         */
+        "textareaLabel"?: string;
+        /**
+          * The value of the prompt input.
+          * @since 5.0.0
+          * @default ''
+         */
+        "value"?: string;
     }
     interface IxPushCard {
         /**
@@ -11876,6 +12097,19 @@ declare namespace LocalJSX {
         "textAlignment": 'left' | 'center' | 'right';
         "showTextAsTooltip": boolean;
     }
+    interface IxPromptInputAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "disabled": boolean;
+        "readonly": boolean;
+        "textareaLabel": string;
+        "maxLength": number;
+        "minRows": number;
+        "maxRows": number;
+        "insertLineBreakOnEnter": boolean;
+        "disclaimer": string;
+    }
     interface IxPushCardAttributes {
         "icon": string;
         "ariaLabelIcon": string;
@@ -12256,7 +12490,9 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-playground": IxPlayground;
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
+        "ix-prompt-input": Omit<IxPromptInput, keyof IxPromptInputAttributes> & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes]?: IxPromptInput[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `attr:${K}`]?: IxPromptInputAttributes[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `prop:${K}`]?: IxPromptInput[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
         "ix-radio-group": Omit<IxRadioGroup, keyof IxRadioGroupAttributes> & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes]?: IxRadioGroup[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `attr:${K}`]?: IxRadioGroupAttributes[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `prop:${K}`]?: IxRadioGroup[K] };
@@ -12398,10 +12634,16 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * @since 3.2.0
              */
             "ix-progress-indicator": LocalJSX.IntrinsicElements["ix-progress-indicator"] & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
+            /**
+             * @since 5.0.0
+             * @form-ready 
+             */
+            "ix-prompt-input": LocalJSX.IntrinsicElements["ix-prompt-input"] & JSXBase.HTMLAttributes<HTMLIxPromptInputElement>;
             "ix-push-card": LocalJSX.IntrinsicElements["ix-push-card"] & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
              * @form-ready 

@@ -1,0 +1,124 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: var(--ix-prompt-input-max-width, 45rem);
+
+  @include component.ix-component;
+
+  .prompt-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 8rem;
+    padding: var(--theme-space-2);
+    box-sizing: border-box;
+    background-color: var(--theme-input--background);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color);
+    border-radius: var(--theme-input--border-radius);
+    box-shadow: var(--theme-input--box-shadow);
+    color: var(--theme-input--color);
+  }
+
+  .prompt-input:hover {
+    border-color: var(--theme-input--border-color--hover);
+    background-color: var(--theme-input--background--hover);
+  }
+
+  .prompt-input:focus-within {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-input--focus--outline-offset);
+    border-color: var(--theme-input--border-color--focus);
+  }
+
+  textarea {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 2rem;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    resize: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  textarea::placeholder {
+    color: var(--theme-input-hint--color);
+  }
+
+  .action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 2rem;
+    margin-top: var(--theme-space-1);
+  }
+
+  .left-actions,
+  .right-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--theme-space-1);
+  }
+
+  .left-actions {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .right-actions {
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .disclaimer {
+    display: block;
+    width: 100%;
+    margin-top: var(--theme-space-1);
+    text-align: center;
+  }
+}
+
+:host(.disabled) {
+  pointer-events: none;
+
+  .prompt-input {
+    border-color: var(--theme-input--border-color--disabled);
+    box-shadow: none;
+    color: var(--theme-input--color--disabled);
+    background-color: transparent;
+  }
+
+  textarea::placeholder {
+    color: transparent;
+  }
+}
+
+:host(.readonly) {
+  .prompt-input {
+    border-color: var(--theme-input--border-color--readonly);
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .prompt-input:hover,
+  .prompt-input:focus-within {
+    border-color: var(--theme-input--border-color--readonly);
+    outline: none;
+  }
+}

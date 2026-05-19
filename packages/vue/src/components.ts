@@ -79,6 +79,7 @@ import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-p
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
+import { defineCustomElement as defineIxPromptInput } from '@siemens/ix/components/ix-prompt-input.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -1176,6 +1177,33 @@ export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> =
   'textAlignment',
   'showTextAsTooltip'
 ]);
+
+
+export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxPromptInput, JSX.IxPromptInput["value"]>('ix-prompt-input', defineIxPromptInput, [
+  'name',
+  'placeholder',
+  'value',
+  'disabled',
+  'readonly',
+  'textareaLabel',
+  'maxLength',
+  'minRows',
+  'maxRows',
+  'insertLineBreakOnEnter',
+  'disclaimer',
+  'valueChange',
+  'ixBlur',
+  'ixChange',
+  'promptSubmit',
+  'actionClick'
+], [
+  'valueChange',
+  'ixBlur',
+  'ixChange',
+  'promptSubmit',
+  'actionClick'
+],
+'value', 'valueChange', undefined);
 
 
 export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', defineIxPushCard, [
