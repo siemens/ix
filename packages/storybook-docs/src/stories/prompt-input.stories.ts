@@ -23,10 +23,6 @@ function renderPromptInput(args: Partial<Element>) {
     action('promptSubmit')((event as CustomEvent<string>).detail);
   });
 
-  promptInput.addEventListener('actionClick', (event) => {
-    action('actionClick')((event as CustomEvent<'start' | 'end'>).detail);
-  });
-
   return container;
 }
 
@@ -53,6 +49,33 @@ export const Default: Story = {
 export const WithValue: Story = {
   args: {
     value: 'Summarize the current alarm list',
+  },
+};
+
+export const SoftCharacterLimit: Story = {
+  args: {
+    characterLimit: 30,
+    characterLimitMode: 'soft',
+    value: 'Summarize all critical alarms',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=11693-45416&m=dev',
+    },
+  },
+};
+
+export const HardCharacterLimit: Story = {
+  args: {
+    characterLimit: 30,
+    value: 'Summarize all critical alarms now',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=11693-45416&m=dev',
+    },
   },
 };
 

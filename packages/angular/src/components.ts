@@ -2219,7 +2219,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2227,8 +2227,8 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'actionClick'],
+  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
   standalone: false
 })
 export class IxPromptInput {
@@ -2237,7 +2237,6 @@ export class IxPromptInput {
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
-  @Output() actionClick = new EventEmitter<CustomEvent<'start' | 'end'>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2262,10 +2261,6 @@ export declare interface IxPromptInput extends Components.IxPromptInput {
    * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when one of the default action buttons is clicked. @since 5.0.0
-   */
-  actionClick: EventEmitter<CustomEvent<'start' | 'end'>>;
 }
 
 

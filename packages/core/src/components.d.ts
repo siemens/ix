@@ -45,6 +45,7 @@ import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
+import { CharacterLimitMode } from "./components/prompt-input/prompt-input.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -100,6 +101,7 @@ export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
+export { CharacterLimitMode } from "./components/prompt-input/prompt-input.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -3149,8 +3151,6 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
-    interface IxPlayground {
-    }
     /**
      * @since 3.2.0
      */
@@ -3209,6 +3209,23 @@ export namespace Components {
      * @form-ready 
      */
     interface IxPromptInput {
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+          * @since 5.0.0
+         */
+        "characterLimit"?: number;
+        /**
+          * Controls whether the character limit only warns or prevents further input.
+          * @since 5.0.0
+          * @default 'hard'
+         */
+        "characterLimitMode": CharacterLimitMode;
+        /**
+          * Percentage of the character limit that triggers the soft warning.
+          * @since 5.0.0
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold": number;
         /**
           * Specifies whether the prompt input is disabled.
           * @since 5.0.0
@@ -5923,12 +5940,6 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
-    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
-    }
-    var HTMLIxPlaygroundElement: {
-        prototype: HTMLIxPlaygroundElement;
-        new (): HTMLIxPlaygroundElement;
-    };
     /**
      * @since 3.2.0
      */
@@ -5943,7 +5954,6 @@ declare global {
         "ixBlur": void;
         "ixChange": string;
         "promptSubmit": string;
-        "actionClick": 'start' | 'end';
     }
     /**
      * @since 5.0.0
@@ -6477,7 +6487,6 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
-        "ix-playground": HTMLIxPlaygroundElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-prompt-input": HTMLIxPromptInputElement;
         "ix-push-card": HTMLIxPushCardElement;
@@ -9776,8 +9785,6 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
-    interface IxPlayground {
-    }
     /**
      * @since 3.2.0
      */
@@ -9837,6 +9844,23 @@ declare namespace LocalJSX {
      */
     interface IxPromptInput {
         /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+          * @since 5.0.0
+         */
+        "characterLimit"?: number;
+        /**
+          * Controls whether the character limit only warns or prevents further input.
+          * @since 5.0.0
+          * @default 'hard'
+         */
+        "characterLimitMode"?: CharacterLimitMode;
+        /**
+          * Percentage of the character limit that triggers the soft warning.
+          * @since 5.0.0
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold"?: number;
+        /**
           * Specifies whether the prompt input is disabled.
           * @since 5.0.0
           * @default false
@@ -9880,11 +9904,6 @@ declare namespace LocalJSX {
           * @since 5.0.0
          */
         "name"?: string;
-        /**
-          * Event emitted when one of the default action buttons is clicked.
-          * @since 5.0.0
-         */
-        "onActionClick"?: (event: IxPromptInputCustomEvent<'start' | 'end'>) => void;
         /**
           * Event emitted when the prompt input loses focus.
           * @since 5.0.0
@@ -12105,6 +12124,9 @@ declare namespace LocalJSX {
         "readonly": boolean;
         "textareaLabel": string;
         "maxLength": number;
+        "characterLimit": number;
+        "characterLimitMode": CharacterLimitMode;
+        "characterLimitWarningThreshold": number;
         "minRows": number;
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;
@@ -12490,7 +12512,6 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
-        "ix-playground": IxPlayground;
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
         "ix-prompt-input": Omit<IxPromptInput, keyof IxPromptInputAttributes> & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes]?: IxPromptInput[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `attr:${K}`]?: IxPromptInputAttributes[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `prop:${K}`]?: IxPromptInput[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
@@ -12634,7 +12655,6 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
-            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * @since 3.2.0
              */

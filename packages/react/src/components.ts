@@ -1102,8 +1102,7 @@ export type IxPromptInputEvents = {
     onValueChange: EventName<IxPromptInputCustomEvent<string>>,
     onIxBlur: EventName<IxPromptInputCustomEvent<void>>,
     onIxChange: EventName<IxPromptInputCustomEvent<string>>,
-    onPromptSubmit: EventName<IxPromptInputCustomEvent<string>>,
-    onActionClick: EventName<IxPromptInputCustomEvent<'start' | 'end'>>
+    onPromptSubmit: EventName<IxPromptInputCustomEvent<string>>
 };
 
 export const IxPromptInput: StencilReactComponent<IxPromptInputElement, IxPromptInputEvents, Components.IxPromptInput> = /*@__PURE__*/ createComponent<IxPromptInputElement, IxPromptInputEvents, Components.IxPromptInput>({
@@ -1115,8 +1114,7 @@ export const IxPromptInput: StencilReactComponent<IxPromptInputElement, IxPrompt
         onValueChange: 'valueChange',
         onIxBlur: 'ixBlur',
         onIxChange: 'ixChange',
-        onPromptSubmit: 'promptSubmit',
-        onActionClick: 'actionClick'
+        onPromptSubmit: 'promptSubmit'
     } as IxPromptInputEvents,
     defineCustomElement: defineIxPromptInput
 });

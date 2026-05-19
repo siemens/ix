@@ -1187,6 +1187,9 @@ export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptI
   'readonly',
   'textareaLabel',
   'maxLength',
+  'characterLimit',
+  'characterLimitMode',
+  'characterLimitWarningThreshold',
   'minRows',
   'maxRows',
   'insertLineBreakOnEnter',
@@ -1194,14 +1197,12 @@ export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptI
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit',
-  'actionClick'
+  'promptSubmit'
 ], [
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit',
-  'actionClick'
+  'promptSubmit'
 ],
 'value', 'valueChange', undefined);
 

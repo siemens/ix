@@ -60,6 +60,26 @@
     color: var(--theme-input-hint--color);
   }
 
+  .character-limit {
+    display: flex;
+    align-items: center;
+    gap: var(--theme-space-1);
+    width: 100%;
+    margin-top: var(--theme-space-2);
+  }
+
+  .character-limit ix-icon {
+    flex: 0 0 auto;
+  }
+
+  .character-limit--soft ix-icon {
+    color: var(--theme-color-info);
+  }
+
+  .character-limit--hard ix-icon {
+    color: var(--theme-color-alarm);
+  }
+
   .action-row {
     display: flex;
     align-items: center;

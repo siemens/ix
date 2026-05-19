@@ -8,8 +8,8 @@
  */
 
 import {
-  iconAdd,
-  iconMicrophone,
+  iconError,
+  iconInfo,
   iconSendRightFilled,
 } from '@siemens/ix-icons/icons';
 import {
@@ -21,10 +21,12 @@ import {
   Host,
   Method,
   Prop,
+  State,
   Watch,
   h,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
+import type { CharacterLimitMode } from './prompt-input.types';
 
 let promptInputIds = 0;
 
@@ -88,6 +90,25 @@ export class PromptInput {
   @Prop() maxLength?: number;
 
   /**
+   * Character limit used for the optional inline character limit message.
+   * Falls back to `maxLength` when not set.
+   * @since 5.0.0
+   */
+  @Prop() characterLimit?: number;
+
+  /**
+   * Controls whether the character limit only warns or prevents further input.
+   * @since 5.0.0
+   */
+  @Prop() characterLimitMode: CharacterLimitMode = 'hard';
+
+  /**
+   * Percentage of the character limit that triggers the soft warning.
+   * @since 5.0.0
+   */
+  @Prop() characterLimitWarningThreshold: number = 0.9;
+
+  /**
    * Minimum number of visible text rows.
    * @since 5.0.0
    */
@@ -136,14 +157,10 @@ export class PromptInput {
    */
   @Event() promptSubmit!: EventEmitter<string>;
 
-  /**
-   * Event emitted when one of the default action buttons is clicked.
-   * @since 5.0.0
-   */
-  @Event() actionClick!: EventEmitter<'start' | 'end'>;
-
   /** @internal */
   public initialValue?: string;
+
+  @State() hasAttemptedCharacterLimitExceeded = false;
 
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
@@ -205,7 +222,12 @@ export class PromptInput {
   }
 
   private canSubmit() {
-    return !this.disabled && !this.readonly && this.value.trim().length > 0;
+    return (
+      !this.disabled &&
+      !this.readonly &&
+      this.value.trim().length > 0 &&
+      !this.isHardCharacterLimitExceeded()
+    );
   }
 
   private emitIxChangeIfNeeded() {
@@ -253,7 +275,122 @@ export class PromptInput {
       textarea.scrollHeight + borderHeight > maxHeight ? 'auto' : 'hidden';
   }
 
+  private getCharacterLimit() {
+    const limit = this.characterLimit ?? this.maxLength;
+    return typeof limit === 'number' && Number.isFinite(limit) && limit > 0
+      ? limit
+      : undefined;
+  }
+
+  private getNativeMaxLength() {
+    const limit = this.getCharacterLimit();
+
+    if (this.characterLimitMode === 'hard') {
+      return limit;
+    }
+
+    return undefined;
+  }
+
+  private getNormalizedCharacterLimitWarningThreshold() {
+    if (!Number.isFinite(this.characterLimitWarningThreshold)) {
+      return 0.9;
+    }
+
+    return Math.min(Math.max(this.characterLimitWarningThreshold, 0), 1);
+  }
+
+  private isSoftCharacterLimitWarning() {
+    const limit = this.getCharacterLimit();
+
+    if (!limit || this.characterLimitMode !== 'soft') {
+      return false;
+    }
+
+    const warningLength = Math.ceil(
+      limit * this.getNormalizedCharacterLimitWarningThreshold()
+    );
+
+    return this.value.length >= warningLength;
+  }
+
+  private isHardCharacterLimitExceeded() {
+    const limit = this.getCharacterLimit();
+
+    if (!limit || this.characterLimitMode !== 'hard') {
+      return false;
+    }
+
+    return this.value.length > limit;
+  }
+
+  private isHardCharacterLimitWarning() {
+    const limit = this.getCharacterLimit();
+
+    if (!limit || this.characterLimitMode !== 'hard') {
+      return false;
+    }
+
+    return this.hasAttemptedCharacterLimitExceeded || this.value.length > limit;
+  }
+
+  private getCharacterLimitMessage() {
+    const limit = this.getCharacterLimit();
+
+    if (!limit) {
+      return undefined;
+    }
+
+    if (this.isHardCharacterLimitWarning()) {
+      return `Character limit exceeded (${this.value.length} / ${limit} characters)`;
+    }
+
+    if (this.isSoftCharacterLimitWarning()) {
+      return `You're nearing the limit (${this.value.length} / ${limit} characters)`;
+    }
+
+    return undefined;
+  }
+
+  private getCharacterLimitState(): CharacterLimitMode | undefined {
+    if (this.isHardCharacterLimitWarning()) {
+      return 'hard';
+    }
+
+    if (this.isSoftCharacterLimitWarning()) {
+      return 'soft';
+    }
+
+    return undefined;
+  }
+
+  private handleCharacterLimitKeyDown(event: KeyboardEvent) {
+    const limit = this.getCharacterLimit();
+
+    if (
+      !limit ||
+      this.characterLimitMode !== 'hard' ||
+      event.key.length !== 1 ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey
+    ) {
+      return;
+    }
+
+    const textarea = event.target as HTMLTextAreaElement;
+    const selectionLength = textarea.selectionEnd - textarea.selectionStart;
+    const nextLength = textarea.value.length - selectionLength + 1;
+
+    if (nextLength > limit) {
+      event.preventDefault();
+      this.hasAttemptedCharacterLimitExceeded = true;
+    }
+  }
+
   private handleKeyDown(event: KeyboardEvent) {
+    this.handleCharacterLimitKeyDown(event);
+
     if (
       event.key !== 'Enter' ||
       event.shiftKey ||
@@ -267,6 +404,33 @@ export class PromptInput {
 
     event.preventDefault();
     this.submitPrompt();
+  }
+
+  private renderCharacterLimit() {
+    const message = this.getCharacterLimitMessage();
+    const state = this.getCharacterLimitState();
+
+    if (!message || !state) {
+      return null;
+    }
+
+    return (
+      <ix-typography
+        class={{
+          'character-limit': true,
+          'character-limit--soft': state === 'soft',
+          'character-limit--hard': state === 'hard',
+        }}
+        textColor={state === 'hard' ? 'alarm' : 'std'}
+      >
+        <ix-icon
+          aria-hidden="true"
+          name={state === 'hard' ? iconError : iconInfo}
+          size="16"
+        ></ix-icon>
+        {message}
+      </ix-typography>
+    );
   }
 
   render() {
@@ -283,7 +447,7 @@ export class PromptInput {
             ref={this.textareaRef}
             readOnly={this.readonly}
             disabled={this.disabled}
-            maxLength={this.maxLength}
+            maxLength={this.getNativeMaxLength()}
             rows={this.minRows}
             value={this.value}
             placeholder={this.placeholder}
@@ -295,6 +459,7 @@ export class PromptInput {
               const textarea = event.target as HTMLTextAreaElement;
               this.updateFormInternalValue(textarea.value);
               this.valueChange.emit(textarea.value);
+              this.hasAttemptedCharacterLimitExceeded = false;
               this.updateTextareaHeight(textarea);
             }}
             onKeyDown={(event) => this.handleKeyDown(event)}
@@ -303,6 +468,7 @@ export class PromptInput {
               this.emitIxChangeIfNeeded();
             }}
           ></textarea>
+          {this.renderCharacterLimit()}
           <div class="action-row">
             <div class="left-actions">
               <slot name="start"></slot>

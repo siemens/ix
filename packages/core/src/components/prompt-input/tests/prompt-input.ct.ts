@@ -15,7 +15,6 @@ import {
 
 declare global {
   var __promptSubmitValue: string | undefined;
-  var __actionClickValue: string | undefined;
 }
 
 type ValueChangeTestElement = HTMLElement & {
@@ -117,34 +116,55 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input emits actionClick for default action buttons',
+  'ix-prompt-input does not render default slot actions',
   async ({ mount, page }) => {
     await mount('<ix-prompt-input></ix-prompt-input>');
 
-    await page.evaluate(() => {
-      globalThis.__actionClickValue = undefined;
-      document
-        .querySelector('ix-prompt-input')
-        ?.addEventListener('actionClick', ((event: CustomEvent<string>) => {
-          globalThis.__actionClickValue = event.detail;
-        }) as EventListener);
-    });
+    const promptInput = page.locator('ix-prompt-input');
 
-    await page
-      .locator('ix-prompt-input')
-      .locator('.left-actions ix-icon-button')
-      .click();
-    expect(await page.evaluate(() => globalThis.__actionClickValue)).toBe(
-      'start'
+    await expect(
+      promptInput.locator('.left-actions ix-icon-button')
+    ).toHaveCount(0);
+    await expect(
+      promptInput.locator('.right-actions ix-icon-button')
+    ).toHaveCount(1);
+  }
+);
+
+regressionTest(
+  'ix-prompt-input shows a soft character limit warning',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-prompt-input character-limit="10" character-limit-mode="soft" value="123456789"></ix-prompt-input>'
     );
 
-    await page
-      .locator('ix-prompt-input')
-      .locator('.right-actions ix-icon-button')
-      .first()
-      .click();
-    expect(await page.evaluate(() => globalThis.__actionClickValue)).toBe(
-      'end'
+    const promptInput = page.locator('ix-prompt-input');
+
+    await expect(promptInput.locator('.character-limit')).toContainText(
+      "You're nearing the limit (9 / 10 characters)"
+    );
+    expect(
+      await promptInput.locator('textarea').getAttribute('maxlength')
+    ).toBeNull();
+  }
+);
+
+regressionTest(
+  'ix-prompt-input shows a hard character limit warning when input is blocked',
+  async ({ mount, page }) => {
+    await mount('<ix-prompt-input character-limit="10"></ix-prompt-input>');
+
+    const promptInput = page.locator('ix-prompt-input');
+    const textarea = promptInput.locator('textarea');
+
+    await textarea.fill('1234567890');
+    await expect(promptInput.locator('.character-limit')).toHaveCount(0);
+
+    await textarea.press('1');
+
+    await expect(textarea).toHaveValue('1234567890');
+    await expect(promptInput.locator('.character-limit')).toContainText(
+      'Character limit exceeded (10 / 10 characters)'
     );
   }
 );
