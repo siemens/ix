@@ -1,0 +1,96 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 7.625rem;
+  max-width: 20.625rem;
+  height: 2rem;
+  border-radius: var(--theme-input--border-radius);
+  background-color: var(--theme-color-x-weak-bdr);
+  color: var(--theme-color-soft-text);
+
+  @include component.ix-component;
+}
+
+:host(:focus-visible) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-focus-outline-offset);
+}
+
+:host(.failed) {
+  color: var(--theme-color-alarm-text);
+}
+
+:host(.overflow) {
+  min-width: auto;
+  cursor: pointer;
+  color: var(--theme-color-std-text);
+}
+
+.content,
+.file-content,
+.status-content {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.content {
+  flex: 1 1 auto;
+  padding-left: var(--theme-space-1);
+}
+
+.file-content,
+.status-content {
+  gap: var(--theme-space-1);
+}
+
+.file-name {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.file-name__base {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-name__extension {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.status-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overflow-label {
+  white-space: nowrap;
+}
+
+ix-icon {
+  flex: 0 0 auto;
+}
+
+ix-spinner {
+  flex: 0 0 auto;
+}
+
+ix-icon-button {
+  flex: 0 0 auto;
+}

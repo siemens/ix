@@ -42,6 +42,39 @@
     border-color: var(--theme-input--border-color--focus);
   }
 
+  .attachments {
+    display: none;
+    width: 100%;
+    max-width: 100%;
+    gap: var(--theme-space-1);
+    margin-bottom: var(--theme-space-2);
+  }
+
+  .attachments.has-attachments {
+    display: flex;
+  }
+
+  .attachments--wrap {
+    flex-wrap: wrap;
+    max-height: calc(4rem + var(--theme-space-1));
+    overflow: hidden;
+  }
+
+  .attachments--scroll {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+  }
+
+  .attachments ::slotted(ix-chat-prompt-attachment) {
+    flex: 0 1 20.625rem;
+  }
+
+  .attachments--scroll ::slotted(ix-chat-prompt-attachment) {
+    flex: 0 0 auto;
+  }
+
   textarea {
     flex: 1 1 auto;
     width: 100%;

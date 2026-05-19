@@ -79,6 +79,78 @@ export const HardCharacterLimit: Story = {
   },
 };
 
+export const WithAttachments: Story = {
+  render: (args) => {
+    const container = renderPromptInput(args);
+    const promptInput = container.querySelector(
+      'ix-prompt-input'
+    ) as HTMLIxPromptInputElement;
+
+    const attachments = [
+      { fileName: 'file_01.txt' },
+      { fileName: 'file_02.txt' },
+      { status: 'loading' },
+      { status: 'failed' },
+      { overflowCount: 4 },
+    ];
+
+    attachments.forEach((attachmentProps) => {
+      const attachment = document.createElement('ix-chat-prompt-attachment');
+      attachment.slot = 'attachments';
+
+      if ('fileName' in attachmentProps && attachmentProps.fileName) {
+        attachment.fileName = attachmentProps.fileName;
+      }
+
+      if ('status' in attachmentProps && attachmentProps.status) {
+        attachment.status = attachmentProps.status as 'loading' | 'failed';
+      }
+
+      if ('overflowCount' in attachmentProps && attachmentProps.overflowCount) {
+        attachment.overflowCount = attachmentProps.overflowCount;
+      }
+
+      promptInput.append(attachment);
+    });
+
+    return container;
+  },
+  args: {},
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=18263-77406&m=dev',
+    },
+  },
+};
+
+export const WithScrollableAttachments: Story = {
+  render: (args) => {
+    const container = renderPromptInput(args);
+    const promptInput = container.querySelector(
+      'ix-prompt-input'
+    ) as HTMLIxPromptInputElement;
+
+    for (let index = 1; index <= 8; index++) {
+      const attachment = document.createElement('ix-chat-prompt-attachment');
+      attachment.slot = 'attachments';
+      attachment.fileName = `file_${String(index).padStart(2, '0')}.txt`;
+      promptInput.append(attachment);
+    }
+
+    return container;
+  },
+  args: {
+    attachmentLayout: 'scroll',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=18263-77406&m=dev',
+    },
+  },
+};
+
 export const CustomActions: Story = {
   render: (args) => {
     const container = renderPromptInput(args);

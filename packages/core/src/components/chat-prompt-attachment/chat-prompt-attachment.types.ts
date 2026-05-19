@@ -7,6 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type CharacterLimitMode = 'soft' | 'hard';
-
-export type PromptInputAttachmentLayout = 'wrap' | 'scroll';
+export type ChatPromptAttachmentStatus = 'default' | 'loading' | 'failed';

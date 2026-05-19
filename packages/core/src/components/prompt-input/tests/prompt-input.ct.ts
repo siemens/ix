@@ -169,6 +169,30 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'ix-prompt-input renders slotted attachments with selected layout',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-prompt-input attachment-layout="scroll">
+        <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
+        <ix-chat-prompt-attachment slot="attachments" status="loading"></ix-chat-prompt-attachment>
+      </ix-prompt-input>
+    `);
+
+    const promptInput = page.locator('ix-prompt-input');
+
+    await expect(promptInput.locator('.attachments')).toHaveClass(
+      /has-attachments/
+    );
+    await expect(promptInput.locator('.attachments')).toHaveClass(
+      /attachments--scroll/
+    );
+    await expect(
+      page.locator('ix-chat-prompt-attachment[slot="attachments"]')
+    ).toHaveCount(2);
+  }
+);
+
 regressionTest(`form-ready - ix-prompt-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-prompt-input name="my-field-name"></ix-prompt-input></form>`

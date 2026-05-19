@@ -16,6 +16,7 @@ export const DIRECTIVES = [
   d.IxCardList,
   d.IxCardTitle,
   d.IxCategoryFilter,
+  d.IxChatPromptAttachment,
   d.IxCheckbox,
   d.IxCheckboxGroup,
   d.IxChip,

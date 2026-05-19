@@ -20,6 +20,7 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
@@ -499,6 +500,46 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
    * Event dispatched whenever the filter gets cleared.
    */
   filterCleared: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxChatPromptAttachment,
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-prompt-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status'],
+  outputs: ['removeClick', 'retryClick', 'overflowClick'],
+})
+export class IxChatPromptAttachment {
+  protected el: HTMLIxChatPromptAttachmentElement;
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  @Output() retryClick = new EventEmitter<CustomEvent<void>>();
+  @Output() overflowClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
+  /**
+   * Event emitted when the remove action is clicked. @since 5.0.0
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the retry action is clicked. @since 5.0.0
+   */
+  retryClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the overflow item is clicked. @since 5.0.0
+   */
+  overflowClick: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2320,7 +2361,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPromptInput,
-  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2328,7 +2369,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
 })
 export class IxPromptInput {

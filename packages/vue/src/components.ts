@@ -19,6 +19,7 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
@@ -294,6 +295,28 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'inputChanged',
   'filterChanged',
   'filterCleared'
+]);
+
+
+export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatPromptAttachment>('ix-chat-prompt-attachment', defineIxChatPromptAttachment, [
+  'fileName',
+  'status',
+  'icon',
+  'hideFileIcon',
+  'hideRemoveButton',
+  'loadingLabel',
+  'failedLabel',
+  'overflowCount',
+  'overflowAriaLabel',
+  'removeAriaLabel',
+  'retryAriaLabel',
+  'removeClick',
+  'retryClick',
+  'overflowClick'
+], [
+  'removeClick',
+  'retryClick',
+  'overflowClick'
 ]);
 
 
@@ -1190,6 +1213,7 @@ export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptI
   'characterLimit',
   'characterLimitMode',
   'characterLimitWarningThreshold',
+  'attachmentLayout',
   'minRows',
   'maxRows',
   'insertLineBreakOnEnter',

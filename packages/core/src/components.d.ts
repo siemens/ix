@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -45,7 +46,7 @@ import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-import { CharacterLimitMode } from "./components/prompt-input/prompt-input.types";
+import { CharacterLimitMode, PromptInputAttachmentLayout } from "./components/prompt-input/prompt-input.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -74,6 +75,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -101,7 +103,7 @@ export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-export { CharacterLimitMode } from "./components/prompt-input/prompt-input.types";
+export { CharacterLimitMode, PromptInputAttachmentLayout } from "./components/prompt-input/prompt-input.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -627,6 +629,75 @@ export namespace Components {
           * @default false
          */
         "uniqueCategories": boolean;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatPromptAttachment {
+        /**
+          * Text displayed when the attachment upload failed.
+          * @since 5.0.0
+          * @default 'Upload failed'
+         */
+        "failedLabel": string;
+        /**
+          * Name of the attached file.
+          * @since 5.0.0
+          * @default ''
+         */
+        "fileName": string;
+        /**
+          * Hide the leading file icon for default attachments.
+          * @since 5.0.0
+          * @default false
+         */
+        "hideFileIcon": boolean;
+        /**
+          * Hide the remove action.
+          * @since 5.0.0
+          * @default false
+         */
+        "hideRemoveButton": boolean;
+        /**
+          * Icon displayed before the file name.
+          * @since 5.0.0
+          * @default iconTxtDocument
+         */
+        "icon": string;
+        /**
+          * Text displayed while the attachment is uploading.
+          * @since 5.0.0
+          * @default 'Uploading'
+         */
+        "loadingLabel": string;
+        /**
+          * Accessible label for the overflow item.
+          * @since 5.0.0
+         */
+        "overflowAriaLabel"?: string;
+        /**
+          * Displays the attachment as a "+X more" overflow item.
+          * @since 5.0.0
+         */
+        "overflowCount"?: number;
+        /**
+          * Accessible label for the remove action.
+          * @since 5.0.0
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel": string;
+        /**
+          * Accessible label for the retry action.
+          * @since 5.0.0
+          * @default 'Retry attachment upload'
+         */
+        "retryAriaLabel": string;
+        /**
+          * Upload status of the attachment.
+          * @since 5.0.0
+          * @default 'default'
+         */
+        "status": ChatPromptAttachmentStatus;
     }
     /**
      * @form-ready 
@@ -3210,6 +3281,12 @@ export namespace Components {
      */
     interface IxPromptInput {
         /**
+          * Layout used for attachments in the attachments slot.
+          * @since 5.0.0
+          * @default 'wrap'
+         */
+        "attachmentLayout": PromptInputAttachmentLayout;
+        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -4690,6 +4767,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatPromptAttachmentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatPromptAttachmentElement;
+}
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCheckboxElement;
@@ -5097,6 +5178,28 @@ declare global {
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
+    };
+    interface HTMLIxChatPromptAttachmentElementEventMap {
+        "removeClick": void;
+        "retryClick": void;
+        "overflowClick": void;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface HTMLIxChatPromptAttachmentElement extends Components.IxChatPromptAttachment, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatPromptAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatPromptAttachmentElement, ev: IxChatPromptAttachmentCustomEvent<HTMLIxChatPromptAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatPromptAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatPromptAttachmentElement, ev: IxChatPromptAttachmentCustomEvent<HTMLIxChatPromptAttachmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatPromptAttachmentElement: {
+        prototype: HTMLIxChatPromptAttachmentElement;
+        new (): HTMLIxChatPromptAttachmentElement;
     };
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
@@ -6422,6 +6525,7 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
@@ -7092,6 +7196,90 @@ declare namespace LocalJSX {
           * @default false
          */
         "uniqueCategories"?: boolean;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatPromptAttachment {
+        /**
+          * Text displayed when the attachment upload failed.
+          * @since 5.0.0
+          * @default 'Upload failed'
+         */
+        "failedLabel"?: string;
+        /**
+          * Name of the attached file.
+          * @since 5.0.0
+          * @default ''
+         */
+        "fileName"?: string;
+        /**
+          * Hide the leading file icon for default attachments.
+          * @since 5.0.0
+          * @default false
+         */
+        "hideFileIcon"?: boolean;
+        /**
+          * Hide the remove action.
+          * @since 5.0.0
+          * @default false
+         */
+        "hideRemoveButton"?: boolean;
+        /**
+          * Icon displayed before the file name.
+          * @since 5.0.0
+          * @default iconTxtDocument
+         */
+        "icon"?: string;
+        /**
+          * Text displayed while the attachment is uploading.
+          * @since 5.0.0
+          * @default 'Uploading'
+         */
+        "loadingLabel"?: string;
+        /**
+          * Event emitted when the overflow item is clicked.
+          * @since 5.0.0
+         */
+        "onOverflowClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
+        /**
+          * Event emitted when the remove action is clicked.
+          * @since 5.0.0
+         */
+        "onRemoveClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
+        /**
+          * Event emitted when the retry action is clicked.
+          * @since 5.0.0
+         */
+        "onRetryClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
+        /**
+          * Accessible label for the overflow item.
+          * @since 5.0.0
+         */
+        "overflowAriaLabel"?: string;
+        /**
+          * Displays the attachment as a "+X more" overflow item.
+          * @since 5.0.0
+         */
+        "overflowCount"?: number;
+        /**
+          * Accessible label for the remove action.
+          * @since 5.0.0
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel"?: string;
+        /**
+          * Accessible label for the retry action.
+          * @since 5.0.0
+          * @default 'Retry attachment upload'
+         */
+        "retryAriaLabel"?: string;
+        /**
+          * Upload status of the attachment.
+          * @since 5.0.0
+          * @default 'default'
+         */
+        "status"?: ChatPromptAttachmentStatus;
     }
     /**
      * @form-ready 
@@ -9844,6 +10032,12 @@ declare namespace LocalJSX {
      */
     interface IxPromptInput {
         /**
+          * Layout used for attachments in the attachments slot.
+          * @since 5.0.0
+          * @default 'wrap'
+         */
+        "attachmentLayout"?: PromptInputAttachmentLayout;
+        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -11512,6 +11706,19 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatPromptAttachmentAttributes {
+        "fileName": string;
+        "status": ChatPromptAttachmentStatus;
+        "icon": string;
+        "hideFileIcon": boolean;
+        "hideRemoveButton": boolean;
+        "loadingLabel": string;
+        "failedLabel": string;
+        "overflowCount": number;
+        "overflowAriaLabel": string;
+        "removeAriaLabel": string;
+        "retryAriaLabel": string;
+    }
     interface IxCheckboxAttributes {
         "name": string;
         "value": string;
@@ -12127,6 +12334,7 @@ declare namespace LocalJSX {
         "characterLimit": number;
         "characterLimitMode": CharacterLimitMode;
         "characterLimitWarningThreshold": number;
+        "attachmentLayout": PromptInputAttachmentLayout;
         "minRows": number;
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;
@@ -12447,6 +12655,7 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
@@ -12565,6 +12774,10 @@ declare module "@stencil/core" {
             "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            /**
+             * @since 5.0.0
+             */
+            "ix-chat-prompt-attachment": LocalJSX.IntrinsicElements["ix-chat-prompt-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatPromptAttachmentElement>;
             /**
              * @form-ready 
              */

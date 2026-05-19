@@ -403,6 +403,46 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-prompt-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status'],
+  outputs: ['removeClick', 'retryClick', 'overflowClick'],
+  standalone: false
+})
+export class IxChatPromptAttachment {
+  protected el: HTMLIxChatPromptAttachmentElement;
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  @Output() retryClick = new EventEmitter<CustomEvent<void>>();
+  @Output() overflowClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
+  /**
+   * Event emitted when the remove action is clicked. @since 5.0.0
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the retry action is clicked. @since 5.0.0
+   */
+  retryClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the overflow item is clicked. @since 5.0.0
+   */
+  overflowClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
 })
 @Component({
@@ -2219,7 +2259,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 
 @ProxyCmp({
-  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2227,7 +2267,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
   standalone: false
 })

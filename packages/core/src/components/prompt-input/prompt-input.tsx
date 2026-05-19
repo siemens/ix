@@ -26,13 +26,17 @@ import {
   h,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
-import type { CharacterLimitMode } from './prompt-input.types';
+import type {
+  CharacterLimitMode,
+  PromptInputAttachmentLayout,
+} from './prompt-input.types';
 
 let promptInputIds = 0;
 
 /**
  * @since 5.0.0
  * @form-ready
+ * @slot attachments - Attachments displayed above the prompt text area
  * @slot start - Element will be displayed in the left action area
  * @slot end - Element will be displayed in the right action area before the submit button
  */
@@ -109,6 +113,12 @@ export class PromptInput {
   @Prop() characterLimitWarningThreshold: number = 0.9;
 
   /**
+   * Layout used for attachments in the attachments slot.
+   * @since 5.0.0
+   */
+  @Prop() attachmentLayout: PromptInputAttachmentLayout = 'wrap';
+
+  /**
    * Minimum number of visible text rows.
    * @since 5.0.0
    */
@@ -161,6 +171,7 @@ export class PromptInput {
   public initialValue?: string;
 
   @State() hasAttemptedCharacterLimitExceeded = false;
+  @State() hasAttachments = false;
 
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
@@ -433,6 +444,14 @@ export class PromptInput {
     );
   }
 
+  private handleAttachmentsSlotChange(event: Event) {
+    const slot = event.target as HTMLSlotElement;
+    this.hasAttachments =
+      slot.assignedElements({
+        flatten: true,
+      }).length > 0;
+  }
+
   render() {
     return (
       <Host
@@ -442,6 +461,19 @@ export class PromptInput {
         }}
       >
         <div class="prompt-input">
+          <div
+            class={{
+              attachments: true,
+              'attachments--wrap': this.attachmentLayout === 'wrap',
+              'attachments--scroll': this.attachmentLayout === 'scroll',
+              'has-attachments': this.hasAttachments,
+            }}
+          >
+            <slot
+              name="attachments"
+              onSlotchange={(event) => this.handleAttachmentsSlotChange(event)}
+            ></slot>
+          </div>
           <textarea
             id={this.inputId}
             ref={this.textareaRef}
