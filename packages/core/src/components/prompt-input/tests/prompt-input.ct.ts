@@ -193,6 +193,36 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'ix-prompt-input renders wrap attachment overflow as dropdown',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-prompt-input attachment-overflow-count="4">
+        <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
+        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_01.txt"></ix-dropdown-item>
+        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_02.txt"></ix-dropdown-item>
+      </ix-prompt-input>
+    `);
+
+    const promptInput = page.locator('ix-prompt-input');
+    const overflow = promptInput.locator(
+      'ix-dropdown-button.attachment-overflow'
+    );
+    const overflowItems = page.locator(
+      'ix-dropdown-item[slot="attachment-overflow"]'
+    );
+
+    await expect(overflow).toContainText('+ 4 more');
+    await expect(overflow).toHaveAttribute('aria-expanded', 'false');
+    await expect(overflowItems.first()).not.toBeVisible();
+
+    await overflow.click();
+
+    await expect(overflow).toHaveAttribute('aria-expanded', 'true');
+    await expect(overflowItems.first()).toBeVisible();
+  }
+);
+
 regressionTest(`form-ready - ix-prompt-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-prompt-input name="my-field-name"></ix-prompt-input></form>`

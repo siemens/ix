@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
+import { iconTxtDocument } from '@siemens/ix-icons/icons';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { action } from 'storybook/actions';
 import { genericRender, makeArgTypes } from './utils/generic-render';
@@ -86,36 +87,26 @@ export const WithAttachments: Story = {
       'ix-prompt-input'
     ) as HTMLIxPromptInputElement;
 
-    const attachments = [
-      { fileName: 'file_01.txt' },
-      { fileName: 'file_02.txt' },
-      { status: 'loading' },
-      { status: 'failed' },
-      { overflowCount: 4 },
-    ];
-
-    attachments.forEach((attachmentProps) => {
+    for (let index = 1; index <= 9; index++) {
       const attachment = document.createElement('ix-chat-prompt-attachment');
       attachment.slot = 'attachments';
-
-      if ('fileName' in attachmentProps && attachmentProps.fileName) {
-        attachment.fileName = attachmentProps.fileName;
-      }
-
-      if ('status' in attachmentProps && attachmentProps.status) {
-        attachment.status = attachmentProps.status as 'loading' | 'failed';
-      }
-
-      if ('overflowCount' in attachmentProps && attachmentProps.overflowCount) {
-        attachment.overflowCount = attachmentProps.overflowCount;
-      }
-
+      attachment.fileName = `file_${String(index).padStart(2, '0')}.txt`;
       promptInput.append(attachment);
-    });
+    }
+
+    for (let index = 1; index <= 4; index++) {
+      const item = document.createElement('ix-dropdown-item');
+      item.slot = 'attachment-overflow';
+      item.icon = iconTxtDocument;
+      item.label = `meeting_notes_summary_0${index}.txt`;
+      promptInput.append(item);
+    }
 
     return container;
   },
-  args: {},
+  args: {
+    attachmentOverflowCount: 4,
+  },
   parameters: {
     design: {
       type: 'figma',

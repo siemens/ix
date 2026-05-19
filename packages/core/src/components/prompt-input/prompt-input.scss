@@ -69,10 +69,19 @@
 
   .attachments ::slotted(ix-chat-prompt-attachment) {
     flex: 0 1 20.625rem;
+    min-width: 7.625rem;
   }
 
   .attachments--scroll ::slotted(ix-chat-prompt-attachment) {
     flex: 0 0 auto;
+  }
+
+  .attachment-overflow {
+    flex: 0 0 auto;
+    width: 5rem;
+    height: 2rem;
+    --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
+    --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
   }
 
   textarea {

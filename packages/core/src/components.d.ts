@@ -18,7 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
-import { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+import { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -75,7 +75,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
-export { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+export { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -671,15 +671,11 @@ export namespace Components {
          */
         "loadingLabel": string;
         /**
-          * Accessible label for the overflow item.
+          * Enable preview interaction for default attachments.
           * @since 5.0.0
+          * @default false
          */
-        "overflowAriaLabel"?: string;
-        /**
-          * Displays the attachment as a "+X more" overflow item.
-          * @since 5.0.0
-         */
-        "overflowCount"?: number;
+        "previewSupported": boolean;
         /**
           * Accessible label for the remove action.
           * @since 5.0.0
@@ -698,6 +694,39 @@ export namespace Components {
           * @default 'default'
          */
         "status": ChatPromptAttachmentStatus;
+        /**
+          * Visual variant of the attachment.
+          * @since 5.0.0
+          * @default 'prompt'
+         */
+        "variant": ChatPromptAttachmentVariant;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentCount"?: number;
+        /**
+          * Label used for the attachment overflow trigger.
+          * @since 5.0.0
+          * @default 'Attachments'
+         */
+        "attachmentOverflowLabel": string;
+        /**
+          * Text displayed in the user message bubble. When not set, the default slot is used.
+          * @since 5.0.0
+         */
+        "message"?: string;
+        /**
+          * Show slotted actions without requiring hover or keyboard focus.
+          * @since 5.0.0
+          * @default false
+         */
+        "showActions": boolean;
     }
     /**
      * @form-ready 
@@ -3287,6 +3316,17 @@ export namespace Components {
          */
         "attachmentLayout": PromptInputAttachmentLayout;
         /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentOverflowCount"?: number;
+        /**
+          * Label displayed after the attachment overflow count.
+          * @since 5.0.0
+          * @default 'more'
+         */
+        "attachmentOverflowLabel": string;
+        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -4771,6 +4811,10 @@ export interface IxChatPromptAttachmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatPromptAttachmentElement;
 }
+export interface IxChatUserMessageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatUserMessageElement;
+}
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCheckboxElement;
@@ -5180,9 +5224,9 @@ declare global {
         new (): HTMLIxCategoryFilterElement;
     };
     interface HTMLIxChatPromptAttachmentElementEventMap {
+        "attachmentClick": void;
         "removeClick": void;
         "retryClick": void;
-        "overflowClick": void;
     }
     /**
      * @since 5.0.0
@@ -5200,6 +5244,26 @@ declare global {
     var HTMLIxChatPromptAttachmentElement: {
         prototype: HTMLIxChatPromptAttachmentElement;
         new (): HTMLIxChatPromptAttachmentElement;
+    };
+    interface HTMLIxChatUserMessageElementEventMap {
+        "attachmentOverflowChange": boolean;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface HTMLIxChatUserMessageElement extends Components.IxChatUserMessage, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatUserMessageElementEventMap>(type: K, listener: (this: HTMLIxChatUserMessageElement, ev: IxChatUserMessageCustomEvent<HTMLIxChatUserMessageElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatUserMessageElementEventMap>(type: K, listener: (this: HTMLIxChatUserMessageElement, ev: IxChatUserMessageCustomEvent<HTMLIxChatUserMessageElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatUserMessageElement: {
+        prototype: HTMLIxChatUserMessageElement;
+        new (): HTMLIxChatUserMessageElement;
     };
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
@@ -6057,6 +6121,7 @@ declare global {
         "ixBlur": void;
         "ixChange": string;
         "promptSubmit": string;
+        "attachmentOverflowChange": boolean;
     }
     /**
      * @since 5.0.0
@@ -6526,6 +6591,7 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
+        "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
@@ -7238,10 +7304,10 @@ declare namespace LocalJSX {
          */
         "loadingLabel"?: string;
         /**
-          * Event emitted when the overflow item is clicked.
+          * Event emitted when the attachment is clicked.
           * @since 5.0.0
          */
-        "onOverflowClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
+        "onAttachmentClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
         /**
           * Event emitted when the remove action is clicked.
           * @since 5.0.0
@@ -7253,15 +7319,11 @@ declare namespace LocalJSX {
          */
         "onRetryClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
         /**
-          * Accessible label for the overflow item.
+          * Enable preview interaction for default attachments.
           * @since 5.0.0
+          * @default false
          */
-        "overflowAriaLabel"?: string;
-        /**
-          * Displays the attachment as a "+X more" overflow item.
-          * @since 5.0.0
-         */
-        "overflowCount"?: number;
+        "previewSupported"?: boolean;
         /**
           * Accessible label for the remove action.
           * @since 5.0.0
@@ -7280,6 +7342,44 @@ declare namespace LocalJSX {
           * @default 'default'
          */
         "status"?: ChatPromptAttachmentStatus;
+        /**
+          * Visual variant of the attachment.
+          * @since 5.0.0
+          * @default 'prompt'
+         */
+        "variant"?: ChatPromptAttachmentVariant;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentCount"?: number;
+        /**
+          * Label used for the attachment overflow trigger.
+          * @since 5.0.0
+          * @default 'Attachments'
+         */
+        "attachmentOverflowLabel"?: string;
+        /**
+          * Text displayed in the user message bubble. When not set, the default slot is used.
+          * @since 5.0.0
+         */
+        "message"?: string;
+        /**
+          * Event emitted when the attachment overflow expanded state changes.
+          * @since 5.0.0
+         */
+        "onAttachmentOverflowChange"?: (event: IxChatUserMessageCustomEvent<boolean>) => void;
+        /**
+          * Show slotted actions without requiring hover or keyboard focus.
+          * @since 5.0.0
+          * @default false
+         */
+        "showActions"?: boolean;
     }
     /**
      * @form-ready 
@@ -10038,6 +10138,17 @@ declare namespace LocalJSX {
          */
         "attachmentLayout"?: PromptInputAttachmentLayout;
         /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentOverflowCount"?: number;
+        /**
+          * Label displayed after the attachment overflow count.
+          * @since 5.0.0
+          * @default 'more'
+         */
+        "attachmentOverflowLabel"?: string;
+        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -10098,6 +10209,11 @@ declare namespace LocalJSX {
           * @since 5.0.0
          */
         "name"?: string;
+        /**
+          * Event emitted when the attachment overflow expanded state changes.
+          * @since 5.0.0
+         */
+        "onAttachmentOverflowChange"?: (event: IxPromptInputCustomEvent<boolean>) => void;
         /**
           * Event emitted when the prompt input loses focus.
           * @since 5.0.0
@@ -11709,15 +11825,21 @@ declare namespace LocalJSX {
     interface IxChatPromptAttachmentAttributes {
         "fileName": string;
         "status": ChatPromptAttachmentStatus;
+        "variant": ChatPromptAttachmentVariant;
         "icon": string;
         "hideFileIcon": boolean;
         "hideRemoveButton": boolean;
+        "previewSupported": boolean;
         "loadingLabel": string;
         "failedLabel": string;
-        "overflowCount": number;
-        "overflowAriaLabel": string;
         "removeAriaLabel": string;
         "retryAriaLabel": string;
+    }
+    interface IxChatUserMessageAttributes {
+        "message": string;
+        "showActions": boolean;
+        "attachmentCount": number;
+        "attachmentOverflowLabel": string;
     }
     interface IxCheckboxAttributes {
         "name": string;
@@ -12335,6 +12457,8 @@ declare namespace LocalJSX {
         "characterLimitMode": CharacterLimitMode;
         "characterLimitWarningThreshold": number;
         "attachmentLayout": PromptInputAttachmentLayout;
+        "attachmentOverflowCount": number;
+        "attachmentOverflowLabel": string;
         "minRows": number;
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;
@@ -12656,6 +12780,7 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
         "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
+        "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
@@ -12778,6 +12903,10 @@ declare module "@stencil/core" {
              * @since 5.0.0
              */
             "ix-chat-prompt-attachment": LocalJSX.IntrinsicElements["ix-chat-prompt-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatPromptAttachmentElement>;
+            /**
+             * @since 5.0.0
+             */
+            "ix-chat-user-message": LocalJSX.IntrinsicElements["ix-chat-user-message"] & JSXBase.HTMLAttributes<HTMLIxChatUserMessageElement>;
             /**
              * @form-ready 
              */

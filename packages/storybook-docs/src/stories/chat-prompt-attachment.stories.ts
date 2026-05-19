@@ -21,6 +21,9 @@ function renderAttachment(args: Partial<Element>) {
 
   attachment.addEventListener('removeClick', () => action('removeClick')());
   attachment.addEventListener('retryClick', () => action('retryClick')());
+  attachment.addEventListener('attachmentClick', () =>
+    action('attachmentClick')()
+  );
 
   return container;
 }
@@ -49,6 +52,22 @@ export const Default: Story = {
   },
 };
 
+export const PreviewSupported: Story = {
+  args: {
+    fileName: 'file_01.pdf',
+    previewSupported: true,
+  },
+};
+
+export const Sent: Story = {
+  args: {
+    fileName: 'file_01.pdf',
+    hideRemoveButton: true,
+    previewSupported: true,
+    variant: 'sent',
+  },
+};
+
 export const Loading: Story = {
   args: {
     status: 'loading',
@@ -64,11 +83,5 @@ export const Failed: Story = {
 export const LongFileName: Story = {
   args: {
     fileName: 'meeting_notes_summary_01_with_a_very_long_name.txt',
-  },
-};
-
-export const Overflow: Story = {
-  args: {
-    overflowCount: 4,
   },
 };

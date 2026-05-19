@@ -32,10 +32,26 @@
   color: var(--theme-color-alarm-text);
 }
 
-:host(.overflow) {
-  min-width: auto;
+:host(.preview-supported) {
   cursor: pointer;
+}
+
+:host(.preview-supported:hover) {
+  background-color: var(--theme-color-component-8);
   color: var(--theme-color-std-text);
+}
+
+:host(.sent) {
+  min-width: auto;
+  max-width: 6.375rem;
+  padding-right: var(--theme-space-2);
+  border-radius: var(--theme-small-border-radius);
+  background-color: transparent;
+  color: var(--theme-color-std-text);
+}
+
+:host(.sent.preview-supported:hover) {
+  background-color: var(--theme-color-ghost--active);
 }
 
 .content,
@@ -49,6 +65,10 @@
 .content {
   flex: 1 1 auto;
   padding-left: var(--theme-space-1);
+}
+
+:host(.sent) .content {
+  padding-left: 0;
 }
 
 .file-content,
@@ -76,10 +96,6 @@
 .status-label {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.overflow-label {
   white-space: nowrap;
 }
 

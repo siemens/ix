@@ -13,7 +13,10 @@ import {
   iconTxtDocument,
 } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
-import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types';
+import type {
+  ChatPromptAttachmentStatus,
+  ChatPromptAttachmentVariant,
+} from './chat-prompt-attachment.types';
 
 /**
  * @since 5.0.0
@@ -37,6 +40,12 @@ export class ChatPromptAttachment {
   @Prop({ reflect: true }) status: ChatPromptAttachmentStatus = 'default';
 
   /**
+   * Visual variant of the attachment.
+   * @since 5.0.0
+   */
+  @Prop({ reflect: true }) variant: ChatPromptAttachmentVariant = 'prompt';
+
+  /**
    * Icon displayed before the file name.
    * @since 5.0.0
    */
@@ -55,6 +64,12 @@ export class ChatPromptAttachment {
   @Prop() hideRemoveButton: boolean = false;
 
   /**
+   * Enable preview interaction for default attachments.
+   * @since 5.0.0
+   */
+  @Prop({ reflect: true }) previewSupported: boolean = false;
+
+  /**
    * Text displayed while the attachment is uploading.
    * @since 5.0.0
    */
@@ -65,18 +80,6 @@ export class ChatPromptAttachment {
    * @since 5.0.0
    */
   @Prop() failedLabel: string = 'Upload failed';
-
-  /**
-   * Displays the attachment as a "+X more" overflow item.
-   * @since 5.0.0
-   */
-  @Prop() overflowCount?: number;
-
-  /**
-   * Accessible label for the overflow item.
-   * @since 5.0.0
-   */
-  @Prop() overflowAriaLabel?: string;
 
   /**
    * Accessible label for the remove action.
@@ -91,6 +94,12 @@ export class ChatPromptAttachment {
   @Prop() retryAriaLabel: string = 'Retry attachment upload';
 
   /**
+   * Event emitted when the attachment is clicked.
+   * @since 5.0.0
+   */
+  @Event() attachmentClick!: EventEmitter<void>;
+
+  /**
    * Event emitted when the remove action is clicked.
    * @since 5.0.0
    */
@@ -102,21 +111,8 @@ export class ChatPromptAttachment {
    */
   @Event() retryClick!: EventEmitter<void>;
 
-  /**
-   * Event emitted when the overflow item is clicked.
-   * @since 5.0.0
-   */
-  @Event() overflowClick!: EventEmitter<void>;
-
-  private getOverflowCount() {
-    const overflowCount = Number(this.overflowCount);
-    return Number.isFinite(overflowCount) && overflowCount > 0
-      ? overflowCount
-      : undefined;
-  }
-
-  private isOverflowItem() {
-    return this.getOverflowCount() !== undefined;
+  private canPreview() {
+    return this.previewSupported && this.status === 'default';
   }
 
   private splitFileName() {
@@ -145,12 +141,6 @@ export class ChatPromptAttachment {
   }
 
   private renderStatusContent() {
-    if (this.isOverflowItem()) {
-      return (
-        <span class="overflow-label">+{this.getOverflowCount()} more</span>
-      );
-    }
-
     if (this.status === 'loading') {
       return (
         <span class="status-content">
@@ -173,64 +163,70 @@ export class ChatPromptAttachment {
   }
 
   private handleHostClick() {
-    if (this.isOverflowItem()) {
-      this.overflowClick.emit();
+    if (this.canPreview()) {
+      this.attachmentClick.emit();
     }
   }
 
   private handleHostKeyDown(event: KeyboardEvent) {
     if (
-      !this.isOverflowItem() ||
+      event.target !== event.currentTarget ||
       (event.key !== 'Enter' && event.key !== ' ')
     ) {
       return;
     }
 
     event.preventDefault();
-    this.overflowClick.emit();
+
+    if (this.canPreview()) {
+      this.attachmentClick.emit();
+    }
   }
 
   render() {
     const isFailed = this.status === 'failed';
     const isLoading = this.status === 'loading';
-    const isOverflow = this.isOverflowItem();
-    const overflowCount = this.getOverflowCount();
-    const overflowAriaLabel = isOverflow
-      ? (this.overflowAriaLabel ?? `Show ${overflowCount} more attachments`)
-      : undefined;
+    const canPreview = this.canPreview();
+    const isSent = this.variant === 'sent';
 
     return (
       <Host
         class={{
           failed: isFailed,
           loading: isLoading,
-          overflow: isOverflow,
+          'preview-supported': canPreview,
+          sent: isSent,
         }}
-        role={isOverflow ? 'button' : undefined}
-        aria-label={overflowAriaLabel}
-        tabIndex={0}
+        role={canPreview ? 'button' : undefined}
+        tabIndex={canPreview ? 0 : undefined}
         onClick={() => this.handleHostClick()}
         onKeyDown={(event: KeyboardEvent) => this.handleHostKeyDown(event)}
       >
         <span class="content">{this.renderStatusContent()}</span>
-        {isFailed && !isOverflow && (
+        {isFailed && (
           <ix-icon-button
             aria-label={this.retryAriaLabel}
             class="retry-button"
             icon={iconRefresh}
             size="16"
             variant="subtle-tertiary"
-            onClick={() => this.retryClick.emit()}
+            onClick={(event: MouseEvent) => {
+              event.stopPropagation();
+              this.retryClick.emit();
+            }}
           ></ix-icon-button>
         )}
-        {!this.hideRemoveButton && !isOverflow && (
+        {!this.hideRemoveButton && (
           <ix-icon-button
             aria-label={this.removeAriaLabel}
             class="remove-button"
             icon={iconCloseSmall}
             size="16"
             variant="subtle-tertiary"
-            onClick={() => this.removeClick.emit()}
+            onClick={(event: MouseEvent) => {
+              event.stopPropagation();
+              this.removeClick.emit();
+            }}
           ></ix-icon-button>
         )}
       </Host>

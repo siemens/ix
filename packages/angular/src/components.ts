@@ -403,22 +403,22 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
-  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status']
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'previewSupported', 'removeAriaLabel', 'retryAriaLabel', 'status', 'variant']
 })
 @Component({
   selector: 'ix-chat-prompt-attachment',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'overflowAriaLabel', 'overflowCount', 'removeAriaLabel', 'retryAriaLabel', 'status'],
-  outputs: ['removeClick', 'retryClick', 'overflowClick'],
+  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'previewSupported', 'removeAriaLabel', 'retryAriaLabel', 'status', 'variant'],
+  outputs: ['attachmentClick', 'removeClick', 'retryClick'],
   standalone: false
 })
 export class IxChatPromptAttachment {
   protected el: HTMLIxChatPromptAttachmentElement;
+  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
   @Output() removeClick = new EventEmitter<CustomEvent<void>>();
   @Output() retryClick = new EventEmitter<CustomEvent<void>>();
-  @Output() overflowClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -428,6 +428,10 @@ export class IxChatPromptAttachment {
 
 export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
   /**
+   * Event emitted when the attachment is clicked. @since 5.0.0
+   */
+  attachmentClick: EventEmitter<CustomEvent<void>>;
+  /**
    * Event emitted when the remove action is clicked. @since 5.0.0
    */
   removeClick: EventEmitter<CustomEvent<void>>;
@@ -435,10 +439,36 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
    * Event emitted when the retry action is clicked. @since 5.0.0
    */
   retryClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message', 'showActions']
+})
+@Component({
+  selector: 'ix-chat-user-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message', 'showActions'],
+  outputs: ['attachmentOverflowChange'],
+  standalone: false
+})
+export class IxChatUserMessage {
+  protected el: HTMLIxChatUserMessageElement;
+  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatUserMessage extends Components.IxChatUserMessage {
   /**
-   * Event emitted when the overflow item is clicked. @since 5.0.0
+   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
    */
-  overflowClick: EventEmitter<CustomEvent<void>>;
+  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -2259,7 +2289,7 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 
 @ProxyCmp({
-  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2267,8 +2297,8 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
   standalone: false
 })
 export class IxPromptInput {
@@ -2277,6 +2307,7 @@ export class IxPromptInput {
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
+  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2301,6 +2332,10 @@ export declare interface IxPromptInput extends Components.IxPromptInput {
    * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
+   */
+  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 

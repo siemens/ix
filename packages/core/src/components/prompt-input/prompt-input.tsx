@@ -37,6 +37,7 @@ let promptInputIds = 0;
  * @since 5.0.0
  * @form-ready
  * @slot attachments - Attachments displayed above the prompt text area
+ * @slot attachment-overflow - Optional ix-dropdown-item elements displayed in the attachment overflow dropdown
  * @slot start - Element will be displayed in the left action area
  * @slot end - Element will be displayed in the right action area before the submit button
  */
@@ -119,6 +120,18 @@ export class PromptInput {
   @Prop() attachmentLayout: PromptInputAttachmentLayout = 'wrap';
 
   /**
+   * Number of attachments represented by the attachment overflow trigger.
+   * @since 5.0.0
+   */
+  @Prop() attachmentOverflowCount?: number;
+
+  /**
+   * Label displayed after the attachment overflow count.
+   * @since 5.0.0
+   */
+  @Prop() attachmentOverflowLabel: string = 'more';
+
+  /**
    * Minimum number of visible text rows.
    * @since 5.0.0
    */
@@ -166,6 +179,12 @@ export class PromptInput {
    * @since 5.0.0
    */
   @Event() promptSubmit!: EventEmitter<string>;
+
+  /**
+   * Event emitted when the attachment overflow expanded state changes.
+   * @since 5.0.0
+   */
+  @Event() attachmentOverflowChange!: EventEmitter<boolean>;
 
   /** @internal */
   public initialValue?: string;
@@ -452,6 +471,38 @@ export class PromptInput {
       }).length > 0;
   }
 
+  private getAttachmentOverflowCount() {
+    const attachmentOverflowCount = Number(this.attachmentOverflowCount);
+    return Number.isFinite(attachmentOverflowCount) &&
+      attachmentOverflowCount > 0
+      ? attachmentOverflowCount
+      : undefined;
+  }
+
+  private renderAttachmentOverflow() {
+    const attachmentOverflowCount = this.getAttachmentOverflowCount();
+
+    if (!attachmentOverflowCount || this.attachmentLayout !== 'wrap') {
+      return null;
+    }
+
+    return (
+      <ix-dropdown-button
+        ariaLabelDropdownButton={`Show ${attachmentOverflowCount} more attachments`}
+        class="attachment-overflow"
+        closeBehavior="inside"
+        label={`+ ${attachmentOverflowCount} ${this.attachmentOverflowLabel}`}
+        placement="bottom-end"
+        variant="tertiary"
+        onShowChanged={(event: CustomEvent<boolean>) =>
+          this.attachmentOverflowChange.emit(event.detail)
+        }
+      >
+        <slot name="attachment-overflow"></slot>
+      </ix-dropdown-button>
+    );
+  }
+
   render() {
     return (
       <Host
@@ -466,13 +517,15 @@ export class PromptInput {
               attachments: true,
               'attachments--wrap': this.attachmentLayout === 'wrap',
               'attachments--scroll': this.attachmentLayout === 'scroll',
-              'has-attachments': this.hasAttachments,
+              'has-attachments':
+                this.hasAttachments || !!this.getAttachmentOverflowCount(),
             }}
           >
             <slot
               name="attachments"
               onSlotchange={(event) => this.handleAttachmentsSlotChange(event)}
             ></slot>
+            {this.renderAttachmentOverflow()}
           </div>
           <textarea
             id={this.inputId}

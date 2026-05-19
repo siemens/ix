@@ -8,3 +8,5 @@
  */
 
 export type ChatPromptAttachmentStatus = 'default' | 'loading' | 'failed';
+
+export type ChatPromptAttachmentVariant = 'prompt' | 'sent';

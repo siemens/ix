@@ -10,9 +10,9 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 declare global {
+  var __attachmentClicked: boolean | undefined;
   var __attachmentRemoveClicked: boolean | undefined;
   var __attachmentRetryClicked: boolean | undefined;
-  var __attachmentOverflowClicked: boolean | undefined;
 }
 
 regressionTest(
@@ -64,6 +64,60 @@ regressionTest(
 );
 
 regressionTest(
+  'ix-chat-prompt-attachment emits attachmentClick only when preview is supported',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-prompt-attachment file-name="static_file.txt"></ix-chat-prompt-attachment>
+      <ix-chat-prompt-attachment file-name="preview_file.txt" preview-supported></ix-chat-prompt-attachment>
+    `);
+
+    await page.evaluate(() => {
+      globalThis.__attachmentClicked = false;
+      document
+        .querySelectorAll('ix-chat-prompt-attachment')
+        .forEach((attachment) => {
+          attachment.addEventListener('attachmentClick', () => {
+            globalThis.__attachmentClicked = true;
+          });
+        });
+    });
+
+    const staticAttachment = page.locator('ix-chat-prompt-attachment').first();
+    const previewAttachment = page.locator('ix-chat-prompt-attachment').nth(1);
+
+    await expect(staticAttachment).not.toHaveAttribute('role', 'button');
+    await expect(previewAttachment).toHaveAttribute('role', 'button');
+
+    await staticAttachment.click();
+    expect(await page.evaluate(() => globalThis.__attachmentClicked)).toBe(
+      false
+    );
+
+    await previewAttachment.click();
+    expect(await page.evaluate(() => globalThis.__attachmentClicked)).toBe(
+      true
+    );
+  }
+);
+
+regressionTest(
+  'ix-chat-prompt-attachment renders sent variant compactly',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-prompt-attachment file-name="file_01.pdf" variant="sent" hide-remove-button preview-supported></ix-chat-prompt-attachment>'
+    );
+
+    const attachment = page.locator('ix-chat-prompt-attachment');
+
+    await expect(attachment).toHaveCSS('height', '32px');
+    await expect(attachment).toHaveCSS('max-width', '102px');
+    await expect(
+      attachment.locator('ix-icon-button.remove-button')
+    ).toHaveCount(0);
+  }
+);
+
+regressionTest(
   'ix-chat-prompt-attachment emits removeClick and retryClick',
   async ({ mount, page }) => {
     await mount(
@@ -92,38 +146,6 @@ regressionTest(
     );
     expect(
       await page.evaluate(() => globalThis.__attachmentRemoveClicked)
-    ).toBe(true);
-  }
-);
-
-regressionTest(
-  'ix-chat-prompt-attachment renders and emits overflow items',
-  async ({ mount, page }) => {
-    await mount(
-      '<ix-chat-prompt-attachment overflow-count="4"></ix-chat-prompt-attachment>'
-    );
-
-    await page.evaluate(() => {
-      globalThis.__attachmentOverflowClicked = false;
-      document
-        .querySelector('ix-chat-prompt-attachment')
-        ?.addEventListener('overflowClick', () => {
-          globalThis.__attachmentOverflowClicked = true;
-        });
-    });
-
-    const attachment = page.locator('ix-chat-prompt-attachment');
-
-    await expect(attachment).toContainText('+4 more');
-    await expect(attachment).toHaveAttribute(
-      'aria-label',
-      'Show 4 more attachments'
-    );
-
-    await attachment.click();
-
-    expect(
-      await page.evaluate(() => globalThis.__attachmentOverflowClicked)
     ).toBe(true);
   }
 );

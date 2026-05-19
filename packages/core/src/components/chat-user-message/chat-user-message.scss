@@ -1,0 +1,96 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  @include component.ix-component;
+}
+
+.message {
+  width: fit-content;
+  min-width: var(--ix-chat-user-message-min-width, max(15.375rem, 45%));
+  max-width: var(--ix-chat-user-message-max-width, min(33.75rem, 75%));
+  box-sizing: border-box;
+  padding: var(--theme-space-2) var(--theme-space-3);
+  border-radius: var(--theme-default-border-radius);
+  background-color: var(--theme-color-component-8);
+  color: var(--theme-color-std-text);
+}
+
+.attachments {
+  display: none;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--theme-space-1) 0;
+  width: 100%;
+  max-width: var(--ix-chat-user-message-max-width, min(33.75rem, 75%));
+  max-height: 4.5rem;
+  margin-bottom: var(--theme-space-1);
+  overflow: hidden;
+}
+
+:host(.has-attachments) .attachments {
+  display: flex;
+}
+
+.attachments ::slotted(ix-chat-prompt-attachment) {
+  flex: 0 1 6.375rem;
+  max-width: 6.375rem;
+}
+
+.attachment-overflow {
+  margin-bottom: var(--theme-space-1);
+  --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
+  --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
+}
+
+:host(:hover) .message,
+:host(:focus-visible) .message,
+:host(:focus-within) .message {
+  background-color: var(--theme-color-component-8--hover);
+}
+
+:host(:focus-visible) .message {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-focus-outline-offset);
+}
+
+.message-text {
+  display: block;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.actions {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--theme-space-1);
+  min-height: 2rem;
+  margin-top: var(--theme-space-1);
+}
+
+:host(.has-actions.show-actions) .actions,
+:host(.has-actions:focus) .actions,
+:host(.has-actions:hover) .actions,
+:host(.has-actions:focus-within) .actions {
+  display: flex;
+}
+
+.actions ::slotted(ix-icon-button) {
+  flex: 0 0 auto;
+}

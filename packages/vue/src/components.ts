@@ -20,6 +20,7 @@ import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
+import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
@@ -301,22 +302,33 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
 export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatPromptAttachment>('ix-chat-prompt-attachment', defineIxChatPromptAttachment, [
   'fileName',
   'status',
+  'variant',
   'icon',
   'hideFileIcon',
   'hideRemoveButton',
+  'previewSupported',
   'loadingLabel',
   'failedLabel',
-  'overflowCount',
-  'overflowAriaLabel',
   'removeAriaLabel',
   'retryAriaLabel',
+  'attachmentClick',
   'removeClick',
-  'retryClick',
-  'overflowClick'
+  'retryClick'
 ], [
+  'attachmentClick',
   'removeClick',
-  'retryClick',
-  'overflowClick'
+  'retryClick'
+]);
+
+
+export const IxChatUserMessage: StencilVueComponent<JSX.IxChatUserMessage> = /*@__PURE__*/ defineContainer<JSX.IxChatUserMessage>('ix-chat-user-message', defineIxChatUserMessage, [
+  'message',
+  'showActions',
+  'attachmentCount',
+  'attachmentOverflowLabel',
+  'attachmentOverflowChange'
+], [
+  'attachmentOverflowChange'
 ]);
 
 
@@ -1214,6 +1226,8 @@ export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptI
   'characterLimitMode',
   'characterLimitWarningThreshold',
   'attachmentLayout',
+  'attachmentOverflowCount',
+  'attachmentOverflowLabel',
   'minRows',
   'maxRows',
   'insertLineBreakOnEnter',
@@ -1221,12 +1235,14 @@ export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptI
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit'
+  'promptSubmit',
+  'attachmentOverflowChange'
 ], [
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit'
+  'promptSubmit',
+  'attachmentOverflowChange'
 ],
 'value', 'valueChange', undefined);
 
