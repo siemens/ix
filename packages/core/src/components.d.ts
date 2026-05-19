@@ -709,6 +709,11 @@ export namespace Components {
     /**
      * @since 5.0.0
      */
+    interface IxChatShell {
+    }
+    /**
+     * @since 5.0.0
+     */
     interface IxChatUserMessage {
         /**
           * Number of attachments represented by the attachment overflow trigger.
@@ -5259,6 +5264,15 @@ declare global {
         prototype: HTMLIxChatPromptAttachmentElement;
         new (): HTMLIxChatPromptAttachmentElement;
     };
+    /**
+     * @since 5.0.0
+     */
+    interface HTMLIxChatShellElement extends Components.IxChatShell, HTMLStencilElement {
+    }
+    var HTMLIxChatShellElement: {
+        prototype: HTMLIxChatShellElement;
+        new (): HTMLIxChatShellElement;
+    };
     interface HTMLIxChatUserMessageElementEventMap {
         "attachmentOverflowChange": boolean;
     }
@@ -6606,6 +6620,7 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chat-ai-message": HTMLIxChatAiMessageElement;
         "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
+        "ix-chat-shell": HTMLIxChatShellElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
@@ -7368,6 +7383,11 @@ declare namespace LocalJSX {
           * @default 'prompt'
          */
         "variant"?: ChatPromptAttachmentVariant;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatShell {
     }
     /**
      * @since 5.0.0
@@ -12801,6 +12821,7 @@ declare namespace LocalJSX {
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
         "ix-chat-ai-message": IxChatAiMessage;
         "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
+        "ix-chat-shell": IxChatShell;
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
@@ -12928,6 +12949,10 @@ declare module "@stencil/core" {
              * @since 5.0.0
              */
             "ix-chat-prompt-attachment": LocalJSX.IntrinsicElements["ix-chat-prompt-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatPromptAttachmentElement>;
+            /**
+             * @since 5.0.0
+             */
+            "ix-chat-shell": LocalJSX.IntrinsicElements["ix-chat-shell"] & JSXBase.HTMLAttributes<HTMLIxChatShellElement>;
             /**
              * @since 5.0.0
              */

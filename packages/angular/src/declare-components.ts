@@ -18,6 +18,7 @@ export const DIRECTIVES = [
   d.IxCategoryFilter,
   d.IxChatAiMessage,
   d.IxChatPromptAttachment,
+  d.IxChatShell,
   d.IxChatUserMessage,
   d.IxCheckbox,
   d.IxCheckboxGroup,

@@ -29,6 +29,7 @@ import { IxCard as IxCardElement, defineCustomElement as defineIxCard } from "@s
 import { IxCategoryFilter as IxCategoryFilterElement, defineCustomElement as defineIxCategoryFilter } from "@siemens/ix/components/ix-category-filter.js";
 import { IxChatAiMessage as IxChatAiMessageElement, defineCustomElement as defineIxChatAiMessage } from "@siemens/ix/components/ix-chat-ai-message.js";
 import { IxChatPromptAttachment as IxChatPromptAttachmentElement, defineCustomElement as defineIxChatPromptAttachment } from "@siemens/ix/components/ix-chat-prompt-attachment.js";
+import { IxChatShell as IxChatShellElement, defineCustomElement as defineIxChatShell } from "@siemens/ix/components/ix-chat-shell.js";
 import { IxChatUserMessage as IxChatUserMessageElement, defineCustomElement as defineIxChatUserMessage } from "@siemens/ix/components/ix-chat-user-message.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement, defineCustomElement as defineIxCheckboxGroup } from "@siemens/ix/components/ix-checkbox-group.js";
 import { IxCheckbox as IxCheckboxElement, defineCustomElement as defineIxCheckbox } from "@siemens/ix/components/ix-checkbox.js";
@@ -329,6 +330,17 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
         onRetryClick: 'retryClick'
     } as IxChatPromptAttachmentEvents,
     defineCustomElement: defineIxChatPromptAttachment
+});
+
+export type IxChatShellEvents = NonNullable<unknown>;
+
+export const IxChatShell: StencilReactComponent<IxChatShellElement, IxChatShellEvents, Components.IxChatShell> = /*@__PURE__*/ createComponent<IxChatShellElement, IxChatShellEvents, Components.IxChatShell>({
+    tagName: 'ix-chat-shell',
+    elementClass: IxChatShellElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxChatShellEvents,
+    defineCustomElement: defineIxChatShell
 });
 
 export type IxChatUserMessageEvents = { onAttachmentOverflowChange: EventName<IxChatUserMessageCustomEvent<boolean>> };

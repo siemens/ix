@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import { iconTxtDocument } from '@siemens/ix-icons/icons';
+import { iconRefresh, iconTxtDocument } from '@siemens/ix-icons/icons';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { action } from 'storybook/actions';
 import { genericRender, makeArgTypes } from './utils/generic-render';
@@ -138,6 +138,52 @@ export const WithScrollableAttachments: Story = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=18263-77406&m=dev',
+    },
+  },
+};
+
+function createFollowUpRefreshButton() {
+  const refreshButton = document.createElement('ix-icon-button');
+  refreshButton.slot = 'follow-up';
+  refreshButton.icon = iconRefresh;
+  refreshButton.variant = 'secondary';
+  refreshButton.setAttribute('aria-label', 'Refresh follow-up prompts');
+  return refreshButton;
+}
+
+function createFollowUpPrompt(label: string) {
+  const prompt = document.createElement('ix-button');
+  prompt.slot = 'follow-up';
+  prompt.variant = 'secondary';
+  prompt.textContent = label;
+  return prompt;
+}
+
+export const WithFollowUpPrompts: Story = {
+  render: (args) => {
+    const container = renderPromptInput(args);
+    const promptInput = container.querySelector(
+      'ix-prompt-input'
+    ) as HTMLIxPromptInputElement;
+
+    promptInput.append(
+      createFollowUpRefreshButton(),
+      createFollowUpPrompt('What are the risks if this insight is ignored?'),
+      createFollowUpPrompt(
+        'Show related insights from similar customer events.'
+      ),
+      createFollowUpPrompt(
+        'Summarize this insight in 2 bullet points for presentation.'
+      )
+    );
+
+    return container;
+  },
+  args: {},
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=225-51348&m=dev',
     },
   },
 };

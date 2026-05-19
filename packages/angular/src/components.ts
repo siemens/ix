@@ -465,6 +465,28 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat-shell',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChatShell {
+  protected el: HTMLIxChatShellElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatShell extends Components.IxChatShell {}
+
+
+@ProxyCmp({
   inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message', 'showActions']
 })
 @Component({

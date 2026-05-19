@@ -30,6 +30,7 @@ import { IxCard as IxCardElement } from "@siemens/ix/components/ix-card.js";
 import { IxCategoryFilter as IxCategoryFilterElement } from "@siemens/ix/components/ix-category-filter.js";
 import { IxChatAiMessage as IxChatAiMessageElement } from "@siemens/ix/components/ix-chat-ai-message.js";
 import { IxChatPromptAttachment as IxChatPromptAttachmentElement } from "@siemens/ix/components/ix-chat-prompt-attachment.js";
+import { IxChatShell as IxChatShellElement } from "@siemens/ix/components/ix-chat-shell.js";
 import { IxChatUserMessage as IxChatUserMessageElement } from "@siemens/ix/components/ix-chat-user-message.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement } from "@siemens/ix/components/ix-checkbox-group.js";
 import { IxCheckbox as IxCheckboxElement } from "@siemens/ix/components/ix-checkbox.js";
@@ -411,6 +412,16 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxChatPromptAttachment as StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>,
+    serializeShadowRoot
+});
+
+export type IxChatShellEvents = NonNullable<unknown>;
+
+export const IxChatShell: StencilReactComponent<IxChatShellElement, IxChatShellEvents, Components.IxChatShell> = /*@__PURE__*/ createComponent<IxChatShellElement, IxChatShellEvents, Components.IxChatShell>({
+    tagName: 'ix-chat-shell',
+    properties: {},
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxChatShell as StencilReactComponent<IxChatShellElement, IxChatShellEvents, Components.IxChatShell>,
     serializeShadowRoot
 });
 

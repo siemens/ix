@@ -36,6 +36,7 @@ let promptInputIds = 0;
 /**
  * @since 5.0.0
  * @form-ready
+ * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the prompt input
  * @slot attachments - Attachments displayed above the prompt text area
  * @slot attachment-overflow - Optional ix-dropdown-item elements displayed in the attachment overflow dropdown
  * @slot start - Element will be displayed in the left action area
@@ -191,6 +192,7 @@ export class PromptInput {
 
   @State() hasAttemptedCharacterLimitExceeded = false;
   @State() hasAttachments = false;
+  @State() hasFollowUp = false;
 
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
@@ -200,9 +202,11 @@ export class PromptInput {
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
+    this.updateHasFollowUp();
   }
 
   componentDidLoad() {
+    this.updateHasFollowUp();
     this.updateTextareaHeight();
   }
 
@@ -471,6 +475,21 @@ export class PromptInput {
       }).length > 0;
   }
 
+  private handleFollowUpSlotChange(event: Event) {
+    this.hasFollowUp = this.hasAssignedContent(event.target as HTMLSlotElement);
+  }
+
+  private hasAssignedContent(slot: HTMLSlotElement) {
+    return slot.assignedNodes({ flatten: true }).some((node) => {
+      return node.nodeType === 1 || !!node.textContent?.trim();
+    });
+  }
+
+  private updateHasFollowUp() {
+    this.hasFollowUp =
+      this.hostElement.querySelectorAll('[slot="follow-up"]').length > 0;
+  }
+
   private getAttachmentOverflowCount() {
     const attachmentOverflowCount = Number(this.attachmentOverflowCount);
     return Number.isFinite(attachmentOverflowCount) &&
@@ -509,8 +528,15 @@ export class PromptInput {
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+          'has-follow-up': this.hasFollowUp,
         }}
       >
+        <div class="follow-up-prompts">
+          <slot
+            name="follow-up"
+            onSlotchange={(event) => this.handleFollowUpSlotChange(event)}
+          ></slot>
+        </div>
         <div class="prompt-input">
           <div
             class={{

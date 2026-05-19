@@ -21,6 +21,7 @@ import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
 import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
+import { defineCustomElement as defineIxChatShell } from '@siemens/ix/components/ix-chat-shell.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
@@ -323,6 +324,9 @@ export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachm
   'removeClick',
   'retryClick'
 ]);
+
+
+export const IxChatShell: StencilVueComponent<JSX.IxChatShell> = /*@__PURE__*/ defineContainer<JSX.IxChatShell>('ix-chat-shell', defineIxChatShell);
 
 
 export const IxChatUserMessage: StencilVueComponent<JSX.IxChatUserMessage> = /*@__PURE__*/ defineContainer<JSX.IxChatUserMessage>('ix-chat-user-message', defineIxChatUserMessage, [

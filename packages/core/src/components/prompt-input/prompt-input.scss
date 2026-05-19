@@ -31,6 +31,28 @@
     color: var(--theme-input--color);
   }
 
+  .follow-up-prompts {
+    display: none;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--theme-space-1);
+    width: 100%;
+    margin-bottom: var(--theme-space-1);
+  }
+
+  .follow-up-prompts ::slotted(*) {
+    flex: 0 1 auto;
+  }
+
+  .follow-up-prompts ::slotted(ix-button) {
+    max-width: 25rem;
+    min-width: 5rem;
+  }
+
+  .follow-up-prompts ::slotted(ix-icon-button) {
+    flex: 0 0 auto;
+  }
+
   .prompt-input:hover {
     border-color: var(--theme-input--border-color--hover);
     background-color: var(--theme-input--background--hover);
@@ -154,6 +176,10 @@
     margin-top: var(--theme-space-1);
     text-align: center;
   }
+}
+
+:host(.has-follow-up) .follow-up-prompts {
+  display: flex;
 }
 
 :host(.disabled) {

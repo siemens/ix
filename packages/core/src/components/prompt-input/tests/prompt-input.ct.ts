@@ -223,6 +223,29 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'ix-prompt-input renders slotted follow-up actions above the input',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-prompt-input>
+        <button slot="follow-up" aria-label="Refresh follow-up prompts">Refresh</button>
+        <ix-button slot="follow-up" variant="secondary">What are the risks if this insight is ignored?</ix-button>
+        <ix-button slot="follow-up" variant="secondary">Show related insights from similar customer events.</ix-button>
+      </ix-prompt-input>
+    `);
+
+    const promptInput = page.locator('ix-prompt-input');
+    const followUp = promptInput.locator('.follow-up-prompts');
+
+    await expect(promptInput).toHaveClass(/has-follow-up/);
+    await expect(followUp).toBeVisible();
+    await expect(page.locator('[slot="follow-up"]')).toHaveCount(3);
+    await expect(
+      page.locator('ix-button[slot="follow-up"]').first()
+    ).toContainText('What are the risks if this insight is ignored?');
+  }
+);
+
 regressionTest(`form-ready - ix-prompt-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-prompt-input name="my-field-name"></ix-prompt-input></form>`
