@@ -17,21 +17,8 @@ import {
 export class LoadingService {
   /**
    * Displays a loading modal with a message
-   * @deprecated Use ModalLoadingOptions object form instead
    */
-  public showModalLoading(message: string): ModalLoadingContext;
-
-  /**
-   * Displays a loading modal with a message
-   */
-  public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
-
-  public showModalLoading(
-    messageOrOptions: string | ModalLoadingOptions
-  ): ModalLoadingContext {
-    if (typeof messageOrOptions === 'string') {
-      return showModalLoading(messageOrOptions);
-    }
-    return showModalLoading(messageOrOptions);
+  public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext {
+    return showModalLoading(options);
   }
 }

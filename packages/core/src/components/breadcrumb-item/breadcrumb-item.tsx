@@ -41,16 +41,6 @@ export class BreadcrumbItem
   @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
-   * ARIA label for the button
-   * Will be set as aria-label for the nested HTML button element
-   *
-   * @since 3.2.0
-   *
-   * @deprecated Use `aria-label` attribute directly on the component instead.
-   */
-  @Prop() ariaLabelButton?: string;
-
-  /**
    * Breadcrumb label
    */
   @Prop() label?: string;
@@ -159,7 +149,6 @@ export class BreadcrumbItem
 
     return (
       <Host
-        {...ariaAttributes}
         class={{
           'hide-chevron': this.hideChevron,
         }}
