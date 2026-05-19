@@ -17,7 +17,7 @@ export class IxPlayground {
   render() {
     return (
       <Host>
-        <ix-prompt-input></ix-prompt-input>
+        <ix-chat-input></ix-chat-input>
       </Host>
     );
   }

@@ -24,17 +24,15 @@ import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxChatShell;
+type Element = Components.IxChat;
 
-function createShell(args: Partial<Element>) {
-  const container = genericRender('ix-chat-shell', args);
-  const shell = container.querySelector(
-    'ix-chat-shell'
-  ) as HTMLIxChatShellElement;
+function createChat(args: Partial<Element>) {
+  const container = genericRender('ix-chat', args);
+  const chat = container.querySelector('ix-chat') as HTMLIxChatElement;
 
-  shell.style.height = '40rem';
+  chat.style.height = '40rem';
 
-  return { container, shell };
+  return { container, chat };
 }
 
 function createIconButton(label: string, icon: string, slot?: string) {
@@ -193,7 +191,7 @@ function createAttachmentDropdownItem(
   return item;
 }
 
-function createPromptInput({
+function createChatInput({
   attachments = false,
   customActions = false,
   characterLimit = false,
@@ -206,22 +204,22 @@ function createPromptInput({
   followUp?: boolean;
   scrollableAttachments?: boolean;
 } = {}) {
-  const promptInput = document.createElement('ix-prompt-input');
-  promptInput.slot = 'prompt';
-  promptInput.placeholder = 'Enter a command, question or topic...';
+  const chatInput = document.createElement('ix-chat-input');
+  chatInput.slot = 'prompt';
+  chatInput.placeholder = 'Enter a command, question or topic...';
 
   if (characterLimit) {
-    promptInput.characterLimit = 120;
-    promptInput.characterLimitMode = 'soft';
-    promptInput.value = 'Summarize the uploaded maintenance reports';
+    chatInput.characterLimit = 120;
+    chatInput.characterLimitMode = 'soft';
+    chatInput.value = 'Summarize the uploaded maintenance reports';
   }
 
   if (scrollableAttachments) {
-    promptInput.attachmentLayout = 'scroll';
+    chatInput.attachmentLayout = 'scroll';
   }
 
   if (followUp) {
-    promptInput.append(
+    chatInput.append(
       createIconButton('Refresh follow-up prompts', iconRefresh, 'follow-up'),
       createFollowUpPrompt('What are the risks if this insight is ignored?'),
       createFollowUpPrompt(
@@ -234,7 +232,7 @@ function createPromptInput({
   }
 
   if (attachments) {
-    promptInput.append(
+    chatInput.append(
       createPromptAttachment('equipment_status.pdf'),
       createPromptAttachment('alarm_export.txt'),
       createPromptAttachment('uploading_report.pdf', 'loading'),
@@ -242,8 +240,8 @@ function createPromptInput({
     );
 
     if (!scrollableAttachments) {
-      promptInput.attachmentOverflowCount = 3;
-      promptInput.append(
+      chatInput.attachmentOverflowCount = 3;
+      chatInput.append(
         createAttachmentDropdownItem('maintenance_notes_01.txt'),
         createAttachmentDropdownItem('maintenance_notes_02.txt'),
         createAttachmentDropdownItem('maintenance_notes_03.pdf')
@@ -252,13 +250,13 @@ function createPromptInput({
   }
 
   if (customActions) {
-    promptInput.append(
+    chatInput.append(
       createIconButton('Attach file', iconAttach, 'start'),
       createIconButton('Record voice input', iconMicrophone, 'end')
     );
   }
 
-  return promptInput;
+  return chatInput;
 }
 
 function createFollowUpPrompt(label: string) {
@@ -269,25 +267,25 @@ function createFollowUpPrompt(label: string) {
   return prompt;
 }
 
-function renderChatShell(args: Partial<Element>) {
-  const { container, shell } = createShell(args);
+function renderChat(args: Partial<Element>) {
+  const { container, chat } = createChat(args);
 
-  shell.append(
+  chat.append(
     createUserMessage(
       'Summarize the detailed discussion held with the customer'
     ),
     createAiMessage(),
-    createPromptInput()
+    createChatInput()
   );
 
   return container;
 }
 
 const meta = {
-  title: 'Example/Chat Shell',
+  title: 'Example/Chat',
   tags: [],
-  render: (args) => renderChatShell(args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-chat-shell'),
+  render: (args) => renderChat(args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-chat'),
 } satisfies Meta<Element>;
 
 export default meta;
@@ -297,12 +295,12 @@ export const Default: Story = {};
 
 export const WithAiActionsAndSources: Story = {
   render: (args) => {
-    const { container, shell } = createShell(args);
+    const { container, chat } = createChat(args);
 
-    shell.append(
+    chat.append(
       createUserMessage('Summarize the current asset performance status'),
       createAiMessage({ actions: true, sources: true }),
-      createPromptInput()
+      createChatInput()
     );
 
     return container;
@@ -311,16 +309,16 @@ export const WithAiActionsAndSources: Story = {
 
 export const WithUserMessageAttachments: Story = {
   render: (args) => {
-    const { container, shell } = createShell(args);
+    const { container, chat } = createChat(args);
 
-    shell.append(
+    chat.append(
       createUserMessage('Analyze these files and highlight the key risks', {
         actions: true,
         attachments: true,
         overflow: true,
       }),
       createAiMessage({ actions: true }),
-      createPromptInput()
+      createChatInput()
     );
 
     return container;
@@ -329,12 +327,12 @@ export const WithUserMessageAttachments: Story = {
 
 export const WithPromptAttachments: Story = {
   render: (args) => {
-    const { container, shell } = createShell(args);
+    const { container, chat } = createChat(args);
 
-    shell.append(
+    chat.append(
       createUserMessage('Compare the uploaded reports'),
       createAiMessage({ sources: true }),
-      createPromptInput({
+      createChatInput({
         attachments: true,
         characterLimit: true,
         customActions: true,
@@ -348,12 +346,12 @@ export const WithPromptAttachments: Story = {
 
 export const WithScrollablePromptAttachments: Story = {
   render: (args) => {
-    const { container, shell } = createShell(args);
+    const { container, chat } = createChat(args);
 
-    shell.append(
+    chat.append(
       createUserMessage('Create a summary from all uploaded files'),
       createAiMessage(),
-      createPromptInput({
+      createChatInput({
         attachments: true,
         customActions: true,
         scrollableAttachments: true,
@@ -366,9 +364,9 @@ export const WithScrollablePromptAttachments: Story = {
 
 export const FullFeaturedConversation: Story = {
   render: (args) => {
-    const { container, shell } = createShell(args);
+    const { container, chat } = createChat(args);
 
-    shell.append(
+    chat.append(
       createUserMessage(
         'Summarize the detailed discussion held with the customer',
         {
@@ -384,7 +382,7 @@ export const FullFeaturedConversation: Story = {
         }
       ),
       createAiMessage({ actions: true, sources: true }),
-      createPromptInput({
+      createChatInput({
         attachments: true,
         characterLimit: true,
         customActions: true,

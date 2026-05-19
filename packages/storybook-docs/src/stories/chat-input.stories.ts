@@ -12,15 +12,15 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { action } from 'storybook/actions';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxPromptInput;
+type Element = Components.IxChatInput;
 
-function renderPromptInput(args: Partial<Element>) {
-  const container = genericRender('ix-prompt-input', args);
-  const promptInput = container.querySelector(
-    'ix-prompt-input'
-  ) as HTMLIxPromptInputElement;
+function renderChatInput(args: Partial<Element>) {
+  const container = genericRender('ix-chat-input', args);
+  const chatInput = container.querySelector(
+    'ix-chat-input'
+  ) as HTMLIxChatInputElement;
 
-  promptInput.addEventListener('promptSubmit', (event) => {
+  chatInput.addEventListener('promptSubmit', (event) => {
     action('promptSubmit')((event as CustomEvent<string>).detail);
   });
 
@@ -28,10 +28,10 @@ function renderPromptInput(args: Partial<Element>) {
 }
 
 const meta = {
-  title: 'Example/Prompt Input',
+  title: 'Example/Chat Input',
   tags: [],
-  render: (args) => renderPromptInput(args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-prompt-input'),
+  render: (args) => renderChatInput(args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-chat-input'),
   parameters: {
     design: {
       type: 'figma',
@@ -82,16 +82,16 @@ export const HardCharacterLimit: Story = {
 
 export const WithAttachments: Story = {
   render: (args) => {
-    const container = renderPromptInput(args);
-    const promptInput = container.querySelector(
-      'ix-prompt-input'
-    ) as HTMLIxPromptInputElement;
+    const container = renderChatInput(args);
+    const chatInput = container.querySelector(
+      'ix-chat-input'
+    ) as HTMLIxChatInputElement;
 
     for (let index = 1; index <= 9; index++) {
       const attachment = document.createElement('ix-chat-prompt-attachment');
       attachment.slot = 'attachments';
       attachment.fileName = `file_${String(index).padStart(2, '0')}.txt`;
-      promptInput.append(attachment);
+      chatInput.append(attachment);
     }
 
     for (let index = 1; index <= 4; index++) {
@@ -99,7 +99,7 @@ export const WithAttachments: Story = {
       item.slot = 'attachment-overflow';
       item.icon = iconTxtDocument;
       item.label = `meeting_notes_summary_0${index}.txt`;
-      promptInput.append(item);
+      chatInput.append(item);
     }
 
     return container;
@@ -117,16 +117,16 @@ export const WithAttachments: Story = {
 
 export const WithScrollableAttachments: Story = {
   render: (args) => {
-    const container = renderPromptInput(args);
-    const promptInput = container.querySelector(
-      'ix-prompt-input'
-    ) as HTMLIxPromptInputElement;
+    const container = renderChatInput(args);
+    const chatInput = container.querySelector(
+      'ix-chat-input'
+    ) as HTMLIxChatInputElement;
 
     for (let index = 1; index <= 8; index++) {
       const attachment = document.createElement('ix-chat-prompt-attachment');
       attachment.slot = 'attachments';
       attachment.fileName = `file_${String(index).padStart(2, '0')}.txt`;
-      promptInput.append(attachment);
+      chatInput.append(attachment);
     }
 
     return container;
@@ -161,12 +161,12 @@ function createFollowUpPrompt(label: string) {
 
 export const WithFollowUpPrompts: Story = {
   render: (args) => {
-    const container = renderPromptInput(args);
-    const promptInput = container.querySelector(
-      'ix-prompt-input'
-    ) as HTMLIxPromptInputElement;
+    const container = renderChatInput(args);
+    const chatInput = container.querySelector(
+      'ix-chat-input'
+    ) as HTMLIxChatInputElement;
 
-    promptInput.append(
+    chatInput.append(
       createFollowUpRefreshButton(),
       createFollowUpPrompt('What are the risks if this insight is ignored?'),
       createFollowUpPrompt(
@@ -190,10 +190,10 @@ export const WithFollowUpPrompts: Story = {
 
 export const CustomActions: Story = {
   render: (args) => {
-    const container = renderPromptInput(args);
-    const promptInput = container.querySelector(
-      'ix-prompt-input'
-    ) as HTMLIxPromptInputElement;
+    const container = renderChatInput(args);
+    const chatInput = container.querySelector(
+      'ix-chat-input'
+    ) as HTMLIxChatInputElement;
 
     const startAction = document.createElement('ix-icon-button');
     startAction.icon = 'attach';
@@ -207,7 +207,7 @@ export const CustomActions: Story = {
     endAction.variant = 'subtle-tertiary';
     endAction.setAttribute('aria-label', 'Record voice input');
 
-    promptInput.append(startAction, endAction);
+    chatInput.append(startAction, endAction);
 
     return container;
   },

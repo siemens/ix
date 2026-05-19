@@ -9,4 +9,4 @@
 
 export type CharacterLimitMode = 'soft' | 'hard';
 
-export type PromptInputAttachmentLayout = 'wrap' | 'scroll';
+export type ChatInputAttachmentLayout = 'wrap' | 'scroll';

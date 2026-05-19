@@ -26,17 +26,17 @@
   flex: 1 1 auto;
   flex-direction: column;
   align-items: center;
-  gap: var(--ix-chat-shell-message-gap, var(--theme-space-5));
+  gap: var(--ix-chat-message-gap, var(--theme-space-5));
   min-height: 0;
   width: 100%;
-  padding: var(--ix-chat-shell-messages-padding, var(--theme-space-5));
+  padding: var(--ix-chat-messages-padding, var(--theme-space-5));
   box-sizing: border-box;
   overflow-y: auto;
 }
 
 .messages ::slotted(*) {
   width: 100%;
-  max-width: var(--ix-chat-shell-content-max-width, 45rem);
+  max-width: var(--ix-chat-content-max-width, 45rem);
   flex: 0 0 auto;
 }
 
@@ -45,7 +45,7 @@
   flex: 0 0 auto;
   width: 100%;
   padding: var(
-    --ix-chat-shell-prompt-padding,
+    --ix-chat-prompt-padding,
     0 var(--theme-space-5) var(--theme-space-5)
   );
   box-sizing: border-box;
@@ -58,5 +58,5 @@
 
 .prompt ::slotted(*) {
   width: 100%;
-  max-width: var(--ix-chat-shell-content-max-width, 45rem);
+  max-width: var(--ix-chat-content-max-width, 45rem);
 }

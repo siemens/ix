@@ -12,14 +12,14 @@ import { Component, Host, State, h } from '@stencil/core';
 /**
  * @since 5.0.0
  * @slot - Chat messages, for example ix-chat-user-message and ix-chat-ai-message
- * @slot prompt - Prompt input displayed below the chat messages
+ * @slot prompt - Chat input displayed below the chat messages
  */
 @Component({
-  tag: 'ix-chat-shell',
-  styleUrl: 'chat-shell.scss',
+  tag: 'ix-chat',
+  styleUrl: 'chat.scss',
   shadow: true,
 })
-export class ChatShell {
+export class Chat {
   @State() hasPrompt = false;
 
   private hasAssignedContent(slot: HTMLSlotElement) {

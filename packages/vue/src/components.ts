@@ -19,9 +19,10 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxChat } from '@siemens/ix/components/ix-chat.js';
 import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
+import { defineCustomElement as defineIxChatInput } from '@siemens/ix/components/ix-chat-input.js';
 import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
-import { defineCustomElement as defineIxChatShell } from '@siemens/ix/components/ix-chat-shell.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
@@ -83,7 +84,6 @@ import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-p
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
-import { defineCustomElement as defineIxPromptInput } from '@siemens/ix/components/ix-prompt-input.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -301,7 +301,43 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
 ]);
 
 
+export const IxChat: StencilVueComponent<JSX.IxChat> = /*@__PURE__*/ defineContainer<JSX.IxChat>('ix-chat', defineIxChat);
+
+
 export const IxChatAiMessage: StencilVueComponent<JSX.IxChatAiMessage> = /*@__PURE__*/ defineContainer<JSX.IxChatAiMessage>('ix-chat-ai-message', defineIxChatAiMessage);
+
+
+export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxChatInput, JSX.IxChatInput["value"]>('ix-chat-input', defineIxChatInput, [
+  'name',
+  'placeholder',
+  'value',
+  'disabled',
+  'readonly',
+  'textareaLabel',
+  'maxLength',
+  'characterLimit',
+  'characterLimitMode',
+  'characterLimitWarningThreshold',
+  'attachmentLayout',
+  'attachmentOverflowCount',
+  'attachmentOverflowLabel',
+  'minRows',
+  'maxRows',
+  'insertLineBreakOnEnter',
+  'disclaimer',
+  'valueChange',
+  'ixBlur',
+  'ixChange',
+  'promptSubmit',
+  'attachmentOverflowChange'
+], [
+  'valueChange',
+  'ixBlur',
+  'ixChange',
+  'promptSubmit',
+  'attachmentOverflowChange'
+],
+'value', 'valueChange', undefined);
 
 
 export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatPromptAttachment>('ix-chat-prompt-attachment', defineIxChatPromptAttachment, [
@@ -324,9 +360,6 @@ export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachm
   'removeClick',
   'retryClick'
 ]);
-
-
-export const IxChatShell: StencilVueComponent<JSX.IxChatShell> = /*@__PURE__*/ defineContainer<JSX.IxChatShell>('ix-chat-shell', defineIxChatShell);
 
 
 export const IxChatUserMessage: StencilVueComponent<JSX.IxChatUserMessage> = /*@__PURE__*/ defineContainer<JSX.IxChatUserMessage>('ix-chat-user-message', defineIxChatUserMessage, [
@@ -1220,39 +1253,6 @@ export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> =
   'textAlignment',
   'showTextAsTooltip'
 ]);
-
-
-export const IxPromptInput: StencilVueComponent<JSX.IxPromptInput, JSX.IxPromptInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxPromptInput, JSX.IxPromptInput["value"]>('ix-prompt-input', defineIxPromptInput, [
-  'name',
-  'placeholder',
-  'value',
-  'disabled',
-  'readonly',
-  'textareaLabel',
-  'maxLength',
-  'characterLimit',
-  'characterLimitMode',
-  'characterLimitWarningThreshold',
-  'attachmentLayout',
-  'attachmentOverflowCount',
-  'attachmentOverflowLabel',
-  'minRows',
-  'maxRows',
-  'insertLineBreakOnEnter',
-  'disclaimer',
-  'valueChange',
-  'ixBlur',
-  'ixChange',
-  'promptSubmit',
-  'attachmentOverflowChange'
-], [
-  'valueChange',
-  'ixBlur',
-  'ixChange',
-  'promptSubmit',
-  'attachmentOverflowChange'
-],
-'value', 'valueChange', undefined);
 
 
 export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', defineIxPushCard, [

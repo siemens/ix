@@ -22,12 +22,12 @@ type ValueChangeTestElement = HTMLElement & {
 };
 
 regressionTest(
-  'ix-prompt-input emits valueChange when text is entered',
+  'ix-chat-input emits valueChange when text is entered',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input></ix-prompt-input>');
+    await mount('<ix-chat-input></ix-chat-input>');
 
-    const promptInput = page.locator('ix-prompt-input');
-    await promptInput.evaluate((element) => {
+    const chatInput = page.locator('ix-chat-input');
+    await chatInput.evaluate((element) => {
       const testElement = element as ValueChangeTestElement;
       testElement.__valueChange = undefined;
       element.addEventListener('valueChange', ((event: CustomEvent<string>) => {
@@ -35,10 +35,10 @@ regressionTest(
       }) as EventListener);
     });
 
-    await promptInput.locator('textarea').fill('Show pump status');
+    await chatInput.locator('textarea').fill('Show pump status');
 
-    await expect(promptInput).toHaveAttribute('value', 'Show pump status');
-    const emittedValue = await promptInput.evaluate(
+    await expect(chatInput).toHaveAttribute('value', 'Show pump status');
+    const emittedValue = await chatInput.evaluate(
       (element) => (element as ValueChangeTestElement).__valueChange
     );
     expect(emittedValue).toBe('Show pump status');
@@ -46,12 +46,12 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input disables submit button while prompt is empty',
+  'ix-chat-input disables submit button while prompt is empty',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input></ix-prompt-input>');
+    await mount('<ix-chat-input></ix-chat-input>');
 
     const submitButton = page
-      .locator('ix-prompt-input')
+      .locator('ix-chat-input')
       .locator('ix-icon-button.submit-button');
 
     await expect(submitButton).toHaveClass(/disabled/);
@@ -59,21 +59,21 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input emits promptSubmit on submit button click',
+  'ix-chat-input emits promptSubmit on submit button click',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input value="Analyze alarms"></ix-prompt-input>');
+    await mount('<ix-chat-input value="Analyze alarms"></ix-chat-input>');
 
     await page.evaluate(() => {
       globalThis.__promptSubmitValue = undefined;
       document
-        .querySelector('ix-prompt-input')
+        .querySelector('ix-chat-input')
         ?.addEventListener('promptSubmit', ((event: CustomEvent<string>) => {
           globalThis.__promptSubmitValue = event.detail;
         }) as EventListener);
     });
 
     await page
-      .locator('ix-prompt-input')
+      .locator('ix-chat-input')
       .locator('ix-icon-button.submit-button')
       .click();
 
@@ -85,20 +85,20 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input emits promptSubmit on Enter but not Shift Enter',
+  'ix-chat-input emits promptSubmit on Enter but not Shift Enter',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input value="Analyze alarms"></ix-prompt-input>');
+    await mount('<ix-chat-input value="Analyze alarms"></ix-chat-input>');
 
     await page.evaluate(() => {
       globalThis.__promptSubmitValue = undefined;
       document
-        .querySelector('ix-prompt-input')
+        .querySelector('ix-chat-input')
         ?.addEventListener('promptSubmit', ((event: CustomEvent<string>) => {
           globalThis.__promptSubmitValue = event.detail;
         }) as EventListener);
     });
 
-    const textarea = page.locator('ix-prompt-input').locator('textarea');
+    const textarea = page.locator('ix-chat-input').locator('textarea');
     await textarea.focus();
     await textarea.press('Shift+Enter');
     expect(await page.evaluate(() => globalThis.__promptSubmitValue)).toBe(
@@ -116,75 +116,75 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input does not render default slot actions',
+  'ix-chat-input does not render default slot actions',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input></ix-prompt-input>');
+    await mount('<ix-chat-input></ix-chat-input>');
 
-    const promptInput = page.locator('ix-prompt-input');
+    const chatInput = page.locator('ix-chat-input');
 
+    await expect(chatInput.locator('.left-actions ix-icon-button')).toHaveCount(
+      0
+    );
     await expect(
-      promptInput.locator('.left-actions ix-icon-button')
-    ).toHaveCount(0);
-    await expect(
-      promptInput.locator('.right-actions ix-icon-button')
+      chatInput.locator('.right-actions ix-icon-button')
     ).toHaveCount(1);
   }
 );
 
 regressionTest(
-  'ix-prompt-input shows a soft character limit warning',
+  'ix-chat-input shows a soft character limit warning',
   async ({ mount, page }) => {
     await mount(
-      '<ix-prompt-input character-limit="10" character-limit-mode="soft" value="123456789"></ix-prompt-input>'
+      '<ix-chat-input character-limit="10" character-limit-mode="soft" value="123456789"></ix-chat-input>'
     );
 
-    const promptInput = page.locator('ix-prompt-input');
+    const chatInput = page.locator('ix-chat-input');
 
-    await expect(promptInput.locator('.character-limit')).toContainText(
+    await expect(chatInput.locator('.character-limit')).toContainText(
       "You're nearing the limit (9 / 10 characters)"
     );
     expect(
-      await promptInput.locator('textarea').getAttribute('maxlength')
+      await chatInput.locator('textarea').getAttribute('maxlength')
     ).toBeNull();
   }
 );
 
 regressionTest(
-  'ix-prompt-input shows a hard character limit warning when input is blocked',
+  'ix-chat-input shows a hard character limit warning when input is blocked',
   async ({ mount, page }) => {
-    await mount('<ix-prompt-input character-limit="10"></ix-prompt-input>');
+    await mount('<ix-chat-input character-limit="10"></ix-chat-input>');
 
-    const promptInput = page.locator('ix-prompt-input');
-    const textarea = promptInput.locator('textarea');
+    const chatInput = page.locator('ix-chat-input');
+    const textarea = chatInput.locator('textarea');
 
     await textarea.fill('1234567890');
-    await expect(promptInput.locator('.character-limit')).toHaveCount(0);
+    await expect(chatInput.locator('.character-limit')).toHaveCount(0);
 
     await textarea.press('1');
 
     await expect(textarea).toHaveValue('1234567890');
-    await expect(promptInput.locator('.character-limit')).toContainText(
+    await expect(chatInput.locator('.character-limit')).toContainText(
       'Character limit exceeded (10 / 10 characters)'
     );
   }
 );
 
 regressionTest(
-  'ix-prompt-input renders slotted attachments with selected layout',
+  'ix-chat-input renders slotted attachments with selected layout',
   async ({ mount, page }) => {
     await mount(`
-      <ix-prompt-input attachment-layout="scroll">
+      <ix-chat-input attachment-layout="scroll">
         <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
         <ix-chat-prompt-attachment slot="attachments" status="loading"></ix-chat-prompt-attachment>
-      </ix-prompt-input>
+      </ix-chat-input>
     `);
 
-    const promptInput = page.locator('ix-prompt-input');
+    const chatInput = page.locator('ix-chat-input');
 
-    await expect(promptInput.locator('.attachments')).toHaveClass(
+    await expect(chatInput.locator('.attachments')).toHaveClass(
       /has-attachments/
     );
-    await expect(promptInput.locator('.attachments')).toHaveClass(
+    await expect(chatInput.locator('.attachments')).toHaveClass(
       /attachments--scroll/
     );
     await expect(
@@ -194,18 +194,18 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input renders wrap attachment overflow as dropdown',
+  'ix-chat-input renders wrap attachment overflow as dropdown',
   async ({ mount, page }) => {
     await mount(`
-      <ix-prompt-input attachment-overflow-count="4">
+      <ix-chat-input attachment-overflow-count="4">
         <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
         <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_01.txt"></ix-dropdown-item>
         <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_02.txt"></ix-dropdown-item>
-      </ix-prompt-input>
+      </ix-chat-input>
     `);
 
-    const promptInput = page.locator('ix-prompt-input');
-    const overflow = promptInput.locator(
+    const chatInput = page.locator('ix-chat-input');
+    const overflow = chatInput.locator(
       'ix-dropdown-button.attachment-overflow'
     );
     const overflowItems = page.locator(
@@ -224,20 +224,20 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-prompt-input renders slotted follow-up actions above the input',
+  'ix-chat-input renders slotted follow-up actions above the input',
   async ({ mount, page }) => {
     await mount(`
-      <ix-prompt-input>
+      <ix-chat-input>
         <button slot="follow-up" aria-label="Refresh follow-up prompts">Refresh</button>
         <ix-button slot="follow-up" variant="secondary">What are the risks if this insight is ignored?</ix-button>
         <ix-button slot="follow-up" variant="secondary">Show related insights from similar customer events.</ix-button>
-      </ix-prompt-input>
+      </ix-chat-input>
     `);
 
-    const promptInput = page.locator('ix-prompt-input');
-    const followUp = promptInput.locator('.follow-up-prompts');
+    const chatInput = page.locator('ix-chat-input');
+    const followUp = chatInput.locator('.follow-up-prompts');
 
-    await expect(promptInput).toHaveClass(/has-follow-up/);
+    await expect(chatInput).toHaveClass(/has-follow-up/);
     await expect(followUp).toBeVisible();
     await expect(page.locator('[slot="follow-up"]')).toHaveCount(3);
     await expect(
@@ -246,14 +246,14 @@ regressionTest(
   }
 );
 
-regressionTest(`form-ready - ix-prompt-input`, async ({ mount, page }) => {
+regressionTest(`form-ready - ix-chat-input`, async ({ mount, page }) => {
   await mount(
-    `<form><ix-prompt-input name="my-field-name"></ix-prompt-input></form>`
+    `<form><ix-chat-input name="my-field-name"></ix-chat-input></form>`
   );
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const input = page.locator('ix-prompt-input').locator('textarea');
+  const input = page.locator('ix-chat-input').locator('textarea');
   await input.fill('Some prompt');
   await input.blur();
 

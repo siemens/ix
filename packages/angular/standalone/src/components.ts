@@ -20,9 +20,10 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxChat } from '@siemens/ix/components/ix-chat.js';
 import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
+import { defineCustomElement as defineIxChatInput } from '@siemens/ix/components/ix-chat-input.js';
 import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
-import { defineCustomElement as defineIxChatShell } from '@siemens/ix/components/ix-chat-shell.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
@@ -84,7 +85,6 @@ import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-p
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
-import { defineCustomElement as defineIxPromptInput } from '@siemens/ix/components/ix-prompt-input.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -507,6 +507,28 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIxChat
+})
+@Component({
+  selector: 'ix-chat',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxChat {
+  protected el: HTMLIxChatElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChat extends Components.IxChat {}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIxChatAiMessage
 })
 @Component({
@@ -526,6 +548,57 @@ export class IxChatAiMessage {
 
 
 export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxChatInput,
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-chat-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
+})
+export class IxChatInput {
+  protected el: HTMLIxChatInputElement;
+  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
+  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatInput extends Components.IxChatInput {
+  /**
+   * Event emitted when the value of the chat input changes. @since 5.0.0
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the chat input loses focus. @since 5.0.0
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the chat input loses focus and the value has changed. @since 5.0.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
+   */
+  promptSubmit: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
+   */
+  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
@@ -566,28 +639,6 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
    */
   retryClick: EventEmitter<CustomEvent<void>>;
 }
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIxChatShell
-})
-@Component({
-  selector: 'ix-chat-shell',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxChatShell {
-  protected el: HTMLIxChatShellElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxChatShell extends Components.IxChatShell {}
 
 
 @ProxyCmp({
@@ -2434,57 +2485,6 @@ export class IxProgressIndicator {
 
 
 export declare interface IxProgressIndicator extends Components.IxProgressIndicator {}
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIxPromptInput,
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  methods: ['getNativeInputElement', 'focusInput']
-})
-@Component({
-  selector: 'ix-prompt-input',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
-})
-export class IxPromptInput {
-  protected el: HTMLIxPromptInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
-  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
-  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxPromptInput extends Components.IxPromptInput {
-  /**
-   * Event emitted when the value of the prompt input changes. @since 5.0.0
-   */
-  valueChange: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the prompt input loses focus. @since 5.0.0
-   */
-  ixBlur: EventEmitter<CustomEvent<void>>;
-  /**
-   * Event emitted when the prompt input loses focus and the value has changed. @since 5.0.0
-   */
-  ixChange: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
-   */
-  promptSubmit: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
-   */
-  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
-}
 
 
 @ProxyCmp({

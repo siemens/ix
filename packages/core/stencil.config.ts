@@ -93,7 +93,7 @@ export const config: Config = {
           elements: [
             'ix-select',
             'ix-input',
-            'ix-prompt-input',
+            'ix-chat-input',
             'ix-textarea',
             'ix-number-input',
             'ix-date-input',

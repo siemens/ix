@@ -12,11 +12,11 @@
 :host {
   display: block;
   width: 100%;
-  max-width: var(--ix-prompt-input-max-width, 45rem);
+  max-width: var(--ix-chat-input-max-width, 45rem);
 
   @include component.ix-component;
 
-  .prompt-input {
+  .chat-input {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -53,12 +53,12 @@
     flex: 0 0 auto;
   }
 
-  .prompt-input:hover {
+  .chat-input:hover {
     border-color: var(--theme-input--border-color--hover);
     background-color: var(--theme-input--background--hover);
   }
 
-  .prompt-input:focus-within {
+  .chat-input:focus-within {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-input--focus--outline-offset);
     border-color: var(--theme-input--border-color--focus);
@@ -185,7 +185,7 @@
 :host(.disabled) {
   pointer-events: none;
 
-  .prompt-input {
+  .chat-input {
     border-color: var(--theme-input--border-color--disabled);
     box-shadow: none;
     color: var(--theme-input--color--disabled);
@@ -198,14 +198,14 @@
 }
 
 :host(.readonly) {
-  .prompt-input {
+  .chat-input {
     border-color: var(--theme-input--border-color--readonly);
     box-shadow: none;
     background-color: transparent;
   }
 
-  .prompt-input:hover,
-  .prompt-input:focus-within {
+  .chat-input:hover,
+  .chat-input:focus-within {
     border-color: var(--theme-input--border-color--readonly);
     outline: none;
   }

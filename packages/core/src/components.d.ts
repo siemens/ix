@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { CharacterLimitMode, ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
 import { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
@@ -46,7 +47,6 @@ import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-import { CharacterLimitMode, PromptInputAttachmentLayout } from "./components/prompt-input/prompt-input.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -75,6 +75,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { CharacterLimitMode, ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
 export { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
@@ -103,7 +104,6 @@ export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-export { CharacterLimitMode, PromptInputAttachmentLayout } from "./components/prompt-input/prompt-input.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -633,7 +633,127 @@ export namespace Components {
     /**
      * @since 5.0.0
      */
+    interface IxChat {
+    }
+    /**
+     * @since 5.0.0
+     */
     interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Layout used for attachments in the attachments slot.
+          * @since 5.0.0
+          * @default 'wrap'
+         */
+        "attachmentLayout": ChatInputAttachmentLayout;
+        /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentOverflowCount"?: number;
+        /**
+          * Label displayed after the attachment overflow count.
+          * @since 5.0.0
+          * @default 'more'
+         */
+        "attachmentOverflowLabel": string;
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+          * @since 5.0.0
+         */
+        "characterLimit"?: number;
+        /**
+          * Controls whether the character limit only warns or prevents further input.
+          * @since 5.0.0
+          * @default 'hard'
+         */
+        "characterLimitMode": CharacterLimitMode;
+        /**
+          * Percentage of the character limit that triggers the soft warning.
+          * @since 5.0.0
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold": number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @since 5.0.0
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer": string;
+        /**
+          * Focuses the chat input.
+          * @since 5.0.0
+         */
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Returns the native textarea element used by the chat input.
+          * @since 5.0.0
+         */
+        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @since 5.0.0
+          * @default false
+         */
+        "insertLineBreakOnEnter": boolean;
+        /**
+          * The maximum length of the chat input.
+          * @since 5.0.0
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @since 5.0.0
+          * @default 6
+         */
+        "maxRows": number;
+        /**
+          * Minimum number of visible text rows.
+          * @since 5.0.0
+          * @default 1
+         */
+        "minRows": number;
+        /**
+          * The name of the chat input.
+          * @since 5.0.0
+         */
+        "name"?: string;
+        /**
+          * The placeholder text for the chat input.
+          * @since 5.0.0
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder": string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @since 5.0.0
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * Accessible label for the native textarea.
+          * @since 5.0.0
+          * @default 'Chat input'
+         */
+        "textareaLabel": string;
+        /**
+          * The value of the chat input.
+          * @since 5.0.0
+          * @default ''
+         */
+        "value": string;
     }
     /**
      * @since 5.0.0
@@ -705,11 +825,6 @@ export namespace Components {
           * @default 'prompt'
          */
         "variant": ChatPromptAttachmentVariant;
-    }
-    /**
-     * @since 5.0.0
-     */
-    interface IxChatShell {
     }
     /**
      * @since 5.0.0
@@ -3314,121 +3429,6 @@ export namespace Components {
          */
         "value": number;
     }
-    /**
-     * @since 5.0.0
-     * @form-ready 
-     */
-    interface IxPromptInput {
-        /**
-          * Layout used for attachments in the attachments slot.
-          * @since 5.0.0
-          * @default 'wrap'
-         */
-        "attachmentLayout": PromptInputAttachmentLayout;
-        /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentOverflowCount"?: number;
-        /**
-          * Label displayed after the attachment overflow count.
-          * @since 5.0.0
-          * @default 'more'
-         */
-        "attachmentOverflowLabel": string;
-        /**
-          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
-          * @since 5.0.0
-         */
-        "characterLimit"?: number;
-        /**
-          * Controls whether the character limit only warns or prevents further input.
-          * @since 5.0.0
-          * @default 'hard'
-         */
-        "characterLimitMode": CharacterLimitMode;
-        /**
-          * Percentage of the character limit that triggers the soft warning.
-          * @since 5.0.0
-          * @default 0.9
-         */
-        "characterLimitWarningThreshold": number;
-        /**
-          * Specifies whether the prompt input is disabled.
-          * @since 5.0.0
-          * @default false
-         */
-        "disabled": boolean;
-        /**
-          * Disclaimer text displayed below the prompt input.
-          * @since 5.0.0
-          * @default 'This content is AI-generated. Always verify the information for accuracy.'
-         */
-        "disclaimer": string;
-        /**
-          * Focuses the prompt input.
-          * @since 5.0.0
-         */
-        "focusInput": () => Promise<void>;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Returns the native textarea element used by the prompt input.
-          * @since 5.0.0
-         */
-        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
-        /**
-          * If true, pressing Enter inserts a line break instead of submitting the prompt.
-          * @since 5.0.0
-          * @default false
-         */
-        "insertLineBreakOnEnter": boolean;
-        /**
-          * The maximum length of the prompt input.
-          * @since 5.0.0
-         */
-        "maxLength"?: number;
-        /**
-          * Maximum number of visible text rows before the input becomes scrollable.
-          * @since 5.0.0
-          * @default 6
-         */
-        "maxRows": number;
-        /**
-          * Minimum number of visible text rows.
-          * @since 5.0.0
-          * @default 1
-         */
-        "minRows": number;
-        /**
-          * The name of the prompt input.
-          * @since 5.0.0
-         */
-        "name"?: string;
-        /**
-          * The placeholder text for the prompt input.
-          * @since 5.0.0
-          * @default 'Enter a command, question or topic...'
-         */
-        "placeholder": string;
-        /**
-          * Specifies whether the prompt input is readonly.
-          * @since 5.0.0
-          * @default false
-         */
-        "readonly": boolean;
-        /**
-          * Accessible label for the native textarea.
-          * @since 5.0.0
-          * @default 'Prompt input'
-         */
-        "textareaLabel": string;
-        /**
-          * The value of the prompt input.
-          * @since 5.0.0
-          * @default ''
-         */
-        "value": string;
-    }
     interface IxPushCard {
         /**
           * ARIA label for the icon
@@ -4817,6 +4817,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatInputElement;
+}
 export interface IxChatPromptAttachmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatPromptAttachmentElement;
@@ -4964,10 +4968,6 @@ export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
 export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
-}
-export interface IxPromptInputCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxPromptInputElement;
 }
 export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5236,11 +5236,45 @@ declare global {
     /**
      * @since 5.0.0
      */
+    interface HTMLIxChatElement extends Components.IxChat, HTMLStencilElement {
+    }
+    var HTMLIxChatElement: {
+        prototype: HTMLIxChatElement;
+        new (): HTMLIxChatElement;
+    };
+    /**
+     * @since 5.0.0
+     */
     interface HTMLIxChatAiMessageElement extends Components.IxChatAiMessage, HTMLStencilElement {
     }
     var HTMLIxChatAiMessageElement: {
         prototype: HTMLIxChatAiMessageElement;
         new (): HTMLIxChatAiMessageElement;
+    };
+    interface HTMLIxChatInputElementEventMap {
+        "valueChange": string;
+        "ixBlur": void;
+        "ixChange": string;
+        "promptSubmit": string;
+        "attachmentOverflowChange": boolean;
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatInputElement: {
+        prototype: HTMLIxChatInputElement;
+        new (): HTMLIxChatInputElement;
     };
     interface HTMLIxChatPromptAttachmentElementEventMap {
         "attachmentClick": void;
@@ -5263,15 +5297,6 @@ declare global {
     var HTMLIxChatPromptAttachmentElement: {
         prototype: HTMLIxChatPromptAttachmentElement;
         new (): HTMLIxChatPromptAttachmentElement;
-    };
-    /**
-     * @since 5.0.0
-     */
-    interface HTMLIxChatShellElement extends Components.IxChatShell, HTMLStencilElement {
-    }
-    var HTMLIxChatShellElement: {
-        prototype: HTMLIxChatShellElement;
-        new (): HTMLIxChatShellElement;
     };
     interface HTMLIxChatUserMessageElementEventMap {
         "attachmentOverflowChange": boolean;
@@ -6144,31 +6169,6 @@ declare global {
         prototype: HTMLIxProgressIndicatorElement;
         new (): HTMLIxProgressIndicatorElement;
     };
-    interface HTMLIxPromptInputElementEventMap {
-        "valueChange": string;
-        "ixBlur": void;
-        "ixChange": string;
-        "promptSubmit": string;
-        "attachmentOverflowChange": boolean;
-    }
-    /**
-     * @since 5.0.0
-     * @form-ready 
-     */
-    interface HTMLIxPromptInputElement extends Components.IxPromptInput, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxPromptInputElementEventMap>(type: K, listener: (this: HTMLIxPromptInputElement, ev: IxPromptInputCustomEvent<HTMLIxPromptInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxPromptInputElementEventMap>(type: K, listener: (this: HTMLIxPromptInputElement, ev: IxPromptInputCustomEvent<HTMLIxPromptInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxPromptInputElement: {
-        prototype: HTMLIxPromptInputElement;
-        new (): HTMLIxPromptInputElement;
-    };
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
     var HTMLIxPushCardElement: {
@@ -6618,9 +6618,10 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chat": HTMLIxChatElement;
         "ix-chat-ai-message": HTMLIxChatAiMessageElement;
+        "ix-chat-input": HTMLIxChatInputElement;
         "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
-        "ix-chat-shell": HTMLIxChatShellElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
@@ -6688,7 +6689,6 @@ declare global {
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
-        "ix-prompt-input": HTMLIxPromptInputElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
@@ -7296,7 +7296,145 @@ declare namespace LocalJSX {
     /**
      * @since 5.0.0
      */
+    interface IxChat {
+    }
+    /**
+     * @since 5.0.0
+     */
     interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.0.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Layout used for attachments in the attachments slot.
+          * @since 5.0.0
+          * @default 'wrap'
+         */
+        "attachmentLayout"?: ChatInputAttachmentLayout;
+        /**
+          * Number of attachments represented by the attachment overflow trigger.
+          * @since 5.0.0
+         */
+        "attachmentOverflowCount"?: number;
+        /**
+          * Label displayed after the attachment overflow count.
+          * @since 5.0.0
+          * @default 'more'
+         */
+        "attachmentOverflowLabel"?: string;
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+          * @since 5.0.0
+         */
+        "characterLimit"?: number;
+        /**
+          * Controls whether the character limit only warns or prevents further input.
+          * @since 5.0.0
+          * @default 'hard'
+         */
+        "characterLimitMode"?: CharacterLimitMode;
+        /**
+          * Percentage of the character limit that triggers the soft warning.
+          * @since 5.0.0
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold"?: number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @since 5.0.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @since 5.0.0
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer"?: string;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @since 5.0.0
+          * @default false
+         */
+        "insertLineBreakOnEnter"?: boolean;
+        /**
+          * The maximum length of the chat input.
+          * @since 5.0.0
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @since 5.0.0
+          * @default 6
+         */
+        "maxRows"?: number;
+        /**
+          * Minimum number of visible text rows.
+          * @since 5.0.0
+          * @default 1
+         */
+        "minRows"?: number;
+        /**
+          * The name of the chat input.
+          * @since 5.0.0
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the attachment overflow expanded state changes.
+          * @since 5.0.0
+         */
+        "onAttachmentOverflowChange"?: (event: IxChatInputCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the chat input loses focus.
+          * @since 5.0.0
+         */
+        "onIxBlur"?: (event: IxChatInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the chat input loses focus and the value has changed.
+          * @since 5.0.0
+         */
+        "onIxChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the prompt is submitted by the send button or Enter key.
+          * @since 5.0.0
+         */
+        "onPromptSubmit"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the value of the chat input changes.
+          * @since 5.0.0
+         */
+        "onValueChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * The placeholder text for the chat input.
+          * @since 5.0.0
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @since 5.0.0
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * Accessible label for the native textarea.
+          * @since 5.0.0
+          * @default 'Chat input'
+         */
+        "textareaLabel"?: string;
+        /**
+          * The value of the chat input.
+          * @since 5.0.0
+          * @default ''
+         */
+        "value"?: string;
     }
     /**
      * @since 5.0.0
@@ -7383,11 +7521,6 @@ declare namespace LocalJSX {
           * @default 'prompt'
          */
         "variant"?: ChatPromptAttachmentVariant;
-    }
-    /**
-     * @since 5.0.0
-     */
-    interface IxChatShell {
     }
     /**
      * @since 5.0.0
@@ -10166,139 +10299,6 @@ declare namespace LocalJSX {
          */
         "value"?: number;
     }
-    /**
-     * @since 5.0.0
-     * @form-ready 
-     */
-    interface IxPromptInput {
-        /**
-          * Layout used for attachments in the attachments slot.
-          * @since 5.0.0
-          * @default 'wrap'
-         */
-        "attachmentLayout"?: PromptInputAttachmentLayout;
-        /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentOverflowCount"?: number;
-        /**
-          * Label displayed after the attachment overflow count.
-          * @since 5.0.0
-          * @default 'more'
-         */
-        "attachmentOverflowLabel"?: string;
-        /**
-          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
-          * @since 5.0.0
-         */
-        "characterLimit"?: number;
-        /**
-          * Controls whether the character limit only warns or prevents further input.
-          * @since 5.0.0
-          * @default 'hard'
-         */
-        "characterLimitMode"?: CharacterLimitMode;
-        /**
-          * Percentage of the character limit that triggers the soft warning.
-          * @since 5.0.0
-          * @default 0.9
-         */
-        "characterLimitWarningThreshold"?: number;
-        /**
-          * Specifies whether the prompt input is disabled.
-          * @since 5.0.0
-          * @default false
-         */
-        "disabled"?: boolean;
-        /**
-          * Disclaimer text displayed below the prompt input.
-          * @since 5.0.0
-          * @default 'This content is AI-generated. Always verify the information for accuracy.'
-         */
-        "disclaimer"?: string;
-        /**
-          * The `id` of a `<form>` element to associate this element with.
-         */
-        "form"?: string;
-        /**
-          * If true, pressing Enter inserts a line break instead of submitting the prompt.
-          * @since 5.0.0
-          * @default false
-         */
-        "insertLineBreakOnEnter"?: boolean;
-        /**
-          * The maximum length of the prompt input.
-          * @since 5.0.0
-         */
-        "maxLength"?: number;
-        /**
-          * Maximum number of visible text rows before the input becomes scrollable.
-          * @since 5.0.0
-          * @default 6
-         */
-        "maxRows"?: number;
-        /**
-          * Minimum number of visible text rows.
-          * @since 5.0.0
-          * @default 1
-         */
-        "minRows"?: number;
-        /**
-          * The name of the prompt input.
-          * @since 5.0.0
-         */
-        "name"?: string;
-        /**
-          * Event emitted when the attachment overflow expanded state changes.
-          * @since 5.0.0
-         */
-        "onAttachmentOverflowChange"?: (event: IxPromptInputCustomEvent<boolean>) => void;
-        /**
-          * Event emitted when the prompt input loses focus.
-          * @since 5.0.0
-         */
-        "onIxBlur"?: (event: IxPromptInputCustomEvent<void>) => void;
-        /**
-          * Event emitted when the prompt input loses focus and the value has changed.
-          * @since 5.0.0
-         */
-        "onIxChange"?: (event: IxPromptInputCustomEvent<string>) => void;
-        /**
-          * Event emitted when the prompt is submitted by the send button or Enter key.
-          * @since 5.0.0
-         */
-        "onPromptSubmit"?: (event: IxPromptInputCustomEvent<string>) => void;
-        /**
-          * Event emitted when the value of the prompt input changes.
-          * @since 5.0.0
-         */
-        "onValueChange"?: (event: IxPromptInputCustomEvent<string>) => void;
-        /**
-          * The placeholder text for the prompt input.
-          * @since 5.0.0
-          * @default 'Enter a command, question or topic...'
-         */
-        "placeholder"?: string;
-        /**
-          * Specifies whether the prompt input is readonly.
-          * @since 5.0.0
-          * @default false
-         */
-        "readonly"?: boolean;
-        /**
-          * Accessible label for the native textarea.
-          * @since 5.0.0
-          * @default 'Prompt input'
-         */
-        "textareaLabel"?: string;
-        /**
-          * The value of the prompt input.
-          * @since 5.0.0
-          * @default ''
-         */
-        "value"?: string;
-    }
     interface IxPushCard {
         /**
           * ARIA label for the icon
@@ -11862,6 +11862,25 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatInputAttributes {
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "disabled": boolean;
+        "readonly": boolean;
+        "textareaLabel": string;
+        "maxLength": number;
+        "characterLimit": number;
+        "characterLimitMode": CharacterLimitMode;
+        "characterLimitWarningThreshold": number;
+        "attachmentLayout": ChatInputAttachmentLayout;
+        "attachmentOverflowCount": number;
+        "attachmentOverflowLabel": string;
+        "minRows": number;
+        "maxRows": number;
+        "insertLineBreakOnEnter": boolean;
+        "disclaimer": string;
+    }
     interface IxChatPromptAttachmentAttributes {
         "fileName": string;
         "status": ChatPromptAttachmentStatus;
@@ -12485,25 +12504,6 @@ declare namespace LocalJSX {
         "textAlignment": 'left' | 'center' | 'right';
         "showTextAsTooltip": boolean;
     }
-    interface IxPromptInputAttributes {
-        "name": string;
-        "placeholder": string;
-        "value": string;
-        "disabled": boolean;
-        "readonly": boolean;
-        "textareaLabel": string;
-        "maxLength": number;
-        "characterLimit": number;
-        "characterLimitMode": CharacterLimitMode;
-        "characterLimitWarningThreshold": number;
-        "attachmentLayout": PromptInputAttachmentLayout;
-        "attachmentOverflowCount": number;
-        "attachmentOverflowLabel": string;
-        "minRows": number;
-        "maxRows": number;
-        "insertLineBreakOnEnter": boolean;
-        "disclaimer": string;
-    }
     interface IxPushCardAttributes {
         "icon": string;
         "ariaLabelIcon": string;
@@ -12819,9 +12819,10 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-chat": IxChat;
         "ix-chat-ai-message": IxChatAiMessage;
+        "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
         "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
-        "ix-chat-shell": IxChatShell;
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
@@ -12889,7 +12890,6 @@ declare namespace LocalJSX {
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
-        "ix-prompt-input": Omit<IxPromptInput, keyof IxPromptInputAttributes> & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes]?: IxPromptInput[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `attr:${K}`]?: IxPromptInputAttributes[K] } & { [K in keyof IxPromptInput & keyof IxPromptInputAttributes as `prop:${K}`]?: IxPromptInput[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
         "ix-radio-group": Omit<IxRadioGroup, keyof IxRadioGroupAttributes> & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes]?: IxRadioGroup[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `attr:${K}`]?: IxRadioGroupAttributes[K] } & { [K in keyof IxRadioGroup & keyof IxRadioGroupAttributes as `prop:${K}`]?: IxRadioGroup[K] };
@@ -12944,15 +12944,20 @@ declare module "@stencil/core" {
             /**
              * @since 5.0.0
              */
+            "ix-chat": LocalJSX.IntrinsicElements["ix-chat"] & JSXBase.HTMLAttributes<HTMLIxChatElement>;
+            /**
+             * @since 5.0.0
+             */
             "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
+            /**
+             * @since 5.0.0
+             * @form-ready 
+             */
+            "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
              * @since 5.0.0
              */
             "ix-chat-prompt-attachment": LocalJSX.IntrinsicElements["ix-chat-prompt-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatPromptAttachmentElement>;
-            /**
-             * @since 5.0.0
-             */
-            "ix-chat-shell": LocalJSX.IntrinsicElements["ix-chat-shell"] & JSXBase.HTMLAttributes<HTMLIxChatShellElement>;
             /**
              * @since 5.0.0
              */
@@ -13051,11 +13056,6 @@ declare module "@stencil/core" {
              * @since 3.2.0
              */
             "ix-progress-indicator": LocalJSX.IntrinsicElements["ix-progress-indicator"] & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
-            /**
-             * @since 5.0.0
-             * @form-ready 
-             */
-            "ix-prompt-input": LocalJSX.IntrinsicElements["ix-prompt-input"] & JSXBase.HTMLAttributes<HTMLIxPromptInputElement>;
             "ix-push-card": LocalJSX.IntrinsicElements["ix-push-card"] & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
              * @form-ready 

@@ -10,65 +10,65 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest(
-  'ix-chat-shell renders chat messages and prompt input',
+  'ix-chat renders chat messages and chat input',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-shell style="height: 32rem">
+      <ix-chat style="height: 32rem">
         <ix-chat-ai-message>
           <p>Effective asset performance management improves uptime.</p>
         </ix-chat-ai-message>
         <ix-chat-user-message message="Summarize the detailed discussion held with the customer"></ix-chat-user-message>
-        <ix-prompt-input slot="prompt" value="Ask a follow-up"></ix-prompt-input>
-      </ix-chat-shell>
+        <ix-chat-input slot="prompt" value="Ask a follow-up"></ix-chat-input>
+      </ix-chat>
     `);
 
-    const shell = page.locator('ix-chat-shell');
+    const chat = page.locator('ix-chat');
 
-    await expect(shell).toHaveClass(/has-prompt/);
-    await expect(shell.locator('.messages')).toBeVisible();
-    await expect(shell.locator('.prompt')).toBeVisible();
+    await expect(chat).toHaveClass(/has-prompt/);
+    await expect(chat.locator('.messages')).toBeVisible();
+    await expect(chat.locator('.prompt')).toBeVisible();
     await expect(page.locator('ix-chat-ai-message')).toContainText(
       'Effective asset performance management improves uptime.'
     );
     await expect(page.locator('ix-chat-user-message')).toContainText(
       'Summarize the detailed discussion held with the customer'
     );
-    await expect(page.locator('ix-prompt-input[slot="prompt"]')).toHaveCount(1);
+    await expect(page.locator('ix-chat-input[slot="prompt"]')).toHaveCount(1);
   }
 );
 
 regressionTest(
-  'ix-chat-shell hides prompt layout when no prompt is assigned',
+  'ix-chat hides prompt layout when no prompt is assigned',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-shell style="height: 32rem">
+      <ix-chat style="height: 32rem">
         <ix-chat-ai-message>
           <p>Analyze alarms.</p>
         </ix-chat-ai-message>
-      </ix-chat-shell>
+      </ix-chat>
     `);
 
-    const shell = page.locator('ix-chat-shell');
+    const chat = page.locator('ix-chat');
 
-    await expect(shell).not.toHaveClass(/has-prompt/);
-    await expect(shell.locator('.messages')).toBeVisible();
-    await expect(shell.locator('.prompt')).not.toBeVisible();
+    await expect(chat).not.toHaveClass(/has-prompt/);
+    await expect(chat.locator('.messages')).toBeVisible();
+    await expect(chat.locator('.prompt')).not.toBeVisible();
   }
 );
 
 regressionTest(
-  'ix-chat-shell provides a scrollable message area',
+  'ix-chat provides a scrollable message area',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-shell style="height: 20rem">
+      <ix-chat style="height: 20rem">
         <ix-chat-ai-message>
           <p>Analyze alarms.</p>
         </ix-chat-ai-message>
-        <ix-prompt-input slot="prompt"></ix-prompt-input>
-      </ix-chat-shell>
+        <ix-chat-input slot="prompt"></ix-chat-input>
+      </ix-chat>
     `);
 
-    await expect(page.locator('ix-chat-shell').locator('.messages')).toHaveCSS(
+    await expect(page.locator('ix-chat').locator('.messages')).toHaveCSS(
       'overflow-y',
       'auto'
     );

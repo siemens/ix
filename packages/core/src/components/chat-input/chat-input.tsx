@@ -28,57 +28,57 @@ import {
 import { makeRef } from '../utils/make-ref';
 import type {
   CharacterLimitMode,
-  PromptInputAttachmentLayout,
-} from './prompt-input.types';
+  ChatInputAttachmentLayout,
+} from './chat-input.types';
 
-let promptInputIds = 0;
+let chatInputIds = 0;
 
 /**
  * @since 5.0.0
  * @form-ready
- * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the prompt input
+ * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the chat input
  * @slot attachments - Attachments displayed above the prompt text area
  * @slot attachment-overflow - Optional ix-dropdown-item elements displayed in the attachment overflow dropdown
  * @slot start - Element will be displayed in the left action area
  * @slot end - Element will be displayed in the right action area before the submit button
  */
 @Component({
-  tag: 'ix-prompt-input',
-  styleUrl: 'prompt-input.scss',
+  tag: 'ix-chat-input',
+  styleUrl: 'chat-input.scss',
   shadow: true,
   formAssociated: true,
 })
-export class PromptInput {
-  @Element() hostElement!: HTMLIxPromptInputElement;
+export class ChatInput {
+  @Element() hostElement!: HTMLIxChatInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * The name of the prompt input.
+   * The name of the chat input.
    * @since 5.0.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * The placeholder text for the prompt input.
+   * The placeholder text for the chat input.
    * @since 5.0.0
    */
   @Prop({ reflect: true }) placeholder =
     'Enter a command, question or topic...';
 
   /**
-   * The value of the prompt input.
+   * The value of the chat input.
    * @since 5.0.0
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
-   * Specifies whether the prompt input is disabled.
+   * Specifies whether the chat input is disabled.
    * @since 5.0.0
    */
   @Prop({ reflect: true }) disabled: boolean = false;
 
   /**
-   * Specifies whether the prompt input is readonly.
+   * Specifies whether the chat input is readonly.
    * @since 5.0.0
    */
   @Prop({ reflect: true }) readonly: boolean = false;
@@ -87,10 +87,10 @@ export class PromptInput {
    * Accessible label for the native textarea.
    * @since 5.0.0
    */
-  @Prop() textareaLabel: string = 'Prompt input';
+  @Prop() textareaLabel: string = 'Chat input';
 
   /**
-   * The maximum length of the prompt input.
+   * The maximum length of the chat input.
    * @since 5.0.0
    */
   @Prop() maxLength?: number;
@@ -118,7 +118,7 @@ export class PromptInput {
    * Layout used for attachments in the attachments slot.
    * @since 5.0.0
    */
-  @Prop() attachmentLayout: PromptInputAttachmentLayout = 'wrap';
+  @Prop() attachmentLayout: ChatInputAttachmentLayout = 'wrap';
 
   /**
    * Number of attachments represented by the attachment overflow trigger.
@@ -151,26 +151,26 @@ export class PromptInput {
   @Prop() insertLineBreakOnEnter: boolean = false;
 
   /**
-   * Disclaimer text displayed below the prompt input.
+   * Disclaimer text displayed below the chat input.
    * @since 5.0.0
    */
   @Prop() disclaimer =
     'This content is AI-generated. Always verify the information for accuracy.';
 
   /**
-   * Event emitted when the value of the prompt input changes.
+   * Event emitted when the value of the chat input changes.
    * @since 5.0.0
    */
   @Event() valueChange!: EventEmitter<string>;
 
   /**
-   * Event emitted when the prompt input loses focus.
+   * Event emitted when the chat input loses focus.
    * @since 5.0.0
    */
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the prompt input loses focus and the value has changed.
+   * Event emitted when the chat input loses focus and the value has changed.
    * @since 5.0.0
    */
   @Event() ixChange!: EventEmitter<string>;
@@ -197,7 +197,7 @@ export class PromptInput {
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
   });
-  private readonly inputId = `ix-prompt-input-${promptInputIds++}`;
+  private readonly inputId = `ix-chat-input-${chatInputIds++}`;
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
@@ -238,7 +238,7 @@ export class PromptInput {
   }
 
   /**
-   * Returns the native textarea element used by the prompt input.
+   * Returns the native textarea element used by the chat input.
    * @since 5.0.0
    */
   @Method()
@@ -247,7 +247,7 @@ export class PromptInput {
   }
 
   /**
-   * Focuses the prompt input.
+   * Focuses the chat input.
    * @since 5.0.0
    */
   @Method()
@@ -537,7 +537,7 @@ export class PromptInput {
             onSlotchange={(event) => this.handleFollowUpSlotChange(event)}
           ></slot>
         </div>
-        <div class="prompt-input">
+        <div class="chat-input">
           <div
             class={{
               attachments: true,

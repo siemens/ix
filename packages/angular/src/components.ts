@@ -405,6 +405,28 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 @ProxyCmp({
 })
 @Component({
+  selector: 'ix-chat',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChat {
+  protected el: HTMLIxChatElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChat extends Components.IxChat {}
+
+
+@ProxyCmp({
+})
+@Component({
   selector: 'ix-chat-ai-message',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
@@ -422,6 +444,57 @@ export class IxChatAiMessage {
 
 
 export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
+
+
+@ProxyCmp({
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-chat-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
+  standalone: false
+})
+export class IxChatInput {
+  protected el: HTMLIxChatInputElement;
+  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
+  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatInput extends Components.IxChatInput {
+  /**
+   * Event emitted when the value of the chat input changes. @since 5.0.0
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the chat input loses focus. @since 5.0.0
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the chat input loses focus and the value has changed. @since 5.0.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
+   */
+  promptSubmit: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
+   */
+  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
@@ -462,28 +535,6 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
    */
   retryClick: EventEmitter<CustomEvent<void>>;
 }
-
-
-@ProxyCmp({
-})
-@Component({
-  selector: 'ix-chat-shell',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-  standalone: false
-})
-export class IxChatShell {
-  protected el: HTMLIxChatShellElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxChatShell extends Components.IxChatShell {}
 
 
 @ProxyCmp({
@@ -2330,57 +2381,6 @@ export class IxProgressIndicator {
 
 
 export declare interface IxProgressIndicator extends Components.IxProgressIndicator {}
-
-
-@ProxyCmp({
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  methods: ['getNativeInputElement', 'focusInput']
-})
-@Component({
-  selector: 'ix-prompt-input',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
-  standalone: false
-})
-export class IxPromptInput {
-  protected el: HTMLIxPromptInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
-  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
-  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxPromptInput extends Components.IxPromptInput {
-  /**
-   * Event emitted when the value of the prompt input changes. @since 5.0.0
-   */
-  valueChange: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the prompt input loses focus. @since 5.0.0
-   */
-  ixBlur: EventEmitter<CustomEvent<void>>;
-  /**
-   * Event emitted when the prompt input loses focus and the value has changed. @since 5.0.0
-   */
-  ixChange: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
-   */
-  promptSubmit: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
-   */
-  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
-}
 
 
 @ProxyCmp({
