@@ -11,11 +11,11 @@ import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
 import { reactOutputTarget } from '@stencil/react-output-target';
-import { vueOutputTarget } from '@stencil/vue-output-target';
 import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
+import { vueComponentOutputTarget } from './scripts/build/vue-output-target';
 const corePackageName = '@siemens/ix';
 
 const excludeDevelopmentComponents = ['ix-playground'];
@@ -75,17 +75,10 @@ export const config: Config = {
       dist: '../storybook-docs/.storybook/define-custom-elements.ts',
       excludeComponents: excludeDevelopmentComponents,
     }),
-    vueOutputTarget({
-      componentCorePackage: corePackageName,
-      proxiesFile: '../vue/src/components.ts',
-      includeImportCustomElements: true,
-      includePolyfills: false,
-      includeDefineCustomElements: false,
+    vueComponentOutputTarget({
       excludeComponents: [
         ...excludeDevelopmentComponents,
-        'ix-icon',
-        'ix-tab-panel',
-        'ix-tab-set',
+        ...['ix-icon', 'ix-tab-panel', 'ix-tab-set'],
       ],
       componentModels: [
         {
