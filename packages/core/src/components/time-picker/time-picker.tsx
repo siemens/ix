@@ -1348,8 +1348,15 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                 <div class="column-separator"></div>
                 <div class="columns">
                   <div class="column-header" title="AM/PM" />
-                  <div class="element-list" tabindex={-1}>
+                  <div
+                    role="listbox"
+                    aria-label="AM/PM"
+                    class="element-list"
+                    tabindex={-1}
+                  >
                     <button
+                      role="option"
+                      aria-selected={this.timeRef === 'AM'}
                       data-am-pm-id="AM"
                       class={{
                         selected: this.timeRef === 'AM',
@@ -1362,6 +1369,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       AM
                     </button>
                     <button
+                      role="option"
+                      aria-selected={this.timeRef === 'PM'}
                       data-am-pm-id="PM"
                       class={{
                         selected: this.timeRef === 'PM',
