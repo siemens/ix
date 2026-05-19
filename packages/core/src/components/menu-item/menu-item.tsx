@@ -171,6 +171,14 @@ export class MenuItem implements IxMenuItemBase {
     }
   }
 
+  returnFocusToParentCategory() {
+    const categoryMenuItem = this.hostElement
+      .closest<HTMLElement>('ix-menu-category')
+      ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item');
+
+    categoryMenuItem?.focus();
+  }
+
   render() {
     let extendedAttributes = {};
     if (this.home) {
@@ -224,6 +232,7 @@ export class MenuItem implements IxMenuItemBase {
         aria-disabled={this.disabled ? 'true' : null}
         tabIndex={this.disabled ? -1 : 0}
         {...extendedAttributes}
+        role="menuitem"
       >
         {this.href ? (
           <a
@@ -243,7 +252,18 @@ export class MenuItem implements IxMenuItemBase {
             {menuContent}
           </a>
         ) : (
-          <button {...commonAttributes} ref={this.buttonRef}>
+          <button
+            {...commonAttributes}
+            ref={this.buttonRef}
+            onKeyDown={(e: KeyboardEvent) => {
+              if (
+                (e.key === 'Enter' || e.key === ' ') &&
+                this.isHostedInsideCategory
+              ) {
+                this.returnFocusToParentCategory();
+              }
+            }}
+          >
             {menuContent}
           </button>
         )}
