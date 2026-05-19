@@ -56,23 +56,23 @@ SPDX-License-Identifier: MIT
         <ix-menu-item icon="star">With other icon</ix-menu-item>
         <ix-menu-item icon="star">With other icon</ix-menu-item>
         <ix-menu-item icon="star">With other icon</ix-menu-item>
-        <ix-menu-settings suppress-legacy-tabs>
-          <ix-tabs active-tab-key="tab1">
-            <ix-tab-item label="Example Setting 1" tab-key="tab1"></ix-tab-item>
-            <ix-tab-item label="Example Setting 2" tab-key="tab2"></ix-tab-item>
-          </ix-tabs>
-          <section role="tabpanel" data-tab-content="tab1"></section>
-          <section role="tabpanel" data-tab-content="tab2" hidden></section>
+        <ix-menu-settings>
+          <ix-menu-settings-item
+            label="Example Setting 1"
+            tab-key="tab1"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            label="Example Setting 2"
+            tab-key="tab2"
+          ></ix-menu-settings-item>
         </ix-menu-settings>
-        <ix-menu-about suppress-legacy-tabs>
-          <ix-tabs active-tab-key="tab1">
-            <ix-tab-item tab-key="tab1" label="Tab 1"></ix-tab-item>
-            <ix-tab-item tab-key="tab2" label="Tab 2"></ix-tab-item>
-          </ix-tabs>
-          <section role="tabpanel" data-tab-content="tab1">Content 1</section>
-          <section role="tabpanel" data-tab-content="tab2" hidden>
-            Content 2
-          </section>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab1" label="Tab 1"
+            >Content 1</ix-menu-about-item
+          >
+          <ix-menu-about-item tab-key="tab2" label="Tab 2"
+            >Content 2</ix-menu-about-item
+          >
         </ix-menu-about>
       </ix-menu>
     </ix-application>

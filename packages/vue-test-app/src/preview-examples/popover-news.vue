@@ -13,25 +13,21 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
+  IxMenuAboutItem,
   IxMenuAboutNews,
-  IxTabItem,
-  IxTabs,
 } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxApplication>
     <IxApplicationHeader>
-      <div class="placeholder-logo" slot="logo"></div>
+      <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu>
-      <IxMenuAbout suppress-legacy-tabs>
-        <IxTabs active-tab-key="tab-1">
-          <IxTabItem tab-key="tab-1" label="Example" />
-        </IxTabs>
-        <section role="tabpanel" data-tab-content="tab-1"></section>
+      <IxMenuAbout enableLegacyTabs activeTabKey="tab-1">
+        <IxMenuAboutItem tabKey="tab-1" label="Example"> </IxMenuAboutItem>
       </IxMenuAbout>
-      <IxMenuAboutNews label="Test" show active-about-tab-key="tab-1">
+      <IxMenuAboutNews label="Test" show activeAboutTabKey="tab-1">
         Test
       </IxMenuAboutNews>
     </IxMenu>

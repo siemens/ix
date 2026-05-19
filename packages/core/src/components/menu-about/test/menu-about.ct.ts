@@ -9,21 +9,15 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-const menuAboutWithTabs = `
-  <ix-menu>
-    <ix-menu-about suppress-legacy-tabs>
-      <ix-tabs active-tab-key="tab-1">
-        <ix-tab-item tab-key="tab-1" label="Tab 1">Tab 1</ix-tab-item>
-        <ix-tab-item tab-key="tab-2" label="Tab 2">Tab 2</ix-tab-item>
-      </ix-tabs>
-      <section role="tabpanel" data-tab-content="tab-1">Content 1</section>
-      <section role="tabpanel" data-tab-content="tab-2" hidden>Content 2</section>
-    </ix-menu-about>
-  </ix-menu>
-`;
-
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(menuAboutWithTabs);
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
 
   const element = page.locator('#aboutAndLegal');
   await element.click();
@@ -34,21 +28,17 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(aboutAndLegal).toHaveClass(/hydrated/);
 });
 
-regressionTest('active-tab-key', async ({ mount, page }) => {
+regressionTest('active-tab-label', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
-        <ix-menu-about suppress-legacy-tabs>
-          <ix-tabs active-tab-key="tab-2">
-            <ix-tab-item tab-key="tab-1" label="Tab 1">Tab 1</ix-tab-item>
-            <ix-tab-item tab-key="tab-2" label="Tab 2">Tab 2</ix-tab-item>
-          </ix-tabs>
-          <section role="tabpanel" data-tab-content="tab-1">Content 1</section>
-          <section role="tabpanel" data-tab-content="tab-2" hidden>Content 2</section>
+        <ix-menu-about active-tab-key="tab-2">
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
         </ix-menu-about>
       </ix-menu>
     </ix-application>
-  `);
+    `);
 
   const element = page.locator('#aboutAndLegal');
   await element.click();
@@ -61,7 +51,14 @@ regressionTest('active-tab-key', async ({ mount, page }) => {
 });
 
 regressionTest('should not change tab', async ({ mount, page }) => {
-  await mount(menuAboutWithTabs);
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
 
   const about = page.locator('ix-menu-about');
   const element = page.locator('#aboutAndLegal');
@@ -83,7 +80,14 @@ regressionTest('should not change tab', async ({ mount, page }) => {
 regressionTest(
   'tabChange event should fire exactly once per tab click',
   async ({ mount, page }) => {
-    await mount(menuAboutWithTabs);
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
 
     const about = page.locator('ix-menu-about');
     const element = page.locator('#aboutAndLegal');
@@ -110,10 +114,12 @@ regressionTest(
   }
 );
 
-regressionTest('renders slotted tabs by default', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'renders slotted tabs when suppressing legacy tabs',
+  async ({ mount, page }) => {
+    await mount(`
       <ix-menu>
-        <ix-menu-about>
+        <ix-menu-about suppress-legacy-tabs>
           <ix-tabs active-tab-key="tab-1">
             <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
             <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
@@ -123,8 +129,11 @@ regressionTest('renders slotted tabs by default', async ({ mount, page }) => {
       </ix-menu>
     `);
 
-  const element = page.locator('#aboutAndLegal');
-  await element.click();
+    const element = page.locator('#aboutAndLegal');
+    await element.click();
 
-  await expect(page.getByRole('tab', { name: 'Tab 1' })).toBeVisible();
-});
+    const aboutAndLegal = page.locator('ix-menu-about');
+    await expect(aboutAndLegal).not.toHaveClass(/legacy-tabs/);
+    await expect(page.getByRole('tab', { name: 'Tab 1' })).toBeVisible();
+  }
+);

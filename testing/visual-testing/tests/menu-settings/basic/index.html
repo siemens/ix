@@ -21,37 +21,20 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>
         <ix-menu-item>Item 3</ix-menu-item>
-        <ix-menu-settings suppress-legacy-tabs>
-          <ix-tabs active-tab-key="tab1">
-            <ix-tab-item label="Label 1" tab-key="tab1"></ix-tab-item>
-            <ix-tab-item id="changeTab" label="Label 2" tab-key="tab2"></ix-tab-item>
-          </ix-tabs>
-          <section role="tabpanel" data-tab-content="tab1">
+        <ix-menu-settings>
+          <ix-menu-settings-item label="Label 1" tab-key="tab1">
             First Label - <button id="changeLabelButton">First Content</button>
-          </section>
-          <section role="tabpanel" data-tab-content="tab2" hidden>
+          </ix-menu-settings-item>
+          <ix-menu-settings-item id="changeTab" label="Label 2" tab-key="tab2">
             Other Label - Other Content
-          </section>
+          </ix-menu-settings-item>
         </ix-menu-settings>
       </ix-menu>
     </ix-application>
     <script>
       window.onload = function () {
-        const settings = document.querySelector('ix-menu-settings');
-        const tabs = settings.querySelector('ix-tabs');
-        const updateVisibleContent = (tabKey) => {
-          settings.querySelectorAll('[data-tab-content]').forEach((content) => {
-            content.hidden = content.dataset.tabContent !== tabKey;
-          });
-        };
-
-        updateVisibleContent(tabs.activeTabKey ?? 'tab1');
-        tabs.addEventListener('tabChange', (event) => {
-          updateVisibleContent(event.detail ?? 'tab1');
-        });
-
-        const changeTab = document.getElementById('changeTab');
-        const changeLabelButton = document.getElementById('changeLabelButton');
+        var changeTab = document.getElementById('changeTab');
+        var changeLabelButton = document.getElementById('changeLabelButton');
         changeLabelButton.addEventListener('click', function () {
           changeTab.setAttribute('label', 'Changed Label');
         });
