@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import {
@@ -27,8 +27,7 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./echarts-pie.css'],
 })
 export default class EchartsPie implements OnDestroy, OnInit {
-  private readonly ngZone = inject(NgZone);
-  theme = resolveEChartThemeName();
+  theme = signal(resolveEChartThemeName());
   private themeChangeDisposer?: { dispose: () => void };
 
   data = [
@@ -79,10 +78,8 @@ export default class EchartsPie implements OnDestroy, OnInit {
     registerTheme(echarts);
 
     this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
-      this.ngZone.run(() => {
-        this.theme = resolveEChartThemeName();
-        this.options = this.getOptions();
-      });
+      this.theme.set(resolveEChartThemeName());
+      this.options = this.getOptions();
     });
   }
 

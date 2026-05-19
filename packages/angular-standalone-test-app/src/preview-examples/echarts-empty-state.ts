@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import { NgIf } from '@angular/common';
@@ -27,8 +27,7 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./echarts-empty-state.css'],
 })
 export default class EchartsLineSimple implements OnDestroy, OnInit {
-  private readonly ngZone = inject(NgZone);
-  theme = resolveEChartThemeName();
+  theme = signal(resolveEChartThemeName());
   private themeChangeDisposer?: { dispose: () => void };
   data = {
     weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -55,9 +54,7 @@ export default class EchartsLineSimple implements OnDestroy, OnInit {
     registerTheme(echarts);
 
     this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
-      this.ngZone.run(() => {
-        this.theme = resolveEChartThemeName();
-      });
+      this.theme.set(resolveEChartThemeName());
     });
   }
 

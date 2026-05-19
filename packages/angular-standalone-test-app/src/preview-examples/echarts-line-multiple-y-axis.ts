@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import {
@@ -28,8 +28,7 @@ import { YAXisOption } from 'echarts/types/dist/shared';
   styleUrls: ['./echarts-line-multiple-y-axis.css'],
 })
 export default class EchartsLineMultipleYAxis implements OnDestroy, OnInit {
-  private readonly ngZone = inject(NgZone);
-  theme = resolveEChartThemeName();
+  theme = signal(resolveEChartThemeName());
   private themeChangeDisposer?: { dispose: () => void };
 
   dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
@@ -159,10 +158,8 @@ export default class EchartsLineMultipleYAxis implements OnDestroy, OnInit {
     registerTheme(echarts);
 
     this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
-      this.ngZone.run(() => {
-        this.theme = resolveEChartThemeName();
-        this.options = this.getOptions();
-      });
+      this.theme.set(resolveEChartThemeName());
+      this.options = this.getOptions();
     });
   }
 
