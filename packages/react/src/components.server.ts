@@ -1701,8 +1701,7 @@ export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents, Co
         value: 'value',
         trace: 'trace',
         traceReference: 'trace-reference',
-        disabled: 'disabled',
-        error: 'error'
+        disabled: 'disabled'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSlider as StencilReactComponent<IxSliderElement, IxSliderEvents, Components.IxSlider>,
