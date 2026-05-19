@@ -48,15 +48,10 @@ export async function showModal(
   return showModalWithDependencies(config);
 }
 
-/** @deprecated Use ModalLoadingOptions object form instead */
-export function showModalLoading(message: string): Promise<ModalLoadingContext>;
 export function showModalLoading(
   options: ModalLoadingOptions
-): Promise<ModalLoadingContext>;
-export function showModalLoading(
-  messageOrOptions: string | ModalLoadingOptions
 ): Promise<ModalLoadingContext> {
-  return showModalLoadingWithDependencies(messageOrOptions);
+  return showModalLoadingWithDependencies(options);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {

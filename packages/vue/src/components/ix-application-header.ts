@@ -16,7 +16,6 @@ export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> =
   'appIconOutline',
   'hideBottomBorder',
   'showMenu',
-  'ariaLabelMenuExpandIconButton',
   'ariaLabelAppSwitchIconButton',
   'ariaLabelMoreMenuIconButton',
   'enableTopLayer',

@@ -37,44 +37,23 @@ export type ShowModalLoadingDependencies = readonly [
   CustomElementDependency<'ix-modal-loading'>,
 ];
 
-export type ShowModalLoading = {
-  /**
-   * Displays a loading modal with a message
-   * @deprecated Use ModalLoadingOptions object form instead. Will be removed in v5.0.0.
-   */
-  (message: string): Promise<ModalLoadingContext>;
-
-  /**
-   * Displays a loading modal with a message
-   */
-  (message: ModalLoadingOptions): Promise<ModalLoadingContext>;
-
-  (
-    messageOrOptions: string | ModalLoadingOptions
-  ): Promise<ModalLoadingContext>;
-};
-
 /**
  * Create a loading modal helper with custom element dependencies.
  */
 export function createShowModalLoading(
   dependencies: ShowModalLoadingDependencies
-): ShowModalLoading {
+) {
   return createDependencyFunction(async function showModalLoading(
-    messageOrOptions: string | ModalLoadingOptions
+    options: ModalLoadingOptions
   ): Promise<ModalLoadingContext> {
     const modal = document.createElement('ix-modal');
     modal.beforeDismiss = () => false;
 
     const loading = document.createElement('ix-modal-loading');
 
-    if (typeof messageOrOptions === 'string') {
-      loading.innerText = messageOrOptions;
-    } else {
-      loading.innerText = messageOrOptions.message;
-      if (messageOrOptions.centered) {
-        modal.centered = true;
-      }
+    loading.innerText = options.message;
+    if (options.centered) {
+      modal.centered = true;
     }
 
     modal.appendChild(loading);

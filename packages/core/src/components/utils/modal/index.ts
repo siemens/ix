@@ -12,7 +12,6 @@ export {
   showModalLoading,
   ModalLoadingContext,
   ModalLoadingOptions,
-  ShowModalLoading,
   ShowModalLoadingDependencies,
 } from './loading';
 export {

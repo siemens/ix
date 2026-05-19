@@ -25,21 +25,9 @@ const showModalLoadingWithDependencies = createShowModalLoading([
   providedIn: 'root',
 })
 export class LoadingService extends BaseLoadingService {
-  /** @deprecated Use ModalLoadingOptions object form instead */
-  public override showModalLoading(
-    message: string
-  ): Promise<ModalLoadingContext>;
-
   public override showModalLoading(
     options: ModalLoadingOptions
-  ): Promise<ModalLoadingContext>;
-
-  public override showModalLoading(
-    messageOrOptions: string | ModalLoadingOptions
   ): Promise<ModalLoadingContext> {
-    if (typeof messageOrOptions === 'string') {
-      return showModalLoadingWithDependencies(messageOrOptions);
-    }
-    return showModalLoadingWithDependencies(messageOrOptions);
+    return showModalLoadingWithDependencies(options);
   }
 }
