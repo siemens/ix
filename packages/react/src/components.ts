@@ -27,6 +27,7 @@ import { IxCardList as IxCardListElement, defineCustomElement as defineIxCardLis
 import { IxCardTitle as IxCardTitleElement, defineCustomElement as defineIxCardTitle } from "@siemens/ix/components/ix-card-title.js";
 import { IxCard as IxCardElement, defineCustomElement as defineIxCard } from "@siemens/ix/components/ix-card.js";
 import { IxCategoryFilter as IxCategoryFilterElement, defineCustomElement as defineIxCategoryFilter } from "@siemens/ix/components/ix-category-filter.js";
+import { IxChatAiMessage as IxChatAiMessageElement, defineCustomElement as defineIxChatAiMessage } from "@siemens/ix/components/ix-chat-ai-message.js";
 import { IxChatPromptAttachment as IxChatPromptAttachmentElement, defineCustomElement as defineIxChatPromptAttachment } from "@siemens/ix/components/ix-chat-prompt-attachment.js";
 import { IxChatUserMessage as IxChatUserMessageElement, defineCustomElement as defineIxChatUserMessage } from "@siemens/ix/components/ix-chat-user-message.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement, defineCustomElement as defineIxCheckboxGroup } from "@siemens/ix/components/ix-checkbox-group.js";
@@ -298,6 +299,17 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         onFilterCleared: 'filterCleared'
     } as IxCategoryFilterEvents,
     defineCustomElement: defineIxCategoryFilter
+});
+
+export type IxChatAiMessageEvents = NonNullable<unknown>;
+
+export const IxChatAiMessage: StencilReactComponent<IxChatAiMessageElement, IxChatAiMessageEvents, Components.IxChatAiMessage> = /*@__PURE__*/ createComponent<IxChatAiMessageElement, IxChatAiMessageEvents, Components.IxChatAiMessage>({
+    tagName: 'ix-chat-ai-message',
+    elementClass: IxChatAiMessageElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxChatAiMessageEvents,
+    defineCustomElement: defineIxChatAiMessage
 });
 
 export type IxChatPromptAttachmentEvents = {

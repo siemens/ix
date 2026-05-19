@@ -633,6 +633,11 @@ export namespace Components {
     /**
      * @since 5.0.0
      */
+    interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.0.0
+     */
     interface IxChatPromptAttachment {
         /**
           * Text displayed when the attachment upload failed.
@@ -5223,6 +5228,15 @@ declare global {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
     };
+    /**
+     * @since 5.0.0
+     */
+    interface HTMLIxChatAiMessageElement extends Components.IxChatAiMessage, HTMLStencilElement {
+    }
+    var HTMLIxChatAiMessageElement: {
+        prototype: HTMLIxChatAiMessageElement;
+        new (): HTMLIxChatAiMessageElement;
+    };
     interface HTMLIxChatPromptAttachmentElementEventMap {
         "attachmentClick": void;
         "removeClick": void;
@@ -6590,6 +6604,7 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chat-ai-message": HTMLIxChatAiMessageElement;
         "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
@@ -7262,6 +7277,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "uniqueCategories"?: boolean;
+    }
+    /**
+     * @since 5.0.0
+     */
+    interface IxChatAiMessage {
     }
     /**
      * @since 5.0.0
@@ -12779,6 +12799,7 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-chat-ai-message": IxChatAiMessage;
         "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
@@ -12899,6 +12920,10 @@ declare module "@stencil/core" {
             "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            /**
+             * @since 5.0.0
+             */
+            "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
             /**
              * @since 5.0.0
              */

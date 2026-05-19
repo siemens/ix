@@ -20,6 +20,7 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
 import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
@@ -502,6 +503,28 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
    */
   filterCleared: EventEmitter<CustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxChatAiMessage
+})
+@Component({
+  selector: 'ix-chat-ai-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxChatAiMessage {
+  protected el: HTMLIxChatAiMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 
 @ProxyCmp({

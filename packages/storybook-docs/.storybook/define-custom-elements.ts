@@ -14,6 +14,7 @@ import { defineCustomElement as ixCardContent } from '@siemens/ix/components/ix-
 import { defineCustomElement as ixCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as ixCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as ixCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as ixChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
 import { defineCustomElement as ixChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
 import { defineCustomElement as ixChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as ixCheckbox } from '@siemens/ix/components/ix-checkbox.js';
@@ -118,6 +119,7 @@ ixCardContent();
 ixCardList();
 ixCardTitle();
 ixCategoryFilter();
+ixChatAiMessage();
 ixChatPromptAttachment();
 ixChatUserMessage();
 ixCheckbox();

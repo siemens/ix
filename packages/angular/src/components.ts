@@ -403,6 +403,28 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat-ai-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChatAiMessage {
+  protected el: HTMLIxChatAiMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
+
+
+@ProxyCmp({
   inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'previewSupported', 'removeAriaLabel', 'retryAriaLabel', 'status', 'variant']
 })
 @Component({
