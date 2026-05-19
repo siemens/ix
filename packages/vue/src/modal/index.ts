@@ -31,17 +31,10 @@ export async function showModal(
   return _showModal(config);
 }
 
-/** @deprecated Use ModalLoadingOptions object form instead */
-export function showModalLoading(message: string): ModalLoadingContext;
 export function showModalLoading(
   options: ModalLoadingOptions
-): ModalLoadingContext;
-export function showModalLoading(
-  messageOrOptions: string | ModalLoadingOptions
 ): ModalLoadingContext {
-  return typeof messageOrOptions === 'string'
-    ? _showModalLoading(messageOrOptions)
-    : _showModalLoading(messageOrOptions);
+  return _showModalLoading(options);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {

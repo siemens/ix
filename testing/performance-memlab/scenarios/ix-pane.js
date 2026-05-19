@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,18 +11,15 @@ function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// initial page load's url
 function url() {
-  return 'http://127.0.0.1:8080/test.html?selector=ix-drawer';
+  return 'http://127.0.0.1:8080/test.html?selector=ix-pane';
 }
 
-// action where you suspect the memory leak might be happening
 async function action(page) {
   await page.click('[id="run"]');
   await timeout(2000);
 }
 
-// how to go back to the state before action
 async function back(page) {
   await page.click('[id="remove"]');
   await timeout(2000);

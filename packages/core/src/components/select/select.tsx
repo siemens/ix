@@ -97,15 +97,6 @@ export class Select
   @Prop() label?: string;
 
   /**
-   * ARIA label for the chevron down icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
-   * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-   */
-  @Prop() ariaLabelChevronDownIconButton?: string;
-
-  /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
    *
@@ -968,10 +959,9 @@ export class Select
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
                       aria-label={
-                        this.ariaLabelChevronDownIconButton ??
-                        (this.dropdownShow
+                        this.dropdownShow
                           ? 'Close select dropdown'
-                          : 'Open select dropdown')
+                          : 'Open select dropdown'
                       }
                       aria-hidden="true"
                       ref={(ref) => {

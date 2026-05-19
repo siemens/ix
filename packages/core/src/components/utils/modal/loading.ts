@@ -30,32 +30,18 @@ export type ModalLoadingOptions = {
 
 /**
  * Displays a loading modal with a message
- * @deprecated Use ModalLoadingOptions object form instead. Will be removed in v5.0.0.
- */
-export function showModalLoading(message: string): ModalLoadingContext;
-
-/**
- * Displays a loading modal with a message
  */
 export function showModalLoading(
-  message: ModalLoadingOptions
-): ModalLoadingContext;
-
-export function showModalLoading(
-  messageOrOptions: string | ModalLoadingOptions
+  messageOrOptions: ModalLoadingOptions
 ): ModalLoadingContext {
   const modal = document.createElement('ix-modal');
   modal.beforeDismiss = () => false;
 
   const loading = document.createElement('ix-modal-loading');
 
-  if (typeof messageOrOptions === 'string') {
-    loading.innerText = messageOrOptions;
-  } else {
-    loading.innerText = messageOrOptions.message;
-    if (messageOrOptions.centered) {
-      modal.centered = true;
-    }
+  loading.innerText = messageOrOptions.message;
+  if (messageOrOptions.centered) {
+    modal.centered = true;
   }
 
   modal.appendChild(loading);

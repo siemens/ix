@@ -21,17 +21,9 @@ export class LoadingService extends BaseLoadingService {
     defineCustomElement();
   }
 
-  /** @deprecated Use ModalLoadingOptions object form instead */
-  public override showModalLoading(message: string): ModalLoadingContext;
-
-  public override showModalLoading(options: ModalLoadingOptions): ModalLoadingContext;
-
   public override showModalLoading(
-    messageOrOptions: string | ModalLoadingOptions
+    options: ModalLoadingOptions
   ): ModalLoadingContext {
-    if (typeof messageOrOptions === 'string') {
-      return super.showModalLoading(messageOrOptions);
-    }
-    return super.showModalLoading(messageOrOptions);
+    return super.showModalLoading(options);
   }
 }

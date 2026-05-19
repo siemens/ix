@@ -78,8 +78,6 @@ import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
 import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
 import Divider from '../preview-examples/divider';
-import Drawer from '../preview-examples/drawer';
-import DrawerFullHeight from '../preview-examples/drawer-full-height';
 import Dropdown from '../preview-examples/dropdown';
 import DropdownButton from '../preview-examples/dropdown-button';
 import DropdownButtonIcon from '../preview-examples/dropdown-button-icon';
@@ -554,14 +552,6 @@ const routes: Routes = [
       {
         path: 'divider',
         component: Divider,
-      },
-      {
-        path: 'drawer-full-height',
-        component: DrawerFullHeight,
-      },
-      {
-        path: 'drawer',
-        component: Drawer,
       },
       {
         path: 'dropdown-button-icon',
