@@ -198,20 +198,11 @@ export class MenuCategory
   }
 
   private onMenuItemsKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-
-      if (event.shiftKey) {
-        this.categoryParentRef.current?.focus();
-      } else {
-        this.getNextFocusable()?.focus();
-      }
-
-      this.showItems = false;
-      return;
-    }
-
-    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+    if (
+      event.key !== 'ArrowDown' &&
+      event.key !== 'ArrowUp' &&
+      event.key !== 'Tab'
+    ) {
       return;
     }
 
@@ -228,38 +219,11 @@ export class MenuCategory
 
     event.preventDefault();
 
-    if (event.key === 'ArrowDown') {
+    if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
       items[(currentIndex + 1) % items.length].focus();
     } else {
       items[(currentIndex - 1 + items.length) % items.length].focus();
     }
-  }
-
-  private getNextFocusable(): HTMLElement | null {
-    const focusableSelectors = [
-      'a[href]',
-      'button:not([disabled])',
-      'input:not([disabled])',
-      'select:not([disabled])',
-      'textarea:not([disabled])',
-      '[tabindex]:not([tabindex="-1"])',
-      'ix-menu-item:not([hidden])',
-      'ix-menu-category',
-    ].join(', ');
-
-    return (
-      Array.from(
-        document.querySelectorAll<HTMLElement>(focusableSelectors)
-      ).find(
-        (el) =>
-          el !== this.hostElement &&
-          !this.hostElement.contains(el) &&
-          !!(
-            this.hostElement.compareDocumentPosition(el) &
-            Node.DOCUMENT_POSITION_FOLLOWING
-          )
-      ) ?? null
-    );
   }
 
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
