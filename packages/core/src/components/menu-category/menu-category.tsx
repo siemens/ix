@@ -83,6 +83,7 @@ export class MenuCategory
   private ixMenu?: HTMLIxMenuElement;
 
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
+  private readonly categoryParentRef = makeRef<HTMLIxMenuItemElement>();
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -196,6 +197,71 @@ export class MenuCategory
     }
   }
 
+  private onMenuItemsKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+
+      if (event.shiftKey) {
+        this.categoryParentRef.current?.focus();
+      } else {
+        this.getNextFocusable()?.focus();
+      }
+
+      this.showItems = false;
+      return;
+    }
+
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+      return;
+    }
+
+    const items = this.getNestedItems();
+    if (items.length === 0) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const currentIndex = items.findIndex((item) => path.includes(item));
+    if (currentIndex === -1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (event.key === 'ArrowDown') {
+      items[(currentIndex + 1) % items.length].focus();
+    } else {
+      items[(currentIndex - 1 + items.length) % items.length].focus();
+    }
+  }
+
+  private getNextFocusable(): HTMLElement | null {
+    const focusableSelectors = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+      'ix-menu-item:not([hidden])',
+      'ix-menu-category',
+    ].join(', ');
+
+    return (
+      Array.from(
+        document.querySelectorAll<HTMLElement>(focusableSelectors)
+      ).find(
+        (el) =>
+          el !== this.hostElement &&
+          !this.hostElement.contains(el) &&
+          !!(
+            this.hostElement.compareDocumentPosition(el) &
+            Node.DOCUMENT_POSITION_FOLLOWING
+          )
+      ) ?? null
+    );
+  }
+
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
     const oldNestedItemsLength = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
@@ -307,8 +373,9 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
-          aria-haspopup="true"
+          aria-haspopup={'true'}
           aria-expanded={this.showItems || this.showDropdown ? 'true' : 'false'}
+          ref={this.categoryParentRef}
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
@@ -337,6 +404,8 @@ export class MenuCategory
             'menu-items--expanded': this.showItems,
             'menu-items--collapsed': !this.showItems,
           }}
+          role="menu"
+          onKeyDown={(e) => this.onMenuItemsKeyDown(e)}
         >
           {this.showItems ? <slot></slot> : null}
         </div>
