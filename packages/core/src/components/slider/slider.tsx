@@ -141,13 +141,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() disabled = false;
 
   /**
-   * Show error state and message
-   *
-   * @deprecated Will be removed in 5.0.0. Use invalid class instead.
-   */
-  @Prop() error?: boolean | string;
-
-  /**
    * Will emit the value when it changes
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -324,7 +317,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       <Host
         class={{
           disabled: this.disabled,
-          error: !!this.error,
           invalid: this.isInvalid,
           info: this.isInfo,
           valid: this.isValid,
@@ -447,9 +439,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 </div>
               </div>
             )}
-            {this.error ? (
-              <ix-typography textColor="alarm">{this.error}</ix-typography>
-            ) : null}
           </div>
         </ix-field-wrapper>
       </Host>
