@@ -2,7 +2,7 @@
   "name": "@siemens/ix/components",
   "version": "0.0.0",
   "main": "./index.js",
-  "types": "./custom-elements.d.ts",
+  "types": "./index.d.ts",
   "private": true,
   "sideEffects": false,
   "type": "module"
