@@ -38,6 +38,21 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'accessibility datetime-range',
+  async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+    <ix-range-field type="datetime-range" style="width: 32rem" aria-label="Datetime range">
+      <ix-datetime-input label="start" required></ix-datetime-input>
+      <ix-datetime-input label="end" helper-text="Hallo layout!"></ix-datetime-input>
+    </ix-range-field>
+  `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
 regressionTest('renders time-range', async ({ mount, page }) => {
   await mount(
     `
@@ -326,6 +341,53 @@ regressionTest(
 
     const secondDay = secondInput.getByRole('option', { name: 'sec: 15' });
     await secondDay.click();
+    await secondInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(secondDropdown).not.toHaveClass(/show/);
+  }
+);
+
+regressionTest(
+  'focus and open second datetime picker element',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-range-field type="datetime-range" style="width: 32rem">
+      <ix-datetime-input label="second" required value="2022/03/01 10:11:12"></ix-datetime-input>
+      <ix-datetime-input helper-text="Hallo layout!" value="2022/03/01 10:11:12"></ix-datetime-input>
+    </ix-range-field>
+    `
+    );
+
+    const inputRangeElement = page.locator('ix-range-field');
+
+    await expect(inputRangeElement).toBeVisible();
+    await expect(inputRangeElement).toHaveClass(/hydrated/);
+
+    const firstInput = page.locator('ix-datetime-input').first();
+    const secondInput = page.locator('ix-datetime-input').nth(1);
+
+    await firstInput.click();
+
+    const dropdown = firstInput.getByTestId('datetime-dropdown');
+    await expect(dropdown).toHaveClass(/show/);
+
+    const day = firstInput.getByRole('button', { name: '12 March' });
+    await day.click();
+    await firstInput.getByRole('button', { name: 'sec: 15' }).click();
+    await firstInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(dropdown).not.toHaveClass(/show/);
+
+    const input = secondInput.locator('input');
+    await expect(input).toBeFocused();
+
+    const secondDropdown = secondInput.getByTestId('datetime-dropdown');
+    await expect(secondDropdown).toHaveClass(/show/);
+
+    const secondDay = secondInput.getByRole('button', { name: '12 March' });
+    await secondDay.click();
+    await secondInput.getByRole('button', { name: 'sec: 15' }).click();
     await secondInput.getByRole('button', { name: 'Confirm' }).click();
 
     await expect(secondDropdown).not.toHaveClass(/show/);

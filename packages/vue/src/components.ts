@@ -32,7 +32,6 @@ import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/component
 import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
-import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
 import { defineCustomElement as defineIxDropdown } from '@siemens/ix/components/ix-dropdown.js';
 import { defineCustomElement as defineIxDropdownButton } from '@siemens/ix/components/ix-dropdown-button.js';
 import { defineCustomElement as defineIxDropdownHeader } from '@siemens/ix/components/ix-dropdown-header.js';
@@ -53,7 +52,6 @@ import { defineCustomElement as defineIxHelperText } from '@siemens/ix/component
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
-import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
@@ -106,7 +104,6 @@ import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-t
 import { defineCustomElement as defineIxTreeItem } from '@siemens/ix/components/ix-tree-item.js';
 import { defineCustomElement as defineIxTypography } from '@siemens/ix/components/ix-typography.js';
 import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix-upload.js';
-import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 
@@ -143,7 +140,6 @@ export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> =
   'appIconOutline',
   'hideBottomBorder',
   'showMenu',
-  'ariaLabelMenuExpandIconButton',
   'ariaLabelAppSwitchIconButton',
   'ariaLabelMoreMenuIconButton',
   'enableTopLayer',
@@ -156,7 +152,6 @@ export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> =
 
 
 export const IxAvatar: StencilVueComponent<JSX.IxAvatar> = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', defineIxAvatar, [
-  'a11yLabel',
   'image',
   'initials',
   'username',
@@ -193,7 +188,6 @@ export const IxBreadcrumb: StencilVueComponent<JSX.IxBreadcrumb> = /*@__PURE__*/
 
 
 export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbItem>('ix-breadcrumb-item', defineIxBreadcrumbItem, [
-  'ariaLabelButton',
   'label',
   'icon',
   'href',
@@ -339,6 +333,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'inactive',
   'closable',
   'icon',
+  'ariaLabelIcon',
   'background',
   'chipColor',
   'outline',
@@ -560,22 +555,6 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
 export const IxDivider: StencilVueComponent<JSX.IxDivider> = /*@__PURE__*/ defineContainer<JSX.IxDivider>('ix-divider', defineIxDivider);
 
 
-export const IxDrawer: StencilVueComponent<JSX.IxDrawer> = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer', defineIxDrawer, [
-  'show',
-  'closeOnClickOutside',
-  'fullHeight',
-  'minWidth',
-  'maxWidth',
-  'width',
-  'ariaLabelCloseButton',
-  'open',
-  'drawerClose'
-], [
-  'open',
-  'drawerClose'
-]);
-
-
 export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-dropdown', defineIxDropdown, [
   'suppressAutomaticPlacement',
   'show',
@@ -646,6 +625,7 @@ export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE
   'hover',
   'disabled',
   'checked',
+  'itemRole',
   'isSubMenu',
   'suppressChecked',
   'hasVisualFocus',
@@ -848,9 +828,6 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'ixChange'
 ],
 'value', 'valueChange', undefined);
-
-
-export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
 
 
 export const IxKeyValue: StencilVueComponent<JSX.IxKeyValue> = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', defineIxKeyValue, [
@@ -1260,7 +1237,6 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'name',
   'required',
   'label',
-  'ariaLabelChevronDownIconButton',
   'ariaLabelClearIconButton',
   'ariaLabelAddItem',
   'warningText',
@@ -1280,6 +1256,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'i18nSelectListHeader',
   'i18nNoMatches',
   'i18nAllSelected',
+  'i18nRemoveSelectedItem',
   'hideListHeader',
   'dropdownWidth',
   'dropdownMaxWidth',
@@ -1327,7 +1304,6 @@ export const IxSlider: StencilVueComponent<JSX.IxSlider> = /*@__PURE__*/ defineC
   'trace',
   'traceReference',
   'disabled',
-  'error',
   'valueChange'
 ], [
   'valueChange'
@@ -1618,6 +1594,7 @@ export const IxTypography: StencilVueComponent<JSX.IxTypography> = /*@__PURE__*/
 export const IxUpload: StencilVueComponent<JSX.IxUpload> = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload', defineIxUpload, [
   'accept',
   'multiple',
+  'directoryUpload',
   'multiline',
   'disabled',
   'state',
@@ -1630,13 +1607,6 @@ export const IxUpload: StencilVueComponent<JSX.IxUpload> = /*@__PURE__*/ defineC
   'filesChanged'
 ], [
   'filesChanged'
-]);
-
-
-export const IxValidationTooltip: StencilVueComponent<JSX.IxValidationTooltip> = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', defineIxValidationTooltip, [
-  'message',
-  'placement',
-  'suppressAutomaticPlacement'
 ]);
 
 

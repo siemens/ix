@@ -61,3 +61,6 @@ import './generated/toggle-indeterminate-axe.spec';
 // Pill tests
 import './generated/pill-axe.spec';
 import './generated/pill-variants-axe.spec';
+
+// Chip tests
+import './generated/chip-axe.spec';

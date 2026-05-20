@@ -7,6 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export * from './tab-panels';
+export * from './tab-set';
 export * from './internal-tab-panel';
-export * from './internal-tab-panels';
+export * from './internal-tab-set';

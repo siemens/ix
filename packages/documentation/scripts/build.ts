@@ -13,7 +13,11 @@ import Mustache from 'mustache';
 import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
-import { escapeBackticks, parseJSDocsToMarkdown } from './utils/escape';
+import {
+  expandJsdocNewlinesForMarkdown,
+  parseJSDocsToMarkdown,
+  serializeMarkdownForJsx,
+} from './utils/escape';
 import { collectHTMLExamples } from './collector/collectHTMLExamples';
 import { collectReactExamples } from './collector/collectReactExamples';
 import { collectVueExamples } from './collector/collectVueExamples';
@@ -347,7 +351,11 @@ async function generateApiMarkdown() {
       props: props.map((prop) => ({
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
-        docs: parseJSDocsToMarkdown(escapeBackticks(prop.docs)),
+        docs: serializeMarkdownForJsx(
+          expandJsdocNewlinesForMarkdown(
+            parseJSDocsToMarkdown(prop.docs ?? '')
+          )
+        ),
       })),
     });
 
@@ -356,7 +364,11 @@ async function generateApiMarkdown() {
       events: events.map((event) => ({
         ...event,
         docsTags: convertDocsTagsToTSXElement(component.tag, event.docsTags),
-        docs: parseJSDocsToMarkdown(escapeBackticks(event.docs)),
+        docs: serializeMarkdownForJsx(
+          expandJsdocNewlinesForMarkdown(
+            parseJSDocsToMarkdown(event.docs ?? '')
+          )
+        ),
       })),
     });
 
@@ -364,7 +376,11 @@ async function generateApiMarkdown() {
       slots: slots.map((tag) => ({
         ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
-        docs: parseJSDocsToMarkdown(escapeBackticks(tag.docs)),
+        docs: serializeMarkdownForJsx(
+          expandJsdocNewlinesForMarkdown(
+            parseJSDocsToMarkdown(tag.docs ?? '')
+          )
+        ),
       })),
     });
 

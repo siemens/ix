@@ -18,10 +18,7 @@ import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 import { ModalConfig } from './modal';
 
-export type MessageConfig<T> = Omit<
-  ModalConfig<T, unknown>,
-  'content' | 'title'
-> &
+export type MessageConfig<T> = Omit<ModalConfig<T, unknown>, 'content'> &
   MessageContent;
 
 function setA11yAttributes(element: HTMLElement, config: MessageContent) {
