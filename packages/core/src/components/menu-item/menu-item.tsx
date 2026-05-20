@@ -173,14 +173,14 @@ export class MenuItem implements IxMenuItemBase {
 
   private handleCategoryKeyDown(e: KeyboardEvent) {
     if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
-      this.returnFocusToParentCategory();
+      this.returnFocusToParentCategoryMenuItem();
     }
   }
 
-  private returnFocusToParentCategory() {
+  private returnFocusToParentCategoryMenuItem() {
     const categoryMenuItem = this.hostElement
       .closest<HTMLElement>('ix-menu-category')
-      ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item');
+      ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item.category-parent');
 
     categoryMenuItem?.focus();
   }
