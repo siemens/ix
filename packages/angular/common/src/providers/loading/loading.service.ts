@@ -18,7 +18,9 @@ export class LoadingService {
   /**
    * Displays a loading modal with a message
    */
-  public showModalLoading(options: ModalLoadingOptions): ModalLoadingContext {
+  public showModalLoading(
+    options: ModalLoadingOptions
+  ): Promise<ModalLoadingContext> {
     return showModalLoading(options);
   }
 }
