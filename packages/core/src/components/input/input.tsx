@@ -355,10 +355,9 @@ export class Input implements IxInputFieldComponent<string> {
             >
               {this.type === 'password' && !this.disabled && (
                 <ix-icon-button
+                  ref={() => this.updatePaddings()}
                   color="color-weak-text"
-                  class={{
-                    'password-eye': true,
-                  }}
+                  class="password-eye"
                   variant="tertiary"
                   size="16"
                   icon={

@@ -13,6 +13,16 @@ test.describe('password input', () => {
   let input: import('@playwright/test').Locator;
   let eyeButton: import('@playwright/test').Locator;
 
+  test('accessibility', async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+      <ix-input type="password" value="secret123"></ix-input>
+      <ix-input type="password" disabled value="secret123"></ix-input>
+    `);
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  });
+
   test.beforeEach(async ({ page }) => {
     input = page.locator('ix-input');
     eyeButton = input.locator('ix-icon-button.password-eye');
