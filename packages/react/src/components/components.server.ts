@@ -714,7 +714,8 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         focusCheckedItem: 'focus-checked-item',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
-        suppressOverflowBehavior: 'suppress-overflow-behavior'
+        suppressOverflowBehavior: 'suppress-overflow-behavior',
+        hostRole: 'host-role'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as StencilReactComponent<IxDropdownElement, IxDropdownEvents, Components.IxDropdown>,
