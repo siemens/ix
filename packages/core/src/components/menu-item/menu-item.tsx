@@ -171,7 +171,13 @@ export class MenuItem implements IxMenuItemBase {
     }
   }
 
-  returnFocusToParentCategory() {
+  private handleCategoryKeyDown(e: KeyboardEvent) {
+    if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
+      this.returnFocusToParentCategory();
+    }
+  }
+
+  private returnFocusToParentCategory() {
     const categoryMenuItem = this.hostElement
       .closest<HTMLElement>('ix-menu-category')
       ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item');
@@ -242,6 +248,7 @@ export class MenuItem implements IxMenuItemBase {
             rel={this.rel}
             role="button"
             ref={this.buttonRef}
+            onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             onClick={(e: Event) => {
               if (this.disabled) {
                 e.preventDefault();
@@ -255,14 +262,7 @@ export class MenuItem implements IxMenuItemBase {
           <button
             {...commonAttributes}
             ref={this.buttonRef}
-            onKeyDown={(e: KeyboardEvent) => {
-              if (
-                (e.key === 'Enter' || e.key === ' ') &&
-                this.isHostedInsideCategory
-              ) {
-                this.returnFocusToParentCategory();
-              }
-            }}
+            onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
           >
             {menuContent}
           </button>
