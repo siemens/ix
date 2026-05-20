@@ -70,7 +70,6 @@ export class MenuCategory
   @Prop() tooltipText?: string;
 
   /** @internal */
-  // eslint-disable-next-line @stencil-community/decorators-style
   @Event({ bubbles: true, cancelable: true })
   closeOtherCategories!: EventEmitter;
 
@@ -190,7 +189,9 @@ export class MenuCategory
       const items = this.getNestedItems();
       const firstItem = items[0];
       if (firstItem) {
-        requestAnimationFrameNoNgZone(() => firstItem.focus());
+        requestAnimationFrameNoNgZone(() =>
+          requestAnimationFrameNoNgZone(() => firstItem.focus())
+        );
       }
     }
   }
@@ -307,6 +308,7 @@ export class MenuCategory
       >
         <ix-menu-item
           aria-haspopup="true"
+          aria-expanded={this.showItems || this.showDropdown ? 'true' : 'false'}
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
@@ -340,6 +342,8 @@ export class MenuCategory
         </div>
         <ix-dropdown
           ref={this.dropdownRef}
+          hostRole="menu"
+          aria-label={this.label}
           closeBehavior={'both'}
           show={this.showDropdown}
           onShowChange={({ detail: dropdownShow }) => {
@@ -391,7 +395,11 @@ export class MenuCategory
             }
           }}
         >
-          <ix-dropdown-item class={'category-dropdown-header'} tabindex={-1}>
+          <ix-dropdown-item
+            class={'category-dropdown-header'}
+            tabindex={-1}
+            aria-hidden="true"
+          >
             <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>

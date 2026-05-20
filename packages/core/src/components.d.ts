@@ -1542,6 +1542,7 @@ export namespace Components {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -7912,6 +7913,7 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -11476,6 +11478,7 @@ declare namespace LocalJSX {
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
+        "hostRole": string;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;

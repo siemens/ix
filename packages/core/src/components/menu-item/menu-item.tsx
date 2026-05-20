@@ -238,15 +238,14 @@ export class MenuItem implements IxMenuItemBase {
         aria-disabled={this.disabled ? 'true' : null}
         tabIndex={this.disabled ? -1 : 0}
         {...extendedAttributes}
-        role="menuitem"
       >
         {this.href ? (
           <a
             {...commonAttributes}
+            role="menuitem"
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
-            role="button"
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             onClick={(e: Event) => {
@@ -261,6 +260,7 @@ export class MenuItem implements IxMenuItemBase {
         ) : (
           <button
             {...commonAttributes}
+            role="menuitem"
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
           >
