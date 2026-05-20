@@ -1301,7 +1301,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                         return (
                           <button
                             role="option"
-                            aria-selected={selected}
+                            aria-selected={selected ? 'true' : undefined}
                             data-element-container-id={`${descriptor.unit}-${number}`}
                             class={{
                               selected,
@@ -1356,7 +1356,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                   >
                     <button
                       role="option"
-                      aria-selected={this.timeRef === 'AM'}
+                      aria-selected={this.timeRef === 'AM' ? 'true' : undefined}
                       data-am-pm-id="AM"
                       class={{
                         selected: this.timeRef === 'AM',
@@ -1370,7 +1370,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                     </button>
                     <button
                       role="option"
-                      aria-selected={this.timeRef === 'PM'}
+                      aria-selected={this.timeRef === 'PM' ? 'true' : undefined}
                       data-am-pm-id="PM"
                       class={{
                         selected: this.timeRef === 'PM',
