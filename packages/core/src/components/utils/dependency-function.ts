@@ -93,7 +93,6 @@ export function createDependencyFunction<
 
     Object.defineProperties(dependencyFunction, {
       dependencies: {
-        enumerable: true,
         value: dependencyDefinitions,
       },
       ensureDependencies: {
