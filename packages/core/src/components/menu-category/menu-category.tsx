@@ -198,6 +198,13 @@ export class MenuCategory
   }
 
   private onMenuItemsKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.categoryParentRef.current?.focus();
+      this.handleCategoryVisibility();
+      return;
+    }
+
     if (
       event.key !== 'ArrowDown' &&
       event.key !== 'ArrowUp' &&
