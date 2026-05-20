@@ -18,13 +18,13 @@ import {
   Mixin,
   Prop,
 } from '@stencil/core';
+import type { TabClickDetail } from './tab-item.types';
 import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
-import type { TabClickDetail } from './tab-item.types';
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 @Component({
