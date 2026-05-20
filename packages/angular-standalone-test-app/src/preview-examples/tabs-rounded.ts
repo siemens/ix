@@ -8,9 +8,11 @@
  */
 
 import { Component } from '@angular/core';
+import { IxTabItem, IxTabs } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
+  imports: [IxTabs, IxTabItem],
   template: `
     <ix-tabs rounded>
       <ix-tab-item tabKey="success" icon="success" label="Success"></ix-tab-item>
