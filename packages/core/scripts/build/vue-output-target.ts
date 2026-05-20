@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Config } from '@stencil/core/compiler';
+import type {
+  BuildCtx,
+  CompilerCtx,
+  ComponentCompilerMeta,
+} from '@stencil/core/internal';
 import path from 'node:path';
 
 function dashToPascalCase(tagName: string) {
@@ -28,7 +33,7 @@ function formatArray(values: string[]) {
 }
 
 function generateVueComponent(
-  component: any,
+  component: ComponentCompilerMeta,
   vueComponentModels: {
     elements: string[];
     event: string;
@@ -73,18 +78,22 @@ export function vueComponentOutputTarget(options: {
   return {
     type: 'custom' as const,
     name: 'vue-component-library',
-    async generator(config: Config, compilerCtx: any, buildCtx: any) {
+    async generator(
+      config: Config,
+      compilerCtx: CompilerCtx,
+      buildCtx: BuildCtx
+    ) {
       const components = buildCtx.components
         .filter(
-          (component: any) =>
+          (component) =>
             !component.internal &&
             !options.excludeComponents.includes(component.tagName)
         )
-        .sort((a: any, b: any) => a.tagName.localeCompare(b.tagName));
+        .sort((a, b) => a.tagName.localeCompare(b.tagName));
       const outDir = path.join(config.rootDir!, '../vue/src/components');
 
       await Promise.all(
-        components.map((component: any) =>
+        components.map((component) =>
           compilerCtx.fs.writeFile(
             path.join(outDir, `${component.tagName}.ts`),
             generateVueComponent(component, options.componentModels)
@@ -99,7 +108,7 @@ export function vueComponentOutputTarget(options: {
 /* auto-generated vue proxies */
 ${components
   .map(
-    (component: any) =>
+    (component) =>
       `export { ${dashToPascalCase(component.tagName)} } from './${
         component.tagName
       }.js';`
