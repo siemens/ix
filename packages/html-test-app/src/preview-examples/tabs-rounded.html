@@ -36,29 +36,26 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <ix-tabs rounded>
-      <ix-tab-item tab-key="success" label="Success"
-        ><ix-icon name="success" aria-label="Success"></ix-icon
-      ></ix-tab-item>
-      <ix-tab-item tab-key="tree" label="Tree" counter="200"
-        ><ix-icon name="tree" aria-label="Tree"></ix-icon
-      ></ix-tab-item>
-      <ix-tab-item tab-key="maintenance" label="Maintenance"
-        ><ix-icon name="maintenance" aria-label="Maintenance"></ix-icon
-      ></ix-tab-item>
-      <ix-tab-item tab-key="sound" label="Sound" disabled counter="24"
-        ><ix-icon name="sound-loud" aria-label="Sound"></ix-icon
-      ></ix-tab-item>
-      <ix-tab-item tab-key="hierarchy" label="Hierarchy"
-        ><ix-icon name="hierarchy" aria-label="Hierarchy"></ix-icon
+      <ix-tab-item tab-key="success" icon="success" label="Success"></ix-tab-item>
+      <ix-tab-item tab-key="tree" icon="tree" label="Tree" counter="200"></ix-tab-item>
+      <ix-tab-item
+        tab-key="maintenance"
+        icon="maintenance"
+        label="Maintenance"
       ></ix-tab-item>
       <ix-tab-item
+        tab-key="sound"
+        icon="sound-loud"
+        label="Sound"
+        disabled
+        counter="24"
+      ></ix-tab-item>
+      <ix-tab-item tab-key="hierarchy" icon="hierarchy" label="Hierarchy"></ix-tab-item>
+      <ix-tab-item
         tab-key="calendar-settings"
+        icon="calendar-settings"
         label="Calendar settings"
         disabled
-        ><ix-icon
-          name="calendar-settings"
-          aria-label="Calendar settings"
-        ></ix-icon
       ></ix-tab-item>
     </ix-tabs>
     <script type="module" src="./init.js"></script>

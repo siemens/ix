@@ -18,13 +18,13 @@ import {
   Mixin,
   Prop,
 } from '@stencil/core';
-import type { TabClickDetail } from './tab-item.types';
 import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import type { TabClickDetail } from './tab-item.types';
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 @Component({
@@ -174,7 +174,7 @@ export class TabItem
               circle: true,
             }}
           >
-            {this.icon && <ix-icon name={this.icon} size="16"></ix-icon>}
+            {this.icon && <ix-icon name={this.icon} size="24"></ix-icon>}
             <slot></slot>
           </div>
         )}

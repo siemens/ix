@@ -16,31 +16,27 @@ import {
   iconSuccess,
   iconTree,
 } from '@siemens/ix-icons/icons';
-import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue';
+import { IxTabItem, IxTabs } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxTabs rounded>
-    <IxTabItem tabKey="success" label="Success">
-      <IxIcon :name="iconSuccess" aria-label="Success"></IxIcon>
-    </IxTabItem>
-    <IxTabItem tabKey="tree" label="Tree" :counter="200">
-      <IxIcon :name="iconTree" aria-label="Tree"></IxIcon>
-    </IxTabItem>
-    <IxTabItem tabKey="maintenance" label="Maintenance">
-      <IxIcon :name="iconMaintenance" aria-label="Maintenance"></IxIcon>
-    </IxTabItem>
-    <IxTabItem tabKey="sound" label="Sound" disabled :counter="24">
-      <IxIcon :name="iconSoundLoud" aria-label="Sound"></IxIcon>
-    </IxTabItem>
-    <IxTabItem tabKey="hierarchy" label="Hierarchy">
-      <IxIcon :name="iconHierarchy" aria-label="Hierarchy"></IxIcon>
-    </IxTabItem>
-    <IxTabItem tabKey="calendar-settings" label="Calendar settings" disabled>
-      <IxIcon
-        :name="iconCalendarSettings"
-        aria-label="Calendar settings"
-      ></IxIcon>
-    </IxTabItem>
+    <IxTabItem tabKey="success" :icon="iconSuccess" label="Success" />
+    <IxTabItem tabKey="tree" :icon="iconTree" label="Tree" :counter="200" />
+    <IxTabItem tabKey="maintenance" :icon="iconMaintenance" label="Maintenance" />
+    <IxTabItem
+      tabKey="sound"
+      :icon="iconSoundLoud"
+      label="Sound"
+      disabled
+      :counter="24"
+    />
+    <IxTabItem tabKey="hierarchy" :icon="iconHierarchy" label="Hierarchy" />
+    <IxTabItem
+      tabKey="calendar-settings"
+      :icon="iconCalendarSettings"
+      label="Calendar settings"
+      disabled
+    />
   </IxTabs>
 </template>
