@@ -62,7 +62,7 @@ export function createShowModalLoading(
     await modal.showModal();
 
     return {
-      update: (text: string) => (loading.innerHTML = text),
+      update: (text: string) => (loading.innerText = text),
       finish: (text?: string, timeout: number = 250) => {
         if (text !== undefined) {
           loading.innerText = text;
