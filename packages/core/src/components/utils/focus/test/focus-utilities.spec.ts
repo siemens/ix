@@ -9,8 +9,7 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
-  collectFocusableElementsInOrder,
-  getDeepActiveElement,
+  queryElements,
 } from '../focus-utilities';
 
 const originalActiveElementDescriptor = Object.getOwnPropertyDescriptor(
@@ -32,82 +31,103 @@ describe('focus-utilities deep focus collection', () => {
     vi.restoreAllMocks();
   });
 
-  it('collects focusables in DOM order across shadow roots and slotted content', () => {
-    const host = document.createElement('div');
-    const hostShadowRoot = host.attachShadow({ mode: 'open' });
+  describe('queryElements', () => {
+    it('queries light DOM without includeShadowDom flag', () => {
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
 
-    const shadowButton = document.createElement('button');
-    shadowButton.textContent = 'Shadow button';
+      const shadowButton = document.createElement('button');
+      shadowButton.textContent = 'Shadow';
+      shadowRoot.appendChild(shadowButton);
 
-    const nestedHost = document.createElement('div');
-    const nestedShadowRoot = nestedHost.attachShadow({ mode: 'open' });
-    const nestedInput = document.createElement('input');
-    nestedInput.type = 'text';
-    nestedShadowRoot.appendChild(nestedInput);
+      const lightButton = document.createElement('button');
+      lightButton.textContent = 'Light';
+      host.appendChild(lightButton);
 
-    const slot = document.createElement('slot');
-
-    hostShadowRoot.appendChild(shadowButton);
-    hostShadowRoot.appendChild(nestedHost);
-    hostShadowRoot.appendChild(slot);
-
-    const slottedInput = document.createElement('input');
-    slottedInput.type = 'text';
-
-    vi.spyOn(slot, 'assignedElements').mockReturnValue([slottedInput]);
-
-    const collected = collectFocusableElementsInOrder(host);
-
-    expect(collected).toEqual([shadowButton, nestedInput, slottedInput]);
-  });
-
-  it('filters hidden and disabled elements during deep traversal', () => {
-    const host = document.createElement('div');
-    const hostShadowRoot = host.attachShadow({ mode: 'open' });
-
-    const hiddenInput = document.createElement('input');
-    hiddenInput.hidden = true;
-
-    const disabledButton = document.createElement('button');
-    disabledButton.disabled = true;
-
-    const enabledButton = document.createElement('button');
-
-    hostShadowRoot.appendChild(hiddenInput);
-    hostShadowRoot.appendChild(disabledButton);
-    hostShadowRoot.appendChild(enabledButton);
-
-    const collected = collectFocusableElementsInOrder(host);
-
-    expect(collected).toEqual([enabledButton]);
-  });
-
-  it('returns deepest active element by piercing nested shadow roots', () => {
-    const outerHost = document.createElement('div');
-    const outerShadowRoot = outerHost.attachShadow({ mode: 'open' });
-
-    const innerHost = document.createElement('div');
-    const innerShadowRoot = innerHost.attachShadow({ mode: 'open' });
-
-    const deepInput = document.createElement('input');
-    innerShadowRoot.appendChild(deepInput);
-    outerShadowRoot.appendChild(innerHost);
-
-    Object.defineProperty(Document.prototype, 'activeElement', {
-      configurable: true,
-      get: () => outerHost,
+      const result = queryElements(host, 'button', false);
+      expect(result).toEqual([lightButton]);
+      expect(result).not.toContain(shadowButton);
     });
 
-    Object.defineProperty(outerShadowRoot, 'activeElement', {
-      configurable: true,
-      get: () => innerHost,
+    it('includes shadow DOM when includeShadowDom is true', () => {
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+
+      const shadowButton = document.createElement('button');
+      shadowButton.textContent = 'Shadow';
+      shadowRoot.appendChild(shadowButton);
+
+      const result = queryElements(host, 'button', true);
+      expect(result).toContain(shadowButton);
     });
 
-    Object.defineProperty(innerShadowRoot, 'activeElement', {
-      configurable: true,
-      get: () => deepInput,
+    it('expands slot assignments in DOM order with includeShadowDom', () => {
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+
+      const shadowButton = document.createElement('button');
+      shadowButton.textContent = 'Shadow Button';
+
+      const slot = document.createElement('slot');
+      shadowRoot.appendChild(shadowButton);
+      shadowRoot.appendChild(slot);
+
+      const slottedButton = document.createElement('button');
+      slottedButton.textContent = 'Slotted';
+      host.appendChild(slottedButton);
+
+      vi.spyOn(slot, 'assignedElements').mockReturnValue([slottedButton]);
+
+      const result = queryElements(host, 'button', true);
+      expect(result).toEqual([shadowButton, slottedButton]);
     });
 
-    expect(getDeepActiveElement()).toBe(deepInput);
+    it('maintains order when shadow elements follow slot', () => {
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+
+      const slot = document.createElement('slot');
+      const shadowButton = document.createElement('button');
+      shadowButton.textContent = 'After Slot';
+
+      shadowRoot.appendChild(slot);
+      shadowRoot.appendChild(shadowButton);
+
+      const slottedButton = document.createElement('button');
+      slottedButton.textContent = 'Slotted';
+      host.appendChild(slottedButton);
+
+      vi.spyOn(slot, 'assignedElements').mockReturnValue([slottedButton]);
+
+      const result = queryElements(host, 'button', true);
+      // Slotted should be at the position of the slot, before the button after slot
+      expect(result).toEqual([slottedButton, shadowButton]);
+    });
+
+    it('queries passed ShadowRoot directly regardless of includeShadowDom flag', () => {
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+
+      const shadowButton = document.createElement('button');
+      shadowRoot.appendChild(shadowButton);
+
+      // When passing ShadowRoot directly, includeShadowDom doesn't matter
+      const result1 = queryElements(shadowRoot, 'button', false);
+      const result2 = queryElements(shadowRoot, 'button', true);
+
+      expect(result1).toEqual([shadowButton]);
+      expect(result2).toEqual([shadowButton]);
+    });
+
+    it('returns empty array when no matches found', () => {
+      const host = document.createElement('div');
+      const result = queryElements(host, 'button', false);
+      expect(result).toEqual([]);
+    });
+
+    it('returns empty array when passed null', () => {
+      const result = queryElements(null, 'button', false);
+      expect(result).toEqual([]);
+    });
   });
 });

@@ -31,36 +31,61 @@ export const FOCUS_KEYS = new Set([
 
 export function queryElements(
   dropdownElement: HTMLElement | ShadowRoot | null | undefined,
-  query: string
+  query: string,
+  includeShadowDom = false
 ) {
   if (!dropdownElement) {
     return [];
   }
 
-  let items: HTMLElement[] = [];
-  // Collect items from slots if they exist
-  if (dropdownElement.querySelectorAll('slot').length > 0) {
-    const slotElements = Array.from(dropdownElement.querySelectorAll('slot'));
-    items = slotElements.flatMap((slot) =>
-      Array.from(
-        slot.assignedElements({ flatten: true }) as HTMLElement[]
-      ).flatMap((el) => {
-        // Check if the assigned element itself matches the query
-        if (el?.matches(query)) {
-          return [el];
-        }
-        // Otherwise, query its children
-        return Array.from(el.querySelectorAll(query));
-      })
-    );
+  const root =
+    includeShadowDom && dropdownElement instanceof HTMLElement
+      ? (dropdownElement.shadowRoot ?? dropdownElement)
+      : dropdownElement;
+
+  const fromRoot = Array.from(root.querySelectorAll<HTMLElement>(query));
+
+  const slots = Array.from(root.querySelectorAll<HTMLSlotElement>('slot'));
+  if (slots.length === 0) {
+    return fromRoot;
   }
 
-  items = [
-    ...items,
-    ...Array.from(dropdownElement.querySelectorAll<HTMLElement>(query)),
-  ];
+  const result: HTMLElement[] = [...fromRoot];
 
-  return items;
+  // Process slots from last to first so that earlier splice indices stay valid.
+  for (let i = slots.length - 1; i >= 0; i--) {
+    const slot = slots[i];
+    const slotted: HTMLElement[] = [];
+
+    for (const assigned of slot.assignedElements({
+      flatten: true,
+    }) as HTMLElement[]) {
+      if (assigned.matches(query)) {
+        slotted.push(assigned);
+      } else {
+        slotted.push(
+          ...Array.from(assigned.querySelectorAll<HTMLElement>(query))
+        );
+      }
+    }
+
+    if (slotted.length === 0) continue;
+
+    let insertAt = result.length;
+    for (let j = 0; j < result.length; j++) {
+      if (
+        slot.compareDocumentPosition(result[j]) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+      ) {
+        insertAt = j;
+        break;
+      }
+    }
+
+    result.splice(insertAt, 0, ...slotted);
+  }
+
+  return result;
 }
 
 export type DomFocusOptions = Parameters<HTMLElement['focus']>[0];
@@ -173,78 +198,32 @@ const focusableBase = ':not([tabindex^="-"]):not([hidden]):not([disabled])';
 
 const customTags = ['ix-dropdown-item', 'ix-select-item'];
 
+const focusableNativeHtml = [
+  'button',
+  'a[href]',
+  'area[href]',
+  'audio',
+  'input',
+  'select',
+  'textarea',
+  'iframe',
+  'object',
+  'embed',
+  'video',
+  '[contenteditable]',
+];
+
 const buildCustom = (additionalSelector: string) =>
   customTags
     .map((tag) => `${tag}${focusableBase}${additionalSelector}`)
     .join(', ');
 
-export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('')}`;
+const buildNative = (additionalSelector: string) =>
+  focusableNativeHtml
+    .map((tag) => `${tag}${focusableBase}${additionalSelector}`)
+    .join(', ');
+
+export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('')}, ${buildNative('')}`;
 
 export const buildFocusableQueryString = (additionalSelector = '') =>
-  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}`;
-
-/**
- * Returns the deepest currently focused element by piercing all shadow roots.
- */
-export function getDeepActiveElement(): Element | null {
-  let el: Element | null = document.activeElement;
-  while (el?.shadowRoot?.activeElement) {
-    el = el.shadowRoot.activeElement;
-  }
-  return el;
-}
-
-function isDeepElementFocusable(el: HTMLElement): boolean {
-  if (el.hidden) return false;
-  if (el.hasAttribute('disabled')) return false;
-  return el.tabIndex >= 0;
-}
-
-function collectDeepFocusableFromElement(
-  el: HTMLElement,
-  into: HTMLElement[]
-): void {
-  if (el.shadowRoot) {
-    collectDeepFocusableInOrder(el.shadowRoot, into);
-    return;
-  }
-
-  if (isDeepElementFocusable(el)) {
-    into.push(el);
-  }
-
-  collectDeepFocusableInOrder(el, into);
-}
-
-function collectDeepFocusableInOrder(
-  root: Element | ShadowRoot,
-  into: HTMLElement[]
-): void {
-  for (const child of Array.from(root.children)) {
-    const el = child as HTMLElement;
-
-    if (el.tagName === 'SLOT') {
-      for (const assigned of (el as HTMLSlotElement).assignedElements({
-        flatten: true,
-      })) {
-        collectDeepFocusableFromElement(assigned as HTMLElement, into);
-      }
-      continue;
-    }
-
-    collectDeepFocusableFromElement(el, into);
-  }
-}
-
-/**
- * Collects all focusable elements in DOM order, traversing shadow roots and
- * expanding slot assignments. Use this for shadow-aware focus traps where both
- * shadow DOM and slotted light DOM elements must be considered.
- */
-export function collectFocusableElementsInOrder(
-  host: HTMLElement
-): HTMLElement[] {
-  const result: HTMLElement[] = [];
-  collectDeepFocusableInOrder(host.shadowRoot ?? host, result);
-  return result;
-}
+  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}, ${buildNative(additionalSelector)}`;
