@@ -19,10 +19,10 @@ import { IxButton, LoadingService } from '@siemens/ix-angular/standalone';
 export default class Loading {
   constructor(private readonly loadingService: LoadingService) {}
 
-  startLoading = () => {
+  startLoading = async () => {
     let count = 0;
     const progress: ModalLoadingContext =
-      this.loadingService.showModalLoading({ message: 'Loading 0/2' });
+      await this.loadingService.showModalLoading({ message: 'Loading 0/2' });
     const interval = setInterval(() => {
       count++;
       progress.update(`Loading ${count}/2`);
