@@ -11,9 +11,11 @@
 import { IxButton, showModalLoading } from '@siemens/ix-vue';
 import type { ModalLoadingContext } from '@siemens/ix';
 
-const startLoading = () => {
+const startLoading = async () => {
   let count = 0;
-  const progress: ModalLoadingContext = showModalLoading({ message: 'Loading 0/2' });
+  const progress: ModalLoadingContext = await showModalLoading({
+    message: 'Loading 0/2',
+  });
   const interval = setInterval(() => {
     count++;
     progress.update(`Loading ${count}/2`);
