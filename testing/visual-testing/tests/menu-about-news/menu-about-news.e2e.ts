@@ -33,7 +33,7 @@ regressionTest.describe('menu-about-news', () => {
 
     const about = page
       .locator('ix-menu')
-      .getByRole('menuitem', { name: 'About & legal information' });
+      .getByRole('button', { name: 'About & legal information' });
     await about.click();
 
     await page.waitForTimeout(500);
