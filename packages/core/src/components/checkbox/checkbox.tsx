@@ -21,12 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
-import {
-  ClassMutationObserver,
-  createClassMutationObserver,
-  HookValidationLifecycle,
-  IxFormComponent,
-} from '../utils/input';
+import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import {
   isFormNoValidate,
@@ -103,7 +98,6 @@ export class Checkbox implements IxFormComponent<string> {
   private touched = false;
   private formSubmissionAttempted = false;
   private cleanupFormListener?: () => void;
-  private classMutationObserver?: ClassMutationObserver;
 
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
@@ -162,15 +156,7 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   connectedCallback(): void {
-    const parent = this.hostElement.closest('ix-checkbox-group');
-    if (parent) {
-      this.classMutationObserver = createClassMutationObserver(parent, () => {
-        this.hostElement.classList.toggle(
-          'ix-invalid--required',
-          parent.classList.contains('ix-invalid--required')
-        );
-      });
-    }
+    this.syncValidationClasses();
     this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
       this.formSubmissionAttempted = true;
       this.syncValidationClasses();
@@ -178,9 +164,6 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   disconnectedCallback(): void {
-    if (this.classMutationObserver) {
-      this.classMutationObserver.destroy();
-    }
     if (this.cleanupFormListener) {
       this.cleanupFormListener();
     }
