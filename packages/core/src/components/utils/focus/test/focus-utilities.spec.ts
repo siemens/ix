@@ -8,9 +8,7 @@
  */
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import {
-  queryElements,
-} from '../focus-utilities';
+import { queryElements } from '../focus-utilities';
 
 const originalActiveElementDescriptor = Object.getOwnPropertyDescriptor(
   Document.prototype,
