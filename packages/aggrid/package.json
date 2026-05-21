@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "description": "AG Grid theme based on ix theme variables",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "files": [
     "LICENSE",
     "README.md",
@@ -51,7 +51,7 @@
     "vite": "catalog:"
   },
   "peerDependencies": {
-    "@siemens/ix": "^4.4.0",
+    "@siemens/ix": "^5.0.0",
     "ag-grid-community": "^33 || ^34 || ^35"
   }
 }
