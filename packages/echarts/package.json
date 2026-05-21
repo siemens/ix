@@ -43,7 +43,7 @@
     "vite": "catalog:"
   },
   "peerDependencies": {
-    "@siemens/ix": "^5.0.0",
+    "@siemens/ix": "^4.4.0",
     "echarts": "^5.3.3"
   }
 }
