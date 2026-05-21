@@ -242,7 +242,7 @@ export class MenuItem implements IxMenuItemBase {
         {this.href ? (
           <a
             {...commonAttributes}
-            role="menuitem"
+            role={this.isHostedInsideCategory ? 'menuitem' : undefined}
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
@@ -260,7 +260,7 @@ export class MenuItem implements IxMenuItemBase {
         ) : (
           <button
             {...commonAttributes}
-            role="menuitem"
+            role={this.isHostedInsideCategory ? 'menuitem' : undefined}
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
           >
