@@ -237,12 +237,12 @@ export class MenuItem implements IxMenuItemBase {
         }}
         aria-disabled={this.disabled ? 'true' : null}
         tabIndex={this.disabled ? -1 : 0}
+        role={this.isHostedInsideCategory ? 'menuitem' : undefined}
         {...extendedAttributes}
       >
         {this.href ? (
           <a
             {...commonAttributes}
-            role={this.isHostedInsideCategory ? 'menuitem' : undefined}
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
@@ -260,7 +260,6 @@ export class MenuItem implements IxMenuItemBase {
         ) : (
           <button
             {...commonAttributes}
-            role={this.isHostedInsideCategory ? 'menuitem' : undefined}
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
           >
