@@ -124,7 +124,7 @@
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
     "mustache": "^4.2.0",
-    "postcss": "^8.4.40",
+    "postcss": "^8.5.10",
     "puppeteer": "21.1.1",
     "rimraf": "catalog:",
     "sass": "^1.89.2",
