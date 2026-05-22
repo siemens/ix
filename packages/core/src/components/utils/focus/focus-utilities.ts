@@ -29,6 +29,47 @@ export const FOCUS_KEYS = new Set([
   'End',
 ]);
 
+const getQueryRoot = (
+  dropdownElement: HTMLElement | ShadowRoot,
+  includeShadowDom: boolean
+) =>
+  includeShadowDom && dropdownElement instanceof HTMLElement
+    ? (dropdownElement.shadowRoot ?? dropdownElement)
+    : dropdownElement;
+
+const collectSlotMatches = (slot: HTMLSlotElement, query: string) => {
+  const slotted: HTMLElement[] = [];
+
+  for (const assigned of slot.assignedElements({
+    flatten: true,
+  }) as HTMLElement[]) {
+    if (assigned.matches(query)) {
+      slotted.push(assigned);
+      continue;
+    }
+
+    slotted.push(...Array.from(assigned.querySelectorAll<HTMLElement>(query)));
+  }
+
+  return slotted;
+};
+
+const findInsertIndex = (
+  slot: HTMLSlotElement,
+  elements: HTMLElement[]
+): number => {
+  for (let i = 0; i < elements.length; i++) {
+    if (
+      slot.compareDocumentPosition(elements[i]) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+    ) {
+      return i;
+    }
+  }
+
+  return elements.length;
+};
+
 export function queryElements(
   dropdownElement: HTMLElement | ShadowRoot | null | undefined,
   query: string,
@@ -38,10 +79,7 @@ export function queryElements(
     return [];
   }
 
-  const root =
-    includeShadowDom && dropdownElement instanceof HTMLElement
-      ? (dropdownElement.shadowRoot ?? dropdownElement)
-      : dropdownElement;
+  const root = getQueryRoot(dropdownElement, includeShadowDom);
 
   const fromRoot = Array.from(root.querySelectorAll<HTMLElement>(query));
 
@@ -55,32 +93,13 @@ export function queryElements(
   // Process slots from last to first so that earlier splice indices stay valid.
   for (let i = slots.length - 1; i >= 0; i--) {
     const slot = slots[i];
-    const slotted: HTMLElement[] = [];
+    const slotted = collectSlotMatches(slot, query);
 
-    for (const assigned of slot.assignedElements({
-      flatten: true,
-    }) as HTMLElement[]) {
-      if (assigned.matches(query)) {
-        slotted.push(assigned);
-      } else {
-        slotted.push(
-          ...Array.from(assigned.querySelectorAll<HTMLElement>(query))
-        );
-      }
+    if (slotted.length === 0) {
+      continue;
     }
 
-    if (slotted.length === 0) continue;
-
-    let insertAt = result.length;
-    for (let j = 0; j < result.length; j++) {
-      if (
-        slot.compareDocumentPosition(result[j]) &
-        Node.DOCUMENT_POSITION_FOLLOWING
-      ) {
-        insertAt = j;
-        break;
-      }
-    }
+    const insertAt = findInsertIndex(slot, result);
 
     result.splice(insertAt, 0, ...slotted);
   }
