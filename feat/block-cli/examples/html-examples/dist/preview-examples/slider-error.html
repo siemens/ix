@@ -13,25 +13,26 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slider error example</title>
-    <script type="module" crossorigin src="../assets/slider-error-CPoa48uZ.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global-Dfa5QLOG.js">
-    <link rel="modulepreload" crossorigin href="../assets/init-BUCeZmFF.js">
-    <link rel="stylesheet" crossorigin href="../assets/global-BlKxImya.css">
+    <script type="module" crossorigin src="../assets/slider-error-BI4dDf-u.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-DX2OdaCL.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DRfhtWcZ.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-DjGFbS-8.css">
   </head>
   <body>
-    <ix-slider trace trace-reference="50" error>
+    <ix-slider class="ix-invalid" trace trace-reference="50">
       <span slot="label-start">0</span>
       <span slot="label-end">100</span>
     </ix-slider>
 
     <ix-slider
+      class="ix-invalid"
       min="0"
       max="50"
       step="10"
       value="20"
       trace
       trace-reference="50"
-      error="Error message"
+      invalid-text="Error message"
     >
       <span slot="label-start">0</span>
       <span slot="label-end">50</span>

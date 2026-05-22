@@ -13,23 +13,28 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chip example</title>
-    <script type="module" crossorigin src="../assets/chip-CuA_ZWdN.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global-Dfa5QLOG.js">
-    <link rel="modulepreload" crossorigin href="../assets/init-BUCeZmFF.js">
-    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-Tb6zX7EO.js">
-    <link rel="modulepreload" crossorigin href="../assets/index-BWsIQ1EH.js">
-    <link rel="stylesheet" crossorigin href="../assets/global-BlKxImya.css">
+    <script type="module" crossorigin src="../assets/chip-BimNrdee.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-DX2OdaCL.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DRfhtWcZ.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-_0Fdvtev.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-vnsUAEMY.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-DjGFbS-8.css">
     <link rel="stylesheet" crossorigin href="../assets/chip-D5t6aRjr.css">
   </head>
   <body>
     <div class="chip">
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip
-        >
+        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
         <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
         <ix-chip icon="print" variant="critical">Critical</ix-chip>
         <ix-chip icon="print" variant="warning">Warning</ix-chip>
-        <ix-chip icon="print" variant="info">Info</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="info"
+          tooltip-text="Open details for this status"
+          aria-label="In review"
+          >Info</ix-chip
+        >
         <ix-chip icon="print" variant="success">Success</ix-chip>
         <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
         <ix-chip
@@ -40,15 +45,25 @@ LICENSE file in the root directory of this source tree.
           closable
           >Custom</ix-chip
         >
-        <ix-chip icon="print" variant="primary" closable>Chip with icon
+        <ix-chip icon="print" variant="primary" closable
+          >Chip with icon
         </ix-chip>
       </div>
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" outline closable>Primary</ix-chip>
+        <ix-chip icon="print" variant="primary" outline closable
+          >Primary</ix-chip
+        >
         <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
         <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
         <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
-        <ix-chip icon="print" variant="info" outline>Info</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="info"
+          outline
+          tooltip-text="Open details for this status"
+          aria-label="In review"
+          >Info</ix-chip
+        >
         <ix-chip icon="print" variant="success" outline>Success</ix-chip>
         <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
         <ix-chip

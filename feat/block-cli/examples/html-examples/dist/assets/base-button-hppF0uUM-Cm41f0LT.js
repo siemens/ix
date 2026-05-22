@@ -1,0 +1,71 @@
+import { h } from "./global-DX2OdaCL.js";
+import { a as a11yBoolean } from "./a11y-B5k8YVR0-BOSd6BQK.js";
+const getButtonClasses = (variant, iconOnly = false, iconOval = false, selected, disabled) => {
+  return {
+    btn: true,
+    [`btn-${variant}`]: true,
+    "btn-icon": iconOnly,
+    "btn-oval": iconOval,
+    selected,
+    disabled
+  };
+};
+const getSpinnerSize = (btnProps) => {
+  if (!btnProps.icon) {
+    return "small";
+  }
+  switch (btnProps.iconSize) {
+    case "12":
+      return "xx-small";
+    case "16":
+      return "x-small";
+    default:
+      return "small";
+  }
+};
+const handleOnClick = (e, props) => {
+  if (props.disabled || props.loading) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  if (props.onClick) {
+    props.onClick(e);
+  }
+};
+const isIconDecorative = (ariaAttributes, children) => {
+  const hasTextContent = children && children.length > 0;
+  const hasAriaLabel = !!(ariaAttributes["aria-label"] || ariaAttributes["aria-labelledby"]);
+  return hasTextContent || hasAriaLabel;
+};
+const BaseButton = (props, children) => {
+  const extraClasses = props.extraClasses ?? {};
+  const ariaAttributes = props.ariaAttributes ?? {};
+  const iconIsDecorative = isIconDecorative(ariaAttributes, children);
+  const commonAttributes = {
+    ...ariaAttributes,
+    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
+    class: {
+      ...getButtonClasses(props.variant, props.iconOnly, props.iconOval, props.selected, props.disabled || props.loading),
+      ...extraClasses
+    }
+  };
+  const buttonContent = [
+    props.loading ? h("ix-spinner", { size: getSpinnerSize(props), hideTrack: true }) : null,
+    props.icon && !props.loading ? h("ix-icon", { class: "icon", name: props.icon, size: props.iconSize, color: props.iconColor, "aria-hidden": iconIsDecorative ? "true" : void 0 }) : null,
+    h("div", { class: {
+      content: true,
+      [`content-${props.alignment}`]: !!props.alignment
+    } }, children),
+    props.iconRight ? h("ix-icon", { class: "icon-right", name: props.iconRight, size: props.iconSize, color: props.iconColor, "aria-hidden": iconIsDecorative ? "true" : void 0 }) : null,
+    props.afterContent ? props.afterContent : null
+  ];
+  if (props.href) {
+    return h("a", { ...commonAttributes, "aria-disabled": a11yBoolean(props.disabled), href: props.disabled ? void 0 : props.href, target: props.target, role: "button", rel: props.rel, onClick: (e) => handleOnClick(e, props) }, buttonContent);
+  }
+  return h("button", { ...commonAttributes, "aria-disabled": a11yBoolean(props.disabled), onClick: (e) => handleOnClick(e, props), type: props.type }, buttonContent);
+};
+export {
+  BaseButton as B,
+  getButtonClasses as g
+};
