@@ -8,9 +8,9 @@
  */
 
 import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { IxComponentInterface } from '../utils/internal';
 import { DefaultMixins } from '../utils/internal/component';
-import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 
 /**

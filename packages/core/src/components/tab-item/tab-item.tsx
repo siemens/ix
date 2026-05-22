@@ -131,10 +131,11 @@ export class TabItem
 
   override render() {
     let variant: 'normal' | 'icon-only' | 'rounded' = 'normal';
+    const label = this.label || this.hostElement.textContent?.trim();
 
     if (this.rounded) {
       variant = 'rounded';
-    } else if (this.icon || this.label === undefined) {
+    } else if (this.icon && (label === undefined || label === '')) {
       variant = 'icon-only';
     } else {
       variant = 'normal';
@@ -150,7 +151,7 @@ export class TabItem
           selected: this.selected,
           disabled: this.disabled,
           'small-tab': this.small,
-          'icon-only': this.iconOnly,
+          'icon-only': variant === 'icon-only',
           stretched: this.layout === 'stretched',
           bottom: this.placement === 'bottom',
           top: this.placement === 'top',
@@ -176,13 +177,14 @@ export class TabItem
               circle: true,
             }}
           >
-            {this.icon && <ix-icon name={this.icon} size="16"></ix-icon>}
+            {this.icon && <ix-icon name={this.icon} size="24"></ix-icon>}
+            <slot></slot>
           </div>
         )}
         {this.icon && variant !== 'rounded' && (
           <ix-icon name={this.icon} size="16" class={'tab-icon'}></ix-icon>
         )}
-        {(variant === 'normal' || variant === 'icon-only') && (
+        {variant === 'normal' && (
           <div
             class={{
               text: !!this.label,

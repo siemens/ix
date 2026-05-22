@@ -61,3 +61,6 @@ import './generated/toggle-custom-label.spec';
 // Pill tests
 import './generated/pill.spec';
 import './generated/pill-variants.spec';
+
+// Chip tests
+import './generated/chip.spec';

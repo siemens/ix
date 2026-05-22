@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -31,9 +32,10 @@ import { DateTimeInputValidityState } from "./components/datetime-input/datetime
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
-import { AlignedPlacement, Side } from "./components/dropdown/placement";
+import { AlignedPlacement } from "./components/dropdown/placement";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -71,6 +73,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -84,9 +87,10 @@ export { DateTimeInputValidityState } from "./components/datetime-input/datetime
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
-export { AlignedPlacement, Side } from "./components/dropdown/placement";
+export { AlignedPlacement } from "./components/dropdown/placement";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
@@ -211,12 +215,6 @@ export namespace Components {
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
-          * ARIA label for the menu expand icon button
-          * @since 3.2.0
-          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
-         */
-        "ariaLabelMenuExpandIconButton"?: string;
-        /**
           * ARIA label for the more menu icon button
           * @since 3.2.0
          */
@@ -258,8 +256,6 @@ export namespace Components {
          */
         "showMenu"?: boolean;
     }
-    interface IxApplicationSidebar {
-    }
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
@@ -268,11 +264,6 @@ export namespace Components {
      * @figma-main-component-id 308:1151
      */
     interface IxAvatar {
-        /**
-          * Accessibility label for the image Will be set as aria-label on the nested HTML img element
-          * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
           * @since 4.0.0
@@ -366,12 +357,6 @@ export namespace Components {
      * @figma-main-component-id 358:3004
      */
     interface IxBreadcrumbItem {
-        /**
-          * ARIA label for the button Will be set as aria-label for the nested HTML button element
-          * @since 3.2.0
-          * @deprecated Use `aria-label` attribute directly on the component instead.
-         */
-        "ariaLabelButton"?: string;
         /**
           * Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
           * @since 5.0.0
@@ -794,6 +779,11 @@ export namespace Components {
          */
         "ariaLabelCloseButton"?: string;
         /**
+          * Accessible name for the leading icon. When unset, the icon is treated as decorative (hidden from assistive tech) when the default slot supplies a visible label.
+          * @since 5.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
@@ -833,17 +823,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant
+          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
           * @default 'primary'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     interface IxCol {
         /**
@@ -1436,6 +1419,7 @@ export namespace Components {
           * Name of the form control for form submission
          */
         "name"?: string;
+        "openPicker": () => Promise<void>;
         /**
           * Placeholder text when input is empty
          */
@@ -1593,53 +1577,6 @@ export namespace Components {
     interface IxDivider {
     }
     /**
-     * @figma-main-component-id 1435:46269
-     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
-     */
-    interface IxDrawer {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-          * @default 'Close drawer'
-         */
-        "ariaLabelCloseButton"?: string;
-        /**
-          * Fired in case of an outside click during drawer showed state
-          * @default true
-         */
-        "closeOnClickOutside": boolean;
-        /**
-          * Render the drawer with maximum height
-          * @default false
-         */
-        "fullHeight": boolean;
-        /**
-          * Max width interpreted as REM
-          * @default 28
-         */
-        "maxWidth": number;
-        /**
-          * Min width interpreted as REM
-          * @default 16
-         */
-        "minWidth": number;
-        /**
-          * Show or hide the drawer
-          * @default false
-         */
-        "show": boolean;
-        /**
-          * Toggle or define show state of drawer
-          * @param show Overwrite toggle state with boolean
-         */
-        "toggleDrawer": (show?: boolean) => Promise<void>;
-        /**
-          * Width interpreted as REM if not set to 'auto'
-          * @default this.minWidth
-         */
-        "width": number | 'auto';
-    }
-    /**
      * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
      * @figma-main-component-id 1233:32649
      */
@@ -1691,6 +1628,7 @@ export namespace Components {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -1842,6 +1780,7 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -1869,6 +1808,12 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
+          * @default 'menuitem'
+         */
+        "itemRole": IxDropdownItemRole;
         /**
           * @default false
          */
@@ -2489,13 +2434,6 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     * Use the 'ix-input' component instead
-     */
-    interface IxInputGroup {
-    }
-    /**
      * @figma-main-component-id 4727:112546
      */
     interface IxKeyValue {
@@ -3026,7 +2964,7 @@ export namespace Components {
          */
         "closeModal": <T = unknown>(reason: T) => Promise<void>;
         /**
-          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **isNonBlocking** is `true`.
           * @default false
          */
         "closeOnBackdropClick": boolean;
@@ -3089,7 +3027,7 @@ export namespace Components {
          */
         "hideClose": boolean;
         /**
-          * Icon of the Header
+          * Icon of the header
          */
         "icon"?: string;
         /**
@@ -3653,12 +3591,6 @@ export namespace Components {
          */
         "ariaLabelAddItem": string;
         /**
-          * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-          * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-         */
-        "ariaLabelChevronDownIconButton"?: string;
-        /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Clear selection'
@@ -3733,6 +3665,12 @@ export namespace Components {
          */
         "i18nPlaceholderEditable": string;
         /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem": string;
+        /**
           * Select list header
           * @default 'Select an option'
          */
@@ -3795,6 +3733,7 @@ export namespace Components {
      */
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling": boolean;
@@ -3831,11 +3770,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Show error state and message
-          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
-         */
-        "error"?: boolean | string;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Show text below the field component
@@ -4067,7 +4001,7 @@ export namespace Components {
     /**
      * @since 5.0.0
      */
-    interface IxTabPanels {
+    interface IxTabSet {
     }
     /**
      * @figma-main-component-id 427:6367
@@ -4802,6 +4736,12 @@ export namespace Components {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
+          * @default false
+         */
+        "directoryUpload": boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -4812,15 +4752,13 @@ export namespace Components {
          */
         "i18nUploadDisabled": string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
-        "i18nUploadFile": string;
+        "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
-        "loadingText": string;
+        "loadingText"?: string;
         /**
           * Whether the text should wrap to more than one line
           * @default false
@@ -4833,9 +4771,8 @@ export namespace Components {
         "multiple": boolean;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
-        "selectFileText": string;
+        "selectFileText"?: string;
         /**
           * Set files
           * @param obj
@@ -4856,26 +4793,6 @@ export namespace Components {
           * @default 'Upload successful'
          */
         "uploadSuccessText": string;
-    }
-    /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     */
-    interface IxValidationTooltip {
-        /**
-          * Message of the tooltip
-         */
-        "message"?: string;
-        /**
-          * Placement of the tooltip
-          * @default 'top'
-         */
-        "placement": Side;
-        /**
-          * Suppress the automatic placement of the dropdown.
-          * @default false
-         */
-        "suppressAutomaticPlacement": boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -4986,10 +4903,6 @@ export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
-}
-export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxDrawerElement;
 }
 export interface IxDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5216,12 +5129,6 @@ declare global {
     var HTMLIxApplicationHeaderElement: {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
-    };
-    interface HTMLIxApplicationSidebarElement extends Components.IxApplicationSidebar, HTMLStencilElement {
-    }
-    var HTMLIxApplicationSidebarElement: {
-        prototype: HTMLIxApplicationSidebarElement;
-        new (): HTMLIxApplicationSidebarElement;
     };
     interface HTMLIxApplicationSwitchModalElement extends Components.IxApplicationSwitchModal, HTMLStencilElement {
     }
@@ -5658,28 +5565,6 @@ declare global {
         prototype: HTMLIxDividerElement;
         new (): HTMLIxDividerElement;
     };
-    interface HTMLIxDrawerElementEventMap {
-        "open": any;
-        "drawerClose": any;
-    }
-    /**
-     * @figma-main-component-id 1435:46269
-     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
-     */
-    interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxDrawerElement: {
-        prototype: HTMLIxDrawerElement;
-        new (): HTMLIxDrawerElement;
-    };
     interface HTMLIxDropdownElementEventMap {
         "showChange": boolean;
         "showChanged": boolean;
@@ -6017,17 +5902,6 @@ declare global {
     var HTMLIxInputElement: {
         prototype: HTMLIxInputElement;
         new (): HTMLIxInputElement;
-    };
-    /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     * Use the 'ix-input' component instead
-     */
-    interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
-    }
-    var HTMLIxInputGroupElement: {
-        prototype: HTMLIxInputGroupElement;
-        new (): HTMLIxInputGroupElement;
     };
     /**
      * @figma-main-component-id 4727:112546
@@ -6671,11 +6545,11 @@ declare global {
     /**
      * @since 5.0.0
      */
-    interface HTMLIxTabPanelsElement extends Components.IxTabPanels, HTMLStencilElement {
+    interface HTMLIxTabSetElement extends Components.IxTabSet, HTMLStencilElement {
     }
-    var HTMLIxTabPanelsElement: {
-        prototype: HTMLIxTabPanelsElement;
-        new (): HTMLIxTabPanelsElement;
+    var HTMLIxTabSetElement: {
+        prototype: HTMLIxTabSetElement;
+        new (): HTMLIxTabSetElement;
     };
     interface HTMLIxTabsElementEventMap {
         "tabChange": string | undefined;
@@ -6928,16 +6802,6 @@ declare global {
         prototype: HTMLIxUploadElement;
         new (): HTMLIxUploadElement;
     };
-    /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     */
-    interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
-    }
-    var HTMLIxValidationTooltipElement: {
-        prototype: HTMLIxValidationTooltipElement;
-        new (): HTMLIxValidationTooltipElement;
-    };
     interface HTMLIxWorkflowStepElementEventMap {
         "selectedChanged": HTMLIxWorkflowStepElement;
     }
@@ -6976,7 +6840,6 @@ declare global {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
-        "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-blind": HTMLIxBlindElement;
@@ -7005,7 +6868,6 @@ declare global {
         "ix-datetime-input": HTMLIxDatetimeInputElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-divider": HTMLIxDividerElement;
-        "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-header": HTMLIxDropdownHeaderElement;
@@ -7027,7 +6889,6 @@ declare global {
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input": HTMLIxInputElement;
-        "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
@@ -7069,7 +6930,7 @@ declare global {
         "ix-split-button": HTMLIxSplitButtonElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tab-panel": HTMLIxTabPanelElement;
-        "ix-tab-panels": HTMLIxTabPanelsElement;
+        "ix-tab-set": HTMLIxTabSetElement;
         "ix-tabs": HTMLIxTabsElement;
         "ix-textarea": HTMLIxTextareaElement;
         "ix-tile": HTMLIxTileElement;
@@ -7084,7 +6945,6 @@ declare global {
         "ix-tree-item": HTMLIxTreeItemElement;
         "ix-typography": HTMLIxTypographyElement;
         "ix-upload": HTMLIxUploadElement;
-        "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
     }
@@ -7191,12 +7051,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
-          * ARIA label for the menu expand icon button
-          * @since 3.2.0
-          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
-         */
-        "ariaLabelMenuExpandIconButton"?: string;
-        /**
           * ARIA label for the more menu icon button
           * @since 3.2.0
          */
@@ -7247,8 +7101,6 @@ declare namespace LocalJSX {
          */
         "showMenu"?: boolean;
     }
-    interface IxApplicationSidebar {
-    }
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
@@ -7257,11 +7109,6 @@ declare namespace LocalJSX {
      * @figma-main-component-id 308:1151
      */
     interface IxAvatar {
-        /**
-          * Accessibility label for the image Will be set as aria-label on the nested HTML img element
-          * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
-         */
-        "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
           * @since 4.0.0
@@ -7372,12 +7219,6 @@ declare namespace LocalJSX {
      * @figma-main-component-id 358:3004
      */
     interface IxBreadcrumbItem {
-        /**
-          * ARIA label for the button Will be set as aria-label for the nested HTML button element
-          * @since 3.2.0
-          * @deprecated Use `aria-label` attribute directly on the component instead.
-         */
-        "ariaLabelButton"?: string;
         /**
           * Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
           * @since 5.0.0
@@ -7845,6 +7686,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelCloseButton"?: string;
         /**
+          * Accessible name for the leading icon. When unset, the icon is treated as decorative (hidden from assistive tech) when the default slot supplies a visible label.
+          * @since 5.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
@@ -7888,17 +7734,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant
+          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
           * @default 'primary'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     interface IxCol {
         /**
@@ -8667,56 +8506,6 @@ declare namespace LocalJSX {
     interface IxDivider {
     }
     /**
-     * @figma-main-component-id 1435:46269
-     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
-     */
-    interface IxDrawer {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-          * @default 'Close drawer'
-         */
-        "ariaLabelCloseButton"?: string;
-        /**
-          * Fired in case of an outside click during drawer showed state
-          * @default true
-         */
-        "closeOnClickOutside"?: boolean;
-        /**
-          * Render the drawer with maximum height
-          * @default false
-         */
-        "fullHeight"?: boolean;
-        /**
-          * Max width interpreted as REM
-          * @default 28
-         */
-        "maxWidth"?: number;
-        /**
-          * Min width interpreted as REM
-          * @default 16
-         */
-        "minWidth"?: number;
-        /**
-          * Fire event after drawer is close
-         */
-        "onDrawerClose"?: (event: IxDrawerCustomEvent<any>) => void;
-        /**
-          * Fire event after drawer is open
-         */
-        "onOpen"?: (event: IxDrawerCustomEvent<any>) => void;
-        /**
-          * Show or hide the drawer
-          * @default false
-         */
-        "show"?: boolean;
-        /**
-          * Width interpreted as REM if not set to 'auto'
-          * @default this.minWidth
-         */
-        "width"?: number | 'auto';
-    }
-    /**
      * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
      * @figma-main-component-id 1233:32649
      */
@@ -8767,6 +8556,7 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -8935,6 +8725,7 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -8960,6 +8751,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * Role of the host surface. Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+          * @since 5.0.0
+          * @default 'menuitem'
+         */
+        "itemRole"?: IxDropdownItemRole;
         /**
           * @default false
          */
@@ -9623,13 +9420,6 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     * Use the 'ix-input' component instead
-     */
-    interface IxInputGroup {
-    }
-    /**
      * @figma-main-component-id 4727:112546
      */
     interface IxKeyValue {
@@ -10206,7 +9996,7 @@ declare namespace LocalJSX {
          */
         "centered"?: boolean;
         /**
-          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **`isNonBlocking`** is `true`.
+          * Dismiss modal on backdrop click (outside the dialog panel). Ignored when **isNonBlocking** is `true`.
           * @default false
          */
         "closeOnBackdropClick"?: boolean;
@@ -10269,7 +10059,7 @@ declare namespace LocalJSX {
          */
         "hideClose"?: boolean;
         /**
-          * Icon of the Header
+          * Icon of the header
          */
         "icon"?: string;
         /**
@@ -10277,7 +10067,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
+          * Emits when the close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
@@ -10880,12 +10670,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelAddItem"?: string;
         /**
-          * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-          * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-         */
-        "ariaLabelChevronDownIconButton"?: string;
-        /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Clear selection'
@@ -10953,6 +10737,12 @@ declare namespace LocalJSX {
           * @default 'Type of select option'
          */
         "i18nPlaceholderEditable"?: string;
+        /**
+          * Prefix for the accessible name of the close control on a selected chip in multiple mode. The chip label or value is appended (e.g. "Remove Item 1").
+          * @since 5.0.0
+          * @default 'Remove'
+         */
+        "i18nRemoveSelectedItem"?: string;
         /**
           * Select list header
           * @default 'Select an option'
@@ -11028,6 +10818,7 @@ declare namespace LocalJSX {
      */
     interface IxSelectItem {
         /**
+          * When `true`, do not map keyboard focus visibility to `aria-selected` on the host. Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
@@ -11067,11 +10858,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Show error state and message
-          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
-         */
-        "error"?: boolean | string;
         /**
           * The `id` of a `<form>` element to associate this element with.
          */
@@ -11325,7 +11111,7 @@ declare namespace LocalJSX {
     /**
      * @since 5.0.0
      */
-    interface IxTabPanels {
+    interface IxTabSet {
     }
     /**
      * @figma-main-component-id 427:6367
@@ -12099,6 +11885,12 @@ declare namespace LocalJSX {
          */
         "accept"?: string;
         /**
+          * If directoryUpload is true the user can drop or select a folder containing one or more files
+          * @since 5.1.0
+          * @default false
+         */
+        "directoryUpload"?: boolean;
+        /**
           * Disable all input events
           * @default false
          */
@@ -12109,13 +11901,11 @@ declare namespace LocalJSX {
          */
         "i18nUploadDisabled"?: string;
         /**
-          * Label for upload file button
-          * @default 'Upload file…'
+          * Label for upload file or folder button
          */
         "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
         "loadingText"?: string;
         /**
@@ -12134,7 +11924,6 @@ declare namespace LocalJSX {
         "onFilesChanged"?: (event: IxUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
         "selectFileText"?: string;
         /**
@@ -12152,26 +11941,6 @@ declare namespace LocalJSX {
           * @default 'Upload successful'
          */
         "uploadSuccessText"?: string;
-    }
-    /**
-     * @deprecated Since 3.0.0. Will be removed with 5.0.0
-     * Not maintained anymore.
-     */
-    interface IxValidationTooltip {
-        /**
-          * Message of the tooltip
-         */
-        "message"?: string;
-        /**
-          * Placement of the tooltip
-          * @default 'top'
-         */
-        "placement"?: Side;
-        /**
-          * Suppress the automatic placement of the dropdown.
-          * @default false
-         */
-        "suppressAutomaticPlacement"?: boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -12253,13 +12022,11 @@ declare namespace LocalJSX {
         "appIconOutline": boolean;
         "hideBottomBorder": boolean;
         "showMenu": boolean;
-        "ariaLabelMenuExpandIconButton": string;
         "ariaLabelAppSwitchIconButton": string;
         "ariaLabelMoreMenuIconButton": string;
         "enableTopLayer": boolean;
     }
     interface IxAvatarAttributes {
-        "a11yLabel": string;
         "image": string;
         "initials": string;
         "username": string;
@@ -12281,7 +12048,6 @@ declare namespace LocalJSX {
         "enableTopLayer": boolean;
     }
     interface IxBreadcrumbItemAttributes {
-        "ariaLabelButton": string;
         "label": string;
         "icon": string;
         "href": string;
@@ -12367,17 +12133,11 @@ declare namespace LocalJSX {
         "required": boolean;
     }
     interface IxChipAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "inactive": boolean;
         "closable": boolean;
         "icon": string;
+        "ariaLabelIcon": string;
         "background": string | undefined;
         "chipColor": string | undefined;
         "outline": boolean;
@@ -12539,15 +12299,6 @@ declare namespace LocalJSX {
         "showWeekNumbers": boolean;
         "embedded": boolean;
     }
-    interface IxDrawerAttributes {
-        "show": boolean;
-        "closeOnClickOutside": boolean;
-        "fullHeight": boolean;
-        "minWidth": number;
-        "maxWidth": number;
-        "width": string;
-        "ariaLabelCloseButton": string;
-    }
     interface IxDropdownAttributes {
         "suppressAutomaticPlacement": boolean;
         "show": boolean;
@@ -12565,6 +12316,7 @@ declare namespace LocalJSX {
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
+        "hostRole": string;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;
@@ -12591,6 +12343,7 @@ declare namespace LocalJSX {
         "hover": boolean;
         "disabled": boolean;
         "checked": boolean;
+        "itemRole": IxDropdownItemRole;
         "isSubMenu": boolean;
         "suppressChecked": boolean;
         "hasVisualFocus": boolean;
@@ -13002,7 +12755,6 @@ declare namespace LocalJSX {
         "name": string;
         "required": boolean;
         "label": string;
-        "ariaLabelChevronDownIconButton": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
         "warningText": string;
@@ -13022,6 +12774,7 @@ declare namespace LocalJSX {
         "i18nSelectListHeader": string;
         "i18nNoMatches": string;
         "i18nAllSelected": string;
+        "i18nRemoveSelectedItem": string;
         "hideListHeader": boolean;
         "dropdownWidth": string;
         "dropdownMaxWidth": string;
@@ -13051,7 +12804,6 @@ declare namespace LocalJSX {
         "trace": boolean;
         "traceReference": number;
         "disabled": boolean;
-        "error": string;
     }
     interface IxSpinnerAttributes {
         "variant": 'primary' | 'secondary';
@@ -13238,6 +12990,7 @@ declare namespace LocalJSX {
     interface IxUploadAttributes {
         "accept": string;
         "multiple": boolean;
+        "directoryUpload": boolean;
         "multiline": boolean;
         "disabled": boolean;
         "state": UploadFileState;
@@ -13247,11 +13000,6 @@ declare namespace LocalJSX {
         "uploadSuccessText": string;
         "i18nUploadFile": string;
         "i18nUploadDisabled": string;
-    }
-    interface IxValidationTooltipAttributes {
-        "message": string;
-        "placement": Side;
-        "suppressAutomaticPlacement": boolean;
     }
     interface IxWorkflowStepAttributes {
         "vertical": boolean;
@@ -13271,7 +13019,6 @@ declare namespace LocalJSX {
         "ix-action-card": Omit<IxActionCard, keyof IxActionCardAttributes> & { [K in keyof IxActionCard & keyof IxActionCardAttributes]?: IxActionCard[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `attr:${K}`]?: IxActionCardAttributes[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `prop:${K}`]?: IxActionCard[K] };
         "ix-application": Omit<IxApplication, keyof IxApplicationAttributes> & { [K in keyof IxApplication & keyof IxApplicationAttributes]?: IxApplication[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `attr:${K}`]?: IxApplicationAttributes[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `prop:${K}`]?: IxApplication[K] };
         "ix-application-header": Omit<IxApplicationHeader, keyof IxApplicationHeaderAttributes> & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes]?: IxApplicationHeader[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `attr:${K}`]?: IxApplicationHeaderAttributes[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `prop:${K}`]?: IxApplicationHeader[K] };
-        "ix-application-sidebar": IxApplicationSidebar;
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
         "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
@@ -13300,7 +13047,6 @@ declare namespace LocalJSX {
         "ix-datetime-input": Omit<IxDatetimeInput, keyof IxDatetimeInputAttributes> & { [K in keyof IxDatetimeInput & keyof IxDatetimeInputAttributes]?: IxDatetimeInput[K] } & { [K in keyof IxDatetimeInput & keyof IxDatetimeInputAttributes as `attr:${K}`]?: IxDatetimeInputAttributes[K] } & { [K in keyof IxDatetimeInput & keyof IxDatetimeInputAttributes as `prop:${K}`]?: IxDatetimeInput[K] };
         "ix-datetime-picker": Omit<IxDatetimePicker, keyof IxDatetimePickerAttributes> & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes]?: IxDatetimePicker[K] } & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes as `attr:${K}`]?: IxDatetimePickerAttributes[K] } & { [K in keyof IxDatetimePicker & keyof IxDatetimePickerAttributes as `prop:${K}`]?: IxDatetimePicker[K] };
         "ix-divider": IxDivider;
-        "ix-drawer": Omit<IxDrawer, keyof IxDrawerAttributes> & { [K in keyof IxDrawer & keyof IxDrawerAttributes]?: IxDrawer[K] } & { [K in keyof IxDrawer & keyof IxDrawerAttributes as `attr:${K}`]?: IxDrawerAttributes[K] } & { [K in keyof IxDrawer & keyof IxDrawerAttributes as `prop:${K}`]?: IxDrawer[K] };
         "ix-dropdown": Omit<IxDropdown, keyof IxDropdownAttributes> & { [K in keyof IxDropdown & keyof IxDropdownAttributes]?: IxDropdown[K] } & { [K in keyof IxDropdown & keyof IxDropdownAttributes as `attr:${K}`]?: IxDropdownAttributes[K] } & { [K in keyof IxDropdown & keyof IxDropdownAttributes as `prop:${K}`]?: IxDropdown[K] };
         "ix-dropdown-button": Omit<IxDropdownButton, keyof IxDropdownButtonAttributes> & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes]?: IxDropdownButton[K] } & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes as `attr:${K}`]?: IxDropdownButtonAttributes[K] } & { [K in keyof IxDropdownButton & keyof IxDropdownButtonAttributes as `prop:${K}`]?: IxDropdownButton[K] };
         "ix-dropdown-header": Omit<IxDropdownHeader, keyof IxDropdownHeaderAttributes> & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes]?: IxDropdownHeader[K] } & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes as `attr:${K}`]?: IxDropdownHeaderAttributes[K] } & { [K in keyof IxDropdownHeader & keyof IxDropdownHeaderAttributes as `prop:${K}`]?: IxDropdownHeader[K] };
@@ -13322,7 +13068,6 @@ declare namespace LocalJSX {
         "ix-icon-button": Omit<IxIconButton, keyof IxIconButtonAttributes> & { [K in keyof IxIconButton & keyof IxIconButtonAttributes]?: IxIconButton[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `attr:${K}`]?: IxIconButtonAttributes[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `prop:${K}`]?: IxIconButton[K] };
         "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
         "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
-        "ix-input-group": IxInputGroup;
         "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
         "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
         "ix-kpi": Omit<IxKpi, keyof IxKpiAttributes> & { [K in keyof IxKpi & keyof IxKpiAttributes]?: IxKpi[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `attr:${K}`]?: IxKpiAttributes[K] } & { [K in keyof IxKpi & keyof IxKpiAttributes as `prop:${K}`]?: IxKpi[K] };
@@ -13364,7 +13109,7 @@ declare namespace LocalJSX {
         "ix-split-button": Omit<IxSplitButton, keyof IxSplitButtonAttributes> & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes]?: IxSplitButton[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `attr:${K}`]?: IxSplitButtonAttributes[K] } & { [K in keyof IxSplitButton & keyof IxSplitButtonAttributes as `prop:${K}`]?: IxSplitButton[K] };
         "ix-tab-item": Omit<IxTabItem, keyof IxTabItemAttributes> & { [K in keyof IxTabItem & keyof IxTabItemAttributes]?: IxTabItem[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `attr:${K}`]?: IxTabItemAttributes[K] } & { [K in keyof IxTabItem & keyof IxTabItemAttributes as `prop:${K}`]?: IxTabItem[K] } & OneOf<"tabKey", IxTabItem["tabKey"], IxTabItemAttributes["tabKey"]>;
         "ix-tab-panel": Omit<IxTabPanel, keyof IxTabPanelAttributes> & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes]?: IxTabPanel[K] } & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes as `attr:${K}`]?: IxTabPanelAttributes[K] } & { [K in keyof IxTabPanel & keyof IxTabPanelAttributes as `prop:${K}`]?: IxTabPanel[K] } & OneOf<"tabKey", IxTabPanel["tabKey"], IxTabPanelAttributes["tabKey"]>;
-        "ix-tab-panels": IxTabPanels;
+        "ix-tab-set": IxTabSet;
         "ix-tabs": Omit<IxTabs, keyof IxTabsAttributes> & { [K in keyof IxTabs & keyof IxTabsAttributes]?: IxTabs[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `attr:${K}`]?: IxTabsAttributes[K] } & { [K in keyof IxTabs & keyof IxTabsAttributes as `prop:${K}`]?: IxTabs[K] };
         "ix-textarea": Omit<IxTextarea, keyof IxTextareaAttributes> & { [K in keyof IxTextarea & keyof IxTextareaAttributes]?: IxTextarea[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `attr:${K}`]?: IxTextareaAttributes[K] } & { [K in keyof IxTextarea & keyof IxTextareaAttributes as `prop:${K}`]?: IxTextarea[K] };
         "ix-tile": Omit<IxTile, keyof IxTileAttributes> & { [K in keyof IxTile & keyof IxTileAttributes]?: IxTile[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `attr:${K}`]?: IxTileAttributes[K] } & { [K in keyof IxTile & keyof IxTileAttributes as `prop:${K}`]?: IxTile[K] };
@@ -13379,7 +13124,6 @@ declare namespace LocalJSX {
         "ix-tree-item": Omit<IxTreeItem, keyof IxTreeItemAttributes> & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes]?: IxTreeItem[K] } & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes as `attr:${K}`]?: IxTreeItemAttributes[K] } & { [K in keyof IxTreeItem & keyof IxTreeItemAttributes as `prop:${K}`]?: IxTreeItem[K] };
         "ix-typography": Omit<IxTypography, keyof IxTypographyAttributes> & { [K in keyof IxTypography & keyof IxTypographyAttributes]?: IxTypography[K] } & { [K in keyof IxTypography & keyof IxTypographyAttributes as `attr:${K}`]?: IxTypographyAttributes[K] } & { [K in keyof IxTypography & keyof IxTypographyAttributes as `prop:${K}`]?: IxTypography[K] };
         "ix-upload": Omit<IxUpload, keyof IxUploadAttributes> & { [K in keyof IxUpload & keyof IxUploadAttributes]?: IxUpload[K] } & { [K in keyof IxUpload & keyof IxUploadAttributes as `attr:${K}`]?: IxUploadAttributes[K] } & { [K in keyof IxUpload & keyof IxUploadAttributes as `prop:${K}`]?: IxUpload[K] };
-        "ix-validation-tooltip": Omit<IxValidationTooltip, keyof IxValidationTooltipAttributes> & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes]?: IxValidationTooltip[K] } & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes as `attr:${K}`]?: IxValidationTooltipAttributes[K] } & { [K in keyof IxValidationTooltip & keyof IxValidationTooltipAttributes as `prop:${K}`]?: IxValidationTooltip[K] };
         "ix-workflow-step": Omit<IxWorkflowStep, keyof IxWorkflowStepAttributes> & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes]?: IxWorkflowStep[K] } & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes as `attr:${K}`]?: IxWorkflowStepAttributes[K] } & { [K in keyof IxWorkflowStep & keyof IxWorkflowStepAttributes as `prop:${K}`]?: IxWorkflowStep[K] };
         "ix-workflow-steps": Omit<IxWorkflowSteps, keyof IxWorkflowStepsAttributes> & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes]?: IxWorkflowSteps[K] } & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes as `attr:${K}`]?: IxWorkflowStepsAttributes[K] } & { [K in keyof IxWorkflowSteps & keyof IxWorkflowStepsAttributes as `prop:${K}`]?: IxWorkflowSteps[K] };
     }
@@ -13402,7 +13146,6 @@ declare module "@stencil/core" {
              * @figma-main-component-id 20920:77660
              */
             "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
-            "ix-application-sidebar": LocalJSX.IntrinsicElements["ix-application-sidebar"] & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IntrinsicElements["ix-application-switch-modal"] & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
@@ -13518,11 +13261,6 @@ declare module "@stencil/core" {
             "ix-datetime-picker": LocalJSX.IntrinsicElements["ix-datetime-picker"] & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IntrinsicElements["ix-divider"] & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             /**
-             * @figma-main-component-id 1435:46269
-             * @deprecated Will be removed with 5.0.0, use ix-pane as successor
-             */
-            "ix-drawer": LocalJSX.IntrinsicElements["ix-drawer"] & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
-            /**
              * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
              * @figma-main-component-id 1233:32649
              */
@@ -13612,12 +13350,6 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-input": LocalJSX.IntrinsicElements["ix-input"] & JSXBase.HTMLAttributes<HTMLIxInputElement>;
-            /**
-             * @deprecated Since 3.0.0. Will be removed with 5.0.0
-             * Not maintained anymore.
-             * Use the 'ix-input' component instead
-             */
-            "ix-input-group": LocalJSX.IntrinsicElements["ix-input-group"] & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @figma-main-component-id 4727:112546
              */
@@ -13790,7 +13522,7 @@ declare module "@stencil/core" {
             /**
              * @since 5.0.0
              */
-            "ix-tab-panels": LocalJSX.IntrinsicElements["ix-tab-panels"] & JSXBase.HTMLAttributes<HTMLIxTabPanelsElement>;
+            "ix-tab-set": LocalJSX.IntrinsicElements["ix-tab-set"] & JSXBase.HTMLAttributes<HTMLIxTabSetElement>;
             /**
              * @figma-main-component-id 427:6367
              */
@@ -13847,11 +13579,6 @@ declare module "@stencil/core" {
              * @figma-main-component-id 1028:14676
              */
             "ix-upload": LocalJSX.IntrinsicElements["ix-upload"] & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
-            /**
-             * @deprecated Since 3.0.0. Will be removed with 5.0.0
-             * Not maintained anymore.
-             */
-            "ix-validation-tooltip": LocalJSX.IntrinsicElements["ix-validation-tooltip"] & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IntrinsicElements["ix-workflow-step"] & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IntrinsicElements["ix-workflow-steps"] & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
         }

@@ -7,10 +7,14 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "4.4.0",
+  "version": "5.0.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -54,7 +58,7 @@
       "import": "./components/*.js"
     },
     "./components": {
-      "types": "./components/custom-elements.d.ts",
+      "types": "./components/index.d.ts",
       "import": "./components/index.js",
       "default": "./components/index.js"
     },

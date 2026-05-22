@@ -218,6 +218,9 @@ export class Dropdown
   /** @internal */
   @Prop() focusTrapOptions?: FocusTrapOptions;
 
+  /** @internal */
+  @Prop() hostRole?: string;
+
   /**
    * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
@@ -979,6 +982,8 @@ export class Dropdown
       ariaAttributes['aria-labelledby'] = this.triggerElement.id;
       ariaAttributes['aria-owns'] = this.triggerElement.id;
       ariaAttributes['role'] = 'menu';
+    } else if (this.hostRole) {
+      ariaAttributes['role'] = this.hostRole;
     }
     return (
       <Host

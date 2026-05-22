@@ -73,7 +73,6 @@ export class MenuCategory
   @Prop() tooltipText?: string;
 
   /** @internal */
-  // eslint-disable-next-line @stencil-community/decorators-style
   @Event({ bubbles: true, cancelable: true })
   closeOtherCategories!: EventEmitter;
 
@@ -87,6 +86,7 @@ export class MenuCategory
   private ixMenu?: HTMLIxMenuElement;
 
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
+  private readonly categoryParentRef = makeRef<HTMLIxMenuItemElement>();
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -129,15 +129,14 @@ export class MenuCategory
   }
 
   private animateFadeIn() {
+    this.showItems = true;
+    this.showDropdown = false;
+
     animate(this.menuItemsContainer!, {
       duration: DefaultAnimationTimeout,
       easing: 'easeInSine',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
-      onBegin: () => {
-        this.showItems = true;
-        this.showDropdown = false;
-      },
     });
   }
 
@@ -188,13 +187,54 @@ export class MenuCategory
   private onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
+      const isClosingPanel = this.ixMenu?.expand && this.showItems;
       this.handleCategoryVisibility();
 
-      const items = this.getNestedItems();
-      const firstItem = items[0];
-      if (firstItem) {
-        requestAnimationFrameNoNgZone(() => firstItem.focus());
+      if (!isClosingPanel) {
+        const items = this.getNestedItems();
+        const firstItem = items[0];
+        if (firstItem) {
+          requestAnimationFrameNoNgZone(() =>
+            requestAnimationFrameNoNgZone(() => firstItem.focus())
+          );
+        }
       }
+    }
+  }
+
+  private onMenuItemsKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.categoryParentRef.current?.focus();
+      this.handleCategoryVisibility();
+      return;
+    }
+
+    if (
+      event.key !== 'ArrowDown' &&
+      event.key !== 'ArrowUp' &&
+      event.key !== 'Tab'
+    ) {
+      return;
+    }
+
+    const items = this.getNestedItems();
+    if (items.length === 0) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const currentIndex = items.findIndex((item) => path.includes(item));
+    if (currentIndex === -1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
+      items[(currentIndex + 1) % items.length].focus();
+    } else {
+      items[(currentIndex - 1 + items.length) % items.length].focus();
     }
   }
 
@@ -309,7 +349,9 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
-          aria-haspopup="true"
+          aria-haspopup={'true'}
+          aria-expanded={this.showItems || this.showDropdown ? 'true' : 'false'}
+          ref={this.categoryParentRef}
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
@@ -338,11 +380,15 @@ export class MenuCategory
             'menu-items--expanded': this.showItems,
             'menu-items--collapsed': !this.showItems,
           }}
+          role="menu"
+          onKeyDown={(e) => this.onMenuItemsKeyDown(e)}
         >
           {this.showItems ? <slot></slot> : null}
         </div>
         <ix-dropdown
           ref={this.dropdownRef}
+          hostRole="menu"
+          aria-label={this.label}
           closeBehavior={'both'}
           show={this.showDropdown}
           onShowChange={({ detail: dropdownShow }) => {
@@ -394,7 +440,11 @@ export class MenuCategory
             }
           }}
         >
-          <ix-dropdown-item class={'category-dropdown-header'} tabindex={-1}>
+          <ix-dropdown-item
+            class={'category-dropdown-header'}
+            tabindex={-1}
+            aria-hidden="true"
+          >
             <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>

@@ -174,10 +174,6 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datetime-input-with-slots').then(
       (m) => m.default
     ),
-  'preview/drawer': () =>
-    import('../preview-examples/drawer').then((m) => m.default),
-  'preview/drawer-full-height': () =>
-    import('../preview-examples/drawer-full-height').then((m) => m.default),
   'preview/dropdown': () =>
     import('../preview-examples/dropdown').then((m) => m.default),
   'preview/dropdown-button': () =>

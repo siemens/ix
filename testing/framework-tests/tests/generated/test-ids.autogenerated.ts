@@ -177,8 +177,6 @@ export const testIds = [
   "dropdown-icon",
   "dropdown-button",
   "dropdown-button-icon",
-  "drawer",
-  "drawer-full-height",
   "divider",
   "datetimepicker",
   "datetime-range",
