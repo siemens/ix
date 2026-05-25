@@ -117,6 +117,9 @@ export class Tooltip {
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
+    if (!dialog) {
+      return;
+    }
 
     this.showTooltipTimeout = setTimeout(() => {
       this.setAnchorElement(anchorElement);
@@ -140,6 +143,9 @@ export class Tooltip {
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
+    if (!dialog) {
+      return;
+    }
 
     this.hideTooltipTimeout = setTimeout(() => {
       this.setAnchorElement();
