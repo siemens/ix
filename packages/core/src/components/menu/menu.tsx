@@ -332,6 +332,7 @@ export class Menu {
 
   disconnectedCallback() {
     this.themeNameDisposer?.dispose();
+    menuController.unregister(this.hostElement);
   }
 
   private updateThemeState() {
