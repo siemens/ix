@@ -7,11 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  iconCloseSmall,
-  iconRefresh,
-  iconTxtDocument,
-} from '@siemens/ix-icons/icons';
+import { iconTxtDocument } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import type {
   ChatPromptAttachmentStatus,
@@ -52,12 +48,6 @@ export class ChatPromptAttachment {
   @Prop() icon: string = iconTxtDocument;
 
   /**
-   * Hide the leading file icon for default attachments.
-   * @since 5.0.0
-   */
-  @Prop() hideFileIcon: boolean = false;
-
-  /**
    * Hide the remove action.
    * @since 5.0.0
    */
@@ -70,28 +60,10 @@ export class ChatPromptAttachment {
   @Prop({ reflect: true }) previewSupported: boolean = false;
 
   /**
-   * Text displayed while the attachment is uploading.
-   * @since 5.0.0
-   */
-  @Prop() loadingLabel: string = 'Uploading';
-
-  /**
-   * Text displayed when the attachment upload failed.
-   * @since 5.0.0
-   */
-  @Prop() failedLabel: string = 'Upload failed';
-
-  /**
    * Accessible label for the remove action.
    * @since 5.0.0
    */
   @Prop() removeAriaLabel: string = 'Remove attachment';
-
-  /**
-   * Accessible label for the retry action.
-   * @since 5.0.0
-   */
-  @Prop() retryAriaLabel: string = 'Retry attachment upload';
 
   /**
    * Event emitted when the attachment is clicked.
@@ -104,12 +76,6 @@ export class ChatPromptAttachment {
    * @since 5.0.0
    */
   @Event() removeClick!: EventEmitter<void>;
-
-  /**
-   * Event emitted when the retry action is clicked.
-   * @since 5.0.0
-   */
-  @Event() retryClick!: EventEmitter<void>;
 
   private canPreview() {
     return this.previewSupported && this.status === 'default';
@@ -140,47 +106,51 @@ export class ChatPromptAttachment {
     );
   }
 
-  private renderStatusContent() {
+  private getChipVariant() {
+    if (this.status === 'failed') {
+      return 'alarm';
+    }
+
+    return 'neutral';
+  }
+
+  private renderChipContent() {
     if (this.status === 'loading') {
       return (
         <span class="status-content">
           <ix-spinner size="xx-small" variant="primary"></ix-spinner>
-          <span class="status-label">{this.loadingLabel}</span>
+          <span class="status-label">{this.fileName}</span>
         </span>
       );
     }
 
     if (this.status === 'failed') {
-      return <span class="status-label">{this.failedLabel}</span>;
+      return <span class="status-label">{this.fileName}</span>;
     }
 
-    return (
-      <span class="file-content">
-        {!this.hideFileIcon && <ix-icon name={this.icon} size="16"></ix-icon>}
-        {this.renderFileName()}
-      </span>
-    );
+    return this.renderFileName();
   }
 
-  private handleHostClick() {
+  private handleAttachmentClick() {
     if (this.canPreview()) {
       this.attachmentClick.emit();
     }
   }
 
-  private handleHostKeyDown(event: KeyboardEvent) {
-    if (
-      event.target !== event.currentTarget ||
-      (event.key !== 'Enter' && event.key !== ' ')
-    ) {
-      return;
+  private getIcon() {
+    if (this.status === 'default') {
+      return this.icon;
     }
 
-    event.preventDefault();
-
-    if (this.canPreview()) {
-      this.attachmentClick.emit();
+    if (this.status === 'loading') {
+      return undefined;
     }
+
+    if (this.status === 'failed') {
+      return 'error';
+    }
+
+    return this.icon;
   }
 
   render() {
@@ -198,38 +168,21 @@ export class ChatPromptAttachment {
           sent: isSent,
           'has-remove-button': !this.hideRemoveButton,
         }}
-        role={canPreview ? 'button' : undefined}
-        tabIndex={canPreview ? 0 : undefined}
-        onClick={() => this.handleHostClick()}
-        onKeyDown={(event: KeyboardEvent) => this.handleHostKeyDown(event)}
       >
-        <span class="content">{this.renderStatusContent()}</span>
-        {isFailed && (
-          <ix-icon-button
-            aria-label={this.retryAriaLabel}
-            class="retry-button"
-            icon={iconRefresh}
-            size="16"
-            variant="subtle-tertiary"
-            onClick={(event: MouseEvent) => {
-              event.stopPropagation();
-              this.retryClick.emit();
-            }}
-          ></ix-icon-button>
-        )}
-        {!this.hideRemoveButton && (
-          <ix-icon-button
-            aria-label={this.removeAriaLabel}
-            class="remove-button"
-            icon={iconCloseSmall}
-            size="16"
-            variant="subtle-tertiary"
-            onClick={(event: MouseEvent) => {
-              event.stopPropagation();
-              this.removeClick.emit();
-            }}
-          ></ix-icon-button>
-        )}
+        <ix-chip
+          aria-label={canPreview ? this.fileName : undefined}
+          ariaLabelCloseButton={this.removeAriaLabel}
+          class="attachment-chip"
+          closable={!this.hideRemoveButton}
+          icon={this.getIcon()}
+          variant={this.getChipVariant()}
+          outline
+          onClick={() => this.handleAttachmentClick()}
+          onCloseChip={() => this.removeClick.emit()}
+          inactive={!canPreview}
+        >
+          <span class="content">{this.renderChipContent()}</span>
+        </ix-chip>
       </Host>
     );
   }

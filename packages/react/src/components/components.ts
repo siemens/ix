@@ -349,8 +349,7 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
 
 export type IxChatPromptAttachmentEvents = {
     onAttachmentClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRetryClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
+    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
 };
 
 export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment> = /*@__PURE__*/ createComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>({
@@ -360,8 +359,7 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
     react: React,
     events: {
         onAttachmentClick: 'attachmentClick',
-        onRemoveClick: 'removeClick',
-        onRetryClick: 'retryClick'
+        onRemoveClick: 'removeClick'
     } as IxChatPromptAttachmentEvents,
     defineCustomElement: defineIxChatPromptAttachment
 });

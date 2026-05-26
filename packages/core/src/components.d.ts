@@ -760,23 +760,11 @@ export namespace Components {
      */
     interface IxChatPromptAttachment {
         /**
-          * Text displayed when the attachment upload failed.
-          * @since 5.0.0
-          * @default 'Upload failed'
-         */
-        "failedLabel": string;
-        /**
           * Name of the attached file.
           * @since 5.0.0
           * @default ''
          */
         "fileName": string;
-        /**
-          * Hide the leading file icon for default attachments.
-          * @since 5.0.0
-          * @default false
-         */
-        "hideFileIcon": boolean;
         /**
           * Hide the remove action.
           * @since 5.0.0
@@ -790,12 +778,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Text displayed while the attachment is uploading.
-          * @since 5.0.0
-          * @default 'Uploading'
-         */
-        "loadingLabel": string;
-        /**
           * Enable preview interaction for default attachments.
           * @since 5.0.0
           * @default false
@@ -807,12 +789,6 @@ export namespace Components {
           * @default 'Remove attachment'
          */
         "removeAriaLabel": string;
-        /**
-          * Accessible label for the retry action.
-          * @since 5.0.0
-          * @default 'Retry attachment upload'
-         */
-        "retryAriaLabel": string;
         /**
           * Upload status of the attachment.
           * @since 5.0.0
@@ -5273,7 +5249,6 @@ declare global {
     interface HTMLIxChatPromptAttachmentElementEventMap {
         "attachmentClick": void;
         "removeClick": void;
-        "retryClick": void;
     }
     /**
      * @since 5.0.0
@@ -7435,23 +7410,11 @@ declare namespace LocalJSX {
      */
     interface IxChatPromptAttachment {
         /**
-          * Text displayed when the attachment upload failed.
-          * @since 5.0.0
-          * @default 'Upload failed'
-         */
-        "failedLabel"?: string;
-        /**
           * Name of the attached file.
           * @since 5.0.0
           * @default ''
          */
         "fileName"?: string;
-        /**
-          * Hide the leading file icon for default attachments.
-          * @since 5.0.0
-          * @default false
-         */
-        "hideFileIcon"?: boolean;
         /**
           * Hide the remove action.
           * @since 5.0.0
@@ -7465,12 +7428,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Text displayed while the attachment is uploading.
-          * @since 5.0.0
-          * @default 'Uploading'
-         */
-        "loadingLabel"?: string;
-        /**
           * Event emitted when the attachment is clicked.
           * @since 5.0.0
          */
@@ -7480,11 +7437,6 @@ declare namespace LocalJSX {
           * @since 5.0.0
          */
         "onRemoveClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
-        /**
-          * Event emitted when the retry action is clicked.
-          * @since 5.0.0
-         */
-        "onRetryClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
         /**
           * Enable preview interaction for default attachments.
           * @since 5.0.0
@@ -7497,12 +7449,6 @@ declare namespace LocalJSX {
           * @default 'Remove attachment'
          */
         "removeAriaLabel"?: string;
-        /**
-          * Accessible label for the retry action.
-          * @since 5.0.0
-          * @default 'Retry attachment upload'
-         */
-        "retryAriaLabel"?: string;
         /**
           * Upload status of the attachment.
           * @since 5.0.0
@@ -11874,13 +11820,9 @@ declare namespace LocalJSX {
         "status": ChatPromptAttachmentStatus;
         "variant": ChatPromptAttachmentVariant;
         "icon": string;
-        "hideFileIcon": boolean;
         "hideRemoveButton": boolean;
         "previewSupported": boolean;
-        "loadingLabel": string;
-        "failedLabel": string;
         "removeAriaLabel": string;
-        "retryAriaLabel": string;
     }
     interface IxChatUserMessageAttributes {
         "message": string;

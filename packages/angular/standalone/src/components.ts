@@ -603,21 +603,20 @@ export declare interface IxChatInput extends Components.IxChatInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatPromptAttachment,
-  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'previewSupported', 'removeAriaLabel', 'retryAriaLabel', 'status', 'variant']
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status', 'variant']
 })
 @Component({
   selector: 'ix-chat-prompt-attachment',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['failedLabel', 'fileName', 'hideFileIcon', 'hideRemoveButton', 'icon', 'loadingLabel', 'previewSupported', 'removeAriaLabel', 'retryAriaLabel', 'status', 'variant'],
-  outputs: ['attachmentClick', 'removeClick', 'retryClick'],
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status', 'variant'],
+  outputs: ['attachmentClick', 'removeClick'],
 })
 export class IxChatPromptAttachment {
   protected el: HTMLIxChatPromptAttachmentElement;
   @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
   @Output() removeClick = new EventEmitter<CustomEvent<void>>();
-  @Output() retryClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -634,10 +633,6 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
    * Event emitted when the remove action is clicked. @since 5.0.0
    */
   removeClick: EventEmitter<CustomEvent<void>>;
-  /**
-   * Event emitted when the retry action is clicked. @since 5.0.0
-   */
-  retryClick: EventEmitter<CustomEvent<void>>;
 }
 
 

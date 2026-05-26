@@ -345,20 +345,14 @@ export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachm
   'status',
   'variant',
   'icon',
-  'hideFileIcon',
   'hideRemoveButton',
   'previewSupported',
-  'loadingLabel',
-  'failedLabel',
   'removeAriaLabel',
-  'retryAriaLabel',
   'attachmentClick',
-  'removeClick',
-  'retryClick'
+  'removeClick'
 ], [
   'attachmentClick',
-  'removeClick',
-  'retryClick'
+  'removeClick'
 ]);
 
 

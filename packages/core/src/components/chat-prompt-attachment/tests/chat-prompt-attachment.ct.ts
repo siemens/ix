@@ -12,7 +12,6 @@ import { regressionTest } from '@utils/test';
 declare global {
   var __attachmentClicked: boolean | undefined;
   var __attachmentRemoveClicked: boolean | undefined;
-  var __attachmentRetryClicked: boolean | undefined;
 }
 
 regressionTest(
@@ -30,9 +29,11 @@ regressionTest(
     await expect(attachment.locator('.file-name__extension')).toContainText(
       '.txt'
     );
-    await expect(
-      attachment.locator('ix-icon-button.remove-button')
-    ).toHaveCount(1);
+    await expect(attachment.locator('ix-chip')).toHaveCount(1);
+    await expect(attachment.locator('ix-chip')).toHaveJSProperty(
+      'closable',
+      true
+    );
   }
 );
 
@@ -55,11 +56,8 @@ regressionTest(
       page.locator('ix-chat-prompt-attachment').nth(1)
     ).toContainText('Upload failed');
     await expect(
-      page
-        .locator('ix-chat-prompt-attachment')
-        .nth(1)
-        .locator('ix-icon-button.retry-button')
-    ).toHaveCount(1);
+      page.locator('ix-chat-prompt-attachment').nth(1).locator('ix-chip')
+    ).toHaveAttribute('variant', 'alarm');
   }
 );
 
@@ -85,9 +83,6 @@ regressionTest(
     const staticAttachment = page.locator('ix-chat-prompt-attachment').first();
     const previewAttachment = page.locator('ix-chat-prompt-attachment').nth(1);
 
-    await expect(staticAttachment).not.toHaveAttribute('role', 'button');
-    await expect(previewAttachment).toHaveAttribute('role', 'button');
-
     await staticAttachment.click();
     expect(await page.evaluate(() => globalThis.__attachmentClicked)).toBe(
       false
@@ -109,43 +104,38 @@ regressionTest(
 
     const attachment = page.locator('ix-chat-prompt-attachment');
 
-    await expect(attachment).toHaveCSS('height', '32px');
-    await expect(attachment).toHaveCSS('max-width', '102px');
-    await expect(
-      attachment.locator('ix-icon-button.remove-button')
-    ).toHaveCount(0);
+    await expect(attachment.locator('ix-chip')).toHaveAttribute(
+      'variant',
+      'neutral'
+    );
+    await expect(attachment.locator('ix-chip')).toHaveJSProperty(
+      'closable',
+      false
+    );
   }
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment emits removeClick and retryClick',
+  'ix-chat-prompt-attachment emits removeClick from the chip close action',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-prompt-attachment status="failed" file-name="file_01.txt"></ix-chat-prompt-attachment>'
+      '<ix-chat-prompt-attachment file-name="file_01.txt"></ix-chat-prompt-attachment>'
     );
 
     await page.evaluate(() => {
       globalThis.__attachmentRemoveClicked = false;
-      globalThis.__attachmentRetryClicked = false;
       const attachment = document.querySelector('ix-chat-prompt-attachment');
 
       attachment?.addEventListener('removeClick', () => {
         globalThis.__attachmentRemoveClicked = true;
       });
-      attachment?.addEventListener('retryClick', () => {
-        globalThis.__attachmentRetryClicked = true;
-      });
     });
 
     const attachment = page.locator('ix-chat-prompt-attachment');
-    await attachment.locator('ix-icon-button.retry-button').click();
-    await attachment.locator('ix-icon-button.remove-button').click();
+    await attachment.locator('ix-chip').locator('.chip-close').click();
 
-    expect(await page.evaluate(() => globalThis.__attachmentRetryClicked)).toBe(
-      true
-    );
-    expect(
-      await page.evaluate(() => globalThis.__attachmentRemoveClicked)
-    ).toBe(true);
+    await expect
+      .poll(() => page.evaluate(() => globalThis.__attachmentRemoveClicked))
+      .toBe(true);
   }
 );

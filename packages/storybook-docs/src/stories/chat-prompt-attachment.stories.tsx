@@ -21,7 +21,6 @@ function renderAttachment(args: Partial<Element>) {
       {...args}
       onAttachmentClick={() => action('attachmentClick')()}
       onRemoveClick={() => action('removeClick')()}
-      onRetryClick={() => action('retryClick')()}
     ></ix-chat-prompt-attachment>
   );
 }
@@ -68,12 +67,14 @@ export const Sent: Story = {
 
 export const Loading: Story = {
   args: {
+    fileName: 'file_01.pdf',
     status: 'loading',
   },
 };
 
 export const Failed: Story = {
   args: {
+    fileName: 'file_01.pdf',
     status: 'failed',
   },
 };

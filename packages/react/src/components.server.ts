@@ -435,8 +435,7 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
 
 export type IxChatPromptAttachmentEvents = {
     onAttachmentClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRetryClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
+    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
 };
 
 export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment> = /*@__PURE__*/ createComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>({
@@ -446,13 +445,9 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
         status: 'status',
         variant: 'variant',
         icon: 'icon',
-        hideFileIcon: 'hide-file-icon',
         hideRemoveButton: 'hide-remove-button',
         previewSupported: 'preview-supported',
-        loadingLabel: 'loading-label',
-        failedLabel: 'failed-label',
-        removeAriaLabel: 'remove-aria-label',
-        retryAriaLabel: 'retry-aria-label'
+        removeAriaLabel: 'remove-aria-label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxChatPromptAttachment as StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>,

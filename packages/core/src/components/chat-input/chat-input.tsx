@@ -504,7 +504,7 @@ export class ChatInput {
   ): AttachmentOverflowEntry {
     return {
       canRemove: !element.hideRemoveButton,
-      icon: element.hideFileIcon ? undefined : element.icon,
+      icon: element.icon,
       index,
       label: element.fileName || `Attachment ${index + 1}`,
       removeAriaLabel: element.removeAriaLabel,
