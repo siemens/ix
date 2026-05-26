@@ -310,7 +310,6 @@ export class Menu {
       true
     );
 
-    menuController.register(this.hostElement);
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
@@ -328,6 +327,10 @@ export class Menu {
       this.aboutNewsPopover.show = false;
     }
     this.appendFragments();
+  }
+
+  connectedCallback() {
+    menuController.register(this.hostElement);
   }
 
   disconnectedCallback() {
