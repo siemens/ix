@@ -201,7 +201,6 @@ function createChatInput({
         attachments && !scrollableAttachments ? 3 : undefined
       }
       characterLimit={characterLimit ? 120 : undefined}
-      characterLimitMode={characterLimit ? 'soft' : undefined}
       placeholder="Enter a command, question or topic..."
       slot="prompt"
       value={

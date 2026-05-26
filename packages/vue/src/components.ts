@@ -316,7 +316,6 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'textareaLabel',
   'maxLength',
   'characterLimit',
-  'characterLimitMode',
   'characterLimitWarningThreshold',
   'attachmentLayout',
   'attachmentOverflowCount',
@@ -364,7 +363,6 @@ export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachm
 
 export const IxChatUserMessage: StencilVueComponent<JSX.IxChatUserMessage> = /*@__PURE__*/ defineContainer<JSX.IxChatUserMessage>('ix-chat-user-message', defineIxChatUserMessage, [
   'message',
-  'showActions',
   'attachmentCount',
   'attachmentOverflowLabel',
   'attachmentOverflowChange'

@@ -418,7 +418,6 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         textareaLabel: 'textarea-label',
         maxLength: 'max-length',
         characterLimit: 'character-limit',
-        characterLimitMode: 'character-limit-mode',
         characterLimitWarningThreshold: 'character-limit-warning-threshold',
         attachmentLayout: 'attachment-layout',
         attachmentOverflowCount: 'attachment-overflow-count',

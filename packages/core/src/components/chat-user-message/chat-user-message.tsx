@@ -38,12 +38,6 @@ export class ChatUserMessage {
   @Prop() message?: string;
 
   /**
-   * Show slotted actions without requiring hover or keyboard focus.
-   * @since 5.0.0
-   */
-  @Prop({ reflect: true }) showActions: boolean = false;
-
-  /**
    * Number of attachments represented by the attachment overflow trigger.
    * @since 5.0.0
    */
@@ -119,7 +113,6 @@ export class ChatUserMessage {
           'has-actions': this.hasActions,
           'has-attachments': this.hasAttachments,
           'has-attachment-overflow': !!this.getAttachmentCount(),
-          'show-actions': this.showActions,
         }}
         tabIndex={this.hasActions ? 0 : undefined}
       >

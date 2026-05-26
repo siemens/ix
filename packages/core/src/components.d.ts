@@ -18,7 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
-import { CharacterLimitMode, ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
+import { ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
 import { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
@@ -75,7 +75,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
-export { CharacterLimitMode, ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
+export { ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
 export { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
@@ -668,12 +668,6 @@ export namespace Components {
          */
         "characterLimit"?: number;
         /**
-          * Controls whether the character limit only warns or prevents further input.
-          * @since 5.0.0
-          * @default 'hard'
-         */
-        "characterLimitMode": CharacterLimitMode;
-        /**
           * Percentage of the character limit that triggers the soft warning.
           * @since 5.0.0
           * @default 0.9
@@ -846,12 +840,6 @@ export namespace Components {
           * @since 5.0.0
          */
         "message"?: string;
-        /**
-          * Show slotted actions without requiring hover or keyboard focus.
-          * @since 5.0.0
-          * @default false
-         */
-        "showActions": boolean;
     }
     /**
      * @form-ready 
@@ -7331,12 +7319,6 @@ declare namespace LocalJSX {
          */
         "characterLimit"?: number;
         /**
-          * Controls whether the character limit only warns or prevents further input.
-          * @since 5.0.0
-          * @default 'hard'
-         */
-        "characterLimitMode"?: CharacterLimitMode;
-        /**
           * Percentage of the character limit that triggers the soft warning.
           * @since 5.0.0
           * @default 0.9
@@ -7547,12 +7529,6 @@ declare namespace LocalJSX {
           * @since 5.0.0
          */
         "onAttachmentOverflowChange"?: (event: IxChatUserMessageCustomEvent<boolean>) => void;
-        /**
-          * Show slotted actions without requiring hover or keyboard focus.
-          * @since 5.0.0
-          * @default false
-         */
-        "showActions"?: boolean;
     }
     /**
      * @form-ready 
@@ -11871,7 +11847,6 @@ declare namespace LocalJSX {
         "textareaLabel": string;
         "maxLength": number;
         "characterLimit": number;
-        "characterLimitMode": CharacterLimitMode;
         "characterLimitWarningThreshold": number;
         "attachmentLayout": ChatInputAttachmentLayout;
         "attachmentOverflowCount": number;
@@ -11896,7 +11871,6 @@ declare namespace LocalJSX {
     }
     interface IxChatUserMessageAttributes {
         "message": string;
-        "showActions": boolean;
         "attachmentCount": number;
         "attachmentOverflowLabel": string;
     }

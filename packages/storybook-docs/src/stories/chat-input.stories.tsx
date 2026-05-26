@@ -63,7 +63,6 @@ export const WithValue: Story = {
 export const SoftCharacterLimit: Story = {
   args: {
     characterLimit: 30,
-    characterLimitMode: 'soft',
     value: 'Summarize all critical alarms',
   },
   parameters: {

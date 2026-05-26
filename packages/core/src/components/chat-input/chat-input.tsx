@@ -29,10 +29,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import type {
-  CharacterLimitMode,
-  ChatInputAttachmentLayout,
-} from './chat-input.types';
+import type { ChatInputAttachmentLayout } from './chat-input.types';
 
 let chatInputIds = 0;
 
@@ -112,12 +109,6 @@ export class ChatInput {
    * @since 5.0.0
    */
   @Prop() characterLimit?: number;
-
-  /**
-   * Controls whether the character limit only warns or prevents further input.
-   * @since 5.0.0
-   */
-  @Prop() characterLimitMode: CharacterLimitMode = 'hard';
 
   /**
    * Percentage of the character limit that triggers the soft warning.
@@ -201,7 +192,6 @@ export class ChatInput {
   /** @internal */
   public initialValue?: string;
 
-  @State() hasAttemptedCharacterLimitExceeded = false;
   @State() hasAttachments = false;
   @State() hasAttachmentOverflow = false;
   @State() attachmentOverflowItemsCount = 0;
@@ -297,7 +287,7 @@ export class ChatInput {
       !this.disabled &&
       !this.readonly &&
       this.value.trim().length > 0 &&
-      !this.isHardCharacterLimitExceeded()
+      !this.isCharacterLimitReached()
     );
   }
 
@@ -354,13 +344,7 @@ export class ChatInput {
   }
 
   private getNativeMaxLength() {
-    const limit = this.getCharacterLimit();
-
-    if (this.characterLimitMode === 'hard') {
-      return limit;
-    }
-
-    return undefined;
+    return this.getCharacterLimit();
   }
 
   private getNormalizedCharacterLimitWarningThreshold() {
@@ -374,7 +358,7 @@ export class ChatInput {
   private isSoftCharacterLimitWarning() {
     const limit = this.getCharacterLimit();
 
-    if (!limit || this.characterLimitMode !== 'soft') {
+    if (!limit || this.isCharacterLimitReached()) {
       return false;
     }
 
@@ -385,24 +369,14 @@ export class ChatInput {
     return this.value.length >= warningLength;
   }
 
-  private isHardCharacterLimitExceeded() {
+  private isCharacterLimitReached() {
     const limit = this.getCharacterLimit();
 
-    if (!limit || this.characterLimitMode !== 'hard') {
+    if (!limit) {
       return false;
     }
 
-    return this.value.length > limit;
-  }
-
-  private isHardCharacterLimitWarning() {
-    const limit = this.getCharacterLimit();
-
-    if (!limit || this.characterLimitMode !== 'hard') {
-      return false;
-    }
-
-    return this.hasAttemptedCharacterLimitExceeded || this.value.length > limit;
+    return this.value.length >= limit;
   }
 
   private getCharacterLimitMessage() {
@@ -412,8 +386,8 @@ export class ChatInput {
       return undefined;
     }
 
-    if (this.isHardCharacterLimitWarning()) {
-      return `Character limit exceeded (${this.value.length} / ${limit} characters)`;
+    if (this.isCharacterLimitReached()) {
+      return `Character limit reached (${this.value.length} / ${limit} characters)`;
     }
 
     if (this.isSoftCharacterLimitWarning()) {
@@ -423,8 +397,8 @@ export class ChatInput {
     return undefined;
   }
 
-  private getCharacterLimitState(): CharacterLimitMode | undefined {
-    if (this.isHardCharacterLimitWarning()) {
+  private getCharacterLimitState(): 'soft' | 'hard' | undefined {
+    if (this.isCharacterLimitReached()) {
       return 'hard';
     }
 
@@ -435,33 +409,7 @@ export class ChatInput {
     return undefined;
   }
 
-  private handleCharacterLimitKeyDown(event: KeyboardEvent) {
-    const limit = this.getCharacterLimit();
-
-    if (
-      !limit ||
-      this.characterLimitMode !== 'hard' ||
-      event.key.length !== 1 ||
-      event.altKey ||
-      event.ctrlKey ||
-      event.metaKey
-    ) {
-      return;
-    }
-
-    const textarea = event.target as HTMLTextAreaElement;
-    const selectionLength = textarea.selectionEnd - textarea.selectionStart;
-    const nextLength = textarea.value.length - selectionLength + 1;
-
-    if (nextLength > limit) {
-      event.preventDefault();
-      this.hasAttemptedCharacterLimitExceeded = true;
-    }
-  }
-
   private handleKeyDown(event: KeyboardEvent) {
-    this.handleCharacterLimitKeyDown(event);
-
     if (
       event.key !== 'Enter' ||
       event.shiftKey ||
@@ -826,7 +774,11 @@ export class ChatInput {
 
   private renderAttachmentOverflowItems() {
     return this.attachmentOverflowEntries.map((entry) => (
-      <div>
+      <div
+        class="attachment-overflow-menu-item"
+        data-attachment-overflow-generated
+        data-attachment-overflow-label={entry.label}
+      >
         <ix-dropdown-item
           class="attachment-overflow-generated-item"
           icon={entry.icon}
@@ -834,21 +786,19 @@ export class ChatInput {
           onClick={() => this.handleAttachmentOverflowItemClick(entry.index)}
         >
           {entry.label}
-          {entry.canRemove && (
-            <div slot="end">
-              <ix-icon-button
-                aria-label={entry.removeAriaLabel}
-                class="attachment-overflow-remove-button"
-                icon={iconCloseSmall}
-                size="24"
-                variant="subtle-tertiary"
-                onClick={(event: MouseEvent) =>
-                  this.handleAttachmentOverflowRemoveClick(event, entry.index)
-                }
-              ></ix-icon-button>
-            </div>
-          )}
         </ix-dropdown-item>
+        {entry.canRemove && (
+          <ix-icon-button
+            aria-label={entry.removeAriaLabel}
+            class="attachment-overflow-remove-button"
+            icon={iconCloseSmall}
+            size="24"
+            variant="subtle-tertiary"
+            onClick={(event: MouseEvent) =>
+              this.handleAttachmentOverflowRemoveClick(event, entry.index)
+            }
+          ></ix-icon-button>
+        )}
       </div>
     ));
   }
@@ -948,7 +898,6 @@ export class ChatInput {
               const textarea = event.target as HTMLTextAreaElement;
               this.updateFormInternalValue(textarea.value);
               this.valueChange.emit(textarea.value);
-              this.hasAttemptedCharacterLimitExceeded = false;
               this.updateTextareaHeight(textarea);
             }}
             onKeyDown={(event) => this.handleKeyDown(event)}

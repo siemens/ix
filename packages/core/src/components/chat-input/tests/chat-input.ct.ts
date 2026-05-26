@@ -132,10 +132,10 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-input shows a soft character limit warning',
+  'ix-chat-input shows a soft character limit warning from the threshold',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-input character-limit="10" character-limit-mode="soft" value="123456789"></ix-chat-input>'
+      '<ix-chat-input max-length="10" character-limit-warning-threshold="0.9" value="123456789"></ix-chat-input>'
     );
 
     const chatInput = page.locator('ix-chat-input');
@@ -143,28 +143,27 @@ regressionTest(
     await expect(chatInput.locator('.character-limit')).toContainText(
       "You're nearing the limit (9 / 10 characters)"
     );
-    expect(
-      await chatInput.locator('textarea').getAttribute('maxlength')
-    ).toBeNull();
+    expect(await chatInput.locator('textarea').getAttribute('maxlength')).toBe(
+      '10'
+    );
   }
 );
 
 regressionTest(
-  'ix-chat-input shows a hard character limit warning when input is blocked',
+  'ix-chat-input shows an error when the character limit is reached',
   async ({ mount, page }) => {
-    await mount('<ix-chat-input character-limit="10"></ix-chat-input>');
+    await mount('<ix-chat-input max-length="10"></ix-chat-input>');
 
     const chatInput = page.locator('ix-chat-input');
     const textarea = chatInput.locator('textarea');
 
     await textarea.fill('1234567890');
-    await expect(chatInput.locator('.character-limit')).toHaveCount(0);
-
-    await textarea.press('1');
 
     await expect(textarea).toHaveValue('1234567890');
-    await expect(chatInput.locator('.character-limit')).toContainText(
-      'Character limit exceeded (10 / 10 characters)'
+    const characterLimit = chatInput.locator('.character-limit');
+    await expect(characterLimit).toHaveClass(/character-limit--hard/);
+    await expect(characterLimit).toContainText(
+      'Character limit reached (10 / 10 characters)'
     );
   }
 );

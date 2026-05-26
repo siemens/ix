@@ -552,7 +552,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatInput,
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -560,7 +560,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitMode', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
   outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
 })
 export class IxChatInput {
@@ -643,14 +643,14 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatUserMessage,
-  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message', 'showActions']
+  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message']
 })
 @Component({
   selector: 'ix-chat-user-message',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message', 'showActions'],
+  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message'],
   outputs: ['attachmentOverflowChange'],
 })
 export class IxChatUserMessage {

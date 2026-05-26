@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './mixins/action.mixin';
 
 :host {
   display: flex;
@@ -76,19 +77,24 @@
 }
 
 .actions {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: var(--theme-space-1);
   min-height: 2rem;
   margin-top: var(--theme-space-1);
+
+  @include action.animate-action;
 }
 
-:host(.has-actions.show-actions) .actions,
+:host(:focus-visible) {
+  outline: none;
+}
+
 :host(.has-actions:focus) .actions,
 :host(.has-actions:hover) .actions,
 :host(.has-actions:focus-within) .actions {
-  display: flex;
+  @include action.show-action;
 }
 
 .actions ::slotted(ix-icon-button) {
