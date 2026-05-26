@@ -7,31 +7,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
+import { h } from '@stencil/core';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { action } from 'storybook/actions';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import { stencil } from '@utils/stencil-render';
+import { makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxChatPromptAttachment;
 
 function renderAttachment(args: Partial<Element>) {
-  const container = genericRender('ix-chat-prompt-attachment', args);
-  const attachment = container.querySelector(
-    'ix-chat-prompt-attachment'
-  ) as HTMLIxChatPromptAttachmentElement;
-
-  attachment.addEventListener('removeClick', () => action('removeClick')());
-  attachment.addEventListener('retryClick', () => action('retryClick')());
-  attachment.addEventListener('attachmentClick', () =>
-    action('attachmentClick')()
+  return (
+    <ix-chat-prompt-attachment
+      {...args}
+      onAttachmentClick={() => action('attachmentClick')()}
+      onRemoveClick={() => action('removeClick')()}
+      onRetryClick={() => action('retryClick')()}
+    ></ix-chat-prompt-attachment>
   );
-
-  return container;
 }
 
 const meta = {
   title: 'Example/Chat Prompt Attachment',
   tags: [],
-  render: (args) => renderAttachment(args),
+  render: stencil((args) => renderAttachment(args)),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>(
     'ix-chat-prompt-attachment'
   ),

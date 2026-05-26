@@ -15,19 +15,23 @@ import {
   iconTxtDocument,
 } from '@siemens/ix-icons/icons';
 import type { Components } from '@siemens/ix/components';
+import { h, type VNode } from '@stencil/core';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import { stencil } from '@utils/stencil-render';
+import { makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxChatUserMessage;
 
 function createAction(label: string, icon: string) {
-  const action = document.createElement('ix-icon-button');
-  action.slot = 'actions';
-  action.icon = icon;
-  action.size = '16';
-  action.variant = 'subtle-tertiary';
-  action.setAttribute('aria-label', label);
-  return action;
+  return (
+    <ix-icon-button
+      aria-label={label}
+      icon={icon}
+      size="16"
+      slot="actions"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+  );
 }
 
 function createAttachment(
@@ -35,39 +39,47 @@ function createAttachment(
   previewSupported = false,
   slot = 'attachments'
 ) {
-  const attachment = document.createElement('ix-chat-prompt-attachment');
-  attachment.slot = slot;
-  attachment.fileName = fileName;
-  attachment.hideRemoveButton = true;
-  attachment.previewSupported = previewSupported;
-  attachment.variant = 'sent';
-  return attachment;
+  return (
+    <ix-chat-prompt-attachment
+      fileName={fileName}
+      hideRemoveButton
+      previewSupported={previewSupported}
+      slot={slot}
+      variant="sent"
+    ></ix-chat-prompt-attachment>
+  );
+}
+
+function getAttachmentIcon(fileName: string) {
+  if (fileName.endsWith('.pdf')) {
+    return iconPdfDocument;
+  }
+
+  if (fileName.endsWith('.txt')) {
+    return iconTxtDocument;
+  }
+
+  return iconImage;
 }
 
 function createAttachmentDropdownItem(fileName: string) {
-  const item = document.createElement('ix-dropdown-item');
-  item.slot = 'attachment-overflow';
-  item.label = fileName;
-
-  if (fileName.endsWith('.pdf')) {
-    item.icon = iconPdfDocument;
-  } else if (fileName.endsWith('.txt')) {
-    item.icon = iconTxtDocument;
-  } else {
-    item.icon = iconImage;
-  }
-
-  return item;
+  return (
+    <ix-dropdown-item
+      icon={getAttachmentIcon(fileName)}
+      label={fileName}
+      slot="attachment-overflow"
+    ></ix-dropdown-item>
+  );
 }
 
-function renderChatUserMessage(args: Partial<Element>) {
-  return genericRender('ix-chat-user-message', args);
+function renderChatUserMessage(args: Partial<Element>, children: VNode[] = []) {
+  return <ix-chat-user-message {...args}>{children}</ix-chat-user-message>;
 }
 
 const meta = {
   title: 'Example/Chat User Message',
   tags: [],
-  render: (args) => renderChatUserMessage(args),
+  render: stencil((args) => renderChatUserMessage(args)),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-chat-user-message'),
   parameters: {
     design: {
@@ -87,20 +99,13 @@ export const Default: Story = {
 };
 
 export const WithActions: Story = {
-  render: (args) => {
-    const container = renderChatUserMessage(args);
-    const message = container.querySelector(
-      'ix-chat-user-message'
-    ) as HTMLIxChatUserMessageElement;
-
-    message.append(
+  render: stencil((args) =>
+    renderChatUserMessage(args, [
       createAction('Copy message', iconCopy),
       createAction('Edit message', iconPen),
-      createAction('Show more actions', iconMoreMenu)
-    );
-
-    return container;
-  },
+      createAction('Show more actions', iconMoreMenu),
+    ])
+  ),
   args: {
     message: 'Summarize the detailed discussion held with the customer',
     showActions: true,
@@ -127,19 +132,12 @@ export const LongMessage: Story = {
 };
 
 export const WithAttachments: Story = {
-  render: (args) => {
-    const container = renderChatUserMessage(args);
-    const message = container.querySelector(
-      'ix-chat-user-message'
-    ) as HTMLIxChatUserMessageElement;
-
-    message.append(
+  render: stencil((args) =>
+    renderChatUserMessage(args, [
       createAttachment('file_01.pdf', true),
-      createAttachment('file_02.csv')
-    );
-
-    return container;
-  },
+      createAttachment('file_02.csv'),
+    ])
+  ),
   args: {
     message: 'Summarize the detailed discussion held with the customer',
   },
@@ -152,26 +150,20 @@ export const WithAttachments: Story = {
 };
 
 export const WithAttachmentOverflow: Story = {
-  render: (args) => {
-    const container = renderChatUserMessage(args);
-    const message = container.querySelector(
-      'ix-chat-user-message'
-    ) as HTMLIxChatUserMessageElement;
-
-    [
-      'File_01.jpg',
-      'File_02.jpg',
-      'File_03.jpg',
-      'File_04.txt',
-      'File_05.txt',
-      'File_06.pdf',
-      'File_07.pdf',
-    ].forEach((fileName) => {
-      message.append(createAttachmentDropdownItem(fileName));
-    });
-
-    return container;
-  },
+  render: stencil((args) =>
+    renderChatUserMessage(
+      args,
+      [
+        'File_01.jpg',
+        'File_02.jpg',
+        'File_03.jpg',
+        'File_04.txt',
+        'File_05.txt',
+        'File_06.pdf',
+        'File_07.pdf',
+      ].map((fileName) => createAttachmentDropdownItem(fileName))
+    )
+  ),
   args: {
     attachmentCount: 7,
     message: 'Summarize the detailed discussion held with the customer',
