@@ -15,24 +15,24 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
   Watch,
-  Mixin,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
 } from '../utils/focus/focus-utilities';
+import { DefaultMixins } from '../utils/internal/component';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
 import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
-import { DefaultMixins } from '../utils/internal/component';
-import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-select-item',
@@ -127,6 +127,7 @@ export class SelectItem
       <Host
         {...ariaAttributes}
         id={this.getHostElementId()}
+        disableAriaSelectHandling={true}
         class={{
           [IX_FOCUS_VISIBLE]: true,
         }}
@@ -135,7 +136,7 @@ export class SelectItem
       >
         <ix-dropdown-item
           aria-hidden="true"
-          role="option"
+          itemRole="option"
           class={{
             'select-item-checked': this.selected,
             [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,

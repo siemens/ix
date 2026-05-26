@@ -8,21 +8,33 @@
  */
 
 import {
-  ModalConfig as IxModalConfig,
-  showModal as _showModal,
-  showModalLoading as _showModalLoading,
-  dismissModal as _dismissModal,
-  closeModal as _closeModal,
-  ModalInstance as IxModalInstance,
-  ModalLoadingContext,
-  ModalLoadingOptions,
+  type ModalConfig as IxModalConfig,
+  type ModalInstance as IxModalInstance,
+  type ModalLoadingContext,
+  type ModalLoadingOptions,
 } from '@siemens/ix';
-import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
+import {
+  closeModal as _closeModal,
+  createShowModalLoading,
+  dismissModal as _dismissModal,
+  showModal as _showModal,
+} from '@siemens/ix/components';
+import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
+import { defineCustomElement as defineIxModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
 
 export type { ModalLoadingOptions } from '@siemens/ix';
 
-// call defineCustomElement once at module level
-defineCustomElement();
+const showModalWithDependencies = _showModal.withDependencies([
+  {
+    tag: 'ix-modal',
+    define: defineIxModal,
+  },
+]);
+
+const showModalLoadingWithDependencies = createShowModalLoading([
+  { tag: 'ix-modal', define: defineIxModal },
+  { tag: 'ix-modal-loading', define: defineIxModalLoading },
+]);
 
 export * from './modal';
 
@@ -33,20 +45,13 @@ export type ModalConfig = {
 export async function showModal(
   config: Omit<IxModalConfig, 'content'> & ModalConfig
 ) {
-  return _showModal(config);
+  return showModalWithDependencies(config);
 }
 
-/** @deprecated Use ModalLoadingOptions object form instead */
-export function showModalLoading(message: string): ModalLoadingContext;
 export function showModalLoading(
   options: ModalLoadingOptions
-): ModalLoadingContext;
-export function showModalLoading(
-  messageOrOptions: string | ModalLoadingOptions
-): ModalLoadingContext {
-  return typeof messageOrOptions === 'string'
-    ? _showModalLoading(messageOrOptions)
-    : _showModalLoading(messageOrOptions);
+): Promise<ModalLoadingContext> {
+  return showModalLoadingWithDependencies(options);
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {

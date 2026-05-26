@@ -54,16 +54,16 @@
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tsx": "^4.16.2",
-    "turbo": "^2.1.1",
+    "turbo": "^2.9.14",
     "typescript": "^5.5.4"
   },
   "pnpm": {
+    "patchedDependencies": {
+      "@stencil/core": "patches/@stencil__core.patch"
+    },
     "overrides": {
       "cheerio": "1.0.0-rc.12",
       "rollup": "npm:@rollup/wasm-node"
-    },
-    "patchedDependencies": {
-      "@stencil/core": "patches/@stencil__core.patch"
     }
   },
   "volta": {

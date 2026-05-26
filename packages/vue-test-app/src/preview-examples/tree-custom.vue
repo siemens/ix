@@ -97,6 +97,7 @@ onMounted(() => {
       root="root"
       :model="model"
       :context="context"
+      aria-label="Sample tree"
       @contextChange="({ detail }) => (context = detail)"
     >
     </IxTree>

@@ -18,7 +18,7 @@
   --bs-table-border-color: var(--theme-table--border-color);
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: var(--theme-table--color);
-  --bs-table-striped-bg: var(--theme-table-data-row-alt--background);
+  --bs-table-striped-bg: var(--theme-table-data-cell--background);
   --bs-table-active-color: var(--theme-table--color);
   --bs-table-active-bg: var(--theme-table-data-row-alt--background--active);
   --bs-table-hover-color: var(--theme-table--color);
@@ -43,6 +43,10 @@
 }
 
 .ix-table-striped > tbody > tr:nth-of-type(odd) > * {
+  --ix-table-background: var(--theme-table-data-cell--background);
+}
+
+.ix-table-striped > tbody > tr:nth-of-type(even) > * {
   --ix-table-background: var(--theme-table-data-row-alt--background);
 }
 

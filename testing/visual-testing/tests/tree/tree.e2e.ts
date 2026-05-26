@@ -89,4 +89,12 @@ regressionTest.describe('tree', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('disabled item', async ({ page }) => {
+    await page.goto('tree/disabled');
+
+    await page.waitForSelector('ix-tree');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

@@ -31,6 +31,12 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import {
+  FocusProxy,
+  PROXY_LIST_ID_SUFFIX,
+  PROXY_LISTITEM_ID_SUFFIX,
+  updateFocusProxyList,
+} from '../utils/focus/focus-proxy';
+import {
   IX_FOCUS_VISIBLE_ACTIVE,
   queryElements,
 } from '../utils/focus/focus-utilities';
@@ -39,23 +45,17 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { DefaultMixins } from '../utils/internal/component';
 import {
-  AriaActiveDescendantMixinContract,
   AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
-import {
-  FocusProxy,
-  PROXY_LIST_ID_SUFFIX,
-  PROXY_LISTITEM_ID_SUFFIX,
-  updateFocusProxyList,
-} from '../utils/focus/focus-proxy';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 let selectId = 0;
 
@@ -95,15 +95,6 @@ export class Select
    * Label for the select component
    */
   @Prop() label?: string;
-
-  /**
-   * ARIA label for the chevron down icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
-   * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
-   */
-  @Prop() ariaLabelChevronDownIconButton?: string;
 
   /**
    * ARIA label for the clear icon button
@@ -207,6 +198,15 @@ export class Select
    * Chip label for all selected items in multiple mode.
    */
   @Prop({ attribute: 'i18n-all-selected' }) i18nAllSelected = 'All';
+
+  /**
+   * Prefix for the accessible name of the close control on a selected chip in multiple mode.
+   * The chip label or value is appended (e.g. "Remove Item 1").
+   *
+   * @since 5.0.0
+   */
+  @Prop({ attribute: 'i18n-remove-selected-item' }) i18nRemoveSelectedItem =
+    'Remove';
 
   /**
    * Hide list header
@@ -706,11 +706,19 @@ export class Select
     );
   }
 
+  private getRemoveChipAriaLabel(item: HTMLIxSelectItemElement): string {
+    const name = (item.label ?? item.value)?.toString().trim();
+    if (!name) {
+      return this.i18nRemoveSelectedItem;
+    }
+    return `${this.i18nRemoveSelectedItem} ${name}`;
+  }
+
   private renderAllChip() {
     return (
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
-        ariaLabelCloseIconButton={this.i18nAllSelected}
+        ariaLabelCloseIconButton={`${this.i18nRemoveSelectedItem} ${this.i18nAllSelected}`}
         onCloseClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -727,6 +735,7 @@ export class Select
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
         key={item.value}
+        ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
         onCloseClick={() => {
           this.itemClick(item.value);
           this.inputElement?.focus();
@@ -825,13 +834,20 @@ export class Select
       ariaActiveDescendantHelper!,
       this.focusableItems,
       (item, proxyElement) => {
+        const isSelectItem = item.tagName === 'IX-SELECT-ITEM';
+        const ariaLabel =
+          item.getAttribute('aria-label') ||
+          item.label ||
+          (isSelectItem ? (item as HTMLIxSelectItemElement).value : '') ||
+          '';
+        const selected = isSelectItem
+          ? (item as HTMLIxSelectItemElement).selected
+          : (item as HTMLIxDropdownItemElement).checked;
+
         proxyElement.role = 'option';
         proxyElement.innerText = item.label ?? '';
-        proxyElement.ariaLabel =
-          item.getAttribute('aria-label') || item.label || '';
-        proxyElement.ariaSelected =
-          item.getAttribute('aria-selected') || 'false';
-        proxyElement.ariaChecked = item.getAttribute('aria-checked') || 'false';
+        proxyElement.ariaLabel = ariaLabel;
+        proxyElement.ariaSelected = a11yBoolean(!!selected);
         // Forward clicks from the proxy element to the actual dropdown item
         proxyElement.addEventListener('click', (event) => {
           event.stopPropagation();
@@ -943,10 +959,9 @@ export class Select
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
                       aria-label={
-                        this.ariaLabelChevronDownIconButton ??
-                        (this.dropdownShow
+                        this.dropdownShow
                           ? 'Close select dropdown'
-                          : 'Open select dropdown')
+                          : 'Open select dropdown'
                       }
                       aria-hidden="true"
                       ref={(ref) => {

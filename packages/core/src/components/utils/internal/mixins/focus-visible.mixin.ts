@@ -28,6 +28,9 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
     @Prop({ reflect: true }) ixFocusVisible = false;
 
     /**
+     * When `true`, do not map keyboard focus visibility to `aria-selected` on the host.
+     * Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+     *
      * @internal
      */
     @Prop() disableAriaSelectHandling: boolean = false;
@@ -45,6 +48,11 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
     @Watch('ixFocusVisible')
     $internal_checkAriaSelected(focusVisible: boolean) {
       if (!this.hostElement) {
+        return;
+      }
+
+      if (this.disableAriaSelectHandling) {
+        this.hostElement.removeAttribute('aria-selected');
         return;
       }
 
