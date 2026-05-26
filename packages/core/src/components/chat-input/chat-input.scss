@@ -66,9 +66,10 @@
 
   .attachments {
     display: none;
+    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    gap: var(--theme-space-1);
+    gap: var(--theme-space-2);
     margin-bottom: var(--theme-space-2);
   }
 
@@ -78,7 +79,7 @@
 
   .attachments--wrap {
     flex-wrap: wrap;
-    max-height: calc(4rem + var(--theme-space-1));
+    max-height: calc(4rem + var(--theme-space-2));
     overflow: hidden;
   }
 
@@ -88,10 +89,8 @@
     overflow-y: hidden;
     scrollbar-width: thin;
   }
-
   .attachments ::slotted(ix-chat-prompt-attachment) {
-    flex: 0 1 20.625rem;
-    min-width: 7.625rem;
+    flex: 0 1 auto;
   }
 
   .attachments--scroll ::slotted(ix-chat-prompt-attachment) {
@@ -99,11 +98,28 @@
   }
 
   .attachment-overflow {
-    flex: 0 0 auto;
-    width: 5rem;
+    flex: 0 0 5rem;
     height: 2rem;
     --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
     --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
+  }
+
+  .attachment-overflow-menu-item {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .attachment-overflow-menu-item ix-dropdown-item {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .attachment-overflow-remove-button {
+    flex: 0 0 auto;
+
+    position: absolute;
+    right: 0.5rem;
   }
 
   textarea {

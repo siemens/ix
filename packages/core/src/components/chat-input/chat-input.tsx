@@ -8,6 +8,7 @@
  */
 
 import {
+  iconCloseSmall,
   iconError,
   iconInfo,
   iconSendRightFilled,
@@ -26,12 +27,22 @@ import {
   h,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type {
   CharacterLimitMode,
   ChatInputAttachmentLayout,
 } from './chat-input.types';
 
 let chatInputIds = 0;
+
+type AttachmentOverflowEntry = {
+  canRemove: boolean;
+  icon?: string;
+  index: number;
+  label: string;
+  removeAriaLabel: string;
+};
 
 /**
  * @since 5.0.0
@@ -192,12 +203,25 @@ export class ChatInput {
 
   @State() hasAttemptedCharacterLimitExceeded = false;
   @State() hasAttachments = false;
+  @State() hasAttachmentOverflow = false;
+  @State() attachmentOverflowItemsCount = 0;
+  @State() overflowingAttachmentCount = 0;
+  @State() attachmentOverflowEntries: AttachmentOverflowEntry[] = [];
   @State() hasFollowUp = false;
 
+  private readonly attachmentsRef = makeRef<HTMLDivElement>((attachments) => {
+    this.initAttachmentResizeObserver(attachments);
+    this.scheduleAttachmentOverflowUpdate();
+  });
+  private readonly attachmentOverflowRef =
+    makeRef<HTMLIxDropdownButtonElement>();
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
   });
   private readonly inputId = `ix-chat-input-${chatInputIds++}`;
+  private attachmentResizeObserver?: ResizeObserver;
+  private attachmentMutationObserver?: MutationObserver;
+  private isAttachmentOverflowUpdateQueued = false;
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
@@ -207,11 +231,19 @@ export class ChatInput {
 
   componentDidLoad() {
     this.updateHasFollowUp();
+    this.initAttachmentMutationObserver();
+    this.scheduleAttachmentOverflowUpdate();
     this.updateTextareaHeight();
   }
 
   componentDidRender() {
+    this.scheduleAttachmentOverflowUpdate();
     this.updateTextareaHeight();
+  }
+
+  disconnectedCallback() {
+    this.attachmentResizeObserver?.disconnect();
+    this.attachmentMutationObserver?.disconnect();
   }
 
   @Watch('value')
@@ -224,6 +256,11 @@ export class ChatInput {
   @Watch('maxRows')
   onRowsChange() {
     this.updateTextareaHeight();
+  }
+
+  @Watch('attachmentLayout')
+  onAttachmentLayoutChange() {
+    this.scheduleAttachmentOverflowUpdate();
   }
 
   updateFormInternalValue(value: string) {
@@ -473,6 +510,14 @@ export class ChatInput {
       slot.assignedElements({
         flatten: true,
       }).length > 0;
+    this.scheduleAttachmentOverflowUpdate();
+  }
+
+  private handleAttachmentOverflowSlotChange(event: Event) {
+    const slot = event.target as HTMLSlotElement;
+    this.attachmentOverflowItemsCount = slot.assignedElements({
+      flatten: true,
+    }).length;
   }
 
   private handleFollowUpSlotChange(event: Event) {
@@ -490,26 +535,351 @@ export class ChatInput {
       this.hostElement.querySelectorAll('[slot="follow-up"]').length > 0;
   }
 
+  private getAttachmentElements() {
+    return Array.from(
+      this.hostElement.querySelectorAll<HTMLIxChatPromptAttachmentElement>(
+        '[slot="attachments"]'
+      )
+    );
+  }
+
+  private getAttachmentOverflowEntry(
+    element: HTMLIxChatPromptAttachmentElement,
+    index: number
+  ): AttachmentOverflowEntry {
+    return {
+      canRemove: !element.hideRemoveButton,
+      icon: element.hideFileIcon ? undefined : element.icon,
+      index,
+      label: element.fileName || `Attachment ${index + 1}`,
+      removeAriaLabel: element.removeAriaLabel,
+    };
+  }
+
+  private updateAttachmentOverflowEntries(entries: AttachmentOverflowEntry[]) {
+    const hasChanged =
+      entries.length !== this.attachmentOverflowEntries.length ||
+      entries.some((entry, index) => {
+        const currentEntry = this.attachmentOverflowEntries[index];
+        return (
+          entry.canRemove !== currentEntry?.canRemove ||
+          entry.icon !== currentEntry?.icon ||
+          entry.index !== currentEntry.index ||
+          entry.label !== currentEntry?.label ||
+          entry.removeAriaLabel !== currentEntry?.removeAriaLabel
+        );
+      });
+
+    if (hasChanged) {
+      this.attachmentOverflowEntries = entries;
+    }
+  }
+
+  private getAttachmentOverflowEntries(
+    attachmentElements: HTMLIxChatPromptAttachmentElement[],
+    overflowAttachmentElements: HTMLIxChatPromptAttachmentElement[]
+  ) {
+    return overflowAttachmentElements.map((element) =>
+      this.getAttachmentOverflowEntry(
+        element,
+        Math.max(attachmentElements.indexOf(element), 0)
+      )
+    );
+  }
+
+  private getAttachmentOverflowItemsCount() {
+    return this.hostElement.querySelectorAll('[slot="attachment-overflow"]')
+      .length;
+  }
+
+  private initAttachmentResizeObserver(attachments: HTMLDivElement) {
+    this.attachmentResizeObserver?.disconnect();
+    this.attachmentResizeObserver = new ResizeObserver(() =>
+      this.scheduleAttachmentOverflowUpdate()
+    );
+    this.attachmentResizeObserver.observe(attachments);
+  }
+
+  private initAttachmentMutationObserver() {
+    this.attachmentMutationObserver = createMutationObserver(() => {
+      this.updateHasFollowUp();
+      this.scheduleAttachmentOverflowUpdate();
+    });
+    this.attachmentMutationObserver.observe(this.hostElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  private scheduleAttachmentOverflowUpdate() {
+    if (this.isAttachmentOverflowUpdateQueued) {
+      return;
+    }
+
+    this.isAttachmentOverflowUpdateQueued = true;
+    requestAnimationFrameNoNgZone(() => {
+      this.isAttachmentOverflowUpdateQueued = false;
+      this.updateAttachmentOverflow();
+    });
+  }
+
+  private restoreAttachmentVisibility(attachmentElements: HTMLElement[]) {
+    attachmentElements.forEach((element) => {
+      element.style.display = '';
+    });
+  }
+
+  private isElementOverflowing(
+    attachments: HTMLDivElement,
+    element: HTMLElement
+  ) {
+    const attachmentsRect = attachments.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+
+    return (
+      elementRect.bottom - attachmentsRect.bottom > 1 ||
+      elementRect.right - attachmentsRect.right > 1 ||
+      attachmentsRect.left - elementRect.left > 1
+    );
+  }
+
+  private getLayoutOverflowingAttachmentElements(
+    attachments: HTMLDivElement,
+    attachmentElements: HTMLIxChatPromptAttachmentElement[]
+  ) {
+    const overflowingAttachmentElements = attachmentElements.filter((element) =>
+      this.isElementOverflowing(attachments, element)
+    );
+
+    if (overflowingAttachmentElements.length > 0) {
+      return overflowingAttachmentElements;
+    }
+
+    if (
+      attachments.scrollHeight - attachments.clientHeight > 1 ||
+      attachments.scrollWidth - attachments.clientWidth > 1
+    ) {
+      return attachmentElements.slice(-1);
+    }
+
+    return [];
+  }
+
+  private getLayoutOverflowingAttachmentCount(
+    attachments: HTMLDivElement,
+    attachmentElements: HTMLIxChatPromptAttachmentElement[]
+  ) {
+    return this.getLayoutOverflowingAttachmentElements(
+      attachments,
+      attachmentElements
+    ).length;
+  }
+
+  private measureAttachmentOverflow(
+    attachments: HTMLDivElement,
+    attachmentElements: HTMLIxChatPromptAttachmentElement[],
+    attachmentOverflowItemsCount: number
+  ) {
+    const overflowButton = attachments.querySelector<HTMLElement>(
+      '.attachment-overflow'
+    );
+    const overflowButtonDisplay = overflowButton?.style.display;
+
+    this.restoreAttachmentVisibility(attachmentElements);
+    if (overflowButton) {
+      overflowButton.style.display = 'none';
+    }
+
+    const layoutOverflowingAttachmentElements =
+      this.getLayoutOverflowingAttachmentElements(
+        attachments,
+        attachmentElements
+      );
+    const layoutOverflowingAttachmentCount =
+      layoutOverflowingAttachmentElements.length;
+    const hasOverflow =
+      layoutOverflowingAttachmentCount > 0 || attachmentOverflowItemsCount > 0;
+
+    if (!overflowButton) {
+      return {
+        entries: this.getAttachmentOverflowEntries(
+          attachmentElements,
+          layoutOverflowingAttachmentElements
+        ),
+        hasOverflow,
+        overflowingAttachmentCount: layoutOverflowingAttachmentCount,
+      };
+    }
+
+    overflowButton.style.display = overflowButtonDisplay ?? '';
+
+    if (!hasOverflow) {
+      return {
+        entries: [],
+        hasOverflow: false,
+        overflowingAttachmentCount: 0,
+      };
+    }
+
+    let hiddenAttachmentCount = 0;
+    const visibleAttachmentElements = [...attachmentElements];
+    const hiddenAttachmentElements: HTMLIxChatPromptAttachmentElement[] = [];
+
+    while (
+      visibleAttachmentElements.length > 0 &&
+      (this.isElementOverflowing(attachments, overflowButton) ||
+        this.getLayoutOverflowingAttachmentCount(
+          attachments,
+          visibleAttachmentElements
+        ) > 0)
+    ) {
+      const attachmentElement = visibleAttachmentElements.pop();
+      if (!attachmentElement) {
+        break;
+      }
+
+      attachmentElement.style.display = 'none';
+      hiddenAttachmentElements.push(attachmentElement);
+      hiddenAttachmentCount += 1;
+    }
+
+    return {
+      entries: this.getAttachmentOverflowEntries(
+        attachmentElements,
+        hiddenAttachmentElements.reverse()
+      ),
+      hasOverflow: true,
+      overflowingAttachmentCount: hiddenAttachmentCount,
+    };
+  }
+
+  private updateAttachmentOverflow() {
+    const attachments = this.attachmentsRef.current;
+    if (!attachments) {
+      return;
+    }
+
+    const attachmentOverflowItemsCount = this.getAttachmentOverflowItemsCount();
+    if (this.attachmentOverflowItemsCount !== attachmentOverflowItemsCount) {
+      this.attachmentOverflowItemsCount = attachmentOverflowItemsCount;
+    }
+
+    const attachmentElements = this.getAttachmentElements();
+    if (this.attachmentLayout !== 'wrap' || attachmentElements.length === 0) {
+      this.restoreAttachmentVisibility(attachmentElements);
+      this.updateAttachmentOverflowEntries([]);
+      if (this.hasAttachmentOverflow) {
+        this.hasAttachmentOverflow = false;
+      }
+      if (this.overflowingAttachmentCount !== 0) {
+        this.overflowingAttachmentCount = 0;
+      }
+      return;
+    }
+
+    if (attachments.clientHeight === 0 || attachments.clientWidth === 0) {
+      return;
+    }
+
+    const { entries, hasOverflow, overflowingAttachmentCount } =
+      this.measureAttachmentOverflow(
+        attachments,
+        attachmentElements,
+        attachmentOverflowItemsCount
+      );
+
+    this.updateAttachmentOverflowEntries(entries);
+    if (this.hasAttachmentOverflow !== hasOverflow) {
+      this.hasAttachmentOverflow = hasOverflow;
+    }
+    if (this.overflowingAttachmentCount !== overflowingAttachmentCount) {
+      this.overflowingAttachmentCount = overflowingAttachmentCount;
+    }
+  }
+
+  private async closeAttachmentOverflow() {
+    const dropdown =
+      await this.attachmentOverflowRef.current?.getDropdownReference();
+    if (dropdown) {
+      dropdown.show = false;
+    }
+  }
+
+  private handleAttachmentOverflowItemClick(index: number) {
+    this.getAttachmentElements()[index]?.click();
+    this.closeAttachmentOverflow();
+  }
+
+  private handleAttachmentOverflowRemoveClick(
+    event: MouseEvent,
+    index: number
+  ) {
+    event.stopPropagation();
+    this.getAttachmentElements()[index]?.dispatchEvent(
+      new CustomEvent('removeClick', {
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
+  private renderAttachmentOverflowItems() {
+    return this.attachmentOverflowEntries.map((entry) => (
+      <div>
+        <ix-dropdown-item
+          class="attachment-overflow-generated-item"
+          icon={entry.icon}
+          ariaLabelButton={entry.label}
+          onClick={() => this.handleAttachmentOverflowItemClick(entry.index)}
+        >
+          {entry.label}
+          {entry.canRemove && (
+            <div slot="end">
+              <ix-icon-button
+                aria-label={entry.removeAriaLabel}
+                class="attachment-overflow-remove-button"
+                icon={iconCloseSmall}
+                size="24"
+                variant="subtle-tertiary"
+                onClick={(event: MouseEvent) =>
+                  this.handleAttachmentOverflowRemoveClick(event, entry.index)
+                }
+              ></ix-icon-button>
+            </div>
+          )}
+        </ix-dropdown-item>
+      </div>
+    ));
+  }
+
   private getAttachmentOverflowCount() {
     const attachmentOverflowCount = Number(this.attachmentOverflowCount);
-    return Number.isFinite(attachmentOverflowCount) &&
+    if (
+      Number.isFinite(attachmentOverflowCount) &&
       attachmentOverflowCount > 0
-      ? attachmentOverflowCount
-      : undefined;
+    ) {
+      return attachmentOverflowCount;
+    }
+
+    const overflowCount =
+      this.attachmentOverflowItemsCount + this.overflowingAttachmentCount;
+
+    return overflowCount > 0 ? overflowCount : undefined;
   }
 
   private renderAttachmentOverflow() {
-    const attachmentOverflowCount = this.getAttachmentOverflowCount();
-
-    if (!attachmentOverflowCount || this.attachmentLayout !== 'wrap') {
+    if (!this.hasAttachmentOverflow || this.attachmentLayout !== 'wrap') {
       return null;
     }
 
+    const attachmentOverflowCount = this.getAttachmentOverflowCount() ?? 1;
+
     return (
       <ix-dropdown-button
+        ref={this.attachmentOverflowRef}
         ariaLabelDropdownButton={`Show ${attachmentOverflowCount} more attachments`}
         class="attachment-overflow"
-        closeBehavior="inside"
         label={`+ ${attachmentOverflowCount} ${this.attachmentOverflowLabel}`}
         placement="bottom-end"
         variant="tertiary"
@@ -517,7 +887,13 @@ export class ChatInput {
           this.attachmentOverflowChange.emit(event.detail)
         }
       >
-        <slot name="attachment-overflow"></slot>
+        {this.renderAttachmentOverflowItems()}
+        <slot
+          name="attachment-overflow"
+          onSlotchange={(event) =>
+            this.handleAttachmentOverflowSlotChange(event)
+          }
+        ></slot>
       </ix-dropdown-button>
     );
   }
@@ -539,12 +915,14 @@ export class ChatInput {
         </div>
         <div class="chat-input">
           <div
+            ref={this.attachmentsRef}
             class={{
               attachments: true,
               'attachments--wrap': this.attachmentLayout === 'wrap',
               'attachments--scroll': this.attachmentLayout === 'scroll',
+              'has-attachment-overflow': this.hasAttachmentOverflow,
               'has-attachments':
-                this.hasAttachments || !!this.getAttachmentOverflowCount(),
+                this.hasAttachments || this.hasAttachmentOverflow,
             }}
           >
             <slot
@@ -592,7 +970,7 @@ export class ChatInput {
                 disabled={!this.canSubmit()}
                 icon={iconSendRightFilled}
                 size="24"
-                variant="subtle-tertiary"
+                variant="tertiary"
                 onClick={() => this.submitPrompt()}
               ></ix-icon-button>
             </div>

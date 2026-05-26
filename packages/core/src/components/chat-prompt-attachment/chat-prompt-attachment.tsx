@@ -196,6 +196,7 @@ export class ChatPromptAttachment {
           loading: isLoading,
           'preview-supported': canPreview,
           sent: isSent,
+          'has-remove-button': !this.hideRemoveButton,
         }}
         role={canPreview ? 'button' : undefined}
         tabIndex={canPreview ? 0 : undefined}

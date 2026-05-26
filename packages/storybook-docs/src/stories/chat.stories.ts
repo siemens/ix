@@ -35,10 +35,10 @@ function createChat(args: Partial<Element>) {
   return { container, chat };
 }
 
-function createIconButton(label: string, icon: string, slot?: string) {
+function createIconButton(label: string, icon: string, slot?: string, size: "16" | "24" | "12" = "16") {
   const action = document.createElement('ix-icon-button');
   action.icon = icon;
-  action.size = '16';
+  action.size = size;
   action.variant = 'subtle-tertiary';
   action.setAttribute('aria-label', label);
 
@@ -220,7 +220,7 @@ function createChatInput({
 
   if (followUp) {
     chatInput.append(
-      createIconButton('Refresh follow-up prompts', iconRefresh, 'follow-up'),
+      createIconButton('Refresh follow-up prompts', iconRefresh, 'follow-up', '24'),
       createFollowUpPrompt('What are the risks if this insight is ignored?'),
       createFollowUpPrompt(
         'Show related insights from similar customer events.'

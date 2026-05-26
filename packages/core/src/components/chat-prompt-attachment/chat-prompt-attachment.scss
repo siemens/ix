@@ -99,6 +99,10 @@
   white-space: nowrap;
 }
 
+:host(.has-remove-button) {
+  gap: var(--theme-space-0);
+}
+
 ix-icon {
   flex: 0 0 auto;
 }

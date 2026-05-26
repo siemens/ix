@@ -104,9 +104,7 @@ export const WithAttachments: Story = {
 
     return container;
   },
-  args: {
-    attachmentOverflowCount: 4,
-  },
+  args: {},
   parameters: {
     design: {
       type: 'figma',
