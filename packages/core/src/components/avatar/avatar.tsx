@@ -39,7 +39,7 @@ import {
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
 function DefaultAvatar(
-  props: Readonly<{ initials?: string; a11yLabel?: string }>
+  props: Readonly<{ initials?: string; ariaLabel?: string }>
 ) {
   const { initials } = props;
 
@@ -58,7 +58,7 @@ function DefaultAvatar(
       width="32"
       height="32"
       viewBox="0 0 32 32"
-      aria-label={props.a11yLabel}
+      aria-label={props.ariaLabel}
     >
       <g fill="none" fill-rule="evenodd">
         <path
@@ -82,7 +82,7 @@ function AvatarImage(
   props: Readonly<{
     image?: string;
     initials?: string;
-    a11yLabel?: string;
+    ariaLabel?: string;
   }>
 ) {
   return (
@@ -91,10 +91,10 @@ function AvatarImage(
         <img
           src={props.image}
           class="avatar-image"
-          aria-label={props.a11yLabel}
+          aria-label={props.ariaLabel}
         ></img>
       ) : (
-        <DefaultAvatar initials={props.initials} a11yLabel={props.a11yLabel} />
+        <DefaultAvatar initials={props.initials} ariaLabel={props.ariaLabel} />
       )}
     </div>
   );
@@ -106,7 +106,7 @@ function UserInfo(
     initials?: string;
     userName: string;
     extra?: string;
-    a11yLabel?: string;
+    ariaLabel?: string;
   }>
 ) {
   return (
@@ -115,7 +115,7 @@ function UserInfo(
         <AvatarImage
           image={props.image}
           initials={props.initials}
-          a11yLabel={props.a11yLabel}
+          ariaLabel={props.ariaLabel}
         />
         <div class="user">
           <div class="username">{props.userName}</div>
@@ -140,14 +140,6 @@ export class Avatar
   implements ComponentIdMixinContract, AriaActiveDescendantMixinContract
 {
   @Element() override hostElement!: HTMLIxAvatarElement;
-
-  /**
-   * Accessibility label for the image
-   * Will be set as aria-label on the nested HTML img element
-   *
-   * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
-   */
-  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Display an avatar image
@@ -292,7 +284,7 @@ export class Avatar
   }
 
   override render() {
-    const a11yLabel = this.a11yAttributes['aria-label'];
+    const ariaLabel = this.a11yAttributes['aria-label'];
 
     const tooltipText = this.tooltipText || this.username;
     const ariaHidden = tooltipText === this.username;
@@ -302,7 +294,7 @@ export class Avatar
         <AvatarImage
           image={this.image}
           initials={this.initials}
-          a11yLabel={a11yLabel ?? this.a11yLabel}
+          ariaLabel={ariaLabel}
         />
         {!!tooltipText && (
           <ix-tooltip
@@ -363,7 +355,7 @@ export class Avatar
                   image={this.image}
                   initials={this.initials}
                   userName={this.username}
-                  a11yLabel={a11yLabel ?? this.a11yLabel}
+                  ariaLabel={ariaLabel}
                 />
                 {this.hasSlottedElements && (
                   <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>

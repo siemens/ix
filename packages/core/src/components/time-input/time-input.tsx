@@ -336,7 +336,11 @@ export class TimeInput
     if (event.key === 'ArrowDown') {
       this.show = true;
       requestAnimationFrameNoNgZone(() => {
-        this.timePickerRef.current?.focus();
+        const focusableTimeButton =
+          this.timePickerRef.current?.shadowRoot?.querySelector<HTMLElement>(
+            'button[tabindex="0"]'
+          );
+        focusableTimeButton?.focus();
       });
     }
     onEnterKeyChangeEmit(event, this, this.value);

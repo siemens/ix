@@ -9,9 +9,9 @@
  */
 
 import {
-  Components,
+  type Components,
   type TreeContext,
-  UpdateCallback,
+  type UpdateCallback,
   type IxTreeCustomEvent,
 } from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';

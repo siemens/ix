@@ -28,19 +28,21 @@
   }
 }
 
+$input-end-container-inset: 0.25rem;
+
 @mixin applySpacingToEndSlot {
   .end-container ::slotted(*) {
-    margin-right: 0.5rem;
+    margin-right: calc(0.5rem - #{$input-end-container-inset});
   }
 
   .end-container ::slotted(ix-icon.size-24),
   .end-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-right: 0.25rem;
+    margin-right: calc(0.25rem - #{$input-end-container-inset});
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
   .end-container ::slotted(ix-icon-button.btn-icon-32) {
-    margin-right: 0;
+    margin-right: calc(0rem - #{$input-end-container-inset});
   }
 }
 
@@ -80,7 +82,7 @@
     }
 
     .end-container {
-      right: calc(var(--theme-input--border-thickness) + 0.125rem);
+      right: #{$input-end-container-inset};
     }
 
     @include applySpacingToStartSlot;

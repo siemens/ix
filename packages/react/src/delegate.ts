@@ -6,7 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { FrameworkDelegate, registerFrameworkDelegate } from '@siemens/ix';
+import type { FrameworkDelegate } from '@siemens/ix';
+import { registerFrameworkDelegate } from '@siemens/ix/components';
 import ReactDOMClient from 'react-dom/client';
 let viewInstance = 0;
 

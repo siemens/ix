@@ -77,8 +77,6 @@ import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
 import Divider from './preview-examples/divider.vue';
-import DrawerFullHeight from './preview-examples/drawer-full-height.vue';
-import Drawer from './preview-examples/drawer.vue';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
 import DropdownIcon from './preview-examples/dropdown-icon.vue';
@@ -312,8 +310,6 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
-  '/preview/drawer-full-height': DrawerFullHeight,
-  '/preview/drawer': Drawer,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,
