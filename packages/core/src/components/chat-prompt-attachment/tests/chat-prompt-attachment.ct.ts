@@ -38,6 +38,53 @@ regressionTest(
 );
 
 regressionTest(
+  'ix-chat-prompt-attachment truncates long file names with an ellipsis',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-prompt-attachment file-name="Long File Name of chat prompt attachment with many details.txt"></ix-chat-prompt-attachment>'
+    );
+
+    const attachment = page.locator('ix-chat-prompt-attachment');
+    const fileNameBase = attachment.locator('.file-name__base');
+    const fileNameExtension = attachment.locator('.file-name__extension');
+    const closeButton = attachment.locator('ix-chip').locator('.chip-close');
+
+    await expect(fileNameBase).toContainText(
+      'Long File Name of chat prompt attachment with many details'
+    );
+
+    const getOverflowState = () =>
+      fileNameBase.evaluate((element) => {
+        const style = getComputedStyle(element);
+
+        return {
+          clientWidth: element.clientWidth,
+          overflow: style.overflow,
+          rectWidth: element.getBoundingClientRect().width,
+          scrollWidth: element.scrollWidth,
+          textOverflow: style.textOverflow,
+          whiteSpace: style.whiteSpace,
+        };
+      });
+
+    await expect
+      .poll(async () => {
+        const state = await getOverflowState();
+        return state.scrollWidth > state.clientWidth && state.clientWidth > 0;
+      })
+      .toBe(true);
+
+    const overflowState = await getOverflowState();
+    expect(overflowState.overflow).toBe('hidden');
+    expect(overflowState.textOverflow).toBe('ellipsis');
+    expect(overflowState.whiteSpace).toBe('nowrap');
+
+    await expect(fileNameExtension).toContainText('.txt');
+    await expect(closeButton).toBeVisible();
+  }
+);
+
+regressionTest(
   'ix-chat-prompt-attachment renders loading and failed states',
   async ({ mount, page }) => {
     await mount(`

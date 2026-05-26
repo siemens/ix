@@ -46,7 +46,7 @@ export class Chip
 
   /**
    * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)
-   * will be possible and also the close button will not be present.
+   * will be possible on the main chip content.
    */
   @Prop() inactive = false;
 
@@ -187,7 +187,7 @@ export class Chip
     const { wrap: customWrapStyle, main: customMainStyle } =
       this.getCustomStyles(variant);
 
-    const showClose = !this.inactive && this.closable;
+    const showClose = this.closable;
     const wrapClasses = {
       'chip-wrap': true,
       outline: this.outline,

@@ -20,6 +20,8 @@
 }
 
 .attachment-chip {
+  display: block;
+  width: 100%;
   max-width: 20.625rem;
 }
 
@@ -32,6 +34,8 @@
 
 .content {
   flex: 1 1 auto;
+  max-width: 100%;
+  width: 100%;
 }
 
 .status-content {
@@ -44,11 +48,15 @@
 
 .file-name {
   display: inline-flex;
+  flex: 1 1 auto;
   min-width: 0;
   max-width: 100%;
+  overflow: hidden;
 }
 
 .file-name__base {
+  flex: 1 1 auto;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -944,7 +944,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive": boolean;
@@ -7620,7 +7620,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive"?: boolean;
