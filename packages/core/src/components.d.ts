@@ -3499,7 +3499,7 @@ export namespace Components {
         "disableAriaSelectHandling": boolean;
         /**
           * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "disabled": boolean;
@@ -10024,7 +10024,7 @@ declare namespace LocalJSX {
         "disableAriaSelectHandling"?: boolean;
         /**
           * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "disabled"?: boolean;

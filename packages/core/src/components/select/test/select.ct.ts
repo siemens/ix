@@ -81,6 +81,7 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
 test('does not select an item when ix-select-item is disabled', async ({
   mount,
   page,
+  makeAxeBuilder,
 }) => {
   await mount(`
     <ix-select>
@@ -95,7 +96,10 @@ test('does not select an item when ix-select-item is disabled', async ({
   await page.locator('[data-select-dropdown]').click();
 
   const disabledItem = page.locator('ix-select-item[disabled]');
-  await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
+  await expect(disabledItem).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
 
   await disabledItem.click({ force: true });
 

@@ -66,7 +66,7 @@ export class SelectItem
    * Disable the item. A disabled item cannot be selected via mouse or keyboard
    * and is excluded from the focusable items of the parent ix-select.
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) disabled = false;
 
