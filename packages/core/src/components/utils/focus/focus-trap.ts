@@ -19,7 +19,7 @@ export const TRAP_FOCUS_INCLUDE_ATTRIBUTE = 'data-ix-focus-trap-include';
 
 export type FocusTrapOptions = {
   targetElement?: HTMLElement | MakeRef<any>;
-  trapFocusInShadowDom?: boolean;
+  trapFocusInShadowDom?: boolean | 'both';
   excludeElements?: boolean;
 };
 
@@ -41,12 +41,13 @@ export const addFocusTrap = async (
     const keyboardEvent = event as KeyboardEvent;
 
     if (keyboardEvent.key === 'Tab') {
-      const focusTrapRoot = options?.trapFocusInShadowDom
-        ? ref.shadowRoot
-        : ref;
+      const useBoth = options?.trapFocusInShadowDom === 'both';
+      const focusTrapRoot =
+        options?.trapFocusInShadowDom === true ? ref.shadowRoot : ref;
       const focusableElements = queryElements(
         focusTrapRoot,
-        `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`
+        `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`,
+        useBoth
       );
 
       for (let index = 0; index < focusableElements.length; index++) {
@@ -57,10 +58,13 @@ export const addFocusTrap = async (
         }
 
         const includedFocusableElements = queryElements(
-          options?.trapFocusInShadowDom && includeElement.shadowRoot
-            ? includeElement.shadowRoot
+          useBoth ||
+            (options?.trapFocusInShadowDom === true &&
+              includeElement.shadowRoot)
+            ? (includeElement.shadowRoot ?? includeElement)
             : includeElement,
-          focusableQueryString
+          focusableQueryString,
+          useBoth
         ).filter((element) => element !== includeElement);
 
         for (const includedElement of includedFocusableElements) {
@@ -76,6 +80,7 @@ export const addFocusTrap = async (
         focusableElements.splice(index, 1, ...includedFocusableElements);
         index += includedFocusableElements.length - 1;
       }
+
       if (focusableElements.length === 0) {
         return;
       }
