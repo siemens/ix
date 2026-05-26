@@ -78,6 +78,55 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   await expect(dropdown).not.toHaveClass(/show/);
 });
 
+test('does not select an item when ix-select-item is disabled', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1"></ix-select-item>
+      <ix-select-item value="22" label="Item 2" disabled></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await expect(select).toHaveClass(/hydrated/);
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const disabledItem = page.locator('ix-select-item[disabled]');
+  await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
+
+  await disabledItem.click({ force: true });
+
+  const ctrl = selectController(select);
+  await expect(ctrl.getInputLocator()).toHaveValue('');
+  await expect(disabledItem).not.toHaveAttribute('selected', /.*/);
+});
+
+test('disabled ix-select-item is excluded from keyboard navigation', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1"></ix-select-item>
+      <ix-select-item value="22" label="Item 2" disabled></ix-select-item>
+      <ix-select-item value="33" label="Item 3"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const ctrl = selectController(select);
+
+  await ctrl.focusInput();
+  await ctrl.arrowDown(true);
+  await ctrl.arrowDown();
+  await ctrl.pressEnter();
+
+  await expect(ctrl.getInputLocator()).toHaveValue('Item 3');
+});
+
 test('does not open the dropdown when readonly', async ({ mount, page }) => {
   await mount(`
     <ix-select readonly>
