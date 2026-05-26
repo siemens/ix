@@ -54,6 +54,13 @@ export const Default: Story = {
   args: {},
 };
 
+export const WithProcessing: Story = {
+  args: {
+    state: 'processing',
+    value: 'Summarize the current alarm list',
+  },
+};
+
 export const WithValue: Story = {
   args: {
     value: 'Summarize the current alarm list',

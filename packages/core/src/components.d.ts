@@ -737,6 +737,12 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @since 5.0.0
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
           * Accessible label for the native textarea.
           * @since 5.0.0
           * @default 'Chat input'
@@ -7406,6 +7412,12 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @since 5.0.0
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
           * Accessible label for the native textarea.
           * @since 5.0.0
           * @default 'Chat input'
@@ -11839,6 +11851,7 @@ declare namespace LocalJSX {
         "enableTopLayer": boolean;
     }
     interface IxChatInputAttributes {
+        "state": 'input' | 'processing';
         "name": string;
         "placeholder": string;
         "value": string;

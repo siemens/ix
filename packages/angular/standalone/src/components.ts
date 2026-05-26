@@ -552,7 +552,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatInput,
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -560,7 +560,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
 })
 export class IxChatInput {

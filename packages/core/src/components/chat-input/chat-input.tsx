@@ -8,6 +8,7 @@
  */
 
 import {
+  iconCircleStop,
   iconCloseSmall,
   iconError,
   iconInfo,
@@ -59,6 +60,12 @@ type AttachmentOverflowEntry = {
 export class ChatInput {
   @Element() hostElement!: HTMLIxChatInputElement;
   @AttachInternals() formInternals!: ElementInternals;
+
+  /**
+   * The state of the chat input, which can be either 'input' or 'processing'.
+   * @since 5.0.0
+   */
+  @Prop() state?: 'input' | 'processing' = 'input';
 
   /**
    * The name of the chat input.
@@ -917,7 +924,9 @@ export class ChatInput {
                 aria-label="Submit prompt"
                 class="submit-button"
                 disabled={!this.canSubmit()}
-                icon={iconSendRightFilled}
+                icon={
+                  this.state === 'input' ? iconSendRightFilled : iconCircleStop
+                }
                 size="24"
                 variant="tertiary"
                 onClick={() => this.submitPrompt()}

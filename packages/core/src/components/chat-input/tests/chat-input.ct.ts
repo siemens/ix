@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconCircleStop, iconSendRightFilled } from '@siemens/ix-icons/icons';
 import {
   getFormValue,
   preventFormSubmission,
@@ -20,6 +21,10 @@ declare global {
 type ValueChangeTestElement = HTMLElement & {
   __valueChange?: string;
 };
+
+function getSubmitButtonIcon(element: Element) {
+  return (element as HTMLIxIconButtonElement).icon;
+}
 
 regressionTest(
   'ix-chat-input emits valueChange when text is entered',
@@ -128,6 +133,28 @@ regressionTest(
     await expect(
       chatInput.locator('.right-actions ix-icon-button')
     ).toHaveCount(1);
+  }
+);
+
+regressionTest(
+  'ix-chat-input switches the submit action icon for the processing state',
+  async ({ mount, page }) => {
+    await mount('<ix-chat-input value="Analyze alarms"></ix-chat-input>');
+
+    const chatInput = page.locator('ix-chat-input');
+    const submitButton = chatInput.locator('ix-icon-button.submit-button');
+
+    await expect
+      .poll(() => submitButton.evaluate(getSubmitButtonIcon))
+      .toBe(iconSendRightFilled);
+
+    await chatInput.evaluate((element) => {
+      (element as HTMLIxChatInputElement).state = 'processing';
+    });
+
+    await expect
+      .poll(() => submitButton.evaluate(getSubmitButtonIcon))
+      .toBe(iconCircleStop);
   }
 );
 

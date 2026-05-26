@@ -410,6 +410,7 @@ export type IxChatInputEvents = {
 export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput> = /*@__PURE__*/ createComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>({
     tagName: 'ix-chat-input',
     properties: {
+        state: 'state',
         name: 'name',
         placeholder: 'placeholder',
         value: 'value',

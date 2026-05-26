@@ -308,6 +308,7 @@ export const IxChatAiMessage: StencilVueComponent<JSX.IxChatAiMessage> = /*@__PU
 
 
 export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxChatInput, JSX.IxChatInput["value"]>('ix-chat-input', defineIxChatInput, [
+  'state',
   'name',
   'placeholder',
   'value',
