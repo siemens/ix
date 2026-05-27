@@ -1,0 +1,54 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.dialog {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  overflow: visible;
+  width: 25rem;
+  min-width: 15rem;
+  max-width: 37.5rem;
+  max-height: calc(100vh - 2rem);
+}
+
+.popover-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  background: var(--theme-popover--background, var(--theme-color-1));
+  color: var(--theme-popover--color, var(--theme-color-std-text));
+  border: 1px solid var(--theme-popover--border-color, transparent);
+  box-shadow: var(--theme-shadow-4);
+  border-radius: var(--theme-default-border-radius, 0.25rem);
+  overflow: hidden;
+}
+
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+  background-color: var(--theme-popover--background, var(--theme-color-1));
+}

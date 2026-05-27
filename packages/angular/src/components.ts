@@ -2196,6 +2196,142 @@ export declare interface IxPill extends Components.IxPill {}
 
 
 @ProxyCmp({
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  methods: ['showPopover', 'hidePopover']
+})
+@Component({
+  selector: 'ix-popover',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  outputs: ['showChange', 'showChanged'],
+  standalone: false
+})
+export class IxPopover {
+  protected el: HTMLIxPopoverElement;
+  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopover extends Components.IxPopover {
+  /**
+   * Fires before visibility changes. Cancel to prevent.
+   */
+  showChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fires after visibility has changed
+   */
+  showChanged: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['paddingless']
+})
+@Component({
+  selector: 'ix-popover-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['paddingless'],
+  standalone: false
+})
+export class IxPopoverContent {
+  protected el: HTMLIxPopoverContentElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverContent extends Components.IxPopoverContent {}
+
+
+@ProxyCmp({
+  inputs: ['alignment']
+})
+@Component({
+  selector: 'ix-popover-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignment'],
+  standalone: false
+})
+export class IxPopoverFooter {
+  protected el: HTMLIxPopoverFooterElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverFooter extends Components.IxPopoverFooter {}
+
+
+@ProxyCmp({
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor']
+})
+@Component({
+  selector: 'ix-popover-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor'],
+  outputs: ['closeClick'],
+  standalone: false
+})
+export class IxPopoverHeader {
+  protected el: HTMLIxPopoverHeaderElement;
+  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverHeader extends Components.IxPopoverHeader {
+  /**
+   * Fires when close button is clicked.
+Cancel to prevent closing.
+   */
+  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['alt', 'src']
+})
+@Component({
+  selector: 'ix-popover-image',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alt', 'src'],
+  standalone: false
+})
+export class IxPopoverImage {
+  protected el: HTMLIxPopoverImageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverImage extends Components.IxPopoverImage {}
+
+
+@ProxyCmp({
   inputs: ['helperText', 'label', 'max', 'min', 'showTextAsTooltip', 'size', 'status', 'textAlignment', 'type', 'value']
 })
 @Component({
