@@ -1,0 +1,293 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Chat visual overview</title>
+    <style>
+      :root {
+        color: var(--theme-color-std-text);
+        font-family: var(--theme-font-family);
+      }
+
+      .chat-visual-page {
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding: 1.5rem;
+        background: var(--theme-color-1);
+      }
+
+      .chat-visual-grid {
+        display: grid;
+        grid-template-columns: minmax(34rem, 45rem) minmax(20rem, 28rem);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .chat-visual-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 0;
+      }
+
+      .chat-visual-title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      ix-chat.chat-overview {
+        height: 48rem;
+        min-width: 0;
+        max-width: none;
+        border: 1px solid var(--theme-color-weak-bdr);
+        border-radius: var(--theme-default-border-radius);
+        background: var(--theme-color-1);
+      }
+
+      ix-chat-ai-message .message-list {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .chat-actions {
+        display: inline-flex;
+        gap: 0.25rem;
+      }
+
+      .input-state-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .attachment-state-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        max-width: 18rem;
+      }
+
+      .attachment-state-row ix-chat-prompt-attachment {
+        width: 100%;
+      }
+
+      .state-caption {
+        margin: 0 0 0.375rem;
+        color: var(--theme-color-soft-text);
+        font-size: 0.75rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconAttach,
+        iconCircleStop,
+        iconCloseSmall,
+        iconError,
+        iconInfo,
+        iconRefresh,
+        iconSendRightFilled,
+        iconStar,
+        iconTxtDocument,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconAttach,
+        iconCircleStop,
+        iconCloseSmall,
+        iconError,
+        iconInfo,
+        iconRefresh,
+        iconSendRightFilled,
+        iconStar,
+        iconTxtDocument,
+      });
+    </script>
+  </head>
+  <body>
+    <main class="chat-visual-page">
+      <div class="chat-visual-grid">
+        <section class="chat-visual-panel" aria-label="Chat conversation">
+          <h1 class="chat-visual-title">Conversation with prompt</h1>
+          <ix-chat class="chat-overview">
+            <ix-chat-ai-message>
+              <h2>Asset performance summary</h2>
+              <p>
+                The compressor train is stable. Vibration increased slightly
+                after the last shift change, but all values remain below the
+                warning threshold.
+              </p>
+              <ul class="message-list">
+                <li>Temperature trend is flat over the last 24 hours.</li>
+                <li>Two alarms were acknowledged by the operator.</li>
+              </ul>
+              <span slot="actions" class="chat-actions">
+                <ix-icon-button
+                  aria-label="Copy response"
+                  icon="star"
+                  size="24"
+                  variant="subtle-tertiary"
+                ></ix-icon-button>
+                <ix-button variant="subtle-tertiary">Regenerate</ix-button>
+              </span>
+              <ix-pill slot="sources" outline variant="neutral">
+                Sources
+              </ix-pill>
+            </ix-chat-ai-message>
+
+            <ix-chat-user-message
+              message="Summarize the customer discussion and include related attachments."
+              attachment-count="2"
+            >
+              <ix-chat-prompt-attachment
+                slot="attachments"
+                file-name="meeting_notes_summary.pdf"
+                variant="sent"
+                hide-remove-button
+                preview-supported
+              ></ix-chat-prompt-attachment>
+              <ix-chat-prompt-attachment
+                slot="attachments"
+                file-name="customer_scope.xlsx"
+                variant="sent"
+                hide-remove-button
+              ></ix-chat-prompt-attachment>
+              <ix-dropdown-item
+                slot="attachment-overflow"
+                label="initial_requirements.pdf"
+              ></ix-dropdown-item>
+              <ix-dropdown-item
+                slot="attachment-overflow"
+                label="maintenance_report.xlsx"
+              ></ix-dropdown-item>
+              <ix-icon-button
+                slot="actions"
+                aria-label="Copy user message"
+                icon="star"
+                size="24"
+                variant="subtle-tertiary"
+              ></ix-icon-button>
+              <ix-button slot="actions" variant="subtle-tertiary">
+                Edit
+              </ix-button>
+            </ix-chat-user-message>
+
+            <ix-chat-ai-message>
+              <p>
+                The discussion focused on reducing unplanned downtime and
+                improving handover quality for service teams.
+              </p>
+            </ix-chat-ai-message>
+
+            <ix-chat-input
+              slot="prompt"
+              value="Create a concise follow-up plan for the service team."
+              character-limit="55"
+              attachment-layout="scroll"
+            >
+              <ix-icon-button
+                slot="follow-up"
+                aria-label="Refresh follow-up prompts"
+                icon="refresh"
+                size="24"
+                variant="tertiary"
+              ></ix-icon-button>
+              <ix-button slot="follow-up" variant="secondary">
+                What are the biggest risks?
+              </ix-button>
+              <ix-button slot="follow-up" variant="secondary">
+                Show related alarms.
+              </ix-button>
+              <ix-chat-prompt-attachment
+                slot="attachments"
+                file-name="handover_notes.pdf"
+                preview-supported
+              ></ix-chat-prompt-attachment>
+              <ix-chat-prompt-attachment
+                slot="attachments"
+                file-name="trend_export.csv"
+                status="loading"
+              ></ix-chat-prompt-attachment>
+              <ix-chat-prompt-attachment
+                slot="attachments"
+                file-name="fault_tree.xlsx"
+                status="failed"
+              ></ix-chat-prompt-attachment>
+              <ix-icon-button
+                slot="start"
+                aria-label="Attach file"
+                icon="star"
+                size="24"
+                variant="tertiary"
+              ></ix-icon-button>
+              <ix-button slot="end" variant="tertiary">Refine</ix-button>
+            </ix-chat-input>
+          </ix-chat>
+        </section>
+
+        <section class="chat-visual-panel" aria-label="Chat input states">
+          <h2 class="chat-visual-title">Input and attachment states</h2>
+          <div class="input-state-list">
+            <div>
+              <p class="state-caption">Processing</p>
+              <ix-chat-input
+                state="processing"
+                value="Generating an answer from the selected sources."
+              ></ix-chat-input>
+            </div>
+            <div>
+              <p class="state-caption">Character limit reached</p>
+              <ix-chat-input
+                value="1234567890"
+                character-limit="10"
+              ></ix-chat-input>
+            </div>
+            <div>
+              <p class="state-caption">Readonly</p>
+              <ix-chat-input
+                readonly
+                value="The prompt is kept for review."
+              ></ix-chat-input>
+            </div>
+            <div>
+              <p class="state-caption">Disabled</p>
+              <ix-chat-input
+                disabled
+                value="Prompt unavailable"
+              ></ix-chat-input>
+            </div>
+            <div>
+              <p class="state-caption">Prompt attachment states</p>
+              <div class="attachment-state-row">
+                <ix-chat-prompt-attachment
+                  file-name="manual.pdf"
+                  preview-supported
+                ></ix-chat-prompt-attachment>
+                <ix-chat-prompt-attachment
+                  file-name="uploading.csv"
+                  status="loading"
+                ></ix-chat-prompt-attachment>
+                <ix-chat-prompt-attachment
+                  file-name="failed-upload.xlsx"
+                  status="failed"
+                ></ix-chat-prompt-attachment>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
