@@ -59,12 +59,6 @@
   --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
 }
 
-:host(:hover) .message,
-:host(:focus-visible) .message,
-:host(:focus-within) .message {
-  background-color: var(--theme-color-component-8--hover);
-}
-
 :host(:focus-visible) .message {
   outline: 1px solid var(--theme-color-focus-bdr);
   outline-offset: var(--theme-focus-outline-offset);
