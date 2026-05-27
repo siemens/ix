@@ -249,8 +249,6 @@ export namespace Components {
          */
         "showMenu"?: boolean;
     }
-    interface IxApplicationSidebar {
-    }
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
@@ -1733,6 +1731,7 @@ export namespace Components {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -5040,12 +5039,6 @@ declare global {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
     };
-    interface HTMLIxApplicationSidebarElement extends Components.IxApplicationSidebar, HTMLStencilElement {
-    }
-    var HTMLIxApplicationSidebarElement: {
-        prototype: HTMLIxApplicationSidebarElement;
-        new (): HTMLIxApplicationSidebarElement;
-    };
     interface HTMLIxApplicationSwitchModalElement extends Components.IxApplicationSwitchModal, HTMLStencilElement {
     }
     var HTMLIxApplicationSwitchModalElement: {
@@ -6568,7 +6561,6 @@ declare global {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
-        "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-blind": HTMLIxBlindElement;
@@ -6823,8 +6815,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "showMenu"?: boolean;
-    }
-    interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
@@ -8424,6 +8414,7 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "hostRole"?: string;
         /**
           * @default false
          */
@@ -12020,6 +12011,7 @@ declare namespace LocalJSX {
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
+        "hostRole": string;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;
@@ -12722,7 +12714,6 @@ declare namespace LocalJSX {
         "ix-action-card": Omit<IxActionCard, keyof IxActionCardAttributes> & { [K in keyof IxActionCard & keyof IxActionCardAttributes]?: IxActionCard[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `attr:${K}`]?: IxActionCardAttributes[K] } & { [K in keyof IxActionCard & keyof IxActionCardAttributes as `prop:${K}`]?: IxActionCard[K] };
         "ix-application": Omit<IxApplication, keyof IxApplicationAttributes> & { [K in keyof IxApplication & keyof IxApplicationAttributes]?: IxApplication[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `attr:${K}`]?: IxApplicationAttributes[K] } & { [K in keyof IxApplication & keyof IxApplicationAttributes as `prop:${K}`]?: IxApplication[K] };
         "ix-application-header": Omit<IxApplicationHeader, keyof IxApplicationHeaderAttributes> & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes]?: IxApplicationHeader[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `attr:${K}`]?: IxApplicationHeaderAttributes[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `prop:${K}`]?: IxApplicationHeader[K] };
-        "ix-application-sidebar": IxApplicationSidebar;
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
         "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
@@ -12844,7 +12835,6 @@ declare module "@stencil/core" {
             "ix-action-card": LocalJSX.IntrinsicElements["ix-action-card"] & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-application": LocalJSX.IntrinsicElements["ix-application"] & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
-            "ix-application-sidebar": LocalJSX.IntrinsicElements["ix-application-sidebar"] & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IntrinsicElements["ix-application-switch-modal"] & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             "ix-avatar": LocalJSX.IntrinsicElements["ix-avatar"] & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-blind": LocalJSX.IntrinsicElements["ix-blind"] & JSXBase.HTMLAttributes<HTMLIxBlindElement>;

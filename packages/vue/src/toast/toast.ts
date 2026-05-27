@@ -7,11 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  getToastContainer,
-  toast,
-  ToastConfig as IxToastConfig,
-} from '@siemens/ix';
+import type { ToastConfig as IxToastConfig } from '@siemens/ix';
+import { getToastContainer, toast } from '@siemens/ix/components';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon.js';

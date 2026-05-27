@@ -410,6 +410,7 @@ export type IxChatInputEvents = {
 export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput> = /*@__PURE__*/ createComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>({
     tagName: 'ix-chat-input',
     properties: {
+        state: 'state',
         name: 'name',
         placeholder: 'placeholder',
         value: 'value',
@@ -442,13 +443,9 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
     properties: {
         fileName: 'file-name',
         status: 'status',
-        variant: 'variant',
         icon: 'icon',
-        hideFileIcon: 'hide-file-icon',
         hideRemoveButton: 'hide-remove-button',
         previewSupported: 'preview-supported',
-        loadingLabel: 'loading-label',
-        failedLabel: 'failed-label',
         removeAriaLabel: 'remove-aria-label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -462,7 +459,6 @@ export const IxChatUserMessage: StencilReactComponent<IxChatUserMessageElement, 
     tagName: 'ix-chat-user-message',
     properties: {
         message: 'message',
-        showActions: 'show-actions',
         attachmentCount: 'attachment-count',
         attachmentOverflowLabel: 'attachment-overflow-label'
     },
@@ -811,7 +807,8 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         focusCheckedItem: 'focus-checked-item',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
-        suppressOverflowBehavior: 'suppress-overflow-behavior'
+        suppressOverflowBehavior: 'suppress-overflow-behavior',
+        hostRole: 'host-role'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as StencilReactComponent<IxDropdownElement, IxDropdownEvents, Components.IxDropdown>,
