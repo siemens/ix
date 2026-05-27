@@ -23,8 +23,8 @@
 
 .message {
   width: fit-content;
-  min-width: var(--ix-chat-user-message-min-width, max(15.375rem, 45%));
-  max-width: var(--ix-chat-user-message-max-width, min(33.75rem, 75%));
+  min-width: max(15.375rem, 45%);
+  max-width: 80%;
   box-sizing: border-box;
   padding: var(--theme-space-2) var(--theme-space-3);
   border-radius: var(--theme-default-border-radius);
@@ -38,7 +38,7 @@
   flex-wrap: wrap;
   gap: var(--theme-space-1) 0;
   width: 100%;
-  max-width: var(--ix-chat-user-message-max-width, min(33.75rem, 75%));
+  max-width: 75%;
   max-height: 4.5rem;
   margin-bottom: var(--theme-space-1);
   overflow: hidden;
@@ -50,7 +50,7 @@
 
 .attachments ::slotted(ix-chat-prompt-attachment) {
   flex: 0 1 6.375rem;
-  max-width: 6.375rem;
+  padding-left: var(--theme-space-1);
 }
 
 .attachment-overflow {

@@ -33,7 +33,7 @@ function createIconButton(
   label: string,
   icon: string,
   slot?: string,
-  size: IconButtonSize = '16'
+  size: IconButtonSize = '24'
 ) {
   return (
     <ix-icon-button

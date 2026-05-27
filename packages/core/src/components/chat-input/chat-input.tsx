@@ -22,6 +22,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -31,8 +32,8 @@ import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { ChatInputAttachmentLayout } from './chat-input.types';
-
-let chatInputIds = 0;
+import { DefaultMixins } from '../utils/internal/component';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 type AttachmentOverflowEntry = {
   canRemove: boolean;
@@ -57,8 +58,8 @@ type AttachmentOverflowEntry = {
   shadow: true,
   formAssociated: true,
 })
-export class ChatInput {
-  @Element() hostElement!: HTMLIxChatInputElement;
+export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
+  @Element() override hostElement!: HTMLIxChatInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -215,30 +216,33 @@ export class ChatInput {
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
   });
-  private readonly inputId = `ix-chat-input-${chatInputIds++}`;
   private attachmentResizeObserver?: ResizeObserver;
   private attachmentMutationObserver?: MutationObserver;
   private isAttachmentOverflowUpdateQueued = false;
 
-  componentWillLoad() {
+  override componentWillLoad() {
+    super.componentWillLoad!();
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
     this.updateHasFollowUp();
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
+    super.componentDidLoad!();
     this.updateHasFollowUp();
     this.initAttachmentMutationObserver();
     this.scheduleAttachmentOverflowUpdate();
     this.updateTextareaHeight();
   }
 
-  componentDidRender() {
+  override componentDidRender() {
+    super.componentDidRender!();
     this.scheduleAttachmentOverflowUpdate();
     this.updateTextareaHeight();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback!();
     this.attachmentResizeObserver?.disconnect();
     this.attachmentMutationObserver?.disconnect();
   }
@@ -855,7 +859,11 @@ export class ChatInput {
     );
   }
 
-  render() {
+  override render() {
+    const disabledSubmitButton = !this.canSubmit() && this.state === 'input';
+    const submitButtonIcon =
+      this.state === 'input' ? iconSendRightFilled : iconCircleStop;
+
     return (
       <Host
         class={{
@@ -889,7 +897,7 @@ export class ChatInput {
             {this.renderAttachmentOverflow()}
           </div>
           <textarea
-            id={this.inputId}
+            id={this.getHostElementId() + '-textarea'}
             ref={this.textareaRef}
             readOnly={this.readonly}
             disabled={this.disabled}
@@ -923,10 +931,8 @@ export class ChatInput {
               <ix-icon-button
                 aria-label="Submit prompt"
                 class="submit-button"
-                disabled={!this.canSubmit()}
-                icon={
-                  this.state === 'input' ? iconSendRightFilled : iconCircleStop
-                }
+                disabled={disabledSubmitButton}
+                icon={submitButtonIcon}
                 size="24"
                 variant="tertiary"
                 onClick={() => this.submitPrompt()}

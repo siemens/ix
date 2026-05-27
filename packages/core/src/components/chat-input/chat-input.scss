@@ -12,7 +12,6 @@
 :host {
   display: block;
   width: 100%;
-  max-width: var(--ix-chat-input-max-width, 45rem);
 
   @include component.ix-component;
 
