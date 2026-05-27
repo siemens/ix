@@ -7,6 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/**
+ * Focus management strategy when an interactive popover closes.
+ *
+ * - `restore-trigger`: Move focus back to the trigger element (default, WCAG-compliant).
+ * - `release`: Blur the active element without restoring focus (hover mode pointer dismiss).
+ */
+export type PopoverCloseFocus = 'restore-trigger' | 'release';
+
 export interface PopoverInterface {
   hostElement: HTMLElement;
   closeOnClickOutside: boolean;
@@ -20,7 +28,10 @@ export interface PopoverInterface {
   willDismiss?(): boolean;
 
   present(): void;
-  dismiss(): void;
+  /**
+   * @param closeFocus How to handle focus when the popover has focusable content.
+   */
+  dismiss(closeFocus?: PopoverCloseFocus): void;
 }
 
 /** Parent popover id → nested child popover instance ids */
@@ -75,10 +86,13 @@ class PopoverController {
     }
   }
 
-  dismiss(popover: PopoverInterface) {
+  dismiss(
+    popover: PopoverInterface,
+    closeFocus: PopoverCloseFocus = 'restore-trigger'
+  ) {
     if (popover.isPresent() && popover.willDismiss?.()) {
       this.dismissChildren(popover.getId());
-      popover.dismiss();
+      popover.dismiss(closeFocus);
       delete this.nestedPopoverIds[popover.getId()];
     }
   }
