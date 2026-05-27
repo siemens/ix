@@ -343,7 +343,6 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
 export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatPromptAttachment>('ix-chat-prompt-attachment', defineIxChatPromptAttachment, [
   'fileName',
   'status',
-  'variant',
   'icon',
   'hideRemoveButton',
   'previewSupported',

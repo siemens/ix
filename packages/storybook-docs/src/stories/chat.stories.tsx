@@ -79,7 +79,7 @@ function createAiMessage({
 
 function createSources() {
   return (
-    <ix-pill
+    <ix-chip
       aria-label="Show sources"
       icon={iconGlobe}
       outline
@@ -87,7 +87,7 @@ function createSources() {
       variant="neutral"
     >
       Sources
-    </ix-pill>
+    </ix-chip>
   );
 }
 
@@ -103,7 +103,6 @@ function createUserMessage(
     <ix-chat-user-message
       attachmentCount={overflow ? 5 : undefined}
       message={message}
-      showActions={actions}
     >
       {actions
         ? [
@@ -138,7 +137,6 @@ function createSentAttachment(fileName: string, previewSupported = false) {
       hideRemoveButton
       previewSupported={previewSupported}
       slot="attachments"
-      variant="sent"
     ></ix-chat-prompt-attachment>
   );
 }

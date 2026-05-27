@@ -443,7 +443,6 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
     properties: {
         fileName: 'file-name',
         status: 'status',
-        variant: 'variant',
         icon: 'icon',
         hideRemoveButton: 'hide-remove-button',
         previewSupported: 'preview-supported',

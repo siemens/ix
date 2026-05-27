@@ -603,14 +603,14 @@ export declare interface IxChatInput extends Components.IxChatInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatPromptAttachment,
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status', 'variant']
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
 })
 @Component({
   selector: 'ix-chat-prompt-attachment',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status', 'variant'],
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
   outputs: ['attachmentClick', 'removeClick'],
 })
 export class IxChatPromptAttachment {

@@ -56,15 +56,6 @@ export const PreviewSupported: Story = {
   },
 };
 
-export const Sent: Story = {
-  args: {
-    fileName: 'file_01.pdf',
-    hideRemoveButton: true,
-    previewSupported: true,
-    variant: 'sent',
-  },
-};
-
 export const Loading: Story = {
   args: {
     fileName: 'file_01.pdf',

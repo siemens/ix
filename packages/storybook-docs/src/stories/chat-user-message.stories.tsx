@@ -45,7 +45,6 @@ function createAttachment(
       hideRemoveButton
       previewSupported={previewSupported}
       slot={slot}
-      variant="sent"
     ></ix-chat-prompt-attachment>
   );
 }
@@ -108,7 +107,6 @@ export const WithActions: Story = {
   ),
   args: {
     message: 'Summarize the detailed discussion held with the customer',
-    showActions: true,
   },
   parameters: {
     design: {

@@ -9,10 +9,7 @@
 
 import { iconTxtDocument } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
-import type {
-  ChatPromptAttachmentStatus,
-  ChatPromptAttachmentVariant,
-} from './chat-prompt-attachment.types';
+import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types';
 
 /**
  * @since 5.0.0
@@ -34,12 +31,6 @@ export class ChatPromptAttachment {
    * @since 5.0.0
    */
   @Prop({ reflect: true }) status: ChatPromptAttachmentStatus = 'default';
-
-  /**
-   * Visual variant of the attachment.
-   * @since 5.0.0
-   */
-  @Prop({ reflect: true }) variant: ChatPromptAttachmentVariant = 'prompt';
 
   /**
    * Icon displayed before the file name.
@@ -157,15 +148,12 @@ export class ChatPromptAttachment {
     const isFailed = this.status === 'failed';
     const isLoading = this.status === 'loading';
     const canPreview = this.canPreview();
-    const isSent = this.variant === 'sent';
-
     return (
       <Host
         class={{
           failed: isFailed,
           loading: isLoading,
           'preview-supported': canPreview,
-          sent: isSent,
           'has-remove-button': !this.hideRemoveButton,
         }}
       >

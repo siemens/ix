@@ -19,7 +19,7 @@ import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
 import { ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
-import { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+import { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -76,7 +76,7 @@ export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
 export { ChatInputAttachmentLayout } from "./components/chat-input/chat-input.types";
-export { ChatPromptAttachmentStatus, ChatPromptAttachmentVariant } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+export { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -795,12 +795,6 @@ export namespace Components {
           * @default 'default'
          */
         "status": ChatPromptAttachmentStatus;
-        /**
-          * Visual variant of the attachment.
-          * @since 5.0.0
-          * @default 'prompt'
-         */
-        "variant": ChatPromptAttachmentVariant;
     }
     /**
      * @since 5.0.0
@@ -7455,12 +7449,6 @@ declare namespace LocalJSX {
           * @default 'default'
          */
         "status"?: ChatPromptAttachmentStatus;
-        /**
-          * Visual variant of the attachment.
-          * @since 5.0.0
-          * @default 'prompt'
-         */
-        "variant"?: ChatPromptAttachmentVariant;
     }
     /**
      * @since 5.0.0
@@ -11818,7 +11806,6 @@ declare namespace LocalJSX {
     interface IxChatPromptAttachmentAttributes {
         "fileName": string;
         "status": ChatPromptAttachmentStatus;
-        "variant": ChatPromptAttachmentVariant;
         "icon": string;
         "hideRemoveButton": boolean;
         "previewSupported": boolean;
