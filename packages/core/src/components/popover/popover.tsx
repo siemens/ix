@@ -36,9 +36,22 @@ import {
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
-import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
+import {
+  addFocusTrap,
+  FocusTrapResult,
+  TRAP_FOCUS_INCLUDE_ATTRIBUTE,
+} from '../utils/focus/focus-trap';
+import {
+  focusableQueryString,
+  focusFirstDescendant,
+  queryElements,
+} from '../utils/focus/focus-utilities';
 import { makeRef } from '../utils/make-ref';
-import { popoverController, PopoverInterface } from './popover-controller';
+import {
+  popoverController,
+  PopoverCloseFocus,
+  PopoverInterface,
+} from './popover-controller';
 
 type SpikePosition = {
   top?: string;
@@ -48,6 +61,9 @@ type SpikePosition = {
 };
 
 const SPIKE_OFFSET = -6;
+
+/** Matches `addFocusTrap` focusable discovery for this component. */
+const popoverFocusableQuery = `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`;
 const POPOVER_OFFSET = 12;
 const HOVER_HIDE_DELAY_MS = 150;
 
@@ -120,6 +136,7 @@ export class Popover implements PopoverInterface {
   private hasFocusableContent = false;
   private suppressShowWatch = false;
   private isOpeningPopover = false;
+  private closeFocus: PopoverCloseFocus = 'restore-trigger';
 
   private get spikeElement(): HTMLElement | null {
     return this.hostElement.shadowRoot!.querySelector('.spike');
@@ -166,8 +183,9 @@ export class Popover implements PopoverInterface {
     this.openPopover();
   }
 
-  dismiss(): void {
-    this.closePopover();
+  dismiss(closeFocus: PopoverCloseFocus = 'restore-trigger'): void {
+    this.closeFocus = closeFocus;
+    void this.closePopover();
   }
 
   /**
@@ -290,19 +308,14 @@ export class Popover implements PopoverInterface {
     this.focusTrap?.destroy();
     this.focusTrap = undefined;
 
-    if (this.hasFocusableContent && this.triggerElement) {
-      if (this.triggerMode === 'hover') {
-        this.releasePopoverFocus();
-      } else {
-        this.triggerElement.focus();
-      }
-    }
+    this.applyCloseFocus();
 
     dialog.hidePopover();
 
     this.suppressShowWatch = true;
     this.show = false;
     this.suppressShowWatch = false;
+    this.closeFocus = 'restore-trigger';
 
     this.updateTriggerAria(false);
 
@@ -311,26 +324,40 @@ export class Popover implements PopoverInterface {
     });
   }
 
-  private detectFocusableContent() {
-    const focusableSelectors =
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  private getPopoverFocusRoot(): HTMLElement | ShadowRoot {
+    return this.hostElement.shadowRoot ?? this.hostElement;
+  }
 
-    const focusable = this.hostElement.querySelector(focusableSelectors);
-    this.hasFocusableContent = focusable !== null;
+  private detectFocusableContent() {
+    const focusable = queryElements(
+      this.getPopoverFocusRoot(),
+      popoverFocusableQuery
+    );
+    this.hasFocusableContent = focusable.length > 0;
   }
 
   private focusFirstElement() {
-    const focusableSelectors =
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const root = this.getPopoverFocusRoot();
 
     requestAnimationFrame(() => {
-      const first =
-        this.hostElement.querySelector<HTMLElement>(focusableSelectors);
-      first?.focus();
+      focusFirstDescendant(root as HTMLElement);
     });
   }
 
-  /** Hover dismiss: do not leave focus on the trigger (mouse did not focus it). */
+  private applyCloseFocus() {
+    if (!this.hasFocusableContent || !this.triggerElement) {
+      return;
+    }
+
+    if (this.triggerMode === 'hover' && this.closeFocus === 'release') {
+      this.releasePopoverFocus();
+      return;
+    }
+
+    this.triggerElement.focus();
+  }
+
+  /** Pointer-driven hover dismiss: avoid a focus ring on the trigger. */
   private releasePopoverFocus() {
     const active = document.activeElement;
 
@@ -484,7 +511,7 @@ export class Popover implements PopoverInterface {
     this.clearHideTimeout();
     this.hideTimeout = setTimeout(() => {
       if (this.show) {
-        popoverController.dismiss(this);
+        popoverController.dismiss(this, 'release');
       }
     }, HOVER_HIDE_DELAY_MS);
   }
@@ -596,7 +623,7 @@ export class Popover implements PopoverInterface {
 
         const isHidden = result.middlewareData.hide?.referenceHidden;
         if (isHidden) {
-          popoverController.dismiss(this);
+          popoverController.dismiss(this, 'release');
           return;
         }
 
