@@ -185,6 +185,7 @@ import Pane from './preview-examples/pane';
 import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
+import Popover from './preview-examples/popover';
 import PopoverNews from './preview-examples/popover-news';
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
 import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
@@ -415,6 +416,7 @@ const routes: IxPreviewRoutes = {
   '/preview/pane-layout': PaneLayout,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/push-card': PushCard,
   '/preview/settings': Settings,
