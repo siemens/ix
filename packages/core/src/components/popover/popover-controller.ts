@@ -11,7 +11,7 @@ export interface PopoverInterface {
   hostElement: HTMLElement;
   closeOnClickOutside: boolean;
 
-  getAssignedSubmenuIds(): string[];
+  getNestedPopoverIds(): string[];
   getId(): string;
 
   isPresent(): boolean;
@@ -23,11 +23,12 @@ export interface PopoverInterface {
   dismiss(): void;
 }
 
-type SubmenuIds = Record<string, string[]>;
+/** Parent popover id → nested child popover instance ids */
+type NestedPopoverIds = Record<string, string[]>;
 
 class PopoverController {
   private readonly popovers: Map<string, PopoverInterface> = new Map();
-  private submenuIds: SubmenuIds = {};
+  private nestedPopoverIds: NestedPopoverIds = {};
   private isWindowListenerActive = false;
 
   connected(popover: PopoverInterface) {
@@ -39,37 +40,37 @@ class PopoverController {
 
   disconnected(popover: PopoverInterface) {
     const id = popover.getId();
-    this.removeFromSubmenuIds(id);
+    this.removeFromNestedPopoverIds(id);
     this.popovers.delete(id);
   }
 
-  removeFromSubmenuIds(id: string) {
+  removeFromNestedPopoverIds(id: string) {
     this.popovers.forEach((popover) => {
-      const submenuIds = this.submenuIds[popover.getId()];
-      if (submenuIds) {
-        const index = submenuIds.indexOf(id);
+      const childIds = this.nestedPopoverIds[popover.getId()];
+      if (childIds) {
+        const index = childIds.indexOf(id);
         if (index > -1) {
-          submenuIds.splice(index, 1);
+          childIds.splice(index, 1);
         }
       }
     });
-    delete this.submenuIds[id];
+    delete this.nestedPopoverIds[id];
   }
 
   present(popover: PopoverInterface) {
     if (!popover.isPresent() && popover.willPresent?.()) {
       this.dismissOthers(popover.getId());
-      this.submenuIds[popover.getId()] = popover.getAssignedSubmenuIds();
+      this.nestedPopoverIds[popover.getId()] = popover.getNestedPopoverIds();
       popover.present();
     }
   }
 
   dismissChildren(uid: string) {
-    const childIds = this.submenuIds[uid] || [];
+    const childIds = this.nestedPopoverIds[uid] || [];
     for (const id of childIds) {
-      const popover = this.popovers.get(id);
-      if (popover) {
-        this.dismiss(popover);
+      const nested = this.popovers.get(id);
+      if (nested) {
+        this.dismiss(nested);
       }
     }
   }
@@ -78,7 +79,7 @@ class PopoverController {
     if (popover.isPresent() && popover.willDismiss?.()) {
       this.dismissChildren(popover.getId());
       popover.dismiss();
-      delete this.submenuIds[popover.getId()];
+      delete this.nestedPopoverIds[popover.getId()];
     }
   }
 
@@ -113,20 +114,42 @@ class PopoverController {
     return;
   }
 
+  private getPopoverDialog(host: HTMLElement): HTMLDialogElement | null {
+    return host.shadowRoot?.querySelector<HTMLDialogElement>('dialog') ?? null;
+  }
+
   private pathIncludesPopover(eventTargets: EventTarget[]) {
-    return !!eventTargets.find(
-      (element: EventTarget) =>
-        (element as HTMLElement).tagName === 'IX-POPOVER'
-    );
+    for (const eventTarget of eventTargets) {
+      if (!(eventTarget instanceof HTMLElement)) {
+        continue;
+      }
+
+      if (eventTarget.tagName === 'IX-POPOVER') {
+        return true;
+      }
+
+      for (const popover of this.popovers.values()) {
+        if (eventTarget === popover.hostElement) {
+          return true;
+        }
+
+        const panel = this.getPopoverDialog(popover.hostElement);
+        if (panel && eventTarget === panel) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   private buildComposedPath(id: string, path: Set<string>): Set<string> {
-    if (this.submenuIds[id]) {
+    if (this.nestedPopoverIds[id]) {
       path.add(id);
     }
-    for (const ruleKey of Object.keys(this.submenuIds)) {
-      if (this.submenuIds[ruleKey].includes(id)) {
-        this.buildComposedPath(ruleKey, path).forEach((key) => path.add(key));
+    for (const parentId of Object.keys(this.nestedPopoverIds)) {
+      if (this.nestedPopoverIds[parentId].includes(id)) {
+        this.buildComposedPath(parentId, path).forEach((key) => path.add(key));
       }
     }
     return path;
