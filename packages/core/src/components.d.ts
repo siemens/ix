@@ -3161,7 +3161,7 @@ export namespace Components {
          */
         "closeOnClickOutside": boolean;
         /**
-          * Show the arrow/spike pointing at the trigger
+          * Show the spike pointing at the trigger
           * @default false
          */
         "hasSpike": boolean;
@@ -9834,7 +9834,7 @@ declare namespace LocalJSX {
          */
         "closeOnClickOutside"?: boolean;
         /**
-          * Show the arrow/spike pointing at the trigger
+          * Show the spike pointing at the trigger
           * @default false
          */
         "hasSpike"?: boolean;

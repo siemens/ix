@@ -29,5 +29,38 @@
 
   .popover-close {
     align-self: flex-start;
+    border-radius: var(--theme-small-border-radius, 0.125rem);
+
+    --ix-icon-button-color: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color--hover: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color--active: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--background: var(
+      --theme-popover-close-btn--background,
+      transparent
+    );
+    --theme-btn-tertiary--background--hover: var(
+      --theme-popover-close-btn--background--hover,
+      var(--theme-color-ghost--hover)
+    );
+    --theme-btn-tertiary--background--active: var(
+      --theme-popover-close-btn--background--active,
+      var(--theme-color-ghost--active)
+    );
+    --theme-btn-tertiary--border-color: transparent;
+    --theme-btn-tertiary--border-color--hover: transparent;
+    --theme-btn-tertiary--border-color--active: transparent;
   }
 }

@@ -24,6 +24,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Method,
   Prop,
   Watch,
@@ -35,22 +36,20 @@ import {
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
-import {
-  addFocusTrap,
-  FocusTrapResult,
-} from '../utils/focus/focus-trap';
+import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import { makeRef } from '../utils/make-ref';
 import { popoverController, PopoverInterface } from './popover-controller';
 
-type ArrowPosition = {
+type SpikePosition = {
   top?: string;
   left?: string;
   right?: string;
   bottom?: string;
 };
 
-const ARROW_OFFSET = -6;
+const SPIKE_OFFSET = -6;
 const POPOVER_OFFSET = 12;
+const HOVER_HIDE_DELAY_MS = 150;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -82,7 +81,7 @@ export class Popover implements PopoverInterface {
   @Prop() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
 
   /**
-   * Show the arrow/spike pointing at the trigger
+   * Show the spike pointing at the trigger
    */
   @Prop() hasSpike = false;
 
@@ -113,21 +112,40 @@ export class Popover implements PopoverInterface {
   private triggerElement?: HTMLElement;
   private disposeAutoUpdate?: () => void;
   private disposeTriggerListener?: DisposableEventListener;
+  private disposeDialogListener?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private hideTimeout?: ReturnType<typeof setTimeout>;
 
+  private assignedNestedPopoverIds: string[] = [];
   private hasFocusableContent = false;
+  private suppressShowWatch = false;
+  private isOpeningPopover = false;
 
-  private get arrowElement(): HTMLElement | null {
-    return this.hostElement.shadowRoot!.querySelector('.arrow');
+  private get spikeElement(): HTMLElement | null {
+    return this.hostElement.shadowRoot!.querySelector('.spike');
   }
 
   getId(): string {
     return this.uid;
   }
 
-  getAssignedSubmenuIds(): string[] {
-    return [];
+  getNestedPopoverIds(): string[] {
+    return this.assignedNestedPopoverIds;
+  }
+
+  @Listen('ix-assign-sub-popover')
+  cacheNestedPopoverId(event: CustomEvent<string>) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    const { detail } = event;
+
+    if (
+      detail !== this.uid &&
+      this.assignedNestedPopoverIds.indexOf(detail) === -1
+    ) {
+      this.assignedNestedPopoverIds.push(detail);
+    }
   }
 
   isPresent(): boolean {
@@ -180,6 +198,10 @@ export class Popover implements PopoverInterface {
 
   @Watch('show')
   onShowChange(newValue: boolean) {
+    if (this.suppressShowWatch) {
+      return;
+    }
+
     if (newValue) {
       this.openPopover();
     } else {
@@ -200,40 +222,61 @@ export class Popover implements PopoverInterface {
     this.clearHideTimeout();
     this.disposeAutoUpdate?.();
     this.disposeTriggerListener?.();
+    this.disposeDialogListener?.();
     this.focusTrap?.destroy();
     popoverController.disconnected(this);
     this.clearTriggerAria();
   }
 
   private async openPopover() {
-    const dialog = await this.dialogRef.waitForCurrent();
-    if (!dialog) {
+    if (this.isOpeningPopover || this.show) {
       return;
     }
 
-    this.show = true;
-    dialog.showPopover();
+    this.isOpeningPopover = true;
 
-    this.detectFocusableContent();
+    try {
+      const dialog = await this.dialogRef.waitForCurrent();
+      if (!dialog) {
+        return;
+      }
 
-    if (this.triggerElement) {
-      this.applyPopoverPosition(this.triggerElement, dialog);
-      this.updateTriggerAria(true);
-    }
+      this.suppressShowWatch = true;
+      this.show = true;
+      this.suppressShowWatch = false;
 
-    if (this.hasFocusableContent) {
-      this.focusTrap = await addFocusTrap(this.hostElement, {
-        trapFocusInShadowDom: true,
+      dialog.showPopover();
+      this.registerHoverDialogListener(dialog);
+
+      this.detectFocusableContent();
+
+      if (this.triggerElement) {
+        this.applyPopoverPosition(this.triggerElement, dialog);
+        this.updateTriggerAria(true);
+      }
+
+      if (this.hasFocusableContent) {
+        this.focusTrap = await addFocusTrap(this.hostElement, {
+          trapFocusInShadowDom: true,
+        });
+        if (this.triggerMode !== 'hover') {
+          this.focusFirstElement();
+        }
+      }
+
+      requestAnimationFrame(() => {
+        this.showChanged.emit(true);
       });
-      this.focusFirstElement();
+    } finally {
+      this.isOpeningPopover = false;
     }
-
-    requestAnimationFrame(() => {
-      this.showChanged.emit(true);
-    });
   }
 
   private async closePopover() {
+    if (!this.show) {
+      return;
+    }
+
     const dialog = await this.dialogRef.waitForCurrent();
     if (!dialog) {
       return;
@@ -241,16 +284,26 @@ export class Popover implements PopoverInterface {
 
     this.disposeAutoUpdate?.();
     this.disposeAutoUpdate = undefined;
+    this.disposeDialogListener?.();
+    this.disposeDialogListener = undefined;
 
     this.focusTrap?.destroy();
     this.focusTrap = undefined;
 
     if (this.hasFocusableContent && this.triggerElement) {
-      this.triggerElement.focus();
+      if (this.triggerMode === 'hover') {
+        this.releasePopoverFocus();
+      } else {
+        this.triggerElement.focus();
+      }
     }
 
     dialog.hidePopover();
+
+    this.suppressShowWatch = true;
     this.show = false;
+    this.suppressShowWatch = false;
+
     this.updateTriggerAria(false);
 
     requestAnimationFrame(() => {
@@ -277,6 +330,20 @@ export class Popover implements PopoverInterface {
     });
   }
 
+  /** Hover dismiss: do not leave focus on the trigger (mouse did not focus it). */
+  private releasePopoverFocus() {
+    const active = document.activeElement;
+
+    if (active instanceof HTMLElement && this.containsPopoverTarget(active)) {
+      active.blur();
+      return;
+    }
+
+    if (this.triggerElement && active === this.triggerElement) {
+      this.triggerElement.blur();
+    }
+  }
+
   private async registerTriggerListener() {
     this.disposeTriggerListener?.();
     this.clearTriggerAria();
@@ -293,6 +360,7 @@ export class Popover implements PopoverInterface {
       this.triggerElement = el;
       el.setAttribute('data-ix-popover-trigger', '');
       this.updateTriggerAria(this.show);
+      this.discoverNestedPopover();
 
       if (this.triggerMode === 'click') {
         this.disposeTriggerListener = addDisposableEventListenerAsArray([
@@ -328,7 +396,7 @@ export class Popover implements PopoverInterface {
           {
             element: el,
             eventType: 'mouseleave',
-            callback: () => this.scheduleHide(),
+            callback: (event: Event) => this.scheduleHideFromTrigger(event),
           },
           {
             element: el,
@@ -343,13 +411,24 @@ export class Popover implements PopoverInterface {
           {
             element: el,
             eventType: 'focusout',
-            callback: () => this.scheduleHide(),
+            callback: (event: Event) => this.scheduleHideFromTrigger(event),
           },
         ]);
       }
     } catch {
       // Trigger element not found yet
     }
+  }
+
+  private discoverNestedPopover() {
+    this.triggerElement?.dispatchEvent(
+      new CustomEvent('ix-assign-sub-popover', {
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+        detail: this.uid,
+      })
+    );
   }
 
   private togglePopover() {
@@ -360,13 +439,54 @@ export class Popover implements PopoverInterface {
     }
   }
 
+  private containsPopoverTarget(target: EventTarget | null): boolean {
+    if (!(target instanceof Node)) {
+      return false;
+    }
+
+    if (target === this.hostElement) {
+      return true;
+    }
+
+    if (this.hostElement.contains(target)) {
+      return true;
+    }
+
+    const shadowRoot = this.hostElement.shadowRoot;
+    if (shadowRoot?.contains(target)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private scheduleHideFromTrigger(event: Event) {
+    const related = (event as MouseEvent | FocusEvent).relatedTarget;
+    if (this.containsPopoverTarget(related)) {
+      return;
+    }
+
+    if (event.type === 'focusout') {
+      // showPopover() can move focus into the top-layer dialog without relatedTarget.
+      requestAnimationFrame(() => {
+        if (this.containsPopoverTarget(document.activeElement)) {
+          return;
+        }
+        this.scheduleHide();
+      });
+      return;
+    }
+
+    this.scheduleHide();
+  }
+
   private scheduleHide() {
     this.clearHideTimeout();
     this.hideTimeout = setTimeout(() => {
       if (this.show) {
         popoverController.dismiss(this);
       }
-    }, 150);
+    }, HOVER_HIDE_DELAY_MS);
   }
 
   private clearHideTimeout() {
@@ -393,10 +513,10 @@ export class Popover implements PopoverInterface {
     this.triggerElement.removeAttribute('data-ix-popover-trigger');
   }
 
-  private computeArrowPosition({
+  private computeSpikePosition({
     placement,
     middlewareData,
-  }: ComputePositionReturn): ArrowPosition | undefined {
+  }: ComputePositionReturn): SpikePosition | undefined {
     if (!middlewareData.arrow) {
       return undefined;
     }
@@ -413,14 +533,14 @@ export class Popover implements PopoverInterface {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        bottom: numberToPixel(ARROW_OFFSET),
+        bottom: numberToPixel(SPIKE_OFFSET),
       };
     }
 
     if (placement.startsWith('right')) {
       return {
         ...resetPosition,
-        left: numberToPixel(ARROW_OFFSET),
+        left: numberToPixel(SPIKE_OFFSET),
         top: numberToPixel(y),
       };
     }
@@ -429,14 +549,14 @@ export class Popover implements PopoverInterface {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        top: numberToPixel(ARROW_OFFSET),
+        top: numberToPixel(SPIKE_OFFSET),
       };
     }
 
     if (placement.startsWith('left')) {
       return {
         ...resetPosition,
-        right: numberToPixel(ARROW_OFFSET),
+        right: numberToPixel(SPIKE_OFFSET),
         top: numberToPixel(y),
       };
     }
@@ -452,8 +572,8 @@ export class Popover implements PopoverInterface {
       shift({ padding: 10 }),
     ];
 
-    if (this.hasSpike && this.arrowElement) {
-      middleware.push(arrow({ element: this.arrowElement }));
+    if (this.hasSpike && this.spikeElement) {
+      middleware.push(arrow({ element: this.spikeElement }));
     }
 
     middleware.push(hide());
@@ -481,9 +601,9 @@ export class Popover implements PopoverInterface {
         }
 
         if (this.hasSpike && result.middlewareData.arrow) {
-          const arrowPos = this.computeArrowPosition(result);
-          if (arrowPos && this.arrowElement) {
-            Object.assign(this.arrowElement.style, arrowPos);
+          const spikePos = this.computeSpikePosition(result);
+          if (spikePos && this.spikeElement) {
+            Object.assign(this.spikeElement.style, spikePos);
           }
         }
 
@@ -498,6 +618,26 @@ export class Popover implements PopoverInterface {
         elementResize: true,
       }
     );
+  }
+
+  private registerHoverDialogListener(dialog: HTMLDialogElement) {
+    this.disposeDialogListener?.();
+
+    if (this.triggerMode !== 'hover') {
+      return;
+    }
+
+    this.disposeDialogListener = addDisposableEventListenerAsArray([
+      {
+        element: dialog,
+        eventType: 'click',
+        callback: (event: Event) => {
+          // Align with ix-tooltip: keep clicks inside the panel from reaching window
+          // listeners (top-layer dialog may omit IX-POPOVER from composedPath).
+          event.stopPropagation();
+        },
+      },
+    ]);
   }
 
   private onDialogMouseEnter() {
@@ -532,7 +672,7 @@ export class Popover implements PopoverInterface {
           <div class="popover-container">
             <slot></slot>
           </div>
-          {this.hasSpike ? <div class="arrow"></div> : null}
+          {this.hasSpike ? <div class="spike"></div> : null}
         </dialog>
       </Host>
     );

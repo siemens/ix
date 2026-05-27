@@ -34,19 +34,19 @@
   overflow: hidden;
 }
 
-.arrow,
-.arrow::before {
+.spike,
+.spike::before {
   position: absolute;
   width: 12px;
   height: 12px;
   background: inherit;
 }
 
-.arrow {
+.spike {
   visibility: hidden;
 }
 
-.arrow::before {
+.spike::before {
   visibility: visible;
   content: '';
   transform: rotate(45deg);
