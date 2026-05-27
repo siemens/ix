@@ -41,16 +41,31 @@ If the user only pastes prose without clear AC, extract implied AC into the spec
 ## Workflow phases
 
 ```
-Pasted issue text → Specify → Clarify → Plan → Tasks → Implement
-                    ↓         ↓         ↓       ↓
-                  spec.md   spec.md   plan.md tasks.md
+Pasted issue text → Specify → Review → Clarify → Review → Plan → Review → Tasks → Review → Implement
+                    ↓                  ↓                 ↓                ↓
+                  spec.md            spec.md           plan.md          tasks.md
 ```
+
+**Mandatory phase gates**:
+
+After creating or updating each artifact, stop and ask the user to review the created file before continuing:
+
+1. After `spec.md`: ask whether to continue to planning or revise the spec.
+2. After updated `spec.md` clarifications: ask whether to continue to planning or revise the clarified spec.
+3. After `plan.md`: ask whether to continue to task breakdown or revise the plan.
+4. After `tasks.md`: ask whether to implement, revise tasks, or stop at handoff.
+
+Do **not** proceed to the next phase automatically after writing an artifact. If the runtime provides an `ask_user` tool, use it for these phase gates instead of asking in plain text.
+
+If the XS strategy omits `spec.md` or `tasks.md`, skip only the omitted file's review gate; still stop after the merged `plan.md` and ask the user to review it before implementation.
 
 ### Phase 1: Specify (requirements)
 
 Create `spec.md` from the pasted issue only (optional: spawn a read-only explore subagent for codebase context **after** spec is drafted if gaps exist — do not block spec on repo-wide search).
 
 **Output path**: `.sdd/{TRACKING_ID}/spec.md` (use the agreed tracking/issue identifier or slug for `{TRACKING_ID}`).
+
+**Review gate**: After writing `spec.md`, stop and ask the user to review `.sdd/{TRACKING_ID}/spec.md`. Continue only when the user approves moving to planning; otherwise revise `spec.md` first.
 
 **Frontmatter**:
 
@@ -121,6 +136,8 @@ If requirements are ambiguous, ask targeted questions in chat; when answered, ap
 **A**: …
 ```
 
+**Review gate**: After adding clarifications, stop and ask the user to review the updated `.sdd/{TRACKING_ID}/spec.md`. Continue only when the user approves moving to planning; otherwise revise `spec.md` first.
+
 ### Phase 3: Plan (technical approach)
 
 **Output**: `.sdd/{TRACKING_ID}/plan.md`
@@ -142,6 +159,8 @@ depends_on: []
 
 **Sections**: Summary, Technical context (language, packages, tests), Architecture (decisions with alternatives rejected), Implementation structure, Risks and mitigations, Deployment strategy only if non-trivial.
 
+**Review gate**: After writing `plan.md`, stop and ask the user to review `.sdd/{TRACKING_ID}/plan.md`. Continue only when the user approves creating tasks; otherwise revise `plan.md` first.
+
 **Size guide (plan.md)**:
 
 - XS: merge spec + plan into a **single** `plan.md` only (~80 lines total) — skip separate `spec.md` only when doing XS merge (see XS strategy below).
@@ -154,6 +173,8 @@ depends_on: []
 **Output**: `.sdd/{TRACKING_ID}/tasks.md`
 
 Ordered steps; each task: id, file path in repo, action, optional snippet, dependencies. Mark parallelizable tasks with `[P]`. Do not repeat plan rationale.
+
+**Review gate**: After writing `tasks.md`, stop and ask the user to review `.sdd/{TRACKING_ID}/tasks.md`. Implement only if the user explicitly approves implementation; otherwise revise `tasks.md` or stop at handoff.
 
 **Size guide (tasks.md)**:
 
@@ -174,6 +195,7 @@ For **XS** (<~2h) work:
 
 - Produce **one** file: `.sdd/{TRACKING_ID}/plan.md` (~80 lines) that merges concise requirements + approach + minimal task list + validation checklist.
 - Omit separate `spec.md` / `tasks.md` unless the user explicitly wants full spec-kit layout.
+- Stop after writing the merged `plan.md` and ask the user to review it before implementation.
 
 ## S / M / L output strategy
 
