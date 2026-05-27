@@ -10,6 +10,7 @@
 import { iconAttach } from '@siemens/ix-icons/icons';
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Host,
@@ -31,6 +32,8 @@ import {
   shadow: true,
 })
 export class ChatUserMessage {
+  @Element() hostElement!: HTMLIxChatUserMessageElement;
+
   /**
    * Text displayed in the user message bubble. When not set, the default slot is used.
    * @since 5.0.0
@@ -57,6 +60,11 @@ export class ChatUserMessage {
 
   @State() hasActions = false;
   @State() hasAttachments = false;
+  @State() hasMessageContent = false;
+
+  componentWillLoad() {
+    this.updateHasMessageContent();
+  }
 
   private getAttachmentCount() {
     const attachmentCount = Number(this.attachmentCount);
@@ -79,6 +87,30 @@ export class ChatUserMessage {
       slot.assignedElements({
         flatten: true,
       }).length > 0;
+  }
+
+  private handleMessageSlotChange(event: Event) {
+    this.updateHasMessageContent(event.target as HTMLSlotElement);
+  }
+
+  private hasAssignedMessageContent(slot?: HTMLSlotElement) {
+    if (slot) {
+      return slot.assignedNodes({ flatten: true }).some((node) => {
+        return node.nodeType === 1 || !!node.textContent?.trim();
+      });
+    }
+
+    return Array.from(this.hostElement.childNodes).some((node) => {
+      if (node.nodeType === 1) {
+        return (node as HTMLElement).slot === '';
+      }
+
+      return !!node.textContent?.trim();
+    });
+  }
+
+  private updateHasMessageContent(slot?: HTMLSlotElement) {
+    this.hasMessageContent = this.hasAssignedMessageContent(slot);
   }
 
   private renderAttachmentOverflow() {
@@ -125,7 +157,16 @@ export class ChatUserMessage {
         {this.renderAttachmentOverflow()}
         <div class="message">
           <ix-typography class="message-text" format="body" textColor="std">
-            <slot>{this.message}</slot>
+            {this.message}
+            <span
+              style={{
+                display: this.hasMessageContent ? undefined : 'none',
+              }}
+            >
+              <slot
+                onSlotchange={(event) => this.handleMessageSlotChange(event)}
+              ></slot>
+            </span>
           </ix-typography>
         </div>
         <div
