@@ -114,7 +114,8 @@ export class Popover implements PopoverInterface {
   /**
    * Fires before visibility changes. Cancel to prevent.
    */
-  @Event() showChange!: EventEmitter<boolean>;
+  @Event({ bubbles: true, cancelable: true })
+  showChange!: EventEmitter<boolean>;
 
   /**
    * Fires after visibility has changed
@@ -152,9 +153,6 @@ export class Popover implements PopoverInterface {
 
   @Listen('ix-assign-sub-popover')
   cacheNestedPopoverId(event: CustomEvent<string>) {
-    event.stopImmediatePropagation();
-    event.preventDefault();
-
     const { detail } = event;
 
     if (
@@ -162,6 +160,8 @@ export class Popover implements PopoverInterface {
       this.assignedNestedPopoverIds.indexOf(detail) === -1
     ) {
       this.assignedNestedPopoverIds.push(detail);
+      event.stopImmediatePropagation();
+      event.preventDefault();
     }
   }
 
@@ -221,9 +221,9 @@ export class Popover implements PopoverInterface {
     }
 
     if (newValue) {
-      this.openPopover();
+      void this.openPopover({ fromShowWatch: true });
     } else {
-      this.closePopover();
+      void this.closePopover({ fromShowWatch: true });
     }
   }
 
@@ -246,8 +246,12 @@ export class Popover implements PopoverInterface {
     this.clearTriggerAria();
   }
 
-  private async openPopover() {
-    if (this.isOpeningPopover || this.show) {
+  private async openPopover(options?: { fromShowWatch?: boolean }) {
+    if (this.isOpeningPopover) {
+      return;
+    }
+
+    if (!options?.fromShowWatch && this.show) {
       return;
     }
 
@@ -290,8 +294,8 @@ export class Popover implements PopoverInterface {
     }
   }
 
-  private async closePopover() {
-    if (!this.show) {
+  private async closePopover(options?: { fromShowWatch?: boolean }) {
+    if (!options?.fromShowWatch && !this.show) {
       return;
     }
 
