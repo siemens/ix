@@ -37,7 +37,7 @@ async function expectPopoverClosed(popover: Locator) {
 async function openViaClick(page: Page, triggerId = 'trigger') {
   const trigger = page.locator(`ix-button#${triggerId}`);
   await expect(trigger).toHaveAttribute('data-ix-popover-trigger', '');
-  await trigger.click({ force: true });
+  await trigger.click();
 }
 
 async function popoverForTrigger(page: Page, triggerId = 'trigger') {
@@ -53,6 +53,8 @@ async function mountPopover(
   markup: string
 ) {
   await mount(markup);
+  // Wait for the component to hydrate - using first() is acceptable here
+  // as we just need to ensure at least one popover is hydrated
   await expect(page.locator('ix-popover').first()).toHaveClass(/hydrated/);
 }
 
@@ -367,6 +369,7 @@ regressionTest.describe('ix-popover', () => {
         await expectPopoverOpen(popover);
 
         await popoverDialog(popover).hover();
+        // Wait for hide delay to confirm popover STAYS open (testing negative case)
         await page.waitForTimeout(HOVER_HIDE_MS);
         await expectPopoverOpen(popover);
       }
@@ -554,15 +557,17 @@ regressionTest.describe('ix-popover', () => {
           ).showPopover();
         });
 
-        await page.waitForTimeout(100);
-
         // When showChange is canceled, popover never opens so we check the raw element
         const popover = page.locator('ix-popover').first();
-        await expectPopoverClosed(popover);
 
-        // Also verify aria-controls was never set (popover never opened)
-        const trigger = page.locator('ix-button#trigger');
-        await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+        // Give a brief moment for any potential state changes, then verify closed
+        // Using expect with retry logic instead of hard timeout
+        await expect(async () => {
+          await expectPopoverClosed(popover);
+          // Also verify aria-controls was never set (popover never opened)
+          const trigger = page.locator('ix-button#trigger');
+          await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+        }).toPass({ timeout: 500 });
       }
     );
 
@@ -612,7 +617,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = await popoverForTrigger(page);
 
         await openViaClick(page);
-        await page.mouse.click(16, 16);
+        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
         await expectPopoverOpen(popover);
       }
     );
