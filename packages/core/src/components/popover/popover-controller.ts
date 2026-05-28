@@ -189,4 +189,5 @@ class PopoverController {
   }
 }
 
+export { PopoverController };
 export const popoverController = new PopoverController();
