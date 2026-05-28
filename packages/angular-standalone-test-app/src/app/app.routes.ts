@@ -98,6 +98,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/category-filter-suggestions').then(
       (m) => m.default
     ),
+  'preview/chat': () =>
+    import('../preview-examples/chat').then((m) => m.default),
   'preview/checkbox': () =>
     import('../preview-examples/checkbox').then((m) => m.default),
   'preview/checkbox-indeterminate': () =>

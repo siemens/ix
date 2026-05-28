@@ -47,6 +47,7 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -416,6 +417,10 @@ const routes: Routes = [
       {
         path: 'category-filter',
         component: CategoryFilter,
+      },
+      {
+        path: 'chat',
+        component: Chat,
       },
       {
         path: 'checkbox-indeterminate',

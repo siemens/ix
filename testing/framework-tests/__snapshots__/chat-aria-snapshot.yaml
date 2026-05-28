@@ -1,0 +1,26 @@
+- main:
+    - button "equipment_status .pdf" [disabled]
+    - button "maintenance_notes .txt" [disabled]
+    - text: Summarize the asset status and include the attached maintenance files.
+    - button "Copy message"
+    - button "Edit message"
+    - button "Show more actions"
+    - heading "Asset performance summary" [level=3]
+    - paragraph: The compressor train is operating inside the expected range. Vibration increased slightly after the last shift change, but all values remain below the warning threshold.
+    - list:
+        - listitem: /Temperature trend is stable over the last \d+ hours\./
+        - listitem: Two alarms were acknowledged by the operator.
+        - listitem: Next service window is scheduled for Friday.
+    - button "Copy response"
+    - button "Helpful response"
+    - button "Not helpful response"
+    - button "Regenerate response"
+    - button "Sources"
+    - button "customer_feedback .pdf" [disabled]
+    - text: Compare the current report with additional customer feedback.
+    - paragraph: Customer feedback confirms the same maintenance priorities. The next step is to validate spare-part availability and confirm the planned downtime window.
+    - textbox "Chat input":
+        - /placeholder: Enter a command, question or topic...
+        - text: Create a concise follow-up plan for the service team.
+    - button "Submit prompt"
+    - text: This content is AI-generated. Always verify the information for accuracy.

@@ -35,6 +35,7 @@ import './card-axe.spec.ts';
 import './card-list-axe.spec.ts';
 import './category-filter-axe.spec.ts';
 import './category-filter-suggestions-axe.spec.ts';
+import './chat-axe.spec.ts';
 import './checkbox-axe.spec.ts';
 import './checkbox-indeterminate-axe.spec.ts';
 import './chip-axe.spec.ts';

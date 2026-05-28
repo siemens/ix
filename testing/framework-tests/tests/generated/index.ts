@@ -72,6 +72,8 @@ import './category-filter-axe.spec.ts';
 import './category-filter-suggestions-axe.spec.ts';
 import './category-filter-suggestions.spec.ts';
 import './category-filter.spec.ts';
+import './chat-axe.spec.ts';
+import './chat.spec.ts';
 import './checkbox-axe.spec.ts';
 import './checkbox-indeterminate-axe.spec.ts';
 import './checkbox-indeterminate.spec.ts';

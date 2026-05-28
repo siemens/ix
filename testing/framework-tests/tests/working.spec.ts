@@ -64,3 +64,6 @@ import './generated/pill-variants.spec';
 
 // Chip tests
 import './generated/chip.spec';
+
+// Chat tests
+import './generated/chat.spec';

@@ -209,6 +209,7 @@ export const testIds = [
   "chip",
   "checkbox",
   "checkbox-indeterminate",
+  "chat",
   "category-filter",
   "category-filter-suggestions",
   "card",

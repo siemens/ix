@@ -50,6 +50,7 @@ import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
+import Chat from './preview-examples/chat.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -292,6 +293,7 @@ const routes: IxPreviewRoutes = {
   '/preview/card-list': CardList,
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
+  '/preview/chat': Chat,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,

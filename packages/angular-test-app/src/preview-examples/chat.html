@@ -1,0 +1,117 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat">
+  <ix-chat-user-message
+    message="Summarize the asset status and include the attached maintenance files."
+  >
+    <ix-chat-prompt-attachment
+      slot="attachments"
+      file-name="equipment_status.pdf"
+      icon="pdf-document"
+      hide-remove-button
+    ></ix-chat-prompt-attachment>
+    <ix-chat-prompt-attachment
+      slot="attachments"
+      file-name="maintenance_notes.txt"
+      icon="txt-document"
+      hide-remove-button
+    ></ix-chat-prompt-attachment>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Copy message"
+      icon="copy"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Edit message"
+      icon="pen"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Show more actions"
+      icon="more-menu"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+  </ix-chat-user-message>
+
+  <ix-chat-ai-message>
+    <h3>Asset performance summary</h3>
+    <p>
+      The compressor train is operating inside the expected range. Vibration
+      increased slightly after the last shift change, but all values remain
+      below the warning threshold.
+    </p>
+    <ul class="message-list">
+      <li>Temperature trend is stable over the last 24 hours.</li>
+      <li>Two alarms were acknowledged by the operator.</li>
+      <li>Next service window is scheduled for Friday.</li>
+    </ul>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Copy response"
+      icon="copy"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Helpful response"
+      icon="thumb-up"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Not helpful response"
+      icon="thumb-down"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Regenerate response"
+      icon="refresh"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-chip slot="sources" icon="globe" outline variant="neutral">
+      Sources
+    </ix-chip>
+  </ix-chat-ai-message>
+
+  <ix-chat-user-message
+    message="Compare the current report with additional customer feedback."
+  >
+    <ix-chat-prompt-attachment
+      slot="attachments"
+      file-name="customer_feedback.pdf"
+      icon="pdf-document"
+      hide-remove-button
+    ></ix-chat-prompt-attachment>
+  </ix-chat-user-message>
+
+  <ix-chat-ai-message>
+    <p>
+      Customer feedback confirms the same maintenance priorities. The next step
+      is to validate spare-part availability and confirm the planned downtime
+      window.
+    </p>
+  </ix-chat-ai-message>
+
+  <ix-chat-input
+    slot="prompt"
+    value="Create a concise follow-up plan for the service team."
+  ></ix-chat-input>
+</ix-chat>
