@@ -121,7 +121,7 @@ $outline-border-width: 0.0625rem;
 
     .slot-container {
       @include text-truncation.ellipsis;
-      flex: 1 1 auto;
+      flex: 0 1 auto;
       min-width: 0;
 
       slot::slotted(*) {
