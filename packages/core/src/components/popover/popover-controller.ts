@@ -70,6 +70,12 @@ class PopoverController {
 
   present(popover: PopoverInterface) {
     if (!popover.isPresent() && popover.willPresent?.()) {
+      this.popovers.forEach((openPopover) => {
+        if (openPopover.isPresent()) {
+          this.nestedPopoverIds[openPopover.getId()] =
+            openPopover.getNestedPopoverIds();
+        }
+      });
       this.dismissOthers(popover.getId());
       this.nestedPopoverIds[popover.getId()] = popover.getNestedPopoverIds();
       popover.present();
