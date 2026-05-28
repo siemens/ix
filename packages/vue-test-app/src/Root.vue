@@ -51,6 +51,9 @@ import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
 import Chat from './preview-examples/chat.vue';
+import ChatAiMessage from './preview-examples/chat-ai-message.vue';
+import ChatInput from './preview-examples/chat-input.vue';
+import ChatUserMessage from './preview-examples/chat-user-message.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -294,6 +297,9 @@ const routes: IxPreviewRoutes = {
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
   '/preview/chat': Chat,
+  '/preview/chat-ai-message': ChatAiMessage,
+  '/preview/chat-input': ChatInput,
+  '/preview/chat-user-message': ChatUserMessage,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,

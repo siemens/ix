@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat">
+  <ix-chat-user-message message="Summarize the attached shift report.">
+    <ix-chat-prompt-attachment
+      slot="attachments"
+      file-name="shift_report.pdf"
+      icon="pdf-document"
+      hide-remove-button
+    ></ix-chat-prompt-attachment>
+    <ix-chat-prompt-attachment
+      slot="attachments"
+      file-name="operator_notes.txt"
+      icon="txt-document"
+      hide-remove-button
+    ></ix-chat-prompt-attachment>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Copy message"
+      icon="copy"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Edit message"
+      icon="pen"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Show more actions"
+      icon="more-menu"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+  </ix-chat-user-message>
+</ix-chat>

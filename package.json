@@ -32,7 +32,6 @@
     "test.setup": "dotenv -- turbo run test.setup --concurrency=1",
     "prepare": "pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
-    "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
     "ts-run": "tsx"

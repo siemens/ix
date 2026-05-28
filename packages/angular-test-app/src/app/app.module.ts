@@ -57,6 +57,9 @@ import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
 import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -313,6 +316,9 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CategoryFilterSuggestions,
     CategoryFilter,
     Chat,
+    ChatAiMessage,
+    ChatInput,
+    ChatUserMessage,
     CheckboxIndeterminate,
     Checkbox,
     Chip,

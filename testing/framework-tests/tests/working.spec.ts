@@ -67,3 +67,6 @@ import './generated/chip.spec';
 
 // Chat tests
 import './generated/chat.spec';
+import './generated/chat-ai-message.spec';
+import './generated/chat-input.spec';
+import './generated/chat-user-message.spec';
