@@ -14,6 +14,12 @@ import { regressionTest } from '@utils/test';
 const html = String.raw;
 const HOVER_HIDE_MS = 200;
 
+// Mouse coordinates for testing click/hover interactions
+const OUTSIDE_CLICK_X = 5;
+const OUTSIDE_CLICK_Y = 5;
+const FAR_CORNER_X = 800;
+const FAR_CORNER_Y = 600;
+
 function popoverDialog(popover: Locator) {
   return popover.locator('[role="dialog"], [role="status"]').first();
 }
@@ -337,7 +343,7 @@ regressionTest.describe('ix-popover', () => {
         await trigger.hover();
         await expectPopoverOpen(popover);
 
-        await page.mouse.move(800, 600);
+        await page.mouse.move(FAR_CORNER_X, FAR_CORNER_Y);
         await expect(async () => {
           await expectPopoverClosed(popover);
         }).toPass({ timeout: 3000 });
@@ -405,7 +411,7 @@ regressionTest.describe('ix-popover', () => {
         await trigger.hover();
         await expectPopoverOpen(popover);
 
-        await page.mouse.move(800, 600);
+        await page.mouse.move(FAR_CORNER_X, FAR_CORNER_Y);
         await expect(async () => {
           await expectPopoverClosed(popover);
         }).toPass({ timeout: 3000 });
@@ -495,17 +501,42 @@ regressionTest.describe('ix-popover', () => {
       });
       await expectPopoverClosed(popover);
     });
+
+    regressionTest(
+      'handles rapid showPopover calls gracefully',
+      async ({ mount, page }) => {
+        await mountPopover(mount, page, interactivePopoverMarkup());
+
+        // Call showPopover() multiple times rapidly (tests isOpeningPopover guard)
+        // The guard should prevent re-entrant calls, but first call should succeed
+        await page.evaluate(async () => {
+          const pop = document.querySelector(
+            'ix-popover'
+          ) as HTMLIxPopoverElement;
+          // Fire them without awaiting - truly concurrent
+          const promises = [
+            pop.showPopover(),
+            pop.showPopover(),
+            pop.showPopover(),
+          ];
+          // Wait for the first one to complete
+          await promises[0];
+        });
+
+        const popover = await popoverForTrigger(page);
+        // Should open successfully (not crash or enter invalid state)
+        await expectPopoverOpen(popover);
+      }
+    );
   });
 
   regressionTest.describe('showChange guards', () => {
     regressionTest(
       'prevents open when showChange is canceled',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        const popover = await popoverForTrigger(page);
-        const trigger = page.locator('ix-button#trigger');
+        await mountPopover(mount, page, interactivePopoverMarkup());
 
-        // Prevent all open attempts (Enter triggers both keydown and click)
+        // Prevent all open attempts
         await page.evaluate(() => {
           document
             .querySelector('ix-popover')
@@ -516,12 +547,22 @@ regressionTest.describe('ix-popover', () => {
             });
         });
 
-        await trigger.focus();
-        await page.keyboard.press('Enter');
+        // Use programmatic API instead of Enter key (avoids double-trigger issue)
+        await page.evaluate(async () => {
+          await (
+            document.querySelector('ix-popover') as HTMLIxPopoverElement
+          ).showPopover();
+        });
 
-        // Wait a bit for both keydown and click events to process
         await page.waitForTimeout(100);
+
+        // When showChange is canceled, popover never opens so we check the raw element
+        const popover = page.locator('ix-popover').first();
         await expectPopoverClosed(popover);
+
+        // Also verify aria-controls was never set (popover never opened)
+        const trigger = page.locator('ix-button#trigger');
+        await expect(trigger).toHaveAttribute('aria-expanded', 'false');
       }
     );
 
@@ -583,7 +624,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = await popoverForTrigger(page);
 
         await openViaClick(page);
-        await page.mouse.click(5, 5);
+        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
         await expectPopoverClosed(popover);
       }
     );
@@ -842,7 +883,7 @@ regressionTest.describe('ix-popover', () => {
         const outer = await popoverForTrigger(page, 'outer-trigger');
         const inner = await popoverForTrigger(page, 'inner-trigger');
 
-        await page.mouse.click(5, 5);
+        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
 
         await expectPopoverClosed(outer);
         await expectPopoverClosed(inner);
