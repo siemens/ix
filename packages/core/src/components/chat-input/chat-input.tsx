@@ -48,7 +48,6 @@ type AttachmentOverflowEntry = {
  * @form-ready
  * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the chat input
  * @slot attachments - Attachments displayed above the prompt text area
- * @slot attachment-overflow - Optional ix-dropdown-item elements displayed in the attachment overflow dropdown
  * @slot start - Element will be displayed in the left action area
  * @slot end - Element will be displayed in the right action area before the submit button
  */
@@ -202,7 +201,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   @State() hasAttachments = false;
   @State() hasAttachmentOverflow = false;
-  @State() attachmentOverflowItemsCount = 0;
   @State() overflowingAttachmentCount = 0;
   @State() attachmentOverflowEntries: AttachmentOverflowEntry[] = [];
   @State() hasFollowUp = false;
@@ -472,13 +470,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     this.scheduleAttachmentOverflowUpdate();
   }
 
-  private handleAttachmentOverflowSlotChange(event: Event) {
-    const slot = event.target as HTMLSlotElement;
-    this.attachmentOverflowItemsCount = slot.assignedElements({
-      flatten: true,
-    }).length;
-  }
-
   private handleFollowUpSlotChange(event: Event) {
     this.hasFollowUp = this.hasAssignedContent(event.target as HTMLSlotElement);
   }
@@ -544,11 +535,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
         Math.max(attachmentElements.indexOf(element), 0)
       )
     );
-  }
-
-  private getAttachmentOverflowItemsCount() {
-    return this.hostElement.querySelectorAll('[slot="attachment-overflow"]')
-      .length;
   }
 
   private initAttachmentResizeObserver(attachments: HTMLDivElement) {
@@ -637,8 +623,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   private measureAttachmentOverflow(
     attachments: HTMLDivElement,
-    attachmentElements: HTMLIxChatPromptAttachmentElement[],
-    attachmentOverflowItemsCount: number
+    attachmentElements: HTMLIxChatPromptAttachmentElement[]
   ) {
     const overflowButton = attachments.querySelector<HTMLElement>(
       '.attachment-overflow'
@@ -657,10 +642,13 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       );
     const layoutOverflowingAttachmentCount =
       layoutOverflowingAttachmentElements.length;
-    const hasOverflow =
-      layoutOverflowingAttachmentCount > 0 || attachmentOverflowItemsCount > 0;
+    const hasOverflow = layoutOverflowingAttachmentCount > 0;
 
     if (!overflowButton) {
+      layoutOverflowingAttachmentElements.forEach((attachmentElement) => {
+        attachmentElement.style.display = 'none';
+      });
+
       return {
         entries: this.getAttachmentOverflowEntries(
           attachmentElements,
@@ -719,11 +707,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       return;
     }
 
-    const attachmentOverflowItemsCount = this.getAttachmentOverflowItemsCount();
-    if (this.attachmentOverflowItemsCount !== attachmentOverflowItemsCount) {
-      this.attachmentOverflowItemsCount = attachmentOverflowItemsCount;
-    }
-
     const attachmentElements = this.getAttachmentElements();
     if (this.attachmentLayout !== 'wrap' || attachmentElements.length === 0) {
       this.restoreAttachmentVisibility(attachmentElements);
@@ -742,11 +725,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     }
 
     const { entries, hasOverflow, overflowingAttachmentCount } =
-      this.measureAttachmentOverflow(
-        attachments,
-        attachmentElements,
-        attachmentOverflowItemsCount
-      );
+      this.measureAttachmentOverflow(attachments, attachmentElements);
 
     this.updateAttachmentOverflowEntries(entries);
     if (this.hasAttachmentOverflow !== hasOverflow) {
@@ -765,7 +744,9 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     }
   }
 
-  private handleAttachmentOverflowItemClick(index: number) {
+  private handleAttachmentOverflowItemClick(event: MouseEvent, index: number) {
+    event.preventDefault();
+    event.stopPropagation();
     this.getAttachmentElements()[index]?.click();
     this.closeAttachmentOverflow();
   }
@@ -794,7 +775,9 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
           class="attachment-overflow-generated-item"
           icon={entry.icon}
           ariaLabelButton={entry.label}
-          onClick={() => this.handleAttachmentOverflowItemClick(entry.index)}
+          onClick={(event: MouseEvent) =>
+            this.handleAttachmentOverflowItemClick(event, entry.index)
+          }
         >
           {entry.label}
         </ix-dropdown-item>
@@ -823,8 +806,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       return attachmentOverflowCount;
     }
 
-    const overflowCount =
-      this.attachmentOverflowItemsCount + this.overflowingAttachmentCount;
+    const overflowCount = this.overflowingAttachmentCount;
 
     return overflowCount > 0 ? overflowCount : undefined;
   }
@@ -849,12 +831,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
         }
       >
         {this.renderAttachmentOverflowItems()}
-        <slot
-          name="attachment-overflow"
-          onSlotchange={(event) =>
-            this.handleAttachmentOverflowSlotChange(event)
-          }
-        ></slot>
       </ix-dropdown-button>
     );
   }

@@ -10,7 +10,6 @@ import {
   iconAttach,
   iconMicrophone,
   iconRefresh,
-  iconTxtDocument,
 } from '@siemens/ix-icons/icons';
 import type { Components } from '@siemens/ix/components';
 import { h, type VNode } from '@stencil/core';
@@ -102,24 +101,12 @@ function createAttachment(index: number) {
   );
 }
 
-function createAttachmentOverflowItem(index: number) {
-  return (
-    <ix-dropdown-item
-      icon={iconTxtDocument}
-      label={`meeting_notes_summary_0${index}.txt`}
-      slot="attachment-overflow"
-    ></ix-dropdown-item>
-  );
-}
-
 export const WithAttachments: Story = {
   render: stencil((args) =>
-    renderChatInput(args, [
-      ...Array.from({ length: 9 }, (_, index) => createAttachment(index + 1)),
-      ...Array.from({ length: 4 }, (_, index) =>
-        createAttachmentOverflowItem(index + 1)
-      ),
-    ])
+    renderChatInput(
+      args,
+      Array.from({ length: 9 }, (_, index) => createAttachment(index + 1))
+    )
   ),
   args: {},
   parameters: {

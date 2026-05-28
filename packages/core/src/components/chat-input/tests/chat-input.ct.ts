@@ -292,53 +292,6 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-input renders wrap attachment overflow for slotted overflow items',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-chat-input style="width: 90rem; --ix-chat-input-max-width: 90rem">
-        ${Array.from(
-          { length: 9 },
-          (_, index) =>
-            `<ix-chat-prompt-attachment slot="attachments" file-name="file_${String(
-              index + 1
-            ).padStart(2, '0')}.txt"></ix-chat-prompt-attachment>`
-        ).join('')}
-        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_01.txt"></ix-dropdown-item>
-        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_02.txt"></ix-dropdown-item>
-        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_03.txt"></ix-dropdown-item>
-        <ix-dropdown-item slot="attachment-overflow" label="meeting_notes_summary_04.txt"></ix-dropdown-item>
-      </ix-chat-input>
-    `);
-
-    const chatInput = page.locator('ix-chat-input');
-    const attachments = page.locator(
-      'ix-chat-prompt-attachment[slot="attachments"]'
-    );
-    const overflow = chatInput.locator(
-      'ix-dropdown-button.attachment-overflow'
-    );
-    const generatedOverflowItems = page.locator(
-      '[data-attachment-overflow-generated]'
-    );
-    const overflowItems = page.locator(
-      'ix-dropdown-item[slot="attachment-overflow"]'
-    );
-
-    await expect(attachments.nth(8)).toBeVisible();
-    await expect(overflow).toContainText('+ 4 more');
-
-    await overflow.click();
-
-    await expect(generatedOverflowItems).toHaveCount(0);
-    await expect(overflowItems).toHaveCount(4);
-    await expect(overflowItems.first()).toBeVisible();
-    await expect(overflowItems.first()).toContainText(
-      'meeting_notes_summary_01.txt'
-    );
-  }
-);
-
-regressionTest(
   'ix-chat-input updates wrap attachment overflow items after resize',
   async ({ mount, page }) => {
     await mount(`

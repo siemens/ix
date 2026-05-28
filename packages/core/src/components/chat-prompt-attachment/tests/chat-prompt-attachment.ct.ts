@@ -88,8 +88,8 @@ regressionTest(
   'ix-chat-prompt-attachment renders loading and failed states',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-prompt-attachment status="loading"></ix-chat-prompt-attachment>
-      <ix-chat-prompt-attachment status="failed"></ix-chat-prompt-attachment>
+      <ix-chat-prompt-attachment file-name="uploading_file.txt" status="loading"></ix-chat-prompt-attachment>
+      <ix-chat-prompt-attachment file-name="failed_file.txt" status="failed"></ix-chat-prompt-attachment>
     `);
 
     await expect(
@@ -97,11 +97,11 @@ regressionTest(
     ).toHaveCount(1);
     await expect(
       page.locator('ix-chat-prompt-attachment').first()
-    ).toContainText('Uploading');
+    ).toContainText('uploading_file.txt');
 
     await expect(
       page.locator('ix-chat-prompt-attachment').nth(1)
-    ).toContainText('Upload failed');
+    ).toContainText('failed_file.txt');
     await expect(
       page.locator('ix-chat-prompt-attachment').nth(1).locator('ix-chip')
     ).toHaveAttribute('variant', 'alarm');

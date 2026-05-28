@@ -195,9 +195,6 @@ function createChatInput({
   return (
     <ix-chat-input
       attachmentLayout={scrollableAttachments ? 'scroll' : undefined}
-      attachmentOverflowCount={
-        attachments && !scrollableAttachments ? 3 : undefined
-      }
       characterLimit={characterLimit ? 120 : undefined}
       placeholder="Enter a command, question or topic..."
       slot="prompt"
@@ -232,13 +229,6 @@ function createChatInput({
             createPromptAttachment('alarm_export.txt'),
             createPromptAttachment('uploading_report.pdf', 'loading'),
             createPromptAttachment('failed_upload.csv', 'failed'),
-            !scrollableAttachments
-              ? [
-                  createAttachmentDropdownItem('maintenance_notes_01.txt'),
-                  createAttachmentDropdownItem('maintenance_notes_02.txt'),
-                  createAttachmentDropdownItem('maintenance_notes_03.pdf'),
-                ]
-              : null,
           ]
         : null}
       {customActions

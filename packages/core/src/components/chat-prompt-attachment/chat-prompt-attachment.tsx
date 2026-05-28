@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconTxtDocument } from '@siemens/ix-icons/icons';
+import { iconError, iconTxtDocument } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types';
 
@@ -138,7 +138,7 @@ export class ChatPromptAttachment {
     }
 
     if (this.status === 'failed') {
-      return 'error';
+      return iconError;
     }
 
     return this.icon;
