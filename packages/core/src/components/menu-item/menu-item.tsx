@@ -225,10 +225,18 @@ export class MenuItem implements IxMenuItemBase {
     }
 
     const hostA11y = a11yHostAttributes(this.hostElement);
+    const { role: externalRole, ...hostA11yWithoutRole } = hostA11y;
+
+    const internalRole =
+      this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
+        ? 'menuitem'
+        : undefined;
+
+    const effectiveRole = externalRole ?? internalRole;
 
     const commonAttributes = {
       class: 'tab',
-      ...hostA11y,
+      ...hostA11yWithoutRole,
     };
 
     const menuContent = [
@@ -268,16 +276,12 @@ export class MenuItem implements IxMenuItemBase {
               ? this.hostTabIndex
               : 0
         }
-        role={
-          this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
-            ? 'menuitem'
-            : undefined
-        }
         {...extendedAttributes}
       >
         {this.href ? (
           <a
             {...commonAttributes}
+            role={effectiveRole}
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
@@ -300,6 +304,7 @@ export class MenuItem implements IxMenuItemBase {
         ) : (
           <button
             {...commonAttributes}
+            role={effectiveRole}
             tabIndex={
               this.isInMenuContext || this.isCategory
                 ? this.hostTabIndex
