@@ -15,10 +15,11 @@ import {
   h,
   Host,
   Listen,
+  Method,
+  Mixin,
   Prop,
   State,
   Watch,
-  Mixin,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
@@ -77,6 +78,12 @@ export class MenuCategory
   @State() showItems = false;
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
+
+  /** @internal */
+  @Method()
+  async setTabIndex(value: number) {
+    await this.categoryParentRef.current?.setTabIndex(value);
+  }
 
   private observer?: MutationObserver;
   private menuItemsContainer?: HTMLDivElement;

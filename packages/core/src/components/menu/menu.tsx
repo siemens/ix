@@ -287,6 +287,10 @@ export class Menu {
   componentDidLoad() {
     requestAnimationFrame(() => {
       this.handleOverflowIndicator();
+      const items = this.getAllFocusableItems();
+      if (items.length > 0) {
+        this.updateRovingTabIndex(items, 0);
+      }
     });
 
     if (this.pinned) {
@@ -613,6 +617,98 @@ export class Menu {
     return this.breakpoint === 'sm' && this.expand === false;
   }
 
+  private updateRovingTabIndex(items: HTMLElement[], activeIndex: number) {
+    items.forEach((item, i) => {
+      (
+        item as HTMLElement & { setTabIndex?: (v: number) => void }
+      ).setTabIndex?.(i === activeIndex ? 0 : -1);
+    });
+  }
+
+  private handleMenuFocusIn(event: FocusEvent) {
+    const items = this.getAllFocusableItems();
+    const path = event.composedPath();
+    const activeIndex = items.findIndex((item) => path.includes(item));
+    if (activeIndex !== -1) {
+      this.updateRovingTabIndex(items, activeIndex);
+    }
+  }
+
+  private getAllFocusableItems(): HTMLElement[] {
+    const isNavigable = (el: HTMLElement) =>
+      !el.hasAttribute('disabled') &&
+      !el.hasAttribute('hidden') &&
+      this.isVisible(el);
+
+    const lightItems = Array.from(
+      this.hostElement.querySelectorAll<HTMLElement>(
+        ':scope > ix-menu-item, :scope > ix-menu-category'
+      )
+    ).filter(isNavigable);
+
+    const internalItems = Array.from(
+      this.hostElement.shadowRoot!.querySelectorAll<HTMLElement>(
+        'ix-menu-item.internal-tab'
+      )
+    ).filter((el) => !el.hasAttribute('disabled'));
+
+    return [...lightItems, ...internalItems];
+  }
+
+  private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
+    return event
+      .composedPath()
+      .some(
+        (el) =>
+          el instanceof HTMLElement && el.getAttribute?.('role') === 'menu'
+      );
+  }
+
+  private handleMenuKeyDown(event: KeyboardEvent) {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      return;
+    }
+    if (this.isEventFromExpandedCategoryItems(event)) {
+      return;
+    }
+
+    const items = this.getAllFocusableItems();
+    if (items.length === 0) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const currentIndex = items.findIndex((item) => path.includes(item));
+    if (currentIndex === -1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        const next = (currentIndex + 1) % items.length;
+        this.updateRovingTabIndex(items, next);
+        items[next].focus();
+        break;
+      }
+      case 'ArrowUp': {
+        const prev = (currentIndex - 1 + items.length) % items.length;
+        this.updateRovingTabIndex(items, prev);
+        items[prev].focus();
+        break;
+      }
+      case 'Home':
+        this.updateRovingTabIndex(items, 0);
+        items[0].focus();
+        break;
+      case 'End':
+        this.updateRovingTabIndex(items, items.length - 1);
+        items[items.length - 1].focus();
+        break;
+    }
+  }
+
   private async showAppSwitch() {
     const { defaultPrevented } = this.openAppSwitch.emit();
 
@@ -642,11 +738,15 @@ export class Menu {
         slot="menu"
       >
         <nav
+          role="menubar"
+          aria-orientation="vertical"
           aria-label={this.applicationName}
           class={{
             menu: true,
             expanded: this.expand,
           }}
+          onKeyDown={(e) => this.handleMenuKeyDown(e)}
+          onFocusin={(e) => this.handleMenuFocusIn(e)}
         >
           <div class="menu-buttons">
             {this.breakpoint !== 'sm' && (

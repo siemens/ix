@@ -8,7 +8,16 @@
  */
 
 import { iconDocument } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { AnchorTarget } from '../button/button.interface';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
@@ -104,6 +113,14 @@ export class MenuItem implements IxMenuItemBase {
   @State() tooltip?: string;
   @State() ariaHiddenTooltip = false;
   @State() menuExpanded: boolean = false;
+  @State() private isInMenuContext = false;
+  @State() private hostTabIndex = -1;
+
+  /** @internal */
+  @Method()
+  async setTabIndex(value: number) {
+    this.hostTabIndex = value;
+  }
 
   private readonly internalItemId = createSequentialId(
     'ix-menu-item-',
@@ -121,6 +138,14 @@ export class MenuItem implements IxMenuItemBase {
   componentWillLoad() {
     this.isHostedInsideCategory =
       !!this.hostElement.closest('ix-menu-category');
+
+    const rootNode = this.hostElement.getRootNode();
+    const isInMenuShadowDOM =
+      rootNode instanceof ShadowRoot &&
+      rootNode.host?.tagName?.toLowerCase() === 'ix-menu';
+    const isDirectMenuChild =
+      !this.isHostedInsideCategory && !!this.hostElement.closest('ix-menu');
+    this.isInMenuContext = isInMenuShadowDOM || isDirectMenuChild;
 
     this.onIconChange();
 
@@ -236,8 +261,18 @@ export class MenuItem implements IxMenuItemBase {
           'ix-focusable': !this.disabled,
         }}
         aria-disabled={this.disabled ? 'true' : null}
-        tabIndex={this.disabled ? -1 : 0}
-        role={this.isHostedInsideCategory ? 'menuitem' : undefined}
+        tabIndex={
+          this.disabled
+            ? -1
+            : this.isInMenuContext || this.isCategory
+              ? this.hostTabIndex
+              : 0
+        }
+        role={
+          this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
+            ? 'menuitem'
+            : undefined
+        }
         {...extendedAttributes}
       >
         {this.href ? (
@@ -246,6 +281,11 @@ export class MenuItem implements IxMenuItemBase {
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
+            tabIndex={
+              this.isInMenuContext || this.isCategory
+                ? this.hostTabIndex
+                : undefined
+            }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             onClick={(e: Event) => {
@@ -260,6 +300,11 @@ export class MenuItem implements IxMenuItemBase {
         ) : (
           <button
             {...commonAttributes}
+            tabIndex={
+              this.isInMenuContext || this.isCategory
+                ? this.hostTabIndex
+                : undefined
+            }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
           >
