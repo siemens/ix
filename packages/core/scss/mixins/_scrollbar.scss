@@ -6,105 +6,60 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@mixin scrollbar($include-current: false) {
-  @if $include-current {
-    &::-webkit-scrollbar-button,
-    ::-webkit-scrollbar-button {
-      display: none;
-    }
-  } @else {
-    ::-webkit-scrollbar-button {
-      display: none;
-    }
+@mixin _scrollbar-rules {
+  &::-webkit-scrollbar-button {
+    display: none;
   }
 
   @-moz-document url-prefix() {
-    @if $include-current {
-      &,
-      * {
-        scrollbar-color: var(--theme-scrollbar-thumb--background)
-          var(--theme-scrollbar-track--background);
-        scrollbar-width: thin;
-      }
-    } @else {
-      * {
-        scrollbar-color: var(--theme-scrollbar-thumb--background)
-          var(--theme-scrollbar-track--background);
-        scrollbar-width: thin;
-      }
+    & {
+      scrollbar-color: var(--theme-scrollbar-thumb--background)
+        var(--theme-scrollbar-track--background);
+      scrollbar-width: thin;
     }
   }
 
   /* width */
-  @if $include-current {
-    &::-webkit-scrollbar,
-    ::-webkit-scrollbar {
-      width: 0.5rem;
-      height: 0.5rem;
-    }
-  } @else {
-    ::-webkit-scrollbar {
-      width: 0.5rem;
-      height: 0.5rem;
-    }
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
   }
 
   /* Track */
-  @if $include-current {
-    &::-webkit-scrollbar-track,
-    ::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: var(--theme-scrollbar-track--background);
-    }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-track--background);
+  }
 
-    &::-webkit-scrollbar-track:hover,
-    ::-webkit-scrollbar-track:hover {
-      background: var(--theme-scrollbar-track--background--hover);
-    }
-  } @else {
-    ::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: var(--theme-scrollbar-track--background);
-    }
-
-    ::-webkit-scrollbar-track:hover {
-      background: var(--theme-scrollbar-track--background--hover);
-    }
+  &::-webkit-scrollbar-track:hover {
+    background: var(--theme-scrollbar-track--background--hover);
   }
 
   /* Handle */
-  @if $include-current {
-    &::-webkit-scrollbar-thumb,
-    ::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: var(--theme-scrollbar-thumb--background);
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover,
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--theme-scrollbar-thumb--background--hover);
-    }
-  } @else {
-    ::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: var(--theme-scrollbar-thumb--background);
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--theme-scrollbar-thumb--background--hover);
-    }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-thumb--background);
   }
 
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-scrollbar-thumb--background--hover);
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
+
+@mixin scrollbar($include-current: false) {
   @if $include-current {
-    &::-webkit-scrollbar-corner,
-    ::-webkit-scrollbar-corner {
-      display: none;
+    &,
+    * {
+      @include _scrollbar-rules;
     }
   } @else {
-    ::-webkit-scrollbar-corner {
-      display: none;
+    * {
+      @include _scrollbar-rules;
     }
   }
 }
