@@ -199,7 +199,7 @@ regressionTest(
   'ix-chat-input renders slotted attachments with selected layout',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input attachment-layout="scroll">
+      <ix-chat-input attachment-layout="scroll" style="width: 40rem; --ix-chat-input-max-width: 40rem">
         <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
         <ix-chat-prompt-attachment slot="attachments" status="loading"></ix-chat-prompt-attachment>
       </ix-chat-input>
@@ -213,6 +213,9 @@ regressionTest(
     await expect(chatInput.locator('.attachments')).toHaveClass(
       /attachments--scroll/
     );
+    await expect(chatInput.locator('.attachments')).not.toHaveClass(
+      /has-attachment-scrollbar/
+    );
     await expect(
       page.locator('ix-chat-prompt-attachment[slot="attachments"]')
     ).toHaveCount(2);
@@ -220,12 +223,12 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-input renders wrap attachment overflow when attachments do not fit',
+  'ix-chat-input adds scrollbar spacing only when attachments are scrollable',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input style="width: 16rem; --ix-chat-input-max-width: 16rem">
+      <ix-chat-input attachment-layout="scroll" style="width: 12rem; --ix-chat-input-max-width: 12rem">
         ${Array.from(
-          { length: 10 },
+          { length: 8 },
           (_, index) =>
             `<ix-chat-prompt-attachment slot="attachments" file-name="file_${String(
               index + 1
@@ -235,98 +238,22 @@ regressionTest(
     `);
 
     const chatInput = page.locator('ix-chat-input');
-    const overflow = chatInput.locator(
-      'ix-dropdown-button.attachment-overflow'
-    );
-    const generatedOverflowItems = page.locator(
-      '[data-attachment-overflow-generated]'
-    );
-    const attachments = page.locator(
-      'ix-chat-prompt-attachment[slot="attachments"]'
-    );
+    const attachments = chatInput.locator('.attachments');
 
-    await expect(overflow).toBeVisible();
-    await expect(overflow).toHaveAttribute('aria-expanded', 'false');
-
-    const hiddenFileNames = await attachments.evaluateAll((elements) =>
-      elements
-        .filter((element) => getComputedStyle(element).display === 'none')
-        .map((element) => element.getAttribute('file-name'))
-    );
-    expect(hiddenFileNames.length).toBeGreaterThan(0);
-    await expect(overflow).toContainText(`+ ${hiddenFileNames.length} more`);
-
-    await overflow.click();
-
-    await expect(overflow).toHaveAttribute('aria-expanded', 'true');
-    await expect(generatedOverflowItems).toHaveCount(hiddenFileNames.length);
-
-    const overflowItemLabels = await generatedOverflowItems.evaluateAll(
-      (elements) =>
-        elements.map(
-          (element) =>
-            element.getAttribute('data-attachment-overflow-label') ?? ''
-        )
-    );
-    expect(overflowItemLabels).toEqual(hiddenFileNames);
-
-    await generatedOverflowItems.first().locator('ix-dropdown-item').click();
-
-    await expect(overflow).toHaveAttribute('aria-expanded', 'false');
-  }
-);
-
-regressionTest(
-  'ix-chat-input does not render wrap attachment overflow from count only when attachments fit',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-chat-input attachment-overflow-count="4">
-        <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
-      </ix-chat-input>
-    `);
-
-    await expect(
-      page.locator('ix-chat-input ix-dropdown-button.attachment-overflow')
-    ).toHaveCount(0);
-  }
-);
-
-regressionTest(
-  'ix-chat-input updates wrap attachment overflow items after resize',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-chat-input style="width: 16rem; --ix-chat-input-max-width: 16rem">
-        ${Array.from(
-          { length: 10 },
-          (_, index) =>
-            `<ix-chat-prompt-attachment slot="attachments" file-name="file_${String(
-              index + 1
-            ).padStart(2, '0')}.txt"></ix-chat-prompt-attachment>`
-        ).join('')}
-      </ix-chat-input>
-    `);
-
-    const chatInput = page.locator('ix-chat-input');
-    const overflow = chatInput.locator(
-      'ix-dropdown-button.attachment-overflow'
-    );
-
-    await expect(overflow).toBeVisible();
+    await expect(attachments).toHaveClass(/has-attachment-scrollbar/);
+    await expect(attachments).toHaveCSS('padding-bottom', '4px');
 
     await chatInput.evaluate((element) => {
       element.style.width = '90rem';
       element.style.setProperty('--ix-chat-input-max-width', '90rem');
     });
 
-    await expect(overflow).toHaveCount(0);
-    await expect(
-      page.locator('ix-chat-prompt-attachment[slot="attachments"]').nth(4)
-    ).toBeVisible();
+    await expect(attachments).not.toHaveClass(/has-attachment-scrollbar/);
   }
 );
 
 regressionTest(
-  'ix-chat-input emits removeClick from generated overflow items',
+  'ix-chat-input does not render an attachment overflow dropdown',
   async ({ mount, page }) => {
     await mount(`
       <ix-chat-input style="width: 16rem; --ix-chat-input-max-width: 16rem">
@@ -340,46 +267,19 @@ regressionTest(
       </ix-chat-input>
     `);
 
-    await page.locator('ix-chat-input').evaluate((element) => {
-      element
-        .querySelectorAll('ix-chat-prompt-attachment')
-        .forEach((attachment) => {
-          attachment.addEventListener('removeClick', () => {
-            attachment.setAttribute('data-removed', 'true');
-          });
-        });
-    });
-
-    const overflow = page
-      .locator('ix-chat-input')
-      .locator('ix-dropdown-button.attachment-overflow');
-    await overflow.click();
-
-    const generatedOverflowItems = page.locator(
-      '[data-attachment-overflow-generated]'
-    );
-    const removedFileName = await generatedOverflowItems
-      .first()
-      .getAttribute('data-attachment-overflow-label');
-    const generatedOverflowItem = generatedOverflowItems.first();
-    const removeButton = generatedOverflowItem.locator(
-      'ix-icon-button.attachment-overflow-remove-button'
-    );
-
-    await removeButton.hover();
-    expect(
-      await generatedOverflowItem
-        .locator('ix-dropdown-item')
-        .evaluate((element) => element.matches(':hover'))
-    ).toBe(false);
-
-    await removeButton.click();
-
+    const chatInput = page.locator('ix-chat-input');
     await expect(
-      page.locator(
-        `ix-chat-prompt-attachment[file-name="${removedFileName}"][data-removed="true"]`
-      )
-    ).toHaveCount(1);
+      chatInput.locator('ix-dropdown-button.attachment-overflow')
+    ).toHaveCount(0);
+    await expect(chatInput.locator('.attachments')).not.toHaveClass(
+      /has-attachment-scrollbar/
+    );
+    await expect(
+      page.locator('[data-attachment-overflow-generated]')
+    ).toHaveCount(0);
+    await expect(
+      page.locator('ix-chat-prompt-attachment[slot="attachments"]')
+    ).toHaveCount(10);
   }
 );
 

@@ -28,14 +28,23 @@ regressionTest.describe('chat', () => {
     await page.goto('chat/overflow');
 
     const attachmentOverflow = page
-      .locator('ix-chat-input')
+      .locator('ix-chat-user-message')
       .locator('ix-dropdown-button.attachment-overflow');
+    const promptAttachments = page
+      .locator('ix-chat-input')
+      .locator('.attachments');
 
     await expect(attachmentOverflow).toBeVisible();
     await attachmentOverflow.click();
     await expect(attachmentOverflow).toHaveAttribute('aria-expanded', 'true');
+    await expect(promptAttachments).toHaveClass(/has-attachment-scrollbar/);
     await expect(
-      page.locator('[data-attachment-overflow-generated]').first()
+      page
+        .locator('ix-chat-input')
+        .locator('ix-dropdown-button.attachment-overflow')
+    ).toHaveCount(0);
+    await expect(
+      page.locator('ix-dropdown-item[slot="attachment-overflow"]').first()
     ).toBeVisible();
 
     await expect(page).toHaveScreenshot({

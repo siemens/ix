@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <title>Chat attachment overflow</title>
+    <title>Chat attachment overflow and prompt scroll</title>
     <style>
       :root {
         color: var(--theme-color-std-text);
@@ -66,12 +66,12 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <main class="chat-visual-page">
-      <h1 class="chat-visual-title">Attachment overflow</h1>
+      <h1 class="chat-visual-title">Attachment overflow and prompt scroll</h1>
       <ix-chat class="chat-overflow">
         <ix-chat-ai-message>
           <p>
-            Several attachments are available. The prompt keeps visible files in
-            the first row and moves hidden files into the overflow menu.
+            Several sent attachments are available in the message overflow. The
+            prompt keeps uploaded files in a horizontal scroll area.
           </p>
         </ix-chat-ai-message>
 
@@ -106,6 +106,7 @@ SPDX-License-Identifier: MIT
         </ix-chat-user-message>
 
         <ix-chat-input
+          attachment-layout="scroll"
           slot="prompt"
           value="Compare all attached documents."
           style="width: 18rem"

@@ -650,17 +650,6 @@ export namespace Components {
          */
         "attachmentLayout": ChatInputAttachmentLayout;
         /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentOverflowCount"?: number;
-        /**
-          * Label displayed after the attachment overflow count.
-          * @since 5.0.0
-          * @default 'more'
-         */
-        "attachmentOverflowLabel": string;
-        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -5213,7 +5202,6 @@ declare global {
         "ixBlur": void;
         "ixChange": string;
         "promptSubmit": string;
-        "attachmentOverflowChange": boolean;
     }
     /**
      * @since 5.0.0
@@ -7268,17 +7256,6 @@ declare namespace LocalJSX {
          */
         "attachmentLayout"?: ChatInputAttachmentLayout;
         /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentOverflowCount"?: number;
-        /**
-          * Label displayed after the attachment overflow count.
-          * @since 5.0.0
-          * @default 'more'
-         */
-        "attachmentOverflowLabel"?: string;
-        /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
           * @since 5.0.0
          */
@@ -7333,11 +7310,6 @@ declare namespace LocalJSX {
           * @since 5.0.0
          */
         "name"?: string;
-        /**
-          * Event emitted when the attachment overflow expanded state changes.
-          * @since 5.0.0
-         */
-        "onAttachmentOverflowChange"?: (event: IxChatInputCustomEvent<boolean>) => void;
         /**
           * Event emitted when the chat input loses focus.
           * @since 5.0.0
@@ -11787,8 +11759,6 @@ declare namespace LocalJSX {
         "characterLimit": number;
         "characterLimitWarningThreshold": number;
         "attachmentLayout": ChatInputAttachmentLayout;
-        "attachmentOverflowCount": number;
-        "attachmentOverflowLabel": string;
         "minRows": number;
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;

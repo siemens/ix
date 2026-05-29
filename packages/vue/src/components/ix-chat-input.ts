@@ -18,8 +18,6 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'characterLimit',
   'characterLimitWarningThreshold',
   'attachmentLayout',
-  'attachmentOverflowCount',
-  'attachmentOverflowLabel',
   'minRows',
   'maxRows',
   'insertLineBreakOnEnter',
@@ -27,13 +25,11 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit',
-  'attachmentOverflowChange'
+  'promptSubmit'
 ], [
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit',
-  'attachmentOverflowChange'
+  'promptSubmit'
 ],
 'value', 'valueChange', undefined);

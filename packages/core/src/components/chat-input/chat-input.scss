@@ -90,38 +90,17 @@
 
     @include scrollbar.scrollbar($include-current: true);
   }
+
+  .attachments.has-attachment-scrollbar {
+    padding-bottom: 0.25rem;
+  }
+
   .attachments ::slotted(ix-chat-prompt-attachment) {
     flex: 0 1 auto;
   }
 
   .attachments--scroll ::slotted(ix-chat-prompt-attachment) {
     flex: 0 0 auto;
-  }
-
-  .attachment-overflow {
-    flex: 0 0 5rem;
-    height: 2rem;
-    --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
-    --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
-  }
-
-  .attachment-overflow-menu-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-width: 0;
-  }
-
-  .attachment-overflow-menu-item ix-dropdown-item {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .attachment-overflow-remove-button {
-    flex: 0 0 auto;
-
-    position: absolute;
-    right: 0.5rem;
   }
 
   textarea {

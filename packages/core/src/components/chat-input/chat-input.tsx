@@ -9,7 +9,6 @@
 
 import {
   iconCircleStop,
-  iconCloseSmall,
   iconError,
   iconInfo,
   iconSendRightFilled,
@@ -34,14 +33,6 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { ChatInputAttachmentLayout } from './chat-input.types';
 import { DefaultMixins } from '../utils/internal/component';
 import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
-
-type AttachmentOverflowEntry = {
-  canRemove: boolean;
-  icon?: string;
-  index: number;
-  label: string;
-  removeAriaLabel: string;
-};
 
 /**
  * @since 5.0.0
@@ -130,18 +121,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   @Prop() attachmentLayout: ChatInputAttachmentLayout = 'wrap';
 
   /**
-   * Number of attachments represented by the attachment overflow trigger.
-   * @since 5.0.0
-   */
-  @Prop() attachmentOverflowCount?: number;
-
-  /**
-   * Label displayed after the attachment overflow count.
-   * @since 5.0.0
-   */
-  @Prop() attachmentOverflowLabel: string = 'more';
-
-  /**
    * Minimum number of visible text rows.
    * @since 5.0.0
    */
@@ -190,33 +169,23 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
    */
   @Event() promptSubmit!: EventEmitter<string>;
 
-  /**
-   * Event emitted when the attachment overflow expanded state changes.
-   * @since 5.0.0
-   */
-  @Event() attachmentOverflowChange!: EventEmitter<boolean>;
-
   /** @internal */
   public initialValue?: string;
 
   @State() hasAttachments = false;
-  @State() hasAttachmentOverflow = false;
-  @State() overflowingAttachmentCount = 0;
-  @State() attachmentOverflowEntries: AttachmentOverflowEntry[] = [];
+  @State() hasAttachmentScrollbar = false;
   @State() hasFollowUp = false;
 
   private readonly attachmentsRef = makeRef<HTMLDivElement>((attachments) => {
     this.initAttachmentResizeObserver(attachments);
-    this.scheduleAttachmentOverflowUpdate();
+    this.scheduleAttachmentScrollbarUpdate();
   });
-  private readonly attachmentOverflowRef =
-    makeRef<HTMLIxDropdownButtonElement>();
   private readonly textareaRef = makeRef<HTMLTextAreaElement>((textarea) => {
     this.updateTextareaHeight(textarea);
   });
   private attachmentResizeObserver?: ResizeObserver;
   private attachmentMutationObserver?: MutationObserver;
-  private isAttachmentOverflowUpdateQueued = false;
+  private isAttachmentScrollbarUpdateQueued = false;
 
   override componentWillLoad() {
     super.componentWillLoad!();
@@ -229,13 +198,13 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     super.componentDidLoad!();
     this.updateHasFollowUp();
     this.initAttachmentMutationObserver();
-    this.scheduleAttachmentOverflowUpdate();
+    this.scheduleAttachmentScrollbarUpdate();
     this.updateTextareaHeight();
   }
 
   override componentDidRender() {
     super.componentDidRender!();
-    this.scheduleAttachmentOverflowUpdate();
+    this.scheduleAttachmentScrollbarUpdate();
     this.updateTextareaHeight();
   }
 
@@ -259,7 +228,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   @Watch('attachmentLayout')
   onAttachmentLayoutChange() {
-    this.scheduleAttachmentOverflowUpdate();
+    this.scheduleAttachmentScrollbarUpdate();
   }
 
   updateFormInternalValue(value: string) {
@@ -467,7 +436,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       slot.assignedElements({
         flatten: true,
       }).length > 0;
-    this.scheduleAttachmentOverflowUpdate();
+    this.scheduleAttachmentScrollbarUpdate();
   }
 
   private handleFollowUpSlotChange(event: Event) {
@@ -485,62 +454,10 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       this.hostElement.querySelectorAll('[slot="follow-up"]').length > 0;
   }
 
-  private getAttachmentElements() {
-    return Array.from(
-      this.hostElement.querySelectorAll<HTMLIxChatPromptAttachmentElement>(
-        '[slot="attachments"]'
-      )
-    );
-  }
-
-  private getAttachmentOverflowEntry(
-    element: HTMLIxChatPromptAttachmentElement,
-    index: number
-  ): AttachmentOverflowEntry {
-    return {
-      canRemove: !element.hideRemoveButton,
-      icon: element.icon,
-      index,
-      label: element.fileName || `Attachment ${index + 1}`,
-      removeAriaLabel: element.removeAriaLabel,
-    };
-  }
-
-  private updateAttachmentOverflowEntries(entries: AttachmentOverflowEntry[]) {
-    const hasChanged =
-      entries.length !== this.attachmentOverflowEntries.length ||
-      entries.some((entry, index) => {
-        const currentEntry = this.attachmentOverflowEntries[index];
-        return (
-          entry.canRemove !== currentEntry?.canRemove ||
-          entry.icon !== currentEntry?.icon ||
-          entry.index !== currentEntry.index ||
-          entry.label !== currentEntry?.label ||
-          entry.removeAriaLabel !== currentEntry?.removeAriaLabel
-        );
-      });
-
-    if (hasChanged) {
-      this.attachmentOverflowEntries = entries;
-    }
-  }
-
-  private getAttachmentOverflowEntries(
-    attachmentElements: HTMLIxChatPromptAttachmentElement[],
-    overflowAttachmentElements: HTMLIxChatPromptAttachmentElement[]
-  ) {
-    return overflowAttachmentElements.map((element) =>
-      this.getAttachmentOverflowEntry(
-        element,
-        Math.max(attachmentElements.indexOf(element), 0)
-      )
-    );
-  }
-
   private initAttachmentResizeObserver(attachments: HTMLDivElement) {
     this.attachmentResizeObserver?.disconnect();
     this.attachmentResizeObserver = new ResizeObserver(() =>
-      this.scheduleAttachmentOverflowUpdate()
+      this.scheduleAttachmentScrollbarUpdate()
     );
     this.attachmentResizeObserver.observe(attachments);
   }
@@ -548,7 +465,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   private initAttachmentMutationObserver() {
     this.attachmentMutationObserver = createMutationObserver(() => {
       this.updateHasFollowUp();
-      this.scheduleAttachmentOverflowUpdate();
+      this.scheduleAttachmentScrollbarUpdate();
     });
     this.attachmentMutationObserver.observe(this.hostElement, {
       attributes: true,
@@ -557,282 +474,37 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     });
   }
 
-  private scheduleAttachmentOverflowUpdate() {
-    if (this.isAttachmentOverflowUpdateQueued) {
+  private scheduleAttachmentScrollbarUpdate() {
+    if (this.isAttachmentScrollbarUpdateQueued) {
       return;
     }
 
-    this.isAttachmentOverflowUpdateQueued = true;
+    this.isAttachmentScrollbarUpdateQueued = true;
     requestAnimationFrameNoNgZone(() => {
-      this.isAttachmentOverflowUpdateQueued = false;
-      this.updateAttachmentOverflow();
+      this.isAttachmentScrollbarUpdateQueued = false;
+      this.updateAttachmentScrollbar();
     });
   }
 
-  private restoreAttachmentVisibility(attachmentElements: HTMLElement[]) {
-    attachmentElements.forEach((element) => {
-      element.style.display = '';
-    });
-  }
-
-  private isElementOverflowing(
-    attachments: HTMLDivElement,
-    element: HTMLElement
-  ) {
-    const attachmentsRect = attachments.getBoundingClientRect();
-    const elementRect = element.getBoundingClientRect();
-
-    return (
-      elementRect.bottom - attachmentsRect.bottom > 1 ||
-      elementRect.right - attachmentsRect.right > 1 ||
-      attachmentsRect.left - elementRect.left > 1
-    );
-  }
-
-  private getLayoutOverflowingAttachmentElements(
-    attachments: HTMLDivElement,
-    attachmentElements: HTMLIxChatPromptAttachmentElement[]
-  ) {
-    const overflowingAttachmentElements = attachmentElements.filter((element) =>
-      this.isElementOverflowing(attachments, element)
-    );
-
-    if (overflowingAttachmentElements.length > 0) {
-      return overflowingAttachmentElements;
-    }
-
-    if (
-      attachments.scrollHeight - attachments.clientHeight > 1 ||
-      attachments.scrollWidth - attachments.clientWidth > 1
-    ) {
-      return attachmentElements.slice(-1);
-    }
-
-    return [];
-  }
-
-  private getLayoutOverflowingAttachmentCount(
-    attachments: HTMLDivElement,
-    attachmentElements: HTMLIxChatPromptAttachmentElement[]
-  ) {
-    return this.getLayoutOverflowingAttachmentElements(
-      attachments,
-      attachmentElements
-    ).length;
-  }
-
-  private measureAttachmentOverflow(
-    attachments: HTMLDivElement,
-    attachmentElements: HTMLIxChatPromptAttachmentElement[]
-  ) {
-    const overflowButton = attachments.querySelector<HTMLElement>(
-      '.attachment-overflow'
-    );
-    const overflowButtonDisplay = overflowButton?.style.display;
-
-    this.restoreAttachmentVisibility(attachmentElements);
-    if (overflowButton) {
-      overflowButton.style.display = 'none';
-    }
-
-    const layoutOverflowingAttachmentElements =
-      this.getLayoutOverflowingAttachmentElements(
-        attachments,
-        attachmentElements
-      );
-    const layoutOverflowingAttachmentCount =
-      layoutOverflowingAttachmentElements.length;
-    const hasOverflow = layoutOverflowingAttachmentCount > 0;
-
-    if (!overflowButton) {
-      layoutOverflowingAttachmentElements.forEach((attachmentElement) => {
-        attachmentElement.style.display = 'none';
-      });
-
-      return {
-        entries: this.getAttachmentOverflowEntries(
-          attachmentElements,
-          layoutOverflowingAttachmentElements
-        ),
-        hasOverflow,
-        overflowingAttachmentCount: layoutOverflowingAttachmentCount,
-      };
-    }
-
-    overflowButton.style.display = overflowButtonDisplay ?? '';
-
-    if (!hasOverflow) {
-      return {
-        entries: [],
-        hasOverflow: false,
-        overflowingAttachmentCount: 0,
-      };
-    }
-
-    let hiddenAttachmentCount = 0;
-    const visibleAttachmentElements = [...attachmentElements];
-    const hiddenAttachmentElements: HTMLIxChatPromptAttachmentElement[] = [];
-
-    while (
-      visibleAttachmentElements.length > 0 &&
-      (this.isElementOverflowing(attachments, overflowButton) ||
-        this.getLayoutOverflowingAttachmentCount(
-          attachments,
-          visibleAttachmentElements
-        ) > 0)
-    ) {
-      const attachmentElement = visibleAttachmentElements.pop();
-      if (!attachmentElement) {
-        break;
-      }
-
-      attachmentElement.style.display = 'none';
-      hiddenAttachmentElements.push(attachmentElement);
-      hiddenAttachmentCount += 1;
-    }
-
-    return {
-      entries: this.getAttachmentOverflowEntries(
-        attachmentElements,
-        hiddenAttachmentElements.reverse()
-      ),
-      hasOverflow: true,
-      overflowingAttachmentCount: hiddenAttachmentCount,
-    };
-  }
-
-  private updateAttachmentOverflow() {
+  private updateAttachmentScrollbar() {
     const attachments = this.attachmentsRef.current;
     if (!attachments) {
       return;
     }
 
-    const attachmentElements = this.getAttachmentElements();
-    if (this.attachmentLayout !== 'wrap' || attachmentElements.length === 0) {
-      this.restoreAttachmentVisibility(attachmentElements);
-      this.updateAttachmentOverflowEntries([]);
-      if (this.hasAttachmentOverflow) {
-        this.hasAttachmentOverflow = false;
-      }
-      if (this.overflowingAttachmentCount !== 0) {
-        this.overflowingAttachmentCount = 0;
-      }
-      return;
+    const computedStyle = getComputedStyle(attachments);
+    const hasHorizontalScrollbar =
+      ['auto', 'scroll'].includes(computedStyle.overflowX) &&
+      attachments.scrollWidth - attachments.clientWidth > 1;
+    const hasVerticalScrollbar =
+      ['auto', 'scroll'].includes(computedStyle.overflowY) &&
+      attachments.scrollHeight - attachments.clientHeight > 1;
+    const hasAttachmentScrollbar =
+      this.hasAttachments && (hasHorizontalScrollbar || hasVerticalScrollbar);
+
+    if (this.hasAttachmentScrollbar !== hasAttachmentScrollbar) {
+      this.hasAttachmentScrollbar = hasAttachmentScrollbar;
     }
-
-    if (attachments.clientHeight === 0 || attachments.clientWidth === 0) {
-      return;
-    }
-
-    const { entries, hasOverflow, overflowingAttachmentCount } =
-      this.measureAttachmentOverflow(attachments, attachmentElements);
-
-    this.updateAttachmentOverflowEntries(entries);
-    if (this.hasAttachmentOverflow !== hasOverflow) {
-      this.hasAttachmentOverflow = hasOverflow;
-    }
-    if (this.overflowingAttachmentCount !== overflowingAttachmentCount) {
-      this.overflowingAttachmentCount = overflowingAttachmentCount;
-    }
-  }
-
-  private async closeAttachmentOverflow() {
-    const dropdown =
-      await this.attachmentOverflowRef.current?.getDropdownReference();
-    if (dropdown) {
-      dropdown.show = false;
-    }
-  }
-
-  private handleAttachmentOverflowItemClick(event: MouseEvent, index: number) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.getAttachmentElements()[index]?.click();
-    this.closeAttachmentOverflow();
-  }
-
-  private handleAttachmentOverflowRemoveClick(
-    event: MouseEvent,
-    index: number
-  ) {
-    event.stopPropagation();
-    this.getAttachmentElements()[index]?.dispatchEvent(
-      new CustomEvent('removeClick', {
-        bubbles: true,
-        composed: true,
-      })
-    );
-  }
-
-  private renderAttachmentOverflowItems() {
-    return this.attachmentOverflowEntries.map((entry) => (
-      <div
-        class="attachment-overflow-menu-item"
-        data-attachment-overflow-generated
-        data-attachment-overflow-label={entry.label}
-      >
-        <ix-dropdown-item
-          class="attachment-overflow-generated-item"
-          icon={entry.icon}
-          ariaLabelButton={entry.label}
-          onClick={(event: MouseEvent) =>
-            this.handleAttachmentOverflowItemClick(event, entry.index)
-          }
-        >
-          {entry.label}
-        </ix-dropdown-item>
-        {entry.canRemove && (
-          <ix-icon-button
-            aria-label={entry.removeAriaLabel}
-            class="attachment-overflow-remove-button"
-            icon={iconCloseSmall}
-            size="24"
-            variant="subtle-tertiary"
-            onClick={(event: MouseEvent) =>
-              this.handleAttachmentOverflowRemoveClick(event, entry.index)
-            }
-          ></ix-icon-button>
-        )}
-      </div>
-    ));
-  }
-
-  private getAttachmentOverflowCount() {
-    const attachmentOverflowCount = Number(this.attachmentOverflowCount);
-    if (
-      Number.isFinite(attachmentOverflowCount) &&
-      attachmentOverflowCount > 0
-    ) {
-      return attachmentOverflowCount;
-    }
-
-    const overflowCount = this.overflowingAttachmentCount;
-
-    return overflowCount > 0 ? overflowCount : undefined;
-  }
-
-  private renderAttachmentOverflow() {
-    if (!this.hasAttachmentOverflow || this.attachmentLayout !== 'wrap') {
-      return null;
-    }
-
-    const attachmentOverflowCount = this.getAttachmentOverflowCount() ?? 1;
-
-    return (
-      <ix-dropdown-button
-        ref={this.attachmentOverflowRef}
-        ariaLabelDropdownButton={`Show ${attachmentOverflowCount} more attachments`}
-        class="attachment-overflow"
-        label={`+ ${attachmentOverflowCount} ${this.attachmentOverflowLabel}`}
-        placement="bottom-end"
-        variant="tertiary"
-        onShowChanged={(event: CustomEvent<boolean>) =>
-          this.attachmentOverflowChange.emit(event.detail)
-        }
-      >
-        {this.renderAttachmentOverflowItems()}
-      </ix-dropdown-button>
-    );
   }
 
   override render() {
@@ -861,16 +533,14 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
               attachments: true,
               'attachments--wrap': this.attachmentLayout === 'wrap',
               'attachments--scroll': this.attachmentLayout === 'scroll',
-              'has-attachment-overflow': this.hasAttachmentOverflow,
-              'has-attachments':
-                this.hasAttachments || this.hasAttachmentOverflow,
+              'has-attachment-scrollbar': this.hasAttachmentScrollbar,
+              'has-attachments': this.hasAttachments,
             }}
           >
             <slot
               name="attachments"
               onSlotchange={(event) => this.handleAttachmentsSlotChange(event)}
             ></slot>
-            {this.renderAttachmentOverflow()}
           </div>
           <textarea
             id={this.getHostElementId() + '-textarea'}

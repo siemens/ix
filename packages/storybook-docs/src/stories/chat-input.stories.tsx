@@ -105,7 +105,7 @@ export const WithAttachments: Story = {
   render: stencil((args) =>
     renderChatInput(
       args,
-      Array.from({ length: 9 }, (_, index) => createAttachment(index + 1))
+      Array.from({ length: 3 }, (_, index) => createAttachment(index + 1))
     )
   ),
   args: {},

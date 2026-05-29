@@ -552,7 +552,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatInput,
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -560,8 +560,8 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'attachmentOverflowCount', 'attachmentOverflowLabel', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'attachmentOverflowChange'],
+  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
 })
 export class IxChatInput {
   protected el: HTMLIxChatInputElement;
@@ -569,7 +569,6 @@ export class IxChatInput {
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   @Output() ixChange = new EventEmitter<CustomEvent<string>>();
   @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
-  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -594,10 +593,6 @@ export declare interface IxChatInput extends Components.IxChatInput {
    * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
-   */
-  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 

@@ -403,8 +403,7 @@ export type IxChatInputEvents = {
     onValueChange: EventName<IxChatInputCustomEvent<string>>,
     onIxBlur: EventName<IxChatInputCustomEvent<void>>,
     onIxChange: EventName<IxChatInputCustomEvent<string>>,
-    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>,
-    onAttachmentOverflowChange: EventName<IxChatInputCustomEvent<boolean>>
+    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>
 };
 
 export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput> = /*@__PURE__*/ createComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>({
@@ -421,8 +420,6 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         characterLimit: 'character-limit',
         characterLimitWarningThreshold: 'character-limit-warning-threshold',
         attachmentLayout: 'attachment-layout',
-        attachmentOverflowCount: 'attachment-overflow-count',
-        attachmentOverflowLabel: 'attachment-overflow-label',
         minRows: 'min-rows',
         maxRows: 'max-rows',
         insertLineBreakOnEnter: 'insert-line-break-on-enter',
