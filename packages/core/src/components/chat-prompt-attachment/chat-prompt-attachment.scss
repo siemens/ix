@@ -13,76 +13,76 @@
   display: inline-block;
 
   @include component.ix-component;
+
+  .attachment-chip {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .content,
+  .status-content {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .content {
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .status-content {
+    gap: var(--theme-space-1);
+  }
+
+  .status-content ix-spinner {
+    scale: 1.7;
+    margin-left: 0.1875rem;
+  }
+
+  .file-name {
+    display: inline-flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .file-name__base {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: end;
+  }
+
+  .file-name__extension {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .status-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  ix-icon {
+    flex: 0 0 auto;
+  }
+
+  ix-spinner {
+    flex: 0 0 auto;
+  }
 }
 
 :host(.preview-supported) {
   cursor: pointer;
 }
 
-.attachment-chip {
-  display: block;
-  width: 100%;
-  max-width: 20rem;
-}
-
-.content,
-.status-content {
-  display: inline-flex;
-  align-items: center;
-  min-width: 0;
-}
-
-.content {
-  flex: 1 1 auto;
-  max-width: 100%;
-  width: 100%;
-}
-
-.status-content {
-  gap: var(--theme-space-1);
-}
-
-.status-content ix-spinner {
-  scale: 1.7;
-  margin-left: 0.1875rem;
-}
-
-.file-name {
-  display: inline-flex;
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.file-name__base {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: end;
-}
-
-.file-name__extension {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.status-label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 :host(.has-remove-button) {
   gap: var(--theme-space-0);
-}
-
-ix-icon {
-  flex: 0 0 auto;
-}
-
-ix-spinner {
-  flex: 0 0 auto;
 }
