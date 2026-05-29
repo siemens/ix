@@ -7,182 +7,38 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { iconInfo } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
+import {
+  HOVER_HIDE_MS,
+  OUTSIDE_CLICK_X,
+  OUTSIDE_CLICK_Y,
+} from './popover.constants';
+import {
+  interactivePopoverMarkup,
+  nestedPopoverMarkup,
+  placementTestMarkup,
+} from './popover.fixtures';
+import { expectPlacement, mountPopover, PopoverPage } from './popover.page';
 
 const html = String.raw;
-const HOVER_HIDE_MS = 200;
-
-// Mouse coordinates for testing click/hover interactions
-const OUTSIDE_CLICK_X = 5;
-const OUTSIDE_CLICK_Y = 5;
-const FAR_CORNER_X = 800;
-const FAR_CORNER_Y = 600;
-
-function popoverDialog(popover: Locator) {
-  return popover.locator('[role="dialog"], [role="status"]').first();
-}
-
-async function expectPopoverOpen(popover: Locator) {
-  await expect(popover).toHaveClass(/visible/);
-  await expect(popoverDialog(popover)).toBeVisible();
-}
-
-async function expectPopoverClosed(popover: Locator) {
-  await expect(popover).not.toHaveClass(/visible/);
-  await expect(popoverDialog(popover)).not.toBeVisible();
-}
-
-async function openViaClick(page: Page, triggerId = 'trigger') {
-  const trigger = page.locator(`ix-button#${triggerId}`);
-  await expect(trigger).toHaveAttribute('data-ix-popover-trigger', '');
-  await trigger.click();
-}
-
-async function popoverForTrigger(page: Page, triggerId = 'trigger') {
-  const trigger = page.locator(`ix-button#${triggerId}`);
-  await expect(trigger).toHaveAttribute('aria-controls', /.+/);
-  const popoverId = await trigger.getAttribute('aria-controls');
-  return page.locator(`#${popoverId}`);
-}
-
-async function mountPopover(
-  mount: (markup: string) => Promise<unknown>,
-  page: Page,
-  markup: string
-) {
-  await mount(markup);
-  // Wait for the component to hydrate - using first() is acceptable here
-  // as we just need to ensure at least one popover is hydrated
-  await expect(page.locator('ix-popover').first()).toHaveClass(/hydrated/);
-}
-
-function placementTestMarkup(placement: 'top' | 'bottom' | 'left' | 'right') {
-  return html`
-    <div
-      style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 12rem;"
-    >
-      ${interactivePopoverMarkup({
-        placement,
-        hasSpike: true,
-        showFooterDismiss: false,
-      })}
-    </div>
-  `;
-}
-
-function interactivePopoverMarkup(options?: {
-  id?: string;
-  triggerId?: string;
-  triggerLabel?: string;
-  placement?: string;
-  closeOnClickOutside?: boolean;
-  triggerMode?: string;
-  hasSpike?: boolean;
-  ariaLabel?: string;
-  hideClose?: boolean;
-  showFooterDismiss?: boolean;
-}) {
-  const {
-    id = 'popover',
-    triggerId = 'trigger',
-    triggerLabel = 'Open popover',
-    placement = 'bottom',
-    closeOnClickOutside,
-    triggerMode,
-    hasSpike,
-    ariaLabel,
-    hideClose,
-    showFooterDismiss = true,
-  } = options ?? {};
-
-  return html`
-    <ix-button id="${triggerId}">${triggerLabel}</ix-button>
-    <ix-popover
-      id="${id}"
-      trigger="${triggerId}"
-      placement="${placement}"
-      ${closeOnClickOutside ? 'close-on-click-outside' : ''}
-      ${triggerMode ? `trigger-mode="${triggerMode}"` : ''}
-      ${hasSpike ? 'has-spike' : ''}
-      ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
-    >
-      <ix-popover-header ${hideClose ? 'hide-close' : ''}
-        >Popover title</ix-popover-header
-      >
-      <ix-popover-content>Popover body content</ix-popover-content>
-      ${showFooterDismiss
-        ? html`<ix-popover-footer>
-            <ix-button id="${id}-dismiss">Dismiss</ix-button>
-          </ix-popover-footer>`
-        : ''}
-    </ix-popover>
-  `;
-}
-
-async function expectPlacement(
-  page: Page,
-  triggerSelector: string,
-  popover: Locator,
-  placement: 'top' | 'bottom' | 'left' | 'right'
-) {
-  await expect(async () => {
-    const triggerBox = await page.locator(triggerSelector).boundingBox();
-    const dialogBox = await popoverDialog(popover).boundingBox();
-
-    expect(triggerBox).not.toBeNull();
-    expect(dialogBox).not.toBeNull();
-
-    const tolerance = 24;
-
-    if (placement === 'bottom') {
-      expect(dialogBox!.y).toBeGreaterThanOrEqual(
-        triggerBox!.y + triggerBox!.height - tolerance
-      );
-    }
-
-    if (placement === 'top') {
-      expect(dialogBox!.y + dialogBox!.height).toBeLessThanOrEqual(
-        triggerBox!.y + tolerance
-      );
-    }
-
-    if (placement === 'right') {
-      expect(dialogBox!.x).toBeGreaterThanOrEqual(
-        triggerBox!.x + triggerBox!.width - tolerance
-      );
-    }
-
-    if (placement === 'left') {
-      expect(dialogBox!.x + dialogBox!.width).toBeLessThanOrEqual(
-        triggerBox!.x + tolerance
-      );
-    }
-  }).toPass({ timeout: 3000 });
-}
-
-async function hasSpikeElement(popover: Locator) {
-  return popover.evaluate(
-    (element) => !!element.shadowRoot?.querySelector('.spike')
-  );
-}
 
 regressionTest.describe('ix-popover', () => {
   regressionTest.describe('rendering', () => {
     regressionTest(
       'hydrates and is closed by default',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        const popover = page.locator('ix-popover').first();
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
 
-        await expect(page.locator('ix-button#trigger')).toHaveAttribute(
+        await expect(popover.trigger).toHaveAttribute(
           'data-ix-popover-trigger',
           ''
         );
-        await expect(popover).toHaveClass(/hydrated/);
-        await expect(popover).not.toHaveClass(/visible/);
-        await expect(popoverDialog(popover)).not.toBeVisible();
+        await expect(popover.popoverElement).toHaveClass(/hydrated/);
+        await expect(popover.popoverElement).not.toHaveClass(/visible/);
+        await expect(popover.dialog(popover.popoverElement)).not.toBeVisible();
       }
     );
 
@@ -208,13 +64,16 @@ regressionTest.describe('ix-popover', () => {
           { icons: { iconInfo } }
         );
 
-        await openViaClick(page);
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
+        const popoverEl = await popover.getPopover();
 
-        await expect(popover.locator('ix-popover-header')).toBeVisible();
-        await expect(popover.locator('ix-popover-image')).toBeVisible();
-        await expect(popover.locator('ix-popover-content')).toHaveText(/Body/);
-        await expect(popover.locator('ix-popover-footer')).toContainText(
+        await expect(popoverEl.locator('ix-popover-header')).toBeVisible();
+        await expect(popoverEl.locator('ix-popover-image')).toBeVisible();
+        await expect(popoverEl.locator('ix-popover-content')).toHaveText(
+          /Body/
+        );
+        await expect(popoverEl.locator('ix-popover-footer')).toContainText(
           'Step 1/2'
         );
       }
@@ -230,7 +89,8 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(page.locator('ix-popover-content')).toHaveText(
           /Information only/
         );
@@ -240,10 +100,12 @@ regressionTest.describe('ix-popover', () => {
     regressionTest(
       'uses dialog popover manual in shadow DOM',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        await openViaClick(page);
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
+        await popover.open();
 
-        const dialog = (await popoverForTrigger(page)).getByRole('dialog');
+        const popoverEl = await popover.getPopover();
+        const dialog = popoverEl.getByRole('dialog');
         await expect(dialog).toHaveAttribute('popover', 'manual');
       }
     );
@@ -253,80 +115,95 @@ regressionTest.describe('ix-popover', () => {
     regressionTest(
       'opens and closes on trigger click',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        const popover = await popoverForTrigger(page);
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
-        await expectPopoverOpen(popover);
+        await popover.open();
+        await popover.expectOpen();
 
-        await openViaClick(page);
-        await expectPopoverClosed(popover);
+        await popover.open();
+        await popover.expectClosed();
       }
     );
 
     regressionTest('opens on Enter and Space', async ({ mount, page }) => {
-      await mount(interactivePopoverMarkup());
-      const popover = await popoverForTrigger(page);
-      const trigger = page.locator('ix-button#trigger');
+      await mountPopover(mount, page, interactivePopoverMarkup());
+      const popover = new PopoverPage(page);
 
-      await trigger.focus();
+      await popover.trigger.focus();
       await page.keyboard.press('Enter');
-      await expectPopoverOpen(popover);
+      await popover.expectOpen();
 
       await page.keyboard.press('Escape');
-      await expectPopoverClosed(popover);
+      await popover.expectClosed();
 
-      await trigger.focus();
+      await popover.trigger.focus();
       await page.keyboard.press('Space');
-      await expectPopoverOpen(popover);
+      await popover.expectOpen();
     });
 
     regressionTest(
       'emits showChanged when opening and closing',
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
+        await PopoverPage.installShowChangedTracker(page);
 
-        await page.evaluate(() => {
-          (
-            window as unknown as { __showChangedEvents: boolean[] }
-          ).__showChangedEvents = [];
-          document
-            .querySelector('ix-popover')
-            ?.addEventListener('showChanged', (event) => {
-              (
-                window as unknown as { __showChangedEvents: boolean[] }
-              ).__showChangedEvents.push(
-                (event as CustomEvent<boolean>).detail
-              );
-            });
-        });
+        const popover = new PopoverPage(page);
+        await popover.open();
+        await popover.expectShowChangedEvents([true]);
 
-        await openViaClick(page);
-        await expect
-          .poll(() =>
-            page.evaluate(
-              () =>
-                (window as unknown as { __showChangedEvents: boolean[] })
-                  .__showChangedEvents
-            )
-          )
-          .toEqual([true]);
-
-        await page.keyboard.press('Escape');
-        await expect
-          .poll(() =>
-            page.evaluate(
-              () =>
-                (window as unknown as { __showChangedEvents: boolean[] })
-                  .__showChangedEvents
-            )
-          )
-          .toEqual([true, false]);
+        await popover.closeWithEscape();
+        await popover.expectShowChangedEvents([true, false]);
       }
     );
   });
 
+  regressionTest.describe('placement and spike', () => {
+    (['top', 'bottom', 'left', 'right'] as const).forEach((placement) => {
+      regressionTest(
+        `positions popover ${placement}`,
+        async ({ mount, page }) => {
+          await mount(placementTestMarkup(placement));
+          const popover = new PopoverPage(page);
+          await popover.open();
+
+          const popoverEl = await popover.getPopover();
+          await expectPlacement(
+            page,
+            'ix-button#trigger',
+            popoverEl,
+            placement
+          );
+        }
+      );
+    });
+
+    regressionTest(
+      'shows spike when hasSpike is true',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ hasSpike: true })
+        );
+        const popover = new PopoverPage(page);
+        await popover.open();
+
+        expect(await popover.hasSpike(await popover.getPopover())).toBe(true);
+      }
+    );
+
+    regressionTest('hides spike by default', async ({ mount, page }) => {
+      await mountPopover(mount, page, interactivePopoverMarkup());
+      const popover = new PopoverPage(page);
+      await popover.open();
+
+      expect(await popover.hasSpike(await popover.getPopover())).toBe(false);
+    });
+  });
+
   regressionTest.describe('hover trigger', () => {
+    // Serial mode prevents hover state leakage between tests
     regressionTest.describe.configure({ mode: 'serial' });
 
     regressionTest(
@@ -339,16 +216,16 @@ regressionTest.describe('ix-popover', () => {
           })
         );
 
-        const popover = await popoverForTrigger(page);
-        const trigger = page.locator('ix-button#trigger');
+        const popover = new PopoverPage(page);
+        // aria-controls is set at trigger registration, before the first open
+        const popoverEl = await popover.linkedPopover();
 
-        await trigger.hover();
-        await expectPopoverOpen(popover);
-
-        await page.mouse.move(FAR_CORNER_X, FAR_CORNER_Y);
-        await expect(async () => {
-          await expectPopoverClosed(popover);
-        }).toPass({ timeout: 3000 });
+        await popover.trigger.hover();
+        await popover.expectOpen(popoverEl);
+        await popover.pointerDismissFarCorner();
+        await expect(async () => popover.expectClosed(popoverEl)).toPass({
+          timeout: 3000,
+        });
       }
     );
 
@@ -362,16 +239,18 @@ regressionTest.describe('ix-popover', () => {
           })
         );
 
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
         const trigger = page.locator('ix-button#trigger button');
 
-        await trigger.hover();
-        await expectPopoverOpen(popover);
+        const popoverEl = await popover.linkedPopover();
 
-        await popoverDialog(popover).hover();
+        await trigger.hover();
+        await popover.expectOpen(popoverEl);
+
+        await popover.dialog(popoverEl).hover();
         // Wait for hide delay to confirm popover STAYS open (testing negative case)
         await page.waitForTimeout(HOVER_HIDE_MS);
-        await expectPopoverOpen(popover);
+        await popover.expectOpen(popoverEl);
       }
     );
 
@@ -385,15 +264,15 @@ regressionTest.describe('ix-popover', () => {
           })
         );
 
-        const popover = await popoverForTrigger(page);
-        const trigger = page.locator('ix-button#trigger');
+        const popover = new PopoverPage(page);
+        const popoverEl = await popover.linkedPopover();
 
-        await trigger.focus();
-        await expectPopoverOpen(popover);
+        await popover.trigger.focus();
+        await popover.expectOpen(popoverEl);
 
-        await page.keyboard.press('Escape');
-        await expectPopoverClosed(popover);
-        await expect(trigger).toBeFocused();
+        await popover.closeWithEscape();
+        await popover.expectClosed(popoverEl);
+        await popover.expectTriggerFocused();
       }
     );
 
@@ -408,16 +287,17 @@ regressionTest.describe('ix-popover', () => {
           })
         );
 
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
         const trigger = page.locator('ix-button#trigger button');
 
-        await trigger.hover();
-        await expectPopoverOpen(popover);
+        const popoverEl = await popover.linkedPopover();
 
-        await page.mouse.move(FAR_CORNER_X, FAR_CORNER_Y);
-        await expect(async () => {
-          await expectPopoverClosed(popover);
-        }).toPass({ timeout: 3000 });
+        await trigger.hover();
+        await popover.expectOpen(popoverEl);
+        await popover.pointerDismissFarCorner();
+        await expect(async () => popover.expectClosed(popoverEl)).toPass({
+          timeout: 3000,
+        });
 
         await expect
           .poll(async () =>
@@ -433,76 +313,44 @@ regressionTest.describe('ix-popover', () => {
     );
   });
 
-  regressionTest.describe('placement and spike', () => {
-    for (const placement of ['top', 'bottom', 'left', 'right'] as const) {
-      regressionTest(
-        `positions popover ${placement}`,
-        async ({ mount, page }) => {
-          await mount(placementTestMarkup(placement));
-
-          const popover = await popoverForTrigger(page);
-          await openViaClick(page);
-          await expectPlacement(page, 'ix-button#trigger', popover, placement);
-        }
-      );
-    }
-
-    regressionTest(
-      'shows spike when hasSpike is true',
-      async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ hasSpike: true }));
-        await openViaClick(page);
-
-        expect(await hasSpikeElement(await popoverForTrigger(page))).toBe(true);
-      }
-    );
-
-    regressionTest('hides spike by default', async ({ mount, page }) => {
-      await mount(interactivePopoverMarkup());
-      await openViaClick(page);
-
-      expect(await hasSpikeElement(await popoverForTrigger(page))).toBe(false);
-    });
-  });
-
   regressionTest.describe('programmatic API', () => {
     regressionTest(
       'opens and closes via showPopover and hidePopover',
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
 
         await page.evaluate(async () => {
           await (
             document.querySelector('ix-popover') as HTMLIxPopoverElement
           ).showPopover();
         });
-        const popover = await popoverForTrigger(page);
-        await expectPopoverOpen(popover);
+        await popover.expectOpen();
 
         await page.evaluate(async () => {
           await (
             document.querySelector('ix-popover') as HTMLIxPopoverElement
           ).hidePopover();
         });
-        await expectPopoverClosed(popover);
+        await popover.expectClosed();
       }
     );
 
     regressionTest('reacts to show prop changes', async ({ mount, page }) => {
       await mountPopover(mount, page, interactivePopoverMarkup());
-      const popover = await popoverForTrigger(page);
+      const popover = new PopoverPage(page);
 
       await page.evaluate(() => {
         (document.querySelector('ix-popover') as HTMLIxPopoverElement).show =
           true;
       });
-      await expectPopoverOpen(popover);
+      await popover.expectOpen();
 
       await page.evaluate(() => {
         (document.querySelector('ix-popover') as HTMLIxPopoverElement).show =
           false;
       });
-      await expectPopoverClosed(popover);
+      await popover.expectClosed();
     });
 
     regressionTest(
@@ -510,25 +358,20 @@ regressionTest.describe('ix-popover', () => {
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
 
-        // Call showPopover() multiple times rapidly (tests isOpeningPopover guard)
-        // The guard should prevent re-entrant calls, but first call should succeed
         await page.evaluate(async () => {
           const pop = document.querySelector(
             'ix-popover'
           ) as HTMLIxPopoverElement;
-          // Fire them without awaiting - truly concurrent
           const promises = [
             pop.showPopover(),
             pop.showPopover(),
             pop.showPopover(),
           ];
-          // Wait for the first one to complete
           await promises[0];
         });
 
-        const popover = await popoverForTrigger(page);
-        // Should open successfully (not crash or enter invalid state)
-        await expectPopoverOpen(popover);
+        const popover = new PopoverPage(page);
+        await popover.expectOpen();
       }
     );
   });
@@ -539,7 +382,6 @@ regressionTest.describe('ix-popover', () => {
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
 
-        // Prevent all open attempts
         await page.evaluate(() => {
           document
             .querySelector('ix-popover')
@@ -550,23 +392,19 @@ regressionTest.describe('ix-popover', () => {
             });
         });
 
-        // Use programmatic API instead of Enter key (avoids double-trigger issue)
         await page.evaluate(async () => {
           await (
             document.querySelector('ix-popover') as HTMLIxPopoverElement
           ).showPopover();
         });
 
-        // When showChange is canceled, popover never opens so we check the raw element
-        const popover = page.locator('ix-popover').first();
-
-        // Give a brief moment for any potential state changes, then verify closed
-        // Using expect with retry logic instead of hard timeout
+        const popover = new PopoverPage(page);
         await expect(async () => {
-          await expectPopoverClosed(popover);
-          // Also verify aria-controls was never set (popover never opened)
-          const trigger = page.locator('ix-button#trigger');
-          await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+          await popover.expectClosed(popover.popoverElement);
+          await expect(popover.trigger).toHaveAttribute(
+            'aria-expanded',
+            'false'
+          );
         }).toPass({ timeout: 500 });
       }
     );
@@ -575,10 +413,9 @@ regressionTest.describe('ix-popover', () => {
       'prevents close when showChange is canceled',
       async ({ mount, page }) => {
         await mount(interactivePopoverMarkup());
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
-        await expectPopoverOpen(popover);
+        await popover.open();
 
         await page.evaluate(() => {
           document
@@ -590,20 +427,22 @@ regressionTest.describe('ix-popover', () => {
             });
         });
 
-        await page.keyboard.press('Escape');
-        await expectPopoverOpen(popover);
+        await popover.closeWithEscape();
+        await popover.expectOpen();
       }
     );
   });
 
   regressionTest.describe('close behavior', () => {
     regressionTest('closes on Escape', async ({ mount, page }) => {
-      await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-      const popover = await popoverForTrigger(page);
+      await mountPopover(mount, page, interactivePopoverMarkup());
+      const popover = new PopoverPage(page);
 
-      await openViaClick(page);
+      await popover.open();
+      await popover.expectOpen();
+
       await page.keyboard.press('Escape');
-      await expectPopoverClosed(popover);
+      await popover.expectClosed();
     });
 
     regressionTest(
@@ -614,48 +453,58 @@ regressionTest.describe('ix-popover', () => {
             ${interactivePopoverMarkup()}
           </div>
         `);
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
-        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
-        await expectPopoverOpen(popover);
+        await popover.open();
+        await popover.clickOutside();
+        await popover.expectOpen();
       }
     );
 
     regressionTest(
       'closes on outside click when closeOnClickOutside is enabled',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        const popover = await popoverForTrigger(page);
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
+        await popover.open();
         await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
-        await expectPopoverClosed(popover);
+        await popover.expectClosed();
       }
     );
 
     regressionTest(
       'closes via header close button',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        const popover = await popoverForTrigger(page);
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
-        await popover
-          .locator('ix-popover-header')
-          .getByRole('button', { name: 'Close' })
-          .click();
-        await expectPopoverClosed(popover);
+        await popover.open();
+        await popover.getCloseButton(await popover.getPopover()).click();
+        await popover.expectClosed();
       }
     );
 
     regressionTest(
       'keeps popover open when closeClick is prevented',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        const popover = await popoverForTrigger(page);
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
+        await popover.open();
+
         await page.evaluate(() => {
           const header = document.querySelector('ix-popover-header')!;
           header.addEventListener('closeClick', (event) => {
@@ -663,19 +512,20 @@ regressionTest.describe('ix-popover', () => {
           });
         });
 
-        await popover
-          .locator('ix-popover-header')
-          .getByRole('button', { name: 'Close' })
-          .click();
-        await expectPopoverOpen(popover);
+        await popover.getCloseButton(await popover.getPopover()).click();
+        await popover.expectOpen();
       }
     );
 
     regressionTest(
       'hides header close button when hideClose is set',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ hideClose: true }));
-        await openViaClick(page);
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ hideClose: true })
+        );
+        await new PopoverPage(page).open();
 
         await expect(
           page
@@ -695,16 +545,14 @@ regressionTest.describe('ix-popover', () => {
           page,
           interactivePopoverMarkup({ closeOnClickOutside: true })
         );
-        const popover = await popoverForTrigger(page);
-        const trigger = page.locator('ix-button#trigger');
+        const popover = new PopoverPage(page);
 
-        await trigger.focus();
-        await page.keyboard.press('Enter');
-        await expectPopoverOpen(popover);
+        await popover.openWithKeyboard();
+        const popoverEl = await popover.getPopover();
 
         await page.keyboard.press('Tab');
         await expect(
-          popover.locator('ix-popover-header button[aria-label="Close"]')
+          popoverEl.locator('ix-popover-header button[aria-label="Close"]')
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
@@ -714,7 +562,7 @@ regressionTest.describe('ix-popover', () => {
 
         await page.keyboard.press('Tab');
         await expect(
-          popover.locator('ix-popover-header button[aria-label="Close"]')
+          popoverEl.locator('ix-popover-header button[aria-label="Close"]')
         ).toBeFocused();
       }
     );
@@ -722,35 +570,38 @@ regressionTest.describe('ix-popover', () => {
     regressionTest(
       'restores focus to trigger after Escape for interactive popovers',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        const trigger = page.locator('ix-button#trigger');
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
 
-        await trigger.focus();
-        await page.keyboard.press('Enter');
-        await page.keyboard.press('Escape');
-
-        await expect(trigger).toBeFocused();
+        await popover.openWithKeyboardAndExpectOpen();
+        await popover.closeWithEscape();
+        await popover.expectTriggerFocused();
       }
     );
 
     regressionTest(
       'keeps focus on trigger for informational popovers',
       async ({ mount, page }) => {
-        await mount(html`
-          <ix-button id="trigger">Info</ix-button>
-          <ix-popover id="popover" trigger="trigger">
-            <ix-popover-content>Information only</ix-popover-content>
-          </ix-popover>
-        `);
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <ix-button id="trigger">Info</ix-button>
+            <ix-popover id="popover" trigger="trigger">
+              <ix-popover-content>Information only</ix-popover-content>
+            </ix-popover>
+          `
+        );
 
-        const trigger = page.locator('ix-button#trigger');
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
+        const popoverEl = await popover.openWithKeyboardAndExpectOpen();
 
-        await trigger.focus();
-        await page.keyboard.press('Enter');
-        await expectPopoverOpen(popover);
-        await expect(trigger).toBeFocused();
-        await expect(popoverDialog(popover)).toHaveAttribute(
+        await popover.expectTriggerFocused();
+        await expect(popover.dialog(popoverEl)).toHaveAttribute(
           'aria-modal',
           'false'
         );
@@ -761,10 +612,10 @@ regressionTest.describe('ix-popover', () => {
       'sets aria-modal true for interactive popovers',
       async ({ mount, page }) => {
         await mount(interactivePopoverMarkup());
-        await openViaClick(page);
-
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(
-          popoverDialog(await popoverForTrigger(page))
+          popover.dialog(await popover.getPopover())
         ).toHaveAttribute('aria-modal', 'true');
       }
     );
@@ -773,125 +624,85 @@ regressionTest.describe('ix-popover', () => {
       'delegates focus to the close button when clicking the header',
       async ({ mount, page }) => {
         await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        const popover = await popoverForTrigger(page);
+        const popover = new PopoverPage(page);
 
-        await openViaClick(page);
-        await popover
+        await popover.open();
+        const popoverEl = await popover.getPopover();
+        await popoverEl
           .locator('ix-popover-header')
           .click({ position: { x: 8, y: 8 } });
 
-        await expect(
-          popover
-            .locator('ix-popover-header')
-            .getByRole('button', { name: 'Close' })
-        ).toBeFocused();
+        await expect(popover.getCloseButton(popoverEl)).toBeFocused();
       }
     );
   });
 
   regressionTest.describe('nesting', () => {
-    const nestedMarkup = html`
-      <div style="padding: 8rem 0 0 8rem;">
-        <ix-button id="outer-trigger">Outer</ix-button>
-        <ix-popover
-          id="outer-popover"
-          trigger="outer-trigger"
-          close-on-click-outside
-        >
-          <ix-popover-header>Outer popover</ix-popover-header>
-          <ix-popover-content>
-            <ix-button id="inner-trigger">Inner</ix-button>
-            <ix-popover
-              id="inner-popover"
-              trigger="inner-trigger"
-              close-on-click-outside
-            >
-              <ix-popover-header>Inner popover</ix-popover-header>
-              <ix-popover-content>Nested body</ix-popover-content>
-            </ix-popover>
-          </ix-popover-content>
-        </ix-popover>
-        <ix-button id="other-trigger">Other</ix-button>
-        <ix-popover
-          id="other-popover"
-          trigger="other-trigger"
-          close-on-click-outside
-        >
-          <ix-popover-header>Other popover</ix-popover-header>
-          <ix-popover-content>Other body</ix-popover-content>
-        </ix-popover>
-      </div>
-    `;
-
     regressionTest(
       'keeps parent open when opening nested popover',
       async ({ mount, page }) => {
-        await mount(nestedMarkup);
+        await mount(nestedPopoverMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
 
-        await openViaClick(page, 'outer-trigger');
-        await openViaClick(page, 'inner-trigger');
-        const outer = await popoverForTrigger(page, 'outer-trigger');
-        const inner = await popoverForTrigger(page, 'inner-trigger');
-        await expectPopoverOpen(outer);
-        await expectPopoverOpen(inner);
+        await outer.open();
+        await inner.open();
+
+        await outer.expectOpen();
+        await inner.expectOpen();
       }
     );
 
     regressionTest(
       'dismisses nested popover when parent closes',
       async ({ mount, page }) => {
-        await mount(nestedMarkup);
+        await mount(nestedPopoverMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
 
-        await openViaClick(page, 'outer-trigger');
-        await openViaClick(page, 'inner-trigger');
-        const outer = await popoverForTrigger(page, 'outer-trigger');
-        const inner = await popoverForTrigger(page, 'inner-trigger');
+        await outer.open();
+        await inner.open();
 
-        await outer
-          .locator(':scope > ix-popover-header')
-          .getByRole('button', {
-            name: 'Close',
-          })
-          .click();
+        await outer.scopedHeaderCloseButton(await outer.getPopover()).click();
 
-        await expectPopoverClosed(outer);
-        await expectPopoverClosed(inner);
+        await outer.expectClosed();
+        await inner.expectClosed();
       }
     );
 
     regressionTest(
       'dismisses open chain when unrelated popover opens',
       async ({ mount, page }) => {
-        await mount(nestedMarkup);
+        await mount(nestedPopoverMarkup());
 
-        await openViaClick(page, 'outer-trigger');
-        await openViaClick(page, 'inner-trigger');
-        const outer = await popoverForTrigger(page, 'outer-trigger');
-        const inner = await popoverForTrigger(page, 'inner-trigger');
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
+        const other = new PopoverPage(page, 'other-trigger');
 
-        await openViaClick(page, 'other-trigger');
-        const other = await popoverForTrigger(page, 'other-trigger');
+        await outer.open();
+        await inner.open();
+        await other.open();
 
-        await expectPopoverOpen(other);
-        await expectPopoverClosed(outer);
-        await expectPopoverClosed(inner);
+        await other.expectOpen();
+        await outer.expectClosed();
+        await inner.expectClosed();
       }
     );
 
     regressionTest(
       'dismisses nested popovers on outside click',
       async ({ mount, page }) => {
-        await mount(nestedMarkup);
+        await mount(nestedPopoverMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
 
-        await openViaClick(page, 'outer-trigger');
-        await openViaClick(page, 'inner-trigger');
-        const outer = await popoverForTrigger(page, 'outer-trigger');
-        const inner = await popoverForTrigger(page, 'inner-trigger');
+        await outer.open();
+        await inner.open();
 
         await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
 
-        await expectPopoverClosed(outer);
-        await expectPopoverClosed(inner);
+        await outer.expectClosed();
+        await inner.expectClosed();
       }
     );
   });
@@ -910,7 +721,8 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(page.locator('ix-popover-footer')).toContainText(
           'Step 2/3'
         );
@@ -930,10 +742,11 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
-        const image = page.locator('ix-popover-image img');
-        await expect(image).toHaveAttribute('src', /test\.png/);
-        await expect(image).toHaveAttribute('alt', 'Release preview');
+        const popover = new PopoverPage(page);
+        await popover.open();
+        const img = page.locator('ix-popover-image img');
+        await expect(img).toHaveAttribute('src', /test\.png/);
+        await expect(img).toHaveAttribute('alt', 'Release preview');
       }
     );
 
@@ -949,7 +762,8 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(page.locator('ix-popover-content')).toHaveClass(
           /paddingless/
         );
@@ -969,7 +783,8 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(page.locator('ix-popover-footer')).toHaveClass(
           /alignment-vertical/
         );
@@ -981,30 +796,30 @@ regressionTest.describe('ix-popover', () => {
     regressionTest(
       'updates trigger aria-expanded and aria-controls',
       async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        const popover = await popoverForTrigger(page);
-        const trigger = page.locator('ix-button#trigger');
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
 
-        await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+        await popover.expectAriaExpanded('false');
+        await popover.open();
 
-        await openViaClick(page);
-
-        const popoverId = await popover.getAttribute('id');
-        await expect(trigger).toHaveAttribute('aria-expanded', 'true');
-        await expect(trigger).toHaveAttribute('aria-controls', popoverId!);
+        const popoverEl = await popover.getPopover();
+        await popover.expectAriaExpanded('true');
+        await popover.expectAriaControlsMatch(popoverEl);
       }
     );
 
     regressionTest(
       'forwards host aria-label to dialog',
       async ({ mount, page }) => {
-        await mount(
+        await mountPopover(
+          mount,
+          page,
           interactivePopoverMarkup({ ariaLabel: 'What is new panel' })
         );
-        await openViaClick(page);
-
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(
-          popoverDialog(await popoverForTrigger(page))
+          popover.dialog(await popover.getPopover())
         ).toHaveAttribute('aria-label', 'What is new panel');
       }
     );
@@ -1019,9 +834,10 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
+        const popover = new PopoverPage(page);
+        await popover.open();
         await expect(
-          popoverDialog(await popoverForTrigger(page))
+          popover.dialog(await popover.getPopover())
         ).toHaveAttribute('role', 'status');
       }
     );
@@ -1029,13 +845,15 @@ regressionTest.describe('ix-popover', () => {
     regressionTest(
       'passes axe for interactive popover',
       async ({ mount, page, makeAxeBuilder }) => {
-        await mount(interactivePopoverMarkup({ closeOnClickOutside: true }));
-        await openViaClick(page);
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
+        await popover.open();
 
-        const accessibilityScanResults = await makeAxeBuilder()
-          .exclude('ix-button')
-          .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await popover.runAxe(makeAxeBuilder);
       }
     );
 
@@ -1049,11 +867,10 @@ regressionTest.describe('ix-popover', () => {
           </ix-popover>
         `);
 
-        await openViaClick(page);
-        const accessibilityScanResults = await makeAxeBuilder()
-          .exclude('ix-button')
-          .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        const popover = new PopoverPage(page);
+        await popover.open();
+
+        await popover.runAxe(makeAxeBuilder);
       }
     );
   });
