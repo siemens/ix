@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'mixins/scrollbar' as scrollbar;
 
 :host {
   display: block;
@@ -86,7 +87,8 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: thin;
+
+    @include scrollbar.scrollbar($include-current: true);
   }
   .attachments ::slotted(ix-chat-prompt-attachment) {
     flex: 0 1 auto;
