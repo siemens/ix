@@ -179,8 +179,8 @@ export class Popover implements PopoverInterface {
     return !event.defaultPrevented;
   }
 
-  present(): void {
-    this.openPopover();
+  present(): Promise<void> {
+    return this.openPopover();
   }
 
   dismiss(closeFocus: PopoverCloseFocus = 'restore-trigger'): void {
@@ -193,7 +193,7 @@ export class Popover implements PopoverInterface {
    */
   @Method()
   async showPopover() {
-    popoverController.present(this);
+    await popoverController.presentAndWait(this);
   }
 
   /**
@@ -272,8 +272,12 @@ export class Popover implements PopoverInterface {
 
       this.detectFocusableContent();
 
+      if (!this.triggerElement && this.trigger) {
+        await this.registerTriggerListener();
+      }
+
       if (this.triggerElement) {
-        this.applyPopoverPosition(this.triggerElement, dialog);
+        await this.applyPopoverPosition(this.triggerElement, dialog);
         this.updateTriggerAria(true);
       }
 
@@ -616,39 +620,43 @@ export class Popover implements PopoverInterface {
     });
   }
 
-  private applyPopoverPosition(target: Element, dialog: HTMLDialogElement) {
+  private async applyPopoverPosition(
+    target: Element,
+    dialog: HTMLDialogElement
+  ) {
     this.disposeAutoUpdate?.();
 
-    this.disposeAutoUpdate = autoUpdate(
-      target,
-      dialog,
-      async () => {
-        const result = await this.computePopoverPosition(target, dialog);
+    const updatePosition = async () => {
+      const result = await this.computePopoverPosition(target, dialog);
 
-        const isHidden = result.middlewareData.hide?.referenceHidden;
-        if (isHidden) {
-          popoverController.dismiss(this, 'release');
-          return;
-        }
-
-        if (this.hasSpike && result.middlewareData.arrow) {
-          const spikePos = this.computeSpikePosition(result);
-          if (spikePos && this.spikeElement) {
-            Object.assign(this.spikeElement.style, spikePos);
-          }
-        }
-
-        Object.assign(dialog.style, {
-          left: numberToPixel(result.x),
-          top: numberToPixel(result.y),
-        });
-      },
-      {
-        ancestorResize: true,
-        ancestorScroll: true,
-        elementResize: true,
+      const isHidden = result.middlewareData.hide?.referenceHidden;
+      if (isHidden) {
+        popoverController.dismiss(this, 'release');
+        return result;
       }
-    );
+
+      if (this.hasSpike && result.middlewareData.arrow) {
+        const spikePos = this.computeSpikePosition(result);
+        if (spikePos && this.spikeElement) {
+          Object.assign(this.spikeElement.style, spikePos);
+        }
+      }
+
+      Object.assign(dialog.style, {
+        left: numberToPixel(result.x),
+        top: numberToPixel(result.y),
+      });
+
+      return result;
+    };
+
+    await updatePosition();
+
+    this.disposeAutoUpdate = autoUpdate(target, dialog, updatePosition, {
+      ancestorResize: true,
+      ancestorScroll: true,
+      elementResize: true,
+    });
   }
 
   private registerHoverDialogListener(dialog: HTMLDialogElement) {
@@ -702,8 +710,8 @@ export class Popover implements PopoverInterface {
         >
           <div class="popover-container">
             <slot></slot>
+            {this.hasSpike ? <div class="spike"></div> : null}
           </div>
-          {this.hasSpike ? <div class="spike"></div> : null}
         </dialog>
       </Host>
     );

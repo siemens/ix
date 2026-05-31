@@ -27,7 +27,7 @@ export interface PopoverInterface {
   willPresent?(): boolean;
   willDismiss?(): boolean;
 
-  present(): void;
+  present(): Promise<void>;
   /**
    * @param closeFocus How to handle focus when the popover has focusable content.
    */
@@ -69,6 +69,10 @@ class PopoverController {
   }
 
   present(popover: PopoverInterface) {
+    void this.presentAndWait(popover);
+  }
+
+  async presentAndWait(popover: PopoverInterface): Promise<void> {
     if (!popover.isPresent() && popover.willPresent?.()) {
       this.popovers.forEach((openPopover) => {
         if (openPopover.isPresent()) {
@@ -78,7 +82,7 @@ class PopoverController {
       });
       this.dismissOthers(popover.getId());
       this.nestedPopoverIds[popover.getId()] = popover.getNestedPopoverIds();
-      popover.present();
+      await popover.present();
     }
   }
 
