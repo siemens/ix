@@ -3148,6 +3148,9 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    /**
+     * Floating panel anchored to a trigger element.
+     */
     interface IxPopover {
         /**
           * Dismiss when clicking outside the popover and trigger
@@ -3187,6 +3190,9 @@ export namespace Components {
          */
         "triggerMode": 'click' | 'hover';
     }
+    /**
+     * Main body section of the popover.
+     */
     interface IxPopoverContent {
         /**
           * Remove default inner padding
@@ -3194,6 +3200,9 @@ export namespace Components {
          */
         "paddingless": boolean;
     }
+    /**
+     * Footer section for actions and optional leading metadata.
+     */
     interface IxPopoverFooter {
         /**
           * Button layout direction
@@ -3201,6 +3210,9 @@ export namespace Components {
          */
         "alignment": 'horizontal' | 'vertical';
     }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     */
     interface IxPopoverHeader {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
@@ -5929,6 +5941,9 @@ declare global {
         "showChange": boolean;
         "showChanged": boolean;
     }
+    /**
+     * Floating panel anchored to a trigger element.
+     */
     interface HTMLIxPopoverElement extends Omit<Components.IxPopover, "showPopover" | "hidePopover">, HTMLStencilElement {
         /**
           * Open the popover programmatically
@@ -5951,12 +5966,18 @@ declare global {
         prototype: HTMLIxPopoverElement;
         new (): HTMLIxPopoverElement;
     };
+    /**
+     * Main body section of the popover.
+     */
     interface HTMLIxPopoverContentElement extends Components.IxPopoverContent, HTMLStencilElement {
     }
     var HTMLIxPopoverContentElement: {
         prototype: HTMLIxPopoverContentElement;
         new (): HTMLIxPopoverContentElement;
     };
+    /**
+     * Footer section for actions and optional leading metadata.
+     */
     interface HTMLIxPopoverFooterElement extends Components.IxPopoverFooter, HTMLStencilElement {
     }
     var HTMLIxPopoverFooterElement: {
@@ -5966,6 +5987,9 @@ declare global {
     interface HTMLIxPopoverHeaderElementEventMap {
         "closeClick": MouseEvent;
     }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     */
     interface HTMLIxPopoverHeaderElement extends Components.IxPopoverHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9809,6 +9833,9 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    /**
+     * Floating panel anchored to a trigger element.
+     */
     interface IxPopover {
         /**
           * Dismiss when clicking outside the popover and trigger
@@ -9848,6 +9875,9 @@ declare namespace LocalJSX {
          */
         "triggerMode"?: 'click' | 'hover';
     }
+    /**
+     * Main body section of the popover.
+     */
     interface IxPopoverContent {
         /**
           * Remove default inner padding
@@ -9855,6 +9885,9 @@ declare namespace LocalJSX {
          */
         "paddingless"?: boolean;
     }
+    /**
+     * Footer section for actions and optional leading metadata.
+     */
     interface IxPopoverFooter {
         /**
           * Button layout direction
@@ -9862,6 +9895,9 @@ declare namespace LocalJSX {
          */
         "alignment"?: 'horizontal' | 'vertical';
     }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     */
     interface IxPopoverHeader {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
@@ -12672,9 +12708,21 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * Floating panel anchored to a trigger element.
+             */
             "ix-popover": LocalJSX.IntrinsicElements["ix-popover"] & JSXBase.HTMLAttributes<HTMLIxPopoverElement>;
+            /**
+             * Main body section of the popover.
+             */
             "ix-popover-content": LocalJSX.IntrinsicElements["ix-popover-content"] & JSXBase.HTMLAttributes<HTMLIxPopoverContentElement>;
+            /**
+             * Footer section for actions and optional leading metadata.
+             */
             "ix-popover-footer": LocalJSX.IntrinsicElements["ix-popover-footer"] & JSXBase.HTMLAttributes<HTMLIxPopoverFooterElement>;
+            /**
+             * Header section with optional icon, title, additional items, and close button.
+             */
             "ix-popover-header": LocalJSX.IntrinsicElements["ix-popover-header"] & JSXBase.HTMLAttributes<HTMLIxPopoverHeaderElement>;
             "ix-popover-image": LocalJSX.IntrinsicElements["ix-popover-image"] & JSXBase.HTMLAttributes<HTMLIxPopoverImageElement>;
             /**

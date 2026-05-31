@@ -9,6 +9,12 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * Footer section for actions and optional leading metadata.
+ *
+ * @slot - Footer actions (typically buttons), aligned to the end.
+ * @slot start - Optional leading content (for example version text or step indicators).
+ */
 @Component({
   tag: 'ix-popover-footer',
   styleUrl: 'popover-footer.scss',

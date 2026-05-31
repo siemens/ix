@@ -20,6 +20,12 @@ import {
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { closestPassShadow } from '../utils/shadow-dom';
 
+/**
+ * Header section with optional icon, title, additional items, and close button.
+ *
+ * @slot - Popover title (rendered as heading text).
+ * @slot additional-items - Optional content beside the title (for example `ix-pill`).
+ */
 @Component({
   tag: 'ix-popover-header',
   styleUrl: 'popover-header.scss',

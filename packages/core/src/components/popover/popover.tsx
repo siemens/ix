@@ -72,6 +72,11 @@ const numberToPixel = (value?: number | null) =>
 
 let popoverInstance = 0;
 
+/**
+ * Floating panel anchored to a trigger element.
+ *
+ * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+ */
 @Component({
   tag: 'ix-popover',
   styleUrl: 'popover.scss',
@@ -531,20 +536,54 @@ export class Popover implements PopoverInterface {
     }
   }
 
+  private getTriggerAriaTarget(): HTMLElement {
+    const el = this.triggerElement!;
+    if (el.tagName === 'IX-BUTTON' || el.tagName === 'IX-ICON-BUTTON') {
+      const inner = el.shadowRoot?.querySelector<HTMLElement>(
+        'button, a[role="button"]'
+      );
+      if (inner) {
+        return inner;
+      }
+    }
+    return el;
+  }
+
+  private clearTriggerAriaAttributes(element: HTMLElement) {
+    element.removeAttribute('aria-expanded');
+    element.removeAttribute('aria-controls');
+    element.removeAttribute('aria-haspopup');
+  }
+
   private updateTriggerAria(expanded: boolean) {
     if (!this.triggerElement) {
       return;
     }
-    this.triggerElement.setAttribute('aria-expanded', String(expanded));
-    this.triggerElement.setAttribute('aria-controls', this.uid);
+
+    const target = this.getTriggerAriaTarget();
+    target.setAttribute('aria-haspopup', 'dialog');
+    target.setAttribute('aria-expanded', String(expanded));
+    target.setAttribute('aria-controls', this.uid);
+
+    if (target !== this.triggerElement) {
+      this.clearTriggerAriaAttributes(this.triggerElement);
+    }
   }
 
   private clearTriggerAria() {
     if (!this.triggerElement) {
       return;
     }
-    this.triggerElement.removeAttribute('aria-expanded');
-    this.triggerElement.removeAttribute('aria-controls');
+
+    this.clearTriggerAriaAttributes(this.triggerElement);
+
+    const inner = this.triggerElement.shadowRoot?.querySelector<HTMLElement>(
+      'button, a[role="button"]'
+    );
+    if (inner) {
+      this.clearTriggerAriaAttributes(inner);
+    }
+
     this.triggerElement.removeAttribute('data-ix-popover-trigger');
   }
 
@@ -695,9 +734,10 @@ export class Popover implements PopoverInterface {
     const role = this.ariaAttributes['role'] ?? 'dialog';
 
     return (
-      <Host class={{ visible: this.show }} id={this.uid}>
+      <Host class={{ visible: this.show }} data-ix-popover={this.uid}>
         <dialog
           ref={this.dialogRef}
+          id={this.uid}
           class="dialog"
           popover="manual"
           inert={!this.show}

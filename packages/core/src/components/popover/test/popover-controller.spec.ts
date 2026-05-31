@@ -9,11 +9,7 @@
 
 import { fireEvent } from '@testing-library/dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import {
-  PopoverCloseFocus,
-  PopoverController,
-  PopoverInterface,
-} from '../popover-controller';
+import { PopoverController, PopoverInterface } from '../popover-controller';
 
 type MockPopoverOptions = {
   id: string;
@@ -43,7 +39,7 @@ function createMockPopover({
   const presentMock = vi.fn(async () => {
     open = true;
   });
-  const dismissMock = vi.fn((_closeFocus?: PopoverCloseFocus) => {
+  const dismissMock = vi.fn(() => {
     open = false;
   });
 
