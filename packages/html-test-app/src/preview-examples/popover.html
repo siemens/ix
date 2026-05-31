@@ -13,6 +13,12 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Popover example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+
+      addIcons({ iconInfo });
+    </script>
   </head>
   <body>
     <ix-button id="triggerId">Open</ix-button>

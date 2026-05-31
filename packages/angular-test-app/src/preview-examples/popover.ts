@@ -8,6 +8,10 @@
  */
 
 import { Component } from '@angular/core';
+import { addIcons } from '@siemens/ix-icons';
+import { iconInfo } from '@siemens/ix-icons/icons';
+
+addIcons({ iconInfo });
 
 @Component({
   standalone: false,
