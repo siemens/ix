@@ -16,6 +16,7 @@ import {
   IxPopoverHeader,
   IxPopoverImage,
 } from '@siemens/ix-react';
+import { iconInfo } from '@siemens/ix-icons/icons';
 import { useRef } from 'react';
 
 const POPOVER_IMAGE_SRC =
@@ -37,7 +38,7 @@ export default () => {
         aria-label="Release highlights"
       >
         <IxPopoverHeader
-          icon="info"
+          icon={iconInfo}
           iconColor="color-info"
           ariaLabelIcon="Information"
           ariaLabelCloseIconButton="Close popover"

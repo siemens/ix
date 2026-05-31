@@ -9,6 +9,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { iconInfo } from '@siemens/ix-icons/icons';
 import {
   IxButton,
   IxPill,
@@ -41,7 +42,7 @@ const onCancel = () => {
     aria-label="Release highlights"
   >
     <IxPopoverHeader
-      icon="info"
+      :icon="iconInfo"
       icon-color="color-info"
       aria-label-icon="Information"
       aria-label-close-icon-button="Close popover"
