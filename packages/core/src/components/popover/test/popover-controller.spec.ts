@@ -40,7 +40,7 @@ function createMockPopover({
 } {
   let open = isPresent;
 
-  const presentMock = vi.fn(() => {
+  const presentMock = vi.fn(async () => {
     open = true;
   });
   const dismissMock = vi.fn((_closeFocus?: PopoverCloseFocus) => {
