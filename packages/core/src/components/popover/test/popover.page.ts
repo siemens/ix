@@ -42,6 +42,23 @@ export class PopoverPage {
     return this.page.locator(`ix-button#${this.triggerId}`);
   }
 
+  private async getTriggerAriaAttribute(
+    attribute: 'aria-controls' | 'aria-expanded'
+  ): Promise<string | null> {
+    return this.page.evaluate(
+      ({ triggerId, attributeName }) => {
+        const host =
+          document.querySelector(`ix-button#${triggerId}`) ??
+          document.getElementById(triggerId);
+        const inner = host?.shadowRoot?.querySelector<HTMLElement>(
+          'button, a[role="button"]'
+        );
+        return (inner ?? host)?.getAttribute(attributeName) ?? null;
+      },
+      { triggerId: this.triggerId, attributeName: attribute }
+    );
+  }
+
   /**
    * Resolves the popover host via the trigger's `aria-controls` id.
    * That id is assigned when the trigger registers (typically before the first open).
@@ -51,9 +68,13 @@ export class PopoverPage {
    * after open/close actions unless you need the locator for further queries.
    */
   async getPopover(): Promise<Locator> {
-    await expect(this.trigger).toHaveAttribute('aria-controls', /.+/);
-    const popoverId = await this.trigger.getAttribute('aria-controls');
-    return this.page.locator(`#${popoverId}`);
+    await expect(async () => {
+      const popoverId = await this.getTriggerAriaAttribute('aria-controls');
+      expect(popoverId).toMatch(/.+/);
+    }).toPass({ timeout: 5000 });
+
+    const dialogId = await this.getTriggerAriaAttribute('aria-controls');
+    return this.page.locator(`ix-popover[data-ix-popover="${dialogId}"]`);
   }
 
   /**
@@ -137,7 +158,9 @@ export class PopoverPage {
   /** Keyboard open can lag behind aria-controls / visible state; poll until stable. */
   async openWithKeyboardAndExpectOpen(popover?: Locator): Promise<Locator> {
     await this.openWithKeyboard();
-    await expect(async () => this.expectOpen(popover)).toPass({ timeout: 5000 });
+    await expect(async () => this.expectOpen(popover)).toPass({
+      timeout: 5000,
+    });
     return popover ?? (await this.getPopover());
   }
 
@@ -176,12 +199,20 @@ export class PopoverPage {
   }
 
   async expectAriaExpanded(expanded: 'true' | 'false'): Promise<void> {
-    await expect(this.trigger).toHaveAttribute('aria-expanded', expanded);
+    await expect(async () => {
+      expect(await this.getTriggerAriaAttribute('aria-expanded')).toBe(
+        expanded
+      );
+    }).toPass({ timeout: 3000 });
   }
 
   async expectAriaControlsMatch(popover: Locator): Promise<void> {
-    const popoverId = await popover.getAttribute('id');
-    await expect(this.trigger).toHaveAttribute('aria-controls', popoverId!);
+    const dialogId = await this.dialog(popover).getAttribute('id');
+    await expect(async () => {
+      expect(await this.getTriggerAriaAttribute('aria-controls')).toBe(
+        dialogId
+      );
+    }).toPass({ timeout: 3000 });
   }
 
   static async installShowChangedTracker(page: Page): Promise<void> {

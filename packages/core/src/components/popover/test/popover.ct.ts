@@ -401,10 +401,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         await expect(async () => {
           await popover.expectClosed(popover.popoverElement);
-          await expect(popover.trigger).toHaveAttribute(
-            'aria-expanded',
-            'false'
-          );
+          await popover.expectAriaExpanded('false');
         }).toPass({ timeout: 500 });
       }
     );
@@ -807,6 +804,22 @@ regressionTest.describe('ix-popover', () => {
         await popover.expectAriaControlsMatch(popoverEl);
       }
     );
+
+    regressionTest('preserves host id attribute', async ({ mount, page }) => {
+      await mount(html`
+        <ix-button id="trigger">Open</ix-button>
+        <ix-popover id="my-popover" trigger="trigger">
+          <ix-popover-content>Body</ix-popover-content>
+        </ix-popover>
+      `);
+
+      const popover = new PopoverPage(page);
+      await popover.open();
+      await expect(page.locator('ix-popover#my-popover')).toHaveAttribute(
+        'id',
+        'my-popover'
+      );
+    });
 
     regressionTest(
       'forwards host aria-label to dialog',

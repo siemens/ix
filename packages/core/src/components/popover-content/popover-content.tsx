@@ -9,6 +9,11 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * Main body section of the popover.
+ *
+ * @slot - Popover body content.
+ */
 @Component({
   tag: 'ix-popover-content',
   styleUrl: 'popover-content.scss',
