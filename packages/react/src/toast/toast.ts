@@ -10,7 +10,8 @@
 import { defineCustomElement as defineToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineToast } from '@siemens/ix/components/ix-toast.js';
 
-import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
+import type { ToastConfig as IxToastConfig } from '@siemens/ix';
+import { toast } from '@siemens/ix/components';
 import ReactDOMClient from 'react-dom/client';
 
 export type ToastConfig = {

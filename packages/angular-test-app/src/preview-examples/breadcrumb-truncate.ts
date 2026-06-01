@@ -14,11 +14,26 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-breadcrumb visibleItemCount="3">
-      <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 4"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 5"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 1"
+        breadcrumbKey="item-1"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 2"
+        breadcrumbKey="item-2"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 3"
+        breadcrumbKey="item-3"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 4"
+        breadcrumbKey="item-4"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 5"
+        breadcrumbKey="item-5"
+      ></ix-breadcrumb-item>
     </ix-breadcrumb>
   `,
 })

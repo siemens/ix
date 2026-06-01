@@ -31,8 +31,10 @@ regressionTest.describe('menu-about-news', () => {
     );
     await burgerMenu.click();
 
-    const settings = page.locator('ix-menu-item#settings');
-    await settings.click();
+    const about = page
+      .locator('ix-menu')
+      .getByRole('button', { name: 'About & legal information' });
+    await about.click();
 
     await page.waitForTimeout(500);
 

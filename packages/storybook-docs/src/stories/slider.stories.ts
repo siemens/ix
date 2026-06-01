@@ -75,9 +75,10 @@ export const MarkerWithReference: Story = {
   },
 };
 
-export const LegacyError: Story = {
+export const Invalid: Story = {
   args: {
-    error: 'Some error message',
+    validation: 'invalid',
+    invalidText: 'Some error message',
     value: 10,
     traceReference: 50,
     trace: true,

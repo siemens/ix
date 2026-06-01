@@ -7,36 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { newSpecPage } from '@stencil/core/testing';
+import { render, h } from '@stencil/vitest';
 import { fireEvent } from '@testing-library/dom';
-import { ExpandingSearch } from '../expanding-search';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('ix-expanding-search', () => {
-  let page: any;
-  let expandingSearch: HTMLIxExpandingSearchElement;
-  let input: any;
-
-  beforeEach(async () => {
-    page = await newSpecPage({
-      components: [ExpandingSearch],
-      html: '<ix-expanding-search></ix-expanding-search>',
-    });
-    expandingSearch = page.doc.querySelector('ix-expanding-search')!;
-    const shadowRoot = expandingSearch.shadowRoot!;
-    shadowRoot.querySelector('[data-testid="button"]');
-    input = shadowRoot.querySelector('[data-testid="input"]');
-    shadowRoot.querySelector('[data-testid="input-wrapper"]');
-    shadowRoot.querySelector('input')!.focus = jest.fn();
-  });
-
   it("emits an event on change and returns 'this.value'", async () => {
-    let callbackSpy = jest.fn();
-    page.win.addEventListener('valueChange', callbackSpy);
+    const { root, spyOnEvent, waitForChanges } = await render(
+      <ix-expanding-search></ix-expanding-search>
+    );
+    const expandingSearch = root as HTMLIxExpandingSearchElement;
+    const input = expandingSearch.shadowRoot!.querySelector(
+      '[data-testid="input"]'
+    ) as HTMLInputElement;
+    input.focus = vi.fn();
+
+    const callbackSpy = spyOnEvent('valueChange');
 
     fireEvent.input(input, { target: { value: 'new input' } });
-    await page.waitForChanges();
+    await waitForChanges();
 
-    expect(callbackSpy).toHaveBeenCalled();
-    expect(callbackSpy.mock.calls[0][0].detail).toEqual(expandingSearch.value);
+    expect(callbackSpy).toHaveReceivedEvent();
+    expect(callbackSpy.lastEvent?.detail).toEqual(expandingSearch.value);
   });
 });

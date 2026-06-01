@@ -73,3 +73,14 @@ export const HourOnly: Story = {
     embedded: false,
   },
 };
+
+export const MinMaxTime: Story = {
+  args: {
+    time: '12:00:00',
+    format: 'HH:mm:ss',
+    corners: 'rounded',
+    embedded: false,
+    minTime: '08:00:00',
+    maxTime: '17:30:00',
+  },
+};

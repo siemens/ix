@@ -20,6 +20,8 @@ const compat = new FlatCompat({
 module.exports = [
   {
     ignores: [
+      'vitest-setup.ts',
+      'vitest.config.ts',
       'stencil.config.ts',
       'playwright.config.ts',
       'playwright-ct.config.ts',

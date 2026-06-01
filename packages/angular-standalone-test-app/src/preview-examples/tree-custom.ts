@@ -38,6 +38,7 @@ type TreeData = {
       [model]="model"
       [context]="context"
       [renderItem]="treeItem"
+      aria-label="Sample tree"
     ></ix-tree>
     <ng-template #treeItem let-item>
       <div style="display: flex; align-items: center">

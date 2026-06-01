@@ -359,10 +359,10 @@ regressionTest('should render with error', async ({ page, mount }) => {
   await mount(`
     <div id='slider-container'>
 
-      <ix-slider error="Some error message">
+      <ix-slider class="ix-invalid" invalid-text="Some error message">
       </ix-slider>
 
-      <ix-slider error="Some error message">
+      <ix-slider class="ix-invalid" invalid-text="Some error message">
         <span slot="label-start">500</span>
         <span slot="label-end">1000</span>
       </ix-slider>
@@ -373,8 +373,8 @@ regressionTest('should render with error', async ({ page, mount }) => {
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);
 
-  await expect(slider1).toHaveClass(/hydrated/);
-  await expect(slider2).toHaveClass(/hydrated/);
+  await expect(slider1).toHaveClass('ix-invalid invalid hydrated');
+  await expect(slider2).toHaveClass('ix-invalid invalid hydrated');
 
   expect(
     await page.locator('#slider-container').screenshot()

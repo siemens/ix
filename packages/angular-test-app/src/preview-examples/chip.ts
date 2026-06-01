@@ -15,12 +15,17 @@ import { Component } from '@angular/core';
   template: `
     <div class="chip">
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip
-        >
+        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
         <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
         <ix-chip icon="print" variant="critical">Critical</ix-chip>
         <ix-chip icon="print" variant="warning">Warning</ix-chip>
-        <ix-chip icon="print" variant="info">Info</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="info"
+          tooltip-text="Open details for this status"
+          aria-label="In review"
+          >Info</ix-chip
+        >
         <ix-chip icon="print" variant="success">Success</ix-chip>
         <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
         <ix-chip
@@ -31,15 +36,25 @@ import { Component } from '@angular/core';
           closable
           >Custom</ix-chip
         >
-        <ix-chip icon="print" variant="primary" closable>Chip with icon
+        <ix-chip icon="print" variant="primary" closable
+          >Chip with icon
         </ix-chip>
       </div>
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" outline closable>Primary</ix-chip>
+        <ix-chip icon="print" variant="primary" outline closable
+          >Primary</ix-chip
+        >
         <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
         <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
         <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
-        <ix-chip icon="print" variant="info" outline>Info</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="info"
+          outline
+          tooltip-text="Open details for this status"
+          aria-label="In review"
+          >Info</ix-chip
+        >
         <ix-chip icon="print" variant="success" outline>Success</ix-chip>
         <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
         <ix-chip

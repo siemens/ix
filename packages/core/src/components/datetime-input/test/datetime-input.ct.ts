@@ -30,21 +30,23 @@ const createAccessor = async (dateTimeInput: Locator) => {
     selectDay: async (day: number) => {
       // Day cells have aria-label like "15 May" (month index: day)
       // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-      const dayCell = dateTimeInput.getByRole('button', {
+      const dayCell = dateTimeInput.getByRole('gridcell', {
         name: new RegExp(String.raw`^${day}\s.+$`),
       });
       await dayCell.click();
     },
-    selectTime: async (hour: number, minute: number, second: number) => {
+    selectTime: async (hour: number, minute: number, second?: number) => {
       // Time buttons have aria-label like "hr: 14", "min: 30", "sec: 45"
       // getByRole pierces shadow DOM automatically
-      await dateTimeInput.getByRole('button', { name: `hr: ${hour}` }).click();
+      await dateTimeInput.getByRole('option', { name: `hr: ${hour}` }).click();
       await dateTimeInput
-        .getByRole('button', { name: `min: ${minute}` })
+        .getByRole('option', { name: `min: ${minute}` })
         .click();
-      await dateTimeInput
-        .getByRole('button', { name: `sec: ${second}` })
-        .click();
+      if (second !== undefined) {
+        await dateTimeInput
+          .getByRole('option', { name: `sec: ${second}` })
+          .click();
+      }
     },
     confirm: async () => {
       // Confirm button has text from i18nDone (default: "Confirm")
@@ -71,6 +73,23 @@ const createAccessor = async (dateTimeInput: Locator) => {
     },
   };
   return accessor;
+};
+
+/** `expectedDateFormat` is the date-only mask on `ix-datetime-picker` (`dateFormat`); `expectedTimeFormat` is `timeFormat`. */
+const expectNestedDatetimePickerFormats = async (
+  dateTimeInput: Locator,
+  expectedDateFormat: string,
+  expectedTimeFormat: string
+) => {
+  const picker = dateTimeInput.locator('ix-datetime-picker');
+  const props = await picker.evaluate(
+    (el: HTMLElement & { dateFormat?: string; timeFormat?: string }) => ({
+      dateFormat: el.dateFormat,
+      timeFormat: el.timeFormat,
+    })
+  );
+  expect(props.dateFormat).toBe(expectedDateFormat);
+  expect(props.timeFormat).toBe(expectedTimeFormat);
 };
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
@@ -213,7 +232,7 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel(/^10\s.+$/);
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const selectedHour = dateTimeInputElement.getByRole('button', {
+  const selectedHour = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
   await expect(selectedHour).toHaveClass(/selected/);
@@ -301,12 +320,8 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   await dateTimeAccessor.openByCalendar();
 
   await dateTimeAccessor.selectDay(15);
-
-  await dateTimeInputElement.getByRole('button', { name: 'hr: 14' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'min: 30' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'sec: 45' }).click();
-
-  await page.getByRole('button', { name: 'Confirm' }).click();
+  await dateTimeAccessor.selectTime(14, 30, 45);
+  await dateTimeAccessor.confirm();
 
   const dateTimeInput = page.locator('ix-datetime-input');
   await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
@@ -494,18 +509,18 @@ regressionTest('picker syncs with input value', async ({ mount, page }) => {
   const dateTimeAccessor = await createAccessor(dateTimeInputElement);
   await dateTimeAccessor.openByCalendar();
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const selectedDay = dateTimeInputElement.getByRole('button', {
+  const selectedDay = dateTimeInputElement.getByRole('gridcell', {
     name: '15 May',
   });
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 30',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 45',
   });
 
@@ -535,13 +550,13 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel('20 May');
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 15',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 45',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 30',
   });
 
@@ -635,6 +650,731 @@ regressionTest(
     const dateTimeInput = page.locator('ix-datetime-input');
     const input = dateTimeInput.getByRole('textbox');
     await expect(input).toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'picker disables calendar days outside minDate and maxDate',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/25 14:00:00"
+      min-date="2026/04/20"
+      max-date="2026/04/29"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const acc = await createAccessor(dateTimeInput);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('gridcell', { name: /^15\s.+/ })
+    ).toHaveClass(/disabled/);
+    await expect(
+      dateTimeInput.getByRole('gridcell', { name: /^30\s.+/ })
+    ).toHaveClass(/disabled/);
+  }
+);
+
+regressionTest(
+  'picker confirm updates value with date and time bounds',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-datetime-input
+        value="2026/03/10 14:30:00"
+        format="yyyy/LL/dd HH:mm:ss"
+        min-date="2026/03/01"
+        max-date="2026/03/31"
+        min-time="09:00:00"
+        max-time="18:00:00"
+        label="Appointment"
+      ></ix-datetime-input>
+    `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy/LL/dd',
+      'HH:mm:ss'
+    );
+    await expect(input).toHaveValue('2026/03/10 14:30:00');
+    await expect(dateTimeInput.getByText('Appointment')).toBeVisible();
+
+    await acc.openByCalendar();
+    await acc.selectDay(20);
+    await acc.selectTime(16, 45, 30);
+    await acc.confirm();
+
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/03/20 16:45:30');
+    await expect(input).toHaveValue('2026/03/20 16:45:30');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime and maxTime constrain time on every day',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/02/15 14:00:00"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="Meeting time"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy/LL/dd',
+      'HH:mm:ss'
+    );
+    await expect(dateTimeInput.getByText('Meeting time')).toBeVisible();
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await page.keyboard.press('Escape');
+    await input.fill('2026/02/15 12:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 12:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(14, 30, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 14:30:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime with non-zero minutes: typed value before min is invalid',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 13:05:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 13:10:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime with non-zero minutes: hours before min hour disabled in picker',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const acc = await createAccessor(dateTimeInput);
+
+    await acc.openByCalendar();
+
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
+    ).not.toBeDisabled();
+  }
+);
+
+regressionTest(
+  'constraint-invalid value: picker time matches input after reopen',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await input.fill('2026/04/28 13:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await expect(input).toHaveValue('2026/04/28 13:00:00');
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
+    ).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'typed max-window edge: 17:30 valid, 17:31 and 18:00 invalid (13:10–17:30)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+      label="Preview parity"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 17:30:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 17:31:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 18:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'picker: hour 18 disabled; confirm 17:30 valid (13:10–17:30)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
+    ).toBeDisabled();
+    await acc.selectTime(17, 30, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/04/28 17:30:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime and maxTime apply on another calendar day (May, no minDate)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/05/01 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+      label="Other day"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
+    ).toBeDisabled();
+
+    await acc.selectTime(16, 0, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/05/01 16:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'with hour 13 selected, minutes before 10 are disabled (13:10–17:30)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const acc = await createAccessor(dateTimeInput);
+
+    await acc.openByCalendar();
+    await dateTimeInput
+      .getByRole('option', { name: 'hr: 13', exact: true })
+      .click();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'min: 5', exact: true })
+    ).toBeDisabled();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'min: 10', exact: true })
+    ).not.toBeDisabled();
+  }
+);
+
+regressionTest(
+  'minTime and maxTime apply on minDate and maxDate only',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/02/15 14:00:00"
+      min-date="2026/02/01"
+      max-date="2026/02/28"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="Availability"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy/LL/dd',
+      'HH:mm:ss'
+    );
+    await expect(dateTimeInput.getByText('Availability')).toBeVisible();
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(12, 0, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 12:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/02/01 12:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/01 12:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await input.fill('2026/02/28 18:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/28 18:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest('minTime without maxTime', async ({ mount, page }) => {
+  await mount(`
+    <ix-datetime-input
+      value="2026/02/15 23:00:00"
+      min-time="13:00:00"
+      label="Earliest start"
+    ></ix-datetime-input>
+  `);
+
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
+  const acc = await createAccessor(dateTimeInput);
+
+  await expectNestedDatetimePickerFormats(
+    dateTimeInput,
+    'yyyy/LL/dd',
+    'HH:mm:ss'
+  );
+  await expect(input).not.toHaveClass(/is-invalid/);
+
+  await acc.openByCalendar();
+  await expect(
+    dateTimeInput.getByRole('option', { name: 'hr: 10', exact: true })
+  ).toBeDisabled();
+  await page.keyboard.press('Escape');
+  await input.fill('2026/02/15 10:00:00');
+  await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 10:00:00');
+  await expect(input).toHaveClass(/is-invalid/);
+
+  await acc.openByCalendar();
+  await acc.selectTime(15, 0, 0);
+  await acc.confirm();
+  await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 15:00:00');
+  await expect(input).not.toHaveClass(/is-invalid/);
+});
+
+regressionTest('maxTime without minTime', async ({ mount, page }) => {
+  await mount(`
+    <ix-datetime-input
+      value="2026/02/15 10:00:00"
+      max-time="17:30:00"
+      label="Latest end"
+    ></ix-datetime-input>
+  `);
+
+  const dateTimeInput = page.locator('ix-datetime-input');
+  const input = dateTimeInput.getByRole('textbox');
+  const acc = await createAccessor(dateTimeInput);
+
+  await expectNestedDatetimePickerFormats(
+    dateTimeInput,
+    'yyyy/LL/dd',
+    'HH:mm:ss'
+  );
+  await expect(input).not.toHaveClass(/is-invalid/);
+
+  await acc.openByCalendar();
+  await expect(
+    dateTimeInput.getByRole('option', { name: 'hr: 20', exact: true })
+  ).toBeDisabled();
+  await page.keyboard.press('Escape');
+  await input.fill('2026/02/15 20:00:00');
+  await expect(dateTimeInput).toHaveAttribute('value', '2026/02/15 20:00:00');
+  await expect(input).toHaveClass(/is-invalid/);
+});
+
+regressionTest(
+  'minTime and maxTime with dd-MM-yyyy HH:mm:ss',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      format="dd-MM-yyyy HH:mm:ss"
+      value="15-02-2026 14:00:00"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="EU date layout"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'dd-MM-yyyy',
+      'HH:mm:ss'
+    );
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await page.keyboard.press('Escape');
+    await input.fill('15-02-2026 12:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '15-02-2026 12:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(14, 30, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '15-02-2026 14:30:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime and maxTime on boundary days with dd-MM-yyyy HH:mm:ss',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      format="dd-MM-yyyy HH:mm:ss"
+      value="15-02-2026 14:00:00"
+      min-date="01-02-2026"
+      max-date="28-02-2026"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="February window"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'dd-MM-yyyy',
+      'HH:mm:ss'
+    );
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(12, 0, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '15-02-2026 12:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('01-02-2026 12:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '01-02-2026 12:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await input.fill('28-02-2026 18:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '28-02-2026 18:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'minTime and maxTime with yyyy-MM-dd HH:mm',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      format="yyyy-MM-dd HH:mm"
+      value="2026-02-15 14:30"
+      min-time="13:00"
+      max-time="17:30"
+      label="No seconds"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy-MM-dd',
+      'HH:mm'
+    );
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await page.keyboard.press('Escape');
+    await input.fill('2026-02-15 12:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '2026-02-15 12:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(16, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026-02-15 16:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  "minTime and maxTime with yyyy-MM-dd'T'HH:mm:ss",
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      format="yyyy-MM-dd'T'HH:mm:ss"
+      value="2026-02-15T14:30:00"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="ISO-style T separator"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    const acc = await createAccessor(dateTimeInput);
+
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy-MM-dd',
+      'HH:mm:ss'
+    );
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toBeDisabled();
+    await page.keyboard.press('Escape');
+    await input.fill('2026-02-15T12:00:00');
+    await expect(dateTimeInput).toHaveAttribute('value', '2026-02-15T12:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await acc.openByCalendar();
+    await acc.selectTime(16, 0, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026-02-15T16:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'invalid time on minDate can be corrected in picker',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/02/01 12:00:00"
+      format="yyyy/LL/dd HH:mm:ss"
+      min-date="2026/02/01"
+      max-date="2026/02/28"
+      min-time="13:00:00"
+      max-time="17:30:00"
+      label="Opening day"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    await expectNestedDatetimePickerFormats(
+      dateTimeInput,
+      'yyyy/LL/dd',
+      'HH:mm:ss'
+    );
+    await expect(input).toHaveClass(/is-invalid/);
+
+    const dateTimeAccessor = await createAccessor(dateTimeInput);
+    await dateTimeAccessor.openByCalendar();
+
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
+    ).toHaveClass(/selected/);
+
+    await dateTimeAccessor.selectTime(14, 0, 0);
+    await dateTimeAccessor.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/02/01 14:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'typed middle day April 28: early and late time valid (Apr 27–29, 13:10–17:30)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-date="2026/04/27"
+      max-date="2026/04/29"
+      min-time="13:10:00"
+      max-time="17:30:00"
+      label="Apr window"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await input.fill('2026/04/28 12:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 20:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'typed April min/max window: out-of-range dates and boundary asymmetric times',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-date="2026/04/27"
+      max-date="2026/04/29"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await input.fill('2026/04/26 14:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await input.fill('2026/04/30 14:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/28 14:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/27 13:05:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await input.fill('2026/04/27 13:10:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await input.fill('2026/04/27 20:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/29 12:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await input.fill('2026/04/29 17:31:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await input.fill('2026/04/29 17:30:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'recovery by typing on April min/max boundary days',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/28 14:00:00"
+      min-date="2026/04/27"
+      max-date="2026/04/29"
+      min-time="13:10:00"
+      max-time="17:30:00"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await input.fill('2026/04/27 13:05:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await input.fill('2026/04/27 14:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await input.fill('2026/04/29 18:00:00');
+    await expect(input).toHaveClass(/is-invalid/);
+    await input.fill('2026/04/29 17:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'invalid time on maxDate corrected in picker (April)',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-datetime-input
+      value="2026/04/29 18:00:00"
+      min-date="2026/04/27"
+      max-date="2026/04/29"
+      min-time="13:10:00"
+      max-time="17:30:00"
+      label="Last day"
+    ></ix-datetime-input>
+  `);
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+    await expect(input).toHaveClass(/is-invalid/);
+
+    const acc = await createAccessor(dateTimeInput);
+    await acc.openByCalendar();
+    await expect(
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
+    ).toHaveClass(/selected/);
+
+    await acc.selectTime(17, 0, 0);
+    await acc.confirm();
+    await expect(dateTimeInput).toHaveAttribute('value', '2026/04/29 17:00:00');
+    await expect(input).not.toHaveClass(/is-invalid/);
   }
 );
 
