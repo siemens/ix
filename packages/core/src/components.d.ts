@@ -3150,8 +3150,6 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
-    interface IxPlayground {
-    }
     /**
      * @since 3.2.0
      */
@@ -5833,12 +5831,6 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
-    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
-    }
-    var HTMLIxPlaygroundElement: {
-        prototype: HTMLIxPlaygroundElement;
-        new (): HTMLIxPlaygroundElement;
-    };
     /**
      * @since 3.2.0
      */
@@ -6361,7 +6353,6 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
-        "ix-playground": HTMLIxPlaygroundElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
@@ -9658,8 +9649,6 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
-    interface IxPlayground {
-    }
     /**
      * @since 3.2.0
      */
@@ -12260,7 +12249,6 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
-        "ix-playground": IxPlayground;
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
@@ -12402,7 +12390,6 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
-            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * @since 3.2.0
              */
