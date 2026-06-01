@@ -51,8 +51,8 @@
   position: absolute;
   inset: 0;
   background-color: var(--theme-checkbox-checked--background);
-  mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
-    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==');
+  mask-image: url("data:image/svg+xml;utf8,<svg width='18' height='18' viewBox='0 0 18 18' fill='white' xmlns='http://www.w3.org/2000/svg'><rect width='18' height='18'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M3.65625 8.15625L8.4375 12.9375L14.625 3.9375' stroke='white' stroke-width='2'/></svg>");
   mask-composite: subtract;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -69,8 +69,8 @@
   position: absolute;
   inset: 0;
   background-color: var(--theme-color-dynamic);
-  mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
-    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iNCIgeTE9IjkiIHgyPSIxNCIgeTI9IjkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+');
+  mask-image: url("data:image/svg+xml;utf8,<svg width='18' height='18' viewBox='0 0 18 18' fill='white' xmlns='http://www.w3.org/2000/svg'><rect width='18' height='18'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='4' y1='9' x2='14' y2='9' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>");
   mask-composite: subtract;
   mask-repeat: no-repeat;
   mask-position: center;
