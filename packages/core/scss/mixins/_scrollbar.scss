@@ -52,13 +52,12 @@
 }
 
 @mixin scrollbar($include-current: false) {
+  * {
+    @include _scrollbar-rules;
+  }
+
   @if $include-current {
-    &,
-    * {
-      @include _scrollbar-rules;
-    }
-  } @else {
-    * {
+    & {
       @include _scrollbar-rules;
     }
   }
