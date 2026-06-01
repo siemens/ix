@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@siemens/ix": "~5.0.0",
-    "@stencil/vue-output-target": "^0.12.0"
+    "@stencil/vue-output-target": "^0.13.2"
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",

@@ -17,7 +17,7 @@ import {
 
 export default () => {
   return (
-    <IxApplication>
+    <IxApplication forceBreakpoint="md">
       <IxMenu>
         <IxMenuItem home icon={iconHome}>
           Home
