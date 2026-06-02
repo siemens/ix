@@ -147,7 +147,7 @@ class PopoverController {
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
-    globalThis.addEventListener('click', (event: MouseEvent) => {
+    window.addEventListener('click', (event: MouseEvent) => {
       const hasTrigger = this.pathIncludesTrigger(event.composedPath());
       const hasPopover = this.pathIncludesPopover(event.composedPath());
 
@@ -156,7 +156,7 @@ class PopoverController {
       }
     });
 
-    globalThis.addEventListener('keydown', (event: KeyboardEvent) => {
+    window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         this.dismissAll(true);
       }
