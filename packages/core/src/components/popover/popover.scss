@@ -14,7 +14,8 @@
   background-color: transparent;
   box-shadow: none;
   overflow: visible;
-  position: relative;
+  position: fixed;
+  inset: unset;
   width: 25rem;
   min-width: 15rem;
   max-width: 37.5rem;
