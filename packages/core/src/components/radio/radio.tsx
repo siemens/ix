@@ -25,6 +25,11 @@ import {
   createClassMutationObserver,
   IxFormComponent,
 } from '../utils/input';
+import {
+  isFormNoValidate,
+  applyRadioValidation,
+  setupFormSubmitListener,
+} from './radio-validation';
 
 /**
  * @form-ready
@@ -88,6 +93,10 @@ export class Radio implements IxFormComponent<string> {
 
   private classMutationObserver?: ClassMutationObserver;
 
+  private touched = false;
+  private formSubmissionAttempted = false;
+  private cleanupFormListener?: () => void;
+
   /** @internal */
   @Method()
   async setCheckedState(newChecked: boolean) {
@@ -104,12 +113,49 @@ export class Radio implements IxFormComponent<string> {
 
   @Watch('checked')
   async onCheckedChange() {
+    this.touched = true;
     this.updateFormInternalValue();
+    this.syncValidationClasses();
+  }
+
+  private syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+      return;
+    }
+
+    const radioGroup = this.hostElement.closest('ix-radio-group');
+    let radios: HTMLIxRadioElement[];
+    let group: Element | null;
+
+    if (radioGroup) {
+      radios = Array.from(
+        radioGroup.querySelectorAll<HTMLIxRadioElement>('ix-radio')
+      );
+      group = radioGroup;
+    } else {
+      radios = [this.hostElement];
+      group = null;
+    }
+
+    const hasRequired = radios.some((r) => r.required);
+    if (!hasRequired) {
+      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+      return;
+    }
+
+    applyRadioValidation(
+      radios,
+      group,
+      this.touched,
+      this.formSubmissionAttempted
+    );
   }
 
   @Watch('value')
   onValueChange() {
     this.valueChange.emit(this.value);
+    this.syncValidationClasses();
   }
 
   connectedCallback(): void {
@@ -122,11 +168,18 @@ export class Radio implements IxFormComponent<string> {
         );
       });
     }
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
   }
 
   disconnectedCallback(): void {
     if (this.classMutationObserver) {
       this.classMutationObserver.destroy();
+    }
+    if (this.cleanupFormListener) {
+      this.cleanupFormListener();
     }
   }
 
@@ -187,6 +240,15 @@ export class Radio implements IxFormComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
+  @Method()
+  async clear(): Promise<void> {
+    this.checked = false;
+    this.touched = false;
+    this.formSubmissionAttempted = false;
+    this.updateFormInternalValue();
+    this.syncValidationClasses();
+  }
+
   render() {
     let tabIndex = 0;
 
@@ -209,7 +271,11 @@ export class Radio implements IxFormComponent<string> {
           this.setCheckedState(true);
         }}
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
-        onBlur={() => this.ixBlur.emit()}
+        onBlur={() => {
+          this.ixBlur.emit();
+          this.touched = true;
+          this.syncValidationClasses();
+        }}
       >
         <label>
           <div class="radio-button">
