@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import type { Components } from '@siemens/ix/components';
+import type { Components, HTMLIxPopoverElement } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
 const POPOVER_IMAGE_SRC =
@@ -27,8 +27,10 @@ async function openPopover(container: ParentNode) {
     if (!(container instanceof HTMLElement && container.isConnected)) {
       return;
     }
-    const popover = container.querySelector('ix-popover');
-    if (!(popover instanceof HTMLElement && popover.isConnected)) {
+    const popover = container.querySelector(
+      'ix-popover'
+    ) as HTMLIxPopoverElement | null;
+    if (!popover?.isConnected) {
       return;
     }
     await popover.showPopover();
@@ -47,13 +49,13 @@ function popoverStoryContainer(inner: HTMLElement) {
   wrapper.appendChild(trigger);
   wrapper.appendChild(inner);
 
-  const timeoutId = window.setTimeout(() => {
+  const timeoutId = globalThis.setTimeout(() => {
     void openPopover(wrapper);
   }, 250);
 
   const observer = new MutationObserver(() => {
     if (!wrapper.isConnected) {
-      window.clearTimeout(timeoutId);
+      globalThis.clearTimeout(timeoutId);
       observer.disconnect();
     }
   });

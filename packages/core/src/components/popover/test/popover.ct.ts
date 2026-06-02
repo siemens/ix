@@ -240,11 +240,9 @@ regressionTest.describe('ix-popover', () => {
         );
 
         const popover = new PopoverPage(page);
-        const trigger = page.locator('ix-button#trigger button');
-
         const popoverEl = await popover.linkedPopover();
 
-        await trigger.hover();
+        await popover.triggerButton.hover();
         await popover.expectOpen(popoverEl);
 
         await popover.dialog(popoverEl).hover();
@@ -288,27 +286,16 @@ regressionTest.describe('ix-popover', () => {
         );
 
         const popover = new PopoverPage(page);
-        const trigger = page.locator('ix-button#trigger button');
-
         const popoverEl = await popover.linkedPopover();
 
-        await trigger.hover();
+        await popover.triggerButton.hover();
         await popover.expectOpen(popoverEl);
         await popover.pointerDismissFarCorner();
         await expect(async () => popover.expectClosed(popoverEl)).toPass({
           timeout: 3000,
         });
 
-        await expect
-          .poll(async () =>
-            page.evaluate(() => {
-              const triggerButton = document
-                .querySelector('ix-button#trigger')
-                ?.shadowRoot?.querySelector('button');
-              return document.activeElement === triggerButton;
-            })
-          )
-          .toBe(false);
+        await popover.expectTriggerButtonNotFocused();
       }
     );
   });
@@ -320,18 +307,10 @@ regressionTest.describe('ix-popover', () => {
         await mountPopover(mount, page, interactivePopoverMarkup());
         const popover = new PopoverPage(page);
 
-        await page.evaluate(async () => {
-          await (
-            document.querySelector('ix-popover') as HTMLIxPopoverElement
-          ).showPopover();
-        });
+        await popover.callShowPopover();
         await popover.expectOpen();
 
-        await page.evaluate(async () => {
-          await (
-            document.querySelector('ix-popover') as HTMLIxPopoverElement
-          ).hidePopover();
-        });
+        await popover.callHidePopover();
         await popover.expectClosed();
       }
     );
@@ -340,16 +319,10 @@ regressionTest.describe('ix-popover', () => {
       await mountPopover(mount, page, interactivePopoverMarkup());
       const popover = new PopoverPage(page);
 
-      await page.evaluate(() => {
-        (document.querySelector('ix-popover') as HTMLIxPopoverElement).show =
-          true;
-      });
+      await popover.setShowProperty(true);
       await popover.expectOpen();
 
-      await page.evaluate(() => {
-        (document.querySelector('ix-popover') as HTMLIxPopoverElement).show =
-          false;
-      });
+      await popover.setShowProperty(false);
       await popover.expectClosed();
     });
 
@@ -358,19 +331,8 @@ regressionTest.describe('ix-popover', () => {
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
 
-        await page.evaluate(async () => {
-          const pop = document.querySelector(
-            'ix-popover'
-          ) as HTMLIxPopoverElement;
-          const promises = [
-            pop.showPopover(),
-            pop.showPopover(),
-            pop.showPopover(),
-          ];
-          await promises[0];
-        });
-
         const popover = new PopoverPage(page);
+        await popover.callShowPopoverConcurrently(3);
         await popover.expectOpen();
       }
     );
@@ -381,24 +343,10 @@ regressionTest.describe('ix-popover', () => {
       'prevents open when showChange is canceled',
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
-
-        await page.evaluate(() => {
-          document
-            .querySelector('ix-popover')
-            ?.addEventListener('showChange', (event) => {
-              if ((event as CustomEvent<boolean>).detail === true) {
-                event.preventDefault();
-              }
-            });
-        });
-
-        await page.evaluate(async () => {
-          await (
-            document.querySelector('ix-popover') as HTMLIxPopoverElement
-          ).showPopover();
-        });
-
         const popover = new PopoverPage(page);
+
+        await popover.preventShowChangeOnOpen();
+        await popover.callShowPopover();
         await expect(async () => {
           await popover.expectClosed(popover.popoverElement);
           await popover.expectAriaExpanded('false');
@@ -413,16 +361,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.open();
-
-        await page.evaluate(() => {
-          document
-            .querySelector('ix-popover')
-            ?.addEventListener('showChange', (event) => {
-              if ((event as CustomEvent<boolean>).detail === false) {
-                event.preventDefault();
-              }
-            });
-        });
+        await popover.preventShowChangeOnClose();
 
         await popover.closeWithEscape();
         await popover.expectOpen();
@@ -501,15 +440,10 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.open();
+        const host = await popover.getPopover();
+        await popover.preventHeaderCloseClick(host);
 
-        await page.evaluate(() => {
-          const header = document.querySelector('ix-popover-header')!;
-          header.addEventListener('closeClick', (event) => {
-            event.preventDefault();
-          });
-        });
-
-        await popover.getCloseButton(await popover.getPopover()).click();
+        await popover.getCloseButton(host).click();
         await popover.expectOpen();
       }
     );
