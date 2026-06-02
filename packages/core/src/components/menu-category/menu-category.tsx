@@ -371,7 +371,7 @@ export class MenuCategory
           </span>
         </ix-menu-item>
         <div
-          ref={(ref) => (this.menuItemsContainer = ref!)}
+          ref={(ref) => (this.menuItemsContainer = ref)}
           class={{
             'menu-items': true,
             'menu-items--expanded': this.showItems,
