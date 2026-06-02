@@ -14,7 +14,7 @@ LICENSE file in the root directory of this source tree.
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
     <style>
       body {
         height: 100vh;
@@ -83,13 +83,12 @@ LICENSE file in the root directory of this source tree.
         tooltip: {
           trigger: 'axis',
         },
-        // timeline: {
-        //   axisType: 'category',
-        //   autoPlay: false,
-        //   playInterval: 1000,
-        //   data: ['1', '2', '3'],
-        //   bottom: '95%',
-        // },
+        timeline: {
+          axisType: 'category',
+          autoPlay: false,
+          playInterval: 1000,
+          data: ['1', '2', '3'],
+        },
         xAxis: [
           {
             type: 'category',
