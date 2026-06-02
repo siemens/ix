@@ -13,21 +13,22 @@ import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import { useState } from 'react';
 
 export default () => {
-  const [selectedTab, setSelectedTab] = useState(0);
-
-  const changeTab = (tabId: number) => setSelectedTab(tabId);
+  const [activeTabKey, setActiveTabKey] = useState('tab-1');
 
   return (
     <div className="tabs">
-      <IxTabs selected={selectedTab}>
-        <IxTabItem onClick={() => changeTab(0)}>Tab 1</IxTabItem>
-        <IxTabItem onClick={() => changeTab(1)}>Tab 2</IxTabItem>
-        <IxTabItem onClick={() => changeTab(2)}>Tab 3</IxTabItem>
+      <IxTabs
+        activeTabKey={activeTabKey}
+        onTabChange={({ detail }) => setActiveTabKey(detail ?? 'tab-1')}
+      >
+        <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
+        <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
+        <IxTabItem tabKey="tab-3">Tab 3</IxTabItem>
       </IxTabs>
       <section role="tabpanel" aria-label="Example content">
-        {selectedTab === 0 ? <>Content Tab 1</> : null}
-        {selectedTab === 1 ? <>Content Tab 2</> : null}
-        {selectedTab === 2 ? <>Content Tab 3</> : null}
+        {activeTabKey === 'tab-1' ? <>Content Tab 1</> : null}
+        {activeTabKey === 'tab-2' ? <>Content Tab 2</> : null}
+        {activeTabKey === 'tab-3' ? <>Content Tab 3</> : null}
       </section>
     </div>
   );

@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -31,11 +35,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 //create some random data
 let base = +new Date(1968, 9, 3);
@@ -54,56 +54,69 @@ function generateData(): void {
 
 generateData();
 
-const options: EChartsOption = {
-  toolbox: {
-    feature: {
-      dataZoom: {
-        yAxisIndex: 'none',
+function getOptions(): EChartsOption {
+  return {
+    toolbox: {
+      feature: {
+        dataZoom: {
+          yAxisIndex: 'none',
+        },
       },
     },
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: date,
-  },
-  yAxis: {
-    type: 'value',
-    boundaryGap: [0, '100%'],
-  },
-  dataZoom: [
-    {
-      type: 'inside',
-      start: 0,
-      end: 10,
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: date,
     },
-    {
-      start: 0,
-      end: 10,
+    yAxis: {
+      type: 'value',
+      boundaryGap: [0, '100%'],
     },
-  ],
-  series: [
-    {
-      name: 'Synthetic data',
-      type: 'line',
-      symbol: 'none',
-      sampling: 'lttb',
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          {
-            offset: 0,
-            color: getComputedCSSProperty('color-primary'),
-          },
-          {
-            offset: 1,
-            color: 'transparent',
-          },
-        ]),
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 0,
+        end: 10,
       },
-      data: data,
-    },
-  ],
-} as EChartsOption;
+      {
+        start: 0,
+        end: 10,
+      },
+    ],
+    series: [
+      {
+        name: 'Synthetic data',
+        type: 'line',
+        symbol: 'none',
+        sampling: 'lttb',
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: getComputedCSSProperty('color-primary'),
+            },
+            {
+              offset: 1,
+              color: 'transparent',
+            },
+          ]),
+        },
+        data: data,
+      },
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-special-zoom.css"></style>

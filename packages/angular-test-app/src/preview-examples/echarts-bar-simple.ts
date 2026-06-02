@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { registerTheme } from '@siemens/ix-echarts';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
@@ -19,8 +19,9 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts-bar-simple.html',
   styleUrls: ['./echarts-bar-simple.css'],
 })
-export default class EchartsBarSimple implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsBarSimple implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
   data = {
     products: [
       'Product A',
@@ -57,8 +58,12 @@ export default class EchartsBarSimple implements OnInit {
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

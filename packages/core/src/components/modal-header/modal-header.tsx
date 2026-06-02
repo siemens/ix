@@ -23,7 +23,9 @@ import { iconClose } from '@siemens/ix-icons/icons';
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class ModalHeader {
   @Element() hostElement!: HTMLIxModalHeaderElement;
@@ -34,7 +36,7 @@ export class ModalHeader {
   @Prop() hideClose = false;
 
   /**
-   * Icon of the Header
+   * Icon of the header
    */
   @Prop() icon?: string;
 
@@ -68,7 +70,7 @@ export class ModalHeader {
   @Prop() iconColor?: string;
 
   /**
-   * Emits when close icon is clicked and closes the modal
+   * Emits when the close icon is clicked and closes the modal
    * Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   @Event() closeClick!: EventEmitter<MouseEvent>;

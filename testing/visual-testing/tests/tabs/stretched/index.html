@@ -41,50 +41,58 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
+    <!-- Stretched with label prop -->
     <div class="test">
-      <ix-tabs layout="stretched">
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
+      <ix-tabs layout="stretched" active-tab-key="s-1">
+        <ix-tab-item tab-key="s-1" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-2" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-3" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-4" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-5" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-6" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-7" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-8" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="s-9" label="Example"></ix-tab-item>
       </ix-tabs>
     </div>
 
+    <!-- Stretched with slot content -->
     <div class="test">
-      <ix-tabs small layout="stretched">
-        <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
-        <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
-        <ix-tab-item disabled
-          ><ix-icon name="sound-loud"></ix-icon
-        ></ix-tab-item>
-        <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
-        <ix-tab-item disabled
-          ><ix-icon name="calendar-settings"></ix-icon
-        ></ix-tab-item>
+      <ix-tabs layout="stretched" active-tab-key="ss-1">
+        <ix-tab-item tab-key="ss-1">Slot Stretched 1</ix-tab-item>
+        <ix-tab-item tab-key="ss-2">Slot Stretched 2</ix-tab-item>
+        <ix-tab-item tab-key="ss-3">Slot Stretched 3</ix-tab-item>
       </ix-tabs>
     </div>
 
+    <!-- Stretched small icon-only with icon prop -->
     <div class="test">
-      <ix-tabs placement="top" layout="stretched">
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
-        <ix-tab-item>Example</ix-tab-item>
+      <ix-tabs small layout="stretched" active-tab-key="si-1">
+        <ix-tab-item tab-key="si-1" icon="success"></ix-tab-item>
+        <ix-tab-item tab-key="si-2" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="si-3" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="si-4" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="si-5" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="si-6" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="si-7" icon="maintenance"></ix-tab-item>
+        <ix-tab-item tab-key="si-8" icon="sound-loud" disabled></ix-tab-item>
+        <ix-tab-item tab-key="si-9" icon="hierarchy"></ix-tab-item>
+        <ix-tab-item tab-key="si-10" icon="calendar-settings" disabled></ix-tab-item>
+      </ix-tabs>
+    </div>
+
+    <!-- Stretched top placement with label prop -->
+    <div class="test">
+      <ix-tabs placement="top" layout="stretched" active-tab-key="st-1">
+        <ix-tab-item tab-key="st-1" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-2" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-3" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-4" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-5" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-6" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-7" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-8" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="st-9" label="Example"></ix-tab-item>
       </ix-tabs>
     </div>
 

@@ -12,15 +12,22 @@ import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
-import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
-
+import { vueComponentOutputTarget } from './scripts/build/vue-output-target';
 const corePackageName = '@siemens/ix';
 
+const excludeDevelopmentComponents = ['ix-playground'];
+
 function getAngularConfig() {
-  const excludeComponents = ['ix-tree', 'ix-icon'];
+  const excludeComponents = [
+    ...excludeDevelopmentComponents,
+    'ix-tab-panel',
+    'ix-tab-set',
+    'ix-tree',
+    'ix-icon',
+  ];
   const config = [
     angularOutputTarget({
       componentCorePackage: corePackageName,
@@ -50,12 +57,7 @@ export const config: Config = {
     enableImportInjection: true,
     addGlobalStyleToComponents: false,
   },
-  testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
-    setupFilesAfterEnv: [],
-    browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
-    browserHeadless: 'shell',
-  },
+  excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
   watchIgnoredRegex: [/component-doc.json/],
   globalStyle: './scss/ix.scss',
@@ -71,14 +73,13 @@ export const config: Config = {
   outputTargets: [
     storybookOutputTarget({
       dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+      excludeComponents: excludeDevelopmentComponents,
     }),
-    vueOutputTarget({
-      componentCorePackage: corePackageName,
-      proxiesFile: '../vue/src/components.ts',
-      includeImportCustomElements: true,
-      includePolyfills: false,
-      includeDefineCustomElements: false,
-      excludeComponents: ['ix-icon'],
+    vueComponentOutputTarget({
+      excludeComponents: [
+        ...excludeDevelopmentComponents,
+        ...['ix-icon', 'ix-tab-panel', 'ix-tab-set'],
+      ],
       componentModels: [
         {
           elements: [
@@ -101,8 +102,16 @@ export const config: Config = {
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
-      outDir: '../react/src',
-      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
+      outDir: '../react/src/components',
+      esModules: false,
+      excludeComponents: [
+        ...excludeDevelopmentComponents,
+        'ix-tab-panel',
+        'ix-tab-set',
+        'ix-tree',
+        'ix-tree-item',
+        'ix-icon',
+      ],
       hydrateModule: '@siemens/ix/hydrate',
       clientModule: '@siemens/ix',
       serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },

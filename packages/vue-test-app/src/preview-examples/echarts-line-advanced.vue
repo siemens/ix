@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+import { onBeforeUnmount, ref } from 'vue';
+import {
+  getComputedCSSProperty,
+  registerTheme,
+  resolveEChartThemeName,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
@@ -30,11 +34,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(themeSwitcher.getCurrentTheme());
-
-themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = newTheme;
-});
+const theme = ref(resolveEChartThemeName());
 
 const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
   (2013 + i).toString()
@@ -45,45 +45,58 @@ const stockData = [
   156.48, 168.52,
 ];
 
-const options: EChartsOption = {
-  tooltip: { trigger: 'axis' },
-  xAxis: { type: 'category', data: dates },
-  yAxis: {
-    type: 'value',
-    splitLine: { lineStyle: { type: 'dashed' } },
-  },
-  series: [
-    {
-      type: 'line',
-      data: stockData,
-      smooth: true,
-      lineStyle: { width: 4, shadowBlur: 10 },
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          {
-            offset: 0,
-            color: getComputedCSSProperty('color-primary'),
+function getOptions(): EChartsOption {
+  return {
+    tooltip: { trigger: 'axis' },
+    xAxis: { type: 'category', data: dates },
+    yAxis: {
+      type: 'value',
+      splitLine: { lineStyle: { type: 'dashed' } },
+    },
+    series: [
+      {
+        type: 'line',
+        data: stockData,
+        smooth: true,
+        lineStyle: { width: 4, shadowBlur: 10 },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: getComputedCSSProperty('color-primary'),
+            },
+            { offset: 1, color: 'transparent' },
+          ]),
+        },
+        markPoint: {
+          data: [
+            { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
+            { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
+          ],
+          label: {
+            fontWeight: 'bold',
+            color: getComputedCSSProperty('color-inv-contrast-text'),
           },
-          { offset: 1, color: 'transparent' },
-        ]),
-      },
-      markPoint: {
-        data: [
-          { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
-          { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
-        ],
-        label: {
-          fontWeight: 'bold',
-          color: getComputedCSSProperty('color-inv-contrast-text'),
+        },
+        markLine: {
+          data: [{ type: 'average', name: 'Avg' }],
+          lineStyle: { type: 'dashed' },
         },
       },
-      markLine: {
-        data: [{ type: 'average', name: 'Avg' }],
-        lineStyle: { type: 'dashed' },
-      },
-    },
-  ],
-} as EChartsOption;
+    ],
+  };
+}
+
+const options = ref<EChartsOption>(getOptions());
+
+const disposer = themeSwitcher.themeChanged.on(() => {
+  theme.value = resolveEChartThemeName();
+  options.value = getOptions();
+});
+
+onBeforeUnmount(() => {
+  disposer.dispose();
+});
 </script>
 
 <style scoped src="./echarts-line-advanced.css"></style>

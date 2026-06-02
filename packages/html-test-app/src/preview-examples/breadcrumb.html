@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,9 +16,18 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <ix-breadcrumb>
-      <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 1"
+        breadcrumb-key="item-1"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 2"
+        breadcrumb-key="item-2"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item 3"
+        breadcrumb-key="item-3"
+      ></ix-breadcrumb-item>
     </ix-breadcrumb>
     <script type="module" src="./init.js"></script>
   </body>

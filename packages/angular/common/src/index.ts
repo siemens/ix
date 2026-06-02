@@ -13,5 +13,9 @@ export * from './providers/message';
 export * from './providers/loading';
 export * from './directives/control-value-accessors';
 export { DropdownTriggerBaseDirective } from './directives/dropdown-trigger';
+export {
+  TabPanelBaseDirective,
+  TabSetBaseDirective,
+} from './directives/tab-set';
 export { TreeBaseDirective } from './directives/tree';
 export { createValueAccessorProvider } from './utils/create-value-accessor-provider';

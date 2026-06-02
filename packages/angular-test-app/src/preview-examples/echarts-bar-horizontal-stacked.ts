@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { registerTheme } from '@siemens/ix-echarts';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { BarSeriesOption, EChartsOption } from 'echarts';
@@ -19,8 +19,9 @@ import { BarSeriesOption, EChartsOption } from 'echarts';
   templateUrl: './echarts-bar-horizontal-stacked.html',
   styleUrls: ['./echarts-bar-horizontal-stacked.css'],
 })
-export default class EchartsBarHorizontalStacked implements OnInit {
-  theme = themeSwitcher.getCurrentTheme();
+export default class EchartsBarHorizontalStacked implements OnDestroy, OnInit {
+  theme = resolveEChartThemeName();
+  private themeChangeDisposer?: { dispose: () => void };
 
   data = {
     years: ['2023', '2022', '2021', '2020', '2019'],
@@ -66,8 +67,12 @@ export default class EchartsBarHorizontalStacked implements OnInit {
   ngOnInit() {
     registerTheme(echarts);
 
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = theme;
+    this.themeChangeDisposer = themeSwitcher.themeChanged.on(() => {
+      this.theme = resolveEChartThemeName();
     });
+  }
+
+  ngOnDestroy() {
+    this.themeChangeDisposer?.dispose();
   }
 }

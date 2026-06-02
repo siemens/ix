@@ -37,6 +37,10 @@ import {
   onInputBlurWithChange,
 } from '../input/input.util';
 import {
+  getTimePickerConstraintBounds,
+  isWithinTimePickerConstraints,
+} from '../time-picker/time-picker-constraints';
+import {
   ClassMutationObserver,
   HookValidationLifecycle,
   IxInputFieldComponent,
@@ -58,6 +62,7 @@ import {
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
+import { forceTabIndex } from '../utils/a11y';
 
 /**
  * @since 3.2.0
@@ -104,6 +109,30 @@ export class TimeInput
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'TT';
+
+  /**
+   * Earliest selectable time (`format` tokens). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() minTime?: string;
+
+  /**
+   * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
+   *
+   * @since 5.0.0
+   */
+  @Prop() maxTime?: string;
+
+  @Watch('minTime')
+  watchMinTimePropHandler() {
+    this.revalidateCurrentValue();
+  }
+
+  @Watch('maxTime')
+  watchMaxTimePropHandler() {
+    this.revalidateCurrentValue();
+  }
 
   /**
    * Required attribute.
@@ -308,7 +337,11 @@ export class TimeInput
     if (event.key === 'ArrowDown') {
       this.show = true;
       requestAnimationFrameNoNgZone(() => {
-        this.timePickerRef.current?.focus();
+        const focusableTimeButton =
+          this.timePickerRef.current?.shadowRoot?.querySelector<HTMLElement>(
+            'button[tabindex="0"]'
+          );
+        focusableTimeButton?.focus();
       });
     }
     onEnterKeyChangeEmit(event, this, this.value);
@@ -346,11 +379,6 @@ export class TimeInput
     }
 
     this.onInput(this.value);
-    if (this.isInputInvalid) {
-      this.time = null;
-    } else {
-      this.watchValue();
-    }
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
@@ -369,11 +397,6 @@ export class TimeInput
     this.disposableChangesAndVisibilityObservers?.();
   }
 
-  @Watch('value')
-  watchValue() {
-    this.time = this.value;
-  }
-
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -386,6 +409,73 @@ export class TimeInput
     return Promise.resolve(this.formInternals.form);
   }
 
+  private isWithinConfiguredBounds(parsed: DateTime): boolean {
+    const baseDay = parsed.startOf('day');
+    const { min, max } = getTimePickerConstraintBounds(
+      this.minTime,
+      this.maxTime,
+      this.format,
+      baseDay
+    );
+    return isWithinTimePickerConstraints(parsed, min, max);
+  }
+
+  private syncPickerTimeFromValue(): void {
+    const trimmed = this.value?.trim() ?? '';
+    if (!trimmed) {
+      this.time = null;
+      return;
+    }
+
+    const parsed = DateTime.fromFormat(trimmed, this.format);
+    if (!parsed.isValid) {
+      this.time = null;
+      return;
+    }
+
+    this.time = trimmed;
+  }
+
+  private validateNonEmptyValue(value: string): {
+    isInputInvalid: boolean;
+    invalidReason: string | undefined;
+  } | null {
+    if (!this.format) {
+      return null;
+    }
+
+    const time = DateTime.fromFormat(value, this.format);
+    if (time.isValid && this.isWithinConfiguredBounds(time)) {
+      return {
+        isInputInvalid: false,
+        invalidReason: undefined,
+      };
+    }
+
+    return {
+      isInputInvalid: true,
+      invalidReason: time.isValid
+        ? 'customError'
+        : (time.invalidReason ?? undefined),
+    };
+  }
+
+  private revalidateCurrentValue() {
+    if (!this.value) {
+      return;
+    }
+
+    const validity = this.validateNonEmptyValue(this.value);
+    if (!validity) {
+      return;
+    }
+
+    this.isInputInvalid = validity.isInputInvalid;
+    this.invalidReason = validity.invalidReason;
+    this.emitValidityStateChangeIfChanged();
+    this.syncPickerTimeFromValue();
+  }
+
   async onInput(value: string) {
     this.value = value;
     if (!value) {
@@ -394,25 +484,23 @@ export class TimeInput
       this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
+      this.syncPickerTimeFromValue();
       return;
     }
 
-    if (!this.format) {
+    const validity = this.validateNonEmptyValue(value);
+    if (!validity) {
+      this.syncPickerTimeFromValue();
       return;
     }
 
-    const time = DateTime.fromFormat(value, this.format);
-    if (time.isValid) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
-    } else {
-      this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason ?? undefined;
-    }
+    this.isInputInvalid = validity.isInputInvalid;
+    this.invalidReason = validity.invalidReason;
 
     this.emitValidityStateChangeIfChanged();
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
+    this.syncPickerTimeFromValue();
   }
 
   onTimeIconClick(event: Event) {
@@ -425,7 +513,7 @@ export class TimeInput
   }
 
   async openDropdown() {
-    this.time = this.value;
+    this.syncPickerTimeFromValue();
 
     return openDropdownUtil(this.dropdownElementRef);
   }
@@ -493,6 +581,7 @@ export class TimeInput
         >
           <ix-icon-button
             tabindex={-1}
+            ref={(ref) => forceTabIndex(ref, -1)}
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
@@ -616,6 +705,8 @@ export class TimeInput
             ref={this.timePickerRef}
             format={this.format}
             time={this.time ?? ''}
+            minTime={this.minTime}
+            maxTime={this.maxTime}
             hourInterval={this.hourInterval}
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}

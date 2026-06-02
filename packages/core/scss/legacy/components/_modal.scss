@@ -8,7 +8,7 @@
  */
 
 @use 'legacy/mixins/fonts';
-@use 'common-variables' as vars;
+@use 'misc/common-variables' as vars;
 
 .modal {
   --bs-modal-footer-gap: 1rem;

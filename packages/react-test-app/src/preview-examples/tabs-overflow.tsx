@@ -13,31 +13,36 @@ import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import { useState } from 'react';
 
 /** Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs). */
-const OVERFLOW_TAB_LABELS = [
-  'Overview',
-  'Analytics',
-  'Events',
-  'Automation',
-  'Data Sources',
-  'Notifications',
-  'History',
-  'Settings',
+const OVERFLOW_TABS = [
+  { tabKey: 'overview', label: 'Overview' },
+  { tabKey: 'analytics', label: 'Analytics' },
+  { tabKey: 'events', label: 'Events' },
+  { tabKey: 'automation', label: 'Automation' },
+  { tabKey: 'data-sources', label: 'Data Sources' },
+  { tabKey: 'notifications', label: 'Notifications' },
+  { tabKey: 'history', label: 'History' },
+  { tabKey: 'settings', label: 'Settings' },
 ];
 
 export default function TabsOverflow() {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [activeTabKey, setActiveTabKey] = useState('overview');
 
   return (
     <div className="tabs" style={{ maxWidth: 340 }}>
-      <IxTabs selected={selectedTab} layout="auto">
-        {OVERFLOW_TAB_LABELS.map((label, index) => (
-          <IxTabItem key={label} onClick={() => setSelectedTab(index)}>
+      <IxTabs
+        activeTabKey={activeTabKey}
+        layout="auto"
+        onTabChange={({ detail }) => setActiveTabKey(detail ?? 'overview')}
+      >
+        {OVERFLOW_TABS.map(({ tabKey, label }) => (
+          <IxTabItem key={tabKey} tabKey={tabKey}>
             {label}
           </IxTabItem>
         ))}
       </IxTabs>
       <section role="tabpanel" aria-label="Example content">
-        Content {OVERFLOW_TAB_LABELS[selectedTab]}
+        Content{' '}
+        {OVERFLOW_TABS.find((tab) => tab.tabKey === activeTabKey)?.label}
       </section>
     </div>
   );

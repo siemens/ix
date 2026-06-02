@@ -29,38 +29,99 @@ export const FOCUS_KEYS = new Set([
   'End',
 ]);
 
+const getQueryRoot = (
+  dropdownElement: HTMLElement | ShadowRoot,
+  includeShadowDom: boolean
+) =>
+  includeShadowDom && dropdownElement instanceof HTMLElement
+    ? (dropdownElement.shadowRoot ?? dropdownElement)
+    : dropdownElement;
+
+const collectSlotMatches = (slot: HTMLSlotElement, query: string) => {
+  const slotted: HTMLElement[] = [];
+
+  for (const assigned of slot.assignedElements({
+    flatten: true,
+  }) as HTMLElement[]) {
+    if (assigned.matches(query)) {
+      slotted.push(assigned);
+      continue;
+    }
+
+    slotted.push(...Array.from(assigned.querySelectorAll<HTMLElement>(query)));
+  }
+
+  return slotted;
+};
+
+const findInsertIndex = (
+  slot: HTMLSlotElement,
+  elements: HTMLElement[]
+): number => {
+  for (let i = 0; i < elements.length; i++) {
+    if (
+      slot.compareDocumentPosition(elements[i]) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+    ) {
+      return i;
+    }
+  }
+
+  return elements.length;
+};
+
 export function queryElements(
   dropdownElement: HTMLElement | ShadowRoot | null | undefined,
-  query: string
+  query: string,
+  includeShadowDom = false
 ) {
   if (!dropdownElement) {
     return [];
   }
 
-  let items: HTMLElement[] = [];
-  // Collect items from slots if they exist
-  if (dropdownElement.querySelectorAll('slot').length > 0) {
-    const slotElements = Array.from(dropdownElement.querySelectorAll('slot'));
-    items = slotElements.flatMap((slot) =>
-      Array.from(
-        slot.assignedElements({ flatten: true }) as HTMLElement[]
-      ).flatMap((el) => {
-        // Check if the assigned element itself matches the query
-        if (el?.matches(query)) {
-          return [el];
-        }
-        // Otherwise, query its children
-        return Array.from(el.querySelectorAll(query));
-      })
-    );
+  const root = getQueryRoot(dropdownElement, includeShadowDom);
+
+  const fromRoot = Array.from(root.querySelectorAll<HTMLElement>(query));
+
+  const slots = Array.from(root.querySelectorAll<HTMLSlotElement>('slot'));
+  if (slots.length === 0) {
+    return fromRoot;
   }
 
-  items = [
-    ...items,
-    ...Array.from(dropdownElement.querySelectorAll<HTMLElement>(query)),
-  ];
+  const result: HTMLElement[] = [...fromRoot];
 
-  return items;
+  // Process slots from last to first so that earlier splice indices stay valid.
+  for (let i = slots.length - 1; i >= 0; i--) {
+    const slot = slots[i];
+    const slotted = collectSlotMatches(slot, query);
+
+    if (slotted.length === 0) {
+      continue;
+    }
+
+    const insertAt = findInsertIndex(slot, result);
+
+    result.splice(insertAt, 0, ...slotted);
+  }
+
+  return result;
+}
+
+export type DomFocusOptions = Parameters<HTMLElement['focus']>[0];
+
+/** `focusVisible` is supported in Firefox 104+; omitted from some TypeScript DOM typings. */
+export type IxFocusOptions = DomFocusOptions & { focusVisible?: boolean };
+
+export function tryFocusElement(
+  element: Element | HTMLElement,
+  options?: IxFocusOptions
+) {
+  if (!(element instanceof HTMLElement)) {
+    return;
+  }
+  try {
+    element.focus(options as DomFocusOptions);
+  } catch {}
 }
 
 export type FocusVisibleConfig = {
@@ -141,24 +202,47 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 };
 
-export const focusElement = (element: HTMLElement | null | undefined) => {
+export const focusElement = (
+  element: HTMLElement | null | undefined,
+  options?: DomFocusOptions
+) => {
   if (!element) {
     return;
   }
 
-  element.focus();
+  element.focus(options);
 };
 
 const focusableBase = ':not([tabindex^="-"]):not([hidden]):not([disabled])';
 
 const customTags = ['ix-dropdown-item', 'ix-select-item'];
 
+const focusableNativeHtml = [
+  'button',
+  'a[href]',
+  'area[href]',
+  'audio',
+  'input',
+  'select',
+  'textarea',
+  'iframe',
+  'object',
+  'embed',
+  'video',
+  '[contenteditable]',
+];
+
 const buildCustom = (additionalSelector: string) =>
   customTags
     .map((tag) => `${tag}${focusableBase}${additionalSelector}`)
     .join(', ');
 
-export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('')}`;
+const buildNative = (additionalSelector: string) =>
+  focusableNativeHtml
+    .map((tag) => `${tag}${focusableBase}${additionalSelector}`)
+    .join(', ');
+
+export const focusableQueryString = `[tabindex]${focusableBase}, ${buildCustom('')}, ${buildNative('')}`;
 
 export const buildFocusableQueryString = (additionalSelector = '') =>
-  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}`;
+  `[tabindex]${focusableBase}${additionalSelector}, ${buildCustom(additionalSelector)}, ${buildNative(additionalSelector)}`;

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
+@use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
@@ -18,7 +18,6 @@
   height: 2.5rem;
   align-items: center;
   background-color: transparent;
-  overflow: hidden;
 
   @include component.ix-component;
 

@@ -16,7 +16,7 @@ import { TreeModel } from '@siemens/ix';
   selector: 'app-example',
   imports: [IxTree],
   template: ` <div class="example">
-    <ix-tree root="root" [model]="model"></ix-tree>
+    <ix-tree root="root" [model]="model" aria-label="Sample tree"></ix-tree>
   </div>`,
   styles: [
     `

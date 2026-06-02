@@ -11,13 +11,15 @@
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
-const nextItems = ref<string[]>(['Next Item 1']);
+const nextItems = ref<{ breadcrumbKey: string; label: string }[]>([
+  { label: 'Next Item 1', breadcrumbKey: 'next-item-1' },
+]);
 </script>
 
 <template>
   <IxBreadcrumb :nextItems="nextItems">
-    <IxBreadcrumbItem label="Item 1"></IxBreadcrumbItem>
-    <IxBreadcrumbItem label="Item 2"></IxBreadcrumbItem>
-    <IxBreadcrumbItem label="Item 3"></IxBreadcrumbItem>
+    <IxBreadcrumbItem label="Item 1" breadcrumbKey="item-1"></IxBreadcrumbItem>
+    <IxBreadcrumbItem label="Item 2" breadcrumbKey="item-2"></IxBreadcrumbItem>
+    <IxBreadcrumbItem label="Item 3" breadcrumbKey="item-3"></IxBreadcrumbItem>
   </IxBreadcrumb>
 </template>

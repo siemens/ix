@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconArrowRight } from '@siemens/ix-icons/icons';
 import {
+  Build,
   Component,
   Element,
   Host,
@@ -17,10 +19,12 @@ import {
   State,
   h,
 } from '@stencil/core';
+import {
+  isIxInputFieldComponent,
+  isIxInputFieldWithPickerComponent,
+} from '../utils/input';
 import { DefaultMixins } from '../utils/internal/component';
-import { isIxInputFieldComponent } from '../utils/input';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
-import { iconArrowRight } from '@siemens/ix-icons/icons';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
@@ -49,6 +53,12 @@ export class RangeField extends Mixin(...DefaultMixins) {
     | Array<HTMLIxTimeInputElement>
     | Array<HTMLIxDateInputElement>
     | Array<HTMLIxDatetimeInputElement>;
+
+  private warnInDev(message: string, element: Element) {
+    if (Build.isDev) {
+      console.warn(message, element);
+    }
+  }
 
   override componentWillLoad(): void {
     this.observeElements = new MutationObserver(() => {
@@ -142,20 +152,38 @@ export class RangeField extends Mixin(...DefaultMixins) {
       return;
     }
 
-    if (
-      evt.detail &&
-      evt.target === firstElement &&
-      isIxInputFieldComponent(firstElement) &&
-      isIxInputFieldComponent(secondElement)
-    ) {
-      if (isIxInputFieldComponent(secondElement)) {
-        const input = await secondElement.getNativeInputElement();
-        if (input) {
-          input.focus();
-        }
-      }
-      requestAnimationFrameNoNgZone(() => secondElement.openPicker());
+    if (!evt.detail || evt.target !== firstElement) {
+      return;
     }
+
+    if (!isIxInputFieldComponent(firstElement)) {
+      this.warnInDev(
+        'First element is not an input field component.',
+        firstElement
+      );
+      return;
+    }
+
+    if (!isIxInputFieldComponent(secondElement)) {
+      this.warnInDev(
+        'Second element is not an input field component.',
+        secondElement
+      );
+      return;
+    }
+
+    const input = await secondElement.getNativeInputElement();
+    input?.focus();
+
+    if (!isIxInputFieldWithPickerComponent(secondElement)) {
+      this.warnInDev(
+        'Second element is not an input field with picker component.',
+        secondElement
+      );
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => secondElement.openPicker());
   }
 
   override render() {

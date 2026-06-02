@@ -56,6 +56,7 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { forceTabIndex } from '../utils/a11y';
 
 /**
  * @form-ready
@@ -446,12 +447,12 @@ export class DateInput
             this.ixFocus.emit();
           }}
           onBlur={() => {
+            this.touched = true;
             onInputBlurWithChange(
               this,
               this.inputElementRef.current,
               this.value
             );
-            this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
@@ -464,8 +465,9 @@ export class DateInput
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            aria-label={this.ariaLabelCalendarButton}
             tabindex={-1}
+            ref={(ref) => forceTabIndex(ref, -1)}
+            aria-label={this.ariaLabelCalendarButton}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"

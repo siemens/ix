@@ -239,3 +239,105 @@ regressionTest(
     expect(isExpanded).toBe(false);
   }
 );
+
+regressionTest(
+  'floating panes close in LIFO order on Escape key press',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-pane
+        id="pane1"
+        heading="Pane 1"
+        variant="floating"
+        hide-on-collapse
+        expanded="true"
+      >
+        <button>Content 1</button>
+      </ix-pane>
+      <ix-pane
+        id="pane2"
+        heading="Pane 2"
+        variant="floating"
+        hide-on-collapse
+      >
+        <button autofocus>Content 2</button>
+      </ix-pane>
+    `);
+
+    const pane1 = page.locator('#pane1');
+    const pane2 = page.locator('#pane2');
+    await expect(pane1).toHaveClass(/hydrated/);
+    await expect(pane2).toHaveClass(/hydrated/);
+
+    await pane2.evaluate((el: HTMLIxPaneElement) => {
+      el.expanded = true;
+    });
+
+    await expect(
+      page.locator('button', { hasText: 'Content 2' })
+    ).toBeFocused();
+
+    await page.keyboard.press('Escape');
+
+    const pane2Expanded = await pane2.evaluate(
+      (el: HTMLIxPaneElement) => el.expanded
+    );
+    const pane1Expanded = await pane1.evaluate(
+      (el: HTMLIxPaneElement) => el.expanded
+    );
+
+    expect(pane2Expanded).toBe(false);
+    expect(pane1Expanded).toBe(true);
+  }
+);
+
+regressionTest(
+  'floating pane focuses element with autofocus attribute when opened',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-pane
+        heading="Test"
+        variant="floating"
+        hide-on-collapse
+        expanded="false"
+      >
+        <button autofocus aria-label="auto-focused-btn">Click me</button>
+      </ix-pane>
+    `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    await pane.evaluate((el: HTMLIxPaneElement) => {
+      el.expanded = true;
+    });
+
+    await expect(page.locator('[aria-label="auto-focused-btn"]')).toBeFocused();
+  }
+);
+
+regressionTest(
+  'floating pane focuses close button when no autofocus element',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-pane
+        heading="Test"
+        variant="floating"
+        hide-on-collapse
+        expanded="false"
+      >
+        <p>No autofocus here</p>
+      </ix-pane>
+    `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    await pane.evaluate((el: HTMLIxPaneElement) => {
+      el.expanded = true;
+    });
+
+    await expect(
+      pane.locator('ix-icon-button[aria-label="Close pane"]')
+    ).toBeFocused();
+  }
+);

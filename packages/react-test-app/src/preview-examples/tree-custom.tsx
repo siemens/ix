@@ -87,6 +87,7 @@ export default () => {
         root="root"
         model={model}
         context={context}
+        aria-label="Sample tree"
         onContextChange={({ detail }) => {
           setContext(detail);
         }}

@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "description": "AG Grid theme based on ix theme variables",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "files": [
     "LICENSE",
     "README.md",
@@ -40,6 +40,7 @@
     "@siemens/ix-icons": "catalog:",
     "@siemens/ix": "workspace:*",
     "@types/node": "^24.0.3",
+    "ag-grid-community-35": "npm:ag-grid-community@^35.0.0",
     "ag-grid-community-34": "npm:ag-grid-community@^34.3.0",
     "ag-grid-community": "^33.3.2",
     "http-server": "^14.1.1",
@@ -49,10 +50,8 @@
     "typescript": "^5.8.3",
     "vite": "catalog:"
   },
-  "dependencies": {
-    "@siemens/ix": "^4.4.0"
-  },
   "peerDependencies": {
-    "ag-grid-community": "^33"
+    "@siemens/ix": "^5.0.0",
+    "ag-grid-community": "^33 || ^34 || ^35"
   }
 }

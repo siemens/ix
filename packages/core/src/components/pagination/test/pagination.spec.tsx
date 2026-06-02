@@ -7,51 +7,57 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { newSpecPage } from '@stencil/core/testing';
-import { Pagination } from '../pagination';
+import { render, h } from '@stencil/vitest';
+import { describe, expect, it } from 'vitest';
 
 describe('ix-pagination', () => {
   it('overflow end select higher page', async () => {
-    const page = await newSpecPage({
-      components: [Pagination],
-      html: `<ix-pagination count="10"></ix-pagination>`,
-    });
-    const pagination = page.doc.querySelector('ix-pagination')!;
+    const { root, waitForChanges } = await render(
+      <ix-pagination count={10}></ix-pagination>
+    );
+    const pagination = root as HTMLIxPaginationElement;
     const button = pagination.shadowRoot!.querySelectorAll('button')[5];
     button.click();
+    await waitForChanges();
     expect(pagination.selectedPage).toBe(6);
   });
 
   it('overflow both select higher page', async () => {
-    const page = await newSpecPage({
-      components: [Pagination],
-      html: `<ix-pagination count="10" selected-page="4"></ix-pagination>`,
-    });
-    const pagination = page.doc.querySelector('ix-pagination')!;
+    const { root, waitForChanges } = await render(
+      <ix-pagination count={10}></ix-pagination>
+    );
+    const pagination = root as HTMLIxPaginationElement;
+    pagination.selectedPage = 4;
+    await waitForChanges();
     const button = pagination.shadowRoot!.querySelectorAll('button')[6];
     button.click();
+    await waitForChanges();
     expect(pagination.selectedPage).toBe(9);
   });
 
   it('overflow both select lower page', async () => {
-    const page = await newSpecPage({
-      components: [Pagination],
-      html: `<ix-pagination count="10" selected-page="5"></ix-pagination>`,
-    });
-    const pagination = page.doc.querySelector('ix-pagination')!;
+    const { root, waitForChanges } = await render(
+      <ix-pagination count={10}></ix-pagination>
+    );
+    const pagination = root as HTMLIxPaginationElement;
+    pagination.selectedPage = 5;
+    await waitForChanges();
     const button = pagination.shadowRoot!.querySelectorAll('button')[1];
     button.click();
+    await waitForChanges();
     expect(pagination.selectedPage).toBe(2);
   });
 
   it('overflow start select lower page', async () => {
-    const page = await newSpecPage({
-      components: [Pagination],
-      html: `<ix-pagination count="10" selected-page="9"></ix-pagination>`,
-    });
-    const pagination = page.doc.querySelector('ix-pagination')!;
+    const { root, waitForChanges } = await render(
+      <ix-pagination count={10}></ix-pagination>
+    );
+    const pagination = root as HTMLIxPaginationElement;
+    pagination.selectedPage = 9;
+    await waitForChanges();
     const button = pagination.shadowRoot!.querySelectorAll('button')[1];
     button.click();
+    await waitForChanges();
     expect(pagination.selectedPage).toBe(3);
   });
 });

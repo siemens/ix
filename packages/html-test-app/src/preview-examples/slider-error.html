@@ -8,26 +8,27 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slider error example</title>
   </head>
   <body>
-    <ix-slider trace trace-reference="50" error>
+    <ix-slider class="ix-invalid" trace trace-reference="50">
       <span slot="label-start">0</span>
       <span slot="label-end">100</span>
     </ix-slider>
 
     <ix-slider
+      class="ix-invalid"
       min="0"
       max="50"
       step="10"
       value="20"
       trace
       trace-reference="50"
-      error="Error message"
+      invalid-text="Error message"
     >
       <span slot="label-start">0</span>
       <span slot="label-end">50</span>

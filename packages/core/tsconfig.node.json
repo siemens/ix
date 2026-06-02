@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
 
     /* Bundler mode */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
 
     /* Linting */

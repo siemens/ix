@@ -110,11 +110,13 @@ const IxNavLinkMenuItem = ({
 
 const IxNavLinkTab = ({
   to,
-  children,
+  icon,
+  label,
   counter,
 }: {
   to: string;
-  children: any;
+  icon: string;
+  label: string;
   counter?: number;
 }) => (
   <NavLink
@@ -122,32 +124,23 @@ const IxNavLinkTab = ({
     activeClassName="active"
     component={(props) => (
       <IxTabItem
-        icon
+        icon={icon}
+        label={label}
         onClick={props.navigate}
         selected={props.className === 'active'}
         counter={counter}
-      >
-        {children}
-      </IxTabItem>
+      ></IxTabItem>
     )}
   ></NavLink>
 );
 
 const App: React.FC = () => {
   useSearchParamChanged('preview-theme', (newValue) => {
-    console.log('New theme:', newValue);
     if (!newValue) {
       return;
     }
 
-    document.body.classList.remove(
-      'theme-brand-dark',
-      'theme-brand-light',
-      'theme-classic-dark',
-      'theme-classic-light'
-    );
-
-    document.body.classList.add(newValue);
+    document.documentElement.setAttribute('data-ix-theme', newValue);
   });
   return (
     <IxApplicationContext>
@@ -155,9 +148,18 @@ const App: React.FC = () => {
         <HashRouter>
           <IxApplication breakpoints={['sm']}>
             <IxApplicationHeader name="My App">
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
 
               <IxDropdownButton variant="subtle-tertiary" label="Select config">
                 <IxDropdownItem label="Config 1"></IxDropdownItem>
@@ -206,15 +208,22 @@ const App: React.FC = () => {
               </Route>
             </IonRouterOutlet>
             <IxTabs layout="stretched" placement="top" rounded slot="bottom">
-              <IxNavLinkTab to="home">
-                <IxIcon name={iconTree}></IxIcon>
-              </IxNavLinkTab>
-              <IxNavLinkTab to="demo">
-                <IxIcon name={iconStar}></IxIcon>
-              </IxNavLinkTab>
-              <IxNavLinkTab to="other" counter={4}>
-                <IxIcon name={iconBulb}></IxIcon>
-              </IxNavLinkTab>
+              <IxNavLinkTab
+                to="home"
+                icon={iconTree}
+                label="Home"
+              ></IxNavLinkTab>
+              <IxNavLinkTab
+                to="demo"
+                icon={iconStar}
+                label="Demo"
+              ></IxNavLinkTab>
+              <IxNavLinkTab
+                to="other"
+                icon={iconBulb}
+                label="Other"
+                counter={4}
+              ></IxNavLinkTab>
             </IxTabs>
           </IxApplication>
         </HashRouter>

@@ -9,8 +9,10 @@
 
 import type { IxModalSize } from '../../modal/modal.types';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
+import { createDependencyFunction } from '../dependency-function';
 import { TypedEvent } from '../typed-event';
 
+export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
 /**
  * Set accessibility attributes on modal element
  */
@@ -48,7 +50,7 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   backdrop?: boolean;
   /**
-   * Dismiss modal on backdrop click
+   * Dismiss modal on backdrop click (ignored when **isNonBlocking** is `true`)
    */
   closeOnBackdropClick?: boolean;
   /**
@@ -60,31 +62,18 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
    */
   centered?: boolean;
   /**
-   * Element to attach modal to
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
+   * Non-modal dialog: page stays interactive, no lightbox or focus trap; `aria-modal` is `false`.
+   * Set before calling `showModal()`; changing while open is unsupported.
    */
-  container?: string | HTMLElement;
+  isNonBlocking?: boolean;
   /**
    * Modal content
    */
   content: CONTENT | string;
   /**
-   * Allow closing with Escape key
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
-   */
-  keyboard?: boolean;
-  /**
    * Modal size
    */
   size?: IxModalSize;
-  /**
-   * Modal title
-   *
-   * @deprecated This has no effect anymore and will be removed with 5.0.0
-   */
-  title?: string;
 }
 
 export interface ModalInstance<TReason = any> {
@@ -134,62 +123,63 @@ export function dismissModal(element: Element, dismissResult?: any) {
 /**
  * Show modal with given configuration
  */
-export async function showModal<T>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>> {
-  const delegate = resolveDelegate();
-  let dialogRef: HTMLIxModalElement | undefined;
-  const onClose = new TypedEvent<T>();
-  const onDismiss = new TypedEvent<T>();
+export const showModal = createDependencyFunction(
+  async function <T>(config: ModalConfig<T>): Promise<ModalInstance<T>> {
+    const delegate = resolveDelegate();
+    let dialogRef: HTMLIxModalElement | undefined;
+    const onClose = new TypedEvent<T>();
+    const onDismiss = new TypedEvent<T>();
 
-  if (typeof config.content === 'string') {
-    const dialog = document.createElement('ix-modal');
-    dialog.innerText = config.content;
-    dialogRef = await getCoreDelegate().attachView(dialog);
-  }
-
-  if (
-    config.content instanceof HTMLElement &&
-    config.content.tagName !== 'IX-MODAL'
-  ) {
-    const dialog = document.createElement('ix-modal');
-    dialog.appendChild(config.content);
-    dialogRef = await getCoreDelegate().attachView(dialog);
-  }
-  if (!dialogRef) {
-    dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
-  }
-
-  setA11yAttributes(dialogRef, config);
-  Object.assign(dialogRef, config);
-
-  await dialogRef.showModal();
-  dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {
-    onClose.emit(detail);
-    await delegate.removeView(dialogRef);
-  });
-
-  dialogRef.addEventListener(
-    'dialogDismiss',
-    async ({ detail }: CustomEvent) => {
-      onDismiss.emit(detail);
-      await delegate.removeView(dialogRef);
+    if (typeof config.content === 'string') {
+      const dialog = document.createElement('ix-modal');
+      dialog.innerText = config.content;
+      dialogRef = await getCoreDelegate().attachView(dialog);
     }
-  );
 
-  requestAnimationFrame(() => {
-    const autofocusElement = dialogRef.querySelector(
-      '[autofocus],[auto-focus]'
+    if (
+      config.content instanceof HTMLElement &&
+      config.content.tagName !== 'IX-MODAL'
+    ) {
+      const dialog = document.createElement('ix-modal');
+      dialog.appendChild(config.content);
+      dialogRef = await getCoreDelegate().attachView(dialog);
+    }
+    if (!dialogRef) {
+      dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
+    }
+
+    setA11yAttributes(dialogRef, config);
+    Object.assign(dialogRef, config);
+
+    await dialogRef.showModal();
+    dialogRef.addEventListener(
+      'dialogClose',
+      async ({ detail }: CustomEvent) => {
+        onClose.emit(detail);
+        await delegate.removeView(dialogRef);
+      }
     );
 
-    if (autofocusElement) {
-      (autofocusElement as HTMLIxButtonElement).focus();
-    }
-  });
+    dialogRef.addEventListener(
+      'dialogDismiss',
+      async ({ detail }: CustomEvent) => {
+        onDismiss.emit(detail);
+        await delegate.removeView(dialogRef);
+      }
+    );
 
-  return {
-    htmlElement: dialogRef,
-    onClose,
-    onDismiss,
-  };
-}
+    return {
+      htmlElement: dialogRef,
+      onClose,
+      onDismiss,
+    };
+  },
+  [
+    {
+      tag: 'ix-modal',
+      define: () => {
+        // Empty function body, because only necessary for dist-custom-elements
+      },
+    },
+  ]
+);

@@ -8,6 +8,10 @@
  */
 
 import Animation from '../animation';
+import {
+  createDependencyFunction,
+  type CustomElementDependency,
+} from '../dependency-function';
 import { getCoreDelegate } from '../delegate';
 
 export type ModalLoadingContext = {
@@ -28,56 +32,56 @@ export type ModalLoadingOptions = {
   centered?: boolean;
 };
 
-/**
- * Displays a loading modal with a message
- * @deprecated Use ModalLoadingOptions object form instead. Will be removed in v5.0.0.
- */
-export function showModalLoading(message: string): ModalLoadingContext;
+export type ShowModalLoadingDependencies = readonly [
+  CustomElementDependency<'ix-modal'>,
+  CustomElementDependency<'ix-modal-loading'>,
+];
 
 /**
- * Displays a loading modal with a message
+ * Create a loading modal helper with custom element dependencies.
  */
-export function showModalLoading(
-  message: ModalLoadingOptions
-): ModalLoadingContext;
+export function createShowModalLoading(
+  dependencies: ShowModalLoadingDependencies
+) {
+  return createDependencyFunction(async function showModalLoading(
+    options: ModalLoadingOptions
+  ): Promise<ModalLoadingContext> {
+    const modal = document.createElement('ix-modal');
+    modal.beforeDismiss = () => false;
 
-export function showModalLoading(
-  messageOrOptions: string | ModalLoadingOptions
-): ModalLoadingContext {
-  const modal = document.createElement('ix-modal');
-  modal.disableEscapeClose = true;
+    const loading = document.createElement('ix-modal-loading');
 
-  const loading = document.createElement('ix-modal-loading');
-
-  if (typeof messageOrOptions === 'string') {
-    loading.innerText = messageOrOptions;
-  } else {
-    loading.innerText = messageOrOptions.message;
-    if (messageOrOptions.centered) {
+    loading.innerText = options.message;
+    if (options.centered) {
       modal.centered = true;
     }
-  }
 
-  modal.appendChild(loading);
+    modal.appendChild(loading);
 
-  getCoreDelegate().attachView(modal);
-  modal.showModal();
+    await getCoreDelegate().attachView(modal);
+    await modal.showModal();
 
-  return {
-    update: (text: string) => (loading.innerHTML = text),
-    finish: (text?: string, timeout: number = 250) => {
-      if (text !== undefined) {
-        loading.innerText = text;
-      } else {
-        timeout = 0;
-      }
-      setTimeout(() => {
-        modal.closeModal(null);
-        setTimeout(
-          async () => await getCoreDelegate().removeView(modal),
-          Animation.mediumTime
-        );
-      }, timeout);
-    },
-  };
+    return {
+      update: (text: string) => (loading.innerText = text),
+      finish: (text?: string, timeout: number = 250) => {
+        if (text !== undefined) {
+          loading.innerText = text;
+        } else {
+          timeout = 0;
+        }
+        setTimeout(() => {
+          modal.closeModal(null);
+          setTimeout(
+            async () => await getCoreDelegate().removeView(modal),
+            Animation.mediumTime
+          );
+        }, timeout);
+      },
+    };
+  }, dependencies);
 }
+
+export const showModalLoading = createShowModalLoading([
+  { tag: 'ix-modal', define: () => {} },
+  { tag: 'ix-modal-loading', define: () => {} },
+]);
