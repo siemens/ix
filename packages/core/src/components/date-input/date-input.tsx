@@ -446,7 +446,7 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             this.initialValue = this.value;
 
             this.ixFocus.emit();
@@ -583,16 +583,17 @@ export class DateInput
         </ix-field-wrapper>
         <ix-dropdown
           data-testid="date-dropdown"
-          trigger={
-            this.isInteractive
-              ? this.inputElementRef.waitForCurrent()
-              : undefined
-          }
+          trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}

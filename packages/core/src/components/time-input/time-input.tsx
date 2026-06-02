@@ -566,7 +566,7 @@ export class TimeInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             this.initialValue = this.value;
             this.ixFocus.emit();
           }}
@@ -693,16 +693,17 @@ export class TimeInput
         </ix-field-wrapper>
         <ix-dropdown
           data-testid="time-dropdown"
-          trigger={
-            this.isInteractive
-              ? this.inputElementRef.waitForCurrent()
-              : undefined
-          }
+          trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}

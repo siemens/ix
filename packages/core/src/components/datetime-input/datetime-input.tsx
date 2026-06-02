@@ -742,7 +742,7 @@ export class DatetimeInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
@@ -809,11 +809,12 @@ export class DatetimeInput
           ref={this.dropdownElementRef}
           show={this.show}
           suppressOverflowBehavior
-          trigger={
-            this.isInteractive
-              ? this.inputElementRef.waitForCurrent()
-              : undefined
-          }
+          trigger={this.inputElementRef.waitForCurrent()}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
