@@ -1090,7 +1090,7 @@ importers:
         version: 3.4.0
       '@stencil/core':
         specifier: ^4.43.4
-        version: 4.43.4(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
+        version: 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       '@storybook/addon-a11y':
         specifier: ^10.1.11
         version: 10.1.11(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
