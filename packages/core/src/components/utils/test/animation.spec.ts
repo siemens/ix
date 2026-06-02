@@ -1,15 +1,41 @@
+import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest';
+
+const originalWindow = Object.getOwnPropertyDescriptor(globalThis, 'window');
+const originalDocument = Object.getOwnPropertyDescriptor(
+  globalThis,
+  'document'
+);
+
+function restoreProperty(
+  target: object,
+  key: string,
+  descriptor?: PropertyDescriptor
+) {
+  if (descriptor) {
+    Object.defineProperty(target, key, descriptor);
+    return;
+  }
+
+  Reflect.deleteProperty(target, key);
+}
+
 describe('Animation', () => {
   beforeEach(() => {
-    jest.resetModules();
+    vi.resetModules();
+  });
+
+  afterEach(() => {
+    restoreProperty(globalThis, 'window', originalWindow);
+    restoreProperty(globalThis, 'document', originalDocument);
+    vi.restoreAllMocks();
   });
 
   it('should use fallback if window is not defined', async () => {
-    const originalWindow = globalThis.window;
+    Object.defineProperty(globalThis, 'window', {
+      configurable: true,
+      value: undefined,
+    });
 
-    // Need to undefine window because @stencil/core/testing bootstrap window object
-    // with some mocks.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (globalThis as any).window = undefined;
     expect(typeof window).toBe('undefined');
 
     const { default: Animation } = await import('../animation');
@@ -19,14 +45,11 @@ describe('Animation', () => {
     expect(Animation.mediumTime).toBe(300);
     expect(Animation.slowTime).toBe(500);
     expect(Animation.xSlowTime).toBe(1000);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (globalThis as any).window = originalWindow;
   });
 
   it('should parse css time variables with units', async () => {
-    const matchMedia = jest.fn().mockReturnValue({ matches: false });
-    const getPropertyValue = jest.fn((name: string) => {
+    const matchMedia = vi.fn().mockReturnValue({ matches: false });
+    const getPropertyValue = vi.fn((name: string) => {
       const values: Record<string, string> = {
         '--theme-short-time': '25ms',
         '--theme-default-time': '0.15s',
@@ -41,7 +64,7 @@ describe('Animation', () => {
     Object.defineProperty(globalThis, 'window', {
       configurable: true,
       value: {
-        getComputedStyle: jest.fn(() => ({ getPropertyValue })),
+        getComputedStyle: vi.fn(() => ({ getPropertyValue })),
         matchMedia,
       },
     });

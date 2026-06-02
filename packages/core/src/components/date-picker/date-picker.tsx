@@ -16,7 +16,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Method,
@@ -1019,29 +1018,43 @@ export class DatePicker
             ></ix-icon-button>
           </div>
           <div
+            role="grid"
             class={{
               grid: true,
               'grid--show-week-numbers': this.showWeekNumbers,
             }}
           >
-            {this.showWeekNumbers && <div class="calendar-item week-day"></div>}
-            {this.dayNames.map((name) => (
-              <div key={name} class="calendar-item week-day">
-                <div class="overflow">{name.slice(0, 3)}</div>
-              </div>
-            ))}
+            <div role="row">
+              {this.showWeekNumbers && (
+                <div class="calendar-item week-day" role="columnheader"></div>
+              )}
+              {this.dayNames.map((name) => (
+                <div
+                  key={name}
+                  class="calendar-item week-day"
+                  role="columnheader"
+                >
+                  <div class="overflow">{name.slice(0, 3)}</div>
+                </div>
+              ))}
+            </div>
             {this.calendar.map((week) => {
               return (
-                <Fragment>
+                <div role="row">
                   {this.showWeekNumbers && (
-                    <div class="calendar-item week-number">
+                    <div class="calendar-item week-number" role="rowheader">
                       {week.weekNumber}
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
                     return day ? (
                       <div
-                        role="button"
+                        role="gridcell"
+                        aria-selected={
+                          this.getUtilitiesBasedOnDay(day).isSelected()
+                            ? 'true'
+                            : 'false'
+                        }
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
@@ -1067,10 +1080,10 @@ export class DatePicker
                         {day}
                       </div>
                     ) : (
-                      <div></div>
+                      <div role="gridcell"></div>
                     );
                   })}
-                </Fragment>
+                </div>
               );
             })}
           </div>

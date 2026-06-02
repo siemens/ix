@@ -20,10 +20,11 @@ LICENSE file in the root directory of this source tree.
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
       <ix-menu>
-        <ix-menu-about>
-          <ix-menu-about-item label="Example"> </ix-menu-about-item>
+        <ix-menu-about active-tab-key="tab-1">
+          <ix-menu-about-item tab-key="tab-1" label="Example">
+          </ix-menu-about-item>
         </ix-menu-about>
-        <ix-menu-about-news label="Test" show about-item-label="Example">
+        <ix-menu-about-news label="Test" show active-about-tab-key="tab-1">
           Test
         </ix-menu-about-news>
       </ix-menu>

@@ -12,6 +12,6 @@
   "scripts": {
     "test.memlab": "start-server-and-test host-root http://127.0.0.1:8080 test.run",
     "host-root": "http-server -s ./",
-    "test.run": "memlab run --scenario ./scenarios/ix-drawer.js"
+    "test.run": "memlab run --scenario ./scenarios/ix-pane.js"
   }
 }

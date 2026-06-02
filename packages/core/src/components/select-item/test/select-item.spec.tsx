@@ -7,39 +7,38 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { newSpecPage } from '@stencil/core/testing';
-import { DropdownItem } from '../../dropdown-item/dropdown-item';
-import { SelectItem } from '../select-item';
+import { render, h } from '@stencil/vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('select-item', () => {
   it('should throw exception if value is missing', async () => {
-    global.console = { warn: jest.fn() } as any;
-    await newSpecPage({
-      components: [SelectItem],
-      html: '<ix-select-item></ix-select-item>',
-    });
-    expect(console.warn).toHaveBeenCalledWith(
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const { root, waitForChanges } = await render(
+      <ix-select-item value="test"></ix-select-item>
+    );
+
+    root.removeAttribute('value');
+    await waitForChanges();
+
+    expect(warnSpy).toHaveBeenCalledWith(
       'ix-select-item must have a `value` property'
     );
   });
 
   it('should pass through click event from dropdown item', async () => {
-    global.console = { info: jest.fn(), warn: jest.fn() } as any;
-    let eventSpy = jest.fn();
+    const { root, spyOnEvent, waitForChanges } = await render(
+      <ix-select-item value="test" label="Test"></ix-select-item>
+    );
 
-    const page = await newSpecPage({
-      components: [DropdownItem, SelectItem],
-      html: '<ix-select-item value="test" label="Test"></ix-select-item>',
-    });
-
-    const item = page.doc.querySelector('ix-select-item')!;
-    item.addEventListener('itemClick', eventSpy);
-
+    const eventSpy = spyOnEvent('itemClick');
+    const item = root as HTMLIxSelectItemElement;
     const dropdownItem = item.shadowRoot!.querySelector(
       'ix-dropdown-item'
     ) as HTMLElement;
     dropdownItem.click();
 
-    expect(eventSpy).toHaveBeenCalled();
+    await waitForChanges();
+
+    expect(eventSpy).toHaveReceivedEvent();
   });
 });

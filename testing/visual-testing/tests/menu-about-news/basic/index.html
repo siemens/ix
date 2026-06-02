@@ -22,10 +22,14 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 2</ix-menu-item>
         <ix-menu-item>Item 3</ix-menu-item>
         <ix-menu-about>
-          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
-          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+          <ix-menu-about-item label="Tab 1" tab-key="tab1"
+            >Content 1</ix-menu-about-item
+          >
+          <ix-menu-about-item label="Tab 2" tab-key="tab2"
+            >Content 2</ix-menu-about-item
+          >
         </ix-menu-about>
-        <ix-menu-about-news label="What's new" show about-item-label="Example">
+        <ix-menu-about-news label="What's new" show active-about-tab-key="tab1">
           The global search is now positioned in the top right corner to always
           keep your context in focus. It provides you a new comprehensive result
           list. Each result navigates you directly to the finding.

@@ -13,7 +13,8 @@ import {
   IxApplicationHeader,
   IxMenu,
   IxMenuSettings,
-  IxMenuSettingsItem,
+  IxTabItem,
+  IxTabs,
 } from '@siemens/ix-angular/standalone';
 
 @Component({
@@ -23,13 +24,16 @@ import {
     IxApplicationHeader,
     IxMenu,
     IxMenuSettings,
-    IxMenuSettingsItem,
+    IxTabs,
+    IxTabItem,
   ],
   templateUrl: './settings.html',
 })
 export default class Settings implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })
   menuRef!: ElementRef<HTMLIxMenuElement>;
+
+  activeTabKey = 'tab-1';
 
   ngAfterViewInit() {
     const { nativeElement } = this.menuRef;

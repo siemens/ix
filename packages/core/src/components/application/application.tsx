@@ -44,9 +44,17 @@ export class Application {
    * Change the responsive layout of the menu structure
    */
   @Prop() forceBreakpoint: Breakpoint | undefined;
+
+  @Watch('forceBreakpoint')
+  onForceBreakpointChange(forceBreakpoint: Breakpoint | undefined) {
+    this.setBreakpoints(this.breakpoints);
+    this.forceLayoutChange(forceBreakpoint);
+  }
+
   forceLayoutChange(newMode: Breakpoint | undefined) {
     if (!newMode) {
       applicationLayoutService.enableBreakpointDetection();
+      applicationLayoutService.debouncedOnResize();
       return;
     }
 
@@ -60,7 +68,7 @@ export class Application {
   @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
   @Watch('breakpoints')
   onBreakpointsChange(breakpoints: Breakpoint[]) {
-    applicationLayoutService.setBreakpoints(breakpoints);
+    this.setBreakpoints(breakpoints);
   }
 
   /**
@@ -92,8 +100,16 @@ export class Application {
     this.menu?.toggleMenu(false);
   }
 
+  private setBreakpoints(breakpoints: Breakpoint[]) {
+    if (this.forceBreakpoint) {
+      applicationLayoutService.setBreakpoints([this.forceBreakpoint]);
+    } else {
+      applicationLayoutService.setBreakpoints(breakpoints);
+    }
+  }
+
   componentWillLoad() {
-    applicationLayoutService.setBreakpoints(this.breakpoints);
+    this.setBreakpoints(this.breakpoints);
 
     this.contextProvider = useContextProvider(
       this.hostElement,
@@ -106,13 +122,12 @@ export class Application {
     );
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
-      this.breakpoint = mode;
+      this.breakpoint = this.forceBreakpoint || mode;
     });
-    this.breakpoint = applicationLayoutService.breakpoint;
+    this.breakpoint =
+      this.forceBreakpoint || applicationLayoutService.breakpoint;
 
-    if (this.forceBreakpoint) {
-      this.forceLayoutChange(this.forceBreakpoint);
-    }
+    this.forceLayoutChange(this.forceBreakpoint);
   }
 
   disconnectedCallback() {

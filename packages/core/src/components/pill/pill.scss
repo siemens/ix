@@ -20,7 +20,7 @@
   @include component.ix-component;
 }
 
-@include chip-mixin.chip-container(false);
+@include chip-mixin.chip-container(false, 0.5rem);
 
 :host {
   .container {

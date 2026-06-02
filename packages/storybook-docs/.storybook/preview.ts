@@ -3,7 +3,7 @@ import { defineCustomElement } from '@siemens/ix-icons/components/ix-icon.js';
 import './define-custom-elements';
 import './define-internal-custom-elements';
 import { preloadIcons } from './preload-icons';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix/scss/ix.scss';
 import './preview.css';
 
 declare const window: Window & {

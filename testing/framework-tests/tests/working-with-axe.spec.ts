@@ -25,6 +25,7 @@ import './generated/tabs-axe.spec';
 import './generated/tabs-overflow-axe.spec';
 import './generated/tabs-rounded-axe.spec';
 import './generated/time-range-axe.spec';
+import './generated/timepicker-min-max-time-axe.spec';
 
 // Button tests - basic
 import './generated/buttons-axe.spec';
@@ -60,3 +61,6 @@ import './generated/toggle-indeterminate-axe.spec';
 // Pill tests
 import './generated/pill-axe.spec';
 import './generated/pill-variants-axe.spec';
+
+// Chip tests
+import './generated/chip-axe.spec';
