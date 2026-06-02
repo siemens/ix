@@ -646,13 +646,9 @@ export class Menu {
       )
     ).filter(isNavigable);
 
-    const internalItems = Array.from(
-      this.hostElement.shadowRoot!.querySelectorAll<HTMLElement>(
-        'ix-menu-item.internal-tab'
-      )
-    ).filter((el) => !el.hasAttribute('disabled'));
-
-    return [...lightItems, ...internalItems];
+    // Exclude internal utility controls (settings, theme toggle, about)
+    // Only navigation entries participate in the menubar roving tabindex
+    return lightItems;
   }
 
   private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
@@ -738,15 +734,11 @@ export class Menu {
         slot="menu"
       >
         <nav
-          role="menubar"
-          aria-orientation="vertical"
           aria-label={this.applicationName}
           class={{
             menu: true,
             expanded: this.expand,
           }}
-          onKeyDown={(e) => this.handleMenuKeyDown(e)}
-          onFocusin={(e) => this.handleMenuFocusIn(e)}
         >
           <div class="menu-buttons">
             {this.breakpoint !== 'sm' && (
@@ -774,93 +766,105 @@ export class Menu {
           </div>
 
           <div
-            id="menu-tabs"
-            style={{
-              display: 'contents',
-            }}
-            onClick={(e) => this.onMenuItemsClick(e)}
+            role="menubar"
+            aria-orientation="vertical"
+            class="menu-navigation"
+            onKeyDown={(e) => this.handleMenuKeyDown(e)}
+            onFocusin={(e) => this.handleMenuFocusIn(e)}
           >
-            <div class="tabs-shadow-container">
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-top': true,
-                  'tabs--shadow--show': this.itemsScrollShadowTop,
-                }}
-              ></div>
-              <div
-                class={{
-                  tabs: true,
-                  'show-scrollbar': this.expand,
-                }}
-                onScroll={() => this.handleOverflowIndicator()}
-              >
-                <div class="menu-avatar">
-                  <slot name="ix-menu-avatar"></slot>
+            <div
+              id="menu-tabs"
+              style={{
+                display: 'contents',
+              }}
+              onClick={(e) => this.onMenuItemsClick(e)}
+            >
+              <div class="tabs-shadow-container">
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-top': true,
+                    'tabs--shadow--show': this.itemsScrollShadowTop,
+                  }}
+                ></div>
+                <div
+                  class={{
+                    tabs: true,
+                    'show-scrollbar': this.expand,
+                  }}
+                  onScroll={() => this.handleOverflowIndicator()}
+                >
+                  <div class="menu-avatar">
+                    <slot name="ix-menu-avatar"></slot>
+                  </div>
+                  <slot name="home"></slot>
+                  {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                    <slot></slot>
+                  ) : null}
                 </div>
-                <slot name="home"></slot>
-                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
-                  <slot></slot>
-                ) : null}
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-bottom': true,
+                    'tabs--shadow--show': this.itemsScrollShadowBottom,
+                  }}
+                ></div>
               </div>
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-bottom': true,
-                  'tabs--shadow--show': this.itemsScrollShadowBottom,
-                }}
-              ></div>
+            </div>
+            <div onClick={(e) => this.onMenuItemsClick(e)}>
+              <slot name="bottom"></slot>
             </div>
           </div>
+
           <div class="bottom-tab-divider"></div>
-          {this.settings ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="settings"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showSettings,
-              }}
-              icon={iconCogwheel}
-              onClick={async () => this.toggleSettings(!this.showSettings)}
-              label={this.i18nSettings}
-              aria-expanded={this.showSettings.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
-          {this.enableToggleTheme ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="toggleTheme"
-              onClick={() => themeSwitcher.toggleMode()}
-              class="internal-tab bottom-tab"
-              icon={iconLightDark}
-              label={this.i18nToggleTheme}
-              role="switch"
-              aria-checked={this.isDarkMode.toString()}
-            ></ix-menu-item>
-          ) : null}
-          <div onClick={(e) => this.onMenuItemsClick(e)}>
-            <slot name="bottom"></slot>
+
+          <div class="menu-utility-controls">
+            {this.settings ? (
+              <ix-menu-item
+                disabled={this.isHiddenFromViewport()}
+                id="settings"
+                class={{
+                  'internal-tab': true,
+                  'bottom-tab': true,
+                  active: this.showSettings,
+                }}
+                icon={iconCogwheel}
+                onClick={async () => this.toggleSettings(!this.showSettings)}
+                label={this.i18nSettings}
+                aria-expanded={this.showSettings.toString()}
+                aria-controls="menu-overlay"
+              ></ix-menu-item>
+            ) : null}
+            {this.enableToggleTheme ? (
+              <ix-menu-item
+                disabled={this.isHiddenFromViewport()}
+                id="toggleTheme"
+                onClick={() => themeSwitcher.toggleMode()}
+                class="internal-tab bottom-tab"
+                icon={iconLightDark}
+                label={this.i18nToggleTheme}
+                role="switch"
+                aria-checked={this.isDarkMode.toString()}
+              ></ix-menu-item>
+            ) : null}
+            {this.about ? (
+              <ix-menu-item
+                disabled={this.isHiddenFromViewport()}
+                id="aboutAndLegal"
+                class={{
+                  'internal-tab': true,
+                  'bottom-tab': true,
+                  active: this.showAbout,
+                }}
+                icon={iconInfo}
+                onClick={async () => this.toggleAbout(!this.showAbout)}
+                label={this.i18nLegal}
+                aria-expanded={this.showAbout.toString()}
+                aria-controls="menu-overlay"
+              ></ix-menu-item>
+            ) : null}
           </div>
           <div id="popover-area"></div>
-          {this.about ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="aboutAndLegal"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showAbout,
-              }}
-              icon={iconInfo}
-              onClick={async () => this.toggleAbout(!this.showAbout)}
-              label={this.i18nLegal}
-              aria-expanded={this.showAbout.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
         </nav>
         <section
           id="menu-overlay"

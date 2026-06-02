@@ -14,12 +14,18 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
 import { AnchorTarget } from '../button/button.interface';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -39,7 +45,10 @@ let sequenceId = 0;
     delegatesFocus: true,
   },
 })
-export class MenuItem implements IxMenuItemBase {
+export class MenuItem
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxMenuItemBase, InheritAriaAttributesMixinContract
+{
   /**
    * Label of the menu item. Will also be used as tooltip text
    */
@@ -108,7 +117,7 @@ export class MenuItem implements IxMenuItemBase {
   /** @internal */
   @Prop() isCategory: boolean = false;
 
-  @Element() hostElement!: HTMLIxMenuItemElement;
+  @Element() override hostElement!: HTMLIxMenuItemElement;
 
   @State() tooltip?: string;
   @State() ariaHiddenTooltip = false;
@@ -135,7 +144,9 @@ export class MenuItem implements IxMenuItemBase {
     this.setTooltip();
   });
 
-  componentWillLoad() {
+  override componentWillLoad() {
+    super.componentWillLoad();
+
     this.isHostedInsideCategory =
       !!this.hostElement.closest('ix-menu-category');
 
@@ -145,7 +156,12 @@ export class MenuItem implements IxMenuItemBase {
       rootNode.host?.tagName?.toLowerCase() === 'ix-menu';
     const isDirectMenuChild =
       !this.isHostedInsideCategory && !!this.hostElement.closest('ix-menu');
-    this.isInMenuContext = isInMenuShadowDOM || isDirectMenuChild;
+
+    const isUtilityControl =
+      this.hostElement.classList.contains('internal-tab');
+
+    this.isInMenuContext =
+      (isInMenuShadowDOM || isDirectMenuChild) && !isUtilityControl;
 
     this.onIconChange();
 
@@ -155,7 +171,7 @@ export class MenuItem implements IxMenuItemBase {
     );
   }
 
-  componentWillRender() {
+  override componentWillRender() {
     this.setTooltip();
   }
 
@@ -171,7 +187,7 @@ export class MenuItem implements IxMenuItemBase {
       this.tooltipText === this.hostElement.textContent;
   }
 
-  connectedCallback() {
+  override connectedCallback() {
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -179,7 +195,9 @@ export class MenuItem implements IxMenuItemBase {
     });
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -203,14 +221,23 @@ export class MenuItem implements IxMenuItemBase {
   }
 
   private returnFocusToParentCategoryMenuItem() {
-    const categoryMenuItem = this.hostElement
-      .closest<HTMLElement>('ix-menu-category')
-      ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item.category-parent');
+    const categoryElement =
+      this.hostElement.closest<HTMLElement>('ix-menu-category');
+    const categoryMenuItem = categoryElement?.shadowRoot?.querySelector(
+      'ix-menu-item.category-parent'
+    ) as HTMLElement | null;
+
+    categoryElement?.dispatchEvent(
+      new CustomEvent('ixMenuCategoryItemSelect', {
+        bubbles: true,
+        composed: true,
+      })
+    );
 
     categoryMenuItem?.focus();
   }
 
-  render() {
+  override render() {
     let extendedAttributes = {};
     if (this.home) {
       extendedAttributes = {
@@ -224,8 +251,8 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
-    const hostA11y = a11yHostAttributes(this.hostElement);
-    const { role: externalRole, ...hostA11yWithoutRole } = hostA11y;
+    const { role: externalRole, ...inheritedA11yWithoutRole } =
+      this.inheritAriaAttributes;
 
     const internalRole =
       this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
@@ -236,7 +263,7 @@ export class MenuItem implements IxMenuItemBase {
 
     const commonAttributes = {
       class: 'tab',
-      ...hostA11yWithoutRole,
+      ...inheritedA11yWithoutRole,
     };
 
     const menuContent = [
