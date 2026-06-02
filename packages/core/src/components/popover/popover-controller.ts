@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  NestedOverlayStack,
+  pathIncludesTrigger as findTriggerInPath,
+} from '../utils/nested-overlay';
+
 /**
  * Focus management strategy when an interactive popover closes.
  *
@@ -34,38 +39,29 @@ export interface PopoverInterface {
   dismiss(closeFocus?: PopoverCloseFocus): void;
 }
 
-/** Parent popover id → nested child popover instance ids */
-type NestedPopoverIds = Record<string, string[]>;
-
 class PopoverController {
-  private readonly popovers: Map<string, PopoverInterface> = new Map();
-  private nestedPopoverIds: NestedPopoverIds = {};
+  private readonly stack = new NestedOverlayStack<PopoverInterface>(
+    {
+      blocksOutsideDismiss: (popover) => !popover.closeOnClickOutside,
+    },
+    (popover) => this.dismiss(popover)
+  );
+
   private isWindowListenerActive = false;
 
   connected(popover: PopoverInterface) {
     if (!this.isWindowListenerActive) {
       this.addOverlayListeners();
     }
-    this.popovers.set(popover.getId(), popover);
+    this.stack.connect(popover);
   }
 
   disconnected(popover: PopoverInterface) {
-    const id = popover.getId();
-    this.removeFromNestedPopoverIds(id);
-    this.popovers.delete(id);
+    this.stack.disconnect(popover);
   }
 
   removeFromNestedPopoverIds(id: string) {
-    this.popovers.forEach((popover) => {
-      const childIds = this.nestedPopoverIds[popover.getId()];
-      if (childIds) {
-        const index = childIds.indexOf(id);
-        if (index > -1) {
-          childIds.splice(index, 1);
-        }
-      }
-    });
-    delete this.nestedPopoverIds[id];
+    this.stack.removeFromHierarchy(id);
   }
 
   present(popover: PopoverInterface) {
@@ -74,26 +70,22 @@ class PopoverController {
 
   async presentAndWait(popover: PopoverInterface): Promise<void> {
     if (!popover.isPresent() && popover.willPresent?.()) {
-      this.popovers.forEach((openPopover) => {
+      this.stack.forEach((openPopover) => {
         if (openPopover.isPresent()) {
-          this.nestedPopoverIds[openPopover.getId()] =
-            openPopover.getNestedPopoverIds();
+          this.stack.setChildIds(
+            openPopover.getId(),
+            openPopover.getNestedPopoverIds()
+          );
         }
       });
       this.dismissOthers(popover.getId());
-      this.nestedPopoverIds[popover.getId()] = popover.getNestedPopoverIds();
+      this.stack.setChildIds(popover.getId(), popover.getNestedPopoverIds());
       await popover.present();
     }
   }
 
   dismissChildren(uid: string) {
-    const childIds = this.nestedPopoverIds[uid] || [];
-    for (const id of childIds) {
-      const nested = this.popovers.get(id);
-      if (nested) {
-        this.dismiss(nested);
-      }
-    }
+    this.stack.dismissChildren(uid);
   }
 
   dismiss(
@@ -101,41 +93,26 @@ class PopoverController {
     closeFocus: PopoverCloseFocus = 'restore-trigger'
   ) {
     if (popover.isPresent() && popover.willDismiss?.()) {
-      this.dismissChildren(popover.getId());
+      this.stack.dismissChildren(popover.getId());
       popover.dismiss(closeFocus);
-      delete this.nestedPopoverIds[popover.getId()];
+      this.stack.deleteChildIdsEntry(popover.getId());
     }
   }
 
   dismissAll(ignoreCloseOnClickOutside = false) {
-    this.popovers.forEach((popover) => {
-      if (!ignoreCloseOnClickOutside && !popover.closeOnClickOutside) {
-        return;
-      }
-      this.dismiss(popover);
-    });
+    this.stack.dismissAll(
+      ignoreCloseOnClickOutside
+        ? { ignorePolicyForIds: this.stack.keys() }
+        : undefined
+    );
   }
 
   dismissOthers(uid: string) {
-    const path = this.buildComposedPath(uid, new Set<string>());
-    path.add(uid);
-
-    this.popovers.forEach((popover) => {
-      if (popover.closeOnClickOutside && !path.has(popover.getId())) {
-        this.dismiss(popover);
-      }
-    });
+    this.stack.dismissOthers(uid);
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
-    for (const eventTarget of eventTargets) {
-      if (eventTarget instanceof HTMLElement) {
-        if (eventTarget.hasAttribute('data-ix-popover-trigger')) {
-          return eventTarget;
-        }
-      }
-    }
-    return;
+    return findTriggerInPath(eventTargets, 'data-ix-popover-trigger');
   }
 
   private getPopoverDialog(host: HTMLElement): HTMLDialogElement | null {
@@ -152,7 +129,7 @@ class PopoverController {
         return true;
       }
 
-      for (const popover of this.popovers.values()) {
+      for (const popover of this.stack.values()) {
         if (eventTarget === popover.hostElement) {
           return true;
         }
@@ -165,18 +142,6 @@ class PopoverController {
     }
 
     return false;
-  }
-
-  private buildComposedPath(id: string, path: Set<string>): Set<string> {
-    if (this.nestedPopoverIds[id]) {
-      path.add(id);
-    }
-    for (const parentId of Object.keys(this.nestedPopoverIds)) {
-      if (this.nestedPopoverIds[parentId].includes(id)) {
-        this.buildComposedPath(parentId, path).forEach((key) => path.add(key));
-      }
-    }
-    return path;
   }
 
   private addOverlayListeners() {
