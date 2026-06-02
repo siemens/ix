@@ -162,6 +162,7 @@ export class Popover implements PopoverInterface {
   private isOpeningPopover = false;
   private closeFocus: PopoverCloseFocus = 'restore-trigger';
   private hasDisconnected = false;
+  private triggerRegistryId = 0;
 
   private get spikeElement(): HTMLElement | null {
     return this.hostElement.shadowRoot!.querySelector('.spike');
@@ -428,7 +429,9 @@ export class Popover implements PopoverInterface {
       return;
     }
 
+    const registryId = ++this.triggerRegistryId;
     const currentTrigger = this.trigger;
+    const currentTriggerMode = this.triggerMode;
 
     try {
       const el = (await findElement(
@@ -436,7 +439,12 @@ export class Popover implements PopoverInterface {
         this.hostElement
       )) as HTMLElement;
 
-      if (this.trigger !== currentTrigger || !this.hostElement.isConnected) {
+      if (
+        registryId !== this.triggerRegistryId ||
+        this.trigger !== currentTrigger ||
+        this.triggerMode !== currentTriggerMode ||
+        !this.hostElement.isConnected
+      ) {
         return;
       }
 
@@ -628,6 +636,7 @@ export class Popover implements PopoverInterface {
     }
 
     delete this.triggerElement.dataset.ixPopoverTrigger;
+    this.triggerElement = undefined;
   }
 
   private computeSpikePosition({
@@ -709,7 +718,15 @@ export class Popover implements PopoverInterface {
     this.disposeAutoUpdate?.();
 
     const updatePosition = async () => {
+      if (!this.show) {
+        return;
+      }
+
       const result = await this.computePopoverPosition(target, dialog);
+
+      if (!this.show) {
+        return;
+      }
 
       const isHidden = result.middlewareData.hide?.referenceHidden;
       if (isHidden) {
@@ -733,6 +750,10 @@ export class Popover implements PopoverInterface {
     };
 
     await updatePosition();
+
+    if (!this.show) {
+      return;
+    }
 
     this.disposeAutoUpdate = autoUpdate(target, dialog, updatePosition, {
       ancestorResize: true,
