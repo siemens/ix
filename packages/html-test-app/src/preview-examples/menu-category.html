@@ -35,9 +35,11 @@ LICENSE file in the root directory of this source tree.
 
     <script type="module">
       (async () => {
-        await window.customElements.whenDefined('ix-menu');
-        const menu = document.querySelector('ix-menu');
-        menu.breakpoints = ['medium'];
+        await window.customElements.whenDefined('ix-application');
+        const app = document.querySelector('ix-application');
+        if (app) {
+          app.breakpoints = ['md'];
+        }
       })();
     </script>
     <script type="module" src="./init.js"></script>
