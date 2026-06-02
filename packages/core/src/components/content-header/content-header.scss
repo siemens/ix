@@ -18,12 +18,11 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    white-space: nowrap;
     margin-right: 0.5rem;
 
     .titleOverflow {
-      overflow: hidden;
-      text-overflow: ellipsis;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .headerTitleRow {
@@ -50,5 +49,24 @@
 
   .buttons {
     flex: 0 0 auto;
+  }
+
+  .actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    ::slotted(ix-button[slot='secondary-actions']) {
+      width: 5rem;
+      min-width: 5rem;
+      max-width: 5rem;
+
+      --ix-button-height: auto;
+      --ix-button-text-white-space: normal;
+      --ix-button-word-break: break-word;
+      --ix-button-inner-overflow: visible;
+      --ix-button-content-overflow: visible;
+    }
   }
 }
