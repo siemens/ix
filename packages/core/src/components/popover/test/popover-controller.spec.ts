@@ -329,7 +329,7 @@ describe('PopoverController', () => {
       controller.connected(persistent);
       controller.connected(createMockPopover({ id: 'popover-listener' }));
 
-      fireEvent.keyDown(window, { key: 'Escape' });
+      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Escape' });
 
       expect(persistent.dismissMock).toHaveBeenCalledOnce();
     });
@@ -340,8 +340,8 @@ describe('PopoverController', () => {
       controller.connected(popover);
       controller.connected(createMockPopover({ id: 'popover-listener' }));
 
-      fireEvent.keyDown(window, { key: 'Enter' });
-      fireEvent.keyDown(window, { key: 'Tab' });
+      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Enter' });
+      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Tab' });
 
       expect(popover.dismissMock).not.toHaveBeenCalled();
     });
@@ -364,7 +364,7 @@ describe('PopoverController', () => {
     it('does not dismiss when click target is a popover trigger', () => {
       const popover = createMockPopover({ id: 'popover-1', isPresent: true });
       const trigger = document.createElement('button');
-      trigger.setAttribute('data-ix-popover-trigger', '');
+      trigger.dataset.ixPopoverTrigger = '';
 
       controller.connected(popover);
       fireEvent.click(trigger);
@@ -418,7 +418,7 @@ describe('PopoverController', () => {
   describe('pathIncludesTrigger', () => {
     it('returns the trigger element when present in the event path', () => {
       const trigger = document.createElement('button');
-      trigger.setAttribute('data-ix-popover-trigger', '');
+      trigger.dataset.ixPopoverTrigger = '';
 
       expect(controller.pathIncludesTrigger([document.body, trigger])).toBe(
         trigger

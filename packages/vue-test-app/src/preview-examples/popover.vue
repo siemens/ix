@@ -26,7 +26,7 @@ const POPOVER_IMAGE_SRC =
 const popoverRef = ref<InstanceType<typeof IxPopover>>();
 
 const onCancel = () => {
-  void popoverRef.value?.$el.hidePopover();
+  popoverRef.value?.$el.hidePopover();
 };
 </script>
 

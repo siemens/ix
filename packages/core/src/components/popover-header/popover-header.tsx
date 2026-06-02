@@ -118,7 +118,7 @@ export class PopoverHeader {
         <div class="additional-items">
           <slot name="additional-items"></slot>
         </div>
-        {!this.hideClose ? (
+        {this.hideClose ? null : (
           <ix-icon-button
             class="popover-close"
             onClick={(event) => this.onCloseClick(event)}
@@ -126,7 +126,7 @@ export class PopoverHeader {
             icon={iconClose}
             aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
-        ) : null}
+        )}
       </Host>
     );
   }

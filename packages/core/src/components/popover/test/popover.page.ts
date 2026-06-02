@@ -42,6 +42,16 @@ export class PopoverPage {
     return this.page.locator(`ix-button#${this.triggerId}`);
   }
 
+  /** Native button inside the trigger host (pierces open shadow root). */
+  get triggerButton(): Locator {
+    return this.trigger.locator('button');
+  }
+
+  /** First popover on the page (single-popover fixtures). */
+  get host(): Locator {
+    return this.popoverElement;
+  }
+
   private async getTriggerAriaAttribute(
     attribute: 'aria-controls' | 'aria-expanded'
   ): Promise<string | null> {
@@ -177,6 +187,71 @@ export class PopoverPage {
     }).toPass({ timeout });
   }
 
+  async expectTriggerButtonNotFocused(): Promise<void> {
+    await expect(this.triggerButton).not.toBeFocused();
+  }
+
+  async callShowPopover(popover: Locator = this.host): Promise<void> {
+    await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
+  }
+
+  async callHidePopover(popover: Locator = this.host): Promise<void> {
+    await popover.evaluate((el: HTMLIxPopoverElement) => el.hidePopover());
+  }
+
+  async setShowProperty(
+    show: boolean,
+    popover: Locator = this.host
+  ): Promise<void> {
+    await popover.evaluate((el: HTMLIxPopoverElement, visible: boolean) => {
+      el.show = visible;
+    }, show);
+  }
+
+  async callShowPopoverConcurrently(
+    times: number,
+    popover: Locator = this.host
+  ): Promise<void> {
+    await popover.evaluate(async (el: HTMLIxPopoverElement, count: number) => {
+      const promises = Array.from({ length: count }, () => el.showPopover());
+      await promises[0];
+    }, times);
+  }
+
+  /**
+   * Blocks open via cancelable `showChange` (same pattern as other IX CTs:
+   * `locator.evaluate` + `addEventListener`, not `document.querySelector`).
+   */
+  async preventShowChangeOnOpen(popover: Locator = this.host): Promise<void> {
+    await popover.evaluate((el: HTMLIxPopoverElement) => {
+      el.addEventListener('showChange', (event) => {
+        if ((event as CustomEvent<boolean>).detail === true) {
+          event.preventDefault();
+        }
+      });
+    });
+  }
+
+  async preventShowChangeOnClose(popover: Locator = this.host): Promise<void> {
+    await popover.evaluate((el: HTMLIxPopoverElement) => {
+      el.addEventListener('showChange', (event) => {
+        if ((event as CustomEvent<boolean>).detail === false) {
+          event.preventDefault();
+        }
+      });
+    });
+  }
+
+  async preventHeaderCloseClick(popover: Locator): Promise<void> {
+    await popover
+      .locator(':scope > ix-popover-header')
+      .evaluate((header: HTMLElement) => {
+        header.addEventListener('closeClick', (event) => {
+          event.preventDefault();
+        });
+      });
+  }
+
   private async isTriggerFocused(): Promise<boolean> {
     return this.page.evaluate((triggerId) => {
       const host = document.querySelector(`ix-button#${triggerId}`);
@@ -216,17 +291,16 @@ export class PopoverPage {
   }
 
   static async installShowChangedTracker(page: Page): Promise<void> {
-    await page.evaluate(() => {
+    const popover = new PopoverPage(page);
+    await popover.host.evaluate((el: HTMLIxPopoverElement) => {
       (
-        window as unknown as { __showChangedEvents: boolean[] }
+        globalThis as unknown as { __showChangedEvents: boolean[] }
       ).__showChangedEvents = [];
-      document
-        .querySelector('ix-popover')
-        ?.addEventListener('showChanged', (event) => {
-          (
-            window as unknown as { __showChangedEvents: boolean[] }
-          ).__showChangedEvents.push((event as CustomEvent<boolean>).detail);
-        });
+      el.addEventListener('showChanged', (event) => {
+        (
+          globalThis as unknown as { __showChangedEvents: boolean[] }
+        ).__showChangedEvents.push((event as CustomEvent<boolean>).detail);
+      });
     });
   }
 
@@ -235,7 +309,7 @@ export class PopoverPage {
       .poll(() =>
         this.page.evaluate(
           () =>
-            (window as unknown as { __showChangedEvents: boolean[] })
+            (globalThis as unknown as { __showChangedEvents: boolean[] })
               .__showChangedEvents
         )
       )

@@ -68,7 +68,7 @@ const POPOVER_OFFSET = 12;
 const HOVER_HIDE_DELAY_MS = 150;
 
 const numberToPixel = (value?: number | null) =>
-  value != null ? `${value}px` : '';
+  value == null ? '' : `${value}px`;
 
 let popoverInstance = 0;
 
@@ -156,7 +156,7 @@ export class Popover implements PopoverInterface {
   private focusTrap?: FocusTrapResult;
   private hideTimeout?: ReturnType<typeof setTimeout>;
 
-  private assignedNestedPopoverIds: string[] = [];
+  private readonly assignedNestedPopoverIds: string[] = [];
   private hasFocusableContent = false;
   private suppressShowWatch = false;
   private isOpeningPopover = false;
@@ -181,7 +181,7 @@ export class Popover implements PopoverInterface {
 
     if (
       detail !== this.uid &&
-      this.assignedNestedPopoverIds.indexOf(detail) === -1
+      !this.assignedNestedPopoverIds.includes(detail)
     ) {
       this.assignedNestedPopoverIds.push(detail);
       event.stopImmediatePropagation();
@@ -441,7 +441,7 @@ export class Popover implements PopoverInterface {
       }
 
       this.triggerElement = el;
-      el.setAttribute('data-ix-popover-trigger', '');
+      el.dataset.ixPopoverTrigger = '';
       this.updateTriggerAria(this.show);
       this.discoverNestedPopover();
 
@@ -627,7 +627,7 @@ export class Popover implements PopoverInterface {
       this.clearTriggerAriaAttributes(inner);
     }
 
-    this.triggerElement.removeAttribute('data-ix-popover-trigger');
+    delete this.triggerElement.dataset.ixPopoverTrigger;
   }
 
   private computeSpikePosition({
