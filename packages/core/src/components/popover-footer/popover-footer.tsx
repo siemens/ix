@@ -14,6 +14,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
  *
  * @slot - Footer actions (typically buttons), aligned to the end.
  * @slot start - Optional leading content (for example version text or step indicators).
+ *
+ * @since 5.0.0
  */
 @Component({
   tag: 'ix-popover-footer',
@@ -23,6 +25,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
 export class PopoverFooter {
   /**
    * Button layout direction
+   *
+   * @since 5.0.0
    */
   @Prop() alignment: 'horizontal' | 'vertical' = 'horizontal';
 

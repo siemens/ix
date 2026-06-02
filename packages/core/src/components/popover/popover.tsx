@@ -68,7 +68,7 @@ const POPOVER_OFFSET = 12;
 const HOVER_HIDE_DELAY_MS = 150;
 
 const numberToPixel = (value?: number | null) =>
-  value !== null ? `${value}px` : '';
+  value != null ? `${value}px` : '';
 
 let popoverInstance = 0;
 
@@ -76,6 +76,8 @@ let popoverInstance = 0;
  * Floating panel anchored to a trigger element.
  *
  * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+ *
+ * @since 5.0.0
  */
 @Component({
   tag: 'ix-popover',
@@ -88,42 +90,58 @@ export class Popover implements PopoverInterface {
   /**
    * Element that toggles the popover.
    * CSS selector string or DOM element reference.
+   *
+   * @since 5.0.0
    */
   @Prop() trigger?: ElementReference;
 
   /**
    * Show/hide state
+   *
+   * @since 5.0.0
    */
   @Prop({ mutable: true, reflect: true }) show = false;
 
   /**
    * Preferred placement relative to trigger
+   *
+   * @since 5.0.0
    */
   @Prop() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
 
   /**
    * Show the spike pointing at the trigger
+   *
+   * @since 5.0.0
    */
   @Prop() hasSpike = false;
 
   /**
    * Interaction that opens the popover
+   *
+   * @since 5.0.0
    */
   @Prop() triggerMode: 'click' | 'hover' = 'click';
 
   /**
    * Dismiss when clicking outside the popover and trigger
+   *
+   * @since 5.0.0
    */
   @Prop() closeOnClickOutside = false;
 
   /**
    * Fires before visibility changes. Cancel to prevent.
+   *
+   * @since 5.0.0
    */
   @Event({ bubbles: true, cancelable: true })
   showChange!: EventEmitter<boolean>;
 
   /**
    * Fires after visibility has changed
+   *
+   * @since 5.0.0
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
@@ -143,6 +161,7 @@ export class Popover implements PopoverInterface {
   private suppressShowWatch = false;
   private isOpeningPopover = false;
   private closeFocus: PopoverCloseFocus = 'restore-trigger';
+  private hasDisconnected = false;
 
   private get spikeElement(): HTMLElement | null {
     return this.hostElement.shadowRoot!.querySelector('.spike');
@@ -195,6 +214,8 @@ export class Popover implements PopoverInterface {
 
   /**
    * Open the popover programmatically
+   *
+   * @since 5.0.0
    */
   @Method()
   async showPopover() {
@@ -203,6 +224,8 @@ export class Popover implements PopoverInterface {
 
   /**
    * Close the popover programmatically
+   *
+   * @since 5.0.0
    */
   @Method()
   async hidePopover() {
@@ -236,12 +259,20 @@ export class Popover implements PopoverInterface {
     this.ariaAttributes = a11yHostAttributes(this.hostElement);
   }
 
+  connectedCallback() {
+    if (this.hasDisconnected) {
+      popoverController.connected(this);
+      void this.registerTriggerListener();
+    }
+  }
+
   componentDidLoad() {
     popoverController.connected(this);
-    this.registerTriggerListener();
+    void this.registerTriggerListener();
   }
 
   disconnectedCallback() {
+    this.hasDisconnected = true;
     this.clearHideTimeout();
     this.disposeAutoUpdate?.();
     this.disposeTriggerListener?.();
@@ -287,11 +318,16 @@ export class Popover implements PopoverInterface {
       }
 
       if (this.hasFocusableContent) {
-        this.focusTrap = await addFocusTrap(this.hostElement, {
+        const trap = await addFocusTrap(this.hostElement, {
           trapFocusInShadowDom: true,
         });
-        if (this.triggerMode !== 'hover') {
-          this.focusFirstElement();
+        if (!this.show) {
+          trap.destroy();
+        } else {
+          this.focusTrap = trap;
+          if (this.triggerMode !== 'hover') {
+            this.focusFirstElement();
+          }
         }
       }
 
@@ -392,11 +428,18 @@ export class Popover implements PopoverInterface {
       return;
     }
 
+    const currentTrigger = this.trigger;
+
     try {
       const el = (await findElement(
-        this.trigger,
+        currentTrigger,
         this.hostElement
       )) as HTMLElement;
+
+      if (this.trigger !== currentTrigger || !this.hostElement.isConnected) {
+        return;
+      }
+
       this.triggerElement = el;
       el.setAttribute('data-ix-popover-trigger', '');
       this.updateTriggerAria(this.show);

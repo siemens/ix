@@ -13,6 +13,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
  * Main body section of the popover.
  *
  * @slot - Popover body content.
+ *
+ * @since 5.0.0
  */
 @Component({
   tag: 'ix-popover-content',
@@ -22,6 +24,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
 export class PopoverContent {
   /**
    * Remove default inner padding
+   *
+   * @since 5.0.0
    */
   @Prop() paddingless = false;
 
