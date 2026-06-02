@@ -329,7 +329,7 @@ describe('PopoverController', () => {
       controller.connected(persistent);
       controller.connected(createMockPopover({ id: 'popover-listener' }));
 
-      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Escape' });
+      fireEvent.keyDown(window, { key: 'Escape' });
 
       expect(persistent.dismissMock).toHaveBeenCalledOnce();
     });
@@ -340,8 +340,8 @@ describe('PopoverController', () => {
       controller.connected(popover);
       controller.connected(createMockPopover({ id: 'popover-listener' }));
 
-      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Enter' });
-      fireEvent.keyDown(globalThis as unknown as Window, { key: 'Tab' });
+      fireEvent.keyDown(window, { key: 'Enter' });
+      fireEvent.keyDown(window, { key: 'Tab' });
 
       expect(popover.dismissMock).not.toHaveBeenCalled();
     });

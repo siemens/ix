@@ -321,13 +321,13 @@ export class Popover implements PopoverInterface {
         const trap = await addFocusTrap(this.hostElement, {
           trapFocusInShadowDom: true,
         });
-        if (!this.show) {
-          trap.destroy();
-        } else {
+        if (this.show) {
           this.focusTrap = trap;
           if (this.triggerMode !== 'hover') {
             this.focusFirstElement();
           }
+        } else {
+          trap.destroy();
         }
       }
 
