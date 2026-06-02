@@ -384,7 +384,7 @@ export type IxChatEvents = NonNullable<unknown>;
 export const IxChat: StencilReactComponent<IxChatElement, IxChatEvents, Components.IxChat> = /*@__PURE__*/ createComponent<IxChatElement, IxChatEvents, Components.IxChat>({
     tagName: 'ix-chat',
     properties: {},
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChat as StencilReactComponent<IxChatElement, IxChatEvents, Components.IxChat>,
     serializeShadowRoot
 });
@@ -394,7 +394,7 @@ export type IxChatAiMessageEvents = NonNullable<unknown>;
 export const IxChatAiMessage: StencilReactComponent<IxChatAiMessageElement, IxChatAiMessageEvents, Components.IxChatAiMessage> = /*@__PURE__*/ createComponent<IxChatAiMessageElement, IxChatAiMessageEvents, Components.IxChatAiMessage>({
     tagName: 'ix-chat-ai-message',
     properties: {},
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChatAiMessage as StencilReactComponent<IxChatAiMessageElement, IxChatAiMessageEvents, Components.IxChatAiMessage>,
     serializeShadowRoot
 });
@@ -425,7 +425,7 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         insertLineBreakOnEnter: 'insert-line-break-on-enter',
         disclaimer: 'disclaimer'
     },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChatInput as StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>,
     serializeShadowRoot
 });
@@ -445,7 +445,7 @@ export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmen
         previewSupported: 'preview-supported',
         removeAriaLabel: 'remove-aria-label'
     },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChatPromptAttachment as StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>,
     serializeShadowRoot
 });
@@ -459,7 +459,7 @@ export const IxChatUserMessage: StencilReactComponent<IxChatUserMessageElement, 
         attachmentCount: 'attachment-count',
         attachmentOverflowLabel: 'attachment-overflow-label'
     },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChatUserMessage as StencilReactComponent<IxChatUserMessageElement, IxChatUserMessageEvents, Components.IxChatUserMessage>,
     serializeShadowRoot
 });
