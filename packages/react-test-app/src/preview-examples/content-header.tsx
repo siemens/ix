@@ -13,12 +13,12 @@ export default () => {
   return (
     <IxContentHeader
       has-back-button
-      header-title="Content title"
+      header-title="Content title Content title Content title Content title Content title Content title Content title Content title Content title Content title Content title Content title "
       header-subtitle="Subtitle"
     >
-      <IxButton variant="tertiary">Button1</IxButton>
-      <IxButton variant="tertiary">Button2</IxButton>
-      <IxButton variant="tertiary">Button3</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button1button1button1button1button1button1</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button2</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button3button3button1232343rdfsr</IxButton>
     </IxContentHeader>
   );
 };

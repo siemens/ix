@@ -7,13 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconArrowLeft } from '@siemens/ix-icons/icons';
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import { iconArrowLeft, iconMoreMenu } from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 import type { ContentHeaderVariant } from './content-header.types';
 
 /**
  * @slot header - Content to be placed in the header area next to the title
- * @slot default - Default slot for action buttons or other content
+ * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu on small viewports
+ * @slot - Default slot for primary content that remains visible at all viewport sizes
  */
 @Component({
   tag: 'ix-content-header',
@@ -45,6 +54,22 @@ export class ContentHeader {
    * Triggered when back button is clicked
    */
   @Event() backButtonClick!: EventEmitter<void>;
+
+  @State() private isSmallBreakpoint = false;
+
+  private mediaQuery = window.matchMedia('(max-width: 48em)');
+  private mediaQueryHandler = (e: MediaQueryListEvent) => {
+    this.isSmallBreakpoint = e.matches;
+  };
+
+  componentWillLoad() {
+    this.isSmallBreakpoint = this.mediaQuery.matches;
+    this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+  }
+
+  disconnectedCallback() {
+    this.mediaQuery.removeEventListener('change', this.mediaQueryHandler);
+  }
 
   render() {
     return (
@@ -87,9 +112,19 @@ export class ContentHeader {
             </ix-typography>
           )}
         </div>
-        <div class="buttons">
-          <slot />
-        </div>
+        {this.isSmallBreakpoint ? (
+          <div class="actions">
+            <slot />
+            <ix-dropdown-button icon={iconMoreMenu} variant="tertiary" label="">
+              <slot name="secondary-actions" />
+            </ix-dropdown-button>
+          </div>
+        ) : (
+          <div class="actions">
+            <slot name="secondary-actions" />
+            <slot />
+          </div>
+        )}
       </Host>
     );
   }

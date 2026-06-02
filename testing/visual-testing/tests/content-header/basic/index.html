@@ -28,6 +28,7 @@ SPDX-License-Identifier: MIT
         iconTrashcan,
         iconContextMenu,
         iconInfo,
+        iconMoreMenu,
       } from '@siemens/ix-icons/icons';
 
       addIcons({
@@ -35,6 +36,7 @@ SPDX-License-Identifier: MIT
         iconTrashcan,
         iconContextMenu,
         iconInfo,
+        iconMoreMenu,
       });
     </script>
   </head>
@@ -44,9 +46,9 @@ SPDX-License-Identifier: MIT
       header-title="content title"
       header-subtitle="subtitle content"
     >
-      <ix-button variant="tertiary">Button1</ix-button>
-      <ix-button variant="tertiary">Button2</ix-button>
-      <ix-button variant="tertiary">Button3</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button1</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button2</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button3</ix-button>
     </ix-content-header>
 
     <ix-content-header
@@ -55,9 +57,10 @@ SPDX-License-Identifier: MIT
       header-subtitle="subtitle content"
     >
       <ix-pill slot="header" icon="info" class="margin-top">Label</ix-pill>
-      <ix-button variant="tertiary">Button1</ix-button>
-      <ix-button variant="tertiary">Button2</ix-button>
-      <ix-button variant="tertiary">Button3</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button1</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button2</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">Button3</ix-button>
+      <ix-button variant="primary">Important</ix-button>
     </ix-content-header>
     <ix-content-header
       has-back-button
@@ -65,20 +68,21 @@ SPDX-License-Identifier: MIT
       header-subtitle="This is an equally long subtitle meant to test the behavior of the subtitle area when the text exceeds the usual length and needs to be displayed properly without breaking the layout"
     >
       <ix-pill slot="header" icon="info" class="margin-top">Label</ix-pill>
-      <ix-button variant="tertiary">Button1</ix-button>
-      <ix-button variant="tertiary">Button2</ix-button>
-      <ix-button variant="tertiary">Button3</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">button text wrapping when it is really long</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">button text wrapping when it is really long</ix-button>
+      <ix-button slot="secondary-actions" variant="tertiary">button text wrapping when it is really long</ix-button>
+      <ix-button variant="primary">Important</ix-button>
     </ix-content-header>
 
     <ix-content-header
       header-title="content title"
       header-subtitle="subtitle content"
     >
-      <ix-icon-button icon="pen" variant="tertiary"> Button1 </ix-icon-button>
-      <ix-icon-button icon="trashcan" variant="tertiary">
+      <ix-icon-button icon="pen" variant="tertiary" slot="secondary-actions"> Button1 </ix-icon-button>
+      <ix-icon-button icon="trashcan" variant="tertiary" slot="secondary-actions">
         Button2
       </ix-icon-button>
-      <ix-icon-button icon="context-menu" variant="tertiary">
+      <ix-icon-button icon="context-menu" variant="tertiary" slot="secondary-actions">
         Button3
       </ix-icon-button>
     </ix-content-header>
