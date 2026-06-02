@@ -2325,11 +2325,11 @@ export class IxPopover {
 
 export declare interface IxPopover extends Components.IxPopover {
   /**
-   * Fires before visibility changes. Cancel to prevent.
+   * Fires before visibility changes. Cancel to prevent. @since 5.0.0
    */
   showChange: EventEmitter<CustomEvent<boolean>>;
   /**
-   * Fires after visibility has changed
+   * Fires after visibility has changed @since 5.0.0
    */
   showChanged: EventEmitter<CustomEvent<boolean>>;
 }
@@ -2406,7 +2406,7 @@ export class IxPopoverHeader {
 export declare interface IxPopoverHeader extends Components.IxPopoverHeader {
   /**
    * Fires when close button is clicked.
-Cancel to prevent closing.
+Cancel to prevent closing. @since 5.0.0
    */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
