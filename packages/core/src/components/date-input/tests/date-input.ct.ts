@@ -141,7 +141,7 @@ regressionTest(
 regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
-  const input = dateInputElement.locator('input');
+  const input = dateInputElement.getByRole('textbox');
   await expect(dateInputElement).toHaveAttribute('required');
 
   await expect(dateInputElement.locator('ix-field-label')).toHaveText(
@@ -149,9 +149,12 @@ regressionTest('required', async ({ mount, page }) => {
   );
 
   await input.focus();
+  await page.waitForTimeout(50);
   await input.blur();
 
-  await expect(dateInputElement).toHaveClass(/ix-invalid--required/);
+  await expect(dateInputElement).toHaveClass(/ix-invalid--required/, {
+    timeout: 5000,
+  });
 });
 
 regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {

@@ -14,23 +14,23 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <div class="tabs">
-      <ix-tabs [selected]="selectedTab">
-        <ix-tab-item (click)="changeTab(0)">Tab 1</ix-tab-item>
-        <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>
-        <ix-tab-item (click)="changeTab(2)">Tab 3</ix-tab-item>
+      <ix-tabs
+        [activeTabKey]="activeTabKey"
+        (tabChange)="activeTabKey = $event.detail ?? 'tab-1'"
+      >
+        <ix-tab-item tabKey="tab-1">Tab 1</ix-tab-item>
+        <ix-tab-item tabKey="tab-2">Tab 2</ix-tab-item>
+        <ix-tab-item tabKey="tab-3">Tab 3</ix-tab-item>
       </ix-tabs>
       <section role="tabpanel" aria-label="Example content">
-        @if (selectedTab === 0) { Content Tab 1 } @else if (selectedTab === 1) {
-        Content Tab 2 } @else if (selectedTab === 2) { Content Tab 3 }
+        @if (activeTabKey === 'tab-1') { Content Tab 1 } @else if (activeTabKey
+        === 'tab-2') { Content Tab 2 } @else if (activeTabKey === 'tab-3') {
+        Content Tab 3 }
       </section>
     </div>
   `,
   styleUrls: ['./tabs.css'],
 })
 export default class Tabs {
-  selectedTab = 0;
-
-  changeTab(tabIndex: number) {
-    this.selectedTab = tabIndex;
-  }
+  activeTabKey = 'tab-1';
 }

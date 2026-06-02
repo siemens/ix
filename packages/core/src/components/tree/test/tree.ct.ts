@@ -639,3 +639,113 @@ regressionTest(
     expect(rafCallCountAfterScroll).toBeLessThan(5);
   }
 );
+
+async function assertDisabledItemCannotBeSelectedOrToggled(
+  mount: Mount,
+  page: Page,
+  model: TreeModel<unknown>,
+  context: TreeContext,
+  parentLabel: string
+) {
+  await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+  const tree = page.locator('ix-tree');
+  await tree.evaluate(
+    (element: HTMLIxTreeElement, args) => {
+      element.model = args.model;
+      element.context = args.context;
+    },
+    { model, context }
+  );
+
+  await expect(tree).toHaveClass(/hydrated/);
+
+  const parent = tree.locator('ix-tree-item', { hasText: parentLabel });
+
+  await expect(parent).toHaveClass(/disabled/);
+
+  await parent.click({ force: true });
+  await expect(parent).not.toHaveClass(/selected/);
+
+  await parent.locator('.icon-toggle-container').click({ force: true });
+  await expect(
+    tree.locator('ix-tree-item', { hasText: 'Child' })
+  ).not.toBeVisible();
+}
+
+regressionTest(
+  'item.disabled - cannot be selected or toggled',
+  async ({ mount, page }) => {
+    await assertDisabledItemCannotBeSelectedOrToggled(
+      mount,
+      page,
+      {
+        root: {
+          id: 'root',
+          data: { name: '' },
+          hasChildren: true,
+          children: ['parent'],
+        },
+        parent: {
+          id: 'parent',
+          data: { name: 'Disabled Parent' },
+          hasChildren: true,
+          children: ['child'],
+          disabled: true,
+        },
+        child: {
+          id: 'child',
+          data: { name: 'Child' },
+          hasChildren: false,
+          children: [],
+        },
+      },
+      {
+        root: { isExpanded: true, isSelected: false },
+        parent: { isExpanded: false, isSelected: false },
+        child: { isExpanded: false, isSelected: false },
+      },
+      'Disabled Parent'
+    );
+  }
+);
+
+regressionTest(
+  'context.isDisabled - cannot be selected or toggled',
+  async ({ mount, page }) => {
+    await assertDisabledItemCannotBeSelectedOrToggled(
+      mount,
+      page,
+      {
+        root: {
+          id: 'root',
+          data: { name: '' },
+          hasChildren: true,
+          children: ['parent'],
+        },
+        parent: {
+          id: 'parent',
+          data: { name: 'Context Disabled Parent' },
+          hasChildren: true,
+          children: ['child'],
+        },
+        child: {
+          id: 'child',
+          data: { name: 'Child' },
+          hasChildren: false,
+          children: [],
+        },
+      },
+      {
+        root: { isExpanded: true, isSelected: false },
+        parent: { isExpanded: false, isSelected: false, isDisabled: true },
+        child: { isExpanded: false, isSelected: false },
+      },
+      'Context Disabled Parent'
+    );
+  }
+);

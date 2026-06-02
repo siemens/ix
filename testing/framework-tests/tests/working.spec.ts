@@ -25,6 +25,7 @@ import './generated/tabs-overflow.spec';
 import './generated/tabs-rounded.spec';
 import './generated/tabs.spec';
 import './generated/time-range.spec';
+import './generated/timepicker-min-max-time.spec';
 
 // Button tests - basic
 import './generated/buttons.spec';
@@ -60,3 +61,6 @@ import './generated/toggle-custom-label.spec';
 // Pill tests
 import './generated/pill.spec';
 import './generated/pill-variants.spec';
+
+// Chip tests
+import './generated/chip.spec';

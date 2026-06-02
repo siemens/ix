@@ -81,6 +81,50 @@ regressionTest('renders in slot', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
 });
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
+  await mount(`
+    <ix-tooltip for=".test">tooltip</ix-tooltip>
+    <ix-button class="test">button</ix-button>
+  `);
+
+  const button = page.locator('ix-button');
+  await button.hover();
+
+  const tooltip = page.locator('ix-tooltip');
+  await expect(tooltip).toHaveClass(/visible/);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest(
+  'accessibility after DOM re-attachment',
+  async ({ mount, makeAxeBuilder, page }) => {
+    await mount(`
+      <div id="container">
+        <ix-tooltip for=".test">tooltip</ix-tooltip>
+        <ix-button class="test">button</ix-button>
+      </div>
+    `);
+
+    await page.evaluate(() => {
+      const container = document.getElementById('container')!;
+      const tooltip = container.querySelector('ix-tooltip')!;
+      tooltip.remove();
+      container.appendChild(tooltip);
+    });
+
+    const button = page.locator('ix-button');
+    await button.hover();
+
+    const tooltip = page.locator('ix-tooltip');
+    await expect(tooltip).toHaveClass(/visible/);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
 regressionTest.describe('a11y', () => {
   regressionTest('closes on ESC', async ({ mount, page }) => {
     await mount(`

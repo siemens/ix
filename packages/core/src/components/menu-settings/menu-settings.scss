@@ -14,7 +14,8 @@
 :host {
   display: block;
   background-color: var(--theme-nav-overlay--background);
-  padding: vars.$medium-space vars.$default-space vars.$default-space vars.$x-large-space;
+  padding: vars.$medium-space vars.$default-space vars.$default-space
+    vars.$x-large-space;
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -38,9 +39,5 @@
 
   ix-tabs {
     margin-bottom: 1.5rem;
-  }
-
-  .settings-tabs {
-    margin-bottom: vars.$large-space;
   }
 }

@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: 'dist',
+    minify: false,
     sourcemap: true,
     lib: {
       entry: './src/index.ts',

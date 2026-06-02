@@ -113,6 +113,7 @@ export class Tree {
       width: '100%',
       height: '100%',
       itemHeight: 32,
+      scrollerTagName: 'div',
       total: list.length,
       generate: (index: number) => {
         const item = list[index];
@@ -129,6 +130,9 @@ export class Tree {
         if (renderedTreeItem && refreshTreeOptions.force === false) {
           renderedTreeItem.hasChildren = item.hasChildren;
           renderedTreeItem.context = { ...context };
+          renderedTreeItem.disabled = Boolean(
+            item.disabled || context.isDisabled
+          );
 
           let forceRerender = this.dirtyItems.has(item.id);
 
@@ -198,12 +202,14 @@ export class Tree {
       return {
         isExpanded: false,
         isSelected: false,
+        isDisabled: this.model[id]?.disabled,
       };
     }
     if (!this.context[id]) {
       this.context[id] = {
         isExpanded: false,
         isSelected: false,
+        isDisabled: this.model[id]?.disabled,
       };
     }
     return this.context[id];
@@ -362,7 +368,16 @@ export class Tree {
       return;
     }
 
+    if (item.disabled) {
+      return;
+    }
+
     const context = this.getContext(id);
+
+    if (context.isDisabled) {
+      return;
+    }
+
     context.isExpanded = !context.isExpanded;
     this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
     this.setContext(id, context);
@@ -381,6 +396,12 @@ export class Tree {
     }
 
     const item = this.model[id];
+    const context = this.getContext(id);
+
+    if (item.disabled || context.isDisabled) {
+      return;
+    }
+
     const path = event.composedPath();
     const treeIndex = path.indexOf(this.hostElement);
     const treePath = path.slice(0, treeIndex);
@@ -394,13 +415,11 @@ export class Tree {
       for (const itemContext of Object.values(this.context)) {
         itemContext.isSelected = false;
       }
-      const context = this.getContext(id);
       context.isSelected = true;
       this.setContext(id, context);
     }
 
     if (this.toggleOnItemClick && item.hasChildren) {
-      const context = this.getContext(id);
       context.isExpanded = !context.isExpanded;
       this.nodeToggled.emit({
         id: id,

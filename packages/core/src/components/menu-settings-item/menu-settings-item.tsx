@@ -13,24 +13,31 @@ import {
   EventEmitter,
   h,
   Host,
+  Mixin,
   Prop,
   Watch,
 } from '@stencil/core';
+import { BaseTabMixin, BaseTabMixinContract } from '../tab-item/tab.mixin';
 import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
+/**
+ * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+ */
 @Component({
   tag: 'ix-menu-settings-item',
-  styleUrl: 'menu-settings-item.css',
-  shadow: true,
+  shadow: false,
 })
-export class MenuSettingsItem {
+export class MenuSettingsItem
+  extends Mixin(BaseTabMixin)
+  implements BaseTabMixinContract
+{
   /**
    * Settings Item label
    */
   @Prop({ reflect: true }) label?: string;
 
   /**
-   * Label changed
+   * @internal
    */
   @Event() labelChange!: EventEmitter<CustomLabelChangeEvent>;
 
@@ -43,10 +50,12 @@ export class MenuSettingsItem {
     });
   }
 
-  render() {
+  override render() {
     return (
       <Host>
-        <slot></slot>
+        <ix-tab-panel tabKey={this.tabKey}>
+          <slot></slot>
+        </ix-tab-panel>
       </Host>
     );
   }

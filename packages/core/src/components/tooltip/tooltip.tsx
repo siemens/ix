@@ -99,6 +99,8 @@ export class Tooltip {
   private disposeTooltipListener?: () => void;
   private disposeDomChangeListener?: () => void;
 
+  private hasDisconnected = false;
+
   private readonly instance = tooltipInstance++;
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
@@ -427,6 +429,8 @@ export class Tooltip {
   }
 
   private registerDomChangeListener() {
+    this.disposeDomChangeListener?.();
+
     const observer = new MutationObserver(() => {
       this.registerTriggerListener();
     });
@@ -466,7 +470,15 @@ export class Tooltip {
     this.registerDomChangeListener();
   }
 
+  connectedCallback() {
+    if (this.hasDisconnected) {
+      this.registerTriggerListener();
+      this.registerDomChangeListener();
+    }
+  }
+
   disconnectedCallback() {
+    this.hasDisconnected = true;
     this.clearTimeouts();
 
     this.disposeAutoUpdate?.();

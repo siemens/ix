@@ -143,7 +143,7 @@ export class Dropdown
   /**
    * Enable Popover API rendering for top-layer positioning.
    *
-   * @default false in v4.x, will default to true in v5.0.0
+   * @default false in v5.x, will default to true in v6.0.0
    * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
@@ -213,6 +213,9 @@ export class Dropdown
 
   /** @internal */
   @Prop() focusTrapOptions?: FocusTrapOptions;
+
+  /** @internal */
+  @Prop() hostRole?: string;
 
   /**
    * @internal
@@ -975,6 +978,8 @@ export class Dropdown
       ariaAttributes['aria-labelledby'] = this.triggerElement.id;
       ariaAttributes['aria-owns'] = this.triggerElement.id;
       ariaAttributes['role'] = 'menu';
+    } else if (this.hostRole) {
+      ariaAttributes['role'] = this.hostRole;
     }
     return (
       <Host

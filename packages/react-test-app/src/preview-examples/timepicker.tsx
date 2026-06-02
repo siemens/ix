@@ -10,5 +10,5 @@
 import { IxTimePicker } from '@siemens/ix-react';
 
 export default () => {
-  return <IxTimePicker />;
+  return <IxTimePicker minTime="13:00:00" maxTime="17:30:00" time="12:45:00" />;
 };
