@@ -195,24 +195,42 @@ regressionTest(
 );
 
 regressionTest(
-  'updating component value attribute updates validity',
+  'initial invalid value does not show visual error before user interaction',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="invalid-date"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = dateInput.getByRole('textbox');
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/ix-invalid/);
+  }
+);
+
+regressionTest(
+  'programmatic invalid value does not show visual error before user interaction, shows after blur, setting valid value clears error',
   async ({ page, mount }) => {
     await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
     const dateInput = page.locator('ix-date-input');
-    const input = page.locator('input');
+    const input = dateInput.getByRole('textbox');
 
-    await dateInput.evaluateHandle((el) => {
-      el.setAttribute('value', 'invalid-date');
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+      el.value = 'invalid-date';
     });
-
-    await expect(input).toHaveClass(/is-invalid/);
-
-    await dateInput.evaluateHandle((el) => {
-      el.setAttribute('value', '2024/05/05');
-    });
-
     await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/ix-invalid/);
+
+    await input.focus();
+    await input.blur();
+    await expect(input).toHaveClass(/is-invalid/);
+    await expect(dateInput).toHaveClass(/ix-invalid/);
+
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+      el.value = '2024/05/05';
+    });
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/ix-invalid--validity-invalid/);
   }
 );
 
@@ -297,18 +315,14 @@ regressionTest.describe('keyboard navigation', () => {
 
 regressionTest.describe('date-input validation scenarios', () => {
   regressionTest(
-    'Required input: Invalid input > Removing value with keyboard > Stays invalid',
+    'Required input: Initial invalid input > Removing value with keyboard > Stays invalid',
     async ({ page, mount }) => {
       await mount(
-        `<ix-date-input required value="2024/05/05"></ix-date-input>`
+        `<ix-date-input required value="invalid-date"></ix-date-input>`
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
-
-      await input.focus();
-      await input.fill('invalid-date');
-      await input.blur();
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.selectText();
@@ -320,14 +334,14 @@ regressionTest.describe('date-input validation scenarios', () => {
   );
 
   regressionTest(
-    'Required input: Invalid input > Remove touched state (clear) > Valid again',
+    'Required input: Enter invalid input > Remove touched state (clear) > Valid again',
     async ({ page, mount }) => {
       await mount(
         `<ix-date-input required value="2024/05/05"></ix-date-input>`
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.fill('invalid-date');
@@ -341,21 +355,23 @@ regressionTest.describe('date-input validation scenarios', () => {
   );
 
   regressionTest(
-    'Required input: Invalid input > Programmatically setting to empty > Stays invalid',
+    'Required input: Initial invalid input > Programmatically setting to empty > Stays invalid (no immediate red, shows after blur)',
     async ({ page, mount }) => {
       await mount(
         `<ix-date-input required value="invalid-date"></ix-date-input>`
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
-
-      await input.focus();
-      await input.blur();
+      const input = dateInput.getByRole('textbox');
 
       await dateInput.evaluate((el: HTMLIxDateInputElement) => {
         el.value = '';
       });
+
+      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+
+      await input.focus();
+      await input.blur();
 
       await expect(dateInput).toHaveClass(/ix-invalid--required/);
     }
@@ -369,7 +385,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.selectText();
@@ -388,7 +404,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.blur();
@@ -401,20 +417,61 @@ regressionTest.describe('date-input validation scenarios', () => {
   );
 
   regressionTest(
-    'Required input: Valid input > Programmatically setting to empty > It is invalid',
+    'Required input: Valid input > Programmatically setting to empty > It is invalid (no immediate red, shows after blur)',
     async ({ page, mount }) => {
       await mount(
         `<ix-date-input required value="2024/05/05"></ix-date-input>`
       );
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
-
-      await input.focus();
-      await input.blur();
+      const input = dateInput.getByRole('textbox');
 
       await dateInput.evaluate((el: HTMLIxDateInputElement) => {
         el.value = '';
+      });
+      // onInput() is async — wait for it to complete before asserting
+      await expect
+        .poll(() =>
+          dateInput.evaluate((el: HTMLIxDateInputElement) => el.value)
+        )
+        .toBe('');
+
+      // Programmatic empty must NOT immediately show the required error
+      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+
+      // After next blur the required error must appear
+      await input.focus();
+      await input.blur();
+
+      await expect(dateInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Programmatically setting to empty > Error shows on form reportValidity',
+    async ({ page, mount }) => {
+      await mount(`
+        <form id="f">
+          <ix-date-input required value="2024/05/05"></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = '';
+      });
+      // onInput() is async — poll until the value settles before asserting.
+      await expect
+        .poll(() =>
+          dateInput.evaluate((el: HTMLIxDateInputElement) => el.value)
+        )
+        .toBe('');
+
+      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+
+      await page.evaluate(() => {
+        (document.getElementById('f') as HTMLFormElement).reportValidity();
       });
 
       await expect(dateInput).toHaveClass(/ix-invalid--required/);
@@ -427,7 +484,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.fill('invalid-date');
@@ -449,7 +506,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.fill('invalid-date');
@@ -468,7 +525,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.blur();
@@ -488,7 +545,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.selectText();
@@ -506,7 +563,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.blur();
@@ -524,7 +581,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.blur();
@@ -548,7 +605,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       `);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.selectText();
@@ -569,7 +626,7 @@ regressionTest.describe('date-input validation scenarios', () => {
       `);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.fill('2025/10/10/10');
       await input.blur();
@@ -579,12 +636,45 @@ regressionTest.describe('date-input validation scenarios', () => {
   );
 
   regressionTest(
+    'novalidate form: submit event fires even when required field is empty',
+    async ({ page, mount }) => {
+      // HTML spec §4.10.22.3 step 5.4: when the no-validate state is true
+      // (novalidate present) the browser skips constraint validation entirely,
+      // so the submit event MUST fire regardless of the field's validity state.
+      await mount(`
+        <form id="f" novalidate>
+          <ix-date-input required></ix-date-input>
+          <button type="submit">Submit</button>
+        </form>
+      `);
+
+      const submitPromise = page.locator('#f').evaluate(
+        (form) =>
+          new Promise<boolean>((resolve) => {
+            form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              resolve(true);
+            });
+          })
+      );
+
+      await page.locator('button[type="submit"]').click();
+      const submitted = await submitPromise;
+      expect(submitted).toBe(true);
+
+      // novalidate: browser skips constraint validation → no visual errors shown
+      const dateInput = page.locator('ix-date-input');
+      await expect(dateInput).not.toHaveClass(/ix-invalid/);
+    }
+  );
+
+  regressionTest(
     'Validation works after switching between required and non-required',
     async ({ page, mount }) => {
       await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
-      const input = page.locator('input');
+      const input = dateInput.getByRole('textbox');
 
       await input.focus();
       await input.selectText();
@@ -604,6 +694,347 @@ regressionTest.describe('date-input validation scenarios', () => {
       });
 
       await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'reportValidity returns false and shows error for invalid date without prior interaction',
+    async ({ page, mount }) => {
+      await mount(`<ix-date-input value="invalid-date"></ix-date-input>`);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // No user interaction yet — field should be visually clean
+      await expect(input).not.toHaveClass(/is-invalid/);
+
+      // reportValidity() should surface the error immediately and return false
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+
+      expect(isValid).toBe(false);
+      // Inner input border must be red
+      await expect(input).toHaveClass(/is-invalid/);
+      // Host must carry ix-invalid--validity-invalid so the title also turns red
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'reportValidity returns false and shows required error for empty required field',
+    async ({ page, mount }) => {
+      await mount(`<ix-date-input required></ix-date-input>`);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // No user interaction yet — field should be visually clean
+      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+
+      expect(isValid).toBe(false);
+      // Host must show required error class (drives title and field wrapper styling)
+      await expect(dateInput).toHaveClass(/ix-invalid--required/);
+      // Inner input must NOT show is-invalid for a required-but-empty field
+      // (required is a separate concern from parse/format error)
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'reportValidity returns true for a valid field',
+    async ({ page, mount }) => {
+      await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+
+      expect(isValid).toBe(true);
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: reportValidity() on required field still validates explicitly',
+    async ({ page, mount }) => {
+      await mount(`
+        <form novalidate>
+          <ix-date-input required value="invalid-date"></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // Explicit reportValidity() must still surface validation even in a
+      // novalidate form, matching native input behavior.
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+
+      expect(isValid).toBe(false);
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: reportValidity() on optional invalid value still validates explicitly',
+    async ({ page, mount }) => {
+      await mount(`
+        <form novalidate>
+          <ix-date-input value="invalid-date"></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+
+      expect(isValid).toBe(false);
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'form.reportValidity() with invalid date (parse error) shows field and title red',
+    async ({ page, mount }) => {
+      await mount(`
+        <form id="f">
+          <ix-date-input value="invalid-date"></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // No interaction — clean
+      await expect(input).not.toHaveClass(/is-invalid/);
+
+      await page.evaluate(() => {
+        (document.getElementById('f') as HTMLFormElement).reportValidity();
+      });
+
+      // Both field border and title must turn red
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'after reportValidity() shows red, correcting value clears the error',
+    async ({ page, mount }) => {
+      await mount(`<ix-date-input value="invalid-date"></ix-date-input>`);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      await expect(input).toHaveClass(/is-invalid/);
+
+      // Correct the value — error must clear immediately (touched=true after reportValidity)
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = '2024/05/05';
+      });
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'after reportValidity() shows red, clear() resets to pristine',
+    async ({ page, mount }) => {
+      await mount(
+        `<ix-date-input required value="invalid-date"></ix-date-input>`
+      );
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      // Error is shown
+      await expect(input).toHaveClass(/is-invalid/);
+
+      // clear() must reset touched and all visual error state
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => el.clear());
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: reportValidity() error persists after setting the same invalid value again',
+    async ({ page, mount }) => {
+      // Scenario: invalid set → reportValidity() → invalid set again
+      // The error must remain because the value is still invalid.
+      await mount(`
+        <form novalidate>
+          <ix-date-input required></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // Set invalid value programmatically — novalidate suppresses visual error
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = 'bad-date';
+      });
+      await expect(input).not.toHaveClass(/is-invalid/);
+
+      // reportValidity() surfaces the error
+      const isValid = await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      expect(isValid).toBe(false);
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+
+      // Set the same invalid value again — error must remain (value is still invalid)
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = 'bad-date';
+      });
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: reportValidity() error clears after setting a valid value',
+    async ({ page, mount }) => {
+      // Scenario: invalid set → reportValidity() → valid set
+      // Error must clear because the value is now valid.
+      await mount(`
+        <form novalidate>
+          <ix-date-input required></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // Set invalid, then surface error via reportValidity()
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = 'bad-date';
+      });
+      await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      await expect(input).toHaveClass(/is-invalid/);
+
+      // Set a valid value — error must clear immediately
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = '2024/05/05';
+      });
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: reportValidity() error survives blur — red border and message stay visible',
+    async ({ page, mount }) => {
+      // After reportValidity() surfaces an error, manually blurring the field
+      // must NOT remove the error text message — the text description must remain visible.
+      await mount(`
+        <form novalidate>
+          <ix-date-input required></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = 'bad-date';
+      });
+      await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      await expect(input).toHaveClass(/is-invalid/);
+
+      // Blur the field — error state must be fully preserved
+      await input.focus();
+      await input.blur();
+
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form: emptying the field after reportValidity() switches error message to required',
+    async ({ page, mount }) => {
+      // Scenario: invalid set → reportValidity() → value cleared via "Empty" button
+      //
+      // After clearing, the parse-error ("Date is not valid") must go away because
+      // the field is no longer holding a bad date. However, because the field is
+      // required and the user has already interacted (touched=true after
+      // reportValidity()), the required-missing error must now be shown instead —
+      // both as a red border AND as a text message ("This field is required").
+      //
+      // Showing only a red border without text is not sufficient —
+      // errors must be described in text and color must not be the only indicator.
+      await mount(`
+        <form novalidate>
+          <ix-date-input required></ix-date-input>
+        </form>
+      `);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      // 1. Set an invalid value — novalidate suppresses visual error
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = 'bad-date';
+      });
+      await expect(input).not.toHaveClass(/is-invalid/);
+
+      // 2. reportValidity() — parse error surfaces with text message
+      await dateInput.evaluate((el: HTMLIxDateInputElement) =>
+        el.reportValidity()
+      );
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(
+        dateInput
+          .locator('ix-field-wrapper')
+          .locator('ix-typography')
+          .filter({ hasText: 'Date is not valid' })
+      ).toBeVisible();
+
+      // 3. Clear the value — parse error must be replaced by required-missing error
+      await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+        el.value = '';
+      });
+
+      // Red border is still shown (required + touched)
+      await expect(dateInput).toHaveClass(/ix-invalid--required/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+
+      // Error TEXT message now shows "This field is required"
+      await expect(
+        dateInput
+          .locator('ix-field-wrapper')
+          .locator('ix-typography')
+          .filter({ hasText: 'This field is required' })
+      ).toBeVisible();
     }
   );
 });

@@ -1031,6 +1031,12 @@ export namespace Components {
          */
         "i18nErrorDateUnparsable": string;
         /**
+          * I18n string for the error message when a required field is empty.
+          * @since 5.1.0
+          * @default 'This field is required'
+         */
+        "i18nErrorRequired": string;
+        /**
           * Info text below the input field.
          */
         "infoText"?: string;
@@ -1074,6 +1080,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * Triggers validation and shows visual error state immediately, regardless of whether the user has interacted with the field.  Use this when submitting via AJAX (no HTML form) or when you need to programmatically surface validation errors — equivalent to calling `reportValidity()` on a native `<input>` element.  Unlike form submit, this explicit validation call is not suppressed by a surrounding `<form novalidate>` and will still surface errors.
+          * @returns `true` if the field is valid, `false` otherwise.
+          * @since 5.1.0
+         */
+        "reportValidity": () => Promise<boolean>;
         /**
           * Required attribute.
          */
@@ -7531,6 +7543,12 @@ declare namespace LocalJSX {
          */
         "i18nErrorDateUnparsable"?: string;
         /**
+          * I18n string for the error message when a required field is empty.
+          * @since 5.1.0
+          * @default 'This field is required'
+         */
+        "i18nErrorRequired"?: string;
+        /**
           * Info text below the input field.
          */
         "infoText"?: string;
@@ -11631,6 +11649,7 @@ declare namespace LocalJSX {
         "validText": string;
         "showTextAsTooltip": boolean;
         "i18nErrorDateUnparsable": string;
+        "i18nErrorRequired": string;
         "showWeekNumbers": boolean;
         "weekStartIndex": number;
         "ariaLabelPreviousMonthButton": string;

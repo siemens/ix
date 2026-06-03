@@ -24,8 +24,12 @@ export async function isTouched<T>(host: IxFormComponent<T>) {
   }
 }
 
+export interface HasAssociatedForm {
+  getAssociatedFormElement(): Promise<HTMLFormElement | null>;
+}
+
 export async function shouldSuppressInternalValidation<T>(
-  host: IxFormComponent<T>
+  host: IxFormComponent<T> | HasAssociatedForm
 ) {
   if (
     host.getAssociatedFormElement &&
@@ -251,4 +255,29 @@ export function getValidationText(
     return customInvalidText ?? i18nFallbackText;
   }
   return customInvalidText;
+}
+
+export function reportFieldValidity<T>(
+  comp: IxFormComponent<T> & {
+    touched: boolean;
+    isInputInvalid?: boolean;
+    hostElement: HTMLElement;
+  },
+  hasInvalidInput: boolean
+): boolean {
+  comp.touched = true;
+
+  if ('isInputInvalid' in comp) {
+    comp.isInputInvalid = hasInvalidInput;
+  }
+
+  comp.hostElement.classList.toggle(
+    'ix-invalid--validity-invalid',
+    hasInvalidInput
+  );
+
+  const isRequiredMissing = !!comp.required && !comp.value;
+  comp.hostElement.classList.toggle('ix-invalid--required', isRequiredMissing);
+
+  return !hasInvalidInput && !isRequiredMissing;
 }

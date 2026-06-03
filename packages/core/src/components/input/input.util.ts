@@ -324,6 +324,26 @@ export async function emitPickerValidityStateChangeIfChanged(
   });
 }
 
+export async function syncRequiredValidationClass<T>(
+  hostElement: HTMLElement,
+  comp: IxFormComponent<T> & { required?: boolean; touched: boolean }
+): Promise<void> {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    return;
+  }
+
+  const hasValue = !!comp.value;
+  if (comp.required) {
+    hostElement.classList.toggle(
+      'ix-invalid--required',
+      !hasValue && comp.touched
+    );
+  } else {
+    hostElement.classList.remove('ix-invalid--required');
+  }
+}
+
 export interface ClearableInputComponent<T> {
   value?: T;
   hostElement: HTMLElement;
@@ -340,13 +360,9 @@ export async function clearInputValue<T>(
     defaultValue?: T;
     additionalCleanup?: () => void;
     emitValueChange?: boolean;
-    setClearing?: (isClearing: boolean) => void;
-    syncValidationClasses?: () => void | Promise<void>;
   }
 ): Promise<void> {
   const emptyValue = options?.defaultValue ?? ('' as T);
-
-  options?.setClearing?.(true);
 
   if ('touched' in comp) {
     comp.touched = false;
@@ -374,10 +390,4 @@ export async function clearInputValue<T>(
   if (options?.emitValueChange) {
     comp.valueChange?.emit(emptyValue);
   }
-
-  if (typeof options?.syncValidationClasses === 'function') {
-    await options.syncValidationClasses();
-  }
-
-  options?.setClearing?.(false);
 }

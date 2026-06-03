@@ -99,3 +99,62 @@ export function createValidityState(
     valueMissing: !!required && !value,
   };
 }
+
+function isInternalFocusTarget(
+  hostElement: HTMLElement,
+  relatedTarget: Node | null
+): boolean {
+  if (!relatedTarget) {
+    return false;
+  }
+  return (
+    hostElement.contains(relatedTarget) ||
+    (hostElement.shadowRoot?.contains(relatedTarget) ?? false)
+  );
+}
+
+export function handlePickerInputBlur(
+  e: FocusEvent,
+  show: boolean,
+  hostElement: HTMLElement,
+  onBlur: () => void
+): void {
+  const relatedTarget = e.relatedTarget as Node | null;
+  if (show && isInternalFocusTarget(hostElement, relatedTarget)) {
+    return;
+  }
+  onBlur();
+}
+
+export function handlePickerHostFocusout(
+  e: FocusEvent,
+  hostElement: HTMLElement,
+  onExternalFocusout: (hasRelatedTarget: boolean) => void
+): void {
+  const relatedTarget = e.relatedTarget as Node | null;
+  if (isInternalFocusTarget(hostElement, relatedTarget)) {
+    return;
+  }
+  onExternalFocusout(relatedTarget !== null);
+}
+
+export function syncCustomInputValidity(
+  formInternals: ElementInternals,
+  hasInvalidInput: boolean,
+  required: boolean | undefined,
+  value: string | undefined,
+  invalidMessage: string,
+  requiredMessage: string = 'Please fill out this field.'
+): void {
+  if (hasInvalidInput) {
+    formInternals.setValidity({ patternMismatch: true }, invalidMessage);
+    return;
+  }
+
+  if (required && !value) {
+    formInternals.setValidity({ valueMissing: true }, requiredMessage);
+    return;
+  }
+
+  formInternals.setValidity({});
+}
