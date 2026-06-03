@@ -57,20 +57,35 @@ export class ContentHeader {
 
   @State() private isSmallBreakpoint = false;
 
-  private mediaQuery = window.matchMedia('(max-width: 48em)');
+  private mediaQuery?: MediaQueryList;
+  private hasDisconnected = false;
+
   private mediaQueryHandler = (e: MediaQueryListEvent) => {
     this.isSmallBreakpoint = e.matches;
   };
 
   componentWillLoad() {
-    this.isSmallBreakpoint = this.mediaQuery.matches;
-    this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+    if (typeof window !== 'undefined') {
+      this.mediaQuery = window.matchMedia('(max-width: 48em)');
+      this.isSmallBreakpoint = this.mediaQuery.matches;
+      this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+    }
+  }
+
+  connectedCallback() {
+    if (this.hasDisconnected && typeof window !== 'undefined') {
+      this.mediaQuery = window.matchMedia('(max-width: 48em)');
+      this.isSmallBreakpoint = this.mediaQuery.matches;
+      this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+    }
   }
 
   disconnectedCallback() {
-    this.mediaQuery.removeEventListener('change', this.mediaQueryHandler);
+    if (this.mediaQuery) {
+      this.mediaQuery.removeEventListener('change', this.mediaQueryHandler);
+    }
+    this.hasDisconnected = true;
   }
-
   render() {
     return (
       <Host>
