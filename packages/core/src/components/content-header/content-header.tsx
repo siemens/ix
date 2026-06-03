@@ -59,22 +59,21 @@ export class ContentHeader {
 
   private mediaQuery?: MediaQueryList;
   private hasDisconnected = false;
-
-  private mediaQueryHandler = (e: MediaQueryListEvent) => {
+  private readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
     this.isSmallBreakpoint = e.matches;
   };
 
   componentWillLoad() {
-    if (typeof window !== 'undefined') {
-      this.mediaQuery = window.matchMedia('(max-width: 48em)');
+    if (typeof globalThis.window !== 'undefined') {
+      this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
   }
 
   connectedCallback() {
-    if (this.hasDisconnected && typeof window !== 'undefined') {
-      this.mediaQuery = window.matchMedia('(max-width: 48em)');
+    if (this.hasDisconnected && typeof globalThis.window !== 'undefined') {
+      this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
@@ -86,6 +85,7 @@ export class ContentHeader {
     }
     this.hasDisconnected = true;
   }
+
   render() {
     return (
       <Host>
