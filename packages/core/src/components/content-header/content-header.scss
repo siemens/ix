@@ -57,16 +57,12 @@
     flex-wrap: wrap;
     align-items: center;
 
-    ::slotted(ix-button[slot='secondary-actions']) {
-      width: 5rem;
-      min-width: 5rem;
-      max-width: 5rem;
-
-      --ix-button-height: auto;
-      --ix-button-text-white-space: normal;
-      --ix-button-word-break: break-word;
-      --ix-button-inner-overflow: visible;
-      --ix-button-content-overflow: visible;
-    }
+  ::slotted([slot='secondary-actions']) {
+  --ix-button-height: auto;
+  --ix-button-text-white-space: normal;
+  --ix-button-word-break: break-word;
+  --ix-button-inner-overflow: visible;
+  --ix-button-content-overflow: visible;
+  }
   }
 }
