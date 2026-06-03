@@ -64,7 +64,7 @@ export class ContentHeader {
   };
 
   componentWillLoad() {
-    if (typeof globalThis.window !== 'undefined') {
+    if (globalThis.window !== undefined) {
       this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
@@ -72,7 +72,7 @@ export class ContentHeader {
   }
 
   connectedCallback() {
-    if (this.hasDisconnected && typeof globalThis.window !== 'undefined') {
+    if (this.hasDisconnected && globalThis.window !== undefined) {
       this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
