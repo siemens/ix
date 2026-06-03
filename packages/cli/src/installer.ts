@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import semver from 'semver';
 import { BlockDefinition } from './registry';
 
@@ -22,6 +23,10 @@ function applyTokens(content: string, tokens: Record<string, string>): string {
     out = out.split(k).join(v);
   }
   return out;
+}
+
+function computeHash(content: string): string {
+  return crypto.createHash('sha256').update(content, 'utf8').digest('hex');
 }
 
 async function fetchText(url: string): Promise<string> {
@@ -96,7 +101,9 @@ async function checkInstalledDependencies(
   }
 }
 
-export async function installBlock(args: InstallArgs): Promise<void> {
+export async function installBlock(
+  args: InstallArgs,
+): Promise<{ path: string; hash: string }[]> {
   const {
     cwd,
     baseUrl,
@@ -148,6 +155,8 @@ export async function installBlock(args: InstallArgs): Promise<void> {
     }
   }
 
+  const installedFiles: { path: string; hash: string }[] = [];
+
   for (const file of variant.files) {
     const sourceUrl = `${baseUrl}/${blockBaseDir}/${file.source}`
       .replace(/\/+/g, '/')
@@ -163,18 +172,24 @@ export async function installBlock(args: InstallArgs): Promise<void> {
       targetWithoutFramework,
     );
 
-    const targetPath = path.join(cwd, targetFolder, targetWithBlockFolder);
-
-    if (dryRun) {
-      console.log(`[dry-run] copy ${sourceUrl} -> ${targetWithBlockFolder}`);
-      continue;
-    }
+    const relativePath = path.join(targetFolder, targetWithBlockFolder);
+    const targetPath = path.join(cwd, relativePath);
 
     const raw = await fetchText(sourceUrl);
     const transformed = applyTokens(raw, tokens);
+    const hash = computeHash(transformed);
+
+    installedFiles.push({ path: relativePath, hash });
+
+    if (dryRun) {
+      console.log(`+ ${relativePath} (hash: ${hash})`);
+      continue;
+    }
 
     await ensureDir(targetPath, dryRun);
     await fs.writeFile(targetPath, transformed, 'utf8');
-    console.log(`+ ${targetWithBlockFolder}`);
+    console.log(`+ ${relativePath}`);
   }
+
+  return installedFiles;
 }

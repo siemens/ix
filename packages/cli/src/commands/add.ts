@@ -85,7 +85,7 @@ export const addCommand = new Command('add')
       process.exit(1);
     }
 
-    await installBlock({
+    const installedFiles = await installBlock({
       cwd,
       baseUrl,
       blockEntryPath: entry.path,
@@ -97,7 +97,7 @@ export const addCommand = new Command('add')
     });
 
     if (!opts.dryRun) {
-      await addBlockToConfig(cwd, blockName, selectedVersion);
+      await addBlockToConfig(cwd, blockName, selectedVersion, installedFiles);
     }
 
     console.log(`✅ Installed '${blockName}' (${fw})`);

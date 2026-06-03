@@ -5,7 +5,7 @@ import { Command } from 'commander';
 import { configExists, initConfig, CONFIG_FILE_NAME } from './../config';
 
 export const initCommand = new Command('init')
-  .description('Initialize ix-blocks.json configuration')
+  .description('Initialize ix-blocks-lock.json configuration')
   .option(
     '-t, --target-folder <path>',
     'Target folder for blocks',

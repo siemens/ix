@@ -4,7 +4,7 @@ import path from 'node:path';
 
 export const defaultRegistry = 'https://siemens.github.io/ix' as const;
 
-// Schema for ix-blocks.json
+// Schema for ix-blocks-lock.json
 export const IxBlocksConfigSchema = z.object({
   $schema: z.string().optional(),
   targetFolder: z.string().default('src/blocks'),
@@ -13,6 +13,14 @@ export const IxBlocksConfigSchema = z.object({
       z.object({
         name: z.string(),
         version: z.string(),
+        files: z
+          .array(
+            z.object({
+              path: z.string(),
+              hash: z.string(),
+            }),
+          )
+          .optional(),
       }),
     )
     .default([]),
@@ -20,10 +28,10 @@ export const IxBlocksConfigSchema = z.object({
 
 export type IxBlocksConfig = z.infer<typeof IxBlocksConfigSchema>;
 
-export const CONFIG_FILE_NAME = 'ix-blocks.json';
+export const CONFIG_FILE_NAME = 'ix-blocks-lock.json';
 
 /**
- * Load and validate ix-blocks.json from the given directory
+ * Load and validate ix-blocks-lock.json from the given directory
  */
 export async function loadConfig(cwd: string): Promise<IxBlocksConfig> {
   const configPath = path.join(cwd, CONFIG_FILE_NAME);
@@ -87,14 +95,18 @@ export async function addBlockToConfig(
   cwd: string,
   blockName: string,
   version: string = '0.0.0',
+  files?: { path: string; hash: string }[],
 ): Promise<void> {
   const config = await loadConfig(cwd);
 
   const existingIndex = config.blocks.findIndex((b) => b.name === blockName);
   if (existingIndex >= 0) {
     config.blocks[existingIndex].version = version;
+    if (files) {
+      config.blocks[existingIndex].files = files;
+    }
   } else {
-    config.blocks.push({ name: blockName, version });
+    config.blocks.push({ name: blockName, version, files });
   }
 
   await saveConfig(cwd, config);

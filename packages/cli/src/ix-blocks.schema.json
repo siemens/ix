@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Siemens ix Blocks Configuration",
-  "description": "Configuration file for ix blocks CLI",
+  "title": "Siemens ix Blocks Lockfile",
+  "description": "Lockfile for ix blocks CLI tracking installed blocks and file hashes",
   "type": "object",
   "properties": {
     "$schema": {
@@ -10,7 +10,7 @@
     },
     "targetFolder": {
       "type": "string",
-      "description": "Target folder where blocks will be installed",
+      "description": "Target folder where blocks are installed",
       "default": "src/blocks"
     },
     "blocks": {
@@ -26,6 +26,25 @@
           "version": {
             "type": "string",
             "description": "Block version"
+          },
+          "files": {
+            "type": "array",
+            "description": "Installed files with content hashes",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "Relative file path from project root"
+                },
+                "hash": {
+                  "type": "string",
+                  "description": "SHA-256 content hash"
+                }
+              },
+              "required": ["path", "hash"],
+              "additionalProperties": false
+            }
           }
         },
         "required": ["name", "version"],
