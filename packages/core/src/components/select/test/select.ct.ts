@@ -1319,7 +1319,6 @@ test('required select prevents form submission when empty', async ({
   await submitButton.click();
 
   await expect(select).toHaveClass(/ix-invalid--required/);
-
 });
 
 test('multiple required selects prevent form submission when any is empty', async ({

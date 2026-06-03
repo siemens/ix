@@ -365,7 +365,6 @@ export class Select
         if (this.required && !this.hasValue()) {
           event.preventDefault();
           event.stopPropagation();
-          this.hostElement.focus();
           return false;
         }
       };
@@ -379,7 +378,6 @@ export class Select
       this.formSubmissionAttempted = true;
       this.touched = true;
       this.syncValidationClasses();
-      this.hostElement.focus();
     });
   }
 
