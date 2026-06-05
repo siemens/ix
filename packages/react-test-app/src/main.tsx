@@ -84,8 +84,6 @@ import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import Divider from './preview-examples/divider';
-import Drawer from './preview-examples/drawer';
-import DrawerFullHeight from './preview-examples/drawer-full-height';
 import Dropdown from './preview-examples/dropdown';
 import DropdownButton from './preview-examples/dropdown-button';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon';
@@ -329,8 +327,6 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
-  '/preview/drawer-full-height': DrawerFullHeight,
-  '/preview/drawer': Drawer,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,

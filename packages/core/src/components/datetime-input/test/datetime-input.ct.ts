@@ -30,7 +30,7 @@ const createAccessor = async (dateTimeInput: Locator) => {
     selectDay: async (day: number) => {
       // Day cells have aria-label like "15 May" (month index: day)
       // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-      const dayCell = dateTimeInput.getByRole('button', {
+      const dayCell = dateTimeInput.getByRole('gridcell', {
         name: new RegExp(String.raw`^${day}\s.+$`),
       });
       await dayCell.click();
@@ -38,13 +38,13 @@ const createAccessor = async (dateTimeInput: Locator) => {
     selectTime: async (hour: number, minute: number, second?: number) => {
       // Time buttons have aria-label like "hr: 14", "min: 30", "sec: 45"
       // getByRole pierces shadow DOM automatically
-      await dateTimeInput.getByRole('button', { name: `hr: ${hour}` }).click();
+      await dateTimeInput.getByRole('option', { name: `hr: ${hour}` }).click();
       await dateTimeInput
-        .getByRole('button', { name: `min: ${minute}` })
+        .getByRole('option', { name: `min: ${minute}` })
         .click();
       if (second !== undefined) {
         await dateTimeInput
-          .getByRole('button', { name: `sec: ${second}` })
+          .getByRole('option', { name: `sec: ${second}` })
           .click();
       }
     },
@@ -232,7 +232,7 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel(/^10\s.+$/);
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const selectedHour = dateTimeInputElement.getByRole('button', {
+  const selectedHour = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
   await expect(selectedHour).toHaveClass(/selected/);
@@ -320,12 +320,8 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   await dateTimeAccessor.openByCalendar();
 
   await dateTimeAccessor.selectDay(15);
-
-  await dateTimeInputElement.getByRole('button', { name: 'hr: 14' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'min: 30' }).click();
-  await dateTimeInputElement.getByRole('button', { name: 'sec: 45' }).click();
-
-  await page.getByRole('button', { name: 'Confirm' }).click();
+  await dateTimeAccessor.selectTime(14, 30, 45);
+  await dateTimeAccessor.confirm();
 
   const dateTimeInput = page.locator('ix-datetime-input');
   await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
@@ -513,18 +509,18 @@ regressionTest('picker syncs with input value', async ({ mount, page }) => {
   const dateTimeAccessor = await createAccessor(dateTimeInputElement);
   await dateTimeAccessor.openByCalendar();
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
-  const selectedDay = dateTimeInputElement.getByRole('button', {
+  const selectedDay = dateTimeInputElement.getByRole('gridcell', {
     name: '15 May',
   });
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 14',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 30',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 45',
   });
 
@@ -554,13 +550,13 @@ regressionTest('input changes reflect in picker', async ({ mount, page }) => {
   const selectedDay = dateTimeInputElement.getByLabel('20 May');
   await expect(selectedDay).toHaveClass(/selected/);
 
-  const hourElement = dateTimeInputElement.getByRole('button', {
+  const hourElement = dateTimeInputElement.getByRole('option', {
     name: 'hr: 15',
   });
-  const minuteElement = dateTimeInputElement.getByRole('button', {
+  const minuteElement = dateTimeInputElement.getByRole('option', {
     name: 'min: 45',
   });
-  const secondElement = dateTimeInputElement.getByRole('button', {
+  const secondElement = dateTimeInputElement.getByRole('option', {
     name: 'sec: 30',
   });
 
@@ -673,10 +669,10 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: /^15\s.+/ })
+      dateTimeInput.getByRole('gridcell', { name: /^15\s.+/ })
     ).toHaveClass(/disabled/);
     await expect(
-      dateTimeInput.getByRole('button', { name: /^30\s.+/ })
+      dateTimeInput.getByRole('gridcell', { name: /^30\s.+/ })
     ).toHaveClass(/disabled/);
   }
 );
@@ -745,7 +741,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026/02/15 12:00:00');
@@ -801,10 +797,10 @@ regressionTest(
     await acc.openByCalendar();
 
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 13', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
     ).not.toBeDisabled();
   }
 );
@@ -830,7 +826,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 13', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 13', exact: true })
     ).toHaveClass(/selected/);
   }
 );
@@ -879,7 +875,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toBeDisabled();
     await acc.selectTime(17, 30, 0);
     await acc.confirm();
@@ -907,10 +903,10 @@ regressionTest(
     await expect(input).not.toHaveClass(/is-invalid/);
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toBeDisabled();
 
     await acc.selectTime(16, 0, 0);
@@ -936,13 +932,13 @@ regressionTest(
 
     await acc.openByCalendar();
     await dateTimeInput
-      .getByRole('button', { name: 'hr: 13', exact: true })
+      .getByRole('option', { name: 'hr: 13', exact: true })
       .click();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'min: 5', exact: true })
+      dateTimeInput.getByRole('option', { name: 'min: 5', exact: true })
     ).toBeDisabled();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'min: 10', exact: true })
+      dateTimeInput.getByRole('option', { name: 'min: 10', exact: true })
     ).not.toBeDisabled();
   }
 );
@@ -1011,7 +1007,7 @@ regressionTest('minTime without maxTime', async ({ mount, page }) => {
 
   await acc.openByCalendar();
   await expect(
-    dateTimeInput.getByRole('button', { name: 'hr: 10', exact: true })
+    dateTimeInput.getByRole('option', { name: 'hr: 10', exact: true })
   ).toBeDisabled();
   await page.keyboard.press('Escape');
   await input.fill('2026/02/15 10:00:00');
@@ -1047,7 +1043,7 @@ regressionTest('maxTime without minTime', async ({ mount, page }) => {
 
   await acc.openByCalendar();
   await expect(
-    dateTimeInput.getByRole('button', { name: 'hr: 20', exact: true })
+    dateTimeInput.getByRole('option', { name: 'hr: 20', exact: true })
   ).toBeDisabled();
   await page.keyboard.press('Escape');
   await input.fill('2026/02/15 20:00:00');
@@ -1081,7 +1077,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('15-02-2026 12:00:00');
@@ -1164,7 +1160,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026-02-15 12:00');
@@ -1205,7 +1201,7 @@ regressionTest(
 
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toBeDisabled();
     await page.keyboard.press('Escape');
     await input.fill('2026-02-15T12:00:00');
@@ -1248,7 +1244,7 @@ regressionTest(
     await dateTimeAccessor.openByCalendar();
 
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 12', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 12', exact: true })
     ).toHaveClass(/selected/);
 
     await dateTimeAccessor.selectTime(14, 0, 0);
@@ -1372,7 +1368,7 @@ regressionTest(
     const acc = await createAccessor(dateTimeInput);
     await acc.openByCalendar();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'hr: 18', exact: true })
+      dateTimeInput.getByRole('option', { name: 'hr: 18', exact: true })
     ).toHaveClass(/selected/);
 
     await acc.selectTime(17, 0, 0);
