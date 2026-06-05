@@ -56,6 +56,7 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { forceTabIndex } from '../utils/a11y';
 
 /**
  * @form-ready
@@ -465,7 +466,7 @@ export class DateInput
         >
           <ix-icon-button
             tabindex={-1}
-            ref={(ref) => (ref!.tabIndex = -1)}
+            ref={(ref) => forceTabIndex(ref, -1)}
             aria-label={this.ariaLabelCalendarButton}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
