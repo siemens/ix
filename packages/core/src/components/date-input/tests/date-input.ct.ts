@@ -312,9 +312,9 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
 });
-
-regressionTest.describe('date-input validation scenarios', () => {
-  regressionTest.describe('required field behavior', () => {
+regressionTest.describe(
+  'date-input validation scenarios - required field behavior',
+  () => {
     regressionTest(
       'Required input: Invalid input > Removing value with keyboard > Stays invalid',
       async ({ page, mount }) => {
@@ -494,9 +494,12 @@ regressionTest.describe('date-input validation scenarios', () => {
         await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
       }
     );
-  });
+  }
+);
 
-  regressionTest.describe('optional field behavior', () => {
+regressionTest.describe(
+  'date-input validation scenarios - optional field behavior',
+  () => {
     regressionTest(
       'Not required input: Invalid input > Removing value with keyboard > Valid',
       async ({ page, mount }) => {
@@ -612,9 +615,12 @@ regressionTest.describe('date-input validation scenarios', () => {
         await expectNoVisualValidation(dateInput, input);
       }
     );
-  });
+  }
+);
 
-  regressionTest.describe('novalidate form behavior', () => {
+regressionTest.describe(
+  'date-input validation scenarios - novalidate form behavior',
+  () => {
     regressionTest(
       'novalidate form suppresses validation for required field',
       async ({ page, mount }) => {
@@ -788,9 +794,12 @@ regressionTest.describe('date-input validation scenarios', () => {
         ).toBeVisible();
       }
     );
-  });
+  }
+);
 
-  regressionTest.describe('reportValidity behavior', () => {
+regressionTest.describe(
+  'date-input validation scenarios - reportValidity behavior',
+  () => {
     regressionTest(
       'reportValidity returns false and shows error for invalid date without prior interaction',
       async ({ page, mount }) => {
@@ -912,5 +921,5 @@ regressionTest.describe('date-input validation scenarios', () => {
         await expect(dateInput).not.toHaveClass(/ix-invalid/);
       }
     );
-  });
-});
+  }
+);

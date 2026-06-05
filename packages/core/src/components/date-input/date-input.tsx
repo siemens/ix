@@ -397,7 +397,7 @@ export class DateInput
     // suppresses the bubble but does not affect the validity result returned by
     // form.reportValidity().
     event.preventDefault();
-    await reportFieldValidity(this, this._hasInvalidInput);
+    reportFieldValidity(this, this._hasInvalidInput);
   }
 
   /**
@@ -811,11 +811,15 @@ export class DateInput
     //   2. Required empty — "This field is required" (or custom invalidText)
     //   3. Consumer-supplied invalidText only
     const isRequiredEmpty = !!this.required && !this.value && this.touched;
-    const invalidText = this.isInputInvalid
-      ? (this.invalidText ?? this.i18nErrorDateUnparsable)
-      : isRequiredEmpty
-        ? (this.invalidText ?? this.i18nErrorRequired)
-        : this.invalidText;
+
+    let invalidText: string | undefined;
+    if (this.isInputInvalid) {
+      invalidText = this.invalidText ?? this.i18nErrorDateUnparsable;
+    } else if (isRequiredEmpty) {
+      invalidText = this.invalidText ?? this.i18nErrorRequired;
+    } else {
+      invalidText = this.invalidText;
+    }
 
     return (
       <Host
