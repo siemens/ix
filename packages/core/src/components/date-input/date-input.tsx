@@ -306,6 +306,15 @@ export class DateInput
    */
   private _blurHandledValidation = false;
 
+  /**
+   * Set to `true` only by an explicit `reportValidity()` call — NOT by blur.
+   * Used as the gate in novalidate forms to keep showing errors after an
+   * explicit validation request until the value is actually corrected.
+   * Regular blur in a novalidate form must never set this flag so that normal
+   * novalidate suppression is preserved.
+   */
+  private _reportValidityCalled = false;
+
   public initialValue?: string;
 
   public invalidReason?: string;
@@ -401,6 +410,7 @@ export class DateInput
   @Method()
   async clear(): Promise<void> {
     this._hasInvalidInput = false;
+    this._reportValidityCalled = false;
     await clearInputValue(this, {
       additionalCleanup: () => {
         this.from = undefined;
@@ -438,7 +448,7 @@ export class DateInput
     };
   }
 
-  private handleEmptyInput(value: string | undefined): void {
+  private async handleEmptyInput(value: string | undefined): Promise<void> {
     this._hasInvalidInput = false;
     this.isInputInvalid = false;
     this.invalidReason = undefined;
@@ -448,11 +458,19 @@ export class DateInput
       'ix-invalid--validity-invalid',
       'ix-invalid--validity-patternMismatch'
     );
-    // If the user has already interacted (touched via reportValidity or blur)
-    // and the field is required, the required-missing error must stay visible —
-    // clearing the value does not fix a required constraint.
-    if (this.touched && this.required) {
+    // In a regular form, show the required-missing error once the user has
+    // interacted (touched via blur or reportValidity).
+    // In a novalidate form, only show it when reportValidity() was explicitly
+    // called — a plain blur must not surface errors (novalidate intent).
+    const suppress = await shouldSuppressInternalValidation(this);
+    const shouldShowRequired = suppress
+      ? this._reportValidityCalled && !!this.required
+      : this.touched && !!this.required;
+
+    if (shouldShowRequired) {
       this.hostElement.classList.add('ix-invalid--required');
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
     }
     this.updateFormInternalValue(value);
     this.syncFormInternalsValidity();
@@ -460,14 +478,19 @@ export class DateInput
     this.valueChange.emit(value);
   }
 
-  private handleSuppressedValidationInput(value: string): void {
+  private emitSuppressedValidationChange(value: string): void {
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
+    this.valueChange.emit(value);
+  }
+
+  // Clears all error state and accepts the value as valid.
+  // Used for normal novalidate input AND when the user corrects a
+  // reportValidity() error.
+  private acceptSuppressedValidationValue(value: string): void {
     this._hasInvalidInput = false;
     this.isInputInvalid = false;
     this.invalidReason = undefined;
-    // Clear the isInvalid @State and host invalid classes that may have been
-    // set by a prior reportValidity() call. Without this, setting a valid value
-    // programmatically after reportValidity() showed red would leave the field
-    // red even though the value is now valid.
     this.isInvalid = false;
     this.hostElement.classList.remove(
       'ix-invalid--required',
@@ -486,9 +509,47 @@ export class DateInput
 
     this.closeDropdown();
     focusInputIfKeyboardMode(this.inputElementRef.current);
-    this.syncFormInternalsValidity();
-    emitPickerValidityState(this);
-    this.valueChange.emit(value);
+    this.emitSuppressedValidationChange(value);
+  }
+
+  // Keeps the parse-error classes and message visible after reportValidity().
+  private keepSuppressedValidationErrorVisible(
+    value: string,
+    invalidReason?: string
+  ): void {
+    this.invalidReason = invalidReason;
+    this.from = undefined;
+    this.isInvalid = true;
+    this.hostElement.classList.remove('ix-invalid--required');
+    this.hostElement.classList.add('ix-invalid--validity-invalid');
+    this.emitSuppressedValidationChange(value);
+  }
+
+  private handleSuppressedValidationInput(value: string): void {
+    // When reportValidity() was called explicitly, keep validating in the
+    // novalidate form until the value is actually fixed (WCAG 1.4.1 / 3.3.1).
+    // NOTE: `touched` is intentionally NOT used — it is set by plain blur too,
+    // and blur in a novalidate form must never surface errors.
+    if (!this._reportValidityCalled) {
+      this.acceptSuppressedValidationValue(value);
+      return;
+    }
+
+    const validation = this.getDateValidation(value);
+    this._hasInvalidInput = !validation.isValid;
+    this.isInputInvalid = this._hasInvalidInput;
+
+    if (this._hasInvalidInput) {
+      this.keepSuppressedValidationErrorVisible(
+        value,
+        validation.invalidReason
+      );
+      return;
+    }
+
+    // Value is now valid — reset the flag so normal novalidate suppression resumes.
+    this._reportValidityCalled = false;
+    this.acceptSuppressedValidationValue(value);
   }
 
   private handleValidatedInput(value: string): void {
@@ -516,7 +577,7 @@ export class DateInput
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
-      this.handleEmptyInput(value);
+      await this.handleEmptyInput(value);
       return;
     }
 
@@ -729,6 +790,12 @@ export class DateInput
     // forms due to suppression), causing the error message to disappear while
     // the red border stays.
     this._hasInvalidInput = hasInvalidInput;
+
+    // Mark that an explicit validation call was made. This allows
+    // handleSuppressedValidationInput and handleEmptyInput to keep showing
+    // errors in novalidate forms until the value is corrected — while normal
+    // blur events in novalidate forms remain suppressed.
+    this._reportValidityCalled = true;
 
     return reportFieldValidity(this, hasInvalidInput);
   }
