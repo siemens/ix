@@ -26,6 +26,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'validText',
   'showTextAsTooltip',
   'i18nErrorDateUnparsable',
+  'i18nErrorRequired',
   'showWeekNumbers',
   'weekStartIndex',
   'ariaLabelPreviousMonthButton',

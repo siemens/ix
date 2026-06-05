@@ -4127,17 +4127,17 @@ export namespace Components {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval": number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime": string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader": string;
         /**
@@ -4168,7 +4168,7 @@ export namespace Components {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval": number;
         /**
@@ -4179,13 +4179,13 @@ export namespace Components {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval": number;
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval": number;
         /**
@@ -10693,17 +10693,17 @@ declare namespace LocalJSX {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval"?: number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime"?: string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader"?: string;
         /**
@@ -10734,7 +10734,7 @@ declare namespace LocalJSX {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval"?: number;
         /**
@@ -10745,7 +10745,7 @@ declare namespace LocalJSX {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval"?: number;
         /**
@@ -10759,7 +10759,7 @@ declare namespace LocalJSX {
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval"?: number;
         /**
