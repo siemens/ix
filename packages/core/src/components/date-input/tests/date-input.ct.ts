@@ -41,6 +41,20 @@ const expectNoVisualValidation = async (dateInput: Locator, input: Locator) => {
   await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
 };
 
+const waitForFormSubmit = (form: Locator) =>
+  form.evaluate(
+    (formElement) =>
+      new Promise<boolean>((resolve) => {
+        const handleSubmit = (event: Event) => {
+          event.preventDefault();
+          formElement.removeEventListener('submit', handleSubmit);
+          resolve(true);
+        };
+
+        formElement.addEventListener('submit', handleSubmit);
+      })
+  );
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
@@ -312,9 +326,9 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
 });
-regressionTest.describe(
-  'date-input validation scenarios - required field behavior',
-  () => {
+
+regressionTest.describe('date-input validation scenarios', () => {
+  regressionTest.describe('required field behavior', () => {
     regressionTest(
       'Required input: Invalid input > Removing value with keyboard > Stays invalid',
       async ({ page, mount }) => {
@@ -494,12 +508,9 @@ regressionTest.describe(
         await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
       }
     );
-  }
-);
+  });
 
-regressionTest.describe(
-  'date-input validation scenarios - optional field behavior',
-  () => {
+  regressionTest.describe('optional field behavior', () => {
     regressionTest(
       'Not required input: Invalid input > Removing value with keyboard > Valid',
       async ({ page, mount }) => {
@@ -615,12 +626,9 @@ regressionTest.describe(
         await expectNoVisualValidation(dateInput, input);
       }
     );
-  }
-);
+  });
 
-regressionTest.describe(
-  'date-input validation scenarios - novalidate form behavior',
-  () => {
+  regressionTest.describe('novalidate form behavior', () => {
     regressionTest(
       'novalidate form suppresses validation for required field',
       async ({ page, mount }) => {
@@ -671,15 +679,7 @@ regressionTest.describe(
           </form>
         `);
 
-        const submitPromise = page.locator('#form').evaluate(
-          (form) =>
-            new Promise<boolean>((resolve) => {
-              form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                resolve(true);
-              });
-            })
-        );
+        const submitPromise = waitForFormSubmit(page.locator('#form'));
 
         await page.locator('button[type="submit"]').click();
         const submitted = await submitPromise;
@@ -794,12 +794,9 @@ regressionTest.describe(
         ).toBeVisible();
       }
     );
-  }
-);
+  });
 
-regressionTest.describe(
-  'date-input validation scenarios - reportValidity behavior',
-  () => {
+  regressionTest.describe('reportValidity behavior', () => {
     regressionTest(
       'reportValidity returns false and shows error for invalid date without prior interaction',
       async ({ page, mount }) => {
@@ -921,5 +918,5 @@ regressionTest.describe(
         await expect(dateInput).not.toHaveClass(/ix-invalid/);
       }
     );
-  }
-);
+  });
+});
