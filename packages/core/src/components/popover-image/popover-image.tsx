@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Optional image section for the popover.
  *
- * @since 5.0.0
+ * @since 5.1.0
  */
 @Component({
   tag: 'ix-popover-image',
@@ -23,14 +23,14 @@ export class PopoverImage {
   /**
    * Image source URL
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() src?: string;
 
   /**
    * Alt text for the image
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() alt = '';
 

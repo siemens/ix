@@ -26,7 +26,7 @@ import { closestPassShadow } from '../utils/shadow-dom';
  * @slot - Popover title (rendered as heading text).
  * @slot additional-items - Optional content beside the title (for example `ix-pill`).
  *
- * @since 5.0.0
+ * @since 5.1.0
  */
 @Component({
   tag: 'ix-popover-header',
@@ -41,28 +41,28 @@ export class PopoverHeader {
   /**
    * Icon name displayed before the title
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() icon?: string;
 
   /**
    * Icon color
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() iconColor?: string;
 
   /**
    * ARIA label for the icon
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() ariaLabelIcon?: string;
 
   /**
    * Hide the close (X) button
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() hideClose = false;
 
@@ -70,7 +70,7 @@ export class PopoverHeader {
    * ARIA label for the close icon button.
    * Will be set as aria-label on the nested HTML button element.
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() ariaLabelCloseIconButton?: string = 'Close';
 
@@ -78,7 +78,7 @@ export class PopoverHeader {
    * Fires when close button is clicked.
    * Cancel to prevent closing.
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() closeClick!: EventEmitter<MouseEvent>;
 
