@@ -6,14 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import type { Components, HTMLIxPopoverElement } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
+
+type PopoverHostElement = HTMLElement &
+  Pick<Components.IxPopover, 'showPopover' | 'hidePopover'>;
 
 const POPOVER_IMAGE_SRC =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='160'%3E%3Crect fill='%232a2a4a' width='100%25' height='100%25'/%3E%3Ctext x='50%25' y='50%25' fill='%23e0e0e0' text-anchor='middle' dy='.3em' font-size='18'%3ERelease%20preview%3C/text%3E%3C/svg%3E";
 
 const TRIGGER_ID = 'popover-story-trigger';
+const DISMISS_BUTTON_ID = 'popover-dismiss';
 
 const storyA11y = {
   a11y: {
@@ -21,22 +25,14 @@ const storyA11y = {
   },
 };
 
-async function openPopover(container: ParentNode) {
-  try {
-    await customElements.whenDefined('ix-popover');
-    if (!(container instanceof HTMLElement && container.isConnected)) {
-      return;
-    }
-    const popover = container.querySelector(
-      'ix-popover'
-    ) as HTMLIxPopoverElement | null;
-    if (!popover?.isConnected) {
-      return;
-    }
-    await popover.showPopover();
-  } catch {
-    // Story may unmount before the popover finishes opening.
-  }
+function wirePopoverDismissButtons(popover: PopoverHostElement) {
+  const button = (popover as HTMLElement).querySelector(
+    `#${DISMISS_BUTTON_ID}`
+  );
+
+  button?.addEventListener('click', () => {
+    void popover.hidePopover();
+  });
 }
 
 function popoverStoryContainer(inner: HTMLElement) {
@@ -49,17 +45,9 @@ function popoverStoryContainer(inner: HTMLElement) {
   wrapper.appendChild(trigger);
   wrapper.appendChild(inner);
 
-  const timeoutId = globalThis.setTimeout(() => {
-    void openPopover(wrapper);
-  }, 250);
-
-  const observer = new MutationObserver(() => {
-    if (!wrapper.isConnected) {
-      globalThis.clearTimeout(timeoutId);
-      observer.disconnect();
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+  if (inner instanceof HTMLElement && inner.tagName === 'IX-POPOVER') {
+    wirePopoverDismissButtons(inner as PopoverHostElement);
+  }
 
   return wrapper;
 }
@@ -76,7 +64,7 @@ const meta = {
         <ix-popover-header>Popover title</ix-popover-header>
         <ix-popover-content>Popover body content</ix-popover-content>
         <ix-popover-footer>
-          <ix-button variant="secondary">Cancel</ix-button>
+          <ix-button id="${DISMISS_BUTTON_ID}" variant="secondary">Cancel</ix-button>
           <ix-button>Save</ix-button>
         </ix-popover-footer>
       `;
@@ -144,7 +132,7 @@ export const With_Image: Story = {
       </ix-popover-content>
       <ix-popover-footer>
         <span slot="start">v4.0.0</span>
-        <ix-button variant="secondary">Dismiss</ix-button>
+        <ix-button id="${DISMISS_BUTTON_ID}" variant="secondary">Dismiss</ix-button>
         <ix-button>Read more</ix-button>
       </ix-popover-footer>
     `;
@@ -169,6 +157,7 @@ export const Stepper_Footer: Story = {
       </ix-popover-content>
       <ix-popover-footer alignment="vertical">
         <span slot="start">1 / 3</span>
+        <ix-button id="${DISMISS_BUTTON_ID}" variant="secondary">Cancel</ix-button>
         <ix-button>Next</ix-button>
       </ix-popover-footer>
     `;
