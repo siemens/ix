@@ -3275,7 +3275,7 @@ export namespace Components {
         "alt": string;
         /**
           * Image source URL
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "src"?: string;
     }
@@ -4247,17 +4247,17 @@ export namespace Components {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval": number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime": string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader": string;
         /**
@@ -4288,7 +4288,7 @@ export namespace Components {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval": number;
         /**
@@ -4299,13 +4299,13 @@ export namespace Components {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval": number;
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval": number;
         /**
@@ -5980,17 +5980,17 @@ declare global {
     }
     /**
      * Floating panel anchored to a trigger element.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface HTMLIxPopoverElement extends Omit<Components.IxPopover, "showPopover" | "hidePopover">, HTMLStencilElement {
         /**
           * Open the popover programmatically
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "showPopover": () => Promise<void>;
         /**
           * Close the popover programmatically
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "hidePopover": () => Promise<void>;
         addEventListener<K extends keyof HTMLIxPopoverElementEventMap>(type: K, listener: (this: HTMLIxPopoverElement, ev: IxPopoverCustomEvent<HTMLIxPopoverElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6008,7 +6008,7 @@ declare global {
     };
     /**
      * Main body section of the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface HTMLIxPopoverContentElement extends Components.IxPopoverContent, HTMLStencilElement {
     }
@@ -6018,7 +6018,7 @@ declare global {
     };
     /**
      * Footer section for actions and optional leading metadata.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface HTMLIxPopoverFooterElement extends Components.IxPopoverFooter, HTMLStencilElement {
     }
@@ -6031,7 +6031,7 @@ declare global {
     }
     /**
      * Header section with optional icon, title, additional items, and close button.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface HTMLIxPopoverHeaderElement extends Components.IxPopoverHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6049,7 +6049,7 @@ declare global {
     };
     /**
      * Optional image section for the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface HTMLIxPopoverImageElement extends Components.IxPopoverImage, HTMLStencilElement {
     }
@@ -11045,17 +11045,17 @@ declare namespace LocalJSX {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval"?: number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime"?: string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader"?: string;
         /**
@@ -11086,7 +11086,7 @@ declare namespace LocalJSX {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval"?: number;
         /**
@@ -11097,7 +11097,7 @@ declare namespace LocalJSX {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval"?: number;
         /**
@@ -11111,7 +11111,7 @@ declare namespace LocalJSX {
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval"?: number;
         /**
@@ -12797,27 +12797,27 @@ declare module "@stencil/core" {
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
              * Floating panel anchored to a trigger element.
-             * @since 5.0.0
+             * @since 5.1.0
              */
             "ix-popover": LocalJSX.IntrinsicElements["ix-popover"] & JSXBase.HTMLAttributes<HTMLIxPopoverElement>;
             /**
              * Main body section of the popover.
-             * @since 5.0.0
+             * @since 5.1.0
              */
             "ix-popover-content": LocalJSX.IntrinsicElements["ix-popover-content"] & JSXBase.HTMLAttributes<HTMLIxPopoverContentElement>;
             /**
              * Footer section for actions and optional leading metadata.
-             * @since 5.0.0
+             * @since 5.1.0
              */
             "ix-popover-footer": LocalJSX.IntrinsicElements["ix-popover-footer"] & JSXBase.HTMLAttributes<HTMLIxPopoverFooterElement>;
             /**
              * Header section with optional icon, title, additional items, and close button.
-             * @since 5.0.0
+             * @since 5.1.0
              */
             "ix-popover-header": LocalJSX.IntrinsicElements["ix-popover-header"] & JSXBase.HTMLAttributes<HTMLIxPopoverHeaderElement>;
             /**
              * Optional image section for the popover.
-             * @since 5.0.0
+             * @since 5.1.0
              */
             "ix-popover-image": LocalJSX.IntrinsicElements["ix-popover-image"] & JSXBase.HTMLAttributes<HTMLIxPopoverImageElement>;
             /**
