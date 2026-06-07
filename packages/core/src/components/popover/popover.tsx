@@ -77,7 +77,7 @@ let popoverInstance = 0;
  *
  * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
  *
- * @since 5.0.0
+ * @since 5.1.0
  */
 @Component({
   tag: 'ix-popover',
@@ -91,49 +91,49 @@ export class Popover implements PopoverInterface {
    * Element that toggles the popover.
    * CSS selector string or DOM element reference.
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() trigger?: ElementReference;
 
   /**
    * Show/hide state
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ mutable: true, reflect: true }) show = false;
 
   /**
    * Preferred placement relative to trigger
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
 
   /**
    * Show the spike pointing at the trigger
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() hasSpike = false;
 
   /**
    * Interaction that opens the popover
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() triggerMode: 'click' | 'hover' = 'click';
 
   /**
    * Dismiss when clicking outside the popover and trigger
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() closeOnClickOutside = false;
 
   /**
    * Fires before visibility changes. Cancel to prevent.
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event({ bubbles: true, cancelable: true })
   showChange!: EventEmitter<boolean>;
@@ -141,7 +141,7 @@ export class Popover implements PopoverInterface {
   /**
    * Fires after visibility has changed
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
@@ -216,7 +216,7 @@ export class Popover implements PopoverInterface {
   /**
    * Open the popover programmatically
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Method()
   async showPopover() {
@@ -226,7 +226,7 @@ export class Popover implements PopoverInterface {
   /**
    * Close the popover programmatically
    *
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Method()
   async hidePopover() {
@@ -296,7 +296,7 @@ export class Popover implements PopoverInterface {
 
     try {
       const dialog = await this.dialogRef.waitForCurrent();
-      if (!dialog) {
+      if (!dialog || !this.hostElement.isConnected) {
         return;
       }
 
@@ -322,13 +322,13 @@ export class Popover implements PopoverInterface {
         const trap = await addFocusTrap(this.hostElement, {
           trapFocusInShadowDom: true,
         });
-        if (this.show) {
+        if (!this.hostElement.isConnected || !this.show) {
+          trap.destroy();
+        } else {
           this.focusTrap = trap;
           if (this.triggerMode !== 'hover') {
             this.focusFirstElement();
           }
-        } else {
-          trap.destroy();
         }
       }
 
@@ -346,7 +346,7 @@ export class Popover implements PopoverInterface {
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
-    if (!dialog) {
+    if (!dialog || !this.hostElement.isConnected) {
       return;
     }
 
@@ -751,7 +751,7 @@ export class Popover implements PopoverInterface {
 
     await updatePosition();
 
-    if (!this.show) {
+    if (!this.show || !this.hostElement.isConnected) {
       return;
     }
 

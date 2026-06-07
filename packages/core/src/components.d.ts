@@ -3150,120 +3150,120 @@ export namespace Components {
     }
     /**
      * Floating panel anchored to a trigger element.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopover {
         /**
           * Dismiss when clicking outside the popover and trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "closeOnClickOutside": boolean;
         /**
           * Show the spike pointing at the trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "hasSpike": boolean;
         /**
           * Close the popover programmatically
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "hidePopover": () => Promise<void>;
         /**
           * Preferred placement relative to trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'bottom'
          */
         "placement": 'top' | 'bottom' | 'left' | 'right';
         /**
           * Show/hide state
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "show": boolean;
         /**
           * Open the popover programmatically
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "showPopover": () => Promise<void>;
         /**
           * Element that toggles the popover. CSS selector string or DOM element reference.
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "trigger"?: ElementReference;
         /**
           * Interaction that opens the popover
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'click'
          */
         "triggerMode": 'click' | 'hover';
     }
     /**
      * Main body section of the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverContent {
         /**
           * Remove default inner padding
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "paddingless": boolean;
     }
     /**
      * Footer section for actions and optional leading metadata.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverFooter {
         /**
           * Button layout direction
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'horizontal'
          */
         "alignment": 'horizontal' | 'vertical';
     }
     /**
      * Header section with optional icon, title, additional items, and close button.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverHeader {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'Close'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
           * ARIA label for the icon
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Hide the close (X) button
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "hideClose": boolean;
         /**
           * Icon name displayed before the title
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "icon"?: string;
         /**
           * Icon color
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "iconColor"?: string;
     }
     /**
      * Optional image section for the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverImage {
         /**
           * Alt text for the image
-          * @since 5.0.0
+          * @since 5.1.0
           * @default ''
          */
         "alt": string;
@@ -9870,131 +9870,131 @@ declare namespace LocalJSX {
     }
     /**
      * Floating panel anchored to a trigger element.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopover {
         /**
           * Dismiss when clicking outside the popover and trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "closeOnClickOutside"?: boolean;
         /**
           * Show the spike pointing at the trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "hasSpike"?: boolean;
         /**
           * Fires before visibility changes. Cancel to prevent.
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "onShowChange"?: (event: IxPopoverCustomEvent<boolean>) => void;
         /**
           * Fires after visibility has changed
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "onShowChanged"?: (event: IxPopoverCustomEvent<boolean>) => void;
         /**
           * Preferred placement relative to trigger
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'bottom'
          */
         "placement"?: 'top' | 'bottom' | 'left' | 'right';
         /**
           * Show/hide state
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "show"?: boolean;
         /**
           * Element that toggles the popover. CSS selector string or DOM element reference.
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "trigger"?: ElementReference;
         /**
           * Interaction that opens the popover
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'click'
          */
         "triggerMode"?: 'click' | 'hover';
     }
     /**
      * Main body section of the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverContent {
         /**
           * Remove default inner padding
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "paddingless"?: boolean;
     }
     /**
      * Footer section for actions and optional leading metadata.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverFooter {
         /**
           * Button layout direction
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'horizontal'
          */
         "alignment"?: 'horizontal' | 'vertical';
     }
     /**
      * Header section with optional icon, title, additional items, and close button.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverHeader {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 5.0.0
+          * @since 5.1.0
           * @default 'Close'
          */
         "ariaLabelCloseIconButton"?: string;
         /**
           * ARIA label for the icon
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Hide the close (X) button
-          * @since 5.0.0
+          * @since 5.1.0
           * @default false
          */
         "hideClose"?: boolean;
         /**
           * Icon name displayed before the title
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "icon"?: string;
         /**
           * Icon color
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "iconColor"?: string;
         /**
           * Fires when close button is clicked. Cancel to prevent closing.
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "onCloseClick"?: (event: IxPopoverHeaderCustomEvent<MouseEvent>) => void;
     }
     /**
      * Optional image section for the popover.
-     * @since 5.0.0
+     * @since 5.1.0
      */
     interface IxPopoverImage {
         /**
           * Alt text for the image
-          * @since 5.0.0
+          * @since 5.1.0
           * @default ''
          */
         "alt"?: string;
         /**
           * Image source URL
-          * @since 5.0.0
+          * @since 5.1.0
          */
         "src"?: string;
     }
