@@ -246,6 +246,7 @@ import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
 import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
+import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
@@ -455,6 +456,7 @@ const routes: IxPreviewRoutes = {
   '/preview/toast-position': ToastPosition,
   '/preview/toast': Toast,
   '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-secondary': ToggleButtonSecondary,
   '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
   '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
   '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
