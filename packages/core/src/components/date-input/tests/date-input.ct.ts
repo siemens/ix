@@ -15,7 +15,9 @@ import {
 
 regressionTest.describe('accessibility', () => {
   regressionTest('default state', async ({ mount, makeAxeBuilder }) => {
-    await mount(`<ix-date-input label="Date" value="2024/05/05"></ix-date-input>`);
+    await mount(
+      `<ix-date-input label="Date" value="2024/05/05"></ix-date-input>`
+    );
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
@@ -24,7 +26,9 @@ regressionTest.describe('accessibility', () => {
   regressionTest(
     'invalid parse error state',
     async ({ mount, page, makeAxeBuilder }) => {
-      await mount(`<ix-date-input label="Date" value="invalid-date"></ix-date-input>`);
+      await mount(
+        `<ix-date-input label="Date" value="invalid-date"></ix-date-input>`
+      );
 
       await expect(page.locator('ix-date-input')).toHaveClass(/\bhydrated\b/);
 
