@@ -12,6 +12,7 @@ export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/
   'label',
   'value',
   'selected',
+  'disabled',
   'hover',
   'itemClick'
 ], [
