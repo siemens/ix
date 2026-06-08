@@ -15,12 +15,6 @@
 
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
-    @if $variant == 'outline' {
-      border: solid
-        var(--theme-blind--border-thickness)
-        var(--theme-blind-base--border-color);
-    }
-
     .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
@@ -56,8 +50,57 @@
     }
 
     @if $variant == 'outline' {
-      border-color: var(--theme-color-soft-bdr);
-    } @else {
+      .blind-header-wrapper {
+        border: solid
+          var(--theme-blind--border-thickness)
+          var(--theme-color-soft-bdr);
+        border-bottom: none;
+        border-radius: var(--theme-blind--border-radius)
+          var(--theme-blind--border-radius)
+          0
+          0;
+
+        @include hover.hover {
+          border-color: var(--theme-color-ghost--hover);
+        }
+
+        @include hover.active {
+          border-color: var(--theme-color-ghost--active);
+        }
+      }
+
+      .blind-header {
+        border-radius: 0;
+      }
+    }
+
+    @if $variant != 'filled' {
+      .blind-content {
+        border-radius: 0
+          0
+          var(--theme-blind--border-radius)
+          var(--theme-blind--border-radius);
+
+        @if $variant == 'outline' {
+          border: solid
+            var(--theme-blind--border-thickness)
+            var(--theme-color-soft-bdr);
+          border-top: none;
+        } @else {
+          border: solid
+            var(--theme-blind--border-thickness)
+            var(--theme-color-#{$variant});
+          border-top: none;
+        }
+
+        &.hide {
+          border-color: transparent;
+          border-bottom-width: 0;
+        }
+      }
+    }
+
+    @if $variant != 'outline' {
       background-color: var(--theme-blind-base--background);
     }
   }
@@ -179,7 +222,7 @@
   .blind-content {
     display: block;
     padding: 1rem;
-    transition-property: padding;
+    transition-property: padding, border-color, border-bottom-width;
     transition-duration: var(--theme-default-time);
     transition-timing-function: ease-in;
 
@@ -210,4 +253,20 @@ $blind-variants: (
 
 @each $variant in $blind-variants {
   @include blind($variant);
+}
+
+:host(.blind-outline[collapsed]) {
+  .blind-header-wrapper {
+    border-bottom: solid var(--theme-blind--border-thickness)
+      var(--theme-color-soft-bdr);
+    border-radius: var(--theme-blind--border-radius);
+
+    @include hover.hover {
+      border-color: var(--theme-color-ghost--hover);
+    }
+
+    @include hover.active {
+      border-color: var(--theme-color-ghost--active);
+    }
+  }
 }
