@@ -13,6 +13,47 @@ import {
   regressionTest,
 } from '@utils/test';
 
+regressionTest.describe('accessibility', () => {
+  regressionTest('default state', async ({ mount, makeAxeBuilder }) => {
+    await mount(`<ix-date-input label="Date" value="2024/05/05"></ix-date-input>`);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest(
+    'invalid parse error state',
+    async ({ mount, page, makeAxeBuilder }) => {
+      await mount(`<ix-date-input label="Date" value="invalid-date"></ix-date-input>`);
+
+      await expect(page.locator('ix-date-input')).toHaveClass(/\bhydrated\b/);
+
+      await page
+        .locator('ix-date-input')
+        .evaluate((el: HTMLIxDateInputElement) => el.reportValidity());
+
+      const accessibilityScanResults = await makeAxeBuilder().analyze();
+      expect(accessibilityScanResults.violations).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'required missing error state',
+    async ({ mount, page, makeAxeBuilder }) => {
+      await mount(`<ix-date-input label="Date" required></ix-date-input>`);
+
+      await expect(page.locator('ix-date-input')).toHaveClass(/\bhydrated\b/);
+
+      await page
+        .locator('ix-date-input')
+        .evaluate((el: HTMLIxDateInputElement) => el.reportValidity());
+
+      const accessibilityScanResults = await makeAxeBuilder().analyze();
+      expect(accessibilityScanResults.violations).toEqual([]);
+    }
+  );
+});
+
 const createDateInputAccessor = async (dateInput: Locator) => {
   const dateDropdown = dateInput.getByTestId('date-dropdown');
 

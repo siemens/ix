@@ -553,7 +553,7 @@ export class DateInput
     this.acceptSuppressedValidationValue(value);
   }
 
-  private handleValidatedInput(value: string): void {
+  private async handleValidatedInput(value: string): Promise<void> {
     const validation = this.getDateValidation(value);
 
     this._hasInvalidInput = !validation.isValid;
@@ -565,6 +565,8 @@ export class DateInput
       this.from = undefined;
     } else {
       this.invalidReason = undefined;
+
+      await syncRequiredValidationClass(this.hostElement, this);
       this.updateFormInternalValue(value);
       this.closeDropdown();
       focusInputIfKeyboardMode(this.inputElementRef.current);
@@ -599,7 +601,7 @@ export class DateInput
       return;
     }
 
-    this.handleValidatedInput(value);
+    await this.handleValidatedInput(value);
   }
 
   onCalenderClick(event: Event) {

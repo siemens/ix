@@ -57,6 +57,7 @@ export async function checkInternalValidity<T>(
 ) {
   const skipValidation = await shouldSuppressInternalValidation(comp);
   if (skipValidation) {
+    comp.hostElement.classList.remove('ix-invalid--validity-invalid');
     return;
   }
 
@@ -330,6 +331,7 @@ export async function syncRequiredValidationClass<T>(
 ): Promise<void> {
   const skipValidation = await shouldSuppressInternalValidation(comp);
   if (skipValidation) {
+    hostElement.classList.remove('ix-invalid--required');
     return;
   }
 
