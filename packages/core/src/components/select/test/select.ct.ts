@@ -1357,3 +1357,47 @@ test('selected label preserved when item is temporarily removed from DOM', async
 
   await expect(input).toHaveValue('Item 1');
 });
+
+test('dropdownOpenChange emits true on open and false on close', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+
+  const openEventPromise = select.evaluate(
+    (el: HTMLIxSelectElement) =>
+      new Promise<boolean>((resolve) => {
+        el.addEventListener(
+          'dropdownOpenChange',
+          (e) => resolve((e as CustomEvent<boolean>).detail),
+          { once: true }
+        );
+      })
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+
+  expect(await openEventPromise).toBe(true);
+
+  const closeEventPromise = select.evaluate(
+    (el: HTMLIxSelectElement) =>
+      new Promise<boolean>((resolve) => {
+        el.addEventListener(
+          'dropdownOpenChange',
+          (e) => resolve((e as CustomEvent<boolean>).detail),
+          { once: true }
+        );
+      })
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+
+  expect(await closeEventPromise).toBe(false);
+});
