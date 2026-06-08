@@ -2644,14 +2644,14 @@ export declare interface IxSelect extends Components.IxSelect {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxSelectItem,
-  inputs: ['label', 'selected', 'value']
+  inputs: ['disabled', 'label', 'selected', 'value']
 })
 @Component({
   selector: 'ix-select-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['label', 'selected', { name: 'value', required: true }],
+  inputs: ['disabled', 'label', 'selected', { name: 'value', required: true }],
   outputs: ['itemClick'],
 })
 export class IxSelectItem {
