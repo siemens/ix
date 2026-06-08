@@ -26,7 +26,6 @@ import {
 import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
-  clearInputValue,
   DisposableChangesAndVisibilityObservers,
   PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
@@ -35,6 +34,7 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
+  clearInputValue,
   syncRequiredValidationClass,
 } from '../input/input.util';
 import {

@@ -13,6 +13,51 @@ import {
   regressionTest,
 } from '@utils/test';
 
+const createDateInputAccessor = async (dateInput: Locator) => {
+  const dateDropdown = dateInput.getByTestId('date-dropdown');
+
+  const handle = {
+    openByCalender: async () => {
+      const trigger = dateInput.getByTestId('open-calendar');
+      await trigger.click();
+      await expect(dateDropdown).toHaveClass(/show/);
+    },
+    selectDay: async (day: number) => {
+      const dayButton = dateInput
+        .locator('ix-dropdown .calendar-item')
+        .filter({ hasText: new RegExp(`^${day}$`) })
+        .first();
+
+      await expect(dayButton).toBeVisible();
+      await dayButton.click();
+    },
+  };
+
+  return handle;
+};
+
+const expectNoVisualValidation = async (dateInput: Locator, input: Locator) => {
+  await expect(input).not.toHaveClass(/is-invalid/);
+  await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+};
+
+const waitForFormSubmit = (form: Locator) => {
+  const submitPromise = form.evaluate(
+    (formElement) =>
+      new Promise<boolean>((resolve) => {
+        const handleSubmit = (event: Event) => {
+          event.preventDefault();
+          formElement.removeEventListener('submit', handleSubmit);
+          resolve(true);
+        };
+
+        formElement.addEventListener('submit', handleSubmit);
+      })
+  );
+
+  return submitPromise;
+};
+
 regressionTest.describe('accessibility', () => {
   regressionTest('default state', async ({ mount, makeAxeBuilder }) => {
     await mount(
@@ -57,48 +102,6 @@ regressionTest.describe('accessibility', () => {
     }
   );
 });
-
-const createDateInputAccessor = async (dateInput: Locator) => {
-  const dateDropdown = dateInput.getByTestId('date-dropdown');
-
-  const handle = {
-    openByCalender: async () => {
-      const trigger = dateInput.getByTestId('open-calendar');
-      await trigger.click();
-      await expect(dateDropdown).toHaveClass(/show/);
-    },
-    selectDay: async (day: number) => {
-      const dayButton = dateInput
-        .locator('ix-dropdown .calendar-item')
-        .filter({ hasText: new RegExp(`^${day}$`) })
-        .first();
-
-      await expect(dayButton).toBeVisible();
-      await dayButton.click();
-    },
-  };
-
-  return handle;
-};
-
-const expectNoVisualValidation = async (dateInput: Locator, input: Locator) => {
-  await expect(input).not.toHaveClass(/is-invalid/);
-  await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
-};
-
-const waitForFormSubmit = (form: Locator) =>
-  form.evaluate(
-    (formElement) =>
-      new Promise<boolean>((resolve) => {
-        const handleSubmit = (event: Event) => {
-          event.preventDefault();
-          formElement.removeEventListener('submit', handleSubmit);
-          resolve(true);
-        };
-
-        formElement.addEventListener('submit', handleSubmit);
-      })
-  );
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
