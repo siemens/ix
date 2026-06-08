@@ -94,6 +94,8 @@ export class Pane {
   /**
    * Remove the padding of the content area.
    * If set to `true` the left, right and bottom padding of the content area is removed.
+   *
+   * @since 5.1.0
    */
   @Prop() noPadding: boolean = false;
 
