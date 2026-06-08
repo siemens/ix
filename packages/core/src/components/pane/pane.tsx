@@ -93,7 +93,7 @@ export class Pane {
 
   /**
    * Remove the padding of the content area.
-   * If set to `true` the left, right and bottom padding of the content area is removed. The title always keeps its padding.
+   * If set to `true` the left, right and bottom padding of the content area is removed.
    */
   @Prop() noPadding: boolean = false;
 
