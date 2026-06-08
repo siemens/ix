@@ -3514,6 +3514,12 @@ export namespace Components {
           * @default false
          */
         "disableAriaSelectHandling": boolean;
+        /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled": boolean;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * @default false
@@ -10040,6 +10046,12 @@ declare namespace LocalJSX {
          */
         "disableAriaSelectHandling"?: boolean;
         /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * @default false
          */
         "hover"?: boolean;
@@ -11962,6 +11974,7 @@ declare namespace LocalJSX {
         "label": string;
         "value": string;
         "selected": boolean;
+        "disabled": boolean;
         "hover": boolean;
     }
     interface IxSliderAttributes {

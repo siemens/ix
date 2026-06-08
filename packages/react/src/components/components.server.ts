@@ -1678,6 +1678,7 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         label: 'label',
         value: 'value',
         selected: 'selected',
+        disabled: 'disabled',
         hover: 'hover'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
