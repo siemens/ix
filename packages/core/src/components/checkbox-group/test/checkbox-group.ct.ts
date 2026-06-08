@@ -29,6 +29,31 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(radioOption3).toHaveClass(/hydrated/);
 });
 
+regressionTest(
+  'should apply invalid class to checkbox-group when required checkbox is touched',
+  async ({ mount, page }) => {
+    await mount(`
+      <form>
+        <ix-checkbox-group>
+          <ix-checkbox label="Option 1" value="option1" required></ix-checkbox>
+          <ix-checkbox label="Option 2" value="option2"></ix-checkbox>
+        </ix-checkbox-group>
+        <button type="button">Other</button>
+      </form>
+    `);
+
+    const checkboxGroup = page.locator('ix-checkbox-group');
+    const checkbox1 = page.locator('ix-checkbox').nth(0);
+    await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+    await checkbox1.focus();
+    await page.locator('button[type="button"]').focus();
+
+    await expect(checkboxGroup).toHaveClass(/\bix-invalid--required\b/);
+    await expect(checkboxGroup).toHaveClass(/\bix-invalid\b/);
+  }
+);
+
 regressionTest('required', async ({ mount, page }) => {
   await mount(
     `

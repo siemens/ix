@@ -15,6 +15,7 @@ import {
 } from '../utils/input';
 import { IxComponentInterface } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
+import { clearCheckboxGroupValidationState } from '../checkbox/checkbox-validation';
 
 /**
  * @form-ready
@@ -142,6 +143,19 @@ export class CheckboxGroup
     return Promise.resolve(
       this.checkboxElements.some((checkbox) => checkbox.checked)
     );
+  }
+
+  @Method()
+  async clear(): Promise<void> {
+    this.touched = false;
+    this.checkboxElements.forEach((checkbox) => {
+      checkbox.clear();
+    });
+    this.clearValidationState();
+  }
+
+  private clearValidationState() {
+    clearCheckboxGroupValidationState(this.hostElement, this.checkboxElements);
   }
 
   render() {
