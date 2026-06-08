@@ -28,3 +28,8 @@
 :host(.display-none) {
   display: none;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+  cursor: default;
+}

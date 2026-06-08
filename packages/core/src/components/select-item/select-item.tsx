@@ -63,6 +63,14 @@ export class SelectItem
   @Prop() selected = false;
 
   /**
+   * Disable the item. A disabled item cannot be selected via mouse or keyboard
+   * and is excluded from the focusable items of the parent ix-select.
+   *
+   * @since 5.1.0
+   */
+  @Prop({ reflect: true }) disabled = false;
+
+  /**
    * @internal
    */
   @Prop() hover = false;
@@ -142,6 +150,7 @@ export class SelectItem
             [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
           }}
           checked={this.selected}
+          disabled={this.disabled}
           label={this.label ? this.label : this.value}
           ref={this.dropdownItemRef}
         ></ix-dropdown-item>
