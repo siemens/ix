@@ -3068,6 +3068,11 @@ export namespace Components {
          */
         "isMobile": boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed. The title always keeps its padding.
+          * @default false
+         */
+        "noPadding": boolean;
+        /**
           * The maximum size of the sidebar, when it is expanded
           * @default '240px'
          */
@@ -9567,6 +9572,11 @@ declare namespace LocalJSX {
          */
         "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed. The title always keeps its padding.
+          * @default false
+         */
+        "noPadding"?: boolean;
+        /**
           * The maximum size of the sidebar, when it is expanded
           * @default '240px'
          */
@@ -11825,6 +11835,7 @@ declare namespace LocalJSX {
     | '33%'
     | '50%';
         "borderless": boolean;
+        "noPadding": boolean;
         "expanded": boolean;
         "composition": Composition;
         "icon": string;
