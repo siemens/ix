@@ -98,15 +98,23 @@ export const Default: Story = {
 
 export const Informational: Story = {
   parameters: storyA11y,
-  render: () => {
-    const popover = document.createElement('ix-popover');
-    popover.setAttribute('trigger', TRIGGER_ID);
-    popover.setAttribute('placement', 'bottom');
+  args: {
+    placement: 'bottom',
+    hasSpike: false,
+    closeOnClickOutside: true,
+  },
+  render: (args) => {
+    const container = genericRender('ix-popover', args, [], (element) => {
+      element.setAttribute('trigger', TRIGGER_ID);
 
-    const content = document.createElement('ix-popover-content');
-    content.textContent = 'This action cannot be undone.';
-    popover.appendChild(content);
+      const content = document.createElement('ix-popover-content');
+      content.textContent = 'This action cannot be undone.';
+      element.appendChild(content);
 
+      return element;
+    });
+
+    const popover = container.querySelector('ix-popover')!;
     return popoverStoryContainer(popover);
   },
 };
