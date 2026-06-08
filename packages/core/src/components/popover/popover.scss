@@ -28,12 +28,17 @@
   position: relative;
   width: 100%;
   max-height: calc(100vh - 2rem);
-  background: var(--theme-popover--background, var(--theme-color-1));
+  background: var(--theme-popover--background);
   color: var(--theme-popover--color, var(--theme-color-std-text));
   border: 1px solid var(--theme-popover--border-color, transparent);
   box-shadow: var(--theme-shadow-4);
   border-radius: var(--theme-default-border-radius, 0.25rem);
   overflow: visible;
+}
+
+.popover-container:has(.spike) {
+  box-shadow: none;
+  filter: var(--theme-popover--elevation-filter);
 }
 
 .spike,
@@ -52,5 +57,5 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
-  background-color: var(--theme-popover--background, var(--theme-color-1));
+  background-color: var(--theme-popover--background);
 }
