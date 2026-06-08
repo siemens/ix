@@ -21,17 +21,34 @@ export type ThemeChangeEventDetail = {
 class ThemeSwitcher {
   private mutationObserver?: MutationObserver;
   private mediaQueryList?: MediaQueryList;
+  private lastEmittedSnapshot?: string;
+
   private emitThemeChange(isMediaChange: boolean) {
-    this.themeChanged.emit({
-      theme: this.getTheme(),
-      colorSchema: this.getColorSchema(),
-      mode: this.getMode(),
+    const theme = this.getTheme();
+    const colorSchema = this.getColorSchema();
+    const mode = this.getMode();
+    const snapshot = `${theme}-${colorSchema}-${mode}`;
+
+    if (snapshot === this.lastEmittedSnapshot && !isMediaChange) return;
+    this.lastEmittedSnapshot = snapshot;
+
+    const detail: ThemeChangeEventDetail = {
+      theme,
+      colorSchema,
+      mode,
       isMediaChange,
-    });
+    };
+    this.themeChanged.emit(detail);
+
+    if (typeof document !== 'undefined') {
+      document.dispatchEvent(new CustomEvent('ix-theme-change', { detail }));
+    }
   }
+
   private readonly handleMediaQueryChange = () => {
     this.emitThemeChange(true);
   };
+
   readonly themeChanged = new TypedEvent<ThemeChangeEventDetail>();
 
   /**
@@ -89,18 +106,15 @@ class ThemeSwitcher {
 
   public setTheme(themeName: string, colorSchema?: ThemeVariant) {
     document.documentElement.dataset.ixTheme = themeName;
-    if (!colorSchema) {
-      this.setColorSchema(this.getColorSchema());
-      return;
-    }
-
-    this.setColorSchema(colorSchema);
+    document.documentElement.dataset.ixColorSchema =
+      colorSchema ?? this.getColorSchema();
+    this.emitThemeChange(false);
   }
 
   public toggleMode() {
     const newMode: ThemeMode = this.getMode() === 'dark' ? 'light' : 'dark';
-
     document.documentElement.dataset.ixColorSchema = newMode;
+    this.emitThemeChange(false);
   }
 
   public getTheme() {
@@ -118,6 +132,7 @@ class ThemeSwitcher {
 
   public setColorSchema(variant: ThemeVariant = getCurrentSystemAppearance()) {
     document.documentElement.dataset.ixColorSchema = variant;
+    this.emitThemeChange(false);
   }
 
   public constructor() {
