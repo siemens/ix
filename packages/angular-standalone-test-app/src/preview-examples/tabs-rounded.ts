@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,7 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { IxTabs, IxTabItem, IxIcon } from '@siemens/ix-angular/standalone';
+import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',

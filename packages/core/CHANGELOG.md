@@ -1,5 +1,345 @@
 # @siemens/ix
 
+## 5.0.0
+
+### Major Changes
+
+- [#2514](https://github.com/siemens/ix/pull/2514) [`73a2ed3`](https://github.com/siemens/ix/commit/73a2ed3ef3f29a31391ff4ac858a66e77f9fac28) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking (v5):** Remove the **`placement`** property (and **`placement`** attribute) from **`ix-split-button`**. It was not wired to the internal dropdown, so it had no effect; removing it only drops a misleading no-op from the public API. See **`BREAKING_CHANGES/v5.md`**.
+
+- [#2524](https://github.com/siemens/ix/pull/2524) [`f2c8b83`](https://github.com/siemens/ix/commit/f2c8b83475c078575b2d47f465e10307b68b108f) Thanks [@danielleroux](https://github.com/danielleroux)! - Require `breadcrumbKey` on `ix-breadcrumb-item`, change `ix-breadcrumb` `nextItems` entries from strings to `{ label, breadcrumbKey }` objects, and export the shared `BreadcrumbClick` payload type so breadcrumb click events expose stable item keys.
+
+  This change was necessary to identify breadcrumb items in a stable way, as their labels may not be unique and can change over time. The `breadcrumbKey` provides a consistent identifier for each breadcrumb item, allowing for more reliable event handling and state management in applications using the breadcrumb component.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Update `ix-date-dropdown` quick date selection from a list to a picker, with quick date options displayed on the left side.
+
+  Removed attributes:
+
+  - `ariaLabelDropdownButton`: Provided `aria-label` will be passthrough the component shadow-dom to the actual button
+  - `customRangeDisabled` (also contain removal of `i18nCustomItem`): Removed because `ix-date-dropdown` will be a picker with quick selection on the left side.
+
+- [#2516](https://github.com/siemens/ix/pull/2516) [`91f811a`](https://github.com/siemens/ix/commit/91f811af47662c550a2f23e29b5280db49869039) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-chip:** Status-filled hover/active colors and padding use design tokens; custom-color chips keep the overlay behavior.
+  **ix-chip:** Add `ariaLabelIcon`, forward host ARIA to the main control, optional host `role="group"`, a native close button, and tooltip labeling; React, Angular, and Vue expose `ariaLabelIcon`.
+
+- [#2309](https://github.com/siemens/ix/pull/2309) [`3964a2a`](https://github.com/siemens/ix/commit/3964a2af37422056acfcd40bfde31ebe5f0235ad) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Removed the left margin for **ix-chip** and **ix-pill**. This margin was also present if there was no leading sibling that is also a chip/pill causing it to waste screen real estate and distort layout alignments.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77) Thanks [@danielleroux](https://github.com/danielleroux)! - Update `ix-application` theming inputs to use the new `colorSchema` API.
+
+  The `themeSystemAppearance` property has been replaced by `colorSchema`, and consumers using `theme` or theme-related configuration on `ix-application` have to migrate to the updated theme-switching behavior.
+
+- [#2508](https://github.com/siemens/ix/pull/2508) [`cdae15b`](https://github.com/siemens/ix/commit/cdae15b5baef1824d68e57f96370e6b31c767417) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-time-picker`:** optional **`minTime`** and **`maxTime`** constrain selectable values (same string shape as **`format`** / **`time`**). Values outside the inclusive range are disabled in the picker rings.
+
+  **Breaking (v5):** the hour column header **attribute** is renamed from **`i18n-column-header`** to **`i18n-hour-column-header`**. The **`i18nHourColumnHeader`** property is unchanged—update static HTML or attribute-based markup. Migration: **`BREAKING_CHANGES/v5.md`**.
+
+- [#2545](https://github.com/siemens/ix/pull/2545) [`ba15b50`](https://github.com/siemens/ix/commit/ba15b505cf4dcb1086794d15e235690fdd7ca51a) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **Select listbox accessibility**
+
+  **ix-select:** Screen reader output for the dropdown list follows listbox semantics: the focus proxy sets **aria-selected** from real selection state (and the add row from **checked**), no longer sets **aria-checked** on proxy options, and uses **value** as a fallback accessible name when **label** is absent.
+
+  **ix-select-item:** With **`disableAriaSelectHandling`** enabled on the host, keyboard focus visibility is no longer mirrored to **aria-selected** on **`ix-select-item`**, so assistive technologies do not treat every focused row as selected.
+
+  **ix-dropdown-item:** New **`itemRole`** prop (**`menuitem`** | **`option`**, default **`menuitem`**) sets the host **`role`**; **`ix-select-item`** passes **`option`** for listbox usage. Documented with **`@since 5.0.0`**. Generated React, Angular, and Vue bindings include **`itemRole`** / **`item-role`**.
+
+  **ix-select (multiple mode):** Passes **`ariaLabelCloseIconButton`** on each **`ix-filter-chip`** (via **`i18n-remove-selected-item`**, default prefix **`Remove`**) so the close control is announced with the item label (e.g. “Remove Item 1”). Documented with **`@since 5.0.0`**.
+
+- [#2525](https://github.com/siemens/ix/pull/2525) [`7042a10`](https://github.com/siemens/ix/commit/7042a1021a4499c38f4a66aac9e5f32e9431062c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update the required @siemens/ix-icons peer dependency to ^3.4.0. This is a breaking change that requires consumers to update their @siemens/ix-icons dependency to version 3.4.0 or higher.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`b00da1c`](https://github.com/siemens/ix/commit/b00da1c87f93c86a6c60f40d2ae7952d345ab8d0) Thanks [@danielleroux](https://github.com/danielleroux)! - - The `toast` function now appends directly to the `ix-toast-container` host element instead of using a separate container element.
+
+  ## Removed properties
+
+  - `containerClass` - Set `class` on the `ix-toast-container` element itself if needed.
+  - `containerId` - Just use `id` on the `ix-toast-container` element if needed.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - **Refactor keyboard navigation for dropdown-related components**
+
+  Refactors keyboard navigation to align with W3C accessibility patterns for dropdown-related components, significantly improving accessibility and user experience:
+
+  ## Component Changes
+
+  ### Date Picker
+
+  - Added comprehensive keyboard navigation support:
+    - `Home`/`End`: Navigate to first/last day of week
+    - `PageUp`/`PageDown`: Navigate to previous/next month
+    - `Shift+PageUp`/`Shift+PageDown`: Navigate to previous/next year
+    - `ArrowLeft`/`ArrowRight`/`ArrowUp`/`ArrowDown`: Navigate between days
+    - `Enter`/`Space`: Select focused day
+    - `Escape`: Close picker
+  - Replaced manual year/month dropdown with accessible `ix-dropdown-button` components
+  - Implemented visual focus mode with `aria-activedescendant` for embedded pickers
+  - Added infinite scrolling for year selection with IntersectionObserver
+  - Improved ARIA labels: `ariaLabelMonthSelection` and `ariaLabelYearSelection` props
+  - Calendar days now have proper `role="button"` and descriptive `aria-label` attributes
+
+  ### Date Input
+
+  - Implemented `aria-activedescendant` pattern for combobox interaction
+  - Added keyboard forwarding to embedded date picker
+  - `ArrowDown` opens picker and activates keyboard navigation
+  - `Escape` closes picker and returns focus to input
+  - Focus management improved with `delegatesFocus` shadow DOM option
+
+  ### Date Dropdown
+
+  - Enhanced focus handling with `onFocusout` to close dropdown when focus leaves
+  - Auto-focus date picker when opened via keyboard
+  - Added `suppressOverflowBehavior` to prevent unwanted repositioning
+
+  ### Dropdown & Dropdown Button
+
+  - New props: `disableFocusHandling`, `disableFocusTrap`
+  - New events: `showChange` (preventable), `showChanged` (post-change)
+  - Improved focus proxy for dropdown items with proper `role="menuitem"`
+  - Better keyboard navigation with arrow keys, Home, End, Enter, Escape
+
+  ### Breadcrumb
+
+  - Complete refactor using `ix-dropdown-button` for previous/next items
+  - Added `role="navigation"` and `role="listitem"` for proper semantics
+  - Improved ARIA labels (default: "Show previous breadcrumb items")
+  - Each breadcrumb item now has `aria-current="page"` for the current page
+  - Keyboard navigation now works consistently across all breadcrumb dropdowns
+
+  ### Avatar
+
+  - Implemented focus proxy pattern for dropdown menu items
+  - Added `aria-activedescendant` support
+  - Button now has `role="combobox"` with proper `aria-controls` and `aria-expanded`
+  - Menu items properly labeled with `role="menuitem"`
+
+  ### Button
+
+  - Added `.ix-focused` class for programmatic focus indication
+  - Fixed focus-visible styles to work consistently
+  - Disabled buttons now have `tabindex="-1"`
+
+  ### Application Header
+
+  - Added `role="banner"` for proper landmark semantics
+  - Fixed overflow context menu visibility logic for small viewports
+
+  ## Breaking Changes
+
+  - `ix-breadcrumb-item`: `ariaLabelButton` prop deprecated in favor of direct `aria-label` attribute
+  - Date picker month/year selection UI completely redesigned (visual breaking change)
+  - Internal structure for all `ix-dropdown` related components are changed
+
+- [#2503](https://github.com/siemens/ix/pull/2503) [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08) Thanks [@danielleroux](https://github.com/danielleroux)! - **Update `ix-menu-about` and `ix-menu-settings` for key-based tabs and slotted `ix-tabs` opt-in**
+
+  `ix-menu-about` and `ix-menu-settings` keep their legacy `ix-menu-about-item` / `ix-menu-settings-item` rendering by default. To switch to slotted `ix-tabs` / `ix-tab-item` markup, set the new `suppressLegacyTabs` prop on the parent menu component. `ix-menu-about-news` still uses `activeAboutTabKey` instead of `aboutItemLabel`.
+
+  ### Breaking Changes
+
+  #### ix-menu-about / ix-menu-settings
+
+  - The slotted `ix-tabs` integration path uses the new `suppressLegacyTabs` prop on the parent menu component.
+  - `ix-menu-about` renamed `activeTabLabel` to `activeTabKey` for legacy item-based integrations.
+
+  #### ix-menu-about-item / ix-menu-settings-item
+
+  - `tabKey` is now required when using legacy item-based integrations.
+  - `ix-menu-about-item` changed from `shadow: true` to `shadow: false`.
+
+  #### ix-menu-about-news
+
+  - New `activeAboutTabKey` prop replaces `aboutItemLabel` as the condition for showing the "Show more" footer button.
+  - The `aboutItemLabel` prop no longer controls footer visibility. Use `activeAboutTabKey` instead.
+
+  ### Migration
+
+  Use the existing `ix-tabs` pattern in your application (`ix-menu-about` / `ix-menu-settings`), and show the matching slotted content based on the active tab key. Set `suppressLegacyTabs` on the `ix-menu-about` / `ix-menu-settings` and `active-tab-key` on the nested `ix-tabs`, not on `ix-menu-about` or `ix-menu-settings`.
+
+  ```html
+  <!-- Slotted ix-tabs path -->
+  <ix-menu-about suppress-legacy-tabs>
+    <ix-tabs active-tab-key="tab-1">
+      <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+      <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+    </ix-tabs>
+    <!-- render the matching content in the slot using the active tab key -->
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-about active-tab-key="tab-1">
+    <ix-menu-about-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-about-item
+    >
+    <ix-menu-about-item tab-key="tab-2" label="Tab 2"
+      >Content 2</ix-menu-about-item
+    >
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-settings active-tab-key="tab-1">
+    <ix-menu-settings-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-settings-item
+    >
+  </ix-menu-settings>
+  ```
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - **Breaking (v5):** `showModalLoading()` now returns a `Promise<ModalLoadingContext>`. Await the call before using `update()` or `finish()` on the returned loading context.
+
+- [#2471](https://github.com/siemens/ix/pull/2471) [`e324caa`](https://github.com/siemens/ix/commit/e324caa330a2e99d34f309402ccd68d39156dc93) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Add **non-blocking** dialog mode to **ix-modal** with **`isNonBlocking`** and **`ModalConfig.isNonBlocking`**: opens with **`dialog.show()`** so the page stays interactive (no lightbox or focus trap; **`aria-modal`** is false). After open, **`showModal()`** schedules initial focus on the first light-DOM match for **`[autofocus]`** or **`[auto-focus]`** (with **`focusVisible: true`**).
+
+  **Breaking (v5):** Remove **`disableEscapeClose`**. Escape and **`cancel`** always go through **`dismissModal()`**; use **`beforeDismiss`** to veto dismissal (e.g. replace **`disableEscapeClose`** with **`beforeDismiss: () => false`**). **`showModalLoading`** is updated accordingly; **`closeModal`** from **`finish()`** is unchanged.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove legacy accessible-name properties from button components. Set the native `aria-label` attribute on the host element instead; it is applied to the inner interactive surface.
+
+  - **ix-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-button**: `a11yLabel` (**a11y-label**)
+  - **ix-toggle-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-toggle-button**: `ariaLabelIconButton` (**aria-label-icon-button**)
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) for migration examples.
+
+- [#2475](https://github.com/siemens/ix/pull/2475) [`834bbbf`](https://github.com/siemens/ix/commit/834bbbf8cc30d75c5d3fdf3cf91e93a7498150a0) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **`ix-card-list` breaking change:** selecting the show-all button or show-more card now reveals all hidden cards by default and toggles back to the hidden-overflow state from the show-less button. To keep the previous event-only behavior, call `preventDefault()` on the cancelable `showAllClick` or `showMoreCardClick` event.
+
+  Fixes #1367 and Fixes #2353
+
+- [#2503](https://github.com/siemens/ix/pull/2503) [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08) Thanks [@danielleroux](https://github.com/danielleroux)! - **Refactor ix-tabs and ix-tab-item to use key-based tab identification**
+
+  Replaces the index-based tab selection model with a string key-based approach, improving reliability when tabs are added, removed, or reordered dynamically.
+
+  ## Breaking Changes
+
+  ### ix-tabs
+
+  - Removed `selected` prop (number index). Use `activeTabKey` (string) instead.
+  - Removed `ariaLabelChevronLeftIconButton` and `ariaLabelChevronRightIconButton` props. When the tab list overflows and `layout` is not `stretched`, `ix-tabs` now shows an `ix-dropdown-button` with all tabs instead of scroll arrows; no overflow button is rendered while all tabs fit or while `layout` is `stretched`.
+  - Removed `selectedChange` event. Use `tabChange` which emits the active `tabKey` string instead of an index.
+
+  ### ix-tab-item
+
+  - New required `tabKey` prop to uniquely identify each tab.
+  - Added `label` prop for setting tab text (preferred over slot content).
+  - Added `icon` prop for setting an icon on the tab.
+  - Added `closable` prop and `tabClose` event for closable tabs.
+  - `small`, `layout`, `placement`, and `rounded` props are now internal and set automatically by the parent `ix-tabs`.
+
+  ### Migration
+
+  ```html
+  <!-- Before -->
+  <ix-tabs selected="1">
+    <ix-tab-item>Tab 1</ix-tab-item>
+    <ix-tab-item>Tab 2</ix-tab-item>
+  </ix-tabs>
+
+  <!-- After -->
+  <ix-tabs active-tab-key="tab-2">
+    <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
+    <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
+  </ix-tabs>
+  ```
+
+  Replace removed `selectedChange` event listeners with `tabChange`:
+
+  ```js
+  // Before
+  tabs.addEventListener('selectedChange', (e) => console.log(e.detail)); // 0, 1, 2...
+
+  // After
+  tabs.addEventListener('tabChange', (e) => console.log(e.detail)); // 'tab-1', 'tab-2'...
+  ```
+
+- [#2548](https://github.com/siemens/ix/pull/2548) [`3ece658`](https://github.com/siemens/ix/commit/3ece658f4328b91f649a4dc06857358d9fd07144) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove pre-v5 deprecated components, properties, and the `showModalLoading` string overload.
+
+  **Removed components:** `ix-input-group` (use `ix-input`); `ix-validation-tooltip` (use built-in validation on `ix-input` / `ix-select`); `ix-drawer` (use `ix-pane`).
+
+  **Removed properties:** `ariaLabelMenuExpandIconButton` on `ix-application-header`; `a11yLabel` on `ix-avatar`; `ariaLabelButton` on `ix-breadcrumb-item`; `ariaLabelChevronDownIconButton` on `ix-select`; `error` on `ix-slider` (use `class="ix-invalid"` and `invalid-text` instead).
+
+  **Removed util overload:** `showModalLoading(message: string)` — use `showModalLoading({ message: '...' })` instead.
+
+  See `BREAKING_CHANGES/v5.md` (section **Removed deprecated components and APIs**) for migration details.
+
+- [#2538](https://github.com/siemens/ix/pull/2538) [`909bb6a`](https://github.com/siemens/ix/commit/909bb6a13107e8d438ed879bf7735941ce44f99d) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove no-op **`ModalConfig`** fields **`container`**, **`keyboard`**, and **`title`** from the **`showModal`** API. They had no effect in v4; delete them from config objects.
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) (**ModalConfig**: removed no-op options) for migration.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove unused **i18n-expand-sidebar** property from **ix-menu**
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77) Thanks [@danielleroux](https://github.com/danielleroux)! - Update the public theme-switcher API to support explicit `system` color schema handling and unified theme change events.
+
+  Consumers using `themeSwitcher.themeChanged`, `themeSwitcher.schemaChanged`, `setTheme()`, or `ThemeVariant` must update to the new event detail payload and consolidated color-schema behavior. Existing listeners expecting a string event payload or relying on `schemaChanged` will need to be migrated.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`b5e7384`](https://github.com/siemens/ix/commit/b5e7384ddb2a085f3730d657d5ff867e5603fb46) Thanks [@danielleroux](https://github.com/danielleroux)! - Migrate the public theming API from legacy theme classes to `data-ix-theme` and `data-ix-color-schema`, including explicit `system` color schema handling.
+
+  Consumers must stop using legacy theme classes such as `theme-classic-dark` and `theme-classic-light` and move to attribute-based theming on `<html>`.
+
+### Minor Changes
+
+- [#2359](https://github.com/siemens/ix/pull/2359) [`8378937`](https://github.com/siemens/ix/commit/8378937cd0bfe0dab0e98e7460a277fe275c5d51) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Added `ix-datetime-input` component based on datetime-picker
+
+- [#2279](https://github.com/siemens/ix/pull/2279) [`40cfbe0`](https://github.com/siemens/ix/commit/40cfbe0b2ca2b6a0cc6059ce4d2b58fb20a5c72a) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Add disabled-state support for **ix-tree-item**, including the exposed **disabled** property and corresponding tree item state handling.
+  Improve **ix-tree** and **ix-tree-item** accessibility by updating ARIA roles and positional attributes.
+
+  Fixes #2091
+
+- [#2521](https://github.com/siemens/ix/pull/2521) [`36ce453`](https://github.com/siemens/ix/commit/36ce453749a78c9df2078cefc840d4dc1dfb8a5b) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-datetime-input`:** Add **`minTime`** and **`maxTime`** so the combined date-time field can constrain the time portion.
+
+- [#2517](https://github.com/siemens/ix/pull/2517) [`653f136`](https://github.com/siemens/ix/commit/653f13653a332aad0107e29de1b26d0cc2bc8784) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Extend time bounds to **`ix-time-input`** and **`ix-datetime-picker`** with optional **`minTime`** / **`maxTime`** (same string shape as each component’s time format tokens). For **`ix-datetime-picker`**, validation and UI stay aligned: with **`minDate`** / **`maxDate`**, **`minTime`** applies on the minimum day, **`maxTime`** on the maximum day, and days in between are not time-clamped by those props; with no date bounds, **`minTime`** / **`maxTime`** act as a daily time window.
+
+  **`ix-time-picker`:** constraint checks use the full span of each hour, minute, and second candidate so disabled states match inclusive bounds (for example, an hour remains selectable when **`minTime`** falls mid-hour).
+
+- [#2458](https://github.com/siemens/ix/pull/2458) [`a6a5309`](https://github.com/siemens/ix/commit/a6a530950acd733b2a07a602ecdbabf120719449) Thanks [@danielleroux](https://github.com/danielleroux)! - `ix-dropdown` now observes the visibility of the trigger element in the viewport while the dropdown is open. If the trigger element scrolls outside the visible viewport, the dropdown will automatically close to prevent it from remaining visible in an unexpected screen position. To keep the dropdown open regardless of trigger visibility, set `suppressTriggerVisibilityCheck` to `true`.
+
+- [#2437](https://github.com/siemens/ix/pull/2437) [`4161ab9`](https://github.com/siemens/ix/commit/4161ab9e7188ce96991b0922999867d0f550005a) Thanks [@danielleroux](https://github.com/danielleroux)! - Add new component `ix-range-field` which can currently display range related inputs. Supported components: `ix-date-input`, `ix-time-input` and `ix-datetime-input`.
+
+- [#2478](https://github.com/siemens/ix/pull/2478) [`4231d51`](https://github.com/siemens/ix/commit/4231d51264e66629a704b93b46e58e5bac4b7810) Thanks [@khathija-ahamadi](https://github.com/khathija-ahamadi)! - Support directory upload in **ix-upload**.
+
+  Fixes #2053
+  Fixes #2354
+
+### Patch Changes
+
+- [#2534](https://github.com/siemens/ix/pull/2534) [`8765757`](https://github.com/siemens/ix/commit/8765757dd53c958ea0e1a481acb499cfee2e3eae) Thanks [@danielleroux](https://github.com/danielleroux)! - Reduce icon size of `ix-datetime-input` to 16
+
+- [#2505](https://github.com/siemens/ix/pull/2505) [`ce6cd94`](https://github.com/siemens/ix/commit/ce6cd949652759897f15dea38be7cf3a28aa0841) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Fixed a bug that would display **ix-avatar**'s tooltip when hovering dropdown-items. Fixes #2400
+
+- [#2549](https://github.com/siemens/ix/pull/2549) [`d10b03c`](https://github.com/siemens/ix/commit/d10b03c34b2ac1c100bdff9523ae53ff4db3cecc) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **ix-breadcrumb-item:** Remove the slide-in (`translateX` + opacity) enter animation, and propagate `aria-label` (and other host-level ARIA attributes) to the inner button
+
+- [#2496](https://github.com/siemens/ix/pull/2496) [`c97d897`](https://github.com/siemens/ix/commit/c97d8973556588498aa4e56e1f75a8e57a4efd5c) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Apply the pointer cursor to checkbox labels so clickable checkbox text has the expected interactive affordance.
+
+- [#2542](https://github.com/siemens/ix/pull/2542) [`1333ad8`](https://github.com/siemens/ix/commit/1333ad838050601fd87de4c2c81c291e42c9ceea) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-chip:** Apply the `primary` style when no `variant` is set or the provided value is not one of the supported variants, so chips no longer render unstyled when consumers omit `variant` or pass an empty/unknown value. The same fallback applies in combination with `outline`, which now renders as outline `primary` by default.
+
+- [#2502](https://github.com/siemens/ix/pull/2502) [`60a9728`](https://github.com/siemens/ix/commit/60a97283b68c3505950fe7760d53f6380d0f64c4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix hover and active background colors of filled status chips (alarm, critical, warning, info, neutral, success) to use the correct design tokens (`--theme-color-*--hover` / `--theme-color-*--active`) instead of a semi-transparent black overlay, aligning the rendered result with the Figma specification. Custom color chips retain the overlay approach. Chip padding is also corrected to be uniform across icon and non-icon variants.
+
+- [#2511](https://github.com/siemens/ix/pull/2511) [`fdb15b2`](https://github.com/siemens/ix/commit/fdb15b26af22ab06a5a2166e60c88dc5a726fe5b) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix classic theme hover and active states for buttons, chips, links, and invalid switches, and align classic light and dark variable application with the supported data-attribute theme selectors.
+
+- [#2544](https://github.com/siemens/ix/pull/2544) [`3e90786`](https://github.com/siemens/ix/commit/3e90786b75a84cfb554221049cc99674ef43fc70) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **ix-dropdown-button:** Hide the trigger's focus outline while the dropdown is expanded so focus is shown only on the active dropdown item.
+
+  **ix-breadcrumb:** Stop clipping the focus outline of items flush with the host edges (e.g. the first breadcrumb item or the `...` previous-items button).
+
+- [#2540](https://github.com/siemens/ix/pull/2540) [`cbb0716`](https://github.com/siemens/ix/commit/cbb07167624b78e7c471825ad334a9c019b0d351) Thanks [@lzeiml](https://github.com/lzeiml)! - Set the correct background color for **ix-select** with `ix-warning`.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Hide the overflow context menu in `ix-application-header` when switching from a small to a medium or large viewport.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Set predefined `aria-label` and `aria-pressed` attributes to the `ix-menu` expand button
+
+- [#2532](https://github.com/siemens/ix/pull/2532) [`2ec2c70`](https://github.com/siemens/ix/commit/2ec2c7081e9757b79f21a3ece47074149c5af6de) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-date-picker**: fix arrow-key navigation in the day grid while NVDA is running by applying w3 ARIA grid pattern.
+  **ix-time-picker**: fix arrow-key navigation in the time columns while NVDA is running by applying aria-role `listbox`.
+
+- [#2558](https://github.com/siemens/ix/pull/2558) [`4d35515`](https://github.com/siemens/ix/commit/4d3551582390ca15a0e523a9258c6766de678896) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix striped HTML tables (`.ix-table-striped`) so alternating row backgrounds are visible.
+
+- [#2557](https://github.com/siemens/ix/pull/2557) [`64e6cfe`](https://github.com/siemens/ix/commit/64e6cfe19ce0c1b4350492cbdd15c2e96ea64795) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-input:** Align start/end slot spacing with design tiers.
+
+- [#2484](https://github.com/siemens/ix/pull/2484) [`4643a65`](https://github.com/siemens/ix/commit/4643a65f65a463e535daf799f65f7a6cc423e11d) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Toast component now supports screen reader announcements
+
+- [#2555](https://github.com/siemens/ix/pull/2555) [`5f141c1`](https://github.com/siemens/ix/commit/5f141c1a8774a0a190f8a51fc23dd8e1a0eabd08) Thanks [@lzeiml](https://github.com/lzeiml)! - Improved keyboard navigation and accessibility for **ix-menu-items** nested inside **ix-menu-category**.
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - Render modal loading update messages as plain text so text passed to `update()` is not interpreted as HTML.
+
+- [#2415](https://github.com/siemens/ix/pull/2415) [`f4f8921`](https://github.com/siemens/ix/commit/f4f89214d5e0065248d1610a3bb7837c74417610) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-pill:** `aria-label`, `aria-labelledby`, and other ARIA attributes set on the host are now exposed on the pill for assistive technologies. Icons are treated as decorative by default; use **`aria-label-icon`** when the icon carries meaning screen readers should hear.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent _ix-group_ from crashing during construction
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - Improve React and Vue wrapper tree shaking so bundlers can exclude unused IX components when importing individual framework components.
+
+- [#2405](https://github.com/siemens/ix/pull/2405) [`22699fa`](https://github.com/siemens/ix/commit/22699fa8d411239fe14f067d21ff6b1c08dd0355) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-toggle:** Exposes correct **switch** semantics (`role`, `aria-checked`, `aria-disabled`), keyboard interaction (**Space** / **Enter**), and a **stable accessible name** (set **`aria-label`** or **`aria-labelledby`** on the host; name does not change with state; state is conveyed via `aria-checked`). Visible on/off copy is **not** used as the accessible name.
+
 ## 4.4.0
 
 ### Minor Changes

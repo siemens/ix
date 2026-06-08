@@ -1,2 +1,2 @@
 [context.deploy-preview]
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF packages/core packages/storybook-docs"
+  ignore = "./scripts/netlify-ignore.sh"

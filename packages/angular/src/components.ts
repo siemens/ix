@@ -2409,14 +2409,14 @@ Emits `true` when the dropdown opens and `false` when it closes. @since 5.1.0
 
 
 @ProxyCmp({
-  inputs: ['label', 'selected', 'value']
+  inputs: ['disabled', 'label', 'selected', 'value']
 })
 @Component({
   selector: 'ix-select-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['label', 'selected', { name: 'value', required: true }],
+  inputs: ['disabled', 'label', 'selected', { name: 'value', required: true }],
   outputs: ['itemClick'],
   standalone: false
 })
