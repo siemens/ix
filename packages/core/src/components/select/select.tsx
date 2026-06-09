@@ -270,6 +270,8 @@ export class Select
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
+  @State() pendingChipValue: string | null = null;
+  @State() visibleChipValues: Set<string> | null = null;
 
   private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
@@ -280,6 +282,14 @@ export class Select
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
   private touched = false;
+  private chipsEl?: HTMLDivElement;
+  private clearButtonEl?: HTMLIxIconButtonElement;
+  private chevronButtonEl?: HTMLIxIconButtonElement;
+  private chipsResizeObserver?: ResizeObserver;
+  private overflowChipEl?: HTMLElement;
+
+  private readonly chipWidths = new Map<string, number>();
+  private readonly chipElementRefs = new Map<string, HTMLElement>();
 
   get nonShadowItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
@@ -366,11 +376,17 @@ export class Select
   private itemClick(newId: string) {
     const oldValue = this.value;
     const value = this.toggleValue(newId);
+
+    if (this.isMultipleMode && Array.isArray(value) && value.includes(newId)) {
+      this.pendingChipValue = newId;
+    }
+
     this.value = value;
     const defaultPrevented = this.emitValueChange(value);
 
     if (defaultPrevented) {
       this.value = oldValue;
+      this.pendingChipValue = null;
       return;
     }
     this.updateSelection();
@@ -458,6 +474,22 @@ export class Select
     }
 
     this.inputElement && (this.inputElement.value = this.inputValue);
+
+    this.handleUpdateSelectionMutlipleMode();
+  }
+
+  private handleUpdateSelectionMutlipleMode() {
+    if (!this.isMultipleMode) {
+      return;
+    }
+
+    const currentValues = new Set(this.selectedItems.map((i) => i.value));
+    for (const key of this.chipWidths.keys()) {
+      if (!currentValues.has(key)) this.chipWidths.delete(key);
+    }
+    if (this.pendingChipValue === null) {
+      this.calculateOverflow();
+    }
   }
 
   private emitValueChange(value: string | string[]) {
@@ -501,6 +533,18 @@ export class Select
       this.inputChange.emit(this.inputElement?.value);
     });
 
+    // Handle overflow
+    this.chipsResizeObserver = new ResizeObserver(() => {
+      this.calculateOverflow();
+    });
+
+    if (this.chipsEl) {
+      this.chipsResizeObserver.observe(this.chipsEl);
+    }
+
+    this.calculateOverflow();
+
+    // Handle ARIA
     this.createAddItemElement();
 
     this.proxyListObserver = new MutationObserver(() => {
@@ -519,10 +563,36 @@ export class Select
     this.updateFormInternalValue(this.value);
   }
 
-  override disconnectedCallback(): void {
-    super.disconnectedCallback();
+  override componentDidRender(): void {
+    this.handleChipsOverflow();
+  }
 
-    this.proxyListObserver?.disconnect();
+  private handleChipsOverflow() {
+    if (!this.isMultipleMode) {
+      return;
+    }
+
+    if (this.pendingChipValue === null) {
+      for (const [value, el] of this.chipElementRefs) {
+        const isOverflow =
+          this.visibleChipValues !== null && !this.visibleChipValues.has(value);
+
+        if (!isOverflow) {
+          this.chipWidths.set(value, el.offsetWidth);
+        }
+      }
+    } else {
+      const pendingValue = this.pendingChipValue;
+      const pendingEl = this.chipElementRefs.get(pendingValue);
+
+      if (pendingEl) {
+        requestAnimationFrameNoNgZone(() => {
+          this.chipWidths.set(pendingValue, pendingEl.offsetWidth);
+          this.calculateOverflow();
+          this.pendingChipValue = null;
+        });
+      }
+    }
   }
 
   @Listen('ix-select-item:valueChange')
@@ -531,6 +601,66 @@ export class Select
     event.preventDefault();
     event.stopImmediatePropagation();
     this.updateSelection();
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+
+    this.proxyListObserver?.disconnect();
+    this.chipsResizeObserver?.disconnect();
+  }
+
+  private calculateOverflow() {
+    if (!this.chipsEl || this.selectedItems.length === 0) {
+      this.visibleChipValues = null;
+      return;
+    }
+
+    const chevronWidth = this.chevronButtonEl?.offsetWidth ?? 0;
+    const clearWidth = this.clearButtonEl?.offsetWidth ?? 0;
+    const chipGap = 4;
+    const reservedInputSpace = 40;
+
+    const computeVisibleItems = (extraReservedWidth: number) => {
+      const availableWidth =
+        this.chipsEl!.clientWidth -
+        chevronWidth -
+        clearWidth -
+        reservedInputSpace -
+        extraReservedWidth;
+      const visibleItems = new Set<string>();
+      let usedWidth = 0;
+
+      for (const item of this.selectedItems) {
+        const width = (this.chipWidths.get(item.value) ?? 60) + chipGap;
+
+        if (usedWidth + width <= availableWidth) {
+          usedWidth += width;
+          visibleItems.add(item.value);
+        }
+      }
+
+      if (visibleItems.size === 0) {
+        visibleItems.add(this.selectedItems[0].value);
+      }
+
+      return visibleItems;
+    };
+
+    // Check without +N chip first
+    let visibleItems = computeVisibleItems(0);
+
+    if (visibleItems.size < this.selectedItems.length) {
+      const overflowChipWidth = this.overflowChipEl
+        ? this.overflowChipEl.offsetWidth + chipGap
+        : 54;
+
+      // Also take +N chip into account if overflow occurs
+      visibleItems = computeVisibleItems(overflowChipWidth);
+    }
+
+    this.visibleChipValues =
+      visibleItems.size >= this.selectedItems.length ? null : visibleItems;
   }
 
   private itemExists(item: string | undefined) {
@@ -675,12 +805,43 @@ export class Select
     this.hasInputFocus = true;
   }
 
+  private onInputKeyDown(event: KeyboardEvent) {
+    if (event.code !== 'Enter') {
+      return;
+    }
+
+    if (!this.editable || !this.inputFilterText) {
+      return;
+    }
+
+    event.stopPropagation();
+
+    if (this.isMultipleMode) {
+      this.emitAddItem(this.inputFilterText);
+      return;
+    }
+
+    const existingItem = this.itemExists(this.inputFilterText);
+    if (existingItem) {
+      this.itemClick(existingItem.value);
+    } else {
+      this.emitAddItem(this.inputFilterText);
+    }
+
+    this.dropdownShow = false;
+    this.updateSelection();
+  }
+
   private placeholderValue() {
     if (this.disabled) {
       return '';
     }
 
     if (this.readonly) {
+      return '';
+    }
+
+    if (this.selectedLabels?.length) {
       return '';
     }
 
@@ -731,19 +892,58 @@ export class Select
   }
 
   private renderChip(item: HTMLIxSelectItemElement) {
+    const isPending = item.value === this.pendingChipValue;
+    const isOverflow =
+      !isPending &&
+      this.visibleChipValues !== null &&
+      !this.visibleChipValues.has(item.value);
     return (
-      <ix-filter-chip
-        disabled={this.disabled || this.readonly}
+      <div
         key={item.value}
-        ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
-        onCloseClick={() => {
-          this.itemClick(item.value);
-          this.inputElement?.focus();
+        style={{
+          visibility: isPending ? 'hidden' : undefined,
+          display: isOverflow ? 'none' : undefined,
+        }}
+        ref={(el) => {
+          if (el) {
+            this.chipElementRefs.set(item.value, el as HTMLElement);
+          } else {
+            this.chipElementRefs.delete(item.value);
+          }
         }}
       >
-        {item.label}
-      </ix-filter-chip>
+        <ix-filter-chip
+          disabled={this.disabled || this.readonly}
+          ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
+          onCloseClick={() => {
+            this.itemClick(item.value);
+            this.inputElement?.focus();
+          }}
+        >
+          {item.label}
+        </ix-filter-chip>
+      </div>
     );
+  }
+
+  private renderChips() {
+    const chips = this.selectedItems.map((item) => this.renderChip(item));
+    const overflowCount =
+      this.pendingChipValue === null && this.visibleChipValues !== null
+        ? this.selectedItems.length - this.visibleChipValues.size
+        : 0;
+    return [
+      ...chips,
+      overflowCount > 0 ? (
+        <ix-filter-chip
+          readonly={true}
+          key="overflow"
+          ref={(el) => (this.overflowChipEl = (el as HTMLElement) ?? undefined)}
+        >
+          {`+${overflowCount}`}
+        </ix-filter-chip>
+      ) : null,
+    ];
   }
 
   @HookValidationLifecycle()
@@ -903,12 +1103,15 @@ export class Select
             }}
           >
             <div class="input-container">
-              <div class="chips">
+              <div
+                class="chips"
+                ref={(el) => (this.chipsEl = el as HTMLDivElement)}
+              >
                 {this.isMultipleMode &&
                   this.items.length !== 0 &&
                   (this.shouldDisplayAllChip()
                     ? this.renderAllChip()
-                    : this.selectedItems?.map((item) => this.renderChip(item)))}
+                    : this.renderChips())}
                 <div class="trigger">
                   <input
                     id={`${this.hostId}-input`}
@@ -936,6 +1139,7 @@ export class Select
                     onFocus={() => this.onInputFocus()}
                     onBlur={(e) => this.onInputBlur(e)}
                     onInput={() => this.setItemFilter()}
+                    onKeyDown={(e) => this.onInputKeyDown(e)}
                   />
                   {this.allowClear &&
                   !this.disabled &&
@@ -948,6 +1152,7 @@ export class Select
                       variant="subtle-tertiary"
                       oval
                       size="16"
+                      ref={(ref) => (this.clearButtonEl = ref ?? undefined)}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -965,6 +1170,7 @@ export class Select
                       }
                       aria-hidden="true"
                       ref={(ref) => {
+                        this.chevronButtonEl = ref!;
                         const element = ref as unknown as HTMLButtonElement;
                         // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
                         // the tabindex will be '0' after expanding the dropdown

@@ -14,10 +14,11 @@ SPDX-License-Identifier: MIT
     />
     <title>Stencil Component Starter</title>
   </head>
-  <body padding="2rem" style="width: 256px">
-    <ix-select value="2" mode="multiple">
+  <body padding="2rem">
+    <ix-select value="2" mode="multiple" style="width: 300px">
       <ix-select-item label="Item 1" value="1"></ix-select-item>
-      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <!-- One very long item to test if shorter items get priority -->
+      <ix-select-item label="Item 222222222222222" value="2"></ix-select-item>
       <ix-select-item label="Item 3" value="3"></ix-select-item>
       <ix-select-item label="Item 4" value="4"></ix-select-item>
       <ix-select-item label="Item 5" value="5"></ix-select-item>

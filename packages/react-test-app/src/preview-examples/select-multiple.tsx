@@ -14,11 +14,11 @@ export default () => {
   const [selection, setSelection] = useState<string[]>([]);
 
   useLayoutEffect(() => {
-    setSelection(['1', '3']);
+    setSelection(['1', '3', '4']);
   }, [setSelection]);
 
   return (
-    <IxSelect mode="multiple" value={selection}>
+    <IxSelect mode="multiple" style={{ width: '300px' }} value={selection}>
       <IxSelectItem label="Item 1" value="1"></IxSelectItem>
       <IxSelectItem label="Item 2" value="2"></IxSelectItem>
       <IxSelectItem label="Item 3" value="3"></IxSelectItem>

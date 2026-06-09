@@ -281,6 +281,68 @@ test('multiple mode filter reset', async ({ mount, page }) => {
   await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
 });
 
+test('should show overflow chip when chips exceed container width in multiple mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 300px">
+      <ix-select-item value="1" label="Item 1">Item 1</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Item 2</ix-select-item>
+      <ix-select-item value="3" label="Item 3">Item 3</ix-select-item>
+    </ix-select>
+  `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const overflowChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: '+1' });
+
+  await expect(overflowChip).toBeVisible();
+});
+
+test('should show overflow chip when chips exceed container width in editable multiple mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" editable style="width: 300px">
+    </ix-select>
+  `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+  const input = selectElement.locator('input');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  await input.fill('Item 1');
+  await page.keyboard.press('Enter');
+
+  await input.fill('Item 2');
+  await page.keyboard.press('Enter');
+
+  await input.fill('Item 3');
+  await page.keyboard.press('Enter');
+
+  const overflowChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: '+1' });
+
+  await expect(overflowChip).toBeVisible();
+});
+
 test('filter', async ({ mount, page }) => {
   await mount(`
         <ix-select mode="multiple">
@@ -435,13 +497,15 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   page,
 }) => {
   await mount(`
-    <ix-select value="2" editable>
-      <ix-select-item value="1" label="Item 1"></ix-select-item>
-      <ix-select-item value="2" label="Item 2"></ix-select-item>
-      <ix-select-item value="3" label="Item 3"></ix-select-item>
-    </ix-select>
-    <ix-button>outside</ix-button>
-  `);
+        <div style="display: flex; gap: 1rem;">
+          <ix-select value="2" editable>
+            <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+            <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+            <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+          </ix-select>
+          <ix-button>outside</ix-button>
+        </div>
+    `);
 
   const selectCtrl = selectController(page.locator('ix-select'));
   const externalButton = page.getByText('outside');
@@ -492,12 +556,14 @@ test('type in a novel item name in multiple mode, click outside', async ({
   page,
 }) => {
   await mount(`
-      <ix-select value="2" mode="multiple">
-        <ix-select-item value="1" label="Item 1"></ix-select-item>
-        <ix-select-item value="2" label="Item 2"></ix-select-item>
-        <ix-select-item value="3" label="Item 3"></ix-select-item>
-      </ix-select>
-      <ix-button>outside</ix-button>
+        <div style="display: flex; gap: 1rem;">
+          <ix-select value="2" mode="multiple">
+            <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+            <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+            <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+          </ix-select>
+          <ix-button>outside</ix-button>
+        </div>
     `);
 
   const selectCtrl = selectController(page.locator('ix-select'));

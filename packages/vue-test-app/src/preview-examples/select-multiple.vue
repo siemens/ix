@@ -13,11 +13,11 @@ import { nextTick, onMounted, ref } from 'vue';
 
 const selection = ref<string[]>([]);
 
-onMounted(() => nextTick(() => (selection.value = ['1', '3'])));
+onMounted(() => nextTick(() => (selection.value = ['1', '3', '4'])));
 </script>
 
 <template>
-  <IxSelect mode="multiple" :value="selection">
+  <IxSelect mode="multiple" style="width: 300px" :value="selection">
     <IxSelectItem label="Item 1" value="1"></IxSelectItem>
     <IxSelectItem label="Item 2" value="2"></IxSelectItem>
     <IxSelectItem label="Item 3" value="3"></IxSelectItem>
