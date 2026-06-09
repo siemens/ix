@@ -30,4 +30,14 @@ regressionTest.describe('date picker', () => {
     await page.goto('date-picker/show-week-numbers');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('week start', async ({ page }) => {
+    await page.goto('date-picker/week-start');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('year month selection', async ({ page }) => {
+    await page.goto('date-picker/year-month-selection');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
