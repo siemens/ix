@@ -1012,9 +1012,9 @@ export namespace Components {
          */
         "i18nErrorDateUnparsable": string;
         /**
-          * I18n string for the error message when a required field is empty.
+          * I18n string for the error message when the date field is empty.
           * @since 5.1.0
-          * @default 'This field is required'
+          * @default 'Date is required'
          */
         "i18nErrorRequired": string;
         /**
@@ -7372,9 +7372,9 @@ declare namespace LocalJSX {
          */
         "i18nErrorDateUnparsable"?: string;
         /**
-          * I18n string for the error message when a required field is empty.
+          * I18n string for the error message when the date field is empty.
           * @since 5.1.0
-          * @default 'This field is required'
+          * @default 'Date is required'
          */
         "i18nErrorRequired"?: string;
         /**

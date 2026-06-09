@@ -203,12 +203,12 @@ export class DateInput
     'Date is not valid';
 
   /**
-   * I18n string for the error message when a required field is empty.
+   * I18n string for the error message when the date field is empty.
    *
    * @since 5.1.0
    */
   @Prop({ attribute: 'i18n-error-required' }) i18nErrorRequired =
-    'This field is required';
+    'Date is required';
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
@@ -292,11 +292,6 @@ export class DateInput
 
   private classObserver?: ClassMutationObserver;
 
-  /**
-   * Tracks actual parse/format invalidity regardless of touched state.
-   * Used for internal validity queries (getValidityState, reportValidity).
-   * Visual feedback is gated on `touched`.
-   */
   private _hasInvalidInput = false;
 
   /**
@@ -307,13 +302,6 @@ export class DateInput
    */
   private _blurHandledValidation = false;
 
-  /**
-   * Set to `true` only by an explicit `reportValidity()` call — NOT by blur.
-   * Used as the gate in novalidate forms to keep showing errors after an
-   * explicit validation request until the value is actually corrected.
-   * Regular blur in a novalidate form must never set this flag so that normal
-   * novalidate suppression is preserved.
-   */
   private _reportValidityCalled = false;
 
   public initialValue?: string;
@@ -392,10 +380,6 @@ export class DateInput
 
   @Listen('invalid')
   async onInvalid(event: Event) {
-    // Prevent the browser's native validation tooltip — the component provides
-    // its own styled error message via ix-field-wrapper. Calling preventDefault()
-    // suppresses the bubble but does not affect the validity result returned by
-    // form.reportValidity().
     event.preventDefault();
     reportFieldValidity(this, this._hasInvalidInput);
   }
@@ -810,7 +794,7 @@ export class DateInput
   override render() {
     // Error text priority:
     //   1. Parse error  — "Date is not valid" (or i18n override / custom invalidText)
-    //   2. Required empty — "This field is required" (or custom invalidText)
+    //   2. Required empty — "Date is required" (or custom invalidText)
     //   3. Consumer-supplied invalidText only
     const isRequiredEmpty = !!this.required && !this.value && this.touched;
 

@@ -387,7 +387,6 @@ export async function clearInputValue<T>(
   options?.additionalCleanup?.();
 
   comp.updateFormInternalValue?.(emptyValue);
-  comp.value = emptyValue;
 
   if (options?.emitValueChange) {
     comp.valueChange?.emit(emptyValue);

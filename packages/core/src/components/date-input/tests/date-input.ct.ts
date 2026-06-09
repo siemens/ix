@@ -838,7 +838,7 @@ regressionTest.describe('date-input validation scenarios', () => {
           dateInput
             .locator('ix-field-wrapper')
             .locator('ix-typography')
-            .filter({ hasText: 'This field is required' })
+            .filter({ hasText: 'Date is required' })
         ).toBeVisible();
       }
     );

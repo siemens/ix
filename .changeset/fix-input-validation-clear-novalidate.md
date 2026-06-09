@@ -6,7 +6,7 @@ Added `clear()` method to `ix-date-input` to reset the value and all validation 
 
 Added `reportValidity()` method to `ix-date-input` to programmatically trigger validation and show visual error state immediately — equivalent to calling `reportValidity()` on a native `<input>` element.
 
-Added `i18nErrorRequired` prop (`i18n-error-required`, default `"This field is required"`) to `ix-date-input`. When a required field is emptied after `reportValidity()` has surfaced an error, the error text now switches from "Date is not valid" to the required-missing message instead of disappearing — keeping both the red border and the text description visible.
+Added `i18nErrorRequired` prop (`i18n-error-required`, default `"Date is required"`) to `ix-date-input`. When a required field is emptied after `reportValidity()` has surfaced an error, the error text now switches from "Date is not valid" to the required-missing message instead of disappearing — keeping both the red border and the text description visible.
 
 Fixed validation behavior for `ix-date-input`:
 
