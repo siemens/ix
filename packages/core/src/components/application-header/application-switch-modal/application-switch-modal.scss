@@ -47,7 +47,8 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    padding: 0.5rem;
+    padding: calc(0.5rem - 0.0625rem);
+    padding-inline-end: calc(1rem - 0.0625rem);
     flex: 1 1 calc(45%);
     cursor: pointer;
     border: 0.0625rem solid transparent;
@@ -55,7 +56,6 @@
 
   .AppEntry.Selected {
     background-color: var(--theme-color-ghost--selected);
-    border: var(--theme-dynamic-bdr-1);
   }
 
   .AppEntry {
