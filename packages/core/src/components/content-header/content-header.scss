@@ -58,7 +58,7 @@
     align-items: center;
 
   ::slotted([slot='secondary-actions']) {
-  --ix-button-height: auto;
+  --ix-button-height: 2rem;
   --ix-button-text-white-space: normal;
   --ix-button-word-break: break-word;
   --ix-button-inner-overflow: visible;
