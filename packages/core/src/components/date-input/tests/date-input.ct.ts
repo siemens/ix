@@ -373,6 +373,28 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('Enter');
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
+
+  regressionTest(
+    'Keyboard navigation (PageUp/PageDown) should not trigger validation',
+    async ({ mount, page }) => {
+      await mount(`<ix-date-input value=""></ix-date-input>`);
+
+      const dateInput = page.locator('ix-date-input');
+      const input = dateInput.getByRole('textbox');
+
+      await input.focus();
+      await page.keyboard.press('ArrowDown');
+
+      await page.keyboard.press('PageDown');
+
+      await page.keyboard.press('PageUp');
+
+      await page.keyboard.press('Escape');
+
+      await expectNoVisualValidation(dateInput, input);
+      await expect(input).toHaveValue('');
+    }
+  );
 });
 
 regressionTest.describe('date-input validation scenarios', () => {

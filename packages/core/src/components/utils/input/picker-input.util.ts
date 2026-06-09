@@ -123,7 +123,10 @@ export function handlePickerInputBlur(
   pickerElement?: HTMLElement | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
-  if (show && isInternalFocusTarget(hostElement, relatedTarget, pickerElement)) {
+  if (
+    show &&
+    isInternalFocusTarget(hostElement, relatedTarget, pickerElement)
+  ) {
     return;
   }
   onBlur();
@@ -136,9 +139,21 @@ export function handlePickerHostFocusout(
   pickerElement?: HTMLElement | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
+
   if (isInternalFocusTarget(hostElement, relatedTarget, pickerElement)) {
     return;
   }
+
+  const isPickerNavigating =
+    relatedTarget === null &&
+    pickerElement &&
+    'show' in pickerElement &&
+    pickerElement.show;
+
+  if (isPickerNavigating) {
+    return;
+  }
+
   onExternalFocusout(relatedTarget !== null);
 }
 

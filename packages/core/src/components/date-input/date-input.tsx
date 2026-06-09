@@ -65,7 +65,6 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 
-
 /**
  * @form-ready
  *
@@ -421,14 +420,18 @@ export class DateInput
     invalidReason?: string;
   } {
     const date = DateTime.fromFormat(value, this.format);
-    const minDate = this.minDate ? DateTime.fromFormat(this.minDate, this.format) : null;
-    const maxDate = this.maxDate ? DateTime.fromFormat(this.maxDate, this.format) : null;
+    const minDate = this.minDate
+      ? DateTime.fromFormat(this.minDate, this.format)
+      : null;
+    const maxDate = this.maxDate
+      ? DateTime.fromFormat(this.maxDate, this.format)
+      : null;
 
     return {
       isValid:
         date.isValid &&
-        (!minDate || !minDate.isValid || date >= minDate) &&
-        (!maxDate || !maxDate.isValid || date <= maxDate),
+        (!minDate?.isValid || date >= minDate) &&
+        (!maxDate?.isValid || date <= maxDate),
       invalidReason: date.invalidReason ?? undefined,
     };
   }
