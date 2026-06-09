@@ -157,11 +157,7 @@ export class MenuItem
     const isDirectMenuChild =
       !this.isHostedInsideCategory && !!this.hostElement.closest('ix-menu');
 
-    const isUtilityControl =
-      this.hostElement.classList.contains('internal-tab');
-
-    this.isInMenuContext =
-      (isInMenuShadowDOM || isDirectMenuChild) && !isUtilityControl;
+    this.isInMenuContext = isInMenuShadowDOM || isDirectMenuChild;
 
     this.onIconChange();
 

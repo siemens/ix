@@ -646,9 +646,13 @@ export class Menu {
       )
     ).filter(isNavigable);
 
-    // Exclude internal utility controls (settings, theme toggle, about)
-    // Only navigation entries participate in the menubar roving tabindex
-    return lightItems;
+    const utilityItems = Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+        '.menu-utility-controls > ix-menu-item'
+      ) ?? []
+    ).filter(isNavigable);
+
+    return [...lightItems, ...utilityItems];
   }
 
   private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
@@ -814,55 +818,55 @@ export class Menu {
             <div onClick={(e) => this.onMenuItemsClick(e)}>
               <slot name="bottom"></slot>
             </div>
-          </div>
 
-          <div class="bottom-tab-divider"></div>
+            <div class="bottom-tab-divider"></div>
 
-          <div class="menu-utility-controls">
-            {this.settings ? (
-              <ix-menu-item
-                disabled={this.isHiddenFromViewport()}
-                id="settings"
-                class={{
-                  'internal-tab': true,
-                  'bottom-tab': true,
-                  active: this.showSettings,
-                }}
-                icon={iconCogwheel}
-                onClick={async () => this.toggleSettings(!this.showSettings)}
-                label={this.i18nSettings}
-                aria-expanded={this.showSettings.toString()}
-                aria-controls="menu-overlay"
-              ></ix-menu-item>
-            ) : null}
-            {this.enableToggleTheme ? (
-              <ix-menu-item
-                disabled={this.isHiddenFromViewport()}
-                id="toggleTheme"
-                onClick={() => themeSwitcher.toggleMode()}
-                class="internal-tab bottom-tab"
-                icon={iconLightDark}
-                label={this.i18nToggleTheme}
-                role="switch"
-                aria-checked={this.isDarkMode.toString()}
-              ></ix-menu-item>
-            ) : null}
-            {this.about ? (
-              <ix-menu-item
-                disabled={this.isHiddenFromViewport()}
-                id="aboutAndLegal"
-                class={{
-                  'internal-tab': true,
-                  'bottom-tab': true,
-                  active: this.showAbout,
-                }}
-                icon={iconInfo}
-                onClick={async () => this.toggleAbout(!this.showAbout)}
-                label={this.i18nLegal}
-                aria-expanded={this.showAbout.toString()}
-                aria-controls="menu-overlay"
-              ></ix-menu-item>
-            ) : null}
+            <div class="menu-utility-controls">
+              {this.settings ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="settings"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showSettings,
+                  }}
+                  icon={iconCogwheel}
+                  onClick={async () => this.toggleSettings(!this.showSettings)}
+                  label={this.i18nSettings}
+                  aria-expanded={this.showSettings.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
+              {this.enableToggleTheme ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="toggleTheme"
+                  onClick={() => themeSwitcher.toggleMode()}
+                  class="internal-tab bottom-tab"
+                  icon={iconLightDark}
+                  label={this.i18nToggleTheme}
+                  role="switch"
+                  aria-checked={this.isDarkMode.toString()}
+                ></ix-menu-item>
+              ) : null}
+              {this.about ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="aboutAndLegal"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showAbout,
+                  }}
+                  icon={iconInfo}
+                  onClick={async () => this.toggleAbout(!this.showAbout)}
+                  label={this.i18nLegal}
+                  aria-expanded={this.showAbout.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
+            </div>
           </div>
           <div id="popover-area"></div>
         </nav>
