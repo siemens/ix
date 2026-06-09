@@ -102,14 +102,16 @@ export function createValidityState(
 
 function isInternalFocusTarget(
   hostElement: HTMLElement,
-  relatedTarget: Node | null
+  relatedTarget: Node | null,
+  pickerElement?: HTMLElement | null
 ): boolean {
   if (!relatedTarget) {
     return false;
   }
   return (
     hostElement.contains(relatedTarget) ||
-    (hostElement.shadowRoot?.contains(relatedTarget) ?? false)
+    (hostElement.shadowRoot?.contains(relatedTarget) ?? false) ||
+    (pickerElement?.contains(relatedTarget) ?? false)
   );
 }
 
@@ -117,10 +119,11 @@ export function handlePickerInputBlur(
   e: FocusEvent,
   show: boolean,
   hostElement: HTMLElement,
-  onBlur: () => void
+  onBlur: () => void,
+  pickerElement?: HTMLElement | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
-  if (show && isInternalFocusTarget(hostElement, relatedTarget)) {
+  if (show && isInternalFocusTarget(hostElement, relatedTarget, pickerElement)) {
     return;
   }
   onBlur();
@@ -129,10 +132,11 @@ export function handlePickerInputBlur(
 export function handlePickerHostFocusout(
   e: FocusEvent,
   hostElement: HTMLElement,
-  onExternalFocusout: (hasRelatedTarget: boolean) => void
+  onExternalFocusout: (hasRelatedTarget: boolean) => void,
+  pickerElement?: HTMLElement | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
-  if (isInternalFocusTarget(hostElement, relatedTarget)) {
+  if (isInternalFocusTarget(hostElement, relatedTarget, pickerElement)) {
     return;
   }
   onExternalFocusout(relatedTarget !== null);

@@ -64,7 +64,7 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
-import { forceTabIndex } from '../utils/a11y';
+
 
 /**
  * @form-ready
@@ -421,14 +421,14 @@ export class DateInput
     invalidReason?: string;
   } {
     const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+    const minDate = this.minDate ? DateTime.fromFormat(this.minDate, this.format) : null;
+    const maxDate = this.maxDate ? DateTime.fromFormat(this.maxDate, this.format) : null;
 
     return {
       isValid:
         date.isValid &&
-        (!minDate.isValid || date >= minDate) &&
-        (!maxDate.isValid || date <= maxDate),
+        (!minDate || !minDate.isValid || date >= minDate) &&
+        (!maxDate || !maxDate.isValid || date <= maxDate),
       invalidReason: date.invalidReason ?? undefined,
     };
   }
@@ -653,19 +653,25 @@ export class DateInput
             this.ixFocus.emit();
           }}
           onBlur={(e: FocusEvent) =>
-            handlePickerInputBlur(e, this.show, this.hostElement, () => {
-              this.touched = true;
-              this.isInputInvalid = this._hasInvalidInput;
-              onInputBlurWithChange(
-                this,
-                this.inputElementRef.current,
-                this.value
-              );
-              emitPickerValidityState(this);
-              // Signal to onFocusout (which fires right after) that validation
-              // has already been committed so it should not repeat it.
-              this._blurHandledValidation = true;
-            })
+            handlePickerInputBlur(
+              e,
+              this.show,
+              this.hostElement,
+              () => {
+                this.touched = true;
+                this.isInputInvalid = this._hasInvalidInput;
+                onInputBlurWithChange(
+                  this,
+                  this.inputElementRef.current,
+                  this.value
+                );
+                emitPickerValidityState(this);
+                // Signal to onFocusout (which fires right after) that validation
+                // has already been committed so it should not repeat it.
+                this._blurHandledValidation = true;
+              },
+              this.dropdownElementRef?.current
+            )
           }
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -678,7 +684,6 @@ export class DateInput
         >
           <ix-icon-button
             tabindex={-1}
-            ref={(ref) => forceTabIndex(ref, -1)}
             aria-label={this.ariaLabelCalendarButton}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
@@ -814,34 +819,39 @@ export class DateInput
           readonly: this.readonly,
         }}
         onFocusout={(e: FocusEvent) =>
-          handlePickerHostFocusout(e, this.hostElement, (hasRelatedTarget) => {
-            // Only close the dropdown when focus went to a known external
-            // element.  When relatedTarget is null (focus to <body> or a
-            // programmatic blur from tests) the dropdown's closeBehavior
-            // handles it, and closing here risks a flicker during rerenders.
-            if (hasRelatedTarget) {
-              this.closeDropdown();
-            }
+          handlePickerHostFocusout(
+            e,
+            this.hostElement,
+            (hasRelatedTarget) => {
+              // Only close the dropdown when focus went to a known external
+              // element.  When relatedTarget is null (focus to <body> or a
+              // programmatic blur from tests) the dropdown's closeBehavior
+              // handles it, and closing here risks a flicker during rerenders.
+              if (hasRelatedTarget) {
+                this.closeDropdown();
+              }
 
-            // When the input's onBlur was suppressed (picker was open,
-            // focus moved to an internal element) we must now run the full
-            // validation — the user has truly left the component.
-            // When onBlur already ran validation (direct tab-away), skip it
-            // here to avoid double-emitting ixBlur / ixChange.
-            if (this._blurHandledValidation) {
-              this._blurHandledValidation = false;
-              return;
-            }
+              // When the input's onBlur was suppressed (picker was open,
+              // focus moved to an internal element) we must now run the full
+              // validation — the user has truly left the component.
+              // When onBlur already ran validation (direct tab-away), skip it
+              // here to avoid double-emitting ixBlur / ixChange.
+              if (this._blurHandledValidation) {
+                this._blurHandledValidation = false;
+                return;
+              }
 
-            this.touched = true;
-            this.isInputInvalid = this._hasInvalidInput;
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            emitPickerValidityState(this);
-          })
+              this.touched = true;
+              this.isInputInvalid = this._hasInvalidInput;
+              onInputBlurWithChange(
+                this,
+                this.inputElementRef.current,
+                this.value
+              );
+              emitPickerValidityState(this);
+            },
+            this.dropdownElementRef?.current
+          )
         }
       >
         <ix-field-wrapper
