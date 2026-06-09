@@ -10,7 +10,7 @@
 /**
  * Hover hide delay in milliseconds (matches implementation)
  */
-export const HOVER_HIDE_MS = 200;
+export const HOVER_HIDE_MS = 150;
 
 /**
  * Mouse coordinates for testing click/hover interactions
