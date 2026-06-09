@@ -8,7 +8,7 @@
  */
 
 import { IX_FOCUS_VISIBLE_ACTIVE } from './focus-utilities';
-import { detectKeyboardMode } from './detect-keyboard-mode';
+import { hasKeyboardMode } from '../internal/mixins/setup.mixin';
 
 export type FocusVisibleController = {
   /**
@@ -26,24 +26,21 @@ export type FocusVisibleController = {
 /**
  * Attaches unified focus-visible behaviour to a host element.
  *
- * Composes detectKeyboardMode() for keyboard/pointer tracking and
- * adds focusin/focusout listeners to apply the IX_FOCUS_VISIBLE_ACTIVE
- * class on the host element.
+ * Uses the global hasKeyboardMode() (tracked on document by SetupMixin) so
+ * that Tab-key presses fired on *any* element before focus lands here are
+ * correctly detected.
  *
  * Covers all three cases:
- *  - HTMLElement.focus()  → setFocus() marks next focus as keyboard-like
- *  - Tab-key              → detectKeyboardMode sets keyboardMode = true
+ *  - HTMLElement.focus()  → setFocus() marks next focusin as keyboard-like
+ *  - Tab-key              → global hasKeyboardMode() returns true on focusin
  *  - focus-visible class  → applied via IX_FOCUS_VISIBLE_ACTIVE on focusin
  */
 export function startFocusVisible(hostEl: HTMLElement): FocusVisibleController {
-  // ── Reuse existing keyboard mode detector ─────────────────────────────────
-  const keyboardDetector = detectKeyboardMode(hostEl);
-
   // ── Track whether next focus() call should be treated as keyboard ─────────
   let programmaticFocusPending = false;
 
   const onFocusin = () => {
-    if (keyboardDetector.hasKeyboardMode() || programmaticFocusPending) {
+    if (hasKeyboardMode() || programmaticFocusPending) {
       hostEl.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
     }
     programmaticFocusPending = false;
@@ -58,7 +55,6 @@ export function startFocusVisible(hostEl: HTMLElement): FocusVisibleController {
 
   // ── Cleanup ───────────────────────────────────────────────────────────────
   const destroy = () => {
-    keyboardDetector.destroy();
     hostEl.removeEventListener('focusin', onFocusin);
     hostEl.removeEventListener('focusout', onFocusout);
   };
