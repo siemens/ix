@@ -15,10 +15,10 @@ import {
   IxIconButton,
 } from '@siemens/ix-vue';
 import {
-  iconAttach,
   iconImage,
   iconMicrophone,
   iconPdfDocument,
+  iconPlus,
 } from '@siemens/ix-icons/icons';
 </script>
 
@@ -40,7 +40,7 @@ import {
       <IxIconButton
         slot="start"
         aria-label="Attach file"
-        :icon="iconAttach"
+        :icon="iconPlus"
         size="24"
         variant="subtle-tertiary"
       ></IxIconButton>

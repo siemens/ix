@@ -7,24 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconAttach } from '@siemens/ix-icons/icons';
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  Host,
-  Prop,
-  State,
-  h,
-} from '@stencil/core';
+import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 
 /**
  * @since 5.0.0
  * @slot - Message content displayed in the user message bubble
  * @slot actions - Optional actions displayed below the user message bubble
  * @slot attachments - ix-chat-prompt-attachment elements with variant="sent" displayed above the user message bubble
- * @slot attachment-overflow - Optional ix-dropdown-item elements displayed in the attachment overflow dropdown
  */
 @Component({
   tag: 'ix-chat-user-message',
@@ -40,37 +29,12 @@ export class ChatUserMessage {
    */
   @Prop() message?: string;
 
-  /**
-   * Number of attachments represented by the attachment overflow trigger.
-   * @since 5.0.0
-   */
-  @Prop() attachmentCount?: number;
-
-  /**
-   * Label used for the attachment overflow trigger.
-   * @since 5.0.0
-   */
-  @Prop() attachmentOverflowLabel: string = 'Attachments';
-
-  /**
-   * Event emitted when the attachment overflow expanded state changes.
-   * @since 5.0.0
-   */
-  @Event() attachmentOverflowChange!: EventEmitter<boolean>;
-
   @State() hasActions = false;
   @State() hasAttachments = false;
   @State() hasMessageContent = false;
 
   componentWillLoad() {
     this.updateHasMessageContent();
-  }
-
-  private getAttachmentCount() {
-    const attachmentCount = Number(this.attachmentCount);
-    return Number.isFinite(attachmentCount) && attachmentCount > 0
-      ? attachmentCount
-      : undefined;
   }
 
   private handleActionsSlotChange(event: Event) {
@@ -113,38 +77,12 @@ export class ChatUserMessage {
     this.hasMessageContent = this.hasAssignedMessageContent(slot);
   }
 
-  private renderAttachmentOverflow() {
-    const attachmentCount = this.getAttachmentCount();
-
-    if (!attachmentCount) {
-      return null;
-    }
-
-    return (
-      <ix-dropdown-button
-        ariaLabelDropdownButton={`${this.attachmentOverflowLabel} (${attachmentCount})`}
-        class="attachment-overflow"
-        closeBehavior="inside"
-        icon={iconAttach}
-        label={`${this.attachmentOverflowLabel} (${attachmentCount})`}
-        placement="bottom-end"
-        variant="subtle-tertiary"
-        onShowChanged={(event: CustomEvent<boolean>) =>
-          this.attachmentOverflowChange.emit(event.detail)
-        }
-      >
-        <slot name="attachment-overflow"></slot>
-      </ix-dropdown-button>
-    );
-  }
-
   render() {
     return (
       <Host
         class={{
           'has-actions': this.hasActions,
           'has-attachments': this.hasAttachments,
-          'has-attachment-overflow': !!this.getAttachmentCount(),
         }}
         tabIndex={this.hasActions ? 0 : undefined}
       >
@@ -154,7 +92,6 @@ export class ChatUserMessage {
             onSlotchange={(event) => this.handleAttachmentsSlotChange(event)}
           ></slot>
         </div>
-        {this.renderAttachmentOverflow()}
         <div class="message">
           <ix-typography class="message-text" format="body" textColor="std">
             {this.message}

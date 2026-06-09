@@ -14,10 +14,10 @@ import {
   IxIconButton,
 } from '@siemens/ix-react';
 import {
-  iconAttach,
   iconImage,
   iconMicrophone,
   iconPdfDocument,
+  iconPlus,
 } from '@siemens/ix-icons/icons';
 
 export default () => {
@@ -39,7 +39,7 @@ export default () => {
         <IxIconButton
           slot="start"
           aria-label="Attach file"
-          icon={iconAttach}
+          icon={iconPlus}
           size="24"
           variant="subtle-tertiary"
         ></IxIconButton>

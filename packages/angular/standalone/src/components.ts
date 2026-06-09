@@ -633,19 +633,17 @@ export declare interface IxChatPromptAttachment extends Components.IxChatPromptA
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatUserMessage,
-  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message']
+  inputs: ['message']
 })
 @Component({
   selector: 'ix-chat-user-message',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentCount', 'attachmentOverflowLabel', 'message'],
-  outputs: ['attachmentOverflowChange'],
+  inputs: ['message'],
 })
 export class IxChatUserMessage {
   protected el: HTMLIxChatUserMessageElement;
-  @Output() attachmentOverflowChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -653,12 +651,7 @@ export class IxChatUserMessage {
 }
 
 
-export declare interface IxChatUserMessage extends Components.IxChatUserMessage {
-  /**
-   * Event emitted when the attachment overflow expanded state changes. @since 5.0.0
-   */
-  attachmentOverflowChange: EventEmitter<CustomEvent<boolean>>;
-}
+export declare interface IxChatUserMessage extends Components.IxChatUserMessage {}
 
 
 @ProxyCmp({

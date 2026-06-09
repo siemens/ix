@@ -10,10 +10,10 @@
 import { Component } from '@angular/core';
 import { addIcons } from '@siemens/ix-icons';
 import {
-  iconAttach,
   iconImage,
   iconMicrophone,
   iconPdfDocument,
+  iconPlus,
 } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -24,10 +24,10 @@ import {
 export default class ChatInput {
   constructor() {
     addIcons({
-      iconAttach,
       iconImage,
       iconMicrophone,
       iconPdfDocument,
+      iconPlus,
     });
   }
 }

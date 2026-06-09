@@ -134,6 +134,9 @@ export const WithAttachments: Story = {
     renderChatUserMessage(args, [
       createAttachment('file_01.pdf', true),
       createAttachment('file_02.csv'),
+      ...Array.from({ length: 5 }).map((_, i) =>
+        createAttachment(`file_0${i + 3}.jpg`)
+      ),
     ])
   ),
   args: {
@@ -147,29 +150,3 @@ export const WithAttachments: Story = {
   },
 };
 
-export const WithAttachmentOverflow: Story = {
-  render: stencil((args) =>
-    renderChatUserMessage(
-      args,
-      [
-        'File_01.jpg',
-        'File_02.jpg',
-        'File_03.jpg',
-        'File_04.txt',
-        'File_05.txt',
-        'File_06.pdf',
-        'File_07.pdf',
-      ].map((fileName) => createAttachmentDropdownItem(fileName))
-    )
-  ),
-  args: {
-    attachmentCount: 7,
-    message: 'Summarize the detailed discussion held with the customer',
-  },
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/KbgPxj7qLgngXkJfnDM4Ty/SDL-AI-UX-Guidelines?node-id=11900-151929&m=dev',
-    },
-  },
-};

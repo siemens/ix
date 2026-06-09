@@ -145,30 +145,3 @@ regressionTest(
     await expect(attachment).toHaveAttribute('data-clicked', 'true');
   }
 );
-
-regressionTest(
-  'ix-chat-user-message toggles attachment overflow',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-chat-user-message message="Analyze alarms" attachment-count="2">
-        <ix-dropdown-item slot="attachment-overflow" label="File_01.jpg"></ix-dropdown-item>
-        <ix-dropdown-item slot="attachment-overflow" label="File_02.pdf"></ix-dropdown-item>
-      </ix-chat-user-message>
-    `);
-
-    const message = page.locator('ix-chat-user-message');
-    const overflow = message.locator('ix-dropdown-button.attachment-overflow');
-    const overflowItems = page.locator(
-      'ix-dropdown-item[slot="attachment-overflow"]'
-    );
-
-    await expect(overflow).toContainText('Attachments (2)');
-    await expect(overflow).toHaveAttribute('aria-expanded', 'false');
-    await expect(overflowItems.first()).not.toBeVisible();
-
-    await overflow.click();
-
-    await expect(overflow).toHaveAttribute('aria-expanded', 'true');
-    await expect(overflowItems.first()).toBeVisible();
-  }
-);

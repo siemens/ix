@@ -788,17 +788,6 @@ export namespace Components {
      */
     interface IxChatUserMessage {
         /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentCount"?: number;
-        /**
-          * Label used for the attachment overflow trigger.
-          * @since 5.0.0
-          * @default 'Attachments'
-         */
-        "attachmentOverflowLabel": string;
-        /**
           * Text displayed in the user message bubble. When not set, the default slot is used.
           * @since 5.0.0
          */
@@ -4777,10 +4766,6 @@ export interface IxChatPromptAttachmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatPromptAttachmentElement;
 }
-export interface IxChatUserMessageCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxChatUserMessageElement;
-}
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCheckboxElement;
@@ -5242,21 +5227,10 @@ declare global {
         prototype: HTMLIxChatPromptAttachmentElement;
         new (): HTMLIxChatPromptAttachmentElement;
     };
-    interface HTMLIxChatUserMessageElementEventMap {
-        "attachmentOverflowChange": boolean;
-    }
     /**
      * @since 5.0.0
      */
     interface HTMLIxChatUserMessageElement extends Components.IxChatUserMessage, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxChatUserMessageElementEventMap>(type: K, listener: (this: HTMLIxChatUserMessageElement, ev: IxChatUserMessageCustomEvent<HTMLIxChatUserMessageElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxChatUserMessageElementEventMap>(type: K, listener: (this: HTMLIxChatUserMessageElement, ev: IxChatUserMessageCustomEvent<HTMLIxChatUserMessageElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxChatUserMessageElement: {
         prototype: HTMLIxChatUserMessageElement;
@@ -7417,26 +7391,10 @@ declare namespace LocalJSX {
      */
     interface IxChatUserMessage {
         /**
-          * Number of attachments represented by the attachment overflow trigger.
-          * @since 5.0.0
-         */
-        "attachmentCount"?: number;
-        /**
-          * Label used for the attachment overflow trigger.
-          * @since 5.0.0
-          * @default 'Attachments'
-         */
-        "attachmentOverflowLabel"?: string;
-        /**
           * Text displayed in the user message bubble. When not set, the default slot is used.
           * @since 5.0.0
          */
         "message"?: string;
-        /**
-          * Event emitted when the attachment overflow expanded state changes.
-          * @since 5.0.0
-         */
-        "onAttachmentOverflowChange"?: (event: IxChatUserMessageCustomEvent<boolean>) => void;
     }
     /**
      * @form-ready 
@@ -11774,8 +11732,6 @@ declare namespace LocalJSX {
     }
     interface IxChatUserMessageAttributes {
         "message": string;
-        "attachmentCount": number;
-        "attachmentOverflowLabel": string;
     }
     interface IxCheckboxAttributes {
         "name": string;
