@@ -36,6 +36,7 @@ import {
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
+import { IxFocusableComponent } from '../utils/focus/ix-focusable';
 
 let sequentialInstanceId = 0;
 
@@ -48,7 +49,10 @@ let sequentialInstanceId = 0;
   shadow: true,
   formAssociated: true,
 })
-export class Textarea implements IxInputFieldComponent<string> {
+export class Textarea
+  extends IxFocusableComponent
+  implements IxInputFieldComponent<string>
+{
   @Element() hostElement!: HTMLIxTextareaElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -222,8 +226,13 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(this.value);
   }
 
+  connectedCallback() {
+    this.initFocusable(this.hostElement);
+  }
+
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+    this.destroyFocusable();
   }
 
   private resetManualResizeState() {
@@ -321,7 +330,8 @@ export class Textarea implements IxInputFieldComponent<string> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusNativeElement(el);
   }
 
   /**

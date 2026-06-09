@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   IxInput,
   IxButton,
@@ -7,13 +8,22 @@ import {
 } from '@siemens/ix-react';
 
 export default () => {
+  const emailRef = useRef<HTMLIxInputElement>(null);
+
   const handleSubmit = (e: React.FormEvent, formType: string) => {
     e.preventDefault();
     console.log(`${formType} form submitted`);
   };
 
   return (
-    <div style={{ display: 'flex', gap: '2rem' }}>
+    <div style={{ display: 'flex', gap: '2rem', flexDirection: 'column' }}>
+      <div>
+        <IxInput ref={emailRef} type="email" label="Email" name="email" />
+        <IxButton onClick={() => emailRef.current?.focusInput()}>
+          Focus email
+        </IxButton>
+      </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -30,7 +40,7 @@ export default () => {
           Login
         </IxButton>
       </form>
-      {/* IxInput Form */}
+
       <form
         onSubmit={(e) => handleSubmit(e, 'IxInput')}
         style={{
@@ -49,7 +59,6 @@ export default () => {
         <IxButton type="submit">Submit</IxButton>
       </form>
 
-      {/* Native Input Form */}
       <form
         onSubmit={(e) => handleSubmit(e, 'Native')}
         style={{
@@ -60,38 +69,9 @@ export default () => {
         }}
       >
         <h3>Native Input Form</h3>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          style={{
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-          }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          style={{
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-          }}
-        />
-        <button
-          type="submit"
-          style={{
-            padding: '8px',
-            backgroundColor: '#007acc',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-          }}
-        >
-          Submit
-        </button>
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">Submit</button>
         <input type="submit" value="Native Submit Input" />
       </form>
     </div>

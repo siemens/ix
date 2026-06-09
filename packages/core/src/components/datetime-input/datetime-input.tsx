@@ -60,6 +60,10 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
+import {
+  FocusVisibleController,
+  startFocusVisible,
+} from '../utils/focus/focus-visible-controller';
 
 /**
  * @since 5.0.0
@@ -81,6 +85,8 @@ export class DatetimeInput
 {
   @Element() override hostElement!: HTMLIxDatetimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
+
+  private focusController?: FocusVisibleController;
 
   /** Name of the form control for form submission */
   @Prop({ reflect: true }) name?: string;
@@ -554,7 +560,8 @@ export class DatetimeInput
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusController?.setFocus(el);
   }
 
   /**
@@ -629,6 +636,7 @@ export class DatetimeInput
   }
 
   override connectedCallback(): void {
+    this.focusController = startFocusVisible(this.hostElement);
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -659,6 +667,7 @@ export class DatetimeInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+    this.focusController?.destroy();
   }
 
   private checkClassList() {

@@ -57,6 +57,10 @@ import {
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { forceTabIndex } from '../utils/a11y';
+import {
+  FocusVisibleController,
+  startFocusVisible,
+} from '../utils/focus/focus-visible-controller';
 
 /**
  * @form-ready
@@ -78,6 +82,8 @@ export class DateInput
 {
   @Element() override hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
+
+  private focusController?: FocusVisibleController;
 
   /**
    * Name of the input element.
@@ -292,6 +298,7 @@ export class DateInput
   }
 
   override connectedCallback(): void {
+    this.focusController = startFocusVisible(this.hostElement);
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -326,6 +333,7 @@ export class DateInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+    this.focusController?.destroy();
   }
 
   @Watch('value')
@@ -519,7 +527,8 @@ export class DateInput
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusController?.setFocus(el);
   }
 
   /**

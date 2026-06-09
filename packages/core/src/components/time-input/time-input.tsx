@@ -63,6 +63,10 @@ import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
 import { forceTabIndex } from '../utils/a11y';
+import {
+  FocusVisibleController,
+  startFocusVisible,
+} from '../utils/focus/focus-visible-controller';
 
 /**
  * @since 3.2.0
@@ -84,6 +88,8 @@ export class TimeInput
 {
   @Element() override hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
+
+  private focusController?: FocusVisibleController;
 
   /**
    * Name of the input element.
@@ -359,6 +365,7 @@ export class TimeInput
   }
 
   override connectedCallback(): void {
+    this.focusController = startFocusVisible(this.hostElement);
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
@@ -395,6 +402,7 @@ export class TimeInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+    this.focusController?.destroy();
   }
 
   /** @internal */
@@ -635,7 +643,8 @@ export class TimeInput
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusController?.setFocus(el);
   }
 
   /**

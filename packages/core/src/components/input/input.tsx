@@ -41,6 +41,7 @@ import {
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
 } from './input.util';
+import { IxFocusableComponent } from '../utils/focus/ix-focusable';
 
 let inputIds = 0;
 
@@ -55,7 +56,10 @@ let inputIds = 0;
   shadow: true,
   formAssociated: true,
 })
-export class Input implements IxInputFieldComponent<string> {
+export class Input
+  extends IxFocusableComponent
+  implements IxInputFieldComponent<string>
+{
   @Element() hostElement!: HTMLIxInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -215,6 +219,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   connectedCallback(): void {
+    this.initFocusable(this.hostElement);
     this.disposableChangesAndVisibilityObservers =
       addDisposableChangesAndVisibilityObservers(
         this.hostElement,
@@ -231,6 +236,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   disconnectedCallback(): void {
+    this.destroyFocusable();
     this.disposableChangesAndVisibilityObservers?.();
   }
 
@@ -277,7 +283,8 @@ export class Input implements IxInputFieldComponent<string> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusNativeElement(el);
   }
 
   /**

@@ -39,6 +39,7 @@ import {
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
 } from './input.util';
+import { IxFocusableComponent } from '../utils/focus/ix-focusable';
 
 let numberInputIds = 0;
 
@@ -55,7 +56,10 @@ const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
   shadow: true,
   formAssociated: true,
 })
-export class NumberInput implements IxInputFieldComponent<number> {
+export class NumberInput
+  extends IxFocusableComponent
+  implements IxInputFieldComponent<number>
+{
   @Element() hostElement!: HTMLIxNumberInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -226,6 +230,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   connectedCallback() {
+    this.initFocusable(this.hostElement);
     this.disposableChangesAndVisibilityObservers =
       addDisposableChangesAndVisibilityObservers(
         this.hostElement,
@@ -234,6 +239,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   disconnectedCallback() {
+    this.destroyFocusable();
     this.disposableChangesAndVisibilityObservers?.();
   }
 
@@ -447,7 +453,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const el = await this.getNativeInputElement();
+    this.focusNativeElement(el);
   }
 
   /**

@@ -56,6 +56,10 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import {
+  FocusVisibleController,
+  startFocusVisible,
+} from '../utils/focus/focus-visible-controller';
 
 let selectId = 0;
 
@@ -78,6 +82,8 @@ export class Select
     ComponentIdMixinContract
 {
   @Element() override hostElement!: HTMLIxSelectElement;
+
+  private focusController?: FocusVisibleController;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -496,6 +502,7 @@ export class Select
   }
 
   override componentDidLoad() {
+    this.focusController = startFocusVisible(this.hostElement);
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputElement?.value);
@@ -521,7 +528,7 @@ export class Select
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
-
+    this.focusController?.destroy();
     this.proxyListObserver?.disconnect();
   }
 
@@ -785,7 +792,7 @@ export class Select
   async focusInput(): Promise<void> {
     const inputElement = await this.getNativeInputElement();
     if (inputElement) {
-      inputElement.focus();
+      this.focusController?.setFocus(inputElement);
     }
   }
 
