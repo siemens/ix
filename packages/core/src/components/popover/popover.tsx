@@ -38,14 +38,10 @@ import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
 import {
   addFocusTrap,
+  focusFirstFocusTrapElement,
   FocusTrapResult,
-  TRAP_FOCUS_INCLUDE_ATTRIBUTE,
+  getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
-import {
-  focusableQueryString,
-  focusFirstDescendant,
-  queryElements,
-} from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   InheritAriaAttributesMixin,
@@ -67,8 +63,6 @@ type SpikePosition = {
 
 const SPIKE_OFFSET = -6;
 
-/** Matches `addFocusTrap` focusable discovery for this component. */
-const popoverFocusableQuery = `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`;
 const POPOVER_OFFSET = 12;
 const HOVER_HIDE_DELAY_MS = 150;
 
@@ -377,23 +371,18 @@ export class Popover
     });
   }
 
-  private getPopoverFocusRoot(): HTMLElement | ShadowRoot {
-    return this.hostElement.shadowRoot ?? this.hostElement;
-  }
-
   private detectFocusableContent() {
-    const focusable = queryElements(
-      this.getPopoverFocusRoot(),
-      popoverFocusableQuery
-    );
-    this.hasFocusableContent = focusable.length > 0;
+    this.hasFocusableContent =
+      getFocusTrapFocusables(this.hostElement, {
+        trapFocusInShadowDom: true,
+      }).length > 0;
   }
 
   private focusFirstElement() {
-    const root = this.getPopoverFocusRoot();
-
     requestAnimationFrame(() => {
-      focusFirstDescendant(root as HTMLElement);
+      focusFirstFocusTrapElement(this.hostElement, {
+        trapFocusInShadowDom: true,
+      });
     });
   }
 

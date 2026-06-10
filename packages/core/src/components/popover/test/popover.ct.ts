@@ -38,7 +38,9 @@ regressionTest.describe('ix-popover', () => {
         );
         await expect(popover.popoverElement).toHaveClass(/hydrated/);
         await expect(popover.popoverElement).not.toHaveClass(/visible/);
-        await expect(popover.dialog(popover.popoverElement)).not.toBeVisible();
+        await expect(
+          await popover.dialog(popover.popoverElement)
+        ).not.toBeVisible();
       }
     );
 
@@ -245,7 +247,7 @@ regressionTest.describe('ix-popover', () => {
         await popover.triggerButton.hover();
         await popover.expectOpen(popoverEl);
 
-        await popover.dialog(popoverEl).hover();
+        await (await popover.dialog(popoverEl)).hover();
         // Wait for hide delay to confirm popover STAYS open (testing negative case)
         await page.waitForTimeout(HOVER_HIDE_MS);
         await popover.expectOpen(popoverEl);
@@ -515,6 +517,31 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'focuses header close button when content has no focusables',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <ix-button id="text-trigger">Text-only</ix-button>
+            <ix-popover id="text-popover" trigger="text-trigger">
+              <ix-popover-header>Text-only popover</ix-popover-header>
+              <ix-popover-content>
+                Just plain text, no buttons.
+              </ix-popover-content>
+            </ix-popover>
+          `
+        );
+
+        const popover = new PopoverPage(page, 'text-trigger');
+        const popoverEl = await popover.openWithKeyboardAndExpectOpen();
+        const closeButton = popover.scopedHeaderCloseButton(popoverEl);
+
+        await expect(closeButton).toBeFocused();
+      }
+    );
+
+    regressionTest(
       'keeps focus on trigger for informational popovers',
       async ({ mount, page }) => {
         await mountPopover(
@@ -540,7 +567,7 @@ regressionTest.describe('ix-popover', () => {
       const popover = new PopoverPage(page);
       await popover.open();
       await expect(
-        popover.dialog(await popover.getPopover())
+        await popover.dialog(await popover.getPopover())
       ).not.toHaveAttribute('aria-modal');
     });
 
@@ -627,6 +654,158 @@ regressionTest.describe('ix-popover', () => {
 
         await outer.expectClosed();
         await inner.expectClosed();
+      }
+    );
+
+    regressionTest(
+      'traps focus in outer popover content including sibling buttons',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <ix-button id="outer-trigger">Outer</ix-button>
+            <ix-popover
+              id="outer-popover"
+              trigger="outer-trigger"
+              close-on-click-outside
+            >
+              <ix-popover-header>Outer popover</ix-popover-header>
+              <ix-popover-content>
+                <ix-button id="inner-trigger">Inner</ix-button>
+                <ix-button id="parent-action">Parent action</ix-button>
+                <ix-popover
+                  id="inner-popover"
+                  trigger="inner-trigger"
+                  close-on-click-outside
+                >
+                  <ix-popover-header>Inner popover</ix-popover-header>
+                  <ix-popover-content>Nested body</ix-popover-content>
+                </ix-popover>
+              </ix-popover-content>
+            </ix-popover>
+            <ix-button id="outside-trigger">Outside</ix-button>
+          `
+        );
+
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const outerEl = await outer.openWithKeyboardAndExpectOpen();
+        const closeButton = outer.scopedHeaderCloseButton(outerEl);
+
+        await expect(
+          page.locator('ix-button#inner-trigger button')
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          page.locator('ix-button#parent-action button')
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(closeButton).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          page.locator('ix-button#inner-trigger button')
+        ).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'traps focus in open nested popover when parent stays open',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <ix-button id="outer-trigger">Outer</ix-button>
+            <ix-popover
+              id="outer-popover"
+              trigger="outer-trigger"
+              close-on-click-outside
+            >
+              <ix-popover-header>Outer popover</ix-popover-header>
+              <ix-popover-content>
+                <ix-button id="inner-trigger">Inner</ix-button>
+                <ix-popover
+                  id="inner-popover"
+                  trigger="inner-trigger"
+                  close-on-click-outside
+                >
+                  <ix-popover-header>Inner popover</ix-popover-header>
+                  <ix-popover-content>
+                    <ix-button id="inner-action-a">Inner action A</ix-button>
+                    <ix-button id="inner-action-b" variant="secondary">
+                      Inner action B
+                    </ix-button>
+                  </ix-popover-content>
+                </ix-popover>
+              </ix-popover-content>
+            </ix-popover>
+          `
+        );
+
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
+
+        await outer.open();
+        await inner.open();
+
+        const innerEl = await inner.getPopover();
+        const innerClose = inner.scopedHeaderCloseButton(innerEl);
+
+        await expect(
+          page.locator('ix-button#inner-action-a button')
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          page.locator('ix-button#inner-action-b button')
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(innerClose).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          page.locator('ix-button#inner-action-a button')
+        ).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'Escape closes only the topmost nested popover',
+      async ({ mount, page }) => {
+        await mount(nestedPopoverMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
+
+        await outer.open();
+        await inner.open();
+
+        await page.keyboard.press('Escape');
+
+        await inner.expectClosed();
+        await outer.expectOpen();
+      }
+    );
+
+    regressionTest(
+      'second Escape closes parent after nested popover is dismissed',
+      async ({ mount, page }) => {
+        await mount(nestedPopoverMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
+
+        await outer.open();
+        await inner.open();
+
+        await page.keyboard.press('Escape');
+        await inner.expectClosed();
+        await outer.expectOpen();
+
+        await page.keyboard.press('Escape');
+        await outer.expectClosed();
       }
     );
   });
@@ -759,7 +938,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         await popover.open();
         await expect(
-          popover.dialog(await popover.getPopover())
+          await popover.dialog(await popover.getPopover())
         ).toHaveAttribute('aria-label', 'What is new panel');
       }
     );
@@ -777,7 +956,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         await popover.open();
         await expect(
-          popover.dialog(await popover.getPopover())
+          await popover.dialog(await popover.getPopover())
         ).toHaveAttribute('role', 'status');
       }
     );

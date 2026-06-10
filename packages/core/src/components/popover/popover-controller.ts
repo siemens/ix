@@ -47,6 +47,9 @@ class PopoverController {
     (popover) => this.dismiss(popover)
   );
 
+  /** LIFO order of popovers opened through {@link presentAndWait}. */
+  private readonly presentationOrder: string[] = [];
+
   private isWindowListenerActive = false;
 
   connected(popover: PopoverInterface) {
@@ -57,6 +60,7 @@ class PopoverController {
   }
 
   disconnected(popover: PopoverInterface) {
+    this.removeFromPresentationOrder(popover.getId());
     this.stack.disconnect(popover);
   }
 
@@ -81,6 +85,7 @@ class PopoverController {
       this.dismissOthers(popover.getId());
       this.stack.setChildIds(popover.getId(), popover.getNestedPopoverIds());
       await popover.present();
+      this.recordPresented(popover.getId());
     }
   }
 
@@ -96,6 +101,7 @@ class PopoverController {
       this.stack.dismissChildren(popover.getId());
       popover.dismiss(closeFocus);
       this.stack.deleteChildIdsEntry(popover.getId());
+      this.removeFromPresentationOrder(popover.getId());
     }
   }
 
@@ -107,12 +113,49 @@ class PopoverController {
     );
   }
 
+  dismissTopmost() {
+    const topmost = this.getTopmostForEscape();
+    if (topmost) {
+      this.dismiss(topmost);
+    }
+  }
+
   dismissOthers(uid: string) {
     this.stack.dismissOthers(uid);
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
     return findTriggerInPath(eventTargets, 'data-ix-popover-trigger');
+  }
+
+  private recordPresented(id: string) {
+    this.removeFromPresentationOrder(id);
+    this.presentationOrder.push(id);
+  }
+
+  private removeFromPresentationOrder(id: string) {
+    const index = this.presentationOrder.indexOf(id);
+    if (index > -1) {
+      this.presentationOrder.splice(index, 1);
+    }
+  }
+
+  private getTopmostForEscape(): PopoverInterface | undefined {
+    for (let index = this.presentationOrder.length - 1; index >= 0; index--) {
+      const popover = this.stack.get(this.presentationOrder[index]);
+      if (popover?.isPresent()) {
+        return popover;
+      }
+    }
+
+    let fallback: PopoverInterface | undefined;
+    this.stack.forEach((popover) => {
+      if (popover.isPresent()) {
+        fallback = popover;
+      }
+    });
+
+    return fallback;
   }
 
   private getPopoverDialog(host: HTMLElement): HTMLDialogElement | null {
@@ -158,7 +201,7 @@ class PopoverController {
 
     window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        this.dismissAll(true);
+        this.dismissTopmost();
       }
     });
   }

@@ -103,10 +103,15 @@ export class PopoverPage {
   }
 
   /**
-   * Get the dialog element within a popover
+   * Get the dialog element for a popover host.
+   * Uses the dialog `id` (same as `data-ix-popover`) so nested popovers are not matched.
    */
-  dialog(popover: Locator): Locator {
-    return popover.locator('[role="dialog"], [role="status"]').first();
+  async dialog(popover: Locator): Promise<Locator> {
+    const popoverId = await popover.getAttribute('data-ix-popover');
+    await expect(popoverId).toMatch(/.+/);
+    return this.page.locator(
+      `dialog#${popoverId}, [role="status"]#${popoverId}`
+    );
   }
 
   /**
@@ -123,7 +128,7 @@ export class PopoverPage {
   async expectOpen(popover?: Locator): Promise<void> {
     const target = popover ?? (await this.getPopover());
     await expect(target).toHaveClass(/visible/);
-    await expect(this.dialog(target)).toBeVisible();
+    await expect(await this.dialog(target)).toBeVisible();
   }
 
   /**
@@ -132,7 +137,7 @@ export class PopoverPage {
   async expectClosed(popover?: Locator): Promise<void> {
     const target = popover ?? (await this.getPopover());
     await expect(target).not.toHaveClass(/visible/);
-    await expect(this.dialog(target)).not.toBeVisible();
+    await expect(await this.dialog(target)).not.toBeVisible();
   }
 
   /**
@@ -282,7 +287,7 @@ export class PopoverPage {
   }
 
   async expectAriaControlsMatch(popover: Locator): Promise<void> {
-    const dialogId = await this.dialog(popover).getAttribute('id');
+    const dialogId = await (await this.dialog(popover)).getAttribute('id');
     await expect(async () => {
       expect(await this.getTriggerAriaAttribute('aria-controls')).toBe(
         dialogId

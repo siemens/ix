@@ -319,7 +319,7 @@ describe('PopoverController', () => {
       expect(persistent.dismissMock).not.toHaveBeenCalled();
     });
 
-    it('dismisses all open popovers when ignoreCloseOnClickOutside is true', () => {
+    it('dismisses the topmost open popover on Escape', () => {
       const persistent = createMockPopover({
         id: 'popover-persistent',
         isPresent: true,
@@ -332,6 +332,62 @@ describe('PopoverController', () => {
       fireEvent.keyDown(window, { key: 'Escape' });
 
       expect(persistent.dismissMock).toHaveBeenCalledOnce();
+    });
+
+    it('dismisses only the nested child on Escape when both are open', () => {
+      const parent = createMockPopover({
+        id: 'popover-parent',
+        nestedPopoverIds: ['popover-child'],
+      });
+      const child = createMockPopover({ id: 'popover-child' });
+
+      controller.connected(parent);
+      controller.connected(child);
+      controller.connected(createMockPopover({ id: 'popover-listener' }));
+      controller.present(parent);
+      controller.present(child);
+
+      fireEvent.keyDown(window, { key: 'Escape' });
+
+      expect(child.dismissMock).toHaveBeenCalledOnce();
+      expect(parent.dismissMock).not.toHaveBeenCalled();
+    });
+
+    it('dismisses only the newly opened popover on Escape after an explicit dismiss', () => {
+      const first = createMockPopover({ id: 'popover-first' });
+      const second = createMockPopover({ id: 'popover-second' });
+
+      controller.connected(first);
+      controller.connected(second);
+      controller.connected(createMockPopover({ id: 'popover-listener' }));
+      controller.present(first);
+      controller.dismiss(first);
+      controller.present(second);
+
+      fireEvent.keyDown(window, { key: 'Escape' });
+
+      expect(first.dismissMock).toHaveBeenCalledOnce();
+      expect(second.dismissMock).toHaveBeenCalledOnce();
+    });
+
+    it('dismisses the parent on a second Escape after the child closes', () => {
+      const parent = createMockPopover({
+        id: 'popover-parent',
+        nestedPopoverIds: ['popover-child'],
+      });
+      const child = createMockPopover({ id: 'popover-child' });
+
+      controller.connected(parent);
+      controller.connected(child);
+      controller.connected(createMockPopover({ id: 'popover-listener' }));
+      controller.present(parent);
+      controller.present(child);
+
+      fireEvent.keyDown(window, { key: 'Escape' });
+      fireEvent.keyDown(window, { key: 'Escape' });
+
+      expect(child.dismissMock).toHaveBeenCalledOnce();
+      expect(parent.dismissMock).toHaveBeenCalledOnce();
     });
 
     it('does not dismiss on non-Escape keydown', () => {
