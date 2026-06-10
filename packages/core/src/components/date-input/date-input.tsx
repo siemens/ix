@@ -595,7 +595,7 @@ export class DateInput
     );
   }
 
-  private handlePickerFocusoutCallback = (hasRelatedTarget: boolean) => {
+  private handlePickerFocusoutCallback(hasRelatedTarget: boolean) {
     if (hasRelatedTarget) {
       this.closeDropdown();
     }
@@ -609,7 +609,7 @@ export class DateInput
     this.isInputInvalid = this._hasInvalidInput;
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     emitPickerValidityState(this);
-  };
+  }
 
   private renderInput() {
     return (
