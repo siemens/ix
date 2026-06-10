@@ -140,6 +140,7 @@ export class DateInput
   @Watch('required')
   async onRequiredChange() {
     await syncRequiredValidationClass(this.hostElement, this);
+    this.syncFormInternalsValidity();
   }
 
   /**

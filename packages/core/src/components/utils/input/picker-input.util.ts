@@ -148,7 +148,7 @@ export function handlePickerHostFocusout(
     relatedTarget === null &&
     pickerElement &&
     'show' in pickerElement &&
-    pickerElement.show;
+    (pickerElement as { show: boolean }).show;
 
   if (isPickerNavigating) {
     return;
