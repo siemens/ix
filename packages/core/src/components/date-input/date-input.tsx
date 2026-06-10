@@ -43,6 +43,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
   reportFieldValidity,
   shouldSuppressInternalValidation,
 } from '../utils/input';
@@ -51,10 +52,9 @@ import {
   createValidityState,
   focusInputIfKeyboardMode,
   handleIconClick,
-  handlePickerHostFocusout,
-  handlePickerInputBlur,
+  handlePickerFocusoutWithValidation,
+  suppressInputBlurWhenFocusMovedToPicker,
   openDropdown as openDropdownUtil,
-  resetPickerValueIfInvalid,
   syncCustomInputValidity,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
@@ -65,6 +65,7 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { forceTabIndex } from '../utils/a11y';
 
 /**
  * @form-ready
@@ -294,15 +295,7 @@ export class DateInput
   private classObserver?: ClassMutationObserver;
 
   private _hasInvalidInput = false;
-
-  /**
-   * Set to `true` by `onBlur` when a genuine (non-suppressed) external blur
-   * runs validation.  Read and reset by `onFocusout` to avoid re-running the
-   * same validation path a second time (onBlur → onFocusout both fire for a
-   * direct tab-away).
-   */
-  private _blurHandledValidation = false;
-
+  private _shouldSkipFocusoutValidation = false;
   private _reportValidityCalled = false;
 
   public initialValue?: string;
@@ -442,16 +435,12 @@ export class DateInput
     this._hasInvalidInput = false;
     this.isInputInvalid = false;
     this.invalidReason = undefined;
-    // Remove any stale parse-error host classes from a prior reportValidity()
-    // call. The value is now empty so those errors no longer apply.
+
     this.hostElement.classList.remove(
       'ix-invalid--validity-invalid',
       'ix-invalid--validity-patternMismatch'
     );
-    // In a regular form, show the required-missing error once the user has
-    // interacted (touched via blur or reportValidity).
-    // In a novalidate form, only show it when reportValidity() was explicitly
-    // called — a plain blur must not surface errors (novalidate intent).
+
     const suppress = await shouldSuppressInternalValidation(this);
     const shouldShowRequired = suppress
       ? this._reportValidityCalled && !!this.required
@@ -474,10 +463,7 @@ export class DateInput
     this.valueChange.emit(value);
   }
 
-  // Clears all error state and accepts the value as valid.
-  // Used for normal novalidate input AND when the user corrects a
-  // reportValidity() error.
-  private acceptSuppressedValidationValue(value: string): void {
+  private acceptValidAfterReportValidity(value: string): void {
     this._hasInvalidInput = false;
     this.isInputInvalid = false;
     this.invalidReason = undefined;
@@ -489,64 +475,55 @@ export class DateInput
     );
     this.updateFormInternalValue(value);
 
-    resetPickerValueIfInvalid(
-      value,
-      (currentValue) => this.getDateValidation(currentValue).isValid,
-      () => {
-        this.from = undefined;
-      }
-    );
+    if (!this.getDateValidation(value).isValid) {
+      this.from = undefined;
+    }
 
     this.closeDropdown();
     focusInputIfKeyboardMode(this.inputElementRef.current);
     this.emitSuppressedValidationChange(value);
   }
 
-  // Keeps the parse-error classes and message visible after reportValidity().
-  private keepSuppressedValidationErrorVisible(
+  private keepReportValidityErrorsVisible(
     value: string,
     invalidReason?: string
   ): void {
     this.invalidReason = invalidReason;
     this.from = undefined;
     this.isInvalid = true;
-    this.hostElement.classList.remove('ix-invalid--required');
+    this.hostElement.classList.remove(
+      'ix-invalid--required',
+      'ix-invalid--validity-patternMismatch'
+    );
     this.hostElement.classList.add('ix-invalid--validity-invalid');
     this.emitSuppressedValidationChange(value);
   }
 
-  private handleSuppressedValidationInput(value: string): void {
-    // When reportValidity() was called explicitly, keep validating in the
-    // novalidate form until the value is actually fixed (WCAG 1.4.1 / 3.3.1).
-    // NOTE: `touched` is intentionally NOT used — it is set by plain blur too,
-    // and blur in a novalidate form must never surface errors.
-    if (!this._reportValidityCalled) {
-      this.acceptSuppressedValidationValue(value);
+  private validateInReportValidityMode(value: string): void {
+    const reportValidityWasNotCalled = !this._reportValidityCalled;
+    if (reportValidityWasNotCalled) {
+      this.acceptValidAfterReportValidity(value);
       return;
     }
 
     const validation = this.getDateValidation(value);
-    this._hasInvalidInput = !validation.isValid;
-    this.isInputInvalid = this._hasInvalidInput;
+    const valueIsInvalid = !validation.isValid;
+    this._hasInvalidInput = valueIsInvalid;
+    this.isInputInvalid = valueIsInvalid;
 
-    if (this._hasInvalidInput) {
-      this.keepSuppressedValidationErrorVisible(
-        value,
-        validation.invalidReason
-      );
+    if (valueIsInvalid) {
+      this.keepReportValidityErrorsVisible(value, validation.invalidReason);
       return;
     }
 
-    // Value is now valid — reset the flag so normal novalidate suppression resumes.
     this._reportValidityCalled = false;
-    this.acceptSuppressedValidationValue(value);
+    this.acceptValidAfterReportValidity(value);
   }
 
   private async handleValidatedInput(value: string): Promise<void> {
     const validation = this.getDateValidation(value);
 
     this._hasInvalidInput = !validation.isValid;
-    // Only show visual invalid state when the user has interacted
     this.isInputInvalid = this._hasInvalidInput && this.touched;
 
     if (this._hasInvalidInput) {
@@ -577,16 +554,12 @@ export class DateInput
       return;
     }
 
-    // Set _hasInvalidInput synchronously BEFORE the async suppression check so
-    // that if blur fires during the microtask gap, it always reads the correct
-    // state. handleValidatedInput and handleSuppressedValidationInput will
-    // overwrite it with the same (or reset) value afterwards.
     const validation = this.getDateValidation(value);
     this._hasInvalidInput = !validation.isValid;
 
     const suppressValidation = await shouldSuppressInternalValidation(this);
     if (suppressValidation) {
-      this.handleSuppressedValidationInput(value);
+      this.validateInReportValidityMode(value);
       return;
     }
 
@@ -621,6 +594,22 @@ export class DateInput
       this.formInternals.form
     );
   }
+
+  private handlePickerFocusoutCallback = (hasRelatedTarget: boolean) => {
+    if (hasRelatedTarget) {
+      this.closeDropdown();
+    }
+
+    if (this._shouldSkipFocusoutValidation) {
+      this._shouldSkipFocusoutValidation = false;
+      return;
+    }
+
+    this.touched = true;
+    this.isInputInvalid = this._hasInvalidInput;
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    emitPickerValidityState(this);
+  };
 
   private renderInput() {
     return (
@@ -661,11 +650,11 @@ export class DateInput
             }
           }}
           onBlur={(e: FocusEvent) =>
-            handlePickerInputBlur(
-              e,
-              this.show,
-              this.hostElement,
-              () => {
+            suppressInputBlurWhenFocusMovedToPicker({
+              event: e,
+              isDropdownOpen: this.show,
+              hostElement: this.hostElement,
+              onBlur: () => {
                 this.touched = true;
                 this.isInputInvalid = this._hasInvalidInput;
                 onInputBlurWithChange(
@@ -674,12 +663,10 @@ export class DateInput
                   this.value
                 );
                 emitPickerValidityState(this);
-                // Signal to onFocusout (which fires right after) that validation
-                // has already been committed so it should not repeat it.
-                this._blurHandledValidation = true;
+                this._shouldSkipFocusoutValidation = true;
               },
-              this.dropdownElementRef?.current
-            )
+              pickerElement: this.dropdownElementRef?.current,
+            })
           }
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -692,6 +679,7 @@ export class DateInput
         >
           <ix-icon-button
             tabindex={-1}
+            ref={(ref) => forceTabIndex(ref, -1)}
             aria-label={this.ariaLabelCalendarButton}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
@@ -722,15 +710,9 @@ export class DateInput
   /** @internal */
   @Method()
   getValidityState(): Promise<ValidityState> {
-    // Gate patternMismatch on touched — same as isInputInvalid.
-    // HookValidationLifecycle reads this to set ix-invalid--validity-patternMismatch
-    // on the host, which drives visual feedback. We must not show errors before
-    // the user has interacted.
-    // The actual form validity for form.reportValidity() is handled separately
-    // by syncFormInternalsValidity() which always reflects the true parse state.
     return Promise.resolve(
       createValidityState(
-        this._hasInvalidInput && this.touched,
+        this.isInputInvalid,
         !!this.required && this.touched,
         this.value
       )
@@ -763,18 +745,12 @@ export class DateInput
   }
 
   /**
-   * Triggers validation and shows visual error state immediately, regardless
-   * of whether the user has interacted with the field.
+   * Trigger validation and show visual error state immediately, independently
+   * of user interaction — for example, in AJAX submissions or manual validation.
    *
-   * Use this when submitting via AJAX (no HTML form) or when you need to
-   * programmatically surface validation errors — equivalent to calling
-   * `reportValidity()` on a native `<input>` element.
+   * Not suppressed by `<form novalidate>` — errors surface regardless.
    *
-   * Unlike form submit, this explicit validation call is not suppressed by a
-   * surrounding `<form novalidate>` and will still surface errors.
-   *
-   * @returns `true` if the field is valid, `false` otherwise.
-   *
+   * @returns `true` if valid, `false` otherwise.
    * @since 5.1.0
    */
   @Method()
@@ -784,17 +760,7 @@ export class DateInput
       !!this.format &&
       !this.getDateValidation(this.value).isValid;
 
-    // Sync _hasInvalidInput so that subsequent blur events preserve the error
-    // state surfaced by this explicit call. Without this, blur resets
-    // isInputInvalid back to _hasInvalidInput (which is false in novalidate
-    // forms due to suppression), causing the error message to disappear while
-    // the red border stays.
     this._hasInvalidInput = hasInvalidInput;
-
-    // Mark that an explicit validation call was made. This allows
-    // handleSuppressedValidationInput and handleEmptyInput to keep showing
-    // errors in novalidate forms until the value is corrected — while normal
-    // blur events in novalidate forms remain suppressed.
     this._reportValidityCalled = true;
 
     return reportFieldValidity(this, hasInvalidInput);
@@ -804,21 +770,28 @@ export class DateInput
     return this.dropdownElementRef;
   }
 
-  override render() {
-    // Error text priority:
-    //   1. Parse error  — "Date is not valid" (or i18n override / custom invalidText)
-    //   2. Required empty — "Date is required" (or custom invalidText)
-    //   3. Consumer-supplied invalidText only
+  private getInvalidText(): string | undefined {
     const isRequiredEmpty = !!this.required && !this.value && this.touched;
 
-    let invalidText: string | undefined;
-    if (this.isInputInvalid) {
-      invalidText = this.invalidText ?? this.i18nErrorDateUnparsable;
-    } else if (isRequiredEmpty) {
-      invalidText = this.invalidText ?? this.i18nErrorRequired;
-    } else {
-      invalidText = this.invalidText;
+    let invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
+
+    if (!invalidText) {
+      invalidText = getValidationText(
+        isRequiredEmpty,
+        this.invalidText,
+        this.i18nErrorRequired
+      );
     }
+
+    return invalidText;
+  }
+
+  override render() {
+    const invalidText = this.getInvalidText();
 
     return (
       <Host
@@ -827,37 +800,10 @@ export class DateInput
           readonly: this.readonly,
         }}
         onFocusout={(e: FocusEvent) =>
-          handlePickerHostFocusout(
+          handlePickerFocusoutWithValidation(
             e,
             this.hostElement,
-            (hasRelatedTarget) => {
-              // Only close the dropdown when focus went to a known external
-              // element.  When relatedTarget is null (focus to <body> or a
-              // programmatic blur from tests) the dropdown's closeBehavior
-              // handles it, and closing here risks a flicker during rerenders.
-              if (hasRelatedTarget) {
-                this.closeDropdown();
-              }
-
-              // When the input's onBlur was suppressed (picker was open,
-              // focus moved to an internal element) we must now run the full
-              // validation — the user has truly left the component.
-              // When onBlur already ran validation (direct tab-away), skip it
-              // here to avoid double-emitting ixBlur / ixChange.
-              if (this._blurHandledValidation) {
-                this._blurHandledValidation = false;
-                return;
-              }
-
-              this.touched = true;
-              this.isInputInvalid = this._hasInvalidInput;
-              onInputBlurWithChange(
-                this,
-                this.inputElementRef.current,
-                this.value
-              );
-              emitPickerValidityState(this);
-            },
+            this.handlePickerFocusoutCallback,
             this.dropdownElementRef?.current
           )
         }

@@ -1062,8 +1062,8 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Triggers validation and shows visual error state immediately, regardless of whether the user has interacted with the field.  Use this when submitting via AJAX (no HTML form) or when you need to programmatically surface validation errors — equivalent to calling `reportValidity()` on a native `<input>` element.  Unlike form submit, this explicit validation call is not suppressed by a surrounding `<form novalidate>` and will still surface errors.
-          * @returns `true` if the field is valid, `false` otherwise.
+          * Trigger validation and show visual error state immediately, independently of user interaction — for example, in AJAX submissions or manual validation.  Not suppressed by `<form novalidate>` — errors surface regardless.
+          * @returns `true` if valid, `false` otherwise.
           * @since 5.1.0
          */
         "reportValidity": () => Promise<boolean>;

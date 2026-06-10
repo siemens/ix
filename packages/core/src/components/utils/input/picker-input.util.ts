@@ -10,26 +10,20 @@
 import { dropdownController } from '../../dropdown/dropdown-controller';
 import { hasKeyboardMode } from '../internal/mixins/setup.mixin';
 
+export interface SuppressInputBlurOptions {
+  event: FocusEvent;
+  isDropdownOpen: boolean;
+  hostElement: HTMLElement;
+  onBlur: () => void;
+  pickerElement?: HTMLElement | null;
+}
+
 export function focusInputIfKeyboardMode(
   inputElement: HTMLInputElement | null | undefined
 ): void {
   if (hasKeyboardMode()) {
     inputElement?.focus();
   }
-}
-
-export function resetPickerValueIfInvalid(
-  value: string,
-  isValid: (value: string) => boolean,
-  resetPickerValue: () => void
-): boolean {
-  const valid = isValid(value);
-
-  if (!valid) {
-    resetPickerValue();
-  }
-
-  return valid;
 }
 
 export async function openDropdown(dropdownElementRef: any) {
@@ -100,7 +94,7 @@ export function createValidityState(
   };
 }
 
-function isInternalFocusTarget(
+function isFocusWithinPickerBoundary(
   hostElement: HTMLElement,
   relatedTarget: Node | null,
   pickerElement?: HTMLElement | null
@@ -115,32 +109,32 @@ function isInternalFocusTarget(
   );
 }
 
-export function handlePickerInputBlur(
-  e: FocusEvent,
-  show: boolean,
-  hostElement: HTMLElement,
-  onBlur: () => void,
-  pickerElement?: HTMLElement | null
+export function suppressInputBlurWhenFocusMovedToPicker(
+  options: SuppressInputBlurOptions
 ): void {
-  const relatedTarget = e.relatedTarget as Node | null;
+  const relatedTarget = options.event.relatedTarget as Node | null;
   if (
-    show &&
-    isInternalFocusTarget(hostElement, relatedTarget, pickerElement)
+    options.isDropdownOpen &&
+    isFocusWithinPickerBoundary(
+      options.hostElement,
+      relatedTarget,
+      options.pickerElement
+    )
   ) {
     return;
   }
-  onBlur();
+  options.onBlur();
 }
 
-export function handlePickerHostFocusout(
+export function handlePickerFocusoutWithValidation(
   e: FocusEvent,
   hostElement: HTMLElement,
-  onExternalFocusout: (hasRelatedTarget: boolean) => void,
+  onValidateAndBlur: (hasRelatedTarget: boolean) => void,
   pickerElement?: HTMLElement | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
 
-  if (isInternalFocusTarget(hostElement, relatedTarget, pickerElement)) {
+  if (isFocusWithinPickerBoundary(hostElement, relatedTarget, pickerElement)) {
     return;
   }
 
@@ -154,7 +148,7 @@ export function handlePickerHostFocusout(
     return;
   }
 
-  onExternalFocusout(relatedTarget !== null);
+  onValidateAndBlur(relatedTarget !== null);
 }
 
 export function syncCustomInputValidity(
