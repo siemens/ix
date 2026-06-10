@@ -30,7 +30,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean } from '../utils/a11y';
 import {
   addDisposableEventListenerAsArray,
   DisposableEventListener,
@@ -810,7 +809,6 @@ export class Popover
           popover="manual"
           inert={!this.show}
           role={role}
-          aria-modal={a11yBoolean(this.hasFocusableContent)}
           aria-label={this.inheritAriaAttributes['aria-label']}
           aria-describedby={this.inheritAriaAttributes['aria-describedby']}
           onMouseEnter={() => this.onDialogMouseEnter()}

@@ -529,27 +529,20 @@ regressionTest.describe('ix-popover', () => {
         );
 
         const popover = new PopoverPage(page);
-        const popoverEl = await popover.openWithKeyboardAndExpectOpen();
+        await popover.openWithKeyboardAndExpectOpen();
 
         await popover.expectTriggerFocused();
-        await expect(popover.dialog(popoverEl)).toHaveAttribute(
-          'aria-modal',
-          'false'
-        );
       }
     );
 
-    regressionTest(
-      'sets aria-modal true for interactive popovers',
-      async ({ mount, page }) => {
-        await mount(interactivePopoverMarkup());
-        const popover = new PopoverPage(page);
-        await popover.open();
-        await expect(
-          popover.dialog(await popover.getPopover())
-        ).toHaveAttribute('aria-modal', 'true');
-      }
-    );
+    regressionTest('omits aria-modal on dialog', async ({ mount, page }) => {
+      await mount(interactivePopoverMarkup());
+      const popover = new PopoverPage(page);
+      await popover.open();
+      await expect(
+        popover.dialog(await popover.getPopover())
+      ).not.toHaveAttribute('aria-modal');
+    });
 
     regressionTest(
       'delegates focus to the close button when clicking the header',
