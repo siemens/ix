@@ -375,6 +375,21 @@ regressionTest.describe('keyboard navigation', () => {
   });
 
   regressionTest(
+    'keyboard focus opens picker (keyboard navigation)',
+    async ({ page, mount }) => {
+      await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.locator('input');
+      const dateDropdown = dateInputElement.getByTestId('date-dropdown');
+
+      await page.keyboard.press('Tab');
+      await expect(input).toBeFocused();
+      await expect(dateDropdown).toHaveClass(/show/);
+    }
+  );
+
+  regressionTest(
     'Keyboard navigation (PageUp/PageDown) should not trigger validation',
     async ({ mount, page }) => {
       await mount(`<ix-date-input value=""></ix-date-input>`);
@@ -934,7 +949,6 @@ regressionTest.describe('date-input validation scenarios', () => {
         const dateInput = page.locator('ix-date-input');
         const input = dateInput.getByRole('textbox');
 
-        // No interaction — clean
         await expect(input).not.toHaveClass(/is-invalid/);
 
         await page.evaluate(() => {

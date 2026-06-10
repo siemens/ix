@@ -64,6 +64,7 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 /**
  * @form-ready
@@ -655,6 +656,9 @@ export class DateInput
           }}
           onFocus={async () => {
             this.ixFocus.emit();
+            if (hasKeyboardMode()) {
+              this.openDropdown();
+            }
           }}
           onBlur={(e: FocusEvent) =>
             handlePickerInputBlur(
