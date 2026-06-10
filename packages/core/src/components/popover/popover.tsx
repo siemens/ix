@@ -26,10 +26,11 @@ import {
   Host,
   Listen,
   Method,
+  Mixin,
   Prop,
   Watch,
 } from '@stencil/core';
-import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean } from '../utils/a11y';
 import {
   addDisposableEventListenerAsArray,
   DisposableEventListener,
@@ -46,6 +47,11 @@ import {
   focusFirstDescendant,
   queryElements,
 } from '../utils/focus/focus-utilities';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import {
   popoverController,
@@ -84,8 +90,11 @@ let popoverInstance = 0;
   styleUrl: 'popover.scss',
   shadow: true,
 })
-export class Popover implements PopoverInterface {
-  @Element() hostElement!: HTMLIxPopoverElement;
+export class Popover
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements PopoverInterface, InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxPopoverElement;
 
   /**
    * Element that toggles the popover.
@@ -145,7 +154,6 @@ export class Popover implements PopoverInterface {
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
-  private ariaAttributes: A11yAttributes = {};
   private readonly uid = `popover-${popoverInstance++}`;
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
@@ -256,23 +264,19 @@ export class Popover implements PopoverInterface {
     }
   }
 
-  componentWillLoad() {
-    this.ariaAttributes = a11yHostAttributes(this.hostElement);
-  }
-
-  connectedCallback() {
+  override connectedCallback() {
     if (this.hasDisconnected) {
       popoverController.connected(this);
       void this.registerTriggerListener();
     }
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     popoverController.connected(this);
     void this.registerTriggerListener();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this.hasDisconnected = true;
     this.clearHideTimeout();
     this.disposeAutoUpdate?.();
@@ -794,8 +798,8 @@ export class Popover implements PopoverInterface {
     }
   }
 
-  render() {
-    const role = this.ariaAttributes['role'] ?? 'dialog';
+  override render() {
+    const role = this.inheritAriaAttributes['role'] ?? 'dialog';
 
     return (
       <Host class={{ visible: this.show }} data-ix-popover={this.uid}>
@@ -807,8 +811,8 @@ export class Popover implements PopoverInterface {
           inert={!this.show}
           role={role}
           aria-modal={a11yBoolean(this.hasFocusableContent)}
-          aria-label={this.ariaAttributes['aria-label']}
-          aria-describedby={this.ariaAttributes['aria-describedby']}
+          aria-label={this.inheritAriaAttributes['aria-label']}
+          aria-describedby={this.inheritAriaAttributes['aria-describedby']}
           onMouseEnter={() => this.onDialogMouseEnter()}
           onMouseLeave={() => this.onDialogMouseLeave()}
         >
