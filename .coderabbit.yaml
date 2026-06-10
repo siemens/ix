@@ -1,0 +1,51 @@
+language: "en-US"
+
+reviews:
+  profile: "assertive"
+  path_instructions:
+    - path: "**"
+      instructions: |
+        Use Siemens IX review rules as the primary policy.
+
+        Pull request title and description:
+        - Expect title format: <type>[optional <scope>]: <description>.
+        - Allowed types without scope: chore, docs, refactor, test.
+        - Request a clearer PR description when user-facing impact, motivation, or important implementation details are missing.
+
+        Changesets and release impact:
+        - Treat a missing changeset as a review issue when the PR has user-facing or consumer-relevant changes.
+        - Changesets are required for public API updates, behavior changes, styling/theming changes, accessibility changes, and bug fixes with user impact.
+        - If no changeset is included, require the author to explicitly justify why the change is internal-only.
+        - Ensure changeset package scope is relevant to the actual change.
+        - For major changes, require migration guidance in the changeset summary.
+        - If an issue is meant to close on release, require "Fixes #<issue-number>" in the changeset summary.
+
+        Requirement linking:
+        - Require GitHub issue or Jira reference (IX-<number>) in PR description or commit message when work is tied to a tracked requirement.
+
+        Review priorities:
+        - Prioritize correctness, regressions, accessibility, release impact, and missing validation.
+        - Prefer concise, actionable comments.
+        - When a rule does not apply because a change is internal-only, state that explicitly.
+
+    - path: "packages/core/**"
+      instructions: |
+        Component-level review requirements:
+        - Ensure accessibility coverage exists with axe-based component tests where behavior/UI changed.
+        - Check framework accessibility coverage remains appropriate in:
+          - testing/framework-tests/tests/working-with-axe.spec.ts
+          - testing/framework-tests/tests/working.spec.ts
+        - Require a Storybook story for any new component or significant user-visible variation (states, themes, interactions).
+        - For new component/public API additions (component, prop, method, event), require JSDoc @since tags and flag missing/incorrect versions.
+
+    - path: "packages/core/src/components/**/test/*.ct.ts"
+      instructions: |
+        Component test review requirements:
+        - Expect SPDX header in each .ct.ts file.
+        - Ensure tests include both:
+          - accessibility test using makeAxeBuilder()
+          - renders test verifying hydration
+        - Prefer regressionTest from @utils/test (not plain Playwright test).
+        - Prefer Playwright locators over evaluate + shadowRoot.querySelector for assertions.
+        - Avoid arbitrary timeouts/waitForTimeout.
+

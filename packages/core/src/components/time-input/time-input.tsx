@@ -62,6 +62,7 @@ import {
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
+import { forceTabIndex } from '../utils/a11y';
 
 /**
  * @since 3.2.0
@@ -580,7 +581,7 @@ export class TimeInput
         >
           <ix-icon-button
             tabindex={-1}
-            ref={(ref) => (ref!.tabIndex = -1)}
+            ref={(ref) => forceTabIndex(ref, -1)}
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"

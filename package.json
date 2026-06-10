@@ -56,15 +56,6 @@
     "turbo": "^2.9.14",
     "typescript": "^5.5.4"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "@stencil/core": "patches/@stencil__core.patch"
-    },
-    "overrides": {
-      "cheerio": "1.0.0-rc.12",
-      "rollup": "npm:@rollup/wasm-node"
-    }
-  },
   "volta": {
     "node": "22.19.0"
   }

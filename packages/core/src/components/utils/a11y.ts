@@ -187,3 +187,16 @@ type PartialRecord<K extends A11yAttributeName, T> = {
   [P in K]?: T;
 };
 export type A11yAttributes = PartialRecord<A11yAttributeName, string>;
+
+/**
+ * Usually called by ref={(ref) => forceTabIndex(ref, -1)} to workaround an issue
+ * where the tabIndex is not applied to the element after re-render.
+ */
+export const forceTabIndex = (
+  element: HTMLElement | undefined,
+  tabIndex: number
+) => {
+  if (element) {
+    element.tabIndex = tabIndex;
+  }
+};
