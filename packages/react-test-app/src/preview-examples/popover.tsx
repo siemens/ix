@@ -44,7 +44,6 @@ export default function PopoverPreview() {
         <IxPopoverHeader
           icon={iconInfo}
           iconColor="color-info"
-          ariaLabelIcon="Information"
           ariaLabelCloseIconButton="Close popover"
         >
           Release highlights

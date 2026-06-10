@@ -9,7 +9,6 @@ import { defineCustomElement as defineIxPopoverHeader } from '@siemens/ix/compon
 export const IxPopoverHeader: StencilVueComponent<JSX.IxPopoverHeader> = /*@__PURE__*/ defineContainer<JSX.IxPopoverHeader>('ix-popover-header', defineIxPopoverHeader, [
   'icon',
   'iconColor',
-  'ariaLabelIcon',
   'hideClose',
   'ariaLabelCloseIconButton',
   'closeClick'
