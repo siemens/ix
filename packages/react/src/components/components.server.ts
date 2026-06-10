@@ -1570,7 +1570,6 @@ export const IxPopoverHeader: StencilReactComponent<IxPopoverHeaderElement, IxPo
     properties: {
         icon: 'icon',
         iconColor: 'icon-color',
-        ariaLabelIcon: 'aria-label-icon',
         hideClose: 'hide-close',
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },

@@ -44,7 +44,6 @@ const onCancel = () => {
     <IxPopoverHeader
       :icon="iconInfo"
       icon-color="color-info"
-      aria-label-icon="Information"
       aria-label-close-icon-button="Close popover"
     >
       Release highlights

@@ -2383,14 +2383,14 @@ export declare interface IxPopoverFooter extends Components.IxPopoverFooter {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPopoverHeader,
-  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor']
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor']
 })
 @Component({
   selector: 'ix-popover-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor'],
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor'],
   outputs: ['closeClick'],
 })
 export class IxPopoverHeader {

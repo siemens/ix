@@ -50,7 +50,6 @@ const POPOVER_IMAGE_SRC =
       <ix-popover-header
         icon="info"
         icon-color="color-info"
-        aria-label-icon="Information"
         aria-label-close-icon-button="Close popover"
       >
         Release highlights

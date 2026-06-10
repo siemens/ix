@@ -17,6 +17,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { closestPassShadow } from '../utils/shadow-dom';
 
@@ -39,7 +40,8 @@ export class PopoverHeader {
   @Element() hostElement!: HTMLIxPopoverHeaderElement;
 
   /**
-   * Icon name displayed before the title
+   * Icon name displayed before the title.
+   * The icon is decorative; provide context in the default slot heading.
    *
    * @since 5.1.0
    */
@@ -51,13 +53,6 @@ export class PopoverHeader {
    * @since 5.1.0
    */
   @Prop() iconColor?: string;
-
-  /**
-   * ARIA label for the icon
-   *
-   * @since 5.1.0
-   */
-  @Prop() ariaLabelIcon?: string;
 
   /**
    * Hide the close (X) button
@@ -107,7 +102,7 @@ export class PopoverHeader {
             name={this.icon}
             color={this.iconColor}
             size="24"
-            aria-label={this.ariaLabelIcon}
+            aria-hidden={a11yBoolean(true)}
           ></ix-icon>
         ) : null}
         <div class="popover-title">

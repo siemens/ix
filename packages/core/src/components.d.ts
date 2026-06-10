@@ -3235,18 +3235,13 @@ export namespace Components {
          */
         "ariaLabelCloseIconButton"?: string;
         /**
-          * ARIA label for the icon
-          * @since 5.1.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
           * Hide the close (X) button
           * @since 5.1.0
           * @default false
          */
         "hideClose": boolean;
         /**
-          * Icon name displayed before the title
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
           * @since 5.1.0
          */
         "icon"?: string;
@@ -9961,18 +9956,13 @@ declare namespace LocalJSX {
          */
         "ariaLabelCloseIconButton"?: string;
         /**
-          * ARIA label for the icon
-          * @since 5.1.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
           * Hide the close (X) button
           * @since 5.1.0
           * @default false
          */
         "hideClose"?: boolean;
         /**
-          * Icon name displayed before the title
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
           * @since 5.1.0
          */
         "icon"?: string;
@@ -12236,7 +12226,6 @@ declare namespace LocalJSX {
     interface IxPopoverHeaderAttributes {
         "icon": string;
         "iconColor": string;
-        "ariaLabelIcon": string;
         "hideClose": boolean;
         "ariaLabelCloseIconButton": string;
     }
