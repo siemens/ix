@@ -10,10 +10,10 @@
 import { Component, Host, State, h } from '@stencil/core';
 
 /**
- * @since 5.0.0
+ * @since 5.1.0
  * @slot - AI-generated message content
  * @slot actions - Optional actions displayed below the AI message
- * @slot sources - Optional sources action displayed next to the AI message actions
+ * @slot sources - Optional sources displayed next to the AI message actions
  */
 @Component({
   tag: 'ix-chat-ai-message',

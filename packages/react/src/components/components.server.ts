@@ -419,7 +419,6 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         maxLength: 'max-length',
         characterLimit: 'character-limit',
         characterLimitWarningThreshold: 'character-limit-warning-threshold',
-        attachmentLayout: 'attachment-layout',
         minRows: 'min-rows',
         maxRows: 'max-rows',
         insertLineBreakOnEnter: 'insert-line-break-on-enter',

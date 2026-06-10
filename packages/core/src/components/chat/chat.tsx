@@ -10,7 +10,7 @@
 import { Component, Host, State, h } from '@stencil/core';
 
 /**
- * @since 5.0.0
+ * @since 5.1.0
  * @slot - Chat messages, for example ix-chat-user-message and ix-chat-ai-message
  * @slot prompt - Chat input displayed below the chat messages
  */

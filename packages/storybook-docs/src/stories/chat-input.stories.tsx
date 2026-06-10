@@ -124,9 +124,6 @@ export const WithScrollableAttachments: Story = {
       Array.from({ length: 8 }, (_, index) => createAttachment(index + 1))
     )
   ),
-  args: {
-    attachmentLayout: 'scroll',
-  },
   parameters: {
     design: {
       type: 'figma',

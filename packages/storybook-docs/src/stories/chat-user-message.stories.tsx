@@ -8,11 +8,8 @@
  */
 import {
   iconCopy,
-  iconImage,
   iconMoreMenu,
-  iconPdfDocument,
-  iconPen,
-  iconTxtDocument,
+  iconPen
 } from '@siemens/ix-icons/icons';
 import type { Components } from '@siemens/ix/components';
 import { h, type VNode } from '@stencil/core';
@@ -46,28 +43,6 @@ function createAttachment(
       previewSupported={previewSupported}
       slot={slot}
     ></ix-chat-prompt-attachment>
-  );
-}
-
-function getAttachmentIcon(fileName: string) {
-  if (fileName.endsWith('.pdf')) {
-    return iconPdfDocument;
-  }
-
-  if (fileName.endsWith('.txt')) {
-    return iconTxtDocument;
-  }
-
-  return iconImage;
-}
-
-function createAttachmentDropdownItem(fileName: string) {
-  return (
-    <ix-dropdown-item
-      icon={getAttachmentIcon(fileName)}
-      label={fileName}
-      slot="attachment-overflow"
-    ></ix-dropdown-item>
   );
 }
 

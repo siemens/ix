@@ -30,12 +30,11 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import type { ChatInputAttachmentLayout } from './chat-input.types';
 import { DefaultMixins } from '../utils/internal/component';
 import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 /**
- * @since 5.0.0
+ * @since 5.1.0
  * @form-ready
  * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the chat input
  * @slot attachments - Attachments displayed above the prompt text area
@@ -54,118 +53,112 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   /**
    * The state of the chat input, which can be either 'input' or 'processing'.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() state?: 'input' | 'processing' = 'input';
 
   /**
    * The name of the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
    * The placeholder text for the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) placeholder =
     'Enter a command, question or topic...';
 
   /**
    * The value of the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
    * Specifies whether the chat input is disabled.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) disabled: boolean = false;
 
   /**
    * Specifies whether the chat input is readonly.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) readonly: boolean = false;
 
   /**
    * Accessible label for the native textarea.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() textareaLabel: string = 'Chat input';
 
   /**
    * The maximum length of the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() maxLength?: number;
 
   /**
    * Character limit used for the optional inline character limit message.
    * Falls back to `maxLength` when not set.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() characterLimit?: number;
 
   /**
-   * Percentage of the character limit that triggers the soft warning.
-   * @since 5.0.0
+   * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
+   * @since 5.1.0
    */
   @Prop() characterLimitWarningThreshold: number = 0.9;
 
   /**
-   * Layout used for attachments in the attachments slot.
-   * @since 5.0.0
-   */
-  @Prop() attachmentLayout: ChatInputAttachmentLayout = 'wrap';
-
-  /**
    * Minimum number of visible text rows.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() minRows: number = 1;
 
   /**
    * Maximum number of visible text rows before the input becomes scrollable.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() maxRows: number = 6;
 
   /**
    * If true, pressing Enter inserts a line break instead of submitting the prompt.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() insertLineBreakOnEnter: boolean = false;
 
   /**
    * Disclaimer text displayed below the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() disclaimer =
     'This content is AI-generated. Always verify the information for accuracy.';
 
   /**
    * Event emitted when the value of the chat input changes.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() valueChange!: EventEmitter<string>;
 
   /**
    * Event emitted when the chat input loses focus.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
    * Event emitted when the chat input loses focus and the value has changed.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() ixChange!: EventEmitter<string>;
 
   /**
    * Event emitted when the prompt is submitted by the send button or Enter key.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() promptSubmit!: EventEmitter<string>;
 
@@ -226,11 +219,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     this.updateTextareaHeight();
   }
 
-  @Watch('attachmentLayout')
-  onAttachmentLayoutChange() {
-    this.scheduleAttachmentScrollbarUpdate();
-  }
-
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
@@ -244,7 +232,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   /**
    * Returns the native textarea element used by the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Method()
   async getNativeInputElement(): Promise<HTMLTextAreaElement> {
@@ -253,7 +241,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   /**
    * Focuses the chat input.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Method()
   async focusInput(): Promise<void> {
@@ -319,10 +307,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     return typeof limit === 'number' && Number.isFinite(limit) && limit > 0
       ? limit
       : undefined;
-  }
-
-  private getNativeMaxLength() {
-    return this.getCharacterLimit();
   }
 
   private getNormalizedCharacterLimitWarningThreshold() {
@@ -531,8 +515,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
             ref={this.attachmentsRef}
             class={{
               attachments: true,
-              'attachments--wrap': this.attachmentLayout === 'wrap',
-              'attachments--scroll': this.attachmentLayout === 'scroll',
+              'attachments--scroll': true,
               'has-attachment-scrollbar': this.hasAttachmentScrollbar,
               'has-attachments': this.hasAttachments,
             }}
@@ -547,7 +530,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
             ref={this.textareaRef}
             readOnly={this.readonly}
             disabled={this.disabled}
-            maxLength={this.getNativeMaxLength()}
+            maxLength={this.getCharacterLimit()}
             rows={this.minRows}
             value={this.value}
             placeholder={this.placeholder}

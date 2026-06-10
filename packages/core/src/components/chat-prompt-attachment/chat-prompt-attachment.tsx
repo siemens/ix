@@ -12,7 +12,7 @@ import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types';
 
 /**
- * @since 5.0.0
+ * @since 5.1.0
  */
 @Component({
   tag: 'ix-chat-prompt-attachment',
@@ -22,49 +22,49 @@ import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types'
 export class ChatPromptAttachment {
   /**
    * Name of the attached file.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() fileName: string = '';
 
   /**
    * Upload status of the attachment.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) status: ChatPromptAttachmentStatus = 'default';
 
   /**
    * Icon displayed before the file name.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() icon: string = iconTxtDocument;
 
   /**
    * Hide the remove action.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() hideRemoveButton: boolean = false;
 
   /**
    * Enable preview interaction for default attachments.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop({ reflect: true }) previewSupported: boolean = false;
 
   /**
    * Accessible label for the remove action.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Prop() removeAriaLabel: string = 'Remove attachment';
 
   /**
    * Event emitted when the attachment is clicked.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() attachmentClick!: EventEmitter<void>;
 
   /**
    * Event emitted when the remove action is clicked.
-   * @since 5.0.0
+   * @since 5.1.0
    */
   @Event() removeClick!: EventEmitter<void>;
 

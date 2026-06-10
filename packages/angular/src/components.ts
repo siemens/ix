@@ -447,7 +447,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 
 @ProxyCmp({
-  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -455,7 +455,7 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['attachmentLayout', 'characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
   standalone: false
 })
@@ -474,19 +474,19 @@ export class IxChatInput {
 
 export declare interface IxChatInput extends Components.IxChatInput {
   /**
-   * Event emitted when the value of the chat input changes. @since 5.0.0
+   * Event emitted when the value of the chat input changes. @since 5.1.0
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Event emitted when the chat input loses focus. @since 5.0.0
+   * Event emitted when the chat input loses focus. @since 5.1.0
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the chat input loses focus and the value has changed. @since 5.0.0
+   * Event emitted when the chat input loses focus and the value has changed. @since 5.1.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.0.0
+   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.1.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
 }
@@ -517,11 +517,11 @@ export class IxChatPromptAttachment {
 
 export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
   /**
-   * Event emitted when the attachment is clicked. @since 5.0.0
+   * Event emitted when the attachment is clicked. @since 5.1.0
    */
   attachmentClick: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the remove action is clicked. @since 5.0.0
+   * Event emitted when the remove action is clicked. @since 5.1.0
    */
   removeClick: EventEmitter<CustomEvent<void>>;
 }

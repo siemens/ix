@@ -187,7 +187,6 @@ export class Chip
     const { wrap: customWrapStyle, main: customMainStyle } =
       this.getCustomStyles(variant);
 
-    const showClose = this.closable;
     const wrapClasses = {
       'chip-wrap': true,
       outline: this.outline,
@@ -214,7 +213,7 @@ export class Chip
     const hasTooltip =
       !!this.tooltipText || this.hostElement.hasAttribute('tooltip-text');
 
-    const needsGroupRole = hasAccessibleName && (showClose || hasTooltip);
+    const needsGroupRole = hasAccessibleName && (this.closable || hasTooltip);
 
     return (
       <Host
@@ -253,7 +252,7 @@ export class Chip
               </span>
             </div>
           </button>
-          {showClose && (
+          {this.closable && (
             <button
               type="button"
               class="chip-close"
