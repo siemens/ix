@@ -31,7 +31,7 @@ function wirePopoverDismissButtons(popover: PopoverHostElement) {
   );
 
   button?.addEventListener('click', () => {
-    void popover.hidePopover();
+    popover.hidePopover();
   });
 }
 

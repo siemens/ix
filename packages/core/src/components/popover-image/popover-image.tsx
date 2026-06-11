@@ -28,7 +28,8 @@ export class PopoverImage {
   @Prop() src?: string;
 
   /**
-   * Alt text for the image
+   * Alt text for the image.
+   * Use an empty string for decorative images; provide descriptive text for content images.
    *
    * @since 5.1.0
    */

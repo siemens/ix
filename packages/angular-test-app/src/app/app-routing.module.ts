@@ -877,14 +877,6 @@ const routes: Routes = [
       },
       { path: 'pill-variants', component: PillVariants },
       {
-        path: 'popover',
-        component: Popover,
-      },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
-      {
         path: 'push-card',
         component: PushCard,
       },
