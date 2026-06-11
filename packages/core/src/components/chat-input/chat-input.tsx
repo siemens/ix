@@ -533,9 +533,12 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   }
 
   override render() {
-    const disabledSubmitButton = !this.canSubmit() && this.state === 'input';
-    const submitButtonIcon =
-      this.state === 'input' ? iconSendRightFilled : iconCircleStop;
+    const isProcessing = this.state === 'processing';
+    const disabledSubmitButton =
+      isProcessing || (!this.canSubmit() && this.state === 'input');
+    const submitButtonIcon = isProcessing
+      ? iconCircleStop
+      : iconSendRightFilled;
 
     return (
       <Host
@@ -599,7 +602,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
             <div class="right-actions">
               <slot name="end"></slot>
               <ix-icon-button
-                aria-label="Submit prompt"
+                aria-label={isProcessing ? 'Stop processing' : 'Submit prompt'}
                 class="submit-button"
                 disabled={disabledSubmitButton}
                 icon={submitButtonIcon}

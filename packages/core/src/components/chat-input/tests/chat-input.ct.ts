@@ -26,6 +26,19 @@ function getSubmitButtonIcon(element: Element) {
   return (element as HTMLIxIconButtonElement).icon;
 }
 
+regressionTest('renders', async ({ mount, page }) => {
+  await mount('<ix-chat-input></ix-chat-input>');
+  await expect(page.locator('ix-chat-input')).toHaveClass(/\bhydrated\b/);
+});
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount('<ix-chat-input></ix-chat-input>');
+  const accessibilityScanResults = await makeAxeBuilder()
+    .include('ix-chat-input')
+    .analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest(
   'ix-chat-input emits valueChange when text is entered',
   async ({ mount, page }) => {
