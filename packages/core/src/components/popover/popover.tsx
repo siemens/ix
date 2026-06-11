@@ -169,6 +169,15 @@ export class Popover
     return this.hostElement.shadowRoot!.querySelector('.spike');
   }
 
+  private getFocusTrapOptions() {
+    return {
+      trapFocusInShadowDom: 'both' as const,
+      listenOnDocument: true,
+      shouldDeferTabTrap: (trapHost: HTMLElement) =>
+        !popoverController.isTopmostPresentedHost(trapHost),
+    };
+  }
+
   getId(): string {
     return this.uid;
   }
@@ -316,9 +325,10 @@ export class Popover
       }
 
       if (this.hasFocusableContent) {
-        const trap = await addFocusTrap(this.hostElement, {
-          trapFocusInShadowDom: true,
-        });
+        const trap = await addFocusTrap(
+          this.hostElement,
+          this.getFocusTrapOptions()
+        );
         if (!this.hostElement.isConnected || !this.show) {
           trap.destroy();
         } else {
@@ -373,16 +383,15 @@ export class Popover
 
   private detectFocusableContent() {
     this.hasFocusableContent =
-      getFocusTrapFocusables(this.hostElement, {
-        trapFocusInShadowDom: true,
-      }).length > 0;
+      getFocusTrapFocusables(this.hostElement, this.getFocusTrapOptions())
+        .length > 0;
   }
 
   private focusFirstElement() {
+    const focusTrapOptions = this.getFocusTrapOptions();
+    focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     requestAnimationFrame(() => {
-      focusFirstFocusTrapElement(this.hostElement, {
-        trapFocusInShadowDom: true,
-      });
+      focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     });
   }
 

@@ -29,6 +29,104 @@ export type FocusTrapOptions = {
   targetElement?: HTMLElement | MakeRef<any>;
   trapFocusInShadowDom?: boolean | 'both';
   excludeElements?: boolean;
+  /** Capture Tab on `document` (popover in ancestor shadow roots / top layer). */
+  listenOnDocument?: boolean;
+  /** Skip handling when another overlay owns focus (nested / sibling popover). */
+  shouldDeferTabTrap?: (trapHost: HTMLElement) => boolean;
+};
+
+const focusTrapQuery = `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`;
+
+const mergeUniqueInDocumentOrder = (
+  ...lists: HTMLElement[][]
+): HTMLElement[] => {
+  const unique: HTMLElement[] = [];
+  const seen = new Set<HTMLElement>();
+
+  for (const list of lists) {
+    for (const element of list) {
+      if (!seen.has(element)) {
+        seen.add(element);
+        unique.push(element);
+      }
+    }
+  }
+
+  return unique.sort((a, b) => {
+    const position = a.compareDocumentPosition(b);
+
+    if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+      return -1;
+    }
+
+    if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+      return 1;
+    }
+
+    return 0;
+  });
+};
+
+export const getDeepActiveElement = (): Element | null => {
+  let active: Element | null = document.activeElement;
+
+  while (active) {
+    if (active instanceof HTMLElement && active.shadowRoot?.activeElement) {
+      const shadowActive = active.shadowRoot.activeElement;
+
+      if (shadowActive !== active) {
+        active = shadowActive;
+        continue;
+      }
+    }
+
+    const root = active.getRootNode();
+
+    if (
+      root instanceof ShadowRoot &&
+      root.activeElement &&
+      root.activeElement !== active
+    ) {
+      active = root.activeElement;
+      continue;
+    }
+
+    break;
+  }
+
+  return active;
+};
+
+const resolveFocusTrapActiveElement = (
+  trapHost: HTMLElement,
+  focusableElements: HTMLElement[]
+): Element | null => {
+  let activeElement: Element | null = getDeepActiveElement();
+
+  if (findActiveFocusableIndex(activeElement, focusableElements) !== -1) {
+    if (
+      activeElement instanceof HTMLElement &&
+      activeElement.hasAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE) &&
+      activeElement.shadowRoot?.activeElement
+    ) {
+      const includedActive = activeElement.shadowRoot.activeElement;
+      if (findActiveFocusableIndex(includedActive, focusableElements) !== -1) {
+        return includedActive;
+      }
+    }
+
+    return activeElement;
+  }
+
+  const shadowActive = trapHost.shadowRoot?.activeElement;
+  if (
+    shadowActive instanceof HTMLElement &&
+    findActiveFocusableIndex(shadowActive, focusableElements) !== -1
+  ) {
+    return shadowActive;
+  }
+
+  return activeElement;
 };
 
 export function findActiveFocusableIndex(
@@ -63,6 +161,51 @@ export function findActiveFocusableIndex(
 
   return -1;
 }
+
+export function isFocusWithinTrapHost(
+  element: Element,
+  trapHost: HTMLElement
+): boolean {
+  let current: Element | null = element;
+
+  while (current) {
+    if (current === trapHost) {
+      return true;
+    }
+
+    const root = current.getRootNode();
+    if (root instanceof ShadowRoot) {
+      current = root.host;
+      continue;
+    }
+
+    current = current.parentElement;
+  }
+
+  return false;
+}
+
+const isOpenPopoverHost = (host: HTMLElement): boolean => {
+  if (host.classList.contains('visible')) {
+    return true;
+  }
+
+  const dialog = host.shadowRoot?.querySelector('dialog');
+  return dialog?.matches(':popover-open') ?? false;
+};
+
+const isNestedOpenPopoverLayer = (
+  element: HTMLElement,
+  trapHost: HTMLElement
+): boolean => {
+  const ownerPopover = getPopoverHostForElement(element);
+
+  return (
+    ownerPopover !== undefined &&
+    ownerPopover !== trapHost &&
+    isOpenPopoverHost(ownerPopover)
+  );
+};
 
 export function getPopoverHostForElement(
   element: Element
@@ -173,13 +316,19 @@ export function getFocusTrapFocusables(
   options?: FocusTrapOptions
 ): HTMLElement[] {
   const useBoth = options?.trapFocusInShadowDom === 'both';
-  const focusTrapRoot =
-    options?.trapFocusInShadowDom === true ? ref.shadowRoot : ref;
-  const focusableElements = queryElements(
-    focusTrapRoot,
-    `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`,
-    useBoth
-  );
+  let focusableElements: HTMLElement[];
+
+  if (useBoth) {
+    const fromShadow = ref.shadowRoot
+      ? queryElements(ref.shadowRoot, focusTrapQuery, false)
+      : [];
+    const fromLight = queryElements(ref, focusTrapQuery, false);
+    focusableElements = mergeUniqueInDocumentOrder(fromShadow, fromLight);
+  } else {
+    const focusTrapRoot =
+      options?.trapFocusInShadowDom === true ? ref.shadowRoot : ref;
+    focusableElements = queryElements(focusTrapRoot, focusTrapQuery, useBoth);
+  }
 
   expandFocusTrapIncludes(focusableElements, options);
 
@@ -234,18 +383,56 @@ export function focusFirstFocusTrapElement(
   focusElementInContext(target ?? null, ref);
 }
 
+const getNextTrapFocusable = (
+  focusableElements: HTMLElement[],
+  activeIndex: number,
+  shiftKey: boolean
+): HTMLElement => {
+  if (activeIndex === -1) {
+    return shiftKey
+      ? focusableElements[focusableElements.length - 1]
+      : focusableElements[0];
+  }
+
+  if (shiftKey) {
+    return focusableElements[
+      activeIndex === 0 ? focusableElements.length - 1 : activeIndex - 1
+    ];
+  }
+
+  return focusableElements[
+    activeIndex === focusableElements.length - 1 ? 0 : activeIndex + 1
+  ];
+};
+
+const resolveFocusTrapElement = async (
+  target: HTMLElement | MakeRef<any>
+): Promise<HTMLElement> => {
+  if (target instanceof HTMLElement) {
+    return target;
+  }
+
+  if (isMakeRef(target)) {
+    return target.waitForCurrent();
+  }
+
+  throw new Error('Invalid focus trap element reference');
+};
+
 export const addFocusTrap = async (
   element: HTMLElement,
   options?: FocusTrapOptions
 ): Promise<FocusTrapResult> => {
-  let ref = element;
+  const trapHost = options?.targetElement
+    ? await resolveFocusTrapElement(options.targetElement)
+    : element;
 
-  if (options?.targetElement) {
-    if (options.targetElement instanceof HTMLElement) {
-      ref = options.targetElement;
-    } else if (isMakeRef(options.targetElement)) {
-      ref = await options.targetElement.waitForCurrent();
-    }
+  let listenerTarget: EventTarget = element;
+
+  if (options?.listenOnDocument) {
+    listenerTarget = document;
+  } else if (options?.targetElement) {
+    listenerTarget = trapHost;
   }
 
   const onKeydown = (event: Event) => {
@@ -255,7 +442,7 @@ export const addFocusTrap = async (
       return;
     }
 
-    const focusableElements = getFocusTrapFocusables(ref, options);
+    const focusableElements = getFocusTrapFocusables(trapHost, options);
 
     if (focusableElements.length === 0) {
       return;
@@ -263,46 +450,91 @@ export const addFocusTrap = async (
 
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
-    let activeElement: Element | null = document.activeElement;
-
-    if (ref instanceof HTMLElement && ref.shadowRoot) {
-      activeElement = ref.shadowRoot.activeElement || activeElement;
-    }
-
-    if (
-      activeElement instanceof HTMLElement &&
-      activeElement.hasAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE) &&
-      activeElement.shadowRoot?.activeElement
-    ) {
-      activeElement = activeElement.shadowRoot.activeElement;
-    }
+    const activeElement = resolveFocusTrapActiveElement(
+      trapHost,
+      focusableElements
+    );
 
     const activeIndex = findActiveFocusableIndex(
       activeElement,
       focusableElements
     );
 
-    if (activeIndex === -1) {
+    if (options?.listenOnDocument) {
+      if (options.shouldDeferTabTrap?.(trapHost)) {
+        return;
+      }
+
+      const deepActive = getDeepActiveElement();
+
+      if (
+        deepActive instanceof HTMLElement &&
+        isNestedOpenPopoverLayer(deepActive, trapHost)
+      ) {
+        return;
+      }
+
+      keyboardEvent.preventDefault();
+      tryFocusElement(
+        getNextTrapFocusable(
+          focusableElements,
+          activeIndex,
+          keyboardEvent.shiftKey
+        )
+      );
+      event.stopImmediatePropagation();
       return;
     }
+
+    if (activeIndex === -1) {
+      const deepActive = getDeepActiveElement();
+
+      if (!(deepActive instanceof HTMLElement)) {
+        return;
+      }
+
+      if (isNestedOpenPopoverLayer(deepActive, trapHost)) {
+        return;
+      }
+
+      if (isFocusWithinTrapHost(deepActive, trapHost)) {
+        keyboardEvent.preventDefault();
+        tryFocusElement(
+          getNextTrapFocusable(
+            focusableElements,
+            activeIndex,
+            keyboardEvent.shiftKey
+          )
+        );
+        event.stopImmediatePropagation();
+      }
+
+      return;
+    }
+
+    let handled = false;
 
     if (keyboardEvent.shiftKey) {
       if (activeIndex === 0) {
         keyboardEvent.preventDefault();
         tryFocusElement(lastElement);
+        handled = true;
       }
     } else if (activeIndex === focusableElements.length - 1) {
       keyboardEvent.preventDefault();
       tryFocusElement(firstElement);
+      handled = true;
     }
 
-    event.stopImmediatePropagation();
+    if (handled) {
+      event.stopImmediatePropagation();
+    }
   };
 
-  ref.addEventListener('keydown', onKeydown, true);
+  listenerTarget.addEventListener('keydown', onKeydown, true);
 
   const destroy = () => {
-    ref.removeEventListener('keydown', onKeydown, true);
+    listenerTarget.removeEventListener('keydown', onKeydown, true);
   };
 
   return {

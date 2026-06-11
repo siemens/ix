@@ -744,6 +744,68 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'traps focus for popover inside an ancestor shadow root',
+      async ({ mount, page }) => {
+        await mount(html`<div id="shadow-mount"></div>`);
+        await page.evaluate(async () => {
+          await customElements.whenDefined('ix-popover');
+
+          class PopoverShadowCtHost extends HTMLElement {
+            connectedCallback() {
+              if (this.shadowRoot) {
+                return;
+              }
+
+              this.attachShadow({ mode: 'open' }).innerHTML = `
+                <button id="shadow-trigger" type="button">Trigger</button>
+                <ix-popover trigger="shadow-trigger" close-on-click-outside>
+                  <button id="shadow-panel-1" type="button">1</button>
+                  <button id="shadow-panel-2" type="button">2</button>
+                  <button id="shadow-trigger2" type="button">Trigger2</button>
+                </ix-popover>
+                <ix-popover trigger="shadow-trigger2" close-on-click-outside>
+                  <button id="shadow-inner-1" type="button">3</button>
+                  <button id="shadow-inner-2" type="button">4</button>
+                </ix-popover>
+              `;
+            }
+          }
+
+          if (!customElements.get('ix-popover-shadow-ct')) {
+            customElements.define('ix-popover-shadow-ct', PopoverShadowCtHost);
+          }
+
+          document
+            .getElementById('shadow-mount')!
+            .appendChild(document.createElement('ix-popover-shadow-ct'));
+        });
+
+        await page.waitForSelector('ix-popover-shadow-ct');
+        await expect(page.locator('ix-popover').first()).toHaveClass(
+          /hydrated/
+        );
+
+        await page.locator('#shadow-trigger').click();
+        await expect(page.locator('#shadow-panel-1')).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(page.locator('#shadow-panel-2')).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(page.locator('#shadow-trigger2')).toBeFocused();
+
+        await page.locator('#shadow-trigger2').click();
+        await expect(page.locator('#shadow-inner-1')).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(page.locator('#shadow-inner-2')).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(page.locator('#shadow-inner-1')).toBeFocused();
+      }
+    );
+
+    regressionTest(
       'traps focus in open nested popover when parent stays open',
       async ({ mount, page }) => {
         await mountPopover(

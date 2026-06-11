@@ -334,6 +334,27 @@ describe('PopoverController', () => {
       expect(persistent.dismissMock).toHaveBeenCalledOnce();
     });
 
+    it('reports the most recently presented host as topmost', async () => {
+      const parentHost = document.createElement('div');
+      const childHost = document.createElement('div');
+      const parent = createMockPopover({
+        id: 'popover-parent',
+        hostElement: parentHost,
+      });
+      const child = createMockPopover({
+        id: 'popover-child',
+        hostElement: childHost,
+      });
+
+      controller.connected(parent);
+      controller.connected(child);
+      await controller.presentAndWait(parent);
+      await controller.presentAndWait(child);
+
+      expect(controller.isTopmostPresentedHost(parentHost)).toBe(false);
+      expect(controller.isTopmostPresentedHost(childHost)).toBe(true);
+    });
+
     it('dismisses only the nested child on Escape when both are open', () => {
       const parent = createMockPopover({
         id: 'popover-parent',

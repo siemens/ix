@@ -140,6 +140,11 @@ class PopoverController {
     }
   }
 
+  /** Whether this host is the active (topmost) popover for keyboard focus. */
+  isTopmostPresentedHost(host: HTMLElement): boolean {
+    return this.getTopmostForEscape()?.hostElement === host;
+  }
+
   private getTopmostForEscape(): PopoverInterface | undefined {
     for (let index = this.presentationOrder.length - 1; index >= 0; index--) {
       const popover = this.stack.get(this.presentationOrder[index]);
