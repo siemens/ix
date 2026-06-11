@@ -194,6 +194,7 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
+  private readonly passwordToggleRef = () => this.updatePaddings();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
 
@@ -355,7 +356,7 @@ export class Input implements IxInputFieldComponent<string> {
             >
               {this.type === 'password' && !this.disabled && (
                 <ix-icon-button
-                  ref={() => this.updatePaddings()}
+                  ref={this.passwordToggleRef}
                   color="color-weak-text"
                   class="password-eye"
                   variant="tertiary"
