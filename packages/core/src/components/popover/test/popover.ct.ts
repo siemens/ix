@@ -750,37 +750,26 @@ regressionTest.describe('ix-popover', () => {
         await page.evaluate(async () => {
           await customElements.whenDefined('ix-popover');
 
-          class PopoverShadowCtHost extends HTMLElement {
-            connectedCallback() {
-              if (this.shadowRoot) {
-                return;
-              }
-
-              this.attachShadow({ mode: 'open' }).innerHTML = `
-                <button id="shadow-trigger" type="button">Trigger</button>
-                <ix-popover trigger="shadow-trigger" close-on-click-outside>
-                  <button id="shadow-panel-1" type="button">1</button>
-                  <button id="shadow-panel-2" type="button">2</button>
-                  <button id="shadow-trigger2" type="button">Trigger2</button>
-                </ix-popover>
-                <ix-popover trigger="shadow-trigger2" close-on-click-outside>
-                  <button id="shadow-inner-1" type="button">3</button>
-                  <button id="shadow-inner-2" type="button">4</button>
-                </ix-popover>
-              `;
-            }
+          const shadowMount = document.getElementById('shadow-mount');
+          if (!shadowMount) {
+            return;
           }
 
-          if (!customElements.get('ix-popover-shadow-ct')) {
-            customElements.define('ix-popover-shadow-ct', PopoverShadowCtHost);
-          }
-
-          document
-            .getElementById('shadow-mount')!
-            .appendChild(document.createElement('ix-popover-shadow-ct'));
+          shadowMount.attachShadow({ mode: 'open' }).innerHTML = `
+            <button id="shadow-trigger" type="button">Trigger</button>
+            <ix-popover trigger="shadow-trigger" close-on-click-outside>
+              <button id="shadow-panel-1" type="button">1</button>
+              <button id="shadow-panel-2" type="button">2</button>
+              <button id="shadow-trigger2" type="button">Trigger2</button>
+            </ix-popover>
+            <ix-popover trigger="shadow-trigger2" close-on-click-outside>
+              <button id="shadow-inner-1" type="button">3</button>
+              <button id="shadow-inner-2" type="button">4</button>
+            </ix-popover>
+          `;
         });
 
-        await page.waitForSelector('ix-popover-shadow-ct');
+        await page.waitForSelector('#shadow-trigger');
         await expect(page.locator('ix-popover').first()).toHaveClass(
           /hydrated/
         );

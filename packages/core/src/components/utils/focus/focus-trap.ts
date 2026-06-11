@@ -389,20 +389,16 @@ const getNextTrapFocusable = (
   shiftKey: boolean
 ): HTMLElement => {
   if (activeIndex === -1) {
-    return shiftKey
-      ? focusableElements[focusableElements.length - 1]
-      : focusableElements[0];
+    return shiftKey ? focusableElements.at(-1)! : focusableElements[0];
   }
 
   if (shiftKey) {
-    return focusableElements[
-      activeIndex === 0 ? focusableElements.length - 1 : activeIndex - 1
-    ];
+    return focusableElements.at(activeIndex === 0 ? -1 : activeIndex - 1)!;
   }
 
-  return focusableElements[
+  return focusableElements.at(
     activeIndex === focusableElements.length - 1 ? 0 : activeIndex + 1
-  ];
+  )!;
 };
 
 const resolveFocusTrapElement = async (
