@@ -1,5 +1,12 @@
 /\*
 
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`a16ab0a`](https://github.com/siemens/ix/commit/a16ab0a66673340870cd66e2b394a0225dfd73e1), [`5ad2fc5`](https://github.com/siemens/ix/commit/5ad2fc5cf44056c28c1deea56aa8e974c79ef39f), [`7c34939`](https://github.com/siemens/ix/commit/7c34939c4589d31ee51cf0564ff59bdc08121426), [`e727b72`](https://github.com/siemens/ix/commit/e727b72162027a8278dd518cebd952e9edd2ea93), [`1342470`](https://github.com/siemens/ix/commit/1342470aed386d0ca9a28d85c0064b12be54b66c), [`33c0eb9`](https://github.com/siemens/ix/commit/33c0eb9616610a62af194b5fba0eebdb4d26efe5), [`5f2fa82`](https://github.com/siemens/ix/commit/5f2fa82dba306886452dc0428fcfb83b94306fa4), [`a2f425c`](https://github.com/siemens/ix/commit/a2f425c4fa4d7eb4f47d11b2bdc760d287ef464d), [`64e649a`](https://github.com/siemens/ix/commit/64e649a2954aea5d694f6631c8e45a20bcc57c75), [`47d93f3`](https://github.com/siemens/ix/commit/47d93f33213ee841f181283fec99decd0b1f8a0a), [`f66d556`](https://github.com/siemens/ix/commit/f66d556d359719455765b66a603e4ab664b44ac2)]:
+  - @siemens/ix@5.1.0
+
 ## 4.0.0
 
 ### Patch Changes
