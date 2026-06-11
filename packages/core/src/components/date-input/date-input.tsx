@@ -604,7 +604,9 @@ export class DateInput
     );
   }
 
-  private readonly handlePickerFocusoutCallback = async (hasRelatedTarget: boolean) => {
+  private readonly handlePickerFocusoutCallback = async (
+    hasRelatedTarget: boolean
+  ) => {
     if (hasRelatedTarget) {
       this.closeDropdown();
     }
