@@ -166,6 +166,7 @@ export class Menu {
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
+  @State() isMenuItemsOverflow = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
@@ -563,6 +564,7 @@ export class Menu {
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
+    this.isMenuItemsOverflow = scrollHeight > clientHeight;
   }
 
   @Listen('close')
@@ -668,6 +670,11 @@ export class Menu {
     if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
       return;
     }
+
+    if (event.target === this.menuItemsContainer) {
+      return;
+    }
+
     if (this.isEventFromExpandedCategoryItems(event)) {
       return;
     }
@@ -796,6 +803,7 @@ export class Menu {
                     tabs: true,
                     'show-scrollbar': this.expand,
                   }}
+                  tabIndex={this.isMenuItemsOverflow ? 0 : -1}
                   onScroll={() => this.handleOverflowIndicator()}
                 >
                   <div class="menu-avatar">

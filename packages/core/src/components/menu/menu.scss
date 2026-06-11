@@ -40,6 +40,11 @@ $menu-expanded-width: 16rem;
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: -1px;
+    }
   }
 
   .show-scrollbar {
