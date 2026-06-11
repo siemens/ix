@@ -177,6 +177,46 @@ regressionTest(
 );
 
 regressionTest(
+  'ix-chat-input supports a translated soft character limit warning',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-input
+        max-length="10"
+        character-limit-warning-threshold="0.9"
+        i18n-character-limit-warning="{limit} Zeichen, {current} eingegeben"
+        value="123456789"
+      ></ix-chat-input>
+    `);
+
+    const chatInput = page.locator('ix-chat-input');
+
+    await expect(chatInput.locator('.character-limit')).toContainText(
+      '10 Zeichen, 9 eingegeben'
+    );
+  }
+);
+
+regressionTest(
+  'ix-chat-input supports a translated soft character limit warning with custom placeholders',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-input
+        max-length="10"
+        character-limit-warning-threshold="0.9"
+        i18n-character-limit-warning="Warning a limit is near!"
+        value="123456789"
+      ></ix-chat-input>
+    `);
+
+    const chatInput = page.locator('ix-chat-input');
+
+    await expect(chatInput.locator('.character-limit')).toContainText(
+      'Warning a limit is near!'
+    );
+  }
+);
+
+regressionTest(
   'ix-chat-input shows an error when the character limit is reached',
   async ({ mount, page }) => {
     await mount('<ix-chat-input max-length="10"></ix-chat-input>');
@@ -191,6 +231,27 @@ regressionTest(
     await expect(characterLimit).toHaveClass(/character-limit--hard/);
     await expect(characterLimit).toContainText(
       'Character limit reached (10 / 10 characters)'
+    );
+  }
+);
+
+regressionTest(
+  'ix-chat-input supports a translated hard character limit message',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-input
+        max-length="10"
+        i18n-character-limit-reached="{current} von {limit} Zeichen erreicht"
+      ></ix-chat-input>
+    `);
+
+    const chatInput = page.locator('ix-chat-input');
+    const textarea = chatInput.locator('textarea');
+
+    await textarea.fill('1234567890');
+
+    await expect(chatInput.locator('.character-limit')).toContainText(
+      '10 von 10 Zeichen erreicht'
     );
   }
 );

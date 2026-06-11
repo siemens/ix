@@ -16,6 +16,8 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'textareaLabel',
   'maxLength',
   'characterLimit',
+  'i18nCharacterLimitReached',
+  'i18nCharacterLimitWarning',
   'characterLimitWarningThreshold',
   'minRows',
   'maxRows',

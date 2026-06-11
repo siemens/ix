@@ -676,6 +676,18 @@ export namespace Components {
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
         /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @since 5.1.0
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached": string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @since 5.1.0
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning": string;
+        /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
           * @since 5.1.0
           * @default false
@@ -7249,6 +7261,18 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @since 5.1.0
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached"?: string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @since 5.1.0
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning"?: string;
+        /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
           * @since 5.1.0
           * @default false
@@ -11713,6 +11737,8 @@ declare namespace LocalJSX {
         "textareaLabel": string;
         "maxLength": number;
         "characterLimit": number;
+        "i18nCharacterLimitReached": string;
+        "i18nCharacterLimitWarning": string;
         "characterLimitWarningThreshold": number;
         "minRows": number;
         "maxRows": number;

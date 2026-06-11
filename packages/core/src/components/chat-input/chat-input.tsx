@@ -108,6 +108,26 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   @Prop() characterLimit?: number;
 
   /**
+   * i18n label for the hard character limit message.
+   * Use `{current}` and `{limit}` placeholders to place the values in any order.
+   * @since 5.1.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-character-limit-reached' })
+  i18nCharacterLimitReached =
+    'Character limit reached ({current} / {limit} characters)';
+
+  /**
+   * i18n label for the soft character limit warning.
+   * Use `{current}` and `{limit}` placeholders to place the values in any order.
+   * @since 5.1.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-character-limit-warning' })
+  i18nCharacterLimitWarning =
+    "You're nearing the limit ({current} / {limit} characters)";
+
+  /**
    * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
    * @since 5.1.0
    */
@@ -343,20 +363,41 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
 
   private getCharacterLimitMessage() {
     const limit = this.getCharacterLimit();
+    const current = this.value.length;
 
     if (!limit) {
       return undefined;
     }
 
     if (this.isCharacterLimitReached()) {
-      return `Character limit reached (${this.value.length} / ${limit} characters)`;
+      return this.formatCharacterLimitMessage(
+        this.i18nCharacterLimitReached,
+        current,
+        limit
+      );
     }
 
     if (this.isSoftCharacterLimitWarning()) {
-      return `You're nearing the limit (${this.value.length} / ${limit} characters)`;
+      return this.formatCharacterLimitMessage(
+        this.i18nCharacterLimitWarning,
+        current,
+        limit
+      );
     }
 
     return undefined;
+  }
+
+  private formatCharacterLimitMessage(
+    template: string,
+    current: number,
+    limit: number
+  ) {
+    return template
+      .split('{current}')
+      .join(String(current))
+      .split('{limit}')
+      .join(String(limit));
   }
 
   private getCharacterLimitState(): 'soft' | 'hard' | undefined {
