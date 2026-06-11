@@ -604,7 +604,7 @@ export class DateInput
     );
   }
 
-  private async handlePickerFocusoutCallback(hasRelatedTarget: boolean) {
+  private handlePickerFocusoutCallback = async (hasRelatedTarget: boolean) => {
     if (hasRelatedTarget) {
       this.closeDropdown();
     }
@@ -621,7 +621,7 @@ export class DateInput
     }
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     emitPickerValidityState(this);
-  }
+  };
 
   private renderInput() {
     return (
