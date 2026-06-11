@@ -2,23 +2,20 @@
 '@siemens/ix': minor
 ---
 
-Added `clear()` method to reset the value and all validation state to its initial state, removing visual error indicators even after the field has been touched.
+Added `clear()` method to reset value and validation state, removing all visual error indicators even after the field has been touched.
 
 Added `reportValidity()` method to programmatically trigger validation and show visual error state immediately.
 
-Added `i18nErrorRequired` prop (`i18n-error-required`) to show required-missing error message when a required field is emptied after validation has been triggered.
-
-Validation behavior: Values are always validated internally regardless of source. Visual validation errors only appear after the field has been touched (after first blur).
+Added `i18nErrorRequired` prop (`i18n-error-required`) to customize the required-field error message.
 
 Fixed validation behavior for `ix-date-input`:
 
-- Non-required field now correctly validates as valid when the value is removed (both keyboard deletion and programmatic empty string)
-- `novalidate` forms now fully suppress visual validation feedback while maintaining internal date parsing
-
-Additionally covered:
-
-- Dynamically toggling the `required` attribute now immediately reflects correct validation state
-- Removed momentary red-border flash when clicking a calendar day
-- Picker automatically opens when focusing the date-input via keyboard navigation (Tab key)
-- Keyboard navigation within the calendar (e.g., `PageUp`/`PageDown` for months) does not trigger validation errors
+- Non-required field is now valid when the value is removed (keyboard deletion or programmatic empty string).
+- Required field shows required-missing error only when empty and touched, or after `reportValidity()`.
+- Visual validation errors only appear after first blur; programmatic value changes are validated internally without visual feedback until interaction.
+- `novalidate` forms suppress all visual validation while `reportValidity()` overrides this suppression.
+- Dynamically toggling the `required` attribute immediately reflects correct validation state.
+- Picker auto-opens when navigating to the date-input via keyboard (Tab key).
+- Calendar keyboard navigation (PageUp/PageDown) does not trigger validation errors.
+- Removed momentary red-border flash when clicking a calendar day.
 
