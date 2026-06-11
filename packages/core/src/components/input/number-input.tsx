@@ -33,6 +33,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  clearInputValue,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputFocus,
@@ -206,6 +207,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+  private readonly isClearing = false;
   /** @internal */
   public initialValue?: number;
 
@@ -277,7 +279,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
-    if (this.inputRef.current && this.touched) {
+    if (this.inputRef.current && this.touched && !this.isClearing) {
+      this.inputRef.current.value = formValue;
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -300,12 +303,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const parsedValue = this.convertNumberStringToFloat(inputValue);
 
-    this.updateFormInternalValue(parsedValue!);
     if (parsedValue !== undefined && this.inputRef.current) {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
     this.updateFormInternalValue(parsedValue!);
+
     onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
@@ -327,31 +330,33 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
-  private readonly handleBeforeInput = (e: InputEvent) => {
+  private readonly handleBeforeInput = (event: InputEvent) => {
     if (this.disabled || this.readonly) return;
 
-    if (e.inputType === 'insertText') {
-      const character = e.data;
+    if (event.inputType === 'insertText') {
+      const character = event.data;
 
       if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
 
-    if (e.inputType === 'insertFromPaste') {
-      const dt = e.dataTransfer || (e as any).clipboardData;
-      const text = dt?.getData?.('text') ?? '';
+    if (event.inputType === 'insertFromPaste') {
+      const dataTransfer =
+        event.dataTransfer ||
+        (event as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
+      const text = dataTransfer?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
   };
 
-  private readonly handlePaste = (e: ClipboardEvent) => {
-    // Fallback for browsers that don’t fire beforeinput for paste
-    const text = e.clipboardData?.getData('text') ?? '';
+  private readonly handlePaste = (event: ClipboardEvent) => {
+    // Fallback for browsers that don't fire beforeinput for paste
+    const text = event.clipboardData?.getData('text') ?? '';
     if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-      e.preventDefault();
+      event.preventDefault();
     }
   };
 
@@ -457,6 +462,26 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 5.1.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this, { defaultValue: undefined });
+  }
+
+  /**
+   * Returns the validity state of the number input field.
+   * @since 5.1.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const input = await this.inputRef.waitForCurrent();
+    return input.validity;
   }
 
   render() {
