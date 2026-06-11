@@ -15,7 +15,7 @@ export interface SuppressInputBlurOptions {
   isDropdownOpen: boolean;
   hostElement: HTMLElement;
   onBlur: () => void;
-  pickerElement?: HTMLElement | null;
+  pickerElement?: (HTMLElement & { show?: boolean }) | null;
 }
 
 export function focusInputIfKeyboardMode(
@@ -97,7 +97,7 @@ export function createValidityState(
 function isFocusWithinPickerBoundary(
   hostElement: HTMLElement,
   relatedTarget: Node | null,
-  pickerElement?: HTMLElement | null
+  pickerElement?: (HTMLElement & { show?: boolean }) | null
 ): boolean {
   if (!relatedTarget) {
     return false;
@@ -130,7 +130,7 @@ export function handlePickerFocusoutWithValidation(
   e: FocusEvent,
   hostElement: HTMLElement,
   onValidateAndBlur: (hasRelatedTarget: boolean) => void,
-  pickerElement?: HTMLElement | null
+  pickerElement?: (HTMLElement & { show?: boolean }) | null
 ): void {
   const relatedTarget = e.relatedTarget as Node | null;
 
@@ -138,11 +138,7 @@ export function handlePickerFocusoutWithValidation(
     return;
   }
 
-  const isPickerNavigating =
-    relatedTarget === null &&
-    pickerElement &&
-    'show' in pickerElement &&
-    (pickerElement as { show: boolean }).show;
+  const isPickerNavigating = relatedTarget === null && pickerElement?.show;
 
   if (isPickerNavigating) {
     return;
@@ -157,7 +153,7 @@ export function syncCustomInputValidity(
   required: boolean | undefined,
   value: string | undefined,
   invalidMessage: string,
-  requiredMessage: string = 'Please fill out this field.'
+  requiredMessage: string
 ): void {
   if (hasInvalidInput) {
     formInternals.setValidity({ patternMismatch: true }, invalidMessage);

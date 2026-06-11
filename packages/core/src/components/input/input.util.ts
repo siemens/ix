@@ -335,7 +335,7 @@ export async function syncRequiredValidationClass<T>(
     return;
   }
 
-  const hasValue = !!comp.value;
+  const hasValue = comp.value != null && comp.value !== '';
   if (comp.required) {
     hostElement.classList.toggle(
       'ix-invalid--required',
@@ -358,13 +358,13 @@ export interface ClearableInputComponent<T> {
 
 export async function clearInputValue<T>(
   comp: ClearableInputComponent<T>,
-  options?: {
-    defaultValue?: T;
+  options: {
+    defaultValue: T;
     additionalCleanup?: () => void;
     emitValueChange?: boolean;
   }
 ): Promise<void> {
-  const emptyValue = options?.defaultValue ?? ('' as T);
+  const emptyValue = options.defaultValue;
 
   if ('touched' in comp) {
     comp.touched = false;

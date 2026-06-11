@@ -391,6 +391,7 @@ export class DateInput
     this._hasInvalidInput = false;
     this._reportValidityCalled = false;
     await clearInputValue(this, {
+      defaultValue: '',
       additionalCleanup: () => {
         this.from = undefined;
       },
@@ -463,10 +464,14 @@ export class DateInput
     this.valueChange.emit(value);
   }
 
-  private acceptValidAfterReportValidity(value: string): void {
-    this._hasInvalidInput = false;
+  private acceptValidAfterReportValidity(
+    value: string,
+    hasInvalidInput: boolean,
+    invalidReason?: string
+  ): void {
+    this._hasInvalidInput = hasInvalidInput;
     this.isInputInvalid = false;
-    this.invalidReason = undefined;
+    this.invalidReason = invalidReason;
     this.isInvalid = false;
     this.hostElement.classList.remove(
       'ix-invalid--required',
@@ -475,7 +480,7 @@ export class DateInput
     );
     this.updateFormInternalValue(value);
 
-    if (!this.getDateValidation(value).isValid) {
+    if (hasInvalidInput) {
       this.from = undefined;
     }
 
@@ -500,24 +505,28 @@ export class DateInput
   }
 
   private validateInReportValidityMode(value: string): void {
-    const reportValidityWasNotCalled = !this._reportValidityCalled;
-    if (reportValidityWasNotCalled) {
-      this.acceptValidAfterReportValidity(value);
-      return;
-    }
-
     const validation = this.getDateValidation(value);
     const valueIsInvalid = !validation.isValid;
     this._hasInvalidInput = valueIsInvalid;
-    this.isInputInvalid = valueIsInvalid;
 
+    const reportValidityWasNotCalled = !this._reportValidityCalled;
+    if (reportValidityWasNotCalled) {
+      this.acceptValidAfterReportValidity(
+        value,
+        valueIsInvalid,
+        valueIsInvalid ? validation.invalidReason : undefined
+      );
+      return;
+    }
+
+    this.isInputInvalid = valueIsInvalid;
     if (valueIsInvalid) {
       this.keepReportValidityErrorsVisible(value, validation.invalidReason);
       return;
     }
 
     this._reportValidityCalled = false;
-    this.acceptValidAfterReportValidity(value);
+    this.acceptValidAfterReportValidity(value, false, undefined);
   }
 
   private async handleValidatedInput(value: string): Promise<void> {
@@ -595,7 +604,7 @@ export class DateInput
     );
   }
 
-  private handlePickerFocusoutCallback(hasRelatedTarget: boolean) {
+  private async handlePickerFocusoutCallback(hasRelatedTarget: boolean) {
     if (hasRelatedTarget) {
       this.closeDropdown();
     }
@@ -606,7 +615,10 @@ export class DateInput
     }
 
     this.touched = true;
-    this.isInputInvalid = this._hasInvalidInput;
+    const suppress = await shouldSuppressInternalValidation(this);
+    if (!suppress) {
+      this.isInputInvalid = this._hasInvalidInput;
+    }
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     emitPickerValidityState(this);
   }
@@ -654,9 +666,12 @@ export class DateInput
               event: e,
               isDropdownOpen: this.show,
               hostElement: this.hostElement,
-              onBlur: () => {
+              onBlur: async () => {
                 this.touched = true;
-                this.isInputInvalid = this._hasInvalidInput;
+                const suppress = await shouldSuppressInternalValidation(this);
+                if (!suppress) {
+                  this.isInputInvalid = this._hasInvalidInput;
+                }
                 onInputBlurWithChange(
                   this,
                   this.inputElementRef.current,
