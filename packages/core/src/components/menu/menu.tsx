@@ -619,24 +619,30 @@ export class Menu {
     return this.breakpoint === 'sm' && this.expand === false;
   }
 
-  private updateRovingTabIndex(items: HTMLElement[], activeIndex: number) {
+  private updateRovingTabIndex(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[],
+    activeIndex: number
+  ) {
     this.updateMenuItemPositionMetadata(items);
 
-    items.forEach((item, i) => {
-      (
-        item as HTMLElement & { setTabIndex?: (v: number) => void }
-      ).setTabIndex?.(i === activeIndex ? 0 : -1);
-    });
+    items.forEach(
+      (item: HTMLIxMenuItemElement | HTMLIxMenuCategoryElement, i: number) => {
+        item.setTabIndex?.(i === activeIndex ? 0 : -1);
+      }
+    );
   }
 
   // item positions and menu size has to be set manually because slotted items and utility controls are sepparated into two groups
-  private updateMenuItemPositionMetadata(items: HTMLElement[]) {
+  private updateMenuItemPositionMetadata(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[]
+  ) {
+    // get all items unfiltered in case any of them changed state and became hidden or disabled
     const allMenuItems = [
       ...Array.from(
-        this.hostElement.querySelectorAll<HTMLElement>('ix-menu-item')
+        this.hostElement.querySelectorAll<HTMLIxMenuItemElement>('ix-menu-item')
       ),
       ...Array.from(
-        this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+        this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
           '.menu-utility-controls > ix-menu-item'
         ) ?? []
       ),
@@ -664,20 +670,23 @@ export class Menu {
     }
   }
 
-  private getAllFocusableItems(): HTMLElement[] {
+  private getAllFocusableItems(): (
+    | HTMLIxMenuItemElement
+    | HTMLIxMenuCategoryElement
+  )[] {
     const isNavigable = (el: HTMLElement) =>
       !el.hasAttribute('disabled') &&
       !el.hasAttribute('hidden') &&
       this.isVisible(el);
 
     const lightItems = Array.from(
-      this.hostElement.querySelectorAll<HTMLElement>(
-        ':scope > ix-menu-item, :scope > ix-menu-category'
-      )
+      this.hostElement.querySelectorAll<
+        HTMLIxMenuItemElement | HTMLIxMenuCategoryElement
+      >(':scope > ix-menu-item, :scope > ix-menu-category')
     ).filter(isNavigable);
 
     const utilityItems = Array.from(
-      this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
         '.menu-utility-controls > ix-menu-item'
       ) ?? []
     ).filter(isNavigable);

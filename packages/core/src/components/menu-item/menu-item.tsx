@@ -215,6 +215,23 @@ export class MenuItem
     }
   }
 
+  private getAriaLabel() {
+    if ('aria-label' in this.inheritAriaAttributes) {
+      return this.inheritAriaAttributes['aria-label'];
+    }
+
+    const hasDistinctTooltip =
+      this.tooltipText &&
+      this.tooltipText !== this.label &&
+      this.tooltipText !== this.hostElement.textContent;
+
+    if (hasDistinctTooltip) {
+      return `${this.label ?? this.menuCategoryLabel} ${this.tooltipText}`;
+    }
+
+    return undefined;
+  }
+
   private returnFocusToParentCategoryMenuItem() {
     const categoryElement =
       this.hostElement.closest<HTMLElement>('ix-menu-category');
@@ -280,12 +297,7 @@ export class MenuItem
       </span>,
     ];
 
-    const ariaLabel =
-      this.tooltipText &&
-      this.tooltipText !== this.label &&
-      this.tooltipText !== this.hostElement.textContent
-        ? `${this.label ?? this.menuCategoryLabel} ${this.tooltipText}`
-        : undefined;
+    const ariaLabel = this.getAriaLabel();
 
     return (
       <Host
@@ -321,6 +333,7 @@ export class MenuItem
             }}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
+            aria-current={this.active ? 'page' : undefined}
           >
             {menuContent}
           </a>
@@ -337,6 +350,7 @@ export class MenuItem
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
+            aria-current={this.active ? 'page' : undefined}
           >
             {menuContent}
           </button>
