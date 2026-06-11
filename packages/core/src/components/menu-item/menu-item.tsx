@@ -154,10 +154,11 @@ export class MenuItem
     const isInMenuShadowDOM =
       rootNode instanceof ShadowRoot &&
       rootNode.host?.tagName?.toLowerCase() === 'ix-menu';
-    const isDirectMenuChild =
-      !this.isHostedInsideCategory && !!this.hostElement.closest('ix-menu');
+    const isMenuChild =
+      !this.isHostedInsideCategory &&
+      this.hostElement.parentElement?.tagName?.toLowerCase() === 'ix-menu';
 
-    this.isInMenuContext = isInMenuShadowDOM || isDirectMenuChild;
+    this.isInMenuContext = isInMenuShadowDOM || isMenuChild;
 
     this.onIconChange();
 
