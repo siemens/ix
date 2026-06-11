@@ -419,7 +419,8 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       event.altKey ||
       event.ctrlKey ||
       event.metaKey ||
-      this.insertLineBreakOnEnter
+      this.insertLineBreakOnEnter ||
+      this.state === 'processing'
     ) {
       return;
     }
