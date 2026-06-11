@@ -526,7 +526,7 @@ export class DateInput
     }
 
     this._reportValidityCalled = false;
-    this.acceptValidAfterReportValidity(value, false, undefined);
+    this.acceptValidAfterReportValidity(value, false);
   }
 
   private async handleValidatedInput(value: string): Promise<void> {
