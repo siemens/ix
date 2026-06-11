@@ -620,10 +620,38 @@ export class Menu {
   }
 
   private updateRovingTabIndex(items: HTMLElement[], activeIndex: number) {
+    this.updateMenuItemPositionMetadata(items);
+
     items.forEach((item, i) => {
       (
         item as HTMLElement & { setTabIndex?: (v: number) => void }
       ).setTabIndex?.(i === activeIndex ? 0 : -1);
+    });
+  }
+
+  // item positions and menu size has to be set manually because slotted items and utility controls are sepparated into two groups
+  private updateMenuItemPositionMetadata(items: HTMLElement[]) {
+    const allMenuItems = [
+      ...Array.from(
+        this.hostElement.querySelectorAll<HTMLElement>('ix-menu-item')
+      ),
+      ...Array.from(
+        this.hostElement.shadowRoot?.querySelectorAll<HTMLElement>(
+          '.menu-utility-controls > ix-menu-item'
+        ) ?? []
+      ),
+    ];
+
+    allMenuItems.forEach((item) => {
+      item.removeAttribute('aria-posinset');
+      item.removeAttribute('aria-setsize');
+    });
+
+    const total = items.length;
+
+    items.forEach((item, index) => {
+      item.setAttribute('aria-posinset', String(index + 1));
+      item.setAttribute('aria-setsize', String(total));
     });
   }
 
@@ -830,7 +858,7 @@ export class Menu {
 
             <div class="bottom-tab-divider"></div>
 
-            <div class="menu-utility-controls">
+            <div class="menu-utility-controls" role="group">
               {this.settings ? (
                 <ix-menu-item
                   disabled={this.isHiddenFromViewport()}
@@ -855,7 +883,7 @@ export class Menu {
                   class="internal-tab bottom-tab"
                   icon={iconLightDark}
                   label={this.i18nToggleTheme}
-                  role="switch"
+                  role="menuitemcheckbox"
                   aria-checked={this.isDarkMode.toString()}
                 ></ix-menu-item>
               ) : null}
