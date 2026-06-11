@@ -27,6 +27,7 @@ import type {
   DateTimeSelectEvent,
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
+import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -36,9 +37,6 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
-  /** Used when `dateFormat` has no date prefix before time tokens (Luxon `[HhmsaSZ]`). */
-  private static readonly defaultDateOnlyFormat = 'yyyy/LL/dd';
-
   @Element() hostElement!: HTMLIxDatetimePickerElement;
 
   /**
@@ -217,18 +215,7 @@ export class DatetimePicker
   }
 
   private get dateOnlyFormat(): string {
-    const timeTokenIndex = this.dateFormat.search(/[HhmsaSZ]/);
-    if (timeTokenIndex === -1) {
-      return this.dateFormat;
-    }
-
-    let end = timeTokenIndex;
-    while (end > 0 && " \t'T".includes(this.dateFormat[end - 1])) {
-      end--;
-    }
-
-    const prefix = this.dateFormat.slice(0, end).trimEnd();
-    return prefix === '' ? DatetimePicker.defaultDateOnlyFormat : prefix;
+    return getLuxonDateOnlyFormatMask(this.dateFormat);
   }
 
   private parseDateValue(value: string | undefined): DateTime | null {

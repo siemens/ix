@@ -135,7 +135,7 @@ export class MenuAbout {
           ></ix-icon-button>
         </div>
         {!this.suppressLegacyTabs ? (
-          <ix-tab-panels>
+          <ix-tab-set>
             <ix-tabs activeTabKey={this.activeTabKey}>
               {this.items.map(({ label, tabKey }) => (
                 <ix-tab-item
@@ -146,7 +146,7 @@ export class MenuAbout {
               ))}
             </ix-tabs>
             <slot></slot>
-          </ix-tab-panels>
+          </ix-tab-set>
         ) : (
           <slot></slot>
         )}

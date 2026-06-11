@@ -40,6 +40,13 @@ export class Upload {
   @Prop() multiple = false;
 
   /**
+   * If directoryUpload is true the user can drop or select a folder containing one or more files
+   *
+   * @since 5.1.0
+   */
+  @Prop() directoryUpload = false;
+
+  /**
    * Whether the text should wrap to more than one line
    */
   @Prop() multiline = false;
@@ -57,12 +64,12 @@ export class Upload {
   /**
    * Will be used by state = UploadFileState.SELECT_FILE
    */
-  @Prop() selectFileText = '+ Drag files here or…';
+  @Prop() selectFileText?: string;
 
   /**
    * Will be used by state = UploadFileState.LOADING
    */
-  @Prop() loadingText = 'Checking files…';
+  @Prop() loadingText?: string;
 
   /**
    * Will be used by state = UploadFileState.UPLOAD_FAILED
@@ -75,9 +82,9 @@ export class Upload {
   @Prop() uploadSuccessText = 'Upload successful';
 
   /**
-   * Label for upload file button
+   * Label for upload file or folder button
    */
-  @Prop({ attribute: 'i18n-upload-file' }) i18nUploadFile = 'Upload file…';
+  @Prop({ attribute: 'i18n-upload-file' }) i18nUploadFile?: string;
 
   /**
    * Text for disabled state
@@ -199,14 +206,22 @@ export class Upload {
       case UploadFileState.SELECT_FILE:
         return (
           <span class="state">
-            <span class="upload-text">{this.selectFileText}</span>
+            <span class="upload-text">
+              {this.selectFileText ??
+                (this.directoryUpload
+                  ? '+ Drag folder here or…'
+                  : '+ Drag files here or…')}
+            </span>
           </span>
         );
       case UploadFileState.LOADING:
         return (
           <span class="state">
             <ix-spinner variant="primary"></ix-spinner>
-            <span class="upload-text">{this.loadingText}</span>
+            <span class="upload-text">
+              {this.loadingText ??
+                (this.directoryUpload ? 'Checking folder…' : 'Checking files…')}
+            </span>
           </span>
         );
       case UploadFileState.UPLOAD_FAILED:
@@ -239,7 +254,16 @@ export class Upload {
 
   render() {
     const disabled = this.disabled || this.state === UploadFileState.LOADING;
-    const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
+    const directoryAttributes = this.directoryUpload
+      ? ({ webkitdirectory: true, directory: true, multiple: true } as Record<
+          string,
+          boolean
+        >)
+      : {};
+    const defaultAriaLabel = this.directoryUpload
+      ? 'Upload folder'
+      : 'Upload files';
+    const { 'aria-label': ariaLabel = defaultAriaLabel, ...a11y } = this.a11y;
     return (
       <Host {...a11y} aria-disabled={disabled}>
         <div
@@ -268,6 +292,7 @@ export class Upload {
               type="file"
               class="upload-browser"
               id="upload-browser"
+              {...directoryAttributes}
               tabindex="-1"
               onChange={(e) => {
                 this.fileChangeEvent(e);
@@ -281,7 +306,8 @@ export class Upload {
               onClick={() => this.inputElement.click()}
               disabled={disabled}
             >
-              {this.i18nUploadFile}
+              {this.i18nUploadFile ??
+                (this.directoryUpload ? 'Upload folder…' : 'Upload file…')}
             </ix-button>
           </div>
         </div>

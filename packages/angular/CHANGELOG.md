@@ -1,5 +1,226 @@
 # @siemens/ix-angular
 
+## 5.0.0
+
+### Major Changes
+
+- [#2514](https://github.com/siemens/ix/pull/2514) [`73a2ed3`](https://github.com/siemens/ix/commit/73a2ed3ef3f29a31391ff4ac858a66e77f9fac28) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking (v5):** Remove the **`placement`** property (and **`placement`** attribute) from **`ix-split-button`**. It was not wired to the internal dropdown, so it had no effect; removing it only drops a misleading no-op from the public API. See **`BREAKING_CHANGES/v5.md`**.
+
+- [#2524](https://github.com/siemens/ix/pull/2524) [`f2c8b83`](https://github.com/siemens/ix/commit/f2c8b83475c078575b2d47f465e10307b68b108f) Thanks [@danielleroux](https://github.com/danielleroux)! - Require `breadcrumbKey` on `ix-breadcrumb-item`, change `ix-breadcrumb` `nextItems` entries from strings to `{ label, breadcrumbKey }` objects, and export the shared `BreadcrumbClick` payload type so breadcrumb click events expose stable item keys.
+
+  This change was necessary to identify breadcrumb items in a stable way, as their labels may not be unique and can change over time. The `breadcrumbKey` provides a consistent identifier for each breadcrumb item, allowing for more reliable event handling and state management in applications using the breadcrumb component.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Update `ix-date-dropdown` quick date selection from a list to a picker, with quick date options displayed on the left side.
+
+  Removed attributes:
+
+  - `ariaLabelDropdownButton`: Provided `aria-label` will be passthrough the component shadow-dom to the actual button
+  - `customRangeDisabled` (also contain removal of `i18nCustomItem`): Removed because `ix-date-dropdown` will be a picker with quick selection on the left side.
+
+- [#2516](https://github.com/siemens/ix/pull/2516) [`91f811a`](https://github.com/siemens/ix/commit/91f811af47662c550a2f23e29b5280db49869039) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-chip:** Status-filled hover/active colors and padding use design tokens; custom-color chips keep the overlay behavior.
+  **ix-chip:** Add `ariaLabelIcon`, forward host ARIA to the main control, optional host `role="group"`, a native close button, and tooltip labeling; React, Angular, and Vue expose `ariaLabelIcon`.
+
+- [#2508](https://github.com/siemens/ix/pull/2508) [`cdae15b`](https://github.com/siemens/ix/commit/cdae15b5baef1824d68e57f96370e6b31c767417) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-time-picker`:** optional **`minTime`** and **`maxTime`** constrain selectable values (same string shape as **`format`** / **`time`**). Values outside the inclusive range are disabled in the picker rings.
+
+  **Breaking (v5):** the hour column header **attribute** is renamed from **`i18n-column-header`** to **`i18n-hour-column-header`**. The **`i18nHourColumnHeader`** property is unchanged—update static HTML or attribute-based markup. Migration: **`BREAKING_CHANGES/v5.md`**.
+
+- [#2525](https://github.com/siemens/ix/pull/2525) [`7042a10`](https://github.com/siemens/ix/commit/7042a1021a4499c38f4a66aac9e5f32e9431062c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update the required @siemens/ix-icons peer dependency to ^3.4.0. This is a breaking change that requires consumers to update their @siemens/ix-icons dependency to version 3.4.0 or higher.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - **Refactor keyboard navigation for dropdown-related components**
+
+  Refactors keyboard navigation to align with W3C accessibility patterns for dropdown-related components, significantly improving accessibility and user experience:
+
+  ## Component Changes
+
+  ### Date Picker
+
+  - Added comprehensive keyboard navigation support:
+    - `Home`/`End`: Navigate to first/last day of week
+    - `PageUp`/`PageDown`: Navigate to previous/next month
+    - `Shift+PageUp`/`Shift+PageDown`: Navigate to previous/next year
+    - `ArrowLeft`/`ArrowRight`/`ArrowUp`/`ArrowDown`: Navigate between days
+    - `Enter`/`Space`: Select focused day
+    - `Escape`: Close picker
+  - Replaced manual year/month dropdown with accessible `ix-dropdown-button` components
+  - Implemented visual focus mode with `aria-activedescendant` for embedded pickers
+  - Added infinite scrolling for year selection with IntersectionObserver
+  - Improved ARIA labels: `ariaLabelMonthSelection` and `ariaLabelYearSelection` props
+  - Calendar days now have proper `role="button"` and descriptive `aria-label` attributes
+
+  ### Date Input
+
+  - Implemented `aria-activedescendant` pattern for combobox interaction
+  - Added keyboard forwarding to embedded date picker
+  - `ArrowDown` opens picker and activates keyboard navigation
+  - `Escape` closes picker and returns focus to input
+  - Focus management improved with `delegatesFocus` shadow DOM option
+
+  ### Date Dropdown
+
+  - Enhanced focus handling with `onFocusout` to close dropdown when focus leaves
+  - Auto-focus date picker when opened via keyboard
+  - Added `suppressOverflowBehavior` to prevent unwanted repositioning
+
+  ### Dropdown & Dropdown Button
+
+  - New props: `disableFocusHandling`, `disableFocusTrap`
+  - New events: `showChange` (preventable), `showChanged` (post-change)
+  - Improved focus proxy for dropdown items with proper `role="menuitem"`
+  - Better keyboard navigation with arrow keys, Home, End, Enter, Escape
+
+  ### Breadcrumb
+
+  - Complete refactor using `ix-dropdown-button` for previous/next items
+  - Added `role="navigation"` and `role="listitem"` for proper semantics
+  - Improved ARIA labels (default: "Show previous breadcrumb items")
+  - Each breadcrumb item now has `aria-current="page"` for the current page
+  - Keyboard navigation now works consistently across all breadcrumb dropdowns
+
+  ### Avatar
+
+  - Implemented focus proxy pattern for dropdown menu items
+  - Added `aria-activedescendant` support
+  - Button now has `role="combobox"` with proper `aria-controls` and `aria-expanded`
+  - Menu items properly labeled with `role="menuitem"`
+
+  ### Button
+
+  - Added `.ix-focused` class for programmatic focus indication
+  - Fixed focus-visible styles to work consistently
+  - Disabled buttons now have `tabindex="-1"`
+
+  ### Application Header
+
+  - Added `role="banner"` for proper landmark semantics
+  - Fixed overflow context menu visibility logic for small viewports
+
+  ## Breaking Changes
+
+  - `ix-breadcrumb-item`: `ariaLabelButton` prop deprecated in favor of direct `aria-label` attribute
+  - Date picker month/year selection UI completely redesigned (visual breaking change)
+  - Internal structure for all `ix-dropdown` related components are changed
+
+- [#2503](https://github.com/siemens/ix/pull/2503) [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08) Thanks [@danielleroux](https://github.com/danielleroux)! - **Update `ix-menu-about` and `ix-menu-settings` for key-based tabs and slotted `ix-tabs` opt-in**
+
+  `ix-menu-about` and `ix-menu-settings` keep their legacy `ix-menu-about-item` / `ix-menu-settings-item` rendering by default. To switch to slotted `ix-tabs` / `ix-tab-item` markup, set the new `suppressLegacyTabs` prop on the parent menu component. `ix-menu-about-news` still uses `activeAboutTabKey` instead of `aboutItemLabel`.
+
+  ### Breaking Changes
+
+  #### ix-menu-about / ix-menu-settings
+
+  - The slotted `ix-tabs` integration path uses the new `suppressLegacyTabs` prop on the parent menu component.
+  - `ix-menu-about` renamed `activeTabLabel` to `activeTabKey` for legacy item-based integrations.
+
+  #### ix-menu-about-item / ix-menu-settings-item
+
+  - `tabKey` is now required when using legacy item-based integrations.
+  - `ix-menu-about-item` changed from `shadow: true` to `shadow: false`.
+
+  #### ix-menu-about-news
+
+  - New `activeAboutTabKey` prop replaces `aboutItemLabel` as the condition for showing the "Show more" footer button.
+  - The `aboutItemLabel` prop no longer controls footer visibility. Use `activeAboutTabKey` instead.
+
+  ### Migration
+
+  Use the existing `ix-tabs` pattern in your application (`ix-menu-about` / `ix-menu-settings`), and show the matching slotted content based on the active tab key. Set `suppressLegacyTabs` on the `ix-menu-about` / `ix-menu-settings` and `active-tab-key` on the nested `ix-tabs`, not on `ix-menu-about` or `ix-menu-settings`.
+
+  ```html
+  <!-- Slotted ix-tabs path -->
+  <ix-menu-about suppress-legacy-tabs>
+    <ix-tabs active-tab-key="tab-1">
+      <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+      <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+    </ix-tabs>
+    <!-- render the matching content in the slot using the active tab key -->
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-about active-tab-key="tab-1">
+    <ix-menu-about-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-about-item
+    >
+    <ix-menu-about-item tab-key="tab-2" label="Tab 2"
+      >Content 2</ix-menu-about-item
+    >
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-settings active-tab-key="tab-1">
+    <ix-menu-settings-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-settings-item
+    >
+  </ix-menu-settings>
+  ```
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - **Breaking (v5):** `LoadingService.showModalLoading()` now returns a `Promise<ModalLoadingContext>`. Await the call before using `update()` or `finish()` on the returned loading context.
+
+- [#2471](https://github.com/siemens/ix/pull/2471) [`e324caa`](https://github.com/siemens/ix/commit/e324caa330a2e99d34f309402ccd68d39156dc93) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Add **non-blocking** dialog mode to **ix-modal** with **`isNonBlocking`** and **`ModalConfig.isNonBlocking`**: opens with **`dialog.show()`** so the page stays interactive (no lightbox or focus trap; **`aria-modal`** is false). After open, **`showModal()`** schedules initial focus on the first light-DOM match for **`[autofocus]`** or **`[auto-focus]`** (with **`focusVisible: true`**).
+
+  **Breaking (v5):** Remove **`disableEscapeClose`**. Escape and **`cancel`** always go through **`dismissModal()`**; use **`beforeDismiss`** to veto dismissal (e.g. replace **`disableEscapeClose`** with **`beforeDismiss: () => false`**). **`showModalLoading`** is updated accordingly; **`closeModal`** from **`finish()`** is unchanged.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove legacy accessible-name properties from button components. Set the native `aria-label` attribute on the host element instead; it is applied to the inner interactive surface.
+
+  - **ix-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-button**: `a11yLabel` (**a11y-label**)
+  - **ix-toggle-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-toggle-button**: `ariaLabelIconButton` (**aria-label-icon-button**)
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) for migration examples.
+
+- [#2475](https://github.com/siemens/ix/pull/2475) [`834bbbf`](https://github.com/siemens/ix/commit/834bbbf8cc30d75c5d3fdf3cf91e93a7498150a0) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **`ix-card-list` breaking change:** selecting the show-all button or show-more card now reveals all hidden cards by default and toggles back to the hidden-overflow state from the show-less button. To keep the previous event-only behavior, call `preventDefault()` on the cancelable `showAllClick` or `showMoreCardClick` event.
+
+  Fixes #1367 and Fixes #2353
+
+- [#2548](https://github.com/siemens/ix/pull/2548) [`3ece658`](https://github.com/siemens/ix/commit/3ece658f4328b91f649a4dc06857358d9fd07144) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove pre-v5 deprecated components, properties, and the `showModalLoading` string overload.
+
+  **Removed components:** `ix-input-group` (use `ix-input`); `ix-validation-tooltip` (use built-in validation on `ix-input` / `ix-select`); `ix-drawer` (use `ix-pane`).
+
+  **Removed properties:** `ariaLabelMenuExpandIconButton` on `ix-application-header`; `a11yLabel` on `ix-avatar`; `ariaLabelButton` on `ix-breadcrumb-item`; `ariaLabelChevronDownIconButton` on `ix-select`; `error` on `ix-slider` (use `class="ix-invalid"` and `invalid-text` instead).
+
+  **Removed util overload:** `showModalLoading(message: string)` — use `showModalLoading({ message: '...' })` instead.
+
+  See `BREAKING_CHANGES/v5.md` (section **Removed deprecated components and APIs**) for migration details.
+
+- [#2538](https://github.com/siemens/ix/pull/2538) [`909bb6a`](https://github.com/siemens/ix/commit/909bb6a13107e8d438ed879bf7735941ce44f99d) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove no-op **`ModalConfig`** fields **`container`**, **`keyboard`**, and **`title`** from the **`showModal`** API. They had no effect in v4; delete them from config objects.
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) (**ModalConfig**: removed no-op options) for migration.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove unused **i18n-expand-sidebar** property from **ix-menu**
+
+### Minor Changes
+
+- [#2279](https://github.com/siemens/ix/pull/2279) [`40cfbe0`](https://github.com/siemens/ix/commit/40cfbe0b2ca2b6a0cc6059ce4d2b58fb20a5c72a) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Add disabled-state support for **ix-tree-item**, including the exposed **disabled** property and corresponding tree item state handling.
+  Improve **ix-tree** and **ix-tree-item** accessibility by updating ARIA roles and positional attributes.
+
+  Fixes #2091
+
+- [#2521](https://github.com/siemens/ix/pull/2521) [`36ce453`](https://github.com/siemens/ix/commit/36ce453749a78c9df2078cefc840d4dc1dfb8a5b) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-datetime-input`:** Add **`minTime`** and **`maxTime`** so the combined date-time field can constrain the time portion.
+
+- [#2458](https://github.com/siemens/ix/pull/2458) [`a6a5309`](https://github.com/siemens/ix/commit/a6a530950acd733b2a07a602ecdbabf120719449) Thanks [@danielleroux](https://github.com/danielleroux)! - `ix-dropdown` now observes the visibility of the trigger element in the viewport while the dropdown is open. If the trigger element scrolls outside the visible viewport, the dropdown will automatically close to prevent it from remaining visible in an unexpected screen position. To keep the dropdown open regardless of trigger visibility, set `suppressTriggerVisibilityCheck` to `true`.
+
+- [#2437](https://github.com/siemens/ix/pull/2437) [`4161ab9`](https://github.com/siemens/ix/commit/4161ab9e7188ce96991b0922999867d0f550005a) Thanks [@danielleroux](https://github.com/danielleroux)! - Add new component `ix-range-field` which can currently display range related inputs. Supported components: `ix-date-input`, `ix-time-input` and `ix-datetime-input`.
+
+- [#2478](https://github.com/siemens/ix/pull/2478) [`4231d51`](https://github.com/siemens/ix/commit/4231d51264e66629a704b93b46e58e5bac4b7810) Thanks [@khathija-ahamadi](https://github.com/khathija-ahamadi)! - Support directory upload in **ix-upload**.
+
+  Fixes #2053
+  Fixes #2354
+
+### Patch Changes
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Hide the overflow context menu in `ix-application-header` when switching from a small to a medium or large viewport.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Set predefined `aria-label` and `aria-pressed` attributes to the `ix-menu` expand button
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent _ix-group_ from crashing during construction
+
+- Updated dependencies [[`8378937`](https://github.com/siemens/ix/commit/8378937cd0bfe0dab0e98e7460a277fe275c5d51), [`8765757`](https://github.com/siemens/ix/commit/8765757dd53c958ea0e1a481acb499cfee2e3eae), [`73a2ed3`](https://github.com/siemens/ix/commit/73a2ed3ef3f29a31391ff4ac858a66e77f9fac28), [`ce6cd94`](https://github.com/siemens/ix/commit/ce6cd949652759897f15dea38be7cf3a28aa0841), [`d10b03c`](https://github.com/siemens/ix/commit/d10b03c34b2ac1c100bdff9523ae53ff4db3cecc), [`f2c8b83`](https://github.com/siemens/ix/commit/f2c8b83475c078575b2d47f465e10307b68b108f), [`c97d897`](https://github.com/siemens/ix/commit/c97d8973556588498aa4e56e1f75a8e57a4efd5c), [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3), [`40cfbe0`](https://github.com/siemens/ix/commit/40cfbe0b2ca2b6a0cc6059ce4d2b58fb20a5c72a), [`1333ad8`](https://github.com/siemens/ix/commit/1333ad838050601fd87de4c2c81c291e42c9ceea), [`91f811a`](https://github.com/siemens/ix/commit/91f811af47662c550a2f23e29b5280db49869039), [`60a9728`](https://github.com/siemens/ix/commit/60a97283b68c3505950fe7760d53f6380d0f64c4), [`fdb15b2`](https://github.com/siemens/ix/commit/fdb15b26af22ab06a5a2166e60c88dc5a726fe5b), [`3e90786`](https://github.com/siemens/ix/commit/3e90786b75a84cfb554221049cc99674ef43fc70), [`3964a2a`](https://github.com/siemens/ix/commit/3964a2af37422056acfcd40bfde31ebe5f0235ad), [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77), [`cbb0716`](https://github.com/siemens/ix/commit/cbb07167624b78e7c471825ad334a9c019b0d351), [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3), [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46), [`2ec2c70`](https://github.com/siemens/ix/commit/2ec2c7081e9757b79f21a3ece47074149c5af6de), [`4d35515`](https://github.com/siemens/ix/commit/4d3551582390ca15a0e523a9258c6766de678896), [`36ce453`](https://github.com/siemens/ix/commit/36ce453749a78c9df2078cefc840d4dc1dfb8a5b), [`cdae15b`](https://github.com/siemens/ix/commit/cdae15b5baef1824d68e57f96370e6b31c767417), [`ba15b50`](https://github.com/siemens/ix/commit/ba15b505cf4dcb1086794d15e235690fdd7ca51a), [`64e6cfe`](https://github.com/siemens/ix/commit/64e6cfe19ce0c1b4350492cbdd15c2e96ea64795), [`7042a10`](https://github.com/siemens/ix/commit/7042a1021a4499c38f4a66aac9e5f32e9431062c), [`b00da1c`](https://github.com/siemens/ix/commit/b00da1c87f93c86a6c60f40d2ae7952d345ab8d0), [`653f136`](https://github.com/siemens/ix/commit/653f13653a332aad0107e29de1b26d0cc2bc8784), [`4643a65`](https://github.com/siemens/ix/commit/4643a65f65a463e535daf799f65f7a6cc423e11d), [`5f141c1`](https://github.com/siemens/ix/commit/5f141c1a8774a0a190f8a51fc23dd8e1a0eabd08), [`a6a5309`](https://github.com/siemens/ix/commit/a6a530950acd733b2a07a602ecdbabf120719449), [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3), [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08), [`4161ab9`](https://github.com/siemens/ix/commit/4161ab9e7188ce96991b0922999867d0f550005a), [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351), [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351), [`e324caa`](https://github.com/siemens/ix/commit/e324caa330a2e99d34f309402ccd68d39156dc93), [`4231d51`](https://github.com/siemens/ix/commit/4231d51264e66629a704b93b46e58e5bac4b7810), [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46), [`834bbbf`](https://github.com/siemens/ix/commit/834bbbf8cc30d75c5d3fdf3cf91e93a7498150a0), [`f4f8921`](https://github.com/siemens/ix/commit/f4f89214d5e0065248d1610a3bb7837c74417610), [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08), [`3ece658`](https://github.com/siemens/ix/commit/3ece658f4328b91f649a4dc06857358d9fd07144), [`909bb6a`](https://github.com/siemens/ix/commit/909bb6a13107e8d438ed879bf7735941ce44f99d), [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46), [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77), [`b5e7384`](https://github.com/siemens/ix/commit/b5e7384ddb2a085f3730d657d5ff867e5603fb46), [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3), [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351), [`22699fa`](https://github.com/siemens/ix/commit/22699fa8d411239fe14f067d21ff6b1c08dd0355)]:
+  - @siemens/ix@5.0.0
+
 ## 4.4.0
 
 ### Minor Changes

@@ -14,7 +14,7 @@ const getHourCell = (page: Page, hour: number) =>
   page
     .locator('ix-time-picker')
     .first()
-    .getByRole('button', { name: `hr: ${hour}`, exact: true });
+    .getByRole('option', { name: `hr: ${hour}`, exact: true });
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-datetime-picker></ix-datetime-picker>`);

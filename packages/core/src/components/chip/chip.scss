@@ -9,7 +9,58 @@
 @use 'mixins/shadow-dom/component';
 @use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
-@use './chip-mixin';
+
+$predefined-chips: alarm, critical, warning, info, neutral, success;
+$border-radius: 100px;
+$padding-inline: 0.75rem;
+$close-size: 1.5rem;
+$close-inset: 0.25rem;
+// 1px at 16px root; padding calcs subtract this to align with outline border
+$outline-border-width: 0.0625rem;
+
+@mixin chip-focus-outline {
+  &:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+}
+
+@mixin chip-main-interactive-states(
+  $background,
+  $hover-background,
+  $active-background,
+  $color: null
+) {
+  background-color: $background;
+  @if $color {
+    color: $color;
+  }
+  &:hover {
+    background-color: $hover-background;
+  }
+  &:active {
+    background-color: $active-background;
+  }
+}
+
+@mixin chip-close-surface($background, $hover-background, $active-background) {
+  background-color: $background;
+  &:hover {
+    background-color: $hover-background;
+  }
+  &:active {
+    background-color: $active-background;
+  }
+}
+
+@mixin chip-close-hover-active-states($hover-background, $active-background) {
+  &:hover {
+    background-color: $hover-background;
+  }
+  &:active {
+    background-color: $active-background;
+  }
+}
 
 :host {
   display: inline-block;
@@ -24,4 +75,312 @@
   pointer-events: none;
 }
 
-@include chip-mixin.chip-container;
+.chip-wrap {
+  display: inline-flex;
+  width: inherit;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  align-items: stretch;
+  border-radius: $border-radius;
+  vertical-align: top;
+  min-height: vars.$default-control-height;
+  max-height: vars.$default-control-height;
+
+  .chip-main {
+    appearance: none;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    border-radius: inherit;
+    padding-block: 0.5rem;
+    padding-inline: $padding-inline;
+    font: inherit;
+    text-align: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    @include chip-focus-outline;
+
+    .content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .with-icon {
+      margin-right: vars.$tiny-space;
+    }
+
+    .slot-container {
+      @include text-truncation.ellipsis;
+    }
+  }
+
+  &.centerContent .chip-main .content-wrapper {
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.outline .chip-main {
+    padding-left: calc(#{$padding-inline} - #{$outline-border-width});
+  }
+
+  &.outline:not(.closable) .chip-main,
+  &.outline.closable.inactive .chip-main {
+    padding-right: calc(#{$padding-inline} - #{$outline-border-width});
+  }
+
+  &.outline.closable:not(.inactive) .chip-main {
+    padding-right: calc(
+      #{$close-inset} + #{$close-size} + 0.375rem - #{$outline-border-width}
+    );
+  }
+
+  &:not(.outline) .chip-main {
+    padding-left: $padding-inline;
+  }
+
+  &:not(.outline):not(.closable) .chip-main,
+  &:not(.outline).closable.inactive .chip-main {
+    padding-right: $padding-inline;
+  }
+
+  &:not(.outline).closable:not(.inactive) .chip-main {
+    padding-right: calc(#{$close-inset} + #{$close-size} + 0.375rem);
+  }
+
+  .chip-close {
+    position: absolute;
+    right: $close-inset;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $close-size;
+    height: $close-size;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    appearance: none;
+    font: inherit;
+    color: var(--theme-color-std-text);
+    border-radius: 50%;
+    flex-shrink: 0;
+    z-index: 1;
+
+    @include chip-focus-outline;
+
+    &__icon {
+      display: block;
+      pointer-events: none;
+    }
+  }
+
+  &.outline {
+    border-width: $outline-border-width;
+    border-style: solid;
+  }
+
+  &.primary:not(.outline) {
+    color: var(--theme-chip-primary--color);
+
+    .chip-main {
+      @include chip-main-interactive-states(
+        var(--theme-color-primary),
+        var(--theme-chip-primary--background--hover),
+        var(--theme-chip-primary--background--active),
+        var(--theme-chip-primary--color)
+      );
+    }
+
+    .chip-close {
+      color: inherit;
+
+      @include chip-close-surface(
+        var(--theme-chip-close-btn--background),
+        var(--theme-chip-primary--background--hover),
+        var(--theme-chip-primary--background--active)
+      );
+    }
+  }
+
+  &.primary.outline {
+    color: var(--theme-chip-primary-outline--color--display);
+    background-color: var(--theme-chip-primary-outline--background);
+    border: solid $outline-border-width
+      var(--theme-chip-primary-outline--border-color);
+
+    &:hover:not(.inactive) {
+      border-color: var(--theme-chip-primary-outline--border-color--hover);
+    }
+
+    &:active:not(.inactive) {
+      border-color: var(--theme-chip-primary-outline--border-color--active);
+    }
+
+    .chip-main {
+      @include chip-main-interactive-states(
+        transparent,
+        var(--theme-chip-primary-outline--background--hover),
+        var(--theme-chip-primary-outline--background--active),
+        var(--theme-chip-primary-outline--color--display)
+      );
+    }
+
+    &.icon .with-icon {
+      color: var(--theme-color-primary);
+    }
+
+    &:hover:not(.inactive).icon .with-icon {
+      color: var(--theme-chip-primary-outline--color--hover);
+    }
+
+    &:active:not(.inactive).icon .with-icon {
+      color: var(--theme-chip-primary-outline--color--active);
+    }
+
+    .chip-close {
+      color: inherit;
+
+      @include chip-close-hover-active-states(
+        var(--theme-chip-primary-outline--background--hover),
+        var(--theme-chip-primary-outline--background--active)
+      );
+    }
+  }
+
+  @each $color in $predefined-chips {
+    &.#{$color}:not(.outline) {
+      color: var(--theme-color-#{$color}--contrast);
+
+      .chip-main {
+        @include chip-main-interactive-states(
+          var(--theme-color-#{$color}),
+          var(--theme-color-#{$color}--hover),
+          var(--theme-color-#{$color}--active),
+          var(--theme-color-#{$color}--contrast)
+        );
+      }
+
+      .chip-close {
+        color: inherit;
+
+        @include chip-close-surface(
+          var(--theme-chip-close-btn--background),
+          var(--theme-color-#{$color}--hover),
+          var(--theme-color-#{$color}--active)
+        );
+      }
+    }
+
+    &.#{$color}.outline {
+      color: var(--theme-chip-outline--color);
+      background-color: var(--theme-chip-outline--background);
+      border-color: var(--theme-color-#{$color});
+
+      .chip-main {
+        @include chip-main-interactive-states(
+          transparent,
+          var(--theme-chip-outline--background--hover),
+          var(--theme-chip-outline--background--active),
+          var(--theme-chip-outline--color)
+        );
+      }
+
+      &.icon .with-icon {
+        @if $color == 'warning' {
+          color: var(--theme-color-warning-text);
+        } @else {
+          color: var(--theme-color-#{$color});
+        }
+      }
+
+      .chip-close {
+        color: inherit;
+
+        @include chip-close-hover-active-states(
+          var(--theme-chip-outline--background--hover),
+          var(--theme-chip-outline--background--active)
+        );
+      }
+    }
+  }
+
+  &.outline .chip-close {
+    @include chip-close-surface(
+      var(--theme-chip-close-btn--background),
+      var(--theme-chip-close-btn--background--hover),
+      var(--theme-chip-close-btn--background--active)
+    );
+  }
+
+  &.custom.outline {
+    background-color: var(--theme-chip-outline--background);
+
+    .chip-main {
+      @include chip-main-interactive-states(
+        transparent,
+        var(--theme-chip-outline--background--hover),
+        var(--theme-chip-outline--background--active)
+      );
+    }
+
+    .chip-close {
+      color: inherit;
+
+      @include chip-close-hover-active-states(
+        var(--theme-chip-outline--background--hover),
+        var(--theme-chip-outline--background--active)
+      );
+    }
+  }
+
+  &.custom:not(.outline) {
+    .chip-main {
+      position: relative;
+
+      &:hover::after,
+      &:active::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        border-radius: $border-radius;
+        pointer-events: none;
+      }
+
+      &:hover::after {
+        background-color: color-mix(in srgb, currentColor 10%, transparent);
+      }
+
+      &:active::after {
+        background-color: color-mix(in srgb, currentColor 20%, transparent);
+      }
+    }
+
+    .chip-close {
+      color: inherit;
+
+      @include chip-close-surface(
+        var(--theme-chip-close-btn--background),
+        color-mix(in srgb, currentColor 10%, transparent),
+        color-mix(in srgb, currentColor 20%, transparent)
+      );
+    }
+  }
+}

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './../../drawer/test/animejs.mock';
+import '../../utils/test/animejs.mock';
 import { render, h } from '@stencil/vitest';
 import { fireEvent } from '@testing-library/dom';
 import { describe, expect, it, vi } from 'vitest';

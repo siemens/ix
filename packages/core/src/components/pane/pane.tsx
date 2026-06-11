@@ -34,6 +34,8 @@ import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import type {
   BorderlessChangedEvent,
   Composition,
@@ -88,6 +90,14 @@ export class Pane {
    * Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
    */
   @Prop() borderless: boolean = false;
+
+  /**
+   * Remove the padding of the content area.
+   * If set to `true` the left, right and bottom padding of the content area is removed.
+   *
+   * @since 5.1.0
+   */
+  @Prop() noPadding: boolean = false;
 
   /**
    * State of the pane
@@ -172,6 +182,9 @@ export class Pane {
   private mutationObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
   private disposableWindowClick?: DisposableEventListener;
+  private disposableKeydown?: DisposableEventListener;
+  private focusTrap?: FocusTrapResult;
+  private focusReturnElement?: HTMLElement;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -193,25 +206,52 @@ export class Pane {
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
+    this.disposableKeydown?.();
+    this.focusTrap?.destroy();
   }
 
   @Watch('expanded')
-  onExpandedChange() {
+  async onExpandedChange() {
     if (!this.closeOnClickOutside || !this.expanded) {
       this.disposableWindowClick?.();
+    } else {
+      this.disposableWindowClick = addDisposableEventListener(
+        window,
+        'click',
+        (event) => {
+          const path = event.composedPath?.() || [];
+          if (!path.includes(this.hostElement)) {
+            this.dispatchExpandedChangedEvent();
+          }
+        }
+      );
+    }
+
+    this.registerEscapeListener();
+
+    if (!this.floating) {
       return;
     }
 
-    this.disposableWindowClick = addDisposableEventListener(
-      window,
-      'click',
-      (event) => {
-        const path = event.composedPath?.() || [];
-        if (!path.includes(this.hostElement)) {
-          this.dispatchExpandedChangedEvent();
+    if (this.expanded) {
+      const activeElement = document.activeElement;
+      this.focusReturnElement =
+        activeElement instanceof HTMLElement ? activeElement : undefined;
+      this.focusTrap = await addFocusTrap(this.hostElement, {
+        trapFocusInShadowDom: 'both',
+      });
+    } else {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+      requestAnimationFrameNoNgZone(() => {
+        const elementToFocus = this.focusReturnElement;
+        this.focusReturnElement = undefined;
+
+        if (elementToFocus && typeof elementToFocus.focus === 'function') {
+          elementToFocus.focus();
         }
-      }
-    );
+      });
+    }
   }
 
   componentWillLoad() {
@@ -376,11 +416,7 @@ export class Pane {
         }
       },
       complete: () => {
-        if (this.expanded) {
-          this.showContent = true;
-        }
-
-        this.animations.delete(key);
+        this.onAnimationComplete(key);
       },
     });
 
@@ -403,15 +439,23 @@ export class Pane {
         }
       },
       onComplete: () => {
-        if (this.expanded) {
-          this.showContent = true;
-        }
-
-        this.animations.delete(key);
+        this.onAnimationComplete(key);
       },
     });
 
     this.animations.set(key, animation);
+  }
+
+  private onAnimationComplete(key: string) {
+    if (this.expanded) {
+      this.showContent = true;
+      if (this.floating) {
+        requestAnimationFrameNoNgZone(() => {
+          this.focusFirstSlottedElement();
+        });
+      }
+    }
+    this.animations.delete(key);
   }
 
   private removePadding() {
@@ -510,6 +554,13 @@ export class Pane {
       slot: this.currentSlot ?? '',
       variant: value,
     });
+
+    if (value !== 'floating') {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+    }
+
+    this.registerEscapeListener();
   }
 
   @Watch('borderless')
@@ -518,6 +569,43 @@ export class Pane {
       slot: this.currentSlot ?? '',
       borderless: value,
     });
+  }
+
+  private focusFirstSlottedElement() {
+    const autofocusEl =
+      this.hostElement.querySelector<HTMLElement>('[autofocus]');
+
+    if (autofocusEl) {
+      autofocusEl.focus();
+      return;
+    }
+
+    const closeBtn =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>('.title-icon');
+
+    if (closeBtn) {
+      closeBtn.focus();
+    }
+  }
+
+  private registerEscapeListener() {
+    this.disposableKeydown?.();
+    this.disposableKeydown = undefined;
+
+    if (!this.floating || !this.expanded) {
+      return;
+    }
+
+    this.disposableKeydown = addDisposableEventListener(
+      this.hostElement,
+      'keydown',
+      (event) => {
+        if ((event as KeyboardEvent).key !== 'Escape') {
+          return;
+        }
+        this.dispatchExpandedChangedEvent();
+      }
+    );
   }
 
   private dispatchExpandedChangedEvent() {
@@ -728,7 +816,13 @@ export class Pane {
               )}
             </div>
           </div>
-          <div class="side-pane-content" hidden={!this.showContent}>
+          <div
+            class={{
+              'side-pane-content': true,
+              'no-padding': this.noPadding,
+            }}
+            hidden={!this.showContent}
+          >
             <slot></slot>
           </div>
         </aside>

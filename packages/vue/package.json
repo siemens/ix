@@ -3,7 +3,7 @@
   "homepage": "https://ix.siemens.io",
   "author": "Siemens AG",
   "license": "MIT",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "Siemens iX for Vue",
   "bugs": "https://github.com/siemens/ix/issues",
   "repository": {
@@ -29,8 +29,8 @@
     "test.watch": "vitest --config=vitest.config.ts"
   },
   "dependencies": {
-    "@siemens/ix": "~4.4.0",
-    "@stencil/vue-output-target": "^0.12.0"
+    "@siemens/ix": "~5.0.0",
+    "@stencil/vue-output-target": "^0.13.2"
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",
@@ -51,7 +51,7 @@
     "vue-tsc": "^2.2.10"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "^3.4.0",
     "vue": ">=3.2.45"
   }
 }

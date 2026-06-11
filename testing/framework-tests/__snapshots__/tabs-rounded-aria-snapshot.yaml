@@ -6,5 +6,3 @@
     - tab /\d+/
     - tab
     - tab
-  - button "Show all tabs":
-    - button "Open dropdown"

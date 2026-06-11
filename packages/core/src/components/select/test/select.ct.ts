@@ -78,6 +78,59 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   await expect(dropdown).not.toHaveClass(/show/);
 });
 
+test('does not select an item when ix-select-item is disabled', async ({
+  mount,
+  page,
+  makeAxeBuilder,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1"></ix-select-item>
+      <ix-select-item value="22" label="Item 2" disabled></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await expect(select).toHaveClass(/hydrated/);
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const disabledItem = page.locator('ix-select-item[disabled]');
+  await expect(disabledItem).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+
+  await disabledItem.click({ force: true });
+
+  const ctrl = selectController(select);
+  await expect(ctrl.getInputLocator()).toHaveValue('');
+  await expect(disabledItem).not.toHaveAttribute('selected', /.*/);
+});
+
+test('disabled ix-select-item is excluded from keyboard navigation', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1"></ix-select-item>
+      <ix-select-item value="22" label="Item 2" disabled></ix-select-item>
+      <ix-select-item value="33" label="Item 3"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const ctrl = selectController(select);
+
+  await ctrl.focusInput();
+  await ctrl.arrowDown(true);
+  await ctrl.arrowDown();
+  await ctrl.pressEnter();
+
+  await expect(ctrl.getInputLocator()).toHaveValue('Item 3');
+});
+
 test('does not open the dropdown when readonly', async ({ mount, page }) => {
   await mount(`
     <ix-select readonly>
@@ -1213,4 +1266,83 @@ test('input does not clear when items added during search', async ({
   await expect(
     page.getByRole('option', { name: 'Test Result from API' })
   ).toBeVisible();
+});
+
+test('listbox proxy: aria-selected reflects value, not keyboard focus alone', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const ctrl = selectController(page.locator('ix-select'));
+  await ctrl.focusInput();
+  await ctrl.arrowDown();
+  await ctrl.arrowDown();
+
+  await expect(page.getByRole('option', { name: 'Item 1' })).toHaveAttribute(
+    'aria-selected',
+    'false'
+  );
+  await expect(page.getByRole('option', { name: 'Item 2' })).toHaveAttribute(
+    'aria-selected',
+    'false'
+  );
+});
+
+test('multiple mode: chip close button accessible name includes item label', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple">
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2'];
+  });
+
+  const chips = select.locator('ix-filter-chip');
+  await expect(chips).toHaveCount(2);
+
+  await expect(
+    chips.filter({ hasText: 'Item 1' }).locator('ix-icon-button button')
+  ).toHaveAttribute('aria-label', 'Remove Item 1');
+  await expect(
+    chips.filter({ hasText: 'Item 2' }).locator('ix-icon-button button')
+  ).toHaveAttribute('aria-label', 'Remove Item 2');
+});
+
+test('listbox proxy: selected value stays aria-selected when another row has focus', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select value="1">
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const ctrl = selectController(page.locator('ix-select'));
+  await ctrl.focusInput();
+  await ctrl.arrowDown();
+  await ctrl.arrowDown();
+
+  await expect(page.getByRole('option', { name: 'Item 1' })).toHaveAttribute(
+    'aria-selected',
+    'true'
+  );
+  await expect(page.getByRole('option', { name: 'Item 2' })).toHaveAttribute(
+    'aria-selected',
+    'false'
+  );
 });
