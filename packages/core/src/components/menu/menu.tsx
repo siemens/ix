@@ -803,6 +803,7 @@ export class Menu {
                     tabs: true,
                     'show-scrollbar': this.expand,
                   }}
+                  role="group"
                   tabIndex={this.isMenuItemsOverflow ? 0 : -1}
                   onScroll={() => this.handleOverflowIndicator()}
                 >

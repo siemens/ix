@@ -450,6 +450,7 @@ export class MenuCategory
           onKeyDown={(event) => this.onKeyDown(event)}
           tooltipText={this.tooltipText}
           isCategory
+          menuCategoryLabel={this.label}
         >
           <span class="category">
             <span class="category-text">{this.label}</span>

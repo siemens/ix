@@ -1283,7 +1283,8 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         href: 'href',
         target: 'target',
         rel: 'rel',
-        isCategory: 'is-category'
+        isCategory: 'is-category',
+        menuCategoryLabel: 'menu-category-label'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxMenuItem as StencilReactComponent<IxMenuItemElement, IxMenuItemEvents, Components.IxMenuItem>,

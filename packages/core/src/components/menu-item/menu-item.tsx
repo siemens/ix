@@ -20,7 +20,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { AnchorTarget } from '../button/button.interface';
-import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   InheritAriaAttributesMixin,
@@ -32,6 +31,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { Disposable } from '../utils/typed-event';
 import { createSequentialId } from '../utils/uuid';
 import { IxMenuItemBase } from './menu-item.interface';
+import { a11yBoolean } from '../utils/a11y';
 
 let sequenceId = 0;
 
@@ -117,10 +117,12 @@ export class MenuItem
   /** @internal */
   @Prop() isCategory: boolean = false;
 
+  /** @internal */
+  @Prop() menuCategoryLabel?: string;
+
   @Element() override hostElement!: HTMLIxMenuItemElement;
 
   @State() tooltip?: string;
-  @State() ariaHiddenTooltip = false;
   @State() menuExpanded: boolean = false;
   @State() private isInMenuContext = false;
   @State() private hostTabIndex = -1;
@@ -178,10 +180,6 @@ export class MenuItem
       this.label ??
       this.hostElement.textContent ??
       undefined;
-
-    this.ariaHiddenTooltip =
-      this.tooltipText === this.label ||
-      this.tooltipText === this.hostElement.textContent;
   }
 
   override connectedCallback() {
@@ -282,6 +280,13 @@ export class MenuItem
       </span>,
     ];
 
+    const ariaLabel =
+      this.tooltipText &&
+      this.tooltipText !== this.label &&
+      this.tooltipText !== this.hostElement.textContent
+        ? `${this.label ?? this.menuCategoryLabel} ${this.tooltipText}`
+        : undefined;
+
     return (
       <Host
         class={{
@@ -292,14 +297,6 @@ export class MenuItem
           'tab-nested': this.isHostedInsideCategory,
           'ix-focusable': !this.disabled,
         }}
-        aria-disabled={this.disabled ? 'true' : null}
-        tabIndex={
-          this.disabled
-            ? -1
-            : this.isInMenuContext || this.isCategory
-              ? this.hostTabIndex
-              : 0
-        }
         {...extendedAttributes}
       >
         {this.href ? (
@@ -322,6 +319,8 @@ export class MenuItem
                 e.stopPropagation();
               }
             }}
+            aria-disabled={a11yBoolean(this.disabled)}
+            aria-label={ariaLabel}
           >
             {menuContent}
           </a>
@@ -336,6 +335,8 @@ export class MenuItem
             }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
+            aria-disabled={a11yBoolean(this.disabled)}
+            aria-label={ariaLabel}
           >
             {menuContent}
           </button>
@@ -345,7 +346,7 @@ export class MenuItem
           placement={'right'}
           showDelay={1000}
           interactive={false}
-          aria-hidden={a11yBoolean(this.ariaHiddenTooltip)}
+          aria-hidden="true"
           aria-labelledby={this.internalItemId}
         >
           {this.tooltip}

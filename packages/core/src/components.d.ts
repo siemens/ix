@@ -2676,6 +2676,7 @@ export namespace Components {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -9129,6 +9130,7 @@ declare namespace LocalJSX {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -11741,6 +11743,7 @@ declare namespace LocalJSX {
         "target": AnchorTarget;
         "rel": string;
         "isCategory": boolean;
+        "menuCategoryLabel": string;
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;
