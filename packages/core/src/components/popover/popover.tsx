@@ -804,7 +804,9 @@ export class Popover
           onMouseLeave={() => this.onDialogMouseLeave()}
         >
           <div class="popover-container">
-            <slot></slot>
+            <div class="popover-body">
+              <slot></slot>
+            </div>
             {this.hasSpike ? <div class="spike"></div> : null}
           </div>
         </dialog>

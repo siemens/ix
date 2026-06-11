@@ -202,6 +202,38 @@ regressionTest.describe('ix-popover', () => {
 
       expect(await popover.hasSpike(await popover.getPopover())).toBe(false);
     });
+
+    regressionTest(
+      'spike does not block clicks on raw slotted buttons',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <button id="outer-trigger" type="button">Trigger</button>
+            <ix-popover trigger="outer-trigger" close-on-click-outside>
+              <button type="button">1</button>
+              <button id="inner-trigger" type="button">Trigger2</button>
+              <ix-popover
+                trigger="inner-trigger"
+                has-spike
+                close-on-click-outside
+              >
+                <button id="inner-action" type="button">3</button>
+                <button type="button">4</button>
+              </ix-popover>
+            </ix-popover>
+          `
+        );
+
+        await page.locator('#outer-trigger').click();
+        await page.locator('#inner-trigger').click();
+
+        const innerAction = page.locator('#inner-action');
+        await innerAction.click();
+        await expect(innerAction).toBeFocused();
+      }
+    );
   });
 
   regressionTest.describe('hover trigger', () => {
