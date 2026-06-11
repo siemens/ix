@@ -147,7 +147,7 @@ function expandFocusTrapIncludes(
     const includedFocusableElements = queryElements(
       useBoth ||
         (options?.trapFocusInShadowDom === true && includeElement.shadowRoot)
-        ? includeElement.shadowRoot ?? includeElement
+        ? (includeElement.shadowRoot ?? includeElement)
         : includeElement,
       focusableQueryString,
       useBoth
