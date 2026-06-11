@@ -15,6 +15,7 @@ import {
   Event,
   EventEmitter,
   Host,
+  Listen,
   Method,
   Mixin,
   Prop,
@@ -33,6 +34,8 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
+  clearInputValue,
+  syncRequiredValidationClass,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -41,12 +44,18 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  reportFieldValidity,
+  shouldSuppressInternalValidation,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  focusInputIfKeyboardMode,
   handleIconClick,
+  handlePickerFocusoutWithValidation,
+  suppressInputBlurWhenFocusMovedToPicker,
   openDropdown as openDropdownUtil,
+  syncCustomInputValidity,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -130,6 +139,12 @@ export class DateInput
    */
   @Prop() required?: boolean;
 
+  @Watch('required')
+  async onRequiredChange() {
+    await syncRequiredValidationClass(this.hostElement, this);
+    this.syncFormInternalsValidity();
+  }
+
   /**
    * Helper text below the input field.
    */
@@ -188,6 +203,14 @@ export class DateInput
    */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
+
+  /**
+   * I18n string for the error message when the date field is empty.
+   *
+   * @since 5.1.0
+   */
+  @Prop({ attribute: 'i18n-error-required' }) i18nErrorRequired =
+    'Date is required';
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
@@ -271,6 +294,10 @@ export class DateInput
 
   private classObserver?: ClassMutationObserver;
 
+  private _hasInvalidInput = false;
+  private _shouldSkipFocusoutValidation = false;
+  private _reportValidityCalled = false;
+
   public initialValue?: string;
 
   public invalidReason?: string;
@@ -281,6 +308,17 @@ export class DateInput
     createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private syncFormInternalsValidity(): void {
+    syncCustomInputValidity(
+      this.formInternals,
+      this._hasInvalidInput,
+      this.required,
+      this.value,
+      this.invalidReason ?? this.i18nErrorDateUnparsable,
+      this.i18nErrorRequired
+    );
+  }
 
   updateFormInternalValue(value: string | undefined): void {
     if (value) {
@@ -303,9 +341,9 @@ export class DateInput
       );
   }
 
-  override componentWillLoad(): void {
-    this.onInput(this.value);
-    if (this.isInputInvalid) {
+  override async componentWillLoad(): Promise<void> {
+    await this.onInput(this.value);
+    if (this._hasInvalidInput) {
       this.from = null;
     } else {
       this.watchValue();
@@ -313,6 +351,7 @@ export class DateInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.syncFormInternalsValidity();
   }
 
   private updatePaddings() {
@@ -333,6 +372,33 @@ export class DateInput
     this.from = this.value;
   }
 
+  @Listen('invalid')
+  async onInvalid(event: Event) {
+    event.preventDefault();
+    reportFieldValidity(this, this._hasInvalidInput);
+  }
+
+  /**
+   * Clears the input value and resets the touched state.
+   *
+   * Unlike clearing the value directly, this method restores the initial,
+   * non-invalid state and removes visible validation errors.
+   *
+   * @since 5.1.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    this._hasInvalidInput = false;
+    this._reportValidityCalled = false;
+    await clearInputValue(this, {
+      defaultValue: '',
+      additionalCleanup: () => {
+        this.from = undefined;
+      },
+    });
+    this.syncFormInternalsValidity();
+  }
+
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -345,14 +411,151 @@ export class DateInput
     return Promise.resolve(this.formInternals.form);
   }
 
+  private getDateValidation(value: string): {
+    isValid: boolean;
+    invalidReason?: string;
+  } {
+    const date = DateTime.fromFormat(value, this.format);
+    const minDate = this.minDate
+      ? DateTime.fromFormat(this.minDate, this.format)
+      : null;
+    const maxDate = this.maxDate
+      ? DateTime.fromFormat(this.maxDate, this.format)
+      : null;
+
+    return {
+      isValid:
+        date.isValid &&
+        (!minDate?.isValid || date >= minDate) &&
+        (!maxDate?.isValid || date <= maxDate),
+      invalidReason: date.invalidReason ?? undefined,
+    };
+  }
+
+  private async handleEmptyInput(value: string | undefined): Promise<void> {
+    this._hasInvalidInput = false;
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+
+    this.hostElement.classList.remove(
+      'ix-invalid--validity-invalid',
+      'ix-invalid--validity-patternMismatch'
+    );
+
+    const suppress = await shouldSuppressInternalValidation(this);
+    const shouldShowRequired = suppress
+      ? this._reportValidityCalled && !!this.required
+      : this.touched && !!this.required;
+
+    if (shouldShowRequired) {
+      this.hostElement.classList.add('ix-invalid--required');
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+    this.updateFormInternalValue(value);
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
+    this.valueChange.emit(value);
+  }
+
+  private emitSuppressedValidationChange(value: string): void {
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
+    this.valueChange.emit(value);
+  }
+
+  private acceptValidAfterReportValidity(
+    value: string,
+    hasInvalidInput: boolean,
+    invalidReason?: string
+  ): void {
+    this._hasInvalidInput = hasInvalidInput;
+    this.isInputInvalid = false;
+    this.invalidReason = invalidReason;
+    this.isInvalid = false;
+    this.hostElement.classList.remove(
+      'ix-invalid--required',
+      'ix-invalid--validity-invalid',
+      'ix-invalid--validity-patternMismatch'
+    );
+    this.updateFormInternalValue(value);
+
+    if (hasInvalidInput) {
+      this.from = undefined;
+    }
+
+    this.closeDropdown();
+    focusInputIfKeyboardMode(this.inputElementRef.current);
+    this.emitSuppressedValidationChange(value);
+  }
+
+  private keepReportValidityErrorsVisible(
+    value: string,
+    invalidReason?: string
+  ): void {
+    this.invalidReason = invalidReason;
+    this.from = undefined;
+    this.isInvalid = true;
+    this.hostElement.classList.remove(
+      'ix-invalid--required',
+      'ix-invalid--validity-patternMismatch'
+    );
+    this.hostElement.classList.add('ix-invalid--validity-invalid');
+    this.emitSuppressedValidationChange(value);
+  }
+
+  private validateInReportValidityMode(value: string): void {
+    const validation = this.getDateValidation(value);
+    const valueIsInvalid = !validation.isValid;
+    this._hasInvalidInput = valueIsInvalid;
+
+    const reportValidityWasNotCalled = !this._reportValidityCalled;
+    if (reportValidityWasNotCalled) {
+      this.acceptValidAfterReportValidity(
+        value,
+        valueIsInvalid,
+        valueIsInvalid ? validation.invalidReason : undefined
+      );
+      return;
+    }
+
+    this.isInputInvalid = valueIsInvalid;
+    if (valueIsInvalid) {
+      this.keepReportValidityErrorsVisible(value, validation.invalidReason);
+      return;
+    }
+
+    this._reportValidityCalled = false;
+    this.acceptValidAfterReportValidity(value, false);
+  }
+
+  private async handleValidatedInput(value: string): Promise<void> {
+    const validation = this.getDateValidation(value);
+
+    this._hasInvalidInput = !validation.isValid;
+    this.isInputInvalid = this._hasInvalidInput && this.touched;
+
+    if (this._hasInvalidInput) {
+      this.invalidReason = validation.invalidReason;
+      this.from = undefined;
+    } else {
+      this.invalidReason = undefined;
+
+      await syncRequiredValidationClass(this.hostElement, this);
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
+      focusInputIfKeyboardMode(this.inputElementRef.current);
+    }
+
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
+    this.valueChange.emit(value);
+  }
+
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
-      this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
+      await this.handleEmptyInput(value);
       return;
     }
 
@@ -360,26 +563,16 @@ export class DateInput
       return;
     }
 
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+    const validation = this.getDateValidation(value);
+    this._hasInvalidInput = !validation.isValid;
 
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
-
-    if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason ?? undefined;
-      this.from = undefined;
-    } else {
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
+    const suppressValidation = await shouldSuppressInternalValidation(this);
+    if (suppressValidation) {
+      this.validateInReportValidityMode(value);
+      return;
     }
 
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    await this.handleValidatedInput(value);
   }
 
   onCalenderClick(event: Event) {
@@ -410,6 +603,27 @@ export class DateInput
       this.formInternals.form
     );
   }
+
+  private readonly handlePickerFocusoutCallback = async (
+    hasRelatedTarget: boolean
+  ) => {
+    if (hasRelatedTarget) {
+      this.closeDropdown();
+    }
+
+    if (this._shouldSkipFocusoutValidation) {
+      this._shouldSkipFocusoutValidation = false;
+      return;
+    }
+
+    this.touched = true;
+    const suppress = await shouldSuppressInternalValidation(this);
+    if (!suppress) {
+      this.isInputInvalid = this._hasInvalidInput;
+    }
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    emitPickerValidityState(this);
+  };
 
   private renderInput() {
     return (
@@ -445,16 +659,32 @@ export class DateInput
           }}
           onFocus={async () => {
             this.ixFocus.emit();
+            if (hasKeyboardMode()) {
+              this.openDropdown();
+            }
           }}
-          onBlur={() => {
-            this.touched = true;
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={(e: FocusEvent) =>
+            suppressInputBlurWhenFocusMovedToPicker({
+              event: e,
+              isDropdownOpen: this.show,
+              hostElement: this.hostElement,
+              onBlur: async () => {
+                this.touched = true;
+                const suppress = await shouldSuppressInternalValidation(this);
+                if (!suppress) {
+                  this.isInputInvalid = this._hasInvalidInput;
+                }
+                onInputBlurWithChange(
+                  this,
+                  this.inputElementRef.current,
+                  this.value
+                );
+                emitPickerValidityState(this);
+                this._shouldSkipFocusoutValidation = true;
+              },
+              pickerElement: this.dropdownElementRef?.current,
+            })
+          }
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
             textAlign: this.textAlignment,
@@ -494,15 +724,15 @@ export class DateInput
     this.isWarning = isWarning;
   }
 
-  private emitValidityStateChangeIfChanged() {
-    return emitPickerValidityState(this);
-  }
-
   /** @internal */
   @Method()
   getValidityState(): Promise<ValidityState> {
     return Promise.resolve(
-      createValidityState(this.isInputInvalid, !!this.required, this.value)
+      createValidityState(
+        this.isInputInvalid,
+        !!this.required && this.touched,
+        this.value
+      )
     );
   }
 
@@ -531,16 +761,54 @@ export class DateInput
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Trigger validation and show visual error state immediately, independently
+   * of user interaction — for example, in AJAX submissions or manual validation.
+   *
+   * Not suppressed by `<form novalidate>` — errors surface regardless.
+   *
+   * @returns `true` if valid, `false` otherwise.
+   * @since 5.1.0
+   */
+  @Method()
+  async reportValidity(): Promise<boolean> {
+    const hasInvalidInput =
+      !!this.value &&
+      !!this.format &&
+      !this.getDateValidation(this.value).isValid;
+
+    this._hasInvalidInput = hasInvalidInput;
+    this._reportValidityCalled = true;
+
+    return reportFieldValidity(this, hasInvalidInput);
+  }
+
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
     return this.dropdownElementRef;
   }
 
-  override render() {
-    const invalidText = getValidationText(
+  private getInvalidText(): string | undefined {
+    const isRequiredEmpty = !!this.required && !this.value && this.touched;
+
+    let invalidText = getValidationText(
       this.isInputInvalid,
       this.invalidText,
       this.i18nErrorDateUnparsable
     );
+
+    if (!invalidText) {
+      invalidText = getValidationText(
+        isRequiredEmpty,
+        this.invalidText,
+        this.i18nErrorRequired
+      );
+    }
+
+    return invalidText;
+  }
+
+  override render() {
+    const invalidText = this.getInvalidText();
 
     return (
       <Host
@@ -548,16 +816,14 @@ export class DateInput
           disabled: this.disabled,
           readonly: this.readonly,
         }}
-        onFocusout={(e: FocusEvent) => {
-          const relatedTarget = e.relatedTarget as Node;
-
-          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
-          if (!relatedTarget) {
-            return;
-          }
-
-          this.closeDropdown();
-        }}
+        onFocusout={(e: FocusEvent) =>
+          handlePickerFocusoutWithValidation(
+            e,
+            this.hostElement,
+            this.handlePickerFocusoutCallback,
+            this.dropdownElementRef?.current
+          )
+        }
       >
         <ix-field-wrapper
           label={this.label}
