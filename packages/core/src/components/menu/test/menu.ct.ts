@@ -349,6 +349,34 @@ async function clickSettingsButton(element: Locator, page: Page) {
   await page.waitForTimeout(1000);
 }
 
+regressionTest(
+  'should not warn "Menu already defined" when ix-menu is remounted after being removed',
+  async ({ mount, page }) => {
+    const consoleWarnings: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'warning') {
+        consoleWarnings.push(msg.text());
+      }
+    });
+
+    await mount(`<ix-menu><ix-menu-item>Item</ix-menu-item></ix-menu>`);
+    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+
+    await page.evaluate(() => {
+      document.querySelector('ix-menu')?.remove();
+    });
+
+    await page.evaluate(() => {
+      const menu = document.createElement('ix-menu');
+      document.body.appendChild(menu);
+    });
+
+    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+
+    expect(consoleWarnings).not.toContain('Menu already defined');
+  }
+);
+
 regressionTest.describe('menu-avatar tooltip', () => {
   regressionTest(
     'should show no tooltip when no top(username) property is set',
