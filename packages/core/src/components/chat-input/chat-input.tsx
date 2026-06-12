@@ -9,9 +9,9 @@
 
 import {
   iconCircleStop,
-  iconError,
   iconInfo,
   iconSendRightFilled,
+  iconWarning,
 } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
@@ -27,11 +27,11 @@ import {
   Watch,
   h,
 } from '@stencil/core';
+import { DefaultMixins } from '../utils/internal/component';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import { DefaultMixins } from '../utils/internal/component';
-import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 /**
  * @since 5.1.0
@@ -269,12 +269,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   }
 
   private canSubmit() {
-    return (
-      !this.disabled &&
-      !this.readonly &&
-      this.value.trim().length > 0 &&
-      !this.isCharacterLimitReached()
-    );
+    return !this.disabled && !this.readonly && this.value.trim().length > 0;
   }
 
   private emitIxChangeIfNeeded() {
@@ -444,11 +439,11 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
           'character-limit--soft': state === 'soft',
           'character-limit--hard': state === 'hard',
         }}
-        textColor={state === 'hard' ? 'alarm' : 'std'}
+        textColor={'std'}
       >
         <ix-icon
           aria-hidden="true"
-          name={state === 'hard' ? iconError : iconInfo}
+          name={state === 'hard' ? iconWarning : iconInfo}
           size="16"
         ></ix-icon>
         {message}
