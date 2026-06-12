@@ -26,3 +26,10 @@
     height: 100%;
   }
 }
+
+:host(:focus-visible) {
+  outline: var(--theme-focus-border-thickness) solid
+    var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-focus-outline-offset);
+  border-radius: var(--theme-card--border-radius);
+}

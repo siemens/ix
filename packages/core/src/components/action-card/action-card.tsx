@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import type { ActionCardVariant } from './action-card.types';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
@@ -17,6 +17,8 @@ import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
   shadow: true,
 })
 export class IxActionCard {
+  @Element() hostElement!: HTMLIxActionCardElement;
+
   /**
    * Card variant
    */
@@ -61,6 +63,17 @@ export class IxActionCard {
    */
   @Prop() passive: boolean = false;
 
+  private onKeyDown(event: KeyboardEvent) {
+    if (this.passive) {
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.hostElement.click();
+    }
+  }
+
   private getSubheadingTextColor() {
     return this.variant === 'outline' || this.variant === 'filled'
       ? 'soft'
@@ -74,15 +87,18 @@ export class IxActionCard {
         : undefined;
 
     return (
-      <Host>
+      <Host
+        role={!this.passive ? 'button' : undefined}
+        tabIndex={!this.passive ? 0 : -1}
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
+        aria-label={this.ariaLabelCard}
+        aria-labelledby={ariaLabelledBy}
+      >
         <ix-card
           selected={this.selected}
           variant={this.variant}
           passive={this.passive}
           class={'pointer'}
-          aria-label={this.ariaLabelCard}
-          aria-labelledby={ariaLabelledBy}
-          role={ariaLabelledBy ? 'group' : undefined}
         >
           <ix-card-content>
             {this.icon ? (
