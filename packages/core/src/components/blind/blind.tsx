@@ -199,14 +199,14 @@ export class Blind {
                   </Fragment>
                 ) : null}
               </div>
-              <div class="blind-header-custom">
-                <slot name="custom-header"></slot>
-              </div>
-              <div class="header-actions">
-                <slot name="header-actions"></slot>
-              </div>
             </div>
           </button>
+          <div class="blind-header-custom">
+            <slot name="custom-header"></slot>
+          </div>
+          <div class="header-actions">
+            <slot name="header-actions"></slot>
+          </div>
         </div>
         <section
           id={`ix-blind-content-section-${this.blindId}`}

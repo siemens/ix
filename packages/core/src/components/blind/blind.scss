@@ -21,7 +21,7 @@
         var(--theme-blind-base--border-color);
     }
 
-    .blind-header {
+    .blind-header-wrapper {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
       } @else {
@@ -48,9 +48,21 @@
       .blind-header-title-sublabel {
         color: var(--theme-color-soft-text);
       }
+      .header-actions,
+      .blind-header-custom {
+        color: var(--theme-color-std-text);
+      }
     } @else {
       .blind-header-title-label,
       .blind-header-title-sublabel {
+        color: var(--theme-color-#{$variant}--contrast);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
+      }
+
+      .blind-header-custom {
         color: var(--theme-color-#{$variant}--contrast);
       }
     }
@@ -75,13 +87,15 @@
   .blind-header-wrapper {
     display: flex;
     position: relative;
-    min-height: 3rem;
+    align-items: stretch;
+    box-sizing: border-box;
     height: 3rem;
     overflow: visible;
     border: var(--theme-blind--border-thickness) solid transparent;
     border-radius: var(--theme-blind--border-radius)
       var(--theme-blind--border-radius) 0 0;
     outline: none;
+    cursor: pointer;
   }
 
   .blind-header-content {
@@ -115,27 +129,13 @@
 
     pointer-events: all;
 
-    min-height: 3rem;
-    height: 3rem;
-    width: 100%;
-    border: solid var(--theme-blind--border-thickness) transparent;
-    border-radius: var(--theme-blind--border-radius)
-      var(--theme-blind--border-radius) 0 0;
-    cursor: pointer;
-
     &:focus,
     &:focus-visible {
-      border-color: transparent;
       outline: none;
     }
   }
 
   &:has(.blind-header:focus-visible) {
-    .blind-header {
-      border-color: transparent;
-      outline: none;
-    }
-
     .blind-header-wrapper {
       outline: var(--theme-focus-border-thickness) solid
         var(--theme-color-focus-bdr);
