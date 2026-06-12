@@ -34,6 +34,9 @@ export type FocusVisibleController = {
  *  - HTMLElement.focus()  → setFocus() marks next focusin as keyboard-like
  *  - Tab-key              → global hasKeyboardMode() returns true on focusin
  *  - focus-visible class  → applied via IX_FOCUS_VISIBLE_ACTIVE on focusin
+ *
+ * Uses a single shared document-level keyboard detector (one instance for
+ * the whole page) so there are no duplicate listeners across components.
  */
 export function startFocusVisible(hostEl: HTMLElement): FocusVisibleController {
   // ── Track whether next focus() call should be treated as keyboard ─────────

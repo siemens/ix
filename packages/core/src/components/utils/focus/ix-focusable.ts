@@ -12,6 +12,10 @@ import {
   startFocusVisible,
 } from './focus-visible-controller';
 
+export interface IxFocusableMixinContract {
+  focusNativeElement(element?: HTMLElement | null): void;
+}
+
 /**
  * Base class for all IX components requiring unified focus handling.
  *
@@ -20,8 +24,8 @@ import {
  *  - destroyFocusable()         in disconnectedCallback()
  *  - focusNativeElement(el)     inside your @Method() focusInput()
  */
-export class IxFocusableComponent {
-  protected focusVisibleController?: FocusVisibleController;
+export class IxFocusableComponent implements IxFocusableMixinContract {
+  private focusVisibleController?: FocusVisibleController;
 
   /**
    * Call in connectedCallback().
@@ -42,10 +46,9 @@ export class IxFocusableComponent {
 
   /**
    * Delegates focus to the native element with correct focus-visible state.
-   * Pass the resolved native element (e.g. the inner <input>) to this method.
    * Call this inside your @Method() focusInput() after resolving the ref.
    */
-  protected focusNativeElement(element?: HTMLElement | null): void {
+  focusNativeElement(element?: HTMLElement | null): void {
     this.focusVisibleController?.setFocus(element);
   }
 }

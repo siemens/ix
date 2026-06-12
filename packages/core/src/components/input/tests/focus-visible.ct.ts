@@ -44,6 +44,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`<ix-input label="Email" type="email"></ix-input>`);
     const host = page.locator('ix-input');
+    await expect(host).toHaveClass(/\bhydrated\b/);
 
     await page.keyboard.press('Tab');
 
@@ -56,6 +57,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`<ix-input label="Email" type="email"></ix-input>`);
     const host = page.locator('ix-input');
+    await expect(host).toHaveClass(/\bhydrated\b/);
 
     await page.keyboard.press('Tab');
     await expect(host).toHaveClass(new RegExp(`\\b${FOCUS_VISIBLE_CLASS}\\b`));
