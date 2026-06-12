@@ -13,7 +13,7 @@
     "lib": ["dom", "es2020"],
     "module": "es2015",
     "moduleResolution": "bundler",
-    "target": "es2017",
+    "target": "es2020",
     "skipLibCheck": true
   }
 }
