@@ -2605,6 +2605,7 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0
@@ -2675,6 +2676,7 @@ export namespace Components {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -2684,6 +2686,7 @@ export namespace Components {
           * @since 4.0.0
          */
         "rel"?: string;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0
@@ -9139,6 +9142,7 @@ declare namespace LocalJSX {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -11763,6 +11767,7 @@ declare namespace LocalJSX {
         "target": AnchorTarget;
         "rel": string;
         "isCategory": boolean;
+        "menuCategoryLabel": string;
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;

@@ -327,11 +327,10 @@ regressionTest(
     const item1 = categoryElement.locator('ix-menu-item').nth(0);
     const item2 = categoryElement.locator('ix-menu-item').nth(1);
 
-    // Focus trapping inside dropdown
     await expect(item1).toHaveVisibleFocus();
-    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown');
     await expect(item2).toHaveVisibleFocus();
-    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown');
     await expect(item1).toHaveVisibleFocus();
 
     await page.keyboard.press('Escape');

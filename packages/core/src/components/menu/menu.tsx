@@ -166,6 +166,7 @@ export class Menu {
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
+  @State() isMenuItemsOverflow = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
@@ -287,6 +288,10 @@ export class Menu {
   componentDidLoad() {
     requestAnimationFrame(() => {
       this.handleOverflowIndicator();
+      const items = this.getAllFocusableItems();
+      if (items.length > 0) {
+        this.updateRovingTabIndex(items, 0);
+      }
     });
 
     if (this.pinned) {
@@ -563,6 +568,7 @@ export class Menu {
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
+    this.isMenuItemsOverflow = scrollHeight > clientHeight;
   }
 
   @Listen('close')
@@ -615,6 +621,140 @@ export class Menu {
 
   private isHiddenFromViewport() {
     return this.breakpoint === 'sm' && this.expand === false;
+  }
+
+  private updateRovingTabIndex(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[],
+    activeIndex: number
+  ) {
+    this.updateMenuItemPositionMetadata(items);
+
+    items.forEach(
+      (item: HTMLIxMenuItemElement | HTMLIxMenuCategoryElement, i: number) => {
+        item.setTabIndex?.(i === activeIndex ? 0 : -1);
+      }
+    );
+  }
+
+  // item positions and menu size has to be set manually because slotted items and utility controls are separated into two groups
+  private updateMenuItemPositionMetadata(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[]
+  ) {
+    // get all items unfiltered in case any of them changed state and became hidden or disabled
+    const allMenuItems = [
+      ...Array.from(
+        this.hostElement.querySelectorAll<HTMLIxMenuItemElement>('ix-menu-item')
+      ),
+      ...Array.from(
+        this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
+          '.menu-utility-controls > ix-menu-item'
+        ) ?? []
+      ),
+    ];
+
+    allMenuItems.forEach((item) => {
+      item.removeAttribute('aria-posinset');
+      item.removeAttribute('aria-setsize');
+    });
+
+    const total = items.length;
+
+    items.forEach((item, index) => {
+      item.setAttribute('aria-posinset', String(index + 1));
+      item.setAttribute('aria-setsize', String(total));
+    });
+  }
+
+  private handleMenuFocusIn(event: FocusEvent) {
+    const items = this.getAllFocusableItems();
+    const path = event.composedPath();
+    const activeIndex = items.findIndex((item) => path.includes(item));
+    if (activeIndex !== -1) {
+      this.updateRovingTabIndex(items, activeIndex);
+    }
+  }
+
+  private getAllFocusableItems(): (
+    | HTMLIxMenuItemElement
+    | HTMLIxMenuCategoryElement
+  )[] {
+    const isNavigable = (el: HTMLElement) =>
+      !el.hasAttribute('disabled') &&
+      !el.hasAttribute('hidden') &&
+      this.isVisible(el);
+
+    const lightItems = Array.from(
+      this.hostElement.querySelectorAll<
+        HTMLIxMenuItemElement | HTMLIxMenuCategoryElement
+      >(':scope > ix-menu-item, :scope > ix-menu-category')
+    ).filter(isNavigable);
+
+    const utilityItems = Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
+        '.menu-utility-controls > ix-menu-item'
+      ) ?? []
+    ).filter(isNavigable);
+
+    return [...lightItems, ...utilityItems];
+  }
+
+  private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
+    return event
+      .composedPath()
+      .some(
+        (el) =>
+          el instanceof HTMLElement && el.getAttribute?.('role') === 'menu'
+      );
+  }
+
+  private handleMenuKeyDown(event: KeyboardEvent) {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      return;
+    }
+
+    if (event.target === this.menuItemsContainer) {
+      return;
+    }
+
+    if (this.isEventFromExpandedCategoryItems(event)) {
+      return;
+    }
+
+    const items = this.getAllFocusableItems();
+    if (items.length === 0) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const currentIndex = items.findIndex((item) => path.includes(item));
+    if (currentIndex === -1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        const next = (currentIndex + 1) % items.length;
+        this.updateRovingTabIndex(items, next);
+        items[next].focus();
+        break;
+      }
+      case 'ArrowUp': {
+        const prev = (currentIndex - 1 + items.length) % items.length;
+        this.updateRovingTabIndex(items, prev);
+        items[prev].focus();
+        break;
+      }
+      case 'Home':
+        this.updateRovingTabIndex(items, 0);
+        items[0].focus();
+        break;
+      case 'End':
+        this.updateRovingTabIndex(items, items.length - 1);
+        items.at(-1)?.focus();
+        break;
+    }
   }
 
   private async showAppSwitch() {
@@ -678,93 +818,107 @@ export class Menu {
           </div>
 
           <div
-            id="menu-tabs"
-            style={{
-              display: 'contents',
-            }}
-            onClick={(e) => this.onMenuItemsClick(e)}
+            role="menubar"
+            aria-orientation="vertical"
+            class="menu-navigation"
+            onKeyDown={(e) => this.handleMenuKeyDown(e)}
+            onFocusin={(e) => this.handleMenuFocusIn(e)}
           >
-            <div class="tabs-shadow-container">
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-top': true,
-                  'tabs--shadow--show': this.itemsScrollShadowTop,
-                }}
-              ></div>
-              <div
-                class={{
-                  tabs: true,
-                  'show-scrollbar': this.expand,
-                }}
-                onScroll={() => this.handleOverflowIndicator()}
-              >
-                <div class="menu-avatar">
-                  <slot name="ix-menu-avatar"></slot>
+            <div
+              id="menu-tabs"
+              style={{
+                display: 'contents',
+              }}
+              onClick={(e) => this.onMenuItemsClick(e)}
+            >
+              <div class="tabs-shadow-container">
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-top': true,
+                    'tabs--shadow--show': this.itemsScrollShadowTop,
+                  }}
+                ></div>
+                <div
+                  class={{
+                    tabs: true,
+                    'show-scrollbar': this.expand,
+                  }}
+                  role="group"
+                  tabIndex={this.isMenuItemsOverflow ? 0 : -1}
+                  onScroll={() => this.handleOverflowIndicator()}
+                >
+                  <div class="menu-avatar">
+                    <slot name="ix-menu-avatar"></slot>
+                  </div>
+                  <slot name="home"></slot>
+                  {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                    <slot></slot>
+                  ) : null}
                 </div>
-                <slot name="home"></slot>
-                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
-                  <slot></slot>
-                ) : null}
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-bottom': true,
+                    'tabs--shadow--show': this.itemsScrollShadowBottom,
+                  }}
+                ></div>
               </div>
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-bottom': true,
-                  'tabs--shadow--show': this.itemsScrollShadowBottom,
-                }}
-              ></div>
+            </div>
+            <div onClick={(e) => this.onMenuItemsClick(e)}>
+              <slot name="bottom"></slot>
+            </div>
+
+            <div class="bottom-tab-divider"></div>
+
+            <div class="menu-utility-controls" role="group">
+              {this.settings ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="settings"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showSettings,
+                  }}
+                  icon={iconCogwheel}
+                  onClick={async () => this.toggleSettings(!this.showSettings)}
+                  label={this.i18nSettings}
+                  aria-expanded={this.showSettings.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
+              {this.enableToggleTheme ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="toggleTheme"
+                  onClick={() => themeSwitcher.toggleMode()}
+                  class="internal-tab bottom-tab"
+                  icon={iconLightDark}
+                  label={this.i18nToggleTheme}
+                  role="menuitemcheckbox"
+                  aria-checked={this.isDarkMode.toString()}
+                ></ix-menu-item>
+              ) : null}
+              {this.about ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="aboutAndLegal"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showAbout,
+                  }}
+                  icon={iconInfo}
+                  onClick={async () => this.toggleAbout(!this.showAbout)}
+                  label={this.i18nLegal}
+                  aria-expanded={this.showAbout.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
             </div>
           </div>
-          <div class="bottom-tab-divider"></div>
-          {this.settings ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="settings"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showSettings,
-              }}
-              icon={iconCogwheel}
-              onClick={async () => this.toggleSettings(!this.showSettings)}
-              label={this.i18nSettings}
-              aria-expanded={this.showSettings.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
-          {this.enableToggleTheme ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="toggleTheme"
-              onClick={() => themeSwitcher.toggleMode()}
-              class="internal-tab bottom-tab"
-              icon={iconLightDark}
-              label={this.i18nToggleTheme}
-              role="switch"
-              aria-checked={this.isDarkMode.toString()}
-            ></ix-menu-item>
-          ) : null}
-          <div onClick={(e) => this.onMenuItemsClick(e)}>
-            <slot name="bottom"></slot>
-          </div>
           <div id="popover-area"></div>
-          {this.about ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="aboutAndLegal"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showAbout,
-              }}
-              icon={iconInfo}
-              onClick={async () => this.toggleAbout(!this.showAbout)}
-              label={this.i18nLegal}
-              aria-expanded={this.showAbout.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
         </nav>
         <section
           id="menu-overlay"

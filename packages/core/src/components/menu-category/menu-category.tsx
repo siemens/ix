@@ -15,10 +15,11 @@ import {
   h,
   Host,
   Listen,
+  Method,
+  Mixin,
   Prop,
   State,
   Watch,
-  Mixin,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
@@ -30,9 +31,11 @@ import { DefaultMixins } from '../utils/internal/component';
 import { getComposedPath } from '../utils/shadow-dom';
 import { makeRef } from '../utils/make-ref';
 import { dropdownController } from '../dropdown/dropdown-controller';
+import { createSequentialId } from '../utils/uuid';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
+let categorySequenceId = 0;
 
 @Component({
   tag: 'ix-menu-category',
@@ -78,12 +81,23 @@ export class MenuCategory
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
 
+  /** @internal */
+  @Method()
+  async setTabIndex(value: number) {
+    await this.categoryParentRef.current?.setTabIndex(value);
+  }
+
   private observer?: MutationObserver;
   private menuItemsContainer?: HTMLDivElement;
   private ixMenu?: HTMLIxMenuElement;
 
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
   private readonly categoryParentRef = makeRef<HTMLIxMenuItemElement>();
+  private readonly categoryId = createSequentialId(
+    'ix-menu-category-',
+    categorySequenceId++
+  );
+  private focusFirstItemOnDropdownOpen = false;
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -176,6 +190,75 @@ export class MenuCategory
     this.showMenuItemDropdown();
   }
 
+  private onDropdownShowChange(dropdownShow: boolean) {
+    if (dropdownShow) {
+      return;
+    }
+
+    const activeElement = document.activeElement;
+    const isFocused = getComposedPath(activeElement as HTMLElement).includes(
+      this.hostElement
+    );
+
+    if (hasKeyboardMode() && isFocused) {
+      // Ugly workaround to restore focus to the category after the dropdown is closed,
+      // because focus gets lost when the dropdown is removed from the DOM.
+      // This is needed to ensure keyboard users can continue navigating after closing the dropdown with the keyboard.
+      requestAnimationFrameNoNgZone(() =>
+        requestAnimationFrameNoNgZone(() => this.hostElement.focus())
+      );
+    }
+  }
+
+  private onDropdownShowChanged(dropdownShown: boolean) {
+    this.showDropdown = dropdownShown;
+
+    if (!dropdownShown) {
+      this.focusFirstItemOnDropdownOpen = false;
+
+      return;
+    }
+
+    if (this.focusFirstItemOnDropdownOpen) {
+      this.focusFirstItemOnDropdownOpen = false;
+
+      const items = this.getNestedItems();
+      const firstItem = items[0];
+
+      if (firstItem) {
+        requestAnimationFrameNoNgZone(() =>
+          requestAnimationFrameNoNgZone(() => firstItem.focus())
+        );
+      }
+    }
+  }
+
+  private onDropdownFocusOut() {
+    requestAnimationFrameNoNgZone(() => {
+      const activeElement = document.activeElement as HTMLElement | null;
+
+      if (!activeElement) {
+        return;
+      }
+
+      const activePath = getComposedPath(activeElement);
+      const focusInsideCategory = activePath.includes(this.hostElement);
+      const focusInsideDropdown =
+        !!this.dropdownRef.current &&
+        activePath.includes(this.dropdownRef.current);
+
+      if (!focusInsideCategory && !focusInsideDropdown) {
+        this.showDropdown = false;
+      }
+    });
+  }
+
+  private onNestedItemSelect() {
+    if (!this.ixMenu?.expand) {
+      this.showDropdown = false;
+    }
+  }
+
   private onCategoryClick(event: MouseEvent) {
     event.stopPropagation();
     this.handleCategoryVisibility();
@@ -185,9 +268,17 @@ export class MenuCategory
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       const isClosingPanel = this.ixMenu?.expand && this.showItems;
+      const isCollapsedMenu = !this.ixMenu?.expand;
       this.handleCategoryVisibility();
 
       if (!isClosingPanel) {
+        if (isCollapsedMenu) {
+          // In collapsed mode, wait until the dropdown is fully shown before moving focus.
+          this.focusFirstItemOnDropdownOpen = true;
+
+          return;
+        }
+
         const items = this.getNestedItems();
         const firstItem = items[0];
         if (firstItem) {
@@ -335,6 +426,7 @@ export class MenuCategory
         class={{
           expanded: this.showItems,
         }}
+        onIxMenuCategoryItemSelect={() => this.onNestedItemSelect()}
         onPointerEnter={() => {
           this.showMenuItemDropdown();
         }}
@@ -346,8 +438,9 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
-          aria-haspopup={'true'}
+          aria-haspopup={'menu'}
           aria-expanded={this.showItems || this.showDropdown ? 'true' : 'false'}
+          id={this.categoryId}
           ref={this.categoryParentRef}
           class={'category-parent'}
           active={this.isNestedItemActive()}
@@ -357,6 +450,7 @@ export class MenuCategory
           onKeyDown={(event) => this.onKeyDown(event)}
           tooltipText={this.tooltipText}
           isCategory
+          menuCategoryLabel={this.label}
         >
           <span class="category">
             <span class="category-text">{this.label}</span>
@@ -378,6 +472,7 @@ export class MenuCategory
             'menu-items--collapsed': !this.showItems,
           }}
           role="menu"
+          aria-labelledby={this.categoryId}
           onKeyDown={(e) => this.onMenuItemsKeyDown(e)}
         >
           {this.showItems ? <slot></slot> : null}
@@ -388,28 +483,8 @@ export class MenuCategory
           aria-label={this.label}
           closeBehavior={'both'}
           show={this.showDropdown}
-          onShowChange={({ detail: dropdownShow }) => {
-            if (dropdownShow) {
-              return;
-            }
-
-            const activeElement = document.activeElement;
-            const isFocused = getComposedPath(
-              activeElement as HTMLElement
-            ).includes(this.hostElement);
-
-            if (hasKeyboardMode() && isFocused) {
-              // Ugly workaround to restore focus to the category after the dropdown is closed,
-              // because focus gets lost when the dropdown is removed from the DOM.
-              // This is needed to ensure keyboard users can continue navigating after closing the dropdown with the keyboard.
-              requestAnimationFrameNoNgZone(() =>
-                requestAnimationFrameNoNgZone(() => this.hostElement.focus())
-              );
-            }
-          }}
-          onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
-            this.showDropdown = dropdownShown;
-          }}
+          onShowChange={({ detail }) => this.onDropdownShowChange(detail)}
+          onShowChanged={({ detail }) => this.onDropdownShowChanged(detail)}
           class={'category-dropdown'}
           anchor={this.hostElement}
           placement="right-start"
@@ -426,16 +501,7 @@ export class MenuCategory
               }
             }
           }}
-          onFocusout={(event) => {
-            const relatedTarget = event.relatedTarget as HTMLElement | null;
-            if (
-              relatedTarget &&
-              relatedTarget !== this.hostElement &&
-              !this.hostElement.contains(relatedTarget)
-            ) {
-              this.showDropdown = false;
-            }
-          }}
+          onFocusout={() => this.onDropdownFocusOut()}
         >
           <ix-dropdown-item
             class={'category-dropdown-header'}
