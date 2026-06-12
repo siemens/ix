@@ -752,7 +752,7 @@ export class Menu {
         break;
       case 'End':
         this.updateRovingTabIndex(items, items.length - 1);
-        items[items.length - 1].focus();
+        items.at(-1)?.focus();
         break;
     }
   }
