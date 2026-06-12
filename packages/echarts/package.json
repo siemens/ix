@@ -31,7 +31,7 @@
     "@rollup/plugin-typescript": "^8.5.0",
     "@siemens/ix": "workspace:*",
     "@types/node": "^24.0.3",
-    "echarts": "^5.5.1",
+    "echarts": "^6.0.0",
     "http-server": "^14.1.1",
     "rimraf": "catalog:",
     "rollup-plugin-dts": "^6.4.1",
@@ -44,6 +44,6 @@
   },
   "peerDependencies": {
     "@siemens/ix": "^5.0.0",
-    "echarts": "^5.3.3"
+    "echarts": "^6.0.0"
   }
 }
