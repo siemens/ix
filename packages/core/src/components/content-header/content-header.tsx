@@ -57,6 +57,8 @@ export class ContentHeader {
 
   @State() private isSmallBreakpoint = false;
 
+  private static readonly SMALL_BREAKPOINT_QUERY = '(max-width: 48em)';
+
   private mediaQuery?: MediaQueryList;
   private hasDisconnected = false;
   private readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
@@ -65,7 +67,9 @@ export class ContentHeader {
 
   componentWillLoad() {
     if (globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
+      this.mediaQuery = globalThis.window.matchMedia(
+        ContentHeader.SMALL_BREAKPOINT_QUERY
+      );
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
@@ -73,7 +77,9 @@ export class ContentHeader {
 
   connectedCallback() {
     if (this.hasDisconnected && globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia('(max-width: 48em)');
+      this.mediaQuery = globalThis.window.matchMedia(
+        ContentHeader.SMALL_BREAKPOINT_QUERY
+      );
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
