@@ -333,8 +333,15 @@ export class TimeInput
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   private handleInputKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowDown') {
+      if (!this.isInteractive) {
+        return;
+      }
       this.show = true;
       requestAnimationFrameNoNgZone(() => {
         const focusableTimeButton =
@@ -560,7 +567,7 @@ export class TimeInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             this.initialValue = this.value;
             this.ixFocus.emit();
           }}
@@ -693,6 +700,11 @@ export class TimeInput
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
