@@ -403,6 +403,154 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChat {
+  protected el: HTMLIxChatElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChat extends Components.IxChat {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat-ai-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChatAiMessage {
+  protected el: HTMLIxChatAiMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
+
+
+@ProxyCmp({
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-chat-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
+  standalone: false
+})
+export class IxChatInput {
+  protected el: HTMLIxChatInputElement;
+  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatInput extends Components.IxChatInput {
+  /**
+   * Event emitted when the value of the chat input changes. @since 5.1.0
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the chat input loses focus. @since 5.1.0
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the chat input loses focus and the value has changed. @since 5.1.0
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.1.0
+   */
+  promptSubmit: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-prompt-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
+  outputs: ['attachmentClick', 'removeClick'],
+  standalone: false
+})
+export class IxChatPromptAttachment {
+  protected el: HTMLIxChatPromptAttachmentElement;
+  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
+  /**
+   * Event emitted when the attachment is clicked. @since 5.1.0
+   */
+  attachmentClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the remove action is clicked. @since 5.1.0
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['message']
+})
+@Component({
+  selector: 'ix-chat-user-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['message'],
+  standalone: false
+})
+export class IxChatUserMessage {
+  protected el: HTMLIxChatUserMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatUserMessage extends Components.IxChatUserMessage {}
+
+
+@ProxyCmp({
   inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
 })
 @Component({

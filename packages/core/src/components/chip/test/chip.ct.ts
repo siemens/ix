@@ -9,6 +9,10 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+declare global {
+  var __chipClosed: boolean | undefined;
+}
+
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
     <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start;">
@@ -149,6 +153,105 @@ regressionTest('check inactive class', async ({ mount, page }) => {
   const chip = page.locator('ix-chip');
   await expect(chip).toHaveClass('inactive hydrated');
 });
+
+regressionTest(
+  'keeps inactive closable chip text from overlapping the close button',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-chip inactive closable style="width: 8rem">Long inactive chip text</ix-chip>`
+    );
+
+    const chip = page.locator('ix-chip');
+    const slotContainer = chip.locator('.slot-container');
+    const closeButton = chip.locator('.chip-close');
+
+    await expect(closeButton).toBeVisible();
+
+    const slotBox = await slotContainer.boundingBox();
+    const closeBox = await closeButton.boundingBox();
+
+    expect(slotBox).not.toBeNull();
+    expect(closeBox).not.toBeNull();
+    expect(slotBox!.x + slotBox!.width).toBeLessThanOrEqual(closeBox!.x);
+  }
+);
+
+regressionTest(
+  'truncates overflowing chip text with an ellipsis',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-chip closable style="width: 8rem">Long overflowing chip text</ix-chip>`
+    );
+
+    const slotContainer = page.locator('ix-chip').locator('.slot-container');
+
+    const overflowState = await slotContainer.evaluate((element) => {
+      const style = getComputedStyle(element);
+
+      return {
+        clientWidth: element.clientWidth,
+        overflow: style.overflow,
+        scrollWidth: element.scrollWidth,
+        textOverflow: style.textOverflow,
+        whiteSpace: style.whiteSpace,
+      };
+    });
+
+    expect(overflowState.scrollWidth).toBeGreaterThan(
+      overflowState.clientWidth
+    );
+    expect(overflowState.overflow).toBe('hidden');
+    expect(overflowState.textOverflow).toBe('ellipsis');
+    expect(overflowState.whiteSpace).toBe('nowrap');
+  }
+);
+
+regressionTest(
+  'emits closeChip when the close button is clicked on an inactive chip',
+  async ({ mount, page }) => {
+    await mount(`<ix-chip inactive closable>Inactive chip</ix-chip>`);
+
+    await page.evaluate(() => {
+      globalThis.__chipClosed = false;
+      document.querySelector('ix-chip')?.addEventListener('closeChip', () => {
+        globalThis.__chipClosed = true;
+      });
+    });
+
+    await page.locator('ix-chip').locator('.chip-close').click();
+
+    await expect
+      .poll(() => page.evaluate(() => globalThis.__chipClosed))
+      .toBe(true);
+  }
+);
+
+regressionTest(
+  'does not apply main hover and active styles when inactive',
+  async ({ mount, page }) => {
+    await mount(`<ix-chip inactive closable>Inactive chip</ix-chip>`);
+
+    const chipMain = page.locator('ix-chip').locator('.chip-main');
+    const chipMainBox = await chipMain.boundingBox();
+
+    expect(chipMainBox).not.toBeNull();
+
+    const getBackgroundColor = () =>
+      chipMain.evaluate((element) => getComputedStyle(element).backgroundColor);
+
+    const defaultBackgroundColor = await getBackgroundColor();
+
+    await page.mouse.move(
+      chipMainBox!.x + chipMainBox!.width / 2,
+      chipMainBox!.y + chipMainBox!.height / 2
+    );
+    await expect.poll(getBackgroundColor).toBe(defaultBackgroundColor);
+
+    await page.mouse.down();
+    await expect.poll(getBackgroundColor).toBe(defaultBackgroundColor);
+    await page.mouse.up();
+  }
+);
 
 regressionTest.describe('tooltip', () => {
   regressionTest(
