@@ -94,14 +94,12 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-
-  overflow: hidden;
-
   align-items: center;
   justify-content: center;
 
   width: 100%;
   height: 100%;
+  overflow: var(--ix-button-inner-overflow, hidden);
 
   padding: var(--ix-button-padding, 0 0.5rem);
 }
@@ -112,7 +110,8 @@
     --ix-button-border-radius-right: var(--theme-btn--border-radius);
 
     display: inline-block;
-    height: 2rem;
+    height: var(--ix-button-height, 2rem);
+    min-height: var(--ix-button-min-height, 2rem);
     vertical-align: middle;
     cursor: pointer;
 
@@ -131,9 +130,10 @@
     .content {
       display: inline-block;
       position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      overflow: var(--ix-button-content-overflow, hidden);
+      white-space: var(--ix-button-text-white-space, nowrap);
+      text-overflow: var(--ix-button-content-text-overflow, ellipsis);
+      word-break: var(--ix-button-word-break, normal);
     }
 
     .content-start {
