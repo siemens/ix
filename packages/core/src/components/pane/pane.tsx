@@ -92,6 +92,14 @@ export class Pane {
   @Prop() borderless: boolean = false;
 
   /**
+   * Remove the padding of the content area.
+   * If set to `true` the left, right and bottom padding of the content area is removed.
+   *
+   * @since 5.1.0
+   */
+  @Prop() noPadding: boolean = false;
+
+  /**
    * State of the pane
    */
   @Prop({ mutable: true }) expanded: boolean = false;
@@ -808,7 +816,13 @@ export class Pane {
               )}
             </div>
           </div>
-          <div class="side-pane-content" hidden={!this.showContent}>
+          <div
+            class={{
+              'side-pane-content': true,
+              'no-padding': this.noPadding,
+            }}
+            hidden={!this.showContent}
+          >
             <slot></slot>
           </div>
         </aside>

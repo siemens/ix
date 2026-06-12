@@ -315,7 +315,6 @@ export class Menu {
       true
     );
 
-    menuController.register(this.hostElement);
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
@@ -335,8 +334,13 @@ export class Menu {
     this.appendFragments();
   }
 
+  connectedCallback() {
+    menuController.register(this.hostElement);
+  }
+
   disconnectedCallback() {
     this.themeNameDisposer?.dispose();
+    menuController.unregister(this.hostElement);
   }
 
   private updateThemeState() {

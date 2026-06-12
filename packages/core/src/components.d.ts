@@ -3071,6 +3071,12 @@ export namespace Components {
          */
         "isMobile": boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding": boolean;
+        /**
           * The maximum size of the sidebar, when it is expanded
           * @default '240px'
          */
@@ -3500,6 +3506,12 @@ export namespace Components {
           * @default false
          */
         "disableAriaSelectHandling": boolean;
+        /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled": boolean;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * @default false
@@ -4113,17 +4125,17 @@ export namespace Components {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default HOUR_INTERVAL_DEFAULT
+          * @default 1
          */
         "hourInterval": number;
         /**
           * Text of the time confirm button.
-          * @default CONFIRM_BUTTON_DEFAULT
+          * @default 'Confirm'
          */
         "i18nConfirmTime": string;
         /**
           * Text for the top header.
-          * @default HEADER_DEFAULT
+          * @default 'Time'
          */
         "i18nHeader": string;
         /**
@@ -4154,7 +4166,7 @@ export namespace Components {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default MILLISECOND_INTERVAL_DEFAULT
+          * @default 100
          */
         "millisecondInterval": number;
         /**
@@ -4165,13 +4177,13 @@ export namespace Components {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default MINUTE_INTERVAL_DEFAULT
+          * @default 1
          */
         "minuteInterval": number;
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default SECOND_INTERVAL_DEFAULT
+          * @default 1
          */
         "secondInterval": number;
         /**
@@ -9557,6 +9569,12 @@ declare namespace LocalJSX {
          */
         "isMobile"?: boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding"?: boolean;
+        /**
           * This event is triggered when the variant of the pane is changed
          */
         "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
@@ -10020,6 +10038,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
+        /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled"?: boolean;
         /**
           * @default false
          */
@@ -10674,17 +10698,17 @@ declare namespace LocalJSX {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default HOUR_INTERVAL_DEFAULT
+          * @default 1
          */
         "hourInterval"?: number;
         /**
           * Text of the time confirm button.
-          * @default CONFIRM_BUTTON_DEFAULT
+          * @default 'Confirm'
          */
         "i18nConfirmTime"?: string;
         /**
           * Text for the top header.
-          * @default HEADER_DEFAULT
+          * @default 'Time'
          */
         "i18nHeader"?: string;
         /**
@@ -10715,7 +10739,7 @@ declare namespace LocalJSX {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default MILLISECOND_INTERVAL_DEFAULT
+          * @default 100
          */
         "millisecondInterval"?: number;
         /**
@@ -10726,7 +10750,7 @@ declare namespace LocalJSX {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default MINUTE_INTERVAL_DEFAULT
+          * @default 1
          */
         "minuteInterval"?: number;
         /**
@@ -10740,7 +10764,7 @@ declare namespace LocalJSX {
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default SECOND_INTERVAL_DEFAULT
+          * @default 1
          */
         "secondInterval"?: number;
         /**
@@ -11830,6 +11854,7 @@ declare namespace LocalJSX {
     | '33%'
     | '50%';
         "borderless": boolean;
+        "noPadding": boolean;
         "expanded": boolean;
         "composition": Composition;
         "icon": string;
@@ -11943,6 +11968,7 @@ declare namespace LocalJSX {
         "label": string;
         "value": string;
         "selected": boolean;
+        "disabled": boolean;
         "hover": boolean;
     }
     interface IxSliderAttributes {
