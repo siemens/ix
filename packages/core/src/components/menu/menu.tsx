@@ -636,7 +636,7 @@ export class Menu {
     );
   }
 
-  // item positions and menu size has to be set manually because slotted items and utility controls are sepparated into two groups
+  // item positions and menu size has to be set manually because slotted items and utility controls are separated into two groups
   private updateMenuItemPositionMetadata(
     items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[]
   ) {

@@ -232,6 +232,15 @@ export class MenuItem
     return undefined;
   }
 
+  private getEffectiveRole(externalRole?: string) {
+    const internalRole =
+      this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
+        ? 'menuitem'
+        : undefined;
+
+    return externalRole ?? internalRole;
+  }
+
   private returnFocusToParentCategoryMenuItem() {
     const categoryElement =
       this.hostElement.closest<HTMLElement>('ix-menu-category');
@@ -266,12 +275,7 @@ export class MenuItem
     const { role: externalRole, ...inheritedA11yWithoutRole } =
       this.inheritAriaAttributes;
 
-    const internalRole =
-      this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
-        ? 'menuitem'
-        : undefined;
-
-    const effectiveRole = externalRole ?? internalRole;
+    const effectiveRole = this.getEffectiveRole(externalRole);
 
     const commonAttributes = {
       class: 'tab',
