@@ -1346,3 +1346,111 @@ test('listbox proxy: selected value stays aria-selected when another row has foc
     'false'
   );
 });
+
+test('input does not clear when slotchange fires before inputFilterText is set', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const input = page.getByTestId('input');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  await page.evaluate(() => {
+    const ixSelect = document.querySelector('ix-select');
+    const inputEl = ixSelect?.shadowRoot?.querySelector<HTMLInputElement>(
+      '[data-testid="input"]'
+    );
+    if (inputEl) inputEl.value = 'Item 1';
+  });
+
+  await expect(input).toHaveValue('Item 1');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const item = select?.querySelector('ix-select-item');
+    if (item && select) {
+      item.remove();
+      select.appendChild(item);
+    }
+  });
+
+  await page.waitForTimeout(100);
+
+  await expect(input).toHaveValue('Item 1');
+});
+
+test('selected label preserved when item is temporarily removed from DOM', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select value="1">
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const input = page.getByTestId('input');
+  await expect(input).toHaveValue('Item 1');
+
+  await page.evaluate(() => {
+    const select = document.querySelector('ix-select');
+    const item1 = select?.querySelector('ix-select-item[value="1"]');
+    if (item1) item1.remove();
+  });
+
+  await page.waitForTimeout(50);
+
+  await expect(input).toHaveValue('Item 1');
+});
+
+test('dropdownOpenChange emits true on open and false on close', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+
+  const openEventPromise = select.evaluate(
+    (el: HTMLIxSelectElement) =>
+      new Promise<boolean>((resolve) => {
+        el.addEventListener(
+          'dropdownOpenChange',
+          (e) => resolve((e as CustomEvent<boolean>).detail),
+          { once: true }
+        );
+      })
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+
+  expect(await openEventPromise).toBe(true);
+
+  const closeEventPromise = select.evaluate(
+    (el: HTMLIxSelectElement) =>
+      new Promise<boolean>((resolve) => {
+        el.addEventListener(
+          'dropdownOpenChange',
+          (e) => resolve((e as CustomEvent<boolean>).detail),
+          { once: true }
+        );
+      })
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+
+  expect(await closeEventPromise).toBe(false);
+});

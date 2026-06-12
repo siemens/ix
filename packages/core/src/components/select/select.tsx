@@ -248,6 +248,14 @@ export class Select
   @Event() inputChange!: EventEmitter<string>;
 
   /**
+   * Event dispatched whenever the dropdown opens or closes.
+   * Emits `true` when the dropdown opens and `false` when it closes.
+   *
+   * @since 5.1.0
+   */
+  @Event() dropdownOpenChange!: EventEmitter<boolean>;
+
+  /**
    * Item added to selection
    */
   @Event() addItem!: EventEmitter<string>;
@@ -447,13 +455,16 @@ export class Select
       (item) => item.label ?? item.value
     );
 
-    if (this.dropdownShow && this.inputFilterText) {
+    if (
+      this.dropdownShow &&
+      (this.inputFilterText || this.inputElement?.value)
+    ) {
       return;
     }
 
     if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0] ?? '';
-    } else {
+    } else if (!this.hasValue()) {
       this.inputValue = '';
     }
 
@@ -552,6 +563,7 @@ export class Select
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
+    this.dropdownOpenChange.emit(event.detail);
 
     if (event.detail) {
       this.inputElement?.focus();
