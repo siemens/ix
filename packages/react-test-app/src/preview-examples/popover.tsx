@@ -51,7 +51,7 @@ export default function PopoverPreview() {
             New
           </IxPill>
         </IxPopoverHeader>
-        <IxPopoverImage src={POPOVER_IMAGE_SRC} alt="Release preview" />
+        <IxPopoverImage image={POPOVER_IMAGE_SRC} imageAlt="Release preview" />
         <IxPopoverContent>
           Check out the new dashboard and improved performance metrics.
         </IxPopoverContent>

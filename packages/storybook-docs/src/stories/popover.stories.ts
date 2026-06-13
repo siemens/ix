@@ -134,7 +134,7 @@ export const With_Image: Story = {
         Release highlights
         <ix-pill slot="additional-items" variant="info">New</ix-pill>
       </ix-popover-header>
-      <ix-popover-image src="${POPOVER_IMAGE_SRC}" alt="Release preview"></ix-popover-image>
+      <ix-popover-image image="${POPOVER_IMAGE_SRC}" image-alt="Release preview"></ix-popover-image>
       <ix-popover-content>
         Check out the new dashboard and improved performance metrics.
       </ix-popover-content>
