@@ -18,6 +18,6 @@
   @include component.ix-component;
 }
 
-:host(.paddingless) {
+:host(.no-padding) {
   padding: 0;
 }

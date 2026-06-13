@@ -959,13 +959,13 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
-      'removes content padding when paddingless is set',
+      'removes content padding when noPadding is set',
       async ({ mount, page }) => {
         await mount(html`
           <ix-button id="trigger">Open</ix-button>
           <ix-popover id="popover" trigger="trigger">
-            <ix-popover-content paddingless
-              >Paddingless body</ix-popover-content
+            <ix-popover-content no-padding
+              >No padding body</ix-popover-content
             >
           </ix-popover>
         `);
@@ -973,7 +973,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         await popover.open();
         await expect(page.locator('ix-popover-content')).toHaveClass(
-          /paddingless/
+          /no-padding/
         );
       }
     );

@@ -1548,7 +1548,7 @@ export type IxPopoverContentEvents = NonNullable<unknown>;
 
 export const IxPopoverContent: StencilReactComponent<IxPopoverContentElement, IxPopoverContentEvents, Components.IxPopoverContent> = /*@__PURE__*/ createComponent<IxPopoverContentElement, IxPopoverContentEvents, Components.IxPopoverContent>({
     tagName: 'ix-popover-content',
-    properties: { paddingless: 'paddingless' },
+    properties: { noPadding: 'no-padding' },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxPopoverContent as StencilReactComponent<IxPopoverContentElement, IxPopoverContentEvents, Components.IxPopoverContent>,
     serializeShadowRoot

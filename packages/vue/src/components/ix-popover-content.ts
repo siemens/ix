@@ -7,5 +7,5 @@ import type { JSX } from '@siemens/ix';
 import { defineCustomElement as defineIxPopoverContent } from '@siemens/ix/components/ix-popover-content.js';
 
 export const IxPopoverContent: StencilVueComponent<JSX.IxPopoverContent> = /*@__PURE__*/ defineContainer<JSX.IxPopoverContent>('ix-popover-content', defineIxPopoverContent, [
-  'paddingless'
+  'noPadding'
 ]);

@@ -160,7 +160,7 @@ export const Stepper_Footer: Story = {
 
     popover.innerHTML = `
       <ix-popover-header hide-close>Step 1 of 3</ix-popover-header>
-      <ix-popover-content paddingless>
+      <ix-popover-content no-padding>
         Click the sidebar to navigate between pages.
       </ix-popover-content>
       <ix-popover-footer alignment="vertical">

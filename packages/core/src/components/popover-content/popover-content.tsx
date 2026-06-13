@@ -26,11 +26,11 @@ export class PopoverContent {
   @Element() hostElement!: HTMLIxPopoverContentElement;
 
   /**
-   * Remove default inner padding
+   * Remove default inner padding.
    *
    * @since 5.1.0
    */
-  @Prop() paddingless = false;
+  @Prop() noPadding = false;
 
   componentDidLoad() {
     this.hostElement.setAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE, '');
@@ -38,7 +38,7 @@ export class PopoverContent {
 
   render() {
     return (
-      <Host class={{ paddingless: this.paddingless }}>
+      <Host class={{ 'no-padding': this.noPadding }}>
         <slot></slot>
       </Host>
     );
