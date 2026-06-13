@@ -59,8 +59,8 @@ regressionTest.describe('ix-popover', () => {
             <ix-popover id="popover" trigger="trigger">
               <ix-popover-header icon="info">Title</ix-popover-header>
               <ix-popover-image
-                src="/assets/test.png"
-                alt="Preview"
+                image="/assets/test.png"
+                image-alt="Preview"
               ></ix-popover-image>
               <ix-popover-content>Body</ix-popover-content>
               <ix-popover-footer>
@@ -938,14 +938,14 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
-      'renders image with src and alt',
+      'renders image with image and imageAlt',
       async ({ mount, page }) => {
         await mount(html`
           <ix-button id="trigger">Open</ix-button>
           <ix-popover id="popover" trigger="trigger">
             <ix-popover-image
-              src="/assets/test.png"
-              alt="Release preview"
+              image="/assets/test.png"
+              image-alt="Release preview"
             ></ix-popover-image>
           </ix-popover>
         `);
@@ -964,9 +964,7 @@ regressionTest.describe('ix-popover', () => {
         await mount(html`
           <ix-button id="trigger">Open</ix-button>
           <ix-popover id="popover" trigger="trigger">
-            <ix-popover-content no-padding
-              >No padding body</ix-popover-content
-            >
+            <ix-popover-content no-padding>No padding body</ix-popover-content>
           </ix-popover>
         `);
 

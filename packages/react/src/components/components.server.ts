@@ -1584,8 +1584,8 @@ export type IxPopoverImageEvents = NonNullable<unknown>;
 export const IxPopoverImage: StencilReactComponent<IxPopoverImageElement, IxPopoverImageEvents, Components.IxPopoverImage> = /*@__PURE__*/ createComponent<IxPopoverImageElement, IxPopoverImageEvents, Components.IxPopoverImage>({
     tagName: 'ix-popover-image',
     properties: {
-        src: 'src',
-        alt: 'alt'
+        image: 'image',
+        imageAlt: 'image-alt'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxPopoverImage as StencilReactComponent<IxPopoverImageElement, IxPopoverImageEvents, Components.IxPopoverImage>,

@@ -2414,14 +2414,14 @@ Cancel to prevent closing. @since 5.1.0
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPopoverImage,
-  inputs: ['alt', 'src']
+  inputs: ['image', 'imageAlt']
 })
 @Component({
   selector: 'ix-popover-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alt', 'src'],
+  inputs: ['image', 'imageAlt'],
 })
 export class IxPopoverImage {
   protected el: HTMLIxPopoverImageElement;

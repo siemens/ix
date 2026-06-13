@@ -56,8 +56,8 @@ const POPOVER_IMAGE_SRC =
         <ix-pill slot="additional-items" variant="info">New</ix-pill>
       </ix-popover-header>
       <ix-popover-image
-        [src]="popoverImageSrc"
-        alt="Release preview"
+        [image]="popoverImageSrc"
+        image-alt="Release preview"
       ></ix-popover-image>
       <ix-popover-content>
         Check out the new dashboard and improved performance metrics.

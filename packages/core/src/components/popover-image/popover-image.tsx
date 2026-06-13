@@ -25,7 +25,7 @@ export class PopoverImage {
    *
    * @since 5.1.0
    */
-  @Prop() src?: string;
+  @Prop() image?: string;
 
   /**
    * Alt text for the image.
@@ -33,16 +33,16 @@ export class PopoverImage {
    *
    * @since 5.1.0
    */
-  @Prop() alt = '';
+  @Prop() imageAlt = '';
 
   render() {
-    if (!this.src) {
+    if (!this.image) {
       return null;
     }
 
     return (
       <Host>
-        <img src={this.src} alt={this.alt} />
+        <img src={this.image} alt={this.imageAlt} />
       </Host>
     );
   }

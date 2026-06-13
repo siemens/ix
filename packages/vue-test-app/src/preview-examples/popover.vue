@@ -49,7 +49,7 @@ const onCancel = () => {
       Release highlights
       <IxPill slot="additional-items" variant="info">New</IxPill>
     </IxPopoverHeader>
-    <IxPopoverImage :src="POPOVER_IMAGE_SRC" alt="Release preview" />
+    <IxPopoverImage :image="POPOVER_IMAGE_SRC" image-alt="Release preview" />
     <IxPopoverContent>
       Check out the new dashboard and improved performance metrics.
     </IxPopoverContent>

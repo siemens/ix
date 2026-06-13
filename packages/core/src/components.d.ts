@@ -3263,16 +3263,16 @@ export namespace Components {
      */
     interface IxPopoverImage {
         /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
           * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
           * @since 5.1.0
           * @default ''
          */
-        "alt": string;
-        /**
-          * Image source URL
-          * @since 5.1.0
-         */
-        "src"?: string;
+        "imageAlt": string;
     }
     /**
      * @since 3.2.0
@@ -9995,16 +9995,16 @@ declare namespace LocalJSX {
      */
     interface IxPopoverImage {
         /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
           * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
           * @since 5.1.0
           * @default ''
          */
-        "alt"?: string;
-        /**
-          * Image source URL
-          * @since 5.1.0
-         */
-        "src"?: string;
+        "imageAlt"?: string;
     }
     /**
      * @since 3.2.0
@@ -12243,8 +12243,8 @@ declare namespace LocalJSX {
         "ariaLabelCloseIconButton": string;
     }
     interface IxPopoverImageAttributes {
-        "src": string;
-        "alt": string;
+        "image": string;
+        "imageAlt": string;
     }
     interface IxProgressIndicatorAttributes {
         "type": 'linear' | 'circular';
