@@ -18,17 +18,10 @@
 
   @include component.ix-component;
 
-  .footer-start {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
+  .footer-start,
   .footer-end {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
-    margin-inline-start: auto;
   }
 }
 
