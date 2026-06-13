@@ -18,9 +18,15 @@ import {
 import {
   interactivePopoverMarkup,
   nestedPopoverMarkup,
+  outerPopoverWithNestedMountMarkup,
   placementTestMarkup,
 } from './popover.fixtures';
-import { expectPlacement, mountPopover, PopoverPage } from './popover.page';
+import {
+  expectPlacement,
+  injectLateNestedPopover,
+  mountPopover,
+  PopoverPage,
+} from './popover.page';
 
 const html = String.raw;
 
@@ -629,6 +635,22 @@ regressionTest.describe('ix-popover', () => {
         const inner = new PopoverPage(page, 'inner-trigger');
 
         await outer.open();
+        await inner.open();
+
+        await outer.expectOpen();
+        await inner.expectOpen();
+      }
+    );
+
+    regressionTest(
+      'keeps parent open when nested popover mounts after parent opens',
+      async ({ mount, page }) => {
+        await mount(outerPopoverWithNestedMountMarkup());
+        const outer = new PopoverPage(page, 'outer-trigger');
+        const inner = new PopoverPage(page, 'inner-trigger');
+
+        await outer.open();
+        await injectLateNestedPopover(page);
         await inner.open();
 
         await outer.expectOpen();

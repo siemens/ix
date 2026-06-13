@@ -387,3 +387,35 @@ export async function mountPopover(
   // as we just need to ensure at least one popover is hydrated
   await expect(page.locator('ix-popover').first()).toHaveClass(/hydrated/);
 }
+
+/**
+ * Inject nested popover markup after the parent is already open.
+ * Waits for the inner trigger to register with the controller.
+ */
+export async function injectLateNestedPopover(page: Page): Promise<void> {
+  await page.evaluate(async () => {
+    const mount = document.getElementById('nested-mount');
+    if (!mount) {
+      throw new Error('Nested mount not found');
+    }
+
+    mount.innerHTML = `
+      <ix-button id="inner-trigger">Inner</ix-button>
+      <ix-popover id="inner-popover" trigger="inner-trigger" close-on-click-outside>
+        <ix-popover-header>Inner popover</ix-popover-header>
+        <ix-popover-content>Nested body</ix-popover-content>
+      </ix-popover>
+    `;
+
+    await customElements.whenDefined('ix-popover');
+    await customElements.whenDefined('ix-button');
+  });
+
+  await expect(page.locator('ix-popover#inner-popover')).toHaveClass(
+    /hydrated/
+  );
+  await expect(page.locator('ix-button#inner-trigger')).toHaveAttribute(
+    'data-ix-popover-trigger',
+    ''
+  );
+}

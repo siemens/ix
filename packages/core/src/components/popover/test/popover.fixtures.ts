@@ -83,6 +83,27 @@ export function placementTestMarkup(
 }
 
 /**
+ * Outer popover only; nested child is injected at runtime (see {@link injectLateNestedPopover}).
+ */
+export function outerPopoverWithNestedMountMarkup() {
+  return html`
+    <div style="padding: 8rem 0 0 8rem;">
+      <ix-button id="outer-trigger">Outer</ix-button>
+      <ix-popover
+        id="outer-popover"
+        trigger="outer-trigger"
+        close-on-click-outside
+      >
+        <ix-popover-header>Outer popover</ix-popover-header>
+        <ix-popover-content>
+          <div id="nested-mount"></div>
+        </ix-popover-content>
+      </ix-popover>
+    </div>
+  `;
+}
+
+/**
  * Nested popovers with a third unrelated popover for controller tests
  */
 export function nestedPopoverMarkup() {

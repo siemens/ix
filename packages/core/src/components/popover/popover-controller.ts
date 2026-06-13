@@ -68,22 +68,19 @@ class PopoverController {
     this.stack.removeFromHierarchy(id);
   }
 
+  /** Keeps stack parent→child links aligned with host {@link PopoverInterface.getNestedPopoverIds}. */
+  syncNestedPopoverIds(popover: PopoverInterface) {
+    this.stack.setChildIds(popover.getId(), popover.getNestedPopoverIds());
+  }
+
   present(popover: PopoverInterface) {
     void this.presentAndWait(popover);
   }
 
   async presentAndWait(popover: PopoverInterface): Promise<void> {
     if (!popover.isPresent() && popover.willPresent?.()) {
-      this.stack.forEach((openPopover) => {
-        if (openPopover.isPresent()) {
-          this.stack.setChildIds(
-            openPopover.getId(),
-            openPopover.getNestedPopoverIds()
-          );
-        }
-      });
       this.dismissOthers(popover.getId());
-      this.stack.setChildIds(popover.getId(), popover.getNestedPopoverIds());
+      this.syncNestedPopoverIds(popover);
       await popover.present();
       this.recordPresented(popover.getId());
     }

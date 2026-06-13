@@ -195,6 +195,7 @@ export class Popover
       !this.assignedNestedPopoverIds.includes(detail)
     ) {
       this.assignedNestedPopoverIds.push(detail);
+      popoverController.syncNestedPopoverIds(this);
       event.stopImmediatePropagation();
       event.preventDefault();
     }
