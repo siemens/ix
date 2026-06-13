@@ -279,6 +279,26 @@ describe('PopoverController', () => {
       expect(child.presentMock).toHaveBeenCalledOnce();
     });
 
+    it('keeps parent open when nested hierarchy syncs after parent was presented', () => {
+      const nestedPopoverIds: string[] = [];
+      const parent = createMockPopover({
+        id: 'popover-parent',
+        nestedPopoverIds: nestedPopoverIds,
+      });
+      const child = createMockPopover({ id: 'popover-child' });
+
+      controller.connected(parent);
+      controller.connected(child);
+      controller.present(parent);
+
+      nestedPopoverIds.push('popover-child');
+      controller.syncNestedPopoverIds(parent);
+      controller.present(child);
+
+      expect(parent.dismissMock).not.toHaveBeenCalled();
+      expect(child.presentMock).toHaveBeenCalledOnce();
+    });
+
     it('does not dismiss popovers with closeOnClickOutside disabled', () => {
       const persistent = createMockPopover({
         id: 'popover-persistent',
