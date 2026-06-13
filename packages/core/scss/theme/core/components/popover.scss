@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@mixin setVars {
+  --theme-popover--background: var(--theme-color-2);
+  --theme-popover--border-color: transparent;
+  --theme-popover--color: var(--theme-color-std-text);
+  --theme-popover--elevation-filter: drop-shadow(0 0 2px var(--theme-color-shadow-2))
+    drop-shadow(0 4px 8px var(--theme-color-shadow-3))
+    drop-shadow(0 12px 18px var(--theme-color-shadow-3));
+  --theme-popover-close--color: var(--theme-color-soft-text);
+  --theme-popover-close-btn--background: transparent;
+  --theme-popover-close-btn--background--active: var(--theme-color-ghost--active);
+  --theme-popover-close-btn--background--hover: var(--theme-color-ghost--hover);
+}

@@ -1,0 +1,66 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  padding: 0.75rem;
+  align-items: center;
+  gap: 0.5rem;
+
+  @include component.ix-component;
+
+  .popover-title {
+    flex-grow: 1;
+  }
+
+  .additional-items {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .popover-close {
+    align-self: flex-start;
+    border-radius: var(--theme-small-border-radius, 0.125rem);
+
+    --ix-icon-button-color: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color--hover: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--color--active: var(
+      --theme-popover-close--color,
+      var(--theme-color-soft-text)
+    );
+    --theme-btn-tertiary--background: var(
+      --theme-popover-close-btn--background,
+      transparent
+    );
+    --theme-btn-tertiary--background--hover: var(
+      --theme-popover-close-btn--background--hover,
+      var(--theme-color-ghost--hover)
+    );
+    --theme-btn-tertiary--background--active: var(
+      --theme-popover-close-btn--background--active,
+      var(--theme-color-ghost--active)
+    );
+    --theme-btn-tertiary--border-color: transparent;
+    --theme-btn-tertiary--border-color--hover: transparent;
+    --theme-btn-tertiary--border-color--active: transparent;
+  }
+}
