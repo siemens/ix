@@ -3211,11 +3211,11 @@ export namespace Components {
      */
     interface IxPopoverContent {
         /**
-          * Remove default inner padding
+          * Remove default inner padding.
           * @since 5.1.0
           * @default false
          */
-        "paddingless": boolean;
+        "noPadding": boolean;
     }
     /**
      * Footer section for actions and optional leading metadata.
@@ -9938,11 +9938,11 @@ declare namespace LocalJSX {
      */
     interface IxPopoverContent {
         /**
-          * Remove default inner padding
+          * Remove default inner padding.
           * @since 5.1.0
           * @default false
          */
-        "paddingless"?: boolean;
+        "noPadding"?: boolean;
     }
     /**
      * Footer section for actions and optional leading metadata.
@@ -12231,7 +12231,7 @@ declare namespace LocalJSX {
         "closeOnClickOutside": boolean;
     }
     interface IxPopoverContentAttributes {
-        "paddingless": boolean;
+        "noPadding": boolean;
     }
     interface IxPopoverFooterAttributes {
         "alignment": 'horizontal' | 'vertical';

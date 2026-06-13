@@ -2232,14 +2232,14 @@ export declare interface IxPopover extends Components.IxPopover {
 
 
 @ProxyCmp({
-  inputs: ['paddingless']
+  inputs: ['noPadding']
 })
 @Component({
   selector: 'ix-popover-content',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['paddingless'],
+  inputs: ['noPadding'],
   standalone: false
 })
 export class IxPopoverContent {
