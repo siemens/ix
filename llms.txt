@@ -1,0 +1,24 @@
+# Siemens iX Registry
+
+> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component and block context.
+
+Latest registry tag: 5.0.0.
+
+## Registry versions
+
+- [v5.0.0](v5.0.0/llms.txt): Versioned Siemens iX registry LLM entrypoint.
+- [feat/block-cli](feat/block-cli/llms.txt): Versioned Siemens iX registry LLM entrypoint.
+
+## Component docs
+
+- v5.0.0: Component LLM docs unavailable.
+- [feat/block-cli components](feat/block-cli/llms/components.md): Component API, examples, Figma IDs, and relationship availability for feat/block-cli.
+
+## Block docs
+
+- v5.0.0: Block LLM docs unavailable.
+- [feat/block-cli blocks](feat/block-cli/llms/blocks.md): Registry block metadata, variants, files, dependencies, and component usage availability for feat/block-cli.
+
+## Optional
+
+- [Registry manifest](registry.json): Machine-readable manifest containing all deployed registry versions and dist-tags.
