@@ -12,11 +12,11 @@ Block docs describe copyable multi-file UI patterns built with iX packages, incl
 
 If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
 
-Latest registry tag: 5.0.0.
+Latest registry tag: v5.0.0.
 
 ## Registry versions
 
-- [v5.0.0](v5.0.0/llms.txt): Versioned Siemens iX registry LLM entrypoint.
+- [v5.0.0](v5.0.0/llms.txt): Versioned Siemens iX registry LLM entrypoint. Tags: latest.
 - [feat/block-cli](feat/block-cli/llms.txt): Versioned Siemens iX registry LLM entrypoint.
 
 ## Component docs

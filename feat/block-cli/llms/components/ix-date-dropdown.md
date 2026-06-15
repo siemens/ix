@@ -13,8 +13,23 @@
 ## Related examples
 
 - date-dropdown
+  - angular: [../../examples/angular-examples/src/preview-examples/date-dropdown.html](../../examples/angular-examples/src/preview-examples/date-dropdown.html), [../../examples/angular-examples/src/preview-examples/date-dropdown.ts](../../examples/angular-examples/src/preview-examples/date-dropdown.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown.html](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown.html), [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown.ts](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown.ts)
+  - html: [../../examples/html-examples/src/preview-examples/date-dropdown.html](../../examples/html-examples/src/preview-examples/date-dropdown.html)
+  - react: [../../examples/react-examples/src/preview-examples/date-dropdown.tsx](../../examples/react-examples/src/preview-examples/date-dropdown.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/date-dropdown.vue](../../examples/vue-examples/src/preview-examples/date-dropdown.vue)
 - date-dropdown-presets
+  - angular: [../../examples/angular-examples/src/preview-examples/date-dropdown-presets.html](../../examples/angular-examples/src/preview-examples/date-dropdown-presets.html), [../../examples/angular-examples/src/preview-examples/date-dropdown-presets.ts](../../examples/angular-examples/src/preview-examples/date-dropdown-presets.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-presets.html](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-presets.html), [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-presets.ts](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-presets.ts)
+  - html: [../../examples/html-examples/src/preview-examples/date-dropdown-presets.html](../../examples/html-examples/src/preview-examples/date-dropdown-presets.html)
+  - react: [../../examples/react-examples/src/preview-examples/date-dropdown-presets.tsx](../../examples/react-examples/src/preview-examples/date-dropdown-presets.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/date-dropdown-presets.vue](../../examples/vue-examples/src/preview-examples/date-dropdown-presets.vue)
 - date-dropdown-user-range
+  - angular: [../../examples/angular-examples/src/preview-examples/date-dropdown-user-range.html](../../examples/angular-examples/src/preview-examples/date-dropdown-user-range.html), [../../examples/angular-examples/src/preview-examples/date-dropdown-user-range.ts](../../examples/angular-examples/src/preview-examples/date-dropdown-user-range.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.html](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.html), [../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.ts](../../examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.ts)
+  - html: [../../examples/html-examples/src/preview-examples/date-dropdown-user-range.html](../../examples/html-examples/src/preview-examples/date-dropdown-user-range.html)
+  - react: [../../examples/react-examples/src/preview-examples/date-dropdown-user-range.tsx](../../examples/react-examples/src/preview-examples/date-dropdown-user-range.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/date-dropdown-user-range.vue](../../examples/vue-examples/src/preview-examples/date-dropdown-user-range.vue)
 
 ## Related blocks
 

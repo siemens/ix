@@ -13,13 +13,53 @@
 ## Related examples
 
 - range-field
+  - angular: [../../examples/angular-examples/src/preview-examples/range-field.ts](../../examples/angular-examples/src/preview-examples/range-field.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/range-field.ts](../../examples/angular-standalone-examples/src/preview-examples/range-field.ts)
+  - html: [../../examples/html-examples/src/preview-examples/range-field.html](../../examples/html-examples/src/preview-examples/range-field.html)
+  - react: [../../examples/react-examples/src/preview-examples/range-field.tsx](../../examples/react-examples/src/preview-examples/range-field.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/range-field.vue](../../examples/vue-examples/src/preview-examples/range-field.vue)
 - time-input
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input.html](../../examples/angular-examples/src/preview-examples/time-input.html), [../../examples/angular-examples/src/preview-examples/time-input.ts](../../examples/angular-examples/src/preview-examples/time-input.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input.html](../../examples/angular-standalone-examples/src/preview-examples/time-input.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input.html](../../examples/html-examples/src/preview-examples/time-input.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input.tsx](../../examples/react-examples/src/preview-examples/time-input.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input.vue](../../examples/vue-examples/src/preview-examples/time-input.vue)
 - time-input-disabled
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input-disabled.html](../../examples/angular-examples/src/preview-examples/time-input-disabled.html), [../../examples/angular-examples/src/preview-examples/time-input-disabled.ts](../../examples/angular-examples/src/preview-examples/time-input-disabled.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input-disabled.html](../../examples/angular-standalone-examples/src/preview-examples/time-input-disabled.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input-disabled.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input-disabled.html](../../examples/html-examples/src/preview-examples/time-input-disabled.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input-disabled.tsx](../../examples/react-examples/src/preview-examples/time-input-disabled.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input-disabled.vue](../../examples/vue-examples/src/preview-examples/time-input-disabled.vue)
 - time-input-label
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input-label.html](../../examples/angular-examples/src/preview-examples/time-input-label.html), [../../examples/angular-examples/src/preview-examples/time-input-label.ts](../../examples/angular-examples/src/preview-examples/time-input-label.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input-label.html](../../examples/angular-standalone-examples/src/preview-examples/time-input-label.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input-label.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input-label.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input-label.html](../../examples/html-examples/src/preview-examples/time-input-label.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input-label.tsx](../../examples/react-examples/src/preview-examples/time-input-label.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input-label.vue](../../examples/vue-examples/src/preview-examples/time-input-label.vue)
 - time-input-readonly
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input-readonly.html](../../examples/angular-examples/src/preview-examples/time-input-readonly.html), [../../examples/angular-examples/src/preview-examples/time-input-readonly.ts](../../examples/angular-examples/src/preview-examples/time-input-readonly.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input-readonly.html](../../examples/angular-standalone-examples/src/preview-examples/time-input-readonly.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input-readonly.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input-readonly.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input-readonly.html](../../examples/html-examples/src/preview-examples/time-input-readonly.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input-readonly.tsx](../../examples/react-examples/src/preview-examples/time-input-readonly.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input-readonly.vue](../../examples/vue-examples/src/preview-examples/time-input-readonly.vue)
 - time-input-validation
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input-validation.html](../../examples/angular-examples/src/preview-examples/time-input-validation.html), [../../examples/angular-examples/src/preview-examples/time-input-validation.ts](../../examples/angular-examples/src/preview-examples/time-input-validation.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input-validation.html](../../examples/angular-standalone-examples/src/preview-examples/time-input-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input-validation.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input-validation.html](../../examples/html-examples/src/preview-examples/time-input-validation.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input-validation.tsx](../../examples/react-examples/src/preview-examples/time-input-validation.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input-validation.vue](../../examples/vue-examples/src/preview-examples/time-input-validation.vue)
 - time-input-with-slots
+  - angular: [../../examples/angular-examples/src/preview-examples/time-input-with-slots.html](../../examples/angular-examples/src/preview-examples/time-input-with-slots.html), [../../examples/angular-examples/src/preview-examples/time-input-with-slots.ts](../../examples/angular-examples/src/preview-examples/time-input-with-slots.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-input-with-slots.html](../../examples/angular-standalone-examples/src/preview-examples/time-input-with-slots.html), [../../examples/angular-standalone-examples/src/preview-examples/time-input-with-slots.ts](../../examples/angular-standalone-examples/src/preview-examples/time-input-with-slots.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-input-with-slots.html](../../examples/html-examples/src/preview-examples/time-input-with-slots.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-input-with-slots.tsx](../../examples/react-examples/src/preview-examples/time-input-with-slots.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-input-with-slots.vue](../../examples/vue-examples/src/preview-examples/time-input-with-slots.vue)
 - time-range
+  - angular: [../../examples/angular-examples/src/preview-examples/time-range.ts](../../examples/angular-examples/src/preview-examples/time-range.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/time-range.ts](../../examples/angular-standalone-examples/src/preview-examples/time-range.ts)
+  - html: [../../examples/html-examples/src/preview-examples/time-range.html](../../examples/html-examples/src/preview-examples/time-range.html)
+  - react: [../../examples/react-examples/src/preview-examples/time-range.tsx](../../examples/react-examples/src/preview-examples/time-range.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/time-range.vue](../../examples/vue-examples/src/preview-examples/time-range.vue)
 
 ## Related blocks
 

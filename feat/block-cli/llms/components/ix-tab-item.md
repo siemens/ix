@@ -13,10 +13,35 @@
 ## Related examples
 
 - about-and-legal
+  - angular: [../../examples/angular-examples/src/preview-examples/about-and-legal.html](../../examples/angular-examples/src/preview-examples/about-and-legal.html), [../../examples/angular-examples/src/preview-examples/about-and-legal.ts](../../examples/angular-examples/src/preview-examples/about-and-legal.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.html), [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.ts)
+  - html: [../../examples/html-examples/src/preview-examples/about-and-legal.html](../../examples/html-examples/src/preview-examples/about-and-legal.html)
+  - react: [../../examples/react-examples/src/preview-examples/about-and-legal.tsx](../../examples/react-examples/src/preview-examples/about-and-legal.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/about-and-legal.vue](../../examples/vue-examples/src/preview-examples/about-and-legal.vue)
 - settings
+  - angular: [../../examples/angular-examples/src/preview-examples/settings.html](../../examples/angular-examples/src/preview-examples/settings.html), [../../examples/angular-examples/src/preview-examples/settings.ts](../../examples/angular-examples/src/preview-examples/settings.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/settings.html](../../examples/angular-standalone-examples/src/preview-examples/settings.html), [../../examples/angular-standalone-examples/src/preview-examples/settings.ts](../../examples/angular-standalone-examples/src/preview-examples/settings.ts)
+  - html: [../../examples/html-examples/src/preview-examples/settings.html](../../examples/html-examples/src/preview-examples/settings.html)
+  - react: [../../examples/react-examples/src/preview-examples/settings.tsx](../../examples/react-examples/src/preview-examples/settings.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/settings.vue](../../examples/vue-examples/src/preview-examples/settings.vue)
 - tabs
+  - angular: [../../examples/angular-examples/src/preview-examples/tabs.css](../../examples/angular-examples/src/preview-examples/tabs.css), [../../examples/angular-examples/src/preview-examples/tabs.ts](../../examples/angular-examples/src/preview-examples/tabs.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tabs.css](../../examples/angular-standalone-examples/src/preview-examples/tabs.css), [../../examples/angular-standalone-examples/src/preview-examples/tabs.ts](../../examples/angular-standalone-examples/src/preview-examples/tabs.ts)
+  - html: [../../examples/html-examples/src/preview-examples/tabs.css](../../examples/html-examples/src/preview-examples/tabs.css), [../../examples/html-examples/src/preview-examples/tabs.html](../../examples/html-examples/src/preview-examples/tabs.html)
+  - react: [../../examples/react-examples/src/preview-examples/tabs.scoped.css](../../examples/react-examples/src/preview-examples/tabs.scoped.css), [../../examples/react-examples/src/preview-examples/tabs.tsx](../../examples/react-examples/src/preview-examples/tabs.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/tabs.css](../../examples/vue-examples/src/preview-examples/tabs.css), [../../examples/vue-examples/src/preview-examples/tabs.vue](../../examples/vue-examples/src/preview-examples/tabs.vue)
 - tabs-overflow
+  - angular: [../../examples/angular-examples/src/preview-examples/tabs-overflow.ts](../../examples/angular-examples/src/preview-examples/tabs-overflow.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tabs-overflow.ts](../../examples/angular-standalone-examples/src/preview-examples/tabs-overflow.ts)
+  - html: [../../examples/html-examples/src/preview-examples/tabs-overflow.html](../../examples/html-examples/src/preview-examples/tabs-overflow.html)
+  - react: [../../examples/react-examples/src/preview-examples/tabs-overflow.tsx](../../examples/react-examples/src/preview-examples/tabs-overflow.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/tabs-overflow.vue](../../examples/vue-examples/src/preview-examples/tabs-overflow.vue)
 - tabs-rounded
+  - angular: [../../examples/angular-examples/src/preview-examples/tabs-rounded.ts](../../examples/angular-examples/src/preview-examples/tabs-rounded.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tabs-rounded.ts](../../examples/angular-standalone-examples/src/preview-examples/tabs-rounded.ts)
+  - html: [../../examples/html-examples/src/preview-examples/tabs-rounded.html](../../examples/html-examples/src/preview-examples/tabs-rounded.html)
+  - react: [../../examples/react-examples/src/preview-examples/tabs-rounded.tsx](../../examples/react-examples/src/preview-examples/tabs-rounded.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/tabs-rounded.vue](../../examples/vue-examples/src/preview-examples/tabs-rounded.vue)
 
 ## Related blocks
 

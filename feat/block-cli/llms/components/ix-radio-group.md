@@ -13,8 +13,23 @@
 ## Related examples
 
 - application-breakpoints
+  - angular: [../../examples/angular-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-examples/src/preview-examples/application-breakpoints.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-breakpoints.html](../../examples/html-examples/src/preview-examples/application-breakpoints.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-breakpoints.tsx](../../examples/react-examples/src/preview-examples/application-breakpoints.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-breakpoints.vue](../../examples/vue-examples/src/preview-examples/application-breakpoints.vue)
 - radio-group
+  - angular: [../../examples/angular-examples/src/preview-examples/radio-group.html](../../examples/angular-examples/src/preview-examples/radio-group.html), [../../examples/angular-examples/src/preview-examples/radio-group.ts](../../examples/angular-examples/src/preview-examples/radio-group.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/radio-group.html](../../examples/angular-standalone-examples/src/preview-examples/radio-group.html), [../../examples/angular-standalone-examples/src/preview-examples/radio-group.ts](../../examples/angular-standalone-examples/src/preview-examples/radio-group.ts)
+  - html: [../../examples/html-examples/src/preview-examples/radio-group.html](../../examples/html-examples/src/preview-examples/radio-group.html)
+  - react: [../../examples/react-examples/src/preview-examples/radio-group.tsx](../../examples/react-examples/src/preview-examples/radio-group.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/radio-group.vue](../../examples/vue-examples/src/preview-examples/radio-group.vue)
 - radio-validation
+  - angular: [../../examples/angular-examples/src/preview-examples/radio-validation.html](../../examples/angular-examples/src/preview-examples/radio-validation.html), [../../examples/angular-examples/src/preview-examples/radio-validation.ts](../../examples/angular-examples/src/preview-examples/radio-validation.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/radio-validation.html](../../examples/angular-standalone-examples/src/preview-examples/radio-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/radio-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/radio-validation.ts)
+  - html: [../../examples/html-examples/src/preview-examples/radio-validation.html](../../examples/html-examples/src/preview-examples/radio-validation.html)
+  - react: [../../examples/react-examples/src/preview-examples/radio-validation.tsx](../../examples/react-examples/src/preview-examples/radio-validation.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/radio-validation.vue](../../examples/vue-examples/src/preview-examples/radio-validation.vue)
 
 ## Related blocks
 

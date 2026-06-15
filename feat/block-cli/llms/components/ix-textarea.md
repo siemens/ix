@@ -13,10 +13,35 @@
 ## Related examples
 
 - textarea
+  - angular: [../../examples/angular-examples/src/preview-examples/textarea.html](../../examples/angular-examples/src/preview-examples/textarea.html), [../../examples/angular-examples/src/preview-examples/textarea.ts](../../examples/angular-examples/src/preview-examples/textarea.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/textarea.html](../../examples/angular-standalone-examples/src/preview-examples/textarea.html), [../../examples/angular-standalone-examples/src/preview-examples/textarea.ts](../../examples/angular-standalone-examples/src/preview-examples/textarea.ts)
+  - html: [../../examples/html-examples/src/preview-examples/textarea.html](../../examples/html-examples/src/preview-examples/textarea.html)
+  - react: [../../examples/react-examples/src/preview-examples/textarea.tsx](../../examples/react-examples/src/preview-examples/textarea.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/textarea.vue](../../examples/vue-examples/src/preview-examples/textarea.vue)
 - textarea-disabled
+  - angular: [../../examples/angular-examples/src/preview-examples/textarea-disabled.html](../../examples/angular-examples/src/preview-examples/textarea-disabled.html), [../../examples/angular-examples/src/preview-examples/textarea-disabled.ts](../../examples/angular-examples/src/preview-examples/textarea-disabled.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/textarea-disabled.html](../../examples/angular-standalone-examples/src/preview-examples/textarea-disabled.html), [../../examples/angular-standalone-examples/src/preview-examples/textarea-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/textarea-disabled.ts)
+  - html: [../../examples/html-examples/src/preview-examples/textarea-disabled.html](../../examples/html-examples/src/preview-examples/textarea-disabled.html)
+  - react: [../../examples/react-examples/src/preview-examples/textarea-disabled.tsx](../../examples/react-examples/src/preview-examples/textarea-disabled.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/textarea-disabled.vue](../../examples/vue-examples/src/preview-examples/textarea-disabled.vue)
 - textarea-readonly
+  - angular: [../../examples/angular-examples/src/preview-examples/textarea-readonly.html](../../examples/angular-examples/src/preview-examples/textarea-readonly.html), [../../examples/angular-examples/src/preview-examples/textarea-readonly.ts](../../examples/angular-examples/src/preview-examples/textarea-readonly.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/textarea-readonly.html](../../examples/angular-standalone-examples/src/preview-examples/textarea-readonly.html), [../../examples/angular-standalone-examples/src/preview-examples/textarea-readonly.ts](../../examples/angular-standalone-examples/src/preview-examples/textarea-readonly.ts)
+  - html: [../../examples/html-examples/src/preview-examples/textarea-readonly.html](../../examples/html-examples/src/preview-examples/textarea-readonly.html)
+  - react: [../../examples/react-examples/src/preview-examples/textarea-readonly.tsx](../../examples/react-examples/src/preview-examples/textarea-readonly.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/textarea-readonly.vue](../../examples/vue-examples/src/preview-examples/textarea-readonly.vue)
 - textarea-rows-cols
+  - angular: [../../examples/angular-examples/src/preview-examples/textarea-rows-cols.html](../../examples/angular-examples/src/preview-examples/textarea-rows-cols.html), [../../examples/angular-examples/src/preview-examples/textarea-rows-cols.ts](../../examples/angular-examples/src/preview-examples/textarea-rows-cols.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/textarea-rows-cols.html](../../examples/angular-standalone-examples/src/preview-examples/textarea-rows-cols.html), [../../examples/angular-standalone-examples/src/preview-examples/textarea-rows-cols.ts](../../examples/angular-standalone-examples/src/preview-examples/textarea-rows-cols.ts)
+  - html: [../../examples/html-examples/src/preview-examples/textarea-rows-cols.html](../../examples/html-examples/src/preview-examples/textarea-rows-cols.html)
+  - react: [../../examples/react-examples/src/preview-examples/textarea-rows-cols.tsx](../../examples/react-examples/src/preview-examples/textarea-rows-cols.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/textarea-rows-cols.vue](../../examples/vue-examples/src/preview-examples/textarea-rows-cols.vue)
 - textarea-validation
+  - angular: [../../examples/angular-examples/src/preview-examples/textarea-validation.html](../../examples/angular-examples/src/preview-examples/textarea-validation.html), [../../examples/angular-examples/src/preview-examples/textarea-validation.ts](../../examples/angular-examples/src/preview-examples/textarea-validation.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/textarea-validation.html](../../examples/angular-standalone-examples/src/preview-examples/textarea-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/textarea-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/textarea-validation.ts)
+  - html: [../../examples/html-examples/src/preview-examples/textarea-validation.html](../../examples/html-examples/src/preview-examples/textarea-validation.html)
+  - react: [../../examples/react-examples/src/preview-examples/textarea-validation.tsx](../../examples/react-examples/src/preview-examples/textarea-validation.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/textarea-validation.vue](../../examples/vue-examples/src/preview-examples/textarea-validation.vue)
 
 ## Related blocks
 

@@ -14,7 +14,17 @@
 ## Related examples
 
 - pagination
+  - angular: [../../examples/angular-examples/src/preview-examples/pagination.ts](../../examples/angular-examples/src/preview-examples/pagination.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pagination.ts](../../examples/angular-standalone-examples/src/preview-examples/pagination.ts)
+  - html: [../../examples/html-examples/src/preview-examples/pagination.html](../../examples/html-examples/src/preview-examples/pagination.html)
+  - react: [../../examples/react-examples/src/preview-examples/pagination.tsx](../../examples/react-examples/src/preview-examples/pagination.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/pagination.vue](../../examples/vue-examples/src/preview-examples/pagination.vue)
 - pagination-advanced
+  - angular: [../../examples/angular-examples/src/preview-examples/pagination-advanced.ts](../../examples/angular-examples/src/preview-examples/pagination-advanced.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pagination-advanced.ts](../../examples/angular-standalone-examples/src/preview-examples/pagination-advanced.ts)
+  - html: [../../examples/html-examples/src/preview-examples/pagination-advanced.html](../../examples/html-examples/src/preview-examples/pagination-advanced.html)
+  - react: [../../examples/react-examples/src/preview-examples/pagination-advanced.tsx](../../examples/react-examples/src/preview-examples/pagination-advanced.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/pagination-advanced.vue](../../examples/vue-examples/src/preview-examples/pagination-advanced.vue)
 
 ## Related blocks
 

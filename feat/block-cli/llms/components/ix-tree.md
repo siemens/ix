@@ -13,7 +13,17 @@
 ## Related examples
 
 - tree
+  - angular: [../../examples/angular-examples/src/preview-examples/tree.ts](../../examples/angular-examples/src/preview-examples/tree.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tree.ts](../../examples/angular-standalone-examples/src/preview-examples/tree.ts)
+  - html: [../../examples/html-examples/src/preview-examples/tree.html](../../examples/html-examples/src/preview-examples/tree.html)
+  - react: [../../examples/react-examples/src/preview-examples/tree.tsx](../../examples/react-examples/src/preview-examples/tree.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/tree.vue](../../examples/vue-examples/src/preview-examples/tree.vue)
 - tree-custom
+  - angular: [../../examples/angular-examples/src/preview-examples/tree-custom.ts](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
+  - html: [../../examples/html-examples/src/preview-examples/tree-custom.html](../../examples/html-examples/src/preview-examples/tree-custom.html)
+  - react: [../../examples/react-examples/src/preview-examples/tree-custom.tsx](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/tree-custom.vue](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
 
 ## Related blocks
 

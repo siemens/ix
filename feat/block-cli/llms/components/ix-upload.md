@@ -13,6 +13,11 @@
 ## Related examples
 
 - upload
+  - angular: [../../examples/angular-examples/src/preview-examples/upload.ts](../../examples/angular-examples/src/preview-examples/upload.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/upload.ts](../../examples/angular-standalone-examples/src/preview-examples/upload.ts)
+  - html: [../../examples/html-examples/src/preview-examples/upload.html](../../examples/html-examples/src/preview-examples/upload.html)
+  - react: [../../examples/react-examples/src/preview-examples/upload.tsx](../../examples/react-examples/src/preview-examples/upload.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/upload.vue](../../examples/vue-examples/src/preview-examples/upload.vue)
 
 ## Related blocks
 

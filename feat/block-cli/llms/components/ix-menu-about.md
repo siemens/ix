@@ -13,9 +13,29 @@
 ## Related examples
 
 - about-and-legal
+  - angular: [../../examples/angular-examples/src/preview-examples/about-and-legal.html](../../examples/angular-examples/src/preview-examples/about-and-legal.html), [../../examples/angular-examples/src/preview-examples/about-and-legal.ts](../../examples/angular-examples/src/preview-examples/about-and-legal.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.html), [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.ts)
+  - html: [../../examples/html-examples/src/preview-examples/about-and-legal.html](../../examples/html-examples/src/preview-examples/about-and-legal.html)
+  - react: [../../examples/react-examples/src/preview-examples/about-and-legal.tsx](../../examples/react-examples/src/preview-examples/about-and-legal.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/about-and-legal.vue](../../examples/vue-examples/src/preview-examples/about-and-legal.vue)
 - about-and-legal-legacy
+  - angular: [../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html), [../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html), [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - html: [../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html)
+  - react: [../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx](../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue](../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue)
 - application-advanced
+  - angular: [../../examples/angular-examples/src/preview-examples/application-advanced.html](../../examples/angular-examples/src/preview-examples/application-advanced.html), [../../examples/angular-examples/src/preview-examples/application-advanced.ts](../../examples/angular-examples/src/preview-examples/application-advanced.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html), [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-advanced.html](../../examples/html-examples/src/preview-examples/application-advanced.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-advanced.tsx](../../examples/react-examples/src/preview-examples/application-advanced.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-advanced.vue](../../examples/vue-examples/src/preview-examples/application-advanced.vue)
 - popover-news
+  - angular: [../../examples/angular-examples/src/preview-examples/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [../../examples/angular-examples/src/preview-examples/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
+  - html: [../../examples/html-examples/src/preview-examples/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
+  - react: [../../examples/react-examples/src/preview-examples/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
 
 ## Related blocks
 

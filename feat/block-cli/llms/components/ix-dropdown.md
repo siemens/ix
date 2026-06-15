@@ -13,11 +13,41 @@
 ## Related examples
 
 - blind-header-actions
+  - angular: [../../examples/angular-examples/src/preview-examples/blind-header-actions.css](../../examples/angular-examples/src/preview-examples/blind-header-actions.css), [../../examples/angular-examples/src/preview-examples/blind-header-actions.ts](../../examples/angular-examples/src/preview-examples/blind-header-actions.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/blind-header-actions.css](../../examples/angular-standalone-examples/src/preview-examples/blind-header-actions.css), [../../examples/angular-standalone-examples/src/preview-examples/blind-header-actions.ts](../../examples/angular-standalone-examples/src/preview-examples/blind-header-actions.ts)
+  - html: [../../examples/html-examples/src/preview-examples/blind-header-actions.css](../../examples/html-examples/src/preview-examples/blind-header-actions.css), [../../examples/html-examples/src/preview-examples/blind-header-actions.html](../../examples/html-examples/src/preview-examples/blind-header-actions.html)
+  - react: [../../examples/react-examples/src/preview-examples/blind-header-actions.scoped.css](../../examples/react-examples/src/preview-examples/blind-header-actions.scoped.css), [../../examples/react-examples/src/preview-examples/blind-header-actions.tsx](../../examples/react-examples/src/preview-examples/blind-header-actions.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/blind-header-actions.css](../../examples/vue-examples/src/preview-examples/blind-header-actions.css), [../../examples/vue-examples/src/preview-examples/blind-header-actions.vue](../../examples/vue-examples/src/preview-examples/blind-header-actions.vue)
 - dropdown
+  - angular: [../../examples/angular-examples/src/preview-examples/dropdown.ts](../../examples/angular-examples/src/preview-examples/dropdown.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts)
+  - html: [../../examples/html-examples/src/preview-examples/dropdown.html](../../examples/html-examples/src/preview-examples/dropdown.html)
+  - react: [../../examples/react-examples/src/preview-examples/dropdown.tsx](../../examples/react-examples/src/preview-examples/dropdown.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/dropdown.vue](../../examples/vue-examples/src/preview-examples/dropdown.vue)
 - dropdown-icon
+  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-icon.ts](../../examples/angular-examples/src/preview-examples/dropdown-icon.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-icon.ts)
+  - html: [../../examples/html-examples/src/preview-examples/dropdown-icon.html](../../examples/html-examples/src/preview-examples/dropdown-icon.html)
+  - react: [../../examples/react-examples/src/preview-examples/dropdown-icon.tsx](../../examples/react-examples/src/preview-examples/dropdown-icon.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-icon.vue](../../examples/vue-examples/src/preview-examples/dropdown-icon.vue)
 - dropdown-quick-actions
+  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.html), [../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.ts](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.html), [../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.ts)
+  - html: [../../examples/html-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/html-examples/src/preview-examples/dropdown-quick-actions.html)
+  - react: [../../examples/react-examples/src/preview-examples/dropdown-quick-actions.tsx](../../examples/react-examples/src/preview-examples/dropdown-quick-actions.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-quick-actions.vue](../../examples/vue-examples/src/preview-examples/dropdown-quick-actions.vue)
 - dropdown-submenu
+  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-submenu.ts](../../examples/angular-examples/src/preview-examples/dropdown-submenu.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-submenu.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-submenu.ts)
+  - html: [../../examples/html-examples/src/preview-examples/dropdown-submenu.html](../../examples/html-examples/src/preview-examples/dropdown-submenu.html)
+  - react: [../../examples/react-examples/src/preview-examples/dropdown-submenu.tsx](../../examples/react-examples/src/preview-examples/dropdown-submenu.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-submenu.vue](../../examples/vue-examples/src/preview-examples/dropdown-submenu.vue)
 - group-context-menu
+  - angular: [../../examples/angular-examples/src/preview-examples/group-context-menu.ts](../../examples/angular-examples/src/preview-examples/group-context-menu.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts](../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts)
+  - html: [../../examples/html-examples/src/preview-examples/group-context-menu.html](../../examples/html-examples/src/preview-examples/group-context-menu.html)
+  - react: [../../examples/react-examples/src/preview-examples/group-context-menu.tsx](../../examples/react-examples/src/preview-examples/group-context-menu.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/group-context-menu.vue](../../examples/vue-examples/src/preview-examples/group-context-menu.vue)
 
 ## Related blocks
 

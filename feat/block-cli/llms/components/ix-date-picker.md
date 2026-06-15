@@ -13,9 +13,25 @@
 ## Related examples
 
 - aria-label-properties
+  - html: [../../examples/html-examples/src/preview-examples/aria-label-properties.html](../../examples/html-examples/src/preview-examples/aria-label-properties.html)
 - datepicker
+  - angular: [../../examples/angular-examples/src/preview-examples/datepicker.ts](../../examples/angular-examples/src/preview-examples/datepicker.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datepicker.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker.ts)
+  - html: [../../examples/html-examples/src/preview-examples/datepicker.html](../../examples/html-examples/src/preview-examples/datepicker.html)
+  - react: [../../examples/react-examples/src/preview-examples/datepicker.tsx](../../examples/react-examples/src/preview-examples/datepicker.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/datepicker.vue](../../examples/vue-examples/src/preview-examples/datepicker.vue)
 - datepicker-locale
+  - angular: [../../examples/angular-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
+  - html: [../../examples/html-examples/src/preview-examples/datepicker-locale.html](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
+  - react: [../../examples/react-examples/src/preview-examples/datepicker-locale.tsx](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/datepicker-locale.vue](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
 - datepicker-range
+  - angular: [../../examples/angular-examples/src/preview-examples/datepicker-range.ts](../../examples/angular-examples/src/preview-examples/datepicker-range.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datepicker-range.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-range.ts)
+  - html: [../../examples/html-examples/src/preview-examples/datepicker-range.html](../../examples/html-examples/src/preview-examples/datepicker-range.html)
+  - react: [../../examples/react-examples/src/preview-examples/datepicker-range.tsx](../../examples/react-examples/src/preview-examples/datepicker-range.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/datepicker-range.vue](../../examples/vue-examples/src/preview-examples/datepicker-range.vue)
 
 ## Related blocks
 

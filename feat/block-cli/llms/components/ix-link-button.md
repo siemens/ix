@@ -13,7 +13,17 @@
 ## Related examples
 
 - link-button
+  - angular: [../../examples/angular-examples/src/preview-examples/link-button.ts](../../examples/angular-examples/src/preview-examples/link-button.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/link-button.ts](../../examples/angular-standalone-examples/src/preview-examples/link-button.ts)
+  - html: [../../examples/html-examples/src/preview-examples/link-button.html](../../examples/html-examples/src/preview-examples/link-button.html)
+  - react: [../../examples/react-examples/src/preview-examples/link-button.tsx](../../examples/react-examples/src/preview-examples/link-button.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/link-button.vue](../../examples/vue-examples/src/preview-examples/link-button.vue)
 - link-button-disabled
+  - angular: [../../examples/angular-examples/src/preview-examples/link-button-disabled.ts](../../examples/angular-examples/src/preview-examples/link-button-disabled.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/link-button-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/link-button-disabled.ts)
+  - html: [../../examples/html-examples/src/preview-examples/link-button-disabled.html](../../examples/html-examples/src/preview-examples/link-button-disabled.html)
+  - react: [../../examples/react-examples/src/preview-examples/link-button-disabled.tsx](../../examples/react-examples/src/preview-examples/link-button-disabled.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/link-button-disabled.vue](../../examples/vue-examples/src/preview-examples/link-button-disabled.vue)
 
 ## Related blocks
 

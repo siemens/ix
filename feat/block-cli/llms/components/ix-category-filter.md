@@ -13,7 +13,17 @@
 ## Related examples
 
 - category-filter
+  - angular: [../../examples/angular-examples/src/preview-examples/category-filter.ts](../../examples/angular-examples/src/preview-examples/category-filter.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/category-filter.ts](../../examples/angular-standalone-examples/src/preview-examples/category-filter.ts)
+  - html: [../../examples/html-examples/src/preview-examples/category-filter.html](../../examples/html-examples/src/preview-examples/category-filter.html)
+  - react: [../../examples/react-examples/src/preview-examples/category-filter.tsx](../../examples/react-examples/src/preview-examples/category-filter.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/category-filter.vue](../../examples/vue-examples/src/preview-examples/category-filter.vue)
 - category-filter-suggestions
+  - angular: [../../examples/angular-examples/src/preview-examples/category-filter-suggestions.ts](../../examples/angular-examples/src/preview-examples/category-filter-suggestions.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/category-filter-suggestions.ts](../../examples/angular-standalone-examples/src/preview-examples/category-filter-suggestions.ts)
+  - html: [../../examples/html-examples/src/preview-examples/category-filter-suggestions.html](../../examples/html-examples/src/preview-examples/category-filter-suggestions.html)
+  - react: [../../examples/react-examples/src/preview-examples/category-filter-suggestions.tsx](../../examples/react-examples/src/preview-examples/category-filter-suggestions.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/category-filter-suggestions.vue](../../examples/vue-examples/src/preview-examples/category-filter-suggestions.vue)
 
 ## Related blocks
 

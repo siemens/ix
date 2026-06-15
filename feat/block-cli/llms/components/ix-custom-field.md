@@ -13,7 +13,17 @@
 ## Related examples
 
 - custom-field
+  - angular: [../../examples/angular-examples/src/preview-examples/custom-field.html](../../examples/angular-examples/src/preview-examples/custom-field.html), [../../examples/angular-examples/src/preview-examples/custom-field.ts](../../examples/angular-examples/src/preview-examples/custom-field.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/custom-field.html](../../examples/angular-standalone-examples/src/preview-examples/custom-field.html), [../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts](../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts)
+  - html: [../../examples/html-examples/src/preview-examples/custom-field.html](../../examples/html-examples/src/preview-examples/custom-field.html)
+  - react: [../../examples/react-examples/src/preview-examples/custom-field.tsx](../../examples/react-examples/src/preview-examples/custom-field.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/custom-field.vue](../../examples/vue-examples/src/preview-examples/custom-field.vue)
 - custom-field-validation
+  - angular: [../../examples/angular-examples/src/preview-examples/custom-field-validation.html](../../examples/angular-examples/src/preview-examples/custom-field-validation.html), [../../examples/angular-examples/src/preview-examples/custom-field-validation.ts](../../examples/angular-examples/src/preview-examples/custom-field-validation.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.html](../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.ts)
+  - html: [../../examples/html-examples/src/preview-examples/custom-field-validation.html](../../examples/html-examples/src/preview-examples/custom-field-validation.html)
+  - react: [../../examples/react-examples/src/preview-examples/custom-field-validation.tsx](../../examples/react-examples/src/preview-examples/custom-field-validation.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/custom-field-validation.vue](../../examples/vue-examples/src/preview-examples/custom-field-validation.vue)
 
 ## Related blocks
 

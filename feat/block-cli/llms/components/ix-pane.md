@@ -13,7 +13,17 @@
 ## Related examples
 
 - pane
+  - angular: [../../examples/angular-examples/src/preview-examples/pane.html](../../examples/angular-examples/src/preview-examples/pane.html), [../../examples/angular-examples/src/preview-examples/pane.ts](../../examples/angular-examples/src/preview-examples/pane.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane.html](../../examples/angular-standalone-examples/src/preview-examples/pane.html), [../../examples/angular-standalone-examples/src/preview-examples/pane.ts](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
+  - html: [../../examples/html-examples/src/preview-examples/pane.html](../../examples/html-examples/src/preview-examples/pane.html)
+  - react: [../../examples/react-examples/src/preview-examples/pane.tsx](../../examples/react-examples/src/preview-examples/pane.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/pane.vue](../../examples/vue-examples/src/preview-examples/pane.vue)
 - pane-layout
+  - angular: [../../examples/angular-examples/src/preview-examples/pane-layout.html](../../examples/angular-examples/src/preview-examples/pane-layout.html), [../../examples/angular-examples/src/preview-examples/pane-layout.ts](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html), [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
+  - html: [../../examples/html-examples/src/preview-examples/pane-layout.html](../../examples/html-examples/src/preview-examples/pane-layout.html)
+  - react: [../../examples/react-examples/src/preview-examples/pane-layout.tsx](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/pane-layout.vue](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
 
 ## Related blocks
 

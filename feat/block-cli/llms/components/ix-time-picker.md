@@ -13,9 +13,29 @@
 ## Related examples
 
 - timepicker
+  - angular: [../../examples/angular-examples/src/preview-examples/timepicker.html](../../examples/angular-examples/src/preview-examples/timepicker.html), [../../examples/angular-examples/src/preview-examples/timepicker.ts](../../examples/angular-examples/src/preview-examples/timepicker.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/timepicker.html](../../examples/angular-standalone-examples/src/preview-examples/timepicker.html), [../../examples/angular-standalone-examples/src/preview-examples/timepicker.ts](../../examples/angular-standalone-examples/src/preview-examples/timepicker.ts)
+  - html: [../../examples/html-examples/src/preview-examples/timepicker.html](../../examples/html-examples/src/preview-examples/timepicker.html)
+  - react: [../../examples/react-examples/src/preview-examples/timepicker.tsx](../../examples/react-examples/src/preview-examples/timepicker.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/timepicker.vue](../../examples/vue-examples/src/preview-examples/timepicker.vue)
 - timepicker-format-adjusted
+  - angular: [../../examples/angular-examples/src/preview-examples/timepicker-format-adjusted.html](../../examples/angular-examples/src/preview-examples/timepicker-format-adjusted.html), [../../examples/angular-examples/src/preview-examples/timepicker-format-adjusted.ts](../../examples/angular-examples/src/preview-examples/timepicker-format-adjusted.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/timepicker-format-adjusted.html](../../examples/angular-standalone-examples/src/preview-examples/timepicker-format-adjusted.html), [../../examples/angular-standalone-examples/src/preview-examples/timepicker-format-adjusted.ts](../../examples/angular-standalone-examples/src/preview-examples/timepicker-format-adjusted.ts)
+  - html: [../../examples/html-examples/src/preview-examples/timepicker-format-adjusted.html](../../examples/html-examples/src/preview-examples/timepicker-format-adjusted.html)
+  - react: [../../examples/react-examples/src/preview-examples/timepicker-format-adjusted.tsx](../../examples/react-examples/src/preview-examples/timepicker-format-adjusted.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/timepicker-format-adjusted.vue](../../examples/vue-examples/src/preview-examples/timepicker-format-adjusted.vue)
 - timepicker-intervals
+  - angular: [../../examples/angular-examples/src/preview-examples/timepicker-intervals.html](../../examples/angular-examples/src/preview-examples/timepicker-intervals.html), [../../examples/angular-examples/src/preview-examples/timepicker-intervals.ts](../../examples/angular-examples/src/preview-examples/timepicker-intervals.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/timepicker-intervals.html](../../examples/angular-standalone-examples/src/preview-examples/timepicker-intervals.html), [../../examples/angular-standalone-examples/src/preview-examples/timepicker-intervals.ts](../../examples/angular-standalone-examples/src/preview-examples/timepicker-intervals.ts)
+  - html: [../../examples/html-examples/src/preview-examples/timepicker-intervals.html](../../examples/html-examples/src/preview-examples/timepicker-intervals.html)
+  - react: [../../examples/react-examples/src/preview-examples/timepicker-intervals.tsx](../../examples/react-examples/src/preview-examples/timepicker-intervals.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/timepicker-intervals.vue](../../examples/vue-examples/src/preview-examples/timepicker-intervals.vue)
 - timepicker-min-max-time
+  - angular: [../../examples/angular-examples/src/preview-examples/timepicker-min-max-time.html](../../examples/angular-examples/src/preview-examples/timepicker-min-max-time.html), [../../examples/angular-examples/src/preview-examples/timepicker-min-max-time.ts](../../examples/angular-examples/src/preview-examples/timepicker-min-max-time.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/timepicker-min-max-time.html](../../examples/angular-standalone-examples/src/preview-examples/timepicker-min-max-time.html), [../../examples/angular-standalone-examples/src/preview-examples/timepicker-min-max-time.ts](../../examples/angular-standalone-examples/src/preview-examples/timepicker-min-max-time.ts)
+  - html: [../../examples/html-examples/src/preview-examples/timepicker-min-max-time.html](../../examples/html-examples/src/preview-examples/timepicker-min-max-time.html)
+  - react: [../../examples/react-examples/src/preview-examples/timepicker-min-max-time.tsx](../../examples/react-examples/src/preview-examples/timepicker-min-max-time.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/timepicker-min-max-time.vue](../../examples/vue-examples/src/preview-examples/timepicker-min-max-time.vue)
 
 ## Related blocks
 

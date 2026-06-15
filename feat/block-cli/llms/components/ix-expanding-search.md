@@ -13,6 +13,11 @@
 ## Related examples
 
 - expanding-search
+  - angular: [../../examples/angular-examples/src/preview-examples/expanding-search.ts](../../examples/angular-examples/src/preview-examples/expanding-search.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/expanding-search.ts](../../examples/angular-standalone-examples/src/preview-examples/expanding-search.ts)
+  - html: [../../examples/html-examples/src/preview-examples/expanding-search.html](../../examples/html-examples/src/preview-examples/expanding-search.html)
+  - react: [../../examples/react-examples/src/preview-examples/expanding-search.tsx](../../examples/react-examples/src/preview-examples/expanding-search.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/expanding-search.vue](../../examples/vue-examples/src/preview-examples/expanding-search.vue)
 
 ## Related blocks
 

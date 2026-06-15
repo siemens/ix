@@ -13,13 +13,53 @@
 ## Related examples
 
 - application
+  - angular: [../../examples/angular-examples/src/preview-examples/application.html](../../examples/angular-examples/src/preview-examples/application.html), [../../examples/angular-examples/src/preview-examples/application.ts](../../examples/angular-examples/src/preview-examples/application.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application.html](../../examples/angular-standalone-examples/src/preview-examples/application.html), [../../examples/angular-standalone-examples/src/preview-examples/application.ts](../../examples/angular-standalone-examples/src/preview-examples/application.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application.html](../../examples/html-examples/src/preview-examples/application.html)
+  - react: [../../examples/react-examples/src/preview-examples/application.tsx](../../examples/react-examples/src/preview-examples/application.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application.vue](../../examples/vue-examples/src/preview-examples/application.vue)
 - application-advanced
+  - angular: [../../examples/angular-examples/src/preview-examples/application-advanced.html](../../examples/angular-examples/src/preview-examples/application-advanced.html), [../../examples/angular-examples/src/preview-examples/application-advanced.ts](../../examples/angular-examples/src/preview-examples/application-advanced.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html), [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-advanced.html](../../examples/html-examples/src/preview-examples/application-advanced.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-advanced.tsx](../../examples/react-examples/src/preview-examples/application-advanced.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-advanced.vue](../../examples/vue-examples/src/preview-examples/application-advanced.vue)
 - application-app-switch
+  - angular: [../../examples/angular-examples/src/preview-examples/application-app-switch.html](../../examples/angular-examples/src/preview-examples/application-app-switch.html), [../../examples/angular-examples/src/preview-examples/application-app-switch.ts](../../examples/angular-examples/src/preview-examples/application-app-switch.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.html](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.html), [../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.ts](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-app-switch.html](../../examples/html-examples/src/preview-examples/application-app-switch.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-app-switch.tsx](../../examples/react-examples/src/preview-examples/application-app-switch.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-app-switch.vue](../../examples/vue-examples/src/preview-examples/application-app-switch.vue)
 - application-breakpoints
+  - angular: [../../examples/angular-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-examples/src/preview-examples/application-breakpoints.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-breakpoints.html](../../examples/html-examples/src/preview-examples/application-breakpoints.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-breakpoints.tsx](../../examples/react-examples/src/preview-examples/application-breakpoints.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-breakpoints.vue](../../examples/vue-examples/src/preview-examples/application-breakpoints.vue)
 - menu-category
+  - angular: [../../examples/angular-examples/src/preview-examples/menu-category.html](../../examples/angular-examples/src/preview-examples/menu-category.html), [../../examples/angular-examples/src/preview-examples/menu-category.ts](../../examples/angular-examples/src/preview-examples/menu-category.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/menu-category.html](../../examples/angular-standalone-examples/src/preview-examples/menu-category.html), [../../examples/angular-standalone-examples/src/preview-examples/menu-category.ts](../../examples/angular-standalone-examples/src/preview-examples/menu-category.ts)
+  - html: [../../examples/html-examples/src/preview-examples/menu-category.html](../../examples/html-examples/src/preview-examples/menu-category.html)
+  - react: [../../examples/react-examples/src/preview-examples/menu-category.tsx](../../examples/react-examples/src/preview-examples/menu-category.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/menu-category.vue](../../examples/vue-examples/src/preview-examples/menu-category.vue)
 - menu-with-bottom-tabs
+  - angular: [../../examples/angular-examples/src/preview-examples/menu-with-bottom-tabs.ts](../../examples/angular-examples/src/preview-examples/menu-with-bottom-tabs.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/menu-with-bottom-tabs.ts](../../examples/angular-standalone-examples/src/preview-examples/menu-with-bottom-tabs.ts)
+  - html: [../../examples/html-examples/src/preview-examples/menu-with-bottom-tabs.html](../../examples/html-examples/src/preview-examples/menu-with-bottom-tabs.html)
+  - react: [../../examples/react-examples/src/preview-examples/menu-with-bottom-tabs.tsx](../../examples/react-examples/src/preview-examples/menu-with-bottom-tabs.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/menu-with-bottom-tabs.vue](../../examples/vue-examples/src/preview-examples/menu-with-bottom-tabs.vue)
 - vertical-tabs
+  - angular: [../../examples/angular-examples/src/preview-examples/vertical-tabs.css](../../examples/angular-examples/src/preview-examples/vertical-tabs.css), [../../examples/angular-examples/src/preview-examples/vertical-tabs.ts](../../examples/angular-examples/src/preview-examples/vertical-tabs.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs.css](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs.css), [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs.ts](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs.ts)
+  - html: [../../examples/html-examples/src/preview-examples/vertical-tabs.css](../../examples/html-examples/src/preview-examples/vertical-tabs.css), [../../examples/html-examples/src/preview-examples/vertical-tabs.html](../../examples/html-examples/src/preview-examples/vertical-tabs.html)
+  - react: [../../examples/react-examples/src/preview-examples/vertical-tabs.scoped.css](../../examples/react-examples/src/preview-examples/vertical-tabs.scoped.css), [../../examples/react-examples/src/preview-examples/vertical-tabs.tsx](../../examples/react-examples/src/preview-examples/vertical-tabs.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/vertical-tabs.css](../../examples/vue-examples/src/preview-examples/vertical-tabs.css), [../../examples/vue-examples/src/preview-examples/vertical-tabs.vue](../../examples/vue-examples/src/preview-examples/vertical-tabs.vue)
 - vertical-tabs-with-avatar
+  - angular: [../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.ts](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.ts](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
+  - html: [../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.html](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.html)
+  - react: [../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.scoped.css](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.scoped.css), [../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.tsx](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.vue](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.vue)
 
 ## Related blocks
 

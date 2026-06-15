@@ -13,6 +13,11 @@
 ## Related examples
 
 - chip
+  - angular: [../../examples/angular-examples/src/preview-examples/chip.css](../../examples/angular-examples/src/preview-examples/chip.css), [../../examples/angular-examples/src/preview-examples/chip.ts](../../examples/angular-examples/src/preview-examples/chip.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/chip.css](../../examples/angular-standalone-examples/src/preview-examples/chip.css), [../../examples/angular-standalone-examples/src/preview-examples/chip.ts](../../examples/angular-standalone-examples/src/preview-examples/chip.ts)
+  - html: [../../examples/html-examples/src/preview-examples/chip.css](../../examples/html-examples/src/preview-examples/chip.css), [../../examples/html-examples/src/preview-examples/chip.html](../../examples/html-examples/src/preview-examples/chip.html)
+  - react: [../../examples/react-examples/src/preview-examples/chip.scoped.css](../../examples/react-examples/src/preview-examples/chip.scoped.css), [../../examples/react-examples/src/preview-examples/chip.tsx](../../examples/react-examples/src/preview-examples/chip.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/chip.css](../../examples/vue-examples/src/preview-examples/chip.css), [../../examples/vue-examples/src/preview-examples/chip.vue](../../examples/vue-examples/src/preview-examples/chip.vue)
 
 ## Related blocks
 

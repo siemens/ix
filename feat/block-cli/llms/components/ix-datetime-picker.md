@@ -13,6 +13,11 @@
 ## Related examples
 
 - datetimepicker
+  - angular: [../../examples/angular-examples/src/preview-examples/datetimepicker.ts](../../examples/angular-examples/src/preview-examples/datetimepicker.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datetimepicker.ts](../../examples/angular-standalone-examples/src/preview-examples/datetimepicker.ts)
+  - html: [../../examples/html-examples/src/preview-examples/datetimepicker.html](../../examples/html-examples/src/preview-examples/datetimepicker.html)
+  - react: [../../examples/react-examples/src/preview-examples/datetimepicker.tsx](../../examples/react-examples/src/preview-examples/datetimepicker.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/datetimepicker.vue](../../examples/vue-examples/src/preview-examples/datetimepicker.vue)
 
 ## Related blocks
 

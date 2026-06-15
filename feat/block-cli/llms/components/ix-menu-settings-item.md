@@ -13,6 +13,11 @@
 ## Related examples
 
 - settings-legacy
+  - angular: [../../examples/angular-examples/src/preview-examples/settings-legacy.html](../../examples/angular-examples/src/preview-examples/settings-legacy.html), [../../examples/angular-examples/src/preview-examples/settings-legacy.ts](../../examples/angular-examples/src/preview-examples/settings-legacy.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.html](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.html), [../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.ts](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.ts)
+  - html: [../../examples/html-examples/src/preview-examples/settings-legacy.html](../../examples/html-examples/src/preview-examples/settings-legacy.html)
+  - react: [../../examples/react-examples/src/preview-examples/settings-legacy.tsx](../../examples/react-examples/src/preview-examples/settings-legacy.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/settings-legacy.vue](../../examples/vue-examples/src/preview-examples/settings-legacy.vue)
 
 ## Related blocks
 

@@ -13,7 +13,17 @@
 ## Related examples
 
 - application-advanced
+  - angular: [../../examples/angular-examples/src/preview-examples/application-advanced.html](../../examples/angular-examples/src/preview-examples/application-advanced.html), [../../examples/angular-examples/src/preview-examples/application-advanced.ts](../../examples/angular-examples/src/preview-examples/application-advanced.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html), [../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts)
+  - html: [../../examples/html-examples/src/preview-examples/application-advanced.html](../../examples/html-examples/src/preview-examples/application-advanced.html)
+  - react: [../../examples/react-examples/src/preview-examples/application-advanced.tsx](../../examples/react-examples/src/preview-examples/application-advanced.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/application-advanced.vue](../../examples/vue-examples/src/preview-examples/application-advanced.vue)
 - menu-category
+  - angular: [../../examples/angular-examples/src/preview-examples/menu-category.html](../../examples/angular-examples/src/preview-examples/menu-category.html), [../../examples/angular-examples/src/preview-examples/menu-category.ts](../../examples/angular-examples/src/preview-examples/menu-category.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/menu-category.html](../../examples/angular-standalone-examples/src/preview-examples/menu-category.html), [../../examples/angular-standalone-examples/src/preview-examples/menu-category.ts](../../examples/angular-standalone-examples/src/preview-examples/menu-category.ts)
+  - html: [../../examples/html-examples/src/preview-examples/menu-category.html](../../examples/html-examples/src/preview-examples/menu-category.html)
+  - react: [../../examples/react-examples/src/preview-examples/menu-category.tsx](../../examples/react-examples/src/preview-examples/menu-category.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/menu-category.vue](../../examples/vue-examples/src/preview-examples/menu-category.vue)
 
 ## Related blocks
 
