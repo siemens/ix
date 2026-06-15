@@ -1080,6 +1080,11 @@
         "componentSearchIndex": "feat/block-cli/ix/component-search-index.json",
         "componentRelatedExamples": "feat/block-cli/ix/component-related-examples.json"
       },
+      "llms": {
+        "entrypoint": "feat/block-cli/llms.txt",
+        "components": "feat/block-cli/llms/components.md",
+        "blocks": "feat/block-cli/llms/blocks.md"
+      },
       "searchIndex": {
         "blocks": {
           "react": "feat/block-cli/search-index-react.json",
