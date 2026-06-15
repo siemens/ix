@@ -59,9 +59,6 @@ jobs:
           fi
 
           LATEST_TAG="${VERSION}"
-          if [[ "${VERSION}" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
-            LATEST_TAG="${BASH_REMATCH[1]}"
-          fi
 
           echo "registry_version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "registry_path_prefix=${VERSION}" >> "$GITHUB_OUTPUT"
