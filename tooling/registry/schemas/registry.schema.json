@@ -81,6 +81,17 @@
           },
           "additionalProperties": false
         },
+        "llms": {
+          "type": "object",
+          "description": "LLM-readable registry artifact files",
+          "required": ["entrypoint", "components", "blocks"],
+          "properties": {
+            "entrypoint": { "type": "string", "pattern": "\\.txt$" },
+            "components": { "type": "string", "pattern": "\\.md$" },
+            "blocks": { "type": "string", "pattern": "\\.md$" }
+          },
+          "additionalProperties": false
+        },
         "searchIndex": {
           "type": "object",
           "description": "Framework-specific MiniSearch index files for blocks and examples",

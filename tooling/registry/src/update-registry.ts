@@ -28,6 +28,11 @@ type UnifiedRegistry = {
         componentSearchIndex: string;
         componentRelatedExamples: string;
       };
+      llms?: {
+        entrypoint: string;
+        components: string;
+        blocks: string;
+      };
     }
   >;
   'dist-tags': {
@@ -41,6 +46,14 @@ interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
     componentIndex: string;
     componentSearchIndex: string;
     componentRelatedExamples: string;
+  };
+}
+
+interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
+  llms: {
+    entrypoint: string;
+    components: string;
+    blocks: string;
   };
 }
 
@@ -169,4 +182,35 @@ export async function updateComponentsRegistry(
   await fs.writeJson(registryPath, registry, { spaces: 2 });
 
   console.log('✅ Updated components registry with IX component metadata');
+}
+
+/**
+ * Update registry.json with LLM-readable registry artifact files
+ */
+export async function updateLlmsRegistry(
+  registryPath: string,
+  options: LlmsRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json llms section...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  const prefixedLlms = Object.fromEntries(
+    Object.entries(options.llms).map(([key, value]) => [
+      key,
+      normalizedPrefix ? `${normalizedPrefix}/${value}` : value,
+    ])
+  );
+
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.llms = prefixedLlms as LlmsRegistryUpdateOptions['llms'];
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated registry with llms.txt artifact metadata');
 }

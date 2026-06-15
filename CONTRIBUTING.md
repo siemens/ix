@@ -324,6 +324,7 @@ The registry content for `blocks`, `examples` and component API metadata is expo
 | Blocks source     | Manual JSON files in `./blocks/*.json`                                                                                                    |
 | Examples source   | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                                           |
 | Components source | `packages/core/component-doc.json`, `component-index.json`, `component-search-index.json`                                                 |
+| LLM docs          | Generated `tooling/registry/dist/llms.txt` and split Markdown files in `tooling/registry/dist/llms/`                                     |
 | Schemas           | `tooling/registry/registry.schema.json`, plus `block.schema.json` and `example.schema.json` for entry files                               |
 | Build steps       | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, and `updateComponentsRegistry(...)` update sections of the same version entry |
 | Template behavior | `dist-tags` and `versions` are overwritten during build/deploy                                                                            |
@@ -333,6 +334,7 @@ Contributor guidance:
 - For a **new block**, add or update a JSON definition in `./blocks` and ensure its `variants` map to the block source files (for example from `react-blocks` / `angular-standalone-blocks`).
 - For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
 - `tooling/registry/registry.json` is a template; runtime entries are generated dynamically during registry build/deployment.
+- Generated LLM docs use existing registry JSON only; relationships not represented in JSON, such as block-to-component usage, are marked unavailable.
 - Rebuild the registry (`pnpm --filter registry build`) to refresh the generated `registry.json` in `tooling/registry/dist`.
 
 ### Submit Pull Request

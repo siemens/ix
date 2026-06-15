@@ -26,6 +26,11 @@ type RegistryVersionEntry = {
     componentSearchIndex: string;
     componentRelatedExamples: string;
   };
+  llms?: {
+    entrypoint: string;
+    components: string;
+    blocks: string;
+  };
   searchIndex?: {
     blocks?: SearchIndexMap;
     examples?: SearchIndexMap;
@@ -131,6 +136,21 @@ function prefixComponents(
   };
 }
 
+function prefixLlms(
+  version: string,
+  llms: RegistryVersionEntry['llms']
+): RegistryVersionEntry['llms'] {
+  if (!llms) {
+    return undefined;
+  }
+
+  return {
+    entrypoint: prefixVersionPath(version, llms.entrypoint),
+    components: prefixVersionPath(version, llms.components),
+    blocks: prefixVersionPath(version, llms.blocks),
+  };
+}
+
 async function readJsonIfExists<T>(filePath: string): Promise<T | null> {
   if (!(await fs.pathExists(filePath))) {
     return null;
@@ -176,6 +196,7 @@ function mergeRegistry(
       path: prefixVersionPath(version, example.path),
     })),
     components: prefixComponents(version, currentVersionEntry.components),
+    llms: prefixLlms(version, currentVersionEntry.llms),
     searchIndex: {
       blocks: prefixSearchIndexMap(
         version,

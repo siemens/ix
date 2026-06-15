@@ -13,10 +13,12 @@ import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { glob } from 'glob';
 import { buildSearchIndex } from './search-index';
 import { generateExampleBlocks } from './generate-examples';
+import { generateLlmsArtifacts } from './llms';
 import {
   updateComponentsRegistry,
   updateBlocksRegistry,
   updateExamplesRegistry,
+  updateLlmsRegistry,
 } from './update-registry';
 
 const __dirname = path.resolve();
@@ -371,6 +373,29 @@ const task = new Listr<Ctx>([
           }
         })
       );
+    },
+  },
+  {
+    title: 'Generate llms.txt artifacts',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const llmsArtifacts = await generateLlmsArtifacts({
+        distDir: ctx.dist,
+        componentDocPath: path.join(ctx.dist, 'ix', 'component-doc.json'),
+        componentRelatedExamplesPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-examples.json'
+        ),
+        blocksDir: path.join(ctx.dist, 'blocks'),
+      });
+
+      await updateLlmsRegistry(registryPath, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+        llms: llmsArtifacts,
+      });
     },
   },
   {

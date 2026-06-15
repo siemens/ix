@@ -12,6 +12,11 @@ export type RegistryIndex = {
         componentSearchIndex: string;
         componentRelatedExamples?: string;
       };
+      llms?: {
+        entrypoint: string;
+        components: string;
+        blocks: string;
+      };
       searchIndex?: {
         blocks?: {
           html?: string;

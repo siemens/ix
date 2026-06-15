@@ -73,6 +73,7 @@ Supporting roots:
 
 - `component-doc.json` – Generated component metadata from core (used for docs, wrappers, registry, and CLI)
 - `component-index.json` / `component-search-index.json` – Generated lightweight component catalog and MiniSearch index
+- `llms.txt` / `llms/*.md` – Generated registry LLM entrypoint and split Markdown context files
 - `blocks/*.json` – Registry manifests that map block names to framework-specific source files and dependencies
 - `.changeset/` – Release intent & pre-release state
 - `playwright.config.ts` – Shared test configuration
@@ -102,6 +103,7 @@ Supporting roots:
 - `dist/` bundles
 - Custom elements manifest / metadata consumed for wrappers & docs
 - `component-index.json` and `component-search-index.json` for registry/CLI component discovery
+- `llms.txt` and split `llms/*.md` files for LLM-readable registry context
 - Auto-generated proxies: look for comments like `/* auto-generated react proxies */`
 
 ---

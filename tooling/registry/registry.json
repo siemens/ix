@@ -1023,6 +1023,11 @@
         "componentIndex": "ix/component-index.json",
         "componentSearchIndex": "ix/component-search-index.json",
         "componentRelatedExamples": "ix/component-related-examples.json"
+      },
+      "llms": {
+        "entrypoint": "llms.txt",
+        "components": "llms/components.md",
+        "blocks": "llms/blocks.md"
       }
     }
   }
