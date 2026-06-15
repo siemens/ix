@@ -132,3 +132,151 @@ test.describe('accessibility', () => {
     await expect(checkbox).toHaveAttribute('aria-checked', 'true');
   });
 });
+
+test('should show invalid class when required checkbox is blurred without selection', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await checkbox1.focus();
+  await page.locator('button[type="button"]').focus();
+
+  await expect(checkbox1).toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class before checkbox is touched', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+    </form>
+  `);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should remove invalid class after checking a checkbox', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await checkbox1.focus();
+  await page.locator('button[type="button"]').focus();
+
+  await expect(checkbox1).toHaveClass(/\bix-invalid--required\b/);
+
+  await checkbox1.click();
+
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class when form has novalidate', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form novalidate>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await checkbox1.focus();
+  await page.locator('button[type="button"]').focus();
+
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should show invalid class on form submit when required and unchecked', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await page.locator('button[type="submit"]').click();
+
+  await expect(checkbox1).toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class on form submit when form has novalidate', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form novalidate>
+      <ix-checkbox-group>
+        <ix-checkbox label="Option 1" value="opt1" required></ix-checkbox>
+        <ix-checkbox label="Option 2" value="opt2"></ix-checkbox>
+      </ix-checkbox-group>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+
+  const checkbox1 = page.locator('ix-checkbox').nth(0);
+  await expect(checkbox1).toHaveClass(/\bhydrated\b/);
+
+  await page.locator('button[type="submit"]').click();
+
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(checkbox1).not.toHaveClass(/\bix-invalid\b/);
+});

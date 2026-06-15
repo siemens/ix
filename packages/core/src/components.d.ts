@@ -634,6 +634,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Resets the checkbox to its initial unchecked state and clears validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the checkbox component
           * @default false
          */
@@ -669,6 +673,7 @@ export namespace Components {
      * @form-ready 
      */
     interface IxCheckboxGroup {
+        "clear": () => Promise<void>;
         /**
           * Alignment of the checkboxes in the group
           * @default 'column'
