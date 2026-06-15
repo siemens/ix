@@ -131,7 +131,7 @@ export class BreadcrumbItem
     };
 
     const props: BaseButtonProps = {
-      variant: this.subtle ? 'subtle-primary' : 'tertiary',
+      variant: !this.hideChevron && this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,

@@ -19,3 +19,10 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+
+overrides:
+  cheerio: "1.0.0-rc.12"
+  rollup: "npm:@rollup/wasm-node"
+
+patchedDependencies:
+  '@stencil/core': "patches/@stencil__core.patch"
