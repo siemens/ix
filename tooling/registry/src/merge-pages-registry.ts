@@ -276,6 +276,8 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
 
 > Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component and block context.
 
+Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
+
 Latest registry tag: ${latest ?? 'unavailable'}.
 
 ## Registry versions
