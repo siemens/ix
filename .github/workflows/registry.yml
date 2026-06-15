@@ -2,10 +2,10 @@ name: Deploy registry
 
 on:
   push:
-    # branches:
-    #   - main
-    #   - 'release-registry/**'
-    #   - 'feat/block-cli'
+    branches:
+      - main
+      - 'release-registry/**'
+      - 'feat/block-cli'
     # paths:
     #   - 'packages/**'
     #   - 'blocks/**'
