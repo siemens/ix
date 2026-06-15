@@ -278,6 +278,14 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
 
 Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
 
+Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage or block docs for complete copyable UI patterns.
+
+Component docs contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Figma IDs identify design-system counterparts and should be used for mapping design resources to iX components, not as runtime APIs.
+
+Block docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, dependencies, and component usage availability.
+
+If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
+
 Latest registry tag: ${latest ?? 'unavailable'}.
 
 ## Registry versions

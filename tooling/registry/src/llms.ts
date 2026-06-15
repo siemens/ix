@@ -315,12 +315,20 @@ function renderLlmsTxt(): string {
 
 > Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component and block documentation generated from existing registry JSON metadata.
 
-Use these files for code generation context before reading larger registry artifacts. Component API metadata, related examples, and Figma IDs come from registry JSON. Related blocks and block component usage are marked unavailable where registry JSON does not provide those relationships.
+Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for complete copyable UI patterns, open the block docs first.
+
+Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Use related examples to validate generated component code.
+
+Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains previews, framework variants, source files, dependencies, and component usage availability. Use blocks when generating larger page sections or reusable patterns.
+
+Figma IDs come from component \`figma-main-component-id\` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
+
+When a relationship is marked unavailable, do not infer it. It means the registry JSON does not provide that relationship.
 
 ## Registry LLM docs
 
-- [Components](llms/components.md): All iX components with properties, events, slots, related examples, related blocks availability, and Figma IDs.
-- [Blocks](llms/blocks.md): All registry blocks with previews, framework variants, files, dependencies, and block component usage availability.
+- [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
+- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block previews, framework variants, files, dependencies, and unavailable component-usage relationships.
 
 ## Optional
 
