@@ -224,6 +224,78 @@ function mergeRegistry(
   return baseRegistry;
 }
 
+function renderRootLlmsTxt(registry: RegistryIndex): string {
+  const versions = Object.keys(registry.versions).sort((a, b) =>
+    b.localeCompare(a)
+  );
+  const latest = registry['dist-tags']?.latest;
+  const tagEntries = Object.entries(registry['dist-tags'] ?? {}).sort(([a], [b]) =>
+    a.localeCompare(b)
+  );
+
+  const versionLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const llmsPath = entry.llms?.entrypoint ?? `${version}/llms.txt`;
+      const tags = tagEntries
+        .filter(([, taggedVersion]) => taggedVersion === version)
+        .map(([tag]) => tag);
+      const suffix = tags.length > 0 ? ` Tags: ${tags.join(', ')}.` : '';
+
+      return `- [${version}](${llmsPath}): Versioned Siemens iX registry LLM entrypoint.${suffix}`;
+    })
+    .join('\n');
+
+  const componentLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const componentsPath = entry.llms?.components;
+
+      if (!componentsPath) {
+        return `- ${version}: Component LLM docs unavailable.`;
+      }
+
+      return `- [${version} components](${componentsPath}): Component API, examples, Figma IDs, and relationship availability for ${version}.`;
+    })
+    .join('\n');
+
+  const blockLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const blocksPath = entry.llms?.blocks;
+
+      if (!blocksPath) {
+        return `- ${version}: Block LLM docs unavailable.`;
+      }
+
+      return `- [${version} blocks](${blocksPath}): Registry block metadata, variants, files, dependencies, and component usage availability for ${version}.`;
+    })
+    .join('\n');
+
+  return `# Siemens iX Registry
+
+> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component and block context.
+
+Latest registry tag: ${latest ?? 'unavailable'}.
+
+## Registry versions
+
+${versionLinks || '- No registry versions available.'}
+
+## Component docs
+
+${componentLinks || '- No component LLM docs available.'}
+
+## Block docs
+
+${blockLinks || '- No block LLM docs available.'}
+
+## Optional
+
+- [Registry manifest](registry.json): Machine-readable manifest containing all deployed registry versions and dist-tags.
+`;
+}
+
 async function copyVersionPayload(
   distDir: string,
   outDir: string,
@@ -305,10 +377,16 @@ async function main() {
   );
 
   await fs.writeJson(existingRegistryPath, mergedRegistry, { spaces: 2 });
+  await fs.writeFile(
+    path.join(args.outDir, 'llms.txt'),
+    renderRootLlmsTxt(mergedRegistry),
+    'utf-8'
+  );
 
   console.log(`✅ Staged merged registry in ${args.outDir}`);
   console.log(`   - version upserted: ${args.version}`);
   console.log(`   - latest tag: ${mergedRegistry['dist-tags'].latest}`);
+  console.log('   - root llms.txt updated');
 }
 
 main().catch((error) => {
