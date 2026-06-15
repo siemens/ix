@@ -39,7 +39,6 @@
 @use "./components/pagination" as asComponent_pagination;
 @use "./components/pane" as asComponent_pane;
 @use "./components/pill" as asComponent_pill;
-@use "./components/popover" as asComponent_popover;
 @use "./components/progress-indicator" as asComponent_progress-indicator;
 @use "./components/push-card" as asComponent_push-card;
 @use "./components/radiobutton" as asComponent_radiobutton;
@@ -83,7 +82,6 @@
   @include asComponent_pagination.setVars;
   @include asComponent_pane.setVars;
   @include asComponent_pill.setVars;
-  @include asComponent_popover.setVars;
   @include asComponent_progress-indicator.setVars;
   @include asComponent_push-card.setVars;
   @include asComponent_radiobutton.setVars;

@@ -7,8 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// Unlike ix-modal, do not set display:none on :host — nested ix-popover is a light DOM child of the parent host.
 :host {
+  --theme-popover--background: var(--theme-color-2);
+  --theme-popover--border-color: transparent;
+  --theme-popover--color: var(--theme-color-std-text);
+  --theme-popover--elevation-filter: drop-shadow(0 0 2px var(--theme-color-shadow-2))
+    drop-shadow(0 4px 8px var(--theme-color-shadow-3))
+    drop-shadow(0 12px 18px var(--theme-color-shadow-3));
+  --theme-popover-close--color: var(--theme-color-soft-text);
+  --theme-popover-close-btn--background: transparent;
+  --theme-popover-close-btn--background--active: var(--theme-color-ghost--active);
+  --theme-popover-close-btn--background--hover: var(--theme-color-ghost--hover);
+
   dialog.dialog {
     margin: 0;
     padding: 0;
@@ -31,10 +41,10 @@
     width: 100%;
     max-height: calc(100vh - 2rem);
     background: var(--theme-popover--background);
-    color: var(--theme-popover--color, var(--theme-color-std-text));
-    border: 1px solid var(--theme-popover--border-color, transparent);
+    color: var(--theme-popover--color);
+    border: 1px solid var(--theme-popover--border-color);
     box-shadow: var(--theme-shadow-4);
-    border-radius: var(--theme-default-border-radius, 0.25rem);
+    border-radius: var(--theme-default-border-radius);
     overflow: visible;
   }
 

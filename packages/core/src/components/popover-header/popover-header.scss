@@ -29,35 +29,20 @@
 
   .popover-close {
     align-self: flex-start;
-    border-radius: var(--theme-small-border-radius, 0.125rem);
+    border-radius: var(--theme-small-border-radius);
 
-    --ix-icon-button-color: var(
-      --theme-popover-close--color,
-      var(--theme-color-soft-text)
-    );
-    --theme-btn-tertiary--color: var(
-      --theme-popover-close--color,
-      var(--theme-color-soft-text)
-    );
-    --theme-btn-tertiary--color--hover: var(
-      --theme-popover-close--color,
-      var(--theme-color-soft-text)
-    );
-    --theme-btn-tertiary--color--active: var(
-      --theme-popover-close--color,
-      var(--theme-color-soft-text)
-    );
+    --ix-icon-button-color: var(--theme-popover-close--color);
+    --theme-btn-tertiary--color: var(--theme-popover-close--color);
+    --theme-btn-tertiary--color--hover: var(--theme-popover-close--color);
+    --theme-btn-tertiary--color--active: var(--theme-popover-close--color);
     --theme-btn-tertiary--background: var(
-      --theme-popover-close-btn--background,
-      transparent
+      --theme-popover-close-btn--background
     );
     --theme-btn-tertiary--background--hover: var(
-      --theme-popover-close-btn--background--hover,
-      var(--theme-color-ghost--hover)
+      --theme-popover-close-btn--background--hover
     );
     --theme-btn-tertiary--background--active: var(
-      --theme-popover-close-btn--background--active,
-      var(--theme-color-ghost--active)
+      --theme-popover-close-btn--background--active
     );
     --theme-btn-tertiary--border-color: transparent;
     --theme-btn-tertiary--border-color--hover: transparent;
