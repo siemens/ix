@@ -11,12 +11,12 @@ Latest registry tag: 5.0.0.
 
 ## Component docs
 
-- v5.0.0: Component LLM docs unavailable.
+- [v5.0.0 components](v5.0.0/llms/components.md): Component API, examples, Figma IDs, and relationship availability for v5.0.0.
 - [feat/block-cli components](feat/block-cli/llms/components.md): Component API, examples, Figma IDs, and relationship availability for feat/block-cli.
 
 ## Block docs
 
-- v5.0.0: Block LLM docs unavailable.
+- [v5.0.0 blocks](v5.0.0/llms/blocks.md): Registry block metadata, variants, files, dependencies, and component usage availability for v5.0.0.
 - [feat/block-cli blocks](feat/block-cli/llms/blocks.md): Registry block metadata, variants, files, dependencies, and component usage availability for feat/block-cli.
 
 ## Optional

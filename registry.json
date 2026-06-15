@@ -2174,6 +2174,11 @@
         "componentSearchIndex": "v5.0.0/ix/component-search-index.json",
         "componentRelatedExamples": "v5.0.0/ix/component-related-examples.json"
       },
+      "llms": {
+        "entrypoint": "v5.0.0/llms.txt",
+        "components": "v5.0.0/llms/components.md",
+        "blocks": "v5.0.0/llms/blocks.md"
+      },
       "searchIndex": {
         "blocks": {
           "react": "v5.0.0/search-index-react.json",

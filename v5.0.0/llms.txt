@@ -1,0 +1,14 @@
+# Siemens iX Registry
+
+> Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component and block documentation generated from existing registry JSON metadata.
+
+Use these files for code generation context before reading larger registry artifacts. Component API metadata, related examples, and Figma IDs come from registry JSON. Related blocks and block component usage are marked unavailable where registry JSON does not provide those relationships.
+
+## Registry LLM docs
+
+- [Components](llms/components.md): All iX components with properties, events, slots, related examples, related blocks availability, and Figma IDs.
+- [Blocks](llms/blocks.md): All registry blocks with previews, framework variants, files, dependencies, and block component usage availability.
+
+## Optional
+
+- [Registry manifest](registry.json): Machine-readable registry manifest with versioned artifact paths.
