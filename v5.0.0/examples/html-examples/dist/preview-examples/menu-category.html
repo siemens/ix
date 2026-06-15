@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu category example</title>
+    <script type="module" crossorigin src="../assets/menu-category-BQxgryVp.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-B8nXsUf-.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DAI7i65D.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-iguB3m6A.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-vnsUAEMY.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-cdHQkmOG.css">
+  </head>
+  <body>
+    <ix-application force-breakpoint="lg">
+      <ix-menu>
+        <ix-menu-item home icon="home">Home</ix-menu-item>
+        <ix-menu-item icon="globe">Normal Tab</ix-menu-item>
+        <ix-menu-category label="Top level Category" icon="rocket">
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+
+  </body>
+</html>

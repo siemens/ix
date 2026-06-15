@@ -1,0 +1,93 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+Overflow case: same as Storybook Example/Tabs → Overflow (340px, 8 tabs).
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs overflow example</title>
+    <script type="module" crossorigin src="../assets/tabs-overflow-DE5qJI8s.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-B8nXsUf-.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DAI7i65D.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-cdHQkmOG.css">
+    <link rel="stylesheet" crossorigin href="../assets/tabs-CcAdORz5.css">
+  </head>
+  <body>
+    <div class="tabs" style="max-width: 340px">
+      <ix-tabs active-tab-key="overview" layout="auto">
+        <ix-tab-item tab-key="overview">Overview</ix-tab-item>
+        <ix-tab-item tab-key="analytics">Analytics</ix-tab-item>
+        <ix-tab-item tab-key="events">Events</ix-tab-item>
+        <ix-tab-item tab-key="automation">Automation</ix-tab-item>
+        <ix-tab-item tab-key="data-sources">Data Sources</ix-tab-item>
+        <ix-tab-item tab-key="notifications">Notifications</ix-tab-item>
+        <ix-tab-item tab-key="history">History</ix-tab-item>
+        <ix-tab-item tab-key="settings">Settings</ix-tab-item>
+      </ix-tabs>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="overview"
+        class="show"
+      >
+        Content Overview
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="analytics"
+      >
+        Content Analytics
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="events"
+      >
+        Content Events
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="automation"
+      >
+        Content Automation
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="data-sources"
+      >
+        Content Data Sources
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="notifications"
+      >
+        Content Notifications
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="history"
+      >
+        Content History
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="settings"
+      >
+        Content Settings
+      </section>
+    </div>
+
+  </body>
+</html>

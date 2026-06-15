@@ -1,0 +1,71 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About and legal example</title>
+    <script type="module" crossorigin src="../assets/global-B8nXsUf-.js"></script>
+    <script type="module" crossorigin src="../assets/init-DAI7i65D.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/global-cdHQkmOG.css">
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header>
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-about suppress-legacy-tabs>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+            <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+          </ix-tabs>
+          <section
+            role="tabpanel"
+            aria-label="About and legal content"
+            data-tab-content="tab-1"
+          >
+            Content 1
+          </section>
+          <section
+            role="tabpanel"
+            aria-label="About and legal content"
+            data-tab-content="tab-2"
+            hidden
+          >
+            Content 2
+          </section>
+        </ix-menu-about>
+      </ix-menu>
+    </ix-application>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-menu');
+        await window.customElements.whenDefined('ix-tabs');
+        const instance = document.querySelector('ix-menu');
+        const about = instance.querySelector('ix-menu-about');
+        const tabs = about.querySelector('ix-tabs');
+        const updateVisibleContent = (tabKey) => {
+          about.querySelectorAll('[data-tab-content]').forEach((content) => {
+            content.hidden = content.dataset.tabContent !== tabKey;
+          });
+        };
+
+        updateVisibleContent(tabs.activeTabKey ?? 'tab-1');
+        tabs.addEventListener('tabChange', (event) => {
+          updateVisibleContent(event.detail ?? 'tab-1');
+        });
+        await instance.toggleAbout(true);
+      })();
+    </script>
+  </body>
+</html>

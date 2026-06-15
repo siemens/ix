@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * Styles get overwritten by html-test-app css files each build or dev task.
+ * If you want to modify the example styles do this only inside the html-test-app
+ */
+
+ix-pill {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.styled {
+  width: 8rem;
+}
+
+.styled-ellipsis-3 {
+  width: 3rem;
+}
+
+.styled-ellipsis-4 {
+  width: 4rem;
+}

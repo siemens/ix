@@ -1,0 +1,73 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs example</title>
+    <link rel="stylesheet" href="./tabs.css" />
+  </head>
+  <body>
+    <div class="tabs">
+      <ix-tabs active-tab-key="tab-1">
+        <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+        <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+        <ix-tab-item tab-key="tab-3">Tab 3</ix-tab-item>
+      </ix-tabs>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="tab-1"
+        class="show"
+      >
+        Content Tab 1
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="tab-2"
+      >
+        Content Tab 2
+      </section>
+      <section
+        role="tabpanel"
+        aria-label="Example content"
+        data-tab-content="tab-3"
+      >
+        Content Tab 3
+      </section>
+    </div>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-tabs');
+        const container = document.querySelector('.tabs');
+        const tabs = container.querySelector('ix-tabs');
+        const updateVisibleContent = (tabKey) => {
+          const contentList = container.querySelectorAll('[data-tab-content]');
+          contentList.forEach((content) => {
+            content.classList.toggle(
+              'show',
+              content.dataset.tabContent === tabKey
+            );
+          });
+        };
+
+        updateVisibleContent(tabs.activeTabKey);
+
+        tabs.addEventListener('tabChange', (event) => {
+          updateVisibleContent(event.detail);
+        });
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

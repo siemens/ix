@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * Styles get overwritten by html-test-app css files each build or dev task.
+ * If you want to modify the example styles do this only inside the html-test-app
+ */
+
+.ix-form-control {
+  width: 100% !important;
+}

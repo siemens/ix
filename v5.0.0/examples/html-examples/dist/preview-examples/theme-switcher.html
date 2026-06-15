@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme switcher example</title>
+    <script type="module" crossorigin src="../assets/theme-switcher-SqxAJJvC.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global-B8nXsUf-.js">
+    <link rel="modulepreload" crossorigin href="../assets/typed-event-CWshStHZ-DBYwEilm.js">
+    <link rel="modulepreload" crossorigin href="../assets/theme-switcher-CRVG13AN-OnrBiSI3.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DAI7i65D.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-cdHQkmOG.css">
+    <link rel="stylesheet" crossorigin href="../assets/theme-switcher-CFREfwOb.css">
+  </head>
+  <body>
+    <ix-layout-grid class="theme-switcher">
+      <ix-row>
+        <ix-col size="2">
+          <span>Light/Dark</span>
+        </ix-col>
+        <ix-col>
+          <ix-button id="toggle-mode">Toggle mode</ix-button>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2">Theme</ix-col>
+        <ix-col>
+          <ix-select id="select-theme" placeholder="Select a theme">
+          </ix-select>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2"></ix-col>
+        <ix-col>
+          <ix-checkbox id="system" label="Use system"></ix-checkbox>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+
+  </body>
+</html>

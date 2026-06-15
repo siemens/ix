@@ -1,0 +1,24 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div class="modal-sizes">
+  <ix-button (click)="open('360')">Show modal size 360</ix-button>
+  <ix-button (click)="open('480')">Show modal size 480</ix-button>
+  <ix-button (click)="open('600')">Show modal size 600</ix-button>
+  <ix-button (click)="open('720')">Show modal size 720</ix-button>
+  <ix-button (click)="open('840')">Show modal size 840</ix-button>
+  <ix-button (click)="open('full-width')">Show modal size full-width</ix-button>
+  <ix-button (click)="open('full-screen')">
+    Show modal size full-screen
+  </ix-button>
+</div>
+
+<ng-template #customModal let-modal>
+  <ix-button (click)="modal.dismiss('dismiss')">Modal with size {{ modal.data }}</ix-button>
+</ng-template>

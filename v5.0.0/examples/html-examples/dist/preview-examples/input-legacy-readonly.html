@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input legacy readonly example</title>
+    <script type="module" crossorigin src="../assets/global-B8nXsUf-.js"></script>
+    <script type="module" crossorigin src="../assets/init-DAI7i65D.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/global-cdHQkmOG.css">
+  </head>
+  <body>
+    <form class="needs-validation">
+      <input
+        value="Some example text"
+        placeholder="Enter text here"
+        type="text"
+        readonly
+        class="ix-form-control"
+      />
+    </form>
+
+    <script>
+      document
+        .querySelector('form')
+        .addEventListener('submit', (evt) => evt.preventDefault());
+    </script>
+  </body>
+</html>
