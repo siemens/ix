@@ -68,6 +68,10 @@ export class IxActionCard {
       return;
     }
 
+    if (event.target !== this.hostElement) {
+      return;
+    }
+
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.hostElement.click();
@@ -86,10 +90,11 @@ export class IxActionCard {
         ? 'ix-action-card-heading'
         : undefined;
 
+    const isInteractive = !this.passive;
     return (
       <Host
-        role={!this.passive ? 'button' : undefined}
-        tabIndex={!this.passive ? 0 : -1}
+        role={isInteractive ? 'button' : undefined}
+        tabIndex={isInteractive ? 0 : -1}
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
         aria-label={this.ariaLabelCard}
         aria-labelledby={ariaLabelledBy}
