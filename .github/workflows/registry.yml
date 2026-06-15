@@ -13,6 +13,11 @@ on:
     #   - 'tooling/registry/**'
     #   - '.github/workflows/registry.yml'
   workflow_dispatch:
+    inputs:
+      registry_name:
+        description: 'Registry name to deploy (defaults to the selected ref name when empty)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -40,8 +45,10 @@ jobs:
 
       - name: Determine deployment metadata
         id: deploy-meta
+        env:
+          REGISTRY_NAME: ${{ inputs.registry_name }}
         run: |
-          REF_NAME="${GITHUB_REF_NAME}"
+          REF_NAME="${REGISTRY_NAME:-${GITHUB_REF_NAME}}"
 
           if [[ "${REF_NAME}" == "main" ]]; then
             VERSION="main"
@@ -71,6 +78,7 @@ jobs:
         run: |
           echo "GITHUB_REF=${GITHUB_REF}"
           echo "GITHUB_REF_NAME=${GITHUB_REF_NAME}"
+          echo "REGISTRY_NAME=${{ inputs.registry_name }}"
           echo "registry_version=${{ steps.deploy-meta.outputs.registry_version }}"
           echo "registry_path_prefix=${{ steps.deploy-meta.outputs.registry_path_prefix }}"
           echo "registry_latest_tag=${{ steps.deploy-meta.outputs.registry_latest_tag }}"
