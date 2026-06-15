@@ -13,7 +13,17 @@
 ## Related examples
 
 - category-filter
+  - angular: [angular/category-filter.ts](../../examples/angular-examples/src/preview-examples/category-filter.ts)
+  - angular-standalone: [angular-standalone/category-filter.ts](../../examples/angular-standalone-examples/src/preview-examples/category-filter.ts)
+  - html: [html/category-filter.html](../../examples/html-examples/src/preview-examples/category-filter.html)
+  - react: [react/category-filter.tsx](../../examples/react-examples/src/preview-examples/category-filter.tsx)
+  - vue: [vue/category-filter.vue](../../examples/vue-examples/src/preview-examples/category-filter.vue)
 - category-filter-suggestions
+  - angular: [angular/category-filter-suggestions.ts](../../examples/angular-examples/src/preview-examples/category-filter-suggestions.ts)
+  - angular-standalone: [angular-standalone/category-filter-suggestions.ts](../../examples/angular-standalone-examples/src/preview-examples/category-filter-suggestions.ts)
+  - html: [html/category-filter-suggestions.html](../../examples/html-examples/src/preview-examples/category-filter-suggestions.html)
+  - react: [react/category-filter-suggestions.tsx](../../examples/react-examples/src/preview-examples/category-filter-suggestions.tsx)
+  - vue: [vue/category-filter-suggestions.vue](../../examples/vue-examples/src/preview-examples/category-filter-suggestions.vue)
 
 ## Related blocks
 

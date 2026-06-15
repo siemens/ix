@@ -13,9 +13,29 @@
 ## Related examples
 
 - group
+  - angular: [angular/group.ts](../../examples/angular-examples/src/preview-examples/group.ts)
+  - angular-standalone: [angular-standalone/group.ts](../../examples/angular-standalone-examples/src/preview-examples/group.ts)
+  - html: [html/group.html](../../examples/html-examples/src/preview-examples/group.html)
+  - react: [react/group.tsx](../../examples/react-examples/src/preview-examples/group.tsx)
+  - vue: [vue/group.vue](../../examples/vue-examples/src/preview-examples/group.vue)
 - group-context-menu
+  - angular: [angular/group-context-menu.ts](../../examples/angular-examples/src/preview-examples/group-context-menu.ts)
+  - angular-standalone: [angular-standalone/group-context-menu.ts](../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts)
+  - html: [html/group-context-menu.html](../../examples/html-examples/src/preview-examples/group-context-menu.html)
+  - react: [react/group-context-menu.tsx](../../examples/react-examples/src/preview-examples/group-context-menu.tsx)
+  - vue: [vue/group-context-menu.vue](../../examples/vue-examples/src/preview-examples/group-context-menu.vue)
 - group-custom-entry
+  - angular: [angular/group-custom-entry.ts](../../examples/angular-examples/src/preview-examples/group-custom-entry.ts)
+  - angular-standalone: [angular-standalone/group-custom-entry.ts](../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts)
+  - html: [html/group-custom-entry.html](../../examples/html-examples/src/preview-examples/group-custom-entry.html)
+  - react: [react/group-custom-entry.tsx](../../examples/react-examples/src/preview-examples/group-custom-entry.tsx)
+  - vue: [vue/group-custom-entry.vue](../../examples/vue-examples/src/preview-examples/group-custom-entry.vue)
 - group-header-suppressed
+  - angular: [angular/group-header-suppressed.ts](../../examples/angular-examples/src/preview-examples/group-header-suppressed.ts)
+  - angular-standalone: [angular-standalone/group-header-suppressed.ts](../../examples/angular-standalone-examples/src/preview-examples/group-header-suppressed.ts)
+  - html: [html/group-header-suppressed.html](../../examples/html-examples/src/preview-examples/group-header-suppressed.html)
+  - react: [react/group-header-suppressed.tsx](../../examples/react-examples/src/preview-examples/group-header-suppressed.tsx)
+  - vue: [vue/group-header-suppressed.vue](../../examples/vue-examples/src/preview-examples/group-header-suppressed.vue)
 
 ## Related blocks
 

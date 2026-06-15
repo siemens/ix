@@ -13,10 +13,35 @@
 ## Related examples
 
 - slider
+  - angular: [angular/slider.css](../../examples/angular-examples/src/preview-examples/slider.css), [angular/slider.html](../../examples/angular-examples/src/preview-examples/slider.html), [angular/slider.ts](../../examples/angular-examples/src/preview-examples/slider.ts)
+  - angular-standalone: [angular-standalone/slider.css](../../examples/angular-standalone-examples/src/preview-examples/slider.css), [angular-standalone/slider.html](../../examples/angular-standalone-examples/src/preview-examples/slider.html), [angular-standalone/slider.ts](../../examples/angular-standalone-examples/src/preview-examples/slider.ts)
+  - html: [html/slider.css](../../examples/html-examples/src/preview-examples/slider.css), [html/slider.html](../../examples/html-examples/src/preview-examples/slider.html)
+  - react: [react/slider.scoped.css](../../examples/react-examples/src/preview-examples/slider.scoped.css), [react/slider.tsx](../../examples/react-examples/src/preview-examples/slider.tsx)
+  - vue: [vue/slider.css](../../examples/vue-examples/src/preview-examples/slider.css), [vue/slider.vue](../../examples/vue-examples/src/preview-examples/slider.vue)
 - slider-error
+  - angular: [angular/slider-error.html](../../examples/angular-examples/src/preview-examples/slider-error.html), [angular/slider-error.ts](../../examples/angular-examples/src/preview-examples/slider-error.ts)
+  - angular-standalone: [angular-standalone/slider-error.html](../../examples/angular-standalone-examples/src/preview-examples/slider-error.html), [angular-standalone/slider-error.ts](../../examples/angular-standalone-examples/src/preview-examples/slider-error.ts)
+  - html: [html/slider-error.html](../../examples/html-examples/src/preview-examples/slider-error.html)
+  - react: [react/slider-error.tsx](../../examples/react-examples/src/preview-examples/slider-error.tsx)
+  - vue: [vue/slider-error.vue](../../examples/vue-examples/src/preview-examples/slider-error.vue)
 - slider-marker
+  - angular: [angular/slider-marker.html](../../examples/angular-examples/src/preview-examples/slider-marker.html), [angular/slider-marker.ts](../../examples/angular-examples/src/preview-examples/slider-marker.ts)
+  - angular-standalone: [angular-standalone/slider-marker.html](../../examples/angular-standalone-examples/src/preview-examples/slider-marker.html), [angular-standalone/slider-marker.ts](../../examples/angular-standalone-examples/src/preview-examples/slider-marker.ts)
+  - html: [html/slider-marker.html](../../examples/html-examples/src/preview-examples/slider-marker.html)
+  - react: [react/slider-marker.tsx](../../examples/react-examples/src/preview-examples/slider-marker.tsx)
+  - vue: [vue/slider-marker.vue](../../examples/vue-examples/src/preview-examples/slider-marker.vue)
 - slider-trace
+  - angular: [angular/slider-trace.html](../../examples/angular-examples/src/preview-examples/slider-trace.html), [angular/slider-trace.ts](../../examples/angular-examples/src/preview-examples/slider-trace.ts)
+  - angular-standalone: [angular-standalone/slider-trace.html](../../examples/angular-standalone-examples/src/preview-examples/slider-trace.html), [angular-standalone/slider-trace.ts](../../examples/angular-standalone-examples/src/preview-examples/slider-trace.ts)
+  - html: [html/slider-trace.html](../../examples/html-examples/src/preview-examples/slider-trace.html)
+  - react: [react/slider-trace.tsx](../../examples/react-examples/src/preview-examples/slider-trace.tsx)
+  - vue: [vue/slider-trace.vue](../../examples/vue-examples/src/preview-examples/slider-trace.vue)
 - slider-validation
+  - angular: [angular/slider-validation.html](../../examples/angular-examples/src/preview-examples/slider-validation.html), [angular/slider-validation.ts](../../examples/angular-examples/src/preview-examples/slider-validation.ts)
+  - angular-standalone: [angular-standalone/slider-validation.html](../../examples/angular-standalone-examples/src/preview-examples/slider-validation.html), [angular-standalone/slider-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/slider-validation.ts)
+  - html: [html/slider-validation.html](../../examples/html-examples/src/preview-examples/slider-validation.html)
+  - react: [react/slider-validation.tsx](../../examples/react-examples/src/preview-examples/slider-validation.tsx)
+  - vue: [vue/slider-validation.vue](../../examples/vue-examples/src/preview-examples/slider-validation.vue)
 
 ## Related blocks
 

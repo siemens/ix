@@ -13,6 +13,11 @@
 ## Related examples
 
 - chip
+  - angular: [angular/chip.css](../../examples/angular-examples/src/preview-examples/chip.css), [angular/chip.ts](../../examples/angular-examples/src/preview-examples/chip.ts)
+  - angular-standalone: [angular-standalone/chip.css](../../examples/angular-standalone-examples/src/preview-examples/chip.css), [angular-standalone/chip.ts](../../examples/angular-standalone-examples/src/preview-examples/chip.ts)
+  - html: [html/chip.css](../../examples/html-examples/src/preview-examples/chip.css), [html/chip.html](../../examples/html-examples/src/preview-examples/chip.html)
+  - react: [react/chip.scoped.css](../../examples/react-examples/src/preview-examples/chip.scoped.css), [react/chip.tsx](../../examples/react-examples/src/preview-examples/chip.tsx)
+  - vue: [vue/chip.css](../../examples/vue-examples/src/preview-examples/chip.css), [vue/chip.vue](../../examples/vue-examples/src/preview-examples/chip.vue)
 
 ## Related blocks
 

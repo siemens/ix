@@ -13,7 +13,17 @@
 ## Related examples
 
 - pane
+  - angular: [angular/pane.html](../../examples/angular-examples/src/preview-examples/pane.html), [angular/pane.ts](../../examples/angular-examples/src/preview-examples/pane.ts)
+  - angular-standalone: [angular-standalone/pane.html](../../examples/angular-standalone-examples/src/preview-examples/pane.html), [angular-standalone/pane.ts](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
+  - html: [html/pane.html](../../examples/html-examples/src/preview-examples/pane.html)
+  - react: [react/pane.tsx](../../examples/react-examples/src/preview-examples/pane.tsx)
+  - vue: [vue/pane.vue](../../examples/vue-examples/src/preview-examples/pane.vue)
 - pane-layout
+  - angular: [angular/pane-layout.html](../../examples/angular-examples/src/preview-examples/pane-layout.html), [angular/pane-layout.ts](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
+  - angular-standalone: [angular-standalone/pane-layout.html](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html), [angular-standalone/pane-layout.ts](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
+  - html: [html/pane-layout.html](../../examples/html-examples/src/preview-examples/pane-layout.html)
+  - react: [react/pane-layout.tsx](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
+  - vue: [vue/pane-layout.vue](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
 
 ## Related blocks
 

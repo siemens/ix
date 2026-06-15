@@ -13,7 +13,17 @@
 ## Related examples
 
 - custom-field
+  - angular: [angular/custom-field.html](../../examples/angular-examples/src/preview-examples/custom-field.html), [angular/custom-field.ts](../../examples/angular-examples/src/preview-examples/custom-field.ts)
+  - angular-standalone: [angular-standalone/custom-field.html](../../examples/angular-standalone-examples/src/preview-examples/custom-field.html), [angular-standalone/custom-field.ts](../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts)
+  - html: [html/custom-field.html](../../examples/html-examples/src/preview-examples/custom-field.html)
+  - react: [react/custom-field.tsx](../../examples/react-examples/src/preview-examples/custom-field.tsx)
+  - vue: [vue/custom-field.vue](../../examples/vue-examples/src/preview-examples/custom-field.vue)
 - custom-field-validation
+  - angular: [angular/custom-field-validation.html](../../examples/angular-examples/src/preview-examples/custom-field-validation.html), [angular/custom-field-validation.ts](../../examples/angular-examples/src/preview-examples/custom-field-validation.ts)
+  - angular-standalone: [angular-standalone/custom-field-validation.html](../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.html), [angular-standalone/custom-field-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/custom-field-validation.ts)
+  - html: [html/custom-field-validation.html](../../examples/html-examples/src/preview-examples/custom-field-validation.html)
+  - react: [react/custom-field-validation.tsx](../../examples/react-examples/src/preview-examples/custom-field-validation.tsx)
+  - vue: [vue/custom-field-validation.vue](../../examples/vue-examples/src/preview-examples/custom-field-validation.vue)
 
 ## Related blocks
 

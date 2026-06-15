@@ -13,6 +13,11 @@
 ## Related examples
 
 - card-list
+  - angular: [angular/card-list.html](../../examples/angular-examples/src/preview-examples/card-list.html), [angular/card-list.ts](../../examples/angular-examples/src/preview-examples/card-list.ts)
+  - angular-standalone: [angular-standalone/card-list.html](../../examples/angular-standalone-examples/src/preview-examples/card-list.html), [angular-standalone/card-list.ts](../../examples/angular-standalone-examples/src/preview-examples/card-list.ts)
+  - html: [html/card-list.html](../../examples/html-examples/src/preview-examples/card-list.html)
+  - react: [react/card-list.tsx](../../examples/react-examples/src/preview-examples/card-list.tsx)
+  - vue: [vue/card-list.vue](../../examples/vue-examples/src/preview-examples/card-list.vue)
 
 ## Related blocks
 

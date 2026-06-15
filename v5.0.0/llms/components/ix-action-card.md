@@ -13,6 +13,11 @@
 ## Related examples
 
 - action-card
+  - angular: [angular/action-card.html](../../examples/angular-examples/src/preview-examples/action-card.html), [angular/action-card.ts](../../examples/angular-examples/src/preview-examples/action-card.ts)
+  - angular-standalone: [angular-standalone/action-card.html](../../examples/angular-standalone-examples/src/preview-examples/action-card.html), [angular-standalone/action-card.ts](../../examples/angular-standalone-examples/src/preview-examples/action-card.ts)
+  - html: [html/action-card.html](../../examples/html-examples/src/preview-examples/action-card.html)
+  - react: [react/action-card.tsx](../../examples/react-examples/src/preview-examples/action-card.tsx)
+  - vue: [vue/action-card.vue](../../examples/vue-examples/src/preview-examples/action-card.vue)
 
 ## Related blocks
 

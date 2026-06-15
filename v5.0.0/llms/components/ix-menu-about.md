@@ -13,9 +13,29 @@
 ## Related examples
 
 - about-and-legal
+  - angular: [angular/about-and-legal.html](../../examples/angular-examples/src/preview-examples/about-and-legal.html), [angular/about-and-legal.ts](../../examples/angular-examples/src/preview-examples/about-and-legal.ts)
+  - angular-standalone: [angular-standalone/about-and-legal.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.html), [angular-standalone/about-and-legal.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal.ts)
+  - html: [html/about-and-legal.html](../../examples/html-examples/src/preview-examples/about-and-legal.html)
+  - react: [react/about-and-legal.tsx](../../examples/react-examples/src/preview-examples/about-and-legal.tsx)
+  - vue: [vue/about-and-legal.vue](../../examples/vue-examples/src/preview-examples/about-and-legal.vue)
 - about-and-legal-legacy
+  - angular: [angular/about-and-legal-legacy.html](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html), [angular/about-and-legal-legacy.ts](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - angular-standalone: [angular-standalone/about-and-legal-legacy.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html), [angular-standalone/about-and-legal-legacy.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - html: [html/about-and-legal-legacy.html](../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html)
+  - react: [react/about-and-legal-legacy.tsx](../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx)
+  - vue: [vue/about-and-legal-legacy.vue](../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue)
 - application-advanced
+  - angular: [angular/application-advanced.html](../../examples/angular-examples/src/preview-examples/application-advanced.html), [angular/application-advanced.ts](../../examples/angular-examples/src/preview-examples/application-advanced.ts)
+  - angular-standalone: [angular-standalone/application-advanced.html](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.html), [angular-standalone/application-advanced.ts](../../examples/angular-standalone-examples/src/preview-examples/application-advanced.ts)
+  - html: [html/application-advanced.html](../../examples/html-examples/src/preview-examples/application-advanced.html)
+  - react: [react/application-advanced.tsx](../../examples/react-examples/src/preview-examples/application-advanced.tsx)
+  - vue: [vue/application-advanced.vue](../../examples/vue-examples/src/preview-examples/application-advanced.vue)
 - popover-news
+  - angular: [angular/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [angular/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
+  - angular-standalone: [angular-standalone/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [angular-standalone/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
+  - html: [html/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
+  - react: [react/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
+  - vue: [vue/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
 
 ## Related blocks
 

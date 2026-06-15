@@ -13,7 +13,17 @@
 ## Related examples
 
 - card-list
+  - angular: [angular/card-list.html](../../examples/angular-examples/src/preview-examples/card-list.html), [angular/card-list.ts](../../examples/angular-examples/src/preview-examples/card-list.ts)
+  - angular-standalone: [angular-standalone/card-list.html](../../examples/angular-standalone-examples/src/preview-examples/card-list.html), [angular-standalone/card-list.ts](../../examples/angular-standalone-examples/src/preview-examples/card-list.ts)
+  - html: [html/card-list.html](../../examples/html-examples/src/preview-examples/card-list.html)
+  - react: [react/card-list.tsx](../../examples/react-examples/src/preview-examples/card-list.tsx)
+  - vue: [vue/card-list.vue](../../examples/vue-examples/src/preview-examples/card-list.vue)
 - push-card
+  - angular: [angular/push-card.html](../../examples/angular-examples/src/preview-examples/push-card.html), [angular/push-card.ts](../../examples/angular-examples/src/preview-examples/push-card.ts)
+  - angular-standalone: [angular-standalone/push-card.html](../../examples/angular-standalone-examples/src/preview-examples/push-card.html), [angular-standalone/push-card.ts](../../examples/angular-standalone-examples/src/preview-examples/push-card.ts)
+  - html: [html/push-card.html](../../examples/html-examples/src/preview-examples/push-card.html)
+  - react: [react/push-card.tsx](../../examples/react-examples/src/preview-examples/push-card.tsx)
+  - vue: [vue/push-card.vue](../../examples/vue-examples/src/preview-examples/push-card.vue)
 
 ## Related blocks
 

@@ -13,7 +13,17 @@
 ## Related examples
 
 - tree
+  - angular: [angular/tree.ts](../../examples/angular-examples/src/preview-examples/tree.ts)
+  - angular-standalone: [angular-standalone/tree.ts](../../examples/angular-standalone-examples/src/preview-examples/tree.ts)
+  - html: [html/tree.html](../../examples/html-examples/src/preview-examples/tree.html)
+  - react: [react/tree.tsx](../../examples/react-examples/src/preview-examples/tree.tsx)
+  - vue: [vue/tree.vue](../../examples/vue-examples/src/preview-examples/tree.vue)
 - tree-custom
+  - angular: [angular/tree-custom.ts](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
+  - angular-standalone: [angular-standalone/tree-custom.ts](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
+  - html: [html/tree-custom.html](../../examples/html-examples/src/preview-examples/tree-custom.html)
+  - react: [react/tree-custom.tsx](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
+  - vue: [vue/tree-custom.vue](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
 
 ## Related blocks
 

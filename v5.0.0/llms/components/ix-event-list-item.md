@@ -13,9 +13,28 @@
 ## Related examples
 
 - event-list
+  - angular: [angular/event-list.ts](../../examples/angular-examples/src/preview-examples/event-list.ts)
+  - angular-standalone: [angular-standalone/event-list.ts](../../examples/angular-standalone-examples/src/preview-examples/event-list.ts)
+  - html: [html/event-list.html](../../examples/html-examples/src/preview-examples/event-list.html)
+  - react: [react/event-list.tsx](../../examples/react-examples/src/preview-examples/event-list.tsx)
+  - vue: [vue/event-list.vue](../../examples/vue-examples/src/preview-examples/event-list.vue)
 - event-list-compact
+  - angular: [angular/event-list-compact.ts](../../examples/angular-examples/src/preview-examples/event-list-compact.ts)
+  - angular-standalone: [angular-standalone/event-list-compact.ts](../../examples/angular-standalone-examples/src/preview-examples/event-list-compact.ts)
+  - html: [html/event-list-compact.html](../../examples/html-examples/src/preview-examples/event-list-compact.html)
+  - react: [react/event-list-compact.tsx](../../examples/react-examples/src/preview-examples/event-list-compact.tsx)
+  - vue: [vue/event-list-compact.vue](../../examples/vue-examples/src/preview-examples/event-list-compact.vue)
 - event-list-custom-item-height
+  - angular: [angular/event-list-custom-item-height.ts](../../examples/angular-examples/src/preview-examples/event-list-custom-item-height.ts)
+  - angular-standalone: [angular-standalone/event-list-custom-item-height.ts](../../examples/angular-standalone-examples/src/preview-examples/event-list-custom-item-height.ts)
+  - html: [html/event-list-custom-item-height.html](../../examples/html-examples/src/preview-examples/event-list-custom-item-height.html)
+  - react: [react/event-list-custom-item-height.tsx](../../examples/react-examples/src/preview-examples/event-list-custom-item-height.tsx)
+  - vue: [vue/event-list-custom-item-height.vue](../../examples/vue-examples/src/preview-examples/event-list-custom-item-height.vue)
 - event-list-custom-item-height-in-number
+  - angular: [angular/event-list-custom-item-height-in-number.ts](../../examples/angular-examples/src/preview-examples/event-list-custom-item-height-in-number.ts)
+  - html: [html/event-list-custom-item-height-in-number.html](../../examples/html-examples/src/preview-examples/event-list-custom-item-height-in-number.html)
+  - react: [react/event-list-custom-item-height-in-number.tsx](../../examples/react-examples/src/preview-examples/event-list-custom-item-height-in-number.tsx)
+  - vue: [vue/event-list-custom-item-height-in-number.vue](../../examples/vue-examples/src/preview-examples/event-list-custom-item-height-in-number.vue)
 
 ## Related blocks
 

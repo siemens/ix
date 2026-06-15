@@ -13,9 +13,25 @@
 ## Related examples
 
 - aria-label-properties
+  - html: [html/aria-label-properties.html](../../examples/html-examples/src/preview-examples/aria-label-properties.html)
 - datepicker
+  - angular: [angular/datepicker.ts](../../examples/angular-examples/src/preview-examples/datepicker.ts)
+  - angular-standalone: [angular-standalone/datepicker.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker.ts)
+  - html: [html/datepicker.html](../../examples/html-examples/src/preview-examples/datepicker.html)
+  - react: [react/datepicker.tsx](../../examples/react-examples/src/preview-examples/datepicker.tsx)
+  - vue: [vue/datepicker.vue](../../examples/vue-examples/src/preview-examples/datepicker.vue)
 - datepicker-locale
+  - angular: [angular/datepicker-locale.html](../../examples/angular-examples/src/preview-examples/datepicker-locale.html), [angular/datepicker-locale.ts](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
+  - angular-standalone: [angular-standalone/datepicker-locale.html](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html), [angular-standalone/datepicker-locale.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
+  - html: [html/datepicker-locale.html](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
+  - react: [react/datepicker-locale.tsx](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
+  - vue: [vue/datepicker-locale.vue](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
 - datepicker-range
+  - angular: [angular/datepicker-range.ts](../../examples/angular-examples/src/preview-examples/datepicker-range.ts)
+  - angular-standalone: [angular-standalone/datepicker-range.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-range.ts)
+  - html: [html/datepicker-range.html](../../examples/html-examples/src/preview-examples/datepicker-range.html)
+  - react: [react/datepicker-range.tsx](../../examples/react-examples/src/preview-examples/datepicker-range.tsx)
+  - vue: [vue/datepicker-range.vue](../../examples/vue-examples/src/preview-examples/datepicker-range.vue)
 
 ## Related blocks
 
