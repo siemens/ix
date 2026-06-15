@@ -2,7 +2,7 @@
   "$schema": "./registry.schema.json",
   "name": "siemens-ix-registry",
   "dist-tags": {
-    "latest": "5.0.0"
+    "latest": "v5.0.0"
   },
   "versions": {
     "feat/block-cli": {
