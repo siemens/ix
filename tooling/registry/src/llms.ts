@@ -46,6 +46,15 @@ type ComponentDocJson = {
   components: ComponentDoc[];
 };
 
+type ExampleVariant = {
+  files?: BlockFile[];
+};
+
+type ExampleDefinition = {
+  name: string;
+  variants?: Record<string, ExampleVariant>;
+};
+
 type BlockFile = {
   source: string;
   target: string;
@@ -78,6 +87,7 @@ export type GenerateLlmsOptions = {
   componentDocPath: string;
   componentRelatedExamplesPath: string;
   blocksDir: string;
+  examplesDir: string;
 };
 
 const UNAVAILABLE_FROM_JSON = 'unavailable (not present in registry JSON)';
@@ -105,6 +115,10 @@ function listOrNone(values: string[]): string {
   }
 
   return values.map((value) => `- ${value}`).join('\n');
+}
+
+function markdownLink(label: string, href: string): string {
+  return `[${label}](${href.replace(/ /g, '%20')})`;
 }
 
 function documentationUrls(component: ComponentDoc): string[] {
@@ -195,9 +209,61 @@ function normalizeRelatedExamples(
   return [...(relatedExamples[componentTag] ?? [])].sort();
 }
 
+async function readExamples(
+  examplesDir: string
+): Promise<Record<string, ExampleDefinition>> {
+  const exampleFiles = await glob(path.join(examplesDir, '*.json'), {
+    absolute: true,
+  });
+  const examples = await Promise.all(
+    exampleFiles.map(async (file) => (await fs.readJson(file)) as ExampleDefinition)
+  );
+
+  return Object.fromEntries(examples.map((example) => [example.name, example]));
+}
+
+function renderRelatedExamples(
+  exampleNames: string[],
+  examplesByName: Record<string, ExampleDefinition>
+): string {
+  if (exampleNames.length === 0) {
+    return '- None';
+  }
+
+  return exampleNames
+    .map((exampleName) => {
+      const example = examplesByName[exampleName];
+      const variants = Object.entries(example?.variants ?? {}).sort(([a], [b]) =>
+        a.localeCompare(b)
+      );
+
+      if (variants.length === 0) {
+        return `- ${exampleName}`;
+      }
+
+      const sourceLinks = variants
+        .map(([framework, variant]) => {
+          const links = (variant.files ?? []).map((file) => {
+            const href = `../../examples/${file.source}`;
+            return markdownLink(file.target, href);
+          });
+
+          return links.length > 0
+            ? `  - ${framework}: ${links.join(', ')}`
+            : null;
+        })
+        .filter(Boolean)
+        .join('\n');
+
+      return sourceLinks ? `- ${exampleName}\n${sourceLinks}` : `- ${exampleName}`;
+    })
+    .join('\n');
+}
+
 function renderComponentDetail(
   component: ComponentDoc,
-  relatedExamples: Record<string, string[]>
+  relatedExamples: Record<string, string[]>,
+  examplesByName: Record<string, ExampleDefinition>
 ): string {
   const docs = documentationUrls(component);
   const figma = figmaIds(component);
@@ -217,7 +283,7 @@ ${listOrNone(figma)}
 
 ## Related examples
 
-${listOrNone(examples)}
+${renderRelatedExamples(examples, examplesByName)}
 
 ## Related blocks
 
@@ -274,7 +340,13 @@ function renderBlock(block: BlockDefinition): string {
                 ...file,
               }))
             )
-              .map((file) => `  - \`${file.target}\` from \`${file.source}\``)
+              .map((file) => {
+                const href = `../blocks/${file.source}`;
+                return `  - \`${file.target}\` from ${markdownLink(
+                  file.source,
+                  href
+                )}`;
+              })
               .join('\n');
             const dependencies = sortByName(variant.dependencies ?? [])
               .map((dependency) => `  - \`${dependency.name}@${dependency.version}\``)
@@ -359,6 +431,7 @@ export async function generateLlmsArtifacts(
   )) as Record<string, string[]>;
   const components = sortComponents(componentDoc.components ?? []);
   const blocks = await readBlocks(options.blocksDir);
+  const examplesByName = await readExamples(options.examplesDir);
 
   const llmsDir = path.join(options.distDir, 'llms');
   const componentDetailsDir = path.join(llmsDir, 'components');
@@ -376,7 +449,7 @@ export async function generateLlmsArtifacts(
     ...components.map((component) =>
       fs.writeFile(
         path.join(componentDetailsDir, componentDetailFileName(component)),
-        renderComponentDetail(component, relatedExamples),
+        renderComponentDetail(component, relatedExamples, examplesByName),
         'utf-8'
       )
     ),
