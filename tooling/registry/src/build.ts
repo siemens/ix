@@ -388,6 +388,7 @@ const task = new Listr<Ctx>([
           'component-related-examples.json'
         ),
         blocksDir: path.join(ctx.dist, 'blocks'),
+        examplesDir: path.join(ctx.dist, 'examples'),
       });
 
       await updateLlmsRegistry(registryPath, {
