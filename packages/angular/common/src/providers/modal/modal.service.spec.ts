@@ -10,6 +10,21 @@ import { beforeEach, expect, test, jest } from '@jest/globals';
 import { closeModal, dismissModal } from '@siemens/ix';
 import { ModalService, IxActiveModal } from './';
 import { InternalIxActiveModal } from './modal-ref';
+import { createComponent } from '@angular/core';
+
+jest.mock('@angular/core', () => {
+  const actual =
+    jest.requireActual<typeof import('@angular/core')>('@angular/core');
+
+  return {
+    ...actual,
+    createComponent: jest.fn(),
+    Injector: {
+      ...actual.Injector,
+      create: jest.fn(actual.Injector.create.bind(actual.Injector)),
+    },
+  };
+});
 
 jest.mock('@siemens/ix', () => ({
   closeModal: jest.fn(),
@@ -63,31 +78,31 @@ test('should create modal by templateRef', () => {
   expect(appRefMock.attachView).toHaveBeenCalled();
 });
 
-test('should create modal by component typ', async () => {
+test('should create modal by component type', async () => {
   const appRefMock = {
     attachView: jest.fn(),
   };
-  const factory = {
-    create: jest.fn(() => ({
-      hostView: {
-        rootNodes: [jest.fn()],
-        detectChanges: jest.fn(),
-      },
-      injector: {
-        get: jest.fn(() => ({
-          nativeElement: { style: {} },
-        })),
-      },
-    })),
+  const nativeElement: { style: { display?: string } } = { style: {} };
+  const hostView = {
+    detectChanges: jest.fn(),
+    destroy: jest.fn(),
   };
-  const componentFactoryMock = {
-    resolveComponentFactory: jest.fn(() => factory),
+  const componentRef = {
+    hostView,
+    injector: {
+      get: jest.fn(() => ({
+        nativeElement,
+      })),
+    },
   };
-  const injectorMock = jest.fn();
+  const environmentInjectorMock = {};
+  const injectorMock = {};
+
+  jest.mocked(createComponent).mockReturnValue(componentRef as any);
 
   const modalService = new ModalService(
     appRefMock as any,
-    componentFactoryMock as any,
+    environmentInjectorMock as any,
     injectorMock as any
   );
 
@@ -102,14 +117,21 @@ test('should create modal by component typ', async () => {
     },
   });
 
-  const [[{ records }]] = factory.create.mock.calls as any;
+  const [[componentType, createOptions]] = jest.mocked(createComponent).mock
+    .calls as any;
 
-  const injectorRecords = records as Map<Function, any>;
-
-  expect(injectorRecords.get(IxActiveModal).value).toEqual({
-    modalData: { foo: 'bar' },
-    modalElement: { type: 'html-element' },
+  expect(createComponent).toHaveBeenCalledWith(TestComponent, {
+    environmentInjector: environmentInjectorMock as any,
+    elementInjector: createOptions.elementInjector,
   });
+  expect(componentType).toBe(TestComponent);
+
+  const activeModal = createOptions.elementInjector.get(
+    IxActiveModal
+  ) as IxActiveModal;
+
+  expect(activeModal.data).toEqual({ foo: 'bar' });
+  expect(activeModal.modalElement).toEqual({ type: 'html-element' });
 });
 
 test('should close modal instance with reason and mark as closed', () => {

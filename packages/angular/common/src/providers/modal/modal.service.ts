@@ -8,8 +8,9 @@
  */
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
+  createComponent,
   ElementRef,
+  EnvironmentInjector,
   Injectable,
   Injector,
   TemplateRef,
@@ -32,7 +33,7 @@ export type ModalContext<T> = {
 export class ModalService {
   constructor(
     private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private environmentInjector: EnvironmentInjector,
     private injector: Injector
   ) {}
 
@@ -78,10 +79,7 @@ export class ModalService {
   ) {
     const activeModal = new InternalIxActiveModal<TData>(context.data);
 
-    const modalFactory =
-      this.componentFactoryResolver.resolveComponentFactory(componentType);
-
-    const modalInjector = Injector.create({
+    const elementInjector = Injector.create({
       providers: [
         {
           provide: IxActiveModal,
@@ -91,7 +89,10 @@ export class ModalService {
       parent: this.injector,
     });
 
-    const instance = modalFactory.create(modalInjector);
+    const instance = createComponent(componentType, {
+      environmentInjector: this.environmentInjector,
+      elementInjector: elementInjector,
+    });
     this.appRef.attachView(instance.hostView);
 
     const element = instance.injector.get(ElementRef);
