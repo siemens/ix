@@ -48,11 +48,16 @@
       .blind-header-title-sublabel {
         color: var(--theme-color-soft-text);
       }
+
+       .header-actions {
+        --ix-icon-button-color: var(--theme-color-primary);
+      }
     }  @else {
       .blind-header-title-label,
       .blind-header-title-sublabel {
         color: var(--theme-color-#{$variant}--contrast);
       }
+      
       .header-actions {
         --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
       }
@@ -108,7 +113,7 @@
 
     display: block;
     position: absolute;
-    box-sizing: border-box;
+
     top: 0px;
     left: 0px;
 
