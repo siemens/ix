@@ -187,6 +187,11 @@
     overflow: auto;
     height: 100%;
     width: 100%;
+
+    &.no-padding {
+      padding-inline: 0;
+      padding-block-end: 0;
+    }
   }
 
   .slot-header {
