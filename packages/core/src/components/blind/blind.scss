@@ -21,7 +21,7 @@
         var(--theme-blind-base--border-color);
     }
 
-    .blind-header-wrapper {
+    .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
       } @else {
@@ -48,21 +48,9 @@
       .blind-header-title-sublabel {
         color: var(--theme-color-soft-text);
       }
-      .header-actions,
-      .blind-header-custom {
-        color: var(--theme-color-std-text);
-      }
     } @else {
       .blind-header-title-label,
       .blind-header-title-sublabel {
-        color: var(--theme-color-#{$variant}--contrast);
-      }
-
-      .header-actions {
-        --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
-      }
-
-      .blind-header-custom {
         color: var(--theme-color-#{$variant}--contrast);
       }
     }
@@ -78,24 +66,16 @@
 :host {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   border-radius: var(--theme-blind--border-radius);
-  overflow: visible;
+  overflow: hidden;
 
   @include component.ix-component;
 
   .blind-header-wrapper {
-    display: flex;
     position: relative;
-    align-items: stretch;
-    box-sizing: border-box;
+    min-height: 3rem;
     height: 3rem;
-    overflow: visible;
-    border: var(--theme-blind--border-thickness) solid transparent;
-    border-radius: var(--theme-blind--border-radius)
-      var(--theme-blind--border-radius) 0 0;
-    outline: none;
-    cursor: pointer;
+    overflow: hidden;
   }
 
   .blind-header-content {
@@ -121,21 +101,31 @@
 
   .blind-header {
     all: unset;
+    @include text-truncation.ellipsis;
 
-    display: flex;
-    position: relative;
-    align-items: stretch;
-    flex: 1 1 auto;
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    top: 0px;
+    left: 0px;
 
     pointer-events: all;
 
-    &:focus,
-    &:focus-visible {
+    padding-left: 2.5rem;
+    min-height: 3rem;
+    height: 3rem;
+    width: calc(100% - 2 * var(--theme-blind--border-thickness));
+    border: solid var(--theme-blind--border-thickness) transparent;
+    border-radius: var(--theme-blind--border-radius)
+      var(--theme-blind--border-radius) 0 0;
+    cursor: pointer;
+
+    @include hover.focus-visible {
+      border-color: var(--theme-color-focus-bdr);
       outline: none;
     }
   }
-
-  &:has(.blind-header:focus-visible) {
+ &:has(.blind-header:focus-visible) {
     .blind-header-wrapper {
       outline: var(--theme-focus-border-thickness) solid
         var(--theme-color-focus-bdr);
@@ -208,20 +198,8 @@
   }
 
   .header-actions {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
     pointer-events: all;
     margin-left: auto;
-    padding-right: 0.5rem;
-  }
-
-  .blind-header-custom {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    min-width: 0;
-    pointer-events: all;
   }
 }
 
