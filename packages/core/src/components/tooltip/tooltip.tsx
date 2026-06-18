@@ -121,6 +121,9 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
+      if (!dialog.isConnected || dialog.matches(':popover-open')) {
+        return;
+      }
       this.setAnchorElement(anchorElement);
       dialog.showPopover();
       this.applyTooltipPosition(anchorElement, dialog);
@@ -145,7 +148,9 @@ export class Tooltip {
 
     this.hideTooltipTimeout = setTimeout(() => {
       this.setAnchorElement();
-      dialog.hidePopover();
+      if (dialog.matches(':popover-open')) {
+        dialog.hidePopover();
+      }
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
     }, hideDelay);
