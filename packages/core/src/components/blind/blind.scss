@@ -52,7 +52,7 @@
       .header-actions {
         --ix-icon-button-color: var(--theme-color-primary);
       }
-    }else {
+    }@else {
       .blind-header-title-label,
       .blind-header-title-sublabel {
         color: var(--theme-color-#{$variant}--contrast);
