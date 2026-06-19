@@ -563,6 +563,23 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'does not restore focus to trigger after pointer dismiss for interactive popovers',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
+
+        await popover.open();
+        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
+        await popover.expectClosed();
+        await popover.expectTriggerButtonNotFocused();
+      }
+    );
+
+    regressionTest(
       'restores focus to trigger after Escape for interactive popovers',
       async ({ mount, page }) => {
         await mountPopover(

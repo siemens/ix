@@ -44,10 +44,15 @@ import {
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
 import {
+  hasKeyboardMode,
+  removeVisibleFocus,
+} from '../utils/internal/mixins/setup.mixin';
+import {
   InheritAriaAttributesMixin,
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   PopoverCloseFocus,
   popoverController,
@@ -415,7 +420,15 @@ export class Popover
       return;
     }
 
-    this.triggerElement.focus();
+    removeVisibleFocus();
+
+    if (!hasKeyboardMode()) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      this.triggerElement?.focus();
+    });
   }
 
   /** Pointer-driven hover dismiss: avoid a focus ring on the trigger. */
