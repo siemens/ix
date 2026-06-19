@@ -456,6 +456,7 @@ describe('PopoverController', () => {
       fireEvent.click(document.body);
 
       expect(popover.dismissMock).toHaveBeenCalledOnce();
+      expect(popover.dismissMock).toHaveBeenCalledWith('release');
     });
 
     it('does not dismiss when click target is a popover trigger', () => {

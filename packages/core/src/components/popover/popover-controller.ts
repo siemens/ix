@@ -87,7 +87,7 @@ class PopoverController {
   }
 
   dismissChildren(uid: string) {
-    this.stack.dismissChildren(uid);
+    this.dismissChildrenWithFocus(uid);
   }
 
   dismiss(
@@ -95,10 +95,22 @@ class PopoverController {
     closeFocus: PopoverCloseFocus = 'restore-trigger'
   ) {
     if (popover.isPresent() && popover.willDismiss?.()) {
-      this.stack.dismissChildren(popover.getId());
+      this.dismissChildrenWithFocus(popover.getId(), closeFocus);
       popover.dismiss(closeFocus);
       this.stack.deleteChildIdsEntry(popover.getId());
       this.removeFromPresentationOrder(popover.getId());
+    }
+  }
+
+  private dismissChildrenWithFocus(
+    uid: string,
+    closeFocus: PopoverCloseFocus = 'restore-trigger'
+  ) {
+    for (const childId of this.stack.getChildIds(uid)) {
+      const child = this.stack.get(childId);
+      if (child) {
+        this.dismiss(child, closeFocus);
+      }
     }
   }
 
@@ -189,6 +201,16 @@ class PopoverController {
     return false;
   }
 
+  private dismissAllFromOutsideClick() {
+    this.stack.forEach((instance) => {
+      if (!instance.closeOnClickOutside || !instance.isPresent()) {
+        return;
+      }
+
+      this.dismiss(instance, 'release');
+    });
+  }
+
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
@@ -197,7 +219,7 @@ class PopoverController {
       const hasPopover = this.pathIncludesPopover(event.composedPath());
 
       if (!hasTrigger && !hasPopover) {
-        this.dismissAll();
+        this.dismissAllFromOutsideClick();
       }
     });
 

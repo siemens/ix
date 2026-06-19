@@ -43,10 +43,7 @@ import {
   getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
-import {
-  hasKeyboardMode,
-  removeVisibleFocus,
-} from '../utils/internal/mixins/setup.mixin';
+import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import {
   InheritAriaAttributesMixin,
   InheritAriaAttributesMixinContract,
@@ -375,6 +372,12 @@ export class Popover
 
     dialog.hidePopover();
 
+    if (this.closeFocus === 'release') {
+      this.blurTriggerElement();
+    }
+
+    this.schedulePostCloseFocus();
+
     this.suppressShowWatch = true;
     this.show = false;
     this.suppressShowWatch = false;
@@ -421,26 +424,59 @@ export class Popover
     }
 
     removeVisibleFocus();
+  }
 
-    if (!hasKeyboardMode()) {
+  /**
+   * Run after `hidePopover()` so browser popover focus restoration can be
+   * corrected (pointer dismiss) or overridden (keyboard dismiss).
+   */
+  private schedulePostCloseFocus() {
+    if (!this.hasFocusableContent || !this.triggerElement) {
       return;
     }
 
+    if (this.triggerMode === 'hover' && this.closeFocus === 'release') {
+      return;
+    }
+
+    const restoreTriggerFocus = this.closeFocus === 'restore-trigger';
+
     requestAnimationFrameNoNgZone(() => {
-      this.triggerElement?.focus();
+      if (restoreTriggerFocus) {
+        this.triggerElement?.focus();
+        return;
+      }
+
+      this.releasePopoverFocus();
+      requestAnimationFrameNoNgZone(() => {
+        this.blurTriggerElement();
+      });
     });
   }
 
-  /** Pointer-driven hover dismiss: avoid a focus ring on the trigger. */
+  /** Pointer-driven dismiss: avoid a focus ring on the trigger. */
   private releasePopoverFocus() {
     const active = document.activeElement;
 
     if (active instanceof HTMLElement && this.containsPopoverTarget(active)) {
       active.blur();
+    }
+
+    this.blurTriggerElement();
+  }
+
+  private blurTriggerElement() {
+    if (!this.triggerElement) {
       return;
     }
 
-    if (this.triggerElement && active === this.triggerElement) {
+    const innerButton =
+      this.triggerElement.shadowRoot?.querySelector<HTMLElement>(
+        'button, a[role="button"]'
+      );
+
+    innerButton?.blur();
+    if (this.triggerElement !== innerButton) {
       this.triggerElement.blur();
     }
   }

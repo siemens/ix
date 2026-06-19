@@ -11,6 +11,8 @@ import { expect } from '@playwright/test';
 import { iconInfo } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 import {
+  FAR_CORNER_X,
+  FAR_CORNER_Y,
   HOVER_HIDE_MS,
   OUTSIDE_CLICK_X,
   OUTSIDE_CLICK_Y,
@@ -573,9 +575,11 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.open();
-        await page.mouse.click(OUTSIDE_CLICK_X, OUTSIDE_CLICK_Y);
+        await page.mouse.click(FAR_CORNER_X, FAR_CORNER_Y);
         await popover.expectClosed();
-        await popover.expectTriggerButtonNotFocused();
+        await expect(async () => {
+          await popover.expectTriggerButtonNotFocused();
+        }).toPass({ timeout: 5000 });
       }
     );
 
