@@ -589,8 +589,12 @@ export class Popover
     }
   }
 
-  private getTriggerAriaTarget(): HTMLElement {
-    const el = this.triggerElement!;
+  private getTriggerAriaTarget(): HTMLElement | undefined {
+    const el = this.triggerElement;
+    if (!el) {
+      return undefined;
+    }
+
     if (el.tagName === 'IX-BUTTON' || el.tagName === 'IX-ICON-BUTTON') {
       const inner = el.shadowRoot?.querySelector<HTMLElement>(
         'button, a[role="button"]'
@@ -609,17 +613,18 @@ export class Popover
   }
 
   private updateTriggerAria(expanded: boolean) {
-    if (!this.triggerElement) {
+    const triggerElement = this.triggerElement;
+    const target = this.getTriggerAriaTarget();
+    if (!triggerElement || !target) {
       return;
     }
 
-    const target = this.getTriggerAriaTarget();
     target.setAttribute('aria-haspopup', 'dialog');
     target.setAttribute('aria-expanded', String(expanded));
     target.setAttribute('aria-controls', this.uid);
 
-    if (target !== this.triggerElement) {
-      this.clearTriggerAriaAttributes(this.triggerElement);
+    if (target !== triggerElement) {
+      this.clearTriggerAriaAttributes(triggerElement);
     }
   }
 
