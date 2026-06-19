@@ -11,6 +11,7 @@ import { isMakeRef, MakeRef } from '../make-ref';
 import {
   focusableQueryString,
   focusElementInContext,
+  IxFocusOptions,
   queryElements,
   tryFocusElement,
 } from './focus-utilities';
@@ -372,7 +373,8 @@ function isHeaderFocusable(
 /** Focus the first content control; falls back to the header close when content has none. */
 export function focusFirstFocusTrapElement(
   ref: HTMLElement,
-  options?: FocusTrapOptions
+  options?: FocusTrapOptions,
+  focusOptions?: IxFocusOptions
 ): void {
   const focusableElements = getFocusTrapFocusables(ref, options);
   const contentFirst = focusableElements.find(
@@ -380,7 +382,7 @@ export function focusFirstFocusTrapElement(
   );
   const target = contentFirst ?? focusableElements[0];
 
-  focusElementInContext(target ?? null, ref);
+  focusElementInContext(target ?? null, ref, focusOptions);
 }
 
 const getNextTrapFocusable = (

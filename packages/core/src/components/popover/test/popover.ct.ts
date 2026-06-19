@@ -509,6 +509,30 @@ regressionTest.describe('ix-popover', () => {
 
   regressionTest.describe('focus management', () => {
     regressionTest(
+      'focuses first focusable element when opened with pointer',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ closeOnClickOutside: true })
+        );
+        const popover = new PopoverPage(page);
+
+        await popover.open();
+        await expect(
+          page.locator('ix-button#popover-dismiss button')
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          (await popover.getPopover()).locator(
+            'ix-popover-header button[aria-label="Close"]'
+          )
+        ).toBeFocused();
+      }
+    );
+
+    regressionTest(
       'focuses first focusable element and traps focus for interactive popovers',
       async ({ mount, page }) => {
         await mountPopover(

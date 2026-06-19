@@ -49,8 +49,8 @@ import {
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import {
-  popoverController,
   PopoverCloseFocus,
+  popoverController,
   PopoverInterface,
 } from './popover-controller';
 
@@ -390,9 +390,18 @@ export class Popover
 
   private focusFirstElement() {
     const focusTrapOptions = this.getFocusTrapOptions();
-    focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
+    const focusOptions = { focusVisible: true };
+    focusFirstFocusTrapElement(
+      this.hostElement,
+      focusTrapOptions,
+      focusOptions
+    );
     requestAnimationFrame(() => {
-      focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
+      focusFirstFocusTrapElement(
+        this.hostElement,
+        focusTrapOptions,
+        focusOptions
+      );
     });
   }
 
