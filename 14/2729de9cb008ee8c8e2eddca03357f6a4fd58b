@@ -1,0 +1,25 @@
+packages/core/src/components/popover/popover-controller.ts
+  s_c210e0ae116251::t_feaf29ac44af1b 90,98,105-116,204-213,222
+packages/core/src/components/popover/popover.tsx
+  s_c210e0ae116251::t_feaf29ac44af1b 46,375-380,427-436,438,442-443,445-453,457,463-469,473-479
+packages/core/src/components/popover/test/popover.ct.ts
+  s_c210e0ae116251::t_feaf29ac44af1b 14-15,578,580-582
+packages/core/src/components/popover/test/popover-controller.spec.ts
+  s_c210e0ae116251::t_feaf29ac44af1b 459
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "142729de9cb008ee8c8e2eddca03357f6a4fd58b",
+  "prompts": {},
+  "sessions": {
+    "s_c210e0ae116251": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "96c65bbb-c1a3-4f0a-811f-7414ad3bbce9",
+        "model": "default"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
