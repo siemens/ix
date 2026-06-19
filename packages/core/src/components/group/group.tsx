@@ -93,7 +93,7 @@ export class Group {
 
   @State() hasDropdown = false;
 
-  private observer: MutationObserver = null!;
+  private observer?: MutationObserver;
 
   @Watch('selected')
   selectedChanged(newSelected: boolean) {

@@ -122,7 +122,12 @@ export class EventList {
 
       const listElement = this.hostElement.shadowRoot!.querySelector('ul');
 
-      animate(listElement!, {
+      if (!listElement) {
+        resolve();
+        return;
+      }
+
+      animate(listElement, {
         opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
         duration: EventList.fadeOutDuration,
         onComplete: () => {

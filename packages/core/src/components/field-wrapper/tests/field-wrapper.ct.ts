@@ -350,8 +350,8 @@ regressionTest(
       '.helper-message-container'
     );
 
-    expect(helperMessageElement).toBeAttached();
-    await expect(helperMessageElement!).toHaveAttribute(
+    await expect(helperMessageElement).toBeAttached();
+    await expect(helperMessageElement).toHaveAttribute(
       'id',
       'test-helpermessage'
     );
@@ -376,8 +376,8 @@ regressionTest(
       '.error-message-container'
     );
 
-    expect(errorMessageElement).toBeAttached();
-    await expect(errorMessageElement!).toHaveAttribute(
+    await expect(errorMessageElement).toBeAttached();
+    await expect(errorMessageElement).toHaveAttribute(
       'id',
       'test-errormessage'
     );

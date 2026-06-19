@@ -14,6 +14,16 @@ import {
   isSelectableForUnitWithinBounds,
 } from '../time-picker-range';
 
+function expectDefined<T>(value: T | null | undefined): T {
+  expect(value).toBeDefined();
+
+  if (value === null || value === undefined) {
+    throw new Error('Expected value to be defined');
+  }
+
+  return value;
+}
+
 describe('getCandidateRangeForUnit', () => {
   const base = DateTime.fromObject(
     { year: 2026, month: 2, day: 10, hour: 13, minute: 30, second: 15 },
@@ -27,30 +37,30 @@ describe('getCandidateRangeForUnit', () => {
 
   it('returns full hour range for hour unit', () => {
     const range = getCandidateRangeForUnit('hour', base);
-    expect(range).not.toBeNull();
-    expect(range!.start.toISO()).toBe('2026-02-10T13:00:00.000Z');
-    expect(range!.end.toISO()).toBe('2026-02-10T13:59:59.999Z');
+    const definedRange = expectDefined(range);
+    expect(definedRange.start.toISO()).toBe('2026-02-10T13:00:00.000Z');
+    expect(definedRange.end.toISO()).toBe('2026-02-10T13:59:59.999Z');
   });
 
   it('returns full minute range for minute unit', () => {
     const range = getCandidateRangeForUnit('minute', base);
-    expect(range).not.toBeNull();
-    expect(range!.start.toISO()).toBe('2026-02-10T13:30:00.000Z');
-    expect(range!.end.toISO()).toBe('2026-02-10T13:30:59.999Z');
+    const definedRange = expectDefined(range);
+    expect(definedRange.start.toISO()).toBe('2026-02-10T13:30:00.000Z');
+    expect(definedRange.end.toISO()).toBe('2026-02-10T13:30:59.999Z');
   });
 
   it('returns full second range for second unit', () => {
     const range = getCandidateRangeForUnit('second', base);
-    expect(range).not.toBeNull();
-    expect(range!.start.toISO()).toBe('2026-02-10T13:30:15.000Z');
-    expect(range!.end.toISO()).toBe('2026-02-10T13:30:15.999Z');
+    const definedRange = expectDefined(range);
+    expect(definedRange.start.toISO()).toBe('2026-02-10T13:30:15.000Z');
+    expect(definedRange.end.toISO()).toBe('2026-02-10T13:30:15.999Z');
   });
 
   it('returns point range for millisecond unit', () => {
     const range = getCandidateRangeForUnit('millisecond', base);
-    expect(range).not.toBeNull();
-    expect(range!.start.toISO()).toBe(base.toISO());
-    expect(range!.end.toISO()).toBe(base.toISO());
+    const definedRange = expectDefined(range);
+    expect(definedRange.start.toISO()).toBe(base.toISO());
+    expect(definedRange.end.toISO()).toBe(base.toISO());
   });
 });
 

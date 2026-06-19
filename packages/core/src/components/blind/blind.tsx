@@ -96,12 +96,16 @@ export class Blind {
   }
 
   private rotateChevronUp() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 180,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 1,
@@ -109,12 +113,16 @@ export class Blind {
   }
 
   private rotateChevronDown() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 0,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 0,

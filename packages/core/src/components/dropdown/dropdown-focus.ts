@@ -263,8 +263,8 @@ export const configureKeyboardInteraction = (
         break;
     }
 
-    if (itemTriggerKeys.includes(event.key)) {
-      options.onItemActivation?.(event, activeElement!);
+    if (itemTriggerKeys.includes(event.key) && activeElement) {
+      options.onItemActivation?.(event, activeElement);
     }
   };
 

@@ -40,8 +40,14 @@ export const InheritAriaAttributesMixin = <
     }
 
     override componentWillLoad(): Promise<void> | void {
+      if (!this.hostElement) {
+        throw new Error(
+          'Host element is not defined. Make sure to apply the InheritAriaAttributesMixin to a Stencil component.'
+        );
+      }
+
       this.inheritAriaAttributes = a11yHostAttributes(
-        this.hostElement!,
+        this.hostElement,
         this.getIgnoredAriaAttributes ? this.getIgnoredAriaAttributes() : []
       );
     }

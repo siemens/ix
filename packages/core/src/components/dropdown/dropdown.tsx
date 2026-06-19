@@ -566,7 +566,9 @@ export class Dropdown
       }
     );
 
-    this.intersectObserverTrigger.observe(this.anchorElement!);
+    if (this.anchorElement) {
+      this.intersectObserverTrigger.observe(this.anchorElement);
+    }
   }
 
   private createFallbackPlacement(
@@ -920,18 +922,18 @@ export class Dropdown
     event.detail.activeElement.classList.add(
       'ix-dropdown-submenu-trigger-active'
     );
-    dropdownController.present(
-      dropdownController.getDropdownById(submenuIds[0])!
-    );
+    const dropdown = dropdownController.getDropdownById(submenuIds[0]);
 
-    this.forwardQueryElement = dropdownController.getDropdownById(
-      submenuIds[0]
-    )!.hostElement;
+    if (!dropdown) {
+      return;
+    }
+
+    dropdownController.present(dropdown);
+
+    this.forwardQueryElement = dropdown.hostElement;
 
     requestAnimationFrameNoNgZone(() => {
-      focusFirstDescendant(
-        dropdownController.getDropdownById(submenuIds[0])!.hostElement
-      );
+      focusFirstDescendant(dropdown.hostElement);
     });
   }
 

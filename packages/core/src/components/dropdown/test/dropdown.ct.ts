@@ -820,12 +820,13 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     const dropdownRect = await dropdown.boundingBox();
     const triggerRect = await trigger.boundingBox();
 
-    expect(dropdownRect).toBeTruthy();
-    expect(triggerRect).toBeTruthy();
+    if (!dropdownRect || !triggerRect) {
+      throw new Error('Expected dropdown and trigger bounding boxes');
+    }
 
-    expect(Math.round(dropdownRect!.x)).toBe(Math.round(triggerRect!.x));
-    expect(Math.round(dropdownRect!.y)).toBe(
-      Math.round(triggerRect!.y + triggerRect!.height)
+    expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
+    expect(Math.round(dropdownRect.y)).toBe(
+      Math.round(triggerRect.y + triggerRect.height)
     );
   }).toPass({ timeout: 2000 });
 });
@@ -996,8 +997,12 @@ regressionTest.describe('dropdown transition visibility', () => {
     visibleWidth: number;
   }> {
     return page.evaluate(() => {
-      const container = document.getElementById('transform-container')!;
-      const trigger = document.getElementById('transform-trigger')!;
+      const container = document.getElementById('transform-container');
+      const trigger = document.getElementById('transform-trigger');
+
+      if (!container || !trigger) {
+        throw new Error('Expected transform container and trigger');
+      }
 
       const containerRect = container.getBoundingClientRect();
       const triggerRect = trigger.getBoundingClientRect();
@@ -1115,34 +1120,42 @@ regressionTest.describe('dropdown transition visibility', () => {
   `);
 
     await page.evaluate(() => {
-      const transformFrame = document.getElementById('transform-container')!;
-      const transformTrigger = document.getElementById('transform-trigger')!;
+      const transformFrame = document.getElementById('transform-container');
+      const transformTrigger = document.getElementById('transform-trigger');
       const manualDropdown = document.getElementById(
         'transform-dropdown'
-      )! as HTMLIxDropdownElement;
+      ) as HTMLIxDropdownElement | null;
+
+      if (!transformFrame || !transformTrigger || !manualDropdown) {
+        throw new Error('Expected transform dropdown test elements');
+      }
+
+      const frame = transformFrame;
+      const trigger = transformTrigger;
+      const dropdown = manualDropdown;
 
       function scrollTriggerIntoView() {
-        transformTrigger.scrollIntoView({
+        trigger.scrollIntoView({
           block: 'center',
           inline: 'center',
         });
       }
 
       function syncManualDropdown() {
-        if (!manualDropdown.show) {
+        if (!dropdown.show) {
           return;
         }
 
-        const triggerRect = transformTrigger.getBoundingClientRect();
+        const triggerRect = trigger.getBoundingClientRect();
         const x = Math.round(triggerRect.left);
         const y = Math.round(triggerRect.bottom + 8);
 
-        manualDropdown.style.top = '0';
-        manualDropdown.style.left = '0';
-        manualDropdown.style.transform = `translate(${x}px, ${y}px)`;
+        dropdown.style.top = '0';
+        dropdown.style.left = '0';
+        dropdown.style.transform = `translate(${x}px, ${y}px)`;
       }
 
-      transformFrame.addEventListener('scroll', syncManualDropdown, {
+      frame.addEventListener('scroll', syncManualDropdown, {
         passive: true,
       });
 
