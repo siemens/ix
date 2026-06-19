@@ -1,0 +1,25 @@
+packages/core/src/components/popover/test/popover.ct.ts
+  s_c210e0ae116251::t_9cfa5fdc0c37f1 512-534
+packages/core/src/components/utils/focus/focus-utilities.ts
+  s_c210e0ae116251::t_9cfa5fdc0c37f1 123,187-188,200,202
+packages/core/src/components/popover/popover.tsx
+  s_c210e0ae116251::t_9cfa5fdc0c37f1 53,393-398,400-404
+packages/core/src/components/utils/focus/focus-trap.ts
+  s_c210e0ae116251::t_9cfa5fdc0c37f1 14,376-377,385
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "33de3773c432cd8be96677be1bc312f16f4d0de0",
+  "prompts": {},
+  "sessions": {
+    "s_c210e0ae116251": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "96c65bbb-c1a3-4f0a-811f-7414ad3bbce9",
+        "model": "default"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
