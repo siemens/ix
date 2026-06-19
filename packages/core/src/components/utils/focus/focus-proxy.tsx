@@ -32,13 +32,7 @@ export const updateFocusProxyList = <T extends HTMLElement>(
   modifyProxyElement?: (item: T, proxyElement: HTMLLIElement) => void
 ) => {
   if (proxyListElement && items.length > 0) {
-    const top =
-      items[0].getBoundingClientRect().top -
-      items[0].getBoundingClientRect().height +
-      8;
-
     proxyListElement.innerHTML = '';
-    proxyListElement.style.top = top + 'px';
     proxyListElement.style.padding = '0px';
     proxyListElement.style.margin = '0px';
     proxyListElement.innerHTML = '';
