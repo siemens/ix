@@ -15,21 +15,38 @@
   width: 13.375rem;
   height: 7.5rem;
   min-height: 7.5rem;
-  cursor: pointer;
 
   margin: 0.25rem 0;
 
   @include component.ix-component;
+}
+
+button.card-button {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 
   ix-card {
     width: 100%;
     height: 100%;
   }
-}
 
-:host(:focus-visible) {
-  outline: var(--theme-focus-border-thickness) solid
-    var(--theme-color-focus-bdr);
-  outline-offset: var(--theme-focus-outline-offset);
-  border-radius: var(--theme-card--border-radius);
+  &:focus-visible {
+    outline: var(--theme-focus-border-thickness) solid
+      var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-focus-outline-offset);
+    border-radius: var(--theme-card--border-radius);
+  }
+
+  :host(.passive) & {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  :host(:not(.passive)) &:active ix-card {
+    background-color: var(--theme-color-ghost--active);
+  }
 }
