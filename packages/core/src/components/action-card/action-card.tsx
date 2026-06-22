@@ -80,7 +80,6 @@ export class IxActionCard {
           tabIndex={this.passive ? -1 : 0}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
-          aria-pressed={a11yBoolean(this.selected)}
         >
           <ix-card
             selected={this.selected}
