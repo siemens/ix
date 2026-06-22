@@ -1471,6 +1471,7 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents, Componen
         hideOnCollapse: 'hide-on-collapse',
         size: 'size',
         borderless: 'borderless',
+        noPadding: 'no-padding',
         expanded: 'expanded',
         composition: 'composition',
         icon: 'icon',
@@ -1677,6 +1678,7 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         label: 'label',
         value: 'value',
         selected: 'selected',
+        disabled: 'disabled',
         hover: 'hover'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,

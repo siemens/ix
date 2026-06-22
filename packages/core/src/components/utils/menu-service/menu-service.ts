@@ -13,6 +13,7 @@ class MenuService {
   #menuElement: HTMLIxMenuElement | null = null;
   #menuExpandChange = new TypedEvent<boolean>();
   #isPinned = false;
+  #expandChangeListener: ((event: Event) => void) | null = null;
 
   register(menuElement: HTMLIxMenuElement) {
     if (this.#menuElement) {
@@ -20,12 +21,26 @@ class MenuService {
       return;
     }
     this.#menuElement = menuElement;
+    this.#expandChangeListener = (event: Event) => {
+      this.#menuExpandChange.emit((event as CustomEvent<boolean>).detail);
+    };
     this.#menuElement.addEventListener(
       'expandChange',
-      (event: CustomEvent<boolean>) => {
-        this.#menuExpandChange.emit(event.detail);
-      }
+      this.#expandChangeListener
     );
+  }
+
+  unregister(menuElement: HTMLIxMenuElement) {
+    if (this.#menuElement === menuElement) {
+      if (this.#expandChangeListener) {
+        menuElement.removeEventListener(
+          'expandChange',
+          this.#expandChangeListener
+        );
+      }
+      this.#expandChangeListener = null;
+      this.#menuElement = null;
+    }
   }
 
   public setIsPinned(pinned: boolean) {

@@ -3068,6 +3068,12 @@ export namespace Components {
          */
         "isMobile": boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding": boolean;
+        /**
           * The maximum size of the sidebar, when it is expanded
           * @default '240px'
          */
@@ -3497,6 +3503,12 @@ export namespace Components {
           * @default false
          */
         "disableAriaSelectHandling": boolean;
+        /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled": boolean;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * @default false
@@ -9553,6 +9565,12 @@ declare namespace LocalJSX {
          */
         "isMobile"?: boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding"?: boolean;
+        /**
           * This event is triggered when the variant of the pane is changed
          */
         "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
@@ -10016,6 +10034,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disableAriaSelectHandling"?: boolean;
+        /**
+          * Disable the item. A disabled item cannot be selected via mouse or keyboard and is excluded from the focusable items of the parent ix-select.
+          * @since 5.1.0
+          * @default false
+         */
+        "disabled"?: boolean;
         /**
           * @default false
          */
@@ -11825,6 +11849,7 @@ declare namespace LocalJSX {
     | '33%'
     | '50%';
         "borderless": boolean;
+        "noPadding": boolean;
         "expanded": boolean;
         "composition": Composition;
         "icon": string;
@@ -11938,6 +11963,7 @@ declare namespace LocalJSX {
         "label": string;
         "value": string;
         "selected": boolean;
+        "disabled": boolean;
         "hover": boolean;
     }
     interface IxSliderAttributes {
