@@ -24,6 +24,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'validText',
   'showTextAsTooltip',
   'i18nErrorTimeUnparsable',
+  'i18nErrorRequired',
   'hourInterval',
   'minuteInterval',
   'secondInterval',
