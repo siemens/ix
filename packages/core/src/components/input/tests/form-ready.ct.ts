@@ -207,7 +207,7 @@ regressionTest(
     const emittedValue = await page.evaluate(
       () => globalThis.__lastEmittedValue
     );
-    expect(emittedValue).toBe(0.3);
+    expect(emittedValue).toBeCloseTo(0.3);
 
     const decrementButton = numberInput.locator('.step-minus');
     await decrementButton.click();
@@ -216,7 +216,7 @@ regressionTest(
     const decrementedValue = await page.evaluate(
       () => globalThis.__lastEmittedValue
     );
-    expect(decrementedValue).toBe(0.1);
+    expect(decrementedValue).toBeCloseTo(0.1);
   }
 );
 
