@@ -16,5 +16,6 @@ Fixed validation behavior for `ix-date-input`:
 - `novalidate` forms suppress all visual validation while `reportValidity()` overrides this suppression.
 - Dynamically toggling the `required` attribute immediately reflects correct validation state.
 - Picker auto-opens when navigating to the date-input via keyboard (Tab key).
-- Clicking and holding calendar dates does not trigger validation errors on required empty fields; removed momentary red-border flash when selecting a calendar date
+- Clicking and holding calendar dates does not trigger validation errors on required empty fields; removed momentary red-border flash when selecting a calendar date.
+- Form submission is now prevented when the field is invalid or required but empty; submission proceeds only when the field is valid (form-associated component with ElementInternals validation).
 

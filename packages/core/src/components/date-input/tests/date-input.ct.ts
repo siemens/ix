@@ -1005,4 +1005,139 @@ regressionTest.describe('date-input validation scenarios', () => {
       }
     );
   });
+
+  regressionTest.describe('validated form submission', () => {
+    regressionTest(
+      'validated form: submit is prevented when required field is empty',
+      async ({ page, mount }) => {
+        await mount(`
+          <form id="form">
+            <ix-date-input value="" required></ix-date-input>
+            <button type="submit">Submit</button>
+          </form>
+        `);
+
+        await page.evaluate(() => {
+          globalThis.__formSubmitted = false;
+          (document.getElementById('form') as HTMLFormElement).addEventListener(
+            'submit',
+            () => {
+              globalThis.__formSubmitted = true;
+            }
+          );
+        });
+
+        const dateInput = page.locator('ix-date-input');
+        await page.locator('button[type="submit"]').click();
+
+        const wasSubmitted = await page.evaluate(
+          () => globalThis.__formSubmitted
+        );
+        expect(wasSubmitted).toBe(false);
+
+        await expect(dateInput).toHaveClass(/ix-invalid--required/);
+      }
+    );
+
+    regressionTest(
+      'validated form: submit is prevented when field contains invalid date',
+      async ({ page, mount }) => {
+        await mount(`
+          <form id="form">
+            <ix-date-input value="invalid-date"></ix-date-input>
+            <button type="submit">Submit</button>
+          </form>
+        `);
+
+        await page.evaluate(() => {
+          globalThis.__formSubmitted = false;
+          (document.getElementById('form') as HTMLFormElement).addEventListener(
+            'submit',
+            () => {
+              globalThis.__formSubmitted = true;
+            }
+          );
+        });
+
+        const dateInput = page.locator('ix-date-input');
+
+        await page.locator('button[type="submit"]').click();
+
+        const wasSubmitted = await page.evaluate(
+          () => globalThis.__formSubmitted
+        );
+        expect(wasSubmitted).toBe(false);
+
+        await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+      }
+    );
+
+    regressionTest(
+      'validated form: submit is allowed when field is valid',
+      async ({ page, mount }) => {
+        await mount(`
+          <form id="form">
+            <ix-date-input value="2024/05/05" required></ix-date-input>
+            <button type="submit">Submit</button>
+          </form>
+        `);
+
+        await page.evaluate(() => {
+          globalThis.__formSubmitted = false;
+          (document.getElementById('form') as HTMLFormElement).addEventListener(
+            'submit',
+            (event: Event) => {
+              event.preventDefault();
+              globalThis.__formSubmitted = true;
+            }
+          );
+        });
+
+        const dateInput = page.locator('ix-date-input');
+
+        await page.locator('button[type="submit"]').click();
+
+        const wasSubmitted = await page.evaluate(
+          () => globalThis.__formSubmitted
+        );
+        expect(wasSubmitted).toBe(true);
+
+        await expect(dateInput).not.toHaveClass(/ix-invalid/);
+      }
+    );
+
+    regressionTest(
+      'novalidate form: submit is allowed when required field is empty',
+      async ({ page, mount }) => {
+        await mount(`
+          <form id="form" novalidate>
+            <ix-date-input value="" required></ix-date-input>
+            <button type="submit">Submit</button>
+          </form>
+        `);
+
+        await page.evaluate(() => {
+          globalThis.__formSubmitted = false;
+          (document.getElementById('form') as HTMLFormElement).addEventListener(
+            'submit',
+            (event: Event) => {
+              event.preventDefault();
+              globalThis.__formSubmitted = true;
+            }
+          );
+        });
+
+        const dateInput = page.locator('ix-date-input');
+
+        await page.locator('button[type="submit"]').click();
+
+        const wasSubmitted = await page.evaluate(
+          () => globalThis.__formSubmitted
+        );
+        expect(wasSubmitted).toBe(true);
+
+        await expect(dateInput).not.toHaveClass(/ix-invalid/);
+      }
+    );
+  });
 });
