@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/text-truncation';
-@use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -22,13 +21,12 @@
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
   touch-action: none; // Disable default touch behaviors for drag
-  border: 1px solid transparent;
 
   height: 2.5rem;
   min-height: 2.5rem;
   max-height: 2.5rem;
 
-  padding: 0.625rem 1.5rem;
+  padding: 0.0625rem 1.5rem;
   gap: 0.5rem;
 
   @include component.ix-component;
@@ -54,23 +52,11 @@
     align-items: center;
     height: 3rem;
     width: 3rem;
-    background-color: var(--theme-animated-tab-indicator--background);
+    background-color: var(--theme-animated-tab-circle--background);
     border-radius: 50%;
     border: 2px solid var(--theme-animated-tab-circle--border-color);
-    color: var(--theme-an…icon--color);
+    color: var(--theme-animated-tab-icon--color);
     cursor: pointer;
-
-    &.selected:not(.disabled) {
-      background-color: var(--theme-animated-tab-circle--background--selected);
-      color: var(--theme-animated-tab-icon--color--selected);
-      border-color: var(--theme-animated-tab-circle--border-color--selected);
-
-      &:hover {
-        background-color: var(
-          --theme-animated-tab-circle--background--selected
-        );
-      }
-    }
 
     &:hover {
       background-color: var(--theme-animated-tab-circle--background--hover);
@@ -78,16 +64,6 @@
 
     &:active {
       background-color: var(--theme-animated-tab-circle--background--active);
-    }
-
-    &:active {
-      background-color: var(--theme-animated-tab-circle--background--active);
-    }
-
-    &.disabled {
-      background-color: var(--theme-animated-tab-circle--background--disabled);
-      border-color: var(--theme-animated-tab-circle--border-color--disabled);
-      cursor: default;
     }
   }
 
@@ -125,6 +101,10 @@
   }
 }
 
+:host(:not(.disabled)) {
+  cursor: pointer;
+}
+
 :host(.circle) {
   height: 4.5rem;
   min-height: 4.5rem;
@@ -135,36 +115,6 @@
   flex-basis: 100%;
   width: 100%;
   @include text-truncation.ellipsis;
-}
-
-:host(:hover:not(.circle):not(.disabled):not(.selected)) {
-  background-color: var(--theme-tab--background--hover);
-  color: var(--theme-tab-color-hover);
-  cursor: pointer;
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--hover);
-  }
-}
-
-:host(:active:not(.circle):not(.disabled):not(.selected)) {
-  background-color: var(--theme-tab--background--active);
-  color: var(--theme-tab-color--active);
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--active);
-  }
-}
-
-:host(.disabled) {
-  cursor: default;
-  color: var(--theme-tab--color--disabled);
-  background-color: var(--theme-tab--background--disabled);
-  pointer-events: none;
-
-  &::after {
-    background-color: var(--theme-tab-indicator--background--disabled);
-  }
 }
 
 :host(.selected:not(.disabled)) {
@@ -179,6 +129,16 @@
     height: 2px;
     background-color: var(--theme-tab-indicator--background--selected);
   }
+
+  .circle {
+    background-color: var(--theme-animated-tab-circle--background--selected);
+    color: var(--theme-animated-tab-icon--color--selected);
+    border-color: var(--theme-animated-tab-circle--border-color--selected);
+
+    &:hover {
+      background-color: var(--theme-animated-tab-circle--background--selected);
+    }
+  }
 }
 
 :host(.selected.bottom:not(.disabled)) {
@@ -186,13 +146,40 @@
   color: var(--theme-tab--color--selected);
 
   &::after {
-    top: calc(100% - 1px);
+    bottom: 0px;
   }
 }
 
 :host(.selected.top:not(.disabled)) {
   &::after {
-    top: -1px;
+    top: 0px;
+  }
+}
+
+:host(:hover:not(.circle):not(.disabled)) {
+  background-color: var(--theme-tab--background--hover);
+  color: var(--theme-tab-color-hover);
+}
+
+:host(:active:not(.circle):not(.disabled)) {
+  background-color: var(--theme-tab--background--active);
+  color: var(--theme-tab-color--active);
+}
+
+:host(.disabled) {
+  cursor: default;
+  color: var(--theme-tab--color--disabled);
+  background-color: var(--theme-tab--background--disabled);
+  pointer-events: none;
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--disabled);
+  }
+
+  .circle {
+    background-color: var(--theme-animated-tab-circle--background--disabled);
+    border-color: var(--theme-animated-tab-circle--border-color--disabled);
+    cursor: default;
   }
 }
 
@@ -214,7 +201,16 @@
   padding: 1rem 0.25rem;
 }
 
-:host(:focus-visible) {
+:host(:not(.circle):focus-visible) {
+  outline-offset: -0.0625rem;
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+}
+
+:host(.circle:focus-visible) {
   outline: none;
-  border: 1px solid var(--theme-color-focus-bdr);
+
+  .circle {
+    outline-offset: 0.125rem;
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  }
 }

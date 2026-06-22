@@ -17,6 +17,7 @@ import {
   Host,
   Mixin,
   Prop,
+  readTask,
   State,
   Watch,
 } from '@stencil/core';
@@ -26,6 +27,7 @@ import { emitEvent } from '../utils/event';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DefaultMixins } from '../utils/internal/component';
 import { InheritAriaAttributesMixin } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
   tag: 'ix-tabs',
@@ -113,12 +115,16 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override componentDidLoad() {
-    this.itemsObserver = new MutationObserver(() =>
-      this.onComponentChildrenChange()
-    );
+    this.itemsObserver = new MutationObserver(() => {
+      this.onComponentChildrenChange();
+      // Compute the overflow after DOM has been updated with the new tabs, otherwise the measurement would be wrong
+      requestAnimationFrameNoNgZone(() => this.onComponentResize());
+    });
     this.itemsObserver.observe(this.hostElement, {
       childList: true,
       subtree: true,
+      attributes: true,
+      characterData: true,
     });
 
     this.resizeObserver = new ResizeObserver(() => this.onComponentResize());
@@ -223,8 +229,10 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
       return;
     }
 
-    const isOverflowing = tabContainer.scrollWidth > tabContainer.clientWidth;
-    this.isTabsOverflow = isOverflowing;
+    readTask(() => {
+      const isOverflowing = tabContainer.scrollWidth > tabContainer.clientWidth;
+      this.isTabsOverflow = isOverflowing;
+    });
   }
 
   private onTabClick(event: CustomEvent<TabClickDetail>) {
@@ -334,6 +342,7 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
               ref={this.tabsRef}
               class={{
                 tabs: true,
+                'tabs-stretched': this.layout === 'stretched',
               }}
               tabIndex={this.isTabsOverflow ? 0 : -1}
               onKeyDown={(event: KeyboardEvent) => this.onTabsNavigate(event)}
@@ -341,25 +350,27 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
               <slot></slot>
             </div>
           </div>
-          <ix-dropdown-button
-            ariaLabel={this.ariaLabelMoreTabs}
-            icon={iconMoreMenu}
-            class={{
-              'tabs-context-menu': true,
-            }}
-            variant="subtle-tertiary"
-          >
-            {this.overflowMenuItems.map((item) => (
-              <ix-dropdown-item
-                key={item.tabKey}
-                checked={item.tabKey === this.activeTabKey}
-                icon={item.icon}
-                label={item.label}
-                disabled={item.disabled}
-                onClick={() => (this.activeTabKey = item.tabKey)}
-              ></ix-dropdown-item>
-            ))}
-          </ix-dropdown-button>
+          {this.isTabsOverflow && this.layout !== 'stretched' && (
+            <ix-dropdown-button
+              ariaLabel={this.ariaLabelMoreTabs}
+              icon={iconMoreMenu}
+              class={{
+                'tabs-context-menu': true,
+              }}
+              variant="subtle-tertiary"
+            >
+              {this.overflowMenuItems.map((item) => (
+                <ix-dropdown-item
+                  key={item.tabKey}
+                  checked={item.tabKey === this.activeTabKey}
+                  icon={item.icon}
+                  label={item.label}
+                  disabled={item.disabled}
+                  onClick={() => (this.activeTabKey = item.tabKey)}
+                ></ix-dropdown-item>
+              ))}
+            </ix-dropdown-button>
+          )}
         </div>
       </Host>
     );

@@ -12,17 +12,17 @@ import MessageComponent from '../preview-examples/message.vue';
 
 describe('Message Events', () => {
   it('should remove message modal from DOM after close (validates camelCase event handling)', async () => {
-    const { getByText } = render(MessageComponent);
+    const { findByText, getByText } = render(MessageComponent);
     const button = getByText("Show 'success' message");
     button.click();
 
     await customElements.whenDefined('ix-modal');
     await waitFor(() => {
       const modal = document.querySelector('ix-modal');
-      expect(modal).toBeDefined();
+      expect(modal).not.toBeNull();
     });
 
-    const cancelButton = getByText('Cancel');
+    const cancelButton = await findByText('Cancel');
     cancelButton.click();
 
     await waitFor(() => {

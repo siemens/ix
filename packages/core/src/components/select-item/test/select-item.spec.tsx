@@ -41,4 +41,44 @@ describe('select-item', () => {
 
     expect(eventSpy).toHaveReceivedEvent();
   });
+
+  it('should reflect disabled attribute to the host', async () => {
+    const { root, waitForChanges } = await render(
+      <ix-select-item value="test" label="Test" disabled></ix-select-item>
+    );
+
+    await waitForChanges();
+
+    expect(root.hasAttribute('disabled')).toBe(true);
+  });
+
+  it('should forward disabled to the inner ix-dropdown-item', async () => {
+    const { root, waitForChanges } = await render(
+      <ix-select-item value="test" label="Test" disabled></ix-select-item>
+    );
+
+    await waitForChanges();
+
+    const item = root as HTMLIxSelectItemElement;
+    const dropdownItem = item.shadowRoot!.querySelector('ix-dropdown-item')!;
+
+    expect(dropdownItem.hasAttribute('disabled')).toBe(true);
+  });
+
+  it('should not emit itemClick when disabled', async () => {
+    const { root, spyOnEvent, waitForChanges } = await render(
+      <ix-select-item value="test" label="Test" disabled></ix-select-item>
+    );
+
+    const eventSpy = spyOnEvent('itemClick');
+    const item = root as HTMLIxSelectItemElement;
+    const dropdownItem = item.shadowRoot!.querySelector(
+      'ix-dropdown-item'
+    ) as HTMLElement;
+    dropdownItem.click();
+
+    await waitForChanges();
+
+    expect(eventSpy).not.toHaveReceivedEvent();
+  });
 });

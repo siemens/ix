@@ -7,19 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('menu-settings', () => {
+  const openSettings = async (page: Page) => {
+    const settingsMenuItem = page.locator('ix-menu-item#settings');
+    await settingsMenuItem.click();
+    await expect(page.locator('ix-menu-settings')).toHaveClass(/show/);
+    return settingsMenuItem;
+  };
+
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    const settings = page.locator('ix-menu-item#settings');
-    await settings.click();
-    await page.waitForTimeout(500);
+    const settingsMenuItem = await openSettings(page);
 
-    //Click is needed otherwise tab item is still hovered
-    await page.getByText('First Label - ').click();
-    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
+    // Click is needed otherwise tab item is still hovered.
+    await page.getByRole('heading', { name: 'Settings' }).click();
+    await expect(settingsMenuItem.locator('ix-tooltip')).not.toHaveClass(
+      /visible/
+    );
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -28,12 +35,14 @@ regressionTest.describe('menu-settings', () => {
 
   regressionTest('label', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    const settings = page.locator('ix-menu-item#settings');
-    await settings.click();
-    await page.waitForTimeout(500);
+    const settingsMenuItem = await openSettings(page);
 
-    await page.getByText('First Content').click();
-    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
+    const firstContentButton = page.locator('#changeLabelButton');
+    await expect(firstContentButton).toBeVisible();
+    await firstContentButton.click();
+    await expect(settingsMenuItem.locator('ix-tooltip')).not.toHaveClass(
+      /visible/
+    );
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -42,14 +51,19 @@ regressionTest.describe('menu-settings', () => {
 
   regressionTest('switch', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    const settings = page.locator('ix-menu-item#settings');
-    await settings.click();
-    await page.waitForTimeout(500);
+    const settingsMenuItem = await openSettings(page);
 
-    await page.getByText('First Content').click();
-    await page.getByText('Changed Label').click();
+    const firstContentButton = page.locator('#changeLabelButton');
+    await expect(firstContentButton).toBeVisible();
+    await firstContentButton.click();
 
-    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
+    const changedLabelTab = page.getByRole('tab', { name: 'Changed Label' });
+    await expect(changedLabelTab).toBeVisible();
+    await changedLabelTab.click();
+
+    await expect(settingsMenuItem.locator('ix-tooltip')).not.toHaveClass(
+      /visible/
+    );
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',

@@ -58,6 +58,6 @@ onMounted(() => {
 
 <template>
   <div style="display: block; position: relative; width: 100%; height: 40rem">
-    <IxTree root="root" :model="model"></IxTree>
+    <IxTree root="root" :model="model" aria-label="Sample tree"></IxTree>
   </div>
 </template>

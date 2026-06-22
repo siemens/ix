@@ -14,14 +14,15 @@ import {
   iconSuccess,
   iconWarning,
 } from '@siemens/ix-icons/icons';
+import {
+  createDependencyFunction,
+  type CustomElementDependency,
+} from '../dependency-function';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 import { ModalConfig } from './modal';
 
-export type MessageConfig<T> = Omit<
-  ModalConfig<T, unknown>,
-  'content' | 'title'
-> &
+export type MessageConfig<T> = Omit<ModalConfig<T, unknown>, 'content'> &
   MessageContent;
 
 function setA11yAttributes(element: HTMLElement, config: MessageContent) {
@@ -87,214 +88,279 @@ export type MessageContent = {
   ariaDescribedby?: string;
 };
 
-/**
- * Displays a message modal with configurable actions and returns an event emitter for action responses
- */
-export async function showMessage<T>(config: MessageConfig<T>) {
-  const onMessageAction = new TypedEvent<{
+export type ShowMessageDependencies = readonly [
+  CustomElementDependency<'ix-modal'>,
+  CustomElementDependency<'ix-modal-header'>,
+  CustomElementDependency<'ix-modal-content'>,
+  CustomElementDependency<'ix-modal-footer'>,
+  CustomElementDependency<'ix-button'>,
+];
+
+type ShowMessageResult<T> = Promise<
+  TypedEvent<{
     actionId: string;
     payload: T;
-  }>();
-  const dialog = document.createElement('ix-modal');
-  const header = document.createElement('ix-modal-header');
-  const content = document.createElement('ix-modal-content');
-  const footer = document.createElement('ix-modal-footer');
+  }>
+>;
 
-  setA11yAttributes(dialog, config);
+export type ShowMessageVariant = (
+  title: string,
+  message: string,
+  textOkay: string,
+  textCancel?: string,
+  payloadOkay?: any,
+  payloadCancel?: any
+) => ShowMessageResult<unknown>;
 
-  Object.assign(header, config);
-  Object.assign(content, config);
-  Object.assign(footer, config);
+export type ShowMessage = (<T>(
+  config: MessageConfig<T>
+) => ShowMessageResult<T>) & {
+  info: ShowMessageVariant;
+  warning: ShowMessageVariant;
+  error: ShowMessageVariant;
+  success: ShowMessageVariant;
+  question: ShowMessageVariant;
+};
 
-  header.innerText = config.messageTitle;
-  content.innerText = config.message;
+/**
+ * Create a message modal helper with custom element dependencies.
+ */
+export function createShowMessage(
+  dependencies: ShowMessageDependencies
+): ShowMessage {
+  const showMessage = createDependencyFunction(async function <T>(
+    config: MessageConfig<T>
+  ): ShowMessageResult<T> {
+    const onMessageAction = new TypedEvent<{
+      actionId: string;
+      payload: T;
+    }>();
+    const dialog = document.createElement('ix-modal');
+    const header = document.createElement('ix-modal-header');
+    const content = document.createElement('ix-modal-content');
+    const footer = document.createElement('ix-modal-footer');
 
-  config.actions.forEach(({ id, text, type, payload }) => {
-    const button = document.createElement('ix-button');
-    button.innerText = text;
-    footer.appendChild(button);
+    setA11yAttributes(dialog, config);
 
-    if (type === 'okay') {
-      button.variant = 'primary';
-      button.addEventListener('click', () =>
-        dialog.closeModal({
-          actionId: id,
-          payload,
-        })
-      );
-      return;
-    } else if (type === 'cancel') {
-      button.variant = 'secondary';
-      button.addEventListener('click', () =>
-        dialog.dismissModal({
-          actionId: id,
-          payload,
-        })
-      );
-      return;
-    }
+    Object.assign(header, config);
+    Object.assign(content, config);
+    Object.assign(footer, config);
+
+    header.innerText = config.messageTitle;
+    content.innerText = config.message;
+
+    config.actions.forEach(({ id, text, type, payload }) => {
+      const button = document.createElement('ix-button');
+      button.innerText = text;
+      footer.appendChild(button);
+
+      if (type === 'okay') {
+        button.variant = 'primary';
+        button.addEventListener('click', () =>
+          dialog.closeModal({
+            actionId: id,
+            payload,
+          })
+        );
+        return;
+      } else if (type === 'cancel') {
+        button.variant = 'secondary';
+        button.addEventListener('click', () =>
+          dialog.dismissModal({
+            actionId: id,
+            payload,
+          })
+        );
+        return;
+      }
+    });
+
+    dialog.appendChild(header);
+    dialog.appendChild(content);
+    dialog.appendChild(footer);
+
+    const dialogRef =
+      await getCoreDelegate().attachView<HTMLIxModalElement>(dialog);
+
+    dialogRef.addEventListener(
+      'dialogClose',
+      (
+        event: CustomEvent<{
+          actionId: string;
+          payload: T;
+        }>
+      ) => {
+        onMessageAction.emit(event.detail);
+        dialogRef.remove();
+      }
+    );
+
+    dialogRef.addEventListener(
+      'dialogDismiss',
+      (
+        event: CustomEvent<{
+          actionId: string;
+          payload: T;
+        }>
+      ) => {
+        onMessageAction.emit(event.detail);
+        dialogRef.remove();
+      }
+    );
+
+    setA11yAttributes(dialogRef, config);
+    Object.assign(dialogRef, config);
+
+    dialogRef.showModal();
+    return onMessageAction;
+  }, dependencies);
+
+  return Object.assign(showMessage, {
+    /**
+     * Displays an info message modal with an info icon
+     */
+    info: (
+      title: string,
+      message: string,
+      textOkay: string,
+      textCancel?: string,
+      payloadOkay?: any,
+      payloadCancel?: any
+    ) => {
+      return showMessage({
+        message,
+        messageTitle: title,
+        icon: iconInfo,
+        actions: createConfirmButtons(
+          textOkay,
+          textCancel,
+          payloadOkay,
+          payloadCancel
+        ),
+      });
+    },
+
+    /**
+     * Displays a warning message modal with a warning icon
+     */
+    warning: (
+      title: string,
+      message: string,
+      textOkay: string,
+      textCancel?: string,
+      payloadOkay?: any,
+      payloadCancel?: any
+    ) => {
+      return showMessage({
+        message,
+        messageTitle: title,
+        icon: iconWarning,
+        //TODO(IX-3400): Remove warning-text when proper CSS variable is available
+        iconColor: 'color-warning-text',
+        actions: createConfirmButtons(
+          textOkay,
+          textCancel,
+          payloadOkay,
+          payloadCancel
+        ),
+      });
+    },
+
+    /**
+     * Displays an error message modal with an error icon
+     */
+    error: (
+      title: string,
+      message: string,
+      textOkay: string,
+      textCancel?: string,
+      payloadOkay?: any,
+      payloadCancel?: any
+    ) => {
+      return showMessage({
+        message,
+        messageTitle: title,
+        icon: iconError,
+        iconColor: 'color-alarm',
+        actions: createConfirmButtons(
+          textOkay,
+          textCancel,
+          payloadOkay,
+          payloadCancel
+        ),
+      });
+    },
+
+    /**
+     * Displays a success message modal with a success icon
+     */
+    success: (
+      title: string,
+      message: string,
+      textOkay: string,
+      textCancel?: string,
+      payloadOkay?: any,
+      payloadCancel?: any
+    ) => {
+      return showMessage({
+        message,
+        messageTitle: title,
+        icon: iconSuccess,
+        iconColor: 'color-success',
+        actions: createConfirmButtons(
+          textOkay,
+          textCancel,
+          payloadOkay,
+          payloadCancel
+        ),
+      });
+    },
+
+    /**
+     * Displays a question message modal with a question icon
+     */
+    question: (
+      title: string,
+      message: string,
+      textOkay: string,
+      textCancel?: string,
+      payloadOkay?: any,
+      payloadCancel?: any
+    ) => {
+      return showMessage({
+        message,
+        messageTitle: title,
+        icon: iconQuestion,
+        actions: createConfirmButtons(
+          textOkay,
+          textCancel,
+          payloadOkay,
+          payloadCancel
+        ),
+      });
+    },
   });
-
-  dialog.appendChild(header);
-  dialog.appendChild(content);
-  dialog.appendChild(footer);
-
-  const dialogRef =
-    await getCoreDelegate().attachView<HTMLIxModalElement>(dialog);
-
-  dialogRef.addEventListener(
-    'dialogClose',
-    (
-      event: CustomEvent<{
-        actionId: string;
-        payload: T;
-      }>
-    ) => {
-      onMessageAction.emit(event.detail);
-      dialogRef.remove();
-    }
-  );
-
-  dialogRef.addEventListener(
-    'dialogDismiss',
-    (
-      event: CustomEvent<{
-        actionId: string;
-        payload: T;
-      }>
-    ) => {
-      onMessageAction.emit(event.detail);
-      dialogRef.remove();
-    }
-  );
-
-  setA11yAttributes(dialogRef, config);
-  Object.assign(dialogRef, config);
-
-  dialogRef.showModal();
-  return onMessageAction;
 }
 
 /**
- * Displays an info message modal with an info icon
+ * Displays a message modal with configurable actions and returns an event emitter for action responses
  */
-showMessage.info = (
-  title: string,
-  message: string,
-  textOkay: string,
-  textCancel?: string,
-  payloadOkay?: any,
-  payloadCancel?: any
-) => {
-  return showMessage({
-    message,
-    messageTitle: title,
-    icon: iconInfo,
-    actions: createConfirmButtons(
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    ),
-  });
-};
-
-/**
- * Displays a warning message modal with a warning icon
- */
-showMessage.warning = (
-  title: string,
-  message: string,
-  textOkay: string,
-  textCancel?: string,
-  payloadOkay?: any,
-  payloadCancel?: any
-) => {
-  return showMessage({
-    message,
-    messageTitle: title,
-    icon: iconWarning,
-    //TODO(IX-3400): Remove warning-text when proper CSS variable is available
-    iconColor: 'color-warning-text',
-    actions: createConfirmButtons(
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    ),
-  });
-};
-
-/**
- * Displays an error message modal with an error icon
- */
-showMessage.error = (
-  title: string,
-  message: string,
-  textOkay: string,
-  textCancel?: string,
-  payloadOkay?: any,
-  payloadCancel?: any
-) => {
-  return showMessage({
-    message,
-    messageTitle: title,
-    icon: iconError,
-    iconColor: 'color-alarm',
-    actions: createConfirmButtons(
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    ),
-  });
-};
-
-/**
- * Displays a success message modal with a success icon
- */
-showMessage.success = (
-  title: string,
-  message: string,
-  textOkay: string,
-  textCancel?: string,
-  payloadOkay?: any,
-  payloadCancel?: any
-) => {
-  return showMessage({
-    message,
-    messageTitle: title,
-    icon: iconSuccess,
-    iconColor: 'color-success',
-    actions: createConfirmButtons(
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    ),
-  });
-};
-
-/**
- * Displays a question message modal with a question icon
- */
-showMessage.question = (
-  title: string,
-  message: string,
-  textOkay: string,
-  textCancel?: string,
-  payloadOkay?: any,
-  payloadCancel?: any
-) => {
-  return showMessage({
-    message,
-    messageTitle: title,
-    icon: iconQuestion,
-    actions: createConfirmButtons(
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    ),
-  });
-};
+export const showMessage = createShowMessage([
+  {
+    tag: 'ix-modal',
+    define: () => {},
+  },
+  {
+    tag: 'ix-modal-header',
+    define: () => {},
+  },
+  {
+    tag: 'ix-modal-content',
+    define: () => {},
+  },
+  {
+    tag: 'ix-modal-footer',
+    define: () => {},
+  },
+  { tag: 'ix-button', define: () => {} },
+]);

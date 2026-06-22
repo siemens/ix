@@ -52,7 +52,7 @@ export class Modal {
 
   /**
    * Dismiss modal on backdrop click (outside the dialog panel).
-   * Ignored when **`isNonBlocking`** is `true`.
+   * Ignored when **isNonBlocking** is `true`.
    */
   @Prop() closeOnBackdropClick = false;
 

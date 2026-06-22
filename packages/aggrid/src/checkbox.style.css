@@ -30,6 +30,18 @@
     var(--theme-checkbox-unchecked--border-color);
 }
 
+.ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate):hover {
+  background-color: var(--theme-checkbox-unchecked--background--hover);
+  border: var(--theme-checkbox--border-thickness) solid
+    var(--theme-checkbox-unchecked--border-color--hover);
+}
+
+.ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate):active {
+  background-color: var(--theme-checkbox-unchecked--background--active);
+  border: var(--theme-checkbox--border-thickness) solid
+    var(--theme-checkbox-unchecked--border-color--active);
+}
+
 .ag-checked {
   position: relative;
 }

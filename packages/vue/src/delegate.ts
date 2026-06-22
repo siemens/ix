@@ -1,4 +1,5 @@
-import { FrameworkDelegate, registerFrameworkDelegate } from '@siemens/ix';
+import type { FrameworkDelegate } from '@siemens/ix';
+import { registerFrameworkDelegate } from '@siemens/ix/components';
 import { VNode } from 'vue';
 
 let viewInstance = 0;

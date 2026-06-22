@@ -39,13 +39,22 @@
       .blind-header-title-label {
         color: var(--theme-color-std-text);
       }
+
       .blind-header-title-sublabel {
         color: var(--theme-color-soft-text);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--theme-color-primary);
       }
     } @else {
       .blind-header-title-label,
       .blind-header-title-sublabel {
         color: var(--theme-color-#{$variant}--contrast);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
       }
     }
 
