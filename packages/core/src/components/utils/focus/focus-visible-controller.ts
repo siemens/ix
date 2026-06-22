@@ -8,7 +8,7 @@
  */
 
 import { IX_FOCUS_VISIBLE_ACTIVE } from './focus-utilities';
-import { hasKeyboardMode } from '../internal/mixins/setup.mixin';
+import { detectKeyboardMode } from './detect-keyboard-mode';
 
 export type FocusVisibleController = {
   /**
@@ -26,24 +26,25 @@ export type FocusVisibleController = {
 /**
  * Attaches unified focus-visible behaviour to a host element.
  *
- * Uses the global hasKeyboardMode() (tracked on document by SetupMixin) so
- * that Tab-key presses fired on *any* element before focus lands here are
- * correctly detected.
+ * Uses a document-level keyboard detector so that Tab-key presses fired
+ * on *any* element before focus lands here are correctly detected.
+ * (focusin is composed and bubbles, so it crosses shadow DOM boundaries.)
  *
  * Covers all three cases:
  *  - HTMLElement.focus()  → setFocus() marks next focusin as keyboard-like
- *  - Tab-key              → global hasKeyboardMode() returns true on focusin
+ *  - Tab-key              → keyboard detector detects tab presses on document
  *  - focus-visible class  → applied via IX_FOCUS_VISIBLE_ACTIVE on focusin
- *
- * Uses a single shared document-level keyboard detector (one instance for
- * the whole page) so there are no duplicate listeners across components.
  */
 export function startFocusVisible(hostEl: HTMLElement): FocusVisibleController {
+  // ── Create a document-level keyboard mode detector ────────────────────────
+  // Listens on document so we detect Tab presses regardless of where they fire.
+  const keyboardDetector = detectKeyboardMode(undefined);
+
   // ── Track whether next focus() call should be treated as keyboard ─────────
   let programmaticFocusPending = false;
 
   const onFocusin = () => {
-    if (hasKeyboardMode() || programmaticFocusPending) {
+    if (keyboardDetector.hasKeyboardMode() || programmaticFocusPending) {
       hostEl.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
     }
     programmaticFocusPending = false;
@@ -58,6 +59,7 @@ export function startFocusVisible(hostEl: HTMLElement): FocusVisibleController {
 
   // ── Cleanup ───────────────────────────────────────────────────────────────
   const destroy = () => {
+    keyboardDetector.destroy();
     hostEl.removeEventListener('focusin', onFocusin);
     hostEl.removeEventListener('focusout', onFocusout);
   };
