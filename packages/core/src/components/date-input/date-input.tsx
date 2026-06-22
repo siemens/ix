@@ -52,7 +52,6 @@ import {
   createValidityState,
   focusInputIfKeyboardMode,
   handleIconClick,
-  handlePickerFocusoutWithValidation,
   suppressInputBlurWhenFocusMovedToPicker,
   openDropdown as openDropdownUtil,
   syncCustomInputValidity,
@@ -295,7 +294,6 @@ export class DateInput
   private classObserver?: ClassMutationObserver;
 
   private _hasInvalidInput = false;
-  private _shouldSkipFocusoutValidation = false;
   private _reportValidityCalled = false;
 
   public initialValue?: string;
@@ -604,27 +602,6 @@ export class DateInput
     );
   }
 
-  private readonly handlePickerFocusoutCallback = async (
-    hasRelatedTarget: boolean
-  ) => {
-    if (hasRelatedTarget) {
-      this.closeDropdown();
-    }
-
-    if (this._shouldSkipFocusoutValidation) {
-      this._shouldSkipFocusoutValidation = false;
-      return;
-    }
-
-    this.touched = true;
-    const suppress = await shouldSuppressInternalValidation(this);
-    if (!suppress) {
-      this.isInputInvalid = this._hasInvalidInput;
-    }
-    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
-    emitPickerValidityState(this);
-  };
-
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -680,7 +657,6 @@ export class DateInput
                   this.value
                 );
                 emitPickerValidityState(this);
-                this._shouldSkipFocusoutValidation = true;
               },
               pickerElement: this.dropdownElementRef?.current,
             })
@@ -816,14 +792,16 @@ export class DateInput
           disabled: this.disabled,
           readonly: this.readonly,
         }}
-        onFocusout={(e: FocusEvent) =>
-          handlePickerFocusoutWithValidation(
-            e,
-            this.hostElement,
-            this.handlePickerFocusoutCallback,
-            this.dropdownElementRef?.current
-          )
-        }
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
       >
         <ix-field-wrapper
           label={this.label}

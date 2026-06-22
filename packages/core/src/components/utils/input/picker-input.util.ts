@@ -126,27 +126,6 @@ export function suppressInputBlurWhenFocusMovedToPicker(
   options.onBlur();
 }
 
-export function handlePickerFocusoutWithValidation(
-  e: FocusEvent,
-  hostElement: HTMLElement,
-  onValidateAndBlur: (hasRelatedTarget: boolean) => void,
-  pickerElement?: (HTMLElement & { show?: boolean }) | null
-): void {
-  const relatedTarget = e.relatedTarget as Node | null;
-
-  if (isFocusWithinPickerBoundary(hostElement, relatedTarget, pickerElement)) {
-    return;
-  }
-
-  const isPickerNavigating = relatedTarget === null && pickerElement?.show;
-
-  if (isPickerNavigating) {
-    return;
-  }
-
-  onValidateAndBlur(relatedTarget !== null);
-}
-
 export function syncCustomInputValidity(
   formInternals: ElementInternals,
   hasInvalidInput: boolean,

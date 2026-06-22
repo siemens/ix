@@ -388,26 +388,28 @@ regressionTest.describe('keyboard navigation', () => {
       await expect(dateDropdown).toHaveClass(/show/);
     }
   );
+});
 
+regressionTest.describe('calendar interaction with validation', () => {
   regressionTest(
-    'Keyboard navigation (PageUp/PageDown) should not trigger validation',
+    'click and hold on calendar date does not trigger validation for required empty field',
     async ({ mount, page }) => {
-      await mount(`<ix-date-input value=""></ix-date-input>`);
+      await mount(`<ix-date-input required value=""></ix-date-input>`);
 
       const dateInput = page.locator('ix-date-input');
       const input = dateInput.getByRole('textbox');
 
-      await input.focus();
-      await page.keyboard.press('ArrowDown');
+      await dateInput.getByTestId('open-calendar').click();
+      await expect(dateInput.getByTestId('date-dropdown')).toHaveClass(/show/);
 
-      await page.keyboard.press('PageDown');
+      const calendarDate = page
+        .locator('ix-dropdown .calendar-item')
+        .filter({ hasText: /^\d{1,2}$/ })
+        .first();
 
-      await page.keyboard.press('PageUp');
-
-      await page.keyboard.press('Escape');
-
-      await expectNoVisualValidation(dateInput, input);
-      await expect(input).toHaveValue('');
+      await calendarDate.dispatchEvent('mousedown');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     }
   );
 });
