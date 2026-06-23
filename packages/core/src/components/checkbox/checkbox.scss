@@ -30,7 +30,6 @@
     height: 1.125rem;
     min-height: 1.125rem;
     max-height: 1.125rem;
-    margin-right: 0.5rem;
   }
 
   button:disabled {
@@ -53,6 +52,7 @@
 
     justify-content: flex-start;
     align-items: flex-start;
+    gap: 0.5rem;
 
     width: 100%;
     height: 100%;
@@ -61,6 +61,10 @@
 
   ix-typography {
     margin-top: 0.125rem;
+  }
+
+  ix-typography.label-less {
+    display: contents;
   }
 }
 

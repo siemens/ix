@@ -214,6 +214,9 @@ export class Checkbox implements IxFormComponent<string> {
             {this.renderCheckmark()}
           </button>
           <ix-typography
+            class={{
+              'label-less': !this.label,
+            }}
             format="label"
             textColor={this.disabled ? 'weak' : 'std'}
           >
