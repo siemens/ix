@@ -13,17 +13,17 @@
 ## Related examples
 
 - spinner
-  - angular: [angular/spinner.ts](../../examples/angular-examples/src/preview-examples/spinner.ts)
-  - angular-standalone: [angular-standalone/spinner.ts](../../examples/angular-standalone-examples/src/preview-examples/spinner.ts)
-  - html: [html/spinner.html](../../examples/html-examples/src/preview-examples/spinner.html)
-  - react: [react/spinner.tsx](../../examples/react-examples/src/preview-examples/spinner.tsx)
-  - vue: [vue/spinner.vue](../../examples/vue-examples/src/preview-examples/spinner.vue)
+  - angular: [../../examples/angular-examples/src/preview-examples/spinner.ts](../../examples/angular-examples/src/preview-examples/spinner.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/spinner.ts](../../examples/angular-standalone-examples/src/preview-examples/spinner.ts)
+  - html: [../../examples/html-examples/src/preview-examples/spinner.html](../../examples/html-examples/src/preview-examples/spinner.html)
+  - react: [../../examples/react-examples/src/preview-examples/spinner.tsx](../../examples/react-examples/src/preview-examples/spinner.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/spinner.vue](../../examples/vue-examples/src/preview-examples/spinner.vue)
 - spinner-large
-  - angular: [angular/spinner-large.ts](../../examples/angular-examples/src/preview-examples/spinner-large.ts)
-  - angular-standalone: [angular-standalone/spinner-large.ts](../../examples/angular-standalone-examples/src/preview-examples/spinner-large.ts)
-  - html: [html/spinner-large.html](../../examples/html-examples/src/preview-examples/spinner-large.html)
-  - react: [react/spinner-large.tsx](../../examples/react-examples/src/preview-examples/spinner-large.tsx)
-  - vue: [vue/spinner-large.vue](../../examples/vue-examples/src/preview-examples/spinner-large.vue)
+  - angular: [../../examples/angular-examples/src/preview-examples/spinner-large.ts](../../examples/angular-examples/src/preview-examples/spinner-large.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/spinner-large.ts](../../examples/angular-standalone-examples/src/preview-examples/spinner-large.ts)
+  - html: [../../examples/html-examples/src/preview-examples/spinner-large.html](../../examples/html-examples/src/preview-examples/spinner-large.html)
+  - react: [../../examples/react-examples/src/preview-examples/spinner-large.tsx](../../examples/react-examples/src/preview-examples/spinner-large.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/spinner-large.vue](../../examples/vue-examples/src/preview-examples/spinner-large.vue)
 
 ## Related blocks
 

@@ -13,11 +13,11 @@
 ## Related examples
 
 - popover-news
-  - angular: [angular/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [angular/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
-  - angular-standalone: [angular-standalone/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [angular-standalone/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
-  - html: [html/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
-  - react: [react/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
-  - vue: [vue/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
+  - angular: [../../examples/angular-examples/src/preview-examples/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [../../examples/angular-examples/src/preview-examples/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
+  - html: [../../examples/html-examples/src/preview-examples/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
+  - react: [../../examples/react-examples/src/preview-examples/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
 
 ## Related blocks
 
