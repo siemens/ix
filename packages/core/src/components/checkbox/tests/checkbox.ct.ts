@@ -82,6 +82,22 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await expect(label).toHaveCSS('color', checkboxLabelColor);
 });
 
+regressionTest(
+  'label-less host size matches 24px active area',
+  async ({
+    mount,
+
+    page,
+  }) => {
+    await mount(
+      `<ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox>`
+    );
+    const checkbox = page.locator('ix-checkbox');
+    await expect(checkbox).toHaveCSS('width', '24px');
+    await expect(checkbox).toHaveCSS('height', '24px');
+  }
+);
+
 regressionTest('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');

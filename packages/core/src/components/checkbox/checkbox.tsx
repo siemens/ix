@@ -190,6 +190,7 @@ export class Checkbox implements IxFormComponent<string> {
           disabled: this.disabled,
           checked: this.checked,
           indeterminate: this.indeterminate,
+          'label-less': !this.label,
         }}
         onFocus={() => (this.touched = true)}
         onBlur={() => this.ixBlur.emit()}
@@ -204,19 +205,18 @@ export class Checkbox implements IxFormComponent<string> {
             type="checkbox"
             onChange={() => this.setCheckedState(!this.checked)}
           />
-          <button
-            disabled={this.disabled}
-            class={{
-              checked: this.checked,
-            }}
-            onClick={() => this.setCheckedState(!this.checked)}
-          >
-            {this.renderCheckmark()}
-          </button>
+          <div class="checkbox-button">
+            <button
+              disabled={this.disabled}
+              class={{
+                checked: this.checked,
+              }}
+              onClick={() => this.setCheckedState(!this.checked)}
+            >
+              {this.renderCheckmark()}
+            </button>
+          </div>
           <ix-typography
-            class={{
-              'label-less': !this.label,
-            }}
             format="label"
             textColor={this.disabled ? 'weak' : 'std'}
           >
