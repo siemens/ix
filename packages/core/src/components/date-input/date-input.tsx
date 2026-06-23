@@ -426,8 +426,7 @@ export class DateInput
         date.isValid &&
         (!minDate?.isValid || date >= minDate) &&
         (!maxDate?.isValid || date <= maxDate),
-      invalidReason:
-        date.invalidReason == null ? undefined : date.invalidReason,
+      invalidReason: date.invalidReason ?? undefined,
     };
   }
 
