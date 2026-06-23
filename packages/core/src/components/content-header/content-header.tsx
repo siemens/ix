@@ -10,6 +10,7 @@
 import { iconArrowLeft, iconMoreMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   h,
@@ -18,6 +19,8 @@ import {
   State,
 } from '@stencil/core';
 import type { ContentHeaderVariant } from './content-header.types';
+
+const SMALL_BREAKPOINT_QUERY = '(max-width: 48em)';
 
 /**
  * @slot header - Content to be placed in the header area next to the title
@@ -30,6 +33,8 @@ import type { ContentHeaderVariant } from './content-header.types';
   shadow: true,
 })
 export class ContentHeader {
+  @Element() hostElement!: HTMLIxContentHeaderElement;
+
   /**
    * Variant of content header
    */
@@ -55,31 +60,60 @@ export class ContentHeader {
    */
   @Event() backButtonClick!: EventEmitter<void>;
 
-  @State() private isSmallBreakpoint = false;
+  @State() isSmallBreakpoint = false;
+  @State() hasSecondaryActions = false;
 
-  private static readonly SMALL_BREAKPOINT_QUERY = '(max-width: 48em)';
+  mediaQuery?: MediaQueryList;
+  hasDisconnected = false;
 
-  private mediaQuery?: MediaQueryList;
-  private hasDisconnected = false;
-  private readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
+  readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
     this.isSmallBreakpoint = e.matches;
   };
 
+  checkSecondarySlot() {
+    const slot = this.hostElement.shadowRoot?.querySelector(
+      'slot[name="secondary-actions"]'
+    ) as HTMLSlotElement | null;
+
+    if (slot) {
+      const assignedNodes = slot.assignedNodes({ flatten: true });
+
+      const meaningfulNodes = assignedNodes.filter((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent?.trim() !== '';
+        }
+        return true;
+      });
+
+      this.hasSecondaryActions = meaningfulNodes.length > 0;
+    } else {
+      this.hasSecondaryActions = false;
+    }
+  }
+
   componentWillLoad() {
     if (globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia(
-        ContentHeader.SMALL_BREAKPOINT_QUERY
-      );
+      this.mediaQuery = globalThis.window.matchMedia(SMALL_BREAKPOINT_QUERY);
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
   }
 
+  componentDidLoad() {
+    this.checkSecondarySlot();
+
+    const slot = this.hostElement.shadowRoot?.querySelector(
+      'slot[name="secondary-actions"]'
+    ) as HTMLSlotElement | null;
+
+    if (slot) {
+      slot.addEventListener('slotchange', () => this.checkSecondarySlot());
+    }
+  }
+
   connectedCallback() {
     if (this.hasDisconnected && globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia(
-        ContentHeader.SMALL_BREAKPOINT_QUERY
-      );
+      this.mediaQuery = globalThis.window.matchMedia(SMALL_BREAKPOINT_QUERY);
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
     }
@@ -97,7 +131,7 @@ export class ContentHeader {
       <Host>
         {this.hasBackButton ? (
           <ix-icon-button
-            class={'backButton'}
+            class="backButton"
             variant="tertiary"
             icon={iconArrowLeft}
             onClick={() => this.backButtonClick.emit()}
@@ -121,8 +155,8 @@ export class ContentHeader {
           </div>
           {!!this.headerSubtitle && (
             <ix-typography
-              format={'h6'}
-              text-color={'soft'}
+              format="h6"
+              text-color="soft"
               class={{
                 subtitle: this.variant === 'secondary',
                 titleOverflow: true,
@@ -133,12 +167,19 @@ export class ContentHeader {
             </ix-typography>
           )}
         </div>
+
         {this.isSmallBreakpoint ? (
           <div class="actions">
             <slot />
-            <ix-dropdown-button icon={iconMoreMenu} variant="tertiary" label="">
-              <slot name="secondary-actions" />
-            </ix-dropdown-button>
+            {this.hasSecondaryActions && (
+              <ix-dropdown-button
+                icon={iconMoreMenu}
+                variant="tertiary"
+                label=""
+              >
+                <slot name="secondary-actions" />
+              </ix-dropdown-button>
+            )}
           </div>
         ) : (
           <div class="actions">
