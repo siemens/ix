@@ -65,7 +65,6 @@ import {
   syncCustomInputValidity,
 } from '../utils/input/picker-input.util';
 import { DefaultMixins } from '../utils/internal/component';
-import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import {
   InputPickerMixin,
   InputPickerMixinContract,
@@ -571,6 +570,12 @@ export class TimeInput
     } else {
       this.invalidReason = undefined;
       this._reportValidityCalled = false;
+      // Clear validation classes when value becomes valid
+      this.hostElement.classList.remove(
+        'ix-invalid--required',
+        'ix-invalid--validity-invalid',
+        'ix-invalid--validity-patternMismatch'
+      );
       await syncRequiredValidationClass(this.hostElement, this);
     }
 
@@ -594,7 +599,10 @@ export class TimeInput
       ? this._reportValidityCalled && !!this.required
       : this.touched && !!this.required;
 
-    this.hostElement.classList.toggle('ix-invalid--required', shouldShowRequired);
+    this.hostElement.classList.toggle(
+      'ix-invalid--required',
+      shouldShowRequired
+    );
 
     this.updateFormInternalValue(value);
     this.syncPickerTimeFromValue();
@@ -739,7 +747,7 @@ export class TimeInput
 
   private checkClassList() {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
-  };
+  }
 
   private renderInput() {
     return (
@@ -779,9 +787,6 @@ export class TimeInput
           onFocus={async () => {
             this.initialValue = this.value;
             this.ixFocus.emit();
-            if (hasKeyboardMode()) {
-              this.openDropdown();
-            }
           }}
           onBlur={(event: FocusEvent) =>
             suppressInputBlurWhenFocusMovedToPicker({
