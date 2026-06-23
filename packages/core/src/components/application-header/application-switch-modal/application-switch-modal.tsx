@@ -54,9 +54,7 @@ function ApplicationItem(props: {
         window.open(props.url, props.target);
       }}
     >
-      <div>
-        <img class="AppIcon" src={props.iconSrc}></img>
-      </div>
+      <img class="AppIcon" src={props.iconSrc} alt=""></img>
       <div class="AppName">
         <ix-typography format="h4">
           {props.name}
