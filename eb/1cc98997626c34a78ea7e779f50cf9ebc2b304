@@ -1,0 +1,19 @@
+.changeset/checkbox-layout-spacing.md
+  s_0dc713c6528981::t_dbdcf28727f915 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "eb1cc98997626c34a78ea7e779f50cf9ebc2b304",
+  "prompts": {},
+  "sessions": {
+    "s_0dc713c6528981": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7235d2e0-fc6d-49d1-9a16-3191f888814b",
+        "model": "default"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
