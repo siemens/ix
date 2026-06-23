@@ -62,7 +62,6 @@
     justify-content: flex-start;
     align-items: center;
     gap: var(--theme-space-0);
-
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -70,7 +69,7 @@
 }
 
 :host(.label-less) ix-typography {
-  display: contents;
+  display: none;
 }
 
 @mixin checkbox-base() {
