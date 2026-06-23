@@ -847,10 +847,13 @@ export class Select
           this.toggleOverflowDropdown();
         }}
         onKeyDown={(event: KeyboardEvent) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
+          if (
+            event.key === 'Enter' ||
+            event.key === ' ' ||
+            event.key === 'ArrowDown'
+          ) {
             event.stopPropagation();
-            this.toggleOverflowDropdown();
+            this.overflowDropdownShow = true;
           }
         }}
       >
@@ -902,6 +905,7 @@ export class Select
         show={this.overflowDropdownShow}
         anchor={this.overflowChipRef.waitForCurrent()}
         trigger={this.overflowChipRef.waitForCurrent()}
+        keyboardActivationKeys={['Enter', ' ', 'ArrowDown']}
         closeBehavior="outside"
         placement="bottom-start"
         onShowChanged={(event: CustomEvent<boolean>) => {
