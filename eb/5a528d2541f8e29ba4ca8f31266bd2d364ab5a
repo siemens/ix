@@ -1,0 +1,23 @@
+packages/core/src/components/checkbox/checkbox.tsx
+  s_0dc713c6528981::t_b5b475640d381a 193,208-218
+packages/core/src/components/checkbox/tests/checkbox.ct.ts
+  s_0dc713c6528981::t_b5b475640d381a 85-100
+packages/core/src/components/checkbox/checkbox.scss
+  s_0dc713c6528981::t_b5b475640d381a 19-27,63-64,70,72-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "eb5a528d2541f8e29ba4ca8f31266bd2d364ab5a",
+  "prompts": {},
+  "sessions": {
+    "s_0dc713c6528981": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7235d2e0-fc6d-49d1-9a16-3191f888814b",
+        "model": "default"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
