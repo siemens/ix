@@ -27,9 +27,6 @@ if [[ ! -d "${REGISTRY_DIR}" ]]; then
 fi
 
 LATEST_TAG="${RELEASE_VERSION}"
-if [[ "${RELEASE_VERSION}" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
-  LATEST_TAG="${BASH_REMATCH[1]}"
-fi
 
 UPDATE_LATEST="false"
 if [[ "${RELEASE_VERSION}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then

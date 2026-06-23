@@ -60,6 +60,15 @@ type BlockFile = {
   target: string;
 };
 
+type ExampleVariant = {
+  files?: BlockFile[];
+};
+
+type ExampleDefinition = {
+  name: string;
+  variants?: Record<string, ExampleVariant>;
+};
+
 type BlockDependency = {
   name: string;
   version: string;
@@ -117,8 +126,8 @@ function listOrNone(values: string[]): string {
   return values.map((value) => `- ${value}`).join('\n');
 }
 
-function markdownLink(label: string, href: string): string {
-  return `[${label}](${href.replace(/ /g, '%20')})`;
+function markdownUrl(value: string): string {
+  return `[${value}](${value})`;
 }
 
 function documentationUrls(component: ComponentDoc): string[] {
@@ -245,7 +254,7 @@ function renderRelatedExamples(
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
             const href = `../../examples/${file.source}`;
-            return markdownLink(file.target, href);
+            return markdownUrl(href);
           });
 
           return links.length > 0
@@ -342,10 +351,7 @@ function renderBlock(block: BlockDefinition): string {
             )
               .map((file) => {
                 const href = `../blocks/${file.source}`;
-                return `  - \`${file.target}\` from ${markdownLink(
-                  file.source,
-                  href
-                )}`;
+                return `  - \`${file.target}\` from ${markdownUrl(href)}`;
               })
               .join('\n');
             const dependencies = sortByName(variant.dependencies ?? [])
