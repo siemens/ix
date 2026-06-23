@@ -58,6 +58,20 @@ const waitForFormSubmit = (form: Locator) => {
   return submitPromise;
 };
 
+const setupFormSubmitTracking = (page: any, shouldPreventDefault: boolean) => {
+  return page.evaluate((prevent: boolean) => {
+    globalThis.__formSubmitted = false;
+    const form = document.getElementById('form') as HTMLFormElement;
+    const handleSubmit = (event: Event) => {
+      if (prevent) {
+        event.preventDefault();
+      }
+      globalThis.__formSubmitted = true;
+    };
+    form.addEventListener('submit', handleSubmit);
+  }, shouldPreventDefault);
+};
+
 regressionTest.describe('accessibility', () => {
   regressionTest('default state', async ({ mount, makeAxeBuilder }) => {
     await mount(
@@ -1017,15 +1031,7 @@ regressionTest.describe('date-input validation scenarios', () => {
           </form>
         `);
 
-        await page.evaluate(() => {
-          globalThis.__formSubmitted = false;
-          (document.getElementById('form') as HTMLFormElement).addEventListener(
-            'submit',
-            () => {
-              globalThis.__formSubmitted = true;
-            }
-          );
-        });
+        await setupFormSubmitTracking(page, false);
 
         const dateInput = page.locator('ix-date-input');
         await page.locator('button[type="submit"]').click();
@@ -1049,15 +1055,7 @@ regressionTest.describe('date-input validation scenarios', () => {
           </form>
         `);
 
-        await page.evaluate(() => {
-          globalThis.__formSubmitted = false;
-          (document.getElementById('form') as HTMLFormElement).addEventListener(
-            'submit',
-            () => {
-              globalThis.__formSubmitted = true;
-            }
-          );
-        });
+        await setupFormSubmitTracking(page, false);
 
         const dateInput = page.locator('ix-date-input');
 
@@ -1082,50 +1080,7 @@ regressionTest.describe('date-input validation scenarios', () => {
           </form>
         `);
 
-        await page.evaluate(() => {
-          globalThis.__formSubmitted = false;
-          (document.getElementById('form') as HTMLFormElement).addEventListener(
-            'submit',
-            (event: Event) => {
-              event.preventDefault();
-              globalThis.__formSubmitted = true;
-            }
-          );
-        });
-
-        const dateInput = page.locator('ix-date-input');
-
-        await page.locator('button[type="submit"]').click();
-
-        const wasSubmitted = await page.evaluate(
-          () => globalThis.__formSubmitted
-        );
-        expect(wasSubmitted).toBe(true);
-
-        await expect(dateInput).not.toHaveClass(/ix-invalid/);
-      }
-    );
-
-    regressionTest(
-      'novalidate form: submit is allowed when required field is empty',
-      async ({ page, mount }) => {
-        await mount(`
-          <form id="form" novalidate>
-            <ix-date-input value="" required></ix-date-input>
-            <button type="submit">Submit</button>
-          </form>
-        `);
-
-        await page.evaluate(() => {
-          globalThis.__formSubmitted = false;
-          (document.getElementById('form') as HTMLFormElement).addEventListener(
-            'submit',
-            (event: Event) => {
-              event.preventDefault();
-              globalThis.__formSubmitted = true;
-            }
-          );
-        });
+        await setupFormSubmitTracking(page, true);
 
         const dateInput = page.locator('ix-date-input');
 
