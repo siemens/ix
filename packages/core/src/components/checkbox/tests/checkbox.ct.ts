@@ -109,7 +109,7 @@ regressionTest(
     await expect(checkbox).not.toHaveClass(/label-less/);
     await expect(checkbox).toHaveText(/Custom slot label text/);
     const width = await checkbox.evaluate((element) =>
-      parseFloat(getComputedStyle(element).width)
+      Number.parseFloat(getComputedStyle(element).width)
     );
     expect(width).toBeGreaterThan(24);
   }
