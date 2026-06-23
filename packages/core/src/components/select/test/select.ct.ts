@@ -1379,3 +1379,86 @@ test('multiple mode: removing a hidden item from "+N" dropdown updates count', a
 
   await expect(overflowChip).not.toHaveText(initialCount ?? '');
 });
+
+test('multiple mode: focused "+N" chip opens overflow dropdown with Enter', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+
+  await overflowChip.focus();
+  await expect(overflowChip).toBeFocused();
+  await page.keyboard.press('Enter');
+
+  const overflowDropdown = select.locator('ix-dropdown.overflow-dropdown');
+  await expect(overflowDropdown).toBeVisible();
+  await expect(overflowChip).toHaveAttribute('aria-expanded', 'true');
+
+  const removeButtons = overflowDropdown.locator(
+    'ix-filter-chip.chip-hidden-item ix-icon-button button'
+  );
+  await expect(removeButtons.first()).toBeFocused();
+});
+
+test('multiple mode: focused "+N" chip arrow navigation', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+
+  await overflowChip.focus();
+  await expect(overflowChip).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+
+  const overflowDropdown = select.locator('ix-dropdown.overflow-dropdown');
+  await expect(overflowDropdown).toBeVisible();
+  await expect(overflowChip).toHaveAttribute('aria-expanded', 'true');
+
+  const removeButtons = overflowDropdown.locator(
+    'ix-filter-chip.chip-hidden-item ix-icon-button button'
+  );
+  await expect(removeButtons.first()).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  await expect(removeButtons.nth(1)).toBeFocused();
+
+  await page.keyboard.press('ArrowUp');
+  await expect(removeButtons.first()).toBeFocused();
+
+  await page.keyboard.press('ArrowUp');
+  await expect(removeButtons.last()).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(overflowDropdown).not.toBeVisible();
+  await expect(overflowChip).toBeFocused();
+});

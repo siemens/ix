@@ -299,6 +299,7 @@ export class Select
   private readonly overflowChipFallbackWidth = 52;
   private overflowChipWidth = 0;
   private chipsResizeObserver?: ResizeObserver;
+  private overflowDropdownOpenedByKeyboard = false;
 
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
@@ -814,7 +815,9 @@ export class Select
         key={`hidden-${item.value}`}
         ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
         onCloseClick={() => {
+          this.overflowDropdownShow = false;
           this.itemClick(item.value);
+          this.inputElement?.focus();
         }}
       >
         {item.label}
@@ -852,7 +855,9 @@ export class Select
             event.key === ' ' ||
             event.key === 'ArrowDown'
           ) {
-            event.stopPropagation();
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            this.overflowDropdownOpenedByKeyboard = true;
             this.overflowDropdownShow = true;
           }
         }}
@@ -904,12 +909,14 @@ export class Select
         class="overflow-dropdown"
         show={this.overflowDropdownShow}
         anchor={this.overflowChipRef.waitForCurrent()}
-        trigger={this.overflowChipRef.waitForCurrent()}
-        keyboardActivationKeys={['Enter', ' ', 'ArrowDown']}
         closeBehavior="outside"
         placement="bottom-start"
         onShowChanged={(event: CustomEvent<boolean>) => {
           this.overflowDropdownShow = event.detail;
+          if (event.detail && this.overflowDropdownOpenedByKeyboard) {
+            this.overflowDropdownOpenedByKeyboard = false;
+            this.focusOverflowRemoveButton(0);
+          }
         }}
       >
         <div class="overflow-dropdown-content">
@@ -929,6 +936,92 @@ export class Select
       return;
     }
     this.overflowDropdownShow = !this.overflowDropdownShow;
+  }
+
+  private getOverflowRemoveButtons() {
+    const dropdown = this.hostElement.shadowRoot?.querySelector(
+      'ix-dropdown.overflow-dropdown'
+    );
+
+    if (!dropdown) {
+      return [];
+    }
+
+    return Array.from(
+      dropdown.querySelectorAll<HTMLIxFilterChipElement>(
+        'ix-filter-chip.chip-hidden-item'
+      )
+    ).flatMap((chip) => {
+      const iconButton =
+        chip.shadowRoot?.querySelector<HTMLIxIconButtonElement>(
+          'ix-icon-button'
+        );
+      const button =
+        iconButton?.shadowRoot?.querySelector<HTMLButtonElement>('button');
+      return button ? [button] : [];
+    });
+  }
+
+  private focusOverflowRemoveButton(index: number) {
+    requestAnimationFrameNoNgZone(() => {
+      const buttons = this.getOverflowRemoveButtons();
+      const button = buttons[index];
+
+      if (!button) {
+        return;
+      }
+
+      button.focus({ preventScroll: true });
+      button.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  @Listen('keydown', { capture: true })
+  onOverflowRemoveButtonKeyDown(event: KeyboardEvent) {
+    if (!this.overflowDropdownShow) {
+      return;
+    }
+
+    const buttons = this.getOverflowRemoveButtons();
+    const currentIndex = buttons.findIndex((button) =>
+      event.composedPath().includes(button)
+    );
+
+    if (currentIndex === -1) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this.focusOverflowRemoveButton((currentIndex + 1) % buttons.length);
+        break;
+      }
+      case 'ArrowUp': {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this.focusOverflowRemoveButton(
+          (currentIndex - 1 + buttons.length) % buttons.length
+        );
+        break;
+      }
+      case 'Escape': {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this.overflowDropdownShow = false;
+        this.focusOverflowChip();
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  private focusOverflowChip() {
+    requestAnimationFrameNoNgZone(() => {
+      this.overflowChipRef.current?.focus({ preventScroll: true });
+    });
   }
 
   private pruneChipWidthCache() {
