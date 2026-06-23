@@ -1942,6 +1942,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton": boolean;
+        /**
           * If true the filter chip will be in readonly mode
           * @default false
          */
@@ -3366,6 +3371,12 @@ export namespace Components {
          */
         "ariaLabelClearIconButton"?: string;
         /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 6.0.0
+          * @default '{count} more'
+         */
+        "ariaLabelMoreItems": string;
+        /**
           * Show "all" chip when all items are selected in multiple mode
           * @default false
          */
@@ -4122,17 +4133,17 @@ export namespace Components {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval": number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime": string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader": string;
         /**
@@ -4163,7 +4174,7 @@ export namespace Components {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval": number;
         /**
@@ -4174,13 +4185,13 @@ export namespace Components {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval": number;
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval": number;
         /**
@@ -8342,6 +8353,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
@@ -9891,6 +9907,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelClearIconButton"?: string;
         /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 6.0.0
+          * @default '{count} more'
+         */
+        "ariaLabelMoreItems"?: string;
+        /**
           * Show "all" chip when all items are selected in multiple mode
           * @default false
          */
@@ -10694,17 +10716,17 @@ declare namespace LocalJSX {
         /**
           * Interval for hour selection.
           * @since 3.2.0
-          * @default 1
+          * @default HOUR_INTERVAL_DEFAULT
          */
         "hourInterval"?: number;
         /**
           * Text of the time confirm button.
-          * @default 'Confirm'
+          * @default CONFIRM_BUTTON_DEFAULT
          */
         "i18nConfirmTime"?: string;
         /**
           * Text for the top header.
-          * @default 'Time'
+          * @default HEADER_DEFAULT
          */
         "i18nHeader"?: string;
         /**
@@ -10735,7 +10757,7 @@ declare namespace LocalJSX {
         /**
           * Interval for millisecond selection.
           * @since 3.2.0
-          * @default 100
+          * @default MILLISECOND_INTERVAL_DEFAULT
          */
         "millisecondInterval"?: number;
         /**
@@ -10746,7 +10768,7 @@ declare namespace LocalJSX {
         /**
           * Interval for minute selection.
           * @since 3.2.0
-          * @default 1
+          * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval"?: number;
         /**
@@ -10760,7 +10782,7 @@ declare namespace LocalJSX {
         /**
           * Interval for second selection.
           * @since 3.2.0
-          * @default 1
+          * @default SECOND_INTERVAL_DEFAULT
          */
         "secondInterval"?: number;
         /**
@@ -11576,6 +11598,7 @@ declare namespace LocalJSX {
     interface IxFilterChipAttributes {
         "disabled": boolean;
         "readonly": boolean;
+        "hideCloseButton": boolean;
         "ariaLabelCloseIconButton": string;
     }
     interface IxFlipTileAttributes {
@@ -11933,6 +11956,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
+        "ariaLabelMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;

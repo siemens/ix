@@ -60,6 +60,10 @@
   padding-right: vars.$small-space;
 }
 
+:host(.hide-close-button) {
+  padding-right: vars.$small-space;
+}
+
 @include hover.host-hover {
   background-color: var(--theme-color-ghost-primary--hover);
   border-color: var(--theme-chip-primary-outline--border-color--hover);

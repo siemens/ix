@@ -1346,3 +1346,36 @@ test('listbox proxy: selected value stays aria-selected when another row has foc
     'false'
   );
 });
+
+test('multiple mode: removing a hidden item from "+N" dropdown updates count', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+  const initialCount = await overflowChip.textContent();
+
+  await overflowChip.click();
+
+  const overflowDropdown = select.locator('ix-dropdown.overflow-dropdown');
+  const hiddenChip = overflowDropdown
+    .locator('ix-filter-chip.chip-hidden-item')
+    .first();
+  await hiddenChip.locator('ix-icon-button button').click();
+
+  await expect(overflowChip).not.toHaveText(initialCount ?? '');
+});

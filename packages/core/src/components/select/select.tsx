@@ -19,6 +19,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  forceUpdate,
   h,
   Host,
   Listen,
@@ -110,6 +111,15 @@ export class Select
    * @since TODO: Define
    */
   @Prop() ariaLabelAddItem: string = 'Add item';
+
+  /**
+   * Accessible label template for the overflow indicator chip shown in multiple
+   * mode when not all selected chips fit on a single row. The `{count}`
+   * placeholder is replaced with the number of hidden items (e.g. "3 more").
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-more-items' }) ariaLabelMoreItems = '{count} more';
 
   /**
    * Warning text for the select component
@@ -262,6 +272,9 @@ export class Select
   @State() isDropdownEmpty = false;
   @State() inputFilterText = '';
   @State() inputValue = '';
+  @State() visibleChipValues: string[] | null = null;
+  @State() hiddenChipValues: string[] = [];
+  @State() overflowDropdownShow = false;
 
   @State() hasInputFocus = false;
   @State() dropdownItemsVisualFocused = false;
@@ -276,6 +289,16 @@ export class Select
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
+  private readonly chipElementRefs = new Map<string, HTMLElement>();
+  private readonly chipWidths = new Map<string, number>();
+  private readonly overflowChipRef = makeRef<HTMLElement>();
+  private readonly chipsContainerRef = makeRef<HTMLElement>();
+
+  private readonly chipHorizontalMargin = 4;
+  private readonly triggerMinWidth = 48;
+  private readonly overflowChipFallbackWidth = 52;
+  private overflowChipWidth = 0;
+  private chipsResizeObserver?: ResizeObserver;
 
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
@@ -341,6 +364,15 @@ export class Select
     this.updateSelection();
   }
 
+  @Watch('disabled')
+  @Watch('readonly')
+  watchDisabledReadonly() {
+    // Disabled/readonly hides the chip close button, changing chip widths, so
+    // invalidate the measurement cache to force a re-measure on next render.
+    this.chipWidths.clear();
+    this.overflowChipWidth = 0;
+  }
+
   updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
@@ -366,6 +398,7 @@ export class Select
   private itemClick(newId: string) {
     const oldValue = this.value;
     const value = this.toggleValue(newId);
+
     this.value = value;
     const defaultPrevented = this.emitValueChange(value);
 
@@ -447,6 +480,8 @@ export class Select
       (item) => item.label ?? item.value
     );
 
+    this.pruneChipWidthCache();
+
     if (this.dropdownShow && this.inputFilterText) {
       return;
     }
@@ -512,6 +547,14 @@ export class Select
       subtree: true,
       childList: true,
     });
+
+    const chipsContainer = this.chipsContainerRef.current;
+    if (chipsContainer) {
+      this.chipsResizeObserver = new ResizeObserver(() => {
+        this.calculateChipOverflow();
+      });
+      this.chipsResizeObserver.observe(chipsContainer);
+    }
   }
 
   override componentWillLoad() {
@@ -523,6 +566,7 @@ export class Select
     super.disconnectedCallback();
 
     this.proxyListObserver?.disconnect();
+    this.chipsResizeObserver?.disconnect();
   }
 
   @Listen('ix-select-item:valueChange')
@@ -530,6 +574,9 @@ export class Select
   onLabelChange(event: IxSelectItemLabelChangeEvent) {
     event.preventDefault();
     event.stopImmediatePropagation();
+    // A changed label/value alters the chip width, so drop the cache and let
+    // the next render re-measure the affected chips.
+    this.chipWidths.clear();
     this.updateSelection();
   }
 
@@ -730,12 +777,25 @@ export class Select
     );
   }
 
-  private renderChip(item: HTMLIxSelectItemElement) {
+  private renderChip(item: HTMLIxSelectItemElement, measuring: boolean) {
+    const value = item.value.toString();
+
     return (
       <ix-filter-chip
+        class={{
+          'chip-measuring': measuring,
+        }}
         disabled={this.disabled || this.readonly}
-        key={item.value}
+        key={value}
         ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
+        ref={(ref) => {
+          if (ref) {
+            this.chipElementRefs.set(value, ref as unknown as HTMLElement);
+            return;
+          }
+
+          this.chipElementRefs.delete(value);
+        }}
         onCloseClick={() => {
           this.itemClick(item.value);
           this.inputElement?.focus();
@@ -744,6 +804,307 @@ export class Select
         {item.label}
       </ix-filter-chip>
     );
+  }
+
+  private renderHiddenChip(item: HTMLIxSelectItemElement) {
+    return (
+      <ix-filter-chip
+        class="chip-hidden-item"
+        disabled={this.disabled || this.readonly}
+        key={`hidden-${item.value}`}
+        ariaLabelCloseIconButton={this.getRemoveChipAriaLabel(item)}
+        onCloseClick={() => {
+          this.itemClick(item.value);
+        }}
+      >
+        {item.label}
+      </ix-filter-chip>
+    );
+  }
+
+  private renderOverflowChip() {
+    const count = this.hiddenChipValues.length;
+    const ariaLabel = this.ariaLabelMoreItems.replace(
+      '{count}',
+      count.toString()
+    );
+
+    return (
+      <ix-filter-chip
+        key="overflow-chip"
+        class="chip-overflow"
+        hideCloseButton
+        disabled={this.disabled || this.readonly}
+        tabindex={this.disabled || this.readonly ? -1 : 0}
+        role="button"
+        aria-haspopup="listbox"
+        aria-expanded={a11yBoolean(this.overflowDropdownShow)}
+        aria-label={ariaLabel}
+        ref={this.overflowChipRef}
+        onClick={(event: Event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.toggleOverflowDropdown();
+        }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            event.stopPropagation();
+            this.toggleOverflowDropdown();
+          }
+        }}
+      >
+        {`+${count}`}
+      </ix-filter-chip>
+    );
+  }
+
+  private renderMultipleModeChips() {
+    if (this.items.length === 0) {
+      return null;
+    }
+
+    if (this.shouldDisplayAllChip()) {
+      return this.renderAllChip();
+    }
+
+    const selected = this.selectedItems;
+    if (selected.length === 0) {
+      return null;
+    }
+
+    const visibleItems = selected.filter((item) => {
+      const value = item.value.toString();
+      if (!this.chipWidths.has(value)) {
+        return false;
+      }
+      return (
+        this.visibleChipValues === null ||
+        this.visibleChipValues.includes(value)
+      );
+    });
+
+    const unmeasuredItems = selected.filter(
+      (item) => !this.chipWidths.has(item.value.toString())
+    );
+
+    return [
+      ...visibleItems.map((item) => this.renderChip(item, false)),
+      this.hiddenChipValues.length > 0 ? this.renderOverflowChip() : null,
+      ...unmeasuredItems.map((item) => this.renderChip(item, true)),
+    ];
+  }
+
+  private renderOverflowDropdown() {
+    return (
+      <ix-dropdown
+        class="overflow-dropdown"
+        show={this.overflowDropdownShow}
+        anchor={this.overflowChipRef.waitForCurrent()}
+        trigger={this.overflowChipRef.waitForCurrent()}
+        closeBehavior="outside"
+        placement="bottom-start"
+        onShowChanged={(event: CustomEvent<boolean>) => {
+          this.overflowDropdownShow = event.detail;
+        }}
+      >
+        <div class="overflow-dropdown-content">
+          {this.hiddenChipValues.map((value) => {
+            const item = this.selectedItems.find(
+              (selectedItem) => selectedItem.value.toString() === value
+            );
+            return item ? this.renderHiddenChip(item) : null;
+          })}
+        </div>
+      </ix-dropdown>
+    );
+  }
+
+  private toggleOverflowDropdown() {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+    this.overflowDropdownShow = !this.overflowDropdownShow;
+  }
+
+  private pruneChipWidthCache() {
+    const validValues = new Set(
+      this.selectedItems.map((item) => item.value.toString())
+    );
+    for (const value of [...this.chipWidths.keys()]) {
+      if (!validValues.has(value)) {
+        this.chipWidths.delete(value);
+      }
+    }
+  }
+
+  private sameChipValues(a: string[] | null, b: string[] | null): boolean {
+    if (a === b) {
+      return true;
+    }
+
+    if (a === null || b === null) {
+      return false;
+    }
+
+    if (a.length !== b.length) {
+      return false;
+    }
+
+    return a.every((value, index) => value === b[index]);
+  }
+
+  private applyOverflowState(visible: string[] | null, hidden: string[]) {
+    if (!this.sameChipValues(this.visibleChipValues, visible)) {
+      this.visibleChipValues = visible;
+    }
+
+    if (!this.sameChipValues(this.hiddenChipValues, hidden)) {
+      this.hiddenChipValues = hidden;
+    }
+
+    if (hidden.length === 0 && this.overflowDropdownShow) {
+      this.overflowDropdownShow = false;
+    }
+  }
+
+  private calculateChipOverflow() {
+    if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
+      return;
+    }
+
+    const container = this.chipsContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const values = this.selectedItems.map((item) => item.value.toString());
+    if (values.length === 0) {
+      this.applyOverflowState(null, []);
+      return;
+    }
+
+    if (!values.every((value) => this.chipWidths.has(value))) {
+      return;
+    }
+
+    const available = container.clientWidth - this.triggerMinWidth;
+    const margin = this.chipHorizontalMargin;
+    const overflowChipWidth =
+      (this.overflowChipWidth || this.overflowChipFallbackWidth) + margin;
+
+    let runningWidth = 0;
+    let fitsAll = true;
+    for (const value of values) {
+      runningWidth += (this.chipWidths.get(value) ?? 0) + margin;
+
+      if (runningWidth > available) {
+        fitsAll = false;
+        break;
+      }
+    }
+
+    if (fitsAll) {
+      this.applyOverflowState(null, []);
+      return;
+    }
+
+    const visible: string[] = [];
+    const hidden: string[] = [];
+    let usedWidth = 0;
+    let overflowing = false;
+    for (const value of values) {
+      const width = (this.chipWidths.get(value) ?? 0) + margin;
+
+      if (overflowing) {
+        hidden.push(value);
+        continue;
+      }
+
+      if (visible.length === 0) {
+        visible.push(value);
+        usedWidth += width;
+        continue;
+      }
+
+      if (usedWidth + width + overflowChipWidth <= available) {
+        visible.push(value);
+        usedWidth += width;
+      } else {
+        overflowing = true;
+        hidden.push(value);
+      }
+    }
+
+    this.applyOverflowState(visible, hidden);
+  }
+
+  override async componentDidRender(): Promise<void> {
+    if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
+      return;
+    }
+
+    const selected = this.selectedItems;
+    if (selected.length === 0) {
+      this.applyOverflowState(null, []);
+      return;
+    }
+
+    const unmeasured = selected.filter(
+      (item) => !this.chipWidths.has(item.value.toString())
+    );
+
+    if (unmeasured.length > 0) {
+      await Promise.all(
+        unmeasured.map(async (item) => {
+          const element = this.chipElementRefs.get(item.value.toString());
+          const stencilChip = element as
+            | Partial<{ componentOnReady: () => Promise<unknown> }>
+            | undefined;
+          if (typeof stencilChip?.componentOnReady === 'function') {
+            await stencilChip.componentOnReady();
+          }
+        })
+      );
+
+      await new Promise<void>((resolve) =>
+        requestAnimationFrameNoNgZone(() => resolve())
+      );
+
+      let measuredAny = false;
+      unmeasured.forEach((item) => {
+        const value = item.value.toString();
+        const element = this.chipElementRefs.get(value);
+        if (element && element.offsetWidth > 0) {
+          this.chipWidths.set(value, element.offsetWidth);
+          measuredAny = true;
+        }
+      });
+
+      if (measuredAny) {
+        this.calculateChipOverflow();
+        forceUpdate(this);
+      }
+      return;
+    }
+
+    if (this.hiddenChipValues.length > 0 && this.overflowChipWidth === 0) {
+      const overflowElement = await this.overflowChipRef.waitForCurrent();
+      const stencilChip = overflowElement as Partial<{
+        componentOnReady: () => Promise<unknown>;
+      }>;
+      if (typeof stencilChip?.componentOnReady === 'function') {
+        await stencilChip.componentOnReady();
+      }
+      await new Promise<void>((resolve) =>
+        requestAnimationFrameNoNgZone(() => resolve())
+      );
+      if (overflowElement && overflowElement.offsetWidth > 0) {
+        this.overflowChipWidth = overflowElement.offsetWidth;
+      }
+    }
+
+    this.calculateChipOverflow();
   }
 
   @HookValidationLifecycle()
@@ -819,6 +1180,17 @@ export class Select
       this.addItemElement.label = this.inputFilterText;
     }
     this.updateAriaProxyListbox();
+
+    if (this.isMultipleMode && !this.shouldDisplayAllChip()) {
+      const selected = this.selectedItems;
+      const allMeasured =
+        selected.length > 0 &&
+        selected.every((item) => this.chipWidths.has(item.value.toString()));
+
+      if (allMeasured) {
+        this.calculateChipOverflow();
+      }
+    }
   }
 
   private updateAriaProxyListbox() {
@@ -903,12 +1275,8 @@ export class Select
             }}
           >
             <div class="input-container">
-              <div class="chips">
-                {this.isMultipleMode &&
-                  this.items.length !== 0 &&
-                  (this.shouldDisplayAllChip()
-                    ? this.renderAllChip()
-                    : this.selectedItems?.map((item) => this.renderChip(item)))}
+              <div class="chips" ref={this.chipsContainerRef}>
+                {this.isMultipleMode && this.renderMultipleModeChips()}
                 <div class="trigger">
                   <input
                     id={`${this.hostId}-input`}
@@ -1087,6 +1455,9 @@ export class Select
             <div class="select-list-header">{this.i18nNoMatches}</div>
           )}
         </ix-dropdown>
+        {this.isMultipleMode &&
+          this.hiddenChipValues.length > 0 &&
+          this.renderOverflowDropdown()}
       </Host>
     );
   }
