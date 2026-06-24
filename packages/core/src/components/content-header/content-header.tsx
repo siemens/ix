@@ -65,30 +65,23 @@ export class ContentHeader {
 
   mediaQuery?: MediaQueryList;
   hasDisconnected = false;
+  secondarySlot: HTMLSlotElement | null = null;
 
   readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
     this.isSmallBreakpoint = e.matches;
   };
 
+  readonly slotChangeHandler = () => this.checkSecondarySlot();
+
   checkSecondarySlot() {
-    const slot = this.hostElement.shadowRoot?.querySelector(
-      'slot[name="secondary-actions"]'
-    ) as HTMLSlotElement | null;
-
-    if (slot) {
-      const assignedNodes = slot.assignedNodes({ flatten: true });
-
-      const meaningfulNodes = assignedNodes.filter((node) => {
+    this.hasSecondaryActions = Array.from(this.hostElement.childNodes).some(
+      (node) => {
         if (node.nodeType === Node.TEXT_NODE) {
-          return node.textContent?.trim() !== '';
+          return false;
         }
-        return true;
-      });
-
-      this.hasSecondaryActions = meaningfulNodes.length > 0;
-    } else {
-      this.hasSecondaryActions = false;
-    }
+        return (node as Element).getAttribute?.('slot') === 'secondary-actions';
+      }
+    );
   }
 
   componentWillLoad() {
@@ -107,7 +100,8 @@ export class ContentHeader {
     ) as HTMLSlotElement | null;
 
     if (slot) {
-      slot.addEventListener('slotchange', () => this.checkSecondarySlot());
+      this.secondarySlot = slot;
+      slot.addEventListener('slotchange', this.slotChangeHandler);
     }
   }
 
@@ -116,6 +110,15 @@ export class ContentHeader {
       this.mediaQuery = globalThis.window.matchMedia(SMALL_BREAKPOINT_QUERY);
       this.isSmallBreakpoint = this.mediaQuery.matches;
       this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+
+      const slot = this.hostElement.shadowRoot?.querySelector(
+        'slot[name="secondary-actions"]'
+      ) as HTMLSlotElement | null;
+
+      if (slot) {
+        this.secondarySlot = slot;
+        slot.addEventListener('slotchange', this.slotChangeHandler);
+      }
     }
   }
 
@@ -123,6 +126,10 @@ export class ContentHeader {
     if (this.mediaQuery) {
       this.mediaQuery.removeEventListener('change', this.mediaQueryHandler);
     }
+    this.secondarySlot?.removeEventListener(
+      'slotchange',
+      this.slotChangeHandler
+    );
     this.hasDisconnected = true;
   }
 
