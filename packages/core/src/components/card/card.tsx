@@ -24,9 +24,28 @@ export class Card {
    */
   @Prop() passive: boolean = false;
 
+  private onKeyDown(event: KeyboardEvent) {
+    if (this.passive) {
+      return;
+    }
+    const originalTarget = event.composedPath()[0];
+
+    if (originalTarget !== this.hostElement) {
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.hostElement.click();
+    }
+  }
+
   render() {
     return (
       <Host
+        role={this.passive ? 'presentation' : 'button'}
+        tabIndex={this.passive ? -1 : 0}
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
         class={{
           selected: this.selected,
           [`card-${this.variant}`]: true,
