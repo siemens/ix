@@ -1028,7 +1028,7 @@ export class Select
     const validValues = new Set(
       this.selectedItems.map((item) => item.value.toString())
     );
-    for (const value of [...this.chipWidths.keys()]) {
+    for (const value of this.chipWidths.keys()) {
       if (!validValues.has(value)) {
         this.chipWidths.delete(value);
       }
@@ -1065,6 +1065,53 @@ export class Select
     }
   }
 
+  private getChipWidthWithMargin(value: string) {
+    return (this.chipWidths.get(value) ?? 0) + this.chipHorizontalMargin;
+  }
+
+  private getOverflowChipWidthWithMargin() {
+    return (
+      (this.overflowChipWidth || this.overflowChipFallbackWidth) +
+      this.chipHorizontalMargin
+    );
+  }
+
+  private canShowAllChips(values: string[], available: number) {
+    const totalWidth = values.reduce(
+      (width, value) => width + this.getChipWidthWithMargin(value),
+      0
+    );
+
+    return totalWidth <= available;
+  }
+
+  private getOverflowChipValues(values: string[], available: number) {
+    const [firstValue, ...remainingValues] = values;
+    if (firstValue === undefined) {
+      return { visible: [], hidden: [] };
+    }
+
+    const visible = [firstValue];
+    const hidden: string[] = [];
+    let usedWidth = this.getChipWidthWithMargin(firstValue);
+    const overflowChipWidth = this.getOverflowChipWidthWithMargin();
+
+    for (const [index, value] of remainingValues.entries()) {
+      const width = this.getChipWidthWithMargin(value);
+
+      if (usedWidth + width + overflowChipWidth <= available) {
+        visible.push(value);
+        usedWidth += width;
+        continue;
+      }
+
+      hidden.push(...remainingValues.slice(index));
+      break;
+    }
+
+    return { visible, hidden };
+  }
+
   private calculateChipOverflow() {
     if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
       return;
@@ -1086,54 +1133,70 @@ export class Select
     }
 
     const available = container.clientWidth - this.triggerMinWidth;
-    const margin = this.chipHorizontalMargin;
-    const overflowChipWidth =
-      (this.overflowChipWidth || this.overflowChipFallbackWidth) + margin;
-
-    let runningWidth = 0;
-    let fitsAll = true;
-    for (const value of values) {
-      runningWidth += (this.chipWidths.get(value) ?? 0) + margin;
-
-      if (runningWidth > available) {
-        fitsAll = false;
-        break;
-      }
-    }
-
-    if (fitsAll) {
+    if (this.canShowAllChips(values, available)) {
       this.applyOverflowState(null, []);
       return;
     }
 
-    const visible: string[] = [];
-    const hidden: string[] = [];
-    let usedWidth = 0;
-    let overflowing = false;
-    for (const value of values) {
-      const width = (this.chipWidths.get(value) ?? 0) + margin;
+    const { visible, hidden } = this.getOverflowChipValues(values, available);
+    this.applyOverflowState(visible, hidden);
+  }
 
-      if (overflowing) {
-        hidden.push(value);
-        continue;
-      }
+  private async waitForComponentReady(element?: HTMLElement) {
+    const stencilComponent = element as
+      | Partial<{ componentOnReady: () => Promise<unknown> }>
+      | undefined;
 
-      if (visible.length === 0) {
-        visible.push(value);
-        usedWidth += width;
-        continue;
-      }
+    if (typeof stencilComponent?.componentOnReady === 'function') {
+      await stencilComponent.componentOnReady();
+    }
+  }
 
-      if (usedWidth + width + overflowChipWidth <= available) {
-        visible.push(value);
-        usedWidth += width;
-      } else {
-        overflowing = true;
-        hidden.push(value);
+  private waitForNextFrame() {
+    return new Promise<void>((resolve) =>
+      requestAnimationFrameNoNgZone(() => resolve())
+    );
+  }
+
+  private async waitForChipLayout(elements: (HTMLElement | undefined)[]) {
+    await Promise.all(
+      elements.map((element) => this.waitForComponentReady(element))
+    );
+    await this.waitForNextFrame();
+  }
+
+  private async measureSelectedChipWidths(items: HTMLIxSelectItemElement[]) {
+    const elements = items.map((item) =>
+      this.chipElementRefs.get(item.value.toString())
+    );
+
+    await this.waitForChipLayout(elements);
+
+    let measuredAny = false;
+    for (const item of items) {
+      const value = item.value.toString();
+      const element = this.chipElementRefs.get(value);
+
+      if (element && element.offsetWidth > 0) {
+        this.chipWidths.set(value, element.offsetWidth);
+        measuredAny = true;
       }
     }
 
-    this.applyOverflowState(visible, hidden);
+    return measuredAny;
+  }
+
+  private async measureOverflowChipWidth() {
+    if (this.hiddenChipValues.length === 0 || this.overflowChipWidth > 0) {
+      return;
+    }
+
+    const overflowElement = await this.overflowChipRef.waitForCurrent();
+    await this.waitForChipLayout([overflowElement]);
+
+    if (overflowElement.offsetWidth > 0) {
+      this.overflowChipWidth = overflowElement.offsetWidth;
+    }
   }
 
   override async componentDidRender(): Promise<void> {
@@ -1152,31 +1215,7 @@ export class Select
     );
 
     if (unmeasured.length > 0) {
-      await Promise.all(
-        unmeasured.map(async (item) => {
-          const element = this.chipElementRefs.get(item.value.toString());
-          const stencilChip = element as
-            | Partial<{ componentOnReady: () => Promise<unknown> }>
-            | undefined;
-          if (typeof stencilChip?.componentOnReady === 'function') {
-            await stencilChip.componentOnReady();
-          }
-        })
-      );
-
-      await new Promise<void>((resolve) =>
-        requestAnimationFrameNoNgZone(() => resolve())
-      );
-
-      let measuredAny = false;
-      unmeasured.forEach((item) => {
-        const value = item.value.toString();
-        const element = this.chipElementRefs.get(value);
-        if (element && element.offsetWidth > 0) {
-          this.chipWidths.set(value, element.offsetWidth);
-          measuredAny = true;
-        }
-      });
+      const measuredAny = await this.measureSelectedChipWidths(unmeasured);
 
       if (measuredAny) {
         this.calculateChipOverflow();
@@ -1185,21 +1224,7 @@ export class Select
       return;
     }
 
-    if (this.hiddenChipValues.length > 0 && this.overflowChipWidth === 0) {
-      const overflowElement = await this.overflowChipRef.waitForCurrent();
-      const stencilChip = overflowElement as Partial<{
-        componentOnReady: () => Promise<unknown>;
-      }>;
-      if (typeof stencilChip?.componentOnReady === 'function') {
-        await stencilChip.componentOnReady();
-      }
-      await new Promise<void>((resolve) =>
-        requestAnimationFrameNoNgZone(() => resolve())
-      );
-      if (overflowElement && overflowElement.offsetWidth > 0) {
-        this.overflowChipWidth = overflowElement.offsetWidth;
-      }
-    }
+    await this.measureOverflowChipWidth();
 
     this.calculateChipOverflow();
   }
