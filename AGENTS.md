@@ -85,15 +85,26 @@ Targeted commands:
 ## Testing expectations
 
 - Build before tests when compiled artifacts, generated wrappers, styles, or visual/component tests depend on build output.
-- Core component tests live at `packages/core/src/components/<component>/test/<component>.ct.ts`.
+- `packages/core` is the main place for component tests. Core component tests live at `packages/core/src/components/<component>/test/<component>.ct.ts`.
+- Use core component tests for component behavior, interaction, keyboard handling, accessibility, slots, events, and state changes.
 - Include accessibility coverage (`makeAxeBuilder`) and a basic hydration/render test in component test files.
-- For UI/theming changes, run relevant visual regression tests after `pnpm build --filter !documentation`; visual regression requires Docker.
-- Add or update unit tests for logic changes, component tests for interaction/accessibility changes, and visual tests for meaningful UI or theme changes.
+- Add or update unit tests for pure logic changes, component tests for interaction/accessibility changes, and visual tests only for meaningful UI or theme changes.
 - Prefer Playwright locators, user-visible assertions, and deterministic waits over implementation-detail selectors and timeouts.
+
+## Visual regression testing
+
+- Visual regression tests live in `testing/visual-testing`.
+- Visual regression tests run inside a Docker container so screenshots are operating-system agnostic and less affected by local fonts, browsers, or rendering differences.
+- Visual regression tests are slow. Keep them focused on visual contracts, not every behavior or edge case.
+- For a new feature, prefer one representative screenshot that covers the intended visual state instead of creating a separate screenshot for every feature branch, state, or testcase.
+- Use component tests in `packages/core` for exhaustive behavior coverage, and visual regression only to protect layout, theme, density, color, spacing, and screenshot-visible regressions.
+- For UI/theming changes, run relevant visual regression tests after `pnpm build --filter !documentation`; Docker must be available.
 
 ## Documentation and examples
 
-- Update component JSDoc, README/docs content, Storybook stories, or test-app examples when public usage changes.
+- Component documentation is maintained in the separate `siemens/ix-docs` repository.
+- In this repository, update component JSDoc, metadata inputs, Storybook stories, or test-app examples when public usage changes.
+- If a change requires user-facing documentation updates, call out the needed `siemens/ix-docs` follow-up in the PR.
 - Keep docs and examples aligned across Web Components, Angular, React, and Vue when the behavior is framework-visible.
 - Do not document generated implementation details as public API.
 - Ensure examples use supported imports, current component names, and realistic consumer code.
