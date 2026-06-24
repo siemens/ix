@@ -18,14 +18,14 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { applicationLayoutService } from '../utils/application-layout';
+import type { Disposable } from '../utils/typed-event';
 import type { ContentHeaderVariant } from './content-header.types';
-
-const SMALL_BREAKPOINT_QUERY = '(max-width: 48em)';
 
 /**
  * @slot header - Content to be placed in the header area next to the title
  * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu on small viewports
- * @slot - Default slot for primary content that remains visible at all viewport sizes
+ * @slot default - Default slot for action buttons or other content
  */
 @Component({
   tag: 'ix-content-header',
@@ -63,12 +63,12 @@ export class ContentHeader {
   @State() isSmallBreakpoint = false;
   @State() hasSecondaryActions = false;
 
-  mediaQuery?: MediaQueryList;
+  breakpointDisposable?: Disposable;
   hasDisconnected = false;
   secondarySlot: HTMLSlotElement | null = null;
 
-  readonly mediaQueryHandler = (e: MediaQueryListEvent) => {
-    this.isSmallBreakpoint = e.matches;
+  readonly breakpointChangeHandler = (breakpoint: string) => {
+    this.isSmallBreakpoint = breakpoint === 'sm';
   };
 
   readonly slotChangeHandler = () => this.checkSecondarySlot();
@@ -84,12 +84,15 @@ export class ContentHeader {
     );
   }
 
+  private subscribeToBreakpointChanges() {
+    this.isSmallBreakpoint = applicationLayoutService.breakpoint === 'sm';
+    this.breakpointDisposable = applicationLayoutService.onChange.on(
+      this.breakpointChangeHandler
+    );
+  }
+
   componentWillLoad() {
-    if (globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia(SMALL_BREAKPOINT_QUERY);
-      this.isSmallBreakpoint = this.mediaQuery.matches;
-      this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
-    }
+    this.subscribeToBreakpointChanges();
   }
 
   componentDidLoad() {
@@ -107,9 +110,7 @@ export class ContentHeader {
 
   connectedCallback() {
     if (this.hasDisconnected && globalThis.window !== undefined) {
-      this.mediaQuery = globalThis.window.matchMedia(SMALL_BREAKPOINT_QUERY);
-      this.isSmallBreakpoint = this.mediaQuery.matches;
-      this.mediaQuery.addEventListener('change', this.mediaQueryHandler);
+      this.subscribeToBreakpointChanges();
 
       const slot = this.hostElement.shadowRoot?.querySelector(
         'slot[name="secondary-actions"]'
@@ -123,9 +124,7 @@ export class ContentHeader {
   }
 
   disconnectedCallback() {
-    if (this.mediaQuery) {
-      this.mediaQuery.removeEventListener('change', this.mediaQueryHandler);
-    }
+    this.breakpointDisposable?.dispose();
     this.secondarySlot?.removeEventListener(
       'slotchange',
       this.slotChangeHandler
@@ -183,6 +182,7 @@ export class ContentHeader {
                 icon={iconMoreMenu}
                 variant="tertiary"
                 label=""
+                aria-label="More actions"
               >
                 <slot name="secondary-actions" />
               </ix-dropdown-button>

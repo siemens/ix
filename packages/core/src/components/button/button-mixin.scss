@@ -109,8 +109,8 @@
     --ix-button-border-radius-right: var(--theme-btn--border-radius);
 
     display: inline-block;
-    height: var(--ix-button-height, 2rem);
-    min-height: var(--ix-button-min-height, 2rem);
+    height: 2rem;
+    min-height: 2rem;
     vertical-align: middle;
     cursor: pointer;
 
