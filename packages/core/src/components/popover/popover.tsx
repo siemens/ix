@@ -166,6 +166,8 @@ export class Popover
   private closeFocus: PopoverCloseFocus = 'restore-trigger';
   private hasDisconnected = false;
   private triggerRegistryId = 0;
+  /** Hover mode: block focus handler from re-opening after programmatic dismiss focus. */
+  private suppressFocusPresent = false;
 
   private get spikeElement(): HTMLElement | null {
     return this.hostElement.shadowRoot!.querySelector('.spike');
@@ -398,18 +400,9 @@ export class Popover
 
   private focusFirstElement() {
     const focusTrapOptions = this.getFocusTrapOptions();
-    const focusOptions = { focusVisible: true };
-    focusFirstFocusTrapElement(
-      this.hostElement,
-      focusTrapOptions,
-      focusOptions
-    );
+    focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     requestAnimationFrame(() => {
-      focusFirstFocusTrapElement(
-        this.hostElement,
-        focusTrapOptions,
-        focusOptions
-      );
+      focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     });
   }
 
@@ -443,7 +436,13 @@ export class Popover
 
     requestAnimationFrameNoNgZone(() => {
       if (restoreTriggerFocus) {
+        if (this.triggerMode === 'hover') {
+          this.suppressFocusPresent = true;
+        }
         this.triggerElement?.focus();
+        requestAnimationFrameNoNgZone(() => {
+          this.suppressFocusPresent = false;
+        });
         return;
       }
 
@@ -555,6 +554,9 @@ export class Popover
             callback: () => {
               this.clearHideTimeout();
               if (!this.show) {
+                if (this.suppressFocusPresent) {
+                  return;
+                }
                 popoverController.present(this);
               }
             },

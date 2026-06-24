@@ -94,12 +94,17 @@ class PopoverController {
     popover: PopoverInterface,
     closeFocus: PopoverCloseFocus = 'restore-trigger'
   ) {
-    if (popover.isPresent() && popover.willDismiss?.()) {
-      this.dismissChildrenWithFocus(popover.getId(), closeFocus);
-      popover.dismiss(closeFocus);
-      this.stack.deleteChildIdsEntry(popover.getId());
-      this.removeFromPresentationOrder(popover.getId());
+    const isPresent = popover.isPresent();
+    const willDismiss = popover.willDismiss?.() ?? true;
+
+    if (!isPresent || !willDismiss) {
+      return;
     }
+
+    this.dismissChildrenWithFocus(popover.getId(), closeFocus);
+    popover.dismiss(closeFocus);
+    this.stack.deleteChildIdsEntry(popover.getId());
+    this.removeFromPresentationOrder(popover.getId());
   }
 
   private dismissChildrenWithFocus(

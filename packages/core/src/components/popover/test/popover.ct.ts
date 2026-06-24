@@ -295,6 +295,31 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'closes on Escape while pointer remains on trigger',
+      async ({ mount, page }) => {
+        await mount(
+          interactivePopoverMarkup({
+            triggerMode: 'hover',
+            showFooterDismiss: false,
+          })
+        );
+
+        const popover = new PopoverPage(page);
+        const popoverEl = await popover.linkedPopover();
+
+        await popover.trigger.hover();
+        await popover.expectOpen(popoverEl);
+
+        await popover.closeWithEscape();
+        await expect(async () => popover.expectClosed(popoverEl)).toPass({
+          timeout: 3000,
+        });
+        await page.waitForTimeout(HOVER_HIDE_MS);
+        await popover.expectClosed(popoverEl);
+      }
+    );
+
+    regressionTest(
       'opens on focus and restores focus after Escape',
       async ({ mount, page }) => {
         await mount(
@@ -511,7 +536,7 @@ regressionTest.describe('ix-popover', () => {
 
   regressionTest.describe('focus management', () => {
     regressionTest(
-      'focuses first focusable element when opened with pointer',
+      'focuses first focusable element without visible ring when opened with pointer',
       async ({ mount, page }) => {
         await mountPopover(
           mount,
@@ -521,9 +546,14 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.open();
-        await expect(
-          page.locator('ix-button#popover-dismiss button')
-        ).toBeFocused();
+        const dismissButton = page.locator('ix-button#popover-dismiss button');
+        await expect(dismissButton).toBeFocused();
+        await expect(async () => {
+          const showsFocusVisible = await dismissButton.evaluate((button) =>
+            button.matches(':focus-visible')
+          );
+          expect(showsFocusVisible).toBe(false);
+        }).toPass({ timeout: 3000 });
 
         await page.keyboard.press('Tab');
         await expect(
