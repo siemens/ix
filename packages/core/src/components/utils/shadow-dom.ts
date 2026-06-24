@@ -27,6 +27,24 @@ export function hasSlottedElements(slot: any) {
   return slot.assignedElements({ flatten: true }).length !== 0;
 }
 
+export function hasSlottedContent(slot?: HTMLSlotElement | null) {
+  if (!slot) {
+    return false;
+  }
+
+  if (hasSlottedElements(slot)) {
+    return true;
+  }
+
+  return slot
+    .assignedNodes({ flatten: true })
+    .some(
+      (node) =>
+        node.nodeType === Node.TEXT_NODE &&
+        (node.textContent ?? '').trim().length > 0
+    );
+}
+
 export function containsElement(target: Element, element: Element) {
   const hasShadowDom = target.shadowRoot;
 
