@@ -39,43 +39,35 @@ export default meta;
 type Story = StoryObj<Element>;
 
 export const Primary: Story = {
-  args: {
-    icon: 'star',
-    variant: 'primary',
-  },
+  args: {},
 };
 
 export const Secondary: Story = {
   args: {
-    icon: 'star',
     variant: 'secondary',
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    icon: 'star',
     variant: 'tertiary',
   },
 };
 
 export const SubtlePrimary: Story = {
   args: {
-    icon: 'star',
     variant: 'subtle-primary',
   },
 };
 
 export const SubtleSecondary: Story = {
   args: {
-    icon: 'star',
     variant: 'subtle-secondary',
   },
 };
 
 export const SubtleTertiary: Story = {
   args: {
-    icon: 'star',
     variant: 'subtle-tertiary',
   },
 };
@@ -103,48 +95,36 @@ export const DangerTertiary: Story = {
 
 export const Oval: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     oval: true,
   },
 };
 
 export const Loading: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     loading: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     disabled: true,
   },
 };
 
 export const Size16: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     size: '16',
   },
 };
 
 export const Size12: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     size: '12',
   },
 };
 
 export const CustomIconColor: Story = {
   args: {
-    icon: 'star',
-    variant: 'primary',
     iconColor: 'color-alarm',
   },
 };
