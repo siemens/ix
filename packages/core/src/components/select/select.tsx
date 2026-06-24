@@ -1006,6 +1006,16 @@ export class Select
         );
         break;
       }
+      case 'Tab': {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this.focusOverflowRemoveButton(
+          event.shiftKey
+            ? (currentIndex - 1 + buttons.length) % buttons.length
+            : (currentIndex + 1) % buttons.length
+        );
+        break;
+      }
       case 'Escape': {
         event.preventDefault();
         event.stopImmediatePropagation();

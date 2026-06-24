@@ -1462,3 +1462,55 @@ test('multiple mode: focused "+N" chip arrow navigation', async ({
   await expect(overflowDropdown).not.toBeVisible();
   await expect(overflowChip).toBeFocused();
 });
+
+test('multiple mode: focused "+N" chip traps Tab navigation', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <button data-testid="before-overflow">Before</button>
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+    <button data-testid="after-overflow">After</button>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+
+  await overflowChip.focus();
+  await expect(overflowChip).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+
+  const overflowDropdown = select.locator('ix-dropdown.overflow-dropdown');
+  await expect(overflowDropdown).toBeVisible();
+
+  const removeButtons = overflowDropdown.locator(
+    'ix-filter-chip.chip-hidden-item ix-icon-button button'
+  );
+  const beforeOverflow = page.locator('[data-testid="before-overflow"]');
+  const afterOverflow = page.locator('[data-testid="after-overflow"]');
+
+  await expect(removeButtons.first()).toBeFocused();
+
+  await page.keyboard.press('Tab');
+  await expect(removeButtons.nth(1)).toBeFocused();
+  await expect(afterOverflow).not.toBeFocused();
+
+  await removeButtons.last().focus();
+  await page.keyboard.press('Tab');
+  await expect(removeButtons.first()).toBeFocused();
+  await expect(afterOverflow).not.toBeFocused();
+
+  await page.keyboard.press('Shift+Tab');
+  await expect(removeButtons.last()).toBeFocused();
+  await expect(beforeOverflow).not.toBeFocused();
+});
