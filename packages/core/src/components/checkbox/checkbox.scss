@@ -39,15 +39,14 @@
       var(--theme-checkbox-unchecked--border-color--disabled);
   }
 
-  button:focus-visible {
+  input[type='checkbox'] {
+  position: absolute;
+
+  &:focus-visible + button {
     outline: 0.0625rem solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-checkbox--focus--outline-offset);
   }
-
-  input[type='checkbox'] {
-    display: none;
-  }
-
+}
   label {
     display: flex;
 

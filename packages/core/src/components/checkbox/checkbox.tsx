@@ -205,9 +205,8 @@ export class Checkbox implements IxFormComponent<string> {
             onChange={() => this.setCheckedState(!this.checked)}
           />
           <button
-            role="checkbox"
-            aria-checked={a11yBoolean(this.checked)}
-            aria-label={this.label}
+            type="checkbox"
+            aria-hidden="true"
             disabled={this.disabled}
             class={{
               checked: this.checked,
