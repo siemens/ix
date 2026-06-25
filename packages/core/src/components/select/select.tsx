@@ -117,7 +117,7 @@ export class Select
    * mode when not all selected chips fit on a single row. The `{count}`
    * placeholder is replaced with the number of hidden items (e.g. "3 more").
    *
-   * @since 6.0.0
+   * @since 5.1.0
    */
   @Prop({ attribute: 'i18n-more-items' }) ariaLabelMoreItems = '{count} more';
 
