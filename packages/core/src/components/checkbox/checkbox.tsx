@@ -206,7 +206,6 @@ export class Checkbox implements IxFormComponent<string> {
           />
           <button
             type="checkbox"
-            aria-hidden="true"
             disabled={this.disabled}
             class={{
               checked: this.checked,
