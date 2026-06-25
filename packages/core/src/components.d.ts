@@ -2401,6 +2401,11 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu": string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -2415,6 +2420,11 @@ export namespace Components {
           * @default 'About & legal information'
          */
         "i18nLegal": string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @default 'Use arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint": string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -8836,6 +8846,11 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu"?: string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -8850,6 +8865,11 @@ declare namespace LocalJSX {
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @default 'Use arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint"?: string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -11701,11 +11721,13 @@ declare namespace LocalJSX {
         "expand": boolean;
         "startExpanded": boolean;
         "pinned": boolean;
+        "i18nAriaLabelMenu": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         "i18nExpand": string;
         "i18nCollapse": string;
+        "i18nNavigationHint": string;
     }
     interface IxMenuAboutAttributes {
         "suppressLegacyTabs": boolean;

@@ -67,8 +67,16 @@ $menu-expanded-width: 16rem;
   .menu-navigation {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
     min-height: 0;
+
+    &.menu-navigation--fill {
+      flex: 1 1 auto;
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: -1px;
+    }
   }
 
   .tabs--shadow {

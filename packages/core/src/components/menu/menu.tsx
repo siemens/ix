@@ -108,6 +108,12 @@ export class Menu {
   }
 
   /**
+   * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+   */
+  @Prop({ attribute: 'i18n-aria-label-menu' }) i18nAriaLabelMenu =
+    'Application Navigation';
+
+  /**
    *  i18n label for 'About & legal information' button
    */
   @Prop({ attribute: 'i18n-legal' }) i18nLegal = 'About & legal information';
@@ -131,6 +137,12 @@ export class Menu {
    * i18n label for 'Collapse' button
    */
   @Prop({ attribute: 'i18n-collapse' }) i18nCollapse = 'Collapse';
+
+  /**
+   * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+   */
+  @Prop({ attribute: 'i18n-navigation-hint' }) i18nNavigationHint =
+    'Use arrow keys to navigate between menu items';
 
   /**
    * Menu expanded
@@ -167,11 +179,15 @@ export class Menu {
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
   @State() isMenuItemsOverflow = false;
+  @State() hasBottomSlotItems = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
+  private lastFocusedMenuItem?:
+    | HTMLIxMenuItemElement
+    | HTMLIxMenuCategoryElement;
   private themeNameDisposer?: Disposable;
 
   // FBC IAM workaround #488
@@ -192,6 +208,10 @@ export class Menu {
 
   get menuItemsContainer(): HTMLDivElement {
     return this.menu!.querySelector('.tabs')!;
+  }
+
+  get menuNavigationContainer(): HTMLDivElement {
+    return this.menu!.querySelector('.menu-navigation')!;
   }
 
   get overlayContainer() {
@@ -281,6 +301,14 @@ export class Menu {
     );
   }
 
+  get hasUtilityMenuItems(): boolean {
+    return !!this.settings || this.enableToggleTheme || !!this.about;
+  }
+
+  get shouldFillMenuNavigation(): boolean {
+    return this.hasUtilityMenuItems || this.hasBottomSlotItems;
+  }
+
   get tabsContainer() {
     return this.hostElement;
   }
@@ -289,9 +317,7 @@ export class Menu {
     requestAnimationFrame(() => {
       this.handleOverflowIndicator();
       const items = this.getAllFocusableItems();
-      if (items.length > 0) {
-        this.updateRovingTabIndex(items, 0);
-      }
+      this.resetRovingTabIndex(items);
     });
 
     if (this.pinned) {
@@ -300,6 +326,8 @@ export class Menu {
   }
 
   componentWillLoad() {
+    this.updateBottomSlotState();
+
     useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
@@ -619,6 +647,12 @@ export class Menu {
     }
   }
 
+  private updateBottomSlotState() {
+    this.hasBottomSlotItems = Array.from(this.hostElement.children).some(
+      (element) => element.getAttribute('slot') === 'bottom'
+    );
+  }
+
   private isHiddenFromViewport() {
     return this.breakpoint === 'sm' && this.expand === false;
   }
@@ -634,6 +668,19 @@ export class Menu {
         item.setTabIndex?.(i === activeIndex ? 0 : -1);
       }
     );
+  }
+
+  private resetRovingTabIndex(
+    items: (
+      | HTMLIxMenuItemElement
+      | HTMLIxMenuCategoryElement
+    )[] = this.getAllFocusableItems()
+  ) {
+    this.updateMenuItemPositionMetadata(items);
+
+    items.forEach((item) => {
+      item.setTabIndex?.(-1);
+    });
   }
 
   // item positions and menu size has to be set manually because slotted items and utility controls are separated into two groups
@@ -669,8 +716,12 @@ export class Menu {
     const items = this.getAllFocusableItems();
     const path = event.composedPath();
     const activeIndex = items.findIndex((item) => path.includes(item));
+
     if (activeIndex !== -1) {
+      this.lastFocusedMenuItem = items[activeIndex];
       this.updateRovingTabIndex(items, activeIndex);
+    } else if (event.target instanceof HTMLElement) {
+      this.resetRovingTabIndex(items);
     }
   }
 
@@ -712,10 +763,6 @@ export class Menu {
       return;
     }
 
-    if (event.target === this.menuItemsContainer) {
-      return;
-    }
-
     if (this.isEventFromExpandedCategoryItems(event)) {
       return;
     }
@@ -727,31 +774,56 @@ export class Menu {
 
     const path = event.composedPath();
     const currentIndex = items.findIndex((item) => path.includes(item));
-    if (currentIndex === -1) {
+    const isMenuNavigationFocused =
+      currentIndex === -1 && path.includes(this.menuNavigationContainer);
+
+    if (!isMenuNavigationFocused && currentIndex === -1) {
       return;
     }
 
     event.preventDefault();
 
+    if (isMenuNavigationFocused) {
+      let index = items.indexOf(this.lastFocusedMenuItem!);
+
+      if (event.key === 'Home') {
+        index = 0;
+      } else if (event.key === 'End') {
+        index = items.length - 1;
+      } else if (index === -1) {
+        index = event.key === 'ArrowDown' ? 0 : items.length - 1;
+      }
+
+      this.updateRovingTabIndex(items, index);
+      this.lastFocusedMenuItem = items[index];
+      items[index].focus();
+
+      return;
+    }
+
     switch (event.key) {
       case 'ArrowDown': {
         const next = (currentIndex + 1) % items.length;
         this.updateRovingTabIndex(items, next);
+        this.lastFocusedMenuItem = items[next];
         items[next].focus();
         break;
       }
       case 'ArrowUp': {
         const prev = (currentIndex - 1 + items.length) % items.length;
         this.updateRovingTabIndex(items, prev);
+        this.lastFocusedMenuItem = items[prev];
         items[prev].focus();
         break;
       }
       case 'Home':
         this.updateRovingTabIndex(items, 0);
+        this.lastFocusedMenuItem = items[0];
         items[0].focus();
         break;
       case 'End':
         this.updateRovingTabIndex(items, items.length - 1);
+        this.lastFocusedMenuItem = items.at(-1);
         items.at(-1)?.focus();
         break;
     }
@@ -817,12 +889,34 @@ export class Menu {
               )}
           </div>
 
+          <span
+            id="menu-navigation-hint"
+            style={{
+              position: 'absolute',
+              width: '1px',
+              height: '1px',
+              margin: '-1px',
+              overflow: 'hidden',
+              clip: 'rect(0,0,0,0)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {this.i18nNavigationHint}
+          </span>
+
           <div
             role="menubar"
             aria-orientation="vertical"
-            class="menu-navigation"
+            aria-label={this.i18nAriaLabelMenu}
+            aria-describedby="menu-navigation-hint"
+            class={{
+              'menu-navigation': true,
+              'menu-navigation--fill': this.shouldFillMenuNavigation,
+            }}
+            tabIndex={0}
             onKeyDown={(e) => this.handleMenuKeyDown(e)}
             onFocusin={(e) => this.handleMenuFocusIn(e)}
+            onFocusout={() => this.resetRovingTabIndex()}
           >
             <div
               id="menu-tabs"
@@ -845,7 +939,7 @@ export class Menu {
                     'show-scrollbar': this.expand,
                   }}
                   role="group"
-                  tabIndex={this.isMenuItemsOverflow ? 0 : -1}
+                  tabIndex={-1}
                   onScroll={() => this.handleOverflowIndicator()}
                 >
                   <div class="menu-avatar">
@@ -866,7 +960,10 @@ export class Menu {
               </div>
             </div>
             <div onClick={(e) => this.onMenuItemsClick(e)}>
-              <slot name="bottom"></slot>
+              <slot
+                name="bottom"
+                onSlotchange={() => this.updateBottomSlotState()}
+              ></slot>
             </div>
 
             <div class="bottom-tab-divider"></div>

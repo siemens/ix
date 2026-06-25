@@ -1156,11 +1156,13 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents, Componen
         expand: 'expand',
         startExpanded: 'start-expanded',
         pinned: 'pinned',
+        i18nAriaLabelMenu: 'i18n-aria-label-menu',
         i18nLegal: 'i18n-legal',
         i18nSettings: 'i18n-settings',
         i18nToggleTheme: 'i18n-toggle-theme',
         i18nExpand: 'i18n-expand',
-        i18nCollapse: 'i18n-collapse'
+        i18nCollapse: 'i18n-collapse',
+        i18nNavigationHint: 'i18n-navigation-hint'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMenu as StencilReactComponent<IxMenuElement, IxMenuEvents, Components.IxMenu>,
