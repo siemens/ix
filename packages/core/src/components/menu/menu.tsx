@@ -108,10 +108,16 @@ export class Menu {
   }
 
   /**
-   * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+   * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
    */
   @Prop({ attribute: 'i18n-aria-label-menu' }) i18nAriaLabelMenu =
     'Application Navigation';
+
+  /**
+   * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+   */
+  @Prop({ attribute: 'i18n-navigation-hint' }) i18nNavigationHint =
+    'Use Up and Down arrow keys to navigate between menu items';
 
   /**
    *  i18n label for 'About & legal information' button
@@ -137,12 +143,6 @@ export class Menu {
    * i18n label for 'Collapse' button
    */
   @Prop({ attribute: 'i18n-collapse' }) i18nCollapse = 'Collapse';
-
-  /**
-   * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
-   */
-  @Prop({ attribute: 'i18n-navigation-hint' }) i18nNavigationHint =
-    'Use arrow keys to navigate between menu items';
 
   /**
    * Menu expanded
