@@ -1,0 +1,19 @@
+packages/core/src/components/popover/popover.tsx
+  s_c210e0ae116251::t_b1ee628421d3da 50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4876bb31ae7ca91a7d0e986c2b1d9e3db19832b3",
+  "prompts": {},
+  "sessions": {
+    "s_c210e0ae116251": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "96c65bbb-c1a3-4f0a-811f-7414ad3bbce9",
+        "model": "default"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
