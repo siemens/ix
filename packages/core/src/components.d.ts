@@ -2401,7 +2401,7 @@ export namespace Components {
          */
         "expand": boolean;
         /**
-          * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
           * @default 'Application Navigation'
          */
         "i18nAriaLabelMenu": string;
@@ -2422,7 +2422,7 @@ export namespace Components {
         "i18nLegal": string;
         /**
           * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
-          * @default 'Use arrow keys to navigate between menu items'
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
          */
         "i18nNavigationHint": string;
         /**
@@ -3166,6 +3166,8 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlayground {
     }
     /**
      * @since 3.2.0
@@ -5854,6 +5856,12 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundElement: {
+        prototype: HTMLIxPlaygroundElement;
+        new (): HTMLIxPlaygroundElement;
+    };
     /**
      * @since 3.2.0
      */
@@ -6376,6 +6384,7 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground": HTMLIxPlaygroundElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
@@ -8846,7 +8855,7 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
-          * Aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
           * @default 'Application Navigation'
          */
         "i18nAriaLabelMenu"?: string;
@@ -8867,7 +8876,7 @@ declare namespace LocalJSX {
         "i18nLegal"?: string;
         /**
           * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
-          * @default 'Use arrow keys to navigate between menu items'
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
          */
         "i18nNavigationHint"?: string;
         /**
@@ -9688,6 +9697,8 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlayground {
     }
     /**
      * @since 3.2.0
@@ -11722,12 +11733,12 @@ declare namespace LocalJSX {
         "startExpanded": boolean;
         "pinned": boolean;
         "i18nAriaLabelMenu": string;
+        "i18nNavigationHint": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         "i18nExpand": string;
         "i18nCollapse": string;
-        "i18nNavigationHint": string;
     }
     interface IxMenuAboutAttributes {
         "suppressLegacyTabs": boolean;
@@ -12300,6 +12311,7 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-playground": IxPlayground;
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
@@ -12441,6 +12453,7 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * @since 3.2.0
              */

@@ -889,26 +889,11 @@ export class Menu {
               )}
           </div>
 
-          <span
-            id="menu-navigation-hint"
-            style={{
-              position: 'absolute',
-              width: '1px',
-              height: '1px',
-              margin: '-1px',
-              overflow: 'hidden',
-              clip: 'rect(0,0,0,0)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {this.i18nNavigationHint}
-          </span>
-
           <div
             role="menubar"
             aria-orientation="vertical"
             aria-label={this.i18nAriaLabelMenu}
-            aria-describedby="menu-navigation-hint"
+            aria-description={this.i18nNavigationHint}
             class={{
               'menu-navigation': true,
               'menu-navigation--fill': this.shouldFillMenuNavigation,
@@ -981,6 +966,7 @@ export class Menu {
                   icon={iconCogwheel}
                   onClick={async () => this.toggleSettings(!this.showSettings)}
                   label={this.i18nSettings}
+                  aria-haspopup="dialog"
                   aria-expanded={this.showSettings.toString()}
                   aria-controls="menu-overlay"
                 ></ix-menu-item>
@@ -1009,6 +995,7 @@ export class Menu {
                   icon={iconInfo}
                   onClick={async () => this.toggleAbout(!this.showAbout)}
                   label={this.i18nLegal}
+                  aria-haspopup="dialog"
                   aria-expanded={this.showAbout.toString()}
                   aria-controls="menu-overlay"
                 ></ix-menu-item>
@@ -1019,6 +1006,7 @@ export class Menu {
         </nav>
         <section
           id="menu-overlay"
+          role="dialog"
           aria-label={overlayLabel}
           class={{
             'menu-overlay': true,
