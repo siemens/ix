@@ -43,11 +43,11 @@ import {
   getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
-import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import {
   InheritAriaAttributesMixin,
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
+import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
@@ -400,7 +400,6 @@ export class Popover
 
   private focusFirstElement() {
     const focusTrapOptions = this.getFocusTrapOptions();
-    focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     requestAnimationFrame(() => {
       focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     });
