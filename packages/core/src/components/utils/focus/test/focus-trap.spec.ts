@@ -15,8 +15,8 @@ import {
   getDeepActiveElement,
 } from '../focus-trap';
 
-const dispatchTab = () => {
-  document.dispatchEvent(
+const dispatchTab = (target: EventTarget = document) => {
+  target.dispatchEvent(
     new KeyboardEvent('keydown', {
       key: 'Tab',
       bubbles: true,
@@ -84,7 +84,34 @@ describe('addFocusTrap', () => {
     document.body.innerHTML = '';
   });
 
-  it('advances focus with listenOnDocument inside an ancestor shadow root', async () => {
+  it('allows Tab keydown to reach nested listeners when not at trap boundary', async () => {
+    const trapHost = document.createElement('div');
+    const first = document.createElement('button');
+    const second = document.createElement('button');
+    trapHost.append(first, second);
+    document.body.appendChild(trapHost);
+
+    let tabSeenOnSecond = false;
+    second.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab') {
+        tabSeenOnSecond = true;
+      }
+    });
+
+    second.focus();
+
+    const trap = await addFocusTrap(trapHost, {
+      listenOnDocument: true,
+      trapFocusInShadowDom: 'both',
+    });
+
+    dispatchTab(second);
+
+    expect(tabSeenOnSecond).toBe(true);
+    trap.destroy();
+  });
+
+  it('wraps focus at trap boundary inside an ancestor shadow root', async () => {
     const demo = document.createElement('div');
     const shadow = demo.attachShadow({ mode: 'open' });
     const trapHost = document.createElement('div');
@@ -95,16 +122,39 @@ describe('addFocusTrap', () => {
     trapHost.append(first, second);
     shadow.appendChild(trapHost);
     document.body.appendChild(demo);
-    first.focus();
+    second.focus();
+
+    const trap = await addFocusTrap(trapHost, {
+      trapFocusInShadowDom: 'both',
+    });
+
+    dispatchTab(second);
+
+    expect(getDeepActiveElement()).toBe(first);
+    trap.destroy();
+  });
+
+  it('does not redirect Tab when focus is inside trap but not in the focusable list', async () => {
+    const trapHost = document.createElement('div');
+    const close = document.createElement('button');
+    close.id = 'close';
+    const widget = document.createElement('div');
+    const widgetShadow = widget.attachShadow({ mode: 'open' });
+    const inner = document.createElement('button');
+    inner.id = 'inner';
+    widgetShadow.append(inner);
+    trapHost.append(close, widget);
+    document.body.appendChild(trapHost);
+    inner.focus();
 
     const trap = await addFocusTrap(trapHost, {
       listenOnDocument: true,
       trapFocusInShadowDom: 'both',
     });
 
-    dispatchTab();
+    dispatchTab(inner);
 
-    expect(getDeepActiveElement()).toBe(second);
+    expect(getDeepActiveElement()).toBe(inner);
     trap.destroy();
   });
 
@@ -121,7 +171,7 @@ describe('addFocusTrap', () => {
       trapFocusInShadowDom: 'both',
     });
 
-    dispatchTab();
+    dispatchTab(second);
 
     expect(document.activeElement).toBe(first);
     trap.destroy();
@@ -141,7 +191,7 @@ describe('addFocusTrap', () => {
       shouldDeferTabTrap: () => true,
     });
 
-    dispatchTab();
+    dispatchTab(first);
 
     expect(document.activeElement).toBe(first);
     trap.destroy();

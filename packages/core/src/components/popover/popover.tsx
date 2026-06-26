@@ -400,7 +400,7 @@ export class Popover
 
   private focusFirstElement() {
     const focusTrapOptions = this.getFocusTrapOptions();
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       focusFirstFocusTrapElement(this.hostElement, focusTrapOptions);
     });
   }

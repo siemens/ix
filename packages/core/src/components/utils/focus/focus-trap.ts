@@ -385,24 +385,6 @@ export function focusFirstFocusTrapElement(
   focusElementInContext(target ?? null, ref, focusOptions);
 }
 
-const getNextTrapFocusable = (
-  focusableElements: HTMLElement[],
-  activeIndex: number,
-  shiftKey: boolean
-): HTMLElement => {
-  if (activeIndex === -1) {
-    return shiftKey ? focusableElements.at(-1)! : focusableElements[0];
-  }
-
-  if (shiftKey) {
-    return focusableElements.at(activeIndex === 0 ? -1 : activeIndex - 1)!;
-  }
-
-  return focusableElements.at(
-    activeIndex === focusableElements.length - 1 ? 0 : activeIndex + 1
-  )!;
-};
-
 const resolveFocusTrapElement = async (
   target: HTMLElement | MakeRef<any>
 ): Promise<HTMLElement> => {
@@ -446,18 +428,6 @@ export const addFocusTrap = async (
       return;
     }
 
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    const activeElement = resolveFocusTrapActiveElement(
-      trapHost,
-      focusableElements
-    );
-
-    const activeIndex = findActiveFocusableIndex(
-      activeElement,
-      focusableElements
-    );
-
     if (options?.listenOnDocument) {
       if (options.shouldDeferTabTrap?.(trapHost)) {
         return;
@@ -471,46 +441,25 @@ export const addFocusTrap = async (
       ) {
         return;
       }
-
-      keyboardEvent.preventDefault();
-      tryFocusElement(
-        getNextTrapFocusable(
-          focusableElements,
-          activeIndex,
-          keyboardEvent.shiftKey
-        )
-      );
-      event.stopImmediatePropagation();
-      return;
     }
 
-    if (activeIndex === -1) {
-      const deepActive = getDeepActiveElement();
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const activeElement = resolveFocusTrapActiveElement(
+      trapHost,
+      focusableElements
+    );
 
-      if (!(deepActive instanceof HTMLElement)) {
-        return;
-      }
-
-      if (isNestedOpenPopoverLayer(deepActive, trapHost)) {
-        return;
-      }
-
-      if (isFocusWithinTrapHost(deepActive, trapHost)) {
-        keyboardEvent.preventDefault();
-        tryFocusElement(
-          getNextTrapFocusable(
-            focusableElements,
-            activeIndex,
-            keyboardEvent.shiftKey
-          )
-        );
-        event.stopImmediatePropagation();
-      }
-
-      return;
-    }
+    const activeIndex = findActiveFocusableIndex(
+      activeElement,
+      focusableElements
+    );
 
     let handled = false;
+
+    if (activeIndex === -1) {
+      return;
+    }
 
     if (keyboardEvent.shiftKey) {
       if (activeIndex === 0) {
@@ -529,10 +478,10 @@ export const addFocusTrap = async (
     }
   };
 
-  listenerTarget.addEventListener('keydown', onKeydown, true);
+  listenerTarget.addEventListener('keydown', onKeydown);
 
   const destroy = () => {
-    listenerTarget.removeEventListener('keydown', onKeydown, true);
+    listenerTarget.removeEventListener('keydown', onKeydown);
   };
 
   return {

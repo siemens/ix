@@ -614,6 +614,54 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'allows Tab between time picker columns inside popover content',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          html`
+            <ix-button id="schedule-trigger">Open</ix-button>
+            <ix-popover
+              id="schedule-popover"
+              trigger="schedule-trigger"
+              close-on-click-outside
+            >
+              <ix-popover-header aria-label-close-icon-button="Close">
+                Schedule
+              </ix-popover-header>
+              <ix-popover-content>
+                <ix-time-picker
+                  id="schedule-time-picker"
+                  time="09:30:00"
+                ></ix-time-picker>
+              </ix-popover-content>
+              <ix-popover-footer>
+                <ix-button id="schedule-apply">Apply</ix-button>
+              </ix-popover-footer>
+            </ix-popover>
+          `
+        );
+
+        const popover = new PopoverPage(page, 'schedule-trigger');
+        await popover.openWithKeyboardAndExpectOpen();
+
+        const picker = page.locator('ix-time-picker#schedule-time-picker');
+        await picker.getByRole('option', { name: 'hr: 9', exact: true }).focus();
+        await page.keyboard.press('ArrowDown');
+
+        await page.keyboard.press('Tab');
+        await expect(
+          picker.getByRole('option', { name: 'min: 30', exact: true })
+        ).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(
+          picker.getByRole('option', { name: 'sec: 0', exact: true })
+        ).toBeFocused();
+      }
+    );
+
+    regressionTest(
       'restores focus to trigger after Escape for interactive popovers',
       async ({ mount, page }) => {
         await mountPopover(
