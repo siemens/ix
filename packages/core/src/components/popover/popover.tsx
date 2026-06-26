@@ -93,7 +93,8 @@ export class Popover
 
   /**
    * Element that toggles the popover.
-   * CSS selector string or DOM element reference.
+   * String values are resolved as the trigger element `id`, not as CSS selectors.
+   * Also accepts a DOM element reference.
    *
    * @since 5.1.0
    */
