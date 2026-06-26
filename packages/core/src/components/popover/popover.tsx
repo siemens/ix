@@ -275,13 +275,21 @@ export class Popover
   override connectedCallback() {
     if (this.hasDisconnected) {
       popoverController.connected(this);
-      void this.registerTriggerListener();
+      void this.initializePopover();
     }
   }
 
   override componentDidLoad() {
     popoverController.connected(this);
-    void this.registerTriggerListener();
+    void this.initializePopover();
+  }
+
+  private async initializePopover() {
+    await this.registerTriggerListener();
+
+    if (this.show) {
+      await this.openPopover({ fromShowWatch: true });
+    }
   }
 
   override disconnectedCallback() {
