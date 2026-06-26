@@ -861,8 +861,6 @@ export class Popover
   }
 
   override render() {
-    const role = this.inheritAriaAttributes['role'] ?? 'dialog';
-
     return (
       <Host class={{ visible: this.show }} data-ix-popover={this.uid}>
         <dialog
@@ -871,9 +869,8 @@ export class Popover
           class="dialog"
           popover="manual"
           inert={!this.show}
-          role={role}
-          aria-label={this.inheritAriaAttributes['aria-label']}
-          aria-describedby={this.inheritAriaAttributes['aria-describedby']}
+          {...this.inheritAriaAttributes}
+          role={this.inheritAriaAttributes['role'] ?? 'dialog'}
           onMouseEnter={() => this.onDialogMouseEnter()}
           onMouseLeave={() => this.onDialogMouseLeave()}
         >
