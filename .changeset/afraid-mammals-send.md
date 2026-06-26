@@ -1,5 +1,5 @@
 ---
-'@siemens/ix-echarts': major
+'@siemens/ix-echarts': minor
 ---
 
-Updated dependencies of `echarts` to support `^6.0.0`
+Expanded the supported Echarts peer dependency range to include "Echarts 6" while maintaining compatibility with Echarts 5
