@@ -344,7 +344,7 @@ export class Popover
         }
       }
 
-      requestAnimationFrame(() => {
+      requestAnimationFrameNoNgZone(() => {
         this.showChanged.emit(true);
       });
     } finally {
@@ -387,7 +387,7 @@ export class Popover
 
     this.updateTriggerAria(false);
 
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       this.showChanged.emit(false);
     });
   }
@@ -620,7 +620,7 @@ export class Popover
 
     if (event.type === 'focusout') {
       // showPopover() can move focus into the top-layer dialog without relatedTarget.
-      requestAnimationFrame(() => {
+      requestAnimationFrameNoNgZone(() => {
         if (this.containsPopoverTarget(document.activeElement)) {
           return;
         }
