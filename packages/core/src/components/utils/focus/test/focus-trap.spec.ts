@@ -198,6 +198,31 @@ describe('addFocusTrap', () => {
     trap.destroy();
   });
 
+  it('does not wrap Tab when focus is inside a nested open popover layer', async () => {
+    const outer = document.createElement('ix-popover');
+    outer.classList.add('visible');
+    const outerFirst = document.createElement('button');
+    const outerLast = document.createElement('button');
+    const inner = document.createElement('ix-popover');
+    inner.classList.add('visible');
+    const innerButton = document.createElement('button');
+    inner.appendChild(innerButton);
+    outer.append(outerFirst, inner, outerLast);
+    document.body.appendChild(outer);
+
+    const trap = await addFocusTrap(outer, {
+      listenOnDocument: true,
+      trapFocusInShadowDom: 'both',
+    });
+
+    innerButton.focus();
+
+    dispatchTab(innerButton);
+
+    expect(document.activeElement).toBe(innerButton);
+    trap.destroy();
+  });
+
   it('wraps focus when a non-tabbable button is between trap focusables', async () => {
     const trapHost = document.createElement('div');
     const first = document.createElement('button');

@@ -433,12 +433,6 @@ export const addFocusTrap = async (
       return;
     }
 
-    const focusableElements = getFocusTrapFocusables(trapHost, options);
-
-    if (focusableElements.length === 0) {
-      return;
-    }
-
     if (options?.listenOnDocument) {
       if (options.shouldDeferTabTrap?.(trapHost)) {
         return;
@@ -452,6 +446,12 @@ export const addFocusTrap = async (
       ) {
         return;
       }
+    }
+
+    const focusableElements = getFocusTrapFocusables(trapHost, options);
+
+    if (focusableElements.length === 0) {
+      return;
     }
 
     const firstElement = focusableElements[0];
