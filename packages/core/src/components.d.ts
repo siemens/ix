@@ -3372,7 +3372,7 @@ export namespace Components {
         "ariaLabelClearIconButton"?: string;
         /**
           * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
-          * @since 6.0.0
+          * @since 5.1.0
           * @default '{count} more'
          */
         "ariaLabelMoreItems": string;
@@ -9908,7 +9908,7 @@ declare namespace LocalJSX {
         "ariaLabelClearIconButton"?: string;
         /**
           * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
-          * @since 6.0.0
+          * @since 5.1.0
           * @default '{count} more'
          */
         "ariaLabelMoreItems"?: string;

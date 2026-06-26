@@ -53,6 +53,12 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('mode-multiple-long-item-label', async ({ page }) => {
+    await page.goto('select/mode-multiple-long-item-label');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('overflow', async ({ page }) => {
     await page.goto('select/overflow');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
