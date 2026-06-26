@@ -20,6 +20,7 @@ export interface PopoverMarkupOptions {
   ariaLabel?: string;
   hideClose?: boolean;
   showFooterDismiss?: boolean;
+  show?: boolean;
 }
 
 /**
@@ -37,6 +38,7 @@ export function interactivePopoverMarkup(options?: PopoverMarkupOptions) {
     ariaLabel,
     hideClose,
     showFooterDismiss = true,
+    show,
   } = options ?? {};
 
   return html`
@@ -45,6 +47,7 @@ export function interactivePopoverMarkup(options?: PopoverMarkupOptions) {
       id="${id}"
       trigger="${triggerId}"
       placement="${placement}"
+      ${show ? 'show' : ''}
       ${closeOnClickOutside ? 'close-on-click-outside' : ''}
       ${triggerMode ? `trigger-mode="${triggerMode}"` : ''}
       ${hasSpike ? 'has-spike' : ''}

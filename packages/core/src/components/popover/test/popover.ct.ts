@@ -393,19 +393,19 @@ regressionTest.describe('ix-popover', () => {
       await popover.expectClosed();
     });
 
-    regressionTest('opens when mounted with show attribute', async ({ mount, page }) => {
-      await mountPopover(
-        mount,
-        page,
-        interactivePopoverMarkup().replace(
-          '<ix-popover',
-          '<ix-popover show'
-        )
-      );
-      const popover = new PopoverPage(page);
+    regressionTest(
+      'opens when mounted with show attribute',
+      async ({ mount, page }) => {
+        await mountPopover(
+          mount,
+          page,
+          interactivePopoverMarkup({ show: true })
+        );
+        const popover = new PopoverPage(page);
 
-      await popover.expectOpen();
-    });
+        await popover.expectOpen();
+      }
+    );
 
     regressionTest(
       'handles rapid showPopover calls gracefully',
