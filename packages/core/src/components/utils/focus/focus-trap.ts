@@ -249,16 +249,6 @@ export function isWithinInertSubtree(element: Element): boolean {
   return false;
 }
 
-/** Drops focusables inside closed or nested child popovers (not tabbable in the active layer). */
-export function filterFocusTrapFocusables(
-  focusableElements: HTMLElement[],
-  trapHost: HTMLElement
-): HTMLElement[] {
-  return focusableElements.filter(
-    (element) => !shouldExcludeFromFocusTrap(element, trapHost)
-  );
-}
-
 function shouldExcludeFromFocusTrap(
   element: HTMLElement,
   trapHost: HTMLElement
@@ -273,6 +263,23 @@ function shouldExcludeFromFocusTrap(
   }
 
   return true;
+}
+
+/** CSS-hidden controls can match the focusable query but are not in tab order. */
+function isHiddenFromTabOrder(element: HTMLElement): boolean {
+  const { display, visibility } = getComputedStyle(element);
+
+  return display === 'none' || visibility === 'hidden';
+}
+
+/** Drops focusables inside closed or nested child popovers (not tabbable in the active layer). */
+export function filterFocusTrapFocusables(
+  focusableElements: HTMLElement[],
+  trapHost: HTMLElement
+): HTMLElement[] {
+  return focusableElements.filter(
+    (element) => !shouldExcludeFromFocusTrap(element, trapHost)
+  );
 }
 
 function expandFocusTrapIncludes(
@@ -295,7 +302,9 @@ function expandFocusTrapIncludes(
         : includeElement,
       focusableQueryString,
       useBoth
-    ).filter((element) => element !== includeElement);
+    ).filter(
+      (element) => element !== includeElement && !isHiddenFromTabOrder(element)
+    );
 
     for (const includedElement of includedFocusableElements) {
       const duplicateIndex = focusableElements.indexOf(includedElement);
@@ -333,7 +342,9 @@ export function getFocusTrapFocusables(
 
   expandFocusTrapIncludes(focusableElements, options);
 
-  const filtered = filterFocusTrapFocusables(focusableElements, ref);
+  const filtered = filterFocusTrapFocusables(focusableElements, ref).filter(
+    (element) => !isHiddenFromTabOrder(element)
+  );
 
   if (!options?.excludeElements) {
     return filtered;

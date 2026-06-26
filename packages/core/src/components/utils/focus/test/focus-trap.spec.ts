@@ -13,6 +13,7 @@ import {
   filterFocusTrapFocusables,
   findActiveFocusableIndex,
   getDeepActiveElement,
+  getFocusTrapFocusables,
 } from '../focus-trap';
 
 const dispatchTab = (target: EventTarget = document) => {
@@ -196,6 +197,30 @@ describe('addFocusTrap', () => {
     expect(document.activeElement).toBe(first);
     trap.destroy();
   });
+
+  it('wraps focus when a non-tabbable button is between trap focusables', async () => {
+    const trapHost = document.createElement('div');
+    const first = document.createElement('button');
+    first.id = 'one';
+    const hidden = document.createElement('button');
+    hidden.id = 'two';
+    hidden.style.display = 'none';
+    const last = document.createElement('button');
+    last.id = 'three';
+    trapHost.append(first, hidden, last);
+    document.body.appendChild(trapHost);
+    last.focus();
+
+    const trap = await addFocusTrap(trapHost, {
+      listenOnDocument: true,
+      trapFocusInShadowDom: 'both',
+    });
+
+    dispatchTab(last);
+
+    expect(document.activeElement).toBe(first);
+    trap.destroy();
+  });
 });
 
 describe('filterFocusTrapFocusables', () => {
@@ -238,5 +263,19 @@ describe('filterFocusTrapFocusables', () => {
     );
 
     expect(filtered).toEqual([activeButton]);
+  });
+
+  it('excludes display none and inert elements from getFocusTrapFocusables', () => {
+    const trapHost = document.createElement('div');
+    const first = document.createElement('button');
+    const hidden = document.createElement('button');
+    hidden.style.display = 'none';
+    const inertButton = document.createElement('button');
+    inertButton.inert = true;
+    const last = document.createElement('button');
+    trapHost.append(first, hidden, inertButton, last);
+    document.body.appendChild(trapHost);
+
+    expect(getFocusTrapFocusables(trapHost)).toEqual([first, last]);
   });
 });
