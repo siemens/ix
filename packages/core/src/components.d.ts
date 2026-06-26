@@ -3194,7 +3194,7 @@ export namespace Components {
          */
         "showPopover": () => Promise<void>;
         /**
-          * Element that toggles the popover. CSS selector string or DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -9921,7 +9921,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Element that toggles the popover. CSS selector string or DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;

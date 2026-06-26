@@ -646,7 +646,9 @@ regressionTest.describe('ix-popover', () => {
         await popover.openWithKeyboardAndExpectOpen();
 
         const picker = page.locator('ix-time-picker#schedule-time-picker');
-        await picker.getByRole('option', { name: 'hr: 9', exact: true }).focus();
+        await picker
+          .getByRole('option', { name: 'hr: 9', exact: true })
+          .focus();
         await page.keyboard.press('ArrowDown');
 
         await page.keyboard.press('Tab');
