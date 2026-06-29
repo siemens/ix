@@ -262,8 +262,13 @@ export class Popover
   }
 
   @Watch('trigger')
-  onTriggerChange() {
-    this.registerTriggerListener();
+  onTriggerChange(
+    newTrigger: ElementReference | undefined,
+    oldTrigger: ElementReference | undefined
+  ) {
+    if (newTrigger !== oldTrigger) {
+      void this.registerTriggerListener();
+    }
   }
 
   @Watch('triggerMode')
@@ -301,6 +306,12 @@ export class Popover
 
     if (this.show) {
       await this.openPopover({ fromShowWatch: true });
+    }
+  }
+
+  override componentDidRender() {
+    if (this.trigger && !this.triggerElement) {
+      void this.registerTriggerListener();
     }
   }
 

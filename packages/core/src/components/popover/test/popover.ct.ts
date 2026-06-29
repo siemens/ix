@@ -408,6 +408,32 @@ regressionTest.describe('ix-popover', () => {
     );
 
     regressionTest(
+      'registers trigger when trigger is assigned after mount',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="late-trigger">Open</ix-button>
+          <ix-popover id="popover">
+            <ix-popover-header>Title</ix-popover-header>
+            <ix-popover-content>Body</ix-popover-content>
+          </ix-popover>
+        `);
+
+        await page
+          .locator('ix-popover#popover')
+          .evaluate((popover: HTMLIxPopoverElement) => {
+            const trigger = document.getElementById('late-trigger');
+            if (trigger instanceof HTMLElement) {
+              popover.trigger = trigger;
+            }
+          });
+
+        const popover = new PopoverPage(page, 'late-trigger');
+        await popover.open();
+        await popover.expectOpen();
+      }
+    );
+
+    regressionTest(
       'handles rapid showPopover calls gracefully',
       async ({ mount, page }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
