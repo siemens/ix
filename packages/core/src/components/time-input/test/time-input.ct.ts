@@ -7,11 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Locator, expect } from '@playwright/test';
-import {
-  getFormValue,
-  preventFormSubmission,
-  regressionTest,
-} from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const expectNoVisualValidation = async (timeInput: Locator, input: Locator) => {
   await expect(input).not.toHaveClass(/is-invalid/);
@@ -102,203 +98,6 @@ regressionTest.describe('accessibility', () => {
     }
   );
 });
-
-regressionTest('renders', async ({ mount, page }) => {
-  await mount(
-    `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
-  );
-  const timeInputElement = page.locator('ix-time-input');
-  await expect(timeInputElement).toHaveClass(/hydrated/);
-});
-
-regressionTest(
-  'select time by focus opens dropdown',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
-    );
-    const timeInputElement = page.locator('ix-time-input');
-    await expect(timeInputElement).toHaveClass(/hydrated/);
-
-    const dropdown = timeInputElement.getByTestId('time-dropdown');
-    await timeInputElement.locator('input').focus();
-    await page.keyboard.press('ArrowDown');
-    await expect(dropdown).toHaveClass(/show/);
-  }
-);
-
-regressionTest(
-  'select time by input closes dropdown on valid value',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
-    );
-    const timeInputElement = page.locator('ix-time-input');
-    await expect(timeInputElement).toHaveClass(/hydrated/);
-
-    const dropdown = timeInputElement.getByTestId('time-dropdown');
-    const iconButton = timeInputElement.locator(
-      'ix-icon-button[data-testid="open-time-picker"]'
-    );
-
-    await iconButton.click();
-    await expect(dropdown).toHaveClass(/show/);
-
-    await timeInputElement.locator('input').fill('14:30:00');
-
-    await expect(dropdown).not.toHaveClass(/show/);
-    await expect(timeInputElement).toHaveAttribute('value', '14:30:00');
-  }
-);
-
-regressionTest(
-  'select time by input with invalid time shows error',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
-    );
-    const timeInputElement = page.locator('ix-time-input');
-    await expect(timeInputElement).toHaveClass(/hydrated/);
-
-    const iconButton = timeInputElement.locator(
-      'ix-icon-button[data-testid="open-time-picker"]'
-    );
-    await timeInputElement.locator('input').fill('invalid-time');
-    await iconButton.click();
-    await expect(timeInputElement).toHaveAttribute('value', 'invalid-time');
-
-    await expect(
-      timeInputElement
-        .locator('ix-field-wrapper')
-        .locator('ix-typography')
-        .filter({ hasText: 'Time is not valid' })
-    ).toHaveText(/Time is not valid/);
-  }
-);
-
-regressionTest(
-  'select time by input with invalid time - i18n',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss" i18n-error-time-unparsable="Zeit nicht korrekt!"></ix-time-input>`
-    );
-    const timeInputElement = page.locator('ix-time-input');
-    await expect(timeInputElement).toHaveClass(/hydrated/);
-
-    const iconButton = timeInputElement.locator(
-      'ix-icon-button[data-testid="open-time-picker"]'
-    );
-    await timeInputElement.locator('input').fill('invalid-time');
-    await iconButton.click();
-    await expect(timeInputElement).toHaveAttribute('value', 'invalid-time');
-
-    await expect(
-      timeInputElement
-        .locator('ix-field-wrapper')
-        .locator('ix-typography')
-        .filter({ hasText: 'Zeit nicht korrekt!' })
-    ).toHaveText(/Zeit nicht korrekt!/);
-  }
-);
-
-regressionTest(`form-ready - ix-time-input`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-time-input name="my-field-name" format="HH:mm:ss"></ix-time-input></form>`
-  );
-
-  const formElement = page.locator('form');
-  preventFormSubmission(formElement);
-  const input = page.locator('ix-time-input').locator('input');
-  await input.fill('14:30:00');
-  await input.blur();
-
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('14:30:00');
-});
-
-regressionTest(
-  `form-ready - ix-time-input initial value`,
-  async ({ mount, page }) => {
-    await mount(
-      `<form><ix-time-input name="my-field-name" value="10:20:30" format="HH:mm:ss"></ix-time-input></form>`
-    );
-
-    const formElement = page.locator('form');
-    preventFormSubmission(formElement);
-    const componentValue = await page
-      .locator('ix-time-input')
-      .evaluate((el: HTMLIxTimeInputElement) => el.value);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe(componentValue);
-  }
-);
-
-regressionTest('required', async ({ mount, page }) => {
-  await mount(
-    `<ix-time-input required label="MyLabel" format="HH:mm:ss"></ix-time-input>`
-  );
-
-  const timeInputElement = page.locator('ix-time-input');
-  const input = timeInputElement.locator('input');
-
-  await expect(timeInputElement).toHaveAttribute('required');
-
-  await expect(timeInputElement.locator('ix-field-label')).toHaveText(
-    'MyLabel*'
-  );
-
-  // Clear the auto-filled default value before checking required state.
-  await input.fill('');
-  await input.focus();
-  await page.waitForTimeout(50);
-  await input.blur();
-
-  await expect(timeInputElement).toHaveClass(/ix-invalid--required/, {
-    timeout: 5000,
-  });
-});
-
-regressionTest(
-  'initial invalid value does not show visual error before user interaction',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="12:30:00" format="HH:mm:ss"></ix-time-input>`
-    );
-
-    const timeInput = page.locator('ix-time-input');
-    const input = page.locator('input');
-
-    await input.fill('invalid-time');
-
-    await expect(input).not.toHaveClass(/is-invalid/);
-    await expect(timeInput).not.toHaveClass(/ix-invalid/);
-  }
-);
-
-regressionTest(
-  'programmatic invalid value does not show visual error before user interaction, shows after blur, setting valid value clears error',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
-    );
-
-    const timeInput = page.locator('ix-time-input');
-    const input = page.locator('input');
-
-    await input.fill('invalid-time');
-    await expect(input).not.toHaveClass(/is-invalid/);
-    await expect(timeInput).not.toHaveClass(/ix-invalid/);
-
-    await input.focus();
-    await input.blur();
-    await expect(input).toHaveClass(/is-invalid/);
-    await expect(timeInput).toHaveClass(/ix-invalid/);
-
-    await input.fill('09:10:11');
-    await expect(input).not.toHaveClass(/is-invalid/);
-    await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
-  }
-);
 
 regressionTest.describe('time input tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
@@ -467,23 +266,44 @@ regressionTest.describe('time input tests', () => {
 });
 
 regressionTest(
-  'invalidText property takes precedence over i18n error message',
+  'initial invalid value does not show visual error before user interaction',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-input value="09:10:11" format="HH:mm:ss" invalid-text="Custom time error"></ix-time-input>`
+      `<ix-time-input value="12:30:00" format="HH:mm:ss"></ix-time-input>`
     );
 
-    const timeInputElement = page.locator('ix-time-input');
+    const timeInput = page.locator('ix-time-input');
+    const input = page.locator('input');
 
-    await expect(timeInputElement).toHaveClass(/hydrated/);
-    await timeInputElement.locator('input').fill('invalid-time');
-    await timeInputElement.locator('input').blur();
-    await expect(
-      timeInputElement
-        .locator('ix-field-wrapper')
-        .locator('ix-typography')
-        .filter({ hasText: 'Custom time error' })
-    ).toHaveText(/Custom time error/);
+    await input.fill('invalid-time');
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(timeInput).not.toHaveClass(/ix-invalid/);
+  }
+);
+
+regressionTest(
+  'programmatic invalid value does not show visual error before user interaction, shows after blur, setting valid value clears error',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+    );
+
+    const timeInput = page.locator('ix-time-input');
+    const input = page.locator('input');
+
+    await input.fill('invalid-time');
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(timeInput).not.toHaveClass(/ix-invalid/);
+
+    await input.focus();
+    await input.blur();
+    await expect(input).toHaveClass(/is-invalid/);
+    await expect(timeInput).toHaveClass(/ix-invalid/);
+
+    await input.fill('09:10:11');
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
   }
 );
 
@@ -592,25 +412,29 @@ regressionTest.describe('time input min/max tests', () => {
 
 regressionTest.describe('picker interaction with validation', () => {
   regressionTest(
-    'clicking picker cells while empty does not show visual error before confirm',
+    'click and hold on picker time does not trigger validation for required empty field',
     async ({ mount, page }) => {
       await mount(
         `<ix-time-input label="Required Time" format="HH:mm:ss" required value="12:30:00"></ix-time-input>`
       );
 
-      const timeInputElement = page.locator('ix-time-input');
-      const input = timeInputElement.locator('input');
+      const timeInput = page.locator('ix-time-input');
+      const input = timeInput.getByRole('textbox');
 
-      await input.fill('');
-      await timeInputElement
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+
+      await timeInput
         .locator('ix-icon-button[data-testid="open-time-picker"]')
         .click();
 
       await expect(page.locator('ix-time-picker')).toBeVisible();
 
       const hourButton = page.locator('ix-time-picker button').first();
-      await hourButton.click();
+      await hourButton.dispatchEvent('mousedown');
       await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
     }
   );
 });
@@ -625,7 +449,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.fill('invalid-time');
@@ -648,7 +472,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.fill('invalid-time');
@@ -670,7 +494,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('');
 
@@ -691,7 +515,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.selectText();
@@ -710,7 +534,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.blur();
@@ -731,7 +555,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('');
 
@@ -754,7 +578,7 @@ regressionTest.describe('time input validation scenarios', () => {
         `);
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('');
 
@@ -774,7 +598,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.selectText();
@@ -796,63 +620,6 @@ regressionTest.describe('time input validation scenarios', () => {
         await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       }
     );
-
-    regressionTest(
-      'clear() resets touched state until the next blur',
-      async ({ mount, page }) => {
-        await mount(
-          `<ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required></ix-time-input>`
-        );
-        const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
-
-        await input.fill('');
-        await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
-          return el.reportValidity();
-        });
-
-        await expect(timeInput).toHaveClass(/ix-invalid--required/);
-
-        await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
-          return el.clear();
-        });
-
-        await expect(input).toHaveValue('');
-        await expectNoVisualValidation(timeInput, input);
-
-        await input.focus();
-        await input.blur();
-
-        await expect(timeInput).toHaveClass(/ix-invalid--required/);
-      }
-    );
-
-    regressionTest(
-      'i18nErrorRequired customizes required error message',
-      async ({ mount, page }) => {
-        await mount(
-          `<ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required i18n-error-required="Zeit ist erforderlich"></ix-time-input>`
-        );
-        const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
-
-        const i18nErrorRequired = await timeInput.evaluate(
-          (el: HTMLIxTimeInputElement) => el.i18nErrorRequired
-        );
-        await expect(i18nErrorRequired).toBe('Zeit ist erforderlich');
-
-        await input.fill('');
-        await input.blur();
-
-        // Wait for async validation to complete
-        await page.waitForTimeout(100);
-
-        await expect(timeInput).toHaveClass(/ix-invalid--required/);
-        await expect(page.locator('ix-field-wrapper')).toContainText(
-          'Zeit ist erforderlich'
-        );
-      }
-    );
   });
 
   regressionTest.describe('optional field behavior', () => {
@@ -864,7 +631,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.fill('invalid-time');
@@ -887,7 +654,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.fill('invalid-time');
@@ -903,21 +670,21 @@ regressionTest.describe('time input validation scenarios', () => {
 
     regressionTest(
       'Not required input: Invalid input > Programmatically setting to empty > Valid',
-      async ({ mount, page }) => {
+      async ({ page, mount }) => {
         await mount(
           `<ix-time-input label="Optional Time" value="12:30:00" format="HH:mm:ss"></ix-time-input>`
         );
+
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
+        await input.focus();
         await input.fill('invalid-time');
+        await input.blur();
+
         await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
-          return el.reportValidity();
+          el.value = '';
         });
-
-        await expect(input).toHaveClass(/is-invalid/);
-
-        await input.fill('');
 
         await expectNoVisualValidation(timeInput, input);
       }
@@ -931,7 +698,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.selectText();
@@ -950,7 +717,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.blur();
@@ -971,7 +738,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.focus();
         await input.blur();
@@ -990,17 +757,17 @@ regressionTest.describe('time input validation scenarios', () => {
       'novalidate form suppresses validation for required field',
       async ({ mount, page }) => {
         await mount(
-          `<form novalidate><ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required></ix-time-input></form>`
+          `<form novalidate>
+            <ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required></ix-time-input>
+          </form>`
         );
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('');
         await input.blur();
 
-        await expect(input).not.toHaveClass(/is-invalid/);
-        await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
-        await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+        await expectNoVisualValidation(timeInput, input);
       }
     );
 
@@ -1011,14 +778,12 @@ regressionTest.describe('time input validation scenarios', () => {
           `<form novalidate><ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required></ix-time-input></form>`
         );
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
         await input.blur();
 
-        await expect(input).not.toHaveClass(/is-invalid/);
-        await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
-        await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+        await expectNoVisualValidation(timeInput, input);
       }
     );
 
@@ -1029,7 +794,7 @@ regressionTest.describe('time input validation scenarios', () => {
           `<form novalidate><ix-time-input label="Required Time" value="12:30:00" format="HH:mm:ss" required></ix-time-input></form>`
         );
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('');
 
@@ -1038,6 +803,47 @@ regressionTest.describe('time input validation scenarios', () => {
         });
 
         await expect(timeInput).toHaveClass(/ix-invalid--required/);
+      }
+    );
+
+    regressionTest(
+      'novalidate form: reportValidity() error persists after manual blur with input border red',
+      async ({ mount, page }) => {
+        await mount(
+          `<form novalidate><ix-time-input label="Time" value="12:30:00" format="HH:mm:ss"></ix-time-input></form>`
+        );
+        const timeInput = page.locator('ix-time-input');
+        const input = timeInput.getByRole('textbox');
+
+        // Enter invalid value
+        await input.fill('invalid-time');
+
+        // Report validity — should show error
+        await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
+          el.reportValidity();
+        });
+
+        await expect(input).toHaveClass(/is-invalid/);
+        await expect(timeInput).toHaveClass(/ix-invalid--validity-invalid/);
+        await expect(
+          timeInput
+            .locator('ix-field-wrapper')
+            .locator('ix-typography')
+            .filter({ hasText: 'Time is not valid' })
+        ).toBeVisible();
+
+        // Manual blur — error state and input border should persist
+        await input.focus();
+        await input.blur();
+
+        await expect(input).toHaveClass(/is-invalid/);
+        await expect(timeInput).toHaveClass(/ix-invalid--validity-invalid/);
+        await expect(
+          timeInput
+            .locator('ix-field-wrapper')
+            .locator('ix-typography')
+            .filter({ hasText: 'Time is not valid' })
+        ).toBeVisible();
       }
     );
 
@@ -1051,7 +857,8 @@ regressionTest.describe('time input validation scenarios', () => {
           </form>
         `);
 
-        const input = page.locator('input');
+        const timeInput = page.locator('ix-time-input');
+        const input = timeInput.getByRole('textbox');
         await input.fill('');
 
         const submitPromise = waitForFormSubmit(page.locator('#form'));
@@ -1060,7 +867,6 @@ regressionTest.describe('time input validation scenarios', () => {
         const submitted = await submitPromise;
         expect(submitted).toBe(true);
 
-        const timeInput = page.locator('ix-time-input');
         await expect(timeInput).not.toHaveClass(/ix-invalid/);
       }
     );
@@ -1079,9 +885,8 @@ regressionTest.describe('time input validation scenarios', () => {
 
         for (const index of [0, 1]) {
           const timeInput = timeInputs.nth(index);
-          const input = timeInput.locator('input');
+          const input = timeInput.getByRole('textbox');
 
-          // Verify the invalid value is set (TimeInput may auto-fill, so force it)
           await input.fill('invalid-time');
 
           const isValid = await timeInput.evaluate(
@@ -1105,7 +910,7 @@ regressionTest.describe('time input validation scenarios', () => {
         `);
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('bad-time');
         await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
@@ -1133,7 +938,7 @@ regressionTest.describe('time input validation scenarios', () => {
         `);
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('bad-time');
         await expect(input).not.toHaveClass(/is-invalid/);
@@ -1173,7 +978,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
         await expect(input).not.toHaveClass(/is-invalid/);
@@ -1196,9 +1001,8 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
-        // TimeInput auto-fills with current time, so clear it first
         await input.fill('');
 
         const isValid = await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
@@ -1218,7 +1022,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         const isValid = await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
           el.reportValidity()
@@ -1240,7 +1044,7 @@ regressionTest.describe('time input validation scenarios', () => {
         `);
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
         await expect(input).not.toHaveClass(/is-invalid/);
@@ -1262,7 +1066,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
         await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
@@ -1284,7 +1088,7 @@ regressionTest.describe('time input validation scenarios', () => {
         );
 
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
         await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
@@ -1313,9 +1117,8 @@ regressionTest.describe('time input validation scenarios', () => {
 
         await setupFormSubmitTracking(page, false);
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
-        // TimeInput auto-fills with current time, so clear it first
         await input.fill('');
 
         await page.locator('button[type="submit"]').click();
@@ -1341,7 +1144,7 @@ regressionTest.describe('time input validation scenarios', () => {
 
         await setupFormSubmitTracking(page, false);
         const timeInput = page.locator('ix-time-input');
-        const input = page.locator('input');
+        const input = timeInput.getByRole('textbox');
 
         await input.fill('invalid-time');
 

@@ -159,8 +159,6 @@ export class TimeInput
   async onInvalid(event: Event) {
     event.preventDefault();
     reportFieldValidity(this, this._hasInvalidInput);
-    this.syncValidityToFormInternals();
-    this.emitValidityStateChangeIfChanged();
   }
 
   /**
@@ -454,18 +452,21 @@ export class TimeInput
   async clear(): Promise<void> {
     this._hasInvalidInput = false;
     this._reportValidityCalled = false;
-    return clearInputValue(this, {
+    await clearInputValue(this, {
       defaultValue: '',
       additionalCleanup: () => {
         this.syncPickerTimeFromValue();
-        this.syncValidityToFormInternals();
       },
-      emitValueChange: true,
     });
+    this.syncValidityToFormInternals();
   }
 
   /**
-   * Trigger validation and show visual error state immediately, independently of user interaction — for example, in AJAX submissions or manual validation. Not suppressed by `<form novalidate>` — errors surface regardless.
+   * Trigger validation and show visual error state immediately, independently
+   *
+   * of user interaction — for example, in AJAX submissions or manual validation.
+   *
+   * Not suppressed by `<form novalidate>` — errors surface regardless.
    *
    * @returns `true` if valid, `false` otherwise.
    *
@@ -479,12 +480,7 @@ export class TimeInput
     this._hasInvalidInput = hasInvalidInput;
     this._reportValidityCalled = true;
 
-    const valid = reportFieldValidity(this, hasInvalidInput);
-
-    this.syncValidityToFormInternals();
-    this.emitValidityStateChangeIfChanged();
-
-    return valid;
+    return reportFieldValidity(this, hasInvalidInput);
   }
 
   private syncValidityToFormInternals(): void {
@@ -618,7 +614,7 @@ export class TimeInput
     this.valueChange.emit(value);
   }
 
-  private acceptSuppressedValue(
+  private acceptValidAfterReportValidity(
     value: string,
     hasInvalidInput: boolean,
     invalidReason?: string
@@ -663,7 +659,7 @@ export class TimeInput
     this._hasInvalidInput = hasInvalidInput;
 
     if (!this._reportValidityCalled) {
-      this.acceptSuppressedValue(
+      this.acceptValidAfterReportValidity(
         value,
         hasInvalidInput,
         hasInvalidInput ? validity?.invalidReason : undefined
@@ -678,7 +674,7 @@ export class TimeInput
     }
 
     this._reportValidityCalled = false;
-    this.acceptSuppressedValue(value, false);
+    this.acceptValidAfterReportValidity(value, false);
   }
 
   private async handleValidatedInput(value: string): Promise<void> {

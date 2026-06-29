@@ -15,3 +15,5 @@ Fixed validation behavior for `ix-time-input`:
 - Visual validation errors only appear after first blur; programmatic value changes are validated internally without visual feedback until interaction.
 - `novalidate` forms suppress all visual validation while `reportValidity()` overrides this suppression.
 - Dynamically toggling the `required` attribute immediately reflects correct validation state.
+- Clicking and holding time values does not trigger validation errors on required empty fields; removed momentary red-border flash when selecting a time.
+- Form submission is now prevented when the field is invalid or required but empty; submission proceeds only when the field is valid (form-associated component with ElementInternals validation).
