@@ -123,7 +123,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 Contributions are always welcome. Here's how to get started to make sure your contribution fits seamlessly into the Siemens Industrial Experience design system:
 
 - Before you dive in, open a GitHub issue or drop us an email at team.ix.industry@siemens.com. This helps us stay in sync and avoid duplicate work.
-- Design the component in Figma specifyin the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
+- Design the component in Figma specifying the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
 - Share your design with us to discuss and refine it before you start coding.
 - Once the design is approved, you can start building your component. See [#setup](#setup).
 
