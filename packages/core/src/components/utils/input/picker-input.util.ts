@@ -142,7 +142,7 @@ export function syncCustomInputValidity(
     return;
   }
 
-  if (required && !value) {
+  if (required && (value == null || value === '')) {
     formInternals.setValidity({ valueMissing: true }, requiredMessage);
     return;
   }

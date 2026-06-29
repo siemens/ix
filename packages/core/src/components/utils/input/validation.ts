@@ -276,7 +276,8 @@ export function reportFieldValidity<T>(
     hasInvalidInput
   );
 
-  const isRequiredMissing = !!comp.required && !comp.value;
+  const isRequiredMissing =
+    !!comp.required && (comp.value == null || comp.value === '');
   comp.hostElement.classList.toggle('ix-invalid--required', isRequiredMissing);
 
   return !hasInvalidInput && !isRequiredMissing;

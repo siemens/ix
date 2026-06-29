@@ -4064,7 +4064,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Trigger validation and show visual error state immediately, independently of user interaction — for example, in AJAX submissions or manual validation. Not suppressed by `<form novalidate>` — errors surface regardless.
+          * Trigger validation and show visual error state immediately, independently  of user interaction — for example, in AJAX submissions or manual validation.  Not suppressed by `<form novalidate>` — errors surface regardless.
           * @returns `true` if valid, `false` otherwise.
           * @since 5.1.0
          */

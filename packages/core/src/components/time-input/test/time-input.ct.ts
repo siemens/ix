@@ -372,8 +372,6 @@ regressionTest.describe('time input min/max tests', () => {
         el.maxTime = '17:30:00';
       });
 
-      // Wait for revalidation to complete
-      await page.waitForTimeout(200);
       await expectNoVisualValidation(timeInput, input);
 
       // Raise minTime back to 13:00:00 → 12:00:00 becomes invalid again
@@ -381,8 +379,6 @@ regressionTest.describe('time input min/max tests', () => {
         el.minTime = '13:00:00';
       });
 
-      // Wait for revalidation to complete
-      await page.waitForTimeout(200);
       await expect(input).toHaveClass(/is-invalid/);
     }
   );
@@ -815,10 +811,8 @@ regressionTest.describe('time input validation scenarios', () => {
         const timeInput = page.locator('ix-time-input');
         const input = timeInput.getByRole('textbox');
 
-        // Enter invalid value
         await input.fill('invalid-time');
 
-        // Report validity — should show error
         await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
           el.reportValidity();
         });
@@ -832,7 +826,6 @@ regressionTest.describe('time input validation scenarios', () => {
             .filter({ hasText: 'Time is not valid' })
         ).toBeVisible();
 
-        // Manual blur — error state and input border should persist
         await input.focus();
         await input.blur();
 

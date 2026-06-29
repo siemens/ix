@@ -742,7 +742,8 @@ export class TimeInput
   }
 
   private checkClassList() {
-    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+    this.isInvalid =
+      this.hostElement.classList.contains('ix-invalid') || this.isInputInvalid;
   }
 
   private renderInput() {
@@ -763,7 +764,6 @@ export class TimeInput
           }}
           disabled={this.disabled}
           readOnly={this.readonly}
-          readonly={this.readonly}
           required={this.required}
           ref={this.inputElementRef}
           type="text"
@@ -805,6 +805,17 @@ export class TimeInput
                 );
                 this.emitValidityStateChangeIfChanged();
                 this.syncValidityToFormInternals();
+                if (
+                  suppressValidation &&
+                  this._reportValidityCalled &&
+                  this._hasInvalidInput
+                ) {
+                  requestAnimationFrameNoNgZone(() => {
+                    this.hostElement.classList.add(
+                      'ix-invalid--validity-invalid'
+                    );
+                  });
+                }
               },
               pickerElement: this.timePickerRef.current,
             })
