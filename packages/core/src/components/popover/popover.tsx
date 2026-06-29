@@ -47,6 +47,10 @@ import {
   InheritAriaAttributesMixin,
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -71,8 +75,6 @@ const HOVER_HIDE_DELAY_MS = 150;
 const numberToPixel = (value?: number | null) =>
   value == null ? '' : `${value}px`;
 
-let popoverInstance = 0;
-
 /**
  * Floating panel anchored to a trigger element.
  *
@@ -86,8 +88,11 @@ let popoverInstance = 0;
   shadow: true,
 })
 export class Popover
-  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
-  implements PopoverInterface, InheritAriaAttributesMixinContract
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin, ComponentIdMixin)
+  implements
+    PopoverInterface,
+    InheritAriaAttributesMixinContract,
+    ComponentIdMixinContract
 {
   @Element() override hostElement!: HTMLIxPopoverElement;
 
@@ -150,7 +155,6 @@ export class Popover
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
-  private readonly uid = `popover-${popoverInstance++}`;
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   private triggerElement?: HTMLElement;
@@ -183,8 +187,13 @@ export class Popover
     };
   }
 
+  /** Top-layer dialog id; kept separate from host `id` when the host has a custom id. */
+  private get popoverPanelId(): string {
+    return `ix-component-ix-popover-${this.$internal_id}`;
+  }
+
   getId(): string {
-    return this.uid;
+    return this.getHostElementId();
   }
 
   getNestedPopoverIds(): string[] {
@@ -196,7 +205,7 @@ export class Popover
     const { detail } = event;
 
     if (
-      detail !== this.uid &&
+      detail !== this.getId() &&
       !this.assignedNestedPopoverIds.includes(detail)
     ) {
       this.assignedNestedPopoverIds.push(detail);
@@ -587,7 +596,7 @@ export class Popover
         bubbles: true,
         composed: true,
         cancelable: true,
-        detail: this.uid,
+        detail: this.getId(),
       })
     );
   }
@@ -689,7 +698,7 @@ export class Popover
 
     target.setAttribute('aria-haspopup', 'dialog');
     target.setAttribute('aria-expanded', String(expanded));
-    target.setAttribute('aria-controls', this.uid);
+    target.setAttribute('aria-controls', this.popoverPanelId);
 
     if (target !== triggerElement) {
       this.clearTriggerAriaAttributes(triggerElement);
@@ -871,10 +880,13 @@ export class Popover
 
   override render() {
     return (
-      <Host class={{ visible: this.show }} data-ix-popover={this.uid}>
+      <Host
+        class={{ visible: this.show }}
+        data-ix-popover={this.popoverPanelId}
+      >
         <dialog
           ref={this.dialogRef}
-          id={this.uid}
+          id={this.popoverPanelId}
           class="dialog"
           popover="manual"
           inert={!this.show}
