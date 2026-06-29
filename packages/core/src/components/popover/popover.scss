@@ -51,10 +51,7 @@
   .popover-body {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0;
+    display: block;
     width: 100%;
   }
 
