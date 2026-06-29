@@ -36,41 +36,7 @@ const POPOVER_IMAGE_SRC =
     IxPopoverContent,
     IxPopoverFooter,
   ],
-  template: `
-    <ix-button id="triggerId">Open</ix-button>
-    <ix-popover
-      #popover
-      trigger="triggerId"
-      placement="bottom"
-      trigger-mode="click"
-      has-spike
-      close-on-click-outside
-      aria-label="Release highlights"
-    >
-      <ix-popover-header
-        icon="info"
-        icon-color="color-info"
-        aria-label-close-icon-button="Close popover"
-      >
-        Release highlights
-        <ix-pill slot="additional-items" variant="info">New</ix-pill>
-      </ix-popover-header>
-      <ix-popover-image
-        [image]="popoverImageSrc"
-        image-alt="Release preview"
-      ></ix-popover-image>
-      <ix-popover-content>
-        Check out the new dashboard and improved performance metrics.
-      </ix-popover-content>
-      <ix-popover-footer alignment="vertical">
-        <span slot="start">v4.0.0</span>
-        <ix-button variant="secondary" (click)="popover.hidePopover()"
-          >Cancel</ix-button
-        >
-        <ix-button>Save</ix-button>
-      </ix-popover-footer>
-    </ix-popover>
-  `,
+  templateUrl: './popover.html',
 })
 export default class Popover {
   readonly popoverImageSrc = POPOVER_IMAGE_SRC;
