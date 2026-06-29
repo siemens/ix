@@ -101,6 +101,12 @@ export class Checkbox implements IxFormComponent<string> {
     this.checkedChange.emit(this.checked);
   }
 
+  private handleKeyDown(e: KeyboardEvent) {
+    if (e.key !== 'Enter' || this.disabled) return;
+    e.preventDefault();
+    this.setCheckedState(!this.checked);
+  }
+
   @Watch('checked')
   onCheckedChange() {
     this.touched = true;
@@ -196,6 +202,7 @@ export class Checkbox implements IxFormComponent<string> {
       >
         <label>
           <input
+            onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}
             aria-checked={a11yBoolean(this.checked)}
             required={this.required}
             disabled={this.disabled}
@@ -205,7 +212,6 @@ export class Checkbox implements IxFormComponent<string> {
             onChange={() => this.setCheckedState(!this.checked)}
           />
           <button
-            type="checkbox"
             disabled={this.disabled}
             class={{
               checked: this.checked,
