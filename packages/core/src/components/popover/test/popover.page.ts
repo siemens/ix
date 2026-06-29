@@ -374,6 +374,23 @@ export async function expectPlacement(
   }).toPass({ timeout: 3000 });
 }
 
+function elementMatchesFocusVisible(element: Element): boolean {
+  return element.matches(':focus-visible');
+}
+
+/** Poll until the locator's focused element does not match `:focus-visible`. */
+export async function expectLocatorNotFocusVisible(
+  locator: Locator,
+  options: { timeout?: number } = {}
+): Promise<void> {
+  await expect(async () => {
+    const showsFocusVisible = await locator.evaluate(
+      elementMatchesFocusVisible
+    );
+    expect(showsFocusVisible).toBe(false);
+  }).toPass({ timeout: options.timeout ?? 3000 });
+}
+
 /**
  * Mount popover component and wait for hydration
  */

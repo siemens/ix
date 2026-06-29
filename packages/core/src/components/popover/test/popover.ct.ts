@@ -25,6 +25,7 @@ import {
 } from './popover.fixtures';
 import {
   expectPlacement,
+  expectLocatorNotFocusVisible,
   injectLateNestedPopover,
   mountPopover,
   PopoverPage,
@@ -588,12 +589,7 @@ regressionTest.describe('ix-popover', () => {
         await popover.open();
         const dismissButton = page.locator('ix-button#popover-dismiss button');
         await expect(dismissButton).toBeFocused();
-        await expect(async () => {
-          const showsFocusVisible = await dismissButton.evaluate((button) =>
-            button.matches(':focus-visible')
-          );
-          expect(showsFocusVisible).toBe(false);
-        }).toPass({ timeout: 3000 });
+        await expectLocatorNotFocusVisible(dismissButton);
 
         await page.keyboard.press('Tab');
         await expect(
