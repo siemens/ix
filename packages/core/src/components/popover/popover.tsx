@@ -171,7 +171,10 @@ export class Popover
   private closeFocus: PopoverCloseFocus = 'restore-trigger';
   private hasDisconnected = false;
   private triggerRegistryId = 0;
-  /** Hover mode: block focus handler from re-opening after programmatic dismiss focus. */
+  /**
+   * Hover mode: skip `present()` on the trigger `focus` handler while
+   * `schedulePostCloseFocus()` refocuses the trigger (e.g. after Escape).
+   */
   private suppressFocusPresent = false;
 
   private get spikeElement(): HTMLElement | null {
