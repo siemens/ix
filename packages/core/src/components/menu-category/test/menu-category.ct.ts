@@ -314,6 +314,7 @@ regressionTest(
 
     // Navigate to category
     await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
 
