@@ -80,7 +80,6 @@ export class PopoverHeader {
   private parentPopover?: HTMLIxPopoverElement;
 
   componentDidLoad() {
-    this.hostElement.setAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE, '');
     this.parentPopover = closestPassShadow(this.hostElement, 'ix-popover') as
       | HTMLIxPopoverElement
       | undefined;
@@ -96,7 +95,7 @@ export class PopoverHeader {
 
   render() {
     return (
-      <Host>
+      <Host {...{ [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: true }}>
         {this.icon ? (
           <ix-icon
             name={this.icon}

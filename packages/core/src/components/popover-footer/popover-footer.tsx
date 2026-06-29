@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 
 /**
@@ -24,8 +24,6 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
   shadow: true,
 })
 export class PopoverFooter {
-  @Element() hostElement!: HTMLIxPopoverFooterElement;
-
   /**
    * Button layout direction
    *
@@ -33,13 +31,12 @@ export class PopoverFooter {
    */
   @Prop() alignment: 'horizontal' | 'vertical' = 'horizontal';
 
-  componentDidLoad() {
-    this.hostElement.setAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE, '');
-  }
-
   render() {
     return (
-      <Host class={{ [`alignment-${this.alignment}`]: true }}>
+      <Host
+        class={{ [`alignment-${this.alignment}`]: true }}
+        {...{ [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: true }}
+      >
         <div class="footer-start">
           <slot name="start"></slot>
         </div>

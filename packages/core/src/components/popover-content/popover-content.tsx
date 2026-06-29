@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 
 /**
@@ -23,8 +23,6 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
   shadow: true,
 })
 export class PopoverContent {
-  @Element() hostElement!: HTMLIxPopoverContentElement;
-
   /**
    * Remove default inner padding.
    *
@@ -32,13 +30,12 @@ export class PopoverContent {
    */
   @Prop() noPadding = false;
 
-  componentDidLoad() {
-    this.hostElement.setAttribute(TRAP_FOCUS_INCLUDE_ATTRIBUTE, '');
-  }
-
   render() {
     return (
-      <Host class={{ 'no-padding': this.noPadding }}>
+      <Host
+        class={{ 'no-padding': this.noPadding }}
+        {...{ [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: true }}
+      >
         <slot></slot>
       </Host>
     );
