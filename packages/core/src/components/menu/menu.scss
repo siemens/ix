@@ -159,11 +159,11 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-buttons {
-    margin: 0.5rem 0 0 0.625rem;
-  }
+    margin: 0.75rem 0 0 0.625rem;
 
-  .menu-buttons > :last-child {
-    margin-bottom: 1rem;
+    &:not(:empty) {
+      margin-bottom: 0.75rem;
+    }
   }
 }
 
