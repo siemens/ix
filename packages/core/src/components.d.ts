@@ -2402,6 +2402,7 @@ export namespace Components {
         "expand": boolean;
         /**
           * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
           * @default 'Application Navigation'
          */
         "i18nAriaLabelMenu": string;
@@ -2422,6 +2423,7 @@ export namespace Components {
         "i18nLegal": string;
         /**
           * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
           * @default 'Use Up and Down arrow keys to navigate between menu items'
          */
         "i18nNavigationHint": string;
@@ -9063,6 +9065,7 @@ declare namespace LocalJSX {
         "expand"?: boolean;
         /**
           * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
           * @default 'Application Navigation'
          */
         "i18nAriaLabelMenu"?: string;
@@ -9083,6 +9086,7 @@ declare namespace LocalJSX {
         "i18nLegal"?: string;
         /**
           * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
           * @default 'Use Up and Down arrow keys to navigate between menu items'
          */
         "i18nNavigationHint"?: string;
