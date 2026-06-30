@@ -754,6 +754,10 @@
           "path": "feat/block-cli/examples/pill-variants.json"
         },
         {
+          "name": "popover",
+          "path": "feat/block-cli/examples/popover.json"
+        },
+        {
           "name": "popover-news",
           "path": "feat/block-cli/examples/popover-news.json"
         },

@@ -2,7 +2,7 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 103 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
+This index links to all 108 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
 
 ## Components
 
@@ -81,6 +81,11 @@ This index links to all 103 generated component detail files. Each detail file i
 - [ix-pane-layout](components/ix-pane-layout.md): No component summary available.
 - [ix-pill](components/ix-pill.md): No component summary available.
 - [ix-playground](components/ix-playground.md): No component summary available.
+- [ix-popover](components/ix-popover.md): Floating panel anchored to a trigger element.
+- [ix-popover-content](components/ix-popover-content.md): Main body section of the popover.
+- [ix-popover-footer](components/ix-popover-footer.md): Footer section for actions and optional leading metadata.
+- [ix-popover-header](components/ix-popover-header.md): Header section with optional icon, title, additional items, and close button.
+- [ix-popover-image](components/ix-popover-image.md): Optional image section for the popover.
 - [ix-progress-indicator](components/ix-progress-indicator.md): No component summary available.
 - [ix-push-card](components/ix-push-card.md): No component summary available.
 - [ix-radio](components/ix-radio.md): No component summary available.
