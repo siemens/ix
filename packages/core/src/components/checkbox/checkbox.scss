@@ -16,6 +16,15 @@
 
   @include component.ix-component;
 
+  .checkbox-button {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   button {
     all: unset;
     display: inline-flex;
@@ -30,7 +39,6 @@
     height: 1.125rem;
     min-height: 1.125rem;
     max-height: 1.125rem;
-    margin-right: 0.5rem;
   }
 
   button:disabled {
@@ -52,15 +60,16 @@
     display: flex;
 
     justify-content: flex-start;
-    align-items: flex-start;
-
+    align-items: center;
+    gap: var(--theme-space-0);
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
+}
 
-  ix-typography {
-    margin-top: 0.125rem;
-  }
+:host(.label-less) ix-typography {
+  display: none;
 }
 
 @mixin checkbox-base() {

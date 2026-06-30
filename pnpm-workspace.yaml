@@ -12,9 +12,16 @@ catalog:
   glob: ^13.0.0
   playwright: ^1.58.1
   rimraf: ^6.1.3
-  vite: 7.3.1
+  vite: 7.3.5
 
 minimumReleaseAge: 2880
 
 minimumReleaseAgeExclude:
   - '@siemens/*'
+
+overrides:
+  cheerio: "1.0.0-rc.12"
+  rollup: "npm:@rollup/wasm-node"
+
+patchedDependencies:
+  '@stencil/core': "patches/@stencil__core.patch"

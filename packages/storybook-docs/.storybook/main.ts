@@ -79,6 +79,13 @@ const config: StorybookConfig = {
           '@utils': path.resolve(__dirname, '../src/stories/utils'),
         },
       },
+      css: {
+        preprocessorOptions: {
+          scss: {
+            loadPaths: [path.resolve(__dirname, '../../core/scss')],
+          },
+        },
+      },
     });
   },
 

@@ -54,13 +54,13 @@
   }
 }
 
-:host(:not(.disabled):not(:disabled):not(.selected).hover),
-:host(:not(.disabled):not(:disabled):not(.selected):hover) {
+:host(:not(.disabled):not(.selected).hover),
+:host(:not(.disabled):not(.selected):hover) {
   background-color: var(--theme-tree-item--background--hover);
 }
 
-:host(:not(.disabled):not(:disabled):not(.selected).active),
-:host(:not(.disabled):not(:disabled):not(.selected):active) {
+:host(:not(.disabled):not(.selected).active),
+:host(:not(.disabled):not(.selected):active) {
   background-color: var(--theme-tree-item--background--active);
 }
 
@@ -76,4 +76,9 @@
 :host(.selected.active),
 :host(.selected:active) {
   background-color: var(--theme-tree-item--background--selected-active);
+}
+
+:host(.disabled) {
+  opacity: 0.5;
+  pointer-events: none;
 }

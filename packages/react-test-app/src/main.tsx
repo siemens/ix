@@ -84,8 +84,6 @@ import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import Divider from './preview-examples/divider';
-import Drawer from './preview-examples/drawer';
-import DrawerFullHeight from './preview-examples/drawer-full-height';
 import Dropdown from './preview-examples/dropdown';
 import DropdownButton from './preview-examples/dropdown-button';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon';
@@ -245,6 +243,7 @@ import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
 import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
+import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
@@ -271,7 +270,7 @@ type IxPreviewRoutes = {
   '/': React.ComponentType;
 } & {
   [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
-} & {};
+};
 
 const routes: IxPreviewRoutes = {
   '/': App,
@@ -329,8 +328,6 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
-  '/preview/drawer-full-height': DrawerFullHeight,
-  '/preview/drawer': Drawer,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,
@@ -458,10 +455,11 @@ const routes: IxPreviewRoutes = {
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,
   '/preview/toast': Toast,
-  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-secondary': ToggleButtonSecondary,
   '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
   '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
   '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
   '/preview/toggle-checked': ToggleChecked,
   '/preview/toggle-custom-label': ToggleCustomLabel,
   '/preview/toggle-disabled': ToggleDisabled,

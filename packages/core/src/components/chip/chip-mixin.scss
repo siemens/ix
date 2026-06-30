@@ -12,6 +12,7 @@
 
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
+$outline-border-width: 0.0625rem;
 
 @mixin chip-container($interaction: true, $padding-inline: 0.75rem) {
   .container {
@@ -65,7 +66,7 @@ $border-radius: 100px;
 
   .container {
     &.outline {
-      padding-left: calc($padding-inline - 1px);
+      padding-left: calc(#{$padding-inline} - #{$outline-border-width});
       &.icon {
         @each $color in $predefined-chips {
           &.#{$color} {
@@ -82,12 +83,12 @@ $border-radius: 100px;
       }
 
       &.closable:not(.inactive) {
-        padding-right: calc(0.25rem - 1px);
+        padding-right: calc(0.25rem - #{$outline-border-width});
       }
 
       &.closable.inactive,
       &:not(.closable) {
-        padding-right: calc($padding-inline - 1px);
+        padding-right: calc(#{$padding-inline} - #{$outline-border-width});
       }
     }
 
@@ -134,7 +135,7 @@ $border-radius: 100px;
   .container.primary.outline {
     color: var(--theme-chip-outline--color);
     background-color: var(--theme-chip-primary-outline--background);
-    border: solid 1px var(--theme-chip-primary-outline--border-color);
+    border: solid $outline-border-width var(--theme-chip-primary-outline--border-color);
 
     .close-button {
       color: var(--theme-chip-outline--color);
@@ -157,7 +158,7 @@ $border-radius: 100px;
   }
 
   .container.outline {
-    border-width: 1px;
+    border-width: $outline-border-width;
     border-style: solid;
   }
 

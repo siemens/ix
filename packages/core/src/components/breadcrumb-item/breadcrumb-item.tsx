@@ -16,18 +16,17 @@ import {
   h,
   Host,
   Prop,
-  State,
   Mixin,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 import { DefaultMixins } from '../utils/internal/component';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 @Component({
@@ -36,20 +35,10 @@ import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
   shadow: true,
 })
 export class BreadcrumbItem
-  extends Mixin(...DefaultMixins)
-  implements AnchorInterface
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements AnchorInterface, InheritAriaAttributesMixinContract
 {
   @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
-
-  /**
-   * ARIA label for the button
-   * Will be set as aria-label for the nested HTML button element
-   *
-   * @since 3.2.0
-   *
-   * @deprecated Use `aria-label` attribute directly on the component instead.
-   */
-  @Prop() ariaLabelButton?: string;
 
   /**
    * Breadcrumb label
@@ -107,21 +96,10 @@ export class BreadcrumbItem
   /**@internal */
   @Event() itemClick!: EventEmitter<BreadcrumbClick>;
 
-  @State() inheritAriaAttributes: A11yAttributes = {};
-
-  override componentDidLoad() {
-    this.animationFadeIn();
-  }
-
   override componentWillLoad() {
-    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
-      'role',
-      'aria-label',
-    ]);
+    super.componentWillLoad();
     this.validateProps();
   }
-
-  override componentDidRender(): void {}
 
   @Watch('breadcrumbKey')
   validateProps() {
@@ -133,30 +111,23 @@ export class BreadcrumbItem
     }
   }
 
-  animationFadeIn() {
-    animate(this.hostElement, {
-      duration: Animation.defaultTime,
-      opacity: [0, 1],
-      translateX: ['-100%', '0%'],
-      easing: 'linear',
-      onComplete: () => {
-        // this.hostElement.innerText is not available in componentWillLoad,
-        // so we need to set aria-label in onComplete callback to ensure it is set after the content is rendered.
-        requestAnimationFrameNoNgZone(() => {
-          const ariaLabel =
-            this.inheritAriaAttributes['aria-label'] ??
-            this.ariaLabelButton ??
-            this.label ??
-            this.hostElement.innerText;
-          this.hostElement.setAttribute('aria-label', ariaLabel);
-        });
-      },
-    });
-  }
-
   override render() {
+    if (this.invisible) {
+      return <Host class={'invisible'} aria-hidden></Host>;
+    }
+
+    const fallbackAriaLabel =
+      this.label ?? this.hostElement.textContent?.trim();
+
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-label':
+        this.inheritAriaAttributes['aria-label'] ?? fallbackAriaLabel,
+      ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
+    };
+
     const props: BaseButtonProps = {
-      variant: this.subtle ? 'subtle-primary' : 'tertiary',
+      variant: !this.hideChevron && this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
@@ -170,40 +141,21 @@ export class BreadcrumbItem
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: {
-        ...this.inheritAriaAttributes,
-        'aria-label':
-          this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
-        ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
-      },
+      ariaAttributes,
       href: this.href,
       target: this.target,
       rel: this.rel,
     };
 
-    if (this.invisible) {
-      return <Host class={'invisible'} aria-hidden></Host>;
-    }
-
-    const ariaAttributes = {
-      ...this.inheritAriaAttributes,
-      'aria-label':
-        this.inheritAriaAttributes['aria-label'] ??
-        this.ariaLabelButton ??
-        this.label ??
-        this.hostElement.innerText,
-    };
-
     return (
       <Host
-        {...ariaAttributes}
         class={{
           'hide-chevron': this.hideChevron,
         }}
         onClick={() =>
           this.itemClick.emit({
             breadcrumbKey: this.breadcrumbKey,
-            label: this.label ?? this.hostElement.innerText,
+            label: this.label ?? this.hostElement.textContent?.trim() ?? '',
           })
         }
       >

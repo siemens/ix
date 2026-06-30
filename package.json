@@ -32,7 +32,6 @@
     "test.setup": "dotenv -- turbo run test.setup --concurrency=1",
     "prepare": "pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
-    "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
     "ts-run": "tsx"
@@ -45,8 +44,8 @@
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^9.39.3",
     "@actions/core": "^1.11.1",
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.7",
+    "@changesets/changelog-github": "0.7.0",
+    "@changesets/cli": "2.31.0",
     "dotenv-cli": "^7.4.2",
     "eslint": "catalog:",
     "eslint-config-prettier": "^8.10.0",
@@ -54,17 +53,8 @@
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tsx": "^4.16.2",
-    "turbo": "^2.1.1",
+    "turbo": "^2.9.14",
     "typescript": "^5.5.4"
-  },
-  "pnpm": {
-    "overrides": {
-      "cheerio": "1.0.0-rc.12",
-      "rollup": "npm:@rollup/wasm-node"
-    },
-    "patchedDependencies": {
-      "@stencil/core": "patches/@stencil__core.patch"
-    }
   },
   "volta": {
     "node": "22.19.0"

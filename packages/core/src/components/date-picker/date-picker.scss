@@ -93,6 +93,12 @@
       grid-template-columns: 24px repeat(7, 40px);
     }
 
+    [role='row'] {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+    }
+
     .calendar-item {
       position: relative;
       display: flex;
@@ -314,5 +320,10 @@
       height: 1px;
       width: 50px;
     }
+  }
+
+  .month-selector,
+  .year-selector {
+    --ix-button-padding: 0 0.25rem;
   }
 }

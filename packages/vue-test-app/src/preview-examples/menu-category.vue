@@ -18,7 +18,7 @@ import {
 </script>
 
 <template>
-  <IxApplication>
+  <IxApplication force-breakpoint="md">
     <IxMenu>
       <IxMenuItem home :icon="iconHome"> Home </IxMenuItem>
       <IxMenuItem :icon="iconGlobe">Normal Tab</IxMenuItem>

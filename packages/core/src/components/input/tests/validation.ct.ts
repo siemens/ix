@@ -556,10 +556,14 @@ test.describe('ixChange event', () => {
       const dropdown = component.getByTestId('datetime-dropdown');
       await expect(dropdown).toBeVisible();
 
-      await component.getByRole('button', { name: /^15\s.+$/ }).click();
-      await component.getByRole('button', { name: 'hr: 14' }).click();
-      await component.getByRole('button', { name: 'min: 30' }).click();
-      await component.getByRole('button', { name: 'sec: 45' }).click();
+      // Select day
+      await component.getByRole('gridcell', { name: /^15\s.+$/ }).click();
+
+      // Select time
+      await component.getByRole('option', { name: 'hr: 14' }).click();
+      await component.getByRole('option', { name: 'min: 30' }).click();
+      await component.getByRole('option', { name: 'sec: 45' }).click();
+
       await component.getByRole('button', { name: 'Confirm' }).click();
 
       await page.waitForFunction(getIxChangeEmitted, { timeout: 5000 });
