@@ -12,12 +12,19 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - expanding-search
-  - angular: [../../examples/angular-examples/src/preview-examples/expanding-search.ts](../../examples/angular-examples/src/preview-examples/expanding-search.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/expanding-search.ts](../../examples/angular-standalone-examples/src/preview-examples/expanding-search.ts)
-  - html: [../../examples/html-examples/src/preview-examples/expanding-search.html](../../examples/html-examples/src/preview-examples/expanding-search.html)
-  - react: [../../examples/react-examples/src/preview-examples/expanding-search.tsx](../../examples/react-examples/src/preview-examples/expanding-search.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/expanding-search.vue](../../examples/vue-examples/src/preview-examples/expanding-search.vue)
+  - angular:
+    - `angular/expanding-search.ts`: [source](../../examples/angular-examples/src/preview-examples/expanding-search.ts)
+  - angular-standalone:
+    - `angular-standalone/expanding-search.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/expanding-search.ts)
+  - html:
+    - `html/expanding-search.html`: [source](../../examples/html-examples/src/preview-examples/expanding-search.html)
+  - react:
+    - `react/expanding-search.tsx`: [source](../../examples/react-examples/src/preview-examples/expanding-search.tsx)
+  - vue:
+    - `vue/expanding-search.vue`: [source](../../examples/vue-examples/src/preview-examples/expanding-search.vue)
 
 ## Related blocks
 

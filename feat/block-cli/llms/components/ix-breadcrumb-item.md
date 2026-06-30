@@ -12,24 +12,41 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - breadcrumb
-  - angular: [../../examples/angular-examples/src/preview-examples/breadcrumb.ts](../../examples/angular-examples/src/preview-examples/breadcrumb.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/breadcrumb.ts](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb.ts)
-  - html: [../../examples/html-examples/src/preview-examples/breadcrumb.html](../../examples/html-examples/src/preview-examples/breadcrumb.html)
-  - react: [../../examples/react-examples/src/preview-examples/breadcrumb.tsx](../../examples/react-examples/src/preview-examples/breadcrumb.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/breadcrumb.vue](../../examples/vue-examples/src/preview-examples/breadcrumb.vue)
+  - angular:
+    - `angular/breadcrumb.ts`: [source](../../examples/angular-examples/src/preview-examples/breadcrumb.ts)
+  - angular-standalone:
+    - `angular-standalone/breadcrumb.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb.ts)
+  - html:
+    - `html/breadcrumb.html`: [source](../../examples/html-examples/src/preview-examples/breadcrumb.html)
+  - react:
+    - `react/breadcrumb.tsx`: [source](../../examples/react-examples/src/preview-examples/breadcrumb.tsx)
+  - vue:
+    - `vue/breadcrumb.vue`: [source](../../examples/vue-examples/src/preview-examples/breadcrumb.vue)
 - breadcrumb-next-items
-  - angular: [../../examples/angular-examples/src/preview-examples/breadcrumb-next-items.ts](../../examples/angular-examples/src/preview-examples/breadcrumb-next-items.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-next-items.ts](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-next-items.ts)
-  - html: [../../examples/html-examples/src/preview-examples/breadcrumb-next-items.html](../../examples/html-examples/src/preview-examples/breadcrumb-next-items.html)
-  - react: [../../examples/react-examples/src/preview-examples/breadcrumb-next-items.tsx](../../examples/react-examples/src/preview-examples/breadcrumb-next-items.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/breadcrumb-next-items.vue](../../examples/vue-examples/src/preview-examples/breadcrumb-next-items.vue)
+  - angular:
+    - `angular/breadcrumb-next-items.ts`: [source](../../examples/angular-examples/src/preview-examples/breadcrumb-next-items.ts)
+  - angular-standalone:
+    - `angular-standalone/breadcrumb-next-items.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-next-items.ts)
+  - html:
+    - `html/breadcrumb-next-items.html`: [source](../../examples/html-examples/src/preview-examples/breadcrumb-next-items.html)
+  - react:
+    - `react/breadcrumb-next-items.tsx`: [source](../../examples/react-examples/src/preview-examples/breadcrumb-next-items.tsx)
+  - vue:
+    - `vue/breadcrumb-next-items.vue`: [source](../../examples/vue-examples/src/preview-examples/breadcrumb-next-items.vue)
 - breadcrumb-truncate
-  - angular: [../../examples/angular-examples/src/preview-examples/breadcrumb-truncate.ts](../../examples/angular-examples/src/preview-examples/breadcrumb-truncate.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-truncate.ts](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-truncate.ts)
-  - html: [../../examples/html-examples/src/preview-examples/breadcrumb-truncate.html](../../examples/html-examples/src/preview-examples/breadcrumb-truncate.html)
-  - react: [../../examples/react-examples/src/preview-examples/breadcrumb-truncate.tsx](../../examples/react-examples/src/preview-examples/breadcrumb-truncate.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/breadcrumb-truncate.vue](../../examples/vue-examples/src/preview-examples/breadcrumb-truncate.vue)
+  - angular:
+    - `angular/breadcrumb-truncate.ts`: [source](../../examples/angular-examples/src/preview-examples/breadcrumb-truncate.ts)
+  - angular-standalone:
+    - `angular-standalone/breadcrumb-truncate.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/breadcrumb-truncate.ts)
+  - html:
+    - `html/breadcrumb-truncate.html`: [source](../../examples/html-examples/src/preview-examples/breadcrumb-truncate.html)
+  - react:
+    - `react/breadcrumb-truncate.tsx`: [source](../../examples/react-examples/src/preview-examples/breadcrumb-truncate.tsx)
+  - vue:
+    - `vue/breadcrumb-truncate.vue`: [source](../../examples/vue-examples/src/preview-examples/breadcrumb-truncate.vue)
 
 ## Related blocks
 

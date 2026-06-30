@@ -12,18 +12,39 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - tooltip
-  - angular: [../../examples/angular-examples/src/preview-examples/tooltip.css](../../examples/angular-examples/src/preview-examples/tooltip.css), [../../examples/angular-examples/src/preview-examples/tooltip.html](../../examples/angular-examples/src/preview-examples/tooltip.html), [../../examples/angular-examples/src/preview-examples/tooltip.ts](../../examples/angular-examples/src/preview-examples/tooltip.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tooltip.css](../../examples/angular-standalone-examples/src/preview-examples/tooltip.css), [../../examples/angular-standalone-examples/src/preview-examples/tooltip.html](../../examples/angular-standalone-examples/src/preview-examples/tooltip.html), [../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts](../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tooltip.css](../../examples/html-examples/src/preview-examples/tooltip.css), [../../examples/html-examples/src/preview-examples/tooltip.html](../../examples/html-examples/src/preview-examples/tooltip.html)
-  - react: [../../examples/react-examples/src/preview-examples/tooltip.scoped.css](../../examples/react-examples/src/preview-examples/tooltip.scoped.css), [../../examples/react-examples/src/preview-examples/tooltip.tsx](../../examples/react-examples/src/preview-examples/tooltip.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tooltip.css](../../examples/vue-examples/src/preview-examples/tooltip.css), [../../examples/vue-examples/src/preview-examples/tooltip.vue](../../examples/vue-examples/src/preview-examples/tooltip.vue)
+  - angular:
+    - `angular/tooltip.css`: [source](../../examples/angular-examples/src/preview-examples/tooltip.css)
+    - `angular/tooltip.html`: [source](../../examples/angular-examples/src/preview-examples/tooltip.html)
+    - `angular/tooltip.ts`: [source](../../examples/angular-examples/src/preview-examples/tooltip.ts)
+  - angular-standalone:
+    - `angular-standalone/tooltip.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.css)
+    - `angular-standalone/tooltip.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.html)
+    - `angular-standalone/tooltip.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts)
+  - html:
+    - `html/tooltip.css`: [source](../../examples/html-examples/src/preview-examples/tooltip.css)
+    - `html/tooltip.html`: [source](../../examples/html-examples/src/preview-examples/tooltip.html)
+  - react:
+    - `react/tooltip.scoped.css`: [source](../../examples/react-examples/src/preview-examples/tooltip.scoped.css)
+    - `react/tooltip.tsx`: [source](../../examples/react-examples/src/preview-examples/tooltip.tsx)
+  - vue:
+    - `vue/tooltip.css`: [source](../../examples/vue-examples/src/preview-examples/tooltip.css)
+    - `vue/tooltip.vue`: [source](../../examples/vue-examples/src/preview-examples/tooltip.vue)
 - tooltip-with-icon
-  - angular: [../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html), [../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html), [../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tooltip-with-icon.html](../../examples/html-examples/src/preview-examples/tooltip-with-icon.html)
-  - react: [../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx](../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue](../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue)
+  - angular:
+    - `angular/tooltip-with-icon.html`: [source](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html)
+    - `angular/tooltip-with-icon.ts`: [source](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts)
+  - angular-standalone:
+    - `angular-standalone/tooltip-with-icon.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html)
+    - `angular-standalone/tooltip-with-icon.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts)
+  - html:
+    - `html/tooltip-with-icon.html`: [source](../../examples/html-examples/src/preview-examples/tooltip-with-icon.html)
+  - react:
+    - `react/tooltip-with-icon.tsx`: [source](../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx)
+  - vue:
+    - `vue/tooltip-with-icon.vue`: [source](../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue)
 
 ## Related blocks
 

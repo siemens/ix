@@ -12,60 +12,129 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - datepicker-locale
-  - angular: [../../examples/angular-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
-  - html: [../../examples/html-examples/src/preview-examples/datepicker-locale.html](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
-  - react: [../../examples/react-examples/src/preview-examples/datepicker-locale.tsx](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/datepicker-locale.vue](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
+  - angular:
+    - `angular/datepicker-locale.html`: [source](../../examples/angular-examples/src/preview-examples/datepicker-locale.html)
+    - `angular/datepicker-locale.ts`: [source](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
+  - angular-standalone:
+    - `angular-standalone/datepicker-locale.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html)
+    - `angular-standalone/datepicker-locale.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
+  - html:
+    - `html/datepicker-locale.html`: [source](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
+  - react:
+    - `react/datepicker-locale.tsx`: [source](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
+  - vue:
+    - `vue/datepicker-locale.vue`: [source](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
 - form-layout-auto
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-auto.html](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-auto.tsx](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-auto.vue](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
+  - angular:
+    - `angular/form-layout-auto.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.html)
+    - `angular/form-layout-auto.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-auto.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html)
+    - `angular-standalone/form-layout-auto.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
+  - html:
+    - `html/form-layout-auto.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
+  - react:
+    - `react/form-layout-auto.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
+  - vue:
+    - `vue/form-layout-auto.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
 - form-layout-grid
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-grid.css](../../examples/html-examples/src/preview-examples/form-layout-grid.css), [../../examples/html-examples/src/preview-examples/form-layout-grid.html](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css), [../../examples/react-examples/src/preview-examples/form-layout-grid.tsx](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-grid.css](../../examples/vue-examples/src/preview-examples/form-layout-grid.css), [../../examples/vue-examples/src/preview-examples/form-layout-grid.vue](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
+  - angular:
+    - `angular/form-layout-grid.css`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.css)
+    - `angular/form-layout-grid.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.html)
+    - `angular/form-layout-grid.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-grid.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css)
+    - `angular-standalone/form-layout-grid.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html)
+    - `angular-standalone/form-layout-grid.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
+  - html:
+    - `html/form-layout-grid.css`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.css)
+    - `html/form-layout-grid.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
+  - react:
+    - `react/form-layout-grid.scoped.css`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css)
+    - `react/form-layout-grid.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
+  - vue:
+    - `vue/form-layout-grid.css`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.css)
+    - `vue/form-layout-grid.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
 - select
-  - angular: [../../examples/angular-examples/src/preview-examples/select.ts](../../examples/angular-examples/src/preview-examples/select.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select.ts](../../examples/angular-standalone-examples/src/preview-examples/select.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select.html](../../examples/html-examples/src/preview-examples/select.html)
-  - react: [../../examples/react-examples/src/preview-examples/select.tsx](../../examples/react-examples/src/preview-examples/select.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select.vue](../../examples/vue-examples/src/preview-examples/select.vue)
+  - angular:
+    - `angular/select.ts`: [source](../../examples/angular-examples/src/preview-examples/select.ts)
+  - angular-standalone:
+    - `angular-standalone/select.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select.ts)
+  - html:
+    - `html/select.html`: [source](../../examples/html-examples/src/preview-examples/select.html)
+  - react:
+    - `react/select.tsx`: [source](../../examples/react-examples/src/preview-examples/select.tsx)
+  - vue:
+    - `vue/select.vue`: [source](../../examples/vue-examples/src/preview-examples/select.vue)
 - select-editable
-  - angular: [../../examples/angular-examples/src/preview-examples/select-editable.ts](../../examples/angular-examples/src/preview-examples/select-editable.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts](../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-editable.html](../../examples/html-examples/src/preview-examples/select-editable.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-editable.tsx](../../examples/react-examples/src/preview-examples/select-editable.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-editable.vue](../../examples/vue-examples/src/preview-examples/select-editable.vue)
+  - angular:
+    - `angular/select-editable.ts`: [source](../../examples/angular-examples/src/preview-examples/select-editable.ts)
+  - angular-standalone:
+    - `angular-standalone/select-editable.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts)
+  - html:
+    - `html/select-editable.html`: [source](../../examples/html-examples/src/preview-examples/select-editable.html)
+  - react:
+    - `react/select-editable.tsx`: [source](../../examples/react-examples/src/preview-examples/select-editable.tsx)
+  - vue:
+    - `vue/select-editable.vue`: [source](../../examples/vue-examples/src/preview-examples/select-editable.vue)
 - select-multiple
-  - angular: [../../examples/angular-examples/src/preview-examples/select-multiple.ts](../../examples/angular-examples/src/preview-examples/select-multiple.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts](../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-multiple.html](../../examples/html-examples/src/preview-examples/select-multiple.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-multiple.tsx](../../examples/react-examples/src/preview-examples/select-multiple.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-multiple.vue](../../examples/vue-examples/src/preview-examples/select-multiple.vue)
+  - angular:
+    - `angular/select-multiple.ts`: [source](../../examples/angular-examples/src/preview-examples/select-multiple.ts)
+  - angular-standalone:
+    - `angular-standalone/select-multiple.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts)
+  - html:
+    - `html/select-multiple.html`: [source](../../examples/html-examples/src/preview-examples/select-multiple.html)
+  - react:
+    - `react/select-multiple.tsx`: [source](../../examples/react-examples/src/preview-examples/select-multiple.tsx)
+  - vue:
+    - `vue/select-multiple.vue`: [source](../../examples/vue-examples/src/preview-examples/select-multiple.vue)
 - select-validation
-  - angular: [../../examples/angular-examples/src/preview-examples/select-validation.html](../../examples/angular-examples/src/preview-examples/select-validation.html), [../../examples/angular-examples/src/preview-examples/select-validation.ts](../../examples/angular-examples/src/preview-examples/select-validation.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-validation.html](../../examples/angular-standalone-examples/src/preview-examples/select-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-validation.html](../../examples/html-examples/src/preview-examples/select-validation.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-validation.tsx](../../examples/react-examples/src/preview-examples/select-validation.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-validation.vue](../../examples/vue-examples/src/preview-examples/select-validation.vue)
+  - angular:
+    - `angular/select-validation.html`: [source](../../examples/angular-examples/src/preview-examples/select-validation.html)
+    - `angular/select-validation.ts`: [source](../../examples/angular-examples/src/preview-examples/select-validation.ts)
+  - angular-standalone:
+    - `angular-standalone/select-validation.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-validation.html)
+    - `angular-standalone/select-validation.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts)
+  - html:
+    - `html/select-validation.html`: [source](../../examples/html-examples/src/preview-examples/select-validation.html)
+  - react:
+    - `react/select-validation.tsx`: [source](../../examples/react-examples/src/preview-examples/select-validation.tsx)
+  - vue:
+    - `vue/select-validation.vue`: [source](../../examples/vue-examples/src/preview-examples/select-validation.vue)
 - theme-switcher
-  - angular: [../../examples/angular-examples/src/preview-examples/theme-switcher.css](../../examples/angular-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-examples/src/preview-examples/theme-switcher.html](../../examples/angular-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-examples/src/preview-examples/theme-switcher.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts)
-  - html: [../../examples/html-examples/src/preview-examples/theme-switcher.css](../../examples/html-examples/src/preview-examples/theme-switcher.css), [../../examples/html-examples/src/preview-examples/theme-switcher.html](../../examples/html-examples/src/preview-examples/theme-switcher.html)
-  - react: [../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css](../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css), [../../examples/react-examples/src/preview-examples/theme-switcher.tsx](../../examples/react-examples/src/preview-examples/theme-switcher.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/theme-switcher.css](../../examples/vue-examples/src/preview-examples/theme-switcher.css), [../../examples/vue-examples/src/preview-examples/theme-switcher.vue](../../examples/vue-examples/src/preview-examples/theme-switcher.vue)
+  - angular:
+    - `angular/theme-switcher.css`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.css)
+    - `angular/theme-switcher.html`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.html)
+    - `angular/theme-switcher.ts`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.ts)
+  - angular-standalone:
+    - `angular-standalone/theme-switcher.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css)
+    - `angular-standalone/theme-switcher.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html)
+    - `angular-standalone/theme-switcher.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts)
+  - html:
+    - `html/theme-switcher.css`: [source](../../examples/html-examples/src/preview-examples/theme-switcher.css)
+    - `html/theme-switcher.html`: [source](../../examples/html-examples/src/preview-examples/theme-switcher.html)
+  - react:
+    - `react/theme-switcher.scoped.css`: [source](../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css)
+    - `react/theme-switcher.tsx`: [source](../../examples/react-examples/src/preview-examples/theme-switcher.tsx)
+  - vue:
+    - `vue/theme-switcher.css`: [source](../../examples/vue-examples/src/preview-examples/theme-switcher.css)
+    - `vue/theme-switcher.vue`: [source](../../examples/vue-examples/src/preview-examples/theme-switcher.vue)
 - validation-select
-  - angular: [../../examples/angular-examples/src/preview-examples/validation-select.html](../../examples/angular-examples/src/preview-examples/validation-select.html), [../../examples/angular-examples/src/preview-examples/validation-select.ts](../../examples/angular-examples/src/preview-examples/validation-select.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/validation-select.html](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html), [../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
-  - html: [../../examples/html-examples/src/preview-examples/validation-select.html](../../examples/html-examples/src/preview-examples/validation-select.html)
-  - react: [../../examples/react-examples/src/preview-examples/validation-select.tsx](../../examples/react-examples/src/preview-examples/validation-select.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/validation-select.vue](../../examples/vue-examples/src/preview-examples/validation-select.vue)
+  - angular:
+    - `angular/validation-select.html`: [source](../../examples/angular-examples/src/preview-examples/validation-select.html)
+    - `angular/validation-select.ts`: [source](../../examples/angular-examples/src/preview-examples/validation-select.ts)
+  - angular-standalone:
+    - `angular-standalone/validation-select.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html)
+    - `angular-standalone/validation-select.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
+  - html:
+    - `html/validation-select.html`: [source](../../examples/html-examples/src/preview-examples/validation-select.html)
+  - react:
+    - `react/validation-select.tsx`: [source](../../examples/react-examples/src/preview-examples/validation-select.tsx)
+  - vue:
+    - `vue/validation-select.vue`: [source](../../examples/vue-examples/src/preview-examples/validation-select.vue)
 
 ## Related blocks
 

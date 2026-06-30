@@ -12,42 +12,80 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - datepicker-locale
-  - angular: [../../examples/angular-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html), [../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
-  - html: [../../examples/html-examples/src/preview-examples/datepicker-locale.html](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
-  - react: [../../examples/react-examples/src/preview-examples/datepicker-locale.tsx](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/datepicker-locale.vue](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
+  - angular:
+    - `angular/datepicker-locale.html`: [source](../../examples/angular-examples/src/preview-examples/datepicker-locale.html)
+    - `angular/datepicker-locale.ts`: [source](../../examples/angular-examples/src/preview-examples/datepicker-locale.ts)
+  - angular-standalone:
+    - `angular-standalone/datepicker-locale.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.html)
+    - `angular-standalone/datepicker-locale.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/datepicker-locale.ts)
+  - html:
+    - `html/datepicker-locale.html`: [source](../../examples/html-examples/src/preview-examples/datepicker-locale.html)
+  - react:
+    - `react/datepicker-locale.tsx`: [source](../../examples/react-examples/src/preview-examples/datepicker-locale.tsx)
+  - vue:
+    - `vue/datepicker-locale.vue`: [source](../../examples/vue-examples/src/preview-examples/datepicker-locale.vue)
 - select
-  - angular: [../../examples/angular-examples/src/preview-examples/select.ts](../../examples/angular-examples/src/preview-examples/select.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select.ts](../../examples/angular-standalone-examples/src/preview-examples/select.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select.html](../../examples/html-examples/src/preview-examples/select.html)
-  - react: [../../examples/react-examples/src/preview-examples/select.tsx](../../examples/react-examples/src/preview-examples/select.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select.vue](../../examples/vue-examples/src/preview-examples/select.vue)
+  - angular:
+    - `angular/select.ts`: [source](../../examples/angular-examples/src/preview-examples/select.ts)
+  - angular-standalone:
+    - `angular-standalone/select.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select.ts)
+  - html:
+    - `html/select.html`: [source](../../examples/html-examples/src/preview-examples/select.html)
+  - react:
+    - `react/select.tsx`: [source](../../examples/react-examples/src/preview-examples/select.tsx)
+  - vue:
+    - `vue/select.vue`: [source](../../examples/vue-examples/src/preview-examples/select.vue)
 - select-editable
-  - angular: [../../examples/angular-examples/src/preview-examples/select-editable.ts](../../examples/angular-examples/src/preview-examples/select-editable.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts](../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-editable.html](../../examples/html-examples/src/preview-examples/select-editable.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-editable.tsx](../../examples/react-examples/src/preview-examples/select-editable.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-editable.vue](../../examples/vue-examples/src/preview-examples/select-editable.vue)
+  - angular:
+    - `angular/select-editable.ts`: [source](../../examples/angular-examples/src/preview-examples/select-editable.ts)
+  - angular-standalone:
+    - `angular-standalone/select-editable.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-editable.ts)
+  - html:
+    - `html/select-editable.html`: [source](../../examples/html-examples/src/preview-examples/select-editable.html)
+  - react:
+    - `react/select-editable.tsx`: [source](../../examples/react-examples/src/preview-examples/select-editable.tsx)
+  - vue:
+    - `vue/select-editable.vue`: [source](../../examples/vue-examples/src/preview-examples/select-editable.vue)
 - select-multiple
-  - angular: [../../examples/angular-examples/src/preview-examples/select-multiple.ts](../../examples/angular-examples/src/preview-examples/select-multiple.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts](../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-multiple.html](../../examples/html-examples/src/preview-examples/select-multiple.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-multiple.tsx](../../examples/react-examples/src/preview-examples/select-multiple.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-multiple.vue](../../examples/vue-examples/src/preview-examples/select-multiple.vue)
+  - angular:
+    - `angular/select-multiple.ts`: [source](../../examples/angular-examples/src/preview-examples/select-multiple.ts)
+  - angular-standalone:
+    - `angular-standalone/select-multiple.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-multiple.ts)
+  - html:
+    - `html/select-multiple.html`: [source](../../examples/html-examples/src/preview-examples/select-multiple.html)
+  - react:
+    - `react/select-multiple.tsx`: [source](../../examples/react-examples/src/preview-examples/select-multiple.tsx)
+  - vue:
+    - `vue/select-multiple.vue`: [source](../../examples/vue-examples/src/preview-examples/select-multiple.vue)
 - select-validation
-  - angular: [../../examples/angular-examples/src/preview-examples/select-validation.html](../../examples/angular-examples/src/preview-examples/select-validation.html), [../../examples/angular-examples/src/preview-examples/select-validation.ts](../../examples/angular-examples/src/preview-examples/select-validation.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/select-validation.html](../../examples/angular-standalone-examples/src/preview-examples/select-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts)
-  - html: [../../examples/html-examples/src/preview-examples/select-validation.html](../../examples/html-examples/src/preview-examples/select-validation.html)
-  - react: [../../examples/react-examples/src/preview-examples/select-validation.tsx](../../examples/react-examples/src/preview-examples/select-validation.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/select-validation.vue](../../examples/vue-examples/src/preview-examples/select-validation.vue)
+  - angular:
+    - `angular/select-validation.html`: [source](../../examples/angular-examples/src/preview-examples/select-validation.html)
+    - `angular/select-validation.ts`: [source](../../examples/angular-examples/src/preview-examples/select-validation.ts)
+  - angular-standalone:
+    - `angular-standalone/select-validation.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-validation.html)
+    - `angular-standalone/select-validation.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/select-validation.ts)
+  - html:
+    - `html/select-validation.html`: [source](../../examples/html-examples/src/preview-examples/select-validation.html)
+  - react:
+    - `react/select-validation.tsx`: [source](../../examples/react-examples/src/preview-examples/select-validation.tsx)
+  - vue:
+    - `vue/select-validation.vue`: [source](../../examples/vue-examples/src/preview-examples/select-validation.vue)
 - validation-select
-  - angular: [../../examples/angular-examples/src/preview-examples/validation-select.html](../../examples/angular-examples/src/preview-examples/validation-select.html), [../../examples/angular-examples/src/preview-examples/validation-select.ts](../../examples/angular-examples/src/preview-examples/validation-select.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/validation-select.html](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html), [../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
-  - html: [../../examples/html-examples/src/preview-examples/validation-select.html](../../examples/html-examples/src/preview-examples/validation-select.html)
-  - react: [../../examples/react-examples/src/preview-examples/validation-select.tsx](../../examples/react-examples/src/preview-examples/validation-select.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/validation-select.vue](../../examples/vue-examples/src/preview-examples/validation-select.vue)
+  - angular:
+    - `angular/validation-select.html`: [source](../../examples/angular-examples/src/preview-examples/validation-select.html)
+    - `angular/validation-select.ts`: [source](../../examples/angular-examples/src/preview-examples/validation-select.ts)
+  - angular-standalone:
+    - `angular-standalone/validation-select.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html)
+    - `angular-standalone/validation-select.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
+  - html:
+    - `html/validation-select.html`: [source](../../examples/html-examples/src/preview-examples/validation-select.html)
+  - react:
+    - `react/validation-select.tsx`: [source](../../examples/react-examples/src/preview-examples/validation-select.tsx)
+  - vue:
+    - `vue/validation-select.vue`: [source](../../examples/vue-examples/src/preview-examples/validation-select.vue)
 
 ## Related blocks
 

@@ -12,30 +12,52 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - group
-  - angular: [../../examples/angular-examples/src/preview-examples/group.ts](../../examples/angular-examples/src/preview-examples/group.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group.ts](../../examples/angular-standalone-examples/src/preview-examples/group.ts)
-  - html: [../../examples/html-examples/src/preview-examples/group.html](../../examples/html-examples/src/preview-examples/group.html)
-  - react: [../../examples/react-examples/src/preview-examples/group.tsx](../../examples/react-examples/src/preview-examples/group.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/group.vue](../../examples/vue-examples/src/preview-examples/group.vue)
+  - angular:
+    - `angular/group.ts`: [source](../../examples/angular-examples/src/preview-examples/group.ts)
+  - angular-standalone:
+    - `angular-standalone/group.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/group.ts)
+  - html:
+    - `html/group.html`: [source](../../examples/html-examples/src/preview-examples/group.html)
+  - react:
+    - `react/group.tsx`: [source](../../examples/react-examples/src/preview-examples/group.tsx)
+  - vue:
+    - `vue/group.vue`: [source](../../examples/vue-examples/src/preview-examples/group.vue)
 - group-context-menu
-  - angular: [../../examples/angular-examples/src/preview-examples/group-context-menu.ts](../../examples/angular-examples/src/preview-examples/group-context-menu.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts](../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts)
-  - html: [../../examples/html-examples/src/preview-examples/group-context-menu.html](../../examples/html-examples/src/preview-examples/group-context-menu.html)
-  - react: [../../examples/react-examples/src/preview-examples/group-context-menu.tsx](../../examples/react-examples/src/preview-examples/group-context-menu.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/group-context-menu.vue](../../examples/vue-examples/src/preview-examples/group-context-menu.vue)
+  - angular:
+    - `angular/group-context-menu.ts`: [source](../../examples/angular-examples/src/preview-examples/group-context-menu.ts)
+  - angular-standalone:
+    - `angular-standalone/group-context-menu.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/group-context-menu.ts)
+  - html:
+    - `html/group-context-menu.html`: [source](../../examples/html-examples/src/preview-examples/group-context-menu.html)
+  - react:
+    - `react/group-context-menu.tsx`: [source](../../examples/react-examples/src/preview-examples/group-context-menu.tsx)
+  - vue:
+    - `vue/group-context-menu.vue`: [source](../../examples/vue-examples/src/preview-examples/group-context-menu.vue)
 - group-custom-entry
-  - angular: [../../examples/angular-examples/src/preview-examples/group-custom-entry.ts](../../examples/angular-examples/src/preview-examples/group-custom-entry.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts](../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts)
-  - html: [../../examples/html-examples/src/preview-examples/group-custom-entry.html](../../examples/html-examples/src/preview-examples/group-custom-entry.html)
-  - react: [../../examples/react-examples/src/preview-examples/group-custom-entry.tsx](../../examples/react-examples/src/preview-examples/group-custom-entry.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/group-custom-entry.vue](../../examples/vue-examples/src/preview-examples/group-custom-entry.vue)
+  - angular:
+    - `angular/group-custom-entry.ts`: [source](../../examples/angular-examples/src/preview-examples/group-custom-entry.ts)
+  - angular-standalone:
+    - `angular-standalone/group-custom-entry.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts)
+  - html:
+    - `html/group-custom-entry.html`: [source](../../examples/html-examples/src/preview-examples/group-custom-entry.html)
+  - react:
+    - `react/group-custom-entry.tsx`: [source](../../examples/react-examples/src/preview-examples/group-custom-entry.tsx)
+  - vue:
+    - `vue/group-custom-entry.vue`: [source](../../examples/vue-examples/src/preview-examples/group-custom-entry.vue)
 - group-header-suppressed
-  - angular: [../../examples/angular-examples/src/preview-examples/group-header-suppressed.ts](../../examples/angular-examples/src/preview-examples/group-header-suppressed.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group-header-suppressed.ts](../../examples/angular-standalone-examples/src/preview-examples/group-header-suppressed.ts)
-  - html: [../../examples/html-examples/src/preview-examples/group-header-suppressed.html](../../examples/html-examples/src/preview-examples/group-header-suppressed.html)
-  - react: [../../examples/react-examples/src/preview-examples/group-header-suppressed.tsx](../../examples/react-examples/src/preview-examples/group-header-suppressed.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/group-header-suppressed.vue](../../examples/vue-examples/src/preview-examples/group-header-suppressed.vue)
+  - angular:
+    - `angular/group-header-suppressed.ts`: [source](../../examples/angular-examples/src/preview-examples/group-header-suppressed.ts)
+  - angular-standalone:
+    - `angular-standalone/group-header-suppressed.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/group-header-suppressed.ts)
+  - html:
+    - `html/group-header-suppressed.html`: [source](../../examples/html-examples/src/preview-examples/group-header-suppressed.html)
+  - react:
+    - `react/group-header-suppressed.tsx`: [source](../../examples/react-examples/src/preview-examples/group-header-suppressed.tsx)
+  - vue:
+    - `vue/group-header-suppressed.vue`: [source](../../examples/vue-examples/src/preview-examples/group-header-suppressed.vue)
 
 ## Related blocks
 

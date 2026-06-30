@@ -12,18 +12,34 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - pane
-  - angular: [../../examples/angular-examples/src/preview-examples/pane.html](../../examples/angular-examples/src/preview-examples/pane.html), [../../examples/angular-examples/src/preview-examples/pane.ts](../../examples/angular-examples/src/preview-examples/pane.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane.html](../../examples/angular-standalone-examples/src/preview-examples/pane.html), [../../examples/angular-standalone-examples/src/preview-examples/pane.ts](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pane.html](../../examples/html-examples/src/preview-examples/pane.html)
-  - react: [../../examples/react-examples/src/preview-examples/pane.tsx](../../examples/react-examples/src/preview-examples/pane.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pane.vue](../../examples/vue-examples/src/preview-examples/pane.vue)
+  - angular:
+    - `angular/pane.html`: [source](../../examples/angular-examples/src/preview-examples/pane.html)
+    - `angular/pane.ts`: [source](../../examples/angular-examples/src/preview-examples/pane.ts)
+  - angular-standalone:
+    - `angular-standalone/pane.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane.html)
+    - `angular-standalone/pane.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
+  - html:
+    - `html/pane.html`: [source](../../examples/html-examples/src/preview-examples/pane.html)
+  - react:
+    - `react/pane.tsx`: [source](../../examples/react-examples/src/preview-examples/pane.tsx)
+  - vue:
+    - `vue/pane.vue`: [source](../../examples/vue-examples/src/preview-examples/pane.vue)
 - pane-layout
-  - angular: [../../examples/angular-examples/src/preview-examples/pane-layout.html](../../examples/angular-examples/src/preview-examples/pane-layout.html), [../../examples/angular-examples/src/preview-examples/pane-layout.ts](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html), [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pane-layout.html](../../examples/html-examples/src/preview-examples/pane-layout.html)
-  - react: [../../examples/react-examples/src/preview-examples/pane-layout.tsx](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pane-layout.vue](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
+  - angular:
+    - `angular/pane-layout.html`: [source](../../examples/angular-examples/src/preview-examples/pane-layout.html)
+    - `angular/pane-layout.ts`: [source](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
+  - angular-standalone:
+    - `angular-standalone/pane-layout.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html)
+    - `angular-standalone/pane-layout.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
+  - html:
+    - `html/pane-layout.html`: [source](../../examples/html-examples/src/preview-examples/pane-layout.html)
+  - react:
+    - `react/pane-layout.tsx`: [source](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
+  - vue:
+    - `vue/pane-layout.vue`: [source](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
 
 ## Related blocks
 

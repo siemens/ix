@@ -12,60 +12,121 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - date-input
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input.html](../../examples/angular-examples/src/preview-examples/date-input.html), [../../examples/angular-examples/src/preview-examples/date-input.ts](../../examples/angular-examples/src/preview-examples/date-input.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input.html](../../examples/angular-standalone-examples/src/preview-examples/date-input.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input.html](../../examples/html-examples/src/preview-examples/date-input.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input.tsx](../../examples/react-examples/src/preview-examples/date-input.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input.vue](../../examples/vue-examples/src/preview-examples/date-input.vue)
+  - angular:
+    - `angular/date-input.html`: [source](../../examples/angular-examples/src/preview-examples/date-input.html)
+    - `angular/date-input.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input.html)
+    - `angular-standalone/date-input.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input.ts)
+  - html:
+    - `html/date-input.html`: [source](../../examples/html-examples/src/preview-examples/date-input.html)
+  - react:
+    - `react/date-input.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input.tsx)
+  - vue:
+    - `vue/date-input.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input.vue)
 - date-input-disabled
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-disabled.html](../../examples/angular-examples/src/preview-examples/date-input-disabled.html), [../../examples/angular-examples/src/preview-examples/date-input-disabled.ts](../../examples/angular-examples/src/preview-examples/date-input-disabled.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-disabled.html](../../examples/html-examples/src/preview-examples/date-input-disabled.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-disabled.tsx](../../examples/react-examples/src/preview-examples/date-input-disabled.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-disabled.vue](../../examples/vue-examples/src/preview-examples/date-input-disabled.vue)
+  - angular:
+    - `angular/date-input-disabled.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-disabled.html)
+    - `angular/date-input-disabled.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-disabled.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-disabled.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.html)
+    - `angular-standalone/date-input-disabled.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-disabled.ts)
+  - html:
+    - `html/date-input-disabled.html`: [source](../../examples/html-examples/src/preview-examples/date-input-disabled.html)
+  - react:
+    - `react/date-input-disabled.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-disabled.tsx)
+  - vue:
+    - `vue/date-input-disabled.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-disabled.vue)
 - date-input-label
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-label.html](../../examples/angular-examples/src/preview-examples/date-input-label.html), [../../examples/angular-examples/src/preview-examples/date-input-label.ts](../../examples/angular-examples/src/preview-examples/date-input-label.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-label.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-label.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-label.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-label.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-label.html](../../examples/html-examples/src/preview-examples/date-input-label.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-label.tsx](../../examples/react-examples/src/preview-examples/date-input-label.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-label.vue](../../examples/vue-examples/src/preview-examples/date-input-label.vue)
+  - angular:
+    - `angular/date-input-label.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-label.html)
+    - `angular/date-input-label.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-label.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-label.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-label.html)
+    - `angular-standalone/date-input-label.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-label.ts)
+  - html:
+    - `html/date-input-label.html`: [source](../../examples/html-examples/src/preview-examples/date-input-label.html)
+  - react:
+    - `react/date-input-label.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-label.tsx)
+  - vue:
+    - `vue/date-input-label.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-label.vue)
 - date-input-min-max-date
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-min-max-date.html](../../examples/angular-examples/src/preview-examples/date-input-min-max-date.html), [../../examples/angular-examples/src/preview-examples/date-input-min-max-date.ts](../../examples/angular-examples/src/preview-examples/date-input-min-max-date.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-min-max-date.html](../../examples/html-examples/src/preview-examples/date-input-min-max-date.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-min-max-date.tsx](../../examples/react-examples/src/preview-examples/date-input-min-max-date.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-min-max-date.vue](../../examples/vue-examples/src/preview-examples/date-input-min-max-date.vue)
+  - angular:
+    - `angular/date-input-min-max-date.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-min-max-date.html)
+    - `angular/date-input-min-max-date.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-min-max-date.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-min-max-date.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.html)
+    - `angular-standalone/date-input-min-max-date.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-min-max-date.ts)
+  - html:
+    - `html/date-input-min-max-date.html`: [source](../../examples/html-examples/src/preview-examples/date-input-min-max-date.html)
+  - react:
+    - `react/date-input-min-max-date.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-min-max-date.tsx)
+  - vue:
+    - `vue/date-input-min-max-date.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-min-max-date.vue)
 - date-input-readonly
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-readonly.html](../../examples/angular-examples/src/preview-examples/date-input-readonly.html), [../../examples/angular-examples/src/preview-examples/date-input-readonly.ts](../../examples/angular-examples/src/preview-examples/date-input-readonly.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-readonly.html](../../examples/html-examples/src/preview-examples/date-input-readonly.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-readonly.tsx](../../examples/react-examples/src/preview-examples/date-input-readonly.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-readonly.vue](../../examples/vue-examples/src/preview-examples/date-input-readonly.vue)
+  - angular:
+    - `angular/date-input-readonly.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-readonly.html)
+    - `angular/date-input-readonly.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-readonly.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-readonly.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.html)
+    - `angular-standalone/date-input-readonly.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-readonly.ts)
+  - html:
+    - `html/date-input-readonly.html`: [source](../../examples/html-examples/src/preview-examples/date-input-readonly.html)
+  - react:
+    - `react/date-input-readonly.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-readonly.tsx)
+  - vue:
+    - `vue/date-input-readonly.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-readonly.vue)
 - date-input-validation
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-validation.html](../../examples/angular-examples/src/preview-examples/date-input-validation.html), [../../examples/angular-examples/src/preview-examples/date-input-validation.ts](../../examples/angular-examples/src/preview-examples/date-input-validation.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-validation.html](../../examples/html-examples/src/preview-examples/date-input-validation.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-validation.tsx](../../examples/react-examples/src/preview-examples/date-input-validation.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-validation.vue](../../examples/vue-examples/src/preview-examples/date-input-validation.vue)
+  - angular:
+    - `angular/date-input-validation.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-validation.html)
+    - `angular/date-input-validation.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-validation.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-validation.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.html)
+    - `angular-standalone/date-input-validation.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-validation.ts)
+  - html:
+    - `html/date-input-validation.html`: [source](../../examples/html-examples/src/preview-examples/date-input-validation.html)
+  - react:
+    - `react/date-input-validation.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-validation.tsx)
+  - vue:
+    - `vue/date-input-validation.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-validation.vue)
 - date-input-with-slots
-  - angular: [../../examples/angular-examples/src/preview-examples/date-input-with-slots.html](../../examples/angular-examples/src/preview-examples/date-input-with-slots.html), [../../examples/angular-examples/src/preview-examples/date-input-with-slots.ts](../../examples/angular-examples/src/preview-examples/date-input-with-slots.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.html](../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.html), [../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.ts](../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-input-with-slots.html](../../examples/html-examples/src/preview-examples/date-input-with-slots.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-input-with-slots.tsx](../../examples/react-examples/src/preview-examples/date-input-with-slots.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-input-with-slots.vue](../../examples/vue-examples/src/preview-examples/date-input-with-slots.vue)
+  - angular:
+    - `angular/date-input-with-slots.html`: [source](../../examples/angular-examples/src/preview-examples/date-input-with-slots.html)
+    - `angular/date-input-with-slots.ts`: [source](../../examples/angular-examples/src/preview-examples/date-input-with-slots.ts)
+  - angular-standalone:
+    - `angular-standalone/date-input-with-slots.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.html)
+    - `angular-standalone/date-input-with-slots.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-input-with-slots.ts)
+  - html:
+    - `html/date-input-with-slots.html`: [source](../../examples/html-examples/src/preview-examples/date-input-with-slots.html)
+  - react:
+    - `react/date-input-with-slots.tsx`: [source](../../examples/react-examples/src/preview-examples/date-input-with-slots.tsx)
+  - vue:
+    - `vue/date-input-with-slots.vue`: [source](../../examples/vue-examples/src/preview-examples/date-input-with-slots.vue)
 - date-range
-  - angular: [../../examples/angular-examples/src/preview-examples/date-range.ts](../../examples/angular-examples/src/preview-examples/date-range.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/date-range.ts](../../examples/angular-standalone-examples/src/preview-examples/date-range.ts)
-  - html: [../../examples/html-examples/src/preview-examples/date-range.html](../../examples/html-examples/src/preview-examples/date-range.html)
-  - react: [../../examples/react-examples/src/preview-examples/date-range.tsx](../../examples/react-examples/src/preview-examples/date-range.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/date-range.vue](../../examples/vue-examples/src/preview-examples/date-range.vue)
+  - angular:
+    - `angular/date-range.ts`: [source](../../examples/angular-examples/src/preview-examples/date-range.ts)
+  - angular-standalone:
+    - `angular-standalone/date-range.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/date-range.ts)
+  - html:
+    - `html/date-range.html`: [source](../../examples/html-examples/src/preview-examples/date-range.html)
+  - react:
+    - `react/date-range.tsx`: [source](../../examples/react-examples/src/preview-examples/date-range.tsx)
+  - vue:
+    - `vue/date-range.vue`: [source](../../examples/vue-examples/src/preview-examples/date-range.vue)
 - range-field
-  - angular: [../../examples/angular-examples/src/preview-examples/range-field.ts](../../examples/angular-examples/src/preview-examples/range-field.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/range-field.ts](../../examples/angular-standalone-examples/src/preview-examples/range-field.ts)
-  - html: [../../examples/html-examples/src/preview-examples/range-field.html](../../examples/html-examples/src/preview-examples/range-field.html)
-  - react: [../../examples/react-examples/src/preview-examples/range-field.tsx](../../examples/react-examples/src/preview-examples/range-field.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/range-field.vue](../../examples/vue-examples/src/preview-examples/range-field.vue)
+  - angular:
+    - `angular/range-field.ts`: [source](../../examples/angular-examples/src/preview-examples/range-field.ts)
+  - angular-standalone:
+    - `angular-standalone/range-field.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/range-field.ts)
+  - html:
+    - `html/range-field.html`: [source](../../examples/html-examples/src/preview-examples/range-field.html)
+  - react:
+    - `react/range-field.tsx`: [source](../../examples/react-examples/src/preview-examples/range-field.tsx)
+  - vue:
+    - `vue/range-field.vue`: [source](../../examples/vue-examples/src/preview-examples/range-field.vue)
 
 ## Related blocks
 

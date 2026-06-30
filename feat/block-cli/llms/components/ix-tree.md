@@ -12,18 +12,30 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - tree
-  - angular: [../../examples/angular-examples/src/preview-examples/tree.ts](../../examples/angular-examples/src/preview-examples/tree.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tree.ts](../../examples/angular-standalone-examples/src/preview-examples/tree.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tree.html](../../examples/html-examples/src/preview-examples/tree.html)
-  - react: [../../examples/react-examples/src/preview-examples/tree.tsx](../../examples/react-examples/src/preview-examples/tree.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tree.vue](../../examples/vue-examples/src/preview-examples/tree.vue)
+  - angular:
+    - `angular/tree.ts`: [source](../../examples/angular-examples/src/preview-examples/tree.ts)
+  - angular-standalone:
+    - `angular-standalone/tree.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tree.ts)
+  - html:
+    - `html/tree.html`: [source](../../examples/html-examples/src/preview-examples/tree.html)
+  - react:
+    - `react/tree.tsx`: [source](../../examples/react-examples/src/preview-examples/tree.tsx)
+  - vue:
+    - `vue/tree.vue`: [source](../../examples/vue-examples/src/preview-examples/tree.vue)
 - tree-custom
-  - angular: [../../examples/angular-examples/src/preview-examples/tree-custom.ts](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tree-custom.html](../../examples/html-examples/src/preview-examples/tree-custom.html)
-  - react: [../../examples/react-examples/src/preview-examples/tree-custom.tsx](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tree-custom.vue](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
+  - angular:
+    - `angular/tree-custom.ts`: [source](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
+  - angular-standalone:
+    - `angular-standalone/tree-custom.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
+  - html:
+    - `html/tree-custom.html`: [source](../../examples/html-examples/src/preview-examples/tree-custom.html)
+  - react:
+    - `react/tree-custom.tsx`: [source](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
+  - vue:
+    - `vue/tree-custom.vue`: [source](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
 
 ## Related blocks
 

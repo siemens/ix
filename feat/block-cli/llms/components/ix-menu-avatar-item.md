@@ -12,12 +12,24 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - vertical-tabs-with-avatar
-  - angular: [../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.ts](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.ts](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
-  - html: [../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.html](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.html)
-  - react: [../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.scoped.css](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.scoped.css), [../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.tsx](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.css](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.css), [../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.vue](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.vue)
+  - angular:
+    - `angular/vertical-tabs-with-avatar.css`: [source](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.css)
+    - `angular/vertical-tabs-with-avatar.ts`: [source](../../examples/angular-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
+  - angular-standalone:
+    - `angular-standalone/vertical-tabs-with-avatar.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.css)
+    - `angular-standalone/vertical-tabs-with-avatar.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/vertical-tabs-with-avatar.ts)
+  - html:
+    - `html/vertical-tabs-with-avatar.css`: [source](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.css)
+    - `html/vertical-tabs-with-avatar.html`: [source](../../examples/html-examples/src/preview-examples/vertical-tabs-with-avatar.html)
+  - react:
+    - `react/vertical-tabs-with-avatar.scoped.css`: [source](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.scoped.css)
+    - `react/vertical-tabs-with-avatar.tsx`: [source](../../examples/react-examples/src/preview-examples/vertical-tabs-with-avatar.tsx)
+  - vue:
+    - `vue/vertical-tabs-with-avatar.css`: [source](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.css)
+    - `vue/vertical-tabs-with-avatar.vue`: [source](../../examples/vue-examples/src/preview-examples/vertical-tabs-with-avatar.vue)
 
 ## Related blocks
 

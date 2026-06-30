@@ -12,36 +12,79 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - application-app-switch
-  - angular: [../../examples/angular-examples/src/preview-examples/application-app-switch.html](../../examples/angular-examples/src/preview-examples/application-app-switch.html), [../../examples/angular-examples/src/preview-examples/application-app-switch.ts](../../examples/angular-examples/src/preview-examples/application-app-switch.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.html](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.html), [../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.ts](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.ts)
-  - html: [../../examples/html-examples/src/preview-examples/application-app-switch.html](../../examples/html-examples/src/preview-examples/application-app-switch.html)
-  - react: [../../examples/react-examples/src/preview-examples/application-app-switch.tsx](../../examples/react-examples/src/preview-examples/application-app-switch.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/application-app-switch.vue](../../examples/vue-examples/src/preview-examples/application-app-switch.vue)
+  - angular:
+    - `angular/application-app-switch.html`: [source](../../examples/angular-examples/src/preview-examples/application-app-switch.html)
+    - `angular/application-app-switch.ts`: [source](../../examples/angular-examples/src/preview-examples/application-app-switch.ts)
+  - angular-standalone:
+    - `angular-standalone/application-app-switch.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.html)
+    - `angular-standalone/application-app-switch.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-app-switch.ts)
+  - html:
+    - `html/application-app-switch.html`: [source](../../examples/html-examples/src/preview-examples/application-app-switch.html)
+  - react:
+    - `react/application-app-switch.tsx`: [source](../../examples/react-examples/src/preview-examples/application-app-switch.tsx)
+  - vue:
+    - `vue/application-app-switch.vue`: [source](../../examples/vue-examples/src/preview-examples/application-app-switch.vue)
 - application-breakpoints
-  - angular: [../../examples/angular-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-examples/src/preview-examples/application-breakpoints.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html), [../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts)
-  - html: [../../examples/html-examples/src/preview-examples/application-breakpoints.html](../../examples/html-examples/src/preview-examples/application-breakpoints.html)
-  - react: [../../examples/react-examples/src/preview-examples/application-breakpoints.tsx](../../examples/react-examples/src/preview-examples/application-breakpoints.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/application-breakpoints.vue](../../examples/vue-examples/src/preview-examples/application-breakpoints.vue)
+  - angular:
+    - `angular/application-breakpoints.html`: [source](../../examples/angular-examples/src/preview-examples/application-breakpoints.html)
+    - `angular/application-breakpoints.ts`: [source](../../examples/angular-examples/src/preview-examples/application-breakpoints.ts)
+  - angular-standalone:
+    - `angular-standalone/application-breakpoints.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.html)
+    - `angular-standalone/application-breakpoints.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-breakpoints.ts)
+  - html:
+    - `html/application-breakpoints.html`: [source](../../examples/html-examples/src/preview-examples/application-breakpoints.html)
+  - react:
+    - `react/application-breakpoints.tsx`: [source](../../examples/react-examples/src/preview-examples/application-breakpoints.tsx)
+  - vue:
+    - `vue/application-breakpoints.vue`: [source](../../examples/vue-examples/src/preview-examples/application-breakpoints.vue)
 - application-header
-  - angular: [../../examples/angular-examples/src/preview-examples/application-header.html](../../examples/angular-examples/src/preview-examples/application-header.html), [../../examples/angular-examples/src/preview-examples/application-header.ts](../../examples/angular-examples/src/preview-examples/application-header.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/application-header.html](../../examples/angular-standalone-examples/src/preview-examples/application-header.html), [../../examples/angular-standalone-examples/src/preview-examples/application-header.ts](../../examples/angular-standalone-examples/src/preview-examples/application-header.ts)
-  - html: [../../examples/html-examples/src/preview-examples/application-header.html](../../examples/html-examples/src/preview-examples/application-header.html)
-  - react: [../../examples/react-examples/src/preview-examples/application-header.tsx](../../examples/react-examples/src/preview-examples/application-header.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/application-header.vue](../../examples/vue-examples/src/preview-examples/application-header.vue)
+  - angular:
+    - `angular/application-header.html`: [source](../../examples/angular-examples/src/preview-examples/application-header.html)
+    - `angular/application-header.ts`: [source](../../examples/angular-examples/src/preview-examples/application-header.ts)
+  - angular-standalone:
+    - `angular-standalone/application-header.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-header.html)
+    - `angular-standalone/application-header.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/application-header.ts)
+  - html:
+    - `html/application-header.html`: [source](../../examples/html-examples/src/preview-examples/application-header.html)
+  - react:
+    - `react/application-header.tsx`: [source](../../examples/react-examples/src/preview-examples/application-header.tsx)
+  - vue:
+    - `vue/application-header.vue`: [source](../../examples/vue-examples/src/preview-examples/application-header.vue)
 - dropdown-button
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-button.css](../../examples/angular-examples/src/preview-examples/dropdown-button.css), [../../examples/angular-examples/src/preview-examples/dropdown-button.ts](../../examples/angular-examples/src/preview-examples/dropdown-button.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.css](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.css), [../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown-button.css](../../examples/html-examples/src/preview-examples/dropdown-button.css), [../../examples/html-examples/src/preview-examples/dropdown-button.html](../../examples/html-examples/src/preview-examples/dropdown-button.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown-button.scoped.css](../../examples/react-examples/src/preview-examples/dropdown-button.scoped.css), [../../examples/react-examples/src/preview-examples/dropdown-button.tsx](../../examples/react-examples/src/preview-examples/dropdown-button.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-button.css](../../examples/vue-examples/src/preview-examples/dropdown-button.css), [../../examples/vue-examples/src/preview-examples/dropdown-button.vue](../../examples/vue-examples/src/preview-examples/dropdown-button.vue)
+  - angular:
+    - `angular/dropdown-button.css`: [source](../../examples/angular-examples/src/preview-examples/dropdown-button.css)
+    - `angular/dropdown-button.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown-button.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown-button.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.css)
+    - `angular-standalone/dropdown-button.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button.ts)
+  - html:
+    - `html/dropdown-button.css`: [source](../../examples/html-examples/src/preview-examples/dropdown-button.css)
+    - `html/dropdown-button.html`: [source](../../examples/html-examples/src/preview-examples/dropdown-button.html)
+  - react:
+    - `react/dropdown-button.scoped.css`: [source](../../examples/react-examples/src/preview-examples/dropdown-button.scoped.css)
+    - `react/dropdown-button.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown-button.tsx)
+  - vue:
+    - `vue/dropdown-button.css`: [source](../../examples/vue-examples/src/preview-examples/dropdown-button.css)
+    - `vue/dropdown-button.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown-button.vue)
 - dropdown-button-icon
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-button-icon.css](../../examples/angular-examples/src/preview-examples/dropdown-button-icon.css), [../../examples/angular-examples/src/preview-examples/dropdown-button-icon.ts](../../examples/angular-examples/src/preview-examples/dropdown-button-icon.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.css](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.css), [../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown-button-icon.css](../../examples/html-examples/src/preview-examples/dropdown-button-icon.css), [../../examples/html-examples/src/preview-examples/dropdown-button-icon.html](../../examples/html-examples/src/preview-examples/dropdown-button-icon.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown-button-icon.scoped.css](../../examples/react-examples/src/preview-examples/dropdown-button-icon.scoped.css), [../../examples/react-examples/src/preview-examples/dropdown-button-icon.tsx](../../examples/react-examples/src/preview-examples/dropdown-button-icon.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-button-icon.css](../../examples/vue-examples/src/preview-examples/dropdown-button-icon.css), [../../examples/vue-examples/src/preview-examples/dropdown-button-icon.vue](../../examples/vue-examples/src/preview-examples/dropdown-button-icon.vue)
+  - angular:
+    - `angular/dropdown-button-icon.css`: [source](../../examples/angular-examples/src/preview-examples/dropdown-button-icon.css)
+    - `angular/dropdown-button-icon.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown-button-icon.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown-button-icon.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.css)
+    - `angular-standalone/dropdown-button-icon.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-button-icon.ts)
+  - html:
+    - `html/dropdown-button-icon.css`: [source](../../examples/html-examples/src/preview-examples/dropdown-button-icon.css)
+    - `html/dropdown-button-icon.html`: [source](../../examples/html-examples/src/preview-examples/dropdown-button-icon.html)
+  - react:
+    - `react/dropdown-button-icon.scoped.css`: [source](../../examples/react-examples/src/preview-examples/dropdown-button-icon.scoped.css)
+    - `react/dropdown-button-icon.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown-button-icon.tsx)
+  - vue:
+    - `vue/dropdown-button-icon.css`: [source](../../examples/vue-examples/src/preview-examples/dropdown-button-icon.css)
+    - `vue/dropdown-button-icon.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown-button-icon.vue)
 
 ## Related blocks
 

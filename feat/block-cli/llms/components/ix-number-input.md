@@ -15,48 +15,99 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - number-input
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input.html](../../examples/angular-examples/src/preview-examples/number-input.html), [../../examples/angular-examples/src/preview-examples/number-input.ts](../../examples/angular-examples/src/preview-examples/number-input.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input.html](../../examples/angular-standalone-examples/src/preview-examples/number-input.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input.html](../../examples/html-examples/src/preview-examples/number-input.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input.tsx](../../examples/react-examples/src/preview-examples/number-input.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input.vue](../../examples/vue-examples/src/preview-examples/number-input.vue)
+  - angular:
+    - `angular/number-input.html`: [source](../../examples/angular-examples/src/preview-examples/number-input.html)
+    - `angular/number-input.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input.html)
+    - `angular-standalone/number-input.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input.ts)
+  - html:
+    - `html/number-input.html`: [source](../../examples/html-examples/src/preview-examples/number-input.html)
+  - react:
+    - `react/number-input.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input.tsx)
+  - vue:
+    - `vue/number-input.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input.vue)
 - number-input-disabled
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-disabled.html](../../examples/angular-examples/src/preview-examples/number-input-disabled.html), [../../examples/angular-examples/src/preview-examples/number-input-disabled.ts](../../examples/angular-examples/src/preview-examples/number-input-disabled.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-disabled.html](../../examples/html-examples/src/preview-examples/number-input-disabled.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-disabled.tsx](../../examples/react-examples/src/preview-examples/number-input-disabled.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-disabled.vue](../../examples/vue-examples/src/preview-examples/number-input-disabled.vue)
+  - angular:
+    - `angular/number-input-disabled.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-disabled.html)
+    - `angular/number-input-disabled.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-disabled.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-disabled.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.html)
+    - `angular-standalone/number-input-disabled.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-disabled.ts)
+  - html:
+    - `html/number-input-disabled.html`: [source](../../examples/html-examples/src/preview-examples/number-input-disabled.html)
+  - react:
+    - `react/number-input-disabled.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-disabled.tsx)
+  - vue:
+    - `vue/number-input-disabled.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-disabled.vue)
 - number-input-label
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-label.html](../../examples/angular-examples/src/preview-examples/number-input-label.html), [../../examples/angular-examples/src/preview-examples/number-input-label.ts](../../examples/angular-examples/src/preview-examples/number-input-label.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-label.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-label.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-label.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-label.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-label.html](../../examples/html-examples/src/preview-examples/number-input-label.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-label.tsx](../../examples/react-examples/src/preview-examples/number-input-label.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-label.vue](../../examples/vue-examples/src/preview-examples/number-input-label.vue)
+  - angular:
+    - `angular/number-input-label.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-label.html)
+    - `angular/number-input-label.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-label.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-label.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-label.html)
+    - `angular-standalone/number-input-label.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-label.ts)
+  - html:
+    - `html/number-input-label.html`: [source](../../examples/html-examples/src/preview-examples/number-input-label.html)
+  - react:
+    - `react/number-input-label.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-label.tsx)
+  - vue:
+    - `vue/number-input-label.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-label.vue)
 - number-input-readonly
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-readonly.html](../../examples/angular-examples/src/preview-examples/number-input-readonly.html), [../../examples/angular-examples/src/preview-examples/number-input-readonly.ts](../../examples/angular-examples/src/preview-examples/number-input-readonly.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-readonly.html](../../examples/html-examples/src/preview-examples/number-input-readonly.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-readonly.tsx](../../examples/react-examples/src/preview-examples/number-input-readonly.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-readonly.vue](../../examples/vue-examples/src/preview-examples/number-input-readonly.vue)
+  - angular:
+    - `angular/number-input-readonly.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-readonly.html)
+    - `angular/number-input-readonly.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-readonly.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-readonly.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.html)
+    - `angular-standalone/number-input-readonly.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-readonly.ts)
+  - html:
+    - `html/number-input-readonly.html`: [source](../../examples/html-examples/src/preview-examples/number-input-readonly.html)
+  - react:
+    - `react/number-input-readonly.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-readonly.tsx)
+  - vue:
+    - `vue/number-input-readonly.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-readonly.vue)
 - number-input-stepper-button
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-stepper-button.html](../../examples/angular-examples/src/preview-examples/number-input-stepper-button.html), [../../examples/angular-examples/src/preview-examples/number-input-stepper-button.ts](../../examples/angular-examples/src/preview-examples/number-input-stepper-button.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-stepper-button.html](../../examples/html-examples/src/preview-examples/number-input-stepper-button.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-stepper-button.tsx](../../examples/react-examples/src/preview-examples/number-input-stepper-button.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-stepper-button.vue](../../examples/vue-examples/src/preview-examples/number-input-stepper-button.vue)
+  - angular:
+    - `angular/number-input-stepper-button.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-stepper-button.html)
+    - `angular/number-input-stepper-button.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-stepper-button.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-stepper-button.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.html)
+    - `angular-standalone/number-input-stepper-button.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-stepper-button.ts)
+  - html:
+    - `html/number-input-stepper-button.html`: [source](../../examples/html-examples/src/preview-examples/number-input-stepper-button.html)
+  - react:
+    - `react/number-input-stepper-button.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-stepper-button.tsx)
+  - vue:
+    - `vue/number-input-stepper-button.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-stepper-button.vue)
 - number-input-validation
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-validation.html](../../examples/angular-examples/src/preview-examples/number-input-validation.html), [../../examples/angular-examples/src/preview-examples/number-input-validation.ts](../../examples/angular-examples/src/preview-examples/number-input-validation.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-validation.html](../../examples/html-examples/src/preview-examples/number-input-validation.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-validation.tsx](../../examples/react-examples/src/preview-examples/number-input-validation.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-validation.vue](../../examples/vue-examples/src/preview-examples/number-input-validation.vue)
+  - angular:
+    - `angular/number-input-validation.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-validation.html)
+    - `angular/number-input-validation.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-validation.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-validation.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.html)
+    - `angular-standalone/number-input-validation.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-validation.ts)
+  - html:
+    - `html/number-input-validation.html`: [source](../../examples/html-examples/src/preview-examples/number-input-validation.html)
+  - react:
+    - `react/number-input-validation.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-validation.tsx)
+  - vue:
+    - `vue/number-input-validation.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-validation.vue)
 - number-input-with-slots
-  - angular: [../../examples/angular-examples/src/preview-examples/number-input-with-slots.html](../../examples/angular-examples/src/preview-examples/number-input-with-slots.html), [../../examples/angular-examples/src/preview-examples/number-input-with-slots.ts](../../examples/angular-examples/src/preview-examples/number-input-with-slots.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.html](../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.html), [../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.ts](../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.ts)
-  - html: [../../examples/html-examples/src/preview-examples/number-input-with-slots.html](../../examples/html-examples/src/preview-examples/number-input-with-slots.html)
-  - react: [../../examples/react-examples/src/preview-examples/number-input-with-slots.tsx](../../examples/react-examples/src/preview-examples/number-input-with-slots.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/number-input-with-slots.vue](../../examples/vue-examples/src/preview-examples/number-input-with-slots.vue)
+  - angular:
+    - `angular/number-input-with-slots.html`: [source](../../examples/angular-examples/src/preview-examples/number-input-with-slots.html)
+    - `angular/number-input-with-slots.ts`: [source](../../examples/angular-examples/src/preview-examples/number-input-with-slots.ts)
+  - angular-standalone:
+    - `angular-standalone/number-input-with-slots.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.html)
+    - `angular-standalone/number-input-with-slots.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/number-input-with-slots.ts)
+  - html:
+    - `html/number-input-with-slots.html`: [source](../../examples/html-examples/src/preview-examples/number-input-with-slots.html)
+  - react:
+    - `react/number-input-with-slots.tsx`: [source](../../examples/react-examples/src/preview-examples/number-input-with-slots.tsx)
+  - vue:
+    - `vue/number-input-with-slots.vue`: [source](../../examples/vue-examples/src/preview-examples/number-input-with-slots.vue)
 
 ## Related blocks
 

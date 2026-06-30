@@ -12,12 +12,21 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - card-list
-  - angular: [../../examples/angular-examples/src/preview-examples/card-list.html](../../examples/angular-examples/src/preview-examples/card-list.html), [../../examples/angular-examples/src/preview-examples/card-list.ts](../../examples/angular-examples/src/preview-examples/card-list.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/card-list.html](../../examples/angular-standalone-examples/src/preview-examples/card-list.html), [../../examples/angular-standalone-examples/src/preview-examples/card-list.ts](../../examples/angular-standalone-examples/src/preview-examples/card-list.ts)
-  - html: [../../examples/html-examples/src/preview-examples/card-list.html](../../examples/html-examples/src/preview-examples/card-list.html)
-  - react: [../../examples/react-examples/src/preview-examples/card-list.tsx](../../examples/react-examples/src/preview-examples/card-list.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/card-list.vue](../../examples/vue-examples/src/preview-examples/card-list.vue)
+  - angular:
+    - `angular/card-list.html`: [source](../../examples/angular-examples/src/preview-examples/card-list.html)
+    - `angular/card-list.ts`: [source](../../examples/angular-examples/src/preview-examples/card-list.ts)
+  - angular-standalone:
+    - `angular-standalone/card-list.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/card-list.html)
+    - `angular-standalone/card-list.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/card-list.ts)
+  - html:
+    - `html/card-list.html`: [source](../../examples/html-examples/src/preview-examples/card-list.html)
+  - react:
+    - `react/card-list.tsx`: [source](../../examples/react-examples/src/preview-examples/card-list.tsx)
+  - vue:
+    - `vue/card-list.vue`: [source](../../examples/vue-examples/src/preview-examples/card-list.vue)
 
 ## Related blocks
 

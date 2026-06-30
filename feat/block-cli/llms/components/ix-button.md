@@ -12,261 +12,607 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - button-danger-primary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-danger-primary.css](../../examples/angular-examples/src/preview-examples/button-danger-primary.css), [../../examples/angular-examples/src/preview-examples/button-danger-primary.html](../../examples/angular-examples/src/preview-examples/button-danger-primary.html), [../../examples/angular-examples/src/preview-examples/button-danger-primary.ts](../../examples/angular-examples/src/preview-examples/button-danger-primary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.css](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.html](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.html), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-danger-primary.css](../../examples/html-examples/src/preview-examples/button-danger-primary.css), [../../examples/html-examples/src/preview-examples/button-danger-primary.html](../../examples/html-examples/src/preview-examples/button-danger-primary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-danger-primary.scoped.css](../../examples/react-examples/src/preview-examples/button-danger-primary.scoped.css), [../../examples/react-examples/src/preview-examples/button-danger-primary.tsx](../../examples/react-examples/src/preview-examples/button-danger-primary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-danger-primary.css](../../examples/vue-examples/src/preview-examples/button-danger-primary.css), [../../examples/vue-examples/src/preview-examples/button-danger-primary.vue](../../examples/vue-examples/src/preview-examples/button-danger-primary.vue)
+  - angular:
+    - `angular/button-danger-primary.css`: [source](../../examples/angular-examples/src/preview-examples/button-danger-primary.css)
+    - `angular/button-danger-primary.html`: [source](../../examples/angular-examples/src/preview-examples/button-danger-primary.html)
+    - `angular/button-danger-primary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-danger-primary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-primary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.css)
+    - `angular-standalone/button-danger-primary.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.html)
+    - `angular-standalone/button-danger-primary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-primary.ts)
+  - html:
+    - `html/button-danger-primary.css`: [source](../../examples/html-examples/src/preview-examples/button-danger-primary.css)
+    - `html/button-danger-primary.html`: [source](../../examples/html-examples/src/preview-examples/button-danger-primary.html)
+  - react:
+    - `react/button-danger-primary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-danger-primary.scoped.css)
+    - `react/button-danger-primary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-danger-primary.tsx)
+  - vue:
+    - `vue/button-danger-primary.css`: [source](../../examples/vue-examples/src/preview-examples/button-danger-primary.css)
+    - `vue/button-danger-primary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-danger-primary.vue)
 - button-danger-secondary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-danger-secondary.css](../../examples/angular-examples/src/preview-examples/button-danger-secondary.css), [../../examples/angular-examples/src/preview-examples/button-danger-secondary.html](../../examples/angular-examples/src/preview-examples/button-danger-secondary.html), [../../examples/angular-examples/src/preview-examples/button-danger-secondary.ts](../../examples/angular-examples/src/preview-examples/button-danger-secondary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.css](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.html](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.html), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-danger-secondary.css](../../examples/html-examples/src/preview-examples/button-danger-secondary.css), [../../examples/html-examples/src/preview-examples/button-danger-secondary.html](../../examples/html-examples/src/preview-examples/button-danger-secondary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-danger-secondary.scoped.css](../../examples/react-examples/src/preview-examples/button-danger-secondary.scoped.css), [../../examples/react-examples/src/preview-examples/button-danger-secondary.tsx](../../examples/react-examples/src/preview-examples/button-danger-secondary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-danger-secondary.css](../../examples/vue-examples/src/preview-examples/button-danger-secondary.css), [../../examples/vue-examples/src/preview-examples/button-danger-secondary.vue](../../examples/vue-examples/src/preview-examples/button-danger-secondary.vue)
+  - angular:
+    - `angular/button-danger-secondary.css`: [source](../../examples/angular-examples/src/preview-examples/button-danger-secondary.css)
+    - `angular/button-danger-secondary.html`: [source](../../examples/angular-examples/src/preview-examples/button-danger-secondary.html)
+    - `angular/button-danger-secondary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-danger-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-secondary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.css)
+    - `angular-standalone/button-danger-secondary.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.html)
+    - `angular-standalone/button-danger-secondary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-secondary.ts)
+  - html:
+    - `html/button-danger-secondary.css`: [source](../../examples/html-examples/src/preview-examples/button-danger-secondary.css)
+    - `html/button-danger-secondary.html`: [source](../../examples/html-examples/src/preview-examples/button-danger-secondary.html)
+  - react:
+    - `react/button-danger-secondary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-danger-secondary.scoped.css)
+    - `react/button-danger-secondary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-danger-secondary.tsx)
+  - vue:
+    - `vue/button-danger-secondary.css`: [source](../../examples/vue-examples/src/preview-examples/button-danger-secondary.css)
+    - `vue/button-danger-secondary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-danger-secondary.vue)
 - button-danger-tertiary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-danger-tertiary.css](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.css), [../../examples/angular-examples/src/preview-examples/button-danger-tertiary.html](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.html), [../../examples/angular-examples/src/preview-examples/button-danger-tertiary.ts](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.css](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.html](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.html), [../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-danger-tertiary.css](../../examples/html-examples/src/preview-examples/button-danger-tertiary.css), [../../examples/html-examples/src/preview-examples/button-danger-tertiary.html](../../examples/html-examples/src/preview-examples/button-danger-tertiary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-danger-tertiary.scoped.css](../../examples/react-examples/src/preview-examples/button-danger-tertiary.scoped.css), [../../examples/react-examples/src/preview-examples/button-danger-tertiary.tsx](../../examples/react-examples/src/preview-examples/button-danger-tertiary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-danger-tertiary.css](../../examples/vue-examples/src/preview-examples/button-danger-tertiary.css), [../../examples/vue-examples/src/preview-examples/button-danger-tertiary.vue](../../examples/vue-examples/src/preview-examples/button-danger-tertiary.vue)
+  - angular:
+    - `angular/button-danger-tertiary.css`: [source](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.css)
+    - `angular/button-danger-tertiary.html`: [source](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.html)
+    - `angular/button-danger-tertiary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-danger-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-tertiary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.css)
+    - `angular-standalone/button-danger-tertiary.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.html)
+    - `angular-standalone/button-danger-tertiary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-danger-tertiary.ts)
+  - html:
+    - `html/button-danger-tertiary.css`: [source](../../examples/html-examples/src/preview-examples/button-danger-tertiary.css)
+    - `html/button-danger-tertiary.html`: [source](../../examples/html-examples/src/preview-examples/button-danger-tertiary.html)
+  - react:
+    - `react/button-danger-tertiary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-danger-tertiary.scoped.css)
+    - `react/button-danger-tertiary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-danger-tertiary.tsx)
+  - vue:
+    - `vue/button-danger-tertiary.css`: [source](../../examples/vue-examples/src/preview-examples/button-danger-tertiary.css)
+    - `vue/button-danger-tertiary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-danger-tertiary.vue)
 - button-group
-  - angular: [../../examples/angular-examples/src/preview-examples/button-group.ts](../../examples/angular-examples/src/preview-examples/button-group.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-group.ts](../../examples/angular-standalone-examples/src/preview-examples/button-group.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-group.html](../../examples/html-examples/src/preview-examples/button-group.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-group.tsx](../../examples/react-examples/src/preview-examples/button-group.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-group.vue](../../examples/vue-examples/src/preview-examples/button-group.vue)
+  - angular:
+    - `angular/button-group.ts`: [source](../../examples/angular-examples/src/preview-examples/button-group.ts)
+  - angular-standalone:
+    - `angular-standalone/button-group.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-group.ts)
+  - html:
+    - `html/button-group.html`: [source](../../examples/html-examples/src/preview-examples/button-group.html)
+  - react:
+    - `react/button-group.tsx`: [source](../../examples/react-examples/src/preview-examples/button-group.tsx)
+  - vue:
+    - `vue/button-group.vue`: [source](../../examples/vue-examples/src/preview-examples/button-group.vue)
 - button-loading
-  - angular: [../../examples/angular-examples/src/preview-examples/button-loading.css](../../examples/angular-examples/src/preview-examples/button-loading.css), [../../examples/angular-examples/src/preview-examples/button-loading.html](../../examples/angular-examples/src/preview-examples/button-loading.html), [../../examples/angular-examples/src/preview-examples/button-loading.ts](../../examples/angular-examples/src/preview-examples/button-loading.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-loading.css](../../examples/angular-standalone-examples/src/preview-examples/button-loading.css), [../../examples/angular-standalone-examples/src/preview-examples/button-loading.html](../../examples/angular-standalone-examples/src/preview-examples/button-loading.html), [../../examples/angular-standalone-examples/src/preview-examples/button-loading.ts](../../examples/angular-standalone-examples/src/preview-examples/button-loading.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-loading.css](../../examples/html-examples/src/preview-examples/button-loading.css), [../../examples/html-examples/src/preview-examples/button-loading.html](../../examples/html-examples/src/preview-examples/button-loading.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-loading.scoped.css](../../examples/react-examples/src/preview-examples/button-loading.scoped.css), [../../examples/react-examples/src/preview-examples/button-loading.tsx](../../examples/react-examples/src/preview-examples/button-loading.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-loading.css](../../examples/vue-examples/src/preview-examples/button-loading.css), [../../examples/vue-examples/src/preview-examples/button-loading.vue](../../examples/vue-examples/src/preview-examples/button-loading.vue)
+  - angular:
+    - `angular/button-loading.css`: [source](../../examples/angular-examples/src/preview-examples/button-loading.css)
+    - `angular/button-loading.html`: [source](../../examples/angular-examples/src/preview-examples/button-loading.html)
+    - `angular/button-loading.ts`: [source](../../examples/angular-examples/src/preview-examples/button-loading.ts)
+  - angular-standalone:
+    - `angular-standalone/button-loading.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-loading.css)
+    - `angular-standalone/button-loading.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-loading.html)
+    - `angular-standalone/button-loading.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-loading.ts)
+  - html:
+    - `html/button-loading.css`: [source](../../examples/html-examples/src/preview-examples/button-loading.css)
+    - `html/button-loading.html`: [source](../../examples/html-examples/src/preview-examples/button-loading.html)
+  - react:
+    - `react/button-loading.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-loading.scoped.css)
+    - `react/button-loading.tsx`: [source](../../examples/react-examples/src/preview-examples/button-loading.tsx)
+  - vue:
+    - `vue/button-loading.css`: [source](../../examples/vue-examples/src/preview-examples/button-loading.css)
+    - `vue/button-loading.vue`: [source](../../examples/vue-examples/src/preview-examples/button-loading.vue)
 - button-secondary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-secondary.css](../../examples/angular-examples/src/preview-examples/button-secondary.css), [../../examples/angular-examples/src/preview-examples/button-secondary.ts](../../examples/angular-examples/src/preview-examples/button-secondary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-secondary.css](../../examples/angular-standalone-examples/src/preview-examples/button-secondary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-secondary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-secondary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-secondary.css](../../examples/html-examples/src/preview-examples/button-secondary.css), [../../examples/html-examples/src/preview-examples/button-secondary.html](../../examples/html-examples/src/preview-examples/button-secondary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-secondary.scoped.css](../../examples/react-examples/src/preview-examples/button-secondary.scoped.css), [../../examples/react-examples/src/preview-examples/button-secondary.tsx](../../examples/react-examples/src/preview-examples/button-secondary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-secondary.css](../../examples/vue-examples/src/preview-examples/button-secondary.css), [../../examples/vue-examples/src/preview-examples/button-secondary.vue](../../examples/vue-examples/src/preview-examples/button-secondary.vue)
+  - angular:
+    - `angular/button-secondary.css`: [source](../../examples/angular-examples/src/preview-examples/button-secondary.css)
+    - `angular/button-secondary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-secondary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-secondary.css)
+    - `angular-standalone/button-secondary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-secondary.ts)
+  - html:
+    - `html/button-secondary.css`: [source](../../examples/html-examples/src/preview-examples/button-secondary.css)
+    - `html/button-secondary.html`: [source](../../examples/html-examples/src/preview-examples/button-secondary.html)
+  - react:
+    - `react/button-secondary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-secondary.scoped.css)
+    - `react/button-secondary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-secondary.tsx)
+  - vue:
+    - `vue/button-secondary.css`: [source](../../examples/vue-examples/src/preview-examples/button-secondary.css)
+    - `vue/button-secondary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-secondary.vue)
 - button-subtle-primary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-subtle-primary.css](../../examples/angular-examples/src/preview-examples/button-subtle-primary.css), [../../examples/angular-examples/src/preview-examples/button-subtle-primary.ts](../../examples/angular-examples/src/preview-examples/button-subtle-primary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.css](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-subtle-primary.css](../../examples/html-examples/src/preview-examples/button-subtle-primary.css), [../../examples/html-examples/src/preview-examples/button-subtle-primary.html](../../examples/html-examples/src/preview-examples/button-subtle-primary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-subtle-primary.scoped.css](../../examples/react-examples/src/preview-examples/button-subtle-primary.scoped.css), [../../examples/react-examples/src/preview-examples/button-subtle-primary.tsx](../../examples/react-examples/src/preview-examples/button-subtle-primary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-subtle-primary.css](../../examples/vue-examples/src/preview-examples/button-subtle-primary.css), [../../examples/vue-examples/src/preview-examples/button-subtle-primary.vue](../../examples/vue-examples/src/preview-examples/button-subtle-primary.vue)
+  - angular:
+    - `angular/button-subtle-primary.css`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-primary.css)
+    - `angular/button-subtle-primary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-primary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-primary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.css)
+    - `angular-standalone/button-subtle-primary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-primary.ts)
+  - html:
+    - `html/button-subtle-primary.css`: [source](../../examples/html-examples/src/preview-examples/button-subtle-primary.css)
+    - `html/button-subtle-primary.html`: [source](../../examples/html-examples/src/preview-examples/button-subtle-primary.html)
+  - react:
+    - `react/button-subtle-primary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-subtle-primary.scoped.css)
+    - `react/button-subtle-primary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-subtle-primary.tsx)
+  - vue:
+    - `vue/button-subtle-primary.css`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-primary.css)
+    - `vue/button-subtle-primary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-primary.vue)
 - button-subtle-secondary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-subtle-secondary.css](../../examples/angular-examples/src/preview-examples/button-subtle-secondary.css), [../../examples/angular-examples/src/preview-examples/button-subtle-secondary.ts](../../examples/angular-examples/src/preview-examples/button-subtle-secondary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.css](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-subtle-secondary.css](../../examples/html-examples/src/preview-examples/button-subtle-secondary.css), [../../examples/html-examples/src/preview-examples/button-subtle-secondary.html](../../examples/html-examples/src/preview-examples/button-subtle-secondary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-subtle-secondary.scoped.css](../../examples/react-examples/src/preview-examples/button-subtle-secondary.scoped.css), [../../examples/react-examples/src/preview-examples/button-subtle-secondary.tsx](../../examples/react-examples/src/preview-examples/button-subtle-secondary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-subtle-secondary.css](../../examples/vue-examples/src/preview-examples/button-subtle-secondary.css), [../../examples/vue-examples/src/preview-examples/button-subtle-secondary.vue](../../examples/vue-examples/src/preview-examples/button-subtle-secondary.vue)
+  - angular:
+    - `angular/button-subtle-secondary.css`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-secondary.css)
+    - `angular/button-subtle-secondary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-secondary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.css)
+    - `angular-standalone/button-subtle-secondary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-secondary.ts)
+  - html:
+    - `html/button-subtle-secondary.css`: [source](../../examples/html-examples/src/preview-examples/button-subtle-secondary.css)
+    - `html/button-subtle-secondary.html`: [source](../../examples/html-examples/src/preview-examples/button-subtle-secondary.html)
+  - react:
+    - `react/button-subtle-secondary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-subtle-secondary.scoped.css)
+    - `react/button-subtle-secondary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-subtle-secondary.tsx)
+  - vue:
+    - `vue/button-subtle-secondary.css`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-secondary.css)
+    - `vue/button-subtle-secondary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-secondary.vue)
 - button-subtle-tertiary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.css](../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.css), [../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.ts](../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.css](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-subtle-tertiary.css](../../examples/html-examples/src/preview-examples/button-subtle-tertiary.css), [../../examples/html-examples/src/preview-examples/button-subtle-tertiary.html](../../examples/html-examples/src/preview-examples/button-subtle-tertiary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-subtle-tertiary.scoped.css](../../examples/react-examples/src/preview-examples/button-subtle-tertiary.scoped.css), [../../examples/react-examples/src/preview-examples/button-subtle-tertiary.tsx](../../examples/react-examples/src/preview-examples/button-subtle-tertiary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.css](../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.css), [../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.vue](../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.vue)
+  - angular:
+    - `angular/button-subtle-tertiary.css`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.css)
+    - `angular/button-subtle-tertiary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-subtle-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-tertiary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.css)
+    - `angular-standalone/button-subtle-tertiary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-subtle-tertiary.ts)
+  - html:
+    - `html/button-subtle-tertiary.css`: [source](../../examples/html-examples/src/preview-examples/button-subtle-tertiary.css)
+    - `html/button-subtle-tertiary.html`: [source](../../examples/html-examples/src/preview-examples/button-subtle-tertiary.html)
+  - react:
+    - `react/button-subtle-tertiary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-subtle-tertiary.scoped.css)
+    - `react/button-subtle-tertiary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-subtle-tertiary.tsx)
+  - vue:
+    - `vue/button-subtle-tertiary.css`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.css)
+    - `vue/button-subtle-tertiary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-subtle-tertiary.vue)
 - button-tertiary
-  - angular: [../../examples/angular-examples/src/preview-examples/button-tertiary.css](../../examples/angular-examples/src/preview-examples/button-tertiary.css), [../../examples/angular-examples/src/preview-examples/button-tertiary.ts](../../examples/angular-examples/src/preview-examples/button-tertiary.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.css](../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.css), [../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.ts](../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-tertiary.css](../../examples/html-examples/src/preview-examples/button-tertiary.css), [../../examples/html-examples/src/preview-examples/button-tertiary.html](../../examples/html-examples/src/preview-examples/button-tertiary.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-tertiary.scoped.css](../../examples/react-examples/src/preview-examples/button-tertiary.scoped.css), [../../examples/react-examples/src/preview-examples/button-tertiary.tsx](../../examples/react-examples/src/preview-examples/button-tertiary.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-tertiary.css](../../examples/vue-examples/src/preview-examples/button-tertiary.css), [../../examples/vue-examples/src/preview-examples/button-tertiary.vue](../../examples/vue-examples/src/preview-examples/button-tertiary.vue)
+  - angular:
+    - `angular/button-tertiary.css`: [source](../../examples/angular-examples/src/preview-examples/button-tertiary.css)
+    - `angular/button-tertiary.ts`: [source](../../examples/angular-examples/src/preview-examples/button-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-tertiary.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.css)
+    - `angular-standalone/button-tertiary.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-tertiary.ts)
+  - html:
+    - `html/button-tertiary.css`: [source](../../examples/html-examples/src/preview-examples/button-tertiary.css)
+    - `html/button-tertiary.html`: [source](../../examples/html-examples/src/preview-examples/button-tertiary.html)
+  - react:
+    - `react/button-tertiary.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-tertiary.scoped.css)
+    - `react/button-tertiary.tsx`: [source](../../examples/react-examples/src/preview-examples/button-tertiary.tsx)
+  - vue:
+    - `vue/button-tertiary.css`: [source](../../examples/vue-examples/src/preview-examples/button-tertiary.css)
+    - `vue/button-tertiary.vue`: [source](../../examples/vue-examples/src/preview-examples/button-tertiary.vue)
 - button-text-icon
-  - angular: [../../examples/angular-examples/src/preview-examples/button-text-icon.css](../../examples/angular-examples/src/preview-examples/button-text-icon.css), [../../examples/angular-examples/src/preview-examples/button-text-icon.ts](../../examples/angular-examples/src/preview-examples/button-text-icon.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.css](../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.css), [../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-text-icon.css](../../examples/html-examples/src/preview-examples/button-text-icon.css), [../../examples/html-examples/src/preview-examples/button-text-icon.html](../../examples/html-examples/src/preview-examples/button-text-icon.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-text-icon.scoped.css](../../examples/react-examples/src/preview-examples/button-text-icon.scoped.css), [../../examples/react-examples/src/preview-examples/button-text-icon.tsx](../../examples/react-examples/src/preview-examples/button-text-icon.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-text-icon.css](../../examples/vue-examples/src/preview-examples/button-text-icon.css), [../../examples/vue-examples/src/preview-examples/button-text-icon.vue](../../examples/vue-examples/src/preview-examples/button-text-icon.vue)
+  - angular:
+    - `angular/button-text-icon.css`: [source](../../examples/angular-examples/src/preview-examples/button-text-icon.css)
+    - `angular/button-text-icon.ts`: [source](../../examples/angular-examples/src/preview-examples/button-text-icon.ts)
+  - angular-standalone:
+    - `angular-standalone/button-text-icon.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.css)
+    - `angular-standalone/button-text-icon.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-text-icon.ts)
+  - html:
+    - `html/button-text-icon.css`: [source](../../examples/html-examples/src/preview-examples/button-text-icon.css)
+    - `html/button-text-icon.html`: [source](../../examples/html-examples/src/preview-examples/button-text-icon.html)
+  - react:
+    - `react/button-text-icon.scoped.css`: [source](../../examples/react-examples/src/preview-examples/button-text-icon.scoped.css)
+    - `react/button-text-icon.tsx`: [source](../../examples/react-examples/src/preview-examples/button-text-icon.tsx)
+  - vue:
+    - `vue/button-text-icon.css`: [source](../../examples/vue-examples/src/preview-examples/button-text-icon.css)
+    - `vue/button-text-icon.vue`: [source](../../examples/vue-examples/src/preview-examples/button-text-icon.vue)
 - button-with-link
-  - angular: [../../examples/angular-examples/src/preview-examples/button-with-link.html](../../examples/angular-examples/src/preview-examples/button-with-link.html), [../../examples/angular-examples/src/preview-examples/button-with-link.ts](../../examples/angular-examples/src/preview-examples/button-with-link.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/button-with-link.html](../../examples/angular-standalone-examples/src/preview-examples/button-with-link.html), [../../examples/angular-standalone-examples/src/preview-examples/button-with-link.ts](../../examples/angular-standalone-examples/src/preview-examples/button-with-link.ts)
-  - html: [../../examples/html-examples/src/preview-examples/button-with-link.html](../../examples/html-examples/src/preview-examples/button-with-link.html)
-  - react: [../../examples/react-examples/src/preview-examples/button-with-link.tsx](../../examples/react-examples/src/preview-examples/button-with-link.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/button-with-link.vue](../../examples/vue-examples/src/preview-examples/button-with-link.vue)
+  - angular:
+    - `angular/button-with-link.html`: [source](../../examples/angular-examples/src/preview-examples/button-with-link.html)
+    - `angular/button-with-link.ts`: [source](../../examples/angular-examples/src/preview-examples/button-with-link.ts)
+  - angular-standalone:
+    - `angular-standalone/button-with-link.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-with-link.html)
+    - `angular-standalone/button-with-link.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/button-with-link.ts)
+  - html:
+    - `html/button-with-link.html`: [source](../../examples/html-examples/src/preview-examples/button-with-link.html)
+  - react:
+    - `react/button-with-link.tsx`: [source](../../examples/react-examples/src/preview-examples/button-with-link.tsx)
+  - vue:
+    - `vue/button-with-link.vue`: [source](../../examples/vue-examples/src/preview-examples/button-with-link.vue)
 - buttons
-  - angular: [../../examples/angular-examples/src/preview-examples/buttons.css](../../examples/angular-examples/src/preview-examples/buttons.css), [../../examples/angular-examples/src/preview-examples/buttons.ts](../../examples/angular-examples/src/preview-examples/buttons.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/buttons.css](../../examples/angular-standalone-examples/src/preview-examples/buttons.css), [../../examples/angular-standalone-examples/src/preview-examples/buttons.ts](../../examples/angular-standalone-examples/src/preview-examples/buttons.ts)
-  - html: [../../examples/html-examples/src/preview-examples/buttons.css](../../examples/html-examples/src/preview-examples/buttons.css), [../../examples/html-examples/src/preview-examples/buttons.html](../../examples/html-examples/src/preview-examples/buttons.html)
-  - react: [../../examples/react-examples/src/preview-examples/buttons.scoped.css](../../examples/react-examples/src/preview-examples/buttons.scoped.css), [../../examples/react-examples/src/preview-examples/buttons.tsx](../../examples/react-examples/src/preview-examples/buttons.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/buttons.css](../../examples/vue-examples/src/preview-examples/buttons.css), [../../examples/vue-examples/src/preview-examples/buttons.vue](../../examples/vue-examples/src/preview-examples/buttons.vue)
+  - angular:
+    - `angular/buttons.css`: [source](../../examples/angular-examples/src/preview-examples/buttons.css)
+    - `angular/buttons.ts`: [source](../../examples/angular-examples/src/preview-examples/buttons.ts)
+  - angular-standalone:
+    - `angular-standalone/buttons.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/buttons.css)
+    - `angular-standalone/buttons.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/buttons.ts)
+  - html:
+    - `html/buttons.css`: [source](../../examples/html-examples/src/preview-examples/buttons.css)
+    - `html/buttons.html`: [source](../../examples/html-examples/src/preview-examples/buttons.html)
+  - react:
+    - `react/buttons.scoped.css`: [source](../../examples/react-examples/src/preview-examples/buttons.scoped.css)
+    - `react/buttons.tsx`: [source](../../examples/react-examples/src/preview-examples/buttons.tsx)
+  - vue:
+    - `vue/buttons.css`: [source](../../examples/vue-examples/src/preview-examples/buttons.css)
+    - `vue/buttons.vue`: [source](../../examples/vue-examples/src/preview-examples/buttons.vue)
 - content-header
-  - angular: [../../examples/angular-examples/src/preview-examples/content-header.html](../../examples/angular-examples/src/preview-examples/content-header.html), [../../examples/angular-examples/src/preview-examples/content-header.ts](../../examples/angular-examples/src/preview-examples/content-header.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/content-header.html](../../examples/angular-standalone-examples/src/preview-examples/content-header.html), [../../examples/angular-standalone-examples/src/preview-examples/content-header.ts](../../examples/angular-standalone-examples/src/preview-examples/content-header.ts)
-  - html: [../../examples/html-examples/src/preview-examples/content-header.html](../../examples/html-examples/src/preview-examples/content-header.html)
-  - react: [../../examples/react-examples/src/preview-examples/content-header.tsx](../../examples/react-examples/src/preview-examples/content-header.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/content-header.vue](../../examples/vue-examples/src/preview-examples/content-header.vue)
+  - angular:
+    - `angular/content-header.html`: [source](../../examples/angular-examples/src/preview-examples/content-header.html)
+    - `angular/content-header.ts`: [source](../../examples/angular-examples/src/preview-examples/content-header.ts)
+  - angular-standalone:
+    - `angular-standalone/content-header.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header.html)
+    - `angular-standalone/content-header.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header.ts)
+  - html:
+    - `html/content-header.html`: [source](../../examples/html-examples/src/preview-examples/content-header.html)
+  - react:
+    - `react/content-header.tsx`: [source](../../examples/react-examples/src/preview-examples/content-header.tsx)
+  - vue:
+    - `vue/content-header.vue`: [source](../../examples/vue-examples/src/preview-examples/content-header.vue)
 - content-header-with-slot
-  - angular: [../../examples/angular-examples/src/preview-examples/content-header-with-slot.css](../../examples/angular-examples/src/preview-examples/content-header-with-slot.css), [../../examples/angular-examples/src/preview-examples/content-header-with-slot.html](../../examples/angular-examples/src/preview-examples/content-header-with-slot.html), [../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts](../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css), [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html), [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts)
-  - html: [../../examples/html-examples/src/preview-examples/content-header-with-slot.css](../../examples/html-examples/src/preview-examples/content-header-with-slot.css), [../../examples/html-examples/src/preview-examples/content-header-with-slot.html](../../examples/html-examples/src/preview-examples/content-header-with-slot.html)
-  - react: [../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css](../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css), [../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx](../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/content-header-with-slot.css](../../examples/vue-examples/src/preview-examples/content-header-with-slot.css), [../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue](../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue)
+  - angular:
+    - `angular/content-header-with-slot.css`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.css)
+    - `angular/content-header-with-slot.html`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.html)
+    - `angular/content-header-with-slot.ts`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts)
+  - angular-standalone:
+    - `angular-standalone/content-header-with-slot.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css)
+    - `angular-standalone/content-header-with-slot.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html)
+    - `angular-standalone/content-header-with-slot.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts)
+  - html:
+    - `html/content-header-with-slot.css`: [source](../../examples/html-examples/src/preview-examples/content-header-with-slot.css)
+    - `html/content-header-with-slot.html`: [source](../../examples/html-examples/src/preview-examples/content-header-with-slot.html)
+  - react:
+    - `react/content-header-with-slot.scoped.css`: [source](../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css)
+    - `react/content-header-with-slot.tsx`: [source](../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx)
+  - vue:
+    - `vue/content-header-with-slot.css`: [source](../../examples/vue-examples/src/preview-examples/content-header-with-slot.css)
+    - `vue/content-header-with-slot.vue`: [source](../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue)
 - dropdown
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown.ts](../../examples/angular-examples/src/preview-examples/dropdown.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown.html](../../examples/html-examples/src/preview-examples/dropdown.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown.tsx](../../examples/react-examples/src/preview-examples/dropdown.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown.vue](../../examples/vue-examples/src/preview-examples/dropdown.vue)
+  - angular:
+    - `angular/dropdown.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts)
+  - html:
+    - `html/dropdown.html`: [source](../../examples/html-examples/src/preview-examples/dropdown.html)
+  - react:
+    - `react/dropdown.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown.tsx)
+  - vue:
+    - `vue/dropdown.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown.vue)
 - dropdown-icon
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-icon.ts](../../examples/angular-examples/src/preview-examples/dropdown-icon.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-icon.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown-icon.html](../../examples/html-examples/src/preview-examples/dropdown-icon.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown-icon.tsx](../../examples/react-examples/src/preview-examples/dropdown-icon.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-icon.vue](../../examples/vue-examples/src/preview-examples/dropdown-icon.vue)
+  - angular:
+    - `angular/dropdown-icon.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown-icon.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown-icon.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-icon.ts)
+  - html:
+    - `html/dropdown-icon.html`: [source](../../examples/html-examples/src/preview-examples/dropdown-icon.html)
+  - react:
+    - `react/dropdown-icon.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown-icon.tsx)
+  - vue:
+    - `vue/dropdown-icon.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown-icon.vue)
 - dropdown-quick-actions
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.html), [../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.ts](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.html), [../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown-quick-actions.html](../../examples/html-examples/src/preview-examples/dropdown-quick-actions.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown-quick-actions.tsx](../../examples/react-examples/src/preview-examples/dropdown-quick-actions.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-quick-actions.vue](../../examples/vue-examples/src/preview-examples/dropdown-quick-actions.vue)
+  - angular:
+    - `angular/dropdown-quick-actions.html`: [source](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.html)
+    - `angular/dropdown-quick-actions.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown-quick-actions.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown-quick-actions.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.html)
+    - `angular-standalone/dropdown-quick-actions.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-quick-actions.ts)
+  - html:
+    - `html/dropdown-quick-actions.html`: [source](../../examples/html-examples/src/preview-examples/dropdown-quick-actions.html)
+  - react:
+    - `react/dropdown-quick-actions.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown-quick-actions.tsx)
+  - vue:
+    - `vue/dropdown-quick-actions.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown-quick-actions.vue)
 - dropdown-submenu
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown-submenu.ts](../../examples/angular-examples/src/preview-examples/dropdown-submenu.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown-submenu.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown-submenu.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown-submenu.html](../../examples/html-examples/src/preview-examples/dropdown-submenu.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown-submenu.tsx](../../examples/react-examples/src/preview-examples/dropdown-submenu.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown-submenu.vue](../../examples/vue-examples/src/preview-examples/dropdown-submenu.vue)
+  - angular:
+    - `angular/dropdown-submenu.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown-submenu.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown-submenu.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown-submenu.ts)
+  - html:
+    - `html/dropdown-submenu.html`: [source](../../examples/html-examples/src/preview-examples/dropdown-submenu.html)
+  - react:
+    - `react/dropdown-submenu.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown-submenu.tsx)
+  - vue:
+    - `vue/dropdown-submenu.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown-submenu.vue)
 - form-layout-auto
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-auto.html](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-auto.tsx](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-auto.vue](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
+  - angular:
+    - `angular/form-layout-auto.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.html)
+    - `angular/form-layout-auto.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-auto.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html)
+    - `angular-standalone/form-layout-auto.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
+  - html:
+    - `html/form-layout-auto.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
+  - react:
+    - `react/form-layout-auto.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
+  - vue:
+    - `vue/form-layout-auto.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
 - form-layout-grid
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-grid.css](../../examples/html-examples/src/preview-examples/form-layout-grid.css), [../../examples/html-examples/src/preview-examples/form-layout-grid.html](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css), [../../examples/react-examples/src/preview-examples/form-layout-grid.tsx](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-grid.css](../../examples/vue-examples/src/preview-examples/form-layout-grid.css), [../../examples/vue-examples/src/preview-examples/form-layout-grid.vue](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
+  - angular:
+    - `angular/form-layout-grid.css`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.css)
+    - `angular/form-layout-grid.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.html)
+    - `angular/form-layout-grid.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-grid.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css)
+    - `angular-standalone/form-layout-grid.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html)
+    - `angular-standalone/form-layout-grid.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
+  - html:
+    - `html/form-layout-grid.css`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.css)
+    - `html/form-layout-grid.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
+  - react:
+    - `react/form-layout-grid.scoped.css`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css)
+    - `react/form-layout-grid.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
+  - vue:
+    - `vue/form-layout-grid.css`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.css)
+    - `vue/form-layout-grid.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
 - group-custom-entry
-  - angular: [../../examples/angular-examples/src/preview-examples/group-custom-entry.ts](../../examples/angular-examples/src/preview-examples/group-custom-entry.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts](../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts)
-  - html: [../../examples/html-examples/src/preview-examples/group-custom-entry.html](../../examples/html-examples/src/preview-examples/group-custom-entry.html)
-  - react: [../../examples/react-examples/src/preview-examples/group-custom-entry.tsx](../../examples/react-examples/src/preview-examples/group-custom-entry.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/group-custom-entry.vue](../../examples/vue-examples/src/preview-examples/group-custom-entry.vue)
+  - angular:
+    - `angular/group-custom-entry.ts`: [source](../../examples/angular-examples/src/preview-examples/group-custom-entry.ts)
+  - angular-standalone:
+    - `angular-standalone/group-custom-entry.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/group-custom-entry.ts)
+  - html:
+    - `html/group-custom-entry.html`: [source](../../examples/html-examples/src/preview-examples/group-custom-entry.html)
+  - react:
+    - `react/group-custom-entry.tsx`: [source](../../examples/react-examples/src/preview-examples/group-custom-entry.tsx)
+  - vue:
+    - `vue/group-custom-entry.vue`: [source](../../examples/vue-examples/src/preview-examples/group-custom-entry.vue)
 - loading
-  - angular: [../../examples/angular-examples/src/preview-examples/loading.ts](../../examples/angular-examples/src/preview-examples/loading.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/loading.ts](../../examples/angular-standalone-examples/src/preview-examples/loading.ts)
-  - html: [../../examples/html-examples/src/preview-examples/loading.html](../../examples/html-examples/src/preview-examples/loading.html)
-  - react: [../../examples/react-examples/src/preview-examples/loading.tsx](../../examples/react-examples/src/preview-examples/loading.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/loading.vue](../../examples/vue-examples/src/preview-examples/loading.vue)
+  - angular:
+    - `angular/loading.ts`: [source](../../examples/angular-examples/src/preview-examples/loading.ts)
+  - angular-standalone:
+    - `angular-standalone/loading.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/loading.ts)
+  - html:
+    - `html/loading.html`: [source](../../examples/html-examples/src/preview-examples/loading.html)
+  - react:
+    - `react/loading.tsx`: [source](../../examples/react-examples/src/preview-examples/loading.tsx)
+  - vue:
+    - `vue/loading.vue`: [source](../../examples/vue-examples/src/preview-examples/loading.vue)
 - message
-  - angular: [../../examples/angular-examples/src/preview-examples/message.ts](../../examples/angular-examples/src/preview-examples/message.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/message.ts](../../examples/angular-standalone-examples/src/preview-examples/message.ts)
-  - html: [../../examples/html-examples/src/preview-examples/message.html](../../examples/html-examples/src/preview-examples/message.html)
-  - react: [../../examples/react-examples/src/preview-examples/message.tsx](../../examples/react-examples/src/preview-examples/message.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/message.vue](../../examples/vue-examples/src/preview-examples/message.vue)
+  - angular:
+    - `angular/message.ts`: [source](../../examples/angular-examples/src/preview-examples/message.ts)
+  - angular-standalone:
+    - `angular-standalone/message.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/message.ts)
+  - html:
+    - `html/message.html`: [source](../../examples/html-examples/src/preview-examples/message.html)
+  - react:
+    - `react/message.tsx`: [source](../../examples/react-examples/src/preview-examples/message.tsx)
+  - vue:
+    - `vue/message.vue`: [source](../../examples/vue-examples/src/preview-examples/message.vue)
 - message-bar
-  - angular: [../../examples/angular-examples/src/preview-examples/message-bar.css](../../examples/angular-examples/src/preview-examples/message-bar.css), [../../examples/angular-examples/src/preview-examples/message-bar.html](../../examples/angular-examples/src/preview-examples/message-bar.html), [../../examples/angular-examples/src/preview-examples/message-bar.ts](../../examples/angular-examples/src/preview-examples/message-bar.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/message-bar.css](../../examples/angular-standalone-examples/src/preview-examples/message-bar.css), [../../examples/angular-standalone-examples/src/preview-examples/message-bar.ts](../../examples/angular-standalone-examples/src/preview-examples/message-bar.ts)
-  - html: [../../examples/html-examples/src/preview-examples/message-bar.css](../../examples/html-examples/src/preview-examples/message-bar.css), [../../examples/html-examples/src/preview-examples/message-bar.html](../../examples/html-examples/src/preview-examples/message-bar.html)
-  - react: [../../examples/react-examples/src/preview-examples/message-bar.scoped.css](../../examples/react-examples/src/preview-examples/message-bar.scoped.css), [../../examples/react-examples/src/preview-examples/message-bar.tsx](../../examples/react-examples/src/preview-examples/message-bar.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/message-bar.css](../../examples/vue-examples/src/preview-examples/message-bar.css), [../../examples/vue-examples/src/preview-examples/message-bar.vue](../../examples/vue-examples/src/preview-examples/message-bar.vue)
+  - angular:
+    - `angular/message-bar.css`: [source](../../examples/angular-examples/src/preview-examples/message-bar.css)
+    - `angular/message-bar.html`: [source](../../examples/angular-examples/src/preview-examples/message-bar.html)
+    - `angular/message-bar.ts`: [source](../../examples/angular-examples/src/preview-examples/message-bar.ts)
+  - angular-standalone:
+    - `angular-standalone/message-bar.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/message-bar.css)
+    - `angular-standalone/message-bar.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/message-bar.ts)
+  - html:
+    - `html/message-bar.css`: [source](../../examples/html-examples/src/preview-examples/message-bar.css)
+    - `html/message-bar.html`: [source](../../examples/html-examples/src/preview-examples/message-bar.html)
+  - react:
+    - `react/message-bar.scoped.css`: [source](../../examples/react-examples/src/preview-examples/message-bar.scoped.css)
+    - `react/message-bar.tsx`: [source](../../examples/react-examples/src/preview-examples/message-bar.tsx)
+  - vue:
+    - `vue/message-bar.css`: [source](../../examples/vue-examples/src/preview-examples/message-bar.css)
+    - `vue/message-bar.vue`: [source](../../examples/vue-examples/src/preview-examples/message-bar.vue)
 - message-bar-removal
-  - angular: [../../examples/angular-examples/src/preview-examples/message-bar-removal.html](../../examples/angular-examples/src/preview-examples/message-bar-removal.html), [../../examples/angular-examples/src/preview-examples/message-bar-removal.ts](../../examples/angular-examples/src/preview-examples/message-bar-removal.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/message-bar-removal.ts](../../examples/angular-standalone-examples/src/preview-examples/message-bar-removal.ts)
-  - html: [../../examples/html-examples/src/preview-examples/message-bar-removal.html](../../examples/html-examples/src/preview-examples/message-bar-removal.html)
-  - react: [../../examples/react-examples/src/preview-examples/message-bar-removal.tsx](../../examples/react-examples/src/preview-examples/message-bar-removal.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/message-bar-removal.vue](../../examples/vue-examples/src/preview-examples/message-bar-removal.vue)
+  - angular:
+    - `angular/message-bar-removal.html`: [source](../../examples/angular-examples/src/preview-examples/message-bar-removal.html)
+    - `angular/message-bar-removal.ts`: [source](../../examples/angular-examples/src/preview-examples/message-bar-removal.ts)
+  - angular-standalone:
+    - `angular-standalone/message-bar-removal.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/message-bar-removal.ts)
+  - html:
+    - `html/message-bar-removal.html`: [source](../../examples/html-examples/src/preview-examples/message-bar-removal.html)
+  - react:
+    - `react/message-bar-removal.tsx`: [source](../../examples/react-examples/src/preview-examples/message-bar-removal.tsx)
+  - vue:
+    - `vue/message-bar-removal.vue`: [source](../../examples/vue-examples/src/preview-examples/message-bar-removal.vue)
 - modal
-  - html: [../../examples/html-examples/src/preview-examples/modal.html](../../examples/html-examples/src/preview-examples/modal.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal.tsx](../../examples/react-examples/src/preview-examples/modal.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/modal.vue](../../examples/vue-examples/src/preview-examples/modal.vue)
+  - html:
+    - `html/modal.html`: [source](../../examples/html-examples/src/preview-examples/modal.html)
+  - react:
+    - `react/modal.tsx`: [source](../../examples/react-examples/src/preview-examples/modal.tsx)
+  - vue:
+    - `vue/modal.vue`: [source](../../examples/vue-examples/src/preview-examples/modal.vue)
 - modal-close
-  - angular: [../../examples/angular-examples/src/preview-examples/modal-close.html](../../examples/angular-examples/src/preview-examples/modal-close.html), [../../examples/angular-examples/src/preview-examples/modal-close.ts](../../examples/angular-examples/src/preview-examples/modal-close.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/modal-close.html](../../examples/angular-standalone-examples/src/preview-examples/modal-close.html), [../../examples/angular-standalone-examples/src/preview-examples/modal-close.ts](../../examples/angular-standalone-examples/src/preview-examples/modal-close.ts)
-  - html: [../../examples/html-examples/src/preview-examples/modal-close.html](../../examples/html-examples/src/preview-examples/modal-close.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal-close.tsx](../../examples/react-examples/src/preview-examples/modal-close.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/modal-close.vue](../../examples/vue-examples/src/preview-examples/modal-close.vue)
+  - angular:
+    - `angular/modal-close.html`: [source](../../examples/angular-examples/src/preview-examples/modal-close.html)
+    - `angular/modal-close.ts`: [source](../../examples/angular-examples/src/preview-examples/modal-close.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-close.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-close.html)
+    - `angular-standalone/modal-close.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-close.ts)
+  - html:
+    - `html/modal-close.html`: [source](../../examples/html-examples/src/preview-examples/modal-close.html)
+  - react:
+    - `react/modal-close.tsx`: [source](../../examples/react-examples/src/preview-examples/modal-close.tsx)
+  - vue:
+    - `vue/modal-close.vue`: [source](../../examples/vue-examples/src/preview-examples/modal-close.vue)
 - modal-form-ix-button-submit
-  - angular: [../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html), [../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html), [../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts)
-  - html: [../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx](../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue](../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue)
+  - angular:
+    - `angular/modal-form-ix-button-submit.html`: [source](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html)
+    - `angular/modal-form-ix-button-submit.ts`: [source](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-form-ix-button-submit.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html)
+    - `angular-standalone/modal-form-ix-button-submit.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts)
+  - html:
+    - `html/modal-form-ix-button-submit.html`: [source](../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html)
+  - react:
+    - `react/modal-form-ix-button-submit.tsx`: [source](../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx)
+  - vue:
+    - `vue/modal-form-ix-button-submit.vue`: [source](../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue)
 - modal-non-blocking
-  - angular: [../../examples/angular-examples/src/preview-examples/modal-non-blocking.ts](../../examples/angular-examples/src/preview-examples/modal-non-blocking.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/modal-non-blocking.ts](../../examples/angular-standalone-examples/src/preview-examples/modal-non-blocking.ts)
-  - html: [../../examples/html-examples/src/preview-examples/modal-non-blocking.html](../../examples/html-examples/src/preview-examples/modal-non-blocking.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal-non-blocking.tsx](../../examples/react-examples/src/preview-examples/modal-non-blocking.tsx)
+  - angular:
+    - `angular/modal-non-blocking.ts`: [source](../../examples/angular-examples/src/preview-examples/modal-non-blocking.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-non-blocking.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-non-blocking.ts)
+  - html:
+    - `html/modal-non-blocking.html`: [source](../../examples/html-examples/src/preview-examples/modal-non-blocking.html)
+  - react:
+    - `react/modal-non-blocking.tsx`: [source](../../examples/react-examples/src/preview-examples/modal-non-blocking.tsx)
 - modal-sizes
-  - angular: [../../examples/angular-examples/src/preview-examples/modal-sizes.css](../../examples/angular-examples/src/preview-examples/modal-sizes.css), [../../examples/angular-examples/src/preview-examples/modal-sizes.html](../../examples/angular-examples/src/preview-examples/modal-sizes.html), [../../examples/angular-examples/src/preview-examples/modal-sizes.ts](../../examples/angular-examples/src/preview-examples/modal-sizes.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.css](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.css), [../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.html](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.html), [../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.ts](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.ts)
-  - html: [../../examples/html-examples/src/preview-examples/modal-sizes.css](../../examples/html-examples/src/preview-examples/modal-sizes.css), [../../examples/html-examples/src/preview-examples/modal-sizes.html](../../examples/html-examples/src/preview-examples/modal-sizes.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal-sizes.scoped.css](../../examples/react-examples/src/preview-examples/modal-sizes.scoped.css), [../../examples/react-examples/src/preview-examples/modal-sizes.tsx](../../examples/react-examples/src/preview-examples/modal-sizes.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/modal-sizes.css](../../examples/vue-examples/src/preview-examples/modal-sizes.css), [../../examples/vue-examples/src/preview-examples/modal-sizes.vue](../../examples/vue-examples/src/preview-examples/modal-sizes.vue)
+  - angular:
+    - `angular/modal-sizes.css`: [source](../../examples/angular-examples/src/preview-examples/modal-sizes.css)
+    - `angular/modal-sizes.html`: [source](../../examples/angular-examples/src/preview-examples/modal-sizes.html)
+    - `angular/modal-sizes.ts`: [source](../../examples/angular-examples/src/preview-examples/modal-sizes.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-sizes.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.css)
+    - `angular-standalone/modal-sizes.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.html)
+    - `angular-standalone/modal-sizes.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-sizes.ts)
+  - html:
+    - `html/modal-sizes.css`: [source](../../examples/html-examples/src/preview-examples/modal-sizes.css)
+    - `html/modal-sizes.html`: [source](../../examples/html-examples/src/preview-examples/modal-sizes.html)
+  - react:
+    - `react/modal-sizes.scoped.css`: [source](../../examples/react-examples/src/preview-examples/modal-sizes.scoped.css)
+    - `react/modal-sizes.tsx`: [source](../../examples/react-examples/src/preview-examples/modal-sizes.tsx)
+  - vue:
+    - `vue/modal-sizes.css`: [source](../../examples/vue-examples/src/preview-examples/modal-sizes.css)
+    - `vue/modal-sizes.vue`: [source](../../examples/vue-examples/src/preview-examples/modal-sizes.vue)
 - pane
-  - angular: [../../examples/angular-examples/src/preview-examples/pane.html](../../examples/angular-examples/src/preview-examples/pane.html), [../../examples/angular-examples/src/preview-examples/pane.ts](../../examples/angular-examples/src/preview-examples/pane.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane.html](../../examples/angular-standalone-examples/src/preview-examples/pane.html), [../../examples/angular-standalone-examples/src/preview-examples/pane.ts](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pane.html](../../examples/html-examples/src/preview-examples/pane.html)
-  - react: [../../examples/react-examples/src/preview-examples/pane.tsx](../../examples/react-examples/src/preview-examples/pane.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pane.vue](../../examples/vue-examples/src/preview-examples/pane.vue)
+  - angular:
+    - `angular/pane.html`: [source](../../examples/angular-examples/src/preview-examples/pane.html)
+    - `angular/pane.ts`: [source](../../examples/angular-examples/src/preview-examples/pane.ts)
+  - angular-standalone:
+    - `angular-standalone/pane.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane.html)
+    - `angular-standalone/pane.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane.ts)
+  - html:
+    - `html/pane.html`: [source](../../examples/html-examples/src/preview-examples/pane.html)
+  - react:
+    - `react/pane.tsx`: [source](../../examples/react-examples/src/preview-examples/pane.tsx)
+  - vue:
+    - `vue/pane.vue`: [source](../../examples/vue-examples/src/preview-examples/pane.vue)
 - pane-layout
-  - angular: [../../examples/angular-examples/src/preview-examples/pane-layout.html](../../examples/angular-examples/src/preview-examples/pane-layout.html), [../../examples/angular-examples/src/preview-examples/pane-layout.ts](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html), [../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pane-layout.html](../../examples/html-examples/src/preview-examples/pane-layout.html)
-  - react: [../../examples/react-examples/src/preview-examples/pane-layout.tsx](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pane-layout.vue](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
+  - angular:
+    - `angular/pane-layout.html`: [source](../../examples/angular-examples/src/preview-examples/pane-layout.html)
+    - `angular/pane-layout.ts`: [source](../../examples/angular-examples/src/preview-examples/pane-layout.ts)
+  - angular-standalone:
+    - `angular-standalone/pane-layout.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.html)
+    - `angular-standalone/pane-layout.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pane-layout.ts)
+  - html:
+    - `html/pane-layout.html`: [source](../../examples/html-examples/src/preview-examples/pane-layout.html)
+  - react:
+    - `react/pane-layout.tsx`: [source](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
+  - vue:
+    - `vue/pane-layout.vue`: [source](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
 - popover
-  - angular: [../../examples/angular-examples/src/preview-examples/popover.html](../../examples/angular-examples/src/preview-examples/popover.html), [../../examples/angular-examples/src/preview-examples/popover.ts](../../examples/angular-examples/src/preview-examples/popover.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover.html](../../examples/angular-standalone-examples/src/preview-examples/popover.html), [../../examples/angular-standalone-examples/src/preview-examples/popover.ts](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
-  - html: [../../examples/html-examples/src/preview-examples/popover.html](../../examples/html-examples/src/preview-examples/popover.html)
-  - react: [../../examples/react-examples/src/preview-examples/popover.tsx](../../examples/react-examples/src/preview-examples/popover.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/popover.vue](../../examples/vue-examples/src/preview-examples/popover.vue)
+  - angular:
+    - `angular/popover.html`: [source](../../examples/angular-examples/src/preview-examples/popover.html)
+    - `angular/popover.ts`: [source](../../examples/angular-examples/src/preview-examples/popover.ts)
+  - angular-standalone:
+    - `angular-standalone/popover.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.html)
+    - `angular-standalone/popover.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
+  - html:
+    - `html/popover.html`: [source](../../examples/html-examples/src/preview-examples/popover.html)
+  - react:
+    - `react/popover.tsx`: [source](../../examples/react-examples/src/preview-examples/popover.tsx)
+  - vue:
+    - `vue/popover.vue`: [source](../../examples/vue-examples/src/preview-examples/popover.vue)
 - theme-switcher
-  - angular: [../../examples/angular-examples/src/preview-examples/theme-switcher.css](../../examples/angular-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-examples/src/preview-examples/theme-switcher.html](../../examples/angular-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-examples/src/preview-examples/theme-switcher.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts)
-  - html: [../../examples/html-examples/src/preview-examples/theme-switcher.css](../../examples/html-examples/src/preview-examples/theme-switcher.css), [../../examples/html-examples/src/preview-examples/theme-switcher.html](../../examples/html-examples/src/preview-examples/theme-switcher.html)
-  - react: [../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css](../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css), [../../examples/react-examples/src/preview-examples/theme-switcher.tsx](../../examples/react-examples/src/preview-examples/theme-switcher.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/theme-switcher.css](../../examples/vue-examples/src/preview-examples/theme-switcher.css), [../../examples/vue-examples/src/preview-examples/theme-switcher.vue](../../examples/vue-examples/src/preview-examples/theme-switcher.vue)
+  - angular:
+    - `angular/theme-switcher.css`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.css)
+    - `angular/theme-switcher.html`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.html)
+    - `angular/theme-switcher.ts`: [source](../../examples/angular-examples/src/preview-examples/theme-switcher.ts)
+  - angular-standalone:
+    - `angular-standalone/theme-switcher.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css)
+    - `angular-standalone/theme-switcher.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html)
+    - `angular-standalone/theme-switcher.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts)
+  - html:
+    - `html/theme-switcher.css`: [source](../../examples/html-examples/src/preview-examples/theme-switcher.css)
+    - `html/theme-switcher.html`: [source](../../examples/html-examples/src/preview-examples/theme-switcher.html)
+  - react:
+    - `react/theme-switcher.scoped.css`: [source](../../examples/react-examples/src/preview-examples/theme-switcher.scoped.css)
+    - `react/theme-switcher.tsx`: [source](../../examples/react-examples/src/preview-examples/theme-switcher.tsx)
+  - vue:
+    - `vue/theme-switcher.css`: [source](../../examples/vue-examples/src/preview-examples/theme-switcher.css)
+    - `vue/theme-switcher.vue`: [source](../../examples/vue-examples/src/preview-examples/theme-switcher.vue)
 - tile
-  - angular: [../../examples/angular-examples/src/preview-examples/tile.css](../../examples/angular-examples/src/preview-examples/tile.css), [../../examples/angular-examples/src/preview-examples/tile.ts](../../examples/angular-examples/src/preview-examples/tile.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tile.css](../../examples/angular-standalone-examples/src/preview-examples/tile.css), [../../examples/angular-standalone-examples/src/preview-examples/tile.ts](../../examples/angular-standalone-examples/src/preview-examples/tile.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tile.css](../../examples/html-examples/src/preview-examples/tile.css), [../../examples/html-examples/src/preview-examples/tile.html](../../examples/html-examples/src/preview-examples/tile.html)
-  - react: [../../examples/react-examples/src/preview-examples/tile.scoped.css](../../examples/react-examples/src/preview-examples/tile.scoped.css), [../../examples/react-examples/src/preview-examples/tile.tsx](../../examples/react-examples/src/preview-examples/tile.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tile.css](../../examples/vue-examples/src/preview-examples/tile.css), [../../examples/vue-examples/src/preview-examples/tile.vue](../../examples/vue-examples/src/preview-examples/tile.vue)
+  - angular:
+    - `angular/tile.css`: [source](../../examples/angular-examples/src/preview-examples/tile.css)
+    - `angular/tile.ts`: [source](../../examples/angular-examples/src/preview-examples/tile.ts)
+  - angular-standalone:
+    - `angular-standalone/tile.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/tile.css)
+    - `angular-standalone/tile.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tile.ts)
+  - html:
+    - `html/tile.css`: [source](../../examples/html-examples/src/preview-examples/tile.css)
+    - `html/tile.html`: [source](../../examples/html-examples/src/preview-examples/tile.html)
+  - react:
+    - `react/tile.scoped.css`: [source](../../examples/react-examples/src/preview-examples/tile.scoped.css)
+    - `react/tile.tsx`: [source](../../examples/react-examples/src/preview-examples/tile.tsx)
+  - vue:
+    - `vue/tile.css`: [source](../../examples/vue-examples/src/preview-examples/tile.css)
+    - `vue/tile.vue`: [source](../../examples/vue-examples/src/preview-examples/tile.vue)
 - toast
-  - angular: [../../examples/angular-examples/src/preview-examples/toast.ts](../../examples/angular-examples/src/preview-examples/toast.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toast.ts](../../examples/angular-standalone-examples/src/preview-examples/toast.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toast.html](../../examples/html-examples/src/preview-examples/toast.html)
-  - react: [../../examples/react-examples/src/preview-examples/toast.tsx](../../examples/react-examples/src/preview-examples/toast.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toast.vue](../../examples/vue-examples/src/preview-examples/toast.vue)
+  - angular:
+    - `angular/toast.ts`: [source](../../examples/angular-examples/src/preview-examples/toast.ts)
+  - angular-standalone:
+    - `angular-standalone/toast.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toast.ts)
+  - html:
+    - `html/toast.html`: [source](../../examples/html-examples/src/preview-examples/toast.html)
+  - react:
+    - `react/toast.tsx`: [source](../../examples/react-examples/src/preview-examples/toast.tsx)
+  - vue:
+    - `vue/toast.vue`: [source](../../examples/vue-examples/src/preview-examples/toast.vue)
 - toast-custom
-  - angular: [../../examples/angular-examples/src/preview-examples/toast-custom.ts](../../examples/angular-examples/src/preview-examples/toast-custom.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toast-custom.ts](../../examples/angular-standalone-examples/src/preview-examples/toast-custom.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toast-custom.html](../../examples/html-examples/src/preview-examples/toast-custom.html)
-  - react: [../../examples/react-examples/src/preview-examples/toast-custom.tsx](../../examples/react-examples/src/preview-examples/toast-custom.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toast-custom.vue](../../examples/vue-examples/src/preview-examples/toast-custom.vue)
+  - angular:
+    - `angular/toast-custom.ts`: [source](../../examples/angular-examples/src/preview-examples/toast-custom.ts)
+  - angular-standalone:
+    - `angular-standalone/toast-custom.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toast-custom.ts)
+  - html:
+    - `html/toast-custom.html`: [source](../../examples/html-examples/src/preview-examples/toast-custom.html)
+  - react:
+    - `react/toast-custom.tsx`: [source](../../examples/react-examples/src/preview-examples/toast-custom.tsx)
+  - vue:
+    - `vue/toast-custom.vue`: [source](../../examples/vue-examples/src/preview-examples/toast-custom.vue)
 - toast-position
-  - angular: [../../examples/angular-examples/src/preview-examples/toast-position.ts](../../examples/angular-examples/src/preview-examples/toast-position.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toast-position.ts](../../examples/angular-standalone-examples/src/preview-examples/toast-position.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toast-position.html](../../examples/html-examples/src/preview-examples/toast-position.html)
-  - react: [../../examples/react-examples/src/preview-examples/toast-position.tsx](../../examples/react-examples/src/preview-examples/toast-position.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toast-position.vue](../../examples/vue-examples/src/preview-examples/toast-position.vue)
+  - angular:
+    - `angular/toast-position.ts`: [source](../../examples/angular-examples/src/preview-examples/toast-position.ts)
+  - angular-standalone:
+    - `angular-standalone/toast-position.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toast-position.ts)
+  - html:
+    - `html/toast-position.html`: [source](../../examples/html-examples/src/preview-examples/toast-position.html)
+  - react:
+    - `react/toast-position.tsx`: [source](../../examples/react-examples/src/preview-examples/toast-position.tsx)
+  - vue:
+    - `vue/toast-position.vue`: [source](../../examples/vue-examples/src/preview-examples/toast-position.vue)
 - tooltip
-  - angular: [../../examples/angular-examples/src/preview-examples/tooltip.css](../../examples/angular-examples/src/preview-examples/tooltip.css), [../../examples/angular-examples/src/preview-examples/tooltip.html](../../examples/angular-examples/src/preview-examples/tooltip.html), [../../examples/angular-examples/src/preview-examples/tooltip.ts](../../examples/angular-examples/src/preview-examples/tooltip.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tooltip.css](../../examples/angular-standalone-examples/src/preview-examples/tooltip.css), [../../examples/angular-standalone-examples/src/preview-examples/tooltip.html](../../examples/angular-standalone-examples/src/preview-examples/tooltip.html), [../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts](../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tooltip.css](../../examples/html-examples/src/preview-examples/tooltip.css), [../../examples/html-examples/src/preview-examples/tooltip.html](../../examples/html-examples/src/preview-examples/tooltip.html)
-  - react: [../../examples/react-examples/src/preview-examples/tooltip.scoped.css](../../examples/react-examples/src/preview-examples/tooltip.scoped.css), [../../examples/react-examples/src/preview-examples/tooltip.tsx](../../examples/react-examples/src/preview-examples/tooltip.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tooltip.css](../../examples/vue-examples/src/preview-examples/tooltip.css), [../../examples/vue-examples/src/preview-examples/tooltip.vue](../../examples/vue-examples/src/preview-examples/tooltip.vue)
+  - angular:
+    - `angular/tooltip.css`: [source](../../examples/angular-examples/src/preview-examples/tooltip.css)
+    - `angular/tooltip.html`: [source](../../examples/angular-examples/src/preview-examples/tooltip.html)
+    - `angular/tooltip.ts`: [source](../../examples/angular-examples/src/preview-examples/tooltip.ts)
+  - angular-standalone:
+    - `angular-standalone/tooltip.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.css)
+    - `angular-standalone/tooltip.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.html)
+    - `angular-standalone/tooltip.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip.ts)
+  - html:
+    - `html/tooltip.css`: [source](../../examples/html-examples/src/preview-examples/tooltip.css)
+    - `html/tooltip.html`: [source](../../examples/html-examples/src/preview-examples/tooltip.html)
+  - react:
+    - `react/tooltip.scoped.css`: [source](../../examples/react-examples/src/preview-examples/tooltip.scoped.css)
+    - `react/tooltip.tsx`: [source](../../examples/react-examples/src/preview-examples/tooltip.tsx)
+  - vue:
+    - `vue/tooltip.css`: [source](../../examples/vue-examples/src/preview-examples/tooltip.css)
+    - `vue/tooltip.vue`: [source](../../examples/vue-examples/src/preview-examples/tooltip.vue)
 - tooltip-with-icon
-  - angular: [../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html), [../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html), [../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tooltip-with-icon.html](../../examples/html-examples/src/preview-examples/tooltip-with-icon.html)
-  - react: [../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx](../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue](../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue)
+  - angular:
+    - `angular/tooltip-with-icon.html`: [source](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.html)
+    - `angular/tooltip-with-icon.ts`: [source](../../examples/angular-examples/src/preview-examples/tooltip-with-icon.ts)
+  - angular-standalone:
+    - `angular-standalone/tooltip-with-icon.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.html)
+    - `angular-standalone/tooltip-with-icon.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tooltip-with-icon.ts)
+  - html:
+    - `html/tooltip-with-icon.html`: [source](../../examples/html-examples/src/preview-examples/tooltip-with-icon.html)
+  - react:
+    - `react/tooltip-with-icon.tsx`: [source](../../examples/react-examples/src/preview-examples/tooltip-with-icon.tsx)
+  - vue:
+    - `vue/tooltip-with-icon.vue`: [source](../../examples/vue-examples/src/preview-examples/tooltip-with-icon.vue)
 - tree-custom
-  - angular: [../../examples/angular-examples/src/preview-examples/tree-custom.ts](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
-  - html: [../../examples/html-examples/src/preview-examples/tree-custom.html](../../examples/html-examples/src/preview-examples/tree-custom.html)
-  - react: [../../examples/react-examples/src/preview-examples/tree-custom.tsx](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/tree-custom.vue](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
+  - angular:
+    - `angular/tree-custom.ts`: [source](../../examples/angular-examples/src/preview-examples/tree-custom.ts)
+  - angular-standalone:
+    - `angular-standalone/tree-custom.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/tree-custom.ts)
+  - html:
+    - `html/tree-custom.html`: [source](../../examples/html-examples/src/preview-examples/tree-custom.html)
+  - react:
+    - `react/tree-custom.tsx`: [source](../../examples/react-examples/src/preview-examples/tree-custom.tsx)
+  - vue:
+    - `vue/tree-custom.vue`: [source](../../examples/vue-examples/src/preview-examples/tree-custom.vue)
 - validation-select
-  - angular: [../../examples/angular-examples/src/preview-examples/validation-select.html](../../examples/angular-examples/src/preview-examples/validation-select.html), [../../examples/angular-examples/src/preview-examples/validation-select.ts](../../examples/angular-examples/src/preview-examples/validation-select.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/validation-select.html](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html), [../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
-  - html: [../../examples/html-examples/src/preview-examples/validation-select.html](../../examples/html-examples/src/preview-examples/validation-select.html)
-  - react: [../../examples/react-examples/src/preview-examples/validation-select.tsx](../../examples/react-examples/src/preview-examples/validation-select.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/validation-select.vue](../../examples/vue-examples/src/preview-examples/validation-select.vue)
+  - angular:
+    - `angular/validation-select.html`: [source](../../examples/angular-examples/src/preview-examples/validation-select.html)
+    - `angular/validation-select.ts`: [source](../../examples/angular-examples/src/preview-examples/validation-select.ts)
+  - angular-standalone:
+    - `angular-standalone/validation-select.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.html)
+    - `angular-standalone/validation-select.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/validation-select.ts)
+  - html:
+    - `html/validation-select.html`: [source](../../examples/html-examples/src/preview-examples/validation-select.html)
+  - react:
+    - `react/validation-select.tsx`: [source](../../examples/react-examples/src/preview-examples/validation-select.tsx)
+  - vue:
+    - `vue/validation-select.vue`: [source](../../examples/vue-examples/src/preview-examples/validation-select.vue)
 
 ## Related blocks
 

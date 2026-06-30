@@ -12,6 +12,8 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - None
 
 ## Related blocks

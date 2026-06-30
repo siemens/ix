@@ -12,30 +12,72 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - content-header-with-slot
-  - angular: [../../examples/angular-examples/src/preview-examples/content-header-with-slot.css](../../examples/angular-examples/src/preview-examples/content-header-with-slot.css), [../../examples/angular-examples/src/preview-examples/content-header-with-slot.html](../../examples/angular-examples/src/preview-examples/content-header-with-slot.html), [../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts](../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css), [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html), [../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts)
-  - html: [../../examples/html-examples/src/preview-examples/content-header-with-slot.css](../../examples/html-examples/src/preview-examples/content-header-with-slot.css), [../../examples/html-examples/src/preview-examples/content-header-with-slot.html](../../examples/html-examples/src/preview-examples/content-header-with-slot.html)
-  - react: [../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css](../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css), [../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx](../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/content-header-with-slot.css](../../examples/vue-examples/src/preview-examples/content-header-with-slot.css), [../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue](../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue)
+  - angular:
+    - `angular/content-header-with-slot.css`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.css)
+    - `angular/content-header-with-slot.html`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.html)
+    - `angular/content-header-with-slot.ts`: [source](../../examples/angular-examples/src/preview-examples/content-header-with-slot.ts)
+  - angular-standalone:
+    - `angular-standalone/content-header-with-slot.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.css)
+    - `angular-standalone/content-header-with-slot.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.html)
+    - `angular-standalone/content-header-with-slot.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/content-header-with-slot.ts)
+  - html:
+    - `html/content-header-with-slot.css`: [source](../../examples/html-examples/src/preview-examples/content-header-with-slot.css)
+    - `html/content-header-with-slot.html`: [source](../../examples/html-examples/src/preview-examples/content-header-with-slot.html)
+  - react:
+    - `react/content-header-with-slot.scoped.css`: [source](../../examples/react-examples/src/preview-examples/content-header-with-slot.scoped.css)
+    - `react/content-header-with-slot.tsx`: [source](../../examples/react-examples/src/preview-examples/content-header-with-slot.tsx)
+  - vue:
+    - `vue/content-header-with-slot.css`: [source](../../examples/vue-examples/src/preview-examples/content-header-with-slot.css)
+    - `vue/content-header-with-slot.vue`: [source](../../examples/vue-examples/src/preview-examples/content-header-with-slot.vue)
 - pill
-  - angular: [../../examples/angular-examples/src/preview-examples/pill.css](../../examples/angular-examples/src/preview-examples/pill.css), [../../examples/angular-examples/src/preview-examples/pill.html](../../examples/angular-examples/src/preview-examples/pill.html), [../../examples/angular-examples/src/preview-examples/pill.ts](../../examples/angular-examples/src/preview-examples/pill.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pill.css](../../examples/angular-standalone-examples/src/preview-examples/pill.css), [../../examples/angular-standalone-examples/src/preview-examples/pill.ts](../../examples/angular-standalone-examples/src/preview-examples/pill.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pill.css](../../examples/html-examples/src/preview-examples/pill.css), [../../examples/html-examples/src/preview-examples/pill.html](../../examples/html-examples/src/preview-examples/pill.html)
-  - react: [../../examples/react-examples/src/preview-examples/pill.scoped.css](../../examples/react-examples/src/preview-examples/pill.scoped.css), [../../examples/react-examples/src/preview-examples/pill.tsx](../../examples/react-examples/src/preview-examples/pill.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pill.css](../../examples/vue-examples/src/preview-examples/pill.css), [../../examples/vue-examples/src/preview-examples/pill.vue](../../examples/vue-examples/src/preview-examples/pill.vue)
+  - angular:
+    - `angular/pill.css`: [source](../../examples/angular-examples/src/preview-examples/pill.css)
+    - `angular/pill.html`: [source](../../examples/angular-examples/src/preview-examples/pill.html)
+    - `angular/pill.ts`: [source](../../examples/angular-examples/src/preview-examples/pill.ts)
+  - angular-standalone:
+    - `angular-standalone/pill.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/pill.css)
+    - `angular-standalone/pill.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pill.ts)
+  - html:
+    - `html/pill.css`: [source](../../examples/html-examples/src/preview-examples/pill.css)
+    - `html/pill.html`: [source](../../examples/html-examples/src/preview-examples/pill.html)
+  - react:
+    - `react/pill.scoped.css`: [source](../../examples/react-examples/src/preview-examples/pill.scoped.css)
+    - `react/pill.tsx`: [source](../../examples/react-examples/src/preview-examples/pill.tsx)
+  - vue:
+    - `vue/pill.css`: [source](../../examples/vue-examples/src/preview-examples/pill.css)
+    - `vue/pill.vue`: [source](../../examples/vue-examples/src/preview-examples/pill.vue)
 - pill-variants
-  - angular: [../../examples/angular-examples/src/preview-examples/pill-variants.css](../../examples/angular-examples/src/preview-examples/pill-variants.css), [../../examples/angular-examples/src/preview-examples/pill-variants.ts](../../examples/angular-examples/src/preview-examples/pill-variants.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/pill-variants.css](../../examples/angular-standalone-examples/src/preview-examples/pill-variants.css), [../../examples/angular-standalone-examples/src/preview-examples/pill-variants.ts](../../examples/angular-standalone-examples/src/preview-examples/pill-variants.ts)
-  - html: [../../examples/html-examples/src/preview-examples/pill-variants.css](../../examples/html-examples/src/preview-examples/pill-variants.css), [../../examples/html-examples/src/preview-examples/pill-variants.html](../../examples/html-examples/src/preview-examples/pill-variants.html)
-  - react: [../../examples/react-examples/src/preview-examples/pill-variants.scoped.css](../../examples/react-examples/src/preview-examples/pill-variants.scoped.css), [../../examples/react-examples/src/preview-examples/pill-variants.tsx](../../examples/react-examples/src/preview-examples/pill-variants.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/pill-variants.css](../../examples/vue-examples/src/preview-examples/pill-variants.css), [../../examples/vue-examples/src/preview-examples/pill-variants.vue](../../examples/vue-examples/src/preview-examples/pill-variants.vue)
+  - angular:
+    - `angular/pill-variants.css`: [source](../../examples/angular-examples/src/preview-examples/pill-variants.css)
+    - `angular/pill-variants.ts`: [source](../../examples/angular-examples/src/preview-examples/pill-variants.ts)
+  - angular-standalone:
+    - `angular-standalone/pill-variants.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/pill-variants.css)
+    - `angular-standalone/pill-variants.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/pill-variants.ts)
+  - html:
+    - `html/pill-variants.css`: [source](../../examples/html-examples/src/preview-examples/pill-variants.css)
+    - `html/pill-variants.html`: [source](../../examples/html-examples/src/preview-examples/pill-variants.html)
+  - react:
+    - `react/pill-variants.scoped.css`: [source](../../examples/react-examples/src/preview-examples/pill-variants.scoped.css)
+    - `react/pill-variants.tsx`: [source](../../examples/react-examples/src/preview-examples/pill-variants.tsx)
+  - vue:
+    - `vue/pill-variants.css`: [source](../../examples/vue-examples/src/preview-examples/pill-variants.css)
+    - `vue/pill-variants.vue`: [source](../../examples/vue-examples/src/preview-examples/pill-variants.vue)
 - popover
-  - angular: [../../examples/angular-examples/src/preview-examples/popover.html](../../examples/angular-examples/src/preview-examples/popover.html), [../../examples/angular-examples/src/preview-examples/popover.ts](../../examples/angular-examples/src/preview-examples/popover.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover.html](../../examples/angular-standalone-examples/src/preview-examples/popover.html), [../../examples/angular-standalone-examples/src/preview-examples/popover.ts](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
-  - html: [../../examples/html-examples/src/preview-examples/popover.html](../../examples/html-examples/src/preview-examples/popover.html)
-  - react: [../../examples/react-examples/src/preview-examples/popover.tsx](../../examples/react-examples/src/preview-examples/popover.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/popover.vue](../../examples/vue-examples/src/preview-examples/popover.vue)
+  - angular:
+    - `angular/popover.html`: [source](../../examples/angular-examples/src/preview-examples/popover.html)
+    - `angular/popover.ts`: [source](../../examples/angular-examples/src/preview-examples/popover.ts)
+  - angular-standalone:
+    - `angular-standalone/popover.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.html)
+    - `angular-standalone/popover.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
+  - html:
+    - `html/popover.html`: [source](../../examples/html-examples/src/preview-examples/popover.html)
+  - react:
+    - `react/popover.tsx`: [source](../../examples/react-examples/src/preview-examples/popover.tsx)
+  - vue:
+    - `vue/popover.vue`: [source](../../examples/vue-examples/src/preview-examples/popover.vue)
 
 ## Related blocks
 
