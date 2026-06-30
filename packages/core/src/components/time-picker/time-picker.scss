@@ -9,10 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-@use 'mixins/input';
-@use 'legacy/components/forms';
-
-@include input.form;
 
 :host {
   display: block;

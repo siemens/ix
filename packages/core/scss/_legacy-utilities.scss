@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'legacy/components/input';
+@use 'legacy/components/checkboxes';
+@use 'legacy/components/radiobuttons';
+
+@use 'components/links';
+@use 'components/shadows';
+@use 'components/input-group';
+@use 'components/table';
+@use 'components/fonts';
+@use 'components/button-group';
+
+@use 'misc/normalize';
+@use 'standalone';

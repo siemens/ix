@@ -1,0 +1,100 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'legacy/mixins/fonts';
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+
+@mixin input-control {
+  color: var(--theme-input--color);
+  border-radius: var(--theme-input--border-radius);
+  height: vars.$default-control-height;
+  min-height: vars.$default-control-height;
+  min-width: vars.$input-min-width;
+  background-color: var(--theme-input--background);
+  border: solid 1px var(--theme-input--border-color);
+  box-shadow: var(--theme-input--box-shadow);
+  padding-inline-start: vars.$input-padding-x;
+  padding-inline-end: vars.$input-padding-x;
+
+  @include fonts.text-default();
+  @include text-truncation.ellipsis;
+
+  &::placeholder {
+    color: var(--theme-input-hint--color);
+  }
+
+  &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
+    @include hover.hover {
+      background-color: var(--theme-input--background--hover);
+      border-color: var(--theme-input--border-color--hover);
+      cursor: auto;
+    }
+
+    @include hover.focus-visible {
+      background-color: var(--theme-input--background--focus);
+      border-color: var(--theme-input--border-color--focus);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      box-shadow: var(--theme-input--box-shadow);
+      outline: 1px solid var(--theme-color-focus-bdr);
+    }
+  }
+
+  &:focus-visible {
+    color: var(--theme-input--color);
+  }
+
+  &[type='number'] {
+    text-align: right;
+
+    &::-webkit-inner-spin-button {
+      margin-right: -2px;
+      margin-left: 2px;
+      display: none;
+    }
+  }
+
+  &.readonly,
+  &[readonly] {
+    background: transparent !important;
+    border-block-start: none !important;
+    border-inline-start: none !important;
+    border-inline-end: none !important;
+    border-radius: 0rem;
+  }
+
+  &:read-only,
+  &[readonly],
+  &[readOnly],
+  &.readonly {
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: var(--theme-input--border-color);
+    cursor: default !important;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    background: transparent !important;
+    border-block-start: none !important;
+    border-inline-start: none !important;
+    border-inline-end: none !important;
+    border-radius: 0rem;
+    color: var(--theme-color-weak-text);
+    border-color: var(--theme-input--border-color-bottom--disabled);
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
