@@ -28,6 +28,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { getComposedPath } from '../utils/shadow-dom';
 import { makeRef } from '../utils/make-ref';
 import { dropdownController } from '../dropdown/dropdown-controller';
@@ -45,8 +49,8 @@ let categorySequenceId = 0;
   },
 })
 export class MenuCategory
-  extends Mixin(...DefaultMixins)
-  implements IxMenuItemBase
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxMenuItemBase, InheritAriaAttributesMixinContract
 {
   @Element() override hostElement!: HTMLIxMenuCategoryElement;
 
@@ -362,6 +366,8 @@ export class MenuCategory
   }
 
   override componentWillLoad() {
+    super.componentWillLoad();
+
     const closestMenu = closestIxMenu(this.hostElement);
     if (!closestMenu) {
       throw Error('ix-menu-category can only be used as a child of ix-menu');
@@ -415,12 +421,20 @@ export class MenuCategory
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     if (this.observer) {
       this.observer.disconnect();
     }
   }
 
   override render() {
+    const inheritedA11yWithoutRole = {
+      ...this.inheritAriaAttributes,
+    };
+
+    delete inheritedA11yWithoutRole.role;
+
     return (
       <Host
         class={{
@@ -438,6 +452,7 @@ export class MenuCategory
         }}
       >
         <ix-menu-item
+          {...inheritedA11yWithoutRole}
           aria-haspopup={'menu'}
           aria-expanded={this.showItems || this.showDropdown ? 'true' : 'false'}
           id={this.categoryId}
