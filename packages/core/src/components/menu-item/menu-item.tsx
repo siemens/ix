@@ -226,7 +226,7 @@ export class MenuItem
       this.tooltipText !== this.hostElement.textContent;
 
     if (hasDistinctTooltip) {
-      return `${this.label ?? this.menuCategoryLabel} ${this.tooltipText}`;
+      return `${this.label ?? this.menuCategoryLabel ?? this.hostElement.textContent ?? ''} ${this.tooltipText}`;
     }
 
     return undefined;
