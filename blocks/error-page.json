@@ -1,6 +1,15 @@
 {
   "$schema": "./../tooling/registry/schemas/block.schema.json",
   "name": "error-page",
+  "description": "Use this block to show a 404 not-found error page with explanatory text and a primary action that routes users back home.",
+  "keywords": [
+    "404",
+    "error",
+    "not found",
+    "empty state",
+    "navigation",
+    "go home"
+  ],
   "preview": "react-blocks/dist/ix/error-page",
   "variants": {
     "react": {

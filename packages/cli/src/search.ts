@@ -18,6 +18,8 @@ import {
 export interface BlockSearchResult {
   id: string;
   name: string;
+  description?: string;
+  keywords?: string;
   path: string;
   score: number;
 }
@@ -43,6 +45,52 @@ export interface ExampleSearchResult {
   name: string;
   path: string;
   score: number;
+}
+
+const FALLBACK_SEARCH_FIELDS = [
+  'name',
+  'description',
+  'keywords',
+  'sourceCode',
+  'dependencies',
+  'files',
+];
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function resolveSerializedSearchFields(indexData: unknown): string[] {
+  if (!isRecord(indexData) || !isRecord(indexData.fieldIds)) {
+    return FALLBACK_SEARCH_FIELDS;
+  }
+
+  const fields = Object.entries(indexData.fieldIds)
+    .flatMap(([field, fieldId]) =>
+      typeof fieldId === 'number' ? [{ field, fieldId }] : []
+    )
+    .sort((a, b) => a.fieldId - b.fieldId)
+    .map(({ field }) => field);
+
+  return fields.length > 0 ? fields : FALLBACK_SEARCH_FIELDS;
+}
+
+function searchBoostForFields(fields: string[]): Record<string, number> {
+  const boost: Record<string, number> = {};
+  const boostEntries: Array<[string, number]> = [
+    ['name', 3],
+    ['description', 2],
+    ['keywords', 2],
+    ['files', 1.5],
+  ];
+
+  for (const [field, value] of boostEntries) {
+    if (fields.includes(field)) {
+      boost[field] = value;
+    }
+  }
+
+  return boost;
 }
 
 function normalizeResultPathForVersion(
@@ -89,14 +137,15 @@ export async function searchBlocks(
   }
 
   const indexData = await indexRes.json();
+  const fields = resolveSerializedSearchFields(indexData);
 
   const miniSearch = MiniSearch.loadJSON(JSON.stringify(indexData), {
-    fields: ['name', 'sourceCode', 'dependencies', 'files'],
-    storeFields: ['id', 'name', 'path'],
+    fields,
+    storeFields: ['id', 'name', 'description', 'keywords', 'path'],
   });
 
   let results = miniSearch.search(query, {
-    boost: { name: 3, files: 1.5 },
+    boost: searchBoostForFields(fields),
     fuzzy: 0.2,
     prefix: true,
   });
@@ -106,6 +155,8 @@ export async function searchBlocks(
   return results.map((r) => ({
     id: r.id,
     name: r.name,
+    description: r.description,
+    keywords: r.keywords,
     path: normalizeResultPathForVersion(
       r.path || '',
       selectedVersion,
@@ -142,14 +193,15 @@ export async function searchExamples(
   }
 
   const indexData = await indexRes.json();
+  const fields = resolveSerializedSearchFields(indexData);
 
   const miniSearch = MiniSearch.loadJSON(JSON.stringify(indexData), {
-    fields: ['name', 'sourceCode', 'dependencies', 'files'],
+    fields,
     storeFields: ['id', 'name', 'path'],
   });
 
   let results = miniSearch.search(query, {
-    boost: { name: 3, files: 1.5 },
+    boost: searchBoostForFields(fields),
     fuzzy: 0.2,
     prefix: true,
   });

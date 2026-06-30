@@ -1,6 +1,15 @@
 {
   "$schema": "./../tooling/registry/schemas/block.schema.json",
   "name": "upload",
+  "description": "Use this block to provide a file upload area with a list of uploaded files and remove actions for each file.",
+  "keywords": [
+    "upload",
+    "file upload",
+    "attachments",
+    "file list",
+    "remove file",
+    "documents"
+  ],
   "preview": "react-blocks/dist/ix/upload",
   "variants": {
     "react": {
