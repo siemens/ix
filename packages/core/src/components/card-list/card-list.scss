@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
 
 $CardList__Title__Height: 1.5rem;
 
@@ -118,12 +119,19 @@ $CardList__Title__Height: 1.5rem;
     margin-bottom: 2.375rem;
   }
 
-  .Show__All__Card:hover {
-    background-color: var(--theme-color-ghost--hover);
-  }
+  .Show__All__Card {
+    &:hover {
+      background-color: var(--theme-color-ghost--hover);
+    }
 
-  .Show__All__Card:active {
-    background-color: var(--theme-color-ghost--active);
+    &:active {
+      background-color: var(--theme-color-ghost--active);
+    }
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
   }
 
   .Show__All__Card__Content {

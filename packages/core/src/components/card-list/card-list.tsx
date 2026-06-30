@@ -197,6 +197,16 @@ export class CardList {
     this.handleClick(this.showAllClick, event);
   }
 
+  private onShowMoreCardClick(event: MouseEvent | KeyboardEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key !== 'Enter' && event.key !== ' ') {
+        return;
+      }
+      event.preventDefault();
+    }
+    this.handleClick(this.showMoreCardClick, event as unknown as MouseEvent);
+  }
+
   private getListChildren() {
     const slot = this.hostElement.shadowRoot!.querySelector(
       '.CardList__Content > slot'
@@ -368,12 +378,16 @@ export class CardList {
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
+                role="button"
+                tabindex="0"
+                aria-label={`${this.i18nMoreCards} (${this.numberOfOverflowingElements})`}
                 class={{
                   Show__All__Card: true,
                 }}
-                onClick={(event) => {
-                  this.handleClick(this.showMoreCardClick, event);
-                }}
+                onClick={(event) => this.onShowMoreCardClick(event)}
+                onKeyDown={(event: KeyboardEvent) =>
+                  this.onShowMoreCardClick(event)
+                }
               >
                 <ix-card-content>
                   <div class="Show__All__Card__Content">

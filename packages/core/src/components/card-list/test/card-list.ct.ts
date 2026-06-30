@@ -18,6 +18,30 @@ const CARDS_HTML = `
   <ix-card><ix-card-content>Card 5</ix-card-content></ix-card>
 `;
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-card-list label="Test" list-style="stack">
+      <ix-card><ix-card-content>Card 1</ix-card-content></ix-card>
+      <ix-card><ix-card-content>Card 2</ix-card-content></ix-card>
+    </ix-card-list>
+  `);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`
+    <ix-card-list label="Test">
+      <ix-card><ix-card-content>Card 1</ix-card-content></ix-card>
+    </ix-card-list>
+  `);
+
+  const cardList = page.locator('ix-card-list');
+  await expect(cardList).toHaveClass(/\bhydrated\b/);
+  await expect(cardList).toBeVisible();
+});
+
 regressionTest(
   'show all button reveals all hidden cards',
   async ({ mount, page }) => {
@@ -160,5 +184,33 @@ regressionTest(
     const cards = cardList.locator('ix-card');
     await expect(cards.nth(3)).toHaveClass(/display-none/);
     await expect(cards.nth(4)).toHaveClass(/display-none/);
+  }
+);
+
+regressionTest(
+  'show more card: keyboard activation reveals all hidden cards',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-card-list label="Test" list-style="stack" max-visible-cards="3">
+        ${CARDS_HTML}
+      </ix-card-list>
+    `);
+
+    const cardList = page.locator('ix-card-list');
+    await expect(cardList).toHaveClass(/\bhydrated\b/);
+
+    let showMoreCard = cardList.locator('.Show__All__Card');
+    await showMoreCard.focus();
+    await page.keyboard.press('Enter');
+    await expect(showMoreCard).not.toBeVisible();
+
+    const showLessButton = cardList.getByRole('button', { name: /show less/i });
+    await showLessButton.click();
+
+    showMoreCard = cardList.locator('.Show__All__Card');
+    await expect(showMoreCard).toBeVisible();
+    await showMoreCard.focus();
+    await page.keyboard.press(' ');
+    await expect(showMoreCard).not.toBeVisible();
   }
 );
