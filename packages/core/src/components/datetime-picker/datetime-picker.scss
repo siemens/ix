@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './datetime-picker.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -38,7 +39,7 @@
   }
 
   .col-separator {
-    border-bottom: 0.0625rem solid var(--theme-datepicker-separator--background);
+    border-bottom: 0.0625rem solid var(--ix-datepicker-separator--background);
     border-right: none;
   }
 
@@ -64,8 +65,7 @@
     }
 
     .col-separator {
-      border-right: 0.0625rem solid
-        var(--theme-datepicker-separator--background);
+      border-right: 0.0625rem solid var(--ix-datepicker-separator--background);
       border-bottom: none;
     }
   }

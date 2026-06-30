@@ -1,0 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-tabs--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-tab-indicator--background: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-tab-indicator--background--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-tab-indicator--height: 0.0625rem;
+}

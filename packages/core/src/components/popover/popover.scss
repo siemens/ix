@@ -7,18 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './popover.vars' as *;
 :host {
-  --theme-popover--background: var(--theme-color-2);
-  --theme-popover--border-color: transparent;
-  --theme-popover--color: var(--theme-color-std-text);
-  --theme-popover--elevation-filter: drop-shadow(0 0 2px var(--theme-color-shadow-2))
-    drop-shadow(0 4px 8px var(--theme-color-shadow-3))
-    drop-shadow(0 12px 18px var(--theme-color-shadow-3));
-  --theme-popover-close--color: var(--theme-color-soft-text);
-  --theme-popover-close-btn--background: transparent;
-  --theme-popover-close-btn--background--active: var(--theme-color-ghost--active);
-  --theme-popover-close-btn--background--hover: var(--theme-color-ghost--hover);
-
   dialog.dialog {
     margin: 0;
     padding: 0;
@@ -40,11 +30,11 @@
     position: relative;
     width: 100%;
     max-height: calc(100vh - 2rem);
-    background: var(--theme-popover--background);
-    color: var(--theme-popover--color);
-    border: 1px solid var(--theme-popover--border-color);
-    box-shadow: var(--theme-shadow-4);
-    border-radius: var(--theme-default-border-radius);
+    background: var(--ix-popover--background);
+    color: var(--ix-popover--color);
+    border: 1px solid var(--ix-popover--border-color);
+    box-shadow: var(--ix-popover--shadow-4);
+    border-radius: var(--ix-popover--default-border-radius);
     overflow: visible;
   }
 
@@ -57,7 +47,7 @@
 
   .popover-container:has(.spike) {
     box-shadow: none;
-    filter: var(--theme-popover--elevation-filter);
+    filter: var(--ix-popover--elevation-filter);
   }
 
   .spike,
@@ -78,6 +68,6 @@
     visibility: visible;
     content: '';
     transform: rotate(45deg);
-    background-color: var(--theme-popover--background);
+    background-color: var(--ix-popover--background);
   }
 }

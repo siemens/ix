@@ -10,6 +10,7 @@
 @use './circular' as circular;
 @use './progress-indicator-vars' as progress-vars;
 
+@use './progress-indicator.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -33,19 +34,19 @@
     align-items: center;
     margin: 0.25rem 0px;
     gap: 0.25rem;
-    color: var(--theme-progress-indicator-helper--color);
+    color: var(--ix-progress-indicator-helper--color);
 
     ix-icon {
       margin: 0.125rem;
-      color: var(--theme-progress-indicator-helper-icon--color);
+      color: var(--ix-progress-indicator-helper-icon--color);
     }
 
     @each $state in progress-vars.$progress-indicator-states {
       &.#{$state} {
-        color: var(--theme-progress-indicator-helper-#{$state}--color);
+        color: var(--ix-progress-indicator-helper-#{$state}--color);
 
         ix-icon {
-          color: var(--theme-progress-indicator-helper-icon-#{$state}--color);
+          color: var(--ix-progress-indicator-helper-icon-#{$state}--color);
         }
       }
     }
@@ -108,13 +109,13 @@
     }
 
     --ix-progress-indicator-color: var(
-      --theme-progress-indicator-fill--background
+      --ix-progress-indicator-fill--background
     );
 
     @each $state in progress-vars.$progress-indicator-states {
       &.#{$state} {
         --ix-progress-indicator-color: var(
-          --theme-progress-indicator-fill-#{$state}--background
+          --ix-progress-indicator-fill-#{$state}--background
         );
       }
     }

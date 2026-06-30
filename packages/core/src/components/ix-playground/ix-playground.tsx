@@ -17,7 +17,7 @@ export class IxPlayground {
   render() {
     return (
       <Host>
-        <ix-chat-input></ix-chat-input>
+        <ix-button>Test</ix-button>
       </Host>
     );
   }

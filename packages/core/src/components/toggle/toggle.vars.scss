@@ -1,0 +1,721 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-toggle--default-time: var(--theme-default-time, 150ms);
+  --ix-toggle--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-toggle--color-weak-text: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-switch--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-switch--color--active: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-switch--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-switch--color--hover: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-switch-mixed--background: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--disabled: var(
+    --theme-color-component-2,
+    rgba(211, 239, 253, 0.15)
+  );
+  --ix-switch-mixed--background--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-mixed--background--info: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--info--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--info--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-mixed--background--invalid: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--invalid--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--invalid--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-mixed--background--valid: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--valid--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--valid--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-mixed--background--warning: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--warning--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-mixed--background--warning--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-mixed--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-mixed--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--info: var(--theme-color-info, #357fff);
+  --ix-switch-mixed--border-color--info--active: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-mixed--border-color--info--hover: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-mixed--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-mixed--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-mixed--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-mixed--border-color--valid: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-mixed--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-mixed--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-mixed--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-off--background: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--disabled: var(
+    --theme-color-component-2,
+    rgba(211, 239, 253, 0.15)
+  );
+  --ix-switch-off--background--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-off--background--info: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--info--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--info--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-off--background--invalid: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--invalid--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--invalid--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-off--background--valid: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--valid--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--valid--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-off--background--warning: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--warning--active: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-switch-off--background--warning--hover: var(
+    --theme-color-component-5,
+    rgba(224, 245, 255, 0.6)
+  );
+  --ix-switch-off--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-off--border-color--active: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-off--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-off--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-off--border-color--info: var(--theme-color-info, #357fff);
+  --ix-switch-off--border-color--info--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-switch-off--border-color--info--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-switch-off--border-color--invalid: var(--theme-color-alarm-bdr, #ff2453);
+  --ix-switch-off--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-off--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-off--border-color--valid: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-off--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-off--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-off--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-off--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-off--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-on--background: var(--theme-color-dynamic, #00eaff);
+  --ix-switch-on--background--active: var(
+    --theme-color-dynamic--active,
+    #5cd5e0
+  );
+  --ix-switch-on--background--disabled: var(
+    --theme-color-component-2,
+    rgba(211, 239, 253, 0.15)
+  );
+  --ix-switch-on--background--hover: var(--theme-color-dynamic--hover, #62e2ee);
+  --ix-switch-on--background--info: var(--theme-color-info, #357fff);
+  --ix-switch-on--background--info--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-switch-on--background--info--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-switch-on--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-switch-on--background--invalid--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-switch-on--background--invalid--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-switch-on--background--valid: var(--theme-color-dynamic, #00eaff);
+  --ix-switch-on--background--valid--active: var(
+    --theme-color-dynamic--active,
+    #5cd5e0
+  );
+  --ix-switch-on--background--valid--hover: var(
+    --theme-color-dynamic--hover,
+    #62e2ee
+  );
+  --ix-switch-on--background--warning: var(--theme-color-warning, #ffbb00);
+  --ix-switch-on--background--warning--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-switch-on--background--warning--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-switch-on--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--active: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--info: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--info--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--info--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--invalid: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--invalid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--invalid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--valid: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-on--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-on--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-on--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-on--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb--box-shadow: none;
+  --ix-switch-thumb-mixed--background: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--disabled: var(
+    --theme-color-component-3,
+    rgba(217, 243, 255, 0.4)
+  );
+  --ix-switch-thumb-mixed--background--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--info: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--info--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--info--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--invalid: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-mixed--background--invalid--active: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-mixed--background--invalid--hover: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-mixed--background--valid: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--valid--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--valid--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-mixed--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-mixed--background--warning--active: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-mixed--background--warning--hover: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-mixed--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-thumb-mixed--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--info: var(--theme-color-info, #357fff);
+  --ix-switch-thumb-mixed--border-color--info--active: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-mixed--border-color--info--hover: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-mixed--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-mixed--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-mixed--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-mixed--border-color--valid: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-mixed--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-mixed--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-mixed--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-off--background: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--disabled: var(
+    --theme-color-component-3,
+    rgba(217, 243, 255, 0.4)
+  );
+  --ix-switch-thumb-off--background--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--info: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--info--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--info--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--invalid: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-off--background--invalid--active: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-off--background--invalid--hover: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-switch-thumb-off--background--valid: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--valid--active: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--valid--hover: var(
+    --theme-color-inv-std-text,
+    rgba(0, 10, 20, 0.9)
+  );
+  --ix-switch-thumb-off--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-off--background--warning--active: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-off--background--warning--hover: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-switch-thumb-off--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-thumb-off--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--info: var(--theme-color-info, #357fff);
+  --ix-switch-thumb-off--border-color--info--active: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-off--border-color--info--hover: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-off--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-off--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-off--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-off--border-color--valid: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-off--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-off--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-off--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-on--background: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--active: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--disabled: var(
+    --theme-color-component-3,
+    rgba(217, 243, 255, 0.4)
+  );
+  --ix-switch-thumb-on--background--hover: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--info: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--info--active: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--info--hover: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--invalid: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--invalid--active: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--invalid--hover: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--valid: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--valid--active: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--valid--hover: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--warning: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--warning--active: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--background--warning--hover: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-switch-thumb-on--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-switch-thumb-on--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--info: var(--theme-color-info, #357fff);
+  --ix-switch-thumb-on--border-color--info--active: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-on--border-color--info--hover: var(
+    --theme-color-info,
+    #357fff
+  );
+  --ix-switch-thumb-on--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-on--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-on--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-switch-thumb-on--border-color--valid: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--valid--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--valid--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-switch-thumb-on--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-on--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-switch-thumb-on--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+}

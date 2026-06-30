@@ -12,6 +12,7 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './breadcrumb.vars' as *;
 :host {
   display: flex;
   justify-content: flex-start;
@@ -60,6 +61,6 @@
   .chevron {
     margin-left: 0.5rem;
     margin-right: 0rem;
-    color: var(--theme-color-soft-text);
+    color: var(--ix-breadcrumb--color-soft-text);
   }
 }

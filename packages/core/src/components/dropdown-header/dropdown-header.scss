@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 
+@use './dropdown-header.vars' as *;
 :host {
   display: flex;
   align-items: center;
@@ -20,7 +21,7 @@
   overflow: hidden;
   cursor: default;
 
-  color: var(--theme-color-soft-text);
+  color: var(--ix-dropdown-header--color-soft-text);
 
   @include component.ix-component;
 }

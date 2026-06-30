@@ -10,26 +10,27 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
+@use './pane.vars' as *;
 @mixin set-border($composition) {
   @if $composition {
-    border-#{$composition}: var(--theme-app-header--border-width)
+    border-#{$composition}: var(--ix-app-header--border-width)
       solid
       var(--ix-pane--border-color);
   }
 }
 
 :host(.floating-pane) {
-  --ix-pane--background: var(--theme-pane-floating--background);
-  --ix-pane--border-color: var(--theme-pane-floating--border-color);
-  --ix-pane--color: var(--theme-pane-floating--color);
-  --ix-pane--box-shadow: var(--theme-pane-floating--box-shadow);
+  --ix-pane--background: var(--ix-pane-floating--background);
+  --ix-pane--border-color: var(--ix-pane-floating--border-color);
+  --ix-pane--color: var(--ix-pane-floating--color);
+  --ix-pane--box-shadow: var(--ix-pane-floating--box-shadow);
 }
 
 :host(.inline-pane) {
-  --ix-pane--background: var(--theme-pane-inline--background);
-  --ix-pane--border-color: var(--theme-pane-inline--border-color);
-  --ix-pane--color: var(--theme-pane-inline--color);
-  --ix-pane--box-shadow: var(--theme-pane-inline--box-shadow);
+  --ix-pane--background: var(--ix-pane-inline--background);
+  --ix-pane--border-color: var(--ix-pane-inline--border-color);
+  --ix-pane--color: var(--ix-pane-inline--color);
+  --ix-pane--box-shadow: var(--ix-pane-inline--box-shadow);
 }
 
 :host {
@@ -60,7 +61,7 @@
   .title-text {
     display: flex;
     align-items: center;
-    gap: var(--theme-space-1);
+    gap: var(--ix-pane--space-1);
     overflow: hidden;
 
     .title-text-overflow {
@@ -77,7 +78,7 @@
   }
 
   .header-gap {
-    gap: var(--theme-space-1);
+    gap: var(--ix-pane--space-1);
   }
 
   .top-bottom-pane {
@@ -89,14 +90,14 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1)
-        var(--theme-space-2);
+      margin: var(--ix-pane--space--1) var(--ix-pane--space-2)
+        var(--ix-pane--space--1) var(--ix-pane--space-2);
     }
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
-        var(--theme-space-2);
+      margin: var(--ix-pane--space-2) var(--ix-pane--space-2)
+        var(--ix-pane--space-2) var(--ix-pane--space-2);
     }
 
     .title-expanded {
@@ -109,8 +110,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
-        var(--theme-space-2);
+      margin: var(--ix-pane--space-2) var(--ix-pane--space-2)
+        var(--ix-pane--space-2) var(--ix-pane--space-2);
     }
   }
 
@@ -122,8 +123,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: var(--theme-space-2) var(--theme-space--1) var(--theme-space-2)
-        var(--theme-space--1);
+      margin: var(--ix-pane--space-2) var(--ix-pane--space--1)
+        var(--ix-pane--space-2) var(--ix-pane--space--1);
 
       .title-text {
         flex-direction: row-reverse;
@@ -145,8 +146,8 @@
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
-        var(--theme-space-2);
+      margin: var(--ix-pane--space-2) var(--ix-pane--space-2)
+        var(--ix-pane--space-2) var(--ix-pane--space-2);
     }
 
     .title-expanded {
@@ -159,8 +160,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
-        var(--theme-space-2);
+      margin: var(--ix-pane--space-2) var(--ix-pane--space-2)
+        var(--ix-pane--space-2) var(--ix-pane--space-2);
     }
   }
 
@@ -177,13 +178,13 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
-      margin: var(--theme-space-1) var(--theme-space-2);
+      margin: var(--ix-pane--space-1) var(--ix-pane--space-2);
     }
   }
 
   .side-pane-content {
-    padding: var(--theme-space-1) var(--theme-space-2) var(--theme-space-3)
-      var(--theme-space-2);
+    padding: var(--ix-pane--space-1) var(--ix-pane--space-2)
+      var(--ix-pane--space-3) var(--ix-pane--space-2);
     overflow: auto;
     height: 100%;
     width: 100%;
@@ -210,7 +211,7 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--theme-app-header--border-width) solid
+  border-left: var(--ix-app-header--border-width) solid
     var(--ix-pane--border-color);
 }
 

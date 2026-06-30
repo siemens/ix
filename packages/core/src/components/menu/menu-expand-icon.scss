@@ -10,6 +10,7 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
+@use './menu-expand-icon.vars' as *;
 $focus-bdr-width: 0.0625rem;
 
 @include button-mixin.btn;
@@ -21,7 +22,7 @@ $focus-bdr-width: 0.0625rem;
   align-items: center;
   height: 2rem;
   width: 2rem;
-  border-radius: var(--theme-btn--border-radius);
+  border-radius: var(--ix-btn--border-radius);
   pointer-events: all;
 
   @include component.ix-component;
@@ -32,10 +33,10 @@ $focus-bdr-width: 0.0625rem;
   }
 
   .line {
-    fill: var(--theme-menu-btn--color);
+    fill: var(--ix-menu-btn--color);
     opacity: 1;
     x: 2px;
-    transition: x 0.075s ease-in var(--theme-default-time),
+    transition: x 0.075s ease-in var(--ix-menu-expand-icon--default-time),
       transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
       opacity 0.075s linear 0.075s;
     transform-origin: center;
@@ -44,7 +45,7 @@ $focus-bdr-width: 0.0625rem;
 
 @include hover.host-hover {
   .menu-expand-button {
-    background-color: var(--theme-menu-btn--background--hover);
+    background-color: var(--ix-menu-btn--background--hover);
   }
 }
 
@@ -56,7 +57,7 @@ $focus-bdr-width: 0.0625rem;
 
 @include hover.host-active {
   .menu-expand-button {
-    background-color: var(--theme-menu-btn--background--active);
+    background-color: var(--ix-menu-btn--background--active);
   }
 }
 

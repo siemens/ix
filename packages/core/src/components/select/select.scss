@@ -17,12 +17,13 @@
 
 @use '../utils/focus/focus-proxy' as focus-proxy;
 
+@use './select.vars' as *;
 :host {
   display: inline-block;
   position: relative;
   min-height: 2rem;
   height: auto;
-  border-radius: var(--theme-input--border-radius);
+  border-radius: var(--ix-input--border-radius);
 
   @include component.ix-component;
 
@@ -31,16 +32,16 @@
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: var(--theme-input--background);
-    border: var(--theme-input--border-thickness) solid
-      var(--theme-input--border-color);
-    border-radius: var(--theme-input--border-radius);
+    background-color: var(--ix-input--background);
+    border: var(--ix-input--border-thickness) solid
+      var(--ix-input--border-color);
+    border-radius: var(--ix-input--border-radius);
     padding: 0 0 0 vars.$small-space;
-    box-shadow: var(--theme-inset-shadow-1) !important;
+    box-shadow: var(--ix-select--inset-shadow-1) !important;
 
     &:hover:not(.readonly):not(.disabled) {
-      background-color: var(--theme-input--background--hover);
-      border-color: var(--theme-input--border-color--hover);
+      background-color: var(--ix-input--background--hover);
+      border-color: var(--ix-input--border-color--hover);
     }
   }
 
@@ -67,20 +68,20 @@
   }
 
   .select.disabled {
-    border: var(--theme-input--border-thickness) solid
-      var(--theme-input--border-color--disabled);
+    border: var(--ix-input--border-thickness) solid
+      var(--ix-input--border-color--disabled);
 
     input {
-      color: var(--theme-input--color--disabled);
+      color: var(--ix-input--color--disabled);
     }
   }
 
   .select.readonly {
-    border: var(--theme-input--border-thickness) solid
-      var(--theme-input--border-color--readonly);
+    border: var(--ix-input--border-thickness) solid
+      var(--ix-input--border-color--readonly);
 
     input {
-      color: var(--theme-input--color--readonly);
+      color: var(--ix-input--color--readonly);
     }
   }
 
@@ -152,7 +153,7 @@
       }
 
       &::placeholder {
-        color: var(--theme-input-select-icon--color);
+        color: var(--ix-input-select-icon--color);
       }
 
       &.hide-placeholder::placeholder {
@@ -178,7 +179,7 @@
   }
 
   .dropdown-visible {
-    --ix-icon-button-color: var(--theme-color-std-text--hover);
+    --ix-icon-button-color: var(--ix-color-std-text--hover);
   }
 
   .add-item {
@@ -193,7 +194,7 @@
     display: flex;
     align-items: center;
     height: vars.$default-control-height;
-    color: var(--theme-select-list-item-hint--color);
+    color: var(--ix-select-list-item-hint--color);
     margin: 0 vars.$small-space 0 1rem;
 
     @include text-truncation.ellipsis;
@@ -209,8 +210,8 @@
 :host(.ix-focused),
 :host(.show-focus-outline) {
   .select {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-btn--focus--outline-offset);
+    outline: 1px solid var(--ix-select--color-focus-bdr);
+    outline-offset: var(--ix-btn--focus--outline-offset);
   }
 }
 
@@ -218,44 +219,44 @@
 
 @include form-component.host-info {
   .select {
-    border-color: var(--theme-input--border-color--info);
+    border-color: var(--ix-input--border-color--info);
   }
 
   .select:hover {
-    border-color: var(--theme-input--border-color--info--hover) !important;
+    border-color: var(--ix-input--border-color--info--hover) !important;
   }
 
   .select:active {
-    border-color: var(--theme-input--border-color--info--active) !important;
+    border-color: var(--ix-input--border-color--info--active) !important;
   }
 }
 
 @include form-component.host-warning {
   .select {
-    border-color: var(--theme-input--border-color--warning);
-    background-color: var(--theme-input--background--warning);
+    border-color: var(--ix-input--border-color--warning);
+    background-color: var(--ix-input--background--warning);
   }
 
   .select:hover {
-    border-color: var(--theme-input--border-color--warning--hover) !important;
+    border-color: var(--ix-input--border-color--warning--hover) !important;
   }
 
   .select:active {
-    border-color: var(--theme-input--border-color--warning--active) !important;
+    border-color: var(--ix-input--border-color--warning--active) !important;
   }
 }
 
 @include form-component.host-invalid {
   .select {
-    border-color: var(--theme-input--border-color--invalid);
-    background-color: var(--theme-input--background--invalid);
+    border-color: var(--ix-input--border-color--invalid);
+    background-color: var(--ix-input--background--invalid);
   }
 
   .select:hover {
-    border-color: var(--theme-input--border-color--invalid--hover) !important;
+    border-color: var(--ix-input--border-color--invalid--hover) !important;
   }
 
   .select:active {
-    border-color: var(--theme-input--border-color--invalid--active) !important;
+    border-color: var(--ix-input--border-color--invalid--active) !important;
   }
 }

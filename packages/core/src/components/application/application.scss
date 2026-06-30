@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 
+@use './application.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -20,7 +21,7 @@
   @include component.ix-component;
 
   ix-application-header {
-    z-index: calc(var(--theme-z-index-sticky) + 1);
+    z-index: calc(var(--ix-application--z-index-sticky) + 1);
   }
 
   .logo-wrapper {

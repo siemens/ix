@@ -11,6 +11,7 @@
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 
+@use './menu-item.vars' as *;
 $menuItemHeight: 3rem;
 $menuItemPadding: 0.875rem;
 
@@ -38,13 +39,13 @@ $menuItemPadding: 0.875rem;
   }
 
   .tab-icon {
-    color: var(--theme-nav-item-primary-icon--color);
+    color: var(--ix-nav-item-primary-icon--color);
     position: relative;
     pointer-events: none;
   }
 
   .tab:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-menu-item--color-focus-bdr);
     outline-offset: -1px;
   }
 
@@ -62,22 +63,19 @@ $menuItemPadding: 0.875rem;
       min-width: 1rem;
       position: relative;
       border-radius: 6.25rem;
-      background-color: var(--theme-color-primary);
+      background-color: var(--ix-menu-item--color-primary);
       font-size: 0.75rem;
       font-weight: bold;
       line-height: 1;
-      font-family:
-        Siemens Sans,
-        Arial,
-        sans-serif;
-      color: var(--theme-color-primary--contrast);
+      font-family: Siemens Sans, Arial, sans-serif;
+      color: var(--ix-menu-item--color-primary--contrast);
       padding: vars.$tiny-space;
     }
   }
 
   .tab-text {
     display: block;
-    color: var(--theme-nav-item-primary--color);
+    color: var(--ix-nav-item-primary--color);
     margin: 0 1rem 0 1.25rem;
     user-select: none;
     width: 100%;
@@ -89,12 +87,12 @@ $menuItemPadding: 0.875rem;
 :host(.active),
 :host(.selected) {
   .tab {
-    background-color: var(--theme-nav-item-primary--background--selected);
+    background-color: var(--ix-nav-item-primary--background--selected);
   }
 
   .tab::before {
     content: '';
-    background-color: var(--theme-nav-item-primary--border-color--selected);
+    background-color: var(--ix-nav-item-primary--border-color--selected);
     height: var(--ix-menu-item-height, $menuItemHeight);
     width: 0.25rem;
     left: 0;
@@ -102,21 +100,21 @@ $menuItemPadding: 0.875rem;
   }
 
   .tab > .glyph {
-    color: var(--theme-nav-item-primary-icon--color--selected);
+    color: var(--ix-nav-item-primary-icon--color--selected);
   }
 }
 
 :host(.disabled) {
-  color: var(--theme-color-weak-text);
+  color: var(--ix-menu-item--color-weak-text);
   pointer-events: none;
   cursor: default;
 
   .tab > .tab-icon {
-    color: var(--theme-color-weak-text);
+    color: var(--ix-menu-item--color-weak-text);
   }
 
   .tab-text {
-    color: var(--theme-color-weak-text);
+    color: var(--ix-menu-item--color-weak-text);
   }
 }
 
@@ -140,11 +138,11 @@ $menuItemPadding: 0.875rem;
   &.active,
   &.selected {
     &:hover {
-      background-color: var(--theme-nav-item-secondary--background--selected);
+      background-color: var(--ix-nav-item-secondary--background--selected);
     }
 
     &:active {
-      background-color: var(--theme-nav-item-secondary--background--selected);
+      background-color: var(--ix-nav-item-secondary--background--selected);
     }
   }
 }
@@ -154,7 +152,7 @@ $menuItemPadding: 0.875rem;
 :host(.active[slot='bottom']),
 :host(.selected[slot='bottom']) {
   .tab {
-    background-color: var(--theme-nav-item-secondary--background--selected);
+    background-color: var(--ix-nav-item-secondary--background--selected);
   }
 }
 

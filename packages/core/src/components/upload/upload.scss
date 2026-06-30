@@ -11,6 +11,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './upload.vars' as *;
 :host {
   display: block;
   min-height: 4rem;
@@ -31,9 +32,9 @@
 
     padding: vars.$default-space;
 
-    border: 1px dashed var(--theme-upload--border-color);
-    border-radius: var(--theme-upload--border-radius);
-    color: var(--theme-upload-text--color);
+    border: 1px dashed var(--ix-upload--border-color);
+    border-radius: var(--ix-upload--border-radius);
+    color: var(--ix-upload-text--color);
 
     &.multiline {
       max-height: unset;
@@ -57,18 +58,18 @@
     }
 
     &:not(.disabled).file-over {
-      border-color: var(--theme-upload--border-color--dragover);
+      border-color: var(--ix-upload--border-color--dragover);
       border-style: solid;
     }
 
     &.checking {
-      color: var(--theme-upload-text--color--checking);
+      color: var(--ix-upload-text--color--checking);
       border-style: solid;
     }
 
     &.disabled {
       border-style: solid;
-      color: var(--theme-upload-text--color--disabled);
+      color: var(--ix-upload-text--color--disabled);
     }
 
     ix-button {
@@ -114,11 +115,11 @@
         margin-inline-end: vars.$small-space;
 
         &.icon-error {
-          color: var(--theme-color-alarm);
+          color: var(--ix-upload--color-alarm);
         }
 
         &.icon-success {
-          color: var(--theme-color-success);
+          color: var(--ix-upload--color-success);
         }
       }
     }

@@ -13,41 +13,42 @@
 @use 'mixins/shadow-dom/host-disabled';
 @use 'misc/common-variables' as vars;
 
+@use './event-list-item.vars' as *;
 $default-event-list-item-height: 2.5rem;
 
 @mixin host-variants($variant) {
   :host(.event-list-item-#{$variant}) {
     .event-list-item {
       --ix-event-list-item--color-border: var(
-        --theme-event-item-#{$variant}--border
+        --ix-event-item-#{$variant}--border
       );
 
       // Backgrounds
       --ix-event-list-item--background: var(
-        --theme-event-item-#{$variant}--background
+        --ix-event-item-#{$variant}--background
       );
       --ix-event-list-item--background--hover: var(
-        --theme-event-item-#{$variant}--background--hover
+        --ix-event-item-#{$variant}--background--hover
       );
       --ix-event-list-item--background--active: var(
-        --theme-event-item-#{$variant}--background--active
+        --ix-event-item-#{$variant}--background--active
       );
       --ix-event-list-item--background--selected: var(
-        --theme-event-item-#{$variant}--background--selected
+        --ix-event-item-#{$variant}--background--selected
       );
 
       // Borders
       --ix-event-list-item--border--hover: var(
-        --theme-event-item-#{$variant}--border--hover
+        --ix-event-item-#{$variant}--border--hover
       );
       --ix-event-list-item--border--active: var(
-        --theme-event-item-#{$variant}--border--active
+        --ix-event-item-#{$variant}--border--active
       );
       --ix-event-list-item--border--selected: var(
-        --theme-event-item-#{$variant}--border--selected
+        --ix-event-item-#{$variant}--border--selected
       );
       --ix-event-list-item--border--disabled: var(
-        --theme-event-item-#{$variant}--border--disabled
+        --ix-event-item-#{$variant}--border--disabled
       );
     }
   }
@@ -71,7 +72,7 @@ $default-event-list-item-height: 2.5rem;
     );
     background-color: var(--ix-event-list-item--background);
     overflow: hidden;
-    transition: var(--theme-default-time);
+    transition: var(--ix-event-list-item--default-time);
     cursor: pointer;
     margin-bottom: var(--event-list-item-margin-bottom, vars.$small-space);
 
@@ -91,7 +92,7 @@ $default-event-list-item-height: 2.5rem;
     }
 
     .indicator-empty {
-      border: var(--theme-weak-bdr-1);
+      border: var(--ix-event-list-item--weak-bdr-1);
       border-right: none;
     }
 

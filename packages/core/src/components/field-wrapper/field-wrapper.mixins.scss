@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './field-wrapper.vars' as *;
 @mixin helper-text {
   .bottom-text {
     display: flex;
@@ -23,18 +24,18 @@
   }
 
   .text-icon.invalid {
-    color: var(--theme-helper-icon--color--invalid);
+    color: var(--ix-helper-icon--color--invalid);
   }
 
   .text-icon.info {
-    color: var(--theme-helper-icon--color--info);
+    color: var(--ix-helper-icon--color--info);
   }
 
   .text-icon.warning {
-    color: var(--theme-helper-icon--color--warning);
+    color: var(--ix-helper-icon--color--warning);
   }
 
   .text-icon.valid {
-    color: var(--theme-helper-icon--color--valid);
+    color: var(--ix-helper-icon--color--valid);
   }
 }

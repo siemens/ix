@@ -1,11 +1,12 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './empty-state.vars' as *;
 :host {
   @include component.ix-component;
 
   .label__subHeader {
-    color: var(--theme-color-soft-text);
+    color: var(--ix-empty-state--color-soft-text);
   }
 }
 

@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 
+@use './slider.vars' as *;
 @mixin track {
   // Chrome, Safari, Opera, and Edge Chromium
   input[type='range']::-webkit-slider-runnable-track {
@@ -100,11 +101,11 @@
   --trace-reference: 0;
 
   // Theme colors:
-  --trace-reference-color: var(--theme-slider-track-marker--background);
-  --trace-color: var(--theme-slider-trace--background);
-  --tick-color: var(--theme-slider-track-marker--background);
-  --tick-color--active: var(--theme-slider-trace-marker--background);
-  --track-color: var(--theme-slider-track--background);
+  --trace-reference-color: var(--ix-slider-track-marker--background);
+  --trace-color: var(--ix-slider-trace--background);
+  --tick-color: var(--ix-slider-track-marker--background);
+  --tick-color--active: var(--ix-slider-trace-marker--background);
+  --track-color: var(--ix-slider-track--background);
 
   @include component.ix-component;
 
@@ -177,23 +178,23 @@
 
   @include thumb() {
     border-radius: 50%;
-    background-color: var(--theme-slider-thumb--background);
+    background-color: var(--ix-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
-    transition: all var(--theme-default-time) ease-in-out;
+    transition: all var(--ix-slider--default-time) ease-in-out;
     z-index: 10;
   }
 
   @include thumb-hover() {
-    background-color: var(--theme-slider-thumb--background--hover);
+    background-color: var(--ix-slider-thumb--background--hover);
   }
 
   @include thumb-active() {
-    background-color: var(--theme-slider-thumb--background--active);
+    background-color: var(--ix-slider-thumb--background--active);
   }
 
   @include thumb-focus() {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-slider--color-focus-bdr);
     outline-offset: 0.125rem;
   }
 
@@ -279,58 +280,58 @@
 }
 
 :host(.invalid) {
-  --trace-color: var(--theme-slider-trace--background--invalid);
-  --tick-color--active: var(--theme-slider-trace-marker--background--invalid);
+  --trace-color: var(--ix-slider-trace--background--invalid);
+  --tick-color--active: var(--ix-slider-trace-marker--background--invalid);
 
   @include thumb {
-    background-color: var(--theme-slider-thumb--background--invalid);
+    background-color: var(--ix-slider-thumb--background--invalid);
   }
 
   @include thumb-hover() {
-    background-color: var(--theme-slider-thumb--background--invalid--hover);
+    background-color: var(--ix-slider-thumb--background--invalid--hover);
   }
 
   @include thumb-active() {
-    background-color: var(--theme-slider-thumb--background--invalid--active);
+    background-color: var(--ix-slider-thumb--background--invalid--active);
   }
 }
 
 :host(.disabled) {
   pointer-events: none;
 
-  --track-color: var(--theme-slider-track--background--disabled);
-  --trace-color: var(--theme-slider-trace--background--disabled);
-  --tick-color: var(--theme-slider-track-marker--background--disabled);
-  --tick-color--active: var(--theme-slider-trace-marker--background--disabled);
+  --track-color: var(--ix-slider-track--background--disabled);
+  --trace-color: var(--ix-slider-trace--background--disabled);
+  --tick-color: var(--ix-slider-track-marker--background--disabled);
+  --tick-color--active: var(--ix-slider-trace-marker--background--disabled);
 
   @include thumb {
-    background-color: var(--theme-slider-thumb--background--disabled);
+    background-color: var(--ix-slider-thumb--background--disabled);
   }
 }
 
 :host(.warning) {
-  --trace-color: var(--theme-color-warning-40);
-  --tick-color--active: var(--theme-color-warning);
+  --trace-color: var(--ix-slider--color-warning-40);
+  --tick-color--active: var(--ix-slider--color-warning);
 
   @include thumb() {
-    background-color: var(--theme-color-warning);
+    background-color: var(--ix-slider--color-warning);
   }
 }
 
 :host(.info) {
-  --trace-color: var(--theme-color-info-40);
-  --tick-color--active: var(--theme-color-info);
+  --trace-color: var(--ix-slider--color-info-40);
+  --tick-color--active: var(--ix-slider--color-info);
 
   @include thumb() {
-    background-color: var(--theme-color-info);
+    background-color: var(--ix-slider--color-info);
   }
 }
 
 :host(.valid) {
-  --trace-color: var(--theme-color-success-40);
-  --tick-color--active: var(--theme-color-success);
+  --trace-color: var(--ix-slider--color-success-40);
+  --tick-color--active: var(--ix-slider--color-success);
 
   @include thumb() {
-    background-color: var(--theme-color-success);
+    background-color: var(--ix-slider--color-success);
   }
 }

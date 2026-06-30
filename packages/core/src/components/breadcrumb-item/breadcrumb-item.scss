@@ -11,6 +11,7 @@
 @use '../button/button-mixin';
 @use '../button/button';
 
+@use './breadcrumb-item.vars' as *;
 @include button-mixin.all-btn-variants;
 
 :host {
@@ -40,7 +41,7 @@
     pointer-events: none;
     margin-left: 0.5rem;
     margin-right: 0rem;
-    color: var(--theme-color-soft-text);
+    color: var(--ix-breadcrumb-item--color-soft-text);
   }
 
   ::slotted(a[href]) {
@@ -54,7 +55,7 @@
 
 :host(:last-child) {
   .btn:not(.dropdown-trigger) {
-    color: var(--theme-color-soft-text);
+    color: var(--ix-breadcrumb-item--color-soft-text);
   }
 }
 

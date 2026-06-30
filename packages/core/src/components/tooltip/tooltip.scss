@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './tooltip.vars' as *;
 .dialog {
   margin: 0;
   padding: 0;
@@ -24,11 +25,11 @@
   position: relative;
   width: auto;
   height: fit-content;
-  background: var(--theme-tootlip--background);
-  color: var(--theme-color-std-text);
+  background: var(--ix-tootlip--background);
+  color: var(--ix-tooltip--color-std-text);
   padding: 0.375rem 0.75rem;
 
-  box-shadow: var(--theme-shadow-4);
+  box-shadow: var(--ix-tooltip--shadow-4);
   border-radius: 0.25rem;
 }
 
@@ -60,5 +61,5 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
-  background-color: var(--theme-tootlip--background);
+  background-color: var(--ix-tootlip--background);
 }

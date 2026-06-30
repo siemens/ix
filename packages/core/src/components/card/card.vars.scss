@@ -1,0 +1,229 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-card--color-soft-bdr: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-card--color-std-text: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-card--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-card--border-width: var(--theme-border-width-default, 0.0625rem);
+  --ix-card--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
+  --ix-card-alarm--background: var(--theme-color-alarm, #ff2453);
+  --ix-card-alarm--background--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-card-alarm--background--hover: var(--theme-color-alarm--hover, #ff577b);
+  --ix-card-alarm--background--selected: var(--theme-color-alarm, #ff2453);
+  --ix-card-alarm--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-alarm--border-color--active: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-alarm--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-alarm--border-color--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-card-alarm--color: var(--theme-color-alarm--contrast, #000000);
+  --ix-card-critical--background: var(--theme-color-critical, #eb7a0a);
+  --ix-card-critical--background--active: var(
+    --theme-color-critical--active,
+    #eb8014
+  );
+  --ix-card-critical--background--hover: var(
+    --theme-color-critical--hover,
+    #ed8721
+  );
+  --ix-card-critical--background--selected: var(
+    --theme-color-critical,
+    #eb7a0a
+  );
+  --ix-card-critical--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-critical--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-critical--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-critical--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-critical--color: var(--theme-color-critical--contrast, #000000);
+  --ix-card-filled--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-card-filled--background--active: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-card-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    rgba(140, 161, 171, 0.45)
+  );
+  --ix-card-filled--background--selected: var(
+    --theme-color-ghost--selected,
+    rgba(0, 255, 255, 0.1)
+  );
+  --ix-card-filled--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-filled--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-filled--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-filled--border-color--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-card-filled--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-card-info--background: var(--theme-color-info, #357fff);
+  --ix-card-info--background--active: var(--theme-color-info--active, #3d84ff);
+  --ix-card-info--background--hover: var(--theme-color-info--hover, #4d8eff);
+  --ix-card-info--background--selected: var(--theme-color-info, #357fff);
+  --ix-card-info--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-info--border-color--active: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-info--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-info--border-color--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-card-info--color: var(--theme-color-info--contrast, #000000);
+  --ix-card-neutral--background: var(--theme-color-neutral, #b6b8b9);
+  --ix-card-neutral--background--active: var(
+    --theme-color-neutral--active,
+    #acaeaf
+  );
+  --ix-card-neutral--background--hover: var(
+    --theme-color-neutral--hover,
+    #c8cacb
+  );
+  --ix-card-neutral--background--selected: var(--theme-color-neutral, #b6b8b9);
+  --ix-card-neutral--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-neutral--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-neutral--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-neutral--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-neutral--color: var(--theme-color-neutral--contrast, #000000);
+  --ix-card-outline--background: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-card-outline--background--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-card-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-card-outline--background--selected: var(
+    --theme-color-ghost--selected,
+    rgba(0, 255, 255, 0.1)
+  );
+  --ix-card-outline--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-card-outline--border-color--active: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-card-outline--border-color--hover: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-card-outline--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-outline--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-card-primary--background: var(--theme-color-primary, #00bde3);
+  --ix-card-primary--background--active: var(
+    --theme-color-primary--active,
+    #00d3e5
+  );
+  --ix-card-primary--background--hover: var(
+    --theme-color-primary--hover,
+    #1aecff
+  );
+  --ix-card-primary--background--selected: var(--theme-color-primary, #00bde3);
+  --ix-card-primary--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-primary--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-primary--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-primary--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-primary--color: var(--theme-color-primary--contrast, #000000);
+  --ix-card-success--background: var(--theme-color-success, #44cc00);
+  --ix-card-success--background--active: var(
+    --theme-color-success--active,
+    #47d600
+  );
+  --ix-card-success--background--hover: var(
+    --theme-color-success--hover,
+    #4eeb00
+  );
+  --ix-card-success--background--selected: var(--theme-color-success, #44cc00);
+  --ix-card-success--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-success--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-success--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-success--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-success--color: var(--theme-color-success--contrast, #000000);
+  --ix-card-warning--background: var(--theme-color-warning, #ffbb00);
+  --ix-card-warning--background--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-card-warning--background--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-card-warning--background--selected: var(--theme-color-warning, #ffbb00);
+  --ix-card-warning--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-card-warning--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-warning--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-card-warning--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-card-warning--color: var(--theme-color-warning--contrast, #000000);
+}

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './select-item.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -16,12 +17,12 @@
   }
 
   ix-dropdown-item {
-    color: var(--theme-color-std-text);
+    color: var(--ix-select-item--color-std-text);
   }
 
   .select-item-checked {
-    background-color: var(--theme-select-list-item--background--selected);
-    --ix-dropdown-item-checked-color: var(--theme-color-std-text);
+    background-color: var(--ix-select-list-item--background--selected);
+    --ix-dropdown-item-checked-color: var(--ix-select-item--color-std-text);
   }
 }
 

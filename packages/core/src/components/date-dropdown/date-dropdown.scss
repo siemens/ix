@@ -13,6 +13,7 @@
 @use 'mixins/scrollbar' as scrollbar;
 @use 'mixins/break-points' as break-points;
 
+@use './date-dropdown.vars' as *;
 :host {
   display: inline-block;
   position: relative;
@@ -29,7 +30,7 @@
     display: inline-flex;
     flex-direction: column;
     gap: 0.25rem;
-    border-right: var(--theme-x-weak-bdr-1);
+    border-right: var(--ix-date-dropdown--x-weak-bdr-1);
     overflow: auto;
     padding: 0.5rem;
 
@@ -44,8 +45,8 @@
     }
 
     .btn:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid var(--ix-date-dropdown--color-focus-bdr);
+      outline-offset: var(--ix-btn--focus--outline-offset);
     }
 
     @include button-mixin.btn-base-variant('subtle-tertiary');

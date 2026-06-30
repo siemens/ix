@@ -11,6 +11,7 @@
 @use './../chip/chip-mixin';
 @use 'mixins/text-truncation';
 
+@use './pill.vars' as *;
 :host {
   display: inline-block;
   position: relative;
@@ -32,7 +33,7 @@
     }
 
     &.outline {
-      background-color: var(--theme-pill-outline--background);
+      background-color: var(--ix-pill-outline--background);
       &.icon {
         padding-left: 0.4375rem;
         padding-right: 0.4375rem;

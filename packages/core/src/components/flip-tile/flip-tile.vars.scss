@@ -1,0 +1,106 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-flip-tile--color-std-text: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-flip-alarm--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-alarm--border-color: var(--theme-color-alarm, #ff2453);
+  --ix-flip-alarm--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-flip-alarm-footer--background: var(--theme-color-alarm, #ff2453);
+  --ix-flip-alarm-footer--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-flip-alarm-footer--color: var(--theme-color-alarm--contrast, #000000);
+  --ix-flip-filled--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-filled--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-flip-filled--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-filled-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-filled-footer--border-color: var(--theme-color-1, #0f1619);
+  --ix-flip-filled-footer--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-info--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-info--border-color: var(--theme-color-info, #357fff);
+  --ix-flip-info--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-flip-info-footer--background: var(--theme-color-info, #357fff);
+  --ix-flip-info-footer--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-flip-info-footer--color: var(--theme-color-info--contrast, #000000);
+  --ix-flip-outline--background: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-flip-outline--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-flip-outline--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-outline-footer--background: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-flip-outline-footer--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-flip-outline-footer--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-primary--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-primary--border-color: var(--theme-color-primary, #00bde3);
+  --ix-flip-primary--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-primary-footer--background: var(--theme-color-primary, #00bde3);
+  --ix-flip-primary-footer--border-color: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-flip-primary-footer--color: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-flip-warning--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-flip-warning--border-color: var(--theme-color-warning-bdr, #ffbb00);
+  --ix-flip-warning--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-flip-warning-footer--background: var(--theme-color-warning, #ffbb00);
+  --ix-flip-warning-footer--border-color: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-flip-warning-footer--color: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+}

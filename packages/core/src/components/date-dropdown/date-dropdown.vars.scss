@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-date-dropdown--x-weak-bdr-1: var(
+    --theme-x-weak-bdr-1,
+    0.0625rem solid rgba(142, 157, 165, 0.2)
+  );
+  --ix-date-dropdown--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
+}

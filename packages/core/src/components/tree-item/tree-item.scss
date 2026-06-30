@@ -11,6 +11,7 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './tree-item.vars' as *;
 :host {
   display: flex;
   align-items: center;
@@ -45,7 +46,7 @@
     min-width: 2rem;
 
     ix-icon {
-      transition: transform var(--theme-default-time) ease-in-out;
+      transition: transform var(--ix-tree-item--default-time) ease-in-out;
 
       &.icon-toggle-down {
         transform: rotate(90deg);
@@ -56,26 +57,26 @@
 
 :host(:not(.disabled):not(.selected).hover),
 :host(:not(.disabled):not(.selected):hover) {
-  background-color: var(--theme-tree-item--background--hover);
+  background-color: var(--ix-tree-item--background--hover);
 }
 
 :host(:not(.disabled):not(.selected).active),
 :host(:not(.disabled):not(.selected):active) {
-  background-color: var(--theme-tree-item--background--active);
+  background-color: var(--ix-tree-item--background--active);
 }
 
 :host(.selected) {
-  background-color: var(--theme-tree-item--background--selected);
+  background-color: var(--ix-tree-item--background--selected);
 }
 
 :host(.selected.hover),
 :host(.selected:hover) {
-  background-color: var(--theme-tree-item--background--selected-hover);
+  background-color: var(--ix-tree-item--background--selected-hover);
 }
 
 :host(.selected.active),
 :host(.selected:active) {
-  background-color: var(--theme-tree-item--background--selected-active);
+  background-color: var(--ix-tree-item--background--selected-active);
 }
 
 :host(.disabled) {

@@ -1,0 +1,10 @@
+:host {
+  --ix-key-value-list--color-weak-bdr: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-key-value-list--color-ghost-alt: var(
+    --theme-color-ghost-alt,
+    rgba(255, 255, 255, 0.05)
+  );
+}

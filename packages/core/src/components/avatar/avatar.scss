@@ -15,6 +15,7 @@
 
 @use '../utils/focus/focus-proxy' as focus-proxy;
 
+@use './avatar.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -43,8 +44,8 @@
       min-height: 2rem;
       min-width: 2rem;
       border-radius: 100px;
-      background-color: var(--theme-avatar--background);
-      color: var(--theme-avatar--color);
+      background-color: var(--ix-avatar--background);
+      color: var(--ix-avatar--color);
 
       > ix-typography {
         // Fix to get the text vertically centered
@@ -53,11 +54,11 @@
     }
 
     #avatar-path-background {
-      fill: var(--theme-avatar--background);
+      fill: var(--ix-avatar--background);
     }
 
     #avatar-path-person {
-      fill: var(--theme-avatar--color);
+      fill: var(--ix-avatar--color);
     }
   }
 }
@@ -118,8 +119,8 @@
   @include button-mixin.btn-base-variant('tertiary');
 
   button:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-btn--focus--outline-offset);
+    outline: 1px solid var(--ix-avatar--color-focus-bdr);
+    outline-offset: var(--ix-btn--focus--outline-offset);
   }
 
   .avatar {

@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './time-picker.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -53,7 +54,7 @@
           width: 2.5rem;
           line-height: 2.5rem;
           text-align: center;
-          color: var(--theme-color-soft-text);
+          color: var(--ix-time-picker--color-soft-text);
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -90,21 +91,21 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        color: var(--theme-color-primary);
+        color: var(--ix-time-picker--color-primary);
 
         &:hover:not(.disabled) {
-          background-color: var(--theme-datepicker-day--background--hover);
+          background-color: var(--ix-datepicker-day--background--hover);
         }
 
         &:focus-visible {
-          box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
+          box-shadow: 0 0 0 1px var(--ix-time-picker--color-focus-bdr);
         }
 
         &.disabled {
           cursor: default;
 
           &:not(.selected) {
-            color: var(--theme-color-weak-text);
+            color: var(--ix-time-picker--color-weak-text);
           }
         }
 
@@ -114,25 +115,26 @@
         }
 
         &.selected {
-          background-color: var(--theme-datepicker-day--background--selected);
-          color: var(--theme-datepicker-day--color--selected);
-          font-weight: var(--theme-font-weight-bold);
+          background-color: var(--ix-datepicker-day--background--selected);
+          color: var(--ix-datepicker-day--color--selected);
+          font-weight: var(--ix-time-picker--font-weight-bold);
 
           &:hover:not(.disabled) {
             background-color: var(
-              --theme-datepicker-day--background--selected-hover
+              --ix-datepicker-day--background--selected-hover
             );
           }
 
           &:focus-visible {
-            border: 0.0625rem solid var(--theme-color-inv-contrast-text);
+            border: 0.0625rem solid
+              var(--ix-time-picker--color-inv-contrast-text);
           }
 
           &.disabled {
             background-color: var(
-              --theme-datepicker-day--background--selected-disabled
+              --ix-datepicker-day--background--selected-disabled
             );
-            color: var(--theme-datepicker-day--color--selected-disabled);
+            color: var(--ix-datepicker-day--color--selected-disabled);
           }
         }
       }

@@ -7,11 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './divider.vars' as *;
 :host {
   display: block;
   position: relative;
 
   width: 100%;
-  border-bottom: 0.0625rem solid var(--theme-color-x-weak-bdr);
+  border-bottom: 0.0625rem solid var(--ix-divider--color-x-weak-bdr);
   margin: 0.25rem 0px;
 }

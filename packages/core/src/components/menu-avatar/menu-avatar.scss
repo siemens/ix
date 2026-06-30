@@ -12,6 +12,7 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
+@use './menu-avatar.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -32,7 +33,7 @@
     padding-left: 0.25rem;
     margin-left: 0.41rem;
     margin-right: 0.35rem;
-    transition: var(--theme-default-time);
+    transition: var(--ix-menu-avatar--default-time);
 
     .avatar-name {
       display: flex;
@@ -43,7 +44,7 @@
       line-height: 1.14;
 
       .text-default-single {
-        color: var(--theme-nav-item-primary--color);
+        color: var(--ix-nav-item-primary--color);
         @include text-truncation.ellipsis;
       }
     }
@@ -51,17 +52,17 @@
     border-radius: 1.25rem;
 
     @include hover.hover {
-      background-color: var(--theme-avatar-btn--background--hover);
-      color: var(--theme-avatar-btn--color--hover);
+      background-color: var(--ix-avatar-btn--background--hover);
+      color: var(--ix-avatar-btn--color--hover);
     }
 
     @include hover.active {
-      background-color: var(--theme-avatar-btn--background--active);
-      color: var(--theme-avatar-btn--color--active);
+      background-color: var(--ix-avatar-btn--background--active);
+      color: var(--ix-avatar-btn--color--active);
     }
   }
 
   .avatar:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-menu-avatar--color-focus-bdr);
   }
 }
