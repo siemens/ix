@@ -119,8 +119,8 @@ function listOrNone(values: string[]): string {
   return values.map((value) => `- ${value}`).join('\n');
 }
 
-function markdownUrl(value: string): string {
-  return `[${value}](${value})`;
+function markdownLink(label: string, href: string): string {
+  return `[${label}](${href})`;
 }
 
 function documentationUrls(component: ComponentDoc): string[] {
@@ -247,11 +247,11 @@ function renderRelatedExamples(
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
             const href = `../../examples/${file.source}`;
-            return markdownUrl(href);
+            return `    - \`${file.target}\`: ${markdownLink('source', href)}`;
           });
 
           return links.length > 0
-            ? `  - ${framework}: ${links.join(', ')}`
+            ? `  - ${framework}:\n${links.join('\n')}`
             : null;
         })
         .filter(Boolean)
@@ -284,6 +284,8 @@ ${listOrNone(docs)}
 ${listOrNone(figma)}
 
 ## Related examples
+
+Example source links are relative to this Markdown file.
 
 ${renderRelatedExamples(examples, examplesByName)}
 
@@ -344,7 +346,7 @@ function renderBlock(block: BlockDefinition): string {
             )
               .map((file) => {
                 const href = `../blocks/${file.source}`;
-                return `  - \`${file.target}\` from ${markdownUrl(href)}`;
+                return `  - \`${file.target}\`: ${markdownLink('source', href)}`;
               })
               .join('\n');
             const dependencies = sortByName(variant.dependencies ?? [])
@@ -381,7 +383,7 @@ function renderBlocks(blocks: BlockDefinition[]): string {
 
 > Block-focused LLM documentation generated from registry block JSON metadata.
 
-Each block includes a description of when to use it, searchable keywords, previews, framework variants, source files, and dependencies. Used iX component relationships are marked unavailable because this relationship is not present in registry JSON.
+Each block includes a description of when to use it, searchable keywords, previews, framework variants, source files, and dependencies. Source links are relative to this Markdown file. Used iX component relationships are marked unavailable because this relationship is not present in registry JSON.
 
 ${blocks.map(renderBlock).join('\n')}
 `;
