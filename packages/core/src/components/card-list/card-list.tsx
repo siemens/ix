@@ -161,7 +161,7 @@ export class CardList {
     cancelable: true,
   })
   showMoreCardClick!: EventEmitter<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>;
 
   @Element() hostElement!: HTMLIxCardListElement;
@@ -180,7 +180,10 @@ export class CardList {
     this.collapseChanged.emit(this.collapse);
   }
 
-  private handleClick(emitter: EventEmitter, event: MouseEvent) {
+  private handleClick(
+    emitter: EventEmitter,
+    event: MouseEvent | KeyboardEvent
+  ) {
     const { defaultPrevented } = emitter.emit({
       nativeEvent: event,
     });
@@ -204,7 +207,7 @@ export class CardList {
       }
       event.preventDefault();
     }
-    this.handleClick(this.showMoreCardClick, event as unknown as MouseEvent);
+    this.handleClick(this.showMoreCardClick, event);
   }
 
   private getListChildren() {
