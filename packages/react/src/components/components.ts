@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import type { Components } from "@siemens/ix/components";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
@@ -87,6 +87,11 @@ import { IxPagination as IxPaginationElement, defineCustomElement as defineIxPag
 import { IxPaneLayout as IxPaneLayoutElement, defineCustomElement as defineIxPaneLayout } from "@siemens/ix/components/ix-pane-layout.js";
 import { IxPane as IxPaneElement, defineCustomElement as defineIxPane } from "@siemens/ix/components/ix-pane.js";
 import { IxPill as IxPillElement, defineCustomElement as defineIxPill } from "@siemens/ix/components/ix-pill.js";
+import { IxPopoverContent as IxPopoverContentElement, defineCustomElement as defineIxPopoverContent } from "@siemens/ix/components/ix-popover-content.js";
+import { IxPopoverFooter as IxPopoverFooterElement, defineCustomElement as defineIxPopoverFooter } from "@siemens/ix/components/ix-popover-footer.js";
+import { IxPopoverHeader as IxPopoverHeaderElement, defineCustomElement as defineIxPopoverHeader } from "@siemens/ix/components/ix-popover-header.js";
+import { IxPopoverImage as IxPopoverImageElement, defineCustomElement as defineIxPopoverImage } from "@siemens/ix/components/ix-popover-image.js";
+import { IxPopover as IxPopoverElement, defineCustomElement as defineIxPopover } from "@siemens/ix/components/ix-popover.js";
 import { IxProgressIndicator as IxProgressIndicatorElement, defineCustomElement as defineIxProgressIndicator } from "@siemens/ix/components/ix-progress-indicator.js";
 import { IxPushCard as IxPushCardElement, defineCustomElement as defineIxPushCard } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement, defineCustomElement as defineIxRadioGroup } from "@siemens/ix/components/ix-radio-group.js";
@@ -1096,6 +1101,67 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents, Componen
     react: React,
     events: {} as IxPillEvents,
     defineCustomElement: defineIxPill
+});
+
+export type IxPopoverEvents = {
+    onShowChange: EventName<IxPopoverCustomEvent<boolean>>,
+    onShowChanged: EventName<IxPopoverCustomEvent<boolean>>
+};
+
+export const IxPopover: StencilReactComponent<IxPopoverElement, IxPopoverEvents, Components.IxPopover> = /*@__PURE__*/ createComponent<IxPopoverElement, IxPopoverEvents, Components.IxPopover>({
+    tagName: 'ix-popover',
+    elementClass: IxPopoverElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onShowChange: 'showChange',
+        onShowChanged: 'showChanged'
+    } as IxPopoverEvents,
+    defineCustomElement: defineIxPopover
+});
+
+export type IxPopoverContentEvents = NonNullable<unknown>;
+
+export const IxPopoverContent: StencilReactComponent<IxPopoverContentElement, IxPopoverContentEvents, Components.IxPopoverContent> = /*@__PURE__*/ createComponent<IxPopoverContentElement, IxPopoverContentEvents, Components.IxPopoverContent>({
+    tagName: 'ix-popover-content',
+    elementClass: IxPopoverContentElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxPopoverContentEvents,
+    defineCustomElement: defineIxPopoverContent
+});
+
+export type IxPopoverFooterEvents = NonNullable<unknown>;
+
+export const IxPopoverFooter: StencilReactComponent<IxPopoverFooterElement, IxPopoverFooterEvents, Components.IxPopoverFooter> = /*@__PURE__*/ createComponent<IxPopoverFooterElement, IxPopoverFooterEvents, Components.IxPopoverFooter>({
+    tagName: 'ix-popover-footer',
+    elementClass: IxPopoverFooterElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxPopoverFooterEvents,
+    defineCustomElement: defineIxPopoverFooter
+});
+
+export type IxPopoverHeaderEvents = { onCloseClick: EventName<IxPopoverHeaderCustomEvent<MouseEvent>> };
+
+export const IxPopoverHeader: StencilReactComponent<IxPopoverHeaderElement, IxPopoverHeaderEvents, Components.IxPopoverHeader> = /*@__PURE__*/ createComponent<IxPopoverHeaderElement, IxPopoverHeaderEvents, Components.IxPopoverHeader>({
+    tagName: 'ix-popover-header',
+    elementClass: IxPopoverHeaderElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onCloseClick: 'closeClick' } as IxPopoverHeaderEvents,
+    defineCustomElement: defineIxPopoverHeader
+});
+
+export type IxPopoverImageEvents = NonNullable<unknown>;
+
+export const IxPopoverImage: StencilReactComponent<IxPopoverImageElement, IxPopoverImageEvents, Components.IxPopoverImage> = /*@__PURE__*/ createComponent<IxPopoverImageElement, IxPopoverImageEvents, Components.IxPopoverImage>({
+    tagName: 'ix-popover-image',
+    elementClass: IxPopoverImageElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxPopoverImageEvents,
+    defineCustomElement: defineIxPopoverImage
 });
 
 export type IxProgressIndicatorEvents = NonNullable<unknown>;

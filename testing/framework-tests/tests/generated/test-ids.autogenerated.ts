@@ -75,6 +75,7 @@ export const testIds = [
   "progress-indicator-circular",
   "progress-indicator-circular-status",
   "progress-indicator-circular-sizes",
+  "popover",
   "popover-news",
   "pill",
   "pill-variants",

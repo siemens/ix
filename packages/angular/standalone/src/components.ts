@@ -80,6 +80,11 @@ import { defineCustomElement as defineIxPagination } from '@siemens/ix/component
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
+import { defineCustomElement as defineIxPopover } from '@siemens/ix/components/ix-popover.js';
+import { defineCustomElement as defineIxPopoverContent } from '@siemens/ix/components/ix-popover-content.js';
+import { defineCustomElement as defineIxPopoverFooter } from '@siemens/ix/components/ix-popover-footer.js';
+import { defineCustomElement as defineIxPopoverHeader } from '@siemens/ix/components/ix-popover-header.js';
+import { defineCustomElement as defineIxPopoverImage } from '@siemens/ix/components/ix-popover-image.js';
 import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
@@ -2315,6 +2320,142 @@ export class IxPill {
 
 
 export declare interface IxPill extends Components.IxPill {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxPopover,
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  methods: ['showPopover', 'hidePopover']
+})
+@Component({
+  selector: 'ix-popover',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  outputs: ['showChange', 'showChanged'],
+})
+export class IxPopover {
+  protected el: HTMLIxPopoverElement;
+  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopover extends Components.IxPopover {
+  /**
+   * Fires before visibility changes. Cancel to prevent. @since 5.1.0
+   */
+  showChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fires after visibility has changed @since 5.1.0
+   */
+  showChanged: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxPopoverContent,
+  inputs: ['noPadding']
+})
+@Component({
+  selector: 'ix-popover-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['noPadding'],
+})
+export class IxPopoverContent {
+  protected el: HTMLIxPopoverContentElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverContent extends Components.IxPopoverContent {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxPopoverFooter,
+  inputs: ['alignment']
+})
+@Component({
+  selector: 'ix-popover-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignment'],
+})
+export class IxPopoverFooter {
+  protected el: HTMLIxPopoverFooterElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverFooter extends Components.IxPopoverFooter {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxPopoverHeader,
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor']
+})
+@Component({
+  selector: 'ix-popover-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor'],
+  outputs: ['closeClick'],
+})
+export class IxPopoverHeader {
+  protected el: HTMLIxPopoverHeaderElement;
+  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverHeader extends Components.IxPopoverHeader {
+  /**
+   * Fires when close button is clicked.
+Cancel to prevent closing. @since 5.1.0
+   */
+  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxPopoverImage,
+  inputs: ['image', 'imageAlt']
+})
+@Component({
+  selector: 'ix-popover-image',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['image', 'imageAlt'],
+})
+export class IxPopoverImage {
+  protected el: HTMLIxPopoverImageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverImage extends Components.IxPopoverImage {}
 
 
 @ProxyCmp({

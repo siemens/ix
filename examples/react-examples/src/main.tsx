@@ -185,6 +185,7 @@ import Pane from './preview-examples/pane';
 import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
+import Popover from './preview-examples/popover';
 import PopoverNews from './preview-examples/popover-news';
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
 import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
@@ -243,6 +244,7 @@ import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
 import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
+import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
@@ -415,6 +417,7 @@ const routes: IxPreviewRoutes = {
   '/preview/pane-layout': PaneLayout,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/push-card': PushCard,
   '/preview/settings': Settings,
@@ -454,10 +457,11 @@ const routes: IxPreviewRoutes = {
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,
   '/preview/toast': Toast,
-  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-secondary': ToggleButtonSecondary,
   '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
   '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
   '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
   '/preview/toggle-checked': ToggleChecked,
   '/preview/toggle-custom-label': ToggleCustomLabel,
   '/preview/toggle-disabled': ToggleDisabled,
