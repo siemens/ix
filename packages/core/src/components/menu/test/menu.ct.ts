@@ -179,6 +179,66 @@ regressionTest('should open and close settings', async ({ mount, page }) => {
   await expect(settings).not.toBeVisible();
 });
 
+regressionTest(
+  'should return focus to menu container when settings is closed with keyboard',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+        </ix-menu-about>
+        <ix-menu-settings>
+        </ix-menu-settings>
+      </ix-menu>
+    `);
+
+    const menu = page.locator('ix-menu');
+    const settingsButton = menu.locator('ix-menu-item#settings');
+    const menuNavigation = menu.locator('.menu-navigation');
+    const settings = page.locator('ix-menu-settings');
+
+    await settingsButton.click();
+    await expect(settings).toBeVisible();
+
+    const closeButton = settings.getByRole('button', {
+      name: 'Close Settings',
+    });
+    await closeButton.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(settings).not.toBeVisible();
+    await expect(menuNavigation).toBeFocused();
+  }
+);
+
+regressionTest(
+  'should return focus to menu container when about is closed with keyboard',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+        </ix-menu-about>
+        <ix-menu-settings>
+        </ix-menu-settings>
+      </ix-menu>
+    `);
+
+    const menu = page.locator('ix-menu');
+    const aboutButton = menu.locator('ix-menu-item#aboutAndLegal');
+    const menuNavigation = menu.locator('.menu-navigation');
+    const about = page.locator('ix-menu-about');
+
+    await aboutButton.click();
+    await expect(about).toBeVisible();
+
+    const closeButton = about.getByRole('button', { name: 'Close About' });
+    await closeButton.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(about).not.toBeVisible();
+    await expect(menuNavigation).toBeFocused();
+  }
+);
+
 regressionTest('should close settings by about', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
