@@ -1852,6 +1852,10 @@
           "path": "v5.0.0/examples/pill-variants.json"
         },
         {
+          "name": "popover",
+          "path": "v5.0.0/examples/popover.json"
+        },
+        {
           "name": "popover-news",
           "path": "v5.0.0/examples/popover-news.json"
         },

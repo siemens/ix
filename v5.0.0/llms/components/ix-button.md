@@ -207,6 +207,12 @@
   - html: [../../examples/html-examples/src/preview-examples/pane-layout.html](../../examples/html-examples/src/preview-examples/pane-layout.html)
   - react: [../../examples/react-examples/src/preview-examples/pane-layout.tsx](../../examples/react-examples/src/preview-examples/pane-layout.tsx)
   - vue: [../../examples/vue-examples/src/preview-examples/pane-layout.vue](../../examples/vue-examples/src/preview-examples/pane-layout.vue)
+- popover
+  - angular: [../../examples/angular-examples/src/preview-examples/popover.html](../../examples/angular-examples/src/preview-examples/popover.html), [../../examples/angular-examples/src/preview-examples/popover.ts](../../examples/angular-examples/src/preview-examples/popover.ts)
+  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover.html](../../examples/angular-standalone-examples/src/preview-examples/popover.html), [../../examples/angular-standalone-examples/src/preview-examples/popover.ts](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
+  - html: [../../examples/html-examples/src/preview-examples/popover.html](../../examples/html-examples/src/preview-examples/popover.html)
+  - react: [../../examples/react-examples/src/preview-examples/popover.tsx](../../examples/react-examples/src/preview-examples/popover.tsx)
+  - vue: [../../examples/vue-examples/src/preview-examples/popover.vue](../../examples/vue-examples/src/preview-examples/popover.vue)
 - theme-switcher
   - angular: [../../examples/angular-examples/src/preview-examples/theme-switcher.css](../../examples/angular-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-examples/src/preview-examples/theme-switcher.html](../../examples/angular-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-examples/src/preview-examples/theme-switcher.ts)
   - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.css), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.html), [../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts](../../examples/angular-standalone-examples/src/preview-examples/theme-switcher.ts)
