@@ -118,16 +118,17 @@ test('Checkbox should not cause layout shift when checked', async ({
 });
 
 test.describe('accessibility', () => {
-  test('should expose aria-label for accessibility queries', async ({
-    mount,
-    page,
-  }) => {
-    await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
-    const checkbox = page.locator('ix-checkbox');
-    const nativeInput = checkbox.locator('input');
-    await expect(checkbox).toBeVisible();
-    await nativeInput.focus();
-    await page.keyboard.press('Enter');
-    await expect(nativeInput).toBeChecked();
-  });
+  for (const key of ['Enter', 'Space'] as const) {
+    test(`should expose aria-label for accessibility queries with ${key}`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
+      const checkbox = page.getByRole('checkbox', { name: 'Accept Terms' });
+      await expect(checkbox).toBeVisible();
+      await checkbox.focus();
+      await page.keyboard.press(key);
+      await expect(checkbox).toBeChecked();
+    });
+  }
 });

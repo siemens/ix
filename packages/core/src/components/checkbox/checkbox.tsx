@@ -201,6 +201,7 @@ export class Checkbox implements IxFormComponent<string> {
           <input
             onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}
             aria-checked={a11yBoolean(this.checked)}
+            aria-disabled={a11yBoolean(this.disabled)}
             required={this.required}
             disabled={this.disabled}
             checked={this.checked}
