@@ -34,6 +34,8 @@ import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
+import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
@@ -600,9 +602,39 @@ export class Menu {
   }
 
   @Listen('close')
-  onOverlayClose() {
+  onOverlayClose(event?: CustomEvent<CustomCloseEvent>) {
+    const shouldRestoreFocus = this.shouldRestoreMenuFocus(event);
+
     this.animateOverlayFadeOut(() => {
       this.resetOverlay();
+
+      if (shouldRestoreFocus) {
+        this.focusMenuNavigationContainer();
+      }
+    });
+  }
+
+  private shouldRestoreMenuFocus(event?: CustomEvent<CustomCloseEvent>) {
+    return !!event;
+  }
+
+  private focusMenuNavigationContainer() {
+    const shadowRoot = this.hostElement.shadowRoot;
+
+    if (!shadowRoot) {
+      return;
+    }
+
+    const menuNavigation = shadowRoot.querySelector(
+      '.menu-navigation'
+    ) as HTMLDivElement | null;
+
+    if (!menuNavigation) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      menuNavigation.focus();
     });
   }
 
