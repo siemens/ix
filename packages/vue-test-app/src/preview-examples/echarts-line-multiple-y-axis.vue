@@ -126,7 +126,6 @@ function getOptions(): EChartsOption {
     legend: {
       show: true,
       bottom: '0',
-      left: '0',
     },
     xAxis: [
       {

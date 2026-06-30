@@ -62,5 +62,8 @@ import './generated/toggle-custom-label.spec';
 import './generated/pill.spec';
 import './generated/pill-variants.spec';
 
+// Popover tests
+import './generated/popover.spec';
+
 // Chip tests
 import './generated/chip.spec';
