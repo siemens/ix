@@ -51,8 +51,8 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
 
 regressionTest(`disabled`, async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label" disabled></ix-checkbox>`);
-  const checkboxElement = page.locator('ix-checkbox');
-  await expect(checkboxElement).toBeDisabled();
+  const nativeInput = page.locator('ix-checkbox').locator('input');
+  await expect(nativeInput).toBeDisabled();
 });
 
 regressionTest(`disabled = undefined`, async ({ mount, page }) => {
@@ -106,10 +106,7 @@ test('Checkbox should not cause layout shift when checked', async ({
 
   await page.click('ix-checkbox');
 
-  await page.waitForFunction(() => {
-    const checkbox = document.querySelector('ix-checkbox');
-    return checkbox?.getAttribute('aria-checked') === 'true';
-  });
+  await expect(page.locator('ix-checkbox').locator('input')).toBeChecked();
 
   const newBounds = await page.$eval('#element-below', (el) => {
     const rect = el.getBoundingClientRect();
@@ -127,8 +124,10 @@ test.describe('accessibility', () => {
   }) => {
     await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
     const checkbox = page.locator('ix-checkbox');
+    const nativeInput = checkbox.locator('input');
     await expect(checkbox).toBeVisible();
-    await checkbox.click();
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    await nativeInput.focus();
+    await page.keyboard.press('Enter');
+    await expect(nativeInput).toBeChecked();
   });
 });

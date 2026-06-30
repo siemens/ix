@@ -41,10 +41,15 @@
 
   input[type='checkbox'] {
   position: absolute;
+  inset: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  opacity: 0;
 
   &:focus-visible + button {
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-checkbox--focus--outline-offset);
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-checkbox--focus--outline-offset);
   }
 }
   label {
