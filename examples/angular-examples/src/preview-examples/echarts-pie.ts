@@ -47,7 +47,6 @@ export default class EchartsPie implements OnDestroy, OnInit {
       legend: {
         icon: 'rect',
         bottom: '0',
-        left: '0',
       },
       series: [
         {
