@@ -205,7 +205,7 @@ export class DateInput
   /**
    * I18n string for the error message when the date field is empty.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Prop({ attribute: 'i18n-error-required' }) i18nErrorRequired =
     'Date is required';
@@ -381,7 +381,7 @@ export class DateInput
    * Unlike clearing the value directly, this method restores the initial,
    * non-invalid state and removes visible validation errors.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Method()
   async clear(): Promise<void> {
@@ -590,7 +590,8 @@ export class DateInput
   }
 
   private checkClassList() {
-    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+    this.isInvalid =
+      this.hostElement.classList.contains('ix-invalid') || this.isInputInvalid;
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
@@ -599,6 +600,24 @@ export class DateInput
       this.suppressSubmitOnEnter,
       this.formInternals.form
     );
+  }
+
+  private async handleInputBlur(): Promise<void> {
+    this.touched = true;
+    const suppress = await shouldSuppressInternalValidation(this);
+    if (!suppress) {
+      this.isInputInvalid = this._hasInvalidInput;
+    }
+    await onInputBlurWithChange(
+      this,
+      this.inputElementRef.current,
+      this.value
+    );
+    emitPickerValidityState(this);
+
+    if (suppress && this._reportValidityCalled && this._hasInvalidInput) {
+      this.hostElement.classList.add('ix-invalid--validity-invalid');
+    }
   }
 
   private renderInput() {
@@ -641,19 +660,7 @@ export class DateInput
               event: e,
               isDropdownOpen: this.show,
               hostElement: this.hostElement,
-              onBlur: async () => {
-                this.touched = true;
-                const suppress = await shouldSuppressInternalValidation(this);
-                if (!suppress) {
-                  this.isInputInvalid = this._hasInvalidInput;
-                }
-                onInputBlurWithChange(
-                  this,
-                  this.inputElementRef.current,
-                  this.value
-                );
-                emitPickerValidityState(this);
-              },
+              onBlur: () => this.handleInputBlur(),
               pickerElement: this.dropdownElementRef?.current,
             })
           }
@@ -740,7 +747,7 @@ export class DateInput
    * Not suppressed by `<form novalidate>` — errors surface regardless.
    *
    * @returns `true` if valid, `false` otherwise.
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Method()
   async reportValidity(): Promise<boolean> {

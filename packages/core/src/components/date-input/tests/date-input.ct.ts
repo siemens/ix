@@ -804,6 +804,46 @@ regressionTest.describe('date-input validation scenarios', () => {
     );
 
     regressionTest(
+      'novalidate form: reportValidity() error persists after manual blur with input border red',
+      async ({ page, mount }) => {
+        await mount(`
+          <form novalidate>
+            <ix-date-input label="Date" value="2024/05/05"></ix-date-input>
+          </form>
+        `);
+        const dateInput = page.locator('ix-date-input');
+        const input = dateInput.getByRole('textbox');
+
+        await input.fill('invalid-date');
+
+        await dateInput.evaluate((el: HTMLIxDateInputElement) => {
+          el.reportValidity();
+        });
+
+        await expect(input).toHaveClass(/is-invalid/);
+        await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+        await expect(
+          dateInput
+            .locator('ix-field-wrapper')
+            .locator('ix-typography')
+            .filter({ hasText: 'Date is not valid' })
+        ).toBeVisible();
+
+        await input.focus();
+        await input.blur();
+
+        await expect(input).toHaveClass(/is-invalid/);
+        await expect(dateInput).toHaveClass(/ix-invalid--validity-invalid/);
+        await expect(
+          dateInput
+            .locator('ix-field-wrapper')
+            .locator('ix-typography')
+            .filter({ hasText: 'Date is not valid' })
+        ).toBeVisible();
+      }
+    );
+
+    regressionTest(
       'novalidate form: reportValidity() error persists when value remains invalid, clears when fixed',
       async ({ page, mount }) => {
         await mount(`
