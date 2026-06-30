@@ -299,7 +299,9 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
     if (this.textAreaRef.current && this.touched && !this.isClearing) {
-      this.textAreaRef.current.value = value;
+      if (this.textAreaRef.current.value !== value) {
+        this.textAreaRef.current.value = value;
+      }
       checkInternalValidity(this, this.textAreaRef.current);
     }
   }

@@ -246,7 +246,9 @@ export class Input implements IxInputFieldComponent<string> {
     this.value = value;
 
     if (this.inputRef.current && this.touched && !this.isClearing) {
-      this.inputRef.current.value = value;
+      if (this.inputRef.current.value !== value) {
+        this.inputRef.current.value = value;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }

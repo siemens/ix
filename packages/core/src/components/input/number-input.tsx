@@ -280,7 +280,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.formInternals.setFormValue(formValue);
     this.value = value;
     if (this.inputRef.current && this.touched && !this.isClearing) {
-      this.inputRef.current.value = formValue;
+      if (this.inputRef.current.value !== formValue) {
+        this.inputRef.current.value = formValue;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
