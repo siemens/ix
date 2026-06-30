@@ -8,8 +8,8 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/components/forms';
 @use '../icon-button/icon-button';
+@use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -31,6 +31,8 @@
   }
 
   .page-selection {
+    @include input-control.input-control;
+
     width: 4.125rem;
     text-align: center;
     margin: 0 vars.$small-space;

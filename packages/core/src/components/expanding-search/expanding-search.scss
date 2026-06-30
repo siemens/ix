@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'misc/common-variables' as vars;
-@use 'legacy/components/forms';
+@use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
@@ -29,6 +29,8 @@ $container-width: 11.5625rem;
   }
 
   input {
+    @include input-control.input-control;
+
     box-shadow: var(--theme-input--box-shadow);
     cursor: auto !important;
     width: 100%;
