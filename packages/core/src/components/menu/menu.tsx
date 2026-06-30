@@ -923,8 +923,6 @@ export class Menu {
                     tabs: true,
                     'show-scrollbar': this.expand,
                   }}
-                  role="group"
-                  tabIndex={-1}
                   onScroll={() => this.handleOverflowIndicator()}
                 >
                   <div class="menu-avatar">
@@ -953,7 +951,7 @@ export class Menu {
 
             <div class="bottom-tab-divider"></div>
 
-            <div class="menu-utility-controls" role="group">
+            <div class="menu-utility-controls">
               {this.settings ? (
                 <ix-menu-item
                   disabled={this.isHiddenFromViewport()}
