@@ -109,6 +109,11 @@ $CardList__Title__Height: 1.5rem;
 
     --ix-card-border-color: var(--theme-color-primary);
     color: var(--theme-color-primary);
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
   }
 
   .CardList__Style__Infinite__Scroll .Show__All__Card {
@@ -125,13 +130,6 @@ $CardList__Title__Height: 1.5rem;
 
   .Show__All__Card:active {
     background-color: var(--theme-color-ghost--active);
-  }
-
-  .Show__All__Card {
-    @include hover.focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
-    }
   }
 
   .Show__All__Card__Content {
