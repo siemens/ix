@@ -1,0 +1,10 @@
+:host {
+  --ix-key-value--color-soft-text: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-key-value--color-soft-bdr: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+}

@@ -12,14 +12,30 @@
 @use 'mixins/text-truncation';
 
 @mixin input-control {
-  color: var(--theme-input--color);
-  border-radius: var(--theme-input--border-radius);
+  color: var(
+    --ix-input--color,
+    var(--theme-color-std-text)
+  );
+  border-radius: var(
+    --ix-input--border-radius,
+    var(--theme-small-border-radius)
+  );
   height: vars.$default-control-height;
   min-height: vars.$default-control-height;
   min-width: vars.$input-min-width;
-  background-color: var(--theme-input--background);
-  border: solid 1px var(--theme-input--border-color);
-  box-shadow: var(--theme-input--box-shadow);
+  background-color: var(
+    --ix-input--background,
+    var(--theme-color-component-8)
+  );
+  border: solid 1px
+    var(
+      --ix-input--border-color,
+      var(--theme-color-std-bdr)
+    );
+  box-shadow: var(
+    --ix-input--box-shadow,
+    var(--theme-inset-shadow-1)
+  );
   padding-inline-start: vars.$input-padding-x;
   padding-inline-end: vars.$input-padding-x;
 
@@ -27,27 +43,51 @@
   @include text-truncation.ellipsis;
 
   &::placeholder {
-    color: var(--theme-input-hint--color);
+    color: var(
+      --ix-input-hint--color,
+      var(--theme-color-soft-text)
+    );
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
     @include hover.hover {
-      background-color: var(--theme-input--background--hover);
-      border-color: var(--theme-input--border-color--hover);
+      background-color: var(
+        --ix-input--background--hover,
+        var(--theme-color-component-8--hover)
+      );
+      border-color: var(
+        --ix-input--border-color--hover,
+        var(--theme-color-dynamic)
+      );
       cursor: auto;
     }
 
     @include hover.focus-visible {
-      background-color: var(--theme-input--background--focus);
-      border-color: var(--theme-input--border-color--focus);
-      outline-offset: var(--theme-input--focus--outline-offset);
-      box-shadow: var(--theme-input--box-shadow);
+      background-color: var(
+        --ix-input--background--focus,
+        var(--theme-color-component-8--hover)
+      );
+      border-color: var(
+        --ix-input--border-color--focus,
+        var(--theme-color-dynamic)
+      );
+      outline-offset: var(
+        --ix-input--focus--outline-offset,
+        var(--theme-focus-outline-offset)
+      );
+      box-shadow: var(
+        --ix-input--box-shadow,
+        var(--theme-inset-shadow-1)
+      );
       outline: 1px solid var(--theme-color-focus-bdr);
     }
   }
 
   &:focus-visible {
-    color: var(--theme-input--color);
+    color: var(
+      --ix-input--color,
+      var(--theme-color-std-text)
+    );
   }
 
   &[type='number'] {
@@ -75,7 +115,10 @@
   &.readonly {
     box-shadow: none !important;
     outline: none !important;
-    border-color: var(--theme-input--border-color);
+    border-color: var(
+      --ix-input--border-color,
+      var(--theme-color-std-bdr)
+    );
     cursor: default !important;
 
     &::placeholder {
@@ -91,7 +134,10 @@
     border-inline-end: none !important;
     border-radius: 0rem;
     color: var(--theme-color-weak-text);
-    border-color: var(--theme-input--border-color-bottom--disabled);
+    border-color: var(
+      --ix-input--border-color-bottom--disabled,
+      var(--theme-color-weak-bdr)
+    );
 
     &::placeholder {
       color: transparent;

@@ -35,11 +35,11 @@
 @mixin ghost-hover-pressed {
   :host(:not(.disabled):not(:disabled).hover),
   :host(:not(.disabled):not(:disabled):hover) {
-    background-color: var(--theme-ghost--background--hover);
+    background-color: var(--theme-color-ghost--hover);
   }
 
   :host(:not(.disabled):not(:disabled).active),
   :host(:not(.disabled):not(:disabled):active) {
-    background-color: var(--theme-ghost--background--active);
+    background-color: var(--theme-color-ghost--active);
   }
 }

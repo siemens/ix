@@ -1,0 +1,536 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-push-card--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-push-card--border-width: var(--theme-border-width-default, 0.0625rem);
+  --ix-push-card--focus--outline-offset: var(
+    --theme-focus-outline-offset,
+    0.125rem
+  );
+  --ix-push-card-alarm--background: var(--theme-color-alarm, #ff2453);
+  --ix-push-card-alarm--background--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-push-card-alarm--background--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-push-card-alarm--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-alarm--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-alarm--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-alarm--color: var(--theme-color-alarm--contrast, #000000);
+  --ix-push-card-alarm-accordion--background: var(--theme-color-alarm, #ff2453);
+  --ix-push-card-alarm-accordion--background--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-push-card-alarm-accordion--background--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-push-card-alarm-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-alarm-accordion--color: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-push-card-alarm-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-alarm-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-alarm-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-alarm-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-alarm-subtext--color: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-push-card-critical--background: var(--theme-color-critical, #eb7a0a);
+  --ix-push-card-critical--background--active: var(
+    --theme-color-critical--active,
+    #eb8014
+  );
+  --ix-push-card-critical--background--hover: var(
+    --theme-color-critical--hover,
+    #ed8721
+  );
+  --ix-push-card-critical--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-critical--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-critical--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-critical--color: var(
+    --theme-color-critical--contrast,
+    #000000
+  );
+  --ix-push-card-critical-accordion--background: var(
+    --theme-color-critical,
+    #eb7a0a
+  );
+  --ix-push-card-critical-accordion--background--active: var(
+    --theme-color-critical--active,
+    #eb8014
+  );
+  --ix-push-card-critical-accordion--background--hover: var(
+    --theme-color-critical--hover,
+    #ed8721
+  );
+  --ix-push-card-critical-accordion--border-color: var(
+    --theme-color-1,
+    #0f1619
+  );
+  --ix-push-card-critical-accordion--color: var(
+    --theme-color-critical--contrast,
+    #000000
+  );
+  --ix-push-card-critical-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-critical-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-critical-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-critical-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-critical-subtext--color: var(
+    --theme-color-critical--contrast,
+    #000000
+  );
+  --ix-push-card-filled--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-filled--background--active: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-push-card-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    rgba(140, 161, 171, 0.45)
+  );
+  --ix-push-card-filled--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-filled--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-filled--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-filled--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-push-card-filled-accordion--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-filled-accordion--background--active: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-push-card-filled-accordion--background--hover: var(
+    --theme-color-component-1--hover,
+    rgba(140, 161, 171, 0.45)
+  );
+  --ix-push-card-filled-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-filled-accordion--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-push-card-filled-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-filled-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-filled-accordion-frame--border-color: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-filled-accordion-frame--border-width: var(
+    --theme-border-width-none,
+    0rem
+  );
+  --ix-push-card-filled-subtext--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-push-card-info--background: var(--theme-color-info, #357fff);
+  --ix-push-card-info--background--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-push-card-info--background--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-push-card-info--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-info--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-info--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-info--color: var(--theme-color-info--contrast, #000000);
+  --ix-push-card-info-accordion--background: var(--theme-color-info, #357fff);
+  --ix-push-card-info-accordion--background--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-push-card-info-accordion--background--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-push-card-info-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-info-accordion--color: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-push-card-info-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-info-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-info-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-info-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-info-subtext--color: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-push-card-neutral--background: var(--theme-color-neutral, #b6b8b9);
+  --ix-push-card-neutral--background--active: var(
+    --theme-color-neutral--active,
+    #acaeaf
+  );
+  --ix-push-card-neutral--background--hover: var(
+    --theme-color-neutral--hover,
+    #c8cacb
+  );
+  --ix-push-card-neutral--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-neutral--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-neutral--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-neutral--color: var(--theme-color-neutral--contrast, #000000);
+  --ix-push-card-neutral-accordion--background: var(
+    --theme-color-neutral,
+    #b6b8b9
+  );
+  --ix-push-card-neutral-accordion--background--active: var(
+    --theme-color-neutral--active,
+    #acaeaf
+  );
+  --ix-push-card-neutral-accordion--background--hover: var(
+    --theme-color-neutral--hover,
+    #c8cacb
+  );
+  --ix-push-card-neutral-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-neutral-accordion--color: var(
+    --theme-color-neutral--contrast,
+    #000000
+  );
+  --ix-push-card-neutral-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-neutral-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-neutral-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-neutral-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-neutral-subtext--color: var(
+    --theme-color-neutral--contrast,
+    #000000
+  );
+  --ix-push-card-outline--background: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-push-card-outline--background--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-push-card-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-outline--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-outline--border-color--active: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-outline--border-color--hover: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-outline--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-push-card-outline-accordion--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-outline-accordion--background--active: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-push-card-outline-accordion--background--hover: var(
+    --theme-color-component-1--hover,
+    rgba(140, 161, 171, 0.45)
+  );
+  --ix-push-card-outline-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-outline-accordion--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-push-card-outline-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-outline-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-outline-accordion-frame--border-color: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-outline-accordion-frame--border-width: var(
+    --theme-border-width-none,
+    0rem
+  );
+  --ix-push-card-outline-subtext--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-push-card-primary--background: var(--theme-color-primary, #00bde3);
+  --ix-push-card-primary--background--active: var(
+    --theme-color-primary--active,
+    #00d3e5
+  );
+  --ix-push-card-primary--background--hover: var(
+    --theme-color-primary--hover,
+    #1aecff
+  );
+  --ix-push-card-primary--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-primary--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-primary--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-primary--color: var(--theme-color-primary--contrast, #000000);
+  --ix-push-card-primary-accordion--background: var(
+    --theme-color-primary,
+    #00bde3
+  );
+  --ix-push-card-primary-accordion--background--active: var(
+    --theme-color-primary--active,
+    #00d3e5
+  );
+  --ix-push-card-primary-accordion--background--hover: var(
+    --theme-color-primary--hover,
+    #1aecff
+  );
+  --ix-push-card-primary-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-primary-accordion--color: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-push-card-primary-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-primary-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-primary-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-primary-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-primary-subtext--color: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-push-card-success--background: var(--theme-color-success, #44cc00);
+  --ix-push-card-success--background--active: var(
+    --theme-color-success--active,
+    #47d600
+  );
+  --ix-push-card-success--background--hover: var(
+    --theme-color-success--hover,
+    #4eeb00
+  );
+  --ix-push-card-success--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-success--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-success--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-success--color: var(--theme-color-success--contrast, #000000);
+  --ix-push-card-success-accordion--background: var(
+    --theme-color-success,
+    #44cc00
+  );
+  --ix-push-card-success-accordion--background--active: var(
+    --theme-color-success--active,
+    #47d600
+  );
+  --ix-push-card-success-accordion--background--hover: var(
+    --theme-color-success--hover,
+    #4eeb00
+  );
+  --ix-push-card-success-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-success-accordion--color: var(
+    --theme-color-success--contrast,
+    #000000
+  );
+  --ix-push-card-success-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-success-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-success-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-success-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-success-subtext--color: var(
+    --theme-color-success--contrast,
+    #000000
+  );
+  --ix-push-card-warning--background: var(--theme-color-warning, #ffbb00);
+  --ix-push-card-warning--background--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-push-card-warning--background--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-push-card-warning--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-push-card-warning--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-warning--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-push-card-warning--color: var(--theme-color-warning--contrast, #000000);
+  --ix-push-card-warning-accordion--background: var(
+    --theme-color-warning,
+    #ffbb00
+  );
+  --ix-push-card-warning-accordion--background--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-push-card-warning-accordion--background--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-push-card-warning-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-warning-accordion--color: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-push-card-warning-accordion-footer--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-warning-accordion-frame--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-push-card-warning-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-push-card-warning-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-warning-subtext--color: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+}

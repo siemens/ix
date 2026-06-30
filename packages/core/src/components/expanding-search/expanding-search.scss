@@ -12,6 +12,7 @@
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 
+@use './expanding-search.vars' as *;
 $container-width: 11.5625rem;
 
 :host {
@@ -25,13 +26,13 @@ $container-width: 11.5625rem;
   @include component.ix-component;
 
   .input-container {
-    transition: all var(--theme-medium-time) ease-in-out;
+    transition: all var(--ix-expanding-search--medium-time) ease-in-out;
   }
 
   input {
     @include input-control.input-control;
 
-    box-shadow: var(--theme-input--box-shadow);
+    box-shadow: var(--ix-input--box-shadow);
     cursor: auto !important;
     width: 100%;
   }
@@ -60,8 +61,8 @@ $container-width: 11.5625rem;
     display: flex;
     max-width: vars.$x-large-space;
     max-height: vars.$x-large-space;
-    border-radius: var(--theme-input--border-radius);
-    transition: all var(--theme-default-time) ease-in-out;
+    border-radius: var(--ix-input--border-radius);
+    transition: all var(--ix-expanding-search--default-time) ease-in-out;
     z-index: 1;
     align-items: center;
     position: relative;
@@ -94,8 +95,8 @@ $container-width: 11.5625rem;
   .btn-search:active {
     width: vars.$x-large-space;
     height: vars.$x-large-space;
-    border-radius: var(--theme-input--border-radius);
-    border: var(--theme-std-bdr-1) !important;
+    border-radius: var(--ix-input--border-radius);
+    border: var(--ix-expanding-search--std-bdr-1) !important;
   }
 
   /*expanded view*/
@@ -108,7 +109,7 @@ $container-width: 11.5625rem;
 
   .btn-clear {
     position: absolute;
-    border-radius: var(--theme-input--border-radius);
+    border-radius: var(--ix-input--border-radius);
     right: 0px;
     margin-right: 0.25rem;
   }

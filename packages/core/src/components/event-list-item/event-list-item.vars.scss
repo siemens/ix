@@ -1,0 +1,93 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-event-list-item--default-time: var(--theme-default-time, 150ms);
+  --ix-event-list-item--weak-bdr-1: var(
+    --theme-weak-bdr-1,
+    0.0625rem solid rgba(224, 245, 255, 0.25)
+  );
+  --ix-event-item-chevron--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-event-item-filled--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-event-item-filled--background--active: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-event-item-filled--background--disabled: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-event-item-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    rgba(140, 161, 171, 0.45)
+  );
+  --ix-event-item-filled--background--selected: var(
+    --theme-color-component-1--active,
+    rgba(140, 161, 171, 0.25)
+  );
+  --ix-event-item-filled--border: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-event-item-filled--border--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-event-item-filled--border--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-event-item-filled--border--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-event-item-filled--border--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-event-item-indicator--width: var(--theme-size--2, 0.5rem);
+  --ix-event-item-indicator-opacity--disabled: 0.3;
+  --ix-event-item-outline--background: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-event-item-outline--background--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-event-item-outline--background--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-event-item-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-event-item-outline--background--selected: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-event-item-outline--border: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-event-item-outline--border--active: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-event-item-outline--border--disabled: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-event-item-outline--border--hover: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-event-item-outline--border--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+}

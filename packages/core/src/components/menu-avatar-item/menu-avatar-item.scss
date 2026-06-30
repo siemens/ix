@@ -8,9 +8,10 @@
  */
 @use 'mixins/shadow-dom/component';
 
+@use './menu-avatar-item.vars' as *;
 :host {
   display: block;
-  color: var(--theme-color-std-text);
+  color: var(--ix-menu-avatar-item--color-std-text);
 
   @include component.ix-component;
 }

@@ -1,0 +1,85 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-tab-item--color-1: var(--theme-color-1, #0f1619);
+  --ix-tab-item--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-pill-outline--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-animated-tab-circle--background: var(
+    --theme-color-component-1,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-animated-tab-circle--background--active: var(
+    --theme-color-ghost-primary--active,
+    rgba(0, 128, 128, 0.2)
+  );
+  --ix-animated-tab-circle--background--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-animated-tab-circle--background--hover: var(
+    --theme-color-ghost-primary--hover,
+    rgba(0, 255, 255, 0.15)
+  );
+  --ix-animated-tab-circle--background--selected: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-animated-tab-circle--border-color: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-animated-tab-circle--border-color--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-animated-tab-circle--border-color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-animated-tab-icon--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-animated-tab-icon--color--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-tab--background: var(--theme-color-ghost, rgba(255, 255, 255, 0));
+  --ix-tab--background--active: var(
+    --theme-color-ghost-primary--active,
+    rgba(0, 128, 128, 0.2)
+  );
+  --ix-tab--background--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-tab--background--hover: var(
+    --theme-color-ghost-primary--hover,
+    rgba(0, 255, 255, 0.15)
+  );
+  --ix-tab--background--selected: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-tab--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-tab--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-tab--color--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-tab-indicator--background--disabled: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-tab-indicator--background--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-tab-pill--border-color: var(--theme-color-neutral, #b6b8b9);
+  --ix-tab-pill--border-color--disabled: var(--theme-color-neutral, #b6b8b9);
+  --ix-tab-pill--border-color--selected: var(--theme-color-dynamic, #00eaff);
+}

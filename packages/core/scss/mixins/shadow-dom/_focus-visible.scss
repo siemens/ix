@@ -8,5 +8,8 @@
  */
 @mixin ix-focus-visible() {
   outline: 1px solid var(--theme-color-focus-bdr) !important;
-  outline-offset: var(--theme-btn--focus--outline-offset) !important;
+  outline-offset: var(
+    --ix-btn--focus--outline-offset,
+    var(--theme-focus-outline-offset)
+  ) !important;
 }

@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-date-time-card--shadow-4: var(
+    --theme-shadow-4,
+    0 0 2px 0 #000000,
+    0 4px 8px 0 rgba(0, 0, 0, 0.6),
+    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+  );
+  --ix-datepicker-separator--background: var(
+    --theme-color-x-weak-bdr,
+    rgba(142, 157, 165, 0.2)
+  );
+  --ix-menu--background: var(--theme-color-2, #283236);
+}

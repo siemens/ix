@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-input--background--invalid: var(--theme-color-component-error, #4b1a28);
+  --ix-input--background--invalid--hover: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-input--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--background--warning--hover: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--border-color--info: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--active: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--hover: var(--theme-color-info, #357fff);
+  --ix-input--border-color--invalid: var(--theme-color-alarm-bdr, #ff2453);
+  --ix-input--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-input--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+}

@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 
+@use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 $outline-border-width: 0.0625rem;
@@ -73,9 +74,9 @@ $outline-border-width: 0.0625rem;
             .with-icon {
               //TODO(IX-3400): Replace warning check with proper CSS variable when available
               @if $color == 'warning' {
-                color: var(--theme-color-warning-text);
+                color: var(--ix-chip--color-warning-text);
               } @else {
-                color: var(--theme-color-#{$color});
+                color: var(--ix-chip-#{$color}--color);
               }
             }
           }
@@ -107,52 +108,53 @@ $outline-border-width: 0.0625rem;
   }
 
   .container.primary {
-    background-color: var(--theme-color-primary);
-    color: var(--theme-chip-primary--color);
+    background-color: var(--ix-chip--color-primary);
+    color: var(--ix-chip-primary--color);
 
     .close-button {
-      color: var(--theme-chip-primary--color);
-      --ix-icon-button-color: var(--theme-chip-primary--color);
+      color: var(--ix-chip-primary--color);
+      --ix-icon-button-color: var(--ix-chip-primary--color);
       pointer-events: auto;
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--theme-chip-primary--background--hover);
+        background-color: var(--ix-chip-primary--background--hover);
       }
 
       &:active {
-        background-color: var(--theme-chip-primary--background--active);
+        background-color: var(--ix-chip-primary--background--active);
       }
 
       &:focus-visible {
         outline: 1px solid #199fff;
-        outline-offset: var(--theme-btn--focus--outline-offset);
+        outline-offset: var(--ix-btn--focus--outline-offset);
       }
     }
   }
 
   .container.primary.outline {
-    color: var(--theme-chip-outline--color);
-    background-color: var(--theme-chip-primary-outline--background);
-    border: solid $outline-border-width var(--theme-chip-primary-outline--border-color);
+    color: var(--ix-chip-outline--color);
+    background-color: var(--ix-chip-primary-outline--background);
+    border: solid $outline-border-width
+      var(--ix-chip-primary-outline--border-color);
 
     .close-button {
-      color: var(--theme-chip-outline--color);
-      --ix-icon-button-color: var(--theme-chip-outline--color);
+      color: var(--ix-chip-outline--color);
+      --ix-icon-button-color: var(--ix-chip-outline--color);
     }
 
     .with-icon {
-      color: var(--theme-color-primary);
+      color: var(--ix-chip--color-primary);
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--theme-chip-primary-outline--background--hover);
+        background-color: var(--ix-chip-primary-outline--background--hover);
       }
 
       &:active {
-        background-color: var(--theme-chip-primary-outline--background--active);
+        background-color: var(--ix-chip-primary-outline--background--active);
       }
     }
   }
@@ -164,41 +166,41 @@ $outline-border-width: 0.0625rem;
 
   @each $color in $predefined-chips {
     .container.#{$color} {
-      color: var(--theme-color-#{$color}--contrast);
+      color: var(--ix-chip-#{$color}--color--contrast);
 
       &:not(.outline) {
-        background-color: var(--theme-color-#{$color});
+        background-color: var(--ix-chip-#{$color}--background);
 
         .close-button {
-          color: var(--theme-color-#{$color}--contrast);
-          --ix-icon-button-color: var(--theme-color-#{$color}--contrast);
+          color: var(--ix-chip-#{$color}--color--contrast);
+          --ix-icon-button-color: var(--ix-chip-#{$color}--color--contrast);
         }
 
         @if $interaction {
           &:hover {
-            background-color: var(--theme-color-#{$color}--hover);
+            background-color: var(--ix-chip-#{$color}--background--hover);
           }
 
           &.active,
           &:active {
-            background-color: var(--theme-color-#{$color}--active);
+            background-color: var(--ix-chip-#{$color}--background--active);
           }
         }
       }
 
       &.outline {
-        color: var(--theme-chip-outline--color);
-        background-color: var(--theme-chip-outline--background);
-        border-color: var(--theme-color-#{$color});
+        color: var(--ix-chip-outline--color);
+        background-color: var(--ix-chip-outline--background);
+        border-color: var(--ix-chip-#{$color}--border-color);
 
         @if $interaction {
           &:hover {
-            background-color: var(--theme-chip-outline--background--hover);
+            background-color: var(--ix-chip-outline--background--hover);
           }
 
           &.active,
           &:active {
-            background-color: var(--theme-chip-outline--background--active);
+            background-color: var(--ix-chip-outline--background--active);
           }
         }
       }
@@ -206,7 +208,7 @@ $outline-border-width: 0.0625rem;
       @if $interaction {
         &:focus-visible {
           outline: 1px solid #199fff;
-          outline-offset: var(--theme-btn--focus--outline-offset);
+          outline-offset: var(--ix-btn--focus--outline-offset);
         }
       }
     }
@@ -214,12 +216,12 @@ $outline-border-width: 0.0625rem;
   .container.custom.outline {
     @if $interaction {
       &:hover {
-        background-color: var(--theme-chip-outline--background--hover);
+        background-color: var(--ix-chip-outline--background--hover);
       }
 
       &.active,
       &:active {
-        background-color: var(--theme-chip-outline--background--active);
+        background-color: var(--ix-chip-outline--background--active);
       }
     }
   }

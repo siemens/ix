@@ -9,29 +9,30 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './dropdown-button.vars' as *;
 @mixin triangle($name: '') {
   @if ($name != '') {
     $name: '#{$name}-';
   }
 
   .triangle.#{$name}primary {
-    color: var(--theme-btn-#{$name}primary--color);
+    color: var(--ix-btn-#{$name}primary--color);
   }
   .triangle.#{$name}secondary {
-    color: var(--theme-btn-#{$name}secondary--color);
+    color: var(--ix-btn-#{$name}secondary--color);
   }
   .triangle.#{$name}tertiary {
-    color: var(--theme-btn-#{$name}tertiary--color);
+    color: var(--ix-btn-#{$name}tertiary--color);
   }
 
   .triangle.#{$name}primary.disabled {
-    color: var(--theme-btn-#{$name}primary--color--disabled);
+    color: var(--ix-btn-#{$name}primary--color--disabled);
   }
   .triangle.#{$name}secondary.disabled {
-    color: var(--theme-btn-#{$name}secondary--color--disabled);
+    color: var(--ix-btn-#{$name}secondary--color--disabled);
   }
   .triangle.#{$name}tertiary.disabled {
-    color: var(--theme-btn-#{$name}tertiary--color--disabled);
+    color: var(--ix-btn-#{$name}tertiary--color--disabled);
   }
 }
 
@@ -41,8 +42,8 @@
   height: vars.$x-large-space;
   width: auto;
 
-  --ix-dropdown-button-border-radius-left: var(--theme-btn--border-radius);
-  --ix-dropdown-button-border-radius-right: var(--theme-btn--border-radius);
+  --ix-dropdown-button-border-radius-left: var(--ix-btn--border-radius);
+  --ix-dropdown-button-border-radius-right: var(--ix-btn--border-radius);
 
   border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
   border-bottom-left-radius: var(--ix-dropdown-button-border-radius-left);
@@ -97,7 +98,7 @@
     border-left: 4px solid transparent;
     border-top: 0 solid transparent;
     border-bottom: 4px solid;
-    color: var(--theme-btn-primary--color);
+    color: var(--ix-btn-primary--color);
   }
 
   @include triangle();
@@ -130,8 +131,8 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid var(--theme-color-focus-bdr);
-  outline-offset: var(--theme-btn--focus--outline-offset);
+  outline: 1px solid var(--ix-dropdown-button--color-focus-bdr);
+  outline-offset: var(--ix-btn--focus--outline-offset);
 }
 
 :host([aria-expanded='true']:focus-visible) {

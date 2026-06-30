@@ -13,15 +13,15 @@
 @include input.input-field;
 
 :host {
-  input[type="password"]::-ms-reveal,
-  input[type="password"]::-ms-clear {
+  input[type='password']::-ms-reveal,
+  input[type='password']::-ms-clear {
     display: none;
   }
 
-  input[type="password"]::-webkit-credentials-auto-fill-button,
-  input[type="password"]::-webkit-textfield-decoration-container,
-  input[type="password"]::-webkit-contacts-auto-fill-button,
-  input[type="password"]::-webkit-caps-lock-indicator {
+  input[type='password']::-webkit-credentials-auto-fill-button,
+  input[type='password']::-webkit-textfield-decoration-container,
+  input[type='password']::-webkit-contacts-auto-fill-button,
+  input[type='password']::-webkit-caps-lock-indicator {
     visibility: hidden;
     pointer-events: none;
   }

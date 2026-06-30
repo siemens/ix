@@ -1,0 +1,42 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-pane--space-1: var(--theme-space-1, 0.5rem);
+  --ix-pane--space--1: var(--theme-space--1, 0.25rem);
+  --ix-pane--space-2: var(--theme-space-2, 0.75rem);
+  --ix-pane--space-3: var(--theme-space-3, 1rem);
+  --ix-app-header--border-width: var(--ix-blind--border-thickness);
+  --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-pane-floating--background: var(--theme-color-2, #283236);
+  --ix-pane-floating--border-color: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-pane-floating--box-shadow: var(
+    --theme-shadow-2,
+    -4px 0 8px 0 #000000,
+    4px 0 8px 0 #000000,
+    0 0 16px 0 rgba(0, 0, 0, 0.6)
+  );
+  --ix-pane-floating--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-pane-inline--background: var(--theme-color-1, #0f1619);
+  --ix-pane-inline--border-color: var(
+    --theme-color-soft-bdr,
+    rgba(211, 236, 248, 0.4)
+  );
+  --ix-pane-inline--box-shadow: none;
+  --ix-pane-inline--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+}

@@ -1,0 +1,396 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-checkbox--color-primary--contrast: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-checkbox--space-0: var(--theme-space-0, 0.375rem);
+  --ix-checkbox--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-checkbox--focus--outline-offset: var(
+    --theme-focus-outline-offset,
+    0.125rem
+  );
+  --ix-checkbox-checked--background: var(--theme-color-dynamic, #00eaff);
+  --ix-checkbox-checked--background--active: var(
+    --theme-color-dynamic--active,
+    #5cd5e0
+  );
+  --ix-checkbox-checked--background--disabled: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-checkbox-checked--background--hover: var(
+    --theme-color-dynamic--hover,
+    #62e2ee
+  );
+  --ix-checkbox-checked--background--info: var(--theme-color-info, #357fff);
+  --ix-checkbox-checked--background--info--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-checkbox-checked--background--info--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-checkbox-checked--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-checkbox-checked--background--invalid--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-checkbox-checked--background--invalid--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-checkbox-checked--background--warning: var(
+    --theme-color-warning,
+    #ffbb00
+  );
+  --ix-checkbox-checked--background--warning--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-checkbox-checked--background--warning--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-checkbox-checked--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-checkbox-checked--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--info: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--info--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--info--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-checked--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-checked--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-checked--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-checked--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-checked--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-checked--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-checked--color: var(--theme-color-primary--contrast, #000000);
+  --ix-checkbox-checked--color--active: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--disabled: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--hover: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--info: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--info--active: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--info--hover: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--invalid: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--invalid--active: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--invalid--hover: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--warning: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--warning--active: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-checked--color--warning--hover: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-label--color: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-checkbox-label--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-checkbox-mixed--background: var(--theme-color-dynamic, #00eaff);
+  --ix-checkbox-mixed--background--active: var(
+    --theme-color-dynamic--active,
+    #5cd5e0
+  );
+  --ix-checkbox-mixed--background--disabled: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-checkbox-mixed--background--hover: var(
+    --theme-color-dynamic--hover,
+    #62e2ee
+  );
+  --ix-checkbox-mixed--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-checkbox-mixed--background--invalid--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-checkbox-mixed--background--invalid--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-checkbox-mixed--background--warning: var(--theme-color-warning, #ffbb00);
+  --ix-checkbox-mixed--background--warning--active: var(
+    --theme-color-warning--active,
+    #ffba0a
+  );
+  --ix-checkbox-mixed--background--warning--hover: var(
+    --theme-color-warning--hover,
+    #ffc533
+  );
+  --ix-checkbox-mixed--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-checkbox-mixed--border-color--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--disabled: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--info: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--info--active: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--info--hover: var(
+    --theme-color-0,
+    rgba(0, 0, 0, 0)
+  );
+  --ix-checkbox-mixed--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-mixed--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-mixed--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-mixed--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-mixed--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-mixed--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-mixed--color: var(--theme-color-primary--contrast, #000000);
+  --ix-checkbox-mixed--color--active: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--disabled: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--hover: var(
+    --theme-color-primary--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--info: var(--theme-color-info--contrast, #000000);
+  --ix-checkbox-mixed--color--info--active: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--info--hover: var(
+    --theme-color-info--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--invalid: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--invalid--active: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--invalid--hover: var(
+    --theme-color-alarm--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--warning: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--warning--active: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-mixed--color--warning--hover: var(
+    --theme-color-warning--contrast,
+    #000000
+  );
+  --ix-checkbox-unchecked--background: var(--theme-color-secondary, #000000);
+  --ix-checkbox-unchecked--background--active: var(
+    --theme-color-secondary--active,
+    #001d2b
+  );
+  --ix-checkbox-unchecked--background--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-checkbox-unchecked--background--hover: var(
+    --theme-color-secondary--hover,
+    #002639
+  );
+  --ix-checkbox-unchecked--background--info: var(
+    --theme-color-secondary,
+    #000000
+  );
+  --ix-checkbox-unchecked--background--info--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-checkbox-unchecked--background--info--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-checkbox-unchecked--background--invalid: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-checkbox-unchecked--background--invalid--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-checkbox-unchecked--background--invalid--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-checkbox-unchecked--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-checkbox-unchecked--background--warning--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-checkbox-unchecked--background--warning--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-checkbox-unchecked--border-color: var(
+    --theme-color-contrast-bdr,
+    #ffffff
+  );
+  --ix-checkbox-unchecked--border-color--active: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-checkbox-unchecked--border-color--disabled: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-checkbox-unchecked--border-color--hover: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-checkbox-unchecked--border-color--info: var(--theme-color-info, #357fff);
+  --ix-checkbox-unchecked--border-color--info--active: var(
+    --theme-color-info--active,
+    #3d84ff
+  );
+  --ix-checkbox-unchecked--border-color--info--hover: var(
+    --theme-color-info--hover,
+    #4d8eff
+  );
+  --ix-checkbox-unchecked--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-unchecked--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-unchecked--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-checkbox-unchecked--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-unchecked--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-unchecked--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-checkbox-check-color: var(--ix-checkbox--color-primary--contrast);
+}

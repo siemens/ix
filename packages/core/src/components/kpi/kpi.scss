@@ -13,11 +13,12 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './kpi.vars' as *;
 :host {
   display: flex;
   flex-grow: 1;
   height: vars.$large-control-height;
-  border-radius: var(--theme-kpi--border-radius);
+  border-radius: var(--ix-kpi--border-radius);
   padding: 0.375rem vars.$tiny-space;
   min-width: 0;
 
@@ -34,17 +35,17 @@
     border-block-end: 2px solid grey;
 
     &.alarm {
-      border-block-end-color: var(--theme-color-alarm);
+      border-block-end-color: var(--ix-kpi--color-alarm);
     }
 
     &.warning {
-      border-block-end-color: var(--theme-color-warning);
+      border-block-end-color: var(--ix-kpi--color-warning);
     }
 
     .kpi-label {
       display: flex;
       align-items: center;
-      color: var(--theme-kpi-display-label--color);
+      color: var(--ix-kpi-display-label--color);
       flex-grow: 1;
       flex-shrink: 9999;
 
@@ -59,14 +60,14 @@
     }
 
     .kpi-value {
-      color: var(--theme-kpi-display-value--color);
+      color: var(--ix-kpi-display-value--color);
 
       @include fonts.text-xl;
     }
 
     .kpi-unit {
       margin-inline-start: vars.$small-space;
-      color: var(--theme-kpi-display-units--color);
+      color: var(--ix-kpi-display-units--color);
     }
 
     .kpi-label,
@@ -76,11 +77,11 @@
   }
 
   @include hover.hover {
-    background-color: var(--theme-kpi-display--background--hover);
+    background-color: var(--ix-kpi-display--background--hover);
   }
 
   @include hover.active {
-    background-color: var(--theme-kpi-display--background--active);
+    background-color: var(--ix-kpi-display--background--active);
   }
 
   @include hover.focus-visible {

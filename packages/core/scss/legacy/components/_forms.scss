@@ -18,14 +18,14 @@
 
 .ix-form-control,
 .ix-form-control-plaintext {
-  color: var(--theme-input--color);
-  border-radius: var(--theme-input--border-radius);
+  color: var(--theme-color-std-text);
+  border-radius: var(--theme-small-border-radius);
   height: vars.$default-control-height;
   min-height: vars.$default-control-height;
   min-width: vars.$input-min-width;
-  background-color: var(--theme-input--background);
-  border: solid 1px var(--theme-input--border-color);
-  box-shadow: var(--theme-input--box-shadow);
+  background-color: var(--theme-color-component-8);
+  border: solid 1px var(--theme-color-std-bdr);
+  box-shadow: var(--theme-inset-shadow-1);
   padding-inline-start: vars.$input-padding-x;
   padding-inline-end: vars.$input-padding-x;
 
@@ -33,28 +33,28 @@
   @include text-truncation.ellipsis;
 
   &::placeholder {
-    color: var(--theme-input-hint--color);
+    color: var(--theme-color-soft-text);
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
     @include hover.hover {
-      background-color: var(--theme-input--background--hover);
-      border-color: var(--theme-input--border-color--hover);
+      background-color: var(--theme-color-component-8--hover);
+      border-color: var(--theme-color-dynamic);
       cursor: auto;
     }
 
     @include hover.focus-visible {
-      background-color: var(--theme-input--background--focus);
-      border-color: var(--theme-input--border-color--focus);
-      outline-offset: var(--theme-input--focus--outline-offset);
-      box-shadow: var(--theme-input--box-shadow);
+      background-color: var(--theme-color-component-8--hover);
+      border-color: var(--theme-color-dynamic);
+      outline-offset: var(--theme-focus-outline-offset);
+      box-shadow: var(--theme-inset-shadow-1);
       outline: 1px solid var(--theme-color-focus-bdr);
     }
   }
 }
 
 .ix-form-control:focus-visible {
-  color: var(--theme-input--color);
+  color: var(--theme-color-std-text);
 }
 
 .ix-form-control[type='number'] {
@@ -82,7 +82,7 @@
 .ix-form-control.readonly {
   box-shadow: none !important;
   outline: none !important;
-  border-color: var(--theme-input--border-color);
+  border-color: var(--theme-color-std-bdr);
   cursor: default !important;
 
   &::placeholder {
@@ -99,7 +99,7 @@
   border-radius: 0rem;
   color: var(--theme-color-weak-text);
 
-  border-color: var(--theme-input--border-color-bottom--disabled);
+  border-color: var(--theme-color-weak-bdr);
 
   &::placeholder {
     color: transparent;
@@ -143,7 +143,7 @@ textarea.ix-form-control {
 input.ix-form-control {
   &.disabled,
   &:disabled {
-    color: var(--theme-input--color--disabled);
+    color: var(--theme-color-weak-text);
   }
 
   &:read-only,

@@ -1,0 +1,69 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-slider--default-time: var(--theme-default-time, 150ms);
+  --ix-slider--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-slider--color-warning-40: var(
+    --theme-color-warning-40,
+    rgba(255, 187, 0, 0.4)
+  );
+  --ix-slider--color-warning: var(--theme-color-warning, #ffbb00);
+  --ix-slider--color-info-40: var(
+    --theme-color-info-40,
+    rgba(53, 127, 255, 0.4)
+  );
+  --ix-slider--color-info: var(--theme-color-info, #357fff);
+  --ix-slider--color-success-40: var(
+    --theme-color-success-40,
+    rgba(68, 204, 0, 0.4)
+  );
+  --ix-slider--color-success: var(--theme-color-success, #44cc00);
+  --ix-slider-thumb--background: var(--theme-color-dynamic, #00eaff);
+  --ix-slider-thumb--background--active: var(
+    --theme-color-dynamic--active,
+    #5cd5e0
+  );
+  --ix-slider-thumb--background--disabled: var(--theme-color-7, #6b7c85);
+  --ix-slider-thumb--background--hover: var(
+    --theme-color-dynamic--hover,
+    #62e2ee
+  );
+  --ix-slider-thumb--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-slider-thumb--background--invalid--active: var(
+    --theme-color-alarm--active,
+    #ff335f
+  );
+  --ix-slider-thumb--background--invalid--hover: var(
+    --theme-color-alarm--hover,
+    #ff577b
+  );
+  --ix-slider-trace--background: var(--theme-color-dynamic, #00eaff);
+  --ix-slider-trace--background--disabled: var(
+    --theme-color-component-3,
+    rgba(217, 243, 255, 0.4)
+  );
+  --ix-slider-trace--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-slider-trace-marker--background: var(--theme-color-dynamic, #00eaff);
+  --ix-slider-trace-marker--background--disabled: var(--theme-color-7, #6b7c85);
+  --ix-slider-trace-marker--background--invalid: var(
+    --theme-color-alarm,
+    #ff2453
+  );
+  --ix-slider-track--background: var(
+    --theme-color-component-4,
+    rgba(214, 242, 255, 0.42)
+  );
+  --ix-slider-track--background--disabled: var(
+    --theme-color-component-2,
+    rgba(211, 239, 253, 0.15)
+  );
+  --ix-slider-track-marker--background: var(--theme-color-8, #94a1a9);
+  --ix-slider-track-marker--background--disabled: var(--theme-color-5, #59686f);
+}

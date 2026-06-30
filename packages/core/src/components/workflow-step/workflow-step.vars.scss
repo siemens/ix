@@ -1,0 +1,66 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-workflow-step--color-warning: var(--theme-color-warning, #ffbb00);
+  --ix-workflow-step--color-success: var(--theme-color-success, #44cc00);
+  --ix-workflow-step--color-alarm: var(--theme-color-alarm, #ff2453);
+  --ix-workflow--border-radius: 1px;
+  --ix-workflow-step--background: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-workflow-step--background--active: var(
+    --theme-color-ghost--active,
+    rgba(140, 161, 171, 0.15)
+  );
+  --ix-workflow-step--background--disabled: var(
+    --theme-color-ghost,
+    rgba(255, 255, 255, 0)
+  );
+  --ix-workflow-step--background--hover: var(
+    --theme-color-ghost--hover,
+    rgba(140, 161, 171, 0.2)
+  );
+  --ix-workflow-step--background--selected: var(
+    --theme-color-ghost--selected,
+    rgba(0, 255, 255, 0.1)
+  );
+  --ix-workflow-step--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-workflow-step-icon-default--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-workflow-step-icon-default--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-workflow-step-icon-default--color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-workflow-step-icon-done--color: var(--theme-color-primary, #00bde3);
+  --ix-workflow-step-icon-error--color: var(--theme-color-alarm, #ff2453);
+  --ix-workflow-step-icon-success--color: var(--theme-color-success, #44cc00);
+  --ix-workflow-step-icon-warning--color: var(
+    --theme-color-warning-text,
+    #ffbb00
+  );
+  --ix-workflow-step-icon-done--color--selected: var(
+    --theme-color-dynamic,
+    #00eaff
+  );
+  --ix-workflow-step-icon-status--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+}

@@ -1,0 +1,145 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-input--background: var(--theme-color-component-8, #00273b);
+  --ix-input--background--autofill: var(--theme-color-component-info, #001c4d);
+  --ix-input--background--disabled: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-input--background--focus: var(--theme-color-component-8--hover, #002639);
+  --ix-input--background--hover: var(--theme-color-component-8--hover, #002639);
+  --ix-input--background--invalid: var(--theme-color-component-error, #4b1a28);
+  --ix-input--background--invalid--focus: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-input--background--invalid--hover: var(
+    --theme-color-component-error,
+    #4b1a28
+  );
+  --ix-input--background--readonly: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-input--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--background--warning--focus: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--background--warning--hover: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--border-color: var(
+    --theme-color-std-bdr,
+    rgba(211, 236, 248, 0.55)
+  );
+  --ix-input--border-color--autofill: var(--theme-color-hard-bdr, #6b7c85);
+  --ix-input--border-color--disabled: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-input--border-color--focus: var(--theme-color-dynamic, #00eaff);
+  --ix-input--border-color--hover: var(--theme-color-dynamic, #00eaff);
+  --ix-input--border-color--info: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--active: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--hover: var(--theme-color-info, #357fff);
+  --ix-input--border-color--invalid: var(--theme-color-alarm-bdr, #ff2453);
+  --ix-input--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--readonly: var(
+    --theme-color-std-bdr,
+    rgba(211, 236, 248, 0.55)
+  );
+  --ix-input--border-color--warning: var(--theme-color-warning-bdr, #ffbb00);
+  --ix-input--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-input--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-input--border-color-bottom--disabled: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-input--border-color-bottom--readonly: var(
+    --theme-color-std-bdr,
+    rgba(211, 236, 248, 0.55)
+  );
+  --ix-input--border-radius: var(--theme-small-border-radius, 0.125rem);
+  --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-input--box-shadow: var(
+    --theme-inset-shadow-1,
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.6)
+  );
+  --ix-input--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-input--color--autofill: var(
+    --theme-color-std-text,
+    rgba(245, 252, 255, 0.9)
+  );
+  --ix-input--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input--focus--outline-offset: var(
+    --theme-focus-outline-offset,
+    0.125rem
+  );
+  --ix-input-error--background: var(--theme-color-component-error, #4b1a28);
+  --ix-input-error--border-color: var(--theme-color-alarm, #ff2453);
+  --ix-input-error-icon--color: var(--theme-color-alarm, #ff2453);
+  --ix-input-extra--background--active: var(
+    --theme-color-component-8--hover,
+    #002639
+  );
+  --ix-input-extra--background--hover: var(
+    --theme-color-component-8--hover,
+    #002639
+  );
+  --ix-input-gripper--color: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input-gripper--color--focus: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input-gripper--color--hover: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input-hint--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-input-search-icon--color: var(--theme-color-primary, #00bde3);
+  --ix-input-search-icon--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input-search-icon--color--focus: var(--theme-color-dynamic, #00eaff);
+  --ix-input-search-icon--color--hover: var(--theme-color-dynamic, #00eaff);
+  --ix-input-select-icon--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-input-select-icon--color--active: var(--theme-color-dynamic, #00eaff);
+  --ix-input-select-icon--color--hover: var(--theme-color-dynamic, #00eaff);
+  --ix-input-unit--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+}

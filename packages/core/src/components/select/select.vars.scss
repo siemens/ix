@@ -1,0 +1,72 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-select--inset-shadow-1: var(
+    --theme-inset-shadow-1,
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.6)
+  );
+  --ix-select--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
+  --ix-input--background: var(--theme-color-component-8, #00273b);
+  --ix-input--background--hover: var(--theme-color-component-8--hover, #002639);
+  --ix-input--background--invalid: var(--theme-color-component-error, #4b1a28);
+  --ix-input--background--warning: var(
+    --theme-color-component-warning,
+    #4b463a
+  );
+  --ix-input--border-color: var(
+    --theme-color-std-bdr,
+    rgba(211, 236, 248, 0.55)
+  );
+  --ix-input--border-color--disabled: var(
+    --theme-color-weak-bdr,
+    rgba(224, 245, 255, 0.25)
+  );
+  --ix-input--border-color--hover: var(--theme-color-dynamic, #00eaff);
+  --ix-input--border-color--info: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--active: var(--theme-color-info, #357fff);
+  --ix-input--border-color--info--hover: var(--theme-color-info, #357fff);
+  --ix-input--border-color--invalid: var(--theme-color-alarm-bdr, #ff2453);
+  --ix-input--border-color--invalid--active: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--invalid--hover: var(
+    --theme-color-alarm-bdr,
+    #ff2453
+  );
+  --ix-input--border-color--readonly: var(
+    --theme-color-std-bdr,
+    rgba(211, 236, 248, 0.55)
+  );
+  --ix-input--border-color--warning: var(--theme-color-warning-bdr, #ffbb00);
+  --ix-input--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-input--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #ffbb00
+  );
+  --ix-input--border-radius: var(--theme-small-border-radius, 0.125rem);
+  --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-input--color--disabled: var(
+    --theme-color-weak-text,
+    rgba(219, 244, 255, 0.4)
+  );
+  --ix-input-select-icon--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+  --ix-select-list-item-hint--color: var(
+    --theme-color-soft-text,
+    rgba(229, 247, 255, 0.65)
+  );
+}
