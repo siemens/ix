@@ -184,7 +184,6 @@ export class Menu {
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-  @State() isMenuItemsOverflow = false;
   @State() hasBottomSlotItems = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
@@ -602,7 +601,6 @@ export class Menu {
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
-    this.isMenuItemsOverflow = scrollHeight > clientHeight;
   }
 
   @Listen('close')
