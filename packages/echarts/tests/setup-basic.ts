@@ -1,70 +1,91 @@
-<!--
-SPDX-FileCopyrightText: 2023 Siemens AG
-
-SPDX-License-Identifier: MIT
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-<script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue';
-import { registerTheme, resolveEChartThemeName } from '@siemens/ix-echarts';
-import { themeSwitcher } from '@siemens/ix';
-import VueECharts from 'vue-echarts';
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import * as echarts from 'echarts';
-import * as charts from 'echarts/charts';
-import * as components from 'echarts/components';
-import * as renderer from 'echarts/renderers';
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
+import { registerTheme, resolveEChartThemeName } from '../src/index';
 
-echarts.use([
-  components.TooltipComponent,
-  components.LegendComponent,
-  components.GridComponent,
-  components.MarkLineComponent,
-  charts.BarChart,
-  renderer.CanvasRenderer,
-]);
+function applyThemeFromSearchParams() {
+  const searchParams = new URLSearchParams(location.search);
+  const theme = searchParams.get('theme');
+  const colorSchema = searchParams.get('colorSchema');
+
+  if (!theme) {
+    document.documentElement.dataset.ixTheme = 'brand';
+    document.documentElement.dataset.ixColorSchema = 'dark';
+    return;
+  }
+
+  if (theme.startsWith('theme-')) {
+    const [, resolvedTheme, resolvedColorSchema] = theme.split('-');
+    document.documentElement.dataset.ixTheme = resolvedTheme ?? 'brand';
+    document.documentElement.dataset.ixColorSchema =
+      resolvedColorSchema ?? 'dark';
+    return;
+  }
+
+  document.documentElement.dataset.ixTheme = theme;
+  document.documentElement.dataset.ixColorSchema = colorSchema ?? 'dark';
+}
 
 registerTheme(echarts);
+applyThemeFromSearchParams();
 
-const theme = ref(resolveEChartThemeName());
+const theme = resolveEChartThemeName();
+document.body.style.backgroundColor = theme.includes('dark') ? 'black' : 'white';
 
-const disposer = themeSwitcher.themeChanged.on(() => {
-  theme.value = resolveEChartThemeName();
-});
+const chartContainer = document.querySelector<HTMLElement>('#main');
 
-onBeforeUnmount(() => {
-  disposer.dispose();
-});
+if (!chartContainer) {
+  throw new Error('chart container not found');
+}
 
-const options: EChartsOption = {
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow',
-    },
+const chart = echarts.init(chartContainer, theme);
+
+const option: EChartsOption = {
+  title: {
+    text: 'Main',
+    subtext: 'The main chart',
   },
   legend: {
-    icon: 'rect',
     bottom: 0,
+    padding: [0,0,2,0]
   },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true,
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {},
+      dataZoom: {},
+    },
+  },
+  tooltip: {
+    trigger: 'axis',
+  },
+  timeline: {
+    axisType: 'category',
+    autoPlay: false,
+    playInterval: 1000,
+    data: ['1', '2', '3'],
   },
   xAxis: [
     {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      name: 'Day',
+      axisPointer: {
+        type: 'shadow',
+      },
     },
   ],
   yAxis: [
     {
       type: 'value',
+      name: 'Amount',
     },
   ],
   series: [
@@ -155,13 +176,6 @@ const options: EChartsOption = {
       data: [62, 82, 91, 84, 109, 110, 120],
     },
   ],
-} as EChartsOption;
-</script>
+};
 
-<style scoped src="./echarts.css"></style>
-
-<template>
-  <div>
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
-</template>
+chart.setOption(option);
