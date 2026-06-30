@@ -40,6 +40,10 @@
     -webkit-appearance: textfield;
   }
 
+  .page-selection[type='number'] {
+    text-align: center;
+  }
+
   .page-buttons {
     white-space: nowrap;
   }

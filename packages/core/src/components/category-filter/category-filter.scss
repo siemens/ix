@@ -155,9 +155,19 @@
   ix-dropdown {
     min-width: 10rem !important;
 
+    @include legacy-fonts.text-default-single;
+
     .dropdown-item-container {
       display: flex;
       flex-direction: column;
+
+      .dropdown-header {
+        display: flex;
+        align-items: center;
+        height: vars.$large-control-height;
+        color: var(--theme-menu-header--color);
+        padding: 0 vars.$default-space;
+      }
 
       .dropdown-item {
         @include dropdown-item.dropdown-item;
