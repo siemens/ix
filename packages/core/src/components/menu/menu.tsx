@@ -111,12 +111,16 @@ export class Menu {
 
   /**
    * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+   *
+   * @since 5.1.0
    */
   @Prop({ attribute: 'i18n-aria-label-menu' }) i18nAriaLabelMenu =
     'Application Navigation';
 
   /**
    * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+   *
+   * @since 5.1.0
    */
   @Prop({ attribute: 'i18n-navigation-hint' }) i18nNavigationHint =
     'Use Up and Down arrow keys to navigate between menu items';
