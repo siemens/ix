@@ -119,7 +119,7 @@ export class Select
    *
    * @since 5.1.0
    */
-  @Prop({ attribute: 'i18n-more-items' }) ariaLabelMoreItems = '{count} more';
+  @Prop({ attribute: 'i18n-more-items' }) i18nMoreItems = '{count} more';
 
   /**
    * Warning text for the select component
@@ -827,10 +827,7 @@ export class Select
 
   private renderOverflowChip() {
     const count = this.hiddenChipValues.length;
-    const ariaLabel = this.ariaLabelMoreItems.replace(
-      '{count}',
-      count.toString()
-    );
+    const ariaLabel = this.i18nMoreItems.replace('{count}', count.toString());
 
     return (
       <ix-filter-chip
@@ -1124,6 +1121,7 @@ export class Select
 
   private calculateChipOverflow() {
     if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
+      this.applyOverflowState(null, []);
       return;
     }
 
@@ -1211,6 +1209,7 @@ export class Select
 
   override async componentDidRender(): Promise<void> {
     if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
+      this.applyOverflowState(null, []);
       return;
     }
 
@@ -1588,6 +1587,7 @@ export class Select
           )}
         </ix-dropdown>
         {this.isMultipleMode &&
+          !this.shouldDisplayAllChip() &&
           this.hiddenChipValues.length > 0 &&
           this.renderOverflowDropdown()}
       </Host>
