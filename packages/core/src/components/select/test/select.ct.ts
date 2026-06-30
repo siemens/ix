@@ -59,6 +59,51 @@ test('renders', async ({ mount, page }) => {
   await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 });
 
+test('does not show a scrollbar caused by the focus proxy', async ({
+  mount,
+  page,
+}) => {
+  await page.setViewportSize({ width: 800, height: 600 });
+  await mount(`
+    <div style="padding-top: 280px; width: 220px;">
+      <ix-select hide-list-header>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+        <ix-select-item value="2" label="Item 2"></ix-select-item>
+      </ix-select>
+    </div>
+  `);
+
+  const select = page.locator('ix-select');
+  const selectCtrl = selectController(select);
+
+  await selectCtrl.clickDropdownChevron();
+
+  const dropdownGeometry = await selectCtrl
+    .getDropdownLocator()
+    .evaluate((dropdown) => {
+      const proxyList = dropdown.querySelector<HTMLElement>('.proxy-list');
+
+      if (!proxyList) {
+        throw new Error('Focus proxy list element not found');
+      }
+
+      const dropdownRect = dropdown.getBoundingClientRect();
+      const proxyRect = proxyList.getBoundingClientRect();
+
+      return {
+        clientHeight: dropdown.clientHeight,
+        proxyTop: proxyRect.top - dropdownRect.top,
+        scrollHeight: dropdown.scrollHeight,
+      };
+    });
+
+  expect(dropdownGeometry.proxyTop).toBeGreaterThanOrEqual(0);
+  expect(dropdownGeometry.proxyTop).toBeLessThan(32);
+  expect(dropdownGeometry.scrollHeight).toBeLessThanOrEqual(
+    dropdownGeometry.clientHeight + 1
+  );
+});
+
 test('does not open the dropdown when disabled', async ({ mount, page }) => {
   await mount(`
     <ix-select disabled>
