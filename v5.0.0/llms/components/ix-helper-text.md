@@ -1,6 +1,6 @@
 # ix-helper-text
 
-> No component summary available.
+> Supplementary text that provides guidance or validation feedback for a form field.
 
 ## Documentation
 

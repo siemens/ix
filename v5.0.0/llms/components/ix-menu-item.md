@@ -1,6 +1,6 @@
 # ix-menu-item
 
-> No component summary available.
+> Navigation entry within the side menu.
 
 ## Documentation
 

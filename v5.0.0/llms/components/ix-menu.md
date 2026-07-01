@@ -1,6 +1,6 @@
 # ix-menu
 
-> No component summary available.
+> Primary side navigation menu of the application shell.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-checkbox
 
-> No component summary available.
+> Lets users select an option or toggle a single value on or off.
 
 ## Documentation
 

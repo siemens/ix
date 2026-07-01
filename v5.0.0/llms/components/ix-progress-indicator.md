@@ -1,6 +1,6 @@
 # ix-progress-indicator
 
-> No component summary available.
+> Shows progress through a sequence of steps.
 
 ## Documentation
 

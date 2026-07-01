@@ -1,6 +1,6 @@
 # ix-field-label
 
-> No component summary available.
+> Label for a form field.
 
 ## Documentation
 

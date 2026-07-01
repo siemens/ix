@@ -1,6 +1,6 @@
 # ix-blind
 
-> No component summary available.
+> Collapsible container that expands and collapses to show or hide its content.
 
 ## Documentation
 

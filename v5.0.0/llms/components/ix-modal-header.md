@@ -1,6 +1,6 @@
 # ix-modal-header
 
-> No component summary available.
+> Header region of a modal dialog showing the title and close control.
 
 ## Documentation
 

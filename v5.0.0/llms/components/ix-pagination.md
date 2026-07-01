@@ -1,6 +1,6 @@
 # ix-pagination
 
-> No component summary available.
+> Control for navigating between pages of content.
 
 ## Documentation
 

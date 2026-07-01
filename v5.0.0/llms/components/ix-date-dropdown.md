@@ -1,6 +1,6 @@
 # ix-date-dropdown
 
-> No component summary available.
+> Dropdown for selecting a date or a relative date range.
 
 ## Documentation
 

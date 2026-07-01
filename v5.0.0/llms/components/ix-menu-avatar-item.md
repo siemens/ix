@@ -1,6 +1,6 @@
 # ix-menu-avatar-item
 
-> No component summary available.
+> A single action within the avatar menu.
 
 ## Documentation
 

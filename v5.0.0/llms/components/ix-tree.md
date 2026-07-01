@@ -1,6 +1,6 @@
 # ix-tree
 
-> No component summary available.
+> Displays hierarchical data as an expandable tree.
 
 ## Documentation
 

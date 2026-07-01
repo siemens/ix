@@ -1,6 +1,6 @@
 # ix-toast
 
-> No component summary available.
+> Transient notification message that appears temporarily.
 
 ## Documentation
 

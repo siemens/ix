@@ -1,6 +1,6 @@
 # ix-pane
 
-> No component summary available.
+> Collapsible side panel docked to an edge of the layout.
 
 ## Documentation
 

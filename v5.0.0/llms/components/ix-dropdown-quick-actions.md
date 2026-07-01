@@ -1,6 +1,6 @@
 # ix-dropdown-quick-actions
 
-> No component summary available.
+> Container for quick action buttons displayed within a dropdown.
 
 ## Documentation
 

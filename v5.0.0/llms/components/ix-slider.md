@@ -1,6 +1,6 @@
 # ix-slider
 
-> No component summary available.
+> Lets users choose a numeric value by dragging along a track.
 
 ## Documentation
 

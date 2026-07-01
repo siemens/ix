@@ -1,6 +1,6 @@
 # ix-dropdown
 
-> No component summary available.
+> Floating overlay that displays a list of options or actions anchored to a trigger.
 
 ## Documentation
 

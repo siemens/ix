@@ -1,6 +1,6 @@
 # ix-pane-layout
 
-> No component summary available.
+> Layout container that arranges collapsible panes around a content area.
 
 ## Documentation
 

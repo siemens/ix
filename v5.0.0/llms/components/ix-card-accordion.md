@@ -1,6 +1,6 @@
 # ix-card-accordion
 
-> No component summary available.
+> Expandable card section that shows or hides content within a card list.
 
 ## Documentation
 

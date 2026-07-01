@@ -1,6 +1,6 @@
 # ix-range-field
 
-> No component summary available.
+> Field that combines two inputs to capture a date, time, or datetime range.
 
 ## Documentation
 

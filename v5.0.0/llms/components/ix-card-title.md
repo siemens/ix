@@ -1,6 +1,6 @@
 # ix-card-title
 
-> No component summary available.
+> Title area of a card.
 
 ## Documentation
 

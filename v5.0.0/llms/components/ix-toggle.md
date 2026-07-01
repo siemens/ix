@@ -1,6 +1,6 @@
 # ix-toggle
 
-> No component summary available.
+> Switch control for toggling a single setting on or off.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-menu-about
 
-> No component summary available.
+> Overlay that shows application information such as version and legal details.
 
 ## Documentation
 

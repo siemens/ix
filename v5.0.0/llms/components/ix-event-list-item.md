@@ -1,6 +1,6 @@
 # ix-event-list-item
 
-> No component summary available.
+> A single entry within an event list.
 
 ## Documentation
 

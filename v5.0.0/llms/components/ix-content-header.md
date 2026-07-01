@@ -1,6 +1,6 @@
 # ix-content-header
 
-> No component summary available.
+> Header area of a content page showing the title and page-level actions.
 
 ## Documentation
 

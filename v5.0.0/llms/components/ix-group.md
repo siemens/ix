@@ -1,6 +1,6 @@
 # ix-group
 
-> No component summary available.
+> Collapsible list group with a selectable header and nested items.
 
 ## Documentation
 

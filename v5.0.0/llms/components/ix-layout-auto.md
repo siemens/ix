@@ -1,6 +1,6 @@
 # ix-layout-auto
 
-> No component summary available.
+> Responsive form layout that automatically adjusts columns to the available width.
 
 ## Documentation
 

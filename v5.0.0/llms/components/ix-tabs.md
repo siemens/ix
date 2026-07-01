@@ -1,6 +1,6 @@
 # ix-tabs
 
-> No component summary available.
+> Tabbed navigation for switching between related views.
 
 ## Documentation
 

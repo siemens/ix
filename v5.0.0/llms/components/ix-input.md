@@ -1,6 +1,6 @@
 # ix-input
 
-> No component summary available.
+> Text input for entering and validating a single-line value.
 
 ## Documentation
 

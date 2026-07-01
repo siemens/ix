@@ -1,6 +1,6 @@
 # ix-menu-avatar
 
-> No component summary available.
+> Menu entry that displays the current user's avatar and account actions.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-action-card
 
-> No component summary available.
+> Card that represents a selectable action or option to start a task or workflow.
 
 ## Documentation
 

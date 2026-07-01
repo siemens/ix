@@ -1,6 +1,6 @@
 # ix-breadcrumb
 
-> No component summary available.
+> Navigation trail that shows the user's location within a hierarchy.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-application-header
 
-> No component summary available.
+> Top header bar of the application shell holding branding, navigation, and actions.
 
 ## Documentation
 

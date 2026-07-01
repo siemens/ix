@@ -1,6 +1,6 @@
 # ix-application
 
-> No component summary available.
+> Root container that sets up the overall application shell and layout.
 
 ## Documentation
 

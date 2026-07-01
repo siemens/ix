@@ -1,6 +1,6 @@
 # ix-datetime-picker
 
-> No component summary available.
+> Combined calendar and time selector for picking a date and time.
 
 ## Documentation
 

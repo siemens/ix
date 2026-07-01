@@ -1,6 +1,6 @@
 # ix-datetime-input
 
-> No component summary available.
+> Text input for entering and validating a combined date and time value.
 
 ## Documentation
 

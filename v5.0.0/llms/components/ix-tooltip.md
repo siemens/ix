@@ -1,6 +1,6 @@
 # ix-tooltip
 
-> No component summary available.
+> Small overlay that shows contextual information when hovering or focusing an element.
 
 ## Documentation
 

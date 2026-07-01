@@ -1,6 +1,6 @@
 # ix-push-card
 
-> No component summary available.
+> Card that highlights a notification or push message with an icon and value.
 
 ## Documentation
 

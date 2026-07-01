@@ -1,6 +1,6 @@
 # ix-menu-settings
 
-> No component summary available.
+> Settings overlay opened from the application menu.
 
 ## Documentation
 

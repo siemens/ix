@@ -1,6 +1,6 @@
 # ix-typography
 
-> No component summary available.
+> Applies consistent text styling based on the design system's typography scale.
 
 ## Documentation
 

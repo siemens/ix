@@ -1,6 +1,6 @@
 # ix-time-input
 
-> No component summary available.
+> Text input for entering and validating a time value.
 
 ## Documentation
 

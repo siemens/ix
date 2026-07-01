@@ -1,6 +1,6 @@
 # ix-avatar
 
-> No component summary available.
+> Displays a user's profile image, initials, or a placeholder icon.
 
 ## Documentation
 

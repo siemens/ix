@@ -1,6 +1,6 @@
 # ix-dropdown-header
 
-> No component summary available.
+> Non-interactive heading that labels a group of dropdown items.
 
 ## Documentation
 

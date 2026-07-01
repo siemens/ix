@@ -1,6 +1,6 @@
 # ix-modal
 
-> No component summary available.
+> Dialog overlay that presents content or requires user interaction on top of the page.
 
 ## Documentation
 

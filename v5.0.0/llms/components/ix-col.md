@@ -1,6 +1,6 @@
 # ix-col
 
-> No component summary available.
+> Column within the responsive layout grid.
 
 ## Documentation
 

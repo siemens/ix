@@ -1,6 +1,6 @@
 # ix-divider
 
-> No component summary available.
+> Thin line that visually separates content.
 
 ## Documentation
 

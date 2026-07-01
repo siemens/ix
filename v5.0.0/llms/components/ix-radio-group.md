@@ -1,6 +1,6 @@
 # ix-radio-group
 
-> No component summary available.
+> Groups related radio buttons so only one can be selected.
 
 ## Documentation
 

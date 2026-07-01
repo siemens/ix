@@ -1,6 +1,6 @@
 # ix-select-item
 
-> No component summary available.
+> A selectable option within a select control.
 
 ## Documentation
 

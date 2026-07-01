@@ -1,6 +1,6 @@
 # ix-category-filter
 
-> No component summary available.
+> Input for building and refining searches using category-based filter criteria.
 
 ## Documentation
 

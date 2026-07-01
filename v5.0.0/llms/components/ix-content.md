@@ -1,6 +1,6 @@
 # ix-content
 
-> No component summary available.
+> Main content region of an application page.
 
 ## Documentation
 

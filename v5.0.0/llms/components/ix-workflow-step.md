@@ -1,6 +1,6 @@
 # ix-workflow-step
 
-> No component summary available.
+> A single step within a workflow step sequence.
 
 ## Documentation
 

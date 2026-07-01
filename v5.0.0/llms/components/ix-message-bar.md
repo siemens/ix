@@ -1,6 +1,6 @@
 # ix-message-bar
 
-> No component summary available.
+> Inline bar that displays a contextual message or notification.
 
 ## Documentation
 

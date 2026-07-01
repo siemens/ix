@@ -1,6 +1,6 @@
 # ix-checkbox-group
 
-> No component summary available.
+> Groups related checkboxes together.
 
 ## Documentation
 

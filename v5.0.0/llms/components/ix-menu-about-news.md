@@ -1,6 +1,6 @@
 # ix-menu-about-news
 
-> No component summary available.
+> News panel shown within the application menu.
 
 ## Documentation
 

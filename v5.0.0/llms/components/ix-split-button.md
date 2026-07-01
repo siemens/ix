@@ -1,6 +1,6 @@
 # ix-split-button
 
-> No component summary available.
+> Button combined with an attached dropdown for related actions.
 
 ## Documentation
 

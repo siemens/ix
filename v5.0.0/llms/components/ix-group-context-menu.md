@@ -1,6 +1,6 @@
 # ix-group-context-menu
 
-> No component summary available.
+> Context menu that provides actions for a group.
 
 ## Documentation
 
