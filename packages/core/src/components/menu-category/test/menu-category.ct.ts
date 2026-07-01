@@ -391,3 +391,77 @@ test('should adjust height when items are added dynamically', async ({
   expect(initialHeight).toBe(136);
   expect(newHeight).toBe(216);
 });
+
+regressionTest(
+  'should set tabindex=-1 on anchor wrappers inside category',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category label">
+            <a href="#link1" id="cat-anchor1">
+              <ix-menu-item>Item 1</ix-menu-item>
+            </a>
+            <a href="#link2" id="cat-anchor2">
+              <ix-menu-item>Item 2</ix-menu-item>
+            </a>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const anchor1 = page.locator('#cat-anchor1');
+    const anchor2 = page.locator('#cat-anchor2');
+
+    await expect(anchor1).toHaveAttribute('tabindex', '-1');
+    await expect(anchor2).toHaveAttribute('tabindex', '-1');
+  }
+);
+
+regressionTest(
+  'show category if anchor-wrapped items are focused',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category label">
+            <a href="#link1">
+              <ix-menu-item>Test</ix-menu-item>
+            </a>
+            <a href="#link2">
+              <ix-menu-item>Test 2</ix-menu-item>
+            </a>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const categoryElement = page.locator('ix-menu-category');
+    await expect(categoryElement).toHaveClass(/hydrated/);
+
+    // Navigate to category
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+
+    await expect(categoryElement).toBeFocused();
+
+    const dropdown = categoryElement.locator('ix-dropdown');
+    await expect(dropdown).not.toBeVisible();
+
+    await page.keyboard.press(' ');
+    await expect(dropdown).toBeVisible();
+
+    const item1 = categoryElement.locator('ix-menu-item').nth(0);
+    const item2 = categoryElement.locator('ix-menu-item').nth(1);
+
+    await expect(item1).toHaveVisibleFocus();
+    await page.keyboard.press('ArrowDown');
+    await expect(item2).toHaveVisibleFocus();
+
+    await page.keyboard.press('Escape');
+    await expect(dropdown).not.toBeVisible();
+    await expect(categoryElement.locator('.category-parent')).toBeFocused();
+  }
+);

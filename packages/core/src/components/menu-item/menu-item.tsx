@@ -156,9 +156,12 @@ export class MenuItem
     const isInMenuShadowDOM =
       rootNode instanceof ShadowRoot &&
       rootNode.host?.tagName?.toLowerCase() === 'ix-menu';
+    const directParent = this.hostElement.parentElement;
     const isMenuChild =
       !this.isHostedInsideCategory &&
-      this.hostElement.parentElement?.tagName?.toLowerCase() === 'ix-menu';
+      (directParent?.tagName?.toLowerCase() === 'ix-menu' ||
+        (directParent?.tagName?.toLowerCase() === 'a' &&
+          directParent?.parentElement?.tagName?.toLowerCase() === 'ix-menu'));
 
     this.isInMenuContext = isInMenuShadowDOM || isMenuChild;
 

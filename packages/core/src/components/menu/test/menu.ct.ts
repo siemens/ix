@@ -410,6 +410,81 @@ async function clickSettingsButton(element: Locator, page: Page) {
 }
 
 regressionTest(
+  'should navigate with arrow keys when items are wrapped in anchor elements',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu start-expanded>
+          <a href="#link1">
+            <ix-menu-item aria-label="link1">Link 1</ix-menu-item>
+          </a>
+          <a href="#link2">
+            <ix-menu-item aria-label="link2">Link 2</ix-menu-item>
+          </a>
+          <a href="#link3">
+            <ix-menu-item aria-label="link3">Link 3</ix-menu-item>
+          </a>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    await page
+      .locator('ix-application')
+      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['lg']));
+
+    const items = page.locator('ix-menu-item');
+    await expect(items).toHaveCount(3);
+
+    // Wait for roving tabindex to be initialised (set by rAF in componentDidLoad)
+    await expect(items.first()).toHaveAttribute('aria-setsize', '3');
+
+    // Tab twice: skip burger button and reach menu navigation container
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown');
+
+    await expect(items.nth(0)).toBeFocused();
+
+    await page.keyboard.press('ArrowDown');
+    await expect(items.nth(1)).toBeFocused();
+
+    await page.keyboard.press('ArrowDown');
+    await expect(items.nth(2)).toBeFocused();
+
+    await page.keyboard.press('ArrowUp');
+    await expect(items.nth(1)).toBeFocused();
+  }
+);
+
+regressionTest(
+  'should set tabindex=-1 on anchor wrappers around menu items',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu start-expanded>
+          <a href="#link1" id="anchor1">
+            <ix-menu-item>Link 1</ix-menu-item>
+          </a>
+          <a href="#link2" id="anchor2">
+            <ix-menu-item>Link 2</ix-menu-item>
+          </a>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    await page
+      .locator('ix-application')
+      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['lg']));
+
+    const anchor1 = page.locator('#anchor1');
+    const anchor2 = page.locator('#anchor2');
+
+    await expect(anchor1).toHaveAttribute('tabindex', '-1');
+    await expect(anchor2).toHaveAttribute('tabindex', '-1');
+  }
+);
+
+regressionTest(
   'should not warn "Menu already defined" when ix-menu is remounted after being removed',
   async ({ mount, page }) => {
     const consoleWarnings: string[] = [];

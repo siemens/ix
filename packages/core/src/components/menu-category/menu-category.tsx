@@ -330,7 +330,20 @@ export class MenuCategory
     }
   }
 
+  private suppressAnchorWrapperTabStops() {
+    Array.from(
+      this.hostElement.querySelectorAll<HTMLAnchorElement>(':scope > a')
+    )
+      .filter((a) => a.querySelector('ix-menu-item'))
+      .forEach((a) => {
+        if (a.getAttribute('tabindex') !== '-1') {
+          a.setAttribute('tabindex', '-1');
+        }
+      });
+  }
+
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
+    this.suppressAnchorWrapperTabStops();
     const oldNestedItemsLength = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
 

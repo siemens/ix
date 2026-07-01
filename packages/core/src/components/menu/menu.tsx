@@ -320,6 +320,7 @@ export class Menu {
 
   componentDidLoad() {
     requestAnimationFrame(() => {
+      this.suppressAnchorWrapperTabStops();
       this.handleOverflowIndicator();
       const items = this.getAllFocusableItems();
       this.resetRovingTabIndex(items);
@@ -771,7 +772,9 @@ export class Menu {
     const lightItems = Array.from(
       this.hostElement.querySelectorAll<
         HTMLIxMenuItemElement | HTMLIxMenuCategoryElement
-      >(':scope > ix-menu-item, :scope > ix-menu-category')
+      >(
+        ':scope > ix-menu-item, :scope > ix-menu-category, :scope > a > ix-menu-item, :scope > a > ix-menu-category'
+      )
     ).filter(isNavigable);
 
     const utilityItems = Array.from(
@@ -781,6 +784,18 @@ export class Menu {
     ).filter(isNavigable);
 
     return [...lightItems, ...utilityItems];
+  }
+
+  private suppressAnchorWrapperTabStops() {
+    Array.from(
+      this.hostElement.querySelectorAll<HTMLAnchorElement>(':scope > a')
+    )
+      .filter((a) => a.querySelector('ix-menu-item, ix-menu-category'))
+      .forEach((a) => {
+        if (a.getAttribute('tabindex') !== '-1') {
+          a.setAttribute('tabindex', '-1');
+        }
+      });
   }
 
   private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
