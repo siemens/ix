@@ -19,6 +19,9 @@ import {
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
+/**
+ * Displays the steps of a workflow and the user's progress through them.
+ */
 @Component({
   tag: 'ix-workflow-steps',
   styleUrl: 'workflow-steps.scss',

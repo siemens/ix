@@ -15,6 +15,8 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 
 /**
+ * Content region associated with a selected tab.
+ *
  * @internal
  * @since 5.0.0
  * */

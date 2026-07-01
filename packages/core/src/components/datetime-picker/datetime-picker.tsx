@@ -30,6 +30,8 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
 
 /**
+ * Combined calendar and time selector for picking a date and time.
+ *
  * @figma-main-component-id 70466:78415
  */
 @Component({

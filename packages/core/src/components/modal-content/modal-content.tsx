@@ -10,6 +10,8 @@
 import { Component, h, Host } from '@stencil/core';
 
 /**
+ * Content region of a modal dialog.
+ *
  * @documentation https://ix.siemens.io//docs/components/modal/guide.md
  */
 @Component({

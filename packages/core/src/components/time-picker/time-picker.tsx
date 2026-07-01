@@ -73,6 +73,8 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
 };
 
 /**
+ * Selector for picking a time value.
+ *
  * @documentation https://ix.siemens.io//docs/components/time-picker/guide.md
  * @figma-main-component-id 68801:7500
  */

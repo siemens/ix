@@ -35,6 +35,8 @@ const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
 /**
+ * Expandable category that groups related items in the side menu.
+ *
  * @figma-main-component-id 4533:132499
  */
 @Component({

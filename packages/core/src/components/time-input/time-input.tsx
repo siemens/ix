@@ -65,6 +65,8 @@ import type { TimeInputValidityState } from './time-input.types';
 import { forceTabIndex } from '../utils/a11y';
 
 /**
+ * Text input for entering and validating a time value.
+ *
  * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
  * @figma-main-component-id 68801:5742
  * @since 3.2.0

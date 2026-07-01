@@ -25,6 +25,8 @@ const mediaQueryCollection: Array<{
 ];
 
 /**
+ * CSS grid container for arranging child items in a grid layout.
+ *
  * @internal
  */
 @Component({

@@ -32,6 +32,8 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
+ * Input for building and refining searches using category-based filter criteria.
+ *
  * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
  * @figma-main-component-id 1221:30316
  */

@@ -30,6 +30,8 @@ import {
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 /**
+ * A single entry within a breadcrumb navigation trail.
+ *
  * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
  * @figma-main-component-id 358:3004
  */

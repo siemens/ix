@@ -23,6 +23,8 @@ import { iconError, iconSuccess } from '@siemens/ix-icons/icons';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 /**
+ * Control for selecting and uploading files.
+ *
  * @figma-main-component-id 1028:14676
  */
 @Component({

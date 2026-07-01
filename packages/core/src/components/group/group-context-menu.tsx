@@ -11,6 +11,9 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 
+/**
+ * Context menu that provides actions for a group.
+ */
 @Component({
   tag: 'ix-group-context-menu',
   styleUrl: './group-context-menu.scss',

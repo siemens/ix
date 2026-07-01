@@ -10,6 +10,8 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Item placed within a CSS grid container.
+ *
  * @internal
  */
 @Component({

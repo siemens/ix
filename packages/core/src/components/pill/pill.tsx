@@ -14,6 +14,8 @@ import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * Compact label that highlights a status, count, or category.
+ *
  * @documentation https://ix.siemens.io//docs/components/pill/guide.md
  * @figma-main-component-id 312:1219
  */

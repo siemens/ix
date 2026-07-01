@@ -11,6 +11,9 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
+/**
+ * A single node within a tree.
+ */
 @Component({
   tag: 'ix-tree-item',
   styleUrl: 'tree-item.scss',

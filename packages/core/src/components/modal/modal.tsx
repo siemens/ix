@@ -26,6 +26,8 @@ import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
 /**
+ * Dialog overlay that presents content or requires user interaction on top of the page.
+ *
  * @documentation https://ix.siemens.io//docs/components/modal/guide.md
  */
 @Component({

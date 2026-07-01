@@ -24,6 +24,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 /**
+ * Control for navigating between pages of content.
+ *
  * @figma-main-component-id 2302:67995, 2554:79100
  */
 @Component({

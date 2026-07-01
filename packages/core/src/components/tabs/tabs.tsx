@@ -30,6 +30,8 @@ import { InheritAriaAttributesMixin } from '../utils/internal/mixins/accessibili
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
+ * Tabbed navigation for switching between related views.
+ *
  * @figma-main-component-id 427:6367
  */
 @Component({

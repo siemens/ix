@@ -21,6 +21,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * Menu entry that displays the current user's avatar and account actions.
+ */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',

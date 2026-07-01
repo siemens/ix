@@ -11,6 +11,8 @@ import { iconAlarm, iconWarning } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Displays a key performance indicator with a label, value, and status.
+ *
  * @figma-main-component-id 423:3986
  */
 @Component({

@@ -1,6 +1,9 @@
 import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponentInterface } from '../utils/internal';
 
+/**
+ * Responsive form layout that automatically adjusts columns to the available width.
+ */
 @Component({
   tag: 'ix-layout-auto',
   styleUrl: 'layout-auto.scss',

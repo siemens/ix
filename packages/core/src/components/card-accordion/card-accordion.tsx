@@ -21,6 +21,8 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
 };
 
 /**
+ * Expandable card section that shows or hides content within a card list.
+ *
  * @documentation https://ix.siemens.io//docs/components/card/guide.md
  * @figma-main-component-id 104612:25530
  */

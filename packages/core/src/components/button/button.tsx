@@ -32,6 +32,8 @@ export type ButtonVariant =
   | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 /**
+ * Triggers an action or event when activated by the user.
+ *
  * @documentation https://ix.siemens.io//docs/components/button/guide.md
  * @figma-main-component-id 225:5535
  */

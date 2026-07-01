@@ -10,6 +10,8 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Non-interactive heading that labels a group of dropdown items.
+ *
  * @figma-main-component-id 1233:33137
  */
 @Component({

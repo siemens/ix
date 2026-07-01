@@ -59,6 +59,8 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { forceTabIndex } from '../utils/a11y';
 
 /**
+ * Text input for entering and validating a date value.
+ *
  * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
  * @figma-main-component-id 442365:42749
  *

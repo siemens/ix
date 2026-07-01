@@ -21,6 +21,8 @@ import { BaseTabMixin, BaseTabMixinContract } from '../tab-item/tab.mixin';
 import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
+ * A single tab or entry within the settings overlay.
+ *
  * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
  */
 @Component({

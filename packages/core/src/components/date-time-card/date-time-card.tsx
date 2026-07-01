@@ -11,6 +11,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import type { DateTimeCardCorners } from './date-time-card.types';
 
 /**
+ * Card container used by the date and time picker components.
+ *
  * @internal
  */
 @Component({

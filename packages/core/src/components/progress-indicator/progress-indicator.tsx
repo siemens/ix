@@ -22,6 +22,8 @@ import type {
 } from './progress-indicator.types';
 
 /**
+ * Shows progress through a sequence of steps.
+ *
  * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
  * @figma-main-component-id 69677:5549
  *

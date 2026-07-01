@@ -9,6 +9,9 @@
 
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * Row within the responsive layout grid.
+ */
 @Component({
   tag: 'ix-row',
   styleUrl: 'row.scss',

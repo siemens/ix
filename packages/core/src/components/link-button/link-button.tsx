@@ -11,6 +11,8 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Button styled as a hyperlink that navigates to a target.
+ *
  * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
  * @figma-main-component-id 107603:15976
  */

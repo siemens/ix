@@ -21,6 +21,8 @@ import {
 import { DefaultMixins } from '../utils/internal/component';
 
 /**
+ * News panel shown within the application menu.
+ *
  * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
  */
 @Component({

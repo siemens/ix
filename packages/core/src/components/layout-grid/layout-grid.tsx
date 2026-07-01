@@ -10,6 +10,8 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Column-based grid layout for arranging content responsively.
+ *
  * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
  */
 @Component({

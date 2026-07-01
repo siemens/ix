@@ -13,6 +13,8 @@ import { convertToRemString } from '../utils/rwd.util';
 import { animate } from 'animejs';
 
 /**
+ * List that displays a sequence of events or status entries.
+ *
  * @figma-main-component-id 1433:43161
  */
 @Component({

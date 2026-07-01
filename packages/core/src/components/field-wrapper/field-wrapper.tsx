@@ -29,7 +29,11 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 
-/** @internal */
+/**
+ * Layout wrapper that adds label, helper text, and validation messages around a form field.
+ *
+ * @internal
+ */
 @Component({
   tag: 'ix-field-wrapper',
   styleUrl: 'field-wrapper.scss',

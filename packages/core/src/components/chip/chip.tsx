@@ -28,6 +28,8 @@ import { makeRef } from '../utils/make-ref';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 /**
+ * Compact element that represents an attribute, tag, or entity, optionally dismissible.
+ *
  * @documentation https://ix.siemens.io//docs/components/chip/guide.md
  * @figma-main-component-id 286:1758
  */

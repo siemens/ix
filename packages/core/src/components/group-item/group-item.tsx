@@ -19,6 +19,8 @@ import {
 } from '@stencil/core';
 
 /**
+ * A single selectable item within a group.
+ *
  * @figma-main-component-id 1274:34186
  */
 @Component({
