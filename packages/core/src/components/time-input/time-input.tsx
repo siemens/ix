@@ -215,7 +215,7 @@ export class TimeInput
   /**
    * I18n string for the error message when the time field is empty and required.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    * @default 'Time is required'
    */
   @Prop({ attribute: 'i18n-error-required' }) i18nErrorRequired =
@@ -446,7 +446,7 @@ export class TimeInput
   /**
    * Clears the input value and resets the touched state. Unlike clearing the value directly, this method restores the initial, non-invalid state and removes visible validation errors.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Method()
   async clear(): Promise<void> {
@@ -470,7 +470,7 @@ export class TimeInput
    *
    * @returns `true` if valid, `false` otherwise.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Method()
   async reportValidity(): Promise<boolean> {
@@ -746,6 +746,20 @@ export class TimeInput
       this.hostElement.classList.contains('ix-invalid') || this.isInputInvalid;
   }
 
+  private async handleInputBlur(): Promise<void> {
+    this.touched = true;
+    const suppress = await shouldSuppressInternalValidation(this);
+    if (!suppress) {
+      this.isInputInvalid = this._hasInvalidInput;
+    }
+    await onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    emitPickerValidityState(this);
+
+    if (suppress && this._reportValidityCalled && this._hasInvalidInput) {
+      this.hostElement.classList.add('ix-invalid--validity-invalid');
+    }
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -789,34 +803,7 @@ export class TimeInput
               event,
               isDropdownOpen: this.show,
               hostElement: this.hostElement,
-              onBlur: async () => {
-                this.touched = true;
-
-                const suppressValidation =
-                  await shouldSuppressInternalValidation(this);
-                if (!suppressValidation) {
-                  this.isInputInvalid = this._hasInvalidInput;
-                }
-
-                onInputBlurWithChange(
-                  this,
-                  this.inputElementRef.current,
-                  this.value
-                );
-                this.emitValidityStateChangeIfChanged();
-                this.syncValidityToFormInternals();
-                if (
-                  suppressValidation &&
-                  this._reportValidityCalled &&
-                  this._hasInvalidInput
-                ) {
-                  requestAnimationFrameNoNgZone(() => {
-                    this.hostElement.classList.add(
-                      'ix-invalid--validity-invalid'
-                    );
-                  });
-                }
-              },
+              onBlur: () => this.handleInputBlur(),
               pickerElement: this.timePickerRef.current,
             })
           }

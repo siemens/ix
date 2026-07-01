@@ -87,7 +87,7 @@ export async function checkInternalValidity<T>(
   comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
-export function onInputBlur<T>(
+export async function onInputBlur<T>(
   comp: IxFormComponent<T>,
   input?: HTMLInputElement | HTMLTextAreaElement | null
 ) {
@@ -98,7 +98,7 @@ export function onInputBlur<T>(
   }
 
   input.setAttribute('data-ix-touched', 'true');
-  checkInternalValidity(comp, input);
+  await checkInternalValidity(comp, input);
 }
 
 export function applyPaddingEnd(
@@ -229,7 +229,7 @@ export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
   comp.initialValue = currentValue;
 }
 
-export function onInputBlurWithChange<T>(
+export async function onInputBlurWithChange<T>(
   comp: IxFormComponent<T> & {
     initialValue?: T;
     ixChange: { emit: (value: T) => void };
@@ -237,7 +237,7 @@ export function onInputBlurWithChange<T>(
   input?: HTMLInputElement | HTMLTextAreaElement | null,
   currentValue?: T
 ) {
-  onInputBlur(comp, input);
+  await onInputBlur(comp, input);
 
   if (comp.initialValue !== currentValue) {
     comp.ixChange.emit(currentValue!);
