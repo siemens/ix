@@ -21,6 +21,8 @@ import { IxMenuItemBase } from './menu-item.interface';
 let sequenceId = 0;
 
 /**
+ * Navigation entry within the side menu.
+ *
  * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
  * @figma-main-component-id 308:1293
  *

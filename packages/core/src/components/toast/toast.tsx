@@ -28,6 +28,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 /**
+ * Transient notification message that appears temporarily.
+ *
  * @documentation https://ix.siemens.io//docs/components/toast/guide.md
  */
 @Component({

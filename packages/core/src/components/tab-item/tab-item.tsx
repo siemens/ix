@@ -28,6 +28,8 @@ import {
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 /**
+ * A single selectable tab within a tab set.
+ *
  * @figma-main-component-id 426:4122
  */
 @Component({

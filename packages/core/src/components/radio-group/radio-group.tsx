@@ -28,6 +28,8 @@ import {
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * Groups related radio buttons so only one can be selected.
+ *
  * @documentation https://ix.siemens.io//docs/components/radio/guide.md
  * @figma-main-component-id 42365:44973
  * @form-ready

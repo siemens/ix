@@ -71,6 +71,8 @@ function CardListTitle(props: {
 }
 
 /**
+ * Container that arranges multiple cards in a list or grid layout.
+ *
  * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
  * @figma-main-component-id 104638:14632
  */

@@ -12,6 +12,9 @@ import { TypedEvent } from '../utils/typed-event';
 import type { ShowToastResult } from './toast-container.types';
 import { ToastConfig } from './toast-utils';
 
+/**
+ * Container that positions and manages toast notifications.
+ */
 @Component({
   tag: 'ix-toast-container',
   styleUrl: './toast-container.scss',

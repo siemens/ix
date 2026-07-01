@@ -40,6 +40,8 @@ import type { TextareaResizeBehavior } from './textarea.types';
 let sequentialInstanceId = 0;
 
 /**
+ * Multi-line text input for entering and validating longer text.
+ *
  * @form-ready
  * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
  */

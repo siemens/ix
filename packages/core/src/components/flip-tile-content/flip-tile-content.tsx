@@ -9,6 +9,8 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Content for a single side of a flip tile.
+ *
  * @figma-main-component-id 407:3446
  */
 @Component({

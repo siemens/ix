@@ -18,6 +18,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * Dismissible chip that represents an applied filter.
+ */
 @Component({
   tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',

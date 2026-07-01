@@ -11,6 +11,8 @@ import { Component, Element, Host, h } from '@stencil/core';
 import { queryElements } from '../utils/focus/focus-utilities';
 
 /**
+ * Container that manages a set of tabs and their content.
+ *
  * @internal
  * @since 5.0.0
  * */

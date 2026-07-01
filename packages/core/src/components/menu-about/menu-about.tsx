@@ -22,6 +22,8 @@ import {
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
+ * Overlay that shows application information such as version and legal details.
+ *
  * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
  */
 @Component({

@@ -21,6 +21,8 @@ import { themeSwitcher, ThemeVariant } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
+ * Root container that sets up the overall application shell and layout.
+ *
  * @documentation https://ix.siemens.io//docs/components/application/guide.md
  */
 @Component({

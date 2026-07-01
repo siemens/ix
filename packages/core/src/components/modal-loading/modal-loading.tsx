@@ -13,6 +13,8 @@ import { Component, h, Host } from '@stencil/core';
  * @internal
  */
 /**
+ * Modal that indicates a loading or processing state.
+ *
  * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
  */
 @Component({

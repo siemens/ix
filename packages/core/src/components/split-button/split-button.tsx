@@ -34,6 +34,8 @@ import {
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
 /**
+ * Button combined with an attached dropdown for related actions.
+ *
  * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
  * @figma-main-component-id 237:4370
  */

@@ -10,6 +10,8 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 /**
+ * Container that presents grouped information in a compact tile.
+ *
  * @figma-main-component-id 1431:43158
  */
 @Component({

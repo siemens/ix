@@ -29,6 +29,8 @@ import {
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 
 /**
+ * Switch control for toggling a single setting on or off.
+ *
  * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
  * @figma-main-component-id 43875:36542
  * @form-ready

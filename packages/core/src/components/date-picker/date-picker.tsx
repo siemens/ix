@@ -40,6 +40,8 @@ interface CalendarWeek {
 }
 
 /**
+ * Calendar for selecting a single date or a date range.
+ *
  * @figma-main-component-id 561:6290
  */
 @Component({

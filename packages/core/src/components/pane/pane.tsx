@@ -47,6 +47,8 @@ import type {
 import { a11yBoolean } from '../utils/a11y';
 
 /**
+ * Collapsible side panel docked to an edge of the layout.
+ *
  * @documentation https://ix.siemens.io//docs/components/panes/guide.md
  * @figma-main-component-id 19924:12291
  *

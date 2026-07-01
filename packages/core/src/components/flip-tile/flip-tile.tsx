@@ -26,6 +26,8 @@ import { FlipTileVariant } from './flip-tile.types';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
 /**
+ * Tile that flips between a front and back side to reveal additional content.
+ *
  * @figma-main-component-id 407:3446
  */
 @Component({

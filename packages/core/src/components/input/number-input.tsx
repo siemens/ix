@@ -45,6 +45,8 @@ let numberInputIds = 0;
 const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
+ * Text input for entering and validating a numeric value.
+ *
  * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
  * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
  * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md

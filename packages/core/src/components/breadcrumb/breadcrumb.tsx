@@ -26,6 +26,8 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import type { BreadcrumbClick } from './breadcrumb.types';
 
 /**
+ * Navigation trail that shows the user's location within a hierarchy.
+ *
  * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
  * @figma-main-component-id 1603:54616
  */

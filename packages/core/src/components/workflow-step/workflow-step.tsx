@@ -29,6 +29,9 @@ import {
   Watch,
 } from '@stencil/core';
 
+/**
+ * A single step within a workflow step sequence.
+ */
 @Component({
   tag: 'ix-workflow-step',
   styleUrl: 'workflow-step.scss',

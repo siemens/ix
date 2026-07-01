@@ -17,6 +17,8 @@ import {
 import { IxComponentInterface } from '../utils/internal';
 
 /**
+ * Wrapper that adds label, helper text, and validation handling around custom form controls.
+ *
  * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
  * @figma-main-component-id 42365:52677
  */

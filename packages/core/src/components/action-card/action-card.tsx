@@ -12,6 +12,8 @@ import type { ActionCardVariant } from './action-card.types';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
 /**
+ * Card that represents a selectable action or option to start a task or workflow.
+ *
  * @documentation https://ix.siemens.io//docs/components/card/guide.md
  * @figma-main-component-id 104612:25269
  */

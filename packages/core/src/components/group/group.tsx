@@ -27,6 +27,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 /**
+ * Collapsible list group with a selectable header and nested items.
+ *
  * @figma-main-component-id 1274:38298
  */
 @Component({
