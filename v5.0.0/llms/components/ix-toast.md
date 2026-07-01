@@ -37,4 +37,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Toast message content.
+- `action` - Toast action content.

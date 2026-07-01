@@ -44,4 +44,9 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Main pane content.
+- `bottom` - Content displayed in the bottom pane.
+- `content` - Main pane content.
+- `left` - Content displayed in the left pane.
+- `right` - Content displayed in the right pane.
+- `top` - Content displayed in the top pane.

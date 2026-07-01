@@ -62,4 +62,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Card content.
+- `title-action` - Action displayed next to the title.

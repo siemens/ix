@@ -49,4 +49,6 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Front-side content.
+- `footer` - Back-side content.
+- `header` - Header content.

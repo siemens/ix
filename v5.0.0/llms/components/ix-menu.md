@@ -218,4 +218,9 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Menu items.
+- `bottom` - Menu items displayed at the bottom.
+- `home` - Menu item displayed in the home position.
+- `ix-menu-about` - About menu content.
+- `ix-menu-avatar` - Avatar displayed in the menu header.
+- `ix-menu-settings` - Settings menu content.

@@ -45,4 +45,7 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Tile content.
+- `footer` - Footer content.
+- `header` - Header content.
+- `subheader` - Subheader content.

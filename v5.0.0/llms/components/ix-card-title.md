@@ -30,4 +30,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
+- `` - Card title content.
 - `title-actions` - Place additional actions inside title
