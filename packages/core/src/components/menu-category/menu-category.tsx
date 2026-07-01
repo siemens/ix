@@ -119,6 +119,15 @@ export class MenuCategory
     return items.length * DefaultIxMenuItemHeight;
   }
 
+  private focusFirstItem() {
+    const items = this.getNestedItems();
+    const firstItem = items[0];
+
+    if (firstItem) {
+      requestAnimationFrameNoNgZone(() => firstItem.focus());
+    }
+  }
+
   private onExpandCategory(showItems: boolean) {
     if (showItems) {
       this.animateFadeIn();
@@ -226,14 +235,7 @@ export class MenuCategory
     if (this.focusFirstItemOnDropdownOpen) {
       this.focusFirstItemOnDropdownOpen = false;
 
-      const items = this.getNestedItems();
-      const firstItem = items[0];
-
-      if (firstItem) {
-        requestAnimationFrameNoNgZone(() =>
-          requestAnimationFrameNoNgZone(() => firstItem.focus())
-        );
-      }
+      this.focusFirstItem();
     }
   }
 
@@ -283,14 +285,15 @@ export class MenuCategory
           return;
         }
 
-        const items = this.getNestedItems();
-        const firstItem = items[0];
-        if (firstItem) {
-          requestAnimationFrameNoNgZone(() =>
-            requestAnimationFrameNoNgZone(() => firstItem.focus())
-          );
-        }
+        this.focusFirstItem();
       }
+
+      return;
+    }
+
+    if (event.key === 'ArrowDown' && this.showItems) {
+      event.preventDefault();
+      this.focusFirstItem();
     }
   }
 

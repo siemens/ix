@@ -465,3 +465,50 @@ regressionTest(
     await expect(categoryElement.locator('.category-parent')).toBeFocused();
   }
 );
+
+regressionTest(
+  'should move into expanded category items when pressing ArrowDown on category button',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu start-expanded>
+          <ix-menu-category label="Category label">
+            <ix-menu-item active>Active Item</ix-menu-item>
+            <ix-menu-item>Item 2</ix-menu-item>
+            <ix-menu-item>Item 3</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    await page
+      .locator('ix-application')
+      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['lg']));
+
+    const categoryElement = page.locator('ix-menu-category');
+    const categoryButton = categoryElement.locator('.category-parent');
+    const items = categoryElement.locator('ix-menu-item');
+
+    // Category should be expanded initially because one item is active
+    const menuItems = categoryElement.locator('.menu-items');
+    await expect(menuItems).toHaveClass(/menu-items--expanded/);
+
+    // Tab to the category button
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+
+    await expect(categoryButton).toBeFocused();
+
+    // Press ArrowDown should move focus to the first nested item
+    await page.keyboard.press('ArrowDown');
+    await expect(items.nth(0)).toHaveVisibleFocus();
+
+    // Press ArrowDown again should move to second item
+    await page.keyboard.press('ArrowDown');
+    await expect(items.nth(1)).toHaveVisibleFocus();
+
+    // Press ArrowUp should wrap around to last item (not exit to category)
+    await page.keyboard.press('ArrowUp');
+    await expect(items.nth(0)).toHaveVisibleFocus();
+  }
+);
