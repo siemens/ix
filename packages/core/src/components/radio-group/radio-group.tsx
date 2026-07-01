@@ -33,6 +33,8 @@ import { makeRef } from '../utils/make-ref';
  * @documentation https://ix.siemens.io//docs/components/radio/guide.md
  * @figma-main-component-id 42365:44973
  * @form-ready
+ *
+ * @slot - Radio components.
  */
 @Component({
   tag: 'ix-radio-group',

@@ -65,6 +65,8 @@ let selectId = 0;
  * @documentation https://ix.siemens.io//docs/components/select/guide.md
  * @figma-main-component-id 42365:49989
  * @form-ready
+ *
+ * @slot - Select items.
  */
 @Component({
   tag: 'ix-select',

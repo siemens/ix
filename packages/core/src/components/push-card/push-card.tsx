@@ -15,6 +15,9 @@ import type { PushCardVariant } from './push-card.types';
  *
  * @documentation https://ix.siemens.io//docs/components/card/guide.md
  * @figma-main-component-id 104612:25695
+ *
+ * @slot title-action - Action displayed next to the title.
+ * @slot - Card content.
  */
 @Component({
   tag: 'ix-push-card',

@@ -16,6 +16,8 @@ import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
  *
  * @documentation https://ix.siemens.io//docs/components/card/guide.md
  * @figma-main-component-id 104612:25269
+ *
+ * @slot - Card content.
  */
 @Component({
   tag: 'ix-action-card',

@@ -13,6 +13,8 @@ import { Component, h, Host } from '@stencil/core';
  * Footer region of a modal dialog, typically holding action buttons.
  *
  * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal footer content.
  */
 @Component({
   tag: 'ix-modal-footer',

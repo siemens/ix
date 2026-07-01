@@ -25,8 +25,7 @@ let sequenceId = 0;
  *
  * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
  * @figma-main-component-id 308:1293
- *
- * @slot menu-item-label Custom label
+ * @slot - Menu item label.
  */
 @Component({
   tag: 'ix-menu-item',

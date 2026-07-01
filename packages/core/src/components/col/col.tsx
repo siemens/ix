@@ -15,6 +15,8 @@ type GridBreakpoint = Breakpoint | '';
 
 /**
  * Column within the responsive layout grid.
+ *
+ * @slot - Column content.
  */
 @Component({
   tag: 'ix-col',

@@ -29,6 +29,10 @@ import { hasSlottedElements } from '../utils/shadow-dom';
  * Tile that flips between a front and back side to reveal additional content.
  *
  * @figma-main-component-id 407:3446
+ *
+ * @slot header - Header content.
+ * @slot - Front-side content.
+ * @slot footer - Back-side content.
  */
 @Component({
   tag: 'ix-flip-tile',

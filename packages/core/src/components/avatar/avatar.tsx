@@ -135,6 +135,8 @@ function UserInfo(
  *
  * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
  * @figma-main-component-id 308:1151
+ *
+ * @slot - Dropdown content displayed below the avatar.
  */
 @Component({
   tag: 'ix-avatar',

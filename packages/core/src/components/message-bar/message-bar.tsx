@@ -37,6 +37,8 @@ interface MessageTypeConfig {
  * Inline bar that displays a contextual message or notification.
  *
  * @figma-main-component-id 103814:17693
+ *
+ * @slot - Message content.
  */
 @Component({
   tag: 'ix-message-bar',

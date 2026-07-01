@@ -37,6 +37,8 @@ export type ToggleButtonVariant = Exclude<
  *
  * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
  * @figma-main-component-id 8994:173458
+ *
+ * @slot - Toggle button label.
  */
 @Component({
   tag: 'ix-toggle-button',

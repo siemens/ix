@@ -30,6 +30,11 @@ import {
  * Collapsible list group with a selectable header and nested items.
  *
  * @figma-main-component-id 1274:38298
+ *
+ * @slot header - Additional header content.
+ * @slot dropdown - Dropdown content displayed in the group header.
+ * @slot - Group content.
+ * @slot footer - Footer content.
  */
 @Component({
   tag: 'ix-group',

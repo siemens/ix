@@ -13,6 +13,8 @@ import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 /**
  * Context menu that provides actions for a group.
+ *
+ * @slot - Group context menu items.
  */
 @Component({
   tag: 'ix-group-context-menu',

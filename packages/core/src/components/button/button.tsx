@@ -36,6 +36,8 @@ export type ButtonVariant =
  *
  * @documentation https://ix.siemens.io//docs/components/button/guide.md
  * @figma-main-component-id 225:5535
+ *
+ * @slot - Button label.
  */
 @Component({
   tag: 'ix-button',

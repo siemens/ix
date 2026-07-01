@@ -13,6 +13,8 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 /**
  * A single node within a tree.
+ *
+ * @slot - Tree item content.
  */
 @Component({
   tag: 'ix-tree-item',

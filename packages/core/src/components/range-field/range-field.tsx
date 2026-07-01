@@ -29,6 +29,8 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * Field that combines two inputs to capture a date, time, or datetime range.
+ *
+ * @slot - Range field content.
  */
 @Component({
   tag: 'ix-range-field',

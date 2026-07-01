@@ -24,6 +24,8 @@ import { iconClose } from '@siemens/ix-icons/icons';
  * Header region of a modal dialog showing the title and close control.
  *
  * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal header content.
  */
 @Component({
   tag: 'ix-modal-header',

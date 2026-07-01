@@ -14,6 +14,8 @@ import { ToastConfig } from './toast-utils';
 
 /**
  * Container that positions and manages toast notifications.
+ *
+ * @slot - Toast messages.
  */
 @Component({
   tag: 'ix-toast-container',

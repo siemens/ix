@@ -19,6 +19,8 @@ import {
  *
  * @internal
  * @since 5.0.0
+ *
+ * @slot - Tab panel content.
  * */
 @Component({
   tag: 'ix-tab-panel',

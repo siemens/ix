@@ -21,6 +21,8 @@ import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
  * Displays the steps of a workflow and the user's progress through them.
+ *
+ * @slot - Workflow steps.
  */
 @Component({
   tag: 'ix-workflow-steps',

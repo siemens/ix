@@ -43,6 +43,13 @@ import { Disposable } from '../utils/typed-event';
  *
  * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
  * @figma-main-component-id 20977:55554
+ *
+ * @slot ix-menu-avatar - Avatar displayed in the menu header.
+ * @slot home - Menu item displayed in the home position.
+ * @slot - Menu items.
+ * @slot bottom - Menu items displayed at the bottom.
+ * @slot ix-menu-settings - Settings menu content.
+ * @slot ix-menu-about - About menu content.
  */
 @Component({
   tag: 'ix-menu',

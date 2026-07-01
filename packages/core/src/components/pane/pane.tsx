@@ -53,6 +53,8 @@ import { a11yBoolean } from '../utils/a11y';
  * @figma-main-component-id 19924:12291
  *
  * @slot header - Additional slot for the header content
+ *
+ * @slot - Pane content.
  */
 @Component({
   tag: 'ix-pane',

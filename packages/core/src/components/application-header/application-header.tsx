@@ -42,6 +42,8 @@ import { Disposable } from '../utils/typed-event';
  * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
  * @slot logo - Place a company logo inside the header. Alternatively the companyLogo property can be set.
+ *
+ * @slot ix-application-header-avatar - Place an avatar inside the header.
  */
 @Component({
   tag: 'ix-application-header',

@@ -38,6 +38,8 @@ import {
  *
  * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
  * @figma-main-component-id 237:4370
+ *
+ * @slot - Dropdown content.
  */
 @Component({
   tag: 'ix-split-button',

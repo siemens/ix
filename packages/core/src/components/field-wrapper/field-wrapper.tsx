@@ -33,6 +33,9 @@ import {
  * Layout wrapper that adds label, helper text, and validation messages around a form field.
  *
  * @internal
+ *
+ * @slot - Field component.
+ * @slot bottom-right - Content displayed on the bottom right of the field wrapper.
  */
 @Component({
   tag: 'ix-field-wrapper',

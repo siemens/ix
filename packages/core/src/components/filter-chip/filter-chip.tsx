@@ -20,6 +20,8 @@ import {
 
 /**
  * Dismissible chip that represents an applied filter.
+ *
+ * @slot - Filter chip label.
  */
 @Component({
   tag: 'ix-filter-chip',
