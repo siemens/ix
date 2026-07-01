@@ -463,7 +463,6 @@ export class TimeInput
 
   /**
    * Trigger validation and show visual error state immediately, independently
-   *
    * of user interaction — for example, in AJAX submissions or manual validation.
    *
    * Not suppressed by `<form novalidate>` — errors surface regardless.

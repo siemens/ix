@@ -384,10 +384,10 @@ export async function clearInputValue<T>(
     'ix-invalid--validity-patternMismatch'
   );
 
-  options?.additionalCleanup?.();
-
   comp.updateFormInternalValue?.(emptyValue);
   comp.value = emptyValue;
+
+  options?.additionalCleanup?.();
 
   if (options?.emitValueChange) {
     comp.valueChange?.emit(emptyValue);

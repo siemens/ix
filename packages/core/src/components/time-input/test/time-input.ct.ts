@@ -13,6 +13,10 @@ const expectNoVisualValidation = async (timeInput: Locator, input: Locator) => {
   await expect(input).not.toHaveClass(/is-invalid/);
   await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
   await expect(timeInput).not.toHaveClass(/ix-invalid--validity-invalid/);
+
+  await expect(timeInput.locator('ix-field-wrapper .bottom-text')).toHaveCount(
+    0
+  );
 };
 
 const waitForFormSubmit = (form: Locator) => {
@@ -1024,6 +1028,33 @@ regressionTest.describe('time input validation scenarios', () => {
         expect(isValid).toBe(true);
         await expect(input).not.toHaveClass(/is-invalid/);
         await expect(timeInput).not.toHaveClass(/ix-invalid/);
+      }
+    );
+
+    regressionTest(
+      'reportValidity with custom i18nErrorRequired shows custom message',
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-time-input required value="12:30:00" i18n-error-required="Custom time required message" format="HH:mm:ss"></ix-time-input>`
+        );
+
+        const timeInput = page.locator('ix-time-input');
+        const input = timeInput.getByRole('textbox');
+
+        await input.fill('');
+
+        const isValid = await timeInput.evaluate((el: HTMLIxTimeInputElement) =>
+          el.reportValidity()
+        );
+
+        expect(isValid).toBe(false);
+        await expect(timeInput).toHaveClass(/ix-invalid--required/);
+        await expect(
+          timeInput
+            .locator('ix-field-wrapper')
+            .locator('ix-typography')
+            .filter({ hasText: 'Custom time required message' })
+        ).toBeVisible();
       }
     );
 
