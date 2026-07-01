@@ -94,4 +94,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Main content.
+- `header` - Display content at the top of the content page.

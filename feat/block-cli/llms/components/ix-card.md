@@ -49,4 +49,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Card content.
+- `card-accordion` - Accordion content displayed at the bottom of the card.

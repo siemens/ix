@@ -47,4 +47,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - About news content.

@@ -163,4 +163,8 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Main application content.
+- `application-header` - Application header, typically an `ix-application-header`.
+- `application-sidebar` - Application sidebar content.
+- `bottom` - Content displayed at the bottom of the application layout.
+- `menu` - Application menu, typically an `ix-menu`.

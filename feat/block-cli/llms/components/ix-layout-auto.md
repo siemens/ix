@@ -76,4 +76,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Layout content.

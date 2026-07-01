@@ -121,4 +121,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Progress indicator label.
+- `helper-text` - Helper text displayed below the progress indicator.

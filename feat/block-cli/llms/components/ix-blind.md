@@ -85,4 +85,6 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Content shown when the blind is expanded.
+- `custom-header` - Custom header content replacing the label and icon.
+- `header-actions` - Additional actions displayed in the header.

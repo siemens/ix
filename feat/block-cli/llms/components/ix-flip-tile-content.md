@@ -45,4 +45,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Flip tile content.

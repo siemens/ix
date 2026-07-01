@@ -43,4 +43,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Settings item content.

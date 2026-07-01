@@ -62,4 +62,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Toast messages.

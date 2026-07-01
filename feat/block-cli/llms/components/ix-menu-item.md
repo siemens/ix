@@ -147,4 +147,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `menu-item-label Custom label`
+- `` - Menu item label.

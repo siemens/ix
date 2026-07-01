@@ -109,4 +109,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Dropdown content.
+- `button-label` - Custom button label.

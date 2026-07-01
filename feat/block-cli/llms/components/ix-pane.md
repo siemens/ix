@@ -68,4 +68,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
+- `` - Pane content.
 - `header` - Additional slot for the header content

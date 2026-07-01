@@ -81,4 +81,7 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Group content.
+- `dropdown` - Dropdown content displayed in the group header.
+- `footer` - Footer content.
+- `header` - Additional header content.

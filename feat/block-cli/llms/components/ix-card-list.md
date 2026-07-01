@@ -53,4 +53,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Cards displayed in the list.
