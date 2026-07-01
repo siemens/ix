@@ -1,6 +1,6 @@
 # ix-layout-grid
 
-> No component summary available.
+> Column-based grid layout for arranging content responsively.
 
 ## Documentation
 

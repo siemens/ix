@@ -1,6 +1,6 @@
 # ix-kpi
 
-> No component summary available.
+> Displays a key performance indicator with a label, value, and status.
 
 ## Documentation
 

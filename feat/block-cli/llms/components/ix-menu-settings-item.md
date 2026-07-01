@@ -1,6 +1,6 @@
 # ix-menu-settings-item
 
-> No component summary available.
+> A single tab or entry within the settings overlay.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-empty-state
 
-> No component summary available.
+> Placeholder shown when there is no content or data to display.
 
 ## Documentation
 

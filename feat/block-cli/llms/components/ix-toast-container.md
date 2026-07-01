@@ -1,6 +1,6 @@
 # ix-toast-container
 
-> No component summary available.
+> Container that positions and manages toast notifications.
 
 ## Documentation
 

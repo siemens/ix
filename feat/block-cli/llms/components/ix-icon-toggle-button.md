@@ -1,6 +1,6 @@
 # ix-icon-toggle-button
 
-> No component summary available.
+> Icon button that toggles between a pressed and unpressed state.
 
 ## Documentation
 

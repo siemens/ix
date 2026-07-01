@@ -1,6 +1,6 @@
 # ix-spinner
 
-> No component summary available.
+> Animated indicator that signals an ongoing loading process.
 
 ## Documentation
 

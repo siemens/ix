@@ -1,6 +1,6 @@
 # ix-filter-chip
 
-> No component summary available.
+> Dismissible chip that represents an applied filter.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-workflow-steps
 
-> No component summary available.
+> Displays the steps of a workflow and the user's progress through them.
 
 ## Documentation
 

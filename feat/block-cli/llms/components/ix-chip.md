@@ -1,6 +1,6 @@
 # ix-chip
 
-> No component summary available.
+> Compact element that represents an attribute, tag, or entity, optionally dismissible.
 
 ## Documentation
 

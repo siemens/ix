@@ -1,6 +1,6 @@
 # ix-flip-tile-content
 
-> No component summary available.
+> Content for a single side of a flip tile.
 
 ## Documentation
 

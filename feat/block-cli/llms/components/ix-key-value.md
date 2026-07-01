@@ -1,6 +1,6 @@
 # ix-key-value
 
-> No component summary available.
+> Displays a labeled key together with its value.
 
 ## Documentation
 

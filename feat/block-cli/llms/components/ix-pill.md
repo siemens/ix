@@ -1,6 +1,6 @@
 # ix-pill
 
-> No component summary available.
+> Compact label that highlights a status, count, or category.
 
 ## Documentation
 

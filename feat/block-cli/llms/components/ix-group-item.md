@@ -1,6 +1,6 @@
 # ix-group-item
 
-> No component summary available.
+> A single selectable item within a group.
 
 ## Documentation
 

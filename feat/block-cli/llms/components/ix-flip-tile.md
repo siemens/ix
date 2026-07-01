@@ -1,6 +1,6 @@
 # ix-flip-tile
 
-> No component summary available.
+> Tile that flips between a front and back side to reveal additional content.
 
 ## Documentation
 

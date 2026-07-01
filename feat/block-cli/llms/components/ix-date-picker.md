@@ -1,6 +1,6 @@
 # ix-date-picker
 
-> No component summary available.
+> Calendar for selecting a single date or a date range.
 
 ## Documentation
 

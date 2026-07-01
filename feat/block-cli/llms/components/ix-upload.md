@@ -1,6 +1,6 @@
 # ix-upload
 
-> No component summary available.
+> Control for selecting and uploading files.
 
 ## Documentation
 

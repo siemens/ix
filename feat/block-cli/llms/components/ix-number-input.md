@@ -1,6 +1,6 @@
 # ix-number-input
 
-> No component summary available.
+> Text input for entering and validating a numeric value.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-playground
 
-> No component summary available.
+> Internal development playground for previewing and testing components.
 
 ## Documentation
 

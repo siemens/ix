@@ -1,6 +1,6 @@
 # ix-select
 
-> No component summary available.
+> Dropdown control for selecting one or more options from a list.
 
 ## Documentation
 

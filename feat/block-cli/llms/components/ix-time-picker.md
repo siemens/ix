@@ -1,6 +1,6 @@
 # ix-time-picker
 
-> No component summary available.
+> Selector for picking a time value.
 
 ## Documentation
 

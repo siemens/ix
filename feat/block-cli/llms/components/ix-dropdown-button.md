@@ -1,6 +1,6 @@
 # ix-dropdown-button
 
-> No component summary available.
+> Button that opens an attached dropdown menu.
 
 ## Documentation
 

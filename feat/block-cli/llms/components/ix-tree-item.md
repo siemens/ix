@@ -1,6 +1,6 @@
 # ix-tree-item
 
-> No component summary available.
+> A single node within a tree.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-link-button
 
-> No component summary available.
+> Button styled as a hyperlink that navigates to a target.
 
 ## Documentation
 

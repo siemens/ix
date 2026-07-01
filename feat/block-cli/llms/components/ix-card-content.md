@@ -1,6 +1,6 @@
 # ix-card-content
 
-> No component summary available.
+> Content region of a card.
 
 ## Documentation
 

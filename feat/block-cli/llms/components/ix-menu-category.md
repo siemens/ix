@@ -1,6 +1,6 @@
 # ix-menu-category
 
-> No component summary available.
+> Expandable category that groups related items in the side menu.
 
 ## Documentation
 

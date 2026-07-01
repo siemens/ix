@@ -1,6 +1,6 @@
 # ix-row
 
-> No component summary available.
+> Row within the responsive layout grid.
 
 ## Documentation
 

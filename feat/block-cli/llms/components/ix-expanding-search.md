@@ -1,6 +1,6 @@
 # ix-expanding-search
 
-> No component summary available.
+> Search input that expands from an icon when activated.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-icon-button
 
-> No component summary available.
+> Button that displays only an icon to trigger an action.
 
 ## Documentation
 

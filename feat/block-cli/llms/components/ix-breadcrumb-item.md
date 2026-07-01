@@ -1,6 +1,6 @@
 # ix-breadcrumb-item
 
-> No component summary available.
+> A single entry within a breadcrumb navigation trail.
 
 ## Documentation
 

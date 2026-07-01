@@ -1,6 +1,6 @@
 # ix-button
 
-> No component summary available.
+> Triggers an action or event when activated by the user.
 
 ## Documentation
 

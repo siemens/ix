@@ -1,6 +1,6 @@
 # ix-tile
 
-> No component summary available.
+> Container that presents grouped information in a compact tile.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-key-value-list
 
-> No component summary available.
+> Container that arranges multiple key-value pairs in a list.
 
 ## Documentation
 

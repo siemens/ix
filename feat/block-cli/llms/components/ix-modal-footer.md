@@ -1,6 +1,6 @@
 # ix-modal-footer
 
-> No component summary available.
+> Footer region of a modal dialog, typically holding action buttons.
 
 ## Documentation
 

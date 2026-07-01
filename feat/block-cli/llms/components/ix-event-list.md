@@ -1,6 +1,6 @@
 # ix-event-list
 
-> No component summary available.
+> List that displays a sequence of events or status entries.
 
 ## Documentation
 

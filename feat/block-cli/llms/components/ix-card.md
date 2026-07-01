@@ -1,6 +1,6 @@
 # ix-card
 
-> No component summary available.
+> Flexible container that groups related content and actions.
 
 ## Documentation
 

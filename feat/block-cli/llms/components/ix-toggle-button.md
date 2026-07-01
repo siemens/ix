@@ -1,6 +1,6 @@
 # ix-toggle-button
 
-> No component summary available.
+> Button that toggles between a pressed and unpressed state.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-tab-item
 
-> No component summary available.
+> A single selectable tab within a tab set.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-radio
 
-> No component summary available.
+> Lets users select a single option from a set.
 
 ## Documentation
 

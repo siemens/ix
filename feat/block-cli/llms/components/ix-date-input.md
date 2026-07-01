@@ -1,6 +1,6 @@
 # ix-date-input
 
-> No component summary available.
+> Text input for entering and validating a date value.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # ix-modal-content
 
-> No component summary available.
+> Content region of a modal dialog.
 
 ## Documentation
 

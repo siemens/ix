@@ -1,6 +1,6 @@
 # ix-custom-field
 
-> No component summary available.
+> Wrapper that adds label, helper text, and validation handling around custom form controls.
 
 ## Documentation
 

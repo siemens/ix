@@ -1,0 +1,75 @@
+import { r as registerInstance, g as getElement, h, H as Host } from "./global-C8IWpzMv.js";
+import { T as TypedEvent } from "./typed-event-CWshStHZ-DBYwEilm.js";
+const toastContainerCss = () => `:host *,:host *::after,:host *::before{box-sizing:border-box}:host ::-webkit-scrollbar-button{display:none}@-moz-document url-prefix(){:host *{scrollbar-color:var(--theme-scrollbar-thumb--background) var(--theme-scrollbar-track--background);scrollbar-width:thin}}:host{}:host ::-webkit-scrollbar{width:0.5rem;height:0.5rem}:host{}:host ::-webkit-scrollbar-track{border-radius:5px;background:var(--theme-scrollbar-track--background)}:host ::-webkit-scrollbar-track:hover{background:var(--theme-scrollbar-track--background--hover)}:host{}:host ::-webkit-scrollbar-thumb{border-radius:5px;background:var(--theme-scrollbar-thumb--background)}:host{}:host ::-webkit-scrollbar-thumb:hover{background:var(--theme-scrollbar-thumb--background--hover)}:host ::-webkit-scrollbar-corner{display:none}:host{display:block;position:fixed;z-index:var(--theme-z-index-toast)}:host ::slotted(*:not(:last-child)){margin-block-end:1rem}:host(.toast-container--top-right){right:1rem;top:2rem}:host(.toast-container--bottom-right){right:1rem;bottom:2rem}`;
+const ToastContainer = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+  }
+  get hostElement() {
+    return getElement(this);
+  }
+  /**
+   * Position of the toast container. Determines where the toasts will be displayed on the screen.
+   */
+  position = "bottom-right";
+  /**
+   * Display a toast message
+   * @param config
+   */
+  async showToast(config) {
+    const toast = document.createElement("ix-toast");
+    const onClose = new TypedEvent();
+    function removeToast(result) {
+      toast.remove();
+      onClose.emit(result);
+    }
+    toast.toastTitle = config.title;
+    toast.type = config.type ?? "info";
+    toast.preventAutoClose = config.autoClose === false;
+    toast.autoCloseDelay = config.autoCloseDelay ?? 5e3;
+    toast.icon = config.icon;
+    toast.iconColor = config.iconColor;
+    toast.hideIcon = config.hideIcon ?? false;
+    toast.addEventListener("closeToast", (event) => {
+      const { detail } = event;
+      removeToast(detail);
+    });
+    if (config.message) {
+      if (typeof config.message === "string") {
+        toast.innerText = config.message;
+      } else {
+        toast.appendChild(config.message);
+      }
+    }
+    if (config.action && config.action instanceof HTMLElement) {
+      config.action.slot = "action";
+      toast.appendChild(config.action);
+    }
+    this.hostElement.appendChild(toast);
+    return {
+      onClose,
+      close: (result) => {
+        removeToast(result);
+      },
+      pause: () => {
+        toast.pause();
+      },
+      resume: () => {
+        toast.resume();
+      },
+      isPaused: () => {
+        return toast.isPaused();
+      }
+    };
+  }
+  render() {
+    return h(Host, { key: "1cca6dfe69cee2af230f7a358dc9eceaca874672", class: {
+      "toast-container--bottom-right": this.position === "bottom-right",
+      "toast-container--top-right": this.position === "top-right"
+    } }, h("slot", { key: "426f59774f50460908db61c2356518f682d9de1a" }));
+  }
+};
+ToastContainer.style = toastContainerCss();
+export {
+  ToastContainer as ix_toast_container
+};

@@ -1,6 +1,6 @@
 # ix-menu-about-item
 
-> No component summary available.
+> A single tab or entry within the about overlay.
 
 ## Documentation
 

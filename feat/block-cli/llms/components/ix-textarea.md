@@ -1,6 +1,6 @@
 # ix-textarea
 
-> No component summary available.
+> Multi-line text input for entering and validating longer text.
 
 ## Documentation
 

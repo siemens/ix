@@ -1,6 +1,6 @@
 # ix-dropdown-item
 
-> No component summary available.
+> Selectable entry within a dropdown menu.
 
 ## Documentation
 

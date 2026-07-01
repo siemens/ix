@@ -1,6 +1,6 @@
 # ix-card-list
 
-> No component summary available.
+> Container that arranges multiple cards in a list or grid layout.
 
 ## Documentation
 

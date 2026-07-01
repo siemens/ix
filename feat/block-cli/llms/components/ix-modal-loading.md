@@ -1,6 +1,6 @@
 # ix-modal-loading
 
-> No component summary available.
+> Modal that indicates a loading or processing state.
 
 ## Documentation
 
