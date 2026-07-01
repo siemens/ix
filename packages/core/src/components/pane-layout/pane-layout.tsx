@@ -27,6 +27,13 @@ import { matchBreakpoint } from '../utils/breakpoints';
  *
  * @documentation https://ix.siemens.io//docs/components/panes/guide.md
  * @figma-main-component-id 19924:12291
+ *
+ * @slot left - Content displayed in the left pane.
+ * @slot top - Content displayed in the top pane.
+ * @slot content - Main pane content.
+ * @slot - Main pane content.
+ * @slot bottom - Content displayed in the bottom pane.
+ * @slot right - Content displayed in the right pane.
  */
 @Component({
   tag: 'ix-pane-layout',

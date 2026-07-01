@@ -24,6 +24,8 @@ import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
  * A single tab or entry within the settings overlay.
  *
  * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
+ *
+ * @slot - Settings item content.
  */
 @Component({
   tag: 'ix-menu-settings-item',

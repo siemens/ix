@@ -18,6 +18,8 @@ import { makeRef } from '../utils/make-ref';
  *
  * @documentation https://ix.siemens.io//docs/components/pill/guide.md
  * @figma-main-component-id 312:1219
+ *
+ * @slot - Pill content.
  */
 @Component({
   tag: 'ix-pill',

@@ -31,6 +31,9 @@ import {
 
 /**
  * A single step within a workflow step sequence.
+ *
+ * @slot custom-icon - Custom step icon.
+ * @slot - Workflow step content.
  */
 @Component({
   tag: 'ix-workflow-step',

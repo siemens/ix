@@ -3,6 +3,8 @@ import { IxComponentInterface } from '../utils/internal';
 
 /**
  * Responsive form layout that automatically adjusts columns to the available width.
+ *
+ * @slot - Layout content.
  */
 @Component({
   tag: 'ix-layout-auto',

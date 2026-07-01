@@ -21,6 +21,8 @@ import { IxComponentInterface } from '../utils/internal';
  *
  * @documentation https://ix.siemens.io//docs/components/custom-field/guide.md
  * @figma-main-component-id 42365:52677
+ *
+ * @slot - Custom form field content.
  */
 @Component({
   tag: 'ix-custom-field',

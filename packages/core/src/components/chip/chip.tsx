@@ -32,6 +32,8 @@ import { CHIP_VARIANTS, ChipVariant } from './chip.types';
  *
  * @documentation https://ix.siemens.io//docs/components/chip/guide.md
  * @figma-main-component-id 286:1758
+ *
+ * @slot - Chip content.
  */
 @Component({
   tag: 'ix-chip',

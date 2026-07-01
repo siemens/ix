@@ -13,6 +13,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
  * Container that arranges multiple key-value pairs in a list.
  *
  * @figma-main-component-id 4784:118515
+ *
+ * @slot - Key value items.
  */
 @Component({
   tag: 'ix-key-value-list',

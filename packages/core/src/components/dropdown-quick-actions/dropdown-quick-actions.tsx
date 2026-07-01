@@ -13,6 +13,8 @@ import { Component, h, Host } from '@stencil/core';
  *
  * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
  * @figma-main-component-id 1233:34168
+ *
+ * @slot - Quick action items.
  */
 @Component({
   tag: 'ix-dropdown-quick-actions',

@@ -26,6 +26,8 @@ import { closestPassShadow } from '../utils/shadow-dom';
  * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
  * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
  * @figma-main-component-id 1682:60975
+ *
+ * @slot - Label content.
  */
 @Component({
   tag: 'ix-field-label',

@@ -33,6 +33,8 @@ import { hasSlottedContent } from '../utils/shadow-dom';
  * @figma-main-component-id 42365:47165
  *
  * @form-ready
+ *
+ * @slot - Checkbox label.
  */
 @Component({
   tag: 'ix-checkbox',

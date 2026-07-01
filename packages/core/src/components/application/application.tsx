@@ -24,6 +24,12 @@ import { Disposable } from '../utils/typed-event';
  * Root container that sets up the overall application shell and layout.
  *
  * @documentation https://ix.siemens.io//docs/components/application/guide.md
+ *
+ * @slot application-header - Application header, typically an `ix-application-header`.
+ * @slot menu - Application menu, typically an `ix-menu`.
+ * @slot application-sidebar - Application sidebar content.
+ * @slot - Main application content.
+ * @slot bottom - Content displayed at the bottom of the application layout.
  */
 @Component({
   tag: 'ix-application',

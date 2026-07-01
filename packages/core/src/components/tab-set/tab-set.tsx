@@ -15,6 +15,8 @@ import { queryElements } from '../utils/focus/focus-utilities';
  *
  * @internal
  * @since 5.0.0
+ *
+ * @slot - Tab items and panels.
  * */
 @Component({
   tag: 'ix-tab-set',

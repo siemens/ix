@@ -28,6 +28,9 @@ import type {
  * @figma-main-component-id 69677:5549
  *
  * @since 3.2.0
+ *
+ * @slot helper-text - Helper text displayed below the progress indicator.
+ * @slot - Progress indicator label.
  */
 @Component({
   tag: 'ix-progress-indicator',
