@@ -10,37 +10,27 @@
 @use 'mixins/hover';
 
 @mixin dropdown-item {
-  display: flex;
-  height: 2.5rem;
-  position: relative;
-  align-items: center;
-  cursor: pointer;
-  padding: 0 vars.$x-large-space;
-  border: 1px solid transparent;
-  color: var(
-    --ix-menu-item--color,
-    var(--theme-color-std-text)
-  );
-  background-color: transparent;
+  & {
+    display: flex;
+    height: 2.5rem;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 vars.$x-large-space;
+    border: 1px solid transparent;
+    color: var(--ix-menu-item--color, var(--theme-color-std-text));
+    background-color: transparent;
+  }
 
   &:focus-visible {
     outline: none;
-    background-color: var(
-      --ix-menu-item--background,
-      var(--theme-color-ghost)
-    );
+    background-color: var(--ix-menu-item--background, var(--theme-color-ghost));
     border-color: var(--theme-color-focus-bdr);
-    color: var(
-      --ix-menu-item--color--focus,
-      var(--theme-color-std-text)
-    );
+    color: var(--ix-menu-item--color--focus, var(--theme-color-std-text));
   }
 
   @include hover.hover {
-    color: var(
-      --ix-menu-item--color--hover,
-      var(--theme-color-std-text)
-    );
+    color: var(--ix-menu-item--color--hover, var(--theme-color-std-text));
     background-color: var(
       --ix-menu-item--background--hover,
       var(--theme-color-ghost--hover)
@@ -48,10 +38,7 @@
   }
 
   @include hover.active {
-    color: var(
-      --ix-menu-item--color--active,
-      var(--theme-color-std-text)
-    );
+    color: var(--ix-menu-item--color--active, var(--theme-color-std-text));
     background-color: var(
       --ix-menu-item--background--active,
       var(--theme-color-ghost--active)
@@ -60,10 +47,7 @@
 
   &.disabled,
   &:disabled {
-    color: var(
-      --ix-menu-item--color--disabled,
-      var(--theme-color-weak-text)
-    );
+    color: var(--ix-menu-item--color--disabled, var(--theme-color-weak-text));
     background-color: var(
       --ix-menu-item--background--disabled,
       var(--theme-color-ghost)
@@ -77,10 +61,7 @@
   }
 
   > .glyph {
-    color: var(
-      --ix-menu-item-icon--color,
-      var(--theme-color-soft-text)
-    );
+    color: var(--ix-menu-item-icon--color, var(--theme-color-soft-text));
     margin-inline-end: vars.$small-space;
 
     &.disabled {

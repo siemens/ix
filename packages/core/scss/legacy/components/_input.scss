@@ -19,19 +19,21 @@ label.ix-form-label.label-alignment-left {
 }
 
 @mixin legacy-element-input {
-  appearance: textfield;
-  background-color: var(--theme-color-component-8);
-  border: var(--theme-border-width-default) solid
-    var(--theme-color-std-bdr);
-  border-radius: var(--theme-small-border-radius);
-  box-shadow: var(--theme-inset-shadow-1);
-  color: var(--theme-color-std-text);
-  min-height: 2rem;
-  padding: 0.25rem 0.5rem;
-  text-overflow: ellipsis;
-  width: auto;
+  & {
+    appearance: textfield;
+    background-color: var(--theme-color-component-8);
+    border: var(--theme-border-width-default) solid
+      var(--theme-color-std-bdr);
+    border-radius: var(--theme-small-border-radius);
+    box-shadow: var(--theme-inset-shadow-1);
+    color: var(--theme-color-std-text);
+    min-height: 2rem;
+    padding: 0.25rem 0.5rem;
+    text-overflow: ellipsis;
+    width: auto;
 
-  @include fonts.typography-body;
+    @include fonts.typography-body;
+  }
 
   &::placeholder {
     color: var(--theme-color-soft-text);

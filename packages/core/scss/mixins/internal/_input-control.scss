@@ -12,41 +12,30 @@
 @use 'mixins/text-truncation';
 
 @mixin input-control {
-  color: var(
-    --ix-input--color,
-    var(--theme-color-std-text)
-  );
-  border-radius: var(
-    --ix-input--border-radius,
-    var(--theme-small-border-radius)
-  );
-  height: vars.$default-control-height;
-  min-height: vars.$default-control-height;
-  min-width: vars.$input-min-width;
-  background-color: var(
-    --ix-input--background,
-    var(--theme-color-component-8)
-  );
-  border: solid 1px
-    var(
-      --ix-input--border-color,
-      var(--theme-color-std-bdr)
+  & {
+    color: var(--ix-input--color, var(--theme-color-std-text));
+    border-radius: var(
+      --ix-input--border-radius,
+      var(--theme-small-border-radius)
     );
-  box-shadow: var(
-    --ix-input--box-shadow,
-    var(--theme-inset-shadow-1)
-  );
-  padding-inline-start: vars.$input-padding-x;
-  padding-inline-end: vars.$input-padding-x;
+    height: vars.$default-control-height;
+    min-height: vars.$default-control-height;
+    min-width: vars.$input-min-width;
+    background-color: var(
+      --ix-input--background,
+      var(--theme-color-component-8)
+    );
+    border: solid 1px var(--ix-input--border-color, var(--theme-color-std-bdr));
+    box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+    padding-inline-start: vars.$input-padding-x;
+    padding-inline-end: vars.$input-padding-x;
+  }
 
   @include fonts.text-default();
   @include text-truncation.ellipsis;
 
   &::placeholder {
-    color: var(
-      --ix-input-hint--color,
-      var(--theme-color-soft-text)
-    );
+    color: var(--ix-input-hint--color, var(--theme-color-soft-text));
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
@@ -75,19 +64,13 @@
         --ix-input--focus--outline-offset,
         var(--theme-focus-outline-offset)
       );
-      box-shadow: var(
-        --ix-input--box-shadow,
-        var(--theme-inset-shadow-1)
-      );
+      box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
       outline: 1px solid var(--theme-color-focus-bdr);
     }
   }
 
   &:focus-visible {
-    color: var(
-      --ix-input--color,
-      var(--theme-color-std-text)
-    );
+    color: var(--ix-input--color, var(--theme-color-std-text));
   }
 
   &[type='number'] {
@@ -115,10 +98,7 @@
   &.readonly {
     box-shadow: none !important;
     outline: none !important;
-    border-color: var(
-      --ix-input--border-color,
-      var(--theme-color-std-bdr)
-    );
+    border-color: var(--ix-input--border-color, var(--theme-color-std-bdr));
     cursor: default !important;
 
     &::placeholder {
