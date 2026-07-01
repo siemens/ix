@@ -469,6 +469,8 @@ regressionTest(
 regressionTest(
   'should move into expanded category items when pressing ArrowDown on category button',
   async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+
     await mount(`
       <ix-application>
         <ix-menu start-expanded>
@@ -481,21 +483,15 @@ regressionTest(
       </ix-application>
     `);
 
-    await page
-      .locator('ix-application')
-      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['lg']));
-
     const categoryElement = page.locator('ix-menu-category');
     const categoryButton = categoryElement.locator('.category-parent');
-    const items = categoryElement.locator('ix-menu-item');
+    const items = categoryElement.locator(':scope > ix-menu-item');
 
     // Category should be expanded initially because one item is active
     const menuItems = categoryElement.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
 
-    // Tab to the category button
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
+    await categoryButton.focus();
 
     await expect(categoryButton).toBeFocused();
 
