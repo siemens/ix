@@ -3371,12 +3371,6 @@ export namespace Components {
          */
         "ariaLabelClearIconButton"?: string;
         /**
-          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
-          * @since 5.1.0
-          * @default '{count} more'
-         */
-        "ariaLabelMoreItems": string;
-        /**
           * Show "all" chip when all items are selected in multiple mode
           * @default false
          */
@@ -3429,6 +3423,12 @@ export namespace Components {
           * @default 'All'
          */
         "i18nAllSelected": string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -9907,12 +9907,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelClearIconButton"?: string;
         /**
-          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
-          * @since 5.1.0
-          * @default '{count} more'
-         */
-        "ariaLabelMoreItems"?: string;
-        /**
           * Show "all" chip when all items are selected in multiple mode
           * @default false
          */
@@ -9959,6 +9953,12 @@ declare namespace LocalJSX {
           * @default 'All'
          */
         "i18nAllSelected"?: string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -11956,7 +11956,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
-        "ariaLabelMoreItems": string;
+        "i18nMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;
