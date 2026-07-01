@@ -12,12 +12,19 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - datetimepicker
-  - angular: [../../examples/angular-examples/src/preview-examples/datetimepicker.ts](../../examples/angular-examples/src/preview-examples/datetimepicker.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/datetimepicker.ts](../../examples/angular-standalone-examples/src/preview-examples/datetimepicker.ts)
-  - html: [../../examples/html-examples/src/preview-examples/datetimepicker.html](../../examples/html-examples/src/preview-examples/datetimepicker.html)
-  - react: [../../examples/react-examples/src/preview-examples/datetimepicker.tsx](../../examples/react-examples/src/preview-examples/datetimepicker.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/datetimepicker.vue](../../examples/vue-examples/src/preview-examples/datetimepicker.vue)
+  - angular:
+    - `angular/datetimepicker.ts`: [source](../../examples/angular-examples/src/preview-examples/datetimepicker.ts)
+  - angular-standalone:
+    - `angular-standalone/datetimepicker.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/datetimepicker.ts)
+  - html:
+    - `html/datetimepicker.html`: [source](../../examples/html-examples/src/preview-examples/datetimepicker.html)
+  - react:
+    - `react/datetimepicker.tsx`: [source](../../examples/react-examples/src/preview-examples/datetimepicker.tsx)
+  - vue:
+    - `vue/datetimepicker.vue`: [source](../../examples/vue-examples/src/preview-examples/datetimepicker.vue)
 
 ## Related blocks
 

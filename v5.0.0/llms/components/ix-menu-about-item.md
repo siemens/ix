@@ -12,18 +12,34 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - about-and-legal-legacy
-  - angular: [../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html), [../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html), [../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts)
-  - html: [../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html](../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html)
-  - react: [../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx](../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue](../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue)
+  - angular:
+    - `angular/about-and-legal-legacy.html`: [source](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.html)
+    - `angular/about-and-legal-legacy.ts`: [source](../../examples/angular-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - angular-standalone:
+    - `angular-standalone/about-and-legal-legacy.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.html)
+    - `angular-standalone/about-and-legal-legacy.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/about-and-legal-legacy.ts)
+  - html:
+    - `html/about-and-legal-legacy.html`: [source](../../examples/html-examples/src/preview-examples/about-and-legal-legacy.html)
+  - react:
+    - `react/about-and-legal-legacy.tsx`: [source](../../examples/react-examples/src/preview-examples/about-and-legal-legacy.tsx)
+  - vue:
+    - `vue/about-and-legal-legacy.vue`: [source](../../examples/vue-examples/src/preview-examples/about-and-legal-legacy.vue)
 - popover-news
-  - angular: [../../examples/angular-examples/src/preview-examples/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [../../examples/angular-examples/src/preview-examples/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
-  - html: [../../examples/html-examples/src/preview-examples/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
-  - react: [../../examples/react-examples/src/preview-examples/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
+  - angular:
+    - `angular/popover-news.html`: [source](../../examples/angular-examples/src/preview-examples/popover-news.html)
+    - `angular/popover-news.ts`: [source](../../examples/angular-examples/src/preview-examples/popover-news.ts)
+  - angular-standalone:
+    - `angular-standalone/popover-news.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html)
+    - `angular-standalone/popover-news.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
+  - html:
+    - `html/popover-news.html`: [source](../../examples/html-examples/src/preview-examples/popover-news.html)
+  - react:
+    - `react/popover-news.tsx`: [source](../../examples/react-examples/src/preview-examples/popover-news.tsx)
+  - vue:
+    - `vue/popover-news.vue`: [source](../../examples/vue-examples/src/preview-examples/popover-news.vue)
 
 ## Related blocks
 

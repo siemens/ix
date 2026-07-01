@@ -12,12 +12,21 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - action-card
-  - angular: [../../examples/angular-examples/src/preview-examples/action-card.html](../../examples/angular-examples/src/preview-examples/action-card.html), [../../examples/angular-examples/src/preview-examples/action-card.ts](../../examples/angular-examples/src/preview-examples/action-card.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/action-card.html](../../examples/angular-standalone-examples/src/preview-examples/action-card.html), [../../examples/angular-standalone-examples/src/preview-examples/action-card.ts](../../examples/angular-standalone-examples/src/preview-examples/action-card.ts)
-  - html: [../../examples/html-examples/src/preview-examples/action-card.html](../../examples/html-examples/src/preview-examples/action-card.html)
-  - react: [../../examples/react-examples/src/preview-examples/action-card.tsx](../../examples/react-examples/src/preview-examples/action-card.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/action-card.vue](../../examples/vue-examples/src/preview-examples/action-card.vue)
+  - angular:
+    - `angular/action-card.html`: [source](../../examples/angular-examples/src/preview-examples/action-card.html)
+    - `angular/action-card.ts`: [source](../../examples/angular-examples/src/preview-examples/action-card.ts)
+  - angular-standalone:
+    - `angular-standalone/action-card.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/action-card.html)
+    - `angular-standalone/action-card.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/action-card.ts)
+  - html:
+    - `html/action-card.html`: [source](../../examples/html-examples/src/preview-examples/action-card.html)
+  - react:
+    - `react/action-card.tsx`: [source](../../examples/react-examples/src/preview-examples/action-card.tsx)
+  - vue:
+    - `vue/action-card.vue`: [source](../../examples/vue-examples/src/preview-examples/action-card.vue)
 
 ## Related blocks
 

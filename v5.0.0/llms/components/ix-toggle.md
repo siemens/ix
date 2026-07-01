@@ -12,36 +12,63 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - toggle
-  - angular: [../../examples/angular-examples/src/preview-examples/toggle.ts](../../examples/angular-examples/src/preview-examples/toggle.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toggle.ts](../../examples/angular-standalone-examples/src/preview-examples/toggle.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toggle.html](../../examples/html-examples/src/preview-examples/toggle.html)
-  - react: [../../examples/react-examples/src/preview-examples/toggle.tsx](../../examples/react-examples/src/preview-examples/toggle.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toggle.vue](../../examples/vue-examples/src/preview-examples/toggle.vue)
+  - angular:
+    - `angular/toggle.ts`: [source](../../examples/angular-examples/src/preview-examples/toggle.ts)
+  - angular-standalone:
+    - `angular-standalone/toggle.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toggle.ts)
+  - html:
+    - `html/toggle.html`: [source](../../examples/html-examples/src/preview-examples/toggle.html)
+  - react:
+    - `react/toggle.tsx`: [source](../../examples/react-examples/src/preview-examples/toggle.tsx)
+  - vue:
+    - `vue/toggle.vue`: [source](../../examples/vue-examples/src/preview-examples/toggle.vue)
 - toggle-checked
-  - angular: [../../examples/angular-examples/src/preview-examples/toggle-checked.ts](../../examples/angular-examples/src/preview-examples/toggle-checked.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toggle-checked.ts](../../examples/angular-standalone-examples/src/preview-examples/toggle-checked.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toggle-checked.html](../../examples/html-examples/src/preview-examples/toggle-checked.html)
-  - react: [../../examples/react-examples/src/preview-examples/toggle-checked.tsx](../../examples/react-examples/src/preview-examples/toggle-checked.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toggle-checked.vue](../../examples/vue-examples/src/preview-examples/toggle-checked.vue)
+  - angular:
+    - `angular/toggle-checked.ts`: [source](../../examples/angular-examples/src/preview-examples/toggle-checked.ts)
+  - angular-standalone:
+    - `angular-standalone/toggle-checked.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toggle-checked.ts)
+  - html:
+    - `html/toggle-checked.html`: [source](../../examples/html-examples/src/preview-examples/toggle-checked.html)
+  - react:
+    - `react/toggle-checked.tsx`: [source](../../examples/react-examples/src/preview-examples/toggle-checked.tsx)
+  - vue:
+    - `vue/toggle-checked.vue`: [source](../../examples/vue-examples/src/preview-examples/toggle-checked.vue)
 - toggle-custom-label
-  - angular: [../../examples/angular-examples/src/preview-examples/toggle-custom-label.ts](../../examples/angular-examples/src/preview-examples/toggle-custom-label.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toggle-custom-label.ts](../../examples/angular-standalone-examples/src/preview-examples/toggle-custom-label.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toggle-custom-label.html](../../examples/html-examples/src/preview-examples/toggle-custom-label.html)
-  - react: [../../examples/react-examples/src/preview-examples/toggle-custom-label.tsx](../../examples/react-examples/src/preview-examples/toggle-custom-label.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toggle-custom-label.vue](../../examples/vue-examples/src/preview-examples/toggle-custom-label.vue)
+  - angular:
+    - `angular/toggle-custom-label.ts`: [source](../../examples/angular-examples/src/preview-examples/toggle-custom-label.ts)
+  - angular-standalone:
+    - `angular-standalone/toggle-custom-label.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toggle-custom-label.ts)
+  - html:
+    - `html/toggle-custom-label.html`: [source](../../examples/html-examples/src/preview-examples/toggle-custom-label.html)
+  - react:
+    - `react/toggle-custom-label.tsx`: [source](../../examples/react-examples/src/preview-examples/toggle-custom-label.tsx)
+  - vue:
+    - `vue/toggle-custom-label.vue`: [source](../../examples/vue-examples/src/preview-examples/toggle-custom-label.vue)
 - toggle-disabled
-  - angular: [../../examples/angular-examples/src/preview-examples/toggle-disabled.ts](../../examples/angular-examples/src/preview-examples/toggle-disabled.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toggle-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/toggle-disabled.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toggle-disabled.html](../../examples/html-examples/src/preview-examples/toggle-disabled.html)
-  - react: [../../examples/react-examples/src/preview-examples/toggle-disabled.tsx](../../examples/react-examples/src/preview-examples/toggle-disabled.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toggle-disabled.vue](../../examples/vue-examples/src/preview-examples/toggle-disabled.vue)
+  - angular:
+    - `angular/toggle-disabled.ts`: [source](../../examples/angular-examples/src/preview-examples/toggle-disabled.ts)
+  - angular-standalone:
+    - `angular-standalone/toggle-disabled.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toggle-disabled.ts)
+  - html:
+    - `html/toggle-disabled.html`: [source](../../examples/html-examples/src/preview-examples/toggle-disabled.html)
+  - react:
+    - `react/toggle-disabled.tsx`: [source](../../examples/react-examples/src/preview-examples/toggle-disabled.tsx)
+  - vue:
+    - `vue/toggle-disabled.vue`: [source](../../examples/vue-examples/src/preview-examples/toggle-disabled.vue)
 - toggle-indeterminate
-  - angular: [../../examples/angular-examples/src/preview-examples/toggle-indeterminate.ts](../../examples/angular-examples/src/preview-examples/toggle-indeterminate.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/toggle-indeterminate.ts](../../examples/angular-standalone-examples/src/preview-examples/toggle-indeterminate.ts)
-  - html: [../../examples/html-examples/src/preview-examples/toggle-indeterminate.html](../../examples/html-examples/src/preview-examples/toggle-indeterminate.html)
-  - react: [../../examples/react-examples/src/preview-examples/toggle-indeterminate.tsx](../../examples/react-examples/src/preview-examples/toggle-indeterminate.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/toggle-indeterminate.vue](../../examples/vue-examples/src/preview-examples/toggle-indeterminate.vue)
+  - angular:
+    - `angular/toggle-indeterminate.ts`: [source](../../examples/angular-examples/src/preview-examples/toggle-indeterminate.ts)
+  - angular-standalone:
+    - `angular-standalone/toggle-indeterminate.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/toggle-indeterminate.ts)
+  - html:
+    - `html/toggle-indeterminate.html`: [source](../../examples/html-examples/src/preview-examples/toggle-indeterminate.html)
+  - react:
+    - `react/toggle-indeterminate.tsx`: [source](../../examples/react-examples/src/preview-examples/toggle-indeterminate.tsx)
+  - vue:
+    - `vue/toggle-indeterminate.vue`: [source](../../examples/vue-examples/src/preview-examples/toggle-indeterminate.vue)
 
 ## Related blocks
 

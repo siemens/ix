@@ -12,12 +12,21 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - popover
-  - angular: [../../examples/angular-examples/src/preview-examples/popover.html](../../examples/angular-examples/src/preview-examples/popover.html), [../../examples/angular-examples/src/preview-examples/popover.ts](../../examples/angular-examples/src/preview-examples/popover.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover.html](../../examples/angular-standalone-examples/src/preview-examples/popover.html), [../../examples/angular-standalone-examples/src/preview-examples/popover.ts](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
-  - html: [../../examples/html-examples/src/preview-examples/popover.html](../../examples/html-examples/src/preview-examples/popover.html)
-  - react: [../../examples/react-examples/src/preview-examples/popover.tsx](../../examples/react-examples/src/preview-examples/popover.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/popover.vue](../../examples/vue-examples/src/preview-examples/popover.vue)
+  - angular:
+    - `angular/popover.html`: [source](../../examples/angular-examples/src/preview-examples/popover.html)
+    - `angular/popover.ts`: [source](../../examples/angular-examples/src/preview-examples/popover.ts)
+  - angular-standalone:
+    - `angular-standalone/popover.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.html)
+    - `angular-standalone/popover.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover.ts)
+  - html:
+    - `html/popover.html`: [source](../../examples/html-examples/src/preview-examples/popover.html)
+  - react:
+    - `react/popover.tsx`: [source](../../examples/react-examples/src/preview-examples/popover.tsx)
+  - vue:
+    - `vue/popover.vue`: [source](../../examples/vue-examples/src/preview-examples/popover.vue)
 
 ## Related blocks
 

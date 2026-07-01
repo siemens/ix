@@ -12,18 +12,35 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - split-button
-  - angular: [../../examples/angular-examples/src/preview-examples/split-button.css](../../examples/angular-examples/src/preview-examples/split-button.css), [../../examples/angular-examples/src/preview-examples/split-button.ts](../../examples/angular-examples/src/preview-examples/split-button.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/split-button.css](../../examples/angular-standalone-examples/src/preview-examples/split-button.css), [../../examples/angular-standalone-examples/src/preview-examples/split-button.ts](../../examples/angular-standalone-examples/src/preview-examples/split-button.ts)
-  - html: [../../examples/html-examples/src/preview-examples/split-button.css](../../examples/html-examples/src/preview-examples/split-button.css), [../../examples/html-examples/src/preview-examples/split-button.html](../../examples/html-examples/src/preview-examples/split-button.html)
-  - react: [../../examples/react-examples/src/preview-examples/split-button.scoped.css](../../examples/react-examples/src/preview-examples/split-button.scoped.css), [../../examples/react-examples/src/preview-examples/split-button.tsx](../../examples/react-examples/src/preview-examples/split-button.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/split-button.css](../../examples/vue-examples/src/preview-examples/split-button.css), [../../examples/vue-examples/src/preview-examples/split-button.vue](../../examples/vue-examples/src/preview-examples/split-button.vue)
+  - angular:
+    - `angular/split-button.css`: [source](../../examples/angular-examples/src/preview-examples/split-button.css)
+    - `angular/split-button.ts`: [source](../../examples/angular-examples/src/preview-examples/split-button.ts)
+  - angular-standalone:
+    - `angular-standalone/split-button.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/split-button.css)
+    - `angular-standalone/split-button.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/split-button.ts)
+  - html:
+    - `html/split-button.css`: [source](../../examples/html-examples/src/preview-examples/split-button.css)
+    - `html/split-button.html`: [source](../../examples/html-examples/src/preview-examples/split-button.html)
+  - react:
+    - `react/split-button.scoped.css`: [source](../../examples/react-examples/src/preview-examples/split-button.scoped.css)
+    - `react/split-button.tsx`: [source](../../examples/react-examples/src/preview-examples/split-button.tsx)
+  - vue:
+    - `vue/split-button.css`: [source](../../examples/vue-examples/src/preview-examples/split-button.css)
+    - `vue/split-button.vue`: [source](../../examples/vue-examples/src/preview-examples/split-button.vue)
 - split-button-icons
-  - angular: [../../examples/angular-examples/src/preview-examples/split-button-icons.ts](../../examples/angular-examples/src/preview-examples/split-button-icons.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/split-button-icons.ts](../../examples/angular-standalone-examples/src/preview-examples/split-button-icons.ts)
-  - html: [../../examples/html-examples/src/preview-examples/split-button-icons.html](../../examples/html-examples/src/preview-examples/split-button-icons.html)
-  - react: [../../examples/react-examples/src/preview-examples/split-button-icons.tsx](../../examples/react-examples/src/preview-examples/split-button-icons.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/split-button-icons.vue](../../examples/vue-examples/src/preview-examples/split-button-icons.vue)
+  - angular:
+    - `angular/split-button-icons.ts`: [source](../../examples/angular-examples/src/preview-examples/split-button-icons.ts)
+  - angular-standalone:
+    - `angular-standalone/split-button-icons.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/split-button-icons.ts)
+  - html:
+    - `html/split-button-icons.html`: [source](../../examples/html-examples/src/preview-examples/split-button-icons.html)
+  - react:
+    - `react/split-button-icons.tsx`: [source](../../examples/react-examples/src/preview-examples/split-button-icons.tsx)
+  - vue:
+    - `vue/split-button-icons.vue`: [source](../../examples/vue-examples/src/preview-examples/split-button-icons.vue)
 
 ## Related blocks
 

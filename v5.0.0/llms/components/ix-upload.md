@@ -12,12 +12,19 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - upload
-  - angular: [../../examples/angular-examples/src/preview-examples/upload.ts](../../examples/angular-examples/src/preview-examples/upload.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/upload.ts](../../examples/angular-standalone-examples/src/preview-examples/upload.ts)
-  - html: [../../examples/html-examples/src/preview-examples/upload.html](../../examples/html-examples/src/preview-examples/upload.html)
-  - react: [../../examples/react-examples/src/preview-examples/upload.tsx](../../examples/react-examples/src/preview-examples/upload.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/upload.vue](../../examples/vue-examples/src/preview-examples/upload.vue)
+  - angular:
+    - `angular/upload.ts`: [source](../../examples/angular-examples/src/preview-examples/upload.ts)
+  - angular-standalone:
+    - `angular-standalone/upload.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/upload.ts)
+  - html:
+    - `html/upload.html`: [source](../../examples/html-examples/src/preview-examples/upload.html)
+  - react:
+    - `react/upload.tsx`: [source](../../examples/react-examples/src/preview-examples/upload.tsx)
+  - vue:
+    - `vue/upload.vue`: [source](../../examples/vue-examples/src/preview-examples/upload.vue)
 
 ## Related blocks
 

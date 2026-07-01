@@ -12,12 +12,19 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - dropdown
-  - angular: [../../examples/angular-examples/src/preview-examples/dropdown.ts](../../examples/angular-examples/src/preview-examples/dropdown.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts](../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts)
-  - html: [../../examples/html-examples/src/preview-examples/dropdown.html](../../examples/html-examples/src/preview-examples/dropdown.html)
-  - react: [../../examples/react-examples/src/preview-examples/dropdown.tsx](../../examples/react-examples/src/preview-examples/dropdown.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/dropdown.vue](../../examples/vue-examples/src/preview-examples/dropdown.vue)
+  - angular:
+    - `angular/dropdown.ts`: [source](../../examples/angular-examples/src/preview-examples/dropdown.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/dropdown.ts)
+  - html:
+    - `html/dropdown.html`: [source](../../examples/html-examples/src/preview-examples/dropdown.html)
+  - react:
+    - `react/dropdown.tsx`: [source](../../examples/react-examples/src/preview-examples/dropdown.tsx)
+  - vue:
+    - `vue/dropdown.vue`: [source](../../examples/vue-examples/src/preview-examples/dropdown.vue)
 
 ## Related blocks
 

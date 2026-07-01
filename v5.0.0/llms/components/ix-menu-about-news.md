@@ -12,12 +12,21 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - popover-news
-  - angular: [../../examples/angular-examples/src/preview-examples/popover-news.html](../../examples/angular-examples/src/preview-examples/popover-news.html), [../../examples/angular-examples/src/preview-examples/popover-news.ts](../../examples/angular-examples/src/preview-examples/popover-news.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/popover-news.html](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html), [../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
-  - html: [../../examples/html-examples/src/preview-examples/popover-news.html](../../examples/html-examples/src/preview-examples/popover-news.html)
-  - react: [../../examples/react-examples/src/preview-examples/popover-news.tsx](../../examples/react-examples/src/preview-examples/popover-news.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/popover-news.vue](../../examples/vue-examples/src/preview-examples/popover-news.vue)
+  - angular:
+    - `angular/popover-news.html`: [source](../../examples/angular-examples/src/preview-examples/popover-news.html)
+    - `angular/popover-news.ts`: [source](../../examples/angular-examples/src/preview-examples/popover-news.ts)
+  - angular-standalone:
+    - `angular-standalone/popover-news.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover-news.html)
+    - `angular-standalone/popover-news.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/popover-news.ts)
+  - html:
+    - `html/popover-news.html`: [source](../../examples/html-examples/src/preview-examples/popover-news.html)
+  - react:
+    - `react/popover-news.tsx`: [source](../../examples/react-examples/src/preview-examples/popover-news.tsx)
+  - vue:
+    - `vue/popover-news.vue`: [source](../../examples/vue-examples/src/preview-examples/popover-news.vue)
 
 ## Related blocks
 

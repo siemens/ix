@@ -12,12 +12,21 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - settings-legacy
-  - angular: [../../examples/angular-examples/src/preview-examples/settings-legacy.html](../../examples/angular-examples/src/preview-examples/settings-legacy.html), [../../examples/angular-examples/src/preview-examples/settings-legacy.ts](../../examples/angular-examples/src/preview-examples/settings-legacy.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.html](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.html), [../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.ts](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.ts)
-  - html: [../../examples/html-examples/src/preview-examples/settings-legacy.html](../../examples/html-examples/src/preview-examples/settings-legacy.html)
-  - react: [../../examples/react-examples/src/preview-examples/settings-legacy.tsx](../../examples/react-examples/src/preview-examples/settings-legacy.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/settings-legacy.vue](../../examples/vue-examples/src/preview-examples/settings-legacy.vue)
+  - angular:
+    - `angular/settings-legacy.html`: [source](../../examples/angular-examples/src/preview-examples/settings-legacy.html)
+    - `angular/settings-legacy.ts`: [source](../../examples/angular-examples/src/preview-examples/settings-legacy.ts)
+  - angular-standalone:
+    - `angular-standalone/settings-legacy.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.html)
+    - `angular-standalone/settings-legacy.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/settings-legacy.ts)
+  - html:
+    - `html/settings-legacy.html`: [source](../../examples/html-examples/src/preview-examples/settings-legacy.html)
+  - react:
+    - `react/settings-legacy.tsx`: [source](../../examples/react-examples/src/preview-examples/settings-legacy.tsx)
+  - vue:
+    - `vue/settings-legacy.vue`: [source](../../examples/vue-examples/src/preview-examples/settings-legacy.vue)
 
 ## Related blocks
 

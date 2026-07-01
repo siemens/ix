@@ -12,12 +12,24 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - chip
-  - angular: [../../examples/angular-examples/src/preview-examples/chip.css](../../examples/angular-examples/src/preview-examples/chip.css), [../../examples/angular-examples/src/preview-examples/chip.ts](../../examples/angular-examples/src/preview-examples/chip.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/chip.css](../../examples/angular-standalone-examples/src/preview-examples/chip.css), [../../examples/angular-standalone-examples/src/preview-examples/chip.ts](../../examples/angular-standalone-examples/src/preview-examples/chip.ts)
-  - html: [../../examples/html-examples/src/preview-examples/chip.css](../../examples/html-examples/src/preview-examples/chip.css), [../../examples/html-examples/src/preview-examples/chip.html](../../examples/html-examples/src/preview-examples/chip.html)
-  - react: [../../examples/react-examples/src/preview-examples/chip.scoped.css](../../examples/react-examples/src/preview-examples/chip.scoped.css), [../../examples/react-examples/src/preview-examples/chip.tsx](../../examples/react-examples/src/preview-examples/chip.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/chip.css](../../examples/vue-examples/src/preview-examples/chip.css), [../../examples/vue-examples/src/preview-examples/chip.vue](../../examples/vue-examples/src/preview-examples/chip.vue)
+  - angular:
+    - `angular/chip.css`: [source](../../examples/angular-examples/src/preview-examples/chip.css)
+    - `angular/chip.ts`: [source](../../examples/angular-examples/src/preview-examples/chip.ts)
+  - angular-standalone:
+    - `angular-standalone/chip.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/chip.css)
+    - `angular-standalone/chip.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/chip.ts)
+  - html:
+    - `html/chip.css`: [source](../../examples/html-examples/src/preview-examples/chip.css)
+    - `html/chip.html`: [source](../../examples/html-examples/src/preview-examples/chip.html)
+  - react:
+    - `react/chip.scoped.css`: [source](../../examples/react-examples/src/preview-examples/chip.scoped.css)
+    - `react/chip.tsx`: [source](../../examples/react-examples/src/preview-examples/chip.tsx)
+  - vue:
+    - `vue/chip.css`: [source](../../examples/vue-examples/src/preview-examples/chip.css)
+    - `vue/chip.vue`: [source](../../examples/vue-examples/src/preview-examples/chip.vue)
 
 ## Related blocks
 

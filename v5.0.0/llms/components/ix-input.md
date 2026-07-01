@@ -15,78 +15,174 @@
 
 ## Related examples
 
+Example source links are relative to this Markdown file.
+
 - custom-field
-  - angular: [../../examples/angular-examples/src/preview-examples/custom-field.html](../../examples/angular-examples/src/preview-examples/custom-field.html), [../../examples/angular-examples/src/preview-examples/custom-field.ts](../../examples/angular-examples/src/preview-examples/custom-field.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/custom-field.html](../../examples/angular-standalone-examples/src/preview-examples/custom-field.html), [../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts](../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts)
-  - html: [../../examples/html-examples/src/preview-examples/custom-field.html](../../examples/html-examples/src/preview-examples/custom-field.html)
-  - react: [../../examples/react-examples/src/preview-examples/custom-field.tsx](../../examples/react-examples/src/preview-examples/custom-field.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/custom-field.vue](../../examples/vue-examples/src/preview-examples/custom-field.vue)
+  - angular:
+    - `angular/custom-field.html`: [source](../../examples/angular-examples/src/preview-examples/custom-field.html)
+    - `angular/custom-field.ts`: [source](../../examples/angular-examples/src/preview-examples/custom-field.ts)
+  - angular-standalone:
+    - `angular-standalone/custom-field.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/custom-field.html)
+    - `angular-standalone/custom-field.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/custom-field.ts)
+  - html:
+    - `html/custom-field.html`: [source](../../examples/html-examples/src/preview-examples/custom-field.html)
+  - react:
+    - `react/custom-field.tsx`: [source](../../examples/react-examples/src/preview-examples/custom-field.tsx)
+  - vue:
+    - `vue/custom-field.vue`: [source](../../examples/vue-examples/src/preview-examples/custom-field.vue)
 - form-layout-auto
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-auto.html](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-auto.tsx](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-auto.vue](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
+  - angular:
+    - `angular/form-layout-auto.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.html)
+    - `angular/form-layout-auto.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-auto.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-auto.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.html)
+    - `angular-standalone/form-layout-auto.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-auto.ts)
+  - html:
+    - `html/form-layout-auto.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-auto.html)
+  - react:
+    - `react/form-layout-auto.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-auto.tsx)
+  - vue:
+    - `vue/form-layout-auto.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-auto.vue)
 - form-layout-grid
-  - angular: [../../examples/angular-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html), [../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
-  - html: [../../examples/html-examples/src/preview-examples/form-layout-grid.css](../../examples/html-examples/src/preview-examples/form-layout-grid.css), [../../examples/html-examples/src/preview-examples/form-layout-grid.html](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
-  - react: [../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css), [../../examples/react-examples/src/preview-examples/form-layout-grid.tsx](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/form-layout-grid.css](../../examples/vue-examples/src/preview-examples/form-layout-grid.css), [../../examples/vue-examples/src/preview-examples/form-layout-grid.vue](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
+  - angular:
+    - `angular/form-layout-grid.css`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.css)
+    - `angular/form-layout-grid.html`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.html)
+    - `angular/form-layout-grid.ts`: [source](../../examples/angular-examples/src/preview-examples/form-layout-grid.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-grid.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.css)
+    - `angular-standalone/form-layout-grid.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.html)
+    - `angular-standalone/form-layout-grid.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/form-layout-grid.ts)
+  - html:
+    - `html/form-layout-grid.css`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.css)
+    - `html/form-layout-grid.html`: [source](../../examples/html-examples/src/preview-examples/form-layout-grid.html)
+  - react:
+    - `react/form-layout-grid.scoped.css`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.scoped.css)
+    - `react/form-layout-grid.tsx`: [source](../../examples/react-examples/src/preview-examples/form-layout-grid.tsx)
+  - vue:
+    - `vue/form-layout-grid.css`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.css)
+    - `vue/form-layout-grid.vue`: [source](../../examples/vue-examples/src/preview-examples/form-layout-grid.vue)
 - input
-  - angular: [../../examples/angular-examples/src/preview-examples/input.html](../../examples/angular-examples/src/preview-examples/input.html), [../../examples/angular-examples/src/preview-examples/input.ts](../../examples/angular-examples/src/preview-examples/input.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input.html](../../examples/angular-standalone-examples/src/preview-examples/input.html), [../../examples/angular-standalone-examples/src/preview-examples/input.ts](../../examples/angular-standalone-examples/src/preview-examples/input.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input.html](../../examples/html-examples/src/preview-examples/input.html)
-  - react: [../../examples/react-examples/src/preview-examples/input.tsx](../../examples/react-examples/src/preview-examples/input.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input.vue](../../examples/vue-examples/src/preview-examples/input.vue)
+  - angular:
+    - `angular/input.html`: [source](../../examples/angular-examples/src/preview-examples/input.html)
+    - `angular/input.ts`: [source](../../examples/angular-examples/src/preview-examples/input.ts)
+  - angular-standalone:
+    - `angular-standalone/input.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input.html)
+    - `angular-standalone/input.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input.ts)
+  - html:
+    - `html/input.html`: [source](../../examples/html-examples/src/preview-examples/input.html)
+  - react:
+    - `react/input.tsx`: [source](../../examples/react-examples/src/preview-examples/input.tsx)
+  - vue:
+    - `vue/input.vue`: [source](../../examples/vue-examples/src/preview-examples/input.vue)
 - input-disabled
-  - angular: [../../examples/angular-examples/src/preview-examples/input-disabled.html](../../examples/angular-examples/src/preview-examples/input-disabled.html), [../../examples/angular-examples/src/preview-examples/input-disabled.ts](../../examples/angular-examples/src/preview-examples/input-disabled.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-disabled.html](../../examples/angular-standalone-examples/src/preview-examples/input-disabled.html), [../../examples/angular-standalone-examples/src/preview-examples/input-disabled.ts](../../examples/angular-standalone-examples/src/preview-examples/input-disabled.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-disabled.html](../../examples/html-examples/src/preview-examples/input-disabled.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-disabled.tsx](../../examples/react-examples/src/preview-examples/input-disabled.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-disabled.vue](../../examples/vue-examples/src/preview-examples/input-disabled.vue)
+  - angular:
+    - `angular/input-disabled.html`: [source](../../examples/angular-examples/src/preview-examples/input-disabled.html)
+    - `angular/input-disabled.ts`: [source](../../examples/angular-examples/src/preview-examples/input-disabled.ts)
+  - angular-standalone:
+    - `angular-standalone/input-disabled.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-disabled.html)
+    - `angular-standalone/input-disabled.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-disabled.ts)
+  - html:
+    - `html/input-disabled.html`: [source](../../examples/html-examples/src/preview-examples/input-disabled.html)
+  - react:
+    - `react/input-disabled.tsx`: [source](../../examples/react-examples/src/preview-examples/input-disabled.tsx)
+  - vue:
+    - `vue/input-disabled.vue`: [source](../../examples/vue-examples/src/preview-examples/input-disabled.vue)
 - input-label
-  - angular: [../../examples/angular-examples/src/preview-examples/input-label.html](../../examples/angular-examples/src/preview-examples/input-label.html), [../../examples/angular-examples/src/preview-examples/input-label.ts](../../examples/angular-examples/src/preview-examples/input-label.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-label.html](../../examples/angular-standalone-examples/src/preview-examples/input-label.html), [../../examples/angular-standalone-examples/src/preview-examples/input-label.ts](../../examples/angular-standalone-examples/src/preview-examples/input-label.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-label.html](../../examples/html-examples/src/preview-examples/input-label.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-label.tsx](../../examples/react-examples/src/preview-examples/input-label.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-label.vue](../../examples/vue-examples/src/preview-examples/input-label.vue)
+  - angular:
+    - `angular/input-label.html`: [source](../../examples/angular-examples/src/preview-examples/input-label.html)
+    - `angular/input-label.ts`: [source](../../examples/angular-examples/src/preview-examples/input-label.ts)
+  - angular-standalone:
+    - `angular-standalone/input-label.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-label.html)
+    - `angular-standalone/input-label.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-label.ts)
+  - html:
+    - `html/input-label.html`: [source](../../examples/html-examples/src/preview-examples/input-label.html)
+  - react:
+    - `react/input-label.tsx`: [source](../../examples/react-examples/src/preview-examples/input-label.tsx)
+  - vue:
+    - `vue/input-label.vue`: [source](../../examples/vue-examples/src/preview-examples/input-label.vue)
 - input-pattern
-  - angular: [../../examples/angular-examples/src/preview-examples/input-pattern.html](../../examples/angular-examples/src/preview-examples/input-pattern.html), [../../examples/angular-examples/src/preview-examples/input-pattern.ts](../../examples/angular-examples/src/preview-examples/input-pattern.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-pattern.html](../../examples/angular-standalone-examples/src/preview-examples/input-pattern.html), [../../examples/angular-standalone-examples/src/preview-examples/input-pattern.ts](../../examples/angular-standalone-examples/src/preview-examples/input-pattern.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-pattern.html](../../examples/html-examples/src/preview-examples/input-pattern.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-pattern.tsx](../../examples/react-examples/src/preview-examples/input-pattern.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-pattern.vue](../../examples/vue-examples/src/preview-examples/input-pattern.vue)
+  - angular:
+    - `angular/input-pattern.html`: [source](../../examples/angular-examples/src/preview-examples/input-pattern.html)
+    - `angular/input-pattern.ts`: [source](../../examples/angular-examples/src/preview-examples/input-pattern.ts)
+  - angular-standalone:
+    - `angular-standalone/input-pattern.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-pattern.html)
+    - `angular-standalone/input-pattern.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-pattern.ts)
+  - html:
+    - `html/input-pattern.html`: [source](../../examples/html-examples/src/preview-examples/input-pattern.html)
+  - react:
+    - `react/input-pattern.tsx`: [source](../../examples/react-examples/src/preview-examples/input-pattern.tsx)
+  - vue:
+    - `vue/input-pattern.vue`: [source](../../examples/vue-examples/src/preview-examples/input-pattern.vue)
 - input-readonly
-  - angular: [../../examples/angular-examples/src/preview-examples/input-readonly.html](../../examples/angular-examples/src/preview-examples/input-readonly.html), [../../examples/angular-examples/src/preview-examples/input-readonly.ts](../../examples/angular-examples/src/preview-examples/input-readonly.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-readonly.html](../../examples/angular-standalone-examples/src/preview-examples/input-readonly.html), [../../examples/angular-standalone-examples/src/preview-examples/input-readonly.ts](../../examples/angular-standalone-examples/src/preview-examples/input-readonly.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-readonly.html](../../examples/html-examples/src/preview-examples/input-readonly.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-readonly.tsx](../../examples/react-examples/src/preview-examples/input-readonly.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-readonly.vue](../../examples/vue-examples/src/preview-examples/input-readonly.vue)
+  - angular:
+    - `angular/input-readonly.html`: [source](../../examples/angular-examples/src/preview-examples/input-readonly.html)
+    - `angular/input-readonly.ts`: [source](../../examples/angular-examples/src/preview-examples/input-readonly.ts)
+  - angular-standalone:
+    - `angular-standalone/input-readonly.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-readonly.html)
+    - `angular-standalone/input-readonly.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-readonly.ts)
+  - html:
+    - `html/input-readonly.html`: [source](../../examples/html-examples/src/preview-examples/input-readonly.html)
+  - react:
+    - `react/input-readonly.tsx`: [source](../../examples/react-examples/src/preview-examples/input-readonly.tsx)
+  - vue:
+    - `vue/input-readonly.vue`: [source](../../examples/vue-examples/src/preview-examples/input-readonly.vue)
 - input-types
-  - angular: [../../examples/angular-examples/src/preview-examples/input-types.css](../../examples/angular-examples/src/preview-examples/input-types.css), [../../examples/angular-examples/src/preview-examples/input-types.html](../../examples/angular-examples/src/preview-examples/input-types.html), [../../examples/angular-examples/src/preview-examples/input-types.ts](../../examples/angular-examples/src/preview-examples/input-types.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-types.css](../../examples/angular-standalone-examples/src/preview-examples/input-types.css), [../../examples/angular-standalone-examples/src/preview-examples/input-types.html](../../examples/angular-standalone-examples/src/preview-examples/input-types.html), [../../examples/angular-standalone-examples/src/preview-examples/input-types.ts](../../examples/angular-standalone-examples/src/preview-examples/input-types.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-types.css](../../examples/html-examples/src/preview-examples/input-types.css), [../../examples/html-examples/src/preview-examples/input-types.html](../../examples/html-examples/src/preview-examples/input-types.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-types.scoped.css](../../examples/react-examples/src/preview-examples/input-types.scoped.css), [../../examples/react-examples/src/preview-examples/input-types.tsx](../../examples/react-examples/src/preview-examples/input-types.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-types.css](../../examples/vue-examples/src/preview-examples/input-types.css), [../../examples/vue-examples/src/preview-examples/input-types.vue](../../examples/vue-examples/src/preview-examples/input-types.vue)
+  - angular:
+    - `angular/input-types.css`: [source](../../examples/angular-examples/src/preview-examples/input-types.css)
+    - `angular/input-types.html`: [source](../../examples/angular-examples/src/preview-examples/input-types.html)
+    - `angular/input-types.ts`: [source](../../examples/angular-examples/src/preview-examples/input-types.ts)
+  - angular-standalone:
+    - `angular-standalone/input-types.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-types.css)
+    - `angular-standalone/input-types.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-types.html)
+    - `angular-standalone/input-types.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-types.ts)
+  - html:
+    - `html/input-types.css`: [source](../../examples/html-examples/src/preview-examples/input-types.css)
+    - `html/input-types.html`: [source](../../examples/html-examples/src/preview-examples/input-types.html)
+  - react:
+    - `react/input-types.scoped.css`: [source](../../examples/react-examples/src/preview-examples/input-types.scoped.css)
+    - `react/input-types.tsx`: [source](../../examples/react-examples/src/preview-examples/input-types.tsx)
+  - vue:
+    - `vue/input-types.css`: [source](../../examples/vue-examples/src/preview-examples/input-types.css)
+    - `vue/input-types.vue`: [source](../../examples/vue-examples/src/preview-examples/input-types.vue)
 - input-validation
-  - angular: [../../examples/angular-examples/src/preview-examples/input-validation.html](../../examples/angular-examples/src/preview-examples/input-validation.html), [../../examples/angular-examples/src/preview-examples/input-validation.ts](../../examples/angular-examples/src/preview-examples/input-validation.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-validation.html](../../examples/angular-standalone-examples/src/preview-examples/input-validation.html), [../../examples/angular-standalone-examples/src/preview-examples/input-validation.ts](../../examples/angular-standalone-examples/src/preview-examples/input-validation.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-validation.html](../../examples/html-examples/src/preview-examples/input-validation.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-validation.tsx](../../examples/react-examples/src/preview-examples/input-validation.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-validation.vue](../../examples/vue-examples/src/preview-examples/input-validation.vue)
+  - angular:
+    - `angular/input-validation.html`: [source](../../examples/angular-examples/src/preview-examples/input-validation.html)
+    - `angular/input-validation.ts`: [source](../../examples/angular-examples/src/preview-examples/input-validation.ts)
+  - angular-standalone:
+    - `angular-standalone/input-validation.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-validation.html)
+    - `angular-standalone/input-validation.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-validation.ts)
+  - html:
+    - `html/input-validation.html`: [source](../../examples/html-examples/src/preview-examples/input-validation.html)
+  - react:
+    - `react/input-validation.tsx`: [source](../../examples/react-examples/src/preview-examples/input-validation.tsx)
+  - vue:
+    - `vue/input-validation.vue`: [source](../../examples/vue-examples/src/preview-examples/input-validation.vue)
 - input-with-slots
-  - angular: [../../examples/angular-examples/src/preview-examples/input-with-slots.html](../../examples/angular-examples/src/preview-examples/input-with-slots.html), [../../examples/angular-examples/src/preview-examples/input-with-slots.ts](../../examples/angular-examples/src/preview-examples/input-with-slots.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.html](../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.html), [../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.ts](../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.ts)
-  - html: [../../examples/html-examples/src/preview-examples/input-with-slots.html](../../examples/html-examples/src/preview-examples/input-with-slots.html)
-  - react: [../../examples/react-examples/src/preview-examples/input-with-slots.tsx](../../examples/react-examples/src/preview-examples/input-with-slots.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/input-with-slots.vue](../../examples/vue-examples/src/preview-examples/input-with-slots.vue)
+  - angular:
+    - `angular/input-with-slots.html`: [source](../../examples/angular-examples/src/preview-examples/input-with-slots.html)
+    - `angular/input-with-slots.ts`: [source](../../examples/angular-examples/src/preview-examples/input-with-slots.ts)
+  - angular-standalone:
+    - `angular-standalone/input-with-slots.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.html)
+    - `angular-standalone/input-with-slots.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/input-with-slots.ts)
+  - html:
+    - `html/input-with-slots.html`: [source](../../examples/html-examples/src/preview-examples/input-with-slots.html)
+  - react:
+    - `react/input-with-slots.tsx`: [source](../../examples/react-examples/src/preview-examples/input-with-slots.tsx)
+  - vue:
+    - `vue/input-with-slots.vue`: [source](../../examples/vue-examples/src/preview-examples/input-with-slots.vue)
 - modal-form-ix-button-submit
-  - angular: [../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html), [../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts)
-  - angular-standalone: [../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html), [../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts)
-  - html: [../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html](../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html)
-  - react: [../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx](../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx)
-  - vue: [../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue](../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue)
+  - angular:
+    - `angular/modal-form-ix-button-submit.html`: [source](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.html)
+    - `angular/modal-form-ix-button-submit.ts`: [source](../../examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-form-ix-button-submit.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.html)
+    - `angular-standalone/modal-form-ix-button-submit.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts)
+  - html:
+    - `html/modal-form-ix-button-submit.html`: [source](../../examples/html-examples/src/preview-examples/modal-form-ix-button-submit.html)
+  - react:
+    - `react/modal-form-ix-button-submit.tsx`: [source](../../examples/react-examples/src/preview-examples/modal-form-ix-button-submit.tsx)
+  - vue:
+    - `vue/modal-form-ix-button-submit.vue`: [source](../../examples/vue-examples/src/preview-examples/modal-form-ix-button-submit.vue)
 
 ## Related blocks
 
