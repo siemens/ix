@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'theme/core/common' as common;
+@use 'theme/core/components' as components;
 @use 'mixins/reduce-motion' as rm;
 
 :root {
@@ -31,5 +32,6 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   @include common.setVars;
+  @include components.setComponentVars;
   @include rm.reduce-motion;
 }
