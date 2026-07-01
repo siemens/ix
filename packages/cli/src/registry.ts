@@ -41,6 +41,9 @@ export type ExamplesRegistryIndex = RegistryIndex;
 
 export type BlockDefinition = {
   name: string;
+  description?: string;
+  keywords?: string[];
+  preview?: string;
   variants: {
     react?: BlockVariant;
     angular?: BlockVariant;

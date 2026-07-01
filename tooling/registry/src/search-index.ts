@@ -14,6 +14,8 @@ import { glob } from 'glob';
 interface BlockDocument {
   id: string;
   name: string;
+  description: string;
+  keywords: string;
   sourceCode: string;
   dependencies: string;
   files: string;
@@ -101,6 +103,13 @@ export async function buildSearchIndex(
     const blockDef = await fs.readJson(blockFile);
     const blockName = blockDef.name;
     const blockPath = path.basename(blockFile);
+    const blockDescription =
+      typeof blockDef.description === 'string' ? blockDef.description : '';
+    const blockKeywords = Array.isArray(blockDef.keywords)
+      ? blockDef.keywords.filter(
+          (keyword: unknown) => typeof keyword === 'string'
+        )
+      : [];
 
     for (const [framework, variant] of Object.entries(
       blockDef.variants || {}
@@ -150,6 +159,8 @@ export async function buildSearchIndex(
         frameworkDocuments[framework].push({
           id: blockName,
           name: blockName,
+          description: blockDescription,
+          keywords: blockKeywords.join(' '),
           sourceCode: sourceCodeParts.join('\n'),
           dependencies: dependencies.join(' '),
           files: files.join(' '),
@@ -170,10 +181,17 @@ export async function buildSearchIndex(
     }
 
     const miniSearch = new MiniSearch<BlockDocument>({
-      fields: ['name', 'sourceCode', 'dependencies', 'files'],
-      storeFields: ['id', 'name', 'path'],
+      fields: [
+        'name',
+        'description',
+        'keywords',
+        'sourceCode',
+        'dependencies',
+        'files',
+      ],
+      storeFields: ['id', 'name', 'description', 'keywords', 'path'],
       searchOptions: {
-        boost: { name: 3, files: 1.5 },
+        boost: { name: 3, description: 2, keywords: 2, files: 1.5 },
         fuzzy: 0.2,
         prefix: true,
       },

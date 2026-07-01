@@ -3,7 +3,7 @@
   "title": "IX Block Definition",
   "description": "Schema for Siemens IX block definition files",
   "type": "object",
-  "required": ["name", "preview", "variants"],
+  "required": ["name", "description", "keywords", "preview", "variants"],
   "properties": {
     "$schema": {
       "type": "string"
@@ -11,6 +11,19 @@
     "name": {
       "type": "string",
       "pattern": "^[a-z0-9-]+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keywords": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
     },
     "preview": {
       "type": "string",

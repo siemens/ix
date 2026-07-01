@@ -81,6 +81,8 @@ type BlockVariant = {
 
 type BlockDefinition = {
   name: string;
+  description?: string;
+  keywords?: string[];
   preview?: string;
   variants?: Record<string, BlockVariant>;
 };
@@ -126,8 +128,8 @@ function listOrNone(values: string[]): string {
   return values.map((value) => `- ${value}`).join('\n');
 }
 
-function markdownUrl(value: string): string {
-  return `[${value}](${value})`;
+function markdownLink(label: string, href: string): string {
+  return `[${label}](${href})`;
 }
 
 function documentationUrls(component: ComponentDoc): string[] {
@@ -254,11 +256,11 @@ function renderRelatedExamples(
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
             const href = `../../examples/${file.source}`;
-            return markdownUrl(href);
+            return `    - \`${file.target}\`: ${markdownLink('source', href)}`;
           });
 
           return links.length > 0
-            ? `  - ${framework}: ${links.join(', ')}`
+            ? `  - ${framework}:\n${links.join('\n')}`
             : null;
         })
         .filter(Boolean)
@@ -291,6 +293,8 @@ ${listOrNone(docs)}
 ${listOrNone(figma)}
 
 ## Related examples
+
+Example source links are relative to this Markdown file.
 
 ${renderRelatedExamples(examples, examplesByName)}
 
@@ -351,7 +355,7 @@ function renderBlock(block: BlockDefinition): string {
             )
               .map((file) => {
                 const href = `../blocks/${file.source}`;
-                return `  - \`${file.target}\` from ${markdownUrl(href)}`;
+                return `  - \`${file.target}\`: ${markdownLink('source', href)}`;
               })
               .join('\n');
             const dependencies = sortByName(variant.dependencies ?? [])
@@ -370,6 +374,12 @@ ${dependencies || '  - None'}`;
 
   return `## ${block.name}
 
+- Description: ${inline(block.description) || 'No block description available.'}
+- Keywords: ${
+    block.keywords && block.keywords.length > 0
+      ? block.keywords.map((keyword) => `\`${keyword}\``).join(', ')
+      : 'None'
+  }
 - Preview: ${block.preview ? `\`${block.preview}\`` : 'None'}
 - Used iX components: ${UNAVAILABLE_FROM_JSON}
 
@@ -382,7 +392,7 @@ function renderBlocks(blocks: BlockDefinition[]): string {
 
 > Block-focused LLM documentation generated from registry block JSON metadata.
 
-Used iX component relationships are marked unavailable because this relationship is not present in registry JSON.
+Each block includes a description of when to use it, searchable keywords, previews, framework variants, source files, and dependencies. Source links are relative to this Markdown file. Used iX component relationships are marked unavailable because this relationship is not present in registry JSON.
 
 ${blocks.map(renderBlock).join('\n')}
 `;
@@ -397,7 +407,7 @@ Use this file as the entrypoint for this registry version. For exact component A
 
 Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Use related examples to validate generated component code.
 
-Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains previews, framework variants, source files, dependencies, and component usage availability. Use blocks when generating larger page sections or reusable patterns.
+Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, framework variants, source files, dependencies, and component usage availability. Use blocks when generating larger page sections or reusable patterns.
 
 Figma IDs come from component \`figma-main-component-id\` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
 
@@ -406,7 +416,7 @@ When a relationship is marked unavailable, do not infer it. It means the registr
 ## Registry LLM docs
 
 - [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
-- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block previews, framework variants, files, dependencies, and unavailable component-usage relationships.
+- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, framework variants, files, dependencies, and unavailable component-usage relationships.
 
 ## Optional
 

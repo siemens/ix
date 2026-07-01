@@ -1,6 +1,15 @@
 {
   "$schema": "./../tooling/registry/schemas/block.schema.json",
   "name": "login-overlay",
+  "description": "Use this block to build a branded login overlay with username and password inputs, recovery and registration links, and alternative sign-in actions.",
+  "keywords": [
+    "authentication",
+    "login",
+    "sign in",
+    "overlay",
+    "registration",
+    "single sign-on"
+  ],
   "preview": "react-blocks/dist/ix/login-overlay",
   "variants": {
     "react": {
