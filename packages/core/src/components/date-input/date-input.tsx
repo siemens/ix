@@ -608,11 +608,7 @@ export class DateInput
     if (!suppress) {
       this.isInputInvalid = this._hasInvalidInput;
     }
-    await onInputBlurWithChange(
-      this,
-      this.inputElementRef.current,
-      this.value
-    );
+    await onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     emitPickerValidityState(this);
 
     if (suppress && this._reportValidityCalled && this._hasInvalidInput) {
