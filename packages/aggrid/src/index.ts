@@ -12,6 +12,7 @@ import headerStyles from './header.style.css';
 import tooltipStyles from './tooltip.style.css';
 import radioStyles from './radio.style.css';
 import inputStyles from './input.style.css';
+import rowStateStyles from './row-state.style.css';
 import { aggridIxThemeParams } from './aggrid-ix-theme-params.ts';
 import { iconOverrides } from 'ag-grid-community';
 import {
@@ -104,6 +105,13 @@ function createIxTheme(agModule: AgGridModule) {
         feature: 'inputCustomStyles',
         params: {},
         css: inputStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'rowStateCustomStyles',
+        params: {},
+        css: rowStateStyles,
       })
     )
     .withPart(

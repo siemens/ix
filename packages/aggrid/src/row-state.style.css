@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
+ * Paint the IX row-hover tint directly on the cell so it composites over each
+ * row's own zebra background (color-1 / color-2). We use a single-color
+ * linear-gradient as a flat overlay layer instead of AG Grid's built-in
+ * `rowHoverColor`, whose `::before` overlay produced an inconsistent result
+ * across odd/even rows.
+ */
+.ag-row.ag-row-hover .ag-cell {
+  background-image: linear-gradient(
+    var(--theme-color-ghost--hover),
+    var(--theme-color-ghost--hover)
+  ) !important;
+}

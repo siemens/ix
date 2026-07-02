@@ -8,7 +8,7 @@
  */
 export const aggridIxThemeParams = {
   accentColor: `var(--theme-color-focus-bdr)`,
-  backgroundColor: `var(--theme-color-2)`,
+  backgroundColor: `var(--theme-color-1)`,
   headerColumnResizeHandleColor: `var(--theme-color-0)`,
   foregroundColor: `var(--theme-color-std-text)`,
   cellTextColor: `var(--theme-color-std-text)`,
@@ -25,7 +25,7 @@ export const aggridIxThemeParams = {
   borderColor: `var(--theme-color-x-weak-bdr)`,
   headerBackgroundColor: `var(--theme-color-2)`,
   tooltipBackgroundColor: `var(--theme-color-2)`,
-  oddRowBackgroundColor: `var(--theme-color-ghost-alt)`,
+  oddRowBackgroundColor: `var(--theme-color-2)`,
   sideBarBackgroundColor: `var(--theme-color-2)`,
   invalidColor: `var(--theme-color-alarm)`,
   checkboxUncheckedBorderColor: `var(--theme-color-contrast-bdr)`,
@@ -98,7 +98,6 @@ export const aggridIxThemeParams = {
   sideButtonsBarBackgroundColor: `var(--theme-color-2)`,
   sideButtonHoverBackgroundColor: `var(--theme-color-ghost--hover)`,
   checkboxCheckedShapeColor: `var(--theme-color-primary--contrast)`,
-  OddRowBackgroundColor: `var(--theme-color-ghost-alt)`,
   tabBackgroundColor: `rgba(255, 255, 255, 0)`,
   tabBorderColor: `rgba(24, 29, 31, 0.15)`,
   tabHoverBackgroundColor: `rgba(255, 255, 255, 0)`,
