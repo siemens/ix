@@ -7,11 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:list';
+@use 'sass:map';
 @use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+
+$blind-status-border: (
+  alarm: var(--theme-color-alarm-bdr),
+  critical: var(--theme-color-critical),
+  warning: var(--theme-color-warning-bdr),
+  info: var(--theme-color-info),
+  success: var(--theme-color-success),
+  neutral: var(--theme-color-neutral),
+  primary: var(--theme-color-primary),
+);
 
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
@@ -98,7 +110,7 @@
         } @else {
           border: solid
             var(--theme-blind--border-thickness)
-            var(--theme-color-#{$variant});
+            #{map.get($blind-status-border, $variant)};
           border-top: none;
         }
       }
@@ -109,16 +121,9 @@
     }
   }
 
-  @if $variant != 'filled' and $variant != 'outline' {
+  @if not list.index(('filled', 'outline'), $variant) {
     :host(.blind-#{$variant}[collapsed]) .blind-content {
-      border-bottom-width: 0;
-    }
-
-    :host(.blind-#{$variant}[collapsed]) .blind-header-wrapper {
-      border-bottom: solid var(--theme-blind--border-thickness)
-        var(--theme-color-#{$variant});
-      border-radius: 0 0 var(--theme-blind--border-radius)
-        var(--theme-blind--border-radius);
+      border-width: 0;
     }
   }
 }
@@ -247,6 +252,7 @@
       max-height: 0;
       padding-top: 0px;
       padding-bottom: 0px;
+      border-width: 0;
     }
   }
 
