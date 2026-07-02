@@ -29,8 +29,14 @@ type Story = StoryObj;
 /**
  * Modal dialog with an accessible name via `aria-labelledby` (blocking / `aria-modal="true"`).
  */
+const openModal = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const modal = canvasElement.querySelector('ix-modal') as HTMLIxModalElement | null;
+  await modal?.showModal();
+};
 export const Default: Story = {
   render: () => html`
+    <ix-button>background button1</ix-button>
+    <ix-button>background button2</ix-button>
     <ix-modal class="visible" aria-labelledby="modal-a11y-title">
       <ix-modal-header id="modal-a11y-title">Modal title</ix-modal-header>
       <ix-modal-content>Supporting description for this dialog.</ix-modal-content>
@@ -40,6 +46,7 @@ export const Default: Story = {
       </ix-modal-footer>
     </ix-modal>
   `,
+    play: openModal,
 };
 
 /**
@@ -49,6 +56,8 @@ export const NonBlocking: Story = {
   render: () => html`
     <main>
       <p>Page content stays interactable while the panel is open.</p>
+      <ix-button>background button1</ix-button>
+      <ix-button>background button2</ix-button>
       <ix-modal
         class="visible"
         aria-labelledby="modal-nb-title"
@@ -64,4 +73,5 @@ export const NonBlocking: Story = {
       </ix-modal>
     </main>
   `,
+    play: openModal,
 };
