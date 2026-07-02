@@ -8,6 +8,12 @@
  */
 
 import { IxComponentInterface } from '../utils/internal';
+import {
+  pathIncludesTrigger as findTriggerInPath,
+  getParentId,
+  NestedOverlayStack,
+} from '../utils/nested-overlay';
+
 export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
 
 export interface DropdownInterface extends IxComponentInterface {
@@ -42,14 +48,14 @@ export interface DropdownItemWrapper {
   getDropdownItemElement(): Promise<HTMLIxDropdownItemElement>;
 }
 
-type SubmenuIds = Record<string, string[]>;
-
 class DropdownController {
-  private readonly dropdowns: Map<string, DropdownInterface> = new Map<
-    string,
-    DropdownInterface
-  >();
-  private submenuIds: SubmenuIds = {};
+  private readonly stack = new NestedOverlayStack<DropdownInterface>(
+    {
+      blocksOutsideDismiss: (dropdown) =>
+        dropdown.closeBehavior === 'inside' || dropdown.closeBehavior === false,
+    },
+    (dropdown) => this.dismiss(dropdown)
+  );
 
   private isWindowListenerActive = false;
 
@@ -57,7 +63,7 @@ class DropdownController {
     if (!this.isWindowListenerActive) {
       this.addOverlayListeners();
     }
-    this.dropdowns.set(dropdown.getId(), dropdown);
+    this.stack.connect(dropdown);
 
     if (dropdown.discoverAllSubmenus) {
       this.discoverSubmenus();
@@ -65,57 +71,42 @@ class DropdownController {
   }
 
   disconnected(dropdown: DropdownInterface) {
-    const id = dropdown.getId();
-    this.removeFromSubmenuIds(id);
-    this.dropdowns.delete(id);
+    this.stack.disconnect(dropdown);
   }
 
   removeFromSubmenuIds(id: string) {
-    this.dropdowns.forEach((dropdown) => {
-      const submenuIds = this.submenuIds[dropdown.getId()];
-      if (submenuIds) {
-        const index = submenuIds.indexOf(id);
-        if (index > -1) {
-          submenuIds.splice(index, 1);
-        }
-      }
-    });
-
-    delete this.submenuIds[id];
+    this.stack.removeFromHierarchy(id);
   }
 
   getDropdownById(id: string) {
-    return this.dropdowns.get(id);
+    return this.stack.get(id);
   }
 
   discoverSubmenus() {
-    this.dropdowns.forEach((dropdown) => {
+    this.stack.forEach((dropdown) => {
       dropdown.discoverSubmenu();
     });
   }
 
   present(dropdown: DropdownInterface) {
     if (!dropdown.isPresent() && dropdown.willPresent?.()) {
-      this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
+      this.stack.setChildIds(
+        dropdown.getId(),
+        dropdown.getAssignedSubmenuIds()
+      );
       dropdown.present();
     }
   }
 
   dismissChildren(uid: string) {
-    const childIds = this.submenuIds[uid] || [];
-    for (const id of childIds) {
-      const dropdown = this.dropdowns.get(id);
-      if (dropdown) {
-        this.dismiss(dropdown);
-      }
-    }
+    this.stack.dismissChildren(uid);
   }
 
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss?.()) {
-      this.dismissChildren(dropdown.getId());
+      this.stack.dismissChildren(dropdown.getId());
       dropdown.dismiss();
-      delete this.submenuIds[dropdown.getId()];
+      this.stack.deleteChildIdsEntry(dropdown.getId());
     }
   }
 
@@ -123,69 +114,22 @@ class DropdownController {
     ignoreBehaviorForIds: string[] = [],
     ignoreRelatedDropdowns = false
   ) {
-    this.dropdowns.forEach((dropdown) => {
-      const preventClosing =
-        dropdown.closeBehavior === 'inside' || dropdown.closeBehavior === false;
-
-      const shouldIgnore = ignoreBehaviorForIds.includes(dropdown.getId());
-      const path = this.buildComposedPath(dropdown.getId(), new Set<string>());
-
-      if (ignoreBehaviorForIds.length > 0 && ignoreRelatedDropdowns) {
-        let skipRelatedDropdown = false;
-
-        ignoreBehaviorForIds.forEach((id) => {
-          if (path.has(id)) {
-            skipRelatedDropdown = true;
-            return;
-          }
-        });
-
-        if (!skipRelatedDropdown) {
-          return;
-        }
-      }
-
-      if (!shouldIgnore && preventClosing) {
-        return;
-      }
-
-      this.dismiss(dropdown);
+    this.stack.dismissAll({
+      ignorePolicyForIds: ignoreBehaviorForIds,
+      ignoreRelatedInHierarchy: ignoreRelatedDropdowns,
     });
   }
 
   dismissOthers(uid: string) {
-    let path = this.buildComposedPath(uid, new Set<string>());
-    path.add(uid);
-
-    this.dropdowns.forEach((dropdown) => {
-      if (
-        dropdown.closeBehavior !== 'inside' &&
-        dropdown.closeBehavior !== false &&
-        !path.has(dropdown.getId())
-      ) {
-        this.dismiss(dropdown);
-      }
-    });
+    this.stack.dismissOthers(uid);
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
-    for (let eventTarget of eventTargets) {
-      if (eventTarget instanceof HTMLElement) {
-        if (eventTarget.hasAttribute('data-ix-dropdown-trigger')) {
-          return eventTarget;
-        }
-      }
-    }
-
-    return;
+    return findTriggerInPath(eventTargets, 'data-ix-dropdown-trigger');
   }
 
   getParentDropdownId(dropdownId: string) {
-    for (const ruleKey of Object.keys(this.submenuIds)) {
-      if (this.submenuIds[ruleKey].includes(dropdownId)) {
-        return ruleKey;
-      }
-    }
+    return getParentId(dropdownId, this.stack.getChildIdsByParent());
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
@@ -193,20 +137,6 @@ class DropdownController {
       (element: EventTarget) =>
         (element as HTMLElement).tagName === 'IX-DROPDOWN'
     );
-  }
-
-  private buildComposedPath(id: string, path: Set<string>): Set<string> {
-    if (this.submenuIds[id]) {
-      path.add(id);
-    }
-
-    for (const ruleKey of Object.keys(this.submenuIds)) {
-      if (this.submenuIds[ruleKey].includes(id)) {
-        this.buildComposedPath(ruleKey, path).forEach((key) => path.add(key));
-      }
-    }
-
-    return path;
   }
 
   private addOverlayListeners() {
@@ -223,7 +153,7 @@ class DropdownController {
 
     window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        this.dismissAll([...this.dropdowns.keys()]);
+        this.dismissAll(this.stack.keys());
       }
     });
   }
