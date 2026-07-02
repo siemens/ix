@@ -31,6 +31,7 @@ type Story = StoryObj;
  */
 const openModal = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const modal = canvasElement.querySelector('ix-modal') as HTMLIxModalElement | null;
+  await customElements.whenDefined('ix-modal');
   await modal?.showModal();
 };
 export const Default: Story = {
