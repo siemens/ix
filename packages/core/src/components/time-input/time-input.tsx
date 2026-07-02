@@ -152,7 +152,7 @@ export class TimeInput
   @Watch('required')
   async watchRequiredPropHandler() {
     await syncRequiredValidationClass(this.hostElement, this);
-    this.syncValidityToFormInternals();
+    this.syncFormInternalsValidity();
   }
 
   @Listen('invalid')
@@ -415,7 +415,7 @@ export class TimeInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
-    this.syncValidityToFormInternals();
+    this.syncFormInternalsValidity();
   }
 
   private updatePaddings() {
@@ -458,7 +458,7 @@ export class TimeInput
         this.syncPickerTimeFromValue();
       },
     });
-    this.syncValidityToFormInternals();
+    this.syncFormInternalsValidity();
   }
 
   /**
@@ -482,7 +482,7 @@ export class TimeInput
     return reportFieldValidity(this, hasInvalidInput);
   }
 
-  private syncValidityToFormInternals(): void {
+  private syncFormInternalsValidity(): void {
     syncCustomInputValidity(
       this.formInternals,
       this._hasInvalidInput,
@@ -565,7 +565,7 @@ export class TimeInput
     } else {
       this.invalidReason = undefined;
       this._reportValidityCalled = false;
-      // Clear validation classes when value becomes valid
+
       this.hostElement.classList.remove(
         'ix-invalid--required',
         'ix-invalid--validity-invalid',
@@ -574,9 +574,9 @@ export class TimeInput
       await syncRequiredValidationClass(this.hostElement, this);
     }
 
-    this.emitValidityStateChangeIfChanged();
     this.syncPickerTimeFromValue();
-    this.syncValidityToFormInternals();
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
   }
 
   private async handleEmptyInput(value: string): Promise<void> {
@@ -589,8 +589,8 @@ export class TimeInput
       'ix-invalid--validity-patternMismatch'
     );
 
-    const suppressValidation = await shouldSuppressInternalValidation(this);
-    const shouldShowRequired = suppressValidation
+    const suppress = await shouldSuppressInternalValidation(this);
+    const shouldShowRequired = suppress
       ? this._reportValidityCalled && !!this.required
       : this.touched && !!this.required;
 
@@ -600,16 +600,13 @@ export class TimeInput
     );
 
     this.updateFormInternalValue(value);
-    this.syncPickerTimeFromValue();
-    this.syncValidityToFormInternals();
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    this.emitSuppressedValidationChange(value);
   }
 
   private emitSuppressedValidationChange(value: string): void {
     this.syncPickerTimeFromValue();
-    this.syncValidityToFormInternals();
-    this.emitValidityStateChangeIfChanged();
+    this.syncFormInternalsValidity();
+    emitPickerValidityState(this);
     this.valueChange.emit(value);
   }
 
@@ -628,12 +625,6 @@ export class TimeInput
       'ix-invalid--validity-patternMismatch'
     );
     this.updateFormInternalValue(value);
-
-    if (!hasInvalidInput) {
-      this.closeDropdown();
-      focusInputIfKeyboardMode(this.inputElementRef.current);
-    }
-
     this.emitSuppressedValidationChange(value);
   }
 
@@ -651,13 +642,13 @@ export class TimeInput
     this.emitSuppressedValidationChange(value);
   }
 
-  private validateInSuppressedMode(value: string): void {
+  private validateInReportValidityMode(value: string): void {
     const validity = this.validateNonEmptyValue(value);
     const hasInvalidInput = !!validity?.isInputInvalid;
-
     this._hasInvalidInput = hasInvalidInput;
 
-    if (!this._reportValidityCalled) {
+    const reportValidityWasNotCalled = !this._reportValidityCalled;
+    if (reportValidityWasNotCalled) {
       this.acceptValidAfterReportValidity(
         value,
         hasInvalidInput,
@@ -691,14 +682,9 @@ export class TimeInput
       this.invalidReason = undefined;
       await syncRequiredValidationClass(this.hostElement, this);
       this.updateFormInternalValue(value);
-      this.closeDropdown();
-      focusInputIfKeyboardMode(this.inputElementRef.current);
     }
 
-    this.syncPickerTimeFromValue();
-    this.syncValidityToFormInternals();
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    this.emitSuppressedValidationChange(value);
   }
 
   async onInput(value: string) {
@@ -714,7 +700,7 @@ export class TimeInput
 
     const suppressValidation = await shouldSuppressInternalValidation(this);
     if (suppressValidation) {
-      this.validateInSuppressedMode(value);
+      this.validateInReportValidityMode(value);
       return;
     }
 
@@ -841,10 +827,6 @@ export class TimeInput
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
-  }
-
-  private emitValidityStateChangeIfChanged() {
-    return emitPickerValidityState(this);
   }
 
   /** @internal */
