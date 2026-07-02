@@ -31,25 +31,46 @@ describe('ix-tooltip', () => {
     expect(showPopover).not.toHaveBeenCalled();
   });
 
-  it('does not call hidePopover when the popover is not open', async () => {
+  it('does not call hidePopover when the tooltip was never shown', async () => {
     const { root, waitForChanges } = await render(
       <ix-tooltip show-delay={0}></ix-tooltip>
     );
     const tooltip = root as HTMLIxTooltipElement;
     const dialog = tooltip.shadowRoot!.querySelector('dialog')!;
-    dialog.showPopover = vi.fn();
     const hidePopover = vi.fn();
     dialog.hidePopover = hidePopover;
-
-    const anchor = document.createElement('div');
-    await tooltip.showTooltip(anchor);
-    await flushTimeout();
-    await waitForChanges();
 
     await tooltip.hideTooltip(0);
     await flushTimeout();
     await waitForChanges();
 
     expect(hidePopover).not.toHaveBeenCalled();
+  });
+
+  it('does not re-call showPopover when switching anchors while visible', async () => {
+    const { root, waitForChanges } = await render(
+      <ix-tooltip show-delay={0}></ix-tooltip>
+    );
+    const tooltip = root as HTMLIxTooltipElement;
+    const dialog = tooltip.shadowRoot!.querySelector('dialog')!;
+    const showPopover = vi.fn();
+    dialog.showPopover = showPopover;
+    dialog.hidePopover = vi.fn();
+
+    const anchorA = document.createElement('div');
+    document.body.append(anchorA);
+    await tooltip.showTooltip(anchorA);
+    await flushTimeout();
+    await waitForChanges();
+
+    expect(showPopover).toHaveBeenCalledTimes(1);
+
+    const anchorB = document.createElement('div');
+    document.body.append(anchorB);
+    await tooltip.showTooltip(anchorB);
+    await flushTimeout();
+    await waitForChanges();
+
+    expect(showPopover).toHaveBeenCalledTimes(1);
   });
 });

@@ -121,11 +121,14 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
-      if (!dialog.isConnected || this.isPopoverOpen(dialog)) {
+      if (!dialog.isConnected) {
         return;
       }
+      const wasVisible = this.visible;
       this.setAnchorElement(anchorElement);
-      dialog.showPopover();
+      if (!wasVisible) {
+        dialog.showPopover();
+      }
       this.applyTooltipPosition(anchorElement, dialog);
       this.registerTooltipListener(dialog);
     }, this.showDelay);
@@ -147,23 +150,14 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
+      const wasVisible = this.visible;
       this.setAnchorElement();
-      if (this.isPopoverOpen(dialog)) {
+      if (wasVisible) {
         dialog.hidePopover();
       }
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
     }, hideDelay);
-  }
-
-  private isPopoverOpen(dialog: HTMLElement) {
-    try {
-      return dialog.matches(':popover-open');
-    } catch {
-      // Engines without :popover-open support (e.g. jsdom) throw on the
-      // selector; treat the popover as not open in that case.
-      return false;
-    }
   }
 
   private setAnchorElement(anchorElement?: Element) {
