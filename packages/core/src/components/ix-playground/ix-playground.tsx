@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Component, Host, h } from '@stencil/core';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-playground',
@@ -14,7 +15,30 @@ import { Component, Host, h } from '@stencil/core';
   shadow: false,
 })
 export class IxPlayground {
+  buttonRef = makeRef<HTMLIxButtonElement>();
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-button ref={this.buttonRef}>Button</ix-button>
+        <ix-dropdown
+          trigger={this.buttonRef.waitForCurrent()}
+          navigationMode="roving-tabindex"
+        >
+          <ix-dropdown-item>Test</ix-dropdown-item>
+          <ix-dropdown-item>Test2</ix-dropdown-item>
+          <ix-dropdown-item>Test3</ix-dropdown-item>
+        </ix-dropdown>
+
+        <ix-dropdown-button
+          label="Dropdown Button"
+          navigationMode="roving-tabindex"
+        >
+          <button data-ix-roving-item>Test</button>
+          <button data-ix-roving-item>Test</button>
+          <button data-ix-roving-item>Test</button>
+        </ix-dropdown-button>
+      </Host>
+    );
   }
 }

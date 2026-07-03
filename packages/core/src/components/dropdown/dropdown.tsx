@@ -61,7 +61,12 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import { configureKeyboardInteraction } from './dropdown-focus';
+import {
+  clearRovingTabindex,
+  configureKeyboardInteraction,
+  createRovingTabindexInteraction,
+  initRovingTabindex,
+} from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
@@ -154,6 +159,25 @@ export class Dropdown
    * @since 5.0.0
    */
   @Prop() focusCheckedItem: boolean = false;
+
+  /**
+   * Controls how keyboard navigation moves focus between dropdown items.
+   *
+   * - `active-descendant`: DOM focus stays on the trigger/anchor element while a
+   *   visual focus indicator moves between the items. Consumers can expose the
+   *   active item through `aria-activedescendant`.
+   * - `roving-tabindex`: real DOM focus is moved to each item using a roving
+   *   `tabindex` (`0` for the active item, `-1` for the others). No
+   *   `aria-activedescendant` is required because the focused item is announced
+   *   directly. Besides the built-in item components, arbitrary focusable
+   *   elements (e.g. a native `<button>`) can opt into this navigation by adding
+   *   the `data-ix-roving-item` attribute; such native elements keep their own
+   *   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+   *
+   * @since 5.1.0
+   */
+  @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
+    'active-descendant';
 
   /**
    * Keys that will open the dropdown when the trigger is focused
@@ -262,6 +286,7 @@ export class Dropdown
   private assignedSubmenu: string[] = [];
   private keyboardNavigationCleanup?: () => void;
   private focusUtilities?: FocusTrapResult;
+  private suppressTriggerFocusOnHide = false;
 
   override connectedCallback(): void {
     dropdownController.connected(this);
@@ -327,6 +352,16 @@ export class Dropdown
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
+  private get isRovingTabindex() {
+    return this.navigationMode === 'roving-tabindex';
+  }
+
+  private get itemsHost(): HTMLElement {
+    return (this.forwardQueryElement ??
+      this.focusHost ??
+      this.hostElement) as HTMLElement;
+  }
+
   get slotElement() {
     return this.hostElement.shadowRoot!.querySelector('slot');
   }
@@ -369,6 +404,13 @@ export class Dropdown
           return;
         }
 
+        if (this.isRovingTabindex) {
+          initRovingTabindex(element, 'first', {
+            focusCheckedItem: this.focusCheckedItem,
+          });
+          return;
+        }
+
         focusFirstDescendant(element, undefined, {
           focusCheckedItem: this.focusCheckedItem,
         });
@@ -387,6 +429,11 @@ export class Dropdown
           return;
         }
 
+        if (this.isRovingTabindex) {
+          initRovingTabindex(element, 'last');
+          return;
+        }
+
         focusLastDescendant(element);
       });
 
@@ -398,10 +445,6 @@ export class Dropdown
       return;
     }
 
-    if (this.show) {
-      return;
-    }
-
     const navigationKeys = this.keyboardActivationKeys ?? [
       'Home',
       'End',
@@ -410,6 +453,35 @@ export class Dropdown
       ' ',
       'Enter',
     ];
+
+    if (this.show) {
+      // In roving-tabindex mode the dropdown may have been opened via mouse, so
+      // DOM focus can still be on the trigger. Move focus into the items so
+      // subsequent arrow keys are handled by the roving keyboard interaction.
+      // Only act when the key actually originated on the trigger itself: when a
+      // trigger is an ancestor of the items (e.g. ix-dropdown-button) the key
+      // would otherwise bubble up from an already focused item and reset the
+      // roving position.
+      const originatesFromTrigger =
+        event.target === this.triggerElement ||
+        event.target === this.anchorElement;
+
+      if (
+        originatesFromTrigger &&
+        this.isRovingTabindex &&
+        !this.disableFocusHandling &&
+        !event.altKey &&
+        navigationKeys.includes(event.key)
+      ) {
+        if (event.key === 'ArrowUp' || event.key === 'End') {
+          focusLast(this.itemsHost);
+        } else {
+          focusFirst(this.itemsHost);
+        }
+        event.preventDefault();
+      }
+      return;
+    }
 
     if (!navigationKeys.includes(event.key)) {
       return;
@@ -632,22 +704,38 @@ export class Dropdown
     await this.resolveAnchorElement();
     this.registerKeyListener();
     if (!this.disableFocusHandling && !this.callbackFocusElement) {
+      const getItemsHost = () => this.itemsHost;
+
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        () => this.forwardQueryElement ?? this.focusHost ?? this.hostElement,
+        getItemsHost,
         {
-          getEventListenerTarget: () =>
-            (this.triggerElement as HTMLElement) ??
-            (this.anchorElement as HTMLElement),
+          // In roving-tabindex mode DOM focus moves onto the items, so keydown
+          // events bubble to the items host. In active-descendant mode focus
+          // stays on the trigger, so the trigger is the listener target.
+          getEventListenerTarget: this.isRovingTabindex
+            ? getItemsHost
+            : () =>
+                (this.triggerElement as HTMLElement) ??
+                (this.anchorElement as HTMLElement),
           onItemActivation: (event, activeElement) => {
             event.preventDefault();
             activeElement?.click();
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
+          ...(this.isRovingTabindex
+            ? {
+                ...createRovingTabindexInteraction(getItemsHost),
+                // In roving mode focus lives on the items. Tab must leave the
+                // dropdown (native tab order already skips the inactive
+                // `tabindex="-1"` items) and close it, instead of being trapped.
+                onTabKey: () => this.closeAndReleaseFocus(),
+              }
+            : {}),
         }
       );
     }
 
-    if (!this.disableFocusTrap) {
+    if (!this.disableFocusTrap && !this.isRovingTabindex) {
       addFocusTrap(
         this.focusHost ?? this.hostElement,
         this.focusTrapOptions
@@ -722,16 +810,30 @@ export class Dropdown
     }
   }
 
+  private closeAndReleaseFocus() {
+    // Let the native Tab move focus to the next element in the tab order and
+    // avoid pulling focus back onto the trigger while the dropdown closes.
+    this.suppressTriggerFocusOnHide = true;
+    dropdownController.dismiss(this);
+  }
+
   private cleanupOnHide() {
     this.intersectObserverTrigger?.disconnect();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.focusUtilities?.destroy();
+
+    if (this.isRovingTabindex) {
+      clearRovingTabindex(this.itemsHost);
+    }
+
     this.resetForwardQueryElement();
 
     removeVisibleFocus();
 
-    if (!this.disableFocusTrap && hasKeyboardMode()) {
+    if (this.suppressTriggerFocusOnHide) {
+      this.suppressTriggerFocusOnHide = false;
+    } else if (!this.disableFocusTrap && hasKeyboardMode()) {
       // Restore focus to trigger element
       requestAnimationFrameNoNgZone(() => {
         (this.triggerElement as HTMLElement)?.focus();
