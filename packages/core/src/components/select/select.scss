@@ -110,7 +110,7 @@
       > ix-filter-chip {
         margin: 0.1rem;
         flex-shrink: 0;
-        max-width: 6.25rem;
+        max-width: min(40%, 14rem);
 
         &.chip-measuring {
           position: absolute;

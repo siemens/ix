@@ -552,7 +552,7 @@ export class Select
     const chipsContainer = this.chipsContainerRef.current;
     if (chipsContainer) {
       this.chipsResizeObserver = new ResizeObserver(() => {
-        this.calculateChipOverflow();
+        this.handleChipsContainerResize();
       });
       this.chipsResizeObserver.observe(chipsContainer);
     }
@@ -1119,22 +1119,52 @@ export class Select
     return { visible, hidden };
   }
 
-  private calculateChipOverflow() {
+  private hasUnmeasuredSelectedChips(values: string[]) {
+    return values.some((value) => !this.chipWidths.has(value));
+  }
+
+  private getChipOverflowContext() {
     if (!this.isMultipleMode || this.shouldDisplayAllChip()) {
       this.applyOverflowState(null, []);
-      return;
+      return null;
     }
 
     const container = this.chipsContainerRef.current;
     if (!container) {
-      return;
+      return null;
     }
 
     const values = this.selectedItems.map((item) => item.value.toString());
     if (values.length === 0) {
       this.applyOverflowState(null, []);
+      return null;
+    }
+
+    return { container, values };
+  }
+
+  private handleChipsContainerResize() {
+    const context = this.getChipOverflowContext();
+    if (!context) {
       return;
     }
+
+    if (this.hasUnmeasuredSelectedChips(context.values)) {
+      // If the select was initially hidden, widths can be 0 on first render.
+      // A resize after becoming visible should trigger a re-measure pass.
+      forceUpdate(this);
+      return;
+    }
+
+    this.calculateChipOverflow(context);
+  }
+
+  private calculateChipOverflow(context = this.getChipOverflowContext()) {
+    if (!context) {
+      return;
+    }
+
+    const { container, values } = context;
 
     if (!values.every((value) => this.chipWidths.has(value))) {
       return;
