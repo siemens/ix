@@ -649,7 +649,7 @@ export class DateInput
           }}
           onBlur={(event: FocusEvent) =>
             suppressInputBlurWhenFocusMovedToPicker({
-              event: event,
+              event,
               isDropdownOpen: this.show,
               hostElement: this.hostElement,
               onBlur: () => this.handleInputBlur(),
