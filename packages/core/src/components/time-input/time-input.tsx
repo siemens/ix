@@ -58,7 +58,6 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
-  focusInputIfKeyboardMode,
   handleIconClick,
   openDropdown as openDropdownUtil,
   suppressInputBlurWhenFocusMovedToPicker,
@@ -961,7 +960,6 @@ export class TimeInput
                 this.initialValue = event.detail;
               }
               this.show = false;
-              focusInputIfKeyboardMode(this.inputElementRef.current);
             }}
           ></ix-time-picker>
         </ix-dropdown>
