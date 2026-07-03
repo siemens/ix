@@ -450,12 +450,10 @@ export class DateInput
       this.hostElement.classList.remove('ix-invalid--required');
     }
     this.updateFormInternalValue(value);
-    this.syncFormInternalsValidity();
-    emitPickerValidityState(this);
-    this.valueChange.emit(value);
+    this.emitSuppressedValidationChange(value);
   }
 
-  private emitSuppressedValidationChange(value: string): void {
+  private emitSuppressedValidationChange(value: string | undefined): void {
     this.syncFormInternalsValidity();
     emitPickerValidityState(this);
     this.valueChange.emit(value);
@@ -544,9 +542,7 @@ export class DateInput
       focusInputIfKeyboardMode(this.inputElementRef.current);
     }
 
-    this.syncFormInternalsValidity();
-    emitPickerValidityState(this);
-    this.valueChange.emit(value);
+    this.emitSuppressedValidationChange(value);
   }
 
   async onInput(value: string | undefined) {
@@ -651,9 +647,9 @@ export class DateInput
           onFocus={async () => {
             this.ixFocus.emit();
           }}
-          onBlur={(e: FocusEvent) =>
+          onBlur={(event: FocusEvent) =>
             suppressInputBlurWhenFocusMovedToPicker({
-              event: e,
+              event: event,
               isDropdownOpen: this.show,
               hostElement: this.hostElement,
               onBlur: () => this.handleInputBlur(),
