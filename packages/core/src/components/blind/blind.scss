@@ -292,4 +292,8 @@ $blind-variants: (
       border-color: var(--theme-color-ghost--active);
     }
   }
+
+  .blind-content {
+    border-width: 0;
+  }
 }
