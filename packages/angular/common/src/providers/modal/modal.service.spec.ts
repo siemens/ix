@@ -6,10 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, test, jest } from '@jest/globals';
+import { beforeEach, expect, test, jest } from '@jest/globals';
+import { closeModal, dismissModal } from '@siemens/ix';
 import { ModalService, IxActiveModal } from './';
+import { InternalIxActiveModal } from './modal-ref';
 
 jest.mock('@siemens/ix', () => ({
+  closeModal: jest.fn(),
+  dismissModal: jest.fn(),
   showModal: jest.fn(() =>
     Promise.resolve({
       onClose: {
@@ -22,6 +26,10 @@ jest.mock('@siemens/ix', () => ({
     })
   ),
 }));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 test('should create modal by templateRef', () => {
   const appRefMock = {
@@ -136,4 +144,64 @@ test('should throw TypeError if instance cannot be closed', () => {
   expect(() => modalService.close(instance)).toThrow(
     'Invalid modal instance: cannot close'
   );
+});
+
+test('should close active modal immediately when modal element exists', () => {
+  const activeModal = new InternalIxActiveModal();
+  const modalElement = { type: 'html-element' } as any;
+
+  activeModal.setModalElement(modalElement);
+  activeModal.close('close-reason');
+
+  expect(closeModal).toHaveBeenCalledWith(modalElement, 'close-reason');
+});
+
+test('should dismiss active modal immediately when modal element exists', () => {
+  const activeModal = new InternalIxActiveModal();
+  const modalElement = { type: 'html-element' } as any;
+
+  activeModal.setModalElement(modalElement);
+  activeModal.dismiss('dismiss-reason');
+
+  expect(dismissModal).toHaveBeenCalledWith(modalElement, 'dismiss-reason');
+});
+
+test('should close active modal after modal element is set', () => {
+  const activeModal = new InternalIxActiveModal();
+  const modalElement = { type: 'html-element' } as any;
+
+  expect(() => activeModal.close('close-reason')).not.toThrow();
+  expect(closeModal).not.toHaveBeenCalled();
+
+  activeModal.setModalElement(modalElement);
+
+  expect(closeModal).toHaveBeenCalledTimes(1);
+  expect(closeModal).toHaveBeenCalledWith(modalElement, 'close-reason');
+});
+
+test('should dismiss active modal after modal element is set', () => {
+  const activeModal = new InternalIxActiveModal();
+  const modalElement = { type: 'html-element' } as any;
+
+  expect(() => activeModal.dismiss('dismiss-reason')).not.toThrow();
+  expect(dismissModal).not.toHaveBeenCalled();
+
+  activeModal.setModalElement(modalElement);
+
+  expect(dismissModal).toHaveBeenCalledTimes(1);
+  expect(dismissModal).toHaveBeenCalledWith(modalElement, 'dismiss-reason');
+});
+
+test('should only run first pending active modal action', () => {
+  const activeModal = new InternalIxActiveModal();
+  const modalElement = { type: 'html-element' } as any;
+
+  activeModal.close('close-reason');
+  activeModal.dismiss('dismiss-reason');
+
+  activeModal.setModalElement(modalElement);
+
+  expect(closeModal).toHaveBeenCalledTimes(1);
+  expect(closeModal).toHaveBeenCalledWith(modalElement, 'close-reason');
+  expect(dismissModal).not.toHaveBeenCalled();
 });
