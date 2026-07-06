@@ -19,10 +19,6 @@ jest.mock('@angular/core', () => {
   return {
     ...actual,
     createComponent: jest.fn(),
-    Injector: {
-      ...actual.Injector,
-      create: jest.fn(actual.Injector.create.bind(actual.Injector)),
-    },
   };
 });
 
