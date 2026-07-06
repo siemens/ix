@@ -32,9 +32,9 @@ export type ModalContext<T> = {
 })
 export class ModalService {
   constructor(
-    private appRef: ApplicationRef,
-    private environmentInjector: EnvironmentInjector,
-    private injector: Injector
+    private readonly appRef: ApplicationRef,
+    private readonly environmentInjector: EnvironmentInjector,
+    private readonly injector: Injector
   ) {}
 
   public close<TReason = any>(
