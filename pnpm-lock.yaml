@@ -1081,6 +1081,9 @@ importers:
       '@maskito/kit':
         specifier: ^3.2.0
         version: 3.2.0(@maskito/core@3.2.0)
+      ag-grid-community:
+        specifier: ^33.3.2
+        version: 33.3.2
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -1088,6 +1091,9 @@ importers:
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
+      '@siemens/ix-aggrid':
+        specifier: workspace:*
+        version: link:../aggrid
       '@siemens/ix-icons':
         specifier: 'catalog:'
         version: 3.4.0
