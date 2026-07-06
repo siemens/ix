@@ -24,7 +24,7 @@
     "ag-grid-community": "^33.1.1",
     "ag-grid-vue3": "^33.1.1",
     "echarts": "^6.0.0",
-    "echarts-gl": "^2.0.9",
+    "echarts-gl": "^2.1.0",
     "html-test-app": "workspace:*",
     "vue": "^3.4.34",
     "vue-echarts": "~6.6.10"

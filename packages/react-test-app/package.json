@@ -22,7 +22,7 @@
     "clsx": "^1.2.1",
     "echarts": "^6.0.0",
     "echarts-for-react": "~3.0.2",
-    "echarts-gl": "^2.0.9",
+    "echarts-gl": "^2.1.0",
     "html-test-app": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

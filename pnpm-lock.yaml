@@ -270,8 +270,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       echarts-gl:
-        specifier: ^2.0.9
-        version: 2.0.9(echarts@6.0.0)
+        specifier: ^2.1.0
+        version: 2.1.0(echarts@6.0.0)
       html-test-app:
         specifier: workspace:*
         version: link:../html-test-app
@@ -385,8 +385,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       echarts-gl:
-        specifier: ^2.0.9
-        version: 2.0.9(echarts@6.0.0)
+        specifier: ^2.1.0
+        version: 2.1.0(echarts@6.0.0)
       html-test-app:
         specifier: workspace:*
         version: link:../html-test-app
@@ -1015,8 +1015,8 @@ importers:
         specifier: ~3.0.2
         version: 3.0.2(echarts@6.0.0)(react@19.1.1)
       echarts-gl:
-        specifier: ^2.0.9
-        version: 2.0.9(echarts@6.0.0)
+        specifier: ^2.1.0
+        version: 2.1.0(echarts@6.0.0)
       html-test-app:
         specifier: workspace:*
         version: link:../html-test-app
@@ -1234,8 +1234,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       echarts-gl:
-        specifier: ^2.0.9
-        version: 2.0.9(echarts@6.0.0)
+        specifier: ^2.1.0
+        version: 2.1.0(echarts@6.0.0)
       html-test-app:
         specifier: workspace:*
         version: link:../html-test-app
@@ -7004,10 +7004,10 @@ packages:
       echarts: ^3.0.0 || ^4.0.0 || ^5.0.0
       react: ^15.0.0 || >=16.0.0
 
-  echarts-gl@2.0.9:
-    resolution: {integrity: sha512-oKeMdkkkpJGWOzjgZUsF41DOh6cMsyrGGXimbjK2l6Xeq/dBQu4ShG2w2Dzrs/1bD27b2pLTGSaUzouY191gzA==}
+  echarts-gl@2.1.0:
+    resolution: {integrity: sha512-GxzAPTYJyOANbu7InkdGV7QLLpVyuQWNvN1yyEEIiqgM11ilAO2OkvPNgRdf854R9ZPt/C1HAgjO8Udrj61lOQ==}
     peerDependencies:
-      echarts: ^5.1.2
+      echarts: ^5.1.2 || ^6.0.0
 
   echarts@5.5.1:
     resolution: {integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==}
@@ -19831,11 +19831,11 @@ snapshots:
       react: 19.1.1
       size-sensor: 1.0.2
 
-  echarts-gl@2.0.9(echarts@6.0.0):
+  echarts-gl@2.1.0(echarts@6.0.0):
     dependencies:
       claygl: 1.3.0
       echarts: 6.0.0
-      zrender: 5.6.0
+      zrender: 6.0.0
 
   echarts@5.5.1:
     dependencies:
