@@ -198,8 +198,6 @@ export class Modal {
           );
           if (direct) {
             tryFocusElement(direct, { focusVisible: true });
-          } else {
-            tryFocusElement(this.dialog!, { focusVisible: true });
           }
           resolve();
         });
@@ -289,7 +287,6 @@ export class Modal {
               modal: true,
               [`modal-size-${this.size}`]: true,
             }}
-            tabIndex={-1}
             onClose={() => this.dismissModal()}
             onMouseDown={(event) => this.onMouseDown(event)}
             onMouseUp={(event) => this.onMouseUp(event)}
