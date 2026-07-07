@@ -1942,6 +1942,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton": boolean;
+        /**
           * If true the filter chip will be in readonly mode
           * @default false
          */
@@ -3538,6 +3543,12 @@ export namespace Components {
           * @default 'All'
          */
         "i18nAllSelected": string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -8558,6 +8569,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
@@ -10279,6 +10295,12 @@ declare namespace LocalJSX {
          */
         "i18nAllSelected"?: string;
         /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems"?: string;
+        /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
          */
@@ -11917,6 +11939,7 @@ declare namespace LocalJSX {
     interface IxFilterChipAttributes {
         "disabled": boolean;
         "readonly": boolean;
+        "hideCloseButton": boolean;
         "ariaLabelCloseIconButton": string;
     }
     interface IxFlipTileAttributes {
@@ -12298,6 +12321,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
+        "i18nMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;

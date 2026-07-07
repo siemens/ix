@@ -883,6 +883,7 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
     properties: {
         disabled: 'disabled',
         readonly: 'readonly',
+        hideCloseButton: 'hide-close-button',
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -1712,6 +1713,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Co
         label: 'label',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
         ariaLabelAddItem: 'aria-label-add-item',
+        i18nMoreItems: 'i18n-more-items',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',
