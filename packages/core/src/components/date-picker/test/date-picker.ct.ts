@@ -16,6 +16,17 @@ const getDateObj = async (page: Page) => {
   });
 };
 
+const getCalendarRows = async (page: Page) => {
+  return page.locator('[role="grid"] [role="row"]').evaluateAll((rows) =>
+    rows.slice(1).map((row) =>
+      Array.from(row.querySelectorAll('[role="gridcell"]')).map((cell) => {
+        const day = (cell as HTMLElement).dataset.calendarDay;
+        return day ? Number(day) : undefined;
+      })
+    )
+  );
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
@@ -29,6 +40,45 @@ regressionTest('translation', async ({ mount, page }) => {
 
   const header = page.getByText('Januar').nth(0);
   await expect(header).toHaveCount(1);
+});
+
+regressionTest.describe('calendar layout', () => {
+  regressionTest(
+    'renders accurate rows with default week start',
+    async ({ mount, page }) => {
+      await mount(`<ix-date-picker from="2023/08/01"></ix-date-picker>`);
+
+      const datePicker = page.locator(DatePickerSelector);
+      await expect(datePicker).toHaveClass(/\bhydrated\b/);
+      expect(await getCalendarRows(page)).toEqual([
+        [undefined, 1, 2, 3, 4, 5, 6],
+        [7, 8, 9, 10, 11, 12, 13],
+        [14, 15, 16, 17, 18, 19, 20],
+        [21, 22, 23, 24, 25, 26, 27],
+        [28, 29, 30, 31, undefined, undefined, undefined],
+      ]);
+    }
+  );
+
+  regressionTest(
+    'renders accurate rows with custom week start',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/08/01" week-start-index="2"></ix-date-picker>`
+      );
+
+      const datePicker = page.locator(DatePickerSelector);
+      await expect(datePicker).toHaveClass(/\bhydrated\b/);
+      expect(await getCalendarRows(page)).toEqual([
+        [undefined, undefined, undefined, undefined, undefined, undefined, 1],
+        [2, 3, 4, 5, 6, 7, 8],
+        [9, 10, 11, 12, 13, 14, 15],
+        [16, 17, 18, 19, 20, 21, 22],
+        [23, 24, 25, 26, 27, 28, 29],
+        [30, 31, undefined, undefined, undefined, undefined, undefined],
+      ]);
+    }
+  );
 });
 
 regressionTest.describe('date picker tests single', () => {
