@@ -419,7 +419,7 @@ regressionTest(
 );
 
 regressionTest(
-  'show category if anchor-wrapped items are focused',
+  'should open dropdown and move focus across items wrapped with <a> tags via keyboard',
   async ({ mount, page }) => {
     await mount(`
       <ix-application>
