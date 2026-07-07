@@ -10,7 +10,6 @@ import {
   ApplicationRef,
   createComponent,
   ElementRef,
-  EnvironmentInjector,
   Injectable,
   Injector,
   TemplateRef,
@@ -33,7 +32,6 @@ export type ModalContext<T> = {
 export class ModalService {
   constructor(
     private readonly appRef: ApplicationRef,
-    private readonly environmentInjector: EnvironmentInjector,
     private readonly injector: Injector
   ) {}
 
@@ -90,7 +88,7 @@ export class ModalService {
     });
 
     const instance = createComponent(componentType, {
-      environmentInjector: this.environmentInjector,
+      environmentInjector: this.appRef.injector,
       elementInjector: elementInjector,
     });
     this.appRef.attachView(instance.hostView);
