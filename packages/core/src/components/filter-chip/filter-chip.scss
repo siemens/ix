@@ -57,10 +57,7 @@
   cursor: default;
 }
 
-:host(.readonly) {
-  padding-right: vars.$small-space;
-}
-
+:host(.readonly),
 :host(.hide-close-button) {
   padding-right: vars.$small-space;
 }
