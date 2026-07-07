@@ -622,12 +622,6 @@ export class Menu {
   }
 
   private focusMenuNavigationContainer() {
-    const shadowRoot = this.hostElement.shadowRoot;
-
-    if (!shadowRoot) {
-      return;
-    }
-
     const menuNavigation = this.menuNavigationContainer;
 
     if (!menuNavigation) {
