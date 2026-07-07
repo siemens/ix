@@ -293,9 +293,10 @@ export class Select
   private readonly chipWidths = new Map<string, number>();
   private readonly overflowChipRef = makeRef<HTMLElement>();
   private readonly chipsContainerRef = makeRef<HTMLElement>();
+  private readonly clearButtonRef = makeRef<HTMLElement>();
 
   private readonly chipHorizontalMargin = 4;
-  private readonly triggerMinWidth = 48;
+  private readonly triggerMinWidth = 78;
   private readonly overflowChipFallbackWidth = 52;
   private overflowChipWidth = 0;
   private chipsResizeObserver?: ResizeObserver;
@@ -1170,7 +1171,12 @@ export class Select
       return;
     }
 
-    const available = container.clientWidth - this.triggerMinWidth;
+    const clearButtonWidth =
+      this.allowClear && this.clearButtonRef.current
+        ? this.clearButtonRef.current.offsetWidth
+        : 0;
+    const available =
+      container.clientWidth - this.triggerMinWidth - clearButtonWidth;
     if (this.canShowAllChips(values, available)) {
       this.applyOverflowState(null, []);
       return;
@@ -1477,6 +1483,7 @@ export class Select
                       variant="subtle-tertiary"
                       oval
                       size="16"
+                      ref={this.clearButtonRef}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
