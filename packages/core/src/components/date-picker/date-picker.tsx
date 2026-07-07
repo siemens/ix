@@ -267,6 +267,7 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames!: string[];
+  @State() dayNamesFull!: string[];
   @State() monthNames!: string[];
   @State() focusedDay: number = 1;
 
@@ -489,16 +490,50 @@ export class DatePicker
   }
 
   private setTranslations() {
-    this.dayNames = this.rotateWeekDayNames(
+    const shortDayNames = this.rotateWeekDayNames(
       Info.weekdays('short', {
         locale: this.locale,
       }),
       this.weekStartIndex
     );
 
+    const narrowDayNames = this.rotateWeekDayNames(
+      Info.weekdays('narrow', {
+        locale: this.locale,
+      }),
+      this.weekStartIndex
+    );
+
+    this.dayNamesFull = this.rotateWeekDayNames(
+      Info.weekdays('long', {
+        locale: this.locale,
+      }),
+      this.weekStartIndex
+    );
+
+    this.dayNames = this.useNarrowWeekdayLabels(shortDayNames)
+      ? narrowDayNames
+      : shortDayNames;
+
     this.monthNames = Info.months('long', {
       locale: this.locale,
     });
+  }
+
+  private useNarrowWeekdayLabels(weekdays: string[]): boolean {
+    return weekdays.some((weekday) => this.getGraphemeLength(weekday) > 6);
+  }
+
+  private getGraphemeLength(value: string): number {
+    if (typeof Intl.Segmenter === 'undefined') {
+      return [...value].length;
+    }
+
+    const segmenter = new Intl.Segmenter(this.locale, {
+      granularity: 'grapheme',
+    });
+
+    return [...segmenter.segment(value)].length;
   }
 
   /**
@@ -1030,11 +1065,13 @@ export class DatePicker
               {this.showWeekNumbers && (
                 <div class="calendar-item week-day" role="columnheader"></div>
               )}
-              {this.dayNames.map((name) => (
+              {this.dayNames.map((name, index) => (
                 <div
                   key={name}
                   class="calendar-item week-day"
                   role="columnheader"
+                  aria-label={this.dayNamesFull[index]}
+                  title={this.dayNamesFull[index]}
                 >
                   {name}
                 </div>
