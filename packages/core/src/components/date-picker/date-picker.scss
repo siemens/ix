@@ -265,10 +265,6 @@
         border: none;
         background: none;
         cursor: initial;
-
-        .overflow {
-          @include text-truncation.ellipsis;
-        }
       }
 
       &.empty-day {

@@ -490,7 +490,7 @@ export class DatePicker
 
   private setTranslations() {
     this.dayNames = this.rotateWeekDayNames(
-      Info.weekdays('long', {
+      Info.weekdays('short', {
         locale: this.locale,
       }),
       this.weekStartIndex
@@ -1036,7 +1036,7 @@ export class DatePicker
                   class="calendar-item week-day"
                   role="columnheader"
                 >
-                  <div class="overflow">{name.slice(0, 3)}</div>
+                  {name}
                 </div>
               ))}
             </div>
