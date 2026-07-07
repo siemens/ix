@@ -50,7 +50,11 @@ test('should create modal by templateRef', () => {
     rootNodes: [{}],
     detectChanges: jest.fn(),
   }));
-  const modalService = new ModalService(appRefMock as any, {} as any);
+  const modalService = new ModalService(
+    appRefMock as any,
+    {} as any,
+    {} as any
+  );
   modalService.open({
     content: {
       createEmbeddedView: createEmbeddedViewMock,
@@ -73,7 +77,6 @@ test('should create modal by templateRef', () => {
 test('should create modal by component type', async () => {
   const appRefMock = {
     attachView: jest.fn(),
-    injector: {},
   };
   const nativeElement: { style: { display?: string } } = { style: {} };
   const hostView = {
@@ -88,11 +91,16 @@ test('should create modal by component type', async () => {
       })),
     },
   };
+  const environmentInjectorMock = {};
   const injectorMock = {};
 
   jest.mocked(createComponent).mockReturnValue(componentRef as any);
 
-  const modalService = new ModalService(appRefMock as any, injectorMock as any);
+  const modalService = new ModalService(
+    appRefMock as any,
+    environmentInjectorMock as any,
+    injectorMock as any
+  );
 
   class TestComponent {
     foo = 'bar';
@@ -109,7 +117,7 @@ test('should create modal by component type', async () => {
     .calls as any;
 
   expect(createComponent).toHaveBeenCalledWith(TestComponent, {
-    environmentInjector: appRefMock.injector as any,
+    environmentInjector: environmentInjectorMock as any,
     elementInjector: createOptions.elementInjector,
   });
   expect(componentType).toBe(TestComponent);
@@ -137,7 +145,7 @@ test('should close modal instance with reason and mark as closed', () => {
       closed: false,
     },
   };
-  const modalService = new ModalService({} as any, {} as any);
+  const modalService = new ModalService({} as any, {} as any, {} as any);
   const reason = 'user-dismissed';
   modalService.close(instance, reason);
   expect(closeModalMock).toHaveBeenCalledWith(reason);
@@ -148,7 +156,7 @@ test('should throw TypeError if instance cannot be closed', () => {
   const instance = {
     htmlElement: {},
   };
-  const modalService = new ModalService({} as any, {} as any);
+  const modalService = new ModalService({} as any, {} as any, {} as any);
 
   expect(() => modalService.close(instance)).toThrow(TypeError);
   expect(() => modalService.close(instance)).toThrow(
