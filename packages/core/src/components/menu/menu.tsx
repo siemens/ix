@@ -628,9 +628,7 @@ export class Menu {
       return;
     }
 
-    const menuNavigation = shadowRoot.querySelector(
-      '.menu-navigation'
-    ) as HTMLDivElement | null;
+    const menuNavigation = this.menuNavigationContainer;
 
     if (!menuNavigation) {
       return;
