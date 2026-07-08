@@ -31,7 +31,7 @@
     "storybook": "^10.1.11",
     "typescript": "~5.6.2",
     "vite": "catalog:",
-    "vitest": "^4.0.17",
+    "vitest": "^3.2.6",
     "playwright": "catalog:",
     "@vitest/browser-playwright": "^4.0.17",
     "@vitest/coverage-v8": "^4.0.17"
