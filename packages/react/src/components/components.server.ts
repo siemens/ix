@@ -883,6 +883,7 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
     properties: {
         disabled: 'disabled',
         readonly: 'readonly',
+        hideCloseButton: 'hide-close-button',
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -1161,6 +1162,8 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents, Componen
         expand: 'expand',
         startExpanded: 'start-expanded',
         pinned: 'pinned',
+        i18nAriaLabelMenu: 'i18n-aria-label-menu',
+        i18nNavigationHint: 'i18n-navigation-hint',
         i18nLegal: 'i18n-legal',
         i18nSettings: 'i18n-settings',
         i18nToggleTheme: 'i18n-toggle-theme',
@@ -1288,7 +1291,8 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         href: 'href',
         target: 'target',
         rel: 'rel',
-        isCategory: 'is-category'
+        isCategory: 'is-category',
+        menuCategoryLabel: 'menu-category-label'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMenuItem as StencilReactComponent<IxMenuItemElement, IxMenuItemEvents, Components.IxMenuItem>,
@@ -1712,6 +1716,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Co
         label: 'label',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
         ariaLabelAddItem: 'aria-label-add-item',
+        i18nMoreItems: 'i18n-more-items',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',

@@ -1942,6 +1942,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton": boolean;
+        /**
           * If true the filter chip will be in readonly mode
           * @default false
          */
@@ -2401,6 +2406,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu": string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -2415,6 +2426,12 @@ export namespace Components {
           * @default 'About & legal information'
          */
         "i18nLegal": string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint": string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -2605,6 +2622,7 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0
@@ -2675,6 +2693,7 @@ export namespace Components {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -2684,6 +2703,7 @@ export namespace Components {
           * @since 4.0.0
          */
         "rel"?: string;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0
@@ -3538,6 +3558,12 @@ export namespace Components {
           * @default 'All'
          */
         "i18nAllSelected": string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -8558,6 +8584,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
@@ -9049,6 +9080,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu"?: string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -9063,6 +9100,12 @@ declare namespace LocalJSX {
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint"?: string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -9355,6 +9398,7 @@ declare namespace LocalJSX {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -10278,6 +10322,12 @@ declare namespace LocalJSX {
           * @default 'All'
          */
         "i18nAllSelected"?: string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -11917,6 +11967,7 @@ declare namespace LocalJSX {
     interface IxFilterChipAttributes {
         "disabled": boolean;
         "readonly": boolean;
+        "hideCloseButton": boolean;
         "ariaLabelCloseIconButton": string;
     }
     interface IxFlipTileAttributes {
@@ -12038,6 +12089,8 @@ declare namespace LocalJSX {
         "expand": boolean;
         "startExpanded": boolean;
         "pinned": boolean;
+        "i18nAriaLabelMenu": string;
+        "i18nNavigationHint": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
@@ -12104,6 +12157,7 @@ declare namespace LocalJSX {
         "target": AnchorTarget;
         "rel": string;
         "isCategory": boolean;
+        "menuCategoryLabel": string;
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;
@@ -12298,6 +12352,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
+        "i18nMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;
