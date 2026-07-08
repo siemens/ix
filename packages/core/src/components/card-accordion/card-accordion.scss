@@ -90,15 +90,10 @@
   }
 
   .expand-content.show .expand-content-body {
-    display: none;
-    overflow: hidden;
-    color: var(--theme-color-std-text);
-  }
-
-  .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
     height: calc(14.75rem - 1rem);
+    color: var(--theme-color-std-text);
   }
 
   .expand-content-footer {
@@ -108,9 +103,6 @@
     left: 0;
     width: 100%;
     height: 1rem;
-
-    margin-top: auto;
-    margin-bottom: 0px;
 
     background-color: var(--theme-color-component-1);
     border-bottom-left-radius: var(--theme-default-border-radius);
