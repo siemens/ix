@@ -8,9 +8,12 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import type { ActionCardVariant } from './action-card.types';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
+import type { ActionCardVariant } from './action-card.types';
 
+/**
+ * @slot - Place additional non-interactive content inside the card. Avoid interactive elements (links, buttons, inputs) as the card itself is rendered as a single button.
+ */
 @Component({
   tag: 'ix-action-card',
   styleUrl: 'action-card.scss',
@@ -75,48 +78,53 @@ export class IxActionCard {
 
     return (
       <Host>
-        <ix-card
-          selected={this.selected}
-          variant={this.variant}
-          passive={this.passive}
-          class={'pointer'}
+        <button
+          type="button"
+          disabled={this.passive}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
-          role={ariaLabelledBy ? 'group' : undefined}
         >
-          <ix-card-content>
-            {this.icon ? (
-              <ix-icon
-                class={'icon'}
-                name={this.icon}
-                size="32"
-                aria-label={
-                  this.ariaLabelIcon || getFallbackLabelFromIconName(this.icon)
-                }
-              ></ix-icon>
-            ) : null}
-            <div>
-              {this.heading ? (
-                <ix-typography
-                  id="ix-action-card-heading"
-                  aria-hidden={a11yBoolean(!ariaLabelledBy)}
-                  format="h4"
-                >
-                  {this.heading}
-                </ix-typography>
+          <ix-card
+            selected={this.selected}
+            variant={this.variant}
+            passive={this.passive}
+            class={this.passive ? undefined : 'pointer'}
+          >
+            <ix-card-content>
+              {this.icon ? (
+                <ix-icon
+                  class={'icon'}
+                  name={this.icon}
+                  size="32"
+                  aria-label={
+                    this.ariaLabelIcon ||
+                    getFallbackLabelFromIconName(this.icon)
+                  }
+                ></ix-icon>
               ) : null}
-              {this.subheading ? (
-                <ix-typography
-                  format="h5"
-                  text-color={this.getSubheadingTextColor()}
-                >
-                  {this.subheading}
-                </ix-typography>
-              ) : null}
-              <slot></slot>
-            </div>
-          </ix-card-content>
-        </ix-card>
+              <div>
+                {this.heading ? (
+                  <ix-typography
+                    id="ix-action-card-heading"
+                    aria-hidden={a11yBoolean(!ariaLabelledBy)}
+                    format="h4"
+                  >
+                    {this.heading}
+                  </ix-typography>
+                ) : null}
+                {this.subheading ? (
+                  <ix-typography
+                    format="h5"
+                    text-color={this.getSubheadingTextColor()}
+                  >
+                    {this.subheading}
+                  </ix-typography>
+                ) : null}
+                <slot></slot>
+              </div>
+            </ix-card-content>
+          </ix-card>
+        </button>
       </Host>
     );
   }
