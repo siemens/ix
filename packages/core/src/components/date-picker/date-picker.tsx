@@ -532,7 +532,7 @@ export class DatePicker
   }
 
   private getGraphemeLength(value: string): number {
-    if (typeof Intl.Segmenter === 'undefined') {
+    if (Intl.Segmenter === undefined) {
       return [...value].length;
     }
 
