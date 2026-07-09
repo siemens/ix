@@ -276,6 +276,30 @@ regressionTest.describe('date picker tests single', () => {
   );
 
   regressionTest(
+    'ArrowDown on the last year extends the list without wrapping',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      const yearSelection = page.getByLabel('Select year');
+      const activeYear = yearSelection.locator('ix-dropdown-item.ix-focused');
+
+      await yearSelection.focus();
+      await page.keyboard.press('Enter');
+
+      await page.keyboard.press('End');
+      await expect
+        .poll(async () => (await activeYear.textContent())?.trim())
+        .toBe('2124');
+
+      await page.keyboard.press('ArrowDown');
+
+      await expect
+        .poll(async () => (await activeYear.textContent())?.trim())
+        .toBe('2125');
+    }
+  );
+
+  regressionTest(
     'select different date fires dateChange event',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');

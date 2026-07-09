@@ -26,6 +26,10 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import type {
+  KeyboardNavigationBoundaryContext,
+  KeyboardNavigationBoundaryDirection,
+} from '../dropdown/dropdown-focus';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -261,6 +265,9 @@ export class DatePicker
   @State() tempMonth = 0;
 
   private readonly yearDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
+
+  private readonly monthDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
 
   private readonly yearMonthSelectionDropdownRef =
@@ -904,6 +911,54 @@ export class DatePicker
     });
   }
 
+  private findYearDropdownItem(container: HTMLElement, year: number) {
+    return queryElements(container, 'ix-dropdown-item').find(
+      (item) => item.textContent?.trim() === `${year}`
+    ) as HTMLElement | undefined;
+  }
+
+  private scrollToSelectedDropdownItem(dropdownElement: HTMLElement) {
+    const selectedItem = dropdownElement.querySelector(
+      'ix-dropdown-item[checked]'
+    ) as HTMLElement;
+
+    if (!selectedItem) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      selectedItem.scrollIntoView({
+        block: 'center',
+      });
+    });
+  }
+
+  private readonly onYearDropdownBoundaryFocus = async ({
+    direction,
+  }: KeyboardNavigationBoundaryContext) => {
+    const container = this.yearDropdownButtonRef.current;
+
+    if (!container) {
+      return undefined;
+    }
+
+    const targetYear = this.getBoundaryTargetYear(direction);
+
+    if (direction === 'next') {
+      this.endYear += 5;
+    } else {
+      this.startYear -= 5;
+    }
+
+    return this.findYearDropdownItem(container, targetYear);
+  };
+
+  private getBoundaryTargetYear(
+    direction: KeyboardNavigationBoundaryDirection
+  ) {
+    return direction === 'next' ? this.endYear + 1 : this.startYear - 1;
+  }
+
   private skipFirstScrollOffset = true;
   private intersectStart = new IntersectionObserver(
     (entries) => this.intersect(entries),
@@ -940,9 +995,18 @@ export class DatePicker
                 aria-label={this.ariaLabelMonthSelection}
                 variant="tertiary"
                 label={null}
+                ref={this.monthDropdownButtonRef}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
+
+                  if (event.detail) {
+                    requestAnimationFrameNoNgZone(() => {
+                      this.scrollToSelectedDropdownItem(
+                        this.monthDropdownButtonRef.current!
+                      );
+                    });
+                  }
                 }}
               >
                 <ix-typography bold class="capitalize" slot="button-label">
@@ -954,6 +1018,8 @@ export class DatePicker
               <ix-dropdown-button
                 class="year-selector"
                 focusCheckedItem={true}
+                disableWrapFocusNavigation={true}
+                onBoundaryFocus={this.onYearDropdownBoundaryFocus}
                 aria-label={this.ariaLabelYearSelection}
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
@@ -974,20 +1040,9 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current!.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement;
-
-                      if (!selectedYearItem) {
-                        return;
-                      }
-
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
-                        });
-                      });
+                      this.scrollToSelectedDropdownItem(
+                        this.yearDropdownButtonRef.current!
+                      );
                     });
                   } else {
                     this.intersectStart.disconnect();

@@ -42,6 +42,7 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import { closestPassShadow } from '../utils/shadow-dom';
+import type { KeyboardNavigationBoundaryContext } from '../dropdown/dropdown-focus';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -100,6 +101,14 @@ export class DropdownButton
    * @since 5.0.0
    */
   @Prop() focusCheckedItem: boolean = false;
+
+  /** @internal */
+  @Prop() disableWrapFocusNavigation = false;
+
+  /** @internal */
+  @Prop() onBoundaryFocus?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
 
   /**
    * Enable Popover API rendering for dropdown.
@@ -305,6 +314,8 @@ export class DropdownButton
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
+          disableWrapFocusNavigation={this.disableWrapFocusNavigation}
+          onBoundaryFocus={this.onBoundaryFocus}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,

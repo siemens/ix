@@ -36,6 +36,14 @@ export const QUERY_CURRENT_VISIBLE_FOCUS = VALID_FOCUS_ELEMENTS.map(
     `${selector}.${IX_FOCUS_VISIBLE_ACTIVE}:not([tabindex^="-"]):not([disabled]):not([hidden])`
 ).join(', ');
 
+export type KeyboardNavigationBoundaryDirection = 'next' | 'previous';
+
+export interface KeyboardNavigationBoundaryContext {
+  direction: KeyboardNavigationBoundaryDirection;
+  items: HTMLElement[];
+  activeElement: HTMLElement | null;
+}
+
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null,
@@ -104,6 +112,10 @@ export const configureKeyboardInteraction = (
     querySelector?: string;
     activeQuerySelector?: string;
     itemTriggerKeys?: string[];
+    wrapNavigation?: boolean;
+    onBoundaryFocus?: (
+      context: KeyboardNavigationBoundaryContext
+    ) => Promise<HTMLElement | undefined>;
     beforeKeydown?: (ev: KeyboardEvent) => void;
     onItemActivation?: (
       event: KeyboardEvent,
@@ -120,6 +132,7 @@ export const configureKeyboardInteraction = (
     'Enter',
     ' ',
   ];
+  const wrapNavigation = options.wrapNavigation ?? true;
 
   const getActiveElement =
     options.getActiveElement ??
@@ -195,6 +208,30 @@ export const configureKeyboardInteraction = (
 
         // Disable movement/scroll with keyboard
         event.preventDefault();
+
+        const currentItemIndex = getIndexOfDropdownItem(
+          items,
+          activeElement,
+          activeQuerySelector
+        );
+
+        if (
+          !wrapNavigation &&
+          items.length > 0 &&
+          currentItemIndex === items.length - 1
+        ) {
+          const boundaryItem = await options.onBoundaryFocus?.({
+            direction: 'next',
+            items,
+            activeElement,
+          });
+
+          if (boundaryItem !== undefined) {
+            setItemActive(boundaryItem);
+          }
+          break;
+        }
+
         const nextItem = getNextFocusableDropdownItem(
           items,
           activeElement,
@@ -214,6 +251,26 @@ export const configureKeyboardInteraction = (
         }
         // Disable movement/scroll with keyboard
         event.preventDefault();
+
+        const currentItemIndex = getIndexOfDropdownItem(
+          items,
+          activeElement,
+          activeQuerySelector
+        );
+
+        if (!wrapNavigation && items.length > 0 && currentItemIndex === 0) {
+          const boundaryItem = await options.onBoundaryFocus?.({
+            direction: 'previous',
+            items,
+            activeElement,
+          });
+
+          if (boundaryItem !== undefined) {
+            setItemActive(boundaryItem);
+          }
+          break;
+        }
+
         const prevItem = getPreviousFocusableItem(
           items,
           activeElement,
