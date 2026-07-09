@@ -528,7 +528,11 @@ export class DatePicker
   }
 
   private useNarrowWeekdayLabels(weekdays: string[]): boolean {
-    return weekdays.some((weekday) => this.getGraphemeLength(weekday) > 6);
+    const maxGraphemeLength = 6;
+
+    return weekdays.some(
+      (weekday) => this.getGraphemeLength(weekday) > maxGraphemeLength
+    );
   }
 
   private getGraphemeLength(value: string): number {
