@@ -933,6 +933,12 @@ export class DatePicker
     });
   }
 
+  private async waitForNextAnimationFrame() {
+    await new Promise<void>((resolve) => {
+      requestAnimationFrameNoNgZone(() => resolve());
+    });
+  }
+
   private readonly onYearDropdownBoundaryFocus = async ({
     direction,
   }: KeyboardNavigationBoundaryContext) => {
@@ -950,6 +956,8 @@ export class DatePicker
       this.startYear -= 5;
     }
 
+    // Wait for the updated year range to render before resolving next focus target.
+    await this.waitForNextAnimationFrame();
     return this.findYearDropdownItem(container, targetYear);
   };
 
