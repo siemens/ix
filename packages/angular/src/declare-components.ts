@@ -6,6 +6,7 @@ export const DIRECTIVES = [
   d.IxApplication,
   d.IxApplicationHeader,
   d.IxAvatar,
+  d.IxBadge,
   d.IxBlind,
   d.IxBreadcrumb,
   d.IxBreadcrumbItem,

@@ -9,6 +9,7 @@ import { ActionCardVariant } from "./components/action-card/action-card.types";
 import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+import { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
 import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
@@ -65,6 +66,7 @@ export { ActionCardVariant } from "./components/action-card/action-card.types";
 export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+export { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
 export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
@@ -277,6 +279,103 @@ export namespace Components {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+    }
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface IxBadge {
+        /**
+          * Left-align label content. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+          * @default false
+         */
+        "alignLeft": boolean;
+        /**
+          * Accessible name for the leading icon. When unset, the icon is decorative if **label** provides visible text. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Custom background or border color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "background"?: string;
+        /**
+          * Custom text color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "badgeColor"?: string;
+        /**
+          * Add a high-contrast border on filled badges. Ignored when **outline** is `true` or **type** is `status-icon`.
+          * @since 5.2.0
+          * @default false
+         */
+        "border": boolean;
+        /**
+          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * @since 5.2.0
+          * @default false
+         */
+        "enableAnimation": boolean;
+        /**
+          * Leading icon name. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Visible text or count. Required for `label` and `counter`. Omit for `dot` and `status-icon`. Counters accept integers only (decimals truncated); values above 99 render as `99+`.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Extra horizontal offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetX": number;
+        /**
+          * Extra vertical offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetY": number;
+        /**
+          * Show the badge in outline style.
+          * @since 5.2.0
+          * @default false
+         */
+        "outline": boolean;
+        /**
+          * Position relative to the slotted anchor. Only has an effect when attached.
+          * @since 5.2.0
+          * @default 'top-after'
+         */
+        "position": BadgePosition;
+        /**
+          * Display a tooltip when the badge is standalone. By default, no tooltip is displayed. Add the attribute to use the badge label (or host `aria-label`) as the tooltip, or pass a string for custom text. Ignored when the badge is attached to an anchor.
+          * @since 5.2.0
+          * @default false
+         */
+        "tooltipText": string | boolean;
+        /**
+          * Badge type (`counter`, `label`, `dot`, or `status-icon`).
+          * @since 5.2.0
+          * @default 'counter'
+         */
+        "type": BadgeAnatomyType;
+        /**
+          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * @since 5.2.0
+          * @default 'primary'
+         */
+        "variant": BadgeVariant;
     }
     interface IxBlind {
         /**
@@ -5172,6 +5271,22 @@ declare global {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
     };
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface HTMLIxBadgeElement extends Components.IxBadge, HTMLStencilElement {
+    }
+    var HTMLIxBadgeElement: {
+        prototype: HTMLIxBadgeElement;
+        new (): HTMLIxBadgeElement;
+    };
     interface HTMLIxBlindElementEventMap {
         "collapsedChange": boolean;
     }
@@ -6755,6 +6870,7 @@ declare global {
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
+        "ix-badge": HTMLIxBadgeElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
@@ -7043,6 +7159,103 @@ declare namespace LocalJSX {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+    }
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface IxBadge {
+        /**
+          * Left-align label content. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+          * @default false
+         */
+        "alignLeft"?: boolean;
+        /**
+          * Accessible name for the leading icon. When unset, the icon is decorative if **label** provides visible text. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Custom background or border color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "background"?: string;
+        /**
+          * Custom text color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "badgeColor"?: string;
+        /**
+          * Add a high-contrast border on filled badges. Ignored when **outline** is `true` or **type** is `status-icon`.
+          * @since 5.2.0
+          * @default false
+         */
+        "border"?: boolean;
+        /**
+          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * @since 5.2.0
+          * @default false
+         */
+        "enableAnimation"?: boolean;
+        /**
+          * Leading icon name. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Visible text or count. Required for `label` and `counter`. Omit for `dot` and `status-icon`. Counters accept integers only (decimals truncated); values above 99 render as `99+`.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Extra horizontal offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetX"?: number;
+        /**
+          * Extra vertical offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetY"?: number;
+        /**
+          * Show the badge in outline style.
+          * @since 5.2.0
+          * @default false
+         */
+        "outline"?: boolean;
+        /**
+          * Position relative to the slotted anchor. Only has an effect when attached.
+          * @since 5.2.0
+          * @default 'top-after'
+         */
+        "position"?: BadgePosition;
+        /**
+          * Display a tooltip when the badge is standalone. By default, no tooltip is displayed. Add the attribute to use the badge label (or host `aria-label`) as the tooltip, or pass a string for custom text. Ignored when the badge is attached to an anchor.
+          * @since 5.2.0
+          * @default false
+         */
+        "tooltipText"?: string | boolean;
+        /**
+          * Badge type (`counter`, `label`, `dot`, or `status-icon`).
+          * @since 5.2.0
+          * @default 'counter'
+         */
+        "type"?: BadgeAnatomyType;
+        /**
+          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * @since 5.2.0
+          * @default 'primary'
+         */
+        "variant"?: BadgeVariant;
     }
     interface IxBlind {
         /**
@@ -12000,6 +12213,23 @@ declare namespace LocalJSX {
         "tooltipText": string;
         "ariaLabelTooltip": string;
     }
+    interface IxBadgeAttributes {
+        "type": BadgeAnatomyType;
+        "label": string;
+        "variant": BadgeVariant;
+        "outline": boolean;
+        "border": boolean;
+        "position": BadgePosition;
+        "offsetX": number;
+        "offsetY": number;
+        "enableAnimation": boolean;
+        "background": string;
+        "badgeColor": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "alignLeft": boolean;
+        "tooltipText": string;
+    }
     interface IxBlindAttributes {
         "collapsed": boolean;
         "label": string;
@@ -13047,6 +13277,7 @@ declare namespace LocalJSX {
         "ix-application-header": Omit<IxApplicationHeader, keyof IxApplicationHeaderAttributes> & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes]?: IxApplicationHeader[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `attr:${K}`]?: IxApplicationHeaderAttributes[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `prop:${K}`]?: IxApplicationHeader[K] };
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
+        "ix-badge": Omit<IxBadge, keyof IxBadgeAttributes> & { [K in keyof IxBadge & keyof IxBadgeAttributes]?: IxBadge[K] } & { [K in keyof IxBadge & keyof IxBadgeAttributes as `attr:${K}`]?: IxBadgeAttributes[K] } & { [K in keyof IxBadge & keyof IxBadgeAttributes as `prop:${K}`]?: IxBadge[K] };
         "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
         "ix-breadcrumb": Omit<IxBreadcrumb, keyof IxBreadcrumbAttributes> & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes]?: IxBreadcrumb[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `attr:${K}`]?: IxBreadcrumbAttributes[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `prop:${K}`]?: IxBreadcrumb[K] };
         "ix-breadcrumb-item": Omit<IxBreadcrumbItem, keyof IxBreadcrumbItemAttributes> & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes]?: IxBreadcrumbItem[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `attr:${K}`]?: IxBreadcrumbItemAttributes[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `prop:${K}`]?: IxBreadcrumbItem[K] } & OneOf<"breadcrumbKey", IxBreadcrumbItem["breadcrumbKey"], IxBreadcrumbItemAttributes["breadcrumbKey"]>;
@@ -13173,6 +13404,17 @@ declare module "@stencil/core" {
             "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-switch-modal": LocalJSX.IntrinsicElements["ix-application-switch-modal"] & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             "ix-avatar": LocalJSX.IntrinsicElements["ix-avatar"] & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
+            /**
+             * Overlay indicator for counts, labels, dots, and status icons.
+             * **Attached** (default slot has content): the indicator is decorative.
+             * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+             * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+             * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+             * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+             * Override max-width with `--ix-badge-max-width`.
+             * @since 5.2.0
+             */
+            "ix-badge": LocalJSX.IntrinsicElements["ix-badge"] & JSXBase.HTMLAttributes<HTMLIxBadgeElement>;
             "ix-blind": LocalJSX.IntrinsicElements["ix-blind"] & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IntrinsicElements["ix-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IntrinsicElements["ix-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;

@@ -4,6 +4,7 @@ import { defineCustomElement as ixActionCard } from '@siemens/ix/components/ix-a
 import { defineCustomElement as ixApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as ixApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as ixAvatar } from '@siemens/ix/components/ix-avatar.js';
+import { defineCustomElement as ixBadge } from '@siemens/ix/components/ix-badge.js';
 import { defineCustomElement as ixBlind } from '@siemens/ix/components/ix-blind.js';
 import { defineCustomElement as ixBreadcrumb } from '@siemens/ix/components/ix-breadcrumb.js';
 import { defineCustomElement as ixBreadcrumbItem } from '@siemens/ix/components/ix-breadcrumb-item.js';
@@ -115,6 +116,7 @@ ixActionCard();
 ixApplication();
 ixApplicationHeader();
 ixAvatar();
+ixBadge();
 ixBlind();
 ixBreadcrumb();
 ixBreadcrumbItem();

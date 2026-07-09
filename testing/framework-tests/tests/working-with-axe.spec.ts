@@ -73,3 +73,10 @@ import './generated/chat-axe.spec';
 import './generated/chat-ai-message-axe.spec';
 import './generated/chat-input-axe.spec';
 import './generated/chat-user-message-axe.spec';
+
+// Badge tests
+import './generated/badge-axe.spec';
+import './generated/badge-counter-axe.spec';
+import './generated/badge-label-axe.spec';
+import './generated/badge-dot-axe.spec';
+import './generated/badge-status-icon-axe.spec';

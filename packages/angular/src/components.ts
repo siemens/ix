@@ -112,6 +112,29 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant']
+})
+@Component({
+  selector: 'ix-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant'],
+  standalone: false
+})
+export class IxBadge {
+  protected el: HTMLIxBadgeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxBadge extends Components.IxBadge {}
+
+
+@ProxyCmp({
   inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
