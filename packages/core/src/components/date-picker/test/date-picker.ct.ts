@@ -27,6 +27,95 @@ const getCalendarRows = async (page: Page) => {
   );
 };
 
+type CalendarLayoutTestState = {
+  name: string;
+  from: string;
+  weekStartIndex?: number;
+  expectedRows: (number | undefined)[][];
+};
+
+const calendarLayoutTestStates: CalendarLayoutTestState[] = [
+  {
+    name: 'default week start',
+    from: '2023/08/01',
+    expectedRows: [
+      [undefined, 1, 2, 3, 4, 5, 6],
+      [7, 8, 9, 10, 11, 12, 13],
+      [14, 15, 16, 17, 18, 19, 20],
+      [21, 22, 23, 24, 25, 26, 27],
+      [28, 29, 30, 31, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'custom week start',
+    from: '2023/08/01',
+    weekStartIndex: 2,
+    expectedRows: [
+      [undefined, undefined, undefined, undefined, undefined, undefined, 1],
+      [2, 3, 4, 5, 6, 7, 8],
+      [9, 10, 11, 12, 13, 14, 15],
+      [16, 17, 18, 19, 20, 21, 22],
+      [23, 24, 25, 26, 27, 28, 29],
+      [30, 31, undefined, undefined, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'four-row non-leap February',
+    from: '2021/02/01',
+    expectedRows: [
+      [1, 2, 3, 4, 5, 6, 7],
+      [8, 9, 10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19, 20, 21],
+      [22, 23, 24, 25, 26, 27, 28],
+    ],
+  },
+  {
+    name: 'leap February',
+    from: '2024/02/01',
+    expectedRows: [
+      [undefined, undefined, undefined, 1, 2, 3, 4],
+      [5, 6, 7, 8, 9, 10, 11],
+      [12, 13, 14, 15, 16, 17, 18],
+      [19, 20, 21, 22, 23, 24, 25],
+      [26, 27, 28, 29, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'six-row month starting in the last column',
+    from: '2026/03/01',
+    expectedRows: [
+      [undefined, undefined, undefined, undefined, undefined, undefined, 1],
+      [2, 3, 4, 5, 6, 7, 8],
+      [9, 10, 11, 12, 13, 14, 15],
+      [16, 17, 18, 19, 20, 21, 22],
+      [23, 24, 25, 26, 27, 28, 29],
+      [30, 31, undefined, undefined, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'negative week start wrapping to the last column',
+    from: '2023/08/01',
+    weekStartIndex: -1,
+    expectedRows: [
+      [undefined, undefined, 1, 2, 3, 4, 5],
+      [6, 7, 8, 9, 10, 11, 12],
+      [13, 14, 15, 16, 17, 18, 19],
+      [20, 21, 22, 23, 24, 25, 26],
+      [27, 28, 29, 30, 31, undefined, undefined],
+    ],
+  },
+];
+
+const getDatePickerMarkup = ({
+  from,
+  weekStartIndex,
+}: CalendarLayoutTestState) => {
+  const weekStartIndexAttribute =
+    weekStartIndex !== undefined ? ` week-start-index="${weekStartIndex}"` : '';
+
+  return `<ix-date-picker from="${from}"${weekStartIndexAttribute}></ix-date-picker>`;
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
@@ -43,42 +132,18 @@ regressionTest('translation', async ({ mount, page }) => {
 });
 
 regressionTest.describe('calendar layout', () => {
-  regressionTest(
-    'renders accurate rows with default week start',
-    async ({ mount, page }) => {
-      await mount(`<ix-date-picker from="2023/08/01"></ix-date-picker>`);
+  for (const testState of calendarLayoutTestStates) {
+    regressionTest(
+      `renders accurate rows with ${testState.name}`,
+      async ({ mount, page }) => {
+        await mount(getDatePickerMarkup(testState));
 
-      const datePicker = page.locator(DatePickerSelector);
-      await expect(datePicker).toHaveClass(/\bhydrated\b/);
-      expect(await getCalendarRows(page)).toEqual([
-        [undefined, 1, 2, 3, 4, 5, 6],
-        [7, 8, 9, 10, 11, 12, 13],
-        [14, 15, 16, 17, 18, 19, 20],
-        [21, 22, 23, 24, 25, 26, 27],
-        [28, 29, 30, 31, undefined, undefined, undefined],
-      ]);
-    }
-  );
-
-  regressionTest(
-    'renders accurate rows with custom week start',
-    async ({ mount, page }) => {
-      await mount(
-        `<ix-date-picker from="2023/08/01" week-start-index="2"></ix-date-picker>`
-      );
-
-      const datePicker = page.locator(DatePickerSelector);
-      await expect(datePicker).toHaveClass(/\bhydrated\b/);
-      expect(await getCalendarRows(page)).toEqual([
-        [undefined, undefined, undefined, undefined, undefined, undefined, 1],
-        [2, 3, 4, 5, 6, 7, 8],
-        [9, 10, 11, 12, 13, 14, 15],
-        [16, 17, 18, 19, 20, 21, 22],
-        [23, 24, 25, 26, 27, 28, 29],
-        [30, 31, undefined, undefined, undefined, undefined, undefined],
-      ]);
-    }
-  );
+        const datePicker = page.locator(DatePickerSelector);
+        await expect(datePicker).toHaveClass(/\bhydrated\b/);
+        expect(await getCalendarRows(page)).toEqual(testState.expectedRows);
+      }
+    );
+  }
 });
 
 regressionTest.describe('date picker tests single', () => {
