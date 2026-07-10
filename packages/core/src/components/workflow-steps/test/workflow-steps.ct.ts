@@ -29,6 +29,39 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(step).toBeVisible();
 });
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-workflow-steps>
+      <ix-workflow-step status="done">Step 1</ix-workflow-step>
+      <ix-workflow-step status="success">Step 2</ix-workflow-step>
+      <ix-workflow-step status="open">Step 3</ix-workflow-step>
+    </ix-workflow-steps>
+  `);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest(
+  'has correct aria roles and default label',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-workflow-steps>
+        <ix-workflow-step>Step 1</ix-workflow-step>
+        <ix-workflow-step>Step 2</ix-workflow-step>
+      </ix-workflow-steps>
+    `);
+
+    const container = page.locator('ix-workflow-steps');
+    const steps = page.locator('ix-workflow-step');
+
+    await expect(container).toHaveAttribute('role', 'list');
+    await expect(container).toHaveAttribute('aria-label', 'Step indicator');
+    await expect(steps.nth(0)).toHaveAttribute('role', 'listitem');
+    await expect(steps.nth(1)).toHaveAttribute('role', 'listitem');
+  }
+);
+
 regressionTest('should be clickable', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps clickable>
@@ -73,6 +106,28 @@ regressionTest('should prevent click navigation', async ({ mount, page }) => {
   await expect(firstStepDiv).toHaveClass(/selected/);
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
+regressionTest(
+  'supports keyboard selection via Enter and Space',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-workflow-steps clickable>
+        <ix-workflow-step>Step 1</ix-workflow-step>
+        <ix-workflow-step>Step 2</ix-workflow-step>
+      </ix-workflow-steps>
+    `);
+
+    const first = page.locator('ix-workflow-step').nth(0).locator('.step');
+    const second = page.locator('ix-workflow-step').nth(1).locator('.step');
+
+    await first.focus();
+    await first.press('Enter');
+    await expect(first).toHaveClass(/selected/);
+
+    await second.focus();
+    await second.press('Space');
+    await expect(second).toHaveClass(/selected/);
+  }
+);
 
 regressionTest(
   'should have the correct visuals after toggling state from open to error and back again to open',

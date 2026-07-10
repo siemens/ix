@@ -17,6 +17,7 @@ import {
   Listen,
   Prop,
 } from '@stencil/core';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
@@ -46,6 +47,8 @@ export class WorkflowSteps {
    * On step selected event
    */
   @Event() stepSelected!: EventEmitter<number>;
+
+  private inheritAriaAttributes: A11yAttributes = {};
 
   private getSteps() {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
@@ -93,6 +96,7 @@ export class WorkflowSteps {
   }
 
   componentWillLoad() {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
     this.updateSteps();
   }
 
@@ -119,8 +123,11 @@ export class WorkflowSteps {
   }
 
   render() {
+    this.inheritAriaAttributes['aria-label'] =
+      this.inheritAriaAttributes['aria-label'] ?? 'Step indicator';
+
     return (
-      <Host>
+      <Host {...this.inheritAriaAttributes} role="list">
         <div class={{ steps: true, vertical: this.vertical }}>
           <slot></slot>
         </div>
