@@ -41,27 +41,39 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
 });
-
 regressionTest(
-  'has correct aria roles and default label',
+  'should have correct aria attributes for accessibility',
   async ({ mount, page }) => {
     await mount(`
-      <ix-workflow-steps>
-        <ix-workflow-step>Step 1</ix-workflow-step>
-        <ix-workflow-step>Step 2</ix-workflow-step>
+      <ix-workflow-steps clickable>
+        <ix-workflow-step status="error">Step 1</ix-workflow-step>
+        <ix-workflow-step status="error" disabled>Step 2</ix-workflow-step>
+        <ix-workflow-step status="error">Step 3</ix-workflow-step>
       </ix-workflow-steps>
     `);
 
-    const container = page.locator('ix-workflow-steps');
+    const workflowSteps = page.locator('ix-workflow-steps');
     const steps = page.locator('ix-workflow-step');
 
-    await expect(container).toHaveAttribute('role', 'list');
-    await expect(container).toHaveAttribute('aria-label', 'Step indicator');
-    await expect(steps.nth(0)).toHaveAttribute('role', 'listitem');
-    await expect(steps.nth(1)).toHaveAttribute('role', 'listitem');
+    await expect(workflowSteps).toHaveClass(/hydrated/);
+
+    await workflowSteps.evaluate(
+      (el: HTMLIxWorkflowStepsElement) => (el.selectedIndex = 2)
+    );
+
+    const step1Div = steps.nth(0).locator('.step');
+    const step2Div = steps.nth(1).locator('.step');
+    const step3Div = steps.nth(2).locator('.step');
+
+    await expect(step1Div).toHaveAttribute('role', 'button');
+    await expect(step1Div).toHaveAttribute('tabindex', '0');
+
+    await expect(step2Div).toHaveAttribute('aria-disabled', 'true');
+    await expect(step2Div).toHaveAttribute('tabindex', '-1');
+
+    await expect(step3Div).toHaveAttribute('aria-current', 'step');
   }
 );
-
 regressionTest('should be clickable', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps clickable>

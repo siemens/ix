@@ -79,13 +79,6 @@ export class WorkflowStep {
   @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean = false;
-  private getStepLabel() {
-    return (
-      this.hostElement.ariaLabel ||
-      this.hostElement.textContent?.trim() ||
-      undefined
-    );
-  }
   @Watch('selected')
   selectedHandler() {
     this.setWorkflowStepStyles();
@@ -182,7 +175,6 @@ export class WorkflowStep {
           }
           class="absolute"
           size="24"
-          aria-hidden="true"
         ></ix-icon>
         <ix-icon
           color={this.iconColor}
@@ -194,17 +186,14 @@ export class WorkflowStep {
       </Fragment>
     ) : null;
     return (
-      <Host
-        role="listitem"
-        class={{ 'host-vertical': this.vertical }}
-        aria-label={`${this.getStepLabel()}, ${this.status}`}
-        aria-current={this.selected ? 'step' : undefined}
-        aria-disabled={this.disabled ? 'true' : undefined}
-      >
+      <Host class={{ 'host-vertical': this.vertical }}>
         <div
-          tabIndex={this.clickable && !this.disabled ? 0 : -1}
+          tabIndex={this.disabled || !this.clickable ? -1 : 0}
+          role={this.clickable ? 'button' : 'undefined'}
+          aria-disabled={this.disabled ? 'true' : undefined}
+          aria-current={this.selected ? 'step' : undefined}
           onClick={() => this.onStepClick()}
-          onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
+          onKeyDown={(e) => this.onKeyDown(e)}
           class={{
             step: true,
             selected: this.selected,
