@@ -1,5 +1,71 @@
 # @siemens/ix
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2473](https://github.com/siemens/ix/pull/2473) [`a16ab0a`](https://github.com/siemens/ix/commit/a16ab0a66673340870cd66e2b394a0225dfd73e1) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Floating **ix-pane**s can be closed via* Escape*, will set focus to descendant on open and restore focus once closed and employ a focus trap.
+
+  Fixes [#2333](https://github.com/siemens/ix/issues/2333)
+
+- [#2573](https://github.com/siemens/ix/pull/2573) [`0648d8d`](https://github.com/siemens/ix/commit/0648d8dac0ca906892786503f2bba60ad2c6a37b) Thanks [@lzeiml](https://github.com/lzeiml)! - Improved **ix-menu** accessibility by implementing the W3C menubar pattern, adding better keyboard navigation and screenreader suppport.
+  Added properties `i18nAriaLabelMenu` and `i18nNavigationHint` for screenreader translations.
+
+- [#2574](https://github.com/siemens/ix/pull/2574) [`94017ad`](https://github.com/siemens/ix/commit/94017adda0e5a2d14c36c03d624d8e20f921dde8) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Add **ix-popover** with optional **ix-popover-header**, **ix-popover-content**, **ix-popover-image**, and **ix-popover-footer** for anchored floating panels. Supports click and hover triggers, placement, nesting, focus management, and programmatic open/close.
+
+- [#2619](https://github.com/siemens/ix/pull/2619) [`3244cb6`](https://github.com/siemens/ix/commit/3244cb6f6444b7b1714f014d7fb1bac5b1f6741a) Thanks [@lzeiml](https://github.com/lzeiml)! - Selected chips in `ix-select` with `mode="multiple"` are now laid out on a single row. When the selected chips no longer fit the available width, the chips that would overflow are collapsed into a non-removable "+N" overflow indicator chip. Clicking (or activating via keyboard) the indicator opens a dropdown listing the hidden items, each of which can be removed.
+
+  This replaces the previous multi-row wrapping/scrolling chip layout. A new `i18nMoreItems` property (default `'{count} more'`) provides the accessible label for the overflow indicator, where `{count}` is replaced with the number of hidden items.
+
+- [#2589](https://github.com/siemens/ix/pull/2589) [`a2f425c`](https://github.com/siemens/ix/commit/a2f425c4fa4d7eb4f47d11b2bdc760d287ef464d) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Added a `noPadding` property to **ix-pane**. When set to `true`, the left, right and bottom padding of the content area is removed while the title keeps its padding.
+
+- [#2567](https://github.com/siemens/ix/pull/2567) [`64e649a`](https://github.com/siemens/ix/commit/64e649a2954aea5d694f6631c8e45a20bcc57c75) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Fix `disabled` prop on `ix-select-item` having no effect. The `disabled` state is now reflected to the host, propagated to the underlying `ix-dropdown-item` and the item is excluded from mouse and keyboard selection in `ix-select`.
+
+### Patch Changes
+
+- [#2581](https://github.com/siemens/ix/pull/2581) [`5ad2fc5`](https://github.com/siemens/ix/commit/5ad2fc5cf44056c28c1deea56aa8e974c79ef39f) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update layout of app switch modal invoked by **ix-application** to match design guideline.
+  Set color of **ix-blind** header actions slot icon button according to blind variant.
+  Remove background from disabled **ix-breadcrumb-item**s.
+  Reduce **ix-date-picker** month and year selection button paddings to move them closer together.
+
+- [#2620](https://github.com/siemens/ix/pull/2620) [`d1c6895`](https://github.com/siemens/ix/commit/d1c68956f67726af2d2d59adafd1d82a233f60be) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix **ix-checkbox** layout to match the design specification. Label-less instances no longer leave empty space beside the control, the interactive area is 24×24 px, and checkbox and label are vertically centered with a 6 px gap.
+
+- [#2565](https://github.com/siemens/ix/pull/2565) [`7c34939`](https://github.com/siemens/ix/commit/7c34939c4589d31ee51cf0564ff59bdc08121426) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Unregister **ix-menu** from **menu-service** on disconnect to prevent warnings.
+
+  Fixes [#2128](https://github.com/siemens/ix/issues/2128)
+
+- [#2586](https://github.com/siemens/ix/pull/2586) [`74d6524`](https://github.com/siemens/ix/commit/74d652426bfdbb188d8460dc025a352b67f99506) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Disabled buttons are now correctly inaccessible, preventing unintended interactions.
+
+- [#2523](https://github.com/siemens/ix/pull/2523) [`7a6cb52`](https://github.com/siemens/ix/commit/7a6cb52cbaf17997e482e5e2e14dd2d7485bf039) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix `ix-input` password eye icon: remove debug `color: red` style and conditionally render the toggle button instead of hiding it via CSS class.
+
+- [#2618](https://github.com/siemens/ix/pull/2618) [`d9fe735`](https://github.com/siemens/ix/commit/d9fe735dbc430d94ae63ad427710dfb484f502f3) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix `ix-select` so the hidden focus proxy no longer creates an unnecessary dropdown scrollbar when the select is rendered lower in the viewport.
+
+  Fixes [#2615](https://github.com/siemens/ix/issues/2615)
+
+- [#2571](https://github.com/siemens/ix/pull/2571) [`e727b72`](https://github.com/siemens/ix/commit/e727b72162027a8278dd518cebd952e9edd2ea93) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Make sure the **ix-application**'s `force-breakpoint` property takes effect even if changed during runtime.
+
+- [#2575](https://github.com/siemens/ix/pull/2575) [`1342470`](https://github.com/siemens/ix/commit/1342470aed386d0ca9a28d85c0064b12be54b66c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update stencil and stencil output target to latest version
+
+- [#2513](https://github.com/siemens/ix/pull/2513) [`33c0eb9`](https://github.com/siemens/ix/commit/33c0eb9616610a62af194b5fba0eebdb4d26efe5) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Re-register tigger and DOM change listeners after **ix-tooltip** was re-attached.
+
+  Fixes [#2481](https://github.com/siemens/ix/issues/2481)
+
+- [#2572](https://github.com/siemens/ix/pull/2572) [`5f2fa82`](https://github.com/siemens/ix/commit/5f2fa82dba306886452dc0428fcfb83b94306fa4) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Fix ix-modal-header title layout so long words wrap inside the modal and no longer push the close button outside the dialog. Fixes [#2500](https://github.com/siemens/ix/issues/2500)
+
+- [#2522](https://github.com/siemens/ix/pull/2522) [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update margins for menu buttons in **ix-menu**.
+
+- [#2522](https://github.com/siemens/ix/pull/2522) [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update margins for **ix-content**.
+
+- [#2625](https://github.com/siemens/ix/pull/2625) [`ffd8c48`](https://github.com/siemens/ix/commit/ffd8c48a597aab7a5bb1a79cf92f5e84953510c9) Thanks [@spike-rabbit](https://github.com/spike-rabbit)! - Fix **ix-action-card** to render its content inside a `button` element so it is keyboard-focusable and exposed as a button to assistive technologies, improving accessibility.
+
+  Note: the default slot is intended for non-interactive content. Nested interactive elements (links, buttons, inputs) inside the card are not supported, as the card is now a single button.
+
+- [#2570](https://github.com/siemens/ix/pull/2570) [`47d93f3`](https://github.com/siemens/ix/commit/47d93f33213ee841f181283fec99decd0b1f8a0a) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent `undefined` access of internal element during render phase. Affected components: `ix-date-input`, `ix-dropdown-button`, `ix-menu-category` and `ix-time-input`.
+
+  Fixes [#2568](https://github.com/siemens/ix/issues/2568)
+
+- [#2497](https://github.com/siemens/ix/pull/2497) [`f66d556`](https://github.com/siemens/ix/commit/f66d556d359719455765b66a603e4ab664b44ac2) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Update color and rotation of **ix-card-list** chevron icon to match style guide.
+
 ## 5.0.0
 
 ### Major Changes

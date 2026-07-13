@@ -13,7 +13,7 @@ import {
 import { ModalInstance } from '@siemens/ix';
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
+  EnvironmentInjector,
   Injectable,
   Injector,
 } from '@angular/core';
@@ -25,10 +25,10 @@ export { IxActiveModal } from '@siemens/ix-angular/common';
 export class ModalService extends BaseModalService {
   constructor(
     appRef: ApplicationRef,
-    componentFactoryResolver: ComponentFactoryResolver,
+    environmentInjector: EnvironmentInjector,
     injector: Injector
   ) {
-    super(appRef, componentFactoryResolver, injector);
+    super(appRef, environmentInjector, injector);
 
     defineCustomElement();
   }
