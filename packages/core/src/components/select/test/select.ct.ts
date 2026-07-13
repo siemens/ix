@@ -127,8 +127,12 @@ test('toggles disabled without dropdown trigger errors', async ({
   mount,
   page,
 }) => {
-  const pageErrors: string[] = [];
-  page.on('pageerror', (error) => pageErrors.push(error.message));
+  const consoleErrors: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') {
+      consoleErrors.push(msg.text());
+    }
+  });
 
   await mount(`
     <ix-select>
@@ -153,7 +157,7 @@ test('toggles disabled without dropdown trigger errors', async ({
   });
   await expect(dropdownTrigger).toHaveCount(1);
 
-  expect(pageErrors).toEqual([]);
+  expect(consoleErrors).toEqual([]);
 });
 
 test('does not select an item when ix-select-item is disabled', async ({
