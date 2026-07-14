@@ -2,11 +2,12 @@
 "@siemens/ix": patch
 ---
 
-Update disabled text color for these components:
+Update the disabled and readonly text contrast for these components:
+- **ix-input**
+- **ix-number-input**
 - **ix-date-input**
 - **ix-date-time-input**
-- **ix-textarea**
 - **ix-time-input**
-- TBD
+- **ix-textarea**
 
 Fixes #2600
