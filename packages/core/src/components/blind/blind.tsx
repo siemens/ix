@@ -27,7 +27,7 @@ import Animation from '../utils/animation';
 let sequentialInstanceId = 0;
 
 /**
- * @slot custom-header - Custom content replacing the default header.
+ * @slot custom-header - Custom content inside blind header.
  * @slot header-actions - Actions displayed at the end of the header.
  * @slot default - Expandable blind content.
  */
