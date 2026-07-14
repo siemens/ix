@@ -63,6 +63,9 @@ let selectId = 0;
 /**
  * @form-ready
  */
+/**
+ * @slot default - Select items.
+ */
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',

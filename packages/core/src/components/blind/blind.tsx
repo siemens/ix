@@ -26,6 +26,11 @@ import Animation from '../utils/animation';
 
 let sequentialInstanceId = 0;
 
+/**
+ * @slot custom-header - Custom content replacing the default header.
+ * @slot header-actions - Actions displayed at the end of the header.
+ * @slot default - Expandable blind content.
+ */
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',

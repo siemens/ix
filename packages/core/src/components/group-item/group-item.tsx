@@ -18,6 +18,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @slot default - Group item content.
+ */
 @Component({
   tag: 'ix-group-item',
   styleUrl: 'group-item.scss',

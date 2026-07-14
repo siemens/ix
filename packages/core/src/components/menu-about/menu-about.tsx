@@ -21,6 +21,9 @@ import {
 } from '@stencil/core';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
+/**
+ * @slot default - About overlay content.
+ */
 @Component({
   tag: 'ix-menu-about',
   styleUrl: 'menu-about.scss',

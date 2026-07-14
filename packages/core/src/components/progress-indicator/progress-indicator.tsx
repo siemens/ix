@@ -24,6 +24,10 @@ import type {
 /**
  * @since 3.2.0
  */
+/**
+ * @slot helper-text - Custom helper text content.
+ * @slot default - Content displayed with the progress indicator.
+ */
 @Component({
   tag: 'ix-progress-indicator',
   styleUrl: 'progress-indicator.scss',

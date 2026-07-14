@@ -19,6 +19,9 @@ import { makeRef } from '../utils/make-ref';
 /**
  * @form-ready
  */
+/**
+ * @slot default - Checkboxes displayed in the group.
+ */
 @Component({
   tag: 'ix-checkbox-group',
   styleUrl: 'checkbox-group.scss',

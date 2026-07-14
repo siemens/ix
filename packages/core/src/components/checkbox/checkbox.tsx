@@ -29,6 +29,9 @@ import { hasSlottedContent } from '../utils/shadow-dom';
 /**
  * @form-ready
  */
+/**
+ * @slot default - Checkbox label.
+ */
 @Component({
   tag: 'ix-checkbox',
   styleUrl: 'checkbox.scss',
