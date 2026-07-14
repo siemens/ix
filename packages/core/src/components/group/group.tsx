@@ -71,6 +71,16 @@ export class Group {
   @Prop() expandOnHeaderClick = false;
 
   /**
+   * Aria label for collapse action
+   */
+  @Prop() ariaLabelCollapse = 'Collapse';
+
+  /**
+   * Aria label for expand action
+   */
+  @Prop() ariaLabelExpand = 'Expand';
+
+  /**
    * Emits when whole group gets selected.
    */
   @Event() selectGroup!: EventEmitter<boolean>;
@@ -129,8 +139,17 @@ export class Group {
     }
   }
 
-  private onKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Enter') {
+  private onHeaderKeyDown(event: KeyboardEvent) {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+
+    event.preventDefault();
+    this.onHeaderClick(event);
+  }
+
+  private onChevronKeyDown(event: KeyboardEvent) {
+    if (event.key !== 'Enter' && event.key !== ' ') {
       return;
     }
 
@@ -244,8 +263,23 @@ export class Group {
             selected: this.selected,
           }}
           tabindex="0"
+          role={this.suppressHeaderSelection ? 'button' : 'checkbox'}
+          aria-expanded={
+            this.suppressHeaderSelection
+              ? this.expanded
+                ? 'true'
+                : 'false'
+              : undefined
+          }
+          aria-checked={
+            !this.suppressHeaderSelection
+              ? this.selected
+                ? 'true'
+                : 'false'
+              : undefined
+          }
           onKeyDown={(event) =>
-            event.target === event.currentTarget && this.onKeyDown(event)
+            event.target === event.currentTarget && this.onHeaderKeyDown(event)
           }
         >
           <div
@@ -267,10 +301,13 @@ export class Group {
                 }}
                 tabindex="0"
                 role="button"
-                aria-label={this.expanded ? 'Collapse group' : 'Expand group'}
+                aria-expanded={this.expanded ? 'true' : 'false'}
+                aria-label={
+                  this.expanded ? this.ariaLabelCollapse : this.ariaLabelExpand
+                }
                 name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
                 onClick={(event: Event) => this.onExpandClick(event)}
-                onKeyDown={(event) => this.onKeyDown(event)}
+                onKeyDown={(event) => this.onChevronKeyDown(event)}
               ></ix-icon>
             </div>
 

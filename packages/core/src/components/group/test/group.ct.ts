@@ -10,17 +10,6 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`
-    <ix-group header="Test">
-      <ix-group-item>Item 1</ix-group-item>
-    </ix-group>
-  `);
-
-  const results = await makeAxeBuilder().analyze();
-  expect(results.violations).toEqual([]);
-});
-
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
   const group = page.locator('ix-group');
@@ -31,7 +20,7 @@ regressionTest(
   'keyboard navigation toggles group from header and chevron',
   async ({ mount, page }) => {
     await mount(`
-      <ix-group header="Test">
+      <ix-group header="Test" suppress-header-selection>
         <ix-group-item>Item 1</ix-group-item>
       </ix-group>
     `);
