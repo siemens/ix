@@ -129,6 +129,15 @@ export class Group {
     }
   }
 
+  private onKeyDown(event: KeyboardEvent) {
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    event.preventDefault();
+    this.onExpandClick(event);
+  }
+
   private onHeaderClick(event: Event) {
     if (this.suppressHeaderSelection) {
       this.onExpandClick(event);
@@ -235,6 +244,9 @@ export class Group {
             selected: this.selected,
           }}
           tabindex="0"
+          onKeyDown={(event) =>
+            event.target === event.currentTarget && this.onKeyDown(event)
+          }
         >
           <div
             class="group-header-clickable"
@@ -253,8 +265,12 @@ export class Group {
                 class={{
                   hidden: !this.showExpandCollapsedIcon,
                 }}
+                tabindex="0"
+                role="button"
+                aria-label={this.expanded ? 'Collapse group' : 'Expand group'}
                 name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
                 onClick={(event: Event) => this.onExpandClick(event)}
+                onKeyDown={(event) => this.onKeyDown(event)}
               ></ix-icon>
             </div>
 

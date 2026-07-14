@@ -160,6 +160,12 @@ $header-height-focus-visible: calc($header-height - 2px);
     margin: vars.$small-space;
     margin-inline-end: vars.$tiny-space;
     min-width: 1.5rem;
+
+    ix-icon:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: 2px;
+      border-radius: var(--theme-default-border-radius);
+    }
   }
 
   .group-content {

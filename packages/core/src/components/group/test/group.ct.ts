@@ -10,11 +10,55 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
   const group = page.locator('ix-group');
   await expect(group).toHaveClass(/hydrated/);
 });
+
+regressionTest(
+  'keyboard navigation toggles group from header and chevron',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group header="Test">
+        <ix-group-item>Item 1</ix-group-item>
+      </ix-group>
+    `);
+
+    const group = page.locator('ix-group');
+    const groupHeader = group.locator('.group-header');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+
+    await expect(group).toHaveClass(/hydrated/);
+    await expect(expandIcon).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await expect(groupHeader).toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect(group).toHaveAttribute('expanded', '');
+    await expect(groupHeader).toBeFocused();
+
+    await page.keyboard.press('Tab');
+    await expect(expandIcon).toBeFocused();
+    await expect(groupHeader).not.toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect(group).not.toHaveAttribute('expanded');
+    await expect(expandIcon).toBeFocused();
+  }
+);
 
 regressionTest('hide expand icon initial', async ({ mount, page }) => {
   await mount(`
