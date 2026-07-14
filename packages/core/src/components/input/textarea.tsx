@@ -33,6 +33,7 @@ import {
   onInputFocus,
   onInputBlurWithChange,
   checkInternalValidity,
+  syncInvalidClassWithText,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
@@ -220,6 +221,12 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.onInvalidTextChange(this.invalidText);
+  }
+
+  @Watch('invalidText')
+  onInvalidTextChange(invalidText?: string) {
+    syncInvalidClassWithText(this, invalidText);
   }
 
   disconnectedCallback() {

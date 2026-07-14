@@ -38,6 +38,7 @@ import {
   onInputFocus,
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
+  syncInvalidClassWithText,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -223,6 +224,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value!);
+    this.onInvalidTextChange(this.invalidText);
+  }
+
+  @Watch('invalidText')
+  onInvalidTextChange(invalidText?: string) {
+    syncInvalidClassWithText(this, invalidText);
   }
 
   connectedCallback() {

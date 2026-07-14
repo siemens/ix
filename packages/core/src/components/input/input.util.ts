@@ -100,6 +100,30 @@ export function onInputBlur<T>(
   checkInternalValidity(comp, input);
 }
 
+const invalidClassManagedHosts = new WeakSet<HTMLElement>();
+
+export function syncInvalidClassWithText<T>(
+  comp: IxFormComponent<T>,
+  invalidText?: string
+) {
+  const hostElement = comp.hostElement;
+
+  if (invalidText) {
+    invalidClassManagedHosts.add(hostElement);
+    hostElement.classList.add('ix-invalid');
+    return;
+  }
+
+  if (
+    invalidClassManagedHosts.has(hostElement) &&
+    !hostElement.classList.contains('ix-invalid--validity-invalid') &&
+    !hostElement.classList.contains('ix-invalid--required')
+  ) {
+    hostElement.classList.remove('ix-invalid');
+    invalidClassManagedHosts.delete(hostElement);
+  }
+}
+
 export function applyPaddingEnd(
   inputElement: HTMLElement | null,
   width: number,

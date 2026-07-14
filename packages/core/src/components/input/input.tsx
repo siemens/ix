@@ -40,6 +40,7 @@ import {
   onInputFocus,
   onInputBlurWithChange,
   onEnterKeyChangeEmit,
+  syncInvalidClassWithText,
 } from './input.util';
 
 let inputIds = 0;
@@ -210,9 +211,15 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
+  @Watch('invalidText')
+  onInvalidTextChange(invalidText?: string) {
+    syncInvalidClassWithText(this, invalidText);
+  }
+
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
     this.inputType = this.type;
+    this.onInvalidTextChange(this.invalidText);
   }
 
   connectedCallback(): void {
