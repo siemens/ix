@@ -29,8 +29,6 @@ import { makeRef } from '../utils/make-ref';
 
 /**
  * @form-ready
- */
-/**
  * @slot default - Radio buttons displayed in the group.
  */
 @Component({

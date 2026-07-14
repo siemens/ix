@@ -22,8 +22,6 @@ import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
  * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
- */
-/**
  * @slot default - About menu item content.
  */
 @Component({

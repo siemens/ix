@@ -28,8 +28,6 @@ import {
 
 /**
  * @form-ready
- */
-/**
  * @slot default - Radio button label.
  */
 @Component({
