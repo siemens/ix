@@ -1,6 +1,10 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import type { CardVariant } from './card.types';
 
+/**
+ * @slot default - Main card content.
+ * @slot card-accordion - Accordion displayed in the card footer.
+ */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',

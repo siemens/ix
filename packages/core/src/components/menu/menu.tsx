@@ -40,6 +40,14 @@ import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @slot ix-menu-avatar - Avatar displayed at the top of the menu.
+ * @slot home - Home menu item.
+ * @slot default - Main menu items and categories.
+ * @slot bottom - Menu items displayed below the main navigation.
+ * @slot ix-menu-settings - Settings content displayed in the menu overlay.
+ * @slot ix-menu-about - About content displayed in the menu overlay.
+ */
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',

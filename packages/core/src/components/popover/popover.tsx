@@ -78,7 +78,7 @@ const numberToPixel = (value?: number | null) =>
 /**
  * Floating panel anchored to a trigger element.
  *
- * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+ * @slot default - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
  *
  * @since 5.1.0
  */
