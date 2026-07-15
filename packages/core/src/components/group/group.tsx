@@ -259,15 +259,9 @@ export class Group {
   }
 
   render() {
-    const headerAriaExpanded = this.suppressHeaderSelection
-      ? this.expanded
-        ? 'true'
-        : 'false'
-      : undefined;
+    const headerRole = this.suppressHeaderSelection ? undefined : 'checkbox';
     const headerAriaChecked = !this.suppressHeaderSelection
-      ? this.selected
-        ? 'true'
-        : 'false'
+      ? String(this.selected)
       : undefined;
     const expandIconName = this.expanded
       ? iconChevronUpSmall
@@ -282,8 +276,7 @@ export class Group {
             selected: this.selected,
           }}
           tabindex="0"
-          role={this.suppressHeaderSelection ? 'button' : 'checkbox'}
-          aria-expanded={headerAriaExpanded}
+          role={headerRole}
           aria-checked={headerAriaChecked}
           onKeyDown={(event) =>
             event.target === event.currentTarget && this.onHeaderKeyDown(event)
