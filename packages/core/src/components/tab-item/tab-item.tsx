@@ -27,6 +27,9 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
+/**
+ * @slot default - Tab label.
+ */
 @Component({
   tag: 'ix-tab-item',
   styleUrl: 'tab-item.scss',

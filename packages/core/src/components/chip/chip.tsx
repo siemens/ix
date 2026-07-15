@@ -27,6 +27,9 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
+/**
+ * @slot default - Chip label.
+ */
 @Component({
   tag: 'ix-chip',
   styleUrl: 'chip.scss',

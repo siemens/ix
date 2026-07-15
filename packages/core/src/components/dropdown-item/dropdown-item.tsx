@@ -33,6 +33,9 @@ import {
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 import type { IxDropdownItemRole } from './dropdown-item.types';
 
+/**
+ * @slot default - Dropdown item content.
+ */
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',

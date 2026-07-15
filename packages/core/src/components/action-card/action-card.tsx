@@ -12,7 +12,7 @@ import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 import type { ActionCardVariant } from './action-card.types';
 
 /**
- * @slot - Place additional non-interactive content inside the card. Avoid interactive elements (links, buttons, inputs) as the card itself is rendered as a single button.
+ * @slot default - Place additional non-interactive content inside the card. Avoid interactive elements (links, buttons, inputs) as the card itself is rendered as a single button.
  */
 @Component({
   tag: 'ix-action-card',

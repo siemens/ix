@@ -9,6 +9,9 @@
 
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @slot default - Modal body content.
+ */
 @Component({
   tag: 'ix-modal-content',
   styleUrl: 'modal-content.scss',

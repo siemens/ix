@@ -130,6 +130,9 @@ function UserInfo(
   );
 }
 
+/**
+ * @slot default - Custom content displayed inside the avatar dropdown when placed inside header.
+ */
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',
