@@ -81,6 +81,12 @@ importers:
       execa:
         specifier: ^5.1.1
         version: 5.1.1
+      patch-package:
+        specifier: ^8.0.1
+        version: 8.0.1
+      postinstall-postinstall:
+        specifier: ^2.1.0
+        version: 2.1.0
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -7533,6 +7539,9 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
+  find-yarn-workspace-root@2.0.0:
+    resolution: {integrity: sha512-1IMnbjt4KzsQfnhnzNd8wUEgXZ44IzZaZmnLYx7D5FZlaHt2gW20Cri8Q+E/t5tIj4+epTBub+2Zxu/vNILzqQ==}
+
   findup-sync@4.0.0:
     resolution: {integrity: sha512-6jvvn/12IC4quLBL1KNokxC7wWTvYncaVUYSoxWw7YykPLuRrnv4qdHcSOywOI5RpkOVGeQRtWM8/q+G6W6qfQ==}
     engines: {node: '>= 8'}
@@ -8636,6 +8645,10 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
+  json-stable-stringify@1.3.0:
+    resolution: {integrity: sha512-qtYiSSFlwot9XHtF9bD9c7rwKjr+RecWT//ZnPvSmEjpV5mmPOCN4j8UjY5hbjNkOwZ/jQv3J6R1/pL7RwgMsg==}
+    engines: {node: '>= 0.4'}
+
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
@@ -8649,6 +8662,9 @@ packages:
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+
+  jsonify@0.0.1:
+    resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
 
   jsonparse@1.3.1:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
@@ -8692,6 +8708,9 @@ packages:
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
+
+  klaw-sync@6.0.0:
+    resolution: {integrity: sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==}
 
   kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
@@ -9557,6 +9576,10 @@ packages:
     resolution: {integrity: sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA==}
     engines: {node: '>=18'}
 
+  open@7.4.2:
+    resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
+    engines: {node: '>=8'}
+
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
@@ -9690,6 +9713,11 @@ packages:
 
   pascal-case@3.1.2:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
+
+  patch-package@8.0.1:
+    resolution: {integrity: sha512-VsKRIA8f5uqHQ7NGhwIna6Bx6D9s/1iXlA1hthBVBEbkq+t4kXD0HHt+rJhf/Z+Ci0F/HCB2hvn0qLdLG+Qxlw==}
+    engines: {node: '>=14', npm: '>5'}
+    hasBin: true
 
   path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
@@ -10096,6 +10124,9 @@ packages:
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  postinstall-postinstall@2.1.0:
+    resolution: {integrity: sha512-7hQX6ZlZXIoRiWNrbMQaLzUUfH+sSx39u8EJ9HYuDc1kLo9IXKWjM5RSquZN1ad5GnH8CGFM78fsAAQi3OKEEQ==}
 
   prebuild-install@7.1.3:
     resolution: {integrity: sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug==}
@@ -10966,6 +10997,10 @@ packages:
   size-sensor@1.0.2:
     resolution: {integrity: sha512-2NCmWxY7A9pYKGXNBfteo4hy14gWu47rg5692peVMst6lQLPKrVjhY+UTEsPI5ceFRJSl3gVgMYaUi/hKuaiKw==}
 
+  slash@2.0.0:
+    resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
+    engines: {node: '>=6'}
+
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -11478,6 +11513,10 @@ packages:
 
   tmp@0.2.3:
     resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
+    engines: {node: '>=14.14'}
+
+  tmp@0.2.7:
+    resolution: {integrity: sha512-e0votIpp4Uo2AJYSzVHV6xCcawuiez3DzqDAbrTc3YxBkplN6e+dM13ZeIcZnDg/QpSuU2zfZ3rzwY8ukEnaXw==}
     engines: {node: '>=14.14'}
 
   tmpl@1.0.5:
@@ -16251,7 +16290,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.8.0
       which: 5.0.0
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -16268,7 +16307,7 @@ snapshots:
       hosted-git-info: 8.1.0
       json-parse-even-better-errors: 4.0.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.0
       validate-npm-package-license: 3.0.4
 
   '@npmcli/promise-spawn@8.0.2':
@@ -20622,6 +20661,10 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
+  find-yarn-workspace-root@2.0.0:
+    dependencies:
+      micromatch: 4.0.8
+
   findup-sync@4.0.0:
     dependencies:
       detect-file: 1.0.0
@@ -22035,7 +22078,7 @@ snapshots:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.7.2
+      semver: 7.8.0
     transitivePeerDependencies:
       - supports-color
 
@@ -22060,7 +22103,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.3
+      semver: 7.8.0
       synckit: 0.11.12
     transitivePeerDependencies:
       - supports-color
@@ -22282,6 +22325,14 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
+  json-stable-stringify@1.3.0:
+    dependencies:
+      call-bind: 1.0.8
+      call-bound: 1.0.4
+      isarray: 2.0.5
+      jsonify: 0.0.1
+      object-keys: 1.1.1
+
   json5@2.2.3: {}
 
   jsonc-parser@3.3.1: {}
@@ -22295,6 +22346,8 @@ snapshots:
       universalify: 2.0.0
     optionalDependencies:
       graceful-fs: 4.2.11
+
+  jsonify@0.0.1: {}
 
   jsonparse@1.3.1: {}
 
@@ -22372,6 +22425,10 @@ snapshots:
       json-buffer: 3.0.1
 
   kind-of@6.0.3: {}
+
+  klaw-sync@6.0.0:
+    dependencies:
+      graceful-fs: 4.2.11
 
   kleur@3.0.3: {}
 
@@ -22654,7 +22711,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.0
 
   make-error@1.3.6: {}
 
@@ -23336,7 +23393,7 @@ snapshots:
 
   npm-install-checks@7.1.1:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.0
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -23473,6 +23530,11 @@ snapshots:
       define-lazy-prop: 3.0.0
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
+
+  open@7.4.2:
+    dependencies:
+      is-docker: 2.2.1
+      is-wsl: 2.2.0
 
   open@8.4.2:
     dependencies:
@@ -23656,6 +23718,23 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.8.1
     optional: true
+
+  patch-package@8.0.1:
+    dependencies:
+      '@yarnpkg/lockfile': 1.1.0
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      cross-spawn: 7.0.6
+      find-yarn-workspace-root: 2.0.0
+      fs-extra: 10.1.0
+      json-stable-stringify: 1.3.0
+      klaw-sync: 6.0.0
+      minimist: 1.2.8
+      open: 7.4.2
+      semver: 7.8.0
+      slash: 2.0.0
+      tmp: 0.2.7
+      yaml: 2.9.0
 
   path-browserify@1.0.1: {}
 
@@ -24039,6 +24118,8 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  postinstall-postinstall@2.1.0: {}
 
   prebuild-install@7.1.3:
     dependencies:
@@ -25072,6 +25153,8 @@ snapshots:
 
   size-sensor@1.0.2: {}
 
+  slash@2.0.0: {}
+
   slash@3.0.0: {}
 
   sleep@6.1.0:
@@ -25749,6 +25832,8 @@ snapshots:
       os-tmpdir: 1.0.2
 
   tmp@0.2.3: {}
+
+  tmp@0.2.7: {}
 
   tmpl@1.0.5: {}
 
@@ -26768,7 +26853,7 @@ snapshots:
       espree: 9.6.1
       esquery: 1.7.0
       lodash: 4.17.21
-      semver: 7.7.2
+      semver: 7.8.0
     transitivePeerDependencies:
       - supports-color
 
@@ -27156,8 +27241,7 @@ snapshots:
 
   yaml@2.8.2: {}
 
-  yaml@2.9.0:
-    optional: true
+  yaml@2.9.0: {}
 
   yargs-parser@20.2.9: {}
 
