@@ -39,9 +39,21 @@ regressionTest(
     await expect(group).toHaveAttribute('expanded', '');
     await expect(groupHeader).toBeFocused();
 
+    await page.keyboard.press('Enter');
+    await expect(group).not.toHaveAttribute('expanded');
+    await expect(groupHeader).toBeFocused();
+
     await page.keyboard.press('Tab');
     await expect(expandIcon).toBeFocused();
     await expect(groupHeader).not.toBeFocused();
+
+    await page.keyboard.press('Space');
+    await expect(group).not.toHaveAttribute('expanded');
+    await expect(expandIcon).toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect(group).toHaveAttribute('expanded', '');
+    await expect(expandIcon).toBeFocused();
 
     await page.keyboard.press('Enter');
     await expect(group).not.toHaveAttribute('expanded');

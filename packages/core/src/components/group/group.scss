@@ -161,7 +161,19 @@ $header-height-focus-visible: calc($header-height - 2px);
     margin-inline-end: vars.$tiny-space;
     min-width: 1.5rem;
 
-    ix-icon:focus-visible {
+    button {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    button:focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: 2px;
       border-radius: var(--theme-default-border-radius);

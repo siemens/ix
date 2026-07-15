@@ -140,16 +140,21 @@ export class Group {
   }
 
   private onHeaderKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
+    if (event.key !== 'Enter') {
       return;
     }
 
     event.preventDefault();
-    this.onHeaderClick(event);
+    this.onExpandClick(event);
   }
 
   private onChevronKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
+    if (event.key === ' ') {
+      event.preventDefault();
+      return;
+    }
+
+    if (event.key !== 'Enter') {
       return;
     }
 
@@ -254,6 +259,20 @@ export class Group {
   }
 
   render() {
+    const headerAriaExpanded = this.suppressHeaderSelection
+      ? this.expanded
+        ? 'true'
+        : 'false'
+      : undefined;
+    const headerAriaChecked = !this.suppressHeaderSelection
+      ? this.selected
+        ? 'true'
+        : 'false'
+      : undefined;
+    const expandIconName = this.expanded
+      ? iconChevronUpSmall
+      : iconChevronDownSmall;
+
     return (
       <Host>
         <div
@@ -264,20 +283,8 @@ export class Group {
           }}
           tabindex="0"
           role={this.suppressHeaderSelection ? 'button' : 'checkbox'}
-          aria-expanded={
-            this.suppressHeaderSelection
-              ? this.expanded
-                ? 'true'
-                : 'false'
-              : undefined
-          }
-          aria-checked={
-            !this.suppressHeaderSelection
-              ? this.selected
-                ? 'true'
-                : 'false'
-              : undefined
-          }
+          aria-expanded={headerAriaExpanded}
+          aria-checked={headerAriaChecked}
           onKeyDown={(event) =>
             event.target === event.currentTarget && this.onHeaderKeyDown(event)
           }
@@ -294,21 +301,24 @@ export class Group {
               }}
             ></div>
             <div class="btn-expand-header">
-              <ix-icon
+              <button
                 data-testid="expand-collapsed-icon"
-                class={{
-                  hidden: !this.showExpandCollapsedIcon,
-                }}
-                tabindex="0"
-                role="button"
+                type="button"
                 aria-expanded={this.expanded ? 'true' : 'false'}
                 aria-label={
                   this.expanded ? this.ariaLabelCollapse : this.ariaLabelExpand
                 }
-                name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
                 onClick={(event: Event) => this.onExpandClick(event)}
                 onKeyDown={(event) => this.onChevronKeyDown(event)}
-              ></ix-icon>
+              >
+                <ix-icon
+                  class={{
+                    hidden: !this.showExpandCollapsedIcon,
+                  }}
+                  aria-hidden="true"
+                  name={expandIconName}
+                ></ix-icon>
+              </button>
             </div>
 
             <div class="group-header-content">
