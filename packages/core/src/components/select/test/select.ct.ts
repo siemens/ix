@@ -1594,8 +1594,6 @@ test('input does not clear when slotchange fires before inputFilterText is set',
     }
   });
 
-  await page.waitForTimeout(100);
-
   await expect(input).toHaveValue('Item 1');
 });
 
@@ -1618,8 +1616,6 @@ test('selected label preserved when item is temporarily removed from DOM', async
     const item1 = select?.querySelector('ix-select-item[value="1"]');
     if (item1) item1.remove();
   });
-
-  await page.waitForTimeout(50);
 
   await expect(input).toHaveValue('Item 1');
 });
