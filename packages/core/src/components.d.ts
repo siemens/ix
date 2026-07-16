@@ -1942,6 +1942,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton": boolean;
+        /**
           * If true the filter chip will be in readonly mode
           * @default false
          */
@@ -2401,6 +2406,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu": string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -2415,6 +2426,12 @@ export namespace Components {
           * @default 'About & legal information'
          */
         "i18nLegal": string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint": string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -2605,6 +2622,7 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0
@@ -2675,6 +2693,7 @@ export namespace Components {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -2684,6 +2703,7 @@ export namespace Components {
           * @since 4.0.0
          */
         "rel"?: string;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0
@@ -3068,6 +3088,12 @@ export namespace Components {
          */
         "isMobile": boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding": boolean;
+        /**
           * The maximum size of the sidebar, when it is expanded
           * @default '240px'
          */
@@ -3147,6 +3173,126 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface IxPopover {
+        /**
+          * Dismiss when clicking outside the popover and trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "closeOnClickOutside": boolean;
+        /**
+          * Show the spike pointing at the trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "hasSpike": boolean;
+        /**
+          * Close the popover programmatically
+          * @since 5.1.0
+         */
+        "hidePopover": () => Promise<void>;
+        /**
+          * Preferred placement relative to trigger
+          * @since 5.1.0
+          * @default 'bottom'
+         */
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+        /**
+          * Show/hide state
+          * @since 5.1.0
+          * @default false
+         */
+        "show": boolean;
+        /**
+          * Open the popover programmatically
+          * @since 5.1.0
+         */
+        "showPopover": () => Promise<void>;
+        /**
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * @since 5.1.0
+         */
+        "trigger"?: ElementReference;
+        /**
+          * Interaction that opens the popover
+          * @since 5.1.0
+          * @default 'click'
+         */
+        "triggerMode": 'click' | 'hover';
+    }
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverContent {
+        /**
+          * Remove default inner padding.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding": boolean;
+    }
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface IxPopoverFooter {
+        /**
+          * Button layout direction
+          * @since 5.1.0
+          * @default 'horizontal'
+         */
+        "alignment": 'horizontal' | 'vertical';
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface IxPopoverHeader {
+        /**
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * @since 5.1.0
+          * @default 'Close'
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Hide the close (X) button
+          * @since 5.1.0
+          * @default false
+         */
+        "hideClose": boolean;
+        /**
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
+          * @since 5.1.0
+         */
+        "icon"?: string;
+        /**
+          * Icon color
+          * @since 5.1.0
+         */
+        "iconColor"?: string;
+    }
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverImage {
+        /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
+          * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
+          * @since 5.1.0
+          * @default ''
+         */
+        "imageAlt": string;
     }
     /**
      * @since 3.2.0
@@ -3412,6 +3558,12 @@ export namespace Components {
           * @default 'All'
          */
         "i18nAllSelected": string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -4735,6 +4887,14 @@ export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
 }
+export interface IxPopoverCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPopoverElement;
+}
+export interface IxPopoverHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPopoverHeaderElement;
+}
 export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxRadioElement;
@@ -5835,6 +5995,89 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPopoverElementEventMap {
+        "showChange": boolean;
+        "showChanged": boolean;
+    }
+    /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverElement extends Omit<Components.IxPopover, "showPopover" | "hidePopover">, HTMLStencilElement {
+        /**
+          * Open the popover programmatically
+          * @since 5.1.0
+         */
+        "showPopover": () => Promise<void>;
+        /**
+          * Close the popover programmatically
+          * @since 5.1.0
+         */
+        "hidePopover": () => Promise<void>;
+        addEventListener<K extends keyof HTMLIxPopoverElementEventMap>(type: K, listener: (this: HTMLIxPopoverElement, ev: IxPopoverCustomEvent<HTMLIxPopoverElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPopoverElementEventMap>(type: K, listener: (this: HTMLIxPopoverElement, ev: IxPopoverCustomEvent<HTMLIxPopoverElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPopoverElement: {
+        prototype: HTMLIxPopoverElement;
+        new (): HTMLIxPopoverElement;
+    };
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverContentElement extends Components.IxPopoverContent, HTMLStencilElement {
+    }
+    var HTMLIxPopoverContentElement: {
+        prototype: HTMLIxPopoverContentElement;
+        new (): HTMLIxPopoverContentElement;
+    };
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverFooterElement extends Components.IxPopoverFooter, HTMLStencilElement {
+    }
+    var HTMLIxPopoverFooterElement: {
+        prototype: HTMLIxPopoverFooterElement;
+        new (): HTMLIxPopoverFooterElement;
+    };
+    interface HTMLIxPopoverHeaderElementEventMap {
+        "closeClick": MouseEvent;
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverHeaderElement extends Components.IxPopoverHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPopoverHeaderElement: {
+        prototype: HTMLIxPopoverHeaderElement;
+        new (): HTMLIxPopoverHeaderElement;
+    };
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverImageElement extends Components.IxPopoverImage, HTMLStencilElement {
+    }
+    var HTMLIxPopoverImageElement: {
+        prototype: HTMLIxPopoverImageElement;
+        new (): HTMLIxPopoverImageElement;
+    };
     /**
      * @since 3.2.0
      */
@@ -6358,6 +6601,11 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-popover": HTMLIxPopoverElement;
+        "ix-popover-content": HTMLIxPopoverContentElement;
+        "ix-popover-footer": HTMLIxPopoverFooterElement;
+        "ix-popover-header": HTMLIxPopoverHeaderElement;
+        "ix-popover-image": HTMLIxPopoverImageElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
@@ -8337,6 +8585,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
@@ -8828,6 +9081,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu"?: string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -8842,6 +9101,12 @@ declare namespace LocalJSX {
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint"?: string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -9134,6 +9399,7 @@ declare namespace LocalJSX {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -9560,6 +9826,12 @@ declare namespace LocalJSX {
          */
         "isMobile"?: boolean;
         /**
+          * Remove the padding of the content area. If set to `true` the left, right and bottom padding of the content area is removed.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding"?: boolean;
+        /**
           * This event is triggered when the variant of the pane is changed
          */
         "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
@@ -9653,6 +9925,131 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface IxPopover {
+        /**
+          * Dismiss when clicking outside the popover and trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "closeOnClickOutside"?: boolean;
+        /**
+          * Show the spike pointing at the trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "hasSpike"?: boolean;
+        /**
+          * Fires before visibility changes. Cancel to prevent.
+          * @since 5.1.0
+         */
+        "onShowChange"?: (event: IxPopoverCustomEvent<boolean>) => void;
+        /**
+          * Fires after visibility has changed
+          * @since 5.1.0
+         */
+        "onShowChanged"?: (event: IxPopoverCustomEvent<boolean>) => void;
+        /**
+          * Preferred placement relative to trigger
+          * @since 5.1.0
+          * @default 'bottom'
+         */
+        "placement"?: 'top' | 'bottom' | 'left' | 'right';
+        /**
+          * Show/hide state
+          * @since 5.1.0
+          * @default false
+         */
+        "show"?: boolean;
+        /**
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * @since 5.1.0
+         */
+        "trigger"?: ElementReference;
+        /**
+          * Interaction that opens the popover
+          * @since 5.1.0
+          * @default 'click'
+         */
+        "triggerMode"?: 'click' | 'hover';
+    }
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverContent {
+        /**
+          * Remove default inner padding.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding"?: boolean;
+    }
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface IxPopoverFooter {
+        /**
+          * Button layout direction
+          * @since 5.1.0
+          * @default 'horizontal'
+         */
+        "alignment"?: 'horizontal' | 'vertical';
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface IxPopoverHeader {
+        /**
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * @since 5.1.0
+          * @default 'Close'
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Hide the close (X) button
+          * @since 5.1.0
+          * @default false
+         */
+        "hideClose"?: boolean;
+        /**
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
+          * @since 5.1.0
+         */
+        "icon"?: string;
+        /**
+          * Icon color
+          * @since 5.1.0
+         */
+        "iconColor"?: string;
+        /**
+          * Fires when close button is clicked. Cancel to prevent closing.
+          * @since 5.1.0
+         */
+        "onCloseClick"?: (event: IxPopoverHeaderCustomEvent<MouseEvent>) => void;
+    }
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverImage {
+        /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
+          * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
+          * @since 5.1.0
+          * @default ''
+         */
+        "imageAlt"?: string;
     }
     /**
      * @since 3.2.0
@@ -9926,6 +10323,12 @@ declare namespace LocalJSX {
           * @default 'All'
          */
         "i18nAllSelected"?: string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -11570,6 +11973,7 @@ declare namespace LocalJSX {
     interface IxFilterChipAttributes {
         "disabled": boolean;
         "readonly": boolean;
+        "hideCloseButton": boolean;
         "ariaLabelCloseIconButton": string;
     }
     interface IxFlipTileAttributes {
@@ -11691,6 +12095,8 @@ declare namespace LocalJSX {
         "expand": boolean;
         "startExpanded": boolean;
         "pinned": boolean;
+        "i18nAriaLabelMenu": string;
+        "i18nNavigationHint": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
@@ -11757,6 +12163,7 @@ declare namespace LocalJSX {
         "target": AnchorTarget;
         "rel": string;
         "isCategory": boolean;
+        "menuCategoryLabel": string;
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;
@@ -11843,6 +12250,7 @@ declare namespace LocalJSX {
     | '33%'
     | '50%';
         "borderless": boolean;
+        "noPadding": boolean;
         "expanded": boolean;
         "composition": Composition;
         "icon": string;
@@ -11873,6 +12281,30 @@ declare namespace LocalJSX {
         "pillColor": string | undefined;
         "alignLeft": boolean;
         "tooltipText": string;
+    }
+    interface IxPopoverAttributes {
+        "trigger": ElementReference;
+        "show": boolean;
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+        "hasSpike": boolean;
+        "triggerMode": 'click' | 'hover';
+        "closeOnClickOutside": boolean;
+    }
+    interface IxPopoverContentAttributes {
+        "noPadding": boolean;
+    }
+    interface IxPopoverFooterAttributes {
+        "alignment": 'horizontal' | 'vertical';
+    }
+    interface IxPopoverHeaderAttributes {
+        "icon": string;
+        "iconColor": string;
+        "hideClose": boolean;
+        "ariaLabelCloseIconButton": string;
+    }
+    interface IxPopoverImageAttributes {
+        "image": string;
+        "imageAlt": string;
     }
     interface IxProgressIndicatorAttributes {
         "type": 'linear' | 'circular';
@@ -11926,6 +12358,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
+        "i18nMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;
@@ -12266,6 +12699,11 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-popover": Omit<IxPopover, keyof IxPopoverAttributes> & { [K in keyof IxPopover & keyof IxPopoverAttributes]?: IxPopover[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `attr:${K}`]?: IxPopoverAttributes[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `prop:${K}`]?: IxPopover[K] };
+        "ix-popover-content": Omit<IxPopoverContent, keyof IxPopoverContentAttributes> & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes]?: IxPopoverContent[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `attr:${K}`]?: IxPopoverContentAttributes[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `prop:${K}`]?: IxPopoverContent[K] };
+        "ix-popover-footer": Omit<IxPopoverFooter, keyof IxPopoverFooterAttributes> & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes]?: IxPopoverFooter[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `attr:${K}`]?: IxPopoverFooterAttributes[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `prop:${K}`]?: IxPopoverFooter[K] };
+        "ix-popover-header": Omit<IxPopoverHeader, keyof IxPopoverHeaderAttributes> & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes]?: IxPopoverHeader[K] } & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes as `attr:${K}`]?: IxPopoverHeaderAttributes[K] } & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes as `prop:${K}`]?: IxPopoverHeader[K] };
+        "ix-popover-image": Omit<IxPopoverImage, keyof IxPopoverImageAttributes> & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes]?: IxPopoverImage[K] } & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes as `attr:${K}`]?: IxPopoverImageAttributes[K] } & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes as `prop:${K}`]?: IxPopoverImage[K] };
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
@@ -12407,6 +12845,31 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * Floating panel anchored to a trigger element.
+             * @since 5.1.0
+             */
+            "ix-popover": LocalJSX.IntrinsicElements["ix-popover"] & JSXBase.HTMLAttributes<HTMLIxPopoverElement>;
+            /**
+             * Main body section of the popover.
+             * @since 5.1.0
+             */
+            "ix-popover-content": LocalJSX.IntrinsicElements["ix-popover-content"] & JSXBase.HTMLAttributes<HTMLIxPopoverContentElement>;
+            /**
+             * Footer section for actions and optional leading metadata.
+             * @since 5.1.0
+             */
+            "ix-popover-footer": LocalJSX.IntrinsicElements["ix-popover-footer"] & JSXBase.HTMLAttributes<HTMLIxPopoverFooterElement>;
+            /**
+             * Header section with optional icon, title, additional items, and close button.
+             * @since 5.1.0
+             */
+            "ix-popover-header": LocalJSX.IntrinsicElements["ix-popover-header"] & JSXBase.HTMLAttributes<HTMLIxPopoverHeaderElement>;
+            /**
+             * Optional image section for the popover.
+             * @since 5.1.0
+             */
+            "ix-popover-image": LocalJSX.IntrinsicElements["ix-popover-image"] & JSXBase.HTMLAttributes<HTMLIxPopoverImageElement>;
             /**
              * @since 3.2.0
              */

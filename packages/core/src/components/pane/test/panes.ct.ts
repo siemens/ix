@@ -38,6 +38,43 @@ regressionTest('expanded', async ({ mount, page }) => {
   await expect(title).toBeVisible();
 });
 
+regressionTest(
+  'no-padding removes content padding except top',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pane
+      heading="LEFT"
+      composition="left"
+      expanded="true"
+      no-padding="true"
+    >
+      <h1>Test Heading</h1>
+    </ix-pane>
+  `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveClass(/hydrated/);
+
+    const content = pane.locator('.side-pane-content');
+    await expect(content).toHaveClass(/no-padding/);
+
+    const padding = await content.evaluate((el) => {
+      const style = getComputedStyle(el);
+      return {
+        left: style.paddingLeft,
+        right: style.paddingRight,
+        bottom: style.paddingBottom,
+        top: style.paddingTop,
+      };
+    });
+
+    expect(padding.left).toBe('0px');
+    expect(padding.right).toBe('0px');
+    expect(padding.bottom).toBe('0px');
+    expect(padding.top).not.toBe('0px');
+  }
+);
+
 regressionTest('prevent pane expansion', async ({ mount, page }) => {
   await mount(
     `

@@ -29,6 +29,9 @@ import {
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
+/**
+ * @slot default - Breadcrumb item label.
+ */
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
@@ -127,7 +130,7 @@ export class BreadcrumbItem
     };
 
     const props: BaseButtonProps = {
-      variant: this.subtle ? 'subtle-primary' : 'tertiary',
+      variant: !this.hideChevron && this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,

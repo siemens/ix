@@ -82,6 +82,39 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await expect(label).toHaveCSS('color', checkboxLabelColor);
 });
 
+regressionTest(
+  'label-less host size matches 24px active area',
+  async ({
+    mount,
+
+    page,
+  }) => {
+    await mount(
+      `<ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox>`
+    );
+    const checkbox = page.locator('ix-checkbox');
+    await expect(checkbox).toHaveClass(/label-less/);
+    await expect(checkbox).toHaveCSS('width', '24px');
+    await expect(checkbox).toHaveCSS('height', '24px');
+  }
+);
+
+regressionTest(
+  'default slot label is not label-less',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-checkbox name="slot-label">Custom slot label text</ix-checkbox>`
+    );
+    const checkbox = page.locator('ix-checkbox');
+    await expect(checkbox).not.toHaveClass(/label-less/);
+    await expect(checkbox).toHaveText(/Custom slot label text/);
+    const width = await checkbox.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).width)
+    );
+    expect(width).toBeGreaterThan(24);
+  }
+);
+
 regressionTest('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');

@@ -58,6 +58,9 @@ export default function EchartsBarHorizontalStacked() {
   }));
 
   const options: EChartsOption = {
+    grid: {
+      bottom: 100,
+    },
     xAxis: {
       type: 'value',
       name: 'Revenue (in Millions of USD)',
@@ -72,8 +75,8 @@ export default function EchartsBarHorizontalStacked() {
     },
     legend: {
       show: true,
-      left: '0',
-      bottom: '0',
+      bottom: 0,
+      padding: 16,
     },
     series: series,
   };
