@@ -1095,7 +1095,7 @@ export class DatePicker
               )}
               {this.dayNames.map((name, index) => (
                 <div
-                  key={name}
+                  key={`${index}-${name}`}
                   class="calendar-item week-day"
                   role="columnheader"
                   aria-label={this.dayNamesFull[index]}

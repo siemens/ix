@@ -149,6 +149,39 @@ export const configureKeyboardInteraction = (
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => getItemsHost());
 
+  const handleBoundaryFocus = async (
+    direction: KeyboardNavigationBoundaryDirection,
+    items: HTMLElement[],
+    activeElement: HTMLElement | null
+  ) => {
+    const currentItemIndex = getIndexOfDropdownItem(
+      items,
+      activeElement,
+      activeQuerySelector
+    );
+    const boundaryIndex = direction === 'next' ? items.length - 1 : 0;
+
+    if (
+      wrapNavigation ||
+      items.length === 0 ||
+      currentItemIndex !== boundaryIndex
+    ) {
+      return false;
+    }
+
+    const boundaryItem = await options.onBoundaryFocus?.({
+      direction,
+      items,
+      activeElement,
+    });
+
+    if (boundaryItem !== undefined) {
+      setItemActive(boundaryItem);
+    }
+
+    return true;
+  };
+
   const callback = async (event: KeyboardEvent) => {
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
@@ -209,26 +242,7 @@ export const configureKeyboardInteraction = (
         // Disable movement/scroll with keyboard
         event.preventDefault();
 
-        const currentItemIndex = getIndexOfDropdownItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
-
-        if (
-          !wrapNavigation &&
-          items.length > 0 &&
-          currentItemIndex === items.length - 1
-        ) {
-          const boundaryItem = await options.onBoundaryFocus?.({
-            direction: 'next',
-            items,
-            activeElement,
-          });
-
-          if (boundaryItem !== undefined) {
-            setItemActive(boundaryItem);
-          }
+        if (await handleBoundaryFocus('next', items, activeElement)) {
           break;
         }
 
@@ -252,22 +266,7 @@ export const configureKeyboardInteraction = (
         // Disable movement/scroll with keyboard
         event.preventDefault();
 
-        const currentItemIndex = getIndexOfDropdownItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
-
-        if (!wrapNavigation && items.length > 0 && currentItemIndex === 0) {
-          const boundaryItem = await options.onBoundaryFocus?.({
-            direction: 'previous',
-            items,
-            activeElement,
-          });
-
-          if (boundaryItem !== undefined) {
-            setItemActive(boundaryItem);
-          }
+        if (await handleBoundaryFocus('previous', items, activeElement)) {
           break;
         }
 
