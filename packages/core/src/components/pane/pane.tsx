@@ -48,6 +48,7 @@ import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot header - Additional slot for the header content
+ * @slot default - Pane body content.
  */
 @Component({
   tag: 'ix-pane',

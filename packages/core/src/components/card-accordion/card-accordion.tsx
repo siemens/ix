@@ -20,6 +20,9 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordionControlId++].join('-');
 };
 
+/**
+ * @slot default - Accordion content.
+ */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',

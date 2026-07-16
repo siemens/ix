@@ -11,6 +11,9 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Tree item content and nested items.
+ */
 @Component({
   tag: 'ix-tree-item',
   styleUrl: 'tree-item.scss',
