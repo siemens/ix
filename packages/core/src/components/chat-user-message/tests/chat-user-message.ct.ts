@@ -131,9 +131,7 @@ regressionTest(
     });
 
     const message = page.locator('ix-chat-user-message');
-    const attachment = page.locator(
-      'ix-chat-attachment[slot="attachments"]'
-    );
+    const attachment = page.locator('ix-chat-attachment[slot="attachments"]');
 
     await expect(message).toHaveClass(/has-attachments/);
     await expect(message.locator('.attachments')).toBeVisible();

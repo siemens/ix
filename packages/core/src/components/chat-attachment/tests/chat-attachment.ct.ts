@@ -95,13 +95,13 @@ regressionTest(
     await expect(
       page.locator('ix-chat-attachment').first().locator('ix-spinner')
     ).toHaveCount(1);
-    await expect(
-      page.locator('ix-chat-attachment').first()
-    ).toContainText('uploading_file.txt');
+    await expect(page.locator('ix-chat-attachment').first()).toContainText(
+      'uploading_file.txt'
+    );
 
-    await expect(
-      page.locator('ix-chat-attachment').nth(1)
-    ).toContainText('failed_file.txt');
+    await expect(page.locator('ix-chat-attachment').nth(1)).toContainText(
+      'failed_file.txt'
+    );
     await expect(
       page.locator('ix-chat-attachment').nth(1).locator('ix-chip')
     ).toHaveAttribute('variant', 'alarm');
@@ -118,13 +118,11 @@ regressionTest(
 
     await page.evaluate(() => {
       globalThis.__attachmentClicked = false;
-      document
-        .querySelectorAll('ix-chat-attachment')
-        .forEach((attachment) => {
-          attachment.addEventListener('attachmentClick', () => {
-            globalThis.__attachmentClicked = true;
-          });
+      document.querySelectorAll('ix-chat-attachment').forEach((attachment) => {
+        attachment.addEventListener('attachmentClick', () => {
+          globalThis.__attachmentClicked = true;
         });
+      });
     });
 
     const staticAttachment = page.locator('ix-chat-attachment').first();
