@@ -10,7 +10,7 @@
 import { Component, Host, State, h } from '@stencil/core';
 
 /**
- * @since 5.1.0
+ * @since 5.2.0
  * @slot - AI-generated message content
  * @slot actions - Optional actions displayed below the AI message
  * @slot sources - Optional sources displayed next to the AI message actions

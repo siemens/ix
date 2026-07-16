@@ -10,7 +10,7 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 
 /**
- * @since 5.1.0
+ * @since 5.2.0
  * @slot - Message content displayed in the user message bubble
  * @slot actions - Optional actions displayed below the user message bubble
  * @slot attachments - ix-chat-attachment elements with variant="sent" displayed above the user message bubble
@@ -25,7 +25,6 @@ export class ChatUserMessage {
 
   /**
    * Text displayed in the user message bubble.
-   * @since 5.1.0
    */
   @Prop() message?: string;
 

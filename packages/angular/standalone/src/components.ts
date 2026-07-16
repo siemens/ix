@@ -580,11 +580,11 @@ export class IxChatAttachment {
 
 export declare interface IxChatAttachment extends Components.IxChatAttachment {
   /**
-   * Event emitted when the attachment is clicked. @since 5.1.0
+   * Event emitted when the attachment is clicked.
    */
   attachmentClick: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the remove action is clicked. @since 5.1.0
+   * Event emitted when the remove action is clicked.
    */
   removeClick: EventEmitter<CustomEvent<void>>;
 }
@@ -618,19 +618,19 @@ export class IxChatInput {
 
 export declare interface IxChatInput extends Components.IxChatInput {
   /**
-   * Event emitted when the value of the chat input changes. @since 5.1.0
+   * Event emitted when the value of the chat input changes.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Event emitted when the chat input loses focus. @since 5.1.0
+   * Event emitted when the chat input loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the chat input loses focus and the value has changed. @since 5.1.0
+   * Event emitted when the chat input loses focus and the value has changed.
    */
   ixChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.1.0
+   * Event emitted when the prompt is submitted by the send button or Enter key.
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
 }

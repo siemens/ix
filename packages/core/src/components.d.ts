@@ -627,81 +627,71 @@ export namespace Components {
         "uniqueCategories": boolean;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChat {
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatAiMessage {
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatAttachment {
         /**
           * Name of the attached file.
-          * @since 5.1.0
           * @default ''
          */
         "fileName": string;
         /**
           * Hide the remove action.
-          * @since 5.1.0
           * @default false
          */
         "hideRemoveButton": boolean;
         /**
           * Icon displayed before the file name.
-          * @since 5.1.0
           * @default iconTxtDocument
          */
         "icon": string;
         /**
           * Enable preview interaction for default attachments.
-          * @since 5.1.0
           * @default false
          */
         "previewSupported": boolean;
         /**
           * Accessible label for the remove action.
-          * @since 5.1.0
           * @default 'Remove attachment'
          */
         "removeAriaLabel": string;
         /**
           * Upload status of the attachment.
-          * @since 5.1.0
           * @default 'default'
          */
         "status": ChatAttachmentStatus;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      * @form-ready 
      */
     interface IxChatInput {
         /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
-          * @since 5.1.0
          */
         "characterLimit"?: number;
         /**
           * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
-          * @since 5.1.0
           * @default 0.9
          */
         "characterLimitWarningThreshold": number;
         /**
           * Specifies whether the chat input is disabled.
-          * @since 5.1.0
           * @default false
          */
         "disabled": boolean;
         /**
           * Disclaimer text displayed below the chat input.
-          * @since 5.1.0
           * @default 'This content is AI-generated. Always verify the information for accuracy.'
          */
         "disclaimer": string;
@@ -718,82 +708,69 @@ export namespace Components {
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
         /**
           * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
-          * @since 5.1.0
           * @default 'Character limit reached ({current} / {limit} characters)'
          */
         "i18nCharacterLimitReached": string;
         /**
           * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
-          * @since 5.1.0
           * @default "You're nearing the limit ({current} / {limit} characters)"
          */
         "i18nCharacterLimitWarning": string;
         /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
-          * @since 5.1.0
           * @default false
          */
         "insertLineBreakOnEnter": boolean;
         /**
           * The maximum length of the chat input.
-          * @since 5.1.0
          */
         "maxLength"?: number;
         /**
           * Maximum number of visible text rows before the input becomes scrollable.
-          * @since 5.1.0
           * @default 6
          */
         "maxRows": number;
         /**
           * Minimum number of visible text rows.
-          * @since 5.1.0
           * @default 1
          */
         "minRows": number;
         /**
           * The name of the chat input.
-          * @since 5.1.0
          */
         "name"?: string;
         /**
           * The placeholder text for the chat input.
-          * @since 5.1.0
           * @default 'Enter a command, question or topic...'
          */
         "placeholder": string;
         /**
           * Specifies whether the chat input is readonly.
-          * @since 5.1.0
           * @default false
          */
         "readonly": boolean;
         /**
           * The state of the chat input, which can be either 'input' or 'processing'.
-          * @since 5.1.0
           * @default 'input'
          */
         "state"?: 'input' | 'processing';
         /**
           * Accessible label for the native textarea.
-          * @since 5.1.0
           * @default 'Chat input'
          */
         "textareaLabel": string;
         /**
           * The value of the chat input.
-          * @since 5.1.0
           * @default ''
          */
         "value": string;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatUserMessage {
         /**
           * Text displayed in the user message bubble.
-          * @since 5.1.0
          */
         "message"?: string;
     }
@@ -5335,7 +5312,7 @@ declare global {
         new (): HTMLIxCategoryFilterElement;
     };
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface HTMLIxChatElement extends Components.IxChat, HTMLStencilElement {
     }
@@ -5344,7 +5321,7 @@ declare global {
         new (): HTMLIxChatElement;
     };
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface HTMLIxChatAiMessageElement extends Components.IxChatAiMessage, HTMLStencilElement {
     }
@@ -5357,7 +5334,7 @@ declare global {
         "removeClick": void;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface HTMLIxChatAttachmentElement extends Components.IxChatAttachment, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5380,7 +5357,7 @@ declare global {
         "promptSubmit": string;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      * @form-ready 
      */
     interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
@@ -5398,7 +5375,7 @@ declare global {
         new (): HTMLIxChatInputElement;
     };
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface HTMLIxChatUserMessageElement extends Components.IxChatUserMessage, HTMLStencilElement {
     }
@@ -7467,91 +7444,79 @@ declare namespace LocalJSX {
         "uniqueCategories"?: boolean;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChat {
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatAiMessage {
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatAttachment {
         /**
           * Name of the attached file.
-          * @since 5.1.0
           * @default ''
          */
         "fileName"?: string;
         /**
           * Hide the remove action.
-          * @since 5.1.0
           * @default false
          */
         "hideRemoveButton"?: boolean;
         /**
           * Icon displayed before the file name.
-          * @since 5.1.0
           * @default iconTxtDocument
          */
         "icon"?: string;
         /**
           * Event emitted when the attachment is clicked.
-          * @since 5.1.0
          */
         "onAttachmentClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
         /**
           * Event emitted when the remove action is clicked.
-          * @since 5.1.0
          */
         "onRemoveClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
         /**
           * Enable preview interaction for default attachments.
-          * @since 5.1.0
           * @default false
          */
         "previewSupported"?: boolean;
         /**
           * Accessible label for the remove action.
-          * @since 5.1.0
           * @default 'Remove attachment'
          */
         "removeAriaLabel"?: string;
         /**
           * Upload status of the attachment.
-          * @since 5.1.0
           * @default 'default'
          */
         "status"?: ChatAttachmentStatus;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      * @form-ready 
      */
     interface IxChatInput {
         /**
           * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
-          * @since 5.1.0
          */
         "characterLimit"?: number;
         /**
           * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
-          * @since 5.1.0
           * @default 0.9
          */
         "characterLimitWarningThreshold"?: number;
         /**
           * Specifies whether the chat input is disabled.
-          * @since 5.1.0
           * @default false
          */
         "disabled"?: boolean;
         /**
           * Disclaimer text displayed below the chat input.
-          * @since 5.1.0
           * @default 'This content is AI-generated. Always verify the information for accuracy.'
          */
         "disclaimer"?: string;
@@ -7561,102 +7526,85 @@ declare namespace LocalJSX {
         "form"?: string;
         /**
           * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
-          * @since 5.1.0
           * @default 'Character limit reached ({current} / {limit} characters)'
          */
         "i18nCharacterLimitReached"?: string;
         /**
           * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
-          * @since 5.1.0
           * @default "You're nearing the limit ({current} / {limit} characters)"
          */
         "i18nCharacterLimitWarning"?: string;
         /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
-          * @since 5.1.0
           * @default false
          */
         "insertLineBreakOnEnter"?: boolean;
         /**
           * The maximum length of the chat input.
-          * @since 5.1.0
          */
         "maxLength"?: number;
         /**
           * Maximum number of visible text rows before the input becomes scrollable.
-          * @since 5.1.0
           * @default 6
          */
         "maxRows"?: number;
         /**
           * Minimum number of visible text rows.
-          * @since 5.1.0
           * @default 1
          */
         "minRows"?: number;
         /**
           * The name of the chat input.
-          * @since 5.1.0
          */
         "name"?: string;
         /**
           * Event emitted when the chat input loses focus.
-          * @since 5.1.0
          */
         "onIxBlur"?: (event: IxChatInputCustomEvent<void>) => void;
         /**
           * Event emitted when the chat input loses focus and the value has changed.
-          * @since 5.1.0
          */
         "onIxChange"?: (event: IxChatInputCustomEvent<string>) => void;
         /**
           * Event emitted when the prompt is submitted by the send button or Enter key.
-          * @since 5.1.0
          */
         "onPromptSubmit"?: (event: IxChatInputCustomEvent<string>) => void;
         /**
           * Event emitted when the value of the chat input changes.
-          * @since 5.1.0
          */
         "onValueChange"?: (event: IxChatInputCustomEvent<string>) => void;
         /**
           * The placeholder text for the chat input.
-          * @since 5.1.0
           * @default 'Enter a command, question or topic...'
          */
         "placeholder"?: string;
         /**
           * Specifies whether the chat input is readonly.
-          * @since 5.1.0
           * @default false
          */
         "readonly"?: boolean;
         /**
           * The state of the chat input, which can be either 'input' or 'processing'.
-          * @since 5.1.0
           * @default 'input'
          */
         "state"?: 'input' | 'processing';
         /**
           * Accessible label for the native textarea.
-          * @since 5.1.0
           * @default 'Chat input'
          */
         "textareaLabel"?: string;
         /**
           * The value of the chat input.
-          * @since 5.1.0
           * @default ''
          */
         "value"?: string;
     }
     /**
-     * @since 5.1.0
+     * @since 5.2.0
      */
     interface IxChatUserMessage {
         /**
           * Text displayed in the user message bubble.
-          * @since 5.1.0
          */
         "message"?: string;
     }
@@ -13236,24 +13184,24 @@ declare module "@stencil/core" {
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             /**
-             * @since 5.1.0
+             * @since 5.2.0
              */
             "ix-chat": LocalJSX.IntrinsicElements["ix-chat"] & JSXBase.HTMLAttributes<HTMLIxChatElement>;
             /**
-             * @since 5.1.0
+             * @since 5.2.0
              */
             "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
             /**
-             * @since 5.1.0
+             * @since 5.2.0
              */
             "ix-chat-attachment": LocalJSX.IntrinsicElements["ix-chat-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatAttachmentElement>;
             /**
-             * @since 5.1.0
+             * @since 5.2.0
              * @form-ready 
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
-             * @since 5.1.0
+             * @since 5.2.0
              */
             "ix-chat-user-message": LocalJSX.IntrinsicElements["ix-chat-user-message"] & JSXBase.HTMLAttributes<HTMLIxChatUserMessageElement>;
             /**
