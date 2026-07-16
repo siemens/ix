@@ -179,6 +179,7 @@ import PaneLayout from './preview-examples/pane-layout.vue';
 import Pane from './preview-examples/pane.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
+import Popover from './preview-examples/popover.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -420,6 +421,7 @@ const routes: IxPreviewRoutes = {
   '/preview/toggle-custom-toggle': ToggleCustomLabel,
   '/preview/tree': Tree,
   '/preview/tree-custom': TreeCustom,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/settings': Settings,
   '/preview/settings-legacy': SettingsLegacy,

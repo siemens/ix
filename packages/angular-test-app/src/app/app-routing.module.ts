@@ -186,6 +186,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
+import Popover from '../preview-examples/popover';
 import PopoverNews from '../preview-examples/popover-news';
 import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
@@ -844,6 +845,7 @@ const routes: Routes = [
       { path: 'pane-layout', component: PaneLayout },
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
+      { path: 'popover', component: Popover },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'radio', component: Radio },
@@ -894,10 +896,6 @@ const routes: Routes = [
         component: Pill,
       },
       { path: 'pill-variants', component: PillVariants },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
       {
         path: 'push-card',
         component: PushCard,

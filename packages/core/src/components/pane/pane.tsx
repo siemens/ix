@@ -48,6 +48,7 @@ import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot header - Additional slot for the header content
+ * @slot default - Pane body content.
  */
 @Component({
   tag: 'ix-pane',
@@ -90,6 +91,14 @@ export class Pane {
    * Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
    */
   @Prop() borderless: boolean = false;
+
+  /**
+   * Remove the padding of the content area.
+   * If set to `true` the left, right and bottom padding of the content area is removed.
+   *
+   * @since 5.1.0
+   */
+  @Prop() noPadding: boolean = false;
 
   /**
    * State of the pane
@@ -808,7 +817,13 @@ export class Pane {
               )}
             </div>
           </div>
-          <div class="side-pane-content" hidden={!this.showContent}>
+          <div
+            class={{
+              'side-pane-content': true,
+              'no-padding': this.noPadding,
+            }}
+            hidden={!this.showContent}
+          >
             <slot></slot>
           </div>
         </aside>

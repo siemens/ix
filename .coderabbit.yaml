@@ -2,6 +2,11 @@ language: "en-US"
 
 reviews:
   profile: "assertive"
+  path_filters:
+    - "!packages/react/src/components/**"
+    - "!packages/vue/src/components/**"
+    - "!packages/angular/standalone/src/components.ts"
+    - "!packages/angular/standalone/src/internal-components.ts"
   path_instructions:
     - path: "**"
       instructions: |
@@ -49,3 +54,12 @@ reviews:
         - Prefer Playwright locators over evaluate + shadowRoot.querySelector for assertions.
         - Avoid arbitrary timeouts/waitForTimeout.
 
+    - path: "{packages/angular-test-app,packages/angular-standalone-test-app,packages/react-test-app,packages/vue-test-app,packages/html-test-app}/src/preview-examples/**"
+      instructions: |
+        Test-app example consistency requirements:
+        - Every preview example must exist in all five test apps: angular-test-app, angular-standalone-test-app, react-test-app, vue-test-app, and html-test-app.
+        - All framework variants of the same example must be functionally equivalent: same components rendered, same props, same interactions, same slot content, and same structural intent.
+        - Styling must be consistent across frameworks: class names, inline styles, and layout structure should match as closely as the framework syntax allows.
+        - If a new example is added in one test app but is missing from one or more of the other four, flag each missing variant as a review issue.
+        - If an existing example is modified in one test app, verify that the equivalent change is applied in all other test apps and flag any inconsistency.
+        - Differences that are acceptable: framework-specific syntax (e.g., Angular template bindings vs. JSX), file extensions, and import styles. Everything else should be uniform.

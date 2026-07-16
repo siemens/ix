@@ -62,6 +62,9 @@ import './generated/toggle-indeterminate-axe.spec';
 import './generated/pill-axe.spec';
 import './generated/pill-variants-axe.spec';
 
+// Popover tests
+import './generated/popover-axe.spec';
+
 // Chip tests
 import './generated/chip-axe.spec';
 

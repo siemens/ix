@@ -1,5 +1,11 @@
 /\*
 
+## 4.1.0
+
+### Minor Changes
+
+- [#2580](https://github.com/siemens/ix/pull/2580) [`64ea4f6`](https://github.com/siemens/ix/commit/64ea4f631d839ceb3e655c8c69546d5a53804ec3) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Expanded the supported Echarts peer dependency range to include "Echarts 6" while maintaining compatibility with Echarts 5
+
 ## 4.0.0
 
 ### Patch Changes
