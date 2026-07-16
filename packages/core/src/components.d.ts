@@ -5381,7 +5381,7 @@ declare global {
     }
     /**
      * @since 5.1.0
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -13249,7 +13249,7 @@ declare module "@stencil/core" {
             "ix-chat-attachment": LocalJSX.IntrinsicElements["ix-chat-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatAttachmentElement>;
             /**
              * @since 5.1.0
-             * @form-ready
+             * @form-ready 
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
