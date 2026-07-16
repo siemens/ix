@@ -78,7 +78,7 @@ SPDX-License-Identifier: MIT
         max-width: 18rem;
       }
 
-      .attachment-state-row ix-chat-prompt-attachment {
+      .attachment-state-row ix-chat-attachment {
         width: 100%;
       }
 
@@ -150,19 +150,19 @@ SPDX-License-Identifier: MIT
               message="Summarize the customer discussion and include related attachments."
               attachment-count="2"
             >
-              <ix-chat-prompt-attachment
+              <ix-chat-attachment
                 slot="attachments"
                 file-name="meeting_notes_summary.pdf"
                 variant="sent"
                 hide-remove-button
                 preview-supported
-              ></ix-chat-prompt-attachment>
-              <ix-chat-prompt-attachment
+              ></ix-chat-attachment>
+              <ix-chat-attachment
                 slot="attachments"
                 file-name="customer_scope.xlsx"
                 variant="sent"
                 hide-remove-button
-              ></ix-chat-prompt-attachment>
+              ></ix-chat-attachment>
               <ix-dropdown-item
                 slot="attachment-overflow"
                 label="initial_requirements.pdf"
@@ -209,21 +209,21 @@ SPDX-License-Identifier: MIT
               <ix-button slot="follow-up" variant="secondary">
                 Show related alarms.
               </ix-button>
-              <ix-chat-prompt-attachment
+              <ix-chat-attachment
                 slot="attachments"
                 file-name="handover_notes.pdf"
                 preview-supported
-              ></ix-chat-prompt-attachment>
-              <ix-chat-prompt-attachment
+              ></ix-chat-attachment>
+              <ix-chat-attachment
                 slot="attachments"
                 file-name="trend_export.csv"
                 status="loading"
-              ></ix-chat-prompt-attachment>
-              <ix-chat-prompt-attachment
+              ></ix-chat-attachment>
+              <ix-chat-attachment
                 slot="attachments"
                 file-name="fault_tree.xlsx"
                 status="failed"
-              ></ix-chat-prompt-attachment>
+              ></ix-chat-attachment>
               <ix-icon-button
                 slot="start"
                 aria-label="Attach file"
@@ -270,18 +270,18 @@ SPDX-License-Identifier: MIT
             <div>
               <p class="state-caption">Prompt attachment states</p>
               <div class="attachment-state-row">
-                <ix-chat-prompt-attachment
+                <ix-chat-attachment
                   file-name="manual.pdf"
                   preview-supported
-                ></ix-chat-prompt-attachment>
-                <ix-chat-prompt-attachment
+                ></ix-chat-attachment>
+                <ix-chat-attachment
                   file-name="uploading.csv"
                   status="loading"
-                ></ix-chat-prompt-attachment>
-                <ix-chat-prompt-attachment
+                ></ix-chat-attachment>
+                <ix-chat-attachment
                   file-name="failed-upload.xlsx"
                   status="failed"
-                ></ix-chat-prompt-attachment>
+                ></ix-chat-attachment>
               </div>
             </div>
           </div>

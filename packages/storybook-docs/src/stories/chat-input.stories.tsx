@@ -94,10 +94,10 @@ export const HardCharacterLimit: Story = {
 
 function createAttachment(index: number) {
   return (
-    <ix-chat-prompt-attachment
+    <ix-chat-attachment
       fileName={`file_${String(index).padStart(2, '0')}.txt`}
       slot="attachments"
-    ></ix-chat-prompt-attachment>
+    ></ix-chat-attachment>
   );
 }
 

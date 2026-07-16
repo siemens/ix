@@ -11,7 +11,7 @@
 import {
   IxChat,
   IxChatInput,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxIconButton,
 } from '@siemens/ix-vue';
 import {
@@ -32,11 +32,11 @@ import {
       :max-length="180"
       :character-limit="180"
     >
-      <IxChatPromptAttachment
+      <IxChatAttachment
         slot="attachments"
         file-name="shift_report.pdf"
         :icon="iconPdfDocument"
-      ></IxChatPromptAttachment>
+      ></IxChatAttachment>
       <IxIconButton
         slot="start"
         aria-label="Attach file"

@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import {
   IxChat,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxChatUserMessage,
   IxIconButton,
 } from '@siemens/ix-vue';
@@ -26,18 +26,18 @@ import {
 <template>
   <IxChat class="chat-example__chat">
     <IxChatUserMessage message="Summarize the attached shift report.">
-      <IxChatPromptAttachment
+      <IxChatAttachment
         slot="attachments"
         file-name="shift_report.pdf"
         :icon="iconPdfDocument"
         hide-remove-button
-      ></IxChatPromptAttachment>
-      <IxChatPromptAttachment
+      ></IxChatAttachment>
+      <IxChatAttachment
         slot="attachments"
         file-name="operator_notes.txt"
         :icon="iconTxtDocument"
         hide-remove-button
-      ></IxChatPromptAttachment>
+      ></IxChatAttachment>
       <IxIconButton
         slot="actions"
         aria-label="Copy message"

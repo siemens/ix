@@ -119,12 +119,12 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <ix-chat-user-message message="Analyze alarms">
-        <ix-chat-prompt-attachment slot="attachments" file-name="file_01.pdf" variant="sent" hide-remove-button preview-supported></ix-chat-prompt-attachment>
+        <ix-chat-attachment slot="attachments" file-name="file_01.pdf" variant="sent" hide-remove-button preview-supported></ix-chat-attachment>
       </ix-chat-user-message>
     `);
 
     await page.evaluate(() => {
-      const attachment = document.querySelector('ix-chat-prompt-attachment');
+      const attachment = document.querySelector('ix-chat-attachment');
       attachment?.addEventListener('attachmentClick', () => {
         attachment.setAttribute('data-clicked', 'true');
       });
@@ -132,7 +132,7 @@ regressionTest(
 
     const message = page.locator('ix-chat-user-message');
     const attachment = page.locator(
-      'ix-chat-prompt-attachment[slot="attachments"]'
+      'ix-chat-attachment[slot="attachments"]'
     );
 
     await expect(message).toHaveClass(/has-attachments/);

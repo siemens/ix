@@ -274,8 +274,8 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <ix-chat-input attachment-layout="scroll" style="width: 40rem; --ix-chat-input-max-width: 40rem">
-        <ix-chat-prompt-attachment slot="attachments" file-name="file_01.txt"></ix-chat-prompt-attachment>
-        <ix-chat-prompt-attachment slot="attachments" status="loading"></ix-chat-prompt-attachment>
+        <ix-chat-attachment slot="attachments" file-name="file_01.txt"></ix-chat-attachment>
+        <ix-chat-attachment slot="attachments" status="loading"></ix-chat-attachment>
       </ix-chat-input>
     `);
 
@@ -291,7 +291,7 @@ regressionTest(
       /has-attachment-scrollbar/
     );
     await expect(
-      page.locator('ix-chat-prompt-attachment[slot="attachments"]')
+      page.locator('ix-chat-attachment[slot="attachments"]')
     ).toHaveCount(2);
   }
 );
@@ -304,9 +304,9 @@ regressionTest(
         ${Array.from(
           { length: 8 },
           (_, index) =>
-            `<ix-chat-prompt-attachment slot="attachments" file-name="file_${String(
+            `<ix-chat-attachment slot="attachments" file-name="file_${String(
               index + 1
-            ).padStart(2, '0')}.txt"></ix-chat-prompt-attachment>`
+            ).padStart(2, '0')}.txt"></ix-chat-attachment>`
         ).join('')}
       </ix-chat-input>
     `);
@@ -334,9 +334,9 @@ regressionTest(
         ${Array.from(
           { length: 10 },
           (_, index) =>
-            `<ix-chat-prompt-attachment slot="attachments" file-name="file_${String(
+            `<ix-chat-attachment slot="attachments" file-name="file_${String(
               index + 1
-            ).padStart(2, '0')}.txt"></ix-chat-prompt-attachment>`
+            ).padStart(2, '0')}.txt"></ix-chat-attachment>`
         ).join('')}
       </ix-chat-input>
     `);
@@ -352,7 +352,7 @@ regressionTest(
       page.locator('[data-attachment-overflow-generated]')
     ).toHaveCount(0);
     await expect(
-      page.locator('ix-chat-prompt-attachment[slot="attachments"]')
+      page.locator('ix-chat-attachment[slot="attachments"]')
     ).toHaveCount(10);
   }
 );

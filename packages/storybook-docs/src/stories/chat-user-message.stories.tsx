@@ -37,12 +37,12 @@ function createAttachment(
   slot = 'attachments'
 ) {
   return (
-    <ix-chat-prompt-attachment
+    <ix-chat-attachment
       fileName={fileName}
       hideRemoveButton
       previewSupported={previewSupported}
       slot={slot}
-    ></ix-chat-prompt-attachment>
+    ></ix-chat-attachment>
   );
 }
 
@@ -124,4 +124,3 @@ export const WithAttachments: Story = {
     },
   },
 };
-

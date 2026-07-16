@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import {
   IxChat,
   IxChatInput,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxIconButton,
 } from '@siemens/ix-angular/standalone';
 import { addIcons } from '@siemens/ix-icons';
@@ -25,7 +25,7 @@ import {
 @Component({
   selector: 'app-example',
   templateUrl: './chat-input.html',
-  imports: [IxChat, IxChatInput, IxChatPromptAttachment, IxIconButton],
+  imports: [IxChat, IxChatAttachment, IxChatInput, IxIconButton],
 })
 export default class ChatInput {
   constructor() {

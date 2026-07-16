@@ -12,7 +12,7 @@ import { createComponent, type HydrateModule, type SerializeShadowRootOptions } 
 
 // @ts-ignore - ignore potential type issues as the project is importing itself
 import * as clientComponents from "@siemens/ix";
-import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatInputCustomEvent, type IxChatPromptAttachmentCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatAttachmentCustomEvent, type IxChatInputCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import type { Components } from "@siemens/ix/components";
 import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
@@ -29,8 +29,8 @@ import { IxCardTitle as IxCardTitleElement } from "@siemens/ix/components/ix-car
 import { IxCard as IxCardElement } from "@siemens/ix/components/ix-card.js";
 import { IxCategoryFilter as IxCategoryFilterElement } from "@siemens/ix/components/ix-category-filter.js";
 import { IxChatAiMessage as IxChatAiMessageElement } from "@siemens/ix/components/ix-chat-ai-message.js";
+import { IxChatAttachment as IxChatAttachmentElement } from "@siemens/ix/components/ix-chat-attachment.js";
 import { IxChatInput as IxChatInputElement } from "@siemens/ix/components/ix-chat-input.js";
-import { IxChatPromptAttachment as IxChatPromptAttachmentElement } from "@siemens/ix/components/ix-chat-prompt-attachment.js";
 import { IxChatUserMessage as IxChatUserMessageElement } from "@siemens/ix/components/ix-chat-user-message.js";
 import { IxChat as IxChatElement } from "@siemens/ix/components/ix-chat.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement } from "@siemens/ix/components/ix-checkbox-group.js";
@@ -404,6 +404,26 @@ export const IxChatAiMessage: StencilReactComponent<IxChatAiMessageElement, IxCh
     serializeShadowRoot
 });
 
+export type IxChatAttachmentEvents = {
+    onAttachmentClick: EventName<IxChatAttachmentCustomEvent<void>>,
+    onRemoveClick: EventName<IxChatAttachmentCustomEvent<void>>
+};
+
+export const IxChatAttachment: StencilReactComponent<IxChatAttachmentElement, IxChatAttachmentEvents, Components.IxChatAttachment> = /*@__PURE__*/ createComponent<IxChatAttachmentElement, IxChatAttachmentEvents, Components.IxChatAttachment>({
+    tagName: 'ix-chat-attachment',
+    properties: {
+        fileName: 'file-name',
+        status: 'status',
+        icon: 'icon',
+        hideRemoveButton: 'hide-remove-button',
+        previewSupported: 'preview-supported',
+        removeAriaLabel: 'remove-aria-label'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxChatAttachment as StencilReactComponent<IxChatAttachmentElement, IxChatAttachmentEvents, Components.IxChatAttachment>,
+    serializeShadowRoot
+});
+
 export type IxChatInputEvents = {
     onValueChange: EventName<IxChatInputCustomEvent<string>>,
     onIxBlur: EventName<IxChatInputCustomEvent<void>>,
@@ -433,26 +453,6 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChatInput as StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>,
-    serializeShadowRoot
-});
-
-export type IxChatPromptAttachmentEvents = {
-    onAttachmentClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
-};
-
-export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment> = /*@__PURE__*/ createComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>({
-    tagName: 'ix-chat-prompt-attachment',
-    properties: {
-        fileName: 'file-name',
-        status: 'status',
-        icon: 'icon',
-        hideRemoveButton: 'hide-remove-button',
-        previewSupported: 'preview-supported',
-        removeAriaLabel: 'remove-aria-label'
-    },
-    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
-    clientModule: clientComponents.IxChatPromptAttachment as StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>,
     serializeShadowRoot
 });
 

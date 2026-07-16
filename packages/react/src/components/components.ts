@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatInputCustomEvent, type IxChatPromptAttachmentCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatAttachmentCustomEvent, type IxChatInputCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import type { Components } from "@siemens/ix/components";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
@@ -28,8 +28,8 @@ import { IxCardTitle as IxCardTitleElement, defineCustomElement as defineIxCardT
 import { IxCard as IxCardElement, defineCustomElement as defineIxCard } from "@siemens/ix/components/ix-card.js";
 import { IxCategoryFilter as IxCategoryFilterElement, defineCustomElement as defineIxCategoryFilter } from "@siemens/ix/components/ix-category-filter.js";
 import { IxChatAiMessage as IxChatAiMessageElement, defineCustomElement as defineIxChatAiMessage } from "@siemens/ix/components/ix-chat-ai-message.js";
+import { IxChatAttachment as IxChatAttachmentElement, defineCustomElement as defineIxChatAttachment } from "@siemens/ix/components/ix-chat-attachment.js";
 import { IxChatInput as IxChatInputElement, defineCustomElement as defineIxChatInput } from "@siemens/ix/components/ix-chat-input.js";
-import { IxChatPromptAttachment as IxChatPromptAttachmentElement, defineCustomElement as defineIxChatPromptAttachment } from "@siemens/ix/components/ix-chat-prompt-attachment.js";
 import { IxChatUserMessage as IxChatUserMessageElement, defineCustomElement as defineIxChatUserMessage } from "@siemens/ix/components/ix-chat-user-message.js";
 import { IxChat as IxChatElement, defineCustomElement as defineIxChat } from "@siemens/ix/components/ix-chat.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement, defineCustomElement as defineIxCheckboxGroup } from "@siemens/ix/components/ix-checkbox-group.js";
@@ -329,6 +329,23 @@ export const IxChatAiMessage: StencilReactComponent<IxChatAiMessageElement, IxCh
     defineCustomElement: defineIxChatAiMessage
 });
 
+export type IxChatAttachmentEvents = {
+    onAttachmentClick: EventName<IxChatAttachmentCustomEvent<void>>,
+    onRemoveClick: EventName<IxChatAttachmentCustomEvent<void>>
+};
+
+export const IxChatAttachment: StencilReactComponent<IxChatAttachmentElement, IxChatAttachmentEvents, Components.IxChatAttachment> = /*@__PURE__*/ createComponent<IxChatAttachmentElement, IxChatAttachmentEvents, Components.IxChatAttachment>({
+    tagName: 'ix-chat-attachment',
+    elementClass: IxChatAttachmentElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onAttachmentClick: 'attachmentClick',
+        onRemoveClick: 'removeClick'
+    } as IxChatAttachmentEvents,
+    defineCustomElement: defineIxChatAttachment
+});
+
 export type IxChatInputEvents = {
     onValueChange: EventName<IxChatInputCustomEvent<string>>,
     onIxBlur: EventName<IxChatInputCustomEvent<void>>,
@@ -348,23 +365,6 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         onPromptSubmit: 'promptSubmit'
     } as IxChatInputEvents,
     defineCustomElement: defineIxChatInput
-});
-
-export type IxChatPromptAttachmentEvents = {
-    onAttachmentClick: EventName<IxChatPromptAttachmentCustomEvent<void>>,
-    onRemoveClick: EventName<IxChatPromptAttachmentCustomEvent<void>>
-};
-
-export const IxChatPromptAttachment: StencilReactComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment> = /*@__PURE__*/ createComponent<IxChatPromptAttachmentElement, IxChatPromptAttachmentEvents, Components.IxChatPromptAttachment>({
-    tagName: 'ix-chat-prompt-attachment',
-    elementClass: IxChatPromptAttachmentElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {
-        onAttachmentClick: 'attachmentClick',
-        onRemoveClick: 'removeClick'
-    } as IxChatPromptAttachmentEvents,
-    defineCustomElement: defineIxChatPromptAttachment
 });
 
 export type IxChatUserMessageEvents = NonNullable<unknown>;

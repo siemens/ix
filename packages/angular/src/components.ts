@@ -447,6 +447,41 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 
 @ProxyCmp({
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
+  outputs: ['attachmentClick', 'removeClick'],
+  standalone: false
+})
+export class IxChatAttachment {
+  protected el: HTMLIxChatAttachmentElement;
+  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAttachment extends Components.IxChatAttachment {
+  /**
+   * Event emitted when the attachment is clicked. @since 5.1.0
+   */
+  attachmentClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the remove action is clicked. @since 5.1.0
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
@@ -489,41 +524,6 @@ export declare interface IxChatInput extends Components.IxChatInput {
    * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.1.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
-}
-
-
-@ProxyCmp({
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
-})
-@Component({
-  selector: 'ix-chat-prompt-attachment',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
-  outputs: ['attachmentClick', 'removeClick'],
-  standalone: false
-})
-export class IxChatPromptAttachment {
-  protected el: HTMLIxChatPromptAttachmentElement;
-  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
-  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
-  /**
-   * Event emitted when the attachment is clicked. @since 5.1.0
-   */
-  attachmentClick: EventEmitter<CustomEvent<void>>;
-  /**
-   * Event emitted when the remove action is clicked. @since 5.1.0
-   */
-  removeClick: EventEmitter<CustomEvent<void>>;
 }
 
 

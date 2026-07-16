@@ -9,7 +9,7 @@
 
 import {
   IxChat,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxChatUserMessage,
   IxIconButton,
 } from '@siemens/ix-react';
@@ -25,18 +25,18 @@ export default () => {
   return (
     <IxChat className="chat-example__chat">
       <IxChatUserMessage message="Summarize the attached shift report.">
-        <IxChatPromptAttachment
+        <IxChatAttachment
           slot="attachments"
           fileName="shift_report.pdf"
           icon={iconPdfDocument}
           hideRemoveButton
-        ></IxChatPromptAttachment>
-        <IxChatPromptAttachment
+        ></IxChatAttachment>
+        <IxChatAttachment
           slot="attachments"
           fileName="operator_notes.txt"
           icon={iconTxtDocument}
           hideRemoveButton
-        ></IxChatPromptAttachment>
+        ></IxChatAttachment>
         <IxIconButton
           slot="actions"
           aria-label="Copy message"

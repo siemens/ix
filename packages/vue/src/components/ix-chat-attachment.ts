@@ -4,9 +4,9 @@
 import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-target/runtime';
 
 import type { JSX } from '@siemens/ix';
-import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
+import { defineCustomElement as defineIxChatAttachment } from '@siemens/ix/components/ix-chat-attachment.js';
 
-export const IxChatPromptAttachment: StencilVueComponent<JSX.IxChatPromptAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatPromptAttachment>('ix-chat-prompt-attachment', defineIxChatPromptAttachment, [
+export const IxChatAttachment: StencilVueComponent<JSX.IxChatAttachment> = /*@__PURE__*/ defineContainer<JSX.IxChatAttachment>('ix-chat-attachment', defineIxChatAttachment, [
   'fileName',
   'status',
   'icon',

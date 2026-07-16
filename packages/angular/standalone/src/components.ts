@@ -22,8 +22,8 @@ import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChat } from '@siemens/ix/components/ix-chat.js';
 import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
+import { defineCustomElement as defineIxChatAttachment } from '@siemens/ix/components/ix-chat-attachment.js';
 import { defineCustomElement as defineIxChatInput } from '@siemens/ix/components/ix-chat-input.js';
-import { defineCustomElement as defineIxChatPromptAttachment } from '@siemens/ix/components/ix-chat-prompt-attachment.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
@@ -556,6 +556,41 @@ export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIxChatAttachment,
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
+  outputs: ['attachmentClick', 'removeClick'],
+})
+export class IxChatAttachment {
+  protected el: HTMLIxChatAttachmentElement;
+  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAttachment extends Components.IxChatAttachment {
+  /**
+   * Event emitted when the attachment is clicked. @since 5.1.0
+   */
+  attachmentClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the remove action is clicked. @since 5.1.0
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIxChatInput,
   inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
@@ -598,41 +633,6 @@ export declare interface IxChatInput extends Components.IxChatInput {
    * Event emitted when the prompt is submitted by the send button or Enter key. @since 5.1.0
    */
   promptSubmit: EventEmitter<CustomEvent<string>>;
-}
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIxChatPromptAttachment,
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
-})
-@Component({
-  selector: 'ix-chat-prompt-attachment',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
-  outputs: ['attachmentClick', 'removeClick'],
-})
-export class IxChatPromptAttachment {
-  protected el: HTMLIxChatPromptAttachmentElement;
-  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
-  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxChatPromptAttachment extends Components.IxChatPromptAttachment {
-  /**
-   * Event emitted when the attachment is clicked. @since 5.1.0
-   */
-  attachmentClick: EventEmitter<CustomEvent<void>>;
-  /**
-   * Event emitted when the remove action is clicked. @since 5.1.0
-   */
-  removeClick: EventEmitter<CustomEvent<void>>;
 }
 
 

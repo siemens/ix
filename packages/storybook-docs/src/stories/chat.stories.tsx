@@ -132,12 +132,12 @@ function createUserMessage(
 
 function createSentAttachment(fileName: string, previewSupported = false) {
   return (
-    <ix-chat-prompt-attachment
+    <ix-chat-attachment
       fileName={fileName}
       hideRemoveButton
       previewSupported={previewSupported}
       slot="attachments"
-    ></ix-chat-prompt-attachment>
+    ></ix-chat-attachment>
   );
 }
 
@@ -146,11 +146,11 @@ function createPromptAttachment(
   status?: 'loading' | 'failed'
 ) {
   return (
-    <ix-chat-prompt-attachment
+    <ix-chat-attachment
       fileName={fileName}
       slot="attachments"
       status={status}
-    ></ix-chat-prompt-attachment>
+    ></ix-chat-attachment>
   );
 }
 

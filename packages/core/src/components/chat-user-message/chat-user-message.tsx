@@ -13,7 +13,7 @@ import { Component, Element, Host, Prop, State, h } from '@stencil/core';
  * @since 5.1.0
  * @slot - Message content displayed in the user message bubble
  * @slot actions - Optional actions displayed below the user message bubble
- * @slot attachments - ix-chat-prompt-attachment elements with variant="sent" displayed above the user message bubble
+ * @slot attachments - ix-chat-attachment elements with variant="sent" displayed above the user message bubble
  */
 @Component({
   tag: 'ix-chat-user-message',

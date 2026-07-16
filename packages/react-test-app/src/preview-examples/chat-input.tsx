@@ -10,7 +10,7 @@
 import {
   IxChat,
   IxChatInput,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxIconButton,
 } from '@siemens/ix-react';
 import {
@@ -31,11 +31,11 @@ export default () => {
         maxLength={180}
         characterLimit={180}
       >
-        <IxChatPromptAttachment
+        <IxChatAttachment
           slot="attachments"
           fileName="shift_report.pdf"
           icon={iconPdfDocument}
-        ></IxChatPromptAttachment>
+        ></IxChatAttachment>
         <IxIconButton
           slot="start"
           aria-label="Attach file"

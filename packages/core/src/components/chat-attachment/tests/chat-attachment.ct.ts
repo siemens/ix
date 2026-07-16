@@ -15,13 +15,13 @@ declare global {
 }
 
 regressionTest(
-  'ix-chat-prompt-attachment renders a default file attachment',
+  'ix-chat-attachment renders a default file attachment',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-prompt-attachment file-name="meeting_notes_summary_01.txt"></ix-chat-prompt-attachment>'
+      '<ix-chat-attachment file-name="meeting_notes_summary_01.txt"></ix-chat-attachment>'
     );
 
-    const attachment = page.locator('ix-chat-prompt-attachment');
+    const attachment = page.locator('ix-chat-attachment');
 
     await expect(attachment.locator('.file-name__base')).toContainText(
       'meeting_notes_summary_01'
@@ -38,19 +38,19 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment truncates long file names with an ellipsis',
+  'ix-chat-attachment truncates long file names with an ellipsis',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-prompt-attachment file-name="Long File Name of chat prompt attachment with many details.txt"></ix-chat-prompt-attachment>'
+      '<ix-chat-attachment file-name="Long File Name of chat attachment with many details.txt"></ix-chat-attachment>'
     );
 
-    const attachment = page.locator('ix-chat-prompt-attachment');
+    const attachment = page.locator('ix-chat-attachment');
     const fileNameBase = attachment.locator('.file-name__base');
     const fileNameExtension = attachment.locator('.file-name__extension');
     const closeButton = attachment.locator('ix-chip').locator('.chip-close');
 
     await expect(fileNameBase).toContainText(
-      'Long File Name of chat prompt attachment with many details'
+      'Long File Name of chat attachment with many details'
     );
 
     const getOverflowState = () =>
@@ -85,41 +85,41 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment renders loading and failed states',
+  'ix-chat-attachment renders loading and failed states',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-prompt-attachment file-name="uploading_file.txt" status="loading"></ix-chat-prompt-attachment>
-      <ix-chat-prompt-attachment file-name="failed_file.txt" status="failed"></ix-chat-prompt-attachment>
+      <ix-chat-attachment file-name="uploading_file.txt" status="loading"></ix-chat-attachment>
+      <ix-chat-attachment file-name="failed_file.txt" status="failed"></ix-chat-attachment>
     `);
 
     await expect(
-      page.locator('ix-chat-prompt-attachment').first().locator('ix-spinner')
+      page.locator('ix-chat-attachment').first().locator('ix-spinner')
     ).toHaveCount(1);
     await expect(
-      page.locator('ix-chat-prompt-attachment').first()
+      page.locator('ix-chat-attachment').first()
     ).toContainText('uploading_file.txt');
 
     await expect(
-      page.locator('ix-chat-prompt-attachment').nth(1)
+      page.locator('ix-chat-attachment').nth(1)
     ).toContainText('failed_file.txt');
     await expect(
-      page.locator('ix-chat-prompt-attachment').nth(1).locator('ix-chip')
+      page.locator('ix-chat-attachment').nth(1).locator('ix-chip')
     ).toHaveAttribute('variant', 'alarm');
   }
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment emits attachmentClick only when preview is supported',
+  'ix-chat-attachment emits attachmentClick only when preview is supported',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-prompt-attachment file-name="static_file.txt"></ix-chat-prompt-attachment>
-      <ix-chat-prompt-attachment file-name="preview_file.txt" preview-supported></ix-chat-prompt-attachment>
+      <ix-chat-attachment file-name="static_file.txt"></ix-chat-attachment>
+      <ix-chat-attachment file-name="preview_file.txt" preview-supported></ix-chat-attachment>
     `);
 
     await page.evaluate(() => {
       globalThis.__attachmentClicked = false;
       document
-        .querySelectorAll('ix-chat-prompt-attachment')
+        .querySelectorAll('ix-chat-attachment')
         .forEach((attachment) => {
           attachment.addEventListener('attachmentClick', () => {
             globalThis.__attachmentClicked = true;
@@ -127,8 +127,8 @@ regressionTest(
         });
     });
 
-    const staticAttachment = page.locator('ix-chat-prompt-attachment').first();
-    const previewAttachment = page.locator('ix-chat-prompt-attachment').nth(1);
+    const staticAttachment = page.locator('ix-chat-attachment').first();
+    const previewAttachment = page.locator('ix-chat-attachment').nth(1);
 
     await staticAttachment.click();
     expect(await page.evaluate(() => globalThis.__attachmentClicked)).toBe(
@@ -143,13 +143,13 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment renders sent variant compactly',
+  'ix-chat-attachment renders sent variant compactly',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-prompt-attachment file-name="file_01.pdf" variant="sent" hide-remove-button preview-supported></ix-chat-prompt-attachment>'
+      '<ix-chat-attachment file-name="file_01.pdf" variant="sent" hide-remove-button preview-supported></ix-chat-attachment>'
     );
 
-    const attachment = page.locator('ix-chat-prompt-attachment');
+    const attachment = page.locator('ix-chat-attachment');
 
     await expect(attachment.locator('ix-chip')).toHaveAttribute(
       'variant',
@@ -163,22 +163,22 @@ regressionTest(
 );
 
 regressionTest(
-  'ix-chat-prompt-attachment emits removeClick from the chip close action',
+  'ix-chat-attachment emits removeClick from the chip close action',
   async ({ mount, page }) => {
     await mount(
-      '<ix-chat-prompt-attachment file-name="file_01.txt"></ix-chat-prompt-attachment>'
+      '<ix-chat-attachment file-name="file_01.txt"></ix-chat-attachment>'
     );
 
     await page.evaluate(() => {
       globalThis.__attachmentRemoveClicked = false;
-      const attachment = document.querySelector('ix-chat-prompt-attachment');
+      const attachment = document.querySelector('ix-chat-attachment');
 
       attachment?.addEventListener('removeClick', () => {
         globalThis.__attachmentRemoveClicked = true;
       });
     });
 
-    const attachment = page.locator('ix-chat-prompt-attachment');
+    const attachment = page.locator('ix-chat-attachment');
     await attachment.locator('ix-chip').locator('.chip-close').click();
 
     await expect

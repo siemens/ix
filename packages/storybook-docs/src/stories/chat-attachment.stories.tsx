@@ -13,24 +13,24 @@ import { action } from 'storybook/actions';
 import { stencil } from '@utils/stencil-render';
 import { makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxChatPromptAttachment;
+type Element = Components.IxChatAttachment;
 
 function renderAttachment(args: Partial<Element>) {
   return (
-    <ix-chat-prompt-attachment
+    <ix-chat-attachment
       {...args}
       onAttachmentClick={() => action('attachmentClick')()}
       onRemoveClick={() => action('removeClick')()}
-    ></ix-chat-prompt-attachment>
+    ></ix-chat-attachment>
   );
 }
 
 const meta = {
-  title: 'Example/Chat Prompt Attachment',
+  title: 'Example/Chat Attachment',
   tags: [],
   render: stencil((args) => renderAttachment(args)),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>(
-    'ix-chat-prompt-attachment'
+    'ix-chat-attachment'
   ),
   parameters: {
     design: {

@@ -9,17 +9,17 @@
 
 import { iconError, iconTxtDocument } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
-import type { ChatPromptAttachmentStatus } from './chat-prompt-attachment.types';
+import type { ChatAttachmentStatus } from './chat-attachment.types';
 
 /**
  * @since 5.1.0
  */
 @Component({
-  tag: 'ix-chat-prompt-attachment',
-  styleUrl: 'chat-prompt-attachment.scss',
+  tag: 'ix-chat-attachment',
+  styleUrl: 'chat-attachment.scss',
   shadow: true,
 })
-export class ChatPromptAttachment {
+export class ChatAttachment {
   /**
    * Name of the attached file.
    * @since 5.1.0
@@ -30,7 +30,7 @@ export class ChatPromptAttachment {
    * Upload status of the attachment.
    * @since 5.1.0
    */
-  @Prop({ reflect: true }) status: ChatPromptAttachmentStatus = 'default';
+  @Prop({ reflect: true }) status: ChatAttachmentStatus = 'default';
 
   /**
    * Icon displayed before the file name.

@@ -42,7 +42,7 @@
     overflow: hidden;
   }
 
-  .attachments ::slotted(ix-chat-prompt-attachment) {
+  .attachments ::slotted(ix-chat-attachment) {
     flex: 0 1 6.375rem;
     padding-left: var(--theme-space-1);
   }

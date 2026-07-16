@@ -30,4 +30,4 @@ export {
   convertToRemString,
 } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
-export type { ChatPromptAttachmentStatus } from './components/chat-prompt-attachment/chat-prompt-attachment.types';
+export type { ChatAttachmentStatus } from './components/chat-attachment/chat-attachment.types';

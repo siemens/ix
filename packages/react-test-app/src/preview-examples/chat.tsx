@@ -11,7 +11,7 @@ import {
   IxChat,
   IxChatAiMessage,
   IxChatInput,
-  IxChatPromptAttachment,
+  IxChatAttachment,
   IxChatUserMessage,
   IxChip,
   IxIconButton,
@@ -32,18 +32,18 @@ export default () => {
   return (
     <IxChat className="chat-example__chat">
       <IxChatUserMessage message="Summarize the asset status and include the attached maintenance files.">
-        <IxChatPromptAttachment
+        <IxChatAttachment
           slot="attachments"
           fileName="equipment_status.pdf"
           icon={iconPdfDocument}
           hideRemoveButton
-        ></IxChatPromptAttachment>
-        <IxChatPromptAttachment
+        ></IxChatAttachment>
+        <IxChatAttachment
           slot="attachments"
           fileName="maintenance_notes.txt"
           icon={iconTxtDocument}
           hideRemoveButton
-        ></IxChatPromptAttachment>
+        ></IxChatAttachment>
         <IxIconButton
           slot="actions"
           aria-label="Copy message"
@@ -113,12 +113,12 @@ export default () => {
       </IxChatAiMessage>
 
       <IxChatUserMessage message="Compare the current report with additional customer feedback.">
-        <IxChatPromptAttachment
+        <IxChatAttachment
           slot="attachments"
           fileName="customer_feedback.pdf"
           icon={iconPdfDocument}
           hideRemoveButton
-        ></IxChatPromptAttachment>
+        ></IxChatAttachment>
       </IxChatUserMessage>
 
       <IxChatAiMessage>

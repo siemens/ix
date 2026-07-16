@@ -7,4 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type ChatPromptAttachmentStatus = 'default' | 'loading' | 'failed';
+export type ChatAttachmentStatus = 'default' | 'loading' | 'failed';

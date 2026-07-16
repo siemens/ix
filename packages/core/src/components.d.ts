@@ -18,7 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
-import { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -74,7 +74,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
-export { ChatPromptAttachmentStatus } from "./components/chat-prompt-attachment/chat-prompt-attachment.types";
+export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -638,6 +638,47 @@ export namespace Components {
     }
     /**
      * @since 5.1.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @since 5.1.0
+          * @default ''
+         */
+        "fileName": string;
+        /**
+          * Hide the remove action.
+          * @since 5.1.0
+          * @default false
+         */
+        "hideRemoveButton": boolean;
+        /**
+          * Icon displayed before the file name.
+          * @since 5.1.0
+          * @default iconTxtDocument
+         */
+        "icon": string;
+        /**
+          * Enable preview interaction for default attachments.
+          * @since 5.1.0
+          * @default false
+         */
+        "previewSupported": boolean;
+        /**
+          * Accessible label for the remove action.
+          * @since 5.1.0
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel": string;
+        /**
+          * Upload status of the attachment.
+          * @since 5.1.0
+          * @default 'default'
+         */
+        "status": ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.1.0
      * @form-ready 
      */
     interface IxChatInput {
@@ -745,47 +786,6 @@ export namespace Components {
           * @default ''
          */
         "value": string;
-    }
-    /**
-     * @since 5.1.0
-     */
-    interface IxChatPromptAttachment {
-        /**
-          * Name of the attached file.
-          * @since 5.1.0
-          * @default ''
-         */
-        "fileName": string;
-        /**
-          * Hide the remove action.
-          * @since 5.1.0
-          * @default false
-         */
-        "hideRemoveButton": boolean;
-        /**
-          * Icon displayed before the file name.
-          * @since 5.1.0
-          * @default iconTxtDocument
-         */
-        "icon": string;
-        /**
-          * Enable preview interaction for default attachments.
-          * @since 5.1.0
-          * @default false
-         */
-        "previewSupported": boolean;
-        /**
-          * Accessible label for the remove action.
-          * @since 5.1.0
-          * @default 'Remove attachment'
-         */
-        "removeAriaLabel": string;
-        /**
-          * Upload status of the attachment.
-          * @since 5.1.0
-          * @default 'default'
-         */
-        "status": ChatPromptAttachmentStatus;
     }
     /**
      * @since 5.1.0
@@ -4920,13 +4920,13 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatAttachmentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatAttachmentElement;
+}
 export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatInputElement;
-}
-export interface IxChatPromptAttachmentCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxChatPromptAttachmentElement;
 }
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5352,6 +5352,27 @@ declare global {
         prototype: HTMLIxChatAiMessageElement;
         new (): HTMLIxChatAiMessageElement;
     };
+    interface HTMLIxChatAttachmentElementEventMap {
+        "attachmentClick": void;
+        "removeClick": void;
+    }
+    /**
+     * @since 5.1.0
+     */
+    interface HTMLIxChatAttachmentElement extends Components.IxChatAttachment, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatAttachmentElement: {
+        prototype: HTMLIxChatAttachmentElement;
+        new (): HTMLIxChatAttachmentElement;
+    };
     interface HTMLIxChatInputElementEventMap {
         "valueChange": string;
         "ixBlur": void;
@@ -5360,7 +5381,7 @@ declare global {
     }
     /**
      * @since 5.1.0
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5375,27 +5396,6 @@ declare global {
     var HTMLIxChatInputElement: {
         prototype: HTMLIxChatInputElement;
         new (): HTMLIxChatInputElement;
-    };
-    interface HTMLIxChatPromptAttachmentElementEventMap {
-        "attachmentClick": void;
-        "removeClick": void;
-    }
-    /**
-     * @since 5.1.0
-     */
-    interface HTMLIxChatPromptAttachmentElement extends Components.IxChatPromptAttachment, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxChatPromptAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatPromptAttachmentElement, ev: IxChatPromptAttachmentCustomEvent<HTMLIxChatPromptAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxChatPromptAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatPromptAttachmentElement, ev: IxChatPromptAttachmentCustomEvent<HTMLIxChatPromptAttachmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxChatPromptAttachmentElement: {
-        prototype: HTMLIxChatPromptAttachmentElement;
-        new (): HTMLIxChatPromptAttachmentElement;
     };
     /**
      * @since 5.1.0
@@ -6790,8 +6790,8 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chat": HTMLIxChatElement;
         "ix-chat-ai-message": HTMLIxChatAiMessageElement;
+        "ix-chat-attachment": HTMLIxChatAttachmentElement;
         "ix-chat-input": HTMLIxChatInputElement;
-        "ix-chat-prompt-attachment": HTMLIxChatPromptAttachmentElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
@@ -7478,6 +7478,57 @@ declare namespace LocalJSX {
     }
     /**
      * @since 5.1.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @since 5.1.0
+          * @default ''
+         */
+        "fileName"?: string;
+        /**
+          * Hide the remove action.
+          * @since 5.1.0
+          * @default false
+         */
+        "hideRemoveButton"?: boolean;
+        /**
+          * Icon displayed before the file name.
+          * @since 5.1.0
+          * @default iconTxtDocument
+         */
+        "icon"?: string;
+        /**
+          * Event emitted when the attachment is clicked.
+          * @since 5.1.0
+         */
+        "onAttachmentClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Event emitted when the remove action is clicked.
+          * @since 5.1.0
+         */
+        "onRemoveClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Enable preview interaction for default attachments.
+          * @since 5.1.0
+          * @default false
+         */
+        "previewSupported"?: boolean;
+        /**
+          * Accessible label for the remove action.
+          * @since 5.1.0
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel"?: string;
+        /**
+          * Upload status of the attachment.
+          * @since 5.1.0
+          * @default 'default'
+         */
+        "status"?: ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.1.0
      * @form-ready 
      */
     interface IxChatInput {
@@ -7598,57 +7649,6 @@ declare namespace LocalJSX {
           * @default ''
          */
         "value"?: string;
-    }
-    /**
-     * @since 5.1.0
-     */
-    interface IxChatPromptAttachment {
-        /**
-          * Name of the attached file.
-          * @since 5.1.0
-          * @default ''
-         */
-        "fileName"?: string;
-        /**
-          * Hide the remove action.
-          * @since 5.1.0
-          * @default false
-         */
-        "hideRemoveButton"?: boolean;
-        /**
-          * Icon displayed before the file name.
-          * @since 5.1.0
-          * @default iconTxtDocument
-         */
-        "icon"?: string;
-        /**
-          * Event emitted when the attachment is clicked.
-          * @since 5.1.0
-         */
-        "onAttachmentClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
-        /**
-          * Event emitted when the remove action is clicked.
-          * @since 5.1.0
-         */
-        "onRemoveClick"?: (event: IxChatPromptAttachmentCustomEvent<void>) => void;
-        /**
-          * Enable preview interaction for default attachments.
-          * @since 5.1.0
-          * @default false
-         */
-        "previewSupported"?: boolean;
-        /**
-          * Accessible label for the remove action.
-          * @since 5.1.0
-          * @default 'Remove attachment'
-         */
-        "removeAriaLabel"?: string;
-        /**
-          * Upload status of the attachment.
-          * @since 5.1.0
-          * @default 'default'
-         */
-        "status"?: ChatPromptAttachmentStatus;
     }
     /**
      * @since 5.1.0
@@ -12130,6 +12130,14 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatAttachmentAttributes {
+        "fileName": string;
+        "status": ChatAttachmentStatus;
+        "icon": string;
+        "hideRemoveButton": boolean;
+        "previewSupported": boolean;
+        "removeAriaLabel": string;
+    }
     interface IxChatInputAttributes {
         "state": 'input' | 'processing';
         "name": string;
@@ -12147,14 +12155,6 @@ declare namespace LocalJSX {
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;
         "disclaimer": string;
-    }
-    interface IxChatPromptAttachmentAttributes {
-        "fileName": string;
-        "status": ChatPromptAttachmentStatus;
-        "icon": string;
-        "hideRemoveButton": boolean;
-        "previewSupported": boolean;
-        "removeAriaLabel": string;
     }
     interface IxChatUserMessageAttributes {
         "message": string;
@@ -13111,8 +13111,8 @@ declare namespace LocalJSX {
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
         "ix-chat": IxChat;
         "ix-chat-ai-message": IxChatAiMessage;
+        "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
         "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
-        "ix-chat-prompt-attachment": Omit<IxChatPromptAttachment, keyof IxChatPromptAttachmentAttributes> & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes]?: IxChatPromptAttachment[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `attr:${K}`]?: IxChatPromptAttachmentAttributes[K] } & { [K in keyof IxChatPromptAttachment & keyof IxChatPromptAttachmentAttributes as `prop:${K}`]?: IxChatPromptAttachment[K] };
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
@@ -13245,13 +13245,13 @@ declare module "@stencil/core" {
             "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
             /**
              * @since 5.1.0
-             * @form-ready 
              */
-            "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
+            "ix-chat-attachment": LocalJSX.IntrinsicElements["ix-chat-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatAttachmentElement>;
             /**
              * @since 5.1.0
+             * @form-ready
              */
-            "ix-chat-prompt-attachment": LocalJSX.IntrinsicElements["ix-chat-prompt-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatPromptAttachmentElement>;
+            "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
              * @since 5.1.0
              */
