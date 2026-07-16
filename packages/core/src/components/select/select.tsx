@@ -1501,9 +1501,14 @@ export class Select
                           : 'Open select dropdown'
                       }
                       aria-hidden="true"
+                      tabindex={-1}
                       ref={(ref) => {
+                        if (!ref) {
+                          return;
+                        }
+
                         const element = ref as unknown as HTMLButtonElement;
-                        // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
+                        // VDOM issue if tabIndex is provided only via property <ix-icon-button tabIndex={-1}>
                         // the tabindex will be '0' after expanding the dropdown
                         element.tabIndex = -1;
                         element.ariaHidden = 'true';
