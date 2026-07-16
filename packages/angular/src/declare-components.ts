@@ -55,6 +55,8 @@ export const DIRECTIVES = [
   d.IxLayoutAuto,
   d.IxLayoutGrid,
   d.IxLinkButton,
+  d.IxList,
+  d.IxListItem,
   d.IxMenu,
   d.IxMenuAbout,
   d.IxMenuAboutItem,

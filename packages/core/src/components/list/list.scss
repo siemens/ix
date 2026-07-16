@@ -1,0 +1,23 @@
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  width: 100%;
+  max-height: inherit;
+
+  @include component.ix-component;
+}
+
+.list {
+  display: flex;
+  width: 100%;
+  max-height: inherit;
+  flex-direction: column;
+  gap: var(--ix-list-item-gap, 0);
+  overflow-y: auto;
+}
+
+:host(.has-divider) ::slotted(ix-list-item:not(:last-of-type)) {
+  --ix-list-item-divider-color: var(--theme-color-soft-bdr);
+  --ix-list-item-bottom-radius: 0;
+}

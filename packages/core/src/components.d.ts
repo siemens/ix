@@ -41,6 +41,8 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { ListItemGap } from "./components/list/list";
+import { ListItemVariant } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -96,6 +98,8 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { ListItemGap } from "./components/list/list";
+export { ListItemVariant } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2385,6 +2389,88 @@ export namespace Components {
          */
         "url"?: string;
     }
+    /**
+     * @since 5.2.0
+     */
+    interface IxList {
+        /**
+          * Display dividers between direct list items.
+          * @since 5.2.0
+          * @default false
+         */
+        "hasDivider": boolean;
+        /**
+          * Space in pixels between direct list items.
+          * @since 5.2.0
+          * @default 12
+         */
+        "itemGap": ListItemGap;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxListItem {
+        /**
+          * Accessible label for the item icon.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 5.2.0
+          * @default false
+         */
+        "checkbox": boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 5.2.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 5.2.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Display a divider below this item.
+          * @since 5.2.0
+          * @default false
+         */
+        "hasDivider": boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Show the item as selected.
+          * @since 5.2.0
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Status displayed at the end of the standard item content.
+          * @since 5.2.0
+         */
+        "status"?: string;
+        /**
+          * Tooltip text for the primary item surface. Uses the item label by default.
+          * @since 5.2.0
+         */
+        "tooltipText"?: string;
+        /**
+          * Visual variant of the item.
+          * @since 5.2.0
+          * @default 'filled'
+         */
+        "variant": ListItemVariant;
+    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -3173,6 +3259,8 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlayground {
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -4827,6 +4915,10 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
+export interface IxListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListItemElement;
+}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -5672,6 +5764,36 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
+    }
+    var HTMLIxListElement: {
+        prototype: HTMLIxListElement;
+        new (): HTMLIxListElement;
+    };
+    interface HTMLIxListItemElementEventMap {
+        "itemClick": HTMLIxListItemElement;
+        "selectedChange": boolean;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxListItemElement extends Components.IxListItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxListItemElement: {
+        prototype: HTMLIxListItemElement;
+        new (): HTMLIxListItemElement;
+    };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
@@ -5994,6 +6116,12 @@ declare global {
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
+    };
+    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundElement: {
+        prototype: HTMLIxPlaygroundElement;
+        new (): HTMLIxPlaygroundElement;
     };
     interface HTMLIxPopoverElementEventMap {
         "showChange": boolean;
@@ -6578,6 +6706,8 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
+        "ix-list": HTMLIxListElement;
+        "ix-list-item": HTMLIxListItemElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -6600,6 +6730,7 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground": HTMLIxPlaygroundElement;
         "ix-popover": HTMLIxPopoverElement;
         "ix-popover-content": HTMLIxPopoverContentElement;
         "ix-popover-footer": HTMLIxPopoverFooterElement;
@@ -9059,6 +9190,98 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    /**
+     * @since 5.2.0
+     */
+    interface IxList {
+        /**
+          * Display dividers between direct list items.
+          * @since 5.2.0
+          * @default false
+         */
+        "hasDivider"?: boolean;
+        /**
+          * Space in pixels between direct list items.
+          * @since 5.2.0
+          * @default 12
+         */
+        "itemGap"?: ListItemGap;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxListItem {
+        /**
+          * Accessible label for the item icon.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 5.2.0
+          * @default false
+         */
+        "checkbox"?: boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 5.2.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 5.2.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Display a divider below this item.
+          * @since 5.2.0
+          * @default false
+         */
+        "hasDivider"?: boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Emitted when the primary item surface is activated.
+          * @since 5.2.0
+         */
+        "onItemClick"?: (event: IxListItemCustomEvent<HTMLIxListItemElement>) => void;
+        /**
+          * Requests a controlled selection update when a checkbox item is activated.
+          * @since 5.2.0
+         */
+        "onSelectedChange"?: (event: IxListItemCustomEvent<boolean>) => void;
+        /**
+          * Show the item as selected.
+          * @since 5.2.0
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Status displayed at the end of the standard item content.
+          * @since 5.2.0
+         */
+        "status"?: string;
+        /**
+          * Tooltip text for the primary item surface. Uses the item label by default.
+          * @since 5.2.0
+         */
+        "tooltipText"?: string;
+        /**
+          * Visual variant of the item.
+          * @since 5.2.0
+          * @default 'filled'
+         */
+        "variant"?: ListItemVariant;
+    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -9924,6 +10147,8 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlayground {
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -12080,6 +12305,23 @@ declare namespace LocalJSX {
         "url": string;
         "target": '_self' | '_blank' | '_parent' | '_top';
     }
+    interface IxListAttributes {
+        "hasDivider": boolean;
+        "itemGap": ListItemGap;
+    }
+    interface IxListItemAttributes {
+        "variant": ListItemVariant;
+        "label": string;
+        "description": string;
+        "status": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "tooltipText": string;
+        "selected": boolean;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "hasDivider": boolean;
+    }
     interface IxMenuAttributes {
         "showSettings": boolean;
         "showAbout": boolean;
@@ -12671,6 +12913,8 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-list": Omit<IxList, keyof IxListAttributes> & { [K in keyof IxList & keyof IxListAttributes]?: IxList[K] } & { [K in keyof IxList & keyof IxListAttributes as `attr:${K}`]?: IxListAttributes[K] } & { [K in keyof IxList & keyof IxListAttributes as `prop:${K}`]?: IxList[K] };
+        "ix-list-item": Omit<IxListItem, keyof IxListItemAttributes> & { [K in keyof IxListItem & keyof IxListItemAttributes]?: IxListItem[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `attr:${K}`]?: IxListItemAttributes[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `prop:${K}`]?: IxListItem[K] };
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -12693,6 +12937,7 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-playground": IxPlayground;
         "ix-popover": Omit<IxPopover, keyof IxPopoverAttributes> & { [K in keyof IxPopover & keyof IxPopoverAttributes]?: IxPopover[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `attr:${K}`]?: IxPopoverAttributes[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `prop:${K}`]?: IxPopover[K] };
         "ix-popover-content": Omit<IxPopoverContent, keyof IxPopoverContentAttributes> & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes]?: IxPopoverContent[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `attr:${K}`]?: IxPopoverContentAttributes[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `prop:${K}`]?: IxPopoverContent[K] };
         "ix-popover-footer": Omit<IxPopoverFooter, keyof IxPopoverFooterAttributes> & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes]?: IxPopoverFooter[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `attr:${K}`]?: IxPopoverFooterAttributes[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `prop:${K}`]?: IxPopoverFooter[K] };
@@ -12808,6 +13053,14 @@ declare module "@stencil/core" {
             "ix-layout-auto": LocalJSX.IntrinsicElements["ix-layout-auto"] & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IntrinsicElements["ix-layout-grid"] & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-list": LocalJSX.IntrinsicElements["ix-list"] & JSXBase.HTMLAttributes<HTMLIxListElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             /**
@@ -12839,6 +13092,7 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * Floating panel anchored to a trigger element.
              * @since 5.1.0

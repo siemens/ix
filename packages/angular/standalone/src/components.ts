@@ -59,6 +59,8 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
+import { defineCustomElement as defineIxList } from '@siemens/ix/components/ix-list.js';
+import { defineCustomElement as defineIxListItem } from '@siemens/ix/components/ix-list-item.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -1659,6 +1661,64 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxList,
+  inputs: ['hasDivider', 'itemGap']
+})
+@Component({
+  selector: 'ix-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasDivider', 'itemGap'],
+})
+export class IxList {
+  protected el: HTMLIxListElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxList extends Components.IxList {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxListItem,
+  inputs: ['ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant']
+})
+@Component({
+  selector: 'ix-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant'],
+  outputs: ['itemClick', 'selectedChange'],
+})
+export class IxListItem {
+  protected el: HTMLIxListItemElement;
+  @Output() itemClick = new EventEmitter<CustomEvent<HTMLIxListItemElement>>();
+  @Output() selectedChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItem extends Components.IxListItem {
+  /**
+   * Emitted when the primary item surface is activated. @since 5.2.0
+   */
+  itemClick: EventEmitter<CustomEvent<HTMLIxListItemElement>>;
+  /**
+   * Requests a controlled selection update when a checkbox item is activated. @since 5.2.0
+   */
+  selectedChange: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({

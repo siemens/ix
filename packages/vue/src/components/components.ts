@@ -54,6 +54,8 @@ export { IxKpi } from './ix-kpi.js';
 export { IxLayoutAuto } from './ix-layout-auto.js';
 export { IxLayoutGrid } from './ix-layout-grid.js';
 export { IxLinkButton } from './ix-link-button.js';
+export { IxList } from './ix-list.js';
+export { IxListItem } from './ix-list-item.js';
 export { IxMenu } from './ix-menu.js';
 export { IxMenuAbout } from './ix-menu-about.js';
 export { IxMenuAboutItem } from './ix-menu-about-item.js';

@@ -1,0 +1,176 @@
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  color: var(--theme-color-std-text);
+  outline: none;
+
+  @include component.ix-component;
+}
+
+.item-surface {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.25rem 1rem;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-bottom-right-radius: var(--ix-list-item-bottom-radius, 0.25rem);
+  border-bottom-left-radius: var(--ix-list-item-bottom-radius, 0.25rem);
+  border-bottom-color: var(--ix-list-item-divider-color, transparent);
+  background-color: var(--theme-color-ghost);
+}
+
+:host([variant='outline']) .item-surface {
+  border-color: var(--theme-color-soft-bdr);
+}
+
+:host([variant='filled']) .item-surface {
+  background-color: var(--theme-color-component-1);
+}
+
+:host(.selected) .item-surface {
+  background-color: var(--theme-color-component-1--active);
+}
+
+:host(:not(.disabled)) .item-surface:hover {
+  background-color: var(--theme-color-ghost--hover);
+}
+
+:host(:not(.disabled)) .item-surface:active {
+  background-color: var(--theme-color-ghost--active);
+}
+
+:host([variant='filled']:not(.disabled)) .item-surface:hover,
+:host(.selected:not(.disabled)) .item-surface:hover {
+  background-color: var(--theme-color-component-1--hover);
+}
+
+:host([variant='filled']:not(.disabled)) .item-surface:active,
+:host(.selected:not(.disabled)) .item-surface:active {
+  background-color: var(--theme-color-component-1--active);
+}
+
+:host(.has-divider) .item-surface,
+:host-context(ix-list.has-divider) .item-surface {
+  border-bottom-color: var(--theme-color-soft-bdr);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.primary-action {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 2rem;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  background: transparent;
+  text-align: start;
+  cursor: pointer;
+}
+
+.primary-action:focus-visible::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--theme-color-focus-bdr);
+  border-radius: 0.25rem;
+  content: '';
+  pointer-events: none;
+}
+
+.item-surface {
+  position: relative;
+}
+
+.standard-content {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 2rem;
+  gap: 0.5rem;
+}
+
+[hidden] {
+  display: none;
+}
+
+.selection-checkbox {
+  flex: 0 0 1.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  pointer-events: none;
+}
+
+.item-icon {
+  flex: 0 0 auto;
+}
+
+.text-content {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.label,
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  @include fonts.text-default;
+}
+
+.description {
+  @include fonts.text-s;
+
+  color: var(--theme-color-soft-text);
+}
+
+.status,
+.action,
+.additional-actions {
+  flex: 0 0 auto;
+}
+
+.action,
+.additional-actions {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+:host(.disabled) {
+  color: var(--theme-color-weak-text);
+  cursor: default;
+}
+
+:host(.disabled) .item-surface {
+  pointer-events: none;
+}
+
+:host(.disabled) .description {
+  color: var(--theme-color-weak-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .additional-actions {
+    visibility: hidden;
+  }
+
+  .item-surface:hover .additional-actions,
+  .item-surface:focus-within .additional-actions {
+    visibility: visible;
+  }
+}
