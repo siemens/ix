@@ -7,26 +7,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$tree-item-background-active-fallback: rgba(140, 161, 171, 0.15);
+$tree-item-background-hover-fallback: rgba(140, 161, 171, 0.2);
+$tree-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
+$tree-item-background-selected-active-fallback: rgba(115, 221, 221, 0.2);
+$tree-item-background-selected-hover-fallback: rgba(104, 253, 253, 0.2);
+
 :host {
   --ix-tree-item--default-time: var(--theme-default-time, 150ms);
   --ix-tree-item--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$tree-item-background-active-fallback}
   );
   --ix-tree-item--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$tree-item-background-hover-fallback}
   );
   --ix-tree-item--background--selected: var(
     --theme-color-ghost--selected,
-    rgba(0, 255, 255, 0.1)
+    #{$tree-item-background-selected-fallback}
   );
   --ix-tree-item--background--selected-active: var(
     --theme-color-ghost--selected-active,
-    rgba(115, 221, 221, 0.2)
+    #{$tree-item-background-selected-active-fallback}
   );
   --ix-tree-item--background--selected-hover: var(
     --theme-color-ghost--selected-hover,
-    rgba(104, 253, 253, 0.2)
+    #{$tree-item-background-selected-hover-fallback}
   );
 }

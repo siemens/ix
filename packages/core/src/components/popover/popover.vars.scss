@@ -7,14 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$popover-color-shadow-3-fallback: rgba(0, 0, 0, 0.6);
+$popover-shadow-4-fallback: rgba(0, 0, 0, 0.6);
+$popover-color-fallback: rgba(245, 252, 255, 0.9);
+$popover-close-color-fallback: rgba(229, 247, 255, 0.65);
+$popover-close-btn-background-active-fallback: rgba(140, 161, 171, 0.15);
+$popover-close-btn-background-hover-fallback: rgba(140, 161, 171, 0.2);
+
 :host {
   --ix-popover--color-shadow-2: var(--theme-color-shadow-2, #000000);
-  --ix-popover--color-shadow-3: var(--theme-color-shadow-3, rgba(0, 0, 0, 0.6));
+  --ix-popover--color-shadow-3: var(
+    --theme-color-shadow-3,
+    #{$popover-color-shadow-3-fallback}
+  );
   --ix-popover--shadow-4: var(
     --theme-shadow-4,
     0 0 2px 0 #000000,
-    0 4px 8px 0 rgba(0, 0, 0, 0.6),
-    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+    0 4px 8px 0 #{$popover-shadow-4-fallback},
+    0 12px 18px 0 #{$popover-shadow-4-fallback}
   );
   --ix-popover--default-border-radius: var(
     --theme-default-border-radius,
@@ -22,7 +32,7 @@
   );
   --ix-popover--background: var(--theme-color-2, #283236);
   --ix-popover--border-color: transparent;
-  --ix-popover--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-popover--color: var(--theme-color-std-text, #{$popover-color-fallback});
   --ix-popover--elevation-filter: drop-shadow(
       0 0 2px var(--ix-popover--color-shadow-2)
     )
@@ -30,15 +40,15 @@
     drop-shadow(0 12px 18px var(--ix-popover--color-shadow-3));
   --ix-popover-close--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$popover-close-color-fallback}
   );
   --ix-popover-close-btn--background: transparent;
   --ix-popover-close-btn--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$popover-close-btn-background-active-fallback}
   );
   --ix-popover-close-btn--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$popover-close-btn-background-hover-fallback}
   );
 }

@@ -7,24 +7,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$application-header-color-x-weak-bdr-fallback: rgba(142, 157, 165, 0.2);
+$app-header-border-color-fallback: rgba(224, 245, 255, 0.25);
+$app-header-color-fallback: rgba(245, 252, 255, 0.9);
+$app-header-name-suffix-color-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-application-header--z-index-fixed: var(--theme-z-index-fixed, 1030);
   --ix-application-header--color-x-weak-bdr: var(
     --theme-color-x-weak-bdr,
-    rgba(142, 157, 165, 0.2)
+    #{$application-header-color-x-weak-bdr-fallback}
   );
   --ix-app-header--background: var(--theme-color-2, #283236);
   --ix-app-header--border-color: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$app-header-border-color-fallback}
   );
   --ix-app-header--border-width: var(--ix-blind--border-thickness);
-  --ix-app-header--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-app-header--color: var(
+    --theme-color-std-text,
+    #{$app-header-color-fallback}
+  );
   --ix-app-header-app-icon--outline-color: var(--theme-color-8, #94a1a9);
   --ix-app-header-logo--color: var(--theme-color-logo, #ffffff);
   --ix-app-header-name-suffix--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$app-header-name-suffix-color-fallback}
   );
   --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
 }

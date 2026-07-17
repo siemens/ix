@@ -7,27 +7,33 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$avatar-btn-background-active-fallback: rgba(140, 161, 171, 0.15);
+$avatar-btn-background-hover-fallback: rgba(140, 161, 171, 0.2);
+$avatar-btn-color-active-fallback: rgba(245, 252, 255, 0.9);
+$avatar-btn-color-hover-fallback: rgba(245, 252, 255, 0.9);
+$nav-item-primary-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-menu-avatar--default-time: var(--theme-default-time, 150ms);
   --ix-menu-avatar--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-avatar-btn--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$avatar-btn-background-active-fallback}
   );
   --ix-avatar-btn--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$avatar-btn-background-hover-fallback}
   );
   --ix-avatar-btn--color--active: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$avatar-btn-color-active-fallback}
   );
   --ix-avatar-btn--color--hover: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$avatar-btn-color-hover-fallback}
   );
   --ix-nav-item-primary--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$nav-item-primary-color-fallback}
   );
 }

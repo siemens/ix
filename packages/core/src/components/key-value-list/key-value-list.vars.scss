@@ -1,10 +1,13 @@
+$key-value-list-color-weak-bdr-fallback: rgba(224, 245, 255, 0.25);
+$key-value-list-color-ghost-alt-fallback: rgba(255, 255, 255, 0.05);
+
 :host {
   --ix-key-value-list--color-weak-bdr: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$key-value-list-color-weak-bdr-fallback}
   );
   --ix-key-value-list--color-ghost-alt: var(
     --theme-color-ghost-alt,
-    rgba(255, 255, 255, 0.05)
+    #{$key-value-list-color-ghost-alt-fallback}
   );
 }

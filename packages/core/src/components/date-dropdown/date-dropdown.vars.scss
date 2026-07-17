@@ -7,10 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$date-dropdown-x-weak-bdr-1-fallback: rgba(142, 157, 165, 0.2);
+
 :host {
   --ix-date-dropdown--x-weak-bdr-1: var(
     --theme-x-weak-bdr-1,
-    0.0625rem solid rgba(142, 157, 165, 0.2)
+    0.0625rem solid #{$date-dropdown-x-weak-bdr-1-fallback}
   );
   --ix-date-dropdown--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);

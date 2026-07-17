@@ -7,40 +7,58 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$pill-outline-color-fallback: rgba(245, 252, 255, 0.9);
+$animated-tab-circle-background-fallback: rgba(140, 161, 171, 0.2);
+$animated-tab-circle-background-active-fallback: rgba(0, 128, 128, 0.2);
+$animated-tab-circle-background-disabled-fallback: rgba(255, 255, 255, 0);
+$animated-tab-circle-background-hover-fallback: rgba(0, 255, 255, 0.15);
+$animated-tab-circle-background-selected-fallback: rgba(255, 255, 255, 0);
+$animated-tab-circle-border-color-fallback: rgba(0, 0, 0, 0);
+$animated-tab-circle-border-color-disabled-fallback: rgba(255, 255, 255, 0);
+$animated-tab-icon-color-fallback: rgba(245, 252, 255, 0.9);
+$tab-background-fallback: rgba(255, 255, 255, 0);
+$tab-background-active-fallback: rgba(0, 128, 128, 0.2);
+$tab-background-disabled-fallback: rgba(255, 255, 255, 0);
+$tab-background-hover-fallback: rgba(0, 255, 255, 0.15);
+$tab-background-selected-fallback: rgba(255, 255, 255, 0);
+$tab-color-fallback: rgba(245, 252, 255, 0.9);
+$tab-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$tab-indicator-background-disabled-fallback: rgba(211, 236, 248, 0.4);
+
 :host {
   --ix-tab-item--color-1: var(--theme-color-1, #0f1619);
   --ix-tab-item--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-pill-outline--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$pill-outline-color-fallback}
   );
   --ix-animated-tab-circle--background: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$animated-tab-circle-background-fallback}
   );
   --ix-animated-tab-circle--background--active: var(
     --theme-color-ghost-primary--active,
-    rgba(0, 128, 128, 0.2)
+    #{$animated-tab-circle-background-active-fallback}
   );
   --ix-animated-tab-circle--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$animated-tab-circle-background-disabled-fallback}
   );
   --ix-animated-tab-circle--background--hover: var(
     --theme-color-ghost-primary--hover,
-    rgba(0, 255, 255, 0.15)
+    #{$animated-tab-circle-background-hover-fallback}
   );
   --ix-animated-tab-circle--background--selected: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$animated-tab-circle-background-selected-fallback}
   );
   --ix-animated-tab-circle--border-color: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$animated-tab-circle-border-color-fallback}
   );
   --ix-animated-tab-circle--border-color--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$animated-tab-circle-border-color-disabled-fallback}
   );
   --ix-animated-tab-circle--border-color--selected: var(
     --theme-color-dynamic,
@@ -48,35 +66,35 @@
   );
   --ix-animated-tab-icon--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$animated-tab-icon-color-fallback}
   );
   --ix-animated-tab-icon--color--selected: var(--theme-color-dynamic, #00eaff);
-  --ix-tab--background: var(--theme-color-ghost, rgba(255, 255, 255, 0));
+  --ix-tab--background: var(--theme-color-ghost, #{$tab-background-fallback});
   --ix-tab--background--active: var(
     --theme-color-ghost-primary--active,
-    rgba(0, 128, 128, 0.2)
+    #{$tab-background-active-fallback}
   );
   --ix-tab--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$tab-background-disabled-fallback}
   );
   --ix-tab--background--hover: var(
     --theme-color-ghost-primary--hover,
-    rgba(0, 255, 255, 0.15)
+    #{$tab-background-hover-fallback}
   );
   --ix-tab--background--selected: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$tab-background-selected-fallback}
   );
-  --ix-tab--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-tab--color: var(--theme-color-std-text, #{$tab-color-fallback});
   --ix-tab--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$tab-color-disabled-fallback}
   );
   --ix-tab--color--selected: var(--theme-color-dynamic, #00eaff);
   --ix-tab-indicator--background--disabled: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$tab-indicator-background-disabled-fallback}
   );
   --ix-tab-indicator--background--selected: var(--theme-color-dynamic, #00eaff);
   --ix-tab-pill--border-color: var(--theme-color-neutral, #b6b8b9);

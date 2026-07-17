@@ -7,38 +7,54 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$group-item-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$group-item-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+$group-item-color-ghost-selected-fallback: rgba(0, 255, 255, 0.1);
+$group-item-color-ghost-selected-hover-fallback: rgba(104, 253, 253, 0.2);
+$group-item-color-ghost-selected-active-fallback: rgba(115, 221, 221, 0.2);
+$group-item-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
+$group-item-background-fallback: rgba(140, 161, 171, 0.2);
+$group-item-border-color-active-fallback: rgba(0, 0, 0, 0);
+$group-item-border-color-hover-fallback: rgba(0, 0, 0, 0);
+
 :host {
   --ix-group-item--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$group-item-color-std-text-fallback}
   );
   --ix-group-item--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-group-item--color-soft-text: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$group-item-color-soft-text-fallback}
   );
   --ix-group-item--color-ghost--selected: var(
     --theme-color-ghost--selected,
-    rgba(0, 255, 255, 0.1)
+    #{$group-item-color-ghost-selected-fallback}
   );
   --ix-group-item--color-ghost--selected-hover: var(
     --theme-color-ghost--selected-hover,
-    rgba(104, 253, 253, 0.2)
+    #{$group-item-color-ghost-selected-hover-fallback}
   );
   --ix-group-item--color-ghost--selected-active: var(
     --theme-color-ghost--selected-active,
-    rgba(115, 221, 221, 0.2)
+    #{$group-item-color-ghost-selected-active-fallback}
   );
   --ix-group-item--color-weak-text: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$group-item-color-weak-text-fallback}
   );
   --ix-group-item--background: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$group-item-background-fallback}
   );
-  --ix-group-item--border-color--active: var(--theme-color-0, rgba(0, 0, 0, 0));
-  --ix-group-item--border-color--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-group-item--border-color--active: var(
+    --theme-color-0,
+    #{$group-item-border-color-active-fallback}
+  );
+  --ix-group-item--border-color--hover: var(
+    --theme-color-0,
+    #{$group-item-border-color-hover-fallback}
+  );
   --ix-group-item-indicator--background--selected: var(
     --theme-color-dynamic,
     #00eaff

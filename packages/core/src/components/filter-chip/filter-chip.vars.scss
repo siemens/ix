@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$filter-chip-color-ghost-fallback: rgba(255, 255, 255, 0);
+$filter-chip-color-component-4-fallback: rgba(214, 242, 255, 0.42);
+$filter-chip-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
+$filter-chip-color-ghost-primary-hover-fallback: rgba(0, 255, 255, 0.15);
+$filter-chip-color-ghost-primary-active-fallback: rgba(0, 128, 128, 0.2);
+
 :host {
   --ix-filter-chip--focus--border-thickness: var(
     --theme-focus--border-thickness,
@@ -14,23 +20,23 @@
   );
   --ix-filter-chip--color-ghost: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$filter-chip-color-ghost-fallback}
   );
   --ix-filter-chip--color-component-4: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$filter-chip-color-component-4-fallback}
   );
   --ix-filter-chip--color-weak-text: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$filter-chip-color-weak-text-fallback}
   );
   --ix-filter-chip--color-ghost-primary--hover: var(
     --theme-color-ghost-primary--hover,
-    rgba(0, 255, 255, 0.15)
+    #{$filter-chip-color-ghost-primary-hover-fallback}
   );
   --ix-filter-chip--color-ghost-primary--active: var(
     --theme-color-ghost-primary--active,
-    rgba(0, 128, 128, 0.2)
+    #{$filter-chip-color-ghost-primary-active-fallback}
   );
   --ix-chip-primary-outline--border-color: var(--theme-color-primary, #00bde3);
   --ix-chip-primary-outline--border-color--active: var(

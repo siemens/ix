@@ -7,23 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$category-filter-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+$input-border-color-bottom-disabled-fallback: rgba(224, 245, 255, 0.25);
+$input-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$menu-header-color-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-category-filter--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-category-filter--color-soft-text: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$category-filter-color-soft-text-fallback}
   );
   --ix-input--background--hover: var(--theme-color-component-8--hover, #002639);
   --ix-input--border-color--focus: var(--theme-color-dynamic, #00eaff);
   --ix-input--border-color--hover: var(--theme-color-dynamic, #00eaff);
   --ix-input--border-color-bottom--disabled: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$input-border-color-bottom-disabled-fallback}
   );
   --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-input--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$input-color-disabled-fallback}
   );
   --ix-input--focus--outline-offset: var(
     --theme-focus-outline-offset,
@@ -31,6 +36,6 @@
   );
   --ix-menu-header--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$menu-header-color-fallback}
   );
 }

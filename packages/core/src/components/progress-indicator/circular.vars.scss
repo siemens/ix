@@ -7,6 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$progress-indicator-helper-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-helper-icon-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-helper-info-color-fallback: rgba(245, 252, 255, 0.9);
+$progress-indicator-helper-paused-color-fallback: rgba(245, 252, 255, 0.9);
+$progress-indicator-helper-success-color-fallback: rgba(245, 252, 255, 0.9);
+$progress-indicator-helper-warning-color-fallback: rgba(245, 252, 255, 0.9);
+$progress-indicator-label-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-label-info-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-label-paused-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-label-success-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-label-warning-color-fallback: rgba(229, 247, 255, 0.65);
+$progress-indicator-track-background-fallback: rgba(217, 243, 255, 0.4);
+$progress-indicator-track-info-background-fallback: rgba(217, 243, 255, 0.4);
+$progress-indicator-track-paused-background-fallback: rgba(217, 243, 255, 0.4);
+$progress-indicator-track-success-background-fallback: rgba(217, 243, 255, 0.4);
+
 :host {
   --ix-progress-indicator-fill--background: var(--theme-color-dynamic, #00eaff);
   --ix-progress-indicator-fill-error--background: var(
@@ -31,7 +47,7 @@
   );
   --ix-progress-indicator-helper--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-helper-color-fallback}
   );
   --ix-progress-indicator-helper-error--color: var(
     --theme-color-alarm-text,
@@ -39,7 +55,7 @@
   );
   --ix-progress-indicator-helper-icon--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-helper-icon-color-fallback}
   );
   --ix-progress-indicator-helper-icon-error--color: var(
     --theme-color-alarm,
@@ -63,23 +79,23 @@
   );
   --ix-progress-indicator-helper-info--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$progress-indicator-helper-info-color-fallback}
   );
   --ix-progress-indicator-helper-paused--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$progress-indicator-helper-paused-color-fallback}
   );
   --ix-progress-indicator-helper-success--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$progress-indicator-helper-success-color-fallback}
   );
   --ix-progress-indicator-helper-warning--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$progress-indicator-helper-warning-color-fallback}
   );
   --ix-progress-indicator-label--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-label-color-fallback}
   );
   --ix-progress-indicator-label-error--color: var(
     --theme-color-alarm-text,
@@ -87,23 +103,23 @@
   );
   --ix-progress-indicator-label-info--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-label-info-color-fallback}
   );
   --ix-progress-indicator-label-paused--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-label-paused-color-fallback}
   );
   --ix-progress-indicator-label-success--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-label-success-color-fallback}
   );
   --ix-progress-indicator-label-warning--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$progress-indicator-label-warning-color-fallback}
   );
   --ix-progress-indicator-track--background: var(
     --theme-color-component-3,
-    rgba(217, 243, 255, 0.4)
+    #{$progress-indicator-track-background-fallback}
   );
   --ix-progress-indicator-track-error--background: var(
     --theme-color-component-error,
@@ -111,15 +127,15 @@
   );
   --ix-progress-indicator-track-info--background: var(
     --theme-color-component-3,
-    rgba(217, 243, 255, 0.4)
+    #{$progress-indicator-track-info-background-fallback}
   );
   --ix-progress-indicator-track-paused--background: var(
     --theme-color-component-3,
-    rgba(217, 243, 255, 0.4)
+    #{$progress-indicator-track-paused-background-fallback}
   );
   --ix-progress-indicator-track-success--background: var(
     --theme-color-component-3,
-    rgba(217, 243, 255, 0.4)
+    #{$progress-indicator-track-success-background-fallback}
   );
   --ix-progress-indicator-track-warning--background: var(
     --theme-color-component-warning,

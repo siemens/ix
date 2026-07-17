@@ -7,16 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$expanding-search-std-bdr-1-fallback: rgba(211, 236, 248, 0.55);
+$input-box-shadow-fallback: rgba(0, 0, 0, 0.6);
+
 :host {
   --ix-expanding-search--medium-time: var(--theme-medium-time, 300ms);
   --ix-expanding-search--default-time: var(--theme-default-time, 150ms);
   --ix-expanding-search--std-bdr-1: var(
     --theme-std-bdr-1,
-    0.0625rem solid rgba(211, 236, 248, 0.55)
+    0.0625rem solid #{$expanding-search-std-bdr-1-fallback}
   );
   --ix-input--border-radius: var(--theme-small-border-radius, 0.125rem);
   --ix-input--box-shadow: var(
     --theme-inset-shadow-1,
-    inset 0 2px 4px 0 rgba(0, 0, 0, 0.6)
+    inset 0 2px 4px 0 #{$input-box-shadow-fallback}
   );
 }

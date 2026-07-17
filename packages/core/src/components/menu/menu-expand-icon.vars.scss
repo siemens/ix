@@ -7,16 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$menu-btn-background-active-fallback: rgba(140, 161, 171, 0.15);
+$menu-btn-background-hover-fallback: rgba(140, 161, 171, 0.2);
+$menu-btn-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-menu-expand-icon--default-time: var(--theme-default-time, 150ms);
   --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);
   --ix-menu-btn--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$menu-btn-background-active-fallback}
   );
   --ix-menu-btn--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$menu-btn-background-hover-fallback}
   );
-  --ix-menu-btn--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-menu-btn--color: var(
+    --theme-color-std-text,
+    #{$menu-btn-color-fallback}
+  );
 }

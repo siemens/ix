@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$tile-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-tile--color-2: var(--theme-color-2, #283236);
   --ix-tile--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$tile-color-std-text-fallback}
   );
   --ix-tile--color-1: var(--theme-color-1, #0f1619);
   --ix-tile--border-radius: var(--theme-default-border-radius, 0.25rem);

@@ -7,13 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$nav-overlay-background-fallback: rgba(55, 70, 77, 0.85);
+$nav-overlay-header-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-nav-overlay--background: var(
     --theme-color-backdrop-3,
-    rgba(55, 70, 77, 0.85)
+    #{$nav-overlay-background-fallback}
   );
   --ix-nav-overlay-header--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$nav-overlay-header-color-fallback}
   );
 }

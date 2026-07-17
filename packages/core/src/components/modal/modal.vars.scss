@@ -7,8 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$modal-color-lightbox-fallback: rgba(0, 0, 0, 0.65);
+$modal-shadow-4-fallback: rgba(0, 0, 0, 0.6);
+$modal-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
-  --ix-modal--color-lightbox: var(--theme-color-lightbox, rgba(0, 0, 0, 0.65));
+  --ix-modal--color-lightbox: var(
+    --theme-color-lightbox,
+    #{$modal-color-lightbox-fallback}
+  );
   --ix-modal--default-border-radius: var(
     --theme-default-border-radius,
     0.25rem
@@ -16,12 +23,12 @@
   --ix-modal--shadow-4: var(
     --theme-shadow-4,
     0 0 2px 0 #000000,
-    0 4px 8px 0 rgba(0, 0, 0, 0.6),
-    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+    0 4px 8px 0 #{$modal-shadow-4-fallback},
+    0 12px 18px 0 #{$modal-shadow-4-fallback}
   );
   --ix-modal--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$modal-color-std-text-fallback}
   );
   --ix-modal--background: var(--theme-color-2, #283236);
 }

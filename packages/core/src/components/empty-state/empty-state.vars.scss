@@ -1,6 +1,8 @@
+$empty-state-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-empty-state--color-soft-text: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$empty-state-color-soft-text-fallback}
   );
 }

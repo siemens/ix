@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$menu-avatar-item-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-menu-avatar-item--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$menu-avatar-item-color-std-text-fallback}
   );
 }

@@ -7,6 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$blind-color-ghost-fallback: rgba(255, 255, 255, 0);
+$blind-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$blind-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+$blind-color-soft-bdr-fallback: rgba(211, 236, 248, 0.4);
+$blind-base-background-fallback: rgba(140, 161, 171, 0.2);
+$blind-base-border-color-fallback: rgba(0, 0, 0, 0);
+
 @use 'sass:map';
 
 $blind-variant-fallbacks: (
@@ -84,19 +91,22 @@ $blind-variant-fallbacks: (
 }
 
 :host {
-  --ix-blind--color-ghost: var(--theme-color-ghost, rgba(255, 255, 255, 0));
+  --ix-blind--color-ghost: var(
+    --theme-color-ghost,
+    #{$blind-color-ghost-fallback}
+  );
   --ix-blind--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$blind-color-std-text-fallback}
   );
   --ix-blind--color-soft-text: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$blind-color-soft-text-fallback}
   );
   --ix-blind--color-primary: var(--theme-color-primary, #00bde3);
   --ix-blind--color-soft-bdr: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$blind-color-soft-bdr-fallback}
   );
   --ix-blind--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-blind--default-time: var(--theme-default-time, 150ms);
@@ -104,7 +114,10 @@ $blind-variant-fallbacks: (
   --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-blind-base--background: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$blind-base-background-fallback}
   );
-  --ix-blind-base--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-blind-base--border-color: var(
+    --theme-color-0,
+    #{$blind-base-border-color-fallback}
+  );
 }

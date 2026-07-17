@@ -7,84 +7,111 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$event-list-item-weak-bdr-1-fallback: rgba(224, 245, 255, 0.25);
+$event-item-chevron-color-fallback: rgba(229, 247, 255, 0.65);
+$event-item-filled-background-fallback: rgba(140, 161, 171, 0.2);
+$event-item-filled-background-active-fallback: rgba(140, 161, 171, 0.25);
+$event-item-filled-background-disabled-fallback: rgba(140, 161, 171, 0.2);
+$event-item-filled-background-hover-fallback: rgba(140, 161, 171, 0.45);
+$event-item-filled-background-selected-fallback: rgba(140, 161, 171, 0.25);
+$event-item-filled-border-fallback: rgba(0, 0, 0, 0);
+$event-item-filled-border-active-fallback: rgba(0, 0, 0, 0);
+$event-item-filled-border-disabled-fallback: rgba(0, 0, 0, 0);
+$event-item-filled-border-hover-fallback: rgba(0, 0, 0, 0);
+$event-item-outline-background-fallback: rgba(255, 255, 255, 0);
+$event-item-outline-background-active-fallback: rgba(140, 161, 171, 0.15);
+$event-item-outline-background-disabled-fallback: rgba(255, 255, 255, 0);
+$event-item-outline-background-hover-fallback: rgba(140, 161, 171, 0.2);
+$event-item-outline-background-selected-fallback: rgba(140, 161, 171, 0.15);
+$event-item-outline-border-fallback: rgba(211, 236, 248, 0.4);
+$event-item-outline-border-active-fallback: rgba(211, 236, 248, 0.4);
+$event-item-outline-border-disabled-fallback: rgba(224, 245, 255, 0.25);
+$event-item-outline-border-hover-fallback: rgba(211, 236, 248, 0.4);
+
 :host {
   --ix-event-list-item--default-time: var(--theme-default-time, 150ms);
   --ix-event-list-item--weak-bdr-1: var(
     --theme-weak-bdr-1,
-    0.0625rem solid rgba(224, 245, 255, 0.25)
+    0.0625rem solid #{$event-list-item-weak-bdr-1-fallback}
   );
   --ix-event-item-chevron--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$event-item-chevron-color-fallback}
   );
   --ix-event-item-filled--background: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$event-item-filled-background-fallback}
   );
   --ix-event-item-filled--background--active: var(
     --theme-color-component-1--active,
-    rgba(140, 161, 171, 0.25)
+    #{$event-item-filled-background-active-fallback}
   );
   --ix-event-item-filled--background--disabled: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$event-item-filled-background-disabled-fallback}
   );
   --ix-event-item-filled--background--hover: var(
     --theme-color-component-1--hover,
-    rgba(140, 161, 171, 0.45)
+    #{$event-item-filled-background-hover-fallback}
   );
   --ix-event-item-filled--background--selected: var(
     --theme-color-component-1--active,
-    rgba(140, 161, 171, 0.25)
+    #{$event-item-filled-background-selected-fallback}
   );
-  --ix-event-item-filled--border: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-event-item-filled--border: var(
+    --theme-color-0,
+    #{$event-item-filled-border-fallback}
+  );
   --ix-event-item-filled--border--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$event-item-filled-border-active-fallback}
   );
   --ix-event-item-filled--border--disabled: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$event-item-filled-border-disabled-fallback}
   );
-  --ix-event-item-filled--border--hover: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-event-item-filled--border--hover: var(
+    --theme-color-0,
+    #{$event-item-filled-border-hover-fallback}
+  );
   --ix-event-item-filled--border--selected: var(--theme-color-dynamic, #00eaff);
   --ix-event-item-indicator--width: var(--theme-size--2, 0.5rem);
   --ix-event-item-indicator-opacity--disabled: 0.3;
   --ix-event-item-outline--background: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$event-item-outline-background-fallback}
   );
   --ix-event-item-outline--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$event-item-outline-background-active-fallback}
   );
   --ix-event-item-outline--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$event-item-outline-background-disabled-fallback}
   );
   --ix-event-item-outline--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$event-item-outline-background-hover-fallback}
   );
   --ix-event-item-outline--background--selected: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$event-item-outline-background-selected-fallback}
   );
   --ix-event-item-outline--border: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$event-item-outline-border-fallback}
   );
   --ix-event-item-outline--border--active: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$event-item-outline-border-active-fallback}
   );
   --ix-event-item-outline--border--disabled: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$event-item-outline-border-disabled-fallback}
   );
   --ix-event-item-outline--border--hover: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$event-item-outline-border-hover-fallback}
   );
   --ix-event-item-outline--border--selected: var(
     --theme-color-dynamic,
