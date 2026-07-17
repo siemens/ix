@@ -8,7 +8,7 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use './../card/card-vars' as card-vars;
+@use './../card/card.vars' as card-vars;
 
 @use './card-accordion.vars' as *;
 :host {
@@ -105,7 +105,7 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.variant-#{$variant}) {
     .expand-action {
       background-color: var(--ix-push-card-#{$variant}-accordion--background);

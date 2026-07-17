@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$card-variants: outline filled alarm critical warning success info neutral
+  primary;
+
 $card-color-soft-bdr-fallback: light-dark(
   rgba(0, 20, 40, 0.2),
   rgba(211, 236, 248, 0.4)
