@@ -7,13 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$select-item-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
+
 :host {
   --ix-select-item--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$select-item-color-std-text-fallback}
   );
   --ix-select-list-item--background--selected: var(
     --theme-color-ghost--selected,
-    rgba(0, 255, 255, 0.1)
+    #{$select-list-item-background-selected-fallback}
   );
 }

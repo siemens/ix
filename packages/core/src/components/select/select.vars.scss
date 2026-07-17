@@ -7,10 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$select-inset-shadow-1-fallback: rgba(0, 0, 0, 0.6);
+$input-border-color-fallback: rgba(211, 236, 248, 0.55);
+$input-border-color-disabled-fallback: rgba(224, 245, 255, 0.25);
+$input-border-color-readonly-fallback: rgba(211, 236, 248, 0.55);
+$input-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$input-select-icon-color-fallback: rgba(229, 247, 255, 0.65);
+$select-list-item-hint-color-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-select--inset-shadow-1: var(
     --theme-inset-shadow-1,
-    inset 0 2px 4px 0 rgba(0, 0, 0, 0.6)
+    inset 0 2px 4px 0 #{$select-inset-shadow-1-fallback}
   );
   --ix-select--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
@@ -23,11 +31,11 @@
   );
   --ix-input--border-color: var(
     --theme-color-std-bdr,
-    rgba(211, 236, 248, 0.55)
+    #{$input-border-color-fallback}
   );
   --ix-input--border-color--disabled: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$input-border-color-disabled-fallback}
   );
   --ix-input--border-color--hover: var(--theme-color-dynamic, #00eaff);
   --ix-input--border-color--info: var(--theme-color-info, #357fff);
@@ -44,7 +52,7 @@
   );
   --ix-input--border-color--readonly: var(
     --theme-color-std-bdr,
-    rgba(211, 236, 248, 0.55)
+    #{$input-border-color-readonly-fallback}
   );
   --ix-input--border-color--warning: var(--theme-color-warning-bdr, #ffbb00);
   --ix-input--border-color--warning--active: var(
@@ -59,14 +67,14 @@
   --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-input--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$input-color-disabled-fallback}
   );
   --ix-input-select-icon--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$input-select-icon-color-fallback}
   );
   --ix-select-list-item-hint--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$select-list-item-hint-color-fallback}
   );
 }

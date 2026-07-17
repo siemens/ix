@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$link-button-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
+
 :host {
   --ix-link-button--color-primary: var(--theme-color-primary, #00bde3);
   --ix-link-button--color-dynamic--hover: var(
@@ -19,7 +21,7 @@
   );
   --ix-link-button--color-weak-text: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$link-button-color-weak-text-fallback}
   );
   --ix-link-button--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
 }

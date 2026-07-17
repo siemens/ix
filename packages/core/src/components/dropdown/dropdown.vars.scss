@@ -7,6 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$dropdown-shadow-4-fallback: rgba(0, 0, 0, 0.6);
+$dropdown-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$menu-header-color-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-dropdown--color-2: var(--theme-color-2, #283236);
   --ix-dropdown--default-border-radius: var(
@@ -17,15 +21,15 @@
   --ix-dropdown--shadow-4: var(
     --theme-shadow-4,
     0 0 2px 0 #000000,
-    0 4px 8px 0 rgba(0, 0, 0, 0.6),
-    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+    0 4px 8px 0 #{$dropdown-shadow-4-fallback},
+    0 12px 18px 0 #{$dropdown-shadow-4-fallback}
   );
   --ix-dropdown--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$dropdown-color-std-text-fallback}
   );
   --ix-menu-header--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$menu-header-color-fallback}
   );
 }

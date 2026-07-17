@@ -7,6 +7,35 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$radiobtn-checked-background-disabled-fallback: rgba(214, 242, 255, 0.42);
+$radiobtn-checked-border-color-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-active-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-disabled-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-hover-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-info-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-info-active-fallback: rgba(0, 0, 0, 0);
+$radiobtn-checked-border-color-info-hover-fallback: rgba(0, 0, 0, 0);
+$radiobtn-label-color-fallback: rgba(245, 252, 255, 0.9);
+$radiobtn-label-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$radiobtn-unchecked-background-disabled-fallback: rgba(255, 255, 255, 0);
+$radiobtn-unchecked-background-info-active-fallback: rgba(140, 161, 171, 0.15);
+$radiobtn-unchecked-background-info-hover-fallback: rgba(140, 161, 171, 0.2);
+$radiobtn-unchecked-background-invalid-active-fallback: rgba(
+  140,
+  161,
+  171,
+  0.15
+);
+$radiobtn-unchecked-background-invalid-hover-fallback: rgba(140, 161, 171, 0.2);
+$radiobtn-unchecked-background-warning-active-fallback: rgba(
+  140,
+  161,
+  171,
+  0.15
+);
+$radiobtn-unchecked-background-warning-hover-fallback: rgba(140, 161, 171, 0.2);
+$radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
+
 :host {
   --ix-radio--color-primary--contrast: var(
     --theme-color-primary--contrast,
@@ -25,7 +54,7 @@
   );
   --ix-radiobtn-checked--background--disabled: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$radiobtn-checked-background-disabled-fallback}
   );
   --ix-radiobtn-checked--background--hover: var(
     --theme-color-dynamic--hover,
@@ -61,30 +90,33 @@
     --theme-color-warning--hover,
     #ffc533
   );
-  --ix-radiobtn-checked--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-radiobtn-checked--border-color: var(
+    --theme-color-0,
+    #{$radiobtn-checked-border-color-fallback}
+  );
   --ix-radiobtn-checked--border-color--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-active-fallback}
   );
   --ix-radiobtn-checked--border-color--disabled: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-disabled-fallback}
   );
   --ix-radiobtn-checked--border-color--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-hover-fallback}
   );
   --ix-radiobtn-checked--border-color--info: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-info-fallback}
   );
   --ix-radiobtn-checked--border-color--info--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-info-active-fallback}
   );
   --ix-radiobtn-checked--border-color--info--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$radiobtn-checked-border-color-info-hover-fallback}
   );
   --ix-radiobtn-checked--border-color--invalid: var(
     --theme-color-alarm-bdr,
@@ -161,11 +193,11 @@
   );
   --ix-radiobtn-label--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$radiobtn-label-color-fallback}
   );
   --ix-radiobtn-label--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$radiobtn-label-color-disabled-fallback}
   );
   --ix-radiobtn-unchecked--background: var(--theme-color-secondary, #000000);
   --ix-radiobtn-unchecked--background--active: var(
@@ -174,7 +206,7 @@
   );
   --ix-radiobtn-unchecked--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$radiobtn-unchecked-background-disabled-fallback}
   );
   --ix-radiobtn-unchecked--background--hover: var(
     --theme-color-secondary--hover,
@@ -186,11 +218,11 @@
   );
   --ix-radiobtn-unchecked--background--info--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$radiobtn-unchecked-background-info-active-fallback}
   );
   --ix-radiobtn-unchecked--background--info--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$radiobtn-unchecked-background-info-hover-fallback}
   );
   --ix-radiobtn-unchecked--background--invalid: var(
     --theme-color-component-error,
@@ -198,11 +230,11 @@
   );
   --ix-radiobtn-unchecked--background--invalid--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$radiobtn-unchecked-background-invalid-active-fallback}
   );
   --ix-radiobtn-unchecked--background--invalid--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$radiobtn-unchecked-background-invalid-hover-fallback}
   );
   --ix-radiobtn-unchecked--background--warning: var(
     --theme-color-component-warning,
@@ -210,11 +242,11 @@
   );
   --ix-radiobtn-unchecked--background--warning--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$radiobtn-unchecked-background-warning-active-fallback}
   );
   --ix-radiobtn-unchecked--background--warning--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$radiobtn-unchecked-background-warning-hover-fallback}
   );
   --ix-radiobtn-unchecked--border-color: var(
     --theme-color-contrast-bdr,
@@ -226,7 +258,7 @@
   );
   --ix-radiobtn-unchecked--border-color--disabled: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$radiobtn-unchecked-border-color-disabled-fallback}
   );
   --ix-radiobtn-unchecked--border-color--hover: var(
     --theme-color-dynamic,

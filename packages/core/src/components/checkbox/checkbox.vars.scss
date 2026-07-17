@@ -7,6 +7,43 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$checkbox-checked-background-disabled-fallback: rgba(214, 242, 255, 0.42);
+$checkbox-checked-border-color-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-active-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-disabled-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-hover-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-info-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-info-active-fallback: rgba(0, 0, 0, 0);
+$checkbox-checked-border-color-info-hover-fallback: rgba(0, 0, 0, 0);
+$checkbox-label-color-fallback: rgba(245, 252, 255, 0.9);
+$checkbox-label-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$checkbox-mixed-background-disabled-fallback: rgba(214, 242, 255, 0.42);
+$checkbox-mixed-border-color-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-active-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-disabled-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-hover-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-info-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-info-active-fallback: rgba(0, 0, 0, 0);
+$checkbox-mixed-border-color-info-hover-fallback: rgba(0, 0, 0, 0);
+$checkbox-unchecked-background-disabled-fallback: rgba(255, 255, 255, 0);
+$checkbox-unchecked-background-info-active-fallback: rgba(140, 161, 171, 0.15);
+$checkbox-unchecked-background-info-hover-fallback: rgba(140, 161, 171, 0.2);
+$checkbox-unchecked-background-invalid-active-fallback: rgba(
+  140,
+  161,
+  171,
+  0.15
+);
+$checkbox-unchecked-background-invalid-hover-fallback: rgba(140, 161, 171, 0.2);
+$checkbox-unchecked-background-warning-active-fallback: rgba(
+  140,
+  161,
+  171,
+  0.15
+);
+$checkbox-unchecked-background-warning-hover-fallback: rgba(140, 161, 171, 0.2);
+$checkbox-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
+
 :host {
   --ix-checkbox--color-primary--contrast: var(
     --theme-color-primary--contrast,
@@ -26,7 +63,7 @@
   );
   --ix-checkbox-checked--background--disabled: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$checkbox-checked-background-disabled-fallback}
   );
   --ix-checkbox-checked--background--hover: var(
     --theme-color-dynamic--hover,
@@ -62,30 +99,33 @@
     --theme-color-warning--hover,
     #ffc533
   );
-  --ix-checkbox-checked--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-checkbox-checked--border-color: var(
+    --theme-color-0,
+    #{$checkbox-checked-border-color-fallback}
+  );
   --ix-checkbox-checked--border-color--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-active-fallback}
   );
   --ix-checkbox-checked--border-color--disabled: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-disabled-fallback}
   );
   --ix-checkbox-checked--border-color--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-hover-fallback}
   );
   --ix-checkbox-checked--border-color--info: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-info-fallback}
   );
   --ix-checkbox-checked--border-color--info--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-info-active-fallback}
   );
   --ix-checkbox-checked--border-color--info--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-checked-border-color-info-hover-fallback}
   );
   --ix-checkbox-checked--border-color--invalid: var(
     --theme-color-alarm-bdr,
@@ -162,11 +202,11 @@
   );
   --ix-checkbox-label--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$checkbox-label-color-fallback}
   );
   --ix-checkbox-label--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$checkbox-label-color-disabled-fallback}
   );
   --ix-checkbox-mixed--background: var(--theme-color-dynamic, #00eaff);
   --ix-checkbox-mixed--background--active: var(
@@ -175,7 +215,7 @@
   );
   --ix-checkbox-mixed--background--disabled: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$checkbox-mixed-background-disabled-fallback}
   );
   --ix-checkbox-mixed--background--hover: var(
     --theme-color-dynamic--hover,
@@ -199,30 +239,33 @@
     --theme-color-warning--hover,
     #ffc533
   );
-  --ix-checkbox-mixed--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-checkbox-mixed--border-color: var(
+    --theme-color-0,
+    #{$checkbox-mixed-border-color-fallback}
+  );
   --ix-checkbox-mixed--border-color--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-active-fallback}
   );
   --ix-checkbox-mixed--border-color--disabled: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-disabled-fallback}
   );
   --ix-checkbox-mixed--border-color--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-hover-fallback}
   );
   --ix-checkbox-mixed--border-color--info: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-info-fallback}
   );
   --ix-checkbox-mixed--border-color--info--active: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-info-active-fallback}
   );
   --ix-checkbox-mixed--border-color--info--hover: var(
     --theme-color-0,
-    rgba(0, 0, 0, 0)
+    #{$checkbox-mixed-border-color-info-hover-fallback}
   );
   --ix-checkbox-mixed--border-color--invalid: var(
     --theme-color-alarm-bdr,
@@ -301,7 +344,7 @@
   );
   --ix-checkbox-unchecked--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$checkbox-unchecked-background-disabled-fallback}
   );
   --ix-checkbox-unchecked--background--hover: var(
     --theme-color-secondary--hover,
@@ -313,11 +356,11 @@
   );
   --ix-checkbox-unchecked--background--info--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$checkbox-unchecked-background-info-active-fallback}
   );
   --ix-checkbox-unchecked--background--info--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$checkbox-unchecked-background-info-hover-fallback}
   );
   --ix-checkbox-unchecked--background--invalid: var(
     --theme-color-component-error,
@@ -325,11 +368,11 @@
   );
   --ix-checkbox-unchecked--background--invalid--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$checkbox-unchecked-background-invalid-active-fallback}
   );
   --ix-checkbox-unchecked--background--invalid--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$checkbox-unchecked-background-invalid-hover-fallback}
   );
   --ix-checkbox-unchecked--background--warning: var(
     --theme-color-component-warning,
@@ -337,11 +380,11 @@
   );
   --ix-checkbox-unchecked--background--warning--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$checkbox-unchecked-background-warning-active-fallback}
   );
   --ix-checkbox-unchecked--background--warning--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$checkbox-unchecked-background-warning-hover-fallback}
   );
   --ix-checkbox-unchecked--border-color: var(
     --theme-color-contrast-bdr,
@@ -353,7 +396,7 @@
   );
   --ix-checkbox-unchecked--border-color--disabled: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$checkbox-unchecked-border-color-disabled-fallback}
   );
   --ix-checkbox-unchecked--border-color--hover: var(
     --theme-color-dynamic,

@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$dropdown-header-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+
 :host {
   --ix-dropdown-header--color-soft-text: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$dropdown-header-color-soft-text-fallback}
   );
 }

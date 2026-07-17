@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$menu-about-news-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-menu-about-news--color-2: var(--theme-color-2, #283236);
   --ix-menu-about-news--default-time: var(--theme-default-time, 150ms);
   --ix-menu-about-news--color-primary: var(--theme-color-primary, #00bde3);
   --ix-menu-about-news--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$menu-about-news-color-std-text-fallback}
   );
   --ix-menu-about-news--z-index-sticky: var(--theme-z-index-sticky, 1020);
 }

@@ -7,21 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$toast-border-color-fallback: rgba(0, 0, 0, 0);
+$toast-box-shadow-fallback: rgba(0, 0, 0, 0.6);
+$toast-timer-value-background-fallback: rgba(214, 242, 255, 0.42);
+
 :host {
   --ix-toast--medium-time: var(--theme-medium-time, 300ms);
   --ix-toast--background: var(--theme-color-2, #283236);
-  --ix-toast--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-toast--border-color: var(
+    --theme-color-0,
+    #{$toast-border-color-fallback}
+  );
   --ix-toast--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-toast--border-radus: var(--ix-toast--border-radius);
   --ix-toast--border-thickness: var(--theme-border-width-none, 0rem);
   --ix-toast--box-shadow: var(
     --theme-shadow-4,
     0 0 2px 0 #000000,
-    0 4px 8px 0 rgba(0, 0, 0, 0.6),
-    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+    0 4px 8px 0 #{$toast-box-shadow-fallback},
+    0 12px 18px 0 #{$toast-box-shadow-fallback}
   );
   --ix-toast-timer-value--background: var(
     --theme-color-component-4,
-    rgba(214, 242, 255, 0.42)
+    #{$toast-timer-value-background-fallback}
   );
 }

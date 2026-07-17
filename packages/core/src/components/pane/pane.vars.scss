@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$pane-floating-border-color-fallback: rgba(224, 245, 255, 0.25);
+$pane-floating-box-shadow-fallback: rgba(0, 0, 0, 0.6);
+$pane-floating-color-fallback: rgba(245, 252, 255, 0.9);
+$pane-inline-border-color-fallback: rgba(211, 236, 248, 0.4);
+$pane-inline-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-pane--space-1: var(--theme-space-1, 0.5rem);
   --ix-pane--space--1: var(--theme-space--1, 0.25rem);
@@ -17,26 +23,26 @@
   --ix-pane-floating--background: var(--theme-color-2, #283236);
   --ix-pane-floating--border-color: var(
     --theme-color-weak-bdr,
-    rgba(224, 245, 255, 0.25)
+    #{$pane-floating-border-color-fallback}
   );
   --ix-pane-floating--box-shadow: var(
     --theme-shadow-2,
     -4px 0 8px 0 #000000,
     4px 0 8px 0 #000000,
-    0 0 16px 0 rgba(0, 0, 0, 0.6)
+    0 0 16px 0 #{$pane-floating-box-shadow-fallback}
   );
   --ix-pane-floating--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$pane-floating-color-fallback}
   );
   --ix-pane-inline--background: var(--theme-color-1, #0f1619);
   --ix-pane-inline--border-color: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$pane-inline-border-color-fallback}
   );
   --ix-pane-inline--box-shadow: none;
   --ix-pane-inline--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$pane-inline-color-fallback}
   );
 }

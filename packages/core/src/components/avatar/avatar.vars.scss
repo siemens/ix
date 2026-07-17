@@ -7,12 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$avatar-background-fallback: rgba(217, 243, 255, 0.4);
+$avatar-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-avatar--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-avatar--background: var(
     --theme-color-component-3,
-    rgba(217, 243, 255, 0.4)
+    #{$avatar-background-fallback}
   );
-  --ix-avatar--color: var(--theme-color-std-text, rgba(245, 252, 255, 0.9));
+  --ix-avatar--color: var(--theme-color-std-text, #{$avatar-color-fallback});
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
 }

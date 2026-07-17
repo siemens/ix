@@ -7,6 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$workflow-step-background-fallback: rgba(255, 255, 255, 0);
+$workflow-step-background-active-fallback: rgba(140, 161, 171, 0.15);
+$workflow-step-background-disabled-fallback: rgba(255, 255, 255, 0);
+$workflow-step-background-hover-fallback: rgba(140, 161, 171, 0.2);
+$workflow-step-background-selected-fallback: rgba(0, 255, 255, 0.1);
+$workflow-step-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$workflow-step-icon-default-color-fallback: rgba(229, 247, 255, 0.65);
+$workflow-step-icon-default-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$workflow-step-icon-status-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+
 :host {
   --ix-workflow-step--color-warning: var(--theme-color-warning, #ffbb00);
   --ix-workflow-step--color-success: var(--theme-color-success, #44cc00);
@@ -14,35 +24,35 @@
   --ix-workflow--border-radius: 1px;
   --ix-workflow-step--background: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$workflow-step-background-fallback}
   );
   --ix-workflow-step--background--active: var(
     --theme-color-ghost--active,
-    rgba(140, 161, 171, 0.15)
+    #{$workflow-step-background-active-fallback}
   );
   --ix-workflow-step--background--disabled: var(
     --theme-color-ghost,
-    rgba(255, 255, 255, 0)
+    #{$workflow-step-background-disabled-fallback}
   );
   --ix-workflow-step--background--hover: var(
     --theme-color-ghost--hover,
-    rgba(140, 161, 171, 0.2)
+    #{$workflow-step-background-hover-fallback}
   );
   --ix-workflow-step--background--selected: var(
     --theme-color-ghost--selected,
-    rgba(0, 255, 255, 0.1)
+    #{$workflow-step-background-selected-fallback}
   );
   --ix-workflow-step--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$workflow-step-color-disabled-fallback}
   );
   --ix-workflow-step-icon-default--color: var(
     --theme-color-soft-text,
-    rgba(229, 247, 255, 0.65)
+    #{$workflow-step-icon-default-color-fallback}
   );
   --ix-workflow-step-icon-default--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$workflow-step-icon-default-color-disabled-fallback}
   );
   --ix-workflow-step-icon-default--color--selected: var(
     --theme-color-dynamic,
@@ -61,6 +71,6 @@
   );
   --ix-workflow-step-icon-status--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$workflow-step-icon-status-color-disabled-fallback}
   );
 }

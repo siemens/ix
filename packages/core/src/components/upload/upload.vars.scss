@@ -7,25 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$upload-border-color-fallback: rgba(211, 236, 248, 0.4);
+$upload-text-color-fallback: rgba(245, 252, 255, 0.9);
+$upload-text-color-checking-fallback: rgba(245, 252, 255, 0.9);
+$upload-text-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+
 :host {
   --ix-upload--color-alarm: var(--theme-color-alarm, #ff2453);
   --ix-upload--color-success: var(--theme-color-success, #44cc00);
   --ix-upload--border-color: var(
     --theme-color-soft-bdr,
-    rgba(211, 236, 248, 0.4)
+    #{$upload-border-color-fallback}
   );
   --ix-upload--border-color--dragover: var(--theme-color-dynamic, #00eaff);
   --ix-upload--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-upload-text--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$upload-text-color-fallback}
   );
   --ix-upload-text--color--checking: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$upload-text-color-checking-fallback}
   );
   --ix-upload-text--color--disabled: var(
     --theme-color-weak-text,
-    rgba(219, 244, 255, 0.4)
+    #{$upload-text-color-disabled-fallback}
   );
 }

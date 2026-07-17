@@ -7,16 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$tooltip-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$tooltip-shadow-4-fallback: rgba(0, 0, 0, 0.6);
+
 :host {
   --ix-tooltip--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$tooltip-color-std-text-fallback}
   );
   --ix-tooltip--shadow-4: var(
     --theme-shadow-4,
     0 0 2px 0 #000000,
-    0 4px 8px 0 rgba(0, 0, 0, 0.6),
-    0 12px 18px 0 rgba(0, 0, 0, 0.6)
+    0 4px 8px 0 #{$tooltip-shadow-4-fallback},
+    0 12px 18px 0 #{$tooltip-shadow-4-fallback}
   );
   --ix-tooltip--background: var(--theme-color-2, #283236);
   --ix-tootlip--background: var(--ix-tooltip--background);

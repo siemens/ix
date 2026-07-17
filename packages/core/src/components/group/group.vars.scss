@@ -7,6 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$group-color-std-text-fallback: rgba(245, 252, 255, 0.9);
+$group-header-color-fallback: rgba(245, 252, 255, 0.9);
+$group-item-background-fallback: rgba(140, 161, 171, 0.2);
+$group-item-background-active-fallback: rgba(140, 161, 171, 0.25);
+$group-item-background-hover-fallback: rgba(140, 161, 171, 0.45);
+$group-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
+$group-item-border-color-fallback: rgba(0, 0, 0, 0);
+$group-subheader-color-fallback: rgba(245, 252, 255, 0.9);
+
 :host {
   --ix-group--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
   --ix-group--default-border-radius: var(
@@ -15,36 +24,39 @@
   );
   --ix-group--color-std-text: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$group-color-std-text-fallback}
   );
   --ix-group--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-group-header--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$group-header-color-fallback}
   );
   --ix-group-item--background: var(
     --theme-color-component-1,
-    rgba(140, 161, 171, 0.2)
+    #{$group-item-background-fallback}
   );
   --ix-group-item--background--active: var(
     --theme-color-component-1--active,
-    rgba(140, 161, 171, 0.25)
+    #{$group-item-background-active-fallback}
   );
   --ix-group-item--background--hover: var(
     --theme-color-component-1--hover,
-    rgba(140, 161, 171, 0.45)
+    #{$group-item-background-hover-fallback}
   );
   --ix-group-item--background--selected: var(
     --theme-color-ghost--selected,
-    rgba(0, 255, 255, 0.1)
+    #{$group-item-background-selected-fallback}
   );
-  --ix-group-item--border-color: var(--theme-color-0, rgba(0, 0, 0, 0));
+  --ix-group-item--border-color: var(
+    --theme-color-0,
+    #{$group-item-border-color-fallback}
+  );
   --ix-group-item-indicator--background--selected: var(
     --theme-color-dynamic,
     #00eaff
   );
   --ix-group-subheader--color: var(
     --theme-color-std-text,
-    rgba(245, 252, 255, 0.9)
+    #{$group-subheader-color-fallback}
   );
 }
