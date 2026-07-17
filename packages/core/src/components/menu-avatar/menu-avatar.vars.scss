@@ -7,15 +7,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$avatar-btn-background-active-fallback: rgba(140, 161, 171, 0.15);
-$avatar-btn-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$avatar-btn-color-active-fallback: rgba(245, 252, 255, 0.9);
-$avatar-btn-color-hover-fallback: rgba(245, 252, 255, 0.9);
-$nav-item-primary-color-fallback: rgba(245, 252, 255, 0.9);
+$menu-avatar-color-focus-bdr-fallback: #199fff;
+$avatar-btn-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$avatar-btn-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$avatar-btn-color-active-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$avatar-btn-color-hover-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$nav-item-primary-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
 
 :host {
   --ix-menu-avatar--default-time: var(--theme-default-time, 150ms);
-  --ix-menu-avatar--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-menu-avatar--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$menu-avatar-color-focus-bdr-fallback}
+  );
   --ix-avatar-btn--background--active: var(
     --theme-color-ghost--active,
     #{$avatar-btn-background-active-fallback}

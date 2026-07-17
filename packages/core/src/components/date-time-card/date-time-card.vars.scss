@@ -7,19 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$date-time-card-shadow-4-fallback: rgba(0, 0, 0, 0.6);
-$datepicker-separator-background-fallback: rgba(142, 157, 165, 0.2);
+$date-time-card-shadow-4-fallback: 0 0 2px 0
+    light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$datepicker-separator-background-fallback: light-dark(
+  rgba(174, 181, 189, 0.2),
+  rgba(142, 157, 165, 0.2)
+);
+$menu-background-fallback: light-dark(#eff0f1, #283236);
 
 :host {
   --ix-date-time-card--shadow-4: var(
     --theme-shadow-4,
-    0 0 2px 0 #000000,
-    0 4px 8px 0 #{$date-time-card-shadow-4-fallback},
-    0 12px 18px 0 #{$date-time-card-shadow-4-fallback}
+    #{$date-time-card-shadow-4-fallback}
   );
   --ix-datepicker-separator--background: var(
     --theme-color-x-weak-bdr,
     #{$datepicker-separator-background-fallback}
   );
-  --ix-menu--background: var(--theme-color-2, #283236);
+  --ix-menu--background: var(--theme-color-2, #{$menu-background-fallback});
 }

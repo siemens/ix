@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$pill-outline-background-fallback: light-dark(#ffffff, #000000);
+
 :host {
-  --ix-pill-outline--background: var(--theme-color-secondary, #000000);
+  --ix-pill-outline--background: var(
+    --theme-color-secondary,
+    #{$pill-outline-background-fallback}
+  );
 }

@@ -7,50 +7,187 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$radiobtn-checked-background-disabled-fallback: rgba(214, 242, 255, 0.42);
-$radiobtn-checked-border-color-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-active-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-info-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-info-active-fallback: rgba(0, 0, 0, 0);
-$radiobtn-checked-border-color-info-hover-fallback: rgba(0, 0, 0, 0);
-$radiobtn-label-color-fallback: rgba(245, 252, 255, 0.9);
-$radiobtn-label-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$radiobtn-unchecked-background-disabled-fallback: rgba(255, 255, 255, 0);
-$radiobtn-unchecked-background-info-active-fallback: rgba(140, 161, 171, 0.15);
-$radiobtn-unchecked-background-info-hover-fallback: rgba(140, 161, 171, 0.2);
-$radiobtn-unchecked-background-invalid-active-fallback: rgba(
-  140,
-  161,
-  171,
-  0.15
+$radio-color-primary-contrast-fallback: light-dark(#ffffff, #000000);
+$radio-color-focus-bdr-fallback: #199fff;
+$radiobtn-checked-background-fallback: light-dark(#005e66, #00eaff);
+$radiobtn-checked-background-active-fallback: light-dark(#0e494e, #5cd5e0);
+$radiobtn-checked-background-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
 );
-$radiobtn-unchecked-background-invalid-hover-fallback: rgba(140, 161, 171, 0.2);
-$radiobtn-unchecked-background-warning-active-fallback: rgba(
-  140,
-  161,
-  171,
-  0.15
+$radiobtn-checked-background-hover-fallback: light-dark(#0f5157, #62e2ee);
+$radiobtn-checked-background-info-fallback: light-dark(#0041b2, #357fff);
+$radiobtn-checked-background-info-active-fallback: light-dark(#003694, #3d84ff);
+$radiobtn-checked-background-info-hover-fallback: light-dark(#003a9e, #4d8eff);
+$radiobtn-checked-background-invalid-fallback: light-dark(#d72332, #ff2453);
+$radiobtn-checked-background-invalid-active-fallback: light-dark(
+  #b41d2a,
+  #ff335f
 );
-$radiobtn-unchecked-background-warning-hover-fallback: rgba(140, 161, 171, 0.2);
-$radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
+$radiobtn-checked-background-invalid-hover-fallback: light-dark(
+  #c11f2d,
+  #ff577b
+);
+$radiobtn-checked-background-warning-fallback: #ffbb00;
+$radiobtn-checked-background-warning-active-fallback: #ffba0a;
+$radiobtn-checked-background-warning-hover-fallback: #ffc533;
+$radiobtn-checked-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-info-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-info-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-info-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$radiobtn-checked-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
+$radiobtn-checked-border-color-invalid-active-fallback: light-dark(
+  #d72332,
+  #ff2453
+);
+$radiobtn-checked-border-color-invalid-hover-fallback: light-dark(
+  #d72332,
+  #ff2453
+);
+$radiobtn-checked-border-color-warning-fallback: light-dark(#947100, #ffbb00);
+$radiobtn-checked-border-color-warning-active-fallback: light-dark(
+  #947100,
+  #ffbb00
+);
+$radiobtn-checked-border-color-warning-hover-fallback: light-dark(
+  #947100,
+  #ffbb00
+);
+$radiobtn-checked-color-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-active-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-disabled-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-hover-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-info-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-info-active-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-info-hover-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-invalid-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-invalid-active-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-invalid-hover-fallback: light-dark(#ffffff, #000000);
+$radiobtn-checked-color-warning-fallback: #000000;
+$radiobtn-checked-color-warning-active-fallback: #000000;
+$radiobtn-checked-color-warning-hover-fallback: #000000;
+$radiobtn-label-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$radiobtn-label-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$radiobtn-unchecked-background-fallback: light-dark(#ffffff, #000000);
+$radiobtn-unchecked-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$radiobtn-unchecked-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$radiobtn-unchecked-background-hover-fallback: light-dark(#ccfbff, #002639);
+$radiobtn-unchecked-background-info-fallback: light-dark(#ffffff, #000000);
+$radiobtn-unchecked-background-info-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$radiobtn-unchecked-background-info-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$radiobtn-unchecked-background-invalid-fallback: light-dark(#fcccd0, #4b1a28);
+$radiobtn-unchecked-background-invalid-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$radiobtn-unchecked-background-invalid-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$radiobtn-unchecked-background-warning-fallback: light-dark(#ffe8a8, #4b463a);
+$radiobtn-unchecked-background-warning-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$radiobtn-unchecked-background-warning-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$radiobtn-unchecked-border-color-fallback: light-dark(#000000, #ffffff);
+$radiobtn-unchecked-border-color-active-fallback: light-dark(#005e66, #00eaff);
+$radiobtn-unchecked-border-color-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$radiobtn-unchecked-border-color-hover-fallback: light-dark(#005e66, #00eaff);
+$radiobtn-unchecked-border-color-info-fallback: light-dark(#0041b2, #357fff);
+$radiobtn-unchecked-border-color-info-active-fallback: light-dark(
+  #003694,
+  #3d84ff
+);
+$radiobtn-unchecked-border-color-info-hover-fallback: light-dark(
+  #003a9e,
+  #4d8eff
+);
+$radiobtn-unchecked-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
+$radiobtn-unchecked-border-color-invalid-active-fallback: light-dark(
+  #d72332,
+  #ff2453
+);
+$radiobtn-unchecked-border-color-invalid-hover-fallback: light-dark(
+  #d72332,
+  #ff2453
+);
+$radiobtn-unchecked-border-color-warning-fallback: light-dark(#947100, #ffbb00);
+$radiobtn-unchecked-border-color-warning-active-fallback: light-dark(
+  #947100,
+  #ffbb00
+);
+$radiobtn-unchecked-border-color-warning-hover-fallback: light-dark(
+  #947100,
+  #ffbb00
+);
 
 :host {
   --ix-radio--color-primary--contrast: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$radio-color-primary-contrast-fallback}
   );
-  --ix-radio--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-radio--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$radio-color-focus-bdr-fallback}
+  );
   --ix-radiobtn--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-radiobtn--focus--outline-offset: var(
     --theme-focus-outline-offset,
     0.125rem
   );
-  --ix-radiobtn-checked--background: var(--theme-color-dynamic, #00eaff);
+  --ix-radiobtn-checked--background: var(
+    --theme-color-dynamic,
+    #{$radiobtn-checked-background-fallback}
+  );
   --ix-radiobtn-checked--background--active: var(
     --theme-color-dynamic--active,
-    #5cd5e0
+    #{$radiobtn-checked-background-active-fallback}
   );
   --ix-radiobtn-checked--background--disabled: var(
     --theme-color-component-4,
@@ -58,37 +195,43 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-checked--background--hover: var(
     --theme-color-dynamic--hover,
-    #62e2ee
+    #{$radiobtn-checked-background-hover-fallback}
   );
-  --ix-radiobtn-checked--background--info: var(--theme-color-info, #357fff);
+  --ix-radiobtn-checked--background--info: var(
+    --theme-color-info,
+    #{$radiobtn-checked-background-info-fallback}
+  );
   --ix-radiobtn-checked--background--info--active: var(
     --theme-color-info--active,
-    #3d84ff
+    #{$radiobtn-checked-background-info-active-fallback}
   );
   --ix-radiobtn-checked--background--info--hover: var(
     --theme-color-info--hover,
-    #4d8eff
+    #{$radiobtn-checked-background-info-hover-fallback}
   );
-  --ix-radiobtn-checked--background--invalid: var(--theme-color-alarm, #ff2453);
+  --ix-radiobtn-checked--background--invalid: var(
+    --theme-color-alarm,
+    #{$radiobtn-checked-background-invalid-fallback}
+  );
   --ix-radiobtn-checked--background--invalid--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$radiobtn-checked-background-invalid-active-fallback}
   );
   --ix-radiobtn-checked--background--invalid--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$radiobtn-checked-background-invalid-hover-fallback}
   );
   --ix-radiobtn-checked--background--warning: var(
     --theme-color-warning,
-    #ffbb00
+    #{$radiobtn-checked-background-warning-fallback}
   );
   --ix-radiobtn-checked--background--warning--active: var(
     --theme-color-warning--active,
-    #ffba0a
+    #{$radiobtn-checked-background-warning-active-fallback}
   );
   --ix-radiobtn-checked--background--warning--hover: var(
     --theme-color-warning--hover,
-    #ffc533
+    #{$radiobtn-checked-background-warning-hover-fallback}
   );
   --ix-radiobtn-checked--border-color: var(
     --theme-color-0,
@@ -120,76 +263,79 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-checked--border-color--invalid: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-checked-border-color-invalid-fallback}
   );
   --ix-radiobtn-checked--border-color--invalid--active: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-checked-border-color-invalid-active-fallback}
   );
   --ix-radiobtn-checked--border-color--invalid--hover: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-checked-border-color-invalid-hover-fallback}
   );
   --ix-radiobtn-checked--border-color--warning: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-checked-border-color-warning-fallback}
   );
   --ix-radiobtn-checked--border-color--warning--active: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-checked-border-color-warning-active-fallback}
   );
   --ix-radiobtn-checked--border-color--warning--hover: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-checked-border-color-warning-hover-fallback}
   );
-  --ix-radiobtn-checked--color: var(--theme-color-primary--contrast, #000000);
+  --ix-radiobtn-checked--color: var(
+    --theme-color-primary--contrast,
+    #{$radiobtn-checked-color-fallback}
+  );
   --ix-radiobtn-checked--color--active: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$radiobtn-checked-color-active-fallback}
   );
   --ix-radiobtn-checked--color--disabled: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$radiobtn-checked-color-disabled-fallback}
   );
   --ix-radiobtn-checked--color--hover: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$radiobtn-checked-color-hover-fallback}
   );
   --ix-radiobtn-checked--color--info: var(
     --theme-color-info--contrast,
-    #000000
+    #{$radiobtn-checked-color-info-fallback}
   );
   --ix-radiobtn-checked--color--info--active: var(
     --theme-color-info--contrast,
-    #000000
+    #{$radiobtn-checked-color-info-active-fallback}
   );
   --ix-radiobtn-checked--color--info--hover: var(
     --theme-color-info--contrast,
-    #000000
+    #{$radiobtn-checked-color-info-hover-fallback}
   );
   --ix-radiobtn-checked--color--invalid: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$radiobtn-checked-color-invalid-fallback}
   );
   --ix-radiobtn-checked--color--invalid--active: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$radiobtn-checked-color-invalid-active-fallback}
   );
   --ix-radiobtn-checked--color--invalid--hover: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$radiobtn-checked-color-invalid-hover-fallback}
   );
   --ix-radiobtn-checked--color--warning: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$radiobtn-checked-color-warning-fallback}
   );
   --ix-radiobtn-checked--color--warning--active: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$radiobtn-checked-color-warning-active-fallback}
   );
   --ix-radiobtn-checked--color--warning--hover: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$radiobtn-checked-color-warning-hover-fallback}
   );
   --ix-radiobtn-label--color: var(
     --theme-color-std-text,
@@ -199,10 +345,13 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
     --theme-color-weak-text,
     #{$radiobtn-label-color-disabled-fallback}
   );
-  --ix-radiobtn-unchecked--background: var(--theme-color-secondary, #000000);
+  --ix-radiobtn-unchecked--background: var(
+    --theme-color-secondary,
+    #{$radiobtn-unchecked-background-fallback}
+  );
   --ix-radiobtn-unchecked--background--active: var(
     --theme-color-secondary--active,
-    #001d2b
+    #{$radiobtn-unchecked-background-active-fallback}
   );
   --ix-radiobtn-unchecked--background--disabled: var(
     --theme-color-ghost,
@@ -210,11 +359,11 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-unchecked--background--hover: var(
     --theme-color-secondary--hover,
-    #002639
+    #{$radiobtn-unchecked-background-hover-fallback}
   );
   --ix-radiobtn-unchecked--background--info: var(
     --theme-color-secondary,
-    #000000
+    #{$radiobtn-unchecked-background-info-fallback}
   );
   --ix-radiobtn-unchecked--background--info--active: var(
     --theme-color-ghost--active,
@@ -226,7 +375,7 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-unchecked--background--invalid: var(
     --theme-color-component-error,
-    #4b1a28
+    #{$radiobtn-unchecked-background-invalid-fallback}
   );
   --ix-radiobtn-unchecked--background--invalid--active: var(
     --theme-color-ghost--active,
@@ -238,7 +387,7 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-unchecked--background--warning: var(
     --theme-color-component-warning,
-    #4b463a
+    #{$radiobtn-unchecked-background-warning-fallback}
   );
   --ix-radiobtn-unchecked--background--warning--active: var(
     --theme-color-ghost--active,
@@ -250,11 +399,11 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-unchecked--border-color: var(
     --theme-color-contrast-bdr,
-    #ffffff
+    #{$radiobtn-unchecked-border-color-fallback}
   );
   --ix-radiobtn-unchecked--border-color--active: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$radiobtn-unchecked-border-color-active-fallback}
   );
   --ix-radiobtn-unchecked--border-color--disabled: var(
     --theme-color-component-4,
@@ -262,39 +411,42 @@ $radiobtn-unchecked-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
   );
   --ix-radiobtn-unchecked--border-color--hover: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$radiobtn-unchecked-border-color-hover-fallback}
   );
-  --ix-radiobtn-unchecked--border-color--info: var(--theme-color-info, #357fff);
+  --ix-radiobtn-unchecked--border-color--info: var(
+    --theme-color-info,
+    #{$radiobtn-unchecked-border-color-info-fallback}
+  );
   --ix-radiobtn-unchecked--border-color--info--active: var(
     --theme-color-info--active,
-    #3d84ff
+    #{$radiobtn-unchecked-border-color-info-active-fallback}
   );
   --ix-radiobtn-unchecked--border-color--info--hover: var(
     --theme-color-info--hover,
-    #4d8eff
+    #{$radiobtn-unchecked-border-color-info-hover-fallback}
   );
   --ix-radiobtn-unchecked--border-color--invalid: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-unchecked-border-color-invalid-fallback}
   );
   --ix-radiobtn-unchecked--border-color--invalid--active: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-unchecked-border-color-invalid-active-fallback}
   );
   --ix-radiobtn-unchecked--border-color--invalid--hover: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$radiobtn-unchecked-border-color-invalid-hover-fallback}
   );
   --ix-radiobtn-unchecked--border-color--warning: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-unchecked-border-color-warning-fallback}
   );
   --ix-radiobtn-unchecked--border-color--warning--active: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-unchecked-border-color-warning-active-fallback}
   );
   --ix-radiobtn-unchecked--border-color--warning--hover: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$radiobtn-unchecked-border-color-warning-hover-fallback}
   );
 }

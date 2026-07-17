@@ -7,14 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tab-indicator-background-fallback: rgba(211, 236, 248, 0.4);
+$tabs-color-focus-bdr-fallback: #199fff;
+$tab-indicator-background-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$tab-indicator-background-selected-fallback: light-dark(#005e66, #00eaff);
 
 :host {
-  --ix-tabs--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-tabs--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$tabs-color-focus-bdr-fallback}
+  );
   --ix-tab-indicator--background: var(
     --theme-color-soft-bdr,
     #{$tab-indicator-background-fallback}
   );
-  --ix-tab-indicator--background--selected: var(--theme-color-dynamic, #00eaff);
+  --ix-tab-indicator--background--selected: var(
+    --theme-color-dynamic,
+    #{$tab-indicator-background-selected-fallback}
+  );
   --ix-tab-indicator--height: 0.0625rem;
 }

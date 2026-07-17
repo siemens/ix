@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$datepicker-separator-background-fallback: rgba(142, 157, 165, 0.2);
+$datepicker-separator-background-fallback: light-dark(
+  rgba(174, 181, 189, 0.2),
+  rgba(142, 157, 165, 0.2)
+);
 
 :host {
   --ix-datepicker-separator--background: var(

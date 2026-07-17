@@ -7,20 +7,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$category-filter-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
-$input-border-color-bottom-disabled-fallback: rgba(224, 245, 255, 0.25);
-$input-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$menu-header-color-fallback: rgba(229, 247, 255, 0.65);
+$category-filter-color-focus-bdr-fallback: #199fff;
+$category-filter-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$input-background-hover-fallback: light-dark(#d1fbff, #002639);
+$input-border-color-focus-fallback: light-dark(#005e66, #00eaff);
+$input-border-color-hover-fallback: light-dark(#005e66, #00eaff);
+$input-border-color-bottom-disabled-fallback: light-dark(
+  rgba(35, 48, 60, 0.15),
+  rgba(224, 245, 255, 0.25)
+);
+$input-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$menu-header-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
 
 :host {
-  --ix-category-filter--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-category-filter--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$category-filter-color-focus-bdr-fallback}
+  );
   --ix-category-filter--color-soft-text: var(
     --theme-color-soft-text,
     #{$category-filter-color-soft-text-fallback}
   );
-  --ix-input--background--hover: var(--theme-color-component-8--hover, #002639);
-  --ix-input--border-color--focus: var(--theme-color-dynamic, #00eaff);
-  --ix-input--border-color--hover: var(--theme-color-dynamic, #00eaff);
+  --ix-input--background--hover: var(
+    --theme-color-component-8--hover,
+    #{$input-background-hover-fallback}
+  );
+  --ix-input--border-color--focus: var(
+    --theme-color-dynamic,
+    #{$input-border-color-focus-fallback}
+  );
+  --ix-input--border-color--hover: var(
+    --theme-color-dynamic,
+    #{$input-border-color-hover-fallback}
+  );
   --ix-input--border-color-bottom--disabled: var(
     --theme-color-weak-bdr,
     #{$input-border-color-bottom-disabled-fallback}

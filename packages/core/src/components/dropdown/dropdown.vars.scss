@@ -7,12 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$dropdown-shadow-4-fallback: rgba(0, 0, 0, 0.6);
-$dropdown-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-$menu-header-color-fallback: rgba(229, 247, 255, 0.65);
+$dropdown-color-2-fallback: light-dark(#eff0f1, #283236);
+$dropdown-shadow-4-fallback: 0 0 2px 0 light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$dropdown-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$menu-header-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
 
 :host {
-  --ix-dropdown--color-2: var(--theme-color-2, #283236);
+  --ix-dropdown--color-2: var(--theme-color-2, #{$dropdown-color-2-fallback});
   --ix-dropdown--default-border-radius: var(
     --theme-default-border-radius,
     0.25rem
@@ -20,9 +29,7 @@ $menu-header-color-fallback: rgba(229, 247, 255, 0.65);
   --ix-dropdown--z-index-dropdown: var(--theme-z-index-dropdown, 1060);
   --ix-dropdown--shadow-4: var(
     --theme-shadow-4,
-    0 0 2px 0 #000000,
-    0 4px 8px 0 #{$dropdown-shadow-4-fallback},
-    0 12px 18px 0 #{$dropdown-shadow-4-fallback}
+    #{$dropdown-shadow-4-fallback}
   );
   --ix-dropdown--color-std-text: var(
     --theme-color-std-text,

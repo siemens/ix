@@ -7,16 +7,39 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$kpi-display-background-active-fallback: rgba(140, 161, 171, 0.15);
-$kpi-display-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$kpi-display-icon-color-fallback: rgba(245, 252, 255, 0.9);
-$kpi-display-label-color-fallback: rgba(229, 247, 255, 0.65);
-$kpi-display-units-color-fallback: rgba(245, 252, 255, 0.9);
-$kpi-display-value-color-fallback: rgba(245, 252, 255, 0.9);
+$kpi-color-alarm-fallback: light-dark(#d72332, #ff2453);
+$kpi-color-warning-fallback: #ffbb00;
+$kpi-display-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$kpi-display-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$kpi-display-icon-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$kpi-display-label-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$kpi-display-units-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$kpi-display-value-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
 
 :host {
-  --ix-kpi--color-alarm: var(--theme-color-alarm, #ff2453);
-  --ix-kpi--color-warning: var(--theme-color-warning, #ffbb00);
+  --ix-kpi--color-alarm: var(--theme-color-alarm, #{$kpi-color-alarm-fallback});
+  --ix-kpi--color-warning: var(
+    --theme-color-warning,
+    #{$kpi-color-warning-fallback}
+  );
   --ix-kpi--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-kpi-display--background--active: var(
     --theme-color-ghost--active,

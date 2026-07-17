@@ -1,5 +1,11 @@
-$key-value-list-color-weak-bdr-fallback: rgba(224, 245, 255, 0.25);
-$key-value-list-color-ghost-alt-fallback: rgba(255, 255, 255, 0.05);
+$key-value-list-color-weak-bdr-fallback: light-dark(
+  rgba(35, 48, 60, 0.15),
+  rgba(224, 245, 255, 0.25)
+);
+$key-value-list-color-ghost-alt-fallback: light-dark(
+  rgba(0, 20, 40, 0.05),
+  rgba(255, 255, 255, 0.05)
+);
 
 :host {
   --ix-key-value-list--color-weak-bdr: var(

@@ -7,19 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$time-picker-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
-$time-picker-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
-$datepicker-day-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$datepicker-day-background-selected-disabled-fallback: rgba(0, 234, 255, 0.3);
-$datepicker-day-color-selected-disabled-fallback: rgba(219, 244, 255, 0.4);
+$time-picker-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$time-picker-color-primary-fallback: light-dark(#006e93, #00bde3);
+$time-picker-color-focus-bdr-fallback: #199fff;
+$time-picker-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$time-picker-color-inv-contrast-text-fallback: light-dark(#ffffff, #000000);
+$datepicker-day-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$datepicker-day-background-selected-fallback: light-dark(#0b5e65, #00eaff);
+$datepicker-day-background-selected-disabled-fallback: light-dark(
+  rgba(0, 81, 89, 0.3),
+  rgba(0, 234, 255, 0.3)
+);
+$datepicker-day-background-selected-hover-fallback: light-dark(
+  #005d66,
+  #52f1ff
+);
+$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000000);
+$datepicker-day-color-selected-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
 
 :host {
   --ix-time-picker--color-soft-text: var(
     --theme-color-soft-text,
     #{$time-picker-color-soft-text-fallback}
   );
-  --ix-time-picker--color-primary: var(--theme-color-primary, #00bde3);
-  --ix-time-picker--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-time-picker--color-primary: var(
+    --theme-color-primary,
+    #{$time-picker-color-primary-fallback}
+  );
+  --ix-time-picker--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$time-picker-color-focus-bdr-fallback}
+  );
   --ix-time-picker--color-weak-text: var(
     --theme-color-weak-text,
     #{$time-picker-color-weak-text-fallback}
@@ -27,7 +57,7 @@ $datepicker-day-color-selected-disabled-fallback: rgba(219, 244, 255, 0.4);
   --ix-time-picker--font-weight-bold: var(--theme-font-weight-bold, 700);
   --ix-time-picker--color-inv-contrast-text: var(
     --theme-color-inv-contrast-text,
-    #000000
+    #{$time-picker-color-inv-contrast-text-fallback}
   );
   --ix-datepicker-day--background--hover: var(
     --theme-color-ghost--hover,
@@ -35,7 +65,7 @@ $datepicker-day-color-selected-disabled-fallback: rgba(219, 244, 255, 0.4);
   );
   --ix-datepicker-day--background--selected: var(
     --theme-color-component-9,
-    #00eaff
+    #{$datepicker-day-background-selected-fallback}
   );
   --ix-datepicker-day--background--selected-disabled: var(
     --theme-color-component-9--disabled,
@@ -43,11 +73,11 @@ $datepicker-day-color-selected-disabled-fallback: rgba(219, 244, 255, 0.4);
   );
   --ix-datepicker-day--background--selected-hover: var(
     --theme-color-component-9--hover,
-    #52f1ff
+    #{$datepicker-day-background-selected-hover-fallback}
   );
   --ix-datepicker-day--color--selected: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$datepicker-day-color-selected-fallback}
   );
   --ix-datepicker-day--color--selected-disabled: var(
     --theme-color-weak-text,

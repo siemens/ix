@@ -7,11 +7,35 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$filter-chip-color-ghost-fallback: rgba(255, 255, 255, 0);
-$filter-chip-color-component-4-fallback: rgba(214, 242, 255, 0.42);
-$filter-chip-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
-$filter-chip-color-ghost-primary-hover-fallback: rgba(0, 255, 255, 0.15);
-$filter-chip-color-ghost-primary-active-fallback: rgba(0, 128, 128, 0.2);
+$filter-chip-color-ghost-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$filter-chip-color-component-4-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$filter-chip-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$filter-chip-color-ghost-primary-hover-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.15)
+);
+$filter-chip-color-ghost-primary-active-fallback: light-dark(
+  rgba(0, 190, 207, 0.2),
+  rgba(0, 128, 128, 0.2)
+);
+$chip-primary-outline-border-color-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-outline-border-color-active-fallback: light-dark(
+  #16565c,
+  #00d3e5
+);
+$chip-primary-outline-border-color-hover-fallback: light-dark(#196269, #1aecff);
+$chip-primary-outline-color-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-outline-color-active-fallback: light-dark(#16565c, #00d3e5);
+$chip-primary-outline-color-hover-fallback: light-dark(#196269, #1aecff);
 
 :host {
   --ix-filter-chip--focus--border-thickness: var(
@@ -38,22 +62,28 @@ $filter-chip-color-ghost-primary-active-fallback: rgba(0, 128, 128, 0.2);
     --theme-color-ghost-primary--active,
     #{$filter-chip-color-ghost-primary-active-fallback}
   );
-  --ix-chip-primary-outline--border-color: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary-outline--border-color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-border-color-fallback}
+  );
   --ix-chip-primary-outline--border-color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-border-color-active-fallback}
   );
   --ix-chip-primary-outline--border-color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-border-color-hover-fallback}
   );
-  --ix-chip-primary-outline--color: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary-outline--color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-color-fallback}
+  );
   --ix-chip-primary-outline--color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-color-active-fallback}
   );
   --ix-chip-primary-outline--color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-color-hover-fallback}
   );
 }

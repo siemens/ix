@@ -7,19 +7,43 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$upload-border-color-fallback: rgba(211, 236, 248, 0.4);
-$upload-text-color-fallback: rgba(245, 252, 255, 0.9);
-$upload-text-color-checking-fallback: rgba(245, 252, 255, 0.9);
-$upload-text-color-disabled-fallback: rgba(219, 244, 255, 0.4);
+$upload-color-alarm-fallback: light-dark(#d72332, #ff2453);
+$upload-color-success-fallback: light-dark(#2c8500, #44cc00);
+$upload-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$upload-border-color-dragover-fallback: light-dark(#005e66, #00eaff);
+$upload-text-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$upload-text-color-checking-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$upload-text-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
 
 :host {
-  --ix-upload--color-alarm: var(--theme-color-alarm, #ff2453);
-  --ix-upload--color-success: var(--theme-color-success, #44cc00);
+  --ix-upload--color-alarm: var(
+    --theme-color-alarm,
+    #{$upload-color-alarm-fallback}
+  );
+  --ix-upload--color-success: var(
+    --theme-color-success,
+    #{$upload-color-success-fallback}
+  );
   --ix-upload--border-color: var(
     --theme-color-soft-bdr,
     #{$upload-border-color-fallback}
   );
-  --ix-upload--border-color--dragover: var(--theme-color-dynamic, #00eaff);
+  --ix-upload--border-color--dragover: var(
+    --theme-color-dynamic,
+    #{$upload-border-color-dragover-fallback}
+  );
   --ix-upload--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-upload-text--color: var(
     --theme-color-std-text,
