@@ -22,6 +22,9 @@ const meta = {
     styles: {
       control: { type: 'object' },
     },
+    iconColor: {
+      control: { type: 'text' },
+    },
   }),
   args: {
     icon: 'star',
