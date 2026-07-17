@@ -797,18 +797,19 @@ regressionTest.describe('A11y', () => {
       await expect(firstItem).toHaveAttribute('tabindex', '0');
     });
 
-    regressionTest('opens and focuses the last item on ArrowUp', async ({
-      page,
-    }) => {
-      const trigger = page.locator('#trigger');
-      const lastItem = page.locator('ix-dropdown-item').last();
+    regressionTest(
+      'opens and focuses the last item on ArrowUp',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const lastItem = page.locator('ix-dropdown-item').last();
 
-      await trigger.focus();
-      await page.keyboard.press('ArrowUp');
+        await trigger.focus();
+        await page.keyboard.press('ArrowUp');
 
-      await expect(lastItem).toBeFocused();
-      await expect(lastItem).toHaveAttribute('tabindex', '0');
-    });
+        await expect(lastItem).toBeFocused();
+        await expect(lastItem).toHaveAttribute('tabindex', '0');
+      }
+    );
 
     regressionTest('moves DOM focus with roving tabindex', async ({ page }) => {
       const trigger = page.locator('#trigger');
@@ -840,38 +841,39 @@ regressionTest.describe('A11y', () => {
       await expect(trigger).not.toHaveAttribute('aria-activedescendant');
     });
 
-    regressionTest('activates the focused item once with Enter', async ({
-      page,
-    }) => {
-      const trigger = page.locator('#trigger');
-      const secondItem = page.locator('ix-dropdown-item').nth(1);
+    regressionTest(
+      'activates the focused item once with Enter',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
 
-      const clickCount = await secondItem.evaluate((item) => {
-        (window as unknown as { __clicks: number }).__clicks = 0;
-        item.addEventListener('click', () => {
-          (window as unknown as { __clicks: number }).__clicks++;
+        const clickCount = await secondItem.evaluate((item) => {
+          (window as unknown as { __clicks: number }).__clicks = 0;
+          item.addEventListener('click', () => {
+            (window as unknown as { __clicks: number }).__clicks++;
+          });
+          return (window as unknown as { __clicks: number }).__clicks;
         });
-        return (window as unknown as { __clicks: number }).__clicks;
-      });
-      expect(clickCount).toBe(0);
+        expect(clickCount).toBe(0);
 
-      await trigger.focus();
-      await page.keyboard.press('ArrowDown');
-      await expect(page.locator('ix-dropdown-item').first()).toBeFocused();
-      await page.keyboard.press('ArrowDown');
-      await expect(secondItem).toBeFocused();
+        await trigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(page.locator('ix-dropdown-item').first()).toBeFocused();
+        await page.keyboard.press('ArrowDown');
+        await expect(secondItem).toBeFocused();
 
-      await page.keyboard.press('Enter');
+        await page.keyboard.press('Enter');
 
-      await expect
-        .poll(() =>
-          page.evaluate(
-            () => (window as unknown as { __clicks: number }).__clicks
+        await expect
+          .poll(() =>
+            page.evaluate(
+              () => (window as unknown as { __clicks: number }).__clicks
+            )
           )
-        )
-        .toBe(1);
-      await expect(page.locator('ix-dropdown')).not.toHaveClass(/show/);
-    });
+          .toBe(1);
+        await expect(page.locator('ix-dropdown')).not.toHaveClass(/show/);
+      }
+    );
 
     regressionTest('resets tabindex after closing', async ({ page }) => {
       const trigger = page.locator('#trigger');
@@ -885,6 +887,36 @@ regressionTest.describe('A11y', () => {
       await expect(page.locator('ix-dropdown')).not.toHaveClass(/show/);
       await expect(firstItem).not.toHaveAttribute('tabindex');
     });
+
+    regressionTest(
+      'reconfigures focus when navigation mode changes while open',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const dropdown = page.locator('ix-dropdown');
+        const firstItem = page.locator('ix-dropdown-item').first();
+
+        await trigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(firstItem).toBeFocused();
+
+        await dropdown.evaluate((element: HTMLIxDropdownElement) => {
+          element.navigationMode = 'active-descendant';
+        });
+
+        await expect(firstItem).not.toHaveAttribute('tabindex');
+        await expect(trigger).toBeFocused();
+
+        await page.keyboard.press('ArrowDown');
+        await expect(firstItem).toHaveClass(/ix-focused/);
+
+        await dropdown.evaluate((element: HTMLIxDropdownElement) => {
+          element.navigationMode = 'roving-tabindex';
+        });
+
+        await expect(firstItem).toBeFocused();
+        await expect(firstItem).toHaveAttribute('tabindex', '0');
+      }
+    );
   });
 
   regressionTest.describe('Roving tabindex Tab handling', () => {
@@ -938,7 +970,196 @@ regressionTest.describe('A11y', () => {
         await expect(trigger).toBeFocused();
       }
     );
+
+    regressionTest(
+      'closes on Tab after pointer opening leaves focus on the trigger',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const dropdown = page.locator('ix-dropdown');
+        const after = page.locator('#after');
+
+        await trigger.click();
+        await expect(dropdown).toHaveClass(/show/);
+        await expect(trigger).toBeFocused();
+
+        await page.keyboard.press('Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(after).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'closes on Tab after programmatic opening leaves focus on the trigger',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const dropdown = page.locator('ix-dropdown');
+        const after = page.locator('#after');
+
+        await trigger.focus();
+        await dropdown.evaluate((element: HTMLIxDropdownElement) => {
+          element.show = true;
+        });
+        await expect(dropdown).toHaveClass(/show/);
+
+        await page.keyboard.press('Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(after).toBeFocused();
+      }
+    );
   });
+
+  regressionTest(
+    'moves focus to the first enabled item in a roving submenu',
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown
+          id="parent-dropdown"
+          trigger="trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="submenu-trigger" label="Submenu"></ix-dropdown-item>
+          <ix-dropdown-item label="Parent item"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-dropdown
+          id="submenu"
+          trigger="submenu-trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="disabled-subitem" label="Disabled" disabled></ix-dropdown-item>
+          <ix-dropdown-item id="enabled-subitem" label="Enabled" tabindex="4"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const trigger = page.locator('#trigger');
+      const parentDropdown = page.locator('#parent-dropdown');
+      const submenuTrigger = page.locator('#submenu-trigger');
+      const submenu = page.locator('#submenu');
+      const enabledSubitem = page.locator('#enabled-subitem');
+
+      await expect(submenu).toHaveClass(/hydrated/);
+      await trigger.focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(submenuTrigger).toBeFocused();
+
+      await page.keyboard.press('ArrowRight');
+
+      await expect(submenu).toHaveClass(/show/);
+      await expect(enabledSubitem).toBeFocused();
+      await expect(enabledSubitem).toHaveAttribute('tabindex', '0');
+
+      await parentDropdown.evaluate((element: HTMLIxDropdownElement) => {
+        element.navigationMode = 'active-descendant';
+      });
+
+      await expect(submenu).not.toHaveClass(/show/);
+      await expect(enabledSubitem).toHaveAttribute('tabindex', '4');
+      await expect(trigger).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'does not initialize a roving submenu after it was dismissed',
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown
+          id="parent-dropdown"
+          trigger="trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="submenu-trigger" label="Submenu"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-dropdown
+          id="submenu"
+          trigger="submenu-trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="subitem" label="Subitem" tabindex="4"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const trigger = page.locator('#trigger');
+      const parentDropdown = page.locator('#parent-dropdown');
+      const submenuTrigger = page.locator('#submenu-trigger');
+      const submenu = page.locator('#submenu');
+      const subitem = page.locator('#subitem');
+
+      await expect(submenuTrigger).toHaveAttribute('data-ix-dropdown-trigger');
+      await trigger.focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(submenuTrigger).toBeFocused();
+
+      await submenuTrigger.evaluate((element) => {
+        element.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            bubbles: true,
+            composed: true,
+            key: 'ArrowRight',
+          })
+        );
+        (
+          document.querySelector('#parent-dropdown') as HTMLIxDropdownElement
+        ).navigationMode = 'active-descendant';
+      });
+
+      await expect(submenu).not.toHaveClass(/show/);
+      await expect(subitem).toHaveAttribute('tabindex', '4');
+      await expect
+        .poll(() =>
+          parentDropdown.evaluate(
+            (element: HTMLIxDropdownElement) => element.navigationMode
+          )
+        )
+        .toBe('active-descendant');
+    }
+  );
+
+  regressionTest(
+    'Tab from a roving submenu closes the complete dropdown hierarchy',
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown
+          id="parent-dropdown"
+          trigger="trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="submenu-trigger" label="Submenu"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-dropdown
+          id="submenu"
+          trigger="submenu-trigger"
+          navigation-mode="roving-tabindex"
+        >
+          <ix-dropdown-item id="subitem" label="Subitem"></ix-dropdown-item>
+        </ix-dropdown>
+        <button id="after">After</button>
+      `);
+
+      const trigger = page.locator('#trigger');
+      const parentDropdown = page.locator('#parent-dropdown');
+      const submenuTrigger = page.locator('#submenu-trigger');
+      const submenu = page.locator('#submenu');
+      const subitem = page.locator('#subitem');
+      const after = page.locator('#after');
+
+      await expect(submenuTrigger).toHaveAttribute('data-ix-dropdown-trigger');
+      await trigger.focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(submenuTrigger).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect(subitem).toBeFocused();
+
+      await page.keyboard.press('Tab');
+
+      await expect(parentDropdown).not.toHaveClass(/show/);
+      await expect(submenu).not.toHaveClass(/show/);
+      await expect(after).toBeFocused();
+    }
+  );
 
   regressionTest.describe('Roving tabindex with native elements', () => {
     regressionTest.beforeEach(async ({ mount, page }) => {
@@ -949,6 +1170,7 @@ regressionTest.describe('A11y', () => {
           <button data-ix-roving-item id="btn-2">Button 2</button>
           <button data-ix-roving-item id="btn-3">Button 3</button>
         </ix-dropdown>
+        <button id="positive-tabindex" tabindex="1">Positive tabindex</button>
         <button id="after">After</button>
       `);
       await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
@@ -971,6 +1193,43 @@ regressionTest.describe('A11y', () => {
         await expect(second).toBeFocused();
         await expect(second).toHaveAttribute('tabindex', '0');
         await expect(first).toHaveAttribute('tabindex', '-1');
+      }
+    );
+
+    regressionTest(
+      'closes on Tab from the trigger without focusing a native dropdown item',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const dropdown = page.locator('ix-dropdown');
+        const after = page.locator('#after');
+
+        await trigger.click();
+        await expect(dropdown).toHaveClass(/show/);
+        await expect(trigger).toBeFocused();
+
+        await page.keyboard.press('Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(after).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'closes on Tab from a native roving item and moves focus outside',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const dropdown = page.locator('ix-dropdown');
+        const first = page.locator('#btn-1');
+        const after = page.locator('#after');
+
+        await trigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(first).toBeFocused();
+
+        await page.keyboard.press('Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(after).toBeFocused();
       }
     );
 
@@ -1049,6 +1308,28 @@ regressionTest.describe('A11y', () => {
         await page.keyboard.press('Escape');
         await expect(page.locator('ix-dropdown')).not.toHaveClass(/show/);
         await expect(first).not.toHaveAttribute('tabindex');
+      }
+    );
+
+    regressionTest(
+      'restores consumer-provided tabindex values after closing',
+      async ({ page }) => {
+        const trigger = page.locator('#trigger');
+        const first = page.locator('#btn-1');
+        const second = page.locator('#btn-2');
+        const third = page.locator('#btn-3');
+
+        await first.evaluate((item) => item.setAttribute('tabindex', '5'));
+        await second.evaluate((item) => item.setAttribute('tabindex', '-1'));
+
+        await trigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(first).toBeFocused();
+        await page.keyboard.press('Escape');
+
+        await expect(first).toHaveAttribute('tabindex', '5');
+        await expect(second).toHaveAttribute('tabindex', '-1');
+        await expect(third).not.toHaveAttribute('tabindex');
       }
     );
   });

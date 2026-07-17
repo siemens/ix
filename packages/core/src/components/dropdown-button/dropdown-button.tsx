@@ -115,7 +115,7 @@ export class DropdownButton
    *   `aria-activedescendant` is used because the focused item is announced
    *   directly.
    *
-   * @since 5.1.0
+   * @since 5.2.0
    */
   @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
     'active-descendant';

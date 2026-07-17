@@ -77,9 +77,24 @@ export const QUERY_ROVING_ACTIVE = ROVING_SELECTORS.map(
   (selector) => `${selector}[tabindex="0"]:not([disabled]):not([hidden])`
 ).join(', ');
 
-const QUERY_ROVING_MANAGED = ROVING_SELECTORS.map(
-  (selector) => `${selector}[tabindex]`
-).join(', ');
+const rovingTabindexState = new WeakMap<
+  HTMLElement,
+  Map<HTMLElement, string | null>
+>();
+
+const rememberRovingTabindex = (host: HTMLElement, items: HTMLElement[]) => {
+  let state = rovingTabindexState.get(host);
+  if (!state) {
+    state = new Map();
+    rovingTabindexState.set(host, state);
+  }
+
+  items.forEach((item) => {
+    if (!state.has(item)) {
+      state.set(item, item.getAttribute('tabindex'));
+    }
+  });
+};
 
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
@@ -147,9 +162,12 @@ export const isTriggerElement = (element: HTMLElement) =>
  * so exactly one item stays reachable via <kbd>Tab</kbd>.
  */
 const focusRovingItem = (host: HTMLElement, item: HTMLElement) => {
-  queryElements(host, QUERY_ROVING_ACTIVE).forEach((el) => {
-    if (el !== item) {
-      (el as HTMLElement).tabIndex = -1;
+  const items = queryElements(host, QUERY_ROVING_ELEMENTS) as HTMLElement[];
+  rememberRovingTabindex(host, items);
+
+  items.forEach((candidate) => {
+    if (candidate !== item) {
+      candidate.tabIndex = -1;
     }
   });
   item.tabIndex = 0;
@@ -190,6 +208,8 @@ export const initRovingTabindex = (
     return;
   }
 
+  rememberRovingTabindex(host, items);
+
   items.forEach((item) => {
     item.tabIndex = -1;
   });
@@ -208,13 +228,24 @@ export const initRovingTabindex = (
 };
 
 /**
- * Removes all roving `tabindex` attributes previously set on the items,
- * restoring their default (non-focusable) state when the dropdown closes.
+ * Restores the exact `tabindex` state each item had before roving navigation
+ * changed it.
  */
 export const clearRovingTabindex = (host: HTMLElement) => {
-  queryElements(host, QUERY_ROVING_MANAGED).forEach((item) => {
-    (item as HTMLElement).removeAttribute('tabindex');
+  const state = rovingTabindexState.get(host);
+  if (!state) {
+    return;
+  }
+
+  state.forEach((tabindex, item) => {
+    if (tabindex === null) {
+      item.removeAttribute('tabindex');
+    } else {
+      item.setAttribute('tabindex', tabindex);
+    }
   });
+
+  rovingTabindexState.delete(host);
 };
 
 export const configureKeyboardInteraction = (
