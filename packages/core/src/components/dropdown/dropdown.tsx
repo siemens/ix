@@ -345,6 +345,12 @@ export class Dropdown
     return this.dropdownElementId;
   }
 
+  getTriggerElement(): HTMLElement | undefined {
+    return (this.triggerElement ?? this.anchorElement) as
+      | HTMLElement
+      | undefined;
+  }
+
   willDismiss() {
     const { defaultPrevented } = this.showChange.emit(false);
     return !defaultPrevented;
@@ -710,6 +716,7 @@ export class Dropdown
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (!newShow) {
+      dropdownController.didDismiss(this);
       if (
         this.triggerElement &&
         this.triggerElement.ariaHasPopup === 'menu' &&
@@ -727,6 +734,7 @@ export class Dropdown
     }
 
     await this.resolveAnchorElement();
+    dropdownController.didPresent(this);
     this.registerKeyListener();
     this.configureKeyboardNavigation();
     this.configureFocusTrap();
@@ -953,6 +961,15 @@ export class Dropdown
       return trigger;
     }
 
+    const parentFocusTarget = dropdownController.getParentFocusExitTarget(
+      this,
+      trigger,
+      event.shiftKey
+    );
+    if (parentFocusTarget) {
+      return parentFocusTarget;
+    }
+
     const focusableElements = queryElements(
       document.body,
       focusableQueryString
@@ -1155,6 +1172,12 @@ export class Dropdown
   }
 
   private onDropdownClick(event: PointerEvent) {
+    if (
+      dropdownController.pathIncludesChildOverlay(this, event.composedPath())
+    ) {
+      return;
+    }
+
     const target = dropdownController.pathIncludesTrigger(event.composedPath());
     if (target) {
       if (target !== this.triggerElement) {

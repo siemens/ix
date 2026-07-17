@@ -40,6 +40,7 @@ import {
   addFocusTrap,
   focusFirstFocusTrapElement,
   FocusTrapResult,
+  getAdjacentFocusTrapElement,
   getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
@@ -199,6 +200,24 @@ export class Popover
     return this.getHostElementId();
   }
 
+  getTriggerElement(): HTMLElement | undefined {
+    return this.triggerElement;
+  }
+
+  getAdjacentFocusElement(
+    current: HTMLElement,
+    backwards: boolean,
+    excludedHost?: HTMLElement
+  ): HTMLElement | undefined {
+    return getAdjacentFocusTrapElement(
+      this.hostElement,
+      current,
+      backwards,
+      this.getFocusTrapOptions(),
+      excludedHost
+    );
+  }
+
   getNestedPopoverIds(): string[] {
     return this.assignedNestedPopoverIds;
   }
@@ -346,6 +365,7 @@ export class Popover
       this.suppressShowWatch = true;
       this.show = true;
       this.suppressShowWatch = false;
+      popoverController.didPresent(this);
 
       dialog.showPopover();
       this.registerHoverDialogListener(dialog);
@@ -415,6 +435,7 @@ export class Popover
     this.suppressShowWatch = true;
     this.show = false;
     this.suppressShowWatch = false;
+    popoverController.didDismiss(this);
     this.closeFocus = 'restore-trigger';
 
     this.updateTriggerAria(false);

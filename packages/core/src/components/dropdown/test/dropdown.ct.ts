@@ -208,6 +208,32 @@ regressionTest.describe('Close behavior', () => {
     await expect(dropdownLevel1).toBeVisible();
   });
 
+  regressionTest(' = true', async ({ mount, page }) => {
+    await mountDropdown(mount, {
+      closeBehavior: true,
+    });
+
+    await page
+      .locator('ix-dropdown')
+      .evaluate(
+        (dropdown: HTMLIxDropdownElement) => (dropdown.closeBehavior = true)
+      );
+
+    setupTest(page);
+
+    await triggerButton.click();
+    await expect(dropdownLevel1).toBeVisible();
+
+    await page.mouse.click(400, 200);
+    await expect(dropdownLevel1).not.toBeVisible();
+
+    await triggerButton.click();
+    await expect(dropdownLevel1).toBeVisible();
+
+    await dropdownLevel1_Item1.click();
+    await expect(dropdownLevel1).toBeVisible();
+  });
+
   regressionTest(' = false', async ({ mount, page }) => {
     await mountDropdown(mount, {
       // Disable close behavior

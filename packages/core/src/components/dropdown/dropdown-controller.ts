@@ -9,9 +9,11 @@
 
 import { IxComponentInterface } from '../utils/internal';
 import {
+  getOverlayKey,
+  OverlayCoordinator,
+  overlayCoordinator,
   pathIncludesTrigger as findTriggerInPath,
-  getParentId,
-  NestedOverlayStack,
+  NestedOverlayRegistry,
 } from '../utils/nested-overlay';
 
 export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
@@ -22,6 +24,7 @@ export interface DropdownInterface extends IxComponentInterface {
 
   getAssignedSubmenuIds(): string[];
   getId(): string;
+  getTriggerElement(): HTMLElement | undefined;
 
   discoverSubmenu(): void;
 
@@ -49,7 +52,7 @@ export interface DropdownItemWrapper {
 }
 
 class DropdownController {
-  private readonly stack = new NestedOverlayStack<DropdownInterface>(
+  private readonly registry = new NestedOverlayRegistry<DropdownInterface>(
     {
       blocksOutsideDismiss: (dropdown) =>
         dropdown.closeBehavior === 'inside' || dropdown.closeBehavior === false,
@@ -57,13 +60,27 @@ class DropdownController {
     (dropdown) => this.dismiss(dropdown)
   );
 
-  private isWindowListenerActive = false;
+  constructor(
+    private readonly overlayCoordinator: OverlayCoordinator = new OverlayCoordinator()
+  ) {}
 
   connected(dropdown: DropdownInterface) {
-    if (!this.isWindowListenerActive) {
-      this.addOverlayListeners();
-    }
-    this.stack.connect(dropdown);
+    this.registry.connect(dropdown);
+    this.overlayCoordinator.connect({
+      key: this.getOverlayKey(dropdown),
+      kind: 'dropdown',
+      hostElement: dropdown.hostElement,
+      getTriggerElement: () => dropdown.getTriggerElement(),
+      isPresent: () => dropdown.isPresent(),
+      dismissOnOutside: () =>
+        dropdown.closeBehavior === true ||
+        dropdown.closeBehavior === 'outside' ||
+        dropdown.closeBehavior === 'both',
+      dismiss: (reason) =>
+        this.dismiss(
+          reason === 'escape' ? this.getRootDropdown(dropdown) : dropdown
+        ),
+    });
 
     if (dropdown.discoverAllSubmenus) {
       this.discoverSubmenus();
@@ -71,26 +88,27 @@ class DropdownController {
   }
 
   disconnected(dropdown: DropdownInterface) {
-    this.stack.disconnect(dropdown);
+    this.registry.disconnect(dropdown);
+    this.overlayCoordinator.disconnect(this.getOverlayKey(dropdown));
   }
 
   removeFromSubmenuIds(id: string) {
-    this.stack.removeFromHierarchy(id);
+    this.registry.removeFromHierarchy(id);
   }
 
   getDropdownById(id: string) {
-    return this.stack.get(id);
+    return this.registry.get(id);
   }
 
   discoverSubmenus() {
-    this.stack.forEach((dropdown) => {
+    this.registry.forEach((dropdown) => {
       dropdown.discoverSubmenu();
     });
   }
 
   present(dropdown: DropdownInterface) {
     if (!dropdown.isPresent() && dropdown.willPresent?.()) {
-      this.stack.setChildIds(
+      this.registry.setChildIds(
         dropdown.getId(),
         dropdown.getAssignedSubmenuIds()
       );
@@ -99,14 +117,18 @@ class DropdownController {
   }
 
   dismissChildren(uid: string) {
-    this.stack.dismissChildren(uid);
+    this.registry.dismissChildren(uid);
   }
 
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss?.()) {
-      this.stack.dismissChildren(dropdown.getId());
+      this.overlayCoordinator.dismissCrossTypeChildren(
+        this.getOverlayKey(dropdown),
+        'dropdown'
+      );
+      this.registry.dismissChildren(dropdown.getId());
       dropdown.dismiss();
-      this.stack.deleteChildIdsEntry(dropdown.getId());
+      this.registry.deleteChildIdsEntry(dropdown.getId());
     }
   }
 
@@ -114,14 +136,14 @@ class DropdownController {
     ignoreBehaviorForIds: string[] = [],
     ignoreRelatedDropdowns = false
   ) {
-    this.stack.dismissAll({
+    this.registry.dismissAll({
       ignorePolicyForIds: ignoreBehaviorForIds,
       ignoreRelatedInHierarchy: ignoreRelatedDropdowns,
     });
   }
 
   dismissOthers(uid: string) {
-    this.stack.dismissOthers(uid);
+    this.registry.dismissOthers(uid);
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
@@ -129,34 +151,59 @@ class DropdownController {
   }
 
   getParentDropdownId(dropdownId: string) {
-    return getParentId(dropdownId, this.stack.getChildIdsByParent());
+    return this.registry.getParentId(dropdownId);
   }
 
-  private pathIncludesDropdown(eventTargets: EventTarget[]) {
-    return !!eventTargets.find(
-      (element: EventTarget) =>
-        (element as HTMLElement).tagName === 'IX-DROPDOWN'
+  pathIncludesChildOverlay(
+    dropdown: DropdownInterface,
+    eventTargets: EventTarget[]
+  ) {
+    const key = this.getOverlayKey(dropdown);
+    return (
+      this.overlayCoordinator.pathIncludesChildTrigger(key, eventTargets) ||
+      this.overlayCoordinator.pathIncludesDescendant(key, eventTargets)
     );
   }
 
-  private addOverlayListeners() {
-    this.isWindowListenerActive = true;
+  getParentFocusExitTarget(
+    dropdown: DropdownInterface,
+    current: HTMLElement,
+    backwards: boolean
+  ) {
+    return this.overlayCoordinator.getParentFocusExitTarget(
+      this.getOverlayKey(dropdown),
+      current,
+      backwards
+    );
+  }
 
-    window.addEventListener('click', (event: MouseEvent) => {
-      const hasTrigger = this.pathIncludesTrigger(event.composedPath());
-      const hasDropdown = this.pathIncludesDropdown(event.composedPath());
+  didPresent(dropdown: DropdownInterface) {
+    this.overlayCoordinator.presented(this.getOverlayKey(dropdown));
+  }
 
-      if (!hasTrigger && !hasDropdown) {
-        this.dismissAll();
+  didDismiss(dropdown: DropdownInterface) {
+    this.overlayCoordinator.dismissed(this.getOverlayKey(dropdown));
+  }
+
+  private getOverlayKey(dropdown: DropdownInterface) {
+    return getOverlayKey('dropdown', dropdown.getId());
+  }
+
+  private getRootDropdown(dropdown: DropdownInterface) {
+    let root = dropdown;
+    let parentId = this.getParentDropdownId(root.getId());
+
+    while (parentId) {
+      const parent = this.registry.get(parentId);
+      if (!parent) {
+        break;
       }
-    });
+      root = parent;
+      parentId = this.getParentDropdownId(root.getId());
+    }
 
-    window.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        this.dismissAll(this.stack.keys());
-      }
-    });
+    return root;
   }
 }
 
-export const dropdownController = new DropdownController();
+export const dropdownController = new DropdownController(overlayCoordinator);
