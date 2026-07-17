@@ -14,6 +14,9 @@ import type {
   TypographyColors,
 } from './typography.types';
 
+/**
+ * @slot default - Text content.
+ */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',

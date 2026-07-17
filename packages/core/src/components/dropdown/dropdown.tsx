@@ -71,6 +71,9 @@ import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
 
+/**
+ * @slot default - Dropdown items.
+ */
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',

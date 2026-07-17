@@ -34,10 +34,20 @@ import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
+import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @slot ix-menu-avatar - Avatar displayed at the top of the menu.
+ * @slot home - Home menu item.
+ * @slot default - Main menu items and categories.
+ * @slot bottom - Menu items displayed below the main navigation.
+ * @slot ix-menu-settings - Settings content displayed in the menu overlay.
+ * @slot ix-menu-about - About content displayed in the menu overlay.
+ */
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',
@@ -108,6 +118,22 @@ export class Menu {
   }
 
   /**
+   * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+   *
+   * @since 5.1.0
+   */
+  @Prop({ attribute: 'i18n-aria-label-menu' }) i18nAriaLabelMenu =
+    'Application Navigation';
+
+  /**
+   * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+   *
+   * @since 5.1.0
+   */
+  @Prop({ attribute: 'i18n-navigation-hint' }) i18nNavigationHint =
+    'Use Up and Down arrow keys to navigate between menu items';
+
+  /**
    *  i18n label for 'About & legal information' button
    */
   @Prop({ attribute: 'i18n-legal' }) i18nLegal = 'About & legal information';
@@ -166,11 +192,15 @@ export class Menu {
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
+  @State() hasBottomSlotItems = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
+  private lastFocusedMenuItem?:
+    | HTMLIxMenuItemElement
+    | HTMLIxMenuCategoryElement;
   private themeNameDisposer?: Disposable;
 
   // FBC IAM workaround #488
@@ -191,6 +221,10 @@ export class Menu {
 
   get menuItemsContainer(): HTMLDivElement {
     return this.menu!.querySelector('.tabs')!;
+  }
+
+  get menuNavigationContainer(): HTMLDivElement {
+    return this.menu!.querySelector('.menu-navigation')!;
   }
 
   get overlayContainer() {
@@ -280,13 +314,24 @@ export class Menu {
     );
   }
 
+  get hasUtilityMenuItems(): boolean {
+    return !!this.settings || this.enableToggleTheme || !!this.about;
+  }
+
+  get shouldFillMenuNavigation(): boolean {
+    return this.hasUtilityMenuItems || this.hasBottomSlotItems;
+  }
+
   get tabsContainer() {
     return this.hostElement;
   }
 
   componentDidLoad() {
     requestAnimationFrame(() => {
+      this.suppressAnchorWrapperTabStops();
       this.handleOverflowIndicator();
+      const items = this.getAllFocusableItems();
+      this.resetRovingTabIndex(items);
     });
 
     if (this.pinned) {
@@ -295,6 +340,8 @@ export class Menu {
   }
 
   componentWillLoad() {
+    this.updateBottomSlotState();
+
     useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
@@ -566,9 +613,31 @@ export class Menu {
   }
 
   @Listen('close')
-  onOverlayClose() {
+  onOverlayClose(event?: CustomEvent<CustomCloseEvent>) {
+    const shouldRestoreFocus = this.shouldRestoreMenuFocus(event);
+
     this.animateOverlayFadeOut(() => {
       this.resetOverlay();
+
+      if (shouldRestoreFocus) {
+        this.focusMenuNavigationContainer();
+      }
+    });
+  }
+
+  private shouldRestoreMenuFocus(event?: CustomEvent<CustomCloseEvent>) {
+    return !!event;
+  }
+
+  private focusMenuNavigationContainer() {
+    const menuNavigation = this.menuNavigationContainer;
+
+    if (!menuNavigation) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      menuNavigation.focus();
     });
   }
 
@@ -613,8 +682,200 @@ export class Menu {
     }
   }
 
+  private updateBottomSlotState() {
+    this.hasBottomSlotItems = Array.from(this.hostElement.children).some(
+      (element) => element.getAttribute('slot') === 'bottom'
+    );
+  }
+
   private isHiddenFromViewport() {
     return this.breakpoint === 'sm' && this.expand === false;
+  }
+
+  private updateRovingTabIndex(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[],
+    activeIndex: number
+  ) {
+    this.updateMenuItemPositionMetadata(items);
+
+    items.forEach(
+      (item: HTMLIxMenuItemElement | HTMLIxMenuCategoryElement, i: number) => {
+        item.setTabIndex?.(i === activeIndex ? 0 : -1);
+      }
+    );
+  }
+
+  private resetRovingTabIndex(
+    items: (
+      | HTMLIxMenuItemElement
+      | HTMLIxMenuCategoryElement
+    )[] = this.getAllFocusableItems()
+  ) {
+    this.updateMenuItemPositionMetadata(items);
+
+    items.forEach((item) => {
+      item.setTabIndex?.(-1);
+    });
+  }
+
+  // item positions and menu size has to be set manually because slotted items and utility controls are separated into two groups
+  private updateMenuItemPositionMetadata(
+    items: (HTMLIxMenuItemElement | HTMLIxMenuCategoryElement)[]
+  ) {
+    // get all items unfiltered in case any of them changed state and became hidden or disabled
+    const allMenuItems = [
+      ...Array.from(
+        this.hostElement.querySelectorAll<HTMLIxMenuItemElement>('ix-menu-item')
+      ),
+      ...Array.from(
+        this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
+          '.menu-utility-controls > ix-menu-item'
+        ) ?? []
+      ),
+    ];
+
+    allMenuItems.forEach((item) => {
+      item.removeAttribute('aria-posinset');
+      item.removeAttribute('aria-setsize');
+    });
+
+    const total = items.length;
+
+    items.forEach((item, index) => {
+      item.setAttribute('aria-posinset', String(index + 1));
+      item.setAttribute('aria-setsize', String(total));
+    });
+  }
+
+  private handleMenuFocusIn(event: FocusEvent) {
+    const items = this.getAllFocusableItems();
+    const path = event.composedPath();
+    const activeIndex = items.findIndex((item) => path.includes(item));
+
+    if (activeIndex !== -1) {
+      this.lastFocusedMenuItem = items[activeIndex];
+      this.updateRovingTabIndex(items, activeIndex);
+    } else if (event.target instanceof HTMLElement) {
+      this.resetRovingTabIndex(items);
+    }
+  }
+
+  private getAllFocusableItems(): (
+    | HTMLIxMenuItemElement
+    | HTMLIxMenuCategoryElement
+  )[] {
+    const isNavigable = (el: HTMLElement) =>
+      !el.hasAttribute('disabled') &&
+      !el.hasAttribute('hidden') &&
+      this.isVisible(el);
+
+    const lightItems = Array.from(
+      this.hostElement.querySelectorAll<
+        HTMLIxMenuItemElement | HTMLIxMenuCategoryElement
+      >(
+        ':scope > ix-menu-item, :scope > ix-menu-category, :scope > a > ix-menu-item, :scope > a > ix-menu-category'
+      )
+    ).filter(isNavigable);
+
+    const utilityItems = Array.from(
+      this.hostElement.shadowRoot?.querySelectorAll<HTMLIxMenuItemElement>(
+        '.menu-utility-controls > ix-menu-item'
+      ) ?? []
+    ).filter(isNavigable);
+
+    return [...lightItems, ...utilityItems];
+  }
+
+  private suppressAnchorWrapperTabStops() {
+    Array.from(
+      this.hostElement.querySelectorAll<HTMLAnchorElement>(':scope > a')
+    )
+      .filter((a) => a.querySelector('ix-menu-item, ix-menu-category'))
+      .forEach((a) => {
+        if (a.getAttribute('tabindex') !== '-1') {
+          a.setAttribute('tabindex', '-1');
+        }
+      });
+  }
+
+  private isEventFromExpandedCategoryItems(event: KeyboardEvent): boolean {
+    return event
+      .composedPath()
+      .some(
+        (el) =>
+          el instanceof HTMLElement && el.getAttribute?.('role') === 'menu'
+      );
+  }
+
+  private handleMenuKeyDown(event: KeyboardEvent) {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      return;
+    }
+
+    if (this.isEventFromExpandedCategoryItems(event)) {
+      return;
+    }
+
+    const items = this.getAllFocusableItems();
+    if (items.length === 0) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const currentIndex = items.findIndex((item) => path.includes(item));
+    const isMenuNavigationFocused =
+      currentIndex === -1 && path.includes(this.menuNavigationContainer);
+
+    if (!isMenuNavigationFocused && currentIndex === -1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (isMenuNavigationFocused) {
+      let index = items.indexOf(this.lastFocusedMenuItem!);
+
+      if (event.key === 'Home') {
+        index = 0;
+      } else if (event.key === 'End') {
+        index = items.length - 1;
+      } else if (index === -1) {
+        index = event.key === 'ArrowDown' ? 0 : items.length - 1;
+      }
+
+      this.updateRovingTabIndex(items, index);
+      this.lastFocusedMenuItem = items[index];
+      items[index].focus();
+
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        const next = (currentIndex + 1) % items.length;
+        this.updateRovingTabIndex(items, next);
+        this.lastFocusedMenuItem = items[next];
+        items[next].focus();
+        break;
+      }
+      case 'ArrowUp': {
+        const prev = (currentIndex - 1 + items.length) % items.length;
+        this.updateRovingTabIndex(items, prev);
+        this.lastFocusedMenuItem = items[prev];
+        items[prev].focus();
+        break;
+      }
+      case 'Home':
+        this.updateRovingTabIndex(items, 0);
+        this.lastFocusedMenuItem = items[0];
+        items[0].focus();
+        break;
+      case 'End':
+        this.updateRovingTabIndex(items, items.length - 1);
+        this.lastFocusedMenuItem = items.at(-1);
+        items.at(-1)?.focus();
+        break;
+    }
   }
 
   private async showAppSwitch() {
@@ -678,96 +939,121 @@ export class Menu {
           </div>
 
           <div
-            id="menu-tabs"
-            style={{
-              display: 'contents',
+            role="menubar"
+            aria-orientation="vertical"
+            aria-label={this.i18nAriaLabelMenu}
+            aria-description={this.i18nNavigationHint}
+            class={{
+              'menu-navigation': true,
+              'menu-navigation--fill': this.shouldFillMenuNavigation,
             }}
-            onClick={(e) => this.onMenuItemsClick(e)}
+            tabIndex={0}
+            onKeyDown={(e) => this.handleMenuKeyDown(e)}
+            onFocusin={(e) => this.handleMenuFocusIn(e)}
+            onFocusout={() => this.resetRovingTabIndex()}
           >
-            <div class="tabs-shadow-container">
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-top': true,
-                  'tabs--shadow--show': this.itemsScrollShadowTop,
-                }}
-              ></div>
-              <div
-                class={{
-                  tabs: true,
-                  'show-scrollbar': this.expand,
-                }}
-                onScroll={() => this.handleOverflowIndicator()}
-              >
-                <div class="menu-avatar">
-                  <slot name="ix-menu-avatar"></slot>
+            <div
+              id="menu-tabs"
+              style={{
+                display: 'contents',
+              }}
+              onClick={(e) => this.onMenuItemsClick(e)}
+            >
+              <div class="tabs-shadow-container">
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-top': true,
+                    'tabs--shadow--show': this.itemsScrollShadowTop,
+                  }}
+                ></div>
+                <div
+                  class={{
+                    tabs: true,
+                    'show-scrollbar': this.expand,
+                  }}
+                  onScroll={() => this.handleOverflowIndicator()}
+                >
+                  <div class="menu-avatar">
+                    <slot name="ix-menu-avatar"></slot>
+                  </div>
+                  <slot name="home"></slot>
+                  {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                    <slot></slot>
+                  ) : null}
                 </div>
-                <slot name="home"></slot>
-                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
-                  <slot></slot>
-                ) : null}
+                <div
+                  class={{
+                    'tabs--shadow': true,
+                    'tabs--shadow-bottom': true,
+                    'tabs--shadow--show': this.itemsScrollShadowBottom,
+                  }}
+                ></div>
               </div>
-              <div
-                class={{
-                  'tabs--shadow': true,
-                  'tabs--shadow-bottom': true,
-                  'tabs--shadow--show': this.itemsScrollShadowBottom,
-                }}
-              ></div>
+            </div>
+            <div onClick={(e) => this.onMenuItemsClick(e)}>
+              <slot
+                name="bottom"
+                onSlotchange={() => this.updateBottomSlotState()}
+              ></slot>
+            </div>
+
+            <div class="bottom-tab-divider"></div>
+
+            <div class="menu-utility-controls">
+              {this.settings ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="settings"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showSettings,
+                  }}
+                  icon={iconCogwheel}
+                  onClick={async () => this.toggleSettings(!this.showSettings)}
+                  label={this.i18nSettings}
+                  aria-haspopup="dialog"
+                  aria-expanded={this.showSettings.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
+              {this.enableToggleTheme ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="toggleTheme"
+                  onClick={() => themeSwitcher.toggleMode()}
+                  class="internal-tab bottom-tab"
+                  icon={iconLightDark}
+                  label={this.i18nToggleTheme}
+                  role="menuitemcheckbox"
+                  aria-checked={this.isDarkMode.toString()}
+                ></ix-menu-item>
+              ) : null}
+              {this.about ? (
+                <ix-menu-item
+                  disabled={this.isHiddenFromViewport()}
+                  id="aboutAndLegal"
+                  class={{
+                    'internal-tab': true,
+                    'bottom-tab': true,
+                    active: this.showAbout,
+                  }}
+                  icon={iconInfo}
+                  onClick={async () => this.toggleAbout(!this.showAbout)}
+                  label={this.i18nLegal}
+                  aria-haspopup="dialog"
+                  aria-expanded={this.showAbout.toString()}
+                  aria-controls="menu-overlay"
+                ></ix-menu-item>
+              ) : null}
             </div>
           </div>
-          <div class="bottom-tab-divider"></div>
-          {this.settings ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="settings"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showSettings,
-              }}
-              icon={iconCogwheel}
-              onClick={async () => this.toggleSettings(!this.showSettings)}
-              label={this.i18nSettings}
-              aria-expanded={this.showSettings.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
-          {this.enableToggleTheme ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="toggleTheme"
-              onClick={() => themeSwitcher.toggleMode()}
-              class="internal-tab bottom-tab"
-              icon={iconLightDark}
-              label={this.i18nToggleTheme}
-              role="switch"
-              aria-checked={this.isDarkMode.toString()}
-            ></ix-menu-item>
-          ) : null}
-          <div onClick={(e) => this.onMenuItemsClick(e)}>
-            <slot name="bottom"></slot>
-          </div>
           <div id="popover-area"></div>
-          {this.about ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="aboutAndLegal"
-              class={{
-                'internal-tab': true,
-                'bottom-tab': true,
-                active: this.showAbout,
-              }}
-              icon={iconInfo}
-              onClick={async () => this.toggleAbout(!this.showAbout)}
-              label={this.i18nLegal}
-              aria-expanded={this.showAbout.toString()}
-              aria-controls="menu-overlay"
-            ></ix-menu-item>
-          ) : null}
         </nav>
         <section
           id="menu-overlay"
+          role="dialog"
           aria-label={overlayLabel}
           class={{
             'menu-overlay': true,
