@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-category-color-ghost-active-fallback: rgba(140, 161, 171, 0.15);
+$menu-category-color-ghost-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
 
 :host {
   --ix-menu-category--default-time: var(--theme-default-time, 150ms);

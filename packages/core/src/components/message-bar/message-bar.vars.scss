@@ -7,15 +7,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$message-bar-color-alarm-fallback: light-dark(#d72332, #ff2453);
+$message-bar-color-critical-fallback: light-dark(#bc5b01, #eb7a0a);
+$message-bar-color-warning-fallback: #ffbb00;
+$message-bar-color-success-fallback: light-dark(#2c8500, #44cc00);
+$message-bar-color-info-fallback: light-dark(#0041b2, #357fff);
+$message-bar-color-neutral-fallback: light-dark(#66727e, #b6b8b9);
+$message-bar-color-primary-fallback: light-dark(#006e93, #00bde3);
+$messagebar-background-fallback: light-dark(#ffffff, #000000);
+
 :host {
-  --ix-message-bar--color-alarm: var(--theme-color-alarm, #ff2453);
-  --ix-message-bar--color-critical: var(--theme-color-critical, #eb7a0a);
-  --ix-message-bar--color-warning: var(--theme-color-warning, #ffbb00);
-  --ix-message-bar--color-success: var(--theme-color-success, #44cc00);
-  --ix-message-bar--color-info: var(--theme-color-info, #357fff);
-  --ix-message-bar--color-neutral: var(--theme-color-neutral, #b6b8b9);
-  --ix-message-bar--color-primary: var(--theme-color-primary, #00bde3);
+  --ix-message-bar--color-alarm: var(
+    --theme-color-alarm,
+    #{$message-bar-color-alarm-fallback}
+  );
+  --ix-message-bar--color-critical: var(
+    --theme-color-critical,
+    #{$message-bar-color-critical-fallback}
+  );
+  --ix-message-bar--color-warning: var(
+    --theme-color-warning,
+    #{$message-bar-color-warning-fallback}
+  );
+  --ix-message-bar--color-success: var(
+    --theme-color-success,
+    #{$message-bar-color-success-fallback}
+  );
+  --ix-message-bar--color-info: var(
+    --theme-color-info,
+    #{$message-bar-color-info-fallback}
+  );
+  --ix-message-bar--color-neutral: var(
+    --theme-color-neutral,
+    #{$message-bar-color-neutral-fallback}
+  );
+  --ix-message-bar--color-primary: var(
+    --theme-color-primary,
+    #{$message-bar-color-primary-fallback}
+  );
   --ix-message-bar--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-message-bar--border-thickness: var(--theme-border-width-thick, 0.125rem);
-  --ix-messagebar--background: var(--theme-color-secondary, #000000);
+  --ix-messagebar--background: var(
+    --theme-color-secondary,
+    #{$messagebar-background-fallback}
+  );
 }

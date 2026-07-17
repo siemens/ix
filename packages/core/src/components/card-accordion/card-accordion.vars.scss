@@ -7,199 +7,436 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$card-accordion-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-$card-accordion-color-component-1-fallback: rgba(140, 161, 171, 0.2);
-$push-card-alarm-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-alarm-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-alarm-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-alarm-accordion-footer-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-alarm-accordion-frame-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-alarm-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$card-accordion-color-focus-bdr-fallback: #199fff;
+$card-accordion-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
 );
-$push-card-critical-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-critical-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-critical-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-critical-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$card-accordion-color-component-1-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-critical-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-alarm-background-fallback: light-dark(#d72332, #ff2453);
+$push-card-alarm-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$push-card-alarm-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$push-card-alarm-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-critical-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$push-card-alarm-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-filled-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-filled-background-active-fallback: rgba(140, 161, 171, 0.25);
-$push-card-filled-background-hover-fallback: rgba(140, 161, 171, 0.45);
-$push-card-filled-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-filled-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-filled-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-filled-color-fallback: rgba(245, 252, 255, 0.9);
-$push-card-filled-accordion-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-filled-accordion-background-active-fallback: rgba(
-  140,
-  161,
-  171,
-  0.25
+$push-card-alarm-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-filled-accordion-background-hover-fallback: rgba(
-  140,
-  161,
-  171,
-  0.45
+$push-card-alarm-color-fallback: light-dark(#ffffff, #000000);
+$push-card-alarm-accordion-background-fallback: light-dark(#d72332, #ff2453);
+$push-card-alarm-accordion-background-active-fallback: light-dark(
+  #b41d2a,
+  #ff335f
 );
-$push-card-filled-accordion-color-fallback: rgba(245, 252, 255, 0.9);
-$push-card-filled-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-alarm-accordion-background-hover-fallback: light-dark(
+  #c11f2d,
+  #ff577b
 );
-$push-card-filled-accordion-frame-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-filled-accordion-frame-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-filled-subtext-color-fallback: rgba(229, 247, 255, 0.65);
-$push-card-info-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-info-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-info-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-info-accordion-footer-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-info-accordion-frame-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-info-accordion-frame-border-color-fallback: rgba(211, 236, 248, 0.4);
-$push-card-neutral-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-neutral-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-neutral-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-neutral-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-alarm-accordion-border-color-fallback: light-dark(#ffffff, #0f1619);
+$push-card-alarm-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-alarm-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-neutral-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-alarm-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-neutral-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$push-card-alarm-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
 );
-$push-card-outline-background-fallback: rgba(255, 255, 255, 0);
-$push-card-outline-background-active-fallback: rgba(140, 161, 171, 0.15);
-$push-card-outline-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$push-card-outline-border-color-fallback: rgba(211, 236, 248, 0.4);
-$push-card-outline-border-color-active-fallback: rgba(211, 236, 248, 0.4);
-$push-card-outline-border-color-hover-fallback: rgba(211, 236, 248, 0.4);
-$push-card-outline-color-fallback: rgba(245, 252, 255, 0.9);
-$push-card-outline-accordion-background-fallback: rgba(140, 161, 171, 0.2);
-$push-card-outline-accordion-background-active-fallback: rgba(
-  140,
-  161,
-  171,
-  0.25
+$push-card-alarm-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-critical-background-fallback: light-dark(#bc5b01, #eb7a0a);
+$push-card-critical-background-active-fallback: light-dark(#9d4d01, #eb8014);
+$push-card-critical-background-hover-fallback: light-dark(#ad5401, #ed8721);
+$push-card-critical-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-outline-accordion-background-hover-fallback: rgba(
-  140,
-  161,
-  171,
-  0.45
+$push-card-critical-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-outline-accordion-color-fallback: rgba(245, 252, 255, 0.9);
-$push-card-outline-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
-$push-card-outline-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-color-fallback: light-dark(#ffffff, #000000);
+$push-card-critical-accordion-background-fallback: light-dark(#bc5b01, #eb7a0a);
+$push-card-critical-accordion-background-active-fallback: light-dark(
+  #9d4d01,
+  #eb8014
 );
-$push-card-outline-accordion-frame-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-outline-subtext-color-fallback: rgba(229, 247, 255, 0.65);
-$push-card-primary-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-primary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-primary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-primary-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-accordion-background-hover-fallback: light-dark(
+  #ad5401,
+  #ed8721
 );
-$push-card-primary-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
 );
-$push-card-primary-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$push-card-critical-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-critical-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-success-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-success-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-success-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-success-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-success-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-critical-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
 );
-$push-card-success-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$push-card-critical-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-filled-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
 );
-$push-card-warning-border-color-fallback: rgba(0, 0, 0, 0);
-$push-card-warning-border-color-active-fallback: rgba(0, 0, 0, 0);
-$push-card-warning-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$push-card-warning-accordion-footer-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-filled-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
 );
-$push-card-warning-accordion-frame-background-fallback: rgba(
-  140,
-  161,
-  171,
-  0.2
+$push-card-filled-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
 );
-$push-card-warning-accordion-frame-border-color-fallback: rgba(
-  211,
-  236,
-  248,
-  0.4
+$push-card-filled-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
 );
+$push-card-filled-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-filled-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-filled-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$push-card-filled-accordion-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-filled-accordion-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
+);
+$push-card-filled-accordion-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
+);
+$push-card-filled-accordion-border-color-fallback: light-dark(#ffffff, #0f1619);
+$push-card-filled-accordion-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$push-card-filled-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-filled-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-filled-accordion-frame-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-filled-subtext-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$push-card-info-background-fallback: light-dark(#0041b2, #357fff);
+$push-card-info-background-active-fallback: light-dark(#003694, #3d84ff);
+$push-card-info-background-hover-fallback: light-dark(#003a9e, #4d8eff);
+$push-card-info-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-info-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-info-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-info-color-fallback: light-dark(#ffffff, #000000);
+$push-card-info-accordion-background-fallback: light-dark(#0041b2, #357fff);
+$push-card-info-accordion-background-active-fallback: light-dark(
+  #003694,
+  #3d84ff
+);
+$push-card-info-accordion-background-hover-fallback: light-dark(
+  #003a9e,
+  #4d8eff
+);
+$push-card-info-accordion-border-color-fallback: light-dark(#ffffff, #0f1619);
+$push-card-info-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-info-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-info-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-info-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-info-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-neutral-background-fallback: light-dark(#66727e, #b6b8b9);
+$push-card-neutral-background-active-fallback: light-dark(#545e68, #acaeaf);
+$push-card-neutral-background-hover-fallback: light-dark(#5b6671, #c8cacb);
+$push-card-neutral-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-neutral-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-neutral-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-neutral-color-fallback: light-dark(#ffffff, #000000);
+$push-card-neutral-accordion-background-fallback: light-dark(#66727e, #b6b8b9);
+$push-card-neutral-accordion-background-active-fallback: light-dark(
+  #545e68,
+  #acaeaf
+);
+$push-card-neutral-accordion-background-hover-fallback: light-dark(
+  #5b6671,
+  #c8cacb
+);
+$push-card-neutral-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
+);
+$push-card-neutral-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-neutral-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-neutral-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-neutral-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-neutral-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-outline-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$push-card-outline-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$push-card-outline-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-outline-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-outline-border-color-active-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-outline-border-color-hover-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-outline-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$push-card-outline-accordion-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-outline-accordion-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
+);
+$push-card-outline-accordion-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
+);
+$push-card-outline-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
+);
+$push-card-outline-accordion-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$push-card-outline-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-outline-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-outline-accordion-frame-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-outline-subtext-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$push-card-primary-background-fallback: light-dark(#006e93, #00bde3);
+$push-card-primary-background-active-fallback: light-dark(#16565c, #00d3e5);
+$push-card-primary-background-hover-fallback: light-dark(#196269, #1aecff);
+$push-card-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-primary-color-fallback: light-dark(#ffffff, #000000);
+$push-card-primary-accordion-background-fallback: light-dark(#006e93, #00bde3);
+$push-card-primary-accordion-background-active-fallback: light-dark(
+  #16565c,
+  #00d3e5
+);
+$push-card-primary-accordion-background-hover-fallback: light-dark(
+  #196269,
+  #1aecff
+);
+$push-card-primary-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
+);
+$push-card-primary-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-primary-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-primary-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-primary-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-primary-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-success-background-fallback: light-dark(#2c8500, #44cc00);
+$push-card-success-background-active-fallback: light-dark(#246b00, #47d600);
+$push-card-success-background-hover-fallback: light-dark(#277500, #4eeb00);
+$push-card-success-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-success-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-success-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-success-color-fallback: light-dark(#ffffff, #000000);
+$push-card-success-accordion-background-fallback: light-dark(#2c8500, #44cc00);
+$push-card-success-accordion-background-active-fallback: light-dark(
+  #246b00,
+  #47d600
+);
+$push-card-success-accordion-background-hover-fallback: light-dark(
+  #277500,
+  #4eeb00
+);
+$push-card-success-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
+);
+$push-card-success-accordion-color-fallback: light-dark(#ffffff, #000000);
+$push-card-success-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-success-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-success-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-success-subtext-color-fallback: light-dark(#ffffff, #000000);
+$push-card-warning-background-fallback: #ffbb00;
+$push-card-warning-background-active-fallback: #ffba0a;
+$push-card-warning-background-hover-fallback: #ffc533;
+$push-card-warning-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-warning-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-warning-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$push-card-warning-color-fallback: #000000;
+$push-card-warning-accordion-background-fallback: #ffbb00;
+$push-card-warning-accordion-background-active-fallback: #ffba0a;
+$push-card-warning-accordion-background-hover-fallback: #ffc533;
+$push-card-warning-accordion-border-color-fallback: light-dark(
+  #ffffff,
+  #0f1619
+);
+$push-card-warning-accordion-color-fallback: #000000;
+$push-card-warning-accordion-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-warning-accordion-frame-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$push-card-warning-accordion-frame-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$push-card-warning-subtext-color-fallback: #000000;
 
 :host {
   --ix-card-accordion--default-time: var(--theme-default-time, 150ms);
-  --ix-card-accordion--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-card-accordion--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$card-accordion-color-focus-bdr-fallback}
+  );
   --ix-card-accordion--color-std-text: var(
     --theme-color-std-text,
     #{$card-accordion-color-std-text-fallback}
@@ -219,14 +456,17 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-focus-outline-offset,
     0.125rem
   );
-  --ix-push-card-alarm--background: var(--theme-color-alarm, #ff2453);
+  --ix-push-card-alarm--background: var(
+    --theme-color-alarm,
+    #{$push-card-alarm-background-fallback}
+  );
   --ix-push-card-alarm--background--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$push-card-alarm-background-active-fallback}
   );
   --ix-push-card-alarm--background--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$push-card-alarm-background-hover-fallback}
   );
   --ix-push-card-alarm--border-color: var(
     --theme-color-0,
@@ -240,20 +480,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-alarm-border-color-hover-fallback}
   );
-  --ix-push-card-alarm--color: var(--theme-color-alarm--contrast, #000000);
-  --ix-push-card-alarm-accordion--background: var(--theme-color-alarm, #ff2453);
+  --ix-push-card-alarm--color: var(
+    --theme-color-alarm--contrast,
+    #{$push-card-alarm-color-fallback}
+  );
+  --ix-push-card-alarm-accordion--background: var(
+    --theme-color-alarm,
+    #{$push-card-alarm-accordion-background-fallback}
+  );
   --ix-push-card-alarm-accordion--background--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$push-card-alarm-accordion-background-active-fallback}
   );
   --ix-push-card-alarm-accordion--background--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$push-card-alarm-accordion-background-hover-fallback}
   );
-  --ix-push-card-alarm-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-alarm-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-alarm-accordion-border-color-fallback}
+  );
   --ix-push-card-alarm-accordion--color: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$push-card-alarm-accordion-color-fallback}
   );
   --ix-push-card-alarm-accordion-footer--background: var(
     --theme-color-component-1,
@@ -273,16 +522,19 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-alarm-subtext--color: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$push-card-alarm-subtext-color-fallback}
   );
-  --ix-push-card-critical--background: var(--theme-color-critical, #eb7a0a);
+  --ix-push-card-critical--background: var(
+    --theme-color-critical,
+    #{$push-card-critical-background-fallback}
+  );
   --ix-push-card-critical--background--active: var(
     --theme-color-critical--active,
-    #eb8014
+    #{$push-card-critical-background-active-fallback}
   );
   --ix-push-card-critical--background--hover: var(
     --theme-color-critical--hover,
-    #ed8721
+    #{$push-card-critical-background-hover-fallback}
   );
   --ix-push-card-critical--border-color: var(
     --theme-color-0,
@@ -298,27 +550,27 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-critical--color: var(
     --theme-color-critical--contrast,
-    #000000
+    #{$push-card-critical-color-fallback}
   );
   --ix-push-card-critical-accordion--background: var(
     --theme-color-critical,
-    #eb7a0a
+    #{$push-card-critical-accordion-background-fallback}
   );
   --ix-push-card-critical-accordion--background--active: var(
     --theme-color-critical--active,
-    #eb8014
+    #{$push-card-critical-accordion-background-active-fallback}
   );
   --ix-push-card-critical-accordion--background--hover: var(
     --theme-color-critical--hover,
-    #ed8721
+    #{$push-card-critical-accordion-background-hover-fallback}
   );
   --ix-push-card-critical-accordion--border-color: var(
     --theme-color-1,
-    #0f1619
+    #{$push-card-critical-accordion-border-color-fallback}
   );
   --ix-push-card-critical-accordion--color: var(
     --theme-color-critical--contrast,
-    #000000
+    #{$push-card-critical-accordion-color-fallback}
   );
   --ix-push-card-critical-accordion-footer--background: var(
     --theme-color-component-1,
@@ -338,7 +590,7 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-critical-subtext--color: var(
     --theme-color-critical--contrast,
-    #000000
+    #{$push-card-critical-subtext-color-fallback}
   );
   --ix-push-card-filled--background: var(
     --theme-color-component-1,
@@ -380,7 +632,10 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-component-1--hover,
     #{$push-card-filled-accordion-background-hover-fallback}
   );
-  --ix-push-card-filled-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-filled-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-filled-accordion-border-color-fallback}
+  );
   --ix-push-card-filled-accordion--color: var(
     --theme-color-std-text,
     #{$push-card-filled-accordion-color-fallback}
@@ -405,14 +660,17 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-soft-text,
     #{$push-card-filled-subtext-color-fallback}
   );
-  --ix-push-card-info--background: var(--theme-color-info, #357fff);
+  --ix-push-card-info--background: var(
+    --theme-color-info,
+    #{$push-card-info-background-fallback}
+  );
   --ix-push-card-info--background--active: var(
     --theme-color-info--active,
-    #3d84ff
+    #{$push-card-info-background-active-fallback}
   );
   --ix-push-card-info--background--hover: var(
     --theme-color-info--hover,
-    #4d8eff
+    #{$push-card-info-background-hover-fallback}
   );
   --ix-push-card-info--border-color: var(
     --theme-color-0,
@@ -426,20 +684,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-info-border-color-hover-fallback}
   );
-  --ix-push-card-info--color: var(--theme-color-info--contrast, #000000);
-  --ix-push-card-info-accordion--background: var(--theme-color-info, #357fff);
+  --ix-push-card-info--color: var(
+    --theme-color-info--contrast,
+    #{$push-card-info-color-fallback}
+  );
+  --ix-push-card-info-accordion--background: var(
+    --theme-color-info,
+    #{$push-card-info-accordion-background-fallback}
+  );
   --ix-push-card-info-accordion--background--active: var(
     --theme-color-info--active,
-    #3d84ff
+    #{$push-card-info-accordion-background-active-fallback}
   );
   --ix-push-card-info-accordion--background--hover: var(
     --theme-color-info--hover,
-    #4d8eff
+    #{$push-card-info-accordion-background-hover-fallback}
   );
-  --ix-push-card-info-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-info-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-info-accordion-border-color-fallback}
+  );
   --ix-push-card-info-accordion--color: var(
     --theme-color-info--contrast,
-    #000000
+    #{$push-card-info-accordion-color-fallback}
   );
   --ix-push-card-info-accordion-footer--background: var(
     --theme-color-component-1,
@@ -459,16 +726,19 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-info-subtext--color: var(
     --theme-color-info--contrast,
-    #000000
+    #{$push-card-info-subtext-color-fallback}
   );
-  --ix-push-card-neutral--background: var(--theme-color-neutral, #b6b8b9);
+  --ix-push-card-neutral--background: var(
+    --theme-color-neutral,
+    #{$push-card-neutral-background-fallback}
+  );
   --ix-push-card-neutral--background--active: var(
     --theme-color-neutral--active,
-    #acaeaf
+    #{$push-card-neutral-background-active-fallback}
   );
   --ix-push-card-neutral--background--hover: var(
     --theme-color-neutral--hover,
-    #c8cacb
+    #{$push-card-neutral-background-hover-fallback}
   );
   --ix-push-card-neutral--border-color: var(
     --theme-color-0,
@@ -482,23 +752,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-neutral-border-color-hover-fallback}
   );
-  --ix-push-card-neutral--color: var(--theme-color-neutral--contrast, #000000);
+  --ix-push-card-neutral--color: var(
+    --theme-color-neutral--contrast,
+    #{$push-card-neutral-color-fallback}
+  );
   --ix-push-card-neutral-accordion--background: var(
     --theme-color-neutral,
-    #b6b8b9
+    #{$push-card-neutral-accordion-background-fallback}
   );
   --ix-push-card-neutral-accordion--background--active: var(
     --theme-color-neutral--active,
-    #acaeaf
+    #{$push-card-neutral-accordion-background-active-fallback}
   );
   --ix-push-card-neutral-accordion--background--hover: var(
     --theme-color-neutral--hover,
-    #c8cacb
+    #{$push-card-neutral-accordion-background-hover-fallback}
   );
-  --ix-push-card-neutral-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-neutral-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-neutral-accordion-border-color-fallback}
+  );
   --ix-push-card-neutral-accordion--color: var(
     --theme-color-neutral--contrast,
-    #000000
+    #{$push-card-neutral-accordion-color-fallback}
   );
   --ix-push-card-neutral-accordion-footer--background: var(
     --theme-color-component-1,
@@ -518,7 +794,7 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-neutral-subtext--color: var(
     --theme-color-neutral--contrast,
-    #000000
+    #{$push-card-neutral-subtext-color-fallback}
   );
   --ix-push-card-outline--background: var(
     --theme-color-ghost,
@@ -560,7 +836,10 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-component-1--hover,
     #{$push-card-outline-accordion-background-hover-fallback}
   );
-  --ix-push-card-outline-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-outline-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-outline-accordion-border-color-fallback}
+  );
   --ix-push-card-outline-accordion--color: var(
     --theme-color-std-text,
     #{$push-card-outline-accordion-color-fallback}
@@ -585,14 +864,17 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-soft-text,
     #{$push-card-outline-subtext-color-fallback}
   );
-  --ix-push-card-primary--background: var(--theme-color-primary, #00bde3);
+  --ix-push-card-primary--background: var(
+    --theme-color-primary,
+    #{$push-card-primary-background-fallback}
+  );
   --ix-push-card-primary--background--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$push-card-primary-background-active-fallback}
   );
   --ix-push-card-primary--background--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$push-card-primary-background-hover-fallback}
   );
   --ix-push-card-primary--border-color: var(
     --theme-color-0,
@@ -606,23 +888,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-primary-border-color-hover-fallback}
   );
-  --ix-push-card-primary--color: var(--theme-color-primary--contrast, #000000);
+  --ix-push-card-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$push-card-primary-color-fallback}
+  );
   --ix-push-card-primary-accordion--background: var(
     --theme-color-primary,
-    #00bde3
+    #{$push-card-primary-accordion-background-fallback}
   );
   --ix-push-card-primary-accordion--background--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$push-card-primary-accordion-background-active-fallback}
   );
   --ix-push-card-primary-accordion--background--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$push-card-primary-accordion-background-hover-fallback}
   );
-  --ix-push-card-primary-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-primary-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-primary-accordion-border-color-fallback}
+  );
   --ix-push-card-primary-accordion--color: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$push-card-primary-accordion-color-fallback}
   );
   --ix-push-card-primary-accordion-footer--background: var(
     --theme-color-component-1,
@@ -642,16 +930,19 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-primary-subtext--color: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$push-card-primary-subtext-color-fallback}
   );
-  --ix-push-card-success--background: var(--theme-color-success, #44cc00);
+  --ix-push-card-success--background: var(
+    --theme-color-success,
+    #{$push-card-success-background-fallback}
+  );
   --ix-push-card-success--background--active: var(
     --theme-color-success--active,
-    #47d600
+    #{$push-card-success-background-active-fallback}
   );
   --ix-push-card-success--background--hover: var(
     --theme-color-success--hover,
-    #4eeb00
+    #{$push-card-success-background-hover-fallback}
   );
   --ix-push-card-success--border-color: var(
     --theme-color-0,
@@ -665,23 +956,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-success-border-color-hover-fallback}
   );
-  --ix-push-card-success--color: var(--theme-color-success--contrast, #000000);
+  --ix-push-card-success--color: var(
+    --theme-color-success--contrast,
+    #{$push-card-success-color-fallback}
+  );
   --ix-push-card-success-accordion--background: var(
     --theme-color-success,
-    #44cc00
+    #{$push-card-success-accordion-background-fallback}
   );
   --ix-push-card-success-accordion--background--active: var(
     --theme-color-success--active,
-    #47d600
+    #{$push-card-success-accordion-background-active-fallback}
   );
   --ix-push-card-success-accordion--background--hover: var(
     --theme-color-success--hover,
-    #4eeb00
+    #{$push-card-success-accordion-background-hover-fallback}
   );
-  --ix-push-card-success-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-success-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-success-accordion-border-color-fallback}
+  );
   --ix-push-card-success-accordion--color: var(
     --theme-color-success--contrast,
-    #000000
+    #{$push-card-success-accordion-color-fallback}
   );
   --ix-push-card-success-accordion-footer--background: var(
     --theme-color-component-1,
@@ -701,16 +998,19 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-success-subtext--color: var(
     --theme-color-success--contrast,
-    #000000
+    #{$push-card-success-subtext-color-fallback}
   );
-  --ix-push-card-warning--background: var(--theme-color-warning, #ffbb00);
+  --ix-push-card-warning--background: var(
+    --theme-color-warning,
+    #{$push-card-warning-background-fallback}
+  );
   --ix-push-card-warning--background--active: var(
     --theme-color-warning--active,
-    #ffba0a
+    #{$push-card-warning-background-active-fallback}
   );
   --ix-push-card-warning--background--hover: var(
     --theme-color-warning--hover,
-    #ffc533
+    #{$push-card-warning-background-hover-fallback}
   );
   --ix-push-card-warning--border-color: var(
     --theme-color-0,
@@ -724,23 +1024,29 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
     --theme-color-0,
     #{$push-card-warning-border-color-hover-fallback}
   );
-  --ix-push-card-warning--color: var(--theme-color-warning--contrast, #000000);
+  --ix-push-card-warning--color: var(
+    --theme-color-warning--contrast,
+    #{$push-card-warning-color-fallback}
+  );
   --ix-push-card-warning-accordion--background: var(
     --theme-color-warning,
-    #ffbb00
+    #{$push-card-warning-accordion-background-fallback}
   );
   --ix-push-card-warning-accordion--background--active: var(
     --theme-color-warning--active,
-    #ffba0a
+    #{$push-card-warning-accordion-background-active-fallback}
   );
   --ix-push-card-warning-accordion--background--hover: var(
     --theme-color-warning--hover,
-    #ffc533
+    #{$push-card-warning-accordion-background-hover-fallback}
   );
-  --ix-push-card-warning-accordion--border-color: var(--theme-color-1, #0f1619);
+  --ix-push-card-warning-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-warning-accordion-border-color-fallback}
+  );
   --ix-push-card-warning-accordion--color: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$push-card-warning-accordion-color-fallback}
   );
   --ix-push-card-warning-accordion-footer--background: var(
     --theme-color-component-1,
@@ -760,6 +1066,6 @@ $push-card-warning-accordion-frame-border-color-fallback: rgba(
   );
   --ix-push-card-warning-subtext--color: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$push-card-warning-subtext-color-fallback}
   );
 }

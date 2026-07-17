@@ -7,11 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tree-item-background-active-fallback: rgba(140, 161, 171, 0.15);
-$tree-item-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$tree-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
-$tree-item-background-selected-active-fallback: rgba(115, 221, 221, 0.2);
-$tree-item-background-selected-hover-fallback: rgba(104, 253, 253, 0.2);
+$tree-item-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$tree-item-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$tree-item-background-selected-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.1)
+);
+$tree-item-background-selected-active-fallback: light-dark(
+  rgba(0, 145, 158, 0.2),
+  rgba(115, 221, 221, 0.2)
+);
+$tree-item-background-selected-hover-fallback: light-dark(
+  rgba(32, 184, 197, 0.2),
+  rgba(104, 253, 253, 0.2)
+);
 
 :host {
   --ix-tree-item--default-time: var(--theme-default-time, 150ms);

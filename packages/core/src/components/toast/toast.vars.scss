@@ -7,13 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$toast-border-color-fallback: rgba(0, 0, 0, 0);
-$toast-box-shadow-fallback: rgba(0, 0, 0, 0.6);
-$toast-timer-value-background-fallback: rgba(214, 242, 255, 0.42);
+$toast-background-fallback: light-dark(#eff0f1, #283236);
+$toast-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$toast-box-shadow-fallback: 0 0 2px 0 light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$toast-timer-value-background-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
 
 :host {
   --ix-toast--medium-time: var(--theme-medium-time, 300ms);
-  --ix-toast--background: var(--theme-color-2, #283236);
+  --ix-toast--background: var(--theme-color-2, #{$toast-background-fallback});
   --ix-toast--border-color: var(
     --theme-color-0,
     #{$toast-border-color-fallback}
@@ -21,12 +30,7 @@ $toast-timer-value-background-fallback: rgba(214, 242, 255, 0.42);
   --ix-toast--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-toast--border-radus: var(--ix-toast--border-radius);
   --ix-toast--border-thickness: var(--theme-border-width-none, 0rem);
-  --ix-toast--box-shadow: var(
-    --theme-shadow-4,
-    0 0 2px 0 #000000,
-    0 4px 8px 0 #{$toast-box-shadow-fallback},
-    0 12px 18px 0 #{$toast-box-shadow-fallback}
-  );
+  --ix-toast--box-shadow: var(--theme-shadow-4, #{$toast-box-shadow-fallback});
   --ix-toast-timer-value--background: var(
     --theme-color-component-4,
     #{$toast-timer-value-background-fallback}

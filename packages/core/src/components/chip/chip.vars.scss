@@ -7,147 +7,571 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$btn-danger-primary-background-disabled-fallback: rgba(214, 242, 255, 0.42);
-$btn-danger-primary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-danger-primary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-danger-primary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-danger-primary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-danger-secondary-background-fallback: rgba(0, 0, 0, 0);
-$btn-danger-secondary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-danger-secondary-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
-$btn-danger-secondary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-danger-tertiary-background-fallback: rgba(255, 255, 255, 0);
-$btn-danger-tertiary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-danger-tertiary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-danger-tertiary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-danger-tertiary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-danger-tertiary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-danger-tertiary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-primary-background-disabled-fallback: rgba(214, 242, 255, 0.42);
-$btn-primary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-pressed-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-pressed-hover-fallback: rgba(0, 0, 0, 0);
-$btn-primary-border-color-pressed-hover-active-fallback: rgba(0, 0, 0, 0);
-$btn-secondary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-secondary-background-pressed-fallback: rgba(0, 234, 255, 0.15);
-$btn-secondary-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
-$btn-secondary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-subtle-primary-background-fallback: rgba(211, 239, 253, 0.15);
-$btn-subtle-primary-background-active-fallback: rgba(140, 161, 171, 0.25);
-$btn-subtle-primary-background-disabled-fallback: rgba(211, 239, 253, 0.15);
-$btn-subtle-primary-background-hover-fallback: rgba(140, 161, 171, 0.45);
-$btn-subtle-primary-background-pressed-fallback: rgba(0, 234, 255, 0.15);
-$btn-subtle-primary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-pressed-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-pressed-active-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-border-color-pressed-hover-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-primary-color-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-primary-color-active-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-primary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-subtle-primary-color-hover-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-secondary-background-fallback: rgba(255, 255, 255, 0);
-$btn-subtle-secondary-background-active-fallback: rgba(140, 161, 171, 0.15);
-$btn-subtle-secondary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-subtle-secondary-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$btn-subtle-secondary-background-pressed-fallback: rgba(0, 234, 255, 0.15);
-$btn-subtle-secondary-border-color-fallback: rgba(214, 242, 255, 0.42);
-$btn-subtle-secondary-border-color-active-fallback: rgba(214, 242, 255, 0.42);
-$btn-subtle-secondary-border-color-disabled-fallback: rgba(214, 242, 255, 0.42);
-$btn-subtle-secondary-border-color-hover-fallback: rgba(214, 242, 255, 0.42);
-$btn-subtle-secondary-border-color-pressed-fallback: rgba(211, 236, 248, 0.55);
-$btn-subtle-secondary-border-color-pressed-active-fallback: rgba(
-  211,
-  236,
-  248,
-  0.55
-);
-$btn-subtle-secondary-border-color-pressed-hover-fallback: rgba(
-  211,
-  236,
-  248,
-  0.55
-);
-$btn-subtle-secondary-color-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-secondary-color-active-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-secondary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-subtle-secondary-color-hover-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-tertiary-background-fallback: rgba(255, 255, 255, 0);
-$btn-subtle-tertiary-background-active-fallback: rgba(140, 161, 171, 0.15);
-$btn-subtle-tertiary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-subtle-tertiary-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$btn-subtle-tertiary-background-pressed-fallback: rgba(0, 234, 255, 0.15);
-$btn-subtle-tertiary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-pressed-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-pressed-active-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-border-color-pressed-hover-fallback: rgba(0, 0, 0, 0);
-$btn-subtle-tertiary-color-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-tertiary-color-active-fallback: rgba(245, 252, 255, 0.9);
-$btn-subtle-tertiary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$btn-subtle-tertiary-color-hover-fallback: rgba(245, 252, 255, 0.9);
-$btn-tertiary-background-fallback: rgba(255, 255, 255, 0);
-$btn-tertiary-background-disabled-fallback: rgba(255, 255, 255, 0);
-$btn-tertiary-background-pressed-fallback: rgba(0, 234, 255, 0.15);
-$btn-tertiary-border-color-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-active-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-disabled-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-hover-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-pressed-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-pressed-active-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-border-color-pressed-hover-fallback: rgba(0, 0, 0, 0);
-$btn-tertiary-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$chip-background-fallback: rgba(140, 161, 171, 0.2);
-$chip-background-active-fallback: rgba(140, 161, 171, 0.25);
-$chip-background-hover-fallback: rgba(140, 161, 171, 0.45);
-$chip-color-fallback: rgba(245, 252, 255, 0.9);
-$chip-close-btn-background-fallback: rgba(255, 255, 255, 0);
-$chip-close-btn-background-active-fallback: rgba(140, 161, 171, 0.15);
-$chip-close-btn-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$chip-close-btn-color-fallback: rgba(229, 247, 255, 0.65);
-$chip-outline-color-fallback: rgba(245, 252, 255, 0.9);
-$chip-primary-outline-color-display-fallback: rgba(245, 252, 255, 0.9);
-$chip-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-
 @use 'sass:map';
+
+$chip-color-warning-text-fallback: light-dark(#947100, #ffbb00);
+$chip-color-primary-fallback: light-dark(#006e93, #00bde3);
+$btn-danger-primary-background-fallback: light-dark(#d72332, #ff2453);
+$btn-danger-primary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-primary-background-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-danger-primary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-primary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-primary-color-fallback: light-dark(#ffffff, #000000);
+$btn-danger-primary-color-active-fallback: light-dark(#ffffff, #000000);
+$btn-danger-primary-color-disabled-fallback: light-dark(#ffffff, #000000);
+$btn-danger-primary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-danger-secondary-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-secondary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-secondary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-danger-secondary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-secondary-border-color-fallback: light-dark(#b81e3f, #ff7694);
+$btn-danger-secondary-border-color-active-fallback: light-dark(
+  #b41d2a,
+  #ff335f
+);
+$btn-danger-secondary-border-color-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-danger-secondary-border-color-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-secondary-color-fallback: light-dark(#b81e3f, #ff7694);
+$btn-danger-secondary-color-active-fallback: light-dark(#ffffff, #000000);
+$btn-danger-secondary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-danger-secondary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-danger-tertiary-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-danger-tertiary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-tertiary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-danger-tertiary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-tertiary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-tertiary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-tertiary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-tertiary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-danger-tertiary-color-fallback: light-dark(#b81e3f, #ff7694);
+$btn-danger-tertiary-color-active-fallback: light-dark(#ffffff, #000000);
+$btn-danger-tertiary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-danger-tertiary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-primary-background-fallback: light-dark(#006e93, #00bde3);
+$btn-primary-background-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-primary-background-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-primary-background-hover-fallback: light-dark(#196269, #1aecff);
+$btn-primary-background-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-primary-background-pressed-active-fallback: light-dark(#0e494e, #5cd5e0);
+$btn-primary-background-pressed-hover-fallback: light-dark(#0f5157, #62e2ee);
+$btn-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-pressed-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-pressed-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-border-color-pressed-hover-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-primary-color-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-active-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-disabled-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-pressed-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-pressed-active-fallback: light-dark(#ffffff, #000000);
+$btn-primary-color-pressed-hover-fallback: light-dark(#ffffff, #000000);
+$btn-secondary-background-fallback: light-dark(#ffffff, #000000);
+$btn-secondary-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$btn-secondary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-secondary-background-hover-fallback: light-dark(#ccfbff, #002639);
+$btn-secondary-background-pressed-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 234, 255, 0.15)
+);
+$btn-secondary-background-pressed-active-fallback: light-dark(#00def2, #16565c);
+$btn-secondary-background-pressed-hover-fallback: light-dark(#00eaff, #196269);
+$btn-secondary-border-color-fallback: light-dark(#006e93, #00bde3);
+$btn-secondary-border-color-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-secondary-border-color-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-secondary-border-color-hover-fallback: light-dark(#196269, #1aecff);
+$btn-secondary-border-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-secondary-border-color-pressed-active-fallback: light-dark(
+  #16565c,
+  #00d3e5
+);
+$btn-secondary-border-color-pressed-hover-fallback: light-dark(
+  #196269,
+  #1aecff
+);
+$btn-secondary-color-fallback: light-dark(#006e93, #00bde3);
+$btn-secondary-color-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-secondary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-secondary-color-hover-fallback: light-dark(#196269, #1aecff);
+$btn-secondary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-secondary-color-pressed-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-secondary-color-pressed-hover-fallback: light-dark(#196269, #1aecff);
+$btn-subtle-primary-background-fallback: light-dark(
+  rgba(0, 18, 36, 0.1),
+  rgba(211, 239, 253, 0.15)
+);
+$btn-subtle-primary-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
+);
+$btn-subtle-primary-background-disabled-fallback: light-dark(
+  rgba(0, 18, 36, 0.1),
+  rgba(211, 239, 253, 0.15)
+);
+$btn-subtle-primary-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
+);
+$btn-subtle-primary-background-pressed-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 234, 255, 0.15)
+);
+$btn-subtle-primary-background-pressed-active-fallback: light-dark(
+  #00def2,
+  #16565c
+);
+$btn-subtle-primary-background-pressed-hover-fallback: light-dark(
+  #00eaff,
+  #196269
+);
+$btn-subtle-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-pressed-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-pressed-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-border-color-pressed-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-primary-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-primary-color-active-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-primary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-subtle-primary-color-hover-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-primary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-primary-color-pressed-active-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-primary-color-pressed-hover-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-secondary-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-subtle-secondary-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$btn-subtle-secondary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-subtle-secondary-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$btn-subtle-secondary-background-pressed-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 234, 255, 0.15)
+);
+$btn-subtle-secondary-background-pressed-active-fallback: light-dark(
+  #00def2,
+  #16565c
+);
+$btn-subtle-secondary-background-pressed-hover-fallback: light-dark(
+  #00eaff,
+  #196269
+);
+$btn-subtle-secondary-border-color-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-subtle-secondary-border-color-active-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-subtle-secondary-border-color-disabled-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-subtle-secondary-border-color-hover-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$btn-subtle-secondary-border-color-pressed-fallback: light-dark(
+  rgba(0, 20, 40, 0.3),
+  rgba(211, 236, 248, 0.55)
+);
+$btn-subtle-secondary-border-color-pressed-active-fallback: light-dark(
+  rgba(0, 20, 40, 0.3),
+  rgba(211, 236, 248, 0.55)
+);
+$btn-subtle-secondary-border-color-pressed-hover-fallback: light-dark(
+  rgba(0, 20, 40, 0.3),
+  rgba(211, 236, 248, 0.55)
+);
+$btn-subtle-secondary-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-secondary-color-active-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-secondary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-subtle-secondary-color-hover-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-secondary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-secondary-color-pressed-active-fallback: light-dark(
+  #005e66,
+  #00eaff
+);
+$btn-subtle-secondary-color-pressed-hover-fallback: light-dark(
+  #005e66,
+  #00eaff
+);
+$btn-subtle-tertiary-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-subtle-tertiary-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$btn-subtle-tertiary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-subtle-tertiary-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$btn-subtle-tertiary-background-pressed-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 234, 255, 0.15)
+);
+$btn-subtle-tertiary-background-pressed-active-fallback: light-dark(
+  #00def2,
+  #16565c
+);
+$btn-subtle-tertiary-background-pressed-hover-fallback: light-dark(
+  #00eaff,
+  #196269
+);
+$btn-subtle-tertiary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-pressed-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-pressed-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-border-color-pressed-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-subtle-tertiary-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-tertiary-color-active-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-tertiary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-subtle-tertiary-color-hover-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$btn-subtle-tertiary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-tertiary-color-pressed-active-fallback: light-dark(
+  #005e66,
+  #00eaff
+);
+$btn-subtle-tertiary-color-pressed-hover-fallback: light-dark(#005e66, #00eaff);
+$btn-tertiary-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-tertiary-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$btn-tertiary-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$btn-tertiary-background-hover-fallback: light-dark(#ccfbff, #002639);
+$btn-tertiary-background-pressed-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 234, 255, 0.15)
+);
+$btn-tertiary-background-pressed-active-fallback: light-dark(#00def2, #16565c);
+$btn-tertiary-background-pressed-hover-fallback: light-dark(#00eaff, #196269);
+$btn-tertiary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-pressed-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-pressed-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-border-color-pressed-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$btn-tertiary-color-fallback: light-dark(#006e93, #00bde3);
+$btn-tertiary-color-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-tertiary-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$btn-tertiary-color-hover-fallback: light-dark(#196269, #1aecff);
+$btn-tertiary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-tertiary-color-pressed-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-tertiary-color-pressed-hover-fallback: light-dark(#196269, #1aecff);
+$chip-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$chip-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
+);
+$chip-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
+);
+$chip-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$chip-close-btn-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$chip-close-btn-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$chip-close-btn-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$chip-close-btn-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$chip-outline-background-fallback: light-dark(#ffffff, #000000);
+$chip-outline-background-active-fallback: light-dark(#e2e4e6, #222b2f);
+$chip-outline-background-hover-fallback: light-dark(#eff0f1, #283236);
+$chip-outline-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$chip-primary-background-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-background-active-fallback: light-dark(#16565c, #00d3e5);
+$chip-primary-background-hover-fallback: light-dark(#196269, #1aecff);
+$chip-primary-color-fallback: light-dark(#ffffff, #000000);
+$chip-primary-color-active-fallback: light-dark(#ffffff, #000000);
+$chip-primary-color-hover-fallback: light-dark(#ffffff, #000000);
+$chip-primary-outline-background-fallback: light-dark(#ffffff, #000000);
+$chip-primary-outline-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$chip-primary-outline-background-display-fallback: light-dark(#ffffff, #000000);
+$chip-primary-outline-background-hover-fallback: light-dark(#ccfbff, #002639);
+$chip-primary-outline-border-color-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-outline-border-color-active-fallback: light-dark(
+  #16565c,
+  #00d3e5
+);
+$chip-primary-outline-border-color-display-fallback: light-dark(
+  #006e93,
+  #00bde3
+);
+$chip-primary-outline-border-color-hover-fallback: light-dark(#196269, #1aecff);
+$chip-primary-outline-color-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-outline-color-active-fallback: light-dark(#16565c, #00d3e5);
+$chip-primary-outline-color-display-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$chip-primary-outline-color-hover-fallback: light-dark(#196269, #1aecff);
+$chip-color-focus-bdr-fallback: #199fff;
+$chip-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
 
 $chip-color-fallbacks: (
   alarm: (
-    background: #ff2453,
-    hover: #ff577b,
-    active: #ff335f,
-    contrast: #000000,
+    background: light-dark(#d72332, #ff2453),
+    hover: light-dark(#c11f2d, #ff577b),
+    active: light-dark(#b41d2a, #ff335f),
+    contrast: light-dark(#ffffff, #000000),
   ),
   critical: (
-    background: #eb7a0a,
-    hover: #ed8721,
-    active: #eb8014,
-    contrast: #000000,
+    background: light-dark(#bc5b01, #eb7a0a),
+    hover: light-dark(#ad5401, #ed8721),
+    active: light-dark(#9d4d01, #eb8014),
+    contrast: light-dark(#ffffff, #000000),
   ),
   info: (
-    background: #357fff,
-    hover: #4d8eff,
-    active: #3d84ff,
-    contrast: #000000,
+    background: light-dark(#0041b2, #357fff),
+    hover: light-dark(#003a9e, #4d8eff),
+    active: light-dark(#003694, #3d84ff),
+    contrast: light-dark(#ffffff, #000000),
   ),
   neutral: (
-    background: #b6b8b9,
-    hover: #c8cacb,
-    active: #acaeaf,
-    contrast: #000000,
+    background: light-dark(#66727e, #b6b8b9),
+    hover: light-dark(#5b6671, #c8cacb),
+    active: light-dark(#545e68, #acaeaf),
+    contrast: light-dark(#ffffff, #000000),
   ),
   success: (
-    background: #44cc00,
-    hover: #4eeb00,
-    active: #47d600,
-    contrast: #000000,
+    background: light-dark(#2c8500, #44cc00),
+    hover: light-dark(#277500, #4eeb00),
+    active: light-dark(#246b00, #47d600),
+    contrast: light-dark(#ffffff, #000000),
   ),
   warning: (
     background: #ffbb00,
@@ -162,8 +586,14 @@ $chip-color-fallbacks: (
 }
 
 :host {
-  --ix-chip--color-warning-text: var(--theme-color-warning-text, #ffbb00);
-  --ix-chip--color-primary: var(--theme-color-primary, #00bde3);
+  --ix-chip--color-warning-text: var(
+    --theme-color-warning-text,
+    #{$chip-color-warning-text-fallback}
+  );
+  --ix-chip--color-primary: var(
+    --theme-color-primary,
+    #{$chip-color-primary-fallback}
+  );
 
   @each $color in (alarm, critical, warning, info, neutral, success) {
     --ix-chip-#{$color}--background: var(
@@ -195,10 +625,13 @@ $chip-color-fallbacks: (
   --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);
   --ix-btn--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
-  --ix-btn-danger-primary--background: var(--theme-color-alarm, #ff2453);
+  --ix-btn-danger-primary--background: var(
+    --theme-color-alarm,
+    #{$btn-danger-primary-background-fallback}
+  );
   --ix-btn-danger-primary--background--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$btn-danger-primary-background-active-fallback}
   );
   --ix-btn-danger-primary--background--disabled: var(
     --theme-color-component-4,
@@ -206,7 +639,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-primary--background--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$btn-danger-primary-background-hover-fallback}
   );
   --ix-btn-danger-primary--border-color: var(
     --theme-color-0,
@@ -224,18 +657,21 @@ $chip-color-fallbacks: (
     --theme-color-0,
     #{$btn-danger-primary-border-color-hover-fallback}
   );
-  --ix-btn-danger-primary--color: var(--theme-color-alarm--contrast, #000000);
+  --ix-btn-danger-primary--color: var(
+    --theme-color-alarm--contrast,
+    #{$btn-danger-primary-color-fallback}
+  );
   --ix-btn-danger-primary--color--active: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-primary-color-active-fallback}
   );
   --ix-btn-danger-primary--color--disabled: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-danger-primary-color-disabled-fallback}
   );
   --ix-btn-danger-primary--color--hover: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-primary-color-hover-fallback}
   );
   --ix-btn-danger-secondary--background: var(
     --theme-color-0,
@@ -243,7 +679,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-secondary--background--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$btn-danger-secondary-background-active-fallback}
   );
   --ix-btn-danger-secondary--background--disabled: var(
     --theme-color-ghost,
@@ -251,15 +687,15 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-secondary--background--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$btn-danger-secondary-background-hover-fallback}
   );
   --ix-btn-danger-secondary--border-color: var(
     --theme-color-alarm-text,
-    #ff7694
+    #{$btn-danger-secondary-border-color-fallback}
   );
   --ix-btn-danger-secondary--border-color--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$btn-danger-secondary-border-color-active-fallback}
   );
   --ix-btn-danger-secondary--border-color--disabled: var(
     --theme-color-component-4,
@@ -267,12 +703,15 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-secondary--border-color--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$btn-danger-secondary-border-color-hover-fallback}
   );
-  --ix-btn-danger-secondary--color: var(--theme-color-alarm-text, #ff7694);
+  --ix-btn-danger-secondary--color: var(
+    --theme-color-alarm-text,
+    #{$btn-danger-secondary-color-fallback}
+  );
   --ix-btn-danger-secondary--color--active: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-secondary-color-active-fallback}
   );
   --ix-btn-danger-secondary--color--disabled: var(
     --theme-color-weak-text,
@@ -280,7 +719,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-secondary--color--hover: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-secondary-color-hover-fallback}
   );
   --ix-btn-danger-tertiary--background: var(
     --theme-color-ghost,
@@ -288,7 +727,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-tertiary--background--active: var(
     --theme-color-alarm--active,
-    #ff335f
+    #{$btn-danger-tertiary-background-active-fallback}
   );
   --ix-btn-danger-tertiary--background--disabled: var(
     --theme-color-ghost,
@@ -296,7 +735,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-tertiary--background--hover: var(
     --theme-color-alarm--hover,
-    #ff577b
+    #{$btn-danger-tertiary-background-hover-fallback}
   );
   --ix-btn-danger-tertiary--border-color: var(
     --theme-color-0,
@@ -314,10 +753,13 @@ $chip-color-fallbacks: (
     --theme-color-0,
     #{$btn-danger-tertiary-border-color-hover-fallback}
   );
-  --ix-btn-danger-tertiary--color: var(--theme-color-alarm-text, #ff7694);
+  --ix-btn-danger-tertiary--color: var(
+    --theme-color-alarm-text,
+    #{$btn-danger-tertiary-color-fallback}
+  );
   --ix-btn-danger-tertiary--color--active: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-tertiary-color-active-fallback}
   );
   --ix-btn-danger-tertiary--color--disabled: var(
     --theme-color-weak-text,
@@ -325,12 +767,15 @@ $chip-color-fallbacks: (
   );
   --ix-btn-danger-tertiary--color--hover: var(
     --theme-color-alarm--contrast,
-    #000000
+    #{$btn-danger-tertiary-color-hover-fallback}
   );
-  --ix-btn-primary--background: var(--theme-color-primary, #00bde3);
+  --ix-btn-primary--background: var(
+    --theme-color-primary,
+    #{$btn-primary-background-fallback}
+  );
   --ix-btn-primary--background--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-primary-background-active-fallback}
   );
   --ix-btn-primary--background--disabled: var(
     --theme-color-component-4,
@@ -338,16 +783,19 @@ $chip-color-fallbacks: (
   );
   --ix-btn-primary--background--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$btn-primary-background-hover-fallback}
   );
-  --ix-btn-primary--background--pressed: var(--theme-color-dynamic, #00eaff);
+  --ix-btn-primary--background--pressed: var(
+    --theme-color-dynamic,
+    #{$btn-primary-background-pressed-fallback}
+  );
   --ix-btn-primary--background--pressed-active: var(
     --theme-color-dynamic--active,
-    #5cd5e0
+    #{$btn-primary-background-pressed-active-fallback}
   );
   --ix-btn-primary--background--pressed-hover: var(
     --theme-color-dynamic--hover,
-    #62e2ee
+    #{$btn-primary-background-pressed-hover-fallback}
   );
   --ix-btn-primary--border-color: var(
     --theme-color-0,
@@ -377,32 +825,41 @@ $chip-color-fallbacks: (
     --theme-color-0,
     #{$btn-primary-border-color-pressed-hover-active-fallback}
   );
-  --ix-btn-primary--color: var(--theme-color-primary--contrast, #000000);
+  --ix-btn-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$btn-primary-color-fallback}
+  );
   --ix-btn-primary--color--active: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-primary-color-active-fallback}
   );
   --ix-btn-primary--color--disabled: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-primary-color-disabled-fallback}
   );
-  --ix-btn-primary--color--hover: var(--theme-color-primary--contrast, #000000);
+  --ix-btn-primary--color--hover: var(
+    --theme-color-primary--contrast,
+    #{$btn-primary-color-hover-fallback}
+  );
   --ix-btn-primary--color--pressed: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-primary-color-pressed-fallback}
   );
   --ix-btn-primary--color--pressed-active: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-primary-color-pressed-active-fallback}
   );
   --ix-btn-primary--color--pressed-hover: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$btn-primary-color-pressed-hover-fallback}
   );
-  --ix-btn-secondary--background: var(--theme-color-secondary, #000000);
+  --ix-btn-secondary--background: var(
+    --theme-color-secondary,
+    #{$btn-secondary-background-fallback}
+  );
   --ix-btn-secondary--background--active: var(
     --theme-color-secondary--active,
-    #001d2b
+    #{$btn-secondary-background-active-fallback}
   );
   --ix-btn-secondary--background--disabled: var(
     --theme-color-ghost,
@@ -410,7 +867,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-secondary--background--hover: var(
     --theme-color-secondary--hover,
-    #002639
+    #{$btn-secondary-background-hover-fallback}
   );
   --ix-btn-secondary--background--pressed: var(
     --theme-color-component-7,
@@ -418,16 +875,19 @@ $chip-color-fallbacks: (
   );
   --ix-btn-secondary--background--pressed-active: var(
     --theme-color-component-7--active,
-    #16565c
+    #{$btn-secondary-background-pressed-active-fallback}
   );
   --ix-btn-secondary--background--pressed-hover: var(
     --theme-color-component-7--hover,
-    #196269
+    #{$btn-secondary-background-pressed-hover-fallback}
   );
-  --ix-btn-secondary--border-color: var(--theme-color-primary, #00bde3);
+  --ix-btn-secondary--border-color: var(
+    --theme-color-primary,
+    #{$btn-secondary-border-color-fallback}
+  );
   --ix-btn-secondary--border-color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-secondary-border-color-active-fallback}
   );
   --ix-btn-secondary--border-color--disabled: var(
     --theme-color-component-4,
@@ -435,38 +895,47 @@ $chip-color-fallbacks: (
   );
   --ix-btn-secondary--border-color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$btn-secondary-border-color-hover-fallback}
   );
   --ix-btn-secondary--border-color--pressed: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-secondary-border-color-pressed-fallback}
   );
   --ix-btn-secondary--border-color--pressed-active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-secondary-border-color-pressed-active-fallback}
   );
   --ix-btn-secondary--border-color--pressed-hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$btn-secondary-border-color-pressed-hover-fallback}
   );
-  --ix-btn-secondary--color: var(--theme-color-primary, #00bde3);
+  --ix-btn-secondary--color: var(
+    --theme-color-primary,
+    #{$btn-secondary-color-fallback}
+  );
   --ix-btn-secondary--color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-secondary-color-active-fallback}
   );
   --ix-btn-secondary--color--disabled: var(
     --theme-color-weak-text,
     #{$btn-secondary-color-disabled-fallback}
   );
-  --ix-btn-secondary--color--hover: var(--theme-color-primary--hover, #1aecff);
-  --ix-btn-secondary--color--pressed: var(--theme-color-dynamic, #00eaff);
+  --ix-btn-secondary--color--hover: var(
+    --theme-color-primary--hover,
+    #{$btn-secondary-color-hover-fallback}
+  );
+  --ix-btn-secondary--color--pressed: var(
+    --theme-color-dynamic,
+    #{$btn-secondary-color-pressed-fallback}
+  );
   --ix-btn-secondary--color--pressed-active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-secondary-color-pressed-active-fallback}
   );
   --ix-btn-secondary--color--pressed-hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$btn-secondary-color-pressed-hover-fallback}
   );
   --ix-btn-subtle-primary--background: var(
     --theme-color-component-2,
@@ -490,11 +959,11 @@ $chip-color-fallbacks: (
   );
   --ix-btn-subtle-primary--background--pressed-active: var(
     --theme-color-component-7--active,
-    #16565c
+    #{$btn-subtle-primary-background-pressed-active-fallback}
   );
   --ix-btn-subtle-primary--background--pressed-hover: var(
     --theme-color-component-7--hover,
-    #196269
+    #{$btn-subtle-primary-background-pressed-hover-fallback}
   );
   --ix-btn-subtle-primary--border-color: var(
     --theme-color-0,
@@ -540,14 +1009,17 @@ $chip-color-fallbacks: (
     --theme-color-std-text,
     #{$btn-subtle-primary-color-hover-fallback}
   );
-  --ix-btn-subtle-primary--color--pressed: var(--theme-color-dynamic, #00eaff);
+  --ix-btn-subtle-primary--color--pressed: var(
+    --theme-color-dynamic,
+    #{$btn-subtle-primary-color-pressed-fallback}
+  );
   --ix-btn-subtle-primary--color--pressed-active: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-primary-color-pressed-active-fallback}
   );
   --ix-btn-subtle-primary--color--pressed-hover: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-primary-color-pressed-hover-fallback}
   );
   --ix-btn-subtle-secondary--background: var(
     --theme-color-ghost,
@@ -571,11 +1043,11 @@ $chip-color-fallbacks: (
   );
   --ix-btn-subtle-secondary--background--pressed-active: var(
     --theme-color-component-7--active,
-    #16565c
+    #{$btn-subtle-secondary-background-pressed-active-fallback}
   );
   --ix-btn-subtle-secondary--background--pressed-hover: var(
     --theme-color-component-7--hover,
-    #196269
+    #{$btn-subtle-secondary-background-pressed-hover-fallback}
   );
   --ix-btn-subtle-secondary--border-color: var(
     --theme-color-component-4,
@@ -623,15 +1095,15 @@ $chip-color-fallbacks: (
   );
   --ix-btn-subtle-secondary--color--pressed: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-secondary-color-pressed-fallback}
   );
   --ix-btn-subtle-secondary--color--pressed-active: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-secondary-color-pressed-active-fallback}
   );
   --ix-btn-subtle-secondary--color--pressed-hover: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-secondary-color-pressed-hover-fallback}
   );
   --ix-btn-subtle-tertiary--background: var(
     --theme-color-ghost,
@@ -655,11 +1127,11 @@ $chip-color-fallbacks: (
   );
   --ix-btn-subtle-tertiary--background--pressed-active: var(
     --theme-color-component-7--active,
-    #16565c
+    #{$btn-subtle-tertiary-background-pressed-active-fallback}
   );
   --ix-btn-subtle-tertiary--background--pressed-hover: var(
     --theme-color-component-7--hover,
-    #196269
+    #{$btn-subtle-tertiary-background-pressed-hover-fallback}
   );
   --ix-btn-subtle-tertiary--border-color: var(
     --theme-color-0,
@@ -705,14 +1177,17 @@ $chip-color-fallbacks: (
     --theme-color-std-text,
     #{$btn-subtle-tertiary-color-hover-fallback}
   );
-  --ix-btn-subtle-tertiary--color--pressed: var(--theme-color-dynamic, #00eaff);
+  --ix-btn-subtle-tertiary--color--pressed: var(
+    --theme-color-dynamic,
+    #{$btn-subtle-tertiary-color-pressed-fallback}
+  );
   --ix-btn-subtle-tertiary--color--pressed-active: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-tertiary-color-pressed-active-fallback}
   );
   --ix-btn-subtle-tertiary--color--pressed-hover: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$btn-subtle-tertiary-color-pressed-hover-fallback}
   );
   --ix-btn-tertiary--background: var(
     --theme-color-ghost,
@@ -720,7 +1195,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-tertiary--background--active: var(
     --theme-color-secondary--active,
-    #001d2b
+    #{$btn-tertiary-background-active-fallback}
   );
   --ix-btn-tertiary--background--disabled: var(
     --theme-color-ghost,
@@ -728,7 +1203,7 @@ $chip-color-fallbacks: (
   );
   --ix-btn-tertiary--background--hover: var(
     --theme-color-secondary--hover,
-    #002639
+    #{$btn-tertiary-background-hover-fallback}
   );
   --ix-btn-tertiary--background--pressed: var(
     --theme-color-component-7,
@@ -736,11 +1211,11 @@ $chip-color-fallbacks: (
   );
   --ix-btn-tertiary--background--pressed-active: var(
     --theme-color-component-7--active,
-    #16565c
+    #{$btn-tertiary-background-pressed-active-fallback}
   );
   --ix-btn-tertiary--background--pressed-hover: var(
     --theme-color-component-7--hover,
-    #196269
+    #{$btn-tertiary-background-pressed-hover-fallback}
   );
   --ix-btn-tertiary--border-color: var(
     --theme-color-0,
@@ -770,21 +1245,33 @@ $chip-color-fallbacks: (
     --theme-color-0,
     #{$btn-tertiary-border-color-pressed-hover-fallback}
   );
-  --ix-btn-tertiary--color: var(--theme-color-primary, #00bde3);
-  --ix-btn-tertiary--color--active: var(--theme-color-primary--active, #00d3e5);
+  --ix-btn-tertiary--color: var(
+    --theme-color-primary,
+    #{$btn-tertiary-color-fallback}
+  );
+  --ix-btn-tertiary--color--active: var(
+    --theme-color-primary--active,
+    #{$btn-tertiary-color-active-fallback}
+  );
   --ix-btn-tertiary--color--disabled: var(
     --theme-color-weak-text,
     #{$btn-tertiary-color-disabled-fallback}
   );
-  --ix-btn-tertiary--color--hover: var(--theme-color-primary--hover, #1aecff);
-  --ix-btn-tertiary--color--pressed: var(--theme-color-dynamic, #00eaff);
+  --ix-btn-tertiary--color--hover: var(
+    --theme-color-primary--hover,
+    #{$btn-tertiary-color-hover-fallback}
+  );
+  --ix-btn-tertiary--color--pressed: var(
+    --theme-color-dynamic,
+    #{$btn-tertiary-color-pressed-fallback}
+  );
   --ix-btn-tertiary--color--pressed-active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$btn-tertiary-color-pressed-active-fallback}
   );
   --ix-btn-tertiary--color--pressed-hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$btn-tertiary-color-pressed-hover-fallback}
   );
   --ix-chip--background: var(
     --theme-color-component-1,
@@ -815,61 +1302,85 @@ $chip-color-fallbacks: (
     --theme-color-soft-text,
     #{$chip-close-btn-color-fallback}
   );
-  --ix-chip-outline--background: var(--theme-color-secondary, #000000);
-  --ix-chip-outline--background--active: var(--theme-color-1--active, #222b2f);
-  --ix-chip-outline--background--hover: var(--theme-color-1--hover, #283236);
+  --ix-chip-outline--background: var(
+    --theme-color-secondary,
+    #{$chip-outline-background-fallback}
+  );
+  --ix-chip-outline--background--active: var(
+    --theme-color-1--active,
+    #{$chip-outline-background-active-fallback}
+  );
+  --ix-chip-outline--background--hover: var(
+    --theme-color-1--hover,
+    #{$chip-outline-background-hover-fallback}
+  );
   --ix-chip-outline--color: var(
     --theme-color-std-text,
     #{$chip-outline-color-fallback}
   );
-  --ix-chip-primary--background: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary--background: var(
+    --theme-color-primary,
+    #{$chip-primary-background-fallback}
+  );
   --ix-chip-primary--background--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-background-active-fallback}
   );
   --ix-chip-primary--background--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-background-hover-fallback}
   );
-  --ix-chip-primary--color: var(--theme-color-primary--contrast, #000000);
+  --ix-chip-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$chip-primary-color-fallback}
+  );
   --ix-chip-primary--color--active: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$chip-primary-color-active-fallback}
   );
   --ix-chip-primary--color--hover: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$chip-primary-color-hover-fallback}
   );
-  --ix-chip-primary-outline--background: var(--theme-color-secondary, #000000);
+  --ix-chip-primary-outline--background: var(
+    --theme-color-secondary,
+    #{$chip-primary-outline-background-fallback}
+  );
   --ix-chip-primary-outline--background--active: var(
     --theme-color-secondary--active,
-    #001d2b
+    #{$chip-primary-outline-background-active-fallback}
   );
   --ix-chip-primary-outline--background--display: var(
     --theme-color-secondary,
-    #000000
+    #{$chip-primary-outline-background-display-fallback}
   );
   --ix-chip-primary-outline--background--hover: var(
     --theme-color-secondary--hover,
-    #002639
+    #{$chip-primary-outline-background-hover-fallback}
   );
-  --ix-chip-primary-outline--border-color: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary-outline--border-color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-border-color-fallback}
+  );
   --ix-chip-primary-outline--border-color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-border-color-active-fallback}
   );
   --ix-chip-primary-outline--border-color--display: var(
     --theme-color-primary,
-    #00bde3
+    #{$chip-primary-outline-border-color-display-fallback}
   );
   --ix-chip-primary-outline--border-color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-border-color-hover-fallback}
   );
-  --ix-chip-primary-outline--color: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary-outline--color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-color-fallback}
+  );
   --ix-chip-primary-outline--color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-color-active-fallback}
   );
   --ix-chip-primary-outline--color--display: var(
     --theme-color-std-text,
@@ -877,18 +1388,27 @@ $chip-color-fallbacks: (
   );
   --ix-chip-primary-outline--color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-color-hover-fallback}
   );
 }
 
 :host {
-  --ix-chip--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-chip--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$chip-color-focus-bdr-fallback}
+  );
   --ix-chip--color-std-text: var(
     --theme-color-std-text,
     #{$chip-color-std-text-fallback}
   );
-  --ix-chip--color-primary: var(--theme-color-primary, #00bde3);
-  --ix-chip--color-warning-text: var(--theme-color-warning-text, #ffbb00);
+  --ix-chip--color-primary: var(
+    --theme-color-primary,
+    #{$chip-color-primary-fallback}
+  );
+  --ix-chip--color-warning-text: var(
+    --theme-color-warning-text,
+    #{$chip-color-warning-text-fallback}
+  );
 
   @each $color in (alarm, critical, warning, info, neutral, success) {
     --ix-chip-#{$color}--background: var(
@@ -930,43 +1450,61 @@ $chip-color-fallbacks: (
     --theme-color-ghost--hover,
     #{$chip-close-btn-background-hover-fallback}
   );
-  --ix-chip-outline--background: var(--theme-color-secondary, #000000);
-  --ix-chip-outline--background--active: var(--theme-color-1--active, #222b2f);
-  --ix-chip-outline--background--hover: var(--theme-color-1--hover, #283236);
+  --ix-chip-outline--background: var(
+    --theme-color-secondary,
+    #{$chip-outline-background-fallback}
+  );
+  --ix-chip-outline--background--active: var(
+    --theme-color-1--active,
+    #{$chip-outline-background-active-fallback}
+  );
+  --ix-chip-outline--background--hover: var(
+    --theme-color-1--hover,
+    #{$chip-outline-background-hover-fallback}
+  );
   --ix-chip-outline--color: var(
     --theme-color-std-text,
     #{$chip-outline-color-fallback}
   );
   --ix-chip-primary--background--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-background-active-fallback}
   );
   --ix-chip-primary--background--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-background-hover-fallback}
   );
-  --ix-chip-primary--color: var(--theme-color-primary--contrast, #000000);
-  --ix-chip-primary-outline--background: var(--theme-color-secondary, #000000);
+  --ix-chip-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$chip-primary-color-fallback}
+  );
+  --ix-chip-primary-outline--background: var(
+    --theme-color-secondary,
+    #{$chip-primary-outline-background-fallback}
+  );
   --ix-chip-primary-outline--background--active: var(
     --theme-color-secondary--active,
-    #001d2b
+    #{$chip-primary-outline-background-active-fallback}
   );
   --ix-chip-primary-outline--background--hover: var(
     --theme-color-secondary--hover,
-    #002639
+    #{$chip-primary-outline-background-hover-fallback}
   );
-  --ix-chip-primary-outline--border-color: var(--theme-color-primary, #00bde3);
+  --ix-chip-primary-outline--border-color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-border-color-fallback}
+  );
   --ix-chip-primary-outline--border-color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-border-color-active-fallback}
   );
   --ix-chip-primary-outline--border-color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-border-color-hover-fallback}
   );
   --ix-chip-primary-outline--color--active: var(
     --theme-color-primary--active,
-    #00d3e5
+    #{$chip-primary-outline-color-active-fallback}
   );
   --ix-chip-primary-outline--color--display: var(
     --theme-color-std-text,
@@ -974,6 +1512,6 @@ $chip-color-fallbacks: (
   );
   --ix-chip-primary-outline--color--hover: var(
     --theme-color-primary--hover,
-    #1aecff
+    #{$chip-primary-outline-color-hover-fallback}
   );
 }

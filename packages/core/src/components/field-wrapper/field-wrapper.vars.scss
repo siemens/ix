@@ -7,10 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$helper-color-fallback: rgba(229, 247, 255, 0.65);
-$helper-color-info-fallback: rgba(245, 252, 255, 0.9);
-$helper-color-valid-fallback: rgba(245, 252, 255, 0.9);
-$helper-color-warning-fallback: rgba(245, 252, 255, 0.9);
+$helper-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$helper-color-info-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$helper-color-invalid-fallback: light-dark(#b81e3f, #ff7694);
+$helper-color-valid-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$helper-color-warning-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$helper-icon-color-info-fallback: light-dark(#0041b2, #357fff);
+$helper-icon-color-invalid-fallback: light-dark(#d72332, #ff2453);
+$helper-icon-color-valid-fallback: light-dark(#2c8500, #44cc00);
+$helper-icon-color-warning-fallback: light-dark(#947100, #ffbb00);
 
 :host {
   --ix-helper--color: var(--theme-color-soft-text, #{$helper-color-fallback});
@@ -18,7 +35,10 @@ $helper-color-warning-fallback: rgba(245, 252, 255, 0.9);
     --theme-color-std-text,
     #{$helper-color-info-fallback}
   );
-  --ix-helper--color--invalid: var(--theme-color-alarm-text, #ff7694);
+  --ix-helper--color--invalid: var(
+    --theme-color-alarm-text,
+    #{$helper-color-invalid-fallback}
+  );
   --ix-helper--color--valid: var(
     --theme-color-std-text,
     #{$helper-color-valid-fallback}
@@ -27,8 +47,20 @@ $helper-color-warning-fallback: rgba(245, 252, 255, 0.9);
     --theme-color-std-text,
     #{$helper-color-warning-fallback}
   );
-  --ix-helper-icon--color--info: var(--theme-color-info, #357fff);
-  --ix-helper-icon--color--invalid: var(--theme-color-alarm, #ff2453);
-  --ix-helper-icon--color--valid: var(--theme-color-success, #44cc00);
-  --ix-helper-icon--color--warning: var(--theme-color-warning-text, #ffbb00);
+  --ix-helper-icon--color--info: var(
+    --theme-color-info,
+    #{$helper-icon-color-info-fallback}
+  );
+  --ix-helper-icon--color--invalid: var(
+    --theme-color-alarm,
+    #{$helper-icon-color-invalid-fallback}
+  );
+  --ix-helper-icon--color--valid: var(
+    --theme-color-success,
+    #{$helper-icon-color-valid-fallback}
+  );
+  --ix-helper-icon--color--warning: var(
+    --theme-color-warning-text,
+    #{$helper-icon-color-warning-fallback}
+  );
 }

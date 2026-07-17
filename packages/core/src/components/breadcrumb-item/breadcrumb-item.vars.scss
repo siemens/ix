@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$breadcrumb-item-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
+$breadcrumb-item-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
 
 :host {
   --ix-breadcrumb-item--color-soft-text: var(

@@ -7,8 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-color-shadow-1-fallback: rgba(0, 0, 0, 0.6);
-$navigation-box-shadow-fallback: rgba(0, 0, 0, 0.6);
+$menu-color-shadow-1-fallback: light-dark(
+  rgba(0, 0, 0, 0.1),
+  rgba(0, 0, 0, 0.6)
+);
+$nav-background-fallback: light-dark(#eff0f1, #283236);
+$navigation-box-shadow-fallback: -4px 0 8px 0
+    light-dark(rgba(0, 0, 0, 0.2), #000000),
+  4px 0 8px 0 light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 0 16px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
 
 :host {
   --ix-menu--z-index-sticky: var(--theme-z-index-sticky, 1020);
@@ -17,11 +24,9 @@ $navigation-box-shadow-fallback: rgba(0, 0, 0, 0.6);
     #{$menu-color-shadow-1-fallback}
   );
   --ix-menu--default-time: var(--theme-default-time, 150ms);
-  --ix-nav--background: var(--theme-color-2, #283236);
+  --ix-nav--background: var(--theme-color-2, #{$nav-background-fallback});
   --ix-navigation--box-shadow: var(
     --theme-shadow-2,
-    -4px 0 8px 0 #000000,
-    4px 0 8px 0 #000000,
-    0 0 16px 0 #{$navigation-box-shadow-fallback}
+    #{$navigation-box-shadow-fallback}
   );
 }

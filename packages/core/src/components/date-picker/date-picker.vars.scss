@@ -7,26 +7,103 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$datepicker-day-background-fallback: rgba(255, 255, 255, 0);
-$datepicker-day-background-active-fallback: rgba(140, 161, 171, 0.15);
-$datepicker-day-background-disabled-fallback: rgba(255, 255, 255, 0);
-$datepicker-day-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$datepicker-day-background-range-fallback: rgba(0, 234, 255, 0.75);
-$datepicker-day-background-range-active-fallback: rgba(10, 235, 255, 0.75);
-$datepicker-day-background-range-disabled-fallback: rgba(0, 234, 255, 0.2);
-$datepicker-day-background-range-hover-fallback: rgba(107, 243, 255, 0.6);
-$datepicker-day-background-selected-disabled-fallback: rgba(0, 234, 255, 0.3);
-$datepicker-day-color-disabled-fallback: rgba(219, 244, 255, 0.4);
-$datepicker-day-color-range-disabled-fallback: rgba(219, 244, 255, 0.4);
-$datepicker-day-color-selected-disabled-fallback: rgba(219, 244, 255, 0.4);
-$datepicker-today-border-color-range-disabled-fallback: rgba(0, 170, 204, 0.45);
-$datepicker-weekday-color-fallback: rgba(229, 247, 255, 0.65);
-$menu-item-color-fallback: rgba(245, 252, 255, 0.9);
-$select-list-item-background-hover-fallback: rgba(140, 161, 171, 0.2);
-$select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
+$date-picker-color-focus-bdr-fallback: #199fff;
+$datepicker-day-background-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$datepicker-day-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+$datepicker-day-background-disabled-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$datepicker-day-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$datepicker-day-background-range-fallback: light-dark(
+  rgba(0, 81, 89, 0.75),
+  rgba(0, 234, 255, 0.75)
+);
+$datepicker-day-background-range-active-fallback: light-dark(
+  rgba(0, 70, 77, 0.75),
+  rgba(10, 235, 255, 0.75)
+);
+$datepicker-day-background-range-disabled-fallback: light-dark(
+  rgba(0, 81, 89, 0.15),
+  rgba(0, 234, 255, 0.2)
+);
+$datepicker-day-background-range-hover-fallback: light-dark(
+  rgba(0, 93, 102, 0.75),
+  rgba(107, 243, 255, 0.6)
+);
+$datepicker-day-background-selected-fallback: light-dark(#0b5e65, #00eaff);
+$datepicker-day-background-selected-active-fallback: light-dark(
+  #00464d,
+  #0aebff
+);
+$datepicker-day-background-selected-disabled-fallback: light-dark(
+  rgba(0, 81, 89, 0.3),
+  rgba(0, 234, 255, 0.3)
+);
+$datepicker-day-background-selected-hover-fallback: light-dark(
+  #005d66,
+  #52f1ff
+);
+$datepicker-day-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$datepicker-day-color-range-fallback: light-dark(#ffffff, #000000);
+$datepicker-day-color-range-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000000);
+$datepicker-day-color-selected-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$datepicker-today-border-color-fallback: light-dark(#006e93, #00bde3);
+$datepicker-today-border-color-range-fallback: light-dark(#006e93, #00bde3);
+$datepicker-today-border-color-range-active-fallback: light-dark(
+  #006e93,
+  #00bde3
+);
+$datepicker-today-border-color-range-disabled-fallback: light-dark(
+  rgba(0, 110, 147, 0.3),
+  rgba(0, 170, 204, 0.45)
+);
+$datepicker-today-border-color-range-hover-fallback: light-dark(
+  #006e93,
+  #00bde3
+);
+$datepicker-today-color-fallback: light-dark(#006e93, #00bde3);
+$datepicker-weekday-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$menu-item-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$select-list-item-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$select-list-item-background-selected-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.1)
+);
 
 :host {
-  --ix-date-picker--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-date-picker--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$date-picker-color-focus-bdr-fallback}
+  );
   --ix-date-picker--font-weight-bold: var(--theme-font-weight-bold, 700);
   --ix-date-picker--ms-0: var(--theme-ms-0, 0.875rem);
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
@@ -64,11 +141,11 @@ $select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
   );
   --ix-datepicker-day--background--selected: var(
     --theme-color-component-9,
-    #00eaff
+    #{$datepicker-day-background-selected-fallback}
   );
   --ix-datepicker-day--background--selected-active: var(
     --theme-color-component-9--active,
-    #0aebff
+    #{$datepicker-day-background-selected-active-fallback}
   );
   --ix-datepicker-day--background--selected-disabled: var(
     --theme-color-component-9--disabled,
@@ -76,7 +153,7 @@ $select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
   );
   --ix-datepicker-day--background--selected-hover: var(
     --theme-color-component-9--hover,
-    #52f1ff
+    #{$datepicker-day-background-selected-hover-fallback}
   );
   --ix-datepicker-day--color--disabled: var(
     --theme-color-weak-text,
@@ -84,7 +161,7 @@ $select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
   );
   --ix-datepicker-day--color--range: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$datepicker-day-color-range-fallback}
   );
   --ix-datepicker-day--color--range-disabled: var(
     --theme-color-weak-text,
@@ -92,20 +169,23 @@ $select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
   );
   --ix-datepicker-day--color--selected: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$datepicker-day-color-selected-fallback}
   );
   --ix-datepicker-day--color--selected-disabled: var(
     --theme-color-weak-text,
     #{$datepicker-day-color-selected-disabled-fallback}
   );
-  --ix-datepicker-today--border-color: var(--theme-color-primary, #00bde3);
+  --ix-datepicker-today--border-color: var(
+    --theme-color-primary,
+    #{$datepicker-today-border-color-fallback}
+  );
   --ix-datepicker-today--border-color--range: var(
     --theme-color-primary,
-    #00bde3
+    #{$datepicker-today-border-color-range-fallback}
   );
   --ix-datepicker-today--border-color--range-active: var(
     --theme-color-primary,
-    #00bde3
+    #{$datepicker-today-border-color-range-active-fallback}
   );
   --ix-datepicker-today--border-color--range-disabled: var(
     --theme-color-primary--disabled,
@@ -113,9 +193,12 @@ $select-list-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
   );
   --ix-datepicker-today--border-color--range-hover: var(
     --theme-color-primary,
-    #00bde3
+    #{$datepicker-today-border-color-range-hover-fallback}
   );
-  --ix-datepicker-today--color: var(--theme-color-primary, #00bde3);
+  --ix-datepicker-today--color: var(
+    --theme-color-primary,
+    #{$datepicker-today-color-fallback}
+  );
   --ix-datepicker-weekday--color: var(
     --theme-color-soft-text,
     #{$datepicker-weekday-color-fallback}

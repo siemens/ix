@@ -7,38 +7,66 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$input-background-invalid-fallback: light-dark(#fcccd0, #4b1a28);
+$input-background-invalid-hover-fallback: light-dark(#fcccd0, #4b1a28);
+$input-background-warning-fallback: light-dark(#ffe8a8, #4b463a);
+$input-background-warning-hover-fallback: light-dark(#ffe8a8, #4b463a);
+$input-border-color-info-fallback: light-dark(#0041b2, #357fff);
+$input-border-color-info-active-fallback: light-dark(#0041b2, #357fff);
+$input-border-color-info-hover-fallback: light-dark(#0041b2, #357fff);
+$input-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
+$input-border-color-invalid-active-fallback: light-dark(#d72332, #ff2453);
+$input-border-color-invalid-hover-fallback: light-dark(#d72332, #ff2453);
+$input-border-color-warning-active-fallback: light-dark(#947100, #ffbb00);
+$input-border-color-warning-hover-fallback: light-dark(#947100, #ffbb00);
+
 :host {
-  --ix-input--background--invalid: var(--theme-color-component-error, #4b1a28);
+  --ix-input--background--invalid: var(
+    --theme-color-component-error,
+    #{$input-background-invalid-fallback}
+  );
   --ix-input--background--invalid--hover: var(
     --theme-color-component-error,
-    #4b1a28
+    #{$input-background-invalid-hover-fallback}
   );
   --ix-input--background--warning: var(
     --theme-color-component-warning,
-    #4b463a
+    #{$input-background-warning-fallback}
   );
   --ix-input--background--warning--hover: var(
     --theme-color-component-warning,
-    #4b463a
+    #{$input-background-warning-hover-fallback}
   );
-  --ix-input--border-color--info: var(--theme-color-info, #357fff);
-  --ix-input--border-color--info--active: var(--theme-color-info, #357fff);
-  --ix-input--border-color--info--hover: var(--theme-color-info, #357fff);
-  --ix-input--border-color--invalid: var(--theme-color-alarm-bdr, #ff2453);
+  --ix-input--border-color--info: var(
+    --theme-color-info,
+    #{$input-border-color-info-fallback}
+  );
+  --ix-input--border-color--info--active: var(
+    --theme-color-info,
+    #{$input-border-color-info-active-fallback}
+  );
+  --ix-input--border-color--info--hover: var(
+    --theme-color-info,
+    #{$input-border-color-info-hover-fallback}
+  );
+  --ix-input--border-color--invalid: var(
+    --theme-color-alarm-bdr,
+    #{$input-border-color-invalid-fallback}
+  );
   --ix-input--border-color--invalid--active: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$input-border-color-invalid-active-fallback}
   );
   --ix-input--border-color--invalid--hover: var(
     --theme-color-alarm-bdr,
-    #ff2453
+    #{$input-border-color-invalid-hover-fallback}
   );
   --ix-input--border-color--warning--active: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$input-border-color-warning-active-fallback}
   );
   --ix-input--border-color--warning--hover: var(
     --theme-color-warning-bdr,
-    #ffbb00
+    #{$input-border-color-warning-hover-fallback}
   );
 }

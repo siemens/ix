@@ -7,17 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$group-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-$group-header-color-fallback: rgba(245, 252, 255, 0.9);
-$group-item-background-fallback: rgba(140, 161, 171, 0.2);
-$group-item-background-active-fallback: rgba(140, 161, 171, 0.25);
-$group-item-background-hover-fallback: rgba(140, 161, 171, 0.45);
-$group-item-background-selected-fallback: rgba(0, 255, 255, 0.1);
-$group-item-border-color-fallback: rgba(0, 0, 0, 0);
-$group-subheader-color-fallback: rgba(245, 252, 255, 0.9);
+$group-color-focus-bdr-fallback: #199fff;
+$group-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$group-header-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$group-item-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$group-item-background-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.25)
+);
+$group-item-background-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.15),
+  rgba(140, 161, 171, 0.45)
+);
+$group-item-background-selected-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.1)
+);
+$group-item-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$group-item-indicator-background-selected-fallback: light-dark(
+  #005e66,
+  #00eaff
+);
+$group-subheader-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
 
 :host {
-  --ix-group--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-group--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$group-color-focus-bdr-fallback}
+  );
   --ix-group--default-border-radius: var(
     --theme-default-border-radius,
     0.25rem
@@ -53,7 +85,7 @@ $group-subheader-color-fallback: rgba(245, 252, 255, 0.9);
   );
   --ix-group-item-indicator--background--selected: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$group-item-indicator-background-selected-fallback}
   );
   --ix-group-subheader--color: var(
     --theme-color-std-text,

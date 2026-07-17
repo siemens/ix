@@ -7,10 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$application-header-color-x-weak-bdr-fallback: rgba(142, 157, 165, 0.2);
-$app-header-border-color-fallback: rgba(224, 245, 255, 0.25);
-$app-header-color-fallback: rgba(245, 252, 255, 0.9);
-$app-header-name-suffix-color-fallback: rgba(229, 247, 255, 0.65);
+$application-header-color-x-weak-bdr-fallback: light-dark(
+  rgba(174, 181, 189, 0.2),
+  rgba(142, 157, 165, 0.2)
+);
+$app-header-background-fallback: light-dark(#eff0f1, #283236);
+$app-header-border-color-fallback: light-dark(
+  rgba(35, 48, 60, 0.15),
+  rgba(224, 245, 255, 0.25)
+);
+$app-header-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$app-header-app-icon-outline-color-fallback: light-dark(#92979b, #94a1a9);
+$app-header-logo-color-fallback: light-dark(#000000, #ffffff);
+$app-header-name-suffix-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
 
 :host {
   --ix-application-header--z-index-fixed: var(--theme-z-index-fixed, 1030);
@@ -18,7 +33,10 @@ $app-header-name-suffix-color-fallback: rgba(229, 247, 255, 0.65);
     --theme-color-x-weak-bdr,
     #{$application-header-color-x-weak-bdr-fallback}
   );
-  --ix-app-header--background: var(--theme-color-2, #283236);
+  --ix-app-header--background: var(
+    --theme-color-2,
+    #{$app-header-background-fallback}
+  );
   --ix-app-header--border-color: var(
     --theme-color-weak-bdr,
     #{$app-header-border-color-fallback}
@@ -28,8 +46,14 @@ $app-header-name-suffix-color-fallback: rgba(229, 247, 255, 0.65);
     --theme-color-std-text,
     #{$app-header-color-fallback}
   );
-  --ix-app-header-app-icon--outline-color: var(--theme-color-8, #94a1a9);
-  --ix-app-header-logo--color: var(--theme-color-logo, #ffffff);
+  --ix-app-header-app-icon--outline-color: var(
+    --theme-color-8,
+    #{$app-header-app-icon-outline-color-fallback}
+  );
+  --ix-app-header-logo--color: var(
+    --theme-color-logo,
+    #{$app-header-logo-color-fallback}
+  );
   --ix-app-header-name-suffix--color: var(
     --theme-color-soft-text,
     #{$app-header-name-suffix-color-fallback}

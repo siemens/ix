@@ -7,30 +7,115 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$flip-tile-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-$flip-alarm-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-alarm-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-alarm-footer-border-color-fallback: rgba(0, 0, 0, 0);
-$flip-filled-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-filled-border-color-fallback: rgba(0, 0, 0, 0);
-$flip-filled-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-filled-footer-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-filled-footer-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-info-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-info-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-info-footer-border-color-fallback: rgba(0, 0, 0, 0);
-$flip-outline-background-fallback: rgba(0, 0, 0, 0);
-$flip-outline-border-color-fallback: rgba(211, 236, 248, 0.4);
-$flip-outline-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-outline-footer-background-fallback: rgba(0, 0, 0, 0);
-$flip-outline-footer-border-color-fallback: rgba(211, 236, 248, 0.4);
-$flip-outline-footer-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-primary-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-primary-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-primary-footer-border-color-fallback: rgba(0, 0, 0, 0);
-$flip-warning-background-fallback: rgba(140, 161, 171, 0.2);
-$flip-warning-color-fallback: rgba(245, 252, 255, 0.9);
-$flip-warning-footer-border-color-fallback: rgba(0, 0, 0, 0);
+$flip-tile-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-alarm-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-alarm-border-color-fallback: light-dark(#d72332, #ff2453);
+$flip-alarm-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-alarm-footer-background-fallback: light-dark(#d72332, #ff2453);
+$flip-alarm-footer-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-alarm-footer-color-fallback: light-dark(#ffffff, #000000);
+$flip-filled-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-filled-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-filled-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-filled-footer-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-filled-footer-border-color-fallback: light-dark(#ffffff, #0f1619);
+$flip-filled-footer-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-info-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-info-border-color-fallback: light-dark(#0041b2, #357fff);
+$flip-info-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-info-footer-background-fallback: light-dark(#0041b2, #357fff);
+$flip-info-footer-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-info-footer-color-fallback: light-dark(#ffffff, #000000);
+$flip-outline-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-outline-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$flip-outline-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-outline-footer-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-outline-footer-border-color-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$flip-outline-footer-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-primary-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-primary-border-color-fallback: light-dark(#006e93, #00bde3);
+$flip-primary-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-primary-footer-background-fallback: light-dark(#006e93, #00bde3);
+$flip-primary-footer-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-primary-footer-color-fallback: light-dark(#ffffff, #000000);
+$flip-warning-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$flip-warning-border-color-fallback: light-dark(#947100, #ffbb00);
+$flip-warning-color-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$flip-warning-footer-background-fallback: #ffbb00;
+$flip-warning-footer-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$flip-warning-footer-color-fallback: #000000;
 
 :host {
   --ix-flip-tile--color-std-text: var(
@@ -42,17 +127,26 @@ $flip-warning-footer-border-color-fallback: rgba(0, 0, 0, 0);
     --theme-color-component-1,
     #{$flip-alarm-background-fallback}
   );
-  --ix-flip-alarm--border-color: var(--theme-color-alarm, #ff2453);
+  --ix-flip-alarm--border-color: var(
+    --theme-color-alarm,
+    #{$flip-alarm-border-color-fallback}
+  );
   --ix-flip-alarm--color: var(
     --theme-color-std-text,
     #{$flip-alarm-color-fallback}
   );
-  --ix-flip-alarm-footer--background: var(--theme-color-alarm, #ff2453);
+  --ix-flip-alarm-footer--background: var(
+    --theme-color-alarm,
+    #{$flip-alarm-footer-background-fallback}
+  );
   --ix-flip-alarm-footer--border-color: var(
     --theme-color-0,
     #{$flip-alarm-footer-border-color-fallback}
   );
-  --ix-flip-alarm-footer--color: var(--theme-color-alarm--contrast, #000000);
+  --ix-flip-alarm-footer--color: var(
+    --theme-color-alarm--contrast,
+    #{$flip-alarm-footer-color-fallback}
+  );
   --ix-flip-filled--background: var(
     --theme-color-component-1,
     #{$flip-filled-background-fallback}
@@ -69,7 +163,10 @@ $flip-warning-footer-border-color-fallback: rgba(0, 0, 0, 0);
     --theme-color-component-1,
     #{$flip-filled-footer-background-fallback}
   );
-  --ix-flip-filled-footer--border-color: var(--theme-color-1, #0f1619);
+  --ix-flip-filled-footer--border-color: var(
+    --theme-color-1,
+    #{$flip-filled-footer-border-color-fallback}
+  );
   --ix-flip-filled-footer--color: var(
     --theme-color-std-text,
     #{$flip-filled-footer-color-fallback}
@@ -78,17 +175,26 @@ $flip-warning-footer-border-color-fallback: rgba(0, 0, 0, 0);
     --theme-color-component-1,
     #{$flip-info-background-fallback}
   );
-  --ix-flip-info--border-color: var(--theme-color-info, #357fff);
+  --ix-flip-info--border-color: var(
+    --theme-color-info,
+    #{$flip-info-border-color-fallback}
+  );
   --ix-flip-info--color: var(
     --theme-color-std-text,
     #{$flip-info-color-fallback}
   );
-  --ix-flip-info-footer--background: var(--theme-color-info, #357fff);
+  --ix-flip-info-footer--background: var(
+    --theme-color-info,
+    #{$flip-info-footer-background-fallback}
+  );
   --ix-flip-info-footer--border-color: var(
     --theme-color-0,
     #{$flip-info-footer-border-color-fallback}
   );
-  --ix-flip-info-footer--color: var(--theme-color-info--contrast, #000000);
+  --ix-flip-info-footer--color: var(
+    --theme-color-info--contrast,
+    #{$flip-info-footer-color-fallback}
+  );
   --ix-flip-outline--background: var(
     --theme-color-0,
     #{$flip-outline-background-fallback}
@@ -117,36 +223,48 @@ $flip-warning-footer-border-color-fallback: rgba(0, 0, 0, 0);
     --theme-color-component-1,
     #{$flip-primary-background-fallback}
   );
-  --ix-flip-primary--border-color: var(--theme-color-primary, #00bde3);
+  --ix-flip-primary--border-color: var(
+    --theme-color-primary,
+    #{$flip-primary-border-color-fallback}
+  );
   --ix-flip-primary--color: var(
     --theme-color-std-text,
     #{$flip-primary-color-fallback}
   );
-  --ix-flip-primary-footer--background: var(--theme-color-primary, #00bde3);
+  --ix-flip-primary-footer--background: var(
+    --theme-color-primary,
+    #{$flip-primary-footer-background-fallback}
+  );
   --ix-flip-primary-footer--border-color: var(
     --theme-color-0,
     #{$flip-primary-footer-border-color-fallback}
   );
   --ix-flip-primary-footer--color: var(
     --theme-color-primary--contrast,
-    #000000
+    #{$flip-primary-footer-color-fallback}
   );
   --ix-flip-warning--background: var(
     --theme-color-component-1,
     #{$flip-warning-background-fallback}
   );
-  --ix-flip-warning--border-color: var(--theme-color-warning-bdr, #ffbb00);
+  --ix-flip-warning--border-color: var(
+    --theme-color-warning-bdr,
+    #{$flip-warning-border-color-fallback}
+  );
   --ix-flip-warning--color: var(
     --theme-color-std-text,
     #{$flip-warning-color-fallback}
   );
-  --ix-flip-warning-footer--background: var(--theme-color-warning, #ffbb00);
+  --ix-flip-warning-footer--background: var(
+    --theme-color-warning,
+    #{$flip-warning-footer-background-fallback}
+  );
   --ix-flip-warning-footer--border-color: var(
     --theme-color-0,
     #{$flip-warning-footer-border-color-fallback}
   );
   --ix-flip-warning-footer--color: var(
     --theme-color-warning--contrast,
-    #000000
+    #{$flip-warning-footer-color-fallback}
   );
 }

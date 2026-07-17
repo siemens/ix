@@ -7,22 +7,57 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$group-item-color-std-text-fallback: rgba(245, 252, 255, 0.9);
-$group-item-color-soft-text-fallback: rgba(229, 247, 255, 0.65);
-$group-item-color-ghost-selected-fallback: rgba(0, 255, 255, 0.1);
-$group-item-color-ghost-selected-hover-fallback: rgba(104, 253, 253, 0.2);
-$group-item-color-ghost-selected-active-fallback: rgba(115, 221, 221, 0.2);
-$group-item-color-weak-text-fallback: rgba(219, 244, 255, 0.4);
-$group-item-background-fallback: rgba(140, 161, 171, 0.2);
-$group-item-border-color-active-fallback: rgba(0, 0, 0, 0);
-$group-item-border-color-hover-fallback: rgba(0, 0, 0, 0);
+$group-item-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$group-item-color-focus-bdr-fallback: #199fff;
+$group-item-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$group-item-color-ghost-selected-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.1)
+);
+$group-item-color-ghost-selected-hover-fallback: light-dark(
+  rgba(32, 184, 197, 0.2),
+  rgba(104, 253, 253, 0.2)
+);
+$group-item-color-ghost-selected-active-fallback: light-dark(
+  rgba(0, 145, 158, 0.2),
+  rgba(115, 221, 221, 0.2)
+);
+$group-item-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$group-item-background-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$group-item-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$group-item-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 0, 0, 0)
+);
+$group-item-indicator-background-selected-fallback: light-dark(
+  #005e66,
+  #00eaff
+);
 
 :host {
   --ix-group-item--color-std-text: var(
     --theme-color-std-text,
     #{$group-item-color-std-text-fallback}
   );
-  --ix-group-item--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-group-item--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$group-item-color-focus-bdr-fallback}
+  );
   --ix-group-item--color-soft-text: var(
     --theme-color-soft-text,
     #{$group-item-color-soft-text-fallback}
@@ -57,6 +92,6 @@ $group-item-border-color-hover-fallback: rgba(0, 0, 0, 0);
   );
   --ix-group-item-indicator--background--selected: var(
     --theme-color-dynamic,
-    #00eaff
+    #{$group-item-indicator-background-selected-fallback}
   );
 }
