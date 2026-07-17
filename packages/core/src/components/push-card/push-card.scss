@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './../card/card-vars' as card-vars;
+@use './../card/card.vars' as card-vars;
 
 @use './push-card.vars' as *;
 :host {
@@ -35,7 +35,7 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.card-#{$variant}) {
     ix-card-content {
       border-bottom: var(--ix-push-card--border-width)

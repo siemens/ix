@@ -7,9 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use './card-vars' as card-vars;
+@use './card.vars' as card-vars;
 
-@use './card.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -76,7 +75,7 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   @include card-variants($variant);
 }
 
@@ -105,7 +104,7 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   @include card-variants-hover($variant);
   @include card-variants-active($variant);
   @include card-variants-selected($variant);
@@ -115,7 +114,7 @@
   cursor: default;
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.passive.card-#{$variant}) {
     --ix-card-background: var(--ix-card-#{$variant}--background);
     --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
