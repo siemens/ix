@@ -11,6 +11,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
  * @internal
+ * @slot default - Grid item content.
  */
 @Component({
   tag: 'ix-css-grid-item',

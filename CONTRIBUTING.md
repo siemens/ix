@@ -123,7 +123,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 Contributions are always welcome. Here's how to get started to make sure your contribution fits seamlessly into the Siemens Industrial Experience design system:
 
 - Before you dive in, open a GitHub issue or drop us an email at team.ix.industry@siemens.com. This helps us stay in sync and avoid duplicate work.
-- Design the component in Figma specifyin the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
+- Design the component in Figma specifying the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
 - Share your design with us to discuss and refine it before you start coding.
 - Once the design is approved, you can start building your component. See [#setup](#setup).
 
@@ -207,9 +207,9 @@ pnpm start --filter html-test-app       # Web Components examples
 #### Angular
 
 1. Run `pnpm start --filter angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:4200/preview/buttons`.
+2. A browser should open at `http://localhost:4201/preview/buttons`.
 3. Edit or add an example in `packages/angular-test-app/src/preview-examples`.
-4. Navigate to `http://localhost:4200/preview/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:4201/preview/{your-example-file-name}` to review your changes.
 
 #### React
 

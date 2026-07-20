@@ -152,6 +152,7 @@ import './pane-axe.spec.ts';
 import './pane-layout-axe.spec.ts';
 import './pill-axe.spec.ts';
 import './pill-variants-axe.spec.ts';
+import './popover-axe.spec.ts';
 import './popover-news-axe.spec.ts';
 import './progress-indicator-axe.spec.ts';
 import './progress-indicator-circular-axe.spec.ts';

@@ -20,6 +20,9 @@ import {
 } from '@stencil/core';
 import { DefaultMixins } from '../utils/internal/component';
 
+/**
+ * @slot default - News content.
+ */
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
