@@ -215,3 +215,66 @@ regressionTest(
     await expect(dropdown).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'roving-tabindex closes on Tab and moves focus past the dropdown button',
+  async ({ page, mount }) => {
+    await mount(`
+      <button id="before">Before</button>
+      <ix-dropdown-button label="Open" navigation-mode="roving-tabindex">
+        <ix-dropdown-item id="tab-1" label="Test1"></ix-dropdown-item>
+        <ix-dropdown-item id="tab-2" label="Test2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <button id="after">After</button>
+    `);
+    const button = page.locator('ix-dropdown-button');
+    const dropdown = button.locator('ix-dropdown');
+    const item1 = page.locator('#tab-1');
+    const after = page.locator('#after');
+
+    await expect(button).toHaveClass(/hydrated/);
+    await button.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(item1).toBeFocused();
+
+    await page.keyboard.press('Tab');
+
+    await expect(dropdown).not.toBeVisible();
+    await expect(after).toBeFocused();
+  }
+);
+
+regressionTest(
+  'updates the open dropdown when navigation mode changes',
+  async ({ page, mount }) => {
+    await mount(`
+      <ix-dropdown-button label="Open">
+        <ix-dropdown-item id="dynamic-1" label="Test1"></ix-dropdown-item>
+        <ix-dropdown-item id="dynamic-2" label="Test2"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+    const button = page.locator('ix-dropdown-button');
+    const item1 = page.locator('#dynamic-1');
+
+    await expect(button).toHaveClass(/hydrated/);
+    await button.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(button).toHaveAttribute('aria-activedescendant', 'dynamic-1');
+
+    await button.evaluate(
+      (element: HTMLIxDropdownButtonElement) =>
+        (element.navigationMode = 'roving-tabindex')
+    );
+
+    await expect(item1).toBeFocused();
+    await expect(button).not.toHaveAttribute('aria-activedescendant');
+
+    await button.evaluate(
+      (element: HTMLIxDropdownButtonElement) =>
+        (element.navigationMode = 'active-descendant')
+    );
+
+    await expect(button).toBeFocused();
+    await expect(button).toHaveAttribute('aria-activedescendant', 'dynamic-1');
+  }
+);

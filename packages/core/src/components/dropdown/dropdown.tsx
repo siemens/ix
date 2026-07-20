@@ -57,6 +57,7 @@ import {
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { closestPassShadow } from '../utils/shadow-dom';
 import {
   CloseBehavior,
   dropdownController,
@@ -955,7 +956,8 @@ export class Dropdown
     const trigger = (this.triggerElement ?? this.anchorElement) as HTMLElement;
     const eventTarget = event.target as Element | null;
     const leavesFocusedItem =
-      eventTarget !== null && eventTarget.closest('ix-dropdown') !== null;
+      eventTarget !== null &&
+      closestPassShadow(eventTarget, 'ix-dropdown') !== null;
 
     if (event.shiftKey && leavesFocusedItem) {
       return trigger;
@@ -975,7 +977,7 @@ export class Dropdown
       focusableQueryString
     ).filter(
       (element) =>
-        element.closest('ix-dropdown') === null &&
+        closestPassShadow(element, 'ix-dropdown') === null &&
         element.getClientRects().length > 0
     );
     const tabOrder = focusableElements
