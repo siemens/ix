@@ -79,7 +79,7 @@ regressionTest.describe('input', () => {
       skipIxHydrationCheck: true,
     });
     const input = await page.waitForSelector('input');
-    await input.hover();
+    await input.hover({ force: true });
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
