@@ -1,5 +1,22 @@
 # @siemens/ix
 
+## 5.1.1
+
+### Patch Changes
+
+- [#2648](https://github.com/siemens/ix/pull/2648) [`1eee43f`](https://github.com/siemens/ix/commit/1eee43f4abb64db905bca3254dc1965b13c6d067) Thanks [@lzeiml](https://github.com/lzeiml)! - Fix `ix-select` to avoid console errors when toggling the `disabled` property. Fixes [#2646](https://github.com/siemens/ix/issues/2646)
+
+- [#2637](https://github.com/siemens/ix/pull/2637) [`31aec70`](https://github.com/siemens/ix/commit/31aec70c834f616fe99d68422dc96206b57ffe54) Thanks [@SaiYugandhar03](https://github.com/SaiYugandhar03)! - Update the disabled and readonly text contrast for these components:
+
+  - **ix-input**
+  - **ix-number-input**
+  - **ix-date-input**
+  - **ix-date-time-input**
+  - **ix-time-input**
+  - **ix-textarea**
+
+  Fixes [#2600](https://github.com/siemens/ix/issues/2600)
+
 ## 5.1.0
 
 ### Minor Changes
