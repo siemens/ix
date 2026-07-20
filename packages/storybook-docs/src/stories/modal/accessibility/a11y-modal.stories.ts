@@ -41,7 +41,6 @@ export const Default: Story = {
     <ix-button>background button1</ix-button>
     <ix-button>background button2</ix-button>
     <ix-modal
-      class="visible"
       aria-labelledby="modal-a11y-title"
       centered
       disable-animation
@@ -67,7 +66,6 @@ export const NonBlocking: Story = {
       <ix-button>background button1</ix-button>
       <ix-button>background button2</ix-button>
       <ix-modal
-        class="visible"
         aria-labelledby="modal-nb-title"
         centered
         disable-animation
