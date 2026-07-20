@@ -30,7 +30,9 @@ type Story = StoryObj;
  * Modal dialog with an accessible name via `aria-labelledby` (blocking / `aria-modal="true"`).
  */
 const openModal = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-  const modal = canvasElement.querySelector('ix-modal') as HTMLIxModalElement | null;
+  const modal = canvasElement.querySelector(
+    'ix-modal'
+  ) as HTMLIxModalElement | null;
   await customElements.whenDefined('ix-modal');
   await modal?.showModal();
 };
@@ -38,7 +40,12 @@ export const Default: Story = {
   render: () => html`
     <ix-button>background button1</ix-button>
     <ix-button>background button2</ix-button>
-    <ix-modal class="visible" aria-labelledby="modal-a11y-title">
+    <ix-modal
+      class="visible"
+      aria-labelledby="modal-a11y-title"
+      centered
+      disable-animation
+    >
       <ix-modal-header id="modal-a11y-title">Modal title</ix-modal-header>
       <ix-modal-content>Supporting description for this dialog.</ix-modal-content>
       <ix-modal-footer>
@@ -47,7 +54,7 @@ export const Default: Story = {
       </ix-modal-footer>
     </ix-modal>
   `,
-    play: openModal,
+  play: openModal,
 };
 
 /**
@@ -62,6 +69,8 @@ export const NonBlocking: Story = {
       <ix-modal
         class="visible"
         aria-labelledby="modal-nb-title"
+        centered
+        disable-animation
         ?is-non-blocking=${true}
       >
         <ix-modal-header id="modal-nb-title">Notification</ix-modal-header>
@@ -74,5 +83,5 @@ export const NonBlocking: Story = {
       </ix-modal>
     </main>
   `,
-    play: openModal,
+  play: openModal,
 };
