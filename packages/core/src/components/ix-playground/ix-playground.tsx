@@ -15,6 +15,10 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class IxPlayground {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-chat-input></ix-chat-input>
+      </Host>
+    );
   }
 }

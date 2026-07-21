@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat">
+  <ix-chat-input
+    slot="prompt"
+    value="Check open alarms and suggest the next maintenance step."
+    placeholder="Ask about asset status..."
+    textarea-label="Service assistant prompt"
+    max-length="180"
+    character-limit="180"
+  >
+    <ix-chat-attachment
+      slot="attachments"
+      file-name="shift_report.pdf"
+      icon="pdf-document"
+    ></ix-chat-attachment>
+    <ix-icon-button
+      slot="start"
+      aria-label="Attach file"
+      icon="attach"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="end"
+      aria-label="Add image"
+      icon="image"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="end"
+      aria-label="Record voice input"
+      icon="microphone"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+  </ix-chat-input>
+</ix-chat>

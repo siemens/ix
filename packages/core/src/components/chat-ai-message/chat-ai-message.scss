@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--theme-space-3);
+  box-sizing: border-box;
+  color: var(--theme-color-std-text);
+
+  @include component.ix-component;
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    gap: var(--theme-space-3);
+    font-size: var(--theme-font-size-l);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .message ::slotted(*) {
+    margin: 0;
+    color: inherit;
+    overflow-wrap: anywhere;
+  }
+
+  .message ::slotted(h1),
+  .message ::slotted(h2),
+  .message ::slotted(h3),
+  .message ::slotted(h4),
+  .message ::slotted(h5),
+  .message ::slotted(h6) {
+    font-size: var(--theme-font-size-l);
+    font-weight: var(--theme-font-weight-bold);
+    line-height: 1.2;
+  }
+
+  .meta {
+    display: none;
+    align-items: center;
+    gap: var(--theme-space-3);
+    width: 100%;
+    min-height: 2rem;
+  }
+
+  .actions {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .sources {
+    display: none;
+    align-items: center;
+  }
+
+  .actions ::slotted(ix-icon-button),
+  .sources ::slotted(*) {
+    flex: 0 0 auto;
+  }
+}
+
+:host(.has-meta) {
+  .meta {
+    display: flex;
+  }
+}
+
+:host(.has-actions) {
+  .actions {
+    display: flex;
+  }
+}
+
+:host(.has-sources) {
+  .sources {
+    display: flex;
+  }
+}
