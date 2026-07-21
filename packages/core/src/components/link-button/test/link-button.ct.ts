@@ -10,9 +10,14 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(
-    '<ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>'
-  );
+  await mount(`
+    <div>
+      <ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>
+      <ix-link-button disabled url="https://ix.siemens.io/">
+        IX home disabled
+      </ix-link-button>
+    </div>
+  `);
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -29,6 +34,8 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(linkButton).toHaveClass(/\bhydrated\b/);
   await expect(link).toHaveAttribute('href', 'https://ix.siemens.io/');
   await expect(link).not.toHaveAttribute('title');
+  await expect(link).not.toHaveAttribute('aria-disabled');
+  await expect(link).not.toHaveAttribute('tabindex');
 });
 
 regressionTest(
