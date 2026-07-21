@@ -36,6 +36,12 @@ const getComposedDistance = (host: Node, target: Node): number | undefined => {
       return distance;
     }
 
+    if (current instanceof Element && current.assignedSlot) {
+      current = current.assignedSlot;
+      distance++;
+      continue;
+    }
+
     if (current.parentNode) {
       current = current.parentNode;
       distance++;

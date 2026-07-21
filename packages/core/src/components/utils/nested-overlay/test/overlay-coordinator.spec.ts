@@ -140,6 +140,37 @@ describe('OverlayCoordinator', () => {
     expect(grandparent.getAdjacentFocusElement).not.toHaveBeenCalled();
   });
 
+  it('recognizes a child trigger assigned to a slot inside its parent', () => {
+    const coordinator = createCoordinator();
+    const wrapper = document.createElement('div');
+    const wrapperShadow = wrapper.attachShadow({ mode: 'open' });
+    const parentHost = document.createElement('div');
+    const slot = document.createElement('slot');
+    const childTrigger = document.createElement('button');
+    const childHost = document.createElement('div');
+    parentHost.append(slot);
+    wrapperShadow.append(parentHost);
+    wrapper.append(childTrigger);
+    document.body.append(wrapper, childHost);
+
+    const parent = createOverlay('dropdown:parent', {
+      kind: 'dropdown',
+      hostElement: parentHost,
+    });
+    const child = createOverlay('dropdown:child', {
+      kind: 'dropdown',
+      hostElement: childHost,
+      triggerElement: childTrigger,
+    });
+    coordinator.connect(parent.entry);
+    coordinator.connect(child.entry);
+    coordinator.presented(parent.entry.key);
+
+    expect(
+      coordinator.pathIncludesChildTrigger(parent.entry.key, [childTrigger])
+    ).toBe(true);
+  });
+
   it('keeps a parent open when clicking inside a presented child overlay', () => {
     const coordinator = createCoordinator();
     const parentHost = document.createElement('div');

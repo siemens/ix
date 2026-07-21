@@ -1177,6 +1177,15 @@ export class Dropdown
     if (
       dropdownController.pathIncludesChildOverlay(this, event.composedPath())
     ) {
+      const childDropdownTrigger = dropdownController.pathIncludesTrigger(
+        event.composedPath()
+      );
+      if (
+        childDropdownTrigger &&
+        childDropdownTrigger !== this.triggerElement
+      ) {
+        event.preventDefault();
+      }
       return;
     }
 
