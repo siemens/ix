@@ -13,24 +13,17 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-    <style>
-      .test-container {
-        padding: 1rem;
-      }
-    </style>
   </head>
-
-  <body>
-    <div class="test-container">
-      <ix-textarea
-        placeholder="Enter text here"
-        disabled
-      ></ix-textarea>
-      <ix-textarea
-        placeholder="Enter text here"
-        disabled
-      ></ix-textarea>
+  <body padding="2rem">
+    <div style="width: 200px">
+      <ix-select value="1" mode="multiple">
+        <ix-select-item
+          label="Iteeeeeeeeeeeeeeeem 1"
+          value="1"
+        ></ix-select-item>
+      </ix-select>
     </div>
+
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
 </html>

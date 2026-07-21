@@ -45,7 +45,7 @@ export class MenuExpandIcon {
     return (
       <button
         aria-label={this.expanded ? this.i18nCollapse : this.i18nExpand}
-        aria-pressed={a11yBoolean(this.expanded)}
+        aria-expanded={a11yBoolean(this.expanded)}
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -68,8 +68,8 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
-        aria-pressed={a11yBoolean(this.expanded)}
         aria-label={this.expanded ? this.i18nCollapse : this.i18nExpand}
+        aria-expanded={a11yBoolean(this.expanded)}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         variant="subtle-tertiary"
       ></ix-icon-button>

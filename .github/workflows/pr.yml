@@ -29,6 +29,7 @@ jobs:
       echarts_any_changed: ${{ steps.changes.outputs.echarts_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
       unittests_any_changed: ${{ steps.changes.outputs.unittests_any_changed }}
+      accessibility_any_changed: ${{ steps.changes.outputs.accessibility_any_changed }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Track changes between commits

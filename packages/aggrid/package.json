@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "description": "AG Grid theme based on ix theme variables",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "files": [
     "LICENSE",
     "README.md",

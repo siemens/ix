@@ -42,6 +42,13 @@ export class FilterChip {
   @Prop() readonly = false;
 
   /**
+   * If true the close button will not be rendered.
+   * Primarily used for overflow chip.
+   *
+   */
+  @Prop() hideCloseButton = false;
+
+  /**
    * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
    */
@@ -61,13 +68,17 @@ export class FilterChip {
   render() {
     return (
       <Host
-        class={{ disabled: this.disabled, readonly: this.readonly }}
+        class={{
+          disabled: this.disabled,
+          readonly: this.readonly,
+          'hide-close-button': this.hideCloseButton,
+        }}
         title={this.hostElement.textContent}
       >
         <div class="slot-container">
           <slot></slot>
         </div>
-        {!this.disabled && !this.readonly ? (
+        {!this.disabled && !this.readonly && !this.hideCloseButton ? (
           <ix-icon-button
             variant="tertiary"
             oval

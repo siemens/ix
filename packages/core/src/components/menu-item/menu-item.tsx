@@ -8,15 +8,30 @@
  */
 
 import { iconDocument } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Mixin,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { AnchorTarget } from '../button/button.interface';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { Disposable } from '../utils/typed-event';
 import { createSequentialId } from '../utils/uuid';
 import { IxMenuItemBase } from './menu-item.interface';
+import { a11yBoolean } from '../utils/a11y';
 
 let sequenceId = 0;
 
@@ -34,7 +49,10 @@ let sequenceId = 0;
     delegatesFocus: true,
   },
 })
-export class MenuItem implements IxMenuItemBase {
+export class MenuItem
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxMenuItemBase, InheritAriaAttributesMixinContract
+{
   /**
    * Label of the menu item. Will also be used as tooltip text
    */
@@ -103,11 +121,21 @@ export class MenuItem implements IxMenuItemBase {
   /** @internal */
   @Prop() isCategory: boolean = false;
 
-  @Element() hostElement!: HTMLIxMenuItemElement;
+  /** @internal */
+  @Prop() menuCategoryLabel?: string;
+
+  @Element() override hostElement!: HTMLIxMenuItemElement;
 
   @State() tooltip?: string;
-  @State() ariaHiddenTooltip = false;
   @State() menuExpanded: boolean = false;
+  @State() private isInMenuContext = false;
+  @State() private hostTabIndex = -1;
+
+  /** @internal */
+  @Method()
+  async setTabIndex(value: number) {
+    this.hostTabIndex = value;
+  }
 
   private readonly internalItemId = createSequentialId(
     'ix-menu-item-',
@@ -122,9 +150,24 @@ export class MenuItem implements IxMenuItemBase {
     this.setTooltip();
   });
 
-  componentWillLoad() {
+  override componentWillLoad() {
+    super.componentWillLoad();
+
     this.isHostedInsideCategory =
       !!this.hostElement.closest('ix-menu-category');
+
+    const rootNode = this.hostElement.getRootNode();
+    const isInMenuShadowDOM =
+      rootNode instanceof ShadowRoot &&
+      rootNode.host?.tagName?.toLowerCase() === 'ix-menu';
+    const directParent = this.hostElement.parentElement;
+    const isMenuChild =
+      !this.isHostedInsideCategory &&
+      (directParent?.tagName?.toLowerCase() === 'ix-menu' ||
+        (directParent?.tagName?.toLowerCase() === 'a' &&
+          directParent?.parentElement?.tagName?.toLowerCase() === 'ix-menu'));
+
+    this.isInMenuContext = isInMenuShadowDOM || isMenuChild;
 
     this.onIconChange();
 
@@ -134,7 +177,7 @@ export class MenuItem implements IxMenuItemBase {
     );
   }
 
-  componentWillRender() {
+  override componentWillRender() {
     this.setTooltip();
   }
 
@@ -144,13 +187,9 @@ export class MenuItem implements IxMenuItemBase {
       this.label ??
       this.hostElement.textContent ??
       undefined;
-
-    this.ariaHiddenTooltip =
-      this.tooltipText === this.label ||
-      this.tooltipText === this.hostElement.textContent;
   }
 
-  connectedCallback() {
+  override connectedCallback() {
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -158,7 +197,9 @@ export class MenuItem implements IxMenuItemBase {
     });
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -181,15 +222,50 @@ export class MenuItem implements IxMenuItemBase {
     }
   }
 
+  private getAriaLabel() {
+    if ('aria-label' in this.inheritAriaAttributes) {
+      return this.inheritAriaAttributes['aria-label'];
+    }
+
+    const hasDistinctTooltip =
+      this.tooltipText &&
+      this.tooltipText !== this.label &&
+      this.tooltipText !== this.hostElement.textContent;
+
+    if (hasDistinctTooltip) {
+      return `${this.label ?? this.menuCategoryLabel ?? this.hostElement.textContent ?? ''} ${this.tooltipText}`;
+    }
+
+    return undefined;
+  }
+
+  private getEffectiveRole(externalRole?: string) {
+    const internalRole =
+      this.isHostedInsideCategory || this.isCategory || this.isInMenuContext
+        ? 'menuitem'
+        : undefined;
+
+    return externalRole ?? internalRole;
+  }
+
   private returnFocusToParentCategoryMenuItem() {
-    const categoryMenuItem = this.hostElement
-      .closest<HTMLElement>('ix-menu-category')
-      ?.shadowRoot?.querySelector<HTMLElement>('ix-menu-item.category-parent');
+    const categoryElement =
+      this.hostElement.closest<HTMLElement>('ix-menu-category');
+    const categoryMenuItem = categoryElement?.shadowRoot?.querySelector(
+      'ix-menu-item.category-parent'
+    ) as HTMLElement | null;
+
+    categoryElement?.dispatchEvent(
+      new CustomEvent('ixMenuCategoryItemSelect', {
+        bubbles: true,
+        composed: true,
+      })
+    );
 
     categoryMenuItem?.focus();
   }
 
-  render() {
+  override render() {
     let extendedAttributes = {};
     if (this.home) {
       extendedAttributes = {
@@ -203,11 +279,14 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
-    const hostA11y = a11yHostAttributes(this.hostElement);
+    const { role: externalRole, ...inheritedA11yWithoutRole } =
+      this.inheritAriaAttributes;
+
+    const effectiveRole = this.getEffectiveRole(externalRole);
 
     const commonAttributes = {
       class: 'tab',
-      ...hostA11y,
+      ...inheritedA11yWithoutRole,
     };
 
     const menuContent = [
@@ -229,6 +308,8 @@ export class MenuItem implements IxMenuItemBase {
       </span>,
     ];
 
+    const ariaLabel = this.getAriaLabel();
+
     return (
       <Host
         class={{
@@ -239,17 +320,20 @@ export class MenuItem implements IxMenuItemBase {
           'tab-nested': this.isHostedInsideCategory,
           'ix-focusable': !this.disabled,
         }}
-        aria-disabled={this.disabled ? 'true' : null}
-        tabIndex={this.disabled ? -1 : 0}
-        role={this.isHostedInsideCategory ? 'menuitem' : undefined}
         {...extendedAttributes}
       >
         {this.href ? (
           <a
             {...commonAttributes}
+            role={effectiveRole}
             href={this.disabled ? undefined : this.href}
             target={this.target}
             rel={this.rel}
+            tabIndex={
+              this.isInMenuContext || this.isCategory
+                ? this.hostTabIndex
+                : undefined
+            }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             onClick={(e: Event) => {
@@ -258,14 +342,26 @@ export class MenuItem implements IxMenuItemBase {
                 e.stopPropagation();
               }
             }}
+            aria-disabled={a11yBoolean(this.disabled)}
+            aria-label={ariaLabel}
+            aria-current={this.active ? 'page' : undefined}
           >
             {menuContent}
           </a>
         ) : (
           <button
             {...commonAttributes}
+            role={effectiveRole}
+            tabIndex={
+              this.isInMenuContext || this.isCategory
+                ? this.hostTabIndex
+                : undefined
+            }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
+            aria-disabled={a11yBoolean(this.disabled)}
+            aria-label={ariaLabel}
+            aria-current={this.active ? 'page' : undefined}
           >
             {menuContent}
           </button>
@@ -275,7 +371,7 @@ export class MenuItem implements IxMenuItemBase {
           placement={'right'}
           showDelay={1000}
           interactive={false}
-          aria-hidden={a11yBoolean(this.ariaHiddenTooltip)}
+          aria-hidden="true"
           aria-labelledby={this.internalItemId}
         >
           {this.tooltip}
