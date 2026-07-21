@@ -143,6 +143,8 @@ import './dropdown-icon-axe.spec.ts';
 import './dropdown-icon.spec.ts';
 import './dropdown-quick-actions-axe.spec.ts';
 import './dropdown-quick-actions.spec.ts';
+import './dropdown-roving-tabindex-axe.spec.ts';
+import './dropdown-roving-tabindex.spec.ts';
 import './dropdown-submenu-axe.spec.ts';
 import './dropdown-submenu.spec.ts';
 import './dropdown.spec.ts';

@@ -20,6 +20,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'disableFocusTrap',
   'enableTopLayer',
   'focusCheckedItem',
+  'navigationMode',
   'keyboardActivationKeys',
   'keyboardItemTriggerKeys',
   'offset',

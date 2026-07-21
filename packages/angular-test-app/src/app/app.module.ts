@@ -92,6 +92,7 @@ import DropdownButton from '../preview-examples/dropdown-button';
 import DropdownButtonIcon from '../preview-examples/dropdown-button-icon';
 import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
+import DropdownRovingTabindex from '../preview-examples/dropdown-roving-tabindex';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
@@ -347,6 +348,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     DropdownButton,
     DropdownIcon,
     DropdownQuickActions,
+    DropdownRovingTabindex,
     DropdownSubmenu,
     Dropdown,
     Echarts,

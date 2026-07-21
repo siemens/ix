@@ -184,6 +184,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/dropdown-icon').then((m) => m.default),
   'preview/dropdown-quick-actions': () =>
     import('../preview-examples/dropdown-quick-actions').then((m) => m.default),
+  'preview/dropdown-roving-tabindex': () =>
+    import('../preview-examples/dropdown-roving-tabindex').then(
+      (m) => m.default
+    ),
   'preview/dropdown-submenu': () =>
     import('../preview-examples/dropdown-submenu').then((m) => m.default),
   'preview/echarts': () =>

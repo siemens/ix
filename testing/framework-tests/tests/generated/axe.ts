@@ -71,6 +71,7 @@ import './dropdown-button-axe.spec.ts';
 import './dropdown-button-icon-axe.spec.ts';
 import './dropdown-icon-axe.spec.ts';
 import './dropdown-quick-actions-axe.spec.ts';
+import './dropdown-roving-tabindex-axe.spec.ts';
 import './dropdown-submenu-axe.spec.ts';
 import './empty-state-axe.spec.ts';
 import './empty-state-compact-axe.spec.ts';

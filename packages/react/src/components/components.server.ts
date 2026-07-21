@@ -717,6 +717,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         disableFocusTrap: 'disable-focus-trap',
         enableTopLayer: 'enable-top-layer',
         focusCheckedItem: 'focus-checked-item',
+        navigationMode: 'navigation-mode',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
         suppressOverflowBehavior: 'suppress-overflow-behavior',
@@ -743,6 +744,7 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         placement: 'placement',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
         focusCheckedItem: 'focus-checked-item',
+        navigationMode: 'navigation-mode',
         enableTopLayer: 'enable-top-layer',
         suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },

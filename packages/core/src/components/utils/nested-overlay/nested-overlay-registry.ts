@@ -11,6 +11,7 @@ import {
   buildComposedPath,
   buildPathIncluding,
   ChildIdsByParent,
+  getParentId as findParentId,
   removeIdFromHierarchy,
 } from './hierarchy';
 import { DismissAllOptions, OverlayDismissPolicy } from './types';
@@ -19,7 +20,7 @@ export interface OverlayInstanceBase {
   getId(): string;
 }
 
-export class NestedOverlayStack<T extends OverlayInstanceBase> {
+export class NestedOverlayRegistry<T extends OverlayInstanceBase> {
   private readonly instances = new Map<string, T>();
   private readonly childIdsByParent: ChildIdsByParent = {};
 
@@ -66,8 +67,8 @@ export class NestedOverlayStack<T extends OverlayInstanceBase> {
     return this.childIdsByParent[parentId] || [];
   }
 
-  getChildIdsByParent(): ChildIdsByParent {
-    return this.childIdsByParent;
+  getParentId(childId: string): string | undefined {
+    return findParentId(childId, this.childIdsByParent);
   }
 
   removeFromHierarchy(id: string): void {

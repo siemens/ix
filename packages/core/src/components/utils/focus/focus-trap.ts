@@ -68,6 +68,20 @@ const mergeUniqueInDocumentOrder = (
   });
 };
 
+export const sortByTabOrder = (elements: HTMLElement[]) => {
+  return elements
+    .map((element, documentOrder) => ({ documentOrder, element }))
+    .sort((a, b) => {
+      const aOrder =
+        a.element.tabIndex > 0 ? a.element.tabIndex : Number.MAX_SAFE_INTEGER;
+      const bOrder =
+        b.element.tabIndex > 0 ? b.element.tabIndex : Number.MAX_SAFE_INTEGER;
+
+      return aOrder - bOrder || a.documentOrder - b.documentOrder;
+    })
+    .map(({ element }) => element);
+};
+
 export const getDeepActiveElement = (): Element | null => {
   let active: Element | null = document.activeElement;
 
@@ -346,13 +360,37 @@ export function getFocusTrapFocusables(
     (element) => !isHiddenFromTabOrder(element)
   );
 
-  if (!options?.excludeElements) {
-    return filtered;
+  const included = options?.excludeElements
+    ? filtered.filter(
+        (element) => !element.hasAttribute(TRAP_FOCUS_EXCLUDE_ATTRIBUTE)
+      )
+    : filtered;
+
+  return sortByTabOrder(included);
+}
+
+export function getAdjacentFocusTrapElement(
+  ref: HTMLElement,
+  current: HTMLElement,
+  backwards: boolean,
+  options?: FocusTrapOptions,
+  excludedHost?: HTMLElement
+): HTMLElement | undefined {
+  const focusableElements = getFocusTrapFocusables(ref, options).filter(
+    (element) =>
+      excludedHost === undefined ||
+      !isFocusWithinTrapHost(element, excludedHost)
+  );
+  const currentIndex = findActiveFocusableIndex(current, focusableElements);
+  if (currentIndex === -1 || focusableElements.length === 0) {
+    return undefined;
   }
 
-  return filtered.filter(
-    (element) => !element.hasAttribute(TRAP_FOCUS_EXCLUDE_ATTRIBUTE)
-  );
+  const nextIndex = backwards
+    ? (currentIndex - 1 + focusableElements.length) % focusableElements.length
+    : (currentIndex + 1) % focusableElements.length;
+
+  return focusableElements[nextIndex];
 }
 
 function isHeaderFocusable(

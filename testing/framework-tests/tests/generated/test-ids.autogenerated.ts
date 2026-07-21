@@ -174,6 +174,7 @@ export const testIds = [
   "echarts-bar-horizontal-stacked",
   "dropdown",
   "dropdown-submenu",
+  "dropdown-roving-tabindex",
   "dropdown-quick-actions",
   "dropdown-icon",
   "dropdown-button",

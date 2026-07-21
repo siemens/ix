@@ -14,7 +14,7 @@ import {
   getParentId,
   removeIdFromHierarchy,
 } from '../hierarchy';
-import { NestedOverlayStack } from '../nested-overlay-stack';
+import { NestedOverlayRegistry } from '../nested-overlay-registry';
 
 describe('nested-overlay hierarchy', () => {
   const childIdsByParent = {
@@ -55,24 +55,24 @@ describe('nested-overlay hierarchy', () => {
   });
 });
 
-describe('NestedOverlayStack', () => {
+describe('NestedOverlayRegistry', () => {
   type Instance = { id: string; persistent: boolean; open: boolean };
   type TestInstance = Instance & { getId(): string };
 
-  function createStack(
+  function createRegistry(
     dismissSpy = vi.fn<(instance: TestInstance) => void>()
   ): {
-    stack: NestedOverlayStack<TestInstance>;
+    registry: NestedOverlayRegistry<TestInstance>;
     dismissSpy: typeof dismissSpy;
   } {
-    const stack = new NestedOverlayStack<TestInstance>(
+    const registry = new NestedOverlayRegistry<TestInstance>(
       {
         blocksOutsideDismiss: (instance) => instance.persistent,
       },
       dismissSpy
     );
 
-    return { stack, dismissSpy };
+    return { registry, dismissSpy };
   }
 
   function instance(
@@ -88,43 +88,45 @@ describe('NestedOverlayStack', () => {
   }
 
   it('dismissOthers skips instances on the active hierarchy path', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const parent = instance('parent');
     const child = instance('child');
     const unrelated = instance('unrelated');
 
-    stack.connect(parent);
-    stack.connect(child);
-    stack.connect(unrelated);
-    stack.setChildIds('parent', ['child']);
+    registry.connect(parent);
+    registry.connect(child);
+    registry.connect(unrelated);
+    registry.setChildIds('parent', ['child']);
 
-    stack.dismissOthers('child');
+    expect(registry.getParentId('child')).toBe('parent');
+
+    registry.dismissOthers('child');
 
     expect(dismissSpy).toHaveBeenCalledTimes(1);
     expect(dismissSpy).toHaveBeenCalledWith(unrelated);
   });
 
   it('dismissAll respects blocksOutsideDismiss unless policy is ignored', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const dismissible = instance('dismissible');
     const persistent = instance('persistent', { persistent: true });
 
-    stack.connect(dismissible);
-    stack.connect(persistent);
+    registry.connect(dismissible);
+    registry.connect(persistent);
 
-    stack.dismissAll();
+    registry.dismissAll();
 
     expect(dismissSpy).toHaveBeenCalledTimes(1);
     expect(dismissSpy).toHaveBeenCalledWith(dismissible);
   });
 
   it('dismissAll with ignorePolicyForIds dismisses persistent instances', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const persistent = instance('persistent', { persistent: true });
 
-    stack.connect(persistent);
+    registry.connect(persistent);
 
-    stack.dismissAll({ ignorePolicyForIds: ['persistent'] });
+    registry.dismissAll({ ignorePolicyForIds: ['persistent'] });
 
     expect(dismissSpy).toHaveBeenCalledOnce();
   });

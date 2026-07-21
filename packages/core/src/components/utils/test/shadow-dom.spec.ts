@@ -8,7 +8,11 @@
  */
 
 import { afterEach, describe, expect, it } from 'vitest';
-import { hasSlottedContent, hasSlottedElements } from '../shadow-dom';
+import {
+  closestPassShadow,
+  hasSlottedContent,
+  hasSlottedElements,
+} from '../shadow-dom';
 
 function createDefaultSlot(...assignedNodes: Node[]) {
   const host = document.createElement('div');
@@ -85,6 +89,32 @@ describe('shadow-dom slot helpers', () => {
           createDefaultSlot(document.createTextNode('I agree to '), link)
         )
       ).toBe(true);
+    });
+  });
+
+  describe('closestPassShadow', () => {
+    it('finds an ancestor across a shadow root', () => {
+      const ancestor = document.createElement('section');
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+      const child = document.createElement('button');
+      ancestor.append(host);
+      shadowRoot.append(child);
+
+      expect(closestPassShadow(child, 'section')).toBe(ancestor);
+    });
+
+    it('finds an ancestor through an assigned slot', () => {
+      const ancestor = document.createElement('section');
+      const host = document.createElement('div');
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+      const slot = document.createElement('slot');
+      const child = document.createElement('button');
+      ancestor.append(host);
+      shadowRoot.append(slot);
+      host.append(child);
+
+      expect(closestPassShadow(child, 'section')).toBe(ancestor);
     });
   });
 });
