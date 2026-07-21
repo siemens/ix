@@ -776,7 +776,7 @@ importers:
         version: 8.7.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@ionic/react-router':
         specifier: ^8.7.4
-        version: 8.7.4(react-dom@19.1.1(react@19.1.1))(react-router-dom@5.3.4(react@19.1.1))(react-router@5.3.4(react@19.1.1))(react@19.1.1)
+        version: 8.7.4(react-dom@19.1.1(react@19.1.1))(react-router-dom@5.3.4(react@19.1.1))(react-router@6.30.4(react@19.1.1))(react@19.1.1)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -805,8 +805,8 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
       react-router:
-        specifier: ^5.3.4
-        version: 5.3.4(react@19.1.1)
+        specifier: ^6.30.4
+        version: 6.30.4(react@19.1.1)
       react-router-dom:
         specifier: ^5.3.4
         version: 5.3.4(react@19.1.1)
@@ -4161,6 +4161,10 @@ packages:
 
   '@remix-run/router@1.21.0':
     resolution: {integrity: sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==}
+    engines: {node: '>=14.0.0'}
+
+  '@remix-run/router@1.23.3':
+    resolution: {integrity: sha512-4An71tdz9X8+3sI4Qqqd2LWd9vS39J7sqd9EU4Scw7TJE/qB10Flv/UuqbPVgfQV9XoK8Np6jNquZitnZq5i+Q==}
     engines: {node: '>=14.0.0'}
 
   '@rolldown/binding-android-arm64@1.0.0-rc.17':
@@ -10347,6 +10351,12 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
+  react-router@6.30.4:
+    resolution: {integrity: sha512-SVUsDe+DybHM/WmYKIVYhZh1o5Dcuf16yM6WjG02Q9XVFMZIJyHYhwrr6bFBXZkVP6z69kNkMyBCujt8FaFLJA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+
   react-style-stringify@1.2.0:
     resolution: {integrity: sha512-88JZckqgbfXJaGcDQoTFKRmBwHBF0Ddaxz3PL9Q+vywAJruBY+NdN+ZiKSBe7r/pWtjbt0naZdtH5oNI1X3FLA==}
     engines: {node: '>=14.0.0'}
@@ -15350,12 +15360,12 @@ snapshots:
       ionicons: 8.0.13
       tslib: 2.8.1
 
-  '@ionic/react-router@8.7.4(react-dom@19.1.1(react@19.1.1))(react-router-dom@5.3.4(react@19.1.1))(react-router@5.3.4(react@19.1.1))(react@19.1.1)':
+  '@ionic/react-router@8.7.4(react-dom@19.1.1(react@19.1.1))(react-router-dom@5.3.4(react@19.1.1))(react-router@6.30.4(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@ionic/react': 8.7.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
-      react-router: 5.3.4(react@19.1.1)
+      react-router: 6.30.4(react@19.1.1)
       react-router-dom: 5.3.4(react@19.1.1)
       tslib: 2.8.1
 
@@ -16426,6 +16436,8 @@ snapshots:
       - supports-color
 
   '@remix-run/router@1.21.0': {}
+
+  '@remix-run/router@1.23.3': {}
 
   '@rolldown/binding-android-arm64@1.0.0-rc.17':
     optional: true
@@ -24347,6 +24359,11 @@ snapshots:
   react-router@6.28.1(react@19.1.1):
     dependencies:
       '@remix-run/router': 1.21.0
+      react: 19.1.1
+
+  react-router@6.30.4(react@19.1.1):
+    dependencies:
+      '@remix-run/router': 1.23.3
       react: 19.1.1
 
   react-style-stringify@1.2.0:
