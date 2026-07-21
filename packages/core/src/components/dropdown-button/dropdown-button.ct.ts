@@ -173,7 +173,7 @@ regressionTest(
 
 regressionTest(
   'roving-tabindex navigation moves DOM focus without aria-activedescendant',
-  async ({ page, mount }) => {
+  async ({ page, mount, makeAxeBuilder }) => {
     await mount(`
     <ix-dropdown-button label="Open" navigation-mode="roving-tabindex">
       <ix-dropdown-item id="rov-1" label="Test1"></ix-dropdown-item>
@@ -204,6 +204,11 @@ regressionTest(
     await expect(item1).toHaveAttribute('tabindex', '0');
     await expect(button).not.toHaveAttribute('aria-activedescendant');
 
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('ix-dropdown-item')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+
     await page.keyboard.press('ArrowDown');
     await expect(item2).toBeFocused();
     await expect(item2).toHaveAttribute('tabindex', '0');
@@ -218,7 +223,7 @@ regressionTest(
 
 regressionTest(
   'roving-tabindex closes on Tab and moves focus past the dropdown button',
-  async ({ page, mount }) => {
+  async ({ page, mount, makeAxeBuilder }) => {
     await mount(`
       <button id="before">Before</button>
       <ix-dropdown-button label="Open" navigation-mode="roving-tabindex">
@@ -236,6 +241,11 @@ regressionTest(
     await button.focus();
     await page.keyboard.press('ArrowDown');
     await expect(item1).toBeFocused();
+
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('ix-dropdown-item')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
 
     await page.keyboard.press('Tab');
 

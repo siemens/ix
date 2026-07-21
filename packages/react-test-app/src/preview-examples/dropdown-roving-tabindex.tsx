@@ -15,7 +15,7 @@ import {
   IxDropdownItem,
 } from '@siemens/ix-react';
 
-export default () => {
+export default function DropdownRovingTabindex() {
   return (
     <>
       <IxButton id="triggerId">Open</IxButton>
@@ -29,4 +29,4 @@ export default () => {
       </IxDropdown>
     </>
   );
-};
+}

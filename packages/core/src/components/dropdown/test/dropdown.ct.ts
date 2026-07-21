@@ -795,8 +795,12 @@ regressionTest.describe('A11y', () => {
       await mount(
         `
       <ix-button id="trigger">Open</ix-button>
-      <ix-dropdown trigger="trigger" navigation-mode="roving-tabindex">
-        <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+      <ix-dropdown
+        role="menu"
+        trigger="trigger"
+        navigation-mode="roving-tabindex"
+      >
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         <ix-dropdown-item label="Item 3"></ix-dropdown-item>
       </ix-dropdown>
@@ -812,16 +816,24 @@ regressionTest.describe('A11y', () => {
       );
     });
 
-    regressionTest('opens and focuses the first item', async ({ page }) => {
-      const trigger = page.locator('#trigger');
-      const firstItem = page.locator('ix-dropdown-item').first();
+    regressionTest(
+      'opens and focuses the first item',
+      async ({ page, makeAxeBuilder }) => {
+        const trigger = page.locator('#trigger');
+        const firstItem = page.locator('ix-dropdown-item').first();
 
-      await trigger.focus();
-      await page.keyboard.press('ArrowDown');
+        await trigger.focus();
+        await page.keyboard.press('ArrowDown');
 
-      await expect(firstItem).toBeFocused();
-      await expect(firstItem).toHaveAttribute('tabindex', '0');
-    });
+        await expect(firstItem).toBeFocused();
+        await expect(firstItem).toHaveAttribute('tabindex', '0');
+
+        const accessibilityScanResults = await makeAxeBuilder()
+          .include('ix-dropdown-item')
+          .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+      }
+    );
 
     regressionTest(
       'opens and focuses the last item on ArrowUp',

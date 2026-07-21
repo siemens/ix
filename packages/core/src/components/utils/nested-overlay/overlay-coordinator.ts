@@ -166,7 +166,8 @@ export class OverlayCoordinator {
         entry.kind !== parentKind && this.getParentKey(entry.key) === parentKey
     );
 
-    children.reverse().forEach((entry) => entry.dismiss(reason));
+    children.reverse();
+    children.forEach((entry) => entry.dismiss(reason));
   }
 
   private getParentKey(childKey: string): string | undefined {

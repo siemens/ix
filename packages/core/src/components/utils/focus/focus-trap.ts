@@ -68,8 +68,8 @@ const mergeUniqueInDocumentOrder = (
   });
 };
 
-const sortByTabOrder = (elements: HTMLElement[]) =>
-  elements
+export const sortByTabOrder = (elements: HTMLElement[]) => {
+  return elements
     .map((element, documentOrder) => ({ documentOrder, element }))
     .sort((a, b) => {
       const aOrder =
@@ -80,6 +80,7 @@ const sortByTabOrder = (elements: HTMLElement[]) =>
       return aOrder - bOrder || a.documentOrder - b.documentOrder;
     })
     .map(({ element }) => element);
+};
 
 export const getDeepActiveElement = (): Element | null => {
   let active: Element | null = document.activeElement;

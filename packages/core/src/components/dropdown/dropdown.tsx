@@ -41,6 +41,7 @@ import {
   addFocusTrap,
   FocusTrapOptions,
   FocusTrapResult,
+  sortByTabOrder,
 } from '../utils/focus/focus-trap';
 import {
   focusableQueryString,
@@ -980,16 +981,7 @@ export class Dropdown
         closestPassShadow(element, 'ix-dropdown') === null &&
         element.getClientRects().length > 0
     );
-    const tabOrder = focusableElements
-      .map((element, documentOrder) => ({ documentOrder, element }))
-      .sort((a, b) => {
-        const aTabIndex = a.element.tabIndex;
-        const bTabIndex = b.element.tabIndex;
-        const aOrder = aTabIndex > 0 ? aTabIndex : Number.MAX_SAFE_INTEGER;
-        const bOrder = bTabIndex > 0 ? bTabIndex : Number.MAX_SAFE_INTEGER;
-        return aOrder - bOrder || a.documentOrder - b.documentOrder;
-      })
-      .map(({ element }) => element);
+    const tabOrder = sortByTabOrder(focusableElements);
     const triggerIndex = tabOrder.indexOf(trigger);
     if (triggerIndex === -1) {
       return undefined;
