@@ -131,7 +131,7 @@
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5",
-    "vitest": "^4.1.4"
+    "vitest": "^3.2.6"
   },
   "peerDependencies": {
     "@siemens/ix-icons": "^3.4.0"
