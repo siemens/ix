@@ -105,6 +105,7 @@ $input-end-container-inset: 0.25rem;
     input,
     textarea {
       pointer-events: none;
+      color: var(--theme-input--color--disabled);
     }
   }
 
