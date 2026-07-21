@@ -675,7 +675,7 @@ export class Menu {
 
   private onMenuItemsClick(event: Event) {
     if (this.isMenuItemClicked(event)) {
-      if (!this.showPinned) {
+      if (!this.pinned) {
         this.toggleMenu(false);
       }
       this.onOverlayClose();

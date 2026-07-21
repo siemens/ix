@@ -18,6 +18,13 @@ import { regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
 
+async function waitForDropdownTrigger(trigger: Locator) {
+  await expect(trigger).toHaveAttribute(
+    'data-ix-dropdown-trigger',
+    /dropdown-\d+/
+  );
+}
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
@@ -116,6 +123,34 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
   await expect(dropdown).not.toBeVisible();
 });
 
+regressionTest(
+  'handles a late trigger on its first same-task interaction',
+  async ({ mount, page }) => {
+    await mount(
+      '<div id="container"><ix-dropdown id="definition-loader"></ix-dropdown></div>'
+    );
+    await expect(page.locator('#definition-loader')).toHaveClass(/hydrated/);
+
+    await page.locator('#container').evaluate((container) => {
+      container.querySelector('#definition-loader')?.remove();
+
+      const dropdown = document.createElement('ix-dropdown');
+      dropdown.setAttribute('trigger', 'late-trigger');
+      dropdown.innerHTML =
+        '<ix-dropdown-item label="Item 1"></ix-dropdown-item>';
+      container.append(dropdown);
+
+      const trigger = document.createElement('button');
+      trigger.id = 'late-trigger';
+      trigger.textContent = 'Open';
+      container.append(trigger);
+      trigger.click();
+    });
+
+    await expect(page.locator('ix-dropdown')).toHaveAttribute('show');
+  }
+);
+
 regressionTest.describe('Close behavior', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
@@ -142,13 +177,15 @@ regressionTest.describe('Close behavior', () => {
 
   let dropdownLevel1_Item1: Locator;
 
-  function setupTest(page: Page) {
+  async function setupTest(page: Page) {
     triggerButton = page.locator('#level-1');
     dropdownLevel1 = page.locator('#dropdown-level-1');
 
     dropdownLevel1_Item1 = dropdownLevel1
       .locator('ix-dropdown-item')
       .getByText('Item 1');
+
+    await waitForDropdownTrigger(triggerButton);
   }
 
   regressionTest(' = both', async ({ mount, page }) => {
@@ -156,7 +193,7 @@ regressionTest.describe('Close behavior', () => {
       closeBehavior: 'both',
     });
 
-    setupTest(page);
+    await setupTest(page);
 
     await triggerButton.click();
     await expect(dropdownLevel1).toBeVisible();
@@ -176,7 +213,7 @@ regressionTest.describe('Close behavior', () => {
       closeBehavior: 'inside',
     });
 
-    setupTest(page);
+    await setupTest(page);
 
     await triggerButton.click();
     await expect(dropdownLevel1).toBeVisible();
@@ -193,7 +230,7 @@ regressionTest.describe('Close behavior', () => {
       closeBehavior: 'outside',
     });
 
-    setupTest(page);
+    await setupTest(page);
 
     await triggerButton.click();
     await expect(dropdownLevel1).toBeVisible();
@@ -219,7 +256,7 @@ regressionTest.describe('Close behavior', () => {
       .locator('ix-dropdown')
       .evaluate((dropdown: any) => (dropdown.closeBehavior = false));
 
-    setupTest(page);
+    await setupTest(page);
 
     await triggerButton.click();
     await expect(dropdownLevel1).toBeVisible();
@@ -326,7 +363,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
   let dropdown4: Locator;
   let dropdown5: Locator;
 
-  function setupTest(page: Page) {
+  async function setupTest(page: Page) {
     triggerDropdown1 = page.locator('#trigger-dropdown-1');
     triggerDropdown2 = page.locator('#trigger-dropdown-2');
     triggerDropdown3 = page.locator('#trigger-dropdown-3');
@@ -338,11 +375,21 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     dropdown3 = page.locator('#dropdown-3');
     dropdown4 = page.locator('#dropdown-4');
     dropdown5 = page.locator('#dropdown-5');
+
+    await Promise.all(
+      [
+        triggerDropdown1,
+        triggerDropdown2,
+        triggerDropdown3,
+        triggerDropdown4,
+        triggerDropdown5,
+      ].map((trigger) => waitForDropdownTrigger(trigger))
+    );
   }
 
   regressionTest('close neighbor sub menu', async ({ mount, page }) => {
     await mountDropdown(mount);
-    setupTest(page);
+    await setupTest(page);
 
     await triggerDropdown1.click();
     await expect(dropdown1).toBeVisible();
@@ -359,7 +406,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
   regressionTest('close assigned submenu', async ({ mount, page }) => {
     await mountDropdown(mount);
 
-    setupTest(page);
+    await setupTest(page);
 
     await triggerDropdown1.click();
     await expect(dropdown1).toBeVisible();
@@ -383,7 +430,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     regressionTest(' = both', async ({ mount, page }) => {
       await mountDropdown(mount);
 
-      setupTest(page);
+      await setupTest(page);
 
       await triggerDropdown1.click();
       await expect(dropdown1).toBeVisible();
@@ -411,7 +458,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
         closeBehavior: 'inside',
       });
 
-      setupTest(page);
+      await setupTest(page);
 
       await triggerDropdown1.click();
       await expect(dropdown1).toBeVisible();
@@ -437,7 +484,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     regressionTest(' = outside', async ({ mount, page }) => {
       await mountDropdown(mount, { closeBehavior: 'outside' });
 
-      setupTest(page);
+      await setupTest(page);
 
       await triggerDropdown1.click();
       await expect(dropdown1).toBeVisible();
@@ -463,7 +510,7 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     regressionTest(' = false', async ({ mount, page }) => {
       await mountDropdown(mount, { closeBehavior: false });
 
-      setupTest(page);
+      await setupTest(page);
 
       await triggerDropdown1.click();
       await expect(dropdown1).toBeVisible();
@@ -511,31 +558,13 @@ regressionTest.describe('nested dropdown 2/3', () => {
     const nestedDropdown = page.locator('ix-dropdown').nth(1);
     const nestedDropdownItem = nestedDropdown.locator('ix-dropdown-item');
 
+    await waitForDropdownTrigger(trigger1);
     await trigger1.click();
-    await expect(trigger2).toBeAttached();
-    try {
-      await expect
-        .poll(
-          () => parentDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show),
-          {
-            timeout: 5000,
-          }
-        )
-        .toBe(true);
-    } catch {
-      await parentDropdown.evaluate((dd: HTMLIxDropdownElement) => {
-        dd.show = true;
-      });
-    }
-    await page.evaluate(() => {
-      const trigger = document.getElementById('trigger2') as HTMLButtonElement;
-      trigger.click();
-    });
-    await expect
-      .poll(() =>
-        nestedDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
-      )
-      .toBe(true);
+    await expect(parentDropdown).toBeVisible();
+
+    await waitForDropdownTrigger(trigger2);
+    await trigger2.click();
+    await expect(nestedDropdown).toBeVisible();
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
@@ -565,8 +594,14 @@ regressionTest.describe('nested dropdown 3/3', () => {
     const dropdown1 = page.locator('#dropdown-1');
     const dropdown2 = page.locator('#dropdown-2');
 
+    await waitForDropdownTrigger(triggerDropdown1);
     await triggerDropdown1.click();
+    await expect(dropdown1).toBeVisible();
+
+    await waitForDropdownTrigger(triggerDropdown2);
     await triggerDropdown2.click();
+    await expect(dropdown2).toBeVisible();
+
     await triggerDropdown1.click();
 
     await expect(dropdown1).not.toBeVisible();
@@ -843,7 +878,11 @@ regressionTest(
       </ix-dropdown>
     `);
 
-    await page.locator('#trigger').click();
+    const trigger = page.locator('#trigger');
+    const dropdown = page.locator('ix-dropdown');
+    await waitForDropdownTrigger(trigger);
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
 
     const lastItem = page.locator('ix-dropdown-item').last();
     await lastItem.evaluate((item) => {
@@ -890,7 +929,9 @@ regressionTest(
   `);
 
     const trigger = page.locator('#trigger');
+    await waitForDropdownTrigger(trigger);
     await trigger.click();
+    await expect(page.locator('ix-dropdown')).toBeVisible();
 
     const disabledItem = page.getByRole('menuitem', { name: 'Disabled Item' });
     const enabledItem = page.getByRole('menuitem', { name: 'Enabled Item' });

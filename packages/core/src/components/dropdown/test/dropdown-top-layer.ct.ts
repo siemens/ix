@@ -6,8 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+async function getReadyTrigger(page: Page) {
+  const trigger = page.locator('#trigger');
+  await expect(trigger).toHaveAttribute(
+    'data-ix-dropdown-trigger',
+    /dropdown-\d+/
+  );
+  return trigger;
+}
 
 regressionTest.describe('enableTopLayer feature', () => {
   regressionTest.describe('Popover API mode (enableTopLayer=true)', () => {
@@ -21,7 +30,7 @@ regressionTest.describe('enableTopLayer feature', () => {
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dropdown = page.locator('ix-dropdown#dropdown');
@@ -42,7 +51,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
 
         const dropdown = page.locator('ix-dropdown#dropdown');
         const dialog = dropdown.getByRole('dialog');
@@ -66,7 +75,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-      const trigger = page.getByRole('button', { name: 'Open' });
+      const trigger = await getReadyTrigger(page);
 
       const dropdown = page.locator('ix-dropdown#dropdown');
       const dialog = dropdown.getByRole('dialog');
@@ -97,7 +106,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dialog = page.getByRole('dialog');
@@ -124,7 +133,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dialog = page.getByRole('dialog');
@@ -149,7 +158,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dialog = page.getByRole('dialog');
@@ -180,7 +189,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Open' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dialog = page.getByRole('dialog');
@@ -251,7 +260,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         </div>
       `);
 
-        const trigger = page.getByRole('button', { name: 'Actions' });
+        const trigger = await getReadyTrigger(page);
         await trigger.click();
 
         const dialog = page.getByRole('dialog');

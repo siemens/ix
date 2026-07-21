@@ -487,6 +487,8 @@ regressionTest(
     const categoryButton = categoryElement.locator('.category-parent');
     const items = categoryElement.locator(':scope > ix-menu-item');
 
+    await expect(categoryButton).toHaveClass(/hydrated/);
+
     // Category should be expanded initially because one item is active
     const menuItems = categoryElement.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
