@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
 
 $CardList__Title__Height: 1.5rem;
 
@@ -108,6 +109,11 @@ $CardList__Title__Height: 1.5rem;
 
     --ix-card-border-color: var(--theme-color-primary);
     color: var(--theme-color-primary);
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
   }
 
   .CardList__Style__Infinite__Scroll .Show__All__Card {
