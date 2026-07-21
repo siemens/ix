@@ -154,6 +154,7 @@ Example source links are relative to this Markdown file.
 - `helperText`; attr: `helper-text`; type: `string | undefined` - Helper text for the select component
 - `hideListHeader`; attr: `hide-list-header`; type: `boolean`; default: `false` - Hide list header
 - `i18nAllSelected`; attr: `i18n-all-selected`; type: `string`; default: `'All'` - Chip label for all selected items in multiple mode.
+- `i18nMoreItems`; attr: `i18n-more-items`; type: `string`; default: `'{count} more'` - Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
 - `i18nNoMatches`; attr: `i18n-no-matches`; type: `string`; default: `'No matches'` - Information inside of dropdown if no items where found with current filter text
 - `i18nPlaceholder`; attr: `i18n-placeholder`; type: `string`; default: `'Select an option'` - Input field placeholder
 - `i18nPlaceholderEditable`; attr: `i18n-placeholder-editable`; type: `string`; default: `'Type of select option'` - Input field placeholder for editable select

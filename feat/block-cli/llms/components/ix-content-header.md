@@ -141,5 +141,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `` - Default slot for action buttons or other content
+- `default` - Default slot for action buttons or other content
 - `header` - Content to be placed in the header area next to the title

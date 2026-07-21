@@ -48,4 +48,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `` - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+- `default` - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.

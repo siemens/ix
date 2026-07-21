@@ -42,4 +42,4 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `` - Popover body content.
+- `default` - Popover body content.

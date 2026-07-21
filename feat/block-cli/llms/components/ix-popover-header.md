@@ -45,5 +45,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `` - Popover title (rendered as heading text).
 - `additional-items` - Optional content beside the title (for example `ix-pill`).
+- `default` - Popover title (rendered as heading text).

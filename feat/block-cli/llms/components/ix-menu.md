@@ -198,9 +198,11 @@ Example source links are relative to this Markdown file.
 - `applicationName`; attr: `application-name`; type: `string | undefined` - Should only be set if you use ix-menu standalone
 - `enableToggleTheme`; attr: `enable-toggle-theme`; type: `boolean`; default: `false` - Show toggle between light and dark variant. Only if the provided theme have implemented both!
 - `expand`; attr: `expand`; type: `boolean`; default: `false` - Toggle the expand state of the menu
+- `i18nAriaLabelMenu`; attr: `i18n-aria-label-menu`; type: `string`; default: `'Application Navigation'` - i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
 - `i18nCollapse`; attr: `i18n-collapse`; type: `string`; default: `'Collapse'` - i18n label for 'Collapse' button
 - `i18nExpand`; attr: `i18n-expand`; type: `string`; default: `'Expand'` - i18n label for 'Expand' button
 - `i18nLegal`; attr: `i18n-legal`; type: `string`; default: `'About & legal information'` - i18n label for 'About & legal information' button
+- `i18nNavigationHint`; attr: `i18n-navigation-hint`; type: `string`; default: `'Use Up and Down arrow keys to navigate between menu items'` - i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
 - `i18nSettings`; attr: `i18n-settings`; type: `string`; default: `'Settings'` - i18n label for 'Settings' button
 - `i18nToggleTheme`; attr: `i18n-toggle-theme`; type: `string`; default: `'Toggle theme'` - i18n label for 'Toggle theme' button
 - `pinned`; attr: `pinned`; type: `boolean`; default: `false` - Menu stays pinned to the left

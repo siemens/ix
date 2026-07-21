@@ -42,5 +42,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- `` - Footer actions (typically buttons), aligned to the end.
+- `default` - Footer actions (typically buttons), aligned to the end.
 - `start` - Optional leading content (for example version text or step indicators).
