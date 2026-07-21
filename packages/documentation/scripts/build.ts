@@ -14,6 +14,7 @@ import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
 import {
+  escapeBackticks,
   expandJsdocNewlinesForMarkdown,
   parseJSDocsToMarkdown,
   serializeMarkdownForJsx,
@@ -333,18 +334,20 @@ async function generateApiMarkdown() {
   const components = componentDoc.components;
 
   const __propertyTemplate = path.join(__templates, 'property-table.mustache');
+  const __functionTemplate = path.join(__templates, 'function-table.mustache');
   const __eventTemplate = path.join(__templates, 'event-table.mustache');
   const __slotTemplate = path.join(__templates, 'slot-table.mustache');
   const __apiTemplate = path.join(__templates, 'api.mustache');
   const __tagsTemplate = path.join(__templates, 'tags.mustache');
   const propertyTemplate = fs.readFileSync(__propertyTemplate, 'utf-8');
+  const functionTemplate = fs.readFileSync(__functionTemplate, 'utf-8');
   const eventTemplate = fs.readFileSync(__eventTemplate, 'utf-8');
   const slotTemplate = fs.readFileSync(__slotTemplate, 'utf-8');
   const apiTemplate = fs.readFileSync(__apiTemplate, 'utf-8');
   const tagsTemplate = fs.readFileSync(__tagsTemplate, 'utf-8');
 
   for (const component of components) {
-    const { props, events, slots } = component;
+    const { props, methods, events, slots } = component;
 
     const propertyOutput = Mustache.render(propertyTemplate, {
       tag: component.tag,
@@ -357,6 +360,39 @@ async function generateApiMarkdown() {
           )
         ),
       })),
+    });
+
+    const methodOutput = Mustache.render(functionTemplate, {
+      embedded: true,
+      functions: methods.map((method) => {
+        const signatureNameEnd = method.signature.indexOf('(');
+        const parameters = method.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: escapeBackticks(parameter.type),
+          optional: method.signature.includes(`${parameter.name}?:`),
+        }));
+
+        return {
+          name:
+            signatureNameEnd === -1
+              ? method.name
+              : method.signature.slice(0, signatureNameEnd),
+          returnType: escapeBackticks(method.returns.type),
+          parameters,
+          hasParameters: parameters.length > 0,
+          docsTags: convertDocsTagsToTSXElement(
+            component.tag,
+            method.docsTags.filter(({ name }) =>
+              ['deprecated', 'since'].includes(name)
+            )
+          ),
+          comment: escapeBackticks(
+            expandJsdocNewlinesForMarkdown(
+              parseJSDocsToMarkdown(method.docs ?? '')
+            )
+          ),
+        };
+      }),
     });
 
     const eventOutput = Mustache.render(eventTemplate, {
@@ -392,8 +428,10 @@ async function generateApiMarkdown() {
       tag: component.tag,
       hasSlots: slots.length > 0,
       hasEvents: events.length > 0,
+      hasMethods: methods.length > 0,
       hasProps: props.length > 0,
       properties: propertyOutput,
+      methods: methodOutput,
       events: eventOutput,
       slots: slotOutput,
     });
