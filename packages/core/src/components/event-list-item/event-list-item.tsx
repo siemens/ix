@@ -19,6 +19,9 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @slot default - Event list item content.
+ */
 @Component({
   tag: 'ix-event-list-item',
   styleUrl: 'event-list-item.scss',

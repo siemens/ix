@@ -1,0 +1,149 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Chat attachment overflow and prompt scroll</title>
+    <style>
+      :root {
+        color: var(--theme-color-std-text);
+        font-family: var(--theme-font-family);
+      }
+
+      .chat-visual-page {
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding: 1.5rem;
+        background: var(--theme-color-1);
+      }
+
+      .chat-visual-title {
+        margin: 0 0 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      ix-chat.chat-overflow {
+        width: 36rem;
+        height: 34rem;
+        min-width: 0;
+        border: 1px solid var(--theme-color-weak-bdr);
+        border-radius: var(--theme-default-border-radius);
+        background: var(--theme-color-1);
+      }
+
+      ix-chat-input {
+        width: 100%;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconAttach,
+        iconCloseSmall,
+        iconError,
+        iconSendRightFilled,
+        iconTxtDocument,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconAttach,
+        iconCloseSmall,
+        iconError,
+        iconSendRightFilled,
+        iconTxtDocument,
+      });
+    </script>
+  </head>
+  <body>
+    <main class="chat-visual-page">
+      <h1 class="chat-visual-title">Attachment overflow and prompt scroll</h1>
+      <ix-chat class="chat-overflow">
+        <ix-chat-ai-message>
+          <p>
+            Several sent attachments are available in the message overflow. The
+            prompt keeps uploaded files in a horizontal scroll area.
+          </p>
+        </ix-chat-ai-message>
+
+        <ix-chat-user-message
+          message="Use these documents for the final summary."
+          attachment-count="3"
+        >
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="summary.pdf"
+            variant="sent"
+            hide-remove-button
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="risk-register.xlsx"
+            variant="sent"
+            hide-remove-button
+          ></ix-chat-attachment>
+          <ix-dropdown-item
+            slot="attachment-overflow"
+            label="customer-feedback.pdf"
+          ></ix-dropdown-item>
+          <ix-dropdown-item
+            slot="attachment-overflow"
+            label="service-plan.docx"
+          ></ix-dropdown-item>
+          <ix-dropdown-item
+            slot="attachment-overflow"
+            label="audit-log.csv"
+          ></ix-dropdown-item>
+        </ix-chat-user-message>
+
+        <ix-chat-input
+          attachment-layout="scroll"
+          slot="prompt"
+          value="Compare all attached documents."
+          style="width: 18rem"
+        >
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="asset-health-overview.pdf"
+            preview-supported
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="maintenance-window-plan.xlsx"
+            preview-supported
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="alarm-history-q4.csv"
+            preview-supported
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="operator-notes.txt"
+            preview-supported
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="safety-checklist.pdf"
+            preview-supported
+          ></ix-chat-attachment>
+          <ix-chat-attachment
+            slot="attachments"
+            file-name="commissioning-report.docx"
+            preview-supported
+          ></ix-chat-attachment>
+        </ix-chat-input>
+      </ix-chat>
+    </main>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

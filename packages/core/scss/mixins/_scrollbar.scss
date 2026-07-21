@@ -6,13 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@mixin scrollbar() {
-  ::-webkit-scrollbar-button {
+@mixin _scrollbar-rules {
+  &::-webkit-scrollbar-button {
     display: none;
   }
 
   @-moz-document url-prefix() {
-    * {
+    & {
       scrollbar-color: var(--theme-scrollbar-thumb--background)
         var(--theme-scrollbar-track--background);
       scrollbar-width: thin;
@@ -20,33 +20,45 @@
   }
 
   /* width */
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
   }
 
   /* Track */
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     border-radius: 5px;
     background: var(--theme-scrollbar-track--background);
   }
 
-  ::-webkit-scrollbar-track:hover {
+  &::-webkit-scrollbar-track:hover {
     background: var(--theme-scrollbar-track--background--hover);
   }
 
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: var(--theme-scrollbar-thumb--background);
   }
 
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+  &::-webkit-scrollbar-thumb:hover {
     background: var(--theme-scrollbar-thumb--background--hover);
   }
 
-  ::-webkit-scrollbar-corner {
+  &::-webkit-scrollbar-corner {
     display: none;
+  }
+}
+
+@mixin scrollbar($include-current: false) {
+  * {
+    @include _scrollbar-rules;
+  }
+
+  @if $include-current {
+    & {
+      @include _scrollbar-rules;
+    }
   }
 }

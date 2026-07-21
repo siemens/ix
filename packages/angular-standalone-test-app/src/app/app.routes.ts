@@ -98,6 +98,14 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/category-filter-suggestions').then(
       (m) => m.default
     ),
+  'preview/chat': () =>
+    import('../preview-examples/chat').then((m) => m.default),
+  'preview/chat-ai-message': () =>
+    import('../preview-examples/chat-ai-message').then((m) => m.default),
+  'preview/chat-input': () =>
+    import('../preview-examples/chat-input').then((m) => m.default),
+  'preview/chat-user-message': () =>
+    import('../preview-examples/chat-user-message').then((m) => m.default),
   'preview/checkbox': () =>
     import('../preview-examples/checkbox').then((m) => m.default),
   'preview/checkbox-indeterminate': () =>
@@ -123,9 +131,7 @@ export const routePaths: IxPreviewRoutes = {
   'preview/date-dropdown': () =>
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
-    import('../preview-examples/date-dropdown-presets').then(
-      (m) => m.default
-    ),
+    import('../preview-examples/date-dropdown-presets').then((m) => m.default),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
   'preview/datetime-range': () =>
@@ -421,6 +427,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/pill').then((m) => m.default),
   'preview/pill-variants': () =>
     import('../preview-examples/pill-variants').then((m) => m.default),
+  'preview/popover': () =>
+    import('../preview-examples/popover').then((m) => m.default),
   'preview/popover-news': () =>
     import('../preview-examples/popover-news').then((m) => m.default),
   'preview/push-card': () =>

@@ -52,6 +52,10 @@ import Card from './preview-examples/card';
 import CardList from './preview-examples/card-list';
 import CategoryFilter from './preview-examples/category-filter';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions';
+import Chat from './preview-examples/chat';
+import ChatAiMessage from './preview-examples/chat-ai-message';
+import ChatInput from './preview-examples/chat-input';
+import ChatUserMessage from './preview-examples/chat-user-message';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
@@ -185,6 +189,7 @@ import Pane from './preview-examples/pane';
 import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
+import Popover from './preview-examples/popover';
 import PopoverNews from './preview-examples/popover-news';
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
 import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
@@ -310,6 +315,10 @@ const routes: IxPreviewRoutes = {
   '/preview/card-list': CardList,
   '/preview/category-filter-suggestions': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
+  '/preview/chat': Chat,
+  '/preview/chat-ai-message': ChatAiMessage,
+  '/preview/chat-input': ChatInput,
+  '/preview/chat-user-message': ChatUserMessage,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/checkbox': Checkbox,
   '/preview/custom-field': CustomField,
@@ -416,6 +425,7 @@ const routes: IxPreviewRoutes = {
   '/preview/pane-layout': PaneLayout,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/push-card': PushCard,
   '/preview/settings': Settings,

@@ -19,6 +19,9 @@ import {
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
+/**
+ * @slot default - Workflow step items.
+ */
 @Component({
   tag: 'ix-workflow-steps',
   styleUrl: 'workflow-steps.scss',

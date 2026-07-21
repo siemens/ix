@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -73,6 +74,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -625,6 +627,154 @@ export namespace Components {
         "uniqueCategories": boolean;
     }
     /**
+     * @since 5.2.0
+     */
+    interface IxChat {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @default ''
+         */
+        "fileName": string;
+        /**
+          * Hide the remove action.
+          * @default false
+         */
+        "hideRemoveButton": boolean;
+        /**
+          * Icon displayed before the file name.
+          * @default iconTxtDocument
+         */
+        "icon": string;
+        /**
+          * Enable preview interaction for default attachments.
+          * @default false
+         */
+        "previewSupported": boolean;
+        /**
+          * Accessible label for the remove action.
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel": string;
+        /**
+          * Upload status of the attachment.
+          * @default 'default'
+         */
+        "status": ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+         */
+        "characterLimit"?: number;
+        /**
+          * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold": number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer": string;
+        /**
+          * Focuses the chat input.
+          * @since 5.1.0
+         */
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Returns the native textarea element used by the chat input.
+          * @since 5.1.0
+         */
+        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached": string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning": string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @default false
+         */
+        "insertLineBreakOnEnter": boolean;
+        /**
+          * The maximum length of the chat input.
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @default 6
+         */
+        "maxRows": number;
+        /**
+          * Minimum number of visible text rows.
+          * @default 1
+         */
+        "minRows": number;
+        /**
+          * The name of the chat input.
+         */
+        "name"?: string;
+        /**
+          * The placeholder text for the chat input.
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder": string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
+          * Accessible label for the native textarea.
+          * @default 'Chat input'
+         */
+        "textareaLabel": string;
+        /**
+          * The value of the chat input.
+          * @default ''
+         */
+        "value": string;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Text displayed in the user message bubble.
+         */
+        "message"?: string;
+    }
+    /**
      * @form-ready 
      */
     interface IxCheckbox {
@@ -745,7 +895,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive": boolean;
@@ -1942,6 +2092,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton": boolean;
+        /**
           * If true the filter chip will be in readonly mode
           * @default false
          */
@@ -2401,6 +2556,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu": string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -2415,6 +2576,12 @@ export namespace Components {
           * @default 'About & legal information'
          */
         "i18nLegal": string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint": string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -2605,6 +2772,7 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0
@@ -2675,6 +2843,7 @@ export namespace Components {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -2684,6 +2853,7 @@ export namespace Components {
           * @since 4.0.0
          */
         "rel"?: string;
+        "setTabIndex": (value: number) => Promise<void>;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0
@@ -3155,6 +3325,126 @@ export namespace Components {
     | 'custom';
     }
     /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface IxPopover {
+        /**
+          * Dismiss when clicking outside the popover and trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "closeOnClickOutside": boolean;
+        /**
+          * Show the spike pointing at the trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "hasSpike": boolean;
+        /**
+          * Close the popover programmatically
+          * @since 5.1.0
+         */
+        "hidePopover": () => Promise<void>;
+        /**
+          * Preferred placement relative to trigger
+          * @since 5.1.0
+          * @default 'bottom'
+         */
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+        /**
+          * Show/hide state
+          * @since 5.1.0
+          * @default false
+         */
+        "show": boolean;
+        /**
+          * Open the popover programmatically
+          * @since 5.1.0
+         */
+        "showPopover": () => Promise<void>;
+        /**
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * @since 5.1.0
+         */
+        "trigger"?: ElementReference;
+        /**
+          * Interaction that opens the popover
+          * @since 5.1.0
+          * @default 'click'
+         */
+        "triggerMode": 'click' | 'hover';
+    }
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverContent {
+        /**
+          * Remove default inner padding.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding": boolean;
+    }
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface IxPopoverFooter {
+        /**
+          * Button layout direction
+          * @since 5.1.0
+          * @default 'horizontal'
+         */
+        "alignment": 'horizontal' | 'vertical';
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface IxPopoverHeader {
+        /**
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * @since 5.1.0
+          * @default 'Close'
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Hide the close (X) button
+          * @since 5.1.0
+          * @default false
+         */
+        "hideClose": boolean;
+        /**
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
+          * @since 5.1.0
+         */
+        "icon"?: string;
+        /**
+          * Icon color
+          * @since 5.1.0
+         */
+        "iconColor"?: string;
+    }
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverImage {
+        /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
+          * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
+          * @since 5.1.0
+          * @default ''
+         */
+        "imageAlt": string;
+    }
+    /**
      * @since 3.2.0
      */
     interface IxProgressIndicator {
@@ -3418,6 +3708,12 @@ export namespace Components {
           * @default 'All'
          */
         "i18nAllSelected": string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -4601,6 +4897,14 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatAttachmentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatAttachmentElement;
+}
+export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatInputElement;
+}
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCheckboxElement;
@@ -4740,6 +5044,14 @@ export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
 export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
+}
+export interface IxPopoverCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPopoverElement;
+}
+export interface IxPopoverHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPopoverHeaderElement;
 }
 export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4998,6 +5310,78 @@ declare global {
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatElement extends Components.IxChat, HTMLStencilElement {
+    }
+    var HTMLIxChatElement: {
+        prototype: HTMLIxChatElement;
+        new (): HTMLIxChatElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatAiMessageElement extends Components.IxChatAiMessage, HTMLStencilElement {
+    }
+    var HTMLIxChatAiMessageElement: {
+        prototype: HTMLIxChatAiMessageElement;
+        new (): HTMLIxChatAiMessageElement;
+    };
+    interface HTMLIxChatAttachmentElementEventMap {
+        "attachmentClick": void;
+        "removeClick": void;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatAttachmentElement extends Components.IxChatAttachment, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatAttachmentElement: {
+        prototype: HTMLIxChatAttachmentElement;
+        new (): HTMLIxChatAttachmentElement;
+    };
+    interface HTMLIxChatInputElementEventMap {
+        "valueChange": string;
+        "ixBlur": void;
+        "ixChange": string;
+        "promptSubmit": string;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatInputElement: {
+        prototype: HTMLIxChatInputElement;
+        new (): HTMLIxChatInputElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatUserMessageElement extends Components.IxChatUserMessage, HTMLStencilElement {
+    }
+    var HTMLIxChatUserMessageElement: {
+        prototype: HTMLIxChatUserMessageElement;
+        new (): HTMLIxChatUserMessageElement;
     };
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
@@ -5841,6 +6225,89 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPopoverElementEventMap {
+        "showChange": boolean;
+        "showChanged": boolean;
+    }
+    /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverElement extends Omit<Components.IxPopover, "showPopover" | "hidePopover">, HTMLStencilElement {
+        /**
+          * Open the popover programmatically
+          * @since 5.1.0
+         */
+        "showPopover": () => Promise<void>;
+        /**
+          * Close the popover programmatically
+          * @since 5.1.0
+         */
+        "hidePopover": () => Promise<void>;
+        addEventListener<K extends keyof HTMLIxPopoverElementEventMap>(type: K, listener: (this: HTMLIxPopoverElement, ev: IxPopoverCustomEvent<HTMLIxPopoverElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPopoverElementEventMap>(type: K, listener: (this: HTMLIxPopoverElement, ev: IxPopoverCustomEvent<HTMLIxPopoverElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPopoverElement: {
+        prototype: HTMLIxPopoverElement;
+        new (): HTMLIxPopoverElement;
+    };
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverContentElement extends Components.IxPopoverContent, HTMLStencilElement {
+    }
+    var HTMLIxPopoverContentElement: {
+        prototype: HTMLIxPopoverContentElement;
+        new (): HTMLIxPopoverContentElement;
+    };
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverFooterElement extends Components.IxPopoverFooter, HTMLStencilElement {
+    }
+    var HTMLIxPopoverFooterElement: {
+        prototype: HTMLIxPopoverFooterElement;
+        new (): HTMLIxPopoverFooterElement;
+    };
+    interface HTMLIxPopoverHeaderElementEventMap {
+        "closeClick": MouseEvent;
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverHeaderElement extends Components.IxPopoverHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPopoverHeaderElementEventMap>(type: K, listener: (this: HTMLIxPopoverHeaderElement, ev: IxPopoverHeaderCustomEvent<HTMLIxPopoverHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPopoverHeaderElement: {
+        prototype: HTMLIxPopoverHeaderElement;
+        new (): HTMLIxPopoverHeaderElement;
+    };
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface HTMLIxPopoverImageElement extends Components.IxPopoverImage, HTMLStencilElement {
+    }
+    var HTMLIxPopoverImageElement: {
+        prototype: HTMLIxPopoverImageElement;
+        new (): HTMLIxPopoverImageElement;
+    };
     /**
      * @since 3.2.0
      */
@@ -6298,6 +6765,11 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chat": HTMLIxChatElement;
+        "ix-chat-ai-message": HTMLIxChatAiMessageElement;
+        "ix-chat-attachment": HTMLIxChatAttachmentElement;
+        "ix-chat-input": HTMLIxChatInputElement;
+        "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
@@ -6363,6 +6835,11 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-popover": HTMLIxPopoverElement;
+        "ix-popover-content": HTMLIxPopoverContentElement;
+        "ix-popover-footer": HTMLIxPopoverFooterElement;
+        "ix-popover-header": HTMLIxPopoverHeaderElement;
+        "ix-popover-image": HTMLIxPopoverImageElement;
         "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
@@ -6967,6 +7444,171 @@ declare namespace LocalJSX {
         "uniqueCategories"?: boolean;
     }
     /**
+     * @since 5.2.0
+     */
+    interface IxChat {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @default ''
+         */
+        "fileName"?: string;
+        /**
+          * Hide the remove action.
+          * @default false
+         */
+        "hideRemoveButton"?: boolean;
+        /**
+          * Icon displayed before the file name.
+          * @default iconTxtDocument
+         */
+        "icon"?: string;
+        /**
+          * Event emitted when the attachment is clicked.
+         */
+        "onAttachmentClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Event emitted when the remove action is clicked.
+         */
+        "onRemoveClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Enable preview interaction for default attachments.
+          * @default false
+         */
+        "previewSupported"?: boolean;
+        /**
+          * Accessible label for the remove action.
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel"?: string;
+        /**
+          * Upload status of the attachment.
+          * @default 'default'
+         */
+        "status"?: ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+         */
+        "characterLimit"?: number;
+        /**
+          * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold"?: number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer"?: string;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached"?: string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning"?: string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @default false
+         */
+        "insertLineBreakOnEnter"?: boolean;
+        /**
+          * The maximum length of the chat input.
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @default 6
+         */
+        "maxRows"?: number;
+        /**
+          * Minimum number of visible text rows.
+          * @default 1
+         */
+        "minRows"?: number;
+        /**
+          * The name of the chat input.
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the chat input loses focus.
+         */
+        "onIxBlur"?: (event: IxChatInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the chat input loses focus and the value has changed.
+         */
+        "onIxChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the prompt is submitted by the send button or Enter key.
+         */
+        "onPromptSubmit"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the value of the chat input changes.
+         */
+        "onValueChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * The placeholder text for the chat input.
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
+          * Accessible label for the native textarea.
+          * @default 'Chat input'
+         */
+        "textareaLabel"?: string;
+        /**
+          * The value of the chat input.
+          * @default ''
+         */
+        "value"?: string;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Text displayed in the user message bubble.
+         */
+        "message"?: string;
+    }
+    /**
      * @form-ready 
      */
     interface IxCheckbox {
@@ -7098,7 +7740,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive"?: boolean;
@@ -8342,6 +8984,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * If true the close button will not be rendered. Primarily used for overflow chip.
+          * @default false
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
@@ -8833,6 +9480,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n aria-label for menu. Gets read out by screen readers when first focusing the menu
+          * @since 5.1.0
+          * @default 'Application Navigation'
+         */
+        "i18nAriaLabelMenu"?: string;
+        /**
           * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
@@ -8847,6 +9500,12 @@ declare namespace LocalJSX {
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
+        /**
+          * i18n description for menu keyboard navigation hint, read by screen readers when focusing the menu
+          * @since 5.1.0
+          * @default 'Use Up and Down arrow keys to navigate between menu items'
+         */
+        "i18nNavigationHint"?: string;
         /**
           * i18n label for 'Settings' button
           * @default 'Settings'
@@ -9139,6 +9798,7 @@ declare namespace LocalJSX {
           * Label of the menu item. Will also be used as tooltip text
          */
         "label"?: string;
+        "menuCategoryLabel"?: string;
         /**
           * Show notification count on tab
          */
@@ -9666,6 +10326,131 @@ declare namespace LocalJSX {
     | 'custom';
     }
     /**
+     * Floating panel anchored to a trigger element.
+     * @since 5.1.0
+     */
+    interface IxPopover {
+        /**
+          * Dismiss when clicking outside the popover and trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "closeOnClickOutside"?: boolean;
+        /**
+          * Show the spike pointing at the trigger
+          * @since 5.1.0
+          * @default false
+         */
+        "hasSpike"?: boolean;
+        /**
+          * Fires before visibility changes. Cancel to prevent.
+          * @since 5.1.0
+         */
+        "onShowChange"?: (event: IxPopoverCustomEvent<boolean>) => void;
+        /**
+          * Fires after visibility has changed
+          * @since 5.1.0
+         */
+        "onShowChanged"?: (event: IxPopoverCustomEvent<boolean>) => void;
+        /**
+          * Preferred placement relative to trigger
+          * @since 5.1.0
+          * @default 'bottom'
+         */
+        "placement"?: 'top' | 'bottom' | 'left' | 'right';
+        /**
+          * Show/hide state
+          * @since 5.1.0
+          * @default false
+         */
+        "show"?: boolean;
+        /**
+          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * @since 5.1.0
+         */
+        "trigger"?: ElementReference;
+        /**
+          * Interaction that opens the popover
+          * @since 5.1.0
+          * @default 'click'
+         */
+        "triggerMode"?: 'click' | 'hover';
+    }
+    /**
+     * Main body section of the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverContent {
+        /**
+          * Remove default inner padding.
+          * @since 5.1.0
+          * @default false
+         */
+        "noPadding"?: boolean;
+    }
+    /**
+     * Footer section for actions and optional leading metadata.
+     * @since 5.1.0
+     */
+    interface IxPopoverFooter {
+        /**
+          * Button layout direction
+          * @since 5.1.0
+          * @default 'horizontal'
+         */
+        "alignment"?: 'horizontal' | 'vertical';
+    }
+    /**
+     * Header section with optional icon, title, additional items, and close button.
+     * @since 5.1.0
+     */
+    interface IxPopoverHeader {
+        /**
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
+          * @since 5.1.0
+          * @default 'Close'
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Hide the close (X) button
+          * @since 5.1.0
+          * @default false
+         */
+        "hideClose"?: boolean;
+        /**
+          * Icon name displayed before the title. The icon is decorative; provide context in the default slot heading.
+          * @since 5.1.0
+         */
+        "icon"?: string;
+        /**
+          * Icon color
+          * @since 5.1.0
+         */
+        "iconColor"?: string;
+        /**
+          * Fires when close button is clicked. Cancel to prevent closing.
+          * @since 5.1.0
+         */
+        "onCloseClick"?: (event: IxPopoverHeaderCustomEvent<MouseEvent>) => void;
+    }
+    /**
+     * Optional image section for the popover.
+     * @since 5.1.0
+     */
+    interface IxPopoverImage {
+        /**
+          * Image source URL
+          * @since 5.1.0
+         */
+        "image"?: string;
+        /**
+          * Alt text for the image. Use an empty string for decorative images; provide descriptive text for content images.
+          * @since 5.1.0
+          * @default ''
+         */
+        "imageAlt"?: string;
+    }
+    /**
      * @since 3.2.0
      */
     interface IxProgressIndicator {
@@ -9937,6 +10722,12 @@ declare namespace LocalJSX {
           * @default 'All'
          */
         "i18nAllSelected"?: string;
+        /**
+          * Accessible label template for the overflow indicator chip shown in multiple mode when not all selected chips fit on a single row. The `{count}` placeholder is replaced with the number of hidden items (e.g. "3 more").
+          * @since 5.1.0
+          * @default '{count} more'
+         */
+        "i18nMoreItems"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -11287,6 +12078,35 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatAttachmentAttributes {
+        "fileName": string;
+        "status": ChatAttachmentStatus;
+        "icon": string;
+        "hideRemoveButton": boolean;
+        "previewSupported": boolean;
+        "removeAriaLabel": string;
+    }
+    interface IxChatInputAttributes {
+        "state": 'input' | 'processing';
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "disabled": boolean;
+        "readonly": boolean;
+        "textareaLabel": string;
+        "maxLength": number;
+        "characterLimit": number;
+        "i18nCharacterLimitReached": string;
+        "i18nCharacterLimitWarning": string;
+        "characterLimitWarningThreshold": number;
+        "minRows": number;
+        "maxRows": number;
+        "insertLineBreakOnEnter": boolean;
+        "disclaimer": string;
+    }
+    interface IxChatUserMessageAttributes {
+        "message": string;
+    }
     interface IxCheckboxAttributes {
         "name": string;
         "value": string;
@@ -11576,6 +12396,7 @@ declare namespace LocalJSX {
     interface IxFilterChipAttributes {
         "disabled": boolean;
         "readonly": boolean;
+        "hideCloseButton": boolean;
         "ariaLabelCloseIconButton": string;
     }
     interface IxFlipTileAttributes {
@@ -11697,6 +12518,8 @@ declare namespace LocalJSX {
         "expand": boolean;
         "startExpanded": boolean;
         "pinned": boolean;
+        "i18nAriaLabelMenu": string;
+        "i18nNavigationHint": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
@@ -11763,6 +12586,7 @@ declare namespace LocalJSX {
         "target": AnchorTarget;
         "rel": string;
         "isCategory": boolean;
+        "menuCategoryLabel": string;
     }
     interface IxMenuSettingsAttributes {
         "suppressLegacyTabs": boolean;
@@ -11881,6 +12705,30 @@ declare namespace LocalJSX {
         "alignLeft": boolean;
         "tooltipText": string;
     }
+    interface IxPopoverAttributes {
+        "trigger": ElementReference;
+        "show": boolean;
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+        "hasSpike": boolean;
+        "triggerMode": 'click' | 'hover';
+        "closeOnClickOutside": boolean;
+    }
+    interface IxPopoverContentAttributes {
+        "noPadding": boolean;
+    }
+    interface IxPopoverFooterAttributes {
+        "alignment": 'horizontal' | 'vertical';
+    }
+    interface IxPopoverHeaderAttributes {
+        "icon": string;
+        "iconColor": string;
+        "hideClose": boolean;
+        "ariaLabelCloseIconButton": string;
+    }
+    interface IxPopoverImageAttributes {
+        "image": string;
+        "imageAlt": string;
+    }
     interface IxProgressIndicatorAttributes {
         "type": 'linear' | 'circular';
         "size": ProgressIndicatorSize;
@@ -11933,6 +12781,7 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelClearIconButton": string;
         "ariaLabelAddItem": string;
+        "i18nMoreItems": string;
         "warningText": string;
         "infoText": string;
         "invalidText": string;
@@ -12208,6 +13057,11 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-chat": IxChat;
+        "ix-chat-ai-message": IxChatAiMessage;
+        "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
+        "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
+        "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
@@ -12273,6 +13127,11 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-popover": Omit<IxPopover, keyof IxPopoverAttributes> & { [K in keyof IxPopover & keyof IxPopoverAttributes]?: IxPopover[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `attr:${K}`]?: IxPopoverAttributes[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `prop:${K}`]?: IxPopover[K] };
+        "ix-popover-content": Omit<IxPopoverContent, keyof IxPopoverContentAttributes> & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes]?: IxPopoverContent[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `attr:${K}`]?: IxPopoverContentAttributes[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `prop:${K}`]?: IxPopoverContent[K] };
+        "ix-popover-footer": Omit<IxPopoverFooter, keyof IxPopoverFooterAttributes> & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes]?: IxPopoverFooter[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `attr:${K}`]?: IxPopoverFooterAttributes[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `prop:${K}`]?: IxPopoverFooter[K] };
+        "ix-popover-header": Omit<IxPopoverHeader, keyof IxPopoverHeaderAttributes> & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes]?: IxPopoverHeader[K] } & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes as `attr:${K}`]?: IxPopoverHeaderAttributes[K] } & { [K in keyof IxPopoverHeader & keyof IxPopoverHeaderAttributes as `prop:${K}`]?: IxPopoverHeader[K] };
+        "ix-popover-image": Omit<IxPopoverImage, keyof IxPopoverImageAttributes> & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes]?: IxPopoverImage[K] } & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes as `attr:${K}`]?: IxPopoverImageAttributes[K] } & { [K in keyof IxPopoverImage & keyof IxPopoverImageAttributes as `prop:${K}`]?: IxPopoverImage[K] };
         "ix-progress-indicator": Omit<IxProgressIndicator, keyof IxProgressIndicatorAttributes> & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes]?: IxProgressIndicator[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `attr:${K}`]?: IxProgressIndicatorAttributes[K] } & { [K in keyof IxProgressIndicator & keyof IxProgressIndicatorAttributes as `prop:${K}`]?: IxProgressIndicator[K] };
         "ix-push-card": Omit<IxPushCard, keyof IxPushCardAttributes> & { [K in keyof IxPushCard & keyof IxPushCardAttributes]?: IxPushCard[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `attr:${K}`]?: IxPushCardAttributes[K] } & { [K in keyof IxPushCard & keyof IxPushCardAttributes as `prop:${K}`]?: IxPushCard[K] };
         "ix-radio": Omit<IxRadio, keyof IxRadioAttributes> & { [K in keyof IxRadio & keyof IxRadioAttributes]?: IxRadio[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `attr:${K}`]?: IxRadioAttributes[K] } & { [K in keyof IxRadio & keyof IxRadioAttributes as `prop:${K}`]?: IxRadio[K] };
@@ -12324,6 +13183,27 @@ declare module "@stencil/core" {
             "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat": LocalJSX.IntrinsicElements["ix-chat"] & JSXBase.HTMLAttributes<HTMLIxChatElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-attachment": LocalJSX.IntrinsicElements["ix-chat-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatAttachmentElement>;
+            /**
+             * @since 5.2.0
+             * @form-ready 
+             */
+            "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-user-message": LocalJSX.IntrinsicElements["ix-chat-user-message"] & JSXBase.HTMLAttributes<HTMLIxChatUserMessageElement>;
             /**
              * @form-ready 
              */
@@ -12414,6 +13294,31 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * Floating panel anchored to a trigger element.
+             * @since 5.1.0
+             */
+            "ix-popover": LocalJSX.IntrinsicElements["ix-popover"] & JSXBase.HTMLAttributes<HTMLIxPopoverElement>;
+            /**
+             * Main body section of the popover.
+             * @since 5.1.0
+             */
+            "ix-popover-content": LocalJSX.IntrinsicElements["ix-popover-content"] & JSXBase.HTMLAttributes<HTMLIxPopoverContentElement>;
+            /**
+             * Footer section for actions and optional leading metadata.
+             * @since 5.1.0
+             */
+            "ix-popover-footer": LocalJSX.IntrinsicElements["ix-popover-footer"] & JSXBase.HTMLAttributes<HTMLIxPopoverFooterElement>;
+            /**
+             * Header section with optional icon, title, additional items, and close button.
+             * @since 5.1.0
+             */
+            "ix-popover-header": LocalJSX.IntrinsicElements["ix-popover-header"] & JSXBase.HTMLAttributes<HTMLIxPopoverHeaderElement>;
+            /**
+             * Optional image section for the popover.
+             * @since 5.1.0
+             */
+            "ix-popover-image": LocalJSX.IntrinsicElements["ix-popover-image"] & JSXBase.HTMLAttributes<HTMLIxPopoverImageElement>;
             /**
              * @since 3.2.0
              */
