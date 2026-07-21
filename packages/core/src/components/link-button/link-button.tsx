@@ -40,8 +40,8 @@ export class LinkButton {
     return (
       <Host>
         <a
-          title={this.url}
-          tabindex="0"
+          aria-disabled={this.disabled ? 'true' : undefined}
+          tabindex={this.disabled ? -1 : undefined}
           class={{
             'link-button': true,
             disabled: this.disabled,
