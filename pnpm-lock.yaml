@@ -118,11 +118,11 @@ importers:
         specifier: ^21.1.0
         version: 21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@siemens/ix':
-        specifier: ^4.2.0
-        version: 4.4.0(@siemens/ix-icons@3.4.0)
+        specifier: workspace:*
+        version: link:../../packages/core
       '@siemens/ix-angular':
-        specifier: ^4.2.0
-        version: 4.4.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@siemens/ix-icons@3.4.0)
+        specifier: workspace:*
+        version: link:../../packages/angular/dist
       '@siemens/ix-icons':
         specifier: ^3.3.0
         version: 3.4.0
@@ -155,14 +155,14 @@ importers:
   blocks/react-blocks:
     dependencies:
       '@siemens/ix':
-        specifier: ^4.2.0
-        version: 4.4.0(@siemens/ix-icons@3.4.0)
+        specifier: workspace:*
+        version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: ^3.3.0
         version: 3.4.0
       '@siemens/ix-react':
-        specifier: ^4.2.0
-        version: 4.4.0(@siemens/ix-icons@3.4.0)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: workspace:*
+        version: link:../../packages/react
       react:
         specifier: ^19.2.0
         version: 19.2.7
@@ -263,9 +263,9 @@ importers:
       echarts-gl:
         specifier: ^2.1.0
         version: 2.1.0(echarts@6.1.0)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../testing/html-test-app
+        version: link:../html-examples
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.2(@angular/core@20.3.26(@angular/compiler@20.3.26)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@6.1.0)
@@ -378,9 +378,9 @@ importers:
       echarts-gl:
         specifier: ^2.1.0
         version: 2.1.0(echarts@6.1.0)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../testing/html-test-app
+        version: link:../html-examples
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.2(@angular/core@20.3.26(@angular/compiler@20.3.26)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@6.1.0)
@@ -591,9 +591,9 @@ importers:
       echarts-gl:
         specifier: ^2.1.0
         version: 2.1.0(echarts@6.1.0)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../testing/html-test-app
+        version: link:../html-examples
       vue:
         specifier: ^3.4.34
         version: 3.5.40(typescript@5.8.3)
@@ -855,8 +855,8 @@ importers:
         specifier: ^1.5.3
         version: 1.6.1(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@stencil/sass':
-        specifier: ^3.2.3
-        version: 3.3.1(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))
+        specifier: 3.2.3
+        version: 3.2.3(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))
       '@stencil/vitest':
         specifier: ^1.11.3
         version: 1.14.0(@playwright/test@1.61.1)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@vitest/browser-playwright@4.1.10)(happy-dom@20.11.0)(jsdom@27.4.0)(playwright@1.61.1)(vitest@4.1.10)
@@ -5914,28 +5914,9 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@siemens/ix-angular@4.4.0':
-    resolution: {integrity: sha512-E02jKTcsQIAuOQfjfO82Hznf9Nxca76l53QfJ9zaJw8gJRz3y2aAqiHcrwCNHp6nwgDyPrjSq0Mr/pmP2ydF9w==}
-    peerDependencies:
-      '@angular/core': '>=20.0.0'
-      '@angular/forms': '>=20.0.0'
-      '@siemens/ix-icons': ^3.2.0
-
   '@siemens/ix-icons@3.4.0':
     resolution: {integrity: sha512-T6maRV+DJ1MjT29phC/miwwc8fP/D8LQGNjc0UlBZnFCLaDMrtasQTREQzff99uROUmHw4nt5A65/ZWnW/j9Pg==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
-
-  '@siemens/ix-react@4.4.0':
-    resolution: {integrity: sha512-lxrl1TFe0o9ARWvUs5SR/Uh8wFjUWbpmJ3OR1ym21NmTYDpGmoUBpNxAQU4WuyIMQ7gAZy0E2f9kPUmgDOF9Hw==}
-    peerDependencies:
-      '@siemens/ix-icons': ^3.2.0
-      react: ^18 || ^19
-      react-dom: ^18 || ^19
-
-  '@siemens/ix@4.4.0':
-    resolution: {integrity: sha512-PmLfxi9NiLIorz/XkCedD+MPYQaocGXY88opvge7EVduuggZ6qRzVZvVqOdsmu1rR4dn5DfN5ocynnGnt0+oHw==}
-    peerDependencies:
-      '@siemens/ix-icons': ^3.2.0
 
   '@sigstore/bundle@4.0.0':
     resolution: {integrity: sha512-NwCl5Y0V6Di0NexvkTqdoVfmjTaQwoLM236r89KEojGmq/jMls8S+zb7yOwAPdXvbwfKDlP+lmXgAL4vKSQT+A==}
@@ -6023,11 +6004,11 @@ packages:
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  '@stencil/sass@3.3.1':
-    resolution: {integrity: sha512-kxdex5BEiZhuonP3fBzwg7xv/4cB/0F03MYLUgdGfE05zN9cmQa3gOrXLV88xYgJjUcVOVrCLNaPuJm/zc+Dnw==}
-    engines: {node: '>=22.0.0', pnpm: '>=9.0.0'}
+  '@stencil/sass@3.2.3':
+    resolution: {integrity: sha512-Wru76NJqa6D79/fDjSuiXoe2U0Ky1j7LLycqn7DV0jCmVO3tiWqXHBUPg0gMXJtxEiIbIJeiH/VpKhjNrBIUkQ==}
+    engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
-      '@stencil/core': ^4.0.0 || ^5.0.0 || >=5.0.0-alpha.19 <5.0.0-next.0
+      '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
 
   '@stencil/ssr@0.3.2':
     resolution: {integrity: sha512-8Ckax4n0rA70wH9Dp9WgrjOl/pYmBj33HhyFGQR5QcvkHweN3nt3PhOnQEkEqjUvOSpBNWErP3sjAfHctCjkLg==}
@@ -18075,42 +18056,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@siemens/ix-angular@4.4.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@siemens/ix-icons@3.4.0)':
-    dependencies:
-      '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/forms': 21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.18(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@siemens/ix': 4.4.0(@siemens/ix-icons@3.4.0)
-      '@siemens/ix-icons': 3.4.0
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - '@types/three'
-      - three
-
   '@siemens/ix-icons@3.4.0': {}
-
-  '@siemens/ix-react@4.4.0(@siemens/ix-icons@3.4.0)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
-    dependencies:
-      '@siemens/ix': 4.4.0(@siemens/ix-icons@3.4.0)
-      '@siemens/ix-icons': 3.4.0
-      '@stencil/react-output-target': 1.6.1(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      react: 19.2.7
-      react-dom: 19.2.7(react@19.2.7)
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - '@stencil/core'
-      - '@types/react'
-      - '@types/three'
-      - three
-
-  '@siemens/ix@4.4.0(@siemens/ix-icons@3.4.0)':
-    dependencies:
-      '@floating-ui/dom': 1.8.0
-      '@siemens/ix-icons': 3.4.0
-      animejs: 4.5.0
-      luxon: 3.7.2
-    transitivePeerDependencies:
-      - '@types/three'
-      - three
 
   '@sigstore/bundle@4.0.0':
     dependencies:
@@ -18229,7 +18175,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.3.1(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))':
+  '@stencil/sass@3.2.3(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))':
     dependencies:
       '@stencil/core': 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       sass-embedded: 1.100.0
@@ -26737,7 +26683,7 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.6.1(esbuild@0.28.1)(postcss@8.5.12)(webpack@5.105.0(esbuild@0.28.1)(postcss@8.5.12)):
+  terser-webpack-plugin@5.6.1(esbuild@0.28.1)(postcss@8.5.12)(webpack@5.105.0(postcss@8.5.12)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -28092,7 +28038,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(esbuild@0.28.1)(postcss@8.5.12)(webpack@5.105.0(esbuild@0.28.1)(postcss@8.5.12))
+      terser-webpack-plugin: 5.6.1(esbuild@0.28.1)(postcss@8.5.12)(webpack@5.105.0(postcss@8.5.12))
       watchpack: 2.5.2
       webpack-sources: 3.5.1
     transitivePeerDependencies:

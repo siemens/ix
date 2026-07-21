@@ -117,8 +117,13 @@ const IxNavLinkTab = ({
 }) => (
   <NavLink to={to}>
     {(props) => (
-      <IxTabItem icon={icon} label={label} selected={props.isActive} counter={counter}>
-      </IxTabItem>
+      <IxTabItem
+        tabKey={to}
+        icon={icon}
+        label={label}
+        selected={props.isActive}
+        counter={counter}
+      ></IxTabItem>
     )}
   </NavLink>
 );

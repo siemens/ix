@@ -67,8 +67,8 @@ export declare interface IxApplication extends Components.IxApplication {}
 })
 export class IxApplicationHeader {
   protected el: HTMLIxApplicationHeaderElement;
-  @Output() menuToggle = new EventEmitter<CustomEvent<boolean>>();
-  @Output() openAppSwitch = new EventEmitter<CustomEvent<void>>();
+  @Output() menuToggle = new EventEmitter<IxApplicationHeaderCustomEvent<boolean>>();
+  @Output() openAppSwitch = new EventEmitter<IxApplicationHeaderCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -76,15 +76,17 @@ export class IxApplicationHeader {
 }
 
 
+import type { IxApplicationHeaderCustomEvent } from '@siemens/ix';
+
 export declare interface IxApplicationHeader extends Components.IxApplicationHeader {
   /**
    * Event emitted when the menu toggle button is clicked
    */
-  menuToggle: EventEmitter<CustomEvent<boolean>>;
+  menuToggle: EventEmitter<IxApplicationHeaderCustomEvent<boolean>>;
   /**
    * Event emitted when the app switch button is clicked @since 3.0.0
    */
-  openAppSwitch: EventEmitter<CustomEvent<void>>;
+  openAppSwitch: EventEmitter<IxApplicationHeaderCustomEvent<void>>;
 }
 
 
@@ -125,7 +127,7 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 })
 export class IxBlind {
   protected el: HTMLIxBlindElement;
-  @Output() collapsedChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() collapsedChange = new EventEmitter<IxBlindCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -133,11 +135,13 @@ export class IxBlind {
 }
 
 
+import type { IxBlindCustomEvent } from '@siemens/ix';
+
 export declare interface IxBlind extends Components.IxBlind {
   /**
    * Collapsed state changed
    */
-  collapsedChange: EventEmitter<CustomEvent<boolean>>;
+  collapsedChange: EventEmitter<IxBlindCustomEvent<boolean>>;
 }
 
 
@@ -155,8 +159,8 @@ export declare interface IxBlind extends Components.IxBlind {
 })
 export class IxBreadcrumb {
   protected el: HTMLIxBreadcrumbElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<IIxBreadcrumbBreadcrumbClick>>();
-  @Output() nextClick = new EventEmitter<CustomEvent<{ event: UIEvent; item: IIxBreadcrumbBreadcrumbClick; }>>();
+  @Output() itemClick = new EventEmitter<IxBreadcrumbCustomEvent<IIxBreadcrumbBreadcrumbClick>>();
+  @Output() nextClick = new EventEmitter<IxBreadcrumbCustomEvent<{ event: UIEvent; item: IIxBreadcrumbBreadcrumbClick; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -164,17 +168,18 @@ export class IxBreadcrumb {
 }
 
 
+import type { IxBreadcrumbCustomEvent } from '@siemens/ix';
 import type { BreadcrumbClick as IIxBreadcrumbBreadcrumbClick } from '@siemens/ix';
 
 export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
   /**
    * Crumb item clicked event @since 5.0.0
    */
-  itemClick: EventEmitter<CustomEvent<IIxBreadcrumbBreadcrumbClick>>;
+  itemClick: EventEmitter<IxBreadcrumbCustomEvent<IIxBreadcrumbBreadcrumbClick>>;
   /**
    * Next item clicked event @since 5.0.0
    */
-  nextClick: EventEmitter<CustomEvent<{ event: UIEvent; item: IIxBreadcrumbBreadcrumbClick; }>>;
+  nextClick: EventEmitter<IxBreadcrumbCustomEvent<{ event: UIEvent; item: IIxBreadcrumbBreadcrumbClick; }>>;
 }
 
 
@@ -306,9 +311,9 @@ export declare interface IxCardContent extends Components.IxCardContent {}
 })
 export class IxCardList {
   protected el: HTMLIxCardListElement;
-  @Output() collapseChanged = new EventEmitter<CustomEvent<boolean>>();
-  @Output() showAllClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
-  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
+  @Output() collapseChanged = new EventEmitter<IxCardListCustomEvent<boolean>>();
+  @Output() showAllClick = new EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>();
+  @Output() showMoreCardClick = new EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -316,19 +321,21 @@ export class IxCardList {
 }
 
 
+import type { IxCardListCustomEvent } from '@siemens/ix';
+
 export declare interface IxCardList extends Components.IxCardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  collapseChanged: EventEmitter<CustomEvent<boolean>>;
+  collapseChanged: EventEmitter<IxCardListCustomEvent<boolean>>;
   /**
    * Fire event when the collapse state is changed by the user
    */
-  showAllClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showAllClick: EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>;
   /**
    * Fire event when the show more card is clicked.
    */
-  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showMoreCardClick: EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>;
 }
 
 
@@ -368,10 +375,10 @@ export declare interface IxCardTitle extends Components.IxCardTitle {}
 })
 export class IxCategoryFilter {
   protected el: HTMLIxCategoryFilterElement;
-  @Output() categoryChanged = new EventEmitter<CustomEvent<string>>();
-  @Output() inputChanged = new EventEmitter<CustomEvent<IIxCategoryFilterInputState>>();
-  @Output() filterChanged = new EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>();
-  @Output() filterCleared = new EventEmitter<CustomEvent<void>>();
+  @Output() categoryChanged = new EventEmitter<IxCategoryFilterCustomEvent<string>>();
+  @Output() inputChanged = new EventEmitter<IxCategoryFilterCustomEvent<IIxCategoryFilterInputState>>();
+  @Output() filterChanged = new EventEmitter<IxCategoryFilterCustomEvent<IIxCategoryFilterFilterState>>();
+  @Output() filterCleared = new EventEmitter<IxCategoryFilterCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -379,6 +386,7 @@ export class IxCategoryFilter {
 }
 
 
+import type { IxCategoryFilterCustomEvent } from '@siemens/ix';
 import type { InputState as IIxCategoryFilterInputState } from '@siemens/ix';
 import type { FilterState as IIxCategoryFilterFilterState } from '@siemens/ix';
 
@@ -386,19 +394,19 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
-  categoryChanged: EventEmitter<CustomEvent<string>>;
+  categoryChanged: EventEmitter<IxCategoryFilterCustomEvent<string>>;
   /**
    * Event dispatched whenever the text input changes.
    */
-  inputChanged: EventEmitter<CustomEvent<IIxCategoryFilterInputState>>;
+  inputChanged: EventEmitter<IxCategoryFilterCustomEvent<IIxCategoryFilterInputState>>;
   /**
    * Event dispatched whenever the filter state changes.
    */
-  filterChanged: EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>;
+  filterChanged: EventEmitter<IxCategoryFilterCustomEvent<IIxCategoryFilterFilterState>>;
   /**
    * Event dispatched whenever the filter gets cleared.
    */
-  filterCleared: EventEmitter<CustomEvent<void>>;
+  filterCleared: EventEmitter<IxCategoryFilterCustomEvent<void>>;
 }
 
 
@@ -416,9 +424,9 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 })
 export class IxCheckbox {
   protected el: HTMLIxCheckboxElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() checkedChange = new EventEmitter<IxCheckboxCustomEvent<boolean>>();
+  @Output() valueChange = new EventEmitter<IxCheckboxCustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<IxCheckboxCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -426,19 +434,21 @@ export class IxCheckbox {
 }
 
 
+import type { IxCheckboxCustomEvent } from '@siemens/ix';
+
 export declare interface IxCheckbox extends Components.IxCheckbox {
   /**
    * Event emitted when the checked state of the checkbox changes
    */
-  checkedChange: EventEmitter<CustomEvent<boolean>>;
+  checkedChange: EventEmitter<IxCheckboxCustomEvent<boolean>>;
   /**
    * Event emitted when the value of the checkbox changes
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxCheckboxCustomEvent<string>>;
   /**
    * Event emitted when the checkbox is blurred
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxCheckboxCustomEvent<void>>;
 }
 
 
@@ -479,7 +489,7 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
 })
 export class IxChip {
   protected el: HTMLIxChipElement;
-  @Output() closeChip = new EventEmitter<CustomEvent<any>>();
+  @Output() closeChip = new EventEmitter<IxChipCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -487,11 +497,13 @@ export class IxChip {
 }
 
 
+import type { IxChipCustomEvent } from '@siemens/ix';
+
 export declare interface IxChip extends Components.IxChip {
   /**
    * Fire event if close button is clicked
    */
-  closeChip: EventEmitter<CustomEvent<any>>;
+  closeChip: EventEmitter<IxChipCustomEvent<any>>;
 }
 
 
@@ -554,7 +566,7 @@ export declare interface IxContent extends Components.IxContent {}
 })
 export class IxContentHeader {
   protected el: HTMLIxContentHeaderElement;
-  @Output() backButtonClick = new EventEmitter<CustomEvent<void>>();
+  @Output() backButtonClick = new EventEmitter<IxContentHeaderCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -562,11 +574,13 @@ export class IxContentHeader {
 }
 
 
+import type { IxContentHeaderCustomEvent } from '@siemens/ix';
+
 export declare interface IxContentHeader extends Components.IxContentHeader {
   /**
    * Triggered when back button is clicked
    */
-  backButtonClick: EventEmitter<CustomEvent<void>>;
+  backButtonClick: EventEmitter<IxContentHeaderCustomEvent<void>>;
 }
 
 
@@ -608,7 +622,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
 })
 export class IxDateDropdown {
   protected el: HTMLIxDateDropdownElement;
-  @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>();
+  @Output() dateRangeChange = new EventEmitter<IxDateDropdownCustomEvent<IIxDateDropdownDateRangeChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -616,6 +630,7 @@ export class IxDateDropdown {
 }
 
 
+import type { IxDateDropdownCustomEvent } from '@siemens/ix';
 import type { DateRangeChangeEvent as IIxDateDropdownDateRangeChangeEvent } from '@siemens/ix';
 
 export declare interface IxDateDropdown extends Components.IxDateDropdown {
@@ -625,7 +640,7 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
 This event is emitted when the date range changes within the component.
 The event payload contains information about the selected date range.
    */
-  dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
+  dateRangeChange: EventEmitter<IxDateDropdownCustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
 
 
@@ -644,9 +659,9 @@ The event payload contains information about the selected date range.
 })
 export class IxDateInput {
   protected el: HTMLIxDateInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string | undefined>>();
+  @Output() valueChange = new EventEmitter<IxDateInputCustomEvent<string | undefined>>();
+  @Output() validityStateChange = new EventEmitter<IxDateInputCustomEvent<IIxDateInputDateInputValidityState>>();
+  @Output() ixChange = new EventEmitter<IxDateInputCustomEvent<string | undefined>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -654,21 +669,22 @@ export class IxDateInput {
 }
 
 
+import type { IxDateInputCustomEvent } from '@siemens/ix';
 import type { DateInputValidityState as IIxDateInputDateInputValidityState } from '@siemens/ix';
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Value change event. Emitted when the input value changes.
    */
-  valueChange: EventEmitter<CustomEvent<string | undefined>>;
+  valueChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
   /**
    * Validation state change event. Emitted when the validation state changes.
    */
-  validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
+  validityStateChange: EventEmitter<IxDateInputCustomEvent<IIxDateInputDateInputValidityState>>;
   /**
    * Change event. Emitted when the date input loses focus and the value has changed. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string | undefined>>;
+  ixChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
 }
 
 
@@ -687,9 +703,9 @@ export declare interface IxDateInput extends Components.IxDateInput {
 })
 export class IxDatePicker {
   protected el: HTMLIxDatePickerElement;
-  @Output() dateChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
-  @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
-  @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
+  @Output() dateChange = new EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>();
+  @Output() dateRangeChange = new EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>();
+  @Output() dateSelect = new EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -697,6 +713,7 @@ export class IxDatePicker {
 }
 
 
+import type { IxDatePickerCustomEvent } from '@siemens/ix';
 import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/ix';
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
@@ -706,19 +723,19 @@ The property strings are formatted according to the `format` property and not af
 The locale applied is always `en-US`.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
-  dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+  dateChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
 The property strings are formatted according to the `format` property and not affected by the `locale` property.
 The locale applied is always `en-US`.
    */
-  dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+  dateRangeChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
 The property strings are formatted according to the `format` property and not affected by the `locale` property.
 The locale applied is always `en-US`.
    */
-  dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+  dateSelect: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
 }
 
 
@@ -736,11 +753,11 @@ The locale applied is always `en-US`.
 })
 export class IxDatetimeInput {
   protected el: HTMLIxDatetimeInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDatetimeInputDateTimeInputValidityState>>();
-  @Output() ixFocus = new EventEmitter<CustomEvent<void>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string | undefined>>();
+  @Output() valueChange = new EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>();
+  @Output() validityStateChange = new EventEmitter<IxDatetimeInputCustomEvent<IIxDatetimeInputDateTimeInputValidityState>>();
+  @Output() ixFocus = new EventEmitter<IxDatetimeInputCustomEvent<void>>();
+  @Output() ixBlur = new EventEmitter<IxDatetimeInputCustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -748,25 +765,26 @@ export class IxDatetimeInput {
 }
 
 
+import type { IxDatetimeInputCustomEvent } from '@siemens/ix';
 import type { DateTimeInputValidityState as IIxDatetimeInputDateTimeInputValidityState } from '@siemens/ix';
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
    * Emitted when the datetime value changes. Payload is display format or undefined
    */
-  valueChange: EventEmitter<CustomEvent<string | undefined>>;
+  valueChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
   /**
    * Emitted when validation state changes
    */
-  validityStateChange: EventEmitter<CustomEvent<IIxDatetimeInputDateTimeInputValidityState>>;
+  validityStateChange: EventEmitter<IxDatetimeInputCustomEvent<IIxDatetimeInputDateTimeInputValidityState>>;
   /**
    * Emitted when the input receives focus
    */
-  ixFocus: EventEmitter<CustomEvent<void>>;
+  ixFocus: EventEmitter<IxDatetimeInputCustomEvent<void>>;
   /**
    * Emitted when the input loses focus
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxDatetimeInputCustomEvent<void>>;
   /**
    * Emitted when the date/time value changes via user interaction.
 
@@ -779,7 +797,7 @@ Does NOT fire when:
 - The input is blurred without modifying the value
 - The value is changed programmatically via the value property
    */
-  ixChange: EventEmitter<CustomEvent<string | undefined>>;
+  ixChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
 }
 
 
@@ -797,9 +815,9 @@ Does NOT fire when:
 })
 export class IxDatetimePicker {
   protected el: HTMLIxDatetimePickerElement;
-  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
-  @Output() dateChange = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>();
-  @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>();
+  @Output() timeChange = new EventEmitter<IxDatetimePickerCustomEvent<string>>();
+  @Output() dateChange = new EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>();
+  @Output() dateSelect = new EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeSelectEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -807,6 +825,7 @@ export class IxDatetimePicker {
 }
 
 
+import type { IxDatetimePickerCustomEvent } from '@siemens/ix';
 import type { DateTimeDateChangeEvent as IIxDatetimePickerDateTimeDateChangeEvent } from '@siemens/ix';
 import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from '@siemens/ix';
 
@@ -814,15 +833,15 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
    * Time change event. Emitted when the time changes in the embedded time picker.
    */
-  timeChange: EventEmitter<CustomEvent<string>>;
+  timeChange: EventEmitter<IxDatetimePickerCustomEvent<string>>;
   /**
    * Date change event. Emitted when the date changes in the embedded date picker.
    */
-  dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
+  dateChange: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
    * Datetime selection event. Emitted when the user confirms the selection.
    */
-  dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
+  dateSelect: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
 
 
@@ -863,8 +882,8 @@ export declare interface IxDivider extends Components.IxDivider {}
 })
 export class IxDropdown {
   protected el: HTMLIxDropdownElement;
-  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChange = new EventEmitter<IxDropdownCustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<IxDropdownCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -872,15 +891,17 @@ export class IxDropdown {
 }
 
 
+import type { IxDropdownCustomEvent } from '@siemens/ix';
+
 export declare interface IxDropdown extends Components.IxDropdown {
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
    */
-  showChange: EventEmitter<CustomEvent<boolean>>;
+  showChange: EventEmitter<IxDropdownCustomEvent<boolean>>;
   /**
    * Fire event after visibility of dropdown has changed
    */
-  showChanged: EventEmitter<CustomEvent<boolean>>;
+  showChanged: EventEmitter<IxDropdownCustomEvent<boolean>>;
 }
 
 
@@ -898,8 +919,8 @@ export declare interface IxDropdown extends Components.IxDropdown {
 })
 export class IxDropdownButton {
   protected el: HTMLIxDropdownButtonElement;
-  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChange = new EventEmitter<IxDropdownButtonCustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<IxDropdownButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -907,15 +928,17 @@ export class IxDropdownButton {
 }
 
 
+import type { IxDropdownButtonCustomEvent } from '@siemens/ix';
+
 export declare interface IxDropdownButton extends Components.IxDropdownButton {
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
    */
-  showChange: EventEmitter<CustomEvent<boolean>>;
+  showChange: EventEmitter<IxDropdownButtonCustomEvent<boolean>>;
   /**
    * Fire event after visibility of dropdown has changed
    */
-  showChanged: EventEmitter<CustomEvent<boolean>>;
+  showChanged: EventEmitter<IxDropdownButtonCustomEvent<boolean>>;
 }
 
 
@@ -1001,7 +1024,7 @@ export declare interface IxDropdownQuickActions extends Components.IxDropdownQui
 })
 export class IxEmptyState {
   protected el: HTMLIxEmptyStateElement;
-  @Output() actionClick = new EventEmitter<CustomEvent<void>>();
+  @Output() actionClick = new EventEmitter<IxEmptyStateCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1009,11 +1032,13 @@ export class IxEmptyState {
 }
 
 
+import type { IxEmptyStateCustomEvent } from '@siemens/ix';
+
 export declare interface IxEmptyState extends Components.IxEmptyState {
   /**
    * Empty state action click event
    */
-  actionClick: EventEmitter<CustomEvent<void>>;
+  actionClick: EventEmitter<IxEmptyStateCustomEvent<void>>;
 }
 
 
@@ -1054,7 +1079,7 @@ export declare interface IxEventList extends Components.IxEventList {}
 })
 export class IxEventListItem {
   protected el: HTMLIxEventListItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<any>>();
+  @Output() itemClick = new EventEmitter<IxEventListItemCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1062,11 +1087,13 @@ export class IxEventListItem {
 }
 
 
+import type { IxEventListItemCustomEvent } from '@siemens/ix';
+
 export declare interface IxEventListItem extends Components.IxEventListItem {
   /**
    * Event list item click
    */
-  itemClick: EventEmitter<CustomEvent<any>>;
+  itemClick: EventEmitter<IxEventListItemCustomEvent<any>>;
 }
 
 
@@ -1084,7 +1111,7 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 })
 export class IxExpandingSearch {
   protected el: HTMLIxExpandingSearchElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() valueChange = new EventEmitter<IxExpandingSearchCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1092,11 +1119,13 @@ export class IxExpandingSearch {
 }
 
 
+import type { IxExpandingSearchCustomEvent } from '@siemens/ix';
+
 export declare interface IxExpandingSearch extends Components.IxExpandingSearch {
   /**
    * Value changed
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxExpandingSearchCustomEvent<string>>;
 }
 
 
@@ -1137,7 +1166,7 @@ export declare interface IxFieldLabel extends Components.IxFieldLabel {}
 })
 export class IxFilterChip {
   protected el: HTMLIxFilterChipElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<void>>();
+  @Output() closeClick = new EventEmitter<IxFilterChipCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1145,11 +1174,13 @@ export class IxFilterChip {
 }
 
 
+import type { IxFilterChipCustomEvent } from '@siemens/ix';
+
 export declare interface IxFilterChip extends Components.IxFilterChip {
   /**
    * Close clicked
    */
-  closeClick: EventEmitter<CustomEvent<void>>;
+  closeClick: EventEmitter<IxFilterChipCustomEvent<void>>;
 }
 
 
@@ -1167,7 +1198,7 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 })
 export class IxFlipTile {
   protected el: HTMLIxFlipTileElement;
-  @Output() toggle = new EventEmitter<CustomEvent<number>>();
+  @Output() toggle = new EventEmitter<IxFlipTileCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1175,11 +1206,13 @@ export class IxFlipTile {
 }
 
 
+import type { IxFlipTileCustomEvent } from '@siemens/ix';
+
 export declare interface IxFlipTile extends Components.IxFlipTile {
   /**
    * Event emitted when the index changes @since 3.0.0
    */
-  toggle: EventEmitter<CustomEvent<number>>;
+  toggle: EventEmitter<IxFlipTileCustomEvent<number>>;
 }
 
 
@@ -1219,9 +1252,9 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
 })
 export class IxGroup {
   protected el: HTMLIxGroupElement;
-  @Output() selectGroup = new EventEmitter<CustomEvent<boolean>>();
-  @Output() selectItem = new EventEmitter<CustomEvent<number>>();
-  @Output() expandedChanged = new EventEmitter<CustomEvent<boolean>>();
+  @Output() selectGroup = new EventEmitter<IxGroupCustomEvent<boolean>>();
+  @Output() selectItem = new EventEmitter<IxGroupCustomEvent<number>>();
+  @Output() expandedChanged = new EventEmitter<IxGroupCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1229,19 +1262,21 @@ export class IxGroup {
 }
 
 
+import type { IxGroupCustomEvent } from '@siemens/ix';
+
 export declare interface IxGroup extends Components.IxGroup {
   /**
    * Emits when whole group gets selected.
    */
-  selectGroup: EventEmitter<CustomEvent<boolean>>;
+  selectGroup: EventEmitter<IxGroupCustomEvent<boolean>>;
   /**
    * Emits when group item gets selected.
    */
-  selectItem: EventEmitter<CustomEvent<number>>;
+  selectItem: EventEmitter<IxGroupCustomEvent<number>>;
   /**
    * Group expanded
    */
-  expandedChanged: EventEmitter<CustomEvent<boolean>>;
+  expandedChanged: EventEmitter<IxGroupCustomEvent<boolean>>;
 }
 
 
@@ -1281,7 +1316,7 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
 })
 export class IxGroupItem {
   protected el: HTMLIxGroupItemElement;
-  @Output() selectedChanged = new EventEmitter<CustomEvent<HTMLIxGroupItemElement>>();
+  @Output() selectedChanged = new EventEmitter<IxGroupItemCustomEvent<HTMLIxGroupItemElement>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1289,11 +1324,13 @@ export class IxGroupItem {
 }
 
 
+import type { IxGroupItemCustomEvent } from '@siemens/ix';
+
 export declare interface IxGroupItem extends Components.IxGroupItem {
   /**
    * Selection changed
    */
-  selectedChanged: EventEmitter<CustomEvent<HTMLIxGroupItemElement>>;
+  selectedChanged: EventEmitter<IxGroupItemCustomEvent<HTMLIxGroupItemElement>>;
 }
 
 
@@ -1357,7 +1394,7 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 })
 export class IxIconToggleButton {
   protected el: HTMLIxIconToggleButtonElement;
-  @Output() pressedChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() pressedChange = new EventEmitter<IxIconToggleButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1365,11 +1402,13 @@ export class IxIconToggleButton {
 }
 
 
+import type { IxIconToggleButtonCustomEvent } from '@siemens/ix';
+
 export declare interface IxIconToggleButton extends Components.IxIconToggleButton {
   /**
    * Pressed change event
    */
-  pressedChange: EventEmitter<CustomEvent<boolean>>;
+  pressedChange: EventEmitter<IxIconToggleButtonCustomEvent<boolean>>;
 }
 
 
@@ -1388,10 +1427,10 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 })
 export class IxInput {
   protected el: HTMLIxInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() valueChange = new EventEmitter<IxInputCustomEvent<string>>();
+  @Output() validityStateChange = new EventEmitter<IxInputCustomEvent<ValidityState>>();
+  @Output() ixBlur = new EventEmitter<IxInputCustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<IxInputCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1399,23 +1438,25 @@ export class IxInput {
 }
 
 
+import type { IxInputCustomEvent } from '@siemens/ix';
+
 export declare interface IxInput extends Components.IxInput {
   /**
    * Event emitted when the value of the text field changes.
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxInputCustomEvent<string>>;
   /**
    * Event emitted when the validity state of the text field changes.
    */
-  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  validityStateChange: EventEmitter<IxInputCustomEvent<ValidityState>>;
   /**
    * Event emitted when the text field loses focus.
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxInputCustomEvent<void>>;
   /**
    * Event emitted when the text field loses focus and the value has changed. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string>>;
+  ixChange: EventEmitter<IxInputCustomEvent<string>>;
 }
 
 
@@ -1572,11 +1613,11 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 })
 export class IxMenu {
   protected el: HTMLIxMenuElement;
-  @Output() expandChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() mapExpandChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() openAppSwitch = new EventEmitter<CustomEvent<void>>();
-  @Output() openSettings = new EventEmitter<CustomEvent<void>>();
-  @Output() openAbout = new EventEmitter<CustomEvent<void>>();
+  @Output() expandChange = new EventEmitter<IxMenuCustomEvent<boolean>>();
+  @Output() mapExpandChange = new EventEmitter<IxMenuCustomEvent<boolean>>();
+  @Output() openAppSwitch = new EventEmitter<IxMenuCustomEvent<void>>();
+  @Output() openSettings = new EventEmitter<IxMenuCustomEvent<void>>();
+  @Output() openAbout = new EventEmitter<IxMenuCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1584,27 +1625,29 @@ export class IxMenu {
 }
 
 
+import type { IxMenuCustomEvent } from '@siemens/ix';
+
 export declare interface IxMenu extends Components.IxMenu {
   /**
    * Menu expanded
    */
-  expandChange: EventEmitter<CustomEvent<boolean>>;
+  expandChange: EventEmitter<IxMenuCustomEvent<boolean>>;
   /**
    * Map Sidebar expanded
    */
-  mapExpandChange: EventEmitter<CustomEvent<boolean>>;
+  mapExpandChange: EventEmitter<IxMenuCustomEvent<boolean>>;
   /**
    * Event emitted when the app switch button is clicked @since 3.0.0
    */
-  openAppSwitch: EventEmitter<CustomEvent<void>>;
+  openAppSwitch: EventEmitter<IxMenuCustomEvent<void>>;
   /**
    * Event emitted when the settings button is clicked @since 3.0.0
    */
-  openSettings: EventEmitter<CustomEvent<void>>;
+  openSettings: EventEmitter<IxMenuCustomEvent<void>>;
   /**
    * Event emitted when the about button is clicked @since 3.0.0
    */
-  openAbout: EventEmitter<CustomEvent<void>>;
+  openAbout: EventEmitter<IxMenuCustomEvent<void>>;
 }
 
 
@@ -1622,8 +1665,8 @@ export declare interface IxMenu extends Components.IxMenu {
 })
 export class IxMenuAbout {
   protected el: HTMLIxMenuAboutElement;
-  @Output() tabChange = new EventEmitter<CustomEvent<string>>();
-  @Output() close = new EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>();
+  @Output() tabChange = new EventEmitter<IxMenuAboutCustomEvent<string>>();
+  @Output() close = new EventEmitter<IxMenuAboutCustomEvent<IIxMenuAboutCustomCloseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1631,17 +1674,18 @@ export class IxMenuAbout {
 }
 
 
+import type { IxMenuAboutCustomEvent } from '@siemens/ix';
 import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * Active tab changed @since 3.0.0
    */
-  tabChange: EventEmitter<CustomEvent<string>>;
+  tabChange: EventEmitter<IxMenuAboutCustomEvent<string>>;
   /**
    * About and Legal closed
    */
-  close: EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>;
+  close: EventEmitter<IxMenuAboutCustomEvent<IIxMenuAboutCustomCloseEvent>>;
 }
 
 
@@ -1659,7 +1703,7 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
 })
 export class IxMenuAboutItem {
   protected el: HTMLIxMenuAboutItemElement;
-  @Output() labelChange = new EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>();
+  @Output() labelChange = new EventEmitter<IxMenuAboutItemCustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1667,13 +1711,14 @@ export class IxMenuAboutItem {
 }
 
 
+import type { IxMenuAboutItemCustomEvent } from '@siemens/ix';
 import type { CustomLabelChangeEvent as IIxMenuAboutItemCustomLabelChangeEvent } from '@siemens/ix';
 
 export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
   /**
    * Label changed
    */
-  labelChange: EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>;
+  labelChange: EventEmitter<IxMenuAboutItemCustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>;
 }
 
 
@@ -1691,8 +1736,8 @@ export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
 })
 export class IxMenuAboutNews {
   protected el: HTMLIxMenuAboutNewsElement;
-  @Output() showMore = new EventEmitter<CustomEvent<MouseEvent>>();
-  @Output() closePopover = new EventEmitter<CustomEvent<void>>();
+  @Output() showMore = new EventEmitter<IxMenuAboutNewsCustomEvent<MouseEvent>>();
+  @Output() closePopover = new EventEmitter<IxMenuAboutNewsCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1700,15 +1745,17 @@ export class IxMenuAboutNews {
 }
 
 
+import type { IxMenuAboutNewsCustomEvent } from '@siemens/ix';
+
 export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
   /**
    * Show More button is pressed
    */
-  showMore: EventEmitter<CustomEvent<MouseEvent>>;
+  showMore: EventEmitter<IxMenuAboutNewsCustomEvent<MouseEvent>>;
   /**
    * Popover closed
    */
-  closePopover: EventEmitter<CustomEvent<void>>;
+  closePopover: EventEmitter<IxMenuAboutNewsCustomEvent<void>>;
 }
 
 
@@ -1726,7 +1773,7 @@ export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
 })
 export class IxMenuAvatar {
   protected el: HTMLIxMenuAvatarElement;
-  @Output() logoutClick = new EventEmitter<CustomEvent<any>>();
+  @Output() logoutClick = new EventEmitter<IxMenuAvatarCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1734,11 +1781,13 @@ export class IxMenuAvatar {
 }
 
 
+import type { IxMenuAvatarCustomEvent } from '@siemens/ix';
+
 export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
   /**
    * Logout click
    */
-  logoutClick: EventEmitter<CustomEvent<any>>;
+  logoutClick: EventEmitter<IxMenuAvatarCustomEvent<any>>;
 }
 
 
@@ -1756,7 +1805,7 @@ export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
 })
 export class IxMenuAvatarItem {
   protected el: HTMLIxMenuAvatarItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  @Output() itemClick = new EventEmitter<IxMenuAvatarItemCustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1764,11 +1813,13 @@ export class IxMenuAvatarItem {
 }
 
 
+import type { IxMenuAvatarItemCustomEvent } from '@siemens/ix';
+
 export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
   /**
    * Avatar dropdown item clicked
    */
-  itemClick: EventEmitter<CustomEvent<MouseEvent>>;
+  itemClick: EventEmitter<IxMenuAvatarItemCustomEvent<MouseEvent>>;
 }
 
 
@@ -1832,8 +1883,8 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
 })
 export class IxMenuSettings {
   protected el: HTMLIxMenuSettingsElement;
-  @Output() tabChange = new EventEmitter<CustomEvent<string>>();
-  @Output() close = new EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>();
+  @Output() tabChange = new EventEmitter<IxMenuSettingsCustomEvent<string>>();
+  @Output() close = new EventEmitter<IxMenuSettingsCustomEvent<IIxMenuSettingsCustomCloseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1841,17 +1892,18 @@ export class IxMenuSettings {
 }
 
 
+import type { IxMenuSettingsCustomEvent } from '@siemens/ix';
 import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Active tab changed @since 3.0.0
    */
-  tabChange: EventEmitter<CustomEvent<string>>;
+  tabChange: EventEmitter<IxMenuSettingsCustomEvent<string>>;
   /**
    * Popover closed
    */
-  close: EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>;
+  close: EventEmitter<IxMenuSettingsCustomEvent<IIxMenuSettingsCustomCloseEvent>>;
 }
 
 
@@ -1892,8 +1944,8 @@ export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsIte
 })
 export class IxMessageBar {
   protected el: HTMLIxMessageBarElement;
-  @Output() closedChange = new EventEmitter<CustomEvent<any>>();
-  @Output() closeAnimationCompleted = new EventEmitter<CustomEvent<any>>();
+  @Output() closedChange = new EventEmitter<IxMessageBarCustomEvent<any>>();
+  @Output() closeAnimationCompleted = new EventEmitter<IxMessageBarCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1901,15 +1953,17 @@ export class IxMessageBar {
 }
 
 
+import type { IxMessageBarCustomEvent } from '@siemens/ix';
+
 export declare interface IxMessageBar extends Components.IxMessageBar {
   /**
    * An event emitted when the close button is clicked
    */
-  closedChange: EventEmitter<CustomEvent<any>>;
+  closedChange: EventEmitter<IxMessageBarCustomEvent<any>>;
   /**
    * An event emitted when the close animation is completed
    */
-  closeAnimationCompleted: EventEmitter<CustomEvent<any>>;
+  closeAnimationCompleted: EventEmitter<IxMessageBarCustomEvent<any>>;
 }
 
 
@@ -1928,8 +1982,8 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
 })
 export class IxModal {
   protected el: HTMLIxModalElement;
-  @Output() dialogClose = new EventEmitter<CustomEvent<any>>();
-  @Output() dialogDismiss = new EventEmitter<CustomEvent<any>>();
+  @Output() dialogClose = new EventEmitter<IxModalCustomEvent<any>>();
+  @Output() dialogDismiss = new EventEmitter<IxModalCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1937,15 +1991,17 @@ export class IxModal {
 }
 
 
+import type { IxModalCustomEvent } from '@siemens/ix';
+
 export declare interface IxModal extends Components.IxModal {
   /**
    * Dialog close
    */
-  dialogClose: EventEmitter<CustomEvent<any>>;
+  dialogClose: EventEmitter<IxModalCustomEvent<any>>;
   /**
    * Dialog cancel
    */
-  dialogDismiss: EventEmitter<CustomEvent<any>>;
+  dialogDismiss: EventEmitter<IxModalCustomEvent<any>>;
 }
 
 
@@ -2007,7 +2063,7 @@ export declare interface IxModalFooter extends Components.IxModalFooter {}
 })
 export class IxModalHeader {
   protected el: HTMLIxModalHeaderElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  @Output() closeClick = new EventEmitter<IxModalHeaderCustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2015,12 +2071,14 @@ export class IxModalHeader {
 }
 
 
+import type { IxModalHeaderCustomEvent } from '@siemens/ix';
+
 export declare interface IxModalHeader extends Components.IxModalHeader {
   /**
    * Emits when the close icon is clicked and closes the modal
 Can be prevented, in which case only the event is triggered, and the modal remains open
    */
-  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+  closeClick: EventEmitter<IxModalHeaderCustomEvent<MouseEvent>>;
 }
 
 
@@ -2061,10 +2119,10 @@ export declare interface IxModalLoading extends Components.IxModalLoading {}
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<number>>();
+  @Output() valueChange = new EventEmitter<IxNumberInputCustomEvent<number>>();
+  @Output() validityStateChange = new EventEmitter<IxNumberInputCustomEvent<ValidityState>>();
+  @Output() ixBlur = new EventEmitter<IxNumberInputCustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<IxNumberInputCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2072,23 +2130,25 @@ export class IxNumberInput {
 }
 
 
+import type { IxNumberInputCustomEvent } from '@siemens/ix';
+
 export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the value of the input field changes
    */
-  valueChange: EventEmitter<CustomEvent<number>>;
+  valueChange: EventEmitter<IxNumberInputCustomEvent<number>>;
   /**
    * Event emitted when the validity state of the input field changes
    */
-  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  validityStateChange: EventEmitter<IxNumberInputCustomEvent<ValidityState>>;
   /**
    * Event emitted when the input field loses focus
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxNumberInputCustomEvent<void>>;
   /**
    * Event emitted when the input field loses focus and the value has changed @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<number>>;
+  ixChange: EventEmitter<IxNumberInputCustomEvent<number>>;
 }
 
 
@@ -2106,8 +2166,8 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
 })
 export class IxPagination {
   protected el: HTMLIxPaginationElement;
-  @Output() pageSelected = new EventEmitter<CustomEvent<number>>();
-  @Output() itemCountChanged = new EventEmitter<CustomEvent<number>>();
+  @Output() pageSelected = new EventEmitter<IxPaginationCustomEvent<number>>();
+  @Output() itemCountChanged = new EventEmitter<IxPaginationCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2115,15 +2175,17 @@ export class IxPagination {
 }
 
 
+import type { IxPaginationCustomEvent } from '@siemens/ix';
+
 export declare interface IxPagination extends Components.IxPagination {
   /**
    * Page selection event
    */
-  pageSelected: EventEmitter<CustomEvent<number>>;
+  pageSelected: EventEmitter<IxPaginationCustomEvent<number>>;
   /**
    * Item count change event
    */
-  itemCountChanged: EventEmitter<CustomEvent<number>>;
+  itemCountChanged: EventEmitter<IxPaginationCustomEvent<number>>;
 }
 
 
@@ -2141,9 +2203,9 @@ export declare interface IxPagination extends Components.IxPagination {
 })
 export class IxPane {
   protected el: HTMLIxPaneElement;
-  @Output() expandedChanged = new EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>();
-  @Output() variantChanged = new EventEmitter<CustomEvent<IIxPaneVariantChangedEvent>>();
-  @Output() borderlessChanged = new EventEmitter<CustomEvent<IIxPaneBorderlessChangedEvent>>();
+  @Output() expandedChanged = new EventEmitter<IxPaneCustomEvent<IIxPaneExpandedChangedEvent>>();
+  @Output() variantChanged = new EventEmitter<IxPaneCustomEvent<IIxPaneVariantChangedEvent>>();
+  @Output() borderlessChanged = new EventEmitter<IxPaneCustomEvent<IIxPaneBorderlessChangedEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2151,6 +2213,7 @@ export class IxPane {
 }
 
 
+import type { IxPaneCustomEvent } from '@siemens/ix';
 import type { ExpandedChangedEvent as IIxPaneExpandedChangedEvent } from '@siemens/ix';
 import type { VariantChangedEvent as IIxPaneVariantChangedEvent } from '@siemens/ix';
 import type { BorderlessChangedEvent as IIxPaneBorderlessChangedEvent } from '@siemens/ix';
@@ -2159,15 +2222,15 @@ export declare interface IxPane extends Components.IxPane {
   /**
    * This event is triggered when the pane either expands or contracts
    */
-  expandedChanged: EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>;
+  expandedChanged: EventEmitter<IxPaneCustomEvent<IIxPaneExpandedChangedEvent>>;
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  variantChanged: EventEmitter<CustomEvent<IIxPaneVariantChangedEvent>>;
+  variantChanged: EventEmitter<IxPaneCustomEvent<IIxPaneVariantChangedEvent>>;
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  borderlessChanged: EventEmitter<CustomEvent<IIxPaneBorderlessChangedEvent>>;
+  borderlessChanged: EventEmitter<IxPaneCustomEvent<IIxPaneBorderlessChangedEvent>>;
 }
 
 
@@ -2232,8 +2295,8 @@ export declare interface IxPill extends Components.IxPill {}
 })
 export class IxPopover {
   protected el: HTMLIxPopoverElement;
-  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChange = new EventEmitter<IxPopoverCustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<IxPopoverCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2241,15 +2304,17 @@ export class IxPopover {
 }
 
 
+import type { IxPopoverCustomEvent } from '@siemens/ix';
+
 export declare interface IxPopover extends Components.IxPopover {
   /**
    * Fires before visibility changes. Cancel to prevent. @since 5.1.0
    */
-  showChange: EventEmitter<CustomEvent<boolean>>;
+  showChange: EventEmitter<IxPopoverCustomEvent<boolean>>;
   /**
    * Fires after visibility has changed @since 5.1.0
    */
-  showChanged: EventEmitter<CustomEvent<boolean>>;
+  showChanged: EventEmitter<IxPopoverCustomEvent<boolean>>;
 }
 
 
@@ -2313,7 +2378,7 @@ export declare interface IxPopoverFooter extends Components.IxPopoverFooter {}
 })
 export class IxPopoverHeader {
   protected el: HTMLIxPopoverHeaderElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  @Output() closeClick = new EventEmitter<IxPopoverHeaderCustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2321,12 +2386,14 @@ export class IxPopoverHeader {
 }
 
 
+import type { IxPopoverHeaderCustomEvent } from '@siemens/ix';
+
 export declare interface IxPopoverHeader extends Components.IxPopoverHeader {
   /**
    * Fires when close button is clicked.
 Cancel to prevent closing. @since 5.1.0
    */
-  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+  closeClick: EventEmitter<IxPopoverHeaderCustomEvent<MouseEvent>>;
 }
 
 
@@ -2413,9 +2480,9 @@ export declare interface IxPushCard extends Components.IxPushCard {}
 })
 export class IxRadio {
   protected el: HTMLIxRadioElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() checkedChange = new EventEmitter<IxRadioCustomEvent<boolean>>();
+  @Output() valueChange = new EventEmitter<IxRadioCustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<IxRadioCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2423,19 +2490,21 @@ export class IxRadio {
 }
 
 
+import type { IxRadioCustomEvent } from '@siemens/ix';
+
 export declare interface IxRadio extends Components.IxRadio {
   /**
    * Event emitted when the checked state of the radio changes
    */
-  checkedChange: EventEmitter<CustomEvent<boolean>>;
+  checkedChange: EventEmitter<IxRadioCustomEvent<boolean>>;
   /**
    * Event emitted when the value of the radio changes
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxRadioCustomEvent<string>>;
   /**
    * Event emitted when the radio is blurred
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxRadioCustomEvent<void>>;
 }
 
 
@@ -2453,7 +2522,7 @@ export declare interface IxRadio extends Components.IxRadio {
 })
 export class IxRadioGroup {
   protected el: HTMLIxRadioGroupElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() valueChange = new EventEmitter<IxRadioGroupCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2461,11 +2530,13 @@ export class IxRadioGroup {
 }
 
 
+import type { IxRadioGroupCustomEvent } from '@siemens/ix';
+
 export declare interface IxRadioGroup extends Components.IxRadioGroup {
   /**
    * Event emitted when the value of the radiobutton group changes
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxRadioGroupCustomEvent<string>>;
 }
 
 
@@ -2529,10 +2600,10 @@ export declare interface IxRow extends Components.IxRow {}
 })
 export class IxSelect {
   protected el: HTMLIxSelectElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string | string[]>>();
-  @Output() inputChange = new EventEmitter<CustomEvent<string>>();
-  @Output() addItem = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() valueChange = new EventEmitter<IxSelectCustomEvent<string | string[]>>();
+  @Output() inputChange = new EventEmitter<IxSelectCustomEvent<string>>();
+  @Output() addItem = new EventEmitter<IxSelectCustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<IxSelectCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2540,23 +2611,25 @@ export class IxSelect {
 }
 
 
+import type { IxSelectCustomEvent } from '@siemens/ix';
+
 export declare interface IxSelect extends Components.IxSelect {
   /**
    * Value changed
    */
-  valueChange: EventEmitter<CustomEvent<string | string[]>>;
+  valueChange: EventEmitter<IxSelectCustomEvent<string | string[]>>;
   /**
    * Event dispatched whenever the text input changes.
    */
-  inputChange: EventEmitter<CustomEvent<string>>;
+  inputChange: EventEmitter<IxSelectCustomEvent<string>>;
   /**
    * Item added to selection
    */
-  addItem: EventEmitter<CustomEvent<string>>;
+  addItem: EventEmitter<IxSelectCustomEvent<string>>;
   /**
    * Blur input
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxSelectCustomEvent<void>>;
 }
 
 
@@ -2574,7 +2647,7 @@ export declare interface IxSelect extends Components.IxSelect {
 })
 export class IxSelectItem {
   protected el: HTMLIxSelectItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<string>>();
+  @Output() itemClick = new EventEmitter<IxSelectItemCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2582,11 +2655,13 @@ export class IxSelectItem {
 }
 
 
+import type { IxSelectItemCustomEvent } from '@siemens/ix';
+
 export declare interface IxSelectItem extends Components.IxSelectItem {
   /**
    * Item clicked
    */
-  itemClick: EventEmitter<CustomEvent<string>>;
+  itemClick: EventEmitter<IxSelectItemCustomEvent<string>>;
 }
 
 
@@ -2604,7 +2679,7 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 })
 export class IxSlider {
   protected el: HTMLIxSliderElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
+  @Output() valueChange = new EventEmitter<IxSliderCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2612,11 +2687,13 @@ export class IxSlider {
 }
 
 
+import type { IxSliderCustomEvent } from '@siemens/ix';
+
 export declare interface IxSlider extends Components.IxSlider {
   /**
    * Will emit the value when it changes
    */
-  valueChange: EventEmitter<CustomEvent<number>>;
+  valueChange: EventEmitter<IxSliderCustomEvent<number>>;
 }
 
 
@@ -2657,7 +2734,7 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 })
 export class IxSplitButton {
   protected el: HTMLIxSplitButtonElement;
-  @Output() buttonClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  @Output() buttonClick = new EventEmitter<IxSplitButtonCustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2665,11 +2742,13 @@ export class IxSplitButton {
 }
 
 
+import type { IxSplitButtonCustomEvent } from '@siemens/ix';
+
 export declare interface IxSplitButton extends Components.IxSplitButton {
   /**
    * Button clicked
    */
-  buttonClick: EventEmitter<CustomEvent<MouseEvent>>;
+  buttonClick: EventEmitter<IxSplitButtonCustomEvent<MouseEvent>>;
 }
 
 
@@ -2687,8 +2766,8 @@ export declare interface IxSplitButton extends Components.IxSplitButton {
 })
 export class IxTabItem {
   protected el: HTMLIxTabItemElement;
-  @Output() tabClick = new EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>();
-  @Output() tabClose = new EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>();
+  @Output() tabClick = new EventEmitter<IxTabItemCustomEvent<IIxTabItemTabClickDetail>>();
+  @Output() tabClose = new EventEmitter<IxTabItemCustomEvent<IIxTabItemTabClickDetail>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2696,17 +2775,18 @@ export class IxTabItem {
 }
 
 
+import type { IxTabItemCustomEvent } from '@siemens/ix';
 import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
    * Emitted when the tab is clicked.
    */
-  tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
+  tabClick: EventEmitter<IxTabItemCustomEvent<IIxTabItemTabClickDetail>>;
   /**
    * Emitted when the tab's close button is clicked.
    */
-  tabClose: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
+  tabClose: EventEmitter<IxTabItemCustomEvent<IIxTabItemTabClickDetail>>;
 }
 
 
@@ -2724,8 +2804,8 @@ export declare interface IxTabItem extends Components.IxTabItem {
 })
 export class IxTabs {
   protected el: HTMLIxTabsElement;
-  @Output() tabChange = new EventEmitter<CustomEvent<string | undefined>>();
-  @Output() tabClose = new EventEmitter<CustomEvent<string | undefined>>();
+  @Output() tabChange = new EventEmitter<IxTabsCustomEvent<string | undefined>>();
+  @Output() tabClose = new EventEmitter<IxTabsCustomEvent<string | undefined>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2733,15 +2813,17 @@ export class IxTabs {
 }
 
 
+import type { IxTabsCustomEvent } from '@siemens/ix';
+
 export declare interface IxTabs extends Components.IxTabs {
   /**
    * Tab selection event. Event detail contains the new active tab key. @since 5.0.0
    */
-  tabChange: EventEmitter<CustomEvent<string | undefined>>;
+  tabChange: EventEmitter<IxTabsCustomEvent<string | undefined>>;
   /**
    * Tab close event. Event detail contains the closed tab key. @since 5.0.0
    */
-  tabClose: EventEmitter<CustomEvent<string | undefined>>;
+  tabClose: EventEmitter<IxTabsCustomEvent<string | undefined>>;
 }
 
 
@@ -2760,10 +2842,10 @@ export declare interface IxTabs extends Components.IxTabs {
 })
 export class IxTextarea {
   protected el: HTMLIxTextareaElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() valueChange = new EventEmitter<IxTextareaCustomEvent<string>>();
+  @Output() validityStateChange = new EventEmitter<IxTextareaCustomEvent<ValidityState>>();
+  @Output() ixBlur = new EventEmitter<IxTextareaCustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<IxTextareaCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2771,23 +2853,25 @@ export class IxTextarea {
 }
 
 
+import type { IxTextareaCustomEvent } from '@siemens/ix';
+
 export declare interface IxTextarea extends Components.IxTextarea {
   /**
    * Event emitted when the value of the textarea field changes.
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxTextareaCustomEvent<string>>;
   /**
    * Event emitted when the validity state of the textarea field changes.
    */
-  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  validityStateChange: EventEmitter<IxTextareaCustomEvent<ValidityState>>;
   /**
    * Event emitted when the textarea field loses focus.
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxTextareaCustomEvent<void>>;
   /**
    * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string>>;
+  ixChange: EventEmitter<IxTextareaCustomEvent<string>>;
 }
 
 
@@ -2829,9 +2913,9 @@ export declare interface IxTile extends Components.IxTile {}
 })
 export class IxTimeInput {
   protected el: HTMLIxTimeInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>();
-  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() valueChange = new EventEmitter<IxTimeInputCustomEvent<string>>();
+  @Output() validityStateChange = new EventEmitter<IxTimeInputCustomEvent<IIxTimeInputTimeInputValidityState>>();
+  @Output() ixChange = new EventEmitter<IxTimeInputCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2839,21 +2923,22 @@ export class IxTimeInput {
 }
 
 
+import type { IxTimeInputCustomEvent } from '@siemens/ix';
 import type { TimeInputValidityState as IIxTimeInputTimeInputValidityState } from '@siemens/ix';
 
 export declare interface IxTimeInput extends Components.IxTimeInput {
   /**
    * Value change event. Emitted when the input value changes.
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<IxTimeInputCustomEvent<string>>;
   /**
    * Validation state change event. Emitted when the validation state changes.
    */
-  validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+  validityStateChange: EventEmitter<IxTimeInputCustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
    * Change event. Emitted when the time input loses focus and the value has changed. @since 4.4.0
    */
-  ixChange: EventEmitter<CustomEvent<string>>;
+  ixChange: EventEmitter<IxTimeInputCustomEvent<string>>;
 }
 
 
@@ -2872,8 +2957,8 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 })
 export class IxTimePicker {
   protected el: HTMLIxTimePickerElement;
-  @Output() timeSelect = new EventEmitter<CustomEvent<string>>();
-  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
+  @Output() timeSelect = new EventEmitter<IxTimePickerCustomEvent<string>>();
+  @Output() timeChange = new EventEmitter<IxTimePickerCustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2881,15 +2966,17 @@ export class IxTimePicker {
 }
 
 
+import type { IxTimePickerCustomEvent } from '@siemens/ix';
+
 export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
    * Time event. Emitted when the user confirms the selected time.
    */
-  timeSelect: EventEmitter<CustomEvent<string>>;
+  timeSelect: EventEmitter<IxTimePickerCustomEvent<string>>;
   /**
    * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
-  timeChange: EventEmitter<CustomEvent<string>>;
+  timeChange: EventEmitter<IxTimePickerCustomEvent<string>>;
 }
 
 
@@ -2908,7 +2995,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 })
 export class IxToast {
   protected el: HTMLIxToastElement;
-  @Output() closeToast = new EventEmitter<CustomEvent<any>>();
+  @Output() closeToast = new EventEmitter<IxToastCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2916,11 +3003,13 @@ export class IxToast {
 }
 
 
+import type { IxToastCustomEvent } from '@siemens/ix';
+
 export declare interface IxToast extends Components.IxToast {
   /**
    * Toast closed
    */
-  closeToast: EventEmitter<CustomEvent<any>>;
+  closeToast: EventEmitter<IxToastCustomEvent<any>>;
 }
 
 
@@ -2962,8 +3051,8 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 })
 export class IxToggle {
   protected el: HTMLIxToggleElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() checkedChange = new EventEmitter<IxToggleCustomEvent<boolean>>();
+  @Output() ixBlur = new EventEmitter<IxToggleCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2971,15 +3060,17 @@ export class IxToggle {
 }
 
 
+import type { IxToggleCustomEvent } from '@siemens/ix';
+
 export declare interface IxToggle extends Components.IxToggle {
   /**
    * An event will be dispatched each time the slide-toggle changes its value.
    */
-  checkedChange: EventEmitter<CustomEvent<boolean>>;
+  checkedChange: EventEmitter<IxToggleCustomEvent<boolean>>;
   /**
    * An event will be dispatched each time the toggle is blurred.
    */
-  ixBlur: EventEmitter<CustomEvent<void>>;
+  ixBlur: EventEmitter<IxToggleCustomEvent<void>>;
 }
 
 
@@ -2997,7 +3088,7 @@ export declare interface IxToggle extends Components.IxToggle {
 })
 export class IxToggleButton {
   protected el: HTMLIxToggleButtonElement;
-  @Output() pressedChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() pressedChange = new EventEmitter<IxToggleButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -3005,11 +3096,13 @@ export class IxToggleButton {
 }
 
 
+import type { IxToggleButtonCustomEvent } from '@siemens/ix';
+
 export declare interface IxToggleButton extends Components.IxToggleButton {
   /**
    * Pressed change event
    */
-  pressedChange: EventEmitter<CustomEvent<boolean>>;
+  pressedChange: EventEmitter<IxToggleButtonCustomEvent<boolean>>;
 }
 
 
@@ -3050,8 +3143,8 @@ export declare interface IxTooltip extends Components.IxTooltip {}
 })
 export class IxTreeItem {
   protected el: HTMLIxTreeItemElement;
-  @Output() toggle = new EventEmitter<CustomEvent<void>>();
-  @Output() itemClick = new EventEmitter<CustomEvent<void>>();
+  @Output() toggle = new EventEmitter<IxTreeItemCustomEvent<void>>();
+  @Output() itemClick = new EventEmitter<IxTreeItemCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -3059,15 +3152,17 @@ export class IxTreeItem {
 }
 
 
+import type { IxTreeItemCustomEvent } from '@siemens/ix';
+
 export declare interface IxTreeItem extends Components.IxTreeItem {
   /**
    * Expand/Collapsed toggled
    */
-  toggle: EventEmitter<CustomEvent<void>>;
+  toggle: EventEmitter<IxTreeItemCustomEvent<void>>;
   /**
    * Click on item not on the expand/collapse icon
    */
-  itemClick: EventEmitter<CustomEvent<void>>;
+  itemClick: EventEmitter<IxTreeItemCustomEvent<void>>;
 }
 
 
@@ -3109,7 +3204,7 @@ export declare interface IxTypography extends Components.IxTypography {}
 })
 export class IxUpload {
   protected el: HTMLIxUploadElement;
-  @Output() filesChanged = new EventEmitter<CustomEvent<Array<File>>>();
+  @Output() filesChanged = new EventEmitter<IxUploadCustomEvent<Array<File>>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -3117,11 +3212,13 @@ export class IxUpload {
 }
 
 
+import type { IxUploadCustomEvent } from '@siemens/ix';
+
 export declare interface IxUpload extends Components.IxUpload {
   /**
    * You get an array of Files after drop-action or browse action is finished
    */
-  filesChanged: EventEmitter<CustomEvent<Array<File>>>;
+  filesChanged: EventEmitter<IxUploadCustomEvent<Array<File>>>;
 }
 
 
@@ -3162,7 +3259,7 @@ export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
 })
 export class IxWorkflowSteps {
   protected el: HTMLIxWorkflowStepsElement;
-  @Output() stepSelected = new EventEmitter<CustomEvent<number>>();
+  @Output() stepSelected = new EventEmitter<IxWorkflowStepsCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -3170,11 +3267,13 @@ export class IxWorkflowSteps {
 }
 
 
+import type { IxWorkflowStepsCustomEvent } from '@siemens/ix';
+
 export declare interface IxWorkflowSteps extends Components.IxWorkflowSteps {
   /**
    * On step selected event
    */
-  stepSelected: EventEmitter<CustomEvent<number>>;
+  stepSelected: EventEmitter<IxWorkflowStepsCustomEvent<number>>;
 }
 
 
