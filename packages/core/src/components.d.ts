@@ -2140,6 +2140,16 @@ export namespace Components {
     }
     interface IxGroup {
         /**
+          * Aria label for collapse action
+          * @default 'Collapse'
+         */
+        "ariaLabelCollapse": string;
+        /**
+          * Aria label for expand action
+          * @default 'Expand'
+         */
+        "ariaLabelExpand": string;
+        /**
           * Expand the group if the header is clicked
           * @default false
          */
@@ -9041,6 +9051,16 @@ declare namespace LocalJSX {
     }
     interface IxGroup {
         /**
+          * Aria label for collapse action
+          * @default 'Collapse'
+         */
+        "ariaLabelCollapse"?: string;
+        /**
+          * Aria label for expand action
+          * @default 'Expand'
+         */
+        "ariaLabelExpand"?: string;
+        /**
           * Expand the group if the header is clicked
           * @default false
          */
@@ -12417,6 +12437,8 @@ declare namespace LocalJSX {
         "selected": boolean;
         "index": number;
         "expandOnHeaderClick": boolean;
+        "ariaLabelCollapse": string;
+        "ariaLabelExpand": string;
     }
     interface IxGroupItemAttributes {
         "icon": string;

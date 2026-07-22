@@ -1354,14 +1354,14 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
 
 
 @ProxyCmp({
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
+  inputs: ['ariaLabelCollapse', 'ariaLabelExpand', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
   selector: 'ix-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
+  inputs: ['ariaLabelCollapse', 'ariaLabelExpand', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
   outputs: ['selectGroup', 'selectItem', 'expandedChanged'],
   standalone: false
 })
