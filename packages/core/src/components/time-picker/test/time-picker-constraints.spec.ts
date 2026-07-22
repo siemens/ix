@@ -22,6 +22,16 @@ const baseDay = DateTime.fromObject(
   { zone: 'utc' }
 ).startOf('day');
 
+function expectDefined<T>(value: T | null | undefined): T {
+  expect(value).toBeDefined();
+
+  if (value === null || value === undefined) {
+    throw new Error('Expected value to be defined');
+  }
+
+  return value;
+}
+
 describe('parseTimeOnDay', () => {
   it('returns null for undefined or blank', () => {
     expect(parseTimeOnDay(undefined, 'HH:mm', baseDay)).toBeNull();
@@ -34,8 +44,7 @@ describe('parseTimeOnDay', () => {
 
   it('applies parsed clock to base day', () => {
     const t = parseTimeOnDay('14:30', 'HH:mm', baseDay);
-    expect(t).not.toBeNull();
-    expect(t!.toUTC().toObject()).toMatchObject({
+    expect(expectDefined(t).toUTC().toObject()).toMatchObject({
       year: 2024,
       month: 6,
       day: 15,
@@ -64,8 +73,8 @@ describe('getTimePickerConstraintBounds', () => {
       'HH:mm',
       baseDay
     );
-    expect(min!.hour).toBe(9);
-    expect(max!.hour).toBe(18);
+    expect(expectDefined(min).hour).toBe(9);
+    expect(expectDefined(max).hour).toBe(18);
   });
 });
 

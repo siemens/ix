@@ -94,8 +94,18 @@ export class Modal {
     return this.hostElement.shadowRoot!.querySelector('dialog');
   }
 
+  private getDialogElement() {
+    const dialog = this.dialog;
+
+    if (!dialog) {
+      throw new Error('Modal dialog element not found');
+    }
+
+    return dialog;
+  }
+
   private slideInModal() {
-    const dialog = this.dialog!;
+    const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
     const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
@@ -118,7 +128,7 @@ export class Modal {
   }
 
   private slideOutModal(completeCallback: Function) {
-    const dialog = this.dialog!;
+    const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
     const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
@@ -144,7 +154,7 @@ export class Modal {
   ) {
     this.slideOutModal(() => {
       this.modalVisible = false;
-      this.dialog!.close(JSON.stringify({ type, reason }, null, 2));
+      this.getDialogElement().close(JSON.stringify({ type, reason }, null, 2));
       emitter.emit(reason);
     });
   }
