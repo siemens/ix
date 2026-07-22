@@ -13,8 +13,10 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use "./variables" as dark;
+@use "./legacy-variables" as dark_legacy;
+@use "./sys-variables" as dark_sys;
 
 [data-ix-theme="classic"][data-ix-color-schema="dark"] {
-  @include dark.setVars;
+  @include dark_legacy.setVars;
+  @include dark_sys.setVars;
 }
