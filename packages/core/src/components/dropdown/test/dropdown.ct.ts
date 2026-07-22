@@ -707,7 +707,9 @@ regressionTest.describe('resolve during element connect', () => {
     });
 
     const dropdown = page.locator('ix-dropdown');
-    await page.locator('ix-button').first().click();
+    const trigger = page.locator('#trigger');
+    await waitForDropdownTrigger(trigger);
+    await trigger.click();
 
     await expect(dropdown).toBeVisible();
   });
