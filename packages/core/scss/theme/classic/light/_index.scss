@@ -13,8 +13,10 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use "./variables" as light;
+@use "./legacy-variables" as light_legacy;
+@use "./sys-variables" as light_sys;
 
 [data-ix-theme="classic"][data-ix-color-schema="light"] {
-  @include light.setVars;
+  @include light_legacy.setVars;
+  @include light_sys.setVars;
 }

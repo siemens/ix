@@ -13,20 +13,24 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use './dark/variables' as as_dark_variables;
-@use './light/variables' as as_light_variables;
+@use './dark/legacy-variables' as as_dark_legacy_variables;
+@use './dark/sys-variables' as as_dark_sys_variables;
+@use './light/legacy-variables' as as_light_legacy_variables;
+@use './light/sys-variables' as as_light_sys_variables;
 
 @mixin theme-only-dark {
   :root,
   :host {
     color-scheme: dark;
-    @include as_dark_variables.setVars();
+    @include as_dark_legacy_variables.setVars();
+    @include as_dark_sys_variables.setVars();
   }
 
   [data-ix-theme='classic'] {
     --theme-name: classic;
     --theme-color-schema: dark;
-    @include as_dark_variables.setVars();
+    @include as_dark_legacy_variables.setVars();
+    @include as_dark_sys_variables.setVars();
   }
 }
 
@@ -39,7 +43,8 @@
   [data-ix-theme='classic'] {
     --theme-name: classic;
     --theme-color-schema: light;
-    @include as_light_variables.setVars();
+    @include as_light_legacy_variables.setVars();
+    @include as_light_sys_variables.setVars();
   }
 }
 
@@ -54,23 +59,27 @@
 
     &[data-ix-color-schema='dark'] {
       --theme-color-schema: dark;
-      @include as_dark_variables.setVars();
+      @include as_dark_legacy_variables.setVars();
+      @include as_dark_sys_variables.setVars();
     }
 
     &[data-ix-color-schema='light'] {
       --theme-color-schema: light;
-      @include as_light_variables.setVars();
+      @include as_light_legacy_variables.setVars();
+      @include as_light_sys_variables.setVars();
     }
 
     &[data-ix-color-schema='system'] {
       @media (prefers-color-scheme: dark) {
         --theme-color-schema: dark;
-        @include as_dark_variables.setVars();
+        @include as_dark_legacy_variables.setVars();
+        @include as_dark_sys_variables.setVars();
       }
 
       @media (prefers-color-scheme: light) {
         --theme-color-schema: light;
-        @include as_light_variables.setVars();
+        @include as_light_legacy_variables.setVars();
+        @include as_light_sys_variables.setVars();
       }
     }
   }
