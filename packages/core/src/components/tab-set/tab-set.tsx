@@ -9,6 +9,7 @@
 
 import { Component, Element, Host, h } from '@stencil/core';
 import { queryElements } from '../utils/focus/focus-utilities';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @internal
@@ -43,13 +44,69 @@ export class TabSet {
   }
 
   private panelsObserver?: MutationObserver;
+  private panelSyncQueued = false;
+
+  private getTabKey(
+    element: HTMLIxTabItemElement | HTMLIxTabPanelElement
+  ): string | undefined {
+    return element.tabKey ?? element.getAttribute('tab-key') ?? undefined;
+  }
+
+  private get activeTabKey(): string | undefined {
+    return (
+      this.tabList?.activeTabKey ??
+      this.tabList?.getAttribute('active-tab-key') ??
+      undefined
+    );
+  }
+
+  private schedulePanelSync() {
+    if (this.panelSyncQueued) {
+      return;
+    }
+
+    this.panelSyncQueued = true;
+    requestAnimationFrameNoNgZone(() => {
+      this.panelSyncQueued = false;
+      this.onPanelComponentsChange();
+    });
+  }
+
+  private containsTabElement(nodes: NodeList) {
+    return Array.from(nodes).some(
+      (node) =>
+        node instanceof HTMLElement &&
+        (node.matches('ix-tabs, ix-tab-item, ix-tab-panel') ||
+          !!node.querySelector('ix-tabs, ix-tab-item, ix-tab-panel'))
+    );
+  }
+
+  private shouldSyncPanels(mutations: MutationRecord[]) {
+    return mutations.some((mutation) => {
+      if (mutation.type === 'childList') {
+        return (
+          this.containsTabElement(mutation.addedNodes) ||
+          this.containsTabElement(mutation.removedNodes)
+        );
+      }
+
+      return (
+        mutation.target instanceof HTMLElement &&
+        mutation.target.matches('ix-tabs, ix-tab-item, ix-tab-panel')
+      );
+    });
+  }
 
   componentWillLoad() {
-    this.panelsObserver = new MutationObserver(() =>
-      this.onPanelComponentsChange()
-    );
+    this.panelsObserver = new MutationObserver((mutations) => {
+      if (this.shouldSyncPanels(mutations)) {
+        this.schedulePanelSync();
+      }
+    });
 
     this.panelsObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['active-tab-key', 'class', 'tab-key'],
       childList: true,
       subtree: true,
     });
@@ -59,6 +116,7 @@ export class TabSet {
 
   componentDidLoad() {
     this.onPanelComponentsChange();
+    this.schedulePanelSync();
   }
 
   disconnectedCallback() {
@@ -74,17 +132,17 @@ export class TabSet {
       return;
     }
 
-    const activeTabKey = tabs.activeTabKey;
+    const activeTabKey = this.activeTabKey;
     if (!activeTabKey) {
       return;
     }
 
     const activeTabElement = tabItems.find(
-      (tab) => tab.tabKey === activeTabKey
+      (tab) => this.getTabKey(tab) === activeTabKey
     );
 
     const activeTabPanel = panels.find(
-      (panel) => panel.tabKey === activeTabKey
+      (panel) => this.getTabKey(panel) === activeTabKey
     );
 
     if (!activeTabElement || !activeTabPanel) {
@@ -107,8 +165,9 @@ export class TabSet {
       return;
     }
 
+    const activeTabKey = this.activeTabKey;
     panels.forEach((panel) => {
-      panel.hidden = panel.tabKey === this.tabList?.activeTabKey ? false : true;
+      panel.hidden = this.getTabKey(panel) !== activeTabKey;
     });
   }
 

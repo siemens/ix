@@ -539,6 +539,17 @@ const createLargeTreeModel = (itemCount: number): Record<string, any> => {
   return model;
 };
 
+async function waitForTreeToSettle(tree: Locator, page: Page) {
+  await expect(tree.locator('ix-tree-item').first()).toHaveClass(/hydrated/);
+  await expect(tree.locator('ix-tree-item:not(.hydrated)')).toHaveCount(0);
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+      })
+  );
+}
+
 regressionTest(
   'should not trigger continuous requestAnimationFrame when idle',
   async ({ mount, page }) => {
@@ -557,6 +568,7 @@ regressionTest(
     );
 
     await expect(tree).toHaveClass(/hydrated/);
+    await waitForTreeToSettle(tree, page);
 
     const rafCallCount = await page.evaluate(() => {
       return new Promise<number>((resolve) => {
@@ -597,6 +609,7 @@ regressionTest(
     );
 
     await expect(tree).toHaveClass(/hydrated/);
+    await waitForTreeToSettle(tree, page);
 
     const rafCalledDuringScroll = await tree.evaluate((element) => {
       return new Promise<boolean>((resolve) => {
@@ -618,6 +631,7 @@ regressionTest(
     });
 
     expect(rafCalledDuringScroll).toBe(true);
+    await waitForTreeToSettle(tree, page);
 
     const rafCallCountAfterScroll = await page.evaluate(() => {
       return new Promise<number>((resolve) => {

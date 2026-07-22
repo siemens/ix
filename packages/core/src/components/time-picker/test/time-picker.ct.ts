@@ -168,8 +168,11 @@ regressionTest(
     await expect(hour13).not.toBeDisabled();
     await hour13.focus();
     await page.keyboard.press('Enter');
+    const minute0 = timePickerCell(picker, 'min', 0);
+    await expect(hour13).toHaveAttribute('aria-selected', 'true');
+    await expect(minute0).toHaveAttribute('tabindex', '0');
     await page.keyboard.press('Tab');
-    await expect(timePickerCell(picker, 'min', 0)).toBeFocused();
+    await expect(minute0).toBeFocused();
   }
 );
 
