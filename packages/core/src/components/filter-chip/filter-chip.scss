@@ -30,6 +30,7 @@
   .slot-container {
     @include text-truncation.ellipsis;
     line-height: vars.$large-space;
+    min-width: 0;
 
     :host-context(.disabled) {
       background-color: var(--ix-filter-chip--color-ghost);
@@ -57,7 +58,8 @@
   cursor: default;
 }
 
-:host(.readonly) {
+:host(.readonly),
+:host(.hide-close-button) {
   padding-right: vars.$small-space;
 }
 

@@ -9,6 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @slot default - Key-value entries.
+ */
 @Component({
   tag: 'ix-key-value-list',
   styleUrl: 'key-value-list.scss',

@@ -1,0 +1,11 @@
+- main:
+  - button "shift_report .pdf" [disabled]
+  - button "Remove attachment"
+  - textbox "Service assistant prompt":
+    - /placeholder: Ask about asset status...
+    - text: Check open alarms and suggest the next maintenance step.
+  - button "Attach file"
+  - button "Add image"
+  - button "Record voice input"
+  - button "Submit prompt"
+  - text: This content is AI-generated. Always verify the information for accuracy.

@@ -29,6 +29,10 @@ import {
   Watch,
 } from '@stencil/core';
 
+/**
+ * @slot custom-icon - Custom icon displayed for the workflow step.
+ * @slot default - Workflow step label and content.
+ */
 @Component({
   tag: 'ix-workflow-step',
   styleUrl: 'workflow-step.scss',

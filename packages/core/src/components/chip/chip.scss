@@ -72,10 +72,6 @@ $outline-border-width: 0.0625rem;
   @include component.ix-component;
 }
 
-:host(.inactive) {
-  pointer-events: none;
-}
-
 .chip-wrap {
   display: inline-flex;
   width: inherit;
@@ -126,6 +122,13 @@ $outline-border-width: 0.0625rem;
 
     .slot-container {
       @include text-truncation.ellipsis;
+      flex: 0 1 auto;
+      min-width: 0;
+
+      slot::slotted(*) {
+        max-width: 100%;
+        min-width: 0;
+      }
     }
   }
 
@@ -134,16 +137,19 @@ $outline-border-width: 0.0625rem;
     text-align: center;
   }
 
+  &.inactive .chip-main {
+    pointer-events: none;
+  }
+
   &.outline .chip-main {
     padding-left: calc(#{$padding-inline} - #{$outline-border-width});
   }
 
-  &.outline:not(.closable) .chip-main,
-  &.outline.closable.inactive .chip-main {
+  &.outline:not(.closable) .chip-main {
     padding-right: calc(#{$padding-inline} - #{$outline-border-width});
   }
 
-  &.outline.closable:not(.inactive) .chip-main {
+  &.outline.closable .chip-main {
     padding-right: calc(
       #{$close-inset} + #{$close-size} + 0.375rem - #{$outline-border-width}
     );
@@ -153,12 +159,11 @@ $outline-border-width: 0.0625rem;
     padding-left: $padding-inline;
   }
 
-  &:not(.outline):not(.closable) .chip-main,
-  &:not(.outline).closable.inactive .chip-main {
+  &:not(.outline):not(.closable) .chip-main {
     padding-right: $padding-inline;
   }
 
-  &:not(.outline).closable:not(.inactive) .chip-main {
+  &:not(.outline).closable .chip-main {
     padding-right: calc(#{$close-inset} + #{$close-size} + 0.375rem);
   }
 
@@ -383,5 +388,11 @@ $outline-border-width: 0.0625rem;
         color-mix(in srgb, currentColor 20%, transparent)
       );
     }
+  }
+}
+
+:host(.attachment-chip) {
+  .chip-wrap {
+    border-radius: var(--theme-btn--border-radius);
   }
 }

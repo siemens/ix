@@ -41,6 +41,11 @@ $menu-expanded-width: 16rem;
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: -1px;
+    }
   }
 
   .show-scrollbar {
@@ -56,6 +61,23 @@ $menu-expanded-width: 16rem;
     display: block;
     position: relative;
     margin-bottom: 0.75rem;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .menu-navigation {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+
+    &.menu-navigation--fill {
+      flex: 1 1 auto;
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: -1px;
+    }
   }
 
   .tabs--shadow {
@@ -70,6 +92,7 @@ $menu-expanded-width: 16rem;
 
     transition: opacity var(--ix-menu--default-time);
   }
+
   .tabs--shadow-top {
     top: 0;
     background: linear-gradient(var(--ix-menu--color-shadow-1), transparent);

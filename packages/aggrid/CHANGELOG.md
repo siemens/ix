@@ -1,5 +1,11 @@
 # @siemens/ix-aggrid
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2576](https://github.com/siemens/ix/pull/2576) [`3e9f3c5`](https://github.com/siemens/ix/commit/3e9f3c5c21af718597022f6b726e48829e37b679) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Refactor checkbox image mask from Base64 to human readable SVG format.
+
 ## 5.0.0
 
 ### Major Changes

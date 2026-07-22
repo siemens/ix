@@ -25,6 +25,9 @@ import { IX_MODAL_AUTOFOCUS_SELECTOR } from '../utils/modal/modal';
 import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
+/**
+ * @slot default - Modal sections and content.
+ */
 @Component({
   tag: 'ix-modal',
   styleUrl: 'modal.scss',
