@@ -2526,7 +2526,8 @@ export declare interface IxPushCard extends Components.IxPushCard {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value']
+  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-radio',
@@ -2566,7 +2567,8 @@ export declare interface IxRadio extends Components.IxRadio {
 
 
 @ProxyCmp({
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText']
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-radio-group',
