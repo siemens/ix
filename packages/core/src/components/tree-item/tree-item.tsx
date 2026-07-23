@@ -76,6 +76,14 @@ export class TreeItem {
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
               color="color-std-text"
+              tabIndex={isDisabled ? -1 : 0}
+              role="button"
+              aria-label={
+                this.ariaLabelChevronIcon ??
+                (this.context?.isExpanded
+                  ? 'Collapse tree item'
+                  : 'Expand tree item')
+              }
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;
@@ -84,17 +92,33 @@ export class TreeItem {
                 e.stopPropagation();
                 this.toggle.emit();
               }}
-              aria-label={
-                this.ariaLabelChevronIcon ??
-                (this.context?.isExpanded
-                  ? 'Collapse tree item'
-                  : 'Expand tree item')
-              }
+              onKeyDown={(e: KeyboardEvent) => {
+                if (isDisabled) {
+                  return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.toggle.emit();
+                }
+              }}
             />
           ) : null}
         </div>
         <div
           class="tree-node-container"
+          role="button"
+          tabIndex={isDisabled ? -1 : 0}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (isDisabled) {
+              return;
+            }
+            if (e.key === ' ' || e.key === 'Enter') {
+              e.preventDefault();
+              e.stopPropagation();
+              (e.currentTarget as HTMLElement).click();
+            }
+          }}
           onClick={() => {
             if (isDisabled) {
               return;

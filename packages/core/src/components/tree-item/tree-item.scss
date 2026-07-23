@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/focus-visible';
 
 :host {
   display: flex;
@@ -28,8 +29,13 @@
     height: vars.$x-large-space;
     flex-grow: 1;
     align-items: center;
+    outline: none;
 
     @include text-truncation.ellipsis;
+
+    &:focus-visible {
+      @include focus-visible.ix-focus-visible();
+    }
 
     .tree-node-text {
       @include text-truncation.ellipsis;
@@ -46,9 +52,14 @@
 
     ix-icon {
       transition: transform var(--theme-default-time) ease-in-out;
+      outline: none;
 
       &.icon-toggle-down {
         transform: rotate(90deg);
+      }
+
+      &:focus-visible {
+        @include focus-visible.ix-focus-visible();
       }
     }
   }
