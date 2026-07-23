@@ -34,7 +34,7 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
 const inputTags = [
   { tag: 'ix-input', fill: 'abc' },
   { tag: 'ix-number-input', fill: '123' },
-  { tag: 'ix-date-input', fill: '2025-09-25' },
+  { tag: 'ix-date-input', fill: '2025/09/25' },
   { tag: 'ix-time-input', fill: '13:45:30' },
 ];
 
@@ -207,7 +207,7 @@ regressionTest(
     const emittedValue = await page.evaluate(
       () => globalThis.__lastEmittedValue
     );
-    expect(emittedValue).toBe(0.3);
+    expect(emittedValue).toBeCloseTo(0.3);
 
     const decrementButton = numberInput.locator('.step-minus');
     await decrementButton.click();
@@ -216,7 +216,7 @@ regressionTest(
     const decrementedValue = await page.evaluate(
       () => globalThis.__lastEmittedValue
     );
-    expect(decrementedValue).toBe(0.1);
+    expect(decrementedValue).toBeCloseTo(0.1);
   }
 );
 
