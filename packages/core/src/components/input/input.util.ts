@@ -55,6 +55,12 @@ export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    comp.hostElement.classList.remove('ix-invalid--validity-invalid');
+    return;
+  }
+
   const validityState = input.validity;
   const currentValidityState = !comp.hostElement.classList.contains(
     'ix-invalid--validity-invalid'
@@ -77,16 +83,11 @@ export async function checkInternalValidity<T>(
     return;
   }
 
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
-    return;
-  }
-
   const { valid } = validityState;
   comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
-export function onInputBlur<T>(
+export async function onInputBlur<T>(
   comp: IxFormComponent<T>,
   input?: HTMLInputElement | HTMLTextAreaElement | null
 ) {
@@ -97,7 +98,7 @@ export function onInputBlur<T>(
   }
 
   input.setAttribute('data-ix-touched', 'true');
-  checkInternalValidity(comp, input);
+  await checkInternalValidity(comp, input);
 }
 
 export function applyPaddingEnd(
@@ -228,7 +229,7 @@ export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
   comp.initialValue = currentValue;
 }
 
-export function onInputBlurWithChange<T>(
+export async function onInputBlurWithChange<T>(
   comp: IxFormComponent<T> & {
     initialValue?: T;
     ixChange: { emit: (value: T) => void };
@@ -236,7 +237,7 @@ export function onInputBlurWithChange<T>(
   input?: HTMLInputElement | HTMLTextAreaElement | null,
   currentValue?: T
 ) {
-  onInputBlur(comp, input);
+  await onInputBlur(comp, input);
 
   if (comp.initialValue !== currentValue) {
     comp.ixChange.emit(currentValue!);
@@ -322,4 +323,73 @@ export async function emitPickerValidityStateChangeIfChanged(
     valueMissing: currentValueMissing,
     invalidReason: context.invalidReason,
   });
+}
+
+export async function syncRequiredValidationClass<T>(
+  hostElement: HTMLElement,
+  comp: IxFormComponent<T> & { required?: boolean; touched: boolean }
+): Promise<void> {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    hostElement.classList.remove('ix-invalid--required');
+    return;
+  }
+
+  const hasValue = comp.value != null && comp.value !== '';
+  if (comp.required) {
+    hostElement.classList.toggle(
+      'ix-invalid--required',
+      !hasValue && comp.touched
+    );
+  } else {
+    hostElement.classList.remove('ix-invalid--required');
+  }
+}
+
+export interface ClearableInputComponent<T> {
+  value?: T;
+  hostElement: HTMLElement;
+  touched?: boolean;
+  isInputInvalid?: boolean;
+  invalidReason?: string;
+  updateFormInternalValue?: (value: T) => void;
+  valueChange?: { emit: (value: T) => void };
+}
+
+export async function clearInputValue<T>(
+  comp: ClearableInputComponent<T>,
+  options: {
+    defaultValue: T;
+    additionalCleanup?: () => void;
+    emitValueChange?: boolean;
+  }
+): Promise<void> {
+  const emptyValue = options.defaultValue;
+
+  if ('touched' in comp) {
+    comp.touched = false;
+  }
+
+  if ('isInputInvalid' in comp) {
+    comp.isInputInvalid = false;
+  }
+
+  if ('invalidReason' in comp) {
+    comp.invalidReason = undefined;
+  }
+
+  comp.hostElement.classList.remove(
+    'ix-invalid--required',
+    'ix-invalid--validity-invalid',
+    'ix-invalid--validity-patternMismatch'
+  );
+
+  comp.updateFormInternalValue?.(emptyValue);
+  comp.value = emptyValue;
+
+  options?.additionalCleanup?.();
+
+  if (options?.emitValueChange) {
+    comp.valueChange?.emit(emptyValue);
+  }
 }

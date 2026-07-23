@@ -2032,6 +2032,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         validText: 'valid-text',
         showTextAsTooltip: 'show-text-as-tooltip',
         i18nErrorTimeUnparsable: 'i18n-error-time-unparsable',
+        i18nErrorRequired: 'i18n-error-required',
         hourInterval: 'hour-interval',
         minuteInterval: 'minute-interval',
         secondInterval: 'second-interval',

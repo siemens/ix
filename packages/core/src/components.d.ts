@@ -4222,6 +4222,11 @@ export namespace Components {
          */
         "ariaLabelTimeToggleButton"?: string;
         /**
+          * Clears the input value and resets the touched state. Unlike clearing the value directly, this method restores the initial, non-invalid state and removes visible validation errors.
+          * @since 5.2.0
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute.
           * @default false
          */
@@ -4263,6 +4268,12 @@ export namespace Components {
           * @default 1
          */
         "hourInterval": number;
+        /**
+          * I18n string for the error message when the time field is empty and required.
+          * @since 5.2.0
+          * @default 'Time is required'
+         */
+        "i18nErrorRequired": string;
         /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
@@ -4348,6 +4359,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * Trigger validation and show visual error state immediately, independently of user interaction — for example, in AJAX submissions or manual validation.  Not suppressed by `<form novalidate>` — errors surface regardless.
+          * @returns `true` if valid, `false` otherwise.
+          * @since 5.2.0
+         */
+        "reportValidity": () => Promise<boolean>;
         /**
           * Required attribute.
          */
@@ -11325,6 +11342,12 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * I18n string for the error message when the time field is empty and required.
+          * @since 5.2.0
+          * @default 'Time is required'
+         */
+        "i18nErrorRequired"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -12919,6 +12942,7 @@ declare namespace LocalJSX {
         "validText": string;
         "showTextAsTooltip": boolean;
         "i18nErrorTimeUnparsable": string;
+        "i18nErrorRequired": string;
         "hourInterval": number;
         "minuteInterval": number;
         "secondInterval": number;
