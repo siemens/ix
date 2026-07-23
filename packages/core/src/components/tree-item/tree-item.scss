@@ -52,6 +52,7 @@
 
     ix-icon {
       transition: transform var(--theme-default-time) ease-in-out;
+      outline: none;
 
       &.icon-toggle-down {
         transform: rotate(90deg);

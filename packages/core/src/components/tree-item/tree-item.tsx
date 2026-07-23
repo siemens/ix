@@ -107,6 +107,7 @@ export class TreeItem {
         </div>
         <div
           class="tree-node-container"
+          role="button"
           tabIndex={isDisabled ? -1 : 0}
           onKeyDown={(e: KeyboardEvent) => {
             if (isDisabled) {
@@ -114,6 +115,7 @@ export class TreeItem {
             }
             if (e.key === ' ' || e.key === 'Enter') {
               e.preventDefault();
+              e.stopPropagation();
               (e.currentTarget as HTMLElement).click();
             }
           }}
