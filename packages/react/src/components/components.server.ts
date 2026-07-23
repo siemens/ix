@@ -1791,6 +1791,7 @@ export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents, Components.
 export type IxSelectEvents = {
     onValueChange: EventName<IxSelectCustomEvent<string | string[]>>,
     onInputChange: EventName<IxSelectCustomEvent<string>>,
+    onDropdownOpenChange: EventName<IxSelectCustomEvent<boolean>>,
     onAddItem: EventName<IxSelectCustomEvent<string>>,
     onIxBlur: EventName<IxSelectCustomEvent<void>>
 };

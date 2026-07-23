@@ -2650,13 +2650,14 @@ export declare interface IxRow extends Components.IxRow {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowClear', 'ariaLabelAddItem', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'enableTopLayer', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nMoreItems', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nRemoveSelectedItem', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'inputChange', 'addItem', 'ixBlur'],
+  outputs: ['valueChange', 'inputChange', 'dropdownOpenChange', 'addItem', 'ixBlur'],
   standalone: false
 })
 export class IxSelect {
   protected el: HTMLIxSelectElement;
   @Output() valueChange = new EventEmitter<CustomEvent<string | string[]>>();
   @Output() inputChange = new EventEmitter<CustomEvent<string>>();
+  @Output() dropdownOpenChange = new EventEmitter<CustomEvent<boolean>>();
   @Output() addItem = new EventEmitter<CustomEvent<string>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
@@ -2675,6 +2676,11 @@ export declare interface IxSelect extends Components.IxSelect {
    * Event dispatched whenever the text input changes.
    */
   inputChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event dispatched whenever the dropdown opens or closes.
+Emits `true` when the dropdown opens and `false` when it closes. @since 5.1.0
+   */
+  dropdownOpenChange: EventEmitter<CustomEvent<boolean>>;
   /**
    * Item added to selection
    */

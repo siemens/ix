@@ -6380,6 +6380,7 @@ declare global {
     interface HTMLIxSelectElementEventMap {
         "valueChange": string | string[];
         "inputChange": string;
+        "dropdownOpenChange": boolean;
         "addItem": string;
         "ixBlur": void;
     }
@@ -10779,6 +10780,11 @@ declare namespace LocalJSX {
           * Item added to selection
          */
         "onAddItem"?: (event: IxSelectCustomEvent<string>) => void;
+        /**
+          * Event dispatched whenever the dropdown opens or closes. Emits `true` when the dropdown opens and `false` when it closes.
+          * @since 5.1.0
+         */
+        "onDropdownOpenChange"?: (event: IxSelectCustomEvent<boolean>) => void;
         /**
           * Event dispatched whenever the text input changes.
          */

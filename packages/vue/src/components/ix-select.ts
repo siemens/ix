@@ -38,11 +38,13 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'enableTopLayer',
   'valueChange',
   'inputChange',
+  'dropdownOpenChange',
   'addItem',
   'ixBlur'
 ], [
   'valueChange',
   'inputChange',
+  'dropdownOpenChange',
   'addItem',
   'ixBlur'
 ],
