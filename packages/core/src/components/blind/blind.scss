@@ -7,20 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:list';
+@use 'sass:map';
 @use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+$blind-status-border: (
+  alarm: var(--theme-color-alarm-bdr),
+  critical: var(--theme-color-critical),
+  warning: var(--theme-color-warning-bdr),
+  info: var(--theme-color-info),
+  success: var(--theme-color-success),
+  neutral: var(--theme-color-neutral),
+  primary: var(--theme-color-primary),
+);
+
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
-    @if $variant == 'outline' {
-      border: solid
-        var(--theme-blind--border-thickness)
-        var(--theme-blind-base--border-color);
-    }
-
     .blind-header {
       @if $variant == 'outline' {
         background-color: var(--theme-color-ghost);
@@ -65,9 +71,59 @@
     }
 
     @if $variant == 'outline' {
-      border-color: var(--theme-color-soft-bdr);
-    } @else {
+      .blind-header-wrapper {
+        border: solid
+          var(--theme-blind--border-thickness)
+          var(--theme-color-soft-bdr);
+        border-bottom: none;
+        border-radius: var(--theme-blind--border-radius)
+          var(--theme-blind--border-radius)
+          0
+          0;
+
+        @include hover.hover {
+          border-color: var(--theme-color-ghost--hover);
+        }
+
+        @include hover.active {
+          border-color: var(--theme-color-ghost--active);
+        }
+      }
+
+      .blind-header {
+        border-radius: 0;
+      }
+    }
+
+    @if $variant != 'filled' {
+      .blind-content {
+        border-radius: 0
+          0
+          var(--theme-blind--border-radius)
+          var(--theme-blind--border-radius);
+
+        @if $variant == 'outline' {
+          border: solid
+            var(--theme-blind--border-thickness)
+            var(--theme-color-soft-bdr);
+          border-top: none;
+        } @else {
+          border: solid
+            var(--theme-blind--border-thickness)
+            #{map.get($blind-status-border, $variant)};
+          border-top: none;
+        }
+      }
+    }
+
+    @if $variant != 'outline' {
       background-color: var(--theme-blind-base--background);
+    }
+  }
+
+  @if not list.index(('filled', 'outline'), $variant) {
+    :host(.blind-#{$variant}[collapsed]) .blind-content {
+      border-width: 0;
     }
   }
 }
@@ -196,6 +252,7 @@
       max-height: 0;
       padding-top: 0px;
       padding-bottom: 0px;
+      border-width: 0;
     }
   }
 
@@ -219,4 +276,24 @@ $blind-variants: (
 
 @each $variant in $blind-variants {
   @include blind($variant);
+}
+
+:host(.blind-outline[collapsed]) {
+  .blind-header-wrapper {
+    border-bottom: solid var(--theme-blind--border-thickness)
+      var(--theme-color-soft-bdr);
+    border-radius: var(--theme-blind--border-radius);
+
+    @include hover.hover {
+      border-color: var(--theme-color-ghost--hover);
+    }
+
+    @include hover.active {
+      border-color: var(--theme-color-ghost--active);
+    }
+  }
+
+  .blind-content {
+    border-width: 0;
+  }
 }

@@ -41,5 +41,35 @@
         solid
         var(--theme-push-card-#{$variant}-accordion--border-color);
     }
+
+    ix-card-accordion {
+      --theme-push-card-#{$variant}-accordion--background--hover: var(--theme-push-card-#{$variant}-accordion--background);
+      --theme-push-card-#{$variant}-accordion--background--active: var(--theme-push-card-#{$variant}-accordion--background);
+      --theme-push-card-#{$variant}-accordion-frame--border-color: var(--theme-push-card-#{$variant}-accordion--background);
+      --ix-card-accordion-expand-content--border-radius: 0 0 var(--theme-default-border-radius) var(--theme-default-border-radius);
+
+      @if $variant != 'outline' and $variant != 'filled' {
+        --ix-card-accordion-expand-content--border-radius: 0 0 calc(var(--theme-default-border-radius) + var(--theme-push-card--border-width)) calc(var(--theme-default-border-radius) + var(--theme-push-card--border-width));
+      }
+
+      @if $variant == 'outline' or $variant == 'filled' {
+        --ix-card-background: var(--theme-color-component-1);
+      }
+
+      @if $variant == 'outline' {
+        --theme-push-card-outline-accordion-frame--border-color: var(--theme-color-soft-bdr);
+      }
+    }
+
+    @if $variant == 'outline' {
+      ix-card {
+        --ix-card-border-color: var(--theme-color-soft-bdr);
+
+        &:hover,
+        &:active {
+          --ix-card-border-color: var(--theme-color-soft-bdr);
+        }
+      }
+    }
   }
 }
