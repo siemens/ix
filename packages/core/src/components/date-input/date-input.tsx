@@ -271,6 +271,10 @@ export class DateInput
 
   private classObserver?: ClassMutationObserver;
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   public initialValue?: string;
 
   public invalidReason?: string;
@@ -443,7 +447,9 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
+            this.initialValue = this.value;
+
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -584,6 +590,11 @@ export class DateInput
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}

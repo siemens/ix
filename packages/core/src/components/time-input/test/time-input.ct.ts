@@ -187,6 +187,37 @@ regressionTest.describe('time input tests', () => {
       ).toHaveText(/Custom time error/);
     }
   );
+
+  regressionTest(
+    'readonly with validation error prevents dropdown from opening',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss"></ix-time-input>`
+      );
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+
+      await timeInputElement.evaluate((el: any) => {
+        el.readonly = true;
+      });
+
+      await expect(timeInputElement.locator('input')).toHaveAttribute(
+        'readonly'
+      );
+
+      await timeInputElement.evaluate((el: any) => {
+        el.value = 'invalid-time';
+      });
+
+      await expect(timeInputElement.locator('input')).toHaveClass(/is-invalid/);
+
+      await timeInputElement.locator('input').focus();
+      await page.waitForTimeout(500);
+      await expect(
+        timeInputElement.getByTestId('time-dropdown')
+      ).not.toHaveClass(/show/);
+    }
+  );
 });
 
 regressionTest.describe('time input min/max tests', () => {

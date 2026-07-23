@@ -232,6 +232,32 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'readonly with validation error prevents dropdown from opening',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+
+    await dateInputElement.evaluate((el: any) => {
+      el.readonly = true;
+    });
+
+    await expect(dateInputElement.locator('input')).toHaveAttribute('readonly');
+
+    await dateInputElement.evaluate((el: any) => {
+      el.value = 'invalid-date';
+    });
+
+    await expect(dateInputElement.locator('input')).toHaveClass(/is-invalid/);
+
+    await dateInputElement.locator('input').focus();
+    await page.waitForTimeout(500);
+    await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
+      /show/
+    );
+  }
+);
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
