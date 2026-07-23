@@ -158,6 +158,7 @@ export class Blind {
                   ? 'color-std-text'
                   : `color-${this.variant}--contrast`
               }
+              aria-hidden="true"
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div

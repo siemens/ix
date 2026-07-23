@@ -45,7 +45,6 @@
       .blind-header-title-label {
         color: var(--theme-color-std-text);
       }
-
       .blind-header-title-sublabel {
         color: var(--theme-color-soft-text);
       }
@@ -58,7 +57,6 @@
       .blind-header-title-sublabel {
         color: var(--theme-color-#{$variant}--contrast);
       }
-
       .header-actions {
         --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
       }
@@ -132,6 +130,13 @@
     @include hover.focus-visible {
       border-color: var(--theme-color-focus-bdr);
       outline: none;
+    }
+  }
+ &:has(.blind-header:focus-visible) {
+    .blind-header-wrapper {
+      outline: var(--theme-focus-border-thickness) solid
+        var(--theme-color-focus-bdr);
+      outline-offset: 0;
     }
   }
 
