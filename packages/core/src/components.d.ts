@@ -34,6 +34,7 @@ import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement } from "./components/dropdown/placement";
+import { KeyboardNavigationBoundaryContext } from "./components/dropdown/dropdown-focus";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -90,6 +91,7 @@ export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement } from "./components/dropdown/placement";
+export { KeyboardNavigationBoundaryContext } from "./components/dropdown/dropdown-focus";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -1670,6 +1672,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "disableWrapFocusNavigation": boolean;
+        /**
+          * @default false
+         */
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
@@ -1713,6 +1719,9 @@ export namespace Components {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onBoundaryFocus"?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
         "overwriteDropdownStyle"?: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
@@ -1769,6 +1778,10 @@ export namespace Components {
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
+          * @default false
+         */
+        "disableWrapFocusNavigation": boolean;
+        /**
           * Disable button
           * @default false
          */
@@ -1794,6 +1807,9 @@ export namespace Components {
           * Set label
          */
         "label"?: string | null;
+        "onBoundaryFocus"?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
         /**
           * Placement of the dropdown
          */
@@ -8537,6 +8553,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "disableWrapFocusNavigation"?: boolean;
+        /**
+          * @default false
+         */
         "discoverAllSubmenus"?: boolean;
         /**
           * Enable Popover API rendering for top-layer positioning.
@@ -8579,6 +8599,9 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onBoundaryFocus"?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
         "onExperimentalFocusNextElement"?: (event: IxDropdownCustomEvent<void>) => void;
         /**
           * Will be fired only after dropdown changed visibility to "true"
@@ -8645,6 +8668,10 @@ declare namespace LocalJSX {
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
+          * @default false
+         */
+        "disableWrapFocusNavigation"?: boolean;
+        /**
           * Disable button
           * @default false
          */
@@ -8669,6 +8696,9 @@ declare namespace LocalJSX {
           * Set label
          */
         "label"?: string | null;
+        "onBoundaryFocus"?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
         /**
           * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
          */
@@ -12308,6 +12338,7 @@ declare namespace LocalJSX {
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
         "focusCheckedItem": boolean;
+        "disableWrapFocusNavigation": boolean;
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
@@ -12322,6 +12353,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "focusCheckedItem": boolean;
+        "disableWrapFocusNavigation": boolean;
         "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }

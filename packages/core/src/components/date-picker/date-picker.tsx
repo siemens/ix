@@ -26,6 +26,10 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import type {
+  KeyboardNavigationBoundaryContext,
+  KeyboardNavigationBoundaryDirection,
+} from '../dropdown/dropdown-focus';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -263,10 +267,14 @@ export class DatePicker
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
 
+  private readonly monthDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
+
   private readonly yearMonthSelectionDropdownRef =
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames!: string[];
+  @State() dayNamesFull!: string[];
   @State() monthNames!: string[];
   @State() focusedDay: number = 1;
 
@@ -489,16 +497,54 @@ export class DatePicker
   }
 
   private setTranslations() {
-    this.dayNames = this.rotateWeekDayNames(
+    const shortDayNames = this.rotateWeekDayNames(
+      Info.weekdays('short', {
+        locale: this.locale,
+      }),
+      this.weekStartIndex
+    );
+
+    const narrowDayNames = this.rotateWeekDayNames(
+      Info.weekdays('narrow', {
+        locale: this.locale,
+      }),
+      this.weekStartIndex
+    );
+
+    this.dayNamesFull = this.rotateWeekDayNames(
       Info.weekdays('long', {
         locale: this.locale,
       }),
       this.weekStartIndex
     );
 
+    this.dayNames = this.useNarrowWeekdayLabels(shortDayNames)
+      ? narrowDayNames
+      : shortDayNames;
+
     this.monthNames = Info.months('long', {
       locale: this.locale,
     });
+  }
+
+  private useNarrowWeekdayLabels(weekdays: string[]): boolean {
+    const maxGraphemeLength = 6;
+
+    return weekdays.some(
+      (weekday) => this.getGraphemeLength(weekday) > maxGraphemeLength
+    );
+  }
+
+  private getGraphemeLength(value: string): number {
+    if (Intl.Segmenter === undefined) {
+      return [...value].length;
+    }
+
+    const segmenter = new Intl.Segmenter(this.locale, {
+      granularity: 'grapheme',
+    });
+
+    return [...segmenter.segment(value)].length;
   }
 
   /**
@@ -524,86 +570,47 @@ export class DatePicker
     this.dateSelect.emit(date);
   }
 
+  private getWeekdayIndex(date: DateTime) {
+    const weekStartIndex =
+      ((this.weekStartIndex % this.DAYS_IN_WEEK) + this.DAYS_IN_WEEK) %
+      this.DAYS_IN_WEEK;
+
+    return (
+      (date.weekday - 1 - weekStartIndex + this.DAYS_IN_WEEK) %
+      this.DAYS_IN_WEEK
+    );
+  }
+
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
     const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
     const monthStart = month.startOf('month');
-    const monthEnd = month.endOf('month');
-    let startWeek = monthStart.weekNumber;
-    let endWeek = monthEnd.weekNumber;
-    let monthStartWeekDayIndex = monthStart.weekday - 1;
-    let monthEndWeekDayIndex = monthEnd.weekday - 1;
+    const daysInMonth = month.daysInMonth ?? 0;
+    const monthStartWeekDayIndex = this.getWeekdayIndex(monthStart);
+    const weekCount = Math.ceil(
+      (monthStartWeekDayIndex + daysInMonth) / this.DAYS_IN_WEEK
+    );
 
-    if (this.weekStartIndex !== 0) {
-      // Find the positions where to start/stop counting the day-numbers based on which day the week starts
-      const weekdays = Info.weekdays();
-      const monthStartWeekDayName = weekdays[monthStart.weekday];
-
-      monthStartWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthStartWeekDayName
-      );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday];
-      monthEndWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthEndWeekDayName
-      );
-    }
-
-    let correctLastWeek = false;
-    if (endWeek === 1) {
-      endWeek = monthEnd.weeksInWeekYear + 1;
-      correctLastWeek = true;
-    }
-
-    let correctFirstWeek = false;
-    if (startWeek === monthStart.weeksInWeekYear) {
-      startWeek = 1;
-      endWeek++;
-
-      correctFirstWeek = true;
-    }
-
-    let currDayNumber = 1;
-    for (
-      let weekIndex = startWeek;
-      weekIndex <= endWeek && currDayNumber <= 31;
-      weekIndex++
-    ) {
+    for (let weekIndex = 0; weekIndex < weekCount; weekIndex++) {
       const daysArr: (number | undefined)[] = [];
 
-      for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
-        // Display empty cells until the calender starts/has ended
-        if (
-          (weekIndex === startWeek && j < monthStartWeekDayIndex) ||
-          (weekIndex === endWeek && j > monthEndWeekDayIndex)
-        ) {
-          daysArr.push(undefined);
-        } else {
-          daysArr.push(currDayNumber++);
-        }
+      for (let dayIndex = 0; dayIndex < this.DAYS_IN_WEEK; dayIndex++) {
+        const dayNumber =
+          weekIndex * this.DAYS_IN_WEEK + dayIndex - monthStartWeekDayIndex + 1;
+
+        daysArr.push(
+          dayNumber < 1 || dayNumber > daysInMonth ? undefined : dayNumber
+        );
       }
 
-      if (correctFirstWeek || correctLastWeek) {
-        if (weekIndex === 1) {
-          calendar.push({
-            weekNumber: monthStart.weeksInWeekYear,
-            dayNumbers: daysArr,
-          });
-        } else if (weekIndex === monthEnd.weekNumber) {
-          calendar.push({
-            weekNumber: 1,
-            dayNumbers: daysArr,
-          });
-        } else {
-          calendar.push({
-            weekNumber: weekIndex - 1,
-            dayNumbers: daysArr,
-          });
-        }
-        continue;
-      }
+      const firstDayOfWeek = daysArr.find((day) => day !== undefined) ?? 1;
 
       calendar.push({
-        weekNumber: weekIndex,
+        weekNumber: DateTime.utc(
+          this.selectedYear,
+          this.selectedMonth + 1,
+          firstDayOfWeek
+        ).weekNumber,
         dayNumbers: daysArr,
       });
     }
@@ -908,6 +915,62 @@ export class DatePicker
     });
   }
 
+  private findYearDropdownItem(container: HTMLElement, year: number) {
+    return queryElements(container, 'ix-dropdown-item').find(
+      (item) => item.textContent?.trim() === `${year}`
+    ) as HTMLElement | undefined;
+  }
+
+  private scrollToSelectedDropdownItem(dropdownElement: HTMLElement) {
+    const selectedItem = dropdownElement.querySelector(
+      'ix-dropdown-item[checked]'
+    ) as HTMLElement;
+
+    if (!selectedItem) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      selectedItem.scrollIntoView({
+        block: 'center',
+      });
+    });
+  }
+
+  private async waitForNextAnimationFrame() {
+    await new Promise<void>((resolve) => {
+      requestAnimationFrameNoNgZone(() => resolve());
+    });
+  }
+
+  private readonly onYearDropdownBoundaryFocus = async ({
+    direction,
+  }: KeyboardNavigationBoundaryContext) => {
+    const container = this.yearDropdownButtonRef.current;
+
+    if (!container) {
+      return undefined;
+    }
+
+    const targetYear = this.getBoundaryTargetYear(direction);
+
+    if (direction === 'next') {
+      this.endYear += 5;
+    } else {
+      this.startYear -= 5;
+    }
+
+    // Wait for the updated year range to render before resolving next focus target.
+    await this.waitForNextAnimationFrame();
+    return this.findYearDropdownItem(container, targetYear);
+  };
+
+  private getBoundaryTargetYear(
+    direction: KeyboardNavigationBoundaryDirection
+  ) {
+    return direction === 'next' ? this.endYear + 1 : this.startYear - 1;
+  }
+
   private skipFirstScrollOffset = true;
   private intersectStart = new IntersectionObserver(
     (entries) => this.intersect(entries),
@@ -944,9 +1007,18 @@ export class DatePicker
                 aria-label={this.ariaLabelMonthSelection}
                 variant="tertiary"
                 label={null}
+                ref={this.monthDropdownButtonRef}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
+
+                  if (event.detail) {
+                    requestAnimationFrameNoNgZone(() => {
+                      this.scrollToSelectedDropdownItem(
+                        this.monthDropdownButtonRef.current!
+                      );
+                    });
+                  }
                 }}
               >
                 <ix-typography bold class="capitalize" slot="button-label">
@@ -958,6 +1030,8 @@ export class DatePicker
               <ix-dropdown-button
                 class="year-selector"
                 focusCheckedItem={true}
+                disableWrapFocusNavigation={true}
+                onBoundaryFocus={this.onYearDropdownBoundaryFocus}
                 aria-label={this.ariaLabelYearSelection}
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
@@ -978,20 +1052,9 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current!.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement;
-
-                      if (!selectedYearItem) {
-                        return;
-                      }
-
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
-                        });
-                      });
+                      this.scrollToSelectedDropdownItem(
+                        this.yearDropdownButtonRef.current!
+                      );
                     });
                   } else {
                     this.intersectStart.disconnect();
@@ -1030,13 +1093,15 @@ export class DatePicker
               {this.showWeekNumbers && (
                 <div class="calendar-item week-day" role="columnheader"></div>
               )}
-              {this.dayNames.map((name) => (
+              {this.dayNames.map((name, index) => (
                 <div
-                  key={name}
+                  key={`${index}-${name}`}
                   class="calendar-item week-day"
                   role="columnheader"
+                  aria-label={this.dayNamesFull[index]}
+                  title={this.dayNamesFull[index]}
                 >
-                  <div class="overflow">{name.slice(0, 3)}</div>
+                  {name}
                 </div>
               ))}
             </div>

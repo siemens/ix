@@ -36,6 +36,14 @@ export const QUERY_CURRENT_VISIBLE_FOCUS = VALID_FOCUS_ELEMENTS.map(
     `${selector}.${IX_FOCUS_VISIBLE_ACTIVE}:not([tabindex^="-"]):not([disabled]):not([hidden])`
 ).join(', ');
 
+export type KeyboardNavigationBoundaryDirection = 'next' | 'previous';
+
+export interface KeyboardNavigationBoundaryContext {
+  direction: KeyboardNavigationBoundaryDirection;
+  items: HTMLElement[];
+  activeElement: HTMLElement | null;
+}
+
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null,
@@ -104,6 +112,10 @@ export const configureKeyboardInteraction = (
     querySelector?: string;
     activeQuerySelector?: string;
     itemTriggerKeys?: string[];
+    wrapNavigation?: boolean;
+    onBoundaryFocus?: (
+      context: KeyboardNavigationBoundaryContext
+    ) => Promise<HTMLElement | undefined>;
     beforeKeydown?: (ev: KeyboardEvent) => void;
     onItemActivation?: (
       event: KeyboardEvent,
@@ -120,6 +132,7 @@ export const configureKeyboardInteraction = (
     'Enter',
     ' ',
   ];
+  const wrapNavigation = options.wrapNavigation ?? true;
 
   const getActiveElement =
     options.getActiveElement ??
@@ -135,6 +148,39 @@ export const configureKeyboardInteraction = (
 
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => getItemsHost());
+
+  const handleBoundaryFocus = async (
+    direction: KeyboardNavigationBoundaryDirection,
+    items: HTMLElement[],
+    activeElement: HTMLElement | null
+  ) => {
+    const currentItemIndex = getIndexOfDropdownItem(
+      items,
+      activeElement,
+      activeQuerySelector
+    );
+    const boundaryIndex = direction === 'next' ? items.length - 1 : 0;
+
+    if (
+      wrapNavigation ||
+      items.length === 0 ||
+      currentItemIndex !== boundaryIndex
+    ) {
+      return false;
+    }
+
+    const boundaryItem = await options.onBoundaryFocus?.({
+      direction,
+      items,
+      activeElement,
+    });
+
+    if (boundaryItem !== undefined) {
+      setItemActive(boundaryItem);
+    }
+
+    return true;
+  };
 
   const callback = async (event: KeyboardEvent) => {
     const activeElement = getActiveElement();
@@ -195,6 +241,11 @@ export const configureKeyboardInteraction = (
 
         // Disable movement/scroll with keyboard
         event.preventDefault();
+
+        if (await handleBoundaryFocus('next', items, activeElement)) {
+          break;
+        }
+
         const nextItem = getNextFocusableDropdownItem(
           items,
           activeElement,
@@ -214,6 +265,11 @@ export const configureKeyboardInteraction = (
         }
         // Disable movement/scroll with keyboard
         event.preventDefault();
+
+        if (await handleBoundaryFocus('previous', items, activeElement)) {
+          break;
+        }
+
         const prevItem = getPreviousFocusableItem(
           items,
           activeElement,

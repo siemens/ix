@@ -61,7 +61,10 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import { configureKeyboardInteraction } from './dropdown-focus';
+import {
+  configureKeyboardInteraction,
+  type KeyboardNavigationBoundaryContext,
+} from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 
 let sequenceId = 0;
@@ -178,6 +181,14 @@ export class Dropdown
    * @internal
    */
   @Prop() keyboardItemTriggerKeys: string[] = ['Enter', ' '];
+
+  /** @internal */
+  @Prop() disableWrapFocusNavigation = false;
+
+  /** @internal */
+  @Prop() onBoundaryFocus?: (
+    context: KeyboardNavigationBoundaryContext
+  ) => Promise<HTMLElement | undefined>;
 
   /**
    * Move dropdown along main axis of alignment
@@ -641,6 +652,8 @@ export class Dropdown
           getEventListenerTarget: () =>
             (this.triggerElement as HTMLElement) ??
             (this.anchorElement as HTMLElement),
+          wrapNavigation: !this.disableWrapFocusNavigation,
+          onBoundaryFocus: this.onBoundaryFocus,
           onItemActivation: (event, activeElement) => {
             event.preventDefault();
             activeElement?.click();
