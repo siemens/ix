@@ -7,7 +7,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-<ix-application>
+<ix-application skipLinkTargetId="main-content">
   <ix-application-header name="My Application">
     <div class="placeholder-logo" slot="logo"></div>
   </ix-application-header>
@@ -17,7 +17,7 @@ LICENSE file in the root directory of this source tree.
     <ix-menu-item>Item 2</ix-menu-item>
   </ix-menu>
 
-  <ix-content>
+  <ix-content id="main-content">
     <ix-content-header slot="header" header-title="My Content Page">
     </ix-content-header>
   </ix-content>

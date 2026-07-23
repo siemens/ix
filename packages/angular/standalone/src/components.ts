@@ -141,14 +141,14 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxApplication,
-  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme']
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'disableSkipLink', 'forceBreakpoint', 'i18nSkipToContent', 'skipLinkTargetId', 'theme']
 })
 @Component({
   selector: 'ix-application',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme'],
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'disableSkipLink', 'forceBreakpoint', 'i18nSkipToContent', 'skipLinkTargetId', 'theme'],
 })
 export class IxApplication {
   protected el: HTMLIxApplicationElement;

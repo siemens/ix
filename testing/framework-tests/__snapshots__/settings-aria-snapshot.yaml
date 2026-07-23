@@ -1,3 +1,5 @@
+- link "Skip to main content":
+  - /url: "#ix-application-main-content"
 - navigation:
   - button "Settings" [expanded]
   - tooltip "Settings"
