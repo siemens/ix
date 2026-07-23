@@ -13,10 +13,12 @@
   "dependencies": {
     "@maskito/core": "^3.2.0",
     "@maskito/kit": "^3.2.0",
+    "ag-grid-community": "^33.3.2",
     "lit": "^3.2.1"
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-icons": "catalog:",
     "@stencil/core": "^4.43.4",
     "@storybook/addon-a11y": "^10.1.11",
