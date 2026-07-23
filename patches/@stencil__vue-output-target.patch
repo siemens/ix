@@ -1,0 +1,26 @@
+diff --git a/dist/runtime.cjs.js b/dist/runtime.cjs.js
+index 8d1b57d..8aaa91b 100644
+--- a/dist/runtime.cjs.js
++++ b/dist/runtime.cjs.js
+@@ -116,7 +116,7 @@ const ARIA_PROP_PREFIX = 'aria';
+  * and then check if it is not undefined for Vue >= 3.1.0.
+  * See https://github.com/vuejs/vue-next/issues/3889
+  */
+-const EMPTY_PROP = Symbol();
++const EMPTY_PROP = {};
+ const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
+ const getComponentClasses = (classes) => {
+     return classes?.split(' ') || [];
+diff --git a/dist/runtime.js b/dist/runtime.js
+index 7efe4d9..4415241 100644
+--- a/dist/runtime.js
++++ b/dist/runtime.js
+@@ -114,7 +114,7 @@ const ARIA_PROP_PREFIX = 'aria';
+  * and then check if it is not undefined for Vue >= 3.1.0.
+  * See https://github.com/vuejs/vue-next/issues/3889
+  */
+-const EMPTY_PROP = Symbol();
++const EMPTY_PROP = {};
+ const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
+ const getComponentClasses = (classes) => {
+     return classes?.split(' ') || [];

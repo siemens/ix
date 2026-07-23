@@ -42,6 +42,9 @@ patchedDependencies:
   '@stencil/core':
     hash: 5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193
     path: patches/@stencil__core.patch
+  '@stencil/vue-output-target':
+    hash: 1092f8f786ba4bf19a5e67a9e58b986c6ca902e2f79df32a4e9b72854cec3be6
+    path: patches/@stencil__vue-output-target.patch
 
 importers:
 
@@ -493,7 +496,7 @@ importers:
         version: 1.11.3(@playwright/test@1.58.1)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(happy-dom@20.4.0)(jsdom@25.0.1)(vitest@4.1.4(@types/node@20.16.5)(happy-dom@20.4.0)(jsdom@25.0.1)(msw@2.10.2(@types/node@20.16.5)(typescript@5.4.5))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.48.0)(tsx@4.20.5)(yaml@2.9.0)))
       '@stencil/vue-output-target':
         specifier: ^0.13.2
-        version: 0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
+        version: 0.13.2(patch_hash=1092f8f786ba4bf19a5e67a9e58b986c6ca902e2f79df32a4e9b72854cec3be6)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1153,7 +1156,7 @@ importers:
         version: 3.4.0
       '@stencil/vue-output-target':
         specifier: ^0.13.2
-        version: 0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
+        version: 0.13.2(patch_hash=1092f8f786ba4bf19a5e67a9e58b986c6ca902e2f79df32a4e9b72854cec3be6)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -16251,7 +16254,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.8.0
       which: 5.0.0
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -16268,7 +16271,7 @@ snapshots:
       hosted-git-info: 8.1.0
       json-parse-even-better-errors: 4.0.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.0
       validate-npm-package-license: 3.0.4
 
   '@npmcli/promise-spawn@8.0.2':
@@ -16795,13 +16798,13 @@ snapshots:
       happy-dom: 20.4.0
       jsdom: 25.0.1
 
-  '@stencil/vue-output-target@0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.13.2(patch_hash=1092f8f786ba4bf19a5e67a9e58b986c6ca902e2f79df32a4e9b72854cec3be6)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
     dependencies:
       vue: 3.5.17(typescript@5.4.5)
     optionalDependencies:
       '@stencil/core': 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
-  '@stencil/vue-output-target@0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.13.2(patch_hash=1092f8f786ba4bf19a5e67a9e58b986c6ca902e2f79df32a4e9b72854cec3be6)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
@@ -22035,7 +22038,7 @@ snapshots:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.7.2
+      semver: 7.8.0
     transitivePeerDependencies:
       - supports-color
 
@@ -22060,7 +22063,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.3
+      semver: 7.8.0
       synckit: 0.11.12
     transitivePeerDependencies:
       - supports-color
@@ -22654,7 +22657,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.0
 
   make-error@1.3.6: {}
 
@@ -23336,7 +23339,7 @@ snapshots:
 
   npm-install-checks@7.1.1:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.0
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -26768,7 +26771,7 @@ snapshots:
       espree: 9.6.1
       esquery: 1.7.0
       lodash: 4.17.21
-      semver: 7.7.2
+      semver: 7.8.0
     transitivePeerDependencies:
       - supports-color
 

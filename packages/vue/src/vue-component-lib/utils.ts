@@ -30,7 +30,7 @@ const ARIA_PROP_PREFIX = 'aria';
  * and then check if it is not undefined for Vue >= 3.1.0.
  * See https://github.com/vuejs/vue-next/issues/3889
  */
-const EMPTY_PROP = Symbol();
+const EMPTY_PROP = {};
 const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
 
 interface NavManager<T = any> {
@@ -185,7 +185,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
           if (
             // eslint-disable-next-line no-prototype-builtins
             (props.hasOwnProperty(key) && value !== EMPTY_PROP) ||
-            key.startsWith(ARIA_PROP_PREFIX)
+            (key.startsWith(ARIA_PROP_PREFIX) && value !== EMPTY_PROP)
           ) {
             propsToAdd[key] = value;
           }
