@@ -14,6 +14,8 @@ export const BADGE_OVERFLOW_THRESHOLD = 99;
 const INTEGER_LABEL_PATTERN = /^-?\d+(\.\d+)?$/;
 const OVERFLOW_LABEL = `${BADGE_OVERFLOW_THRESHOLD}+`;
 
+type BadgeLabelInput = string | number | null;
+
 /**
  * Formats badge label text for supported anatomy types.
  * Returns `null` when the type has no text or the value is invalid.
@@ -21,7 +23,7 @@ const OVERFLOW_LABEL = `${BADGE_OVERFLOW_THRESHOLD}+`;
  */
 export function formatBadgeLabel(
   type: BadgeAnatomyType,
-  label?: string | number | null
+  label?: BadgeLabelInput
 ): string | null {
   switch (type) {
     case 'counter':
@@ -34,7 +36,7 @@ export function formatBadgeLabel(
   }
 }
 
-function coerceLabelText(label?: string | number | null): string {
+function coerceLabelText(label?: BadgeLabelInput): string {
   if (label === undefined || label === null) {
     return '';
   }
@@ -42,7 +44,7 @@ function coerceLabelText(label?: string | number | null): string {
   return String(label).trim();
 }
 
-function formatTextLabel(label?: string | number | null): string | null {
+function formatTextLabel(label?: BadgeLabelInput): string | null {
   const trimmed = coerceLabelText(label);
 
   if (!trimmed) {
@@ -52,7 +54,7 @@ function formatTextLabel(label?: string | number | null): string | null {
   return trimmed;
 }
 
-function formatCounterLabel(label?: string | number | null): string | null {
+function formatCounterLabel(label?: BadgeLabelInput): string | null {
   const trimmed = coerceLabelText(label);
 
   if (!trimmed) {

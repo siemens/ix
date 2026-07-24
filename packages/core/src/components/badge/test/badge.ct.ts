@@ -19,6 +19,41 @@ import { BadgePage } from './badge.page';
 
 const html = String.raw;
 
+async function expectVisibleTooltipText(tooltip: Locator, text: string) {
+  await expect(tooltip).toHaveClass(/visible/);
+
+  const metrics = await tooltip.evaluate((el) => {
+    const slot = el.shadowRoot?.querySelector(
+      'slot:not([name])'
+    ) as HTMLSlotElement | null;
+    const assigned = slot?.assignedNodes({ flatten: true }) ?? [];
+    const slottedText = assigned.map((node) => node.textContent ?? '').join('');
+    let width = 0;
+    let height = 0;
+
+    if (assigned[0]) {
+      const range = document.createRange();
+      range.selectNodeContents(assigned[0]);
+      const rect = range.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+    }
+
+    return {
+      slottedText,
+      width,
+      height,
+      fontSize: getComputedStyle(el).fontSize,
+    };
+  });
+
+  expect(metrics.slottedText).toBe(text);
+  expect(metrics.fontSize).toBe('14px');
+  // Guard against host font-size:0 collapsing tooltip glyphs (empty bubble).
+  expect(metrics.width).toBeGreaterThan(8);
+  expect(metrics.height).toBeGreaterThan(8);
+}
+
 regressionTest.describe('ix-badge', () => {
   regressionTest.describe('rendering', () => {
     regressionTest('hydrates standalone badge', async ({ mount, page }) => {
@@ -572,43 +607,6 @@ regressionTest.describe('ix-badge', () => {
   });
 
   regressionTest.describe('tooltip', () => {
-    async function expectVisibleTooltipText(tooltip: Locator, text: string) {
-      await expect(tooltip).toHaveClass(/visible/);
-
-      const metrics = await tooltip.evaluate((el) => {
-        const slot = el.shadowRoot?.querySelector(
-          'slot:not([name])'
-        ) as HTMLSlotElement | null;
-        const assigned = slot?.assignedNodes({ flatten: true }) ?? [];
-        const slottedText = assigned
-          .map((node) => node.textContent ?? '')
-          .join('');
-        let width = 0;
-        let height = 0;
-
-        if (assigned[0]) {
-          const range = document.createRange();
-          range.selectNodeContents(assigned[0]);
-          const rect = range.getBoundingClientRect();
-          width = rect.width;
-          height = rect.height;
-        }
-
-        return {
-          slottedText,
-          width,
-          height,
-          fontSize: getComputedStyle(el).fontSize,
-        };
-      });
-
-      expect(metrics.slottedText).toBe(text);
-      expect(metrics.fontSize).toBe('14px');
-      // Guard against host font-size:0 collapsing tooltip glyphs (empty bubble).
-      expect(metrics.width).toBeGreaterThan(8);
-      expect(metrics.height).toBeGreaterThan(8);
-    }
-
     regressionTest(
       'does not render tooltip when tooltip-text is absent',
       async ({ mount, page }) => {

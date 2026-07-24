@@ -86,7 +86,7 @@ export const BADGE_STATUS_ICON_BY_VARIANT: Record<
 export function isBadgeStatusIconVariant(
   variant: string
 ): variant is BadgeStatusIconVariant {
-  return variant in BADGE_STATUS_ICON_BY_VARIANT;
+  return Object.hasOwn(BADGE_STATUS_ICON_BY_VARIANT, variant);
 }
 
 function resolveStatusIconVariant(

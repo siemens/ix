@@ -45,9 +45,8 @@ export class BadgeVisualPage {
   }
 
   async waitForReady(): Promise<void> {
-    await this.badges.first().waitFor();
     await expect(this.badges).not.toHaveCount(0);
-    await expect(this.page.locator('ix-badge.hydrated').first()).toBeVisible();
+    await expect(this.page.locator('ix-badge:not(.hydrated)')).toHaveCount(0);
   }
 
   async expectSnapshot(): Promise<void> {
