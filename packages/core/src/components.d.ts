@@ -175,9 +175,26 @@ export namespace Components {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in link for bypassing repeated application content. Only disable it when an equivalent bypass mechanism is provided elsewhere.
+          * @since 5.2.0
+          * @default false
+         */
+        "disableSkipLink": boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
+        /**
+          * Localized text for the link that bypasses repeated application content.
+          * @since 5.2.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToContent": string;
+        /**
+          * ID of a light-DOM descendant to focus when the skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * @since 5.2.0
+         */
+        "skipLinkTargetId"?: string;
         /**
           * Application theme
          */
@@ -6932,9 +6949,26 @@ declare namespace LocalJSX {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in link for bypassing repeated application content. Only disable it when an equivalent bypass mechanism is provided elsewhere.
+          * @since 5.2.0
+          * @default false
+         */
+        "disableSkipLink"?: boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
+        /**
+          * Localized text for the link that bypasses repeated application content.
+          * @since 5.2.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToContent"?: string;
+        /**
+          * ID of a light-DOM descendant to focus when the skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * @since 5.2.0
+         */
+        "skipLinkTargetId"?: string;
         /**
           * Application theme
          */
@@ -11977,6 +12011,9 @@ declare namespace LocalJSX {
         "theme": string;
         "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
+        "disableSkipLink": boolean;
+        "i18nSkipToContent": string;
+        "skipLinkTargetId": string;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;

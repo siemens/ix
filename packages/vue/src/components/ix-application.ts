@@ -11,5 +11,8 @@ export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__
   'colorSchema',
   'forceBreakpoint',
   'breakpoints',
-  'appSwitchConfig'
+  'appSwitchConfig',
+  'disableSkipLink',
+  'i18nSkipToContent',
+  'skipLinkTargetId'
 ]);
