@@ -9,84 +9,45 @@
 
 $event-list-item-weak-bdr-1-fallback: 0.0625rem solid
   light-dark(rgba(35, 48, 60, 0.15), rgba(224, 245, 255, 0.25));
-$event-item-chevron-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$event-item-filled-background-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$event-item-filled-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.25)
-);
-$event-item-filled-background-disabled-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$event-item-filled-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.15),
-  rgba(140, 161, 171, 0.45)
-);
-$event-item-filled-background-selected-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.25)
-);
+$event-item-chevron-color-fallback: light-dark(#405158, #aeb5b8);
+$event-item-filled-background-fallback: light-dark(#ffffff, #1a272d);
+$event-item-filled-background-active-fallback: light-dark(#dcdee0, #34454d);
+$event-item-filled-background-disabled-fallback: light-dark(#ffffff, #1a272d);
+$event-item-filled-background-hover-fallback: light-dark(#e8ebed, #273940);
+$event-item-filled-background-selected-fallback: light-dark(#dcdee0, #34454d);
 $event-item-filled-border-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $event-item-filled-border-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $event-item-filled-border-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $event-item-filled-border-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$event-item-filled-border-selected-fallback: light-dark(#005e66, #00eaff);
+$event-item-filled-border-selected-fallback: light-dark(#004f69, #00eaff);
 $event-item-outline-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$event-item-outline-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
+$event-item-outline-background-active-fallback: light-dark(#dcdee0, #34454d);
 $event-item-outline-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$event-item-outline-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$event-item-outline-background-selected-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
-$event-item-outline-border-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$event-item-outline-border-active-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$event-item-outline-border-disabled-fallback: light-dark(
-  rgba(35, 48, 60, 0.15),
-  rgba(224, 245, 255, 0.25)
-);
-$event-item-outline-border-hover-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$event-item-outline-border-selected-fallback: light-dark(#005e66, #00eaff);
+$event-item-outline-background-hover-fallback: light-dark(#e8ebed, #273940);
+$event-item-outline-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$event-item-outline-border-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-active-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-disabled-fallback: light-dark(#e5e8e9, #34454d);
+$event-item-outline-border-hover-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-event-list-item--default-time: var(--theme-default-time, 150ms);

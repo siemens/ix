@@ -7,18 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-btn-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
-$menu-btn-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$menu-btn-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$menu-btn-background-active-fallback: light-dark(#dcdee0, #34454d);
+$menu-btn-background-hover-fallback: light-dark(#e8ebed, #273940);
+$menu-btn-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
   --ix-menu-expand-icon--default-time: var(--theme-default-time, 150ms);

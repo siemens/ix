@@ -14,7 +14,10 @@ $message-bar-color-success-fallback: light-dark(#2c8500, #44cc00);
 $message-bar-color-info-fallback: light-dark(#0041b2, #357fff);
 $message-bar-color-neutral-fallback: light-dark(#66727e, #b6b8b9);
 $message-bar-color-primary-fallback: light-dark(#006e93, #00bde3);
-$messagebar-background-fallback: light-dark(#ffffff, #000000);
+$messagebar-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
 
 :host {
   --ix-message-bar--color-alarm: var(

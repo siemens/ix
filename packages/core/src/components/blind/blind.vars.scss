@@ -27,13 +27,10 @@ $blind-color-soft-bdr-fallback: light-dark(
   rgba(211, 236, 248, 0.4)
 );
 $blind-color-focus-bdr-fallback: #199fff;
-$blind-base-background-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
+$blind-base-background-fallback: light-dark(#ffffff, #1a272d);
 $blind-base-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 
 $blind-variant-fallbacks: (

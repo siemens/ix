@@ -9,95 +9,68 @@
 
 $date-picker-color-focus-bdr-fallback: #199fff;
 $datepicker-day-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$datepicker-day-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
+$datepicker-day-background-active-fallback: light-dark(#dcdee0, #34454d);
 $datepicker-day-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$datepicker-day-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
+$datepicker-day-background-hover-fallback: light-dark(#e8ebed, #273940);
 $datepicker-day-background-range-fallback: light-dark(
-  rgba(0, 81, 89, 0.75),
+  rgba(0, 79, 105, 0.75),
   rgba(0, 234, 255, 0.75)
 );
 $datepicker-day-background-range-active-fallback: light-dark(
-  rgba(0, 70, 77, 0.75),
-  rgba(10, 235, 255, 0.75)
+  rgba(25, 84, 104, 0.75),
+  rgba(0, 148, 177, 0.75)
 );
 $datepicker-day-background-range-disabled-fallback: light-dark(
-  rgba(0, 81, 89, 0.15),
+  rgba(0, 79, 105, 0.15),
   rgba(0, 234, 255, 0.2)
 );
 $datepicker-day-background-range-hover-fallback: light-dark(
-  rgba(0, 93, 102, 0.75),
-  rgba(107, 243, 255, 0.6)
+  rgba(0, 111, 142, 0.75),
+  rgba(0, 222, 247, 0.75)
 );
-$datepicker-day-background-selected-fallback: light-dark(#0b5e65, #00eaff);
+$datepicker-day-background-selected-fallback: light-dark(#004f69, #00eaff);
 $datepicker-day-background-selected-active-fallback: light-dark(
-  #00464d,
-  #0aebff
+  #195468,
+  #0094b1
 );
 $datepicker-day-background-selected-disabled-fallback: light-dark(
-  rgba(0, 81, 89, 0.3),
+  rgba(0, 79, 105, 0.3),
   rgba(0, 234, 255, 0.3)
 );
 $datepicker-day-background-selected-hover-fallback: light-dark(
-  #005d66,
-  #52f1ff
+  #006f8e,
+  #00def7
 );
-$datepicker-day-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$datepicker-day-color-range-fallback: light-dark(#ffffff, #000000);
-$datepicker-day-color-range-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000000);
-$datepicker-day-color-selected-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$datepicker-today-border-color-fallback: light-dark(#006e93, #00bde3);
-$datepicker-today-border-color-range-fallback: light-dark(#006e93, #00bde3);
+$datepicker-day-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$datepicker-day-color-range-fallback: light-dark(#ffffff, #000609);
+$datepicker-day-color-range-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000609);
+$datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$datepicker-today-border-color-fallback: light-dark(#006a87, #00c9e4);
+$datepicker-today-border-color-range-fallback: light-dark(#006a87, #00c9e4);
 $datepicker-today-border-color-range-active-fallback: light-dark(
-  #006e93,
-  #00bde3
+  #006a87,
+  #00c9e4
 );
 $datepicker-today-border-color-range-disabled-fallback: light-dark(
-  rgba(0, 110, 147, 0.3),
-  rgba(0, 170, 204, 0.45)
+  rgba(0, 106, 135, 0.3),
+  rgba(0, 201, 228, 0.45)
 );
 $datepicker-today-border-color-range-hover-fallback: light-dark(
-  #006e93,
-  #00bde3
+  #006a87,
+  #00c9e4
 );
-$datepicker-today-color-fallback: light-dark(#006e93, #00bde3);
-$datepicker-weekday-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$menu-item-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$select-list-item-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$select-list-item-background-selected-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.1)
-);
+$datepicker-today-color-fallback: light-dark(#006a87, #00c9e4);
+$datepicker-weekday-color-fallback: light-dark(#405158, #aeb5b8);
+$menu-item-color-fallback: light-dark(#000609, #ffffff);
+$select-list-item-background-hover-fallback: light-dark(#e8ebed, #273940);
+$select-list-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
 
 :host {
   --ix-date-picker--color-focus-bdr: var(

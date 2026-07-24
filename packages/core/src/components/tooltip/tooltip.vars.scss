@@ -14,7 +14,7 @@ $tooltip-color-std-text-fallback: light-dark(
 $tooltip-shadow-4-fallback: 0 0 2px 0 light-dark(rgba(0, 0, 0, 0.2), #000000),
   0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
   0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
-$tooltip-background-fallback: light-dark(#eff0f1, #283236);
+$tooltip-background-fallback: light-dark(#ffffff, #1a272d);
 
 :host {
   --ix-tooltip--color-std-text: var(
@@ -26,5 +26,5 @@ $tooltip-background-fallback: light-dark(#eff0f1, #283236);
     --theme-color-2,
     #{$tooltip-background-fallback}
   );
-  --ix-tootlip--background: var(--ix-tooltip--background);
+  --ix-tootlip--background: var(--theme-color-2, light-dark(#ffffff, #1a272d));
 }

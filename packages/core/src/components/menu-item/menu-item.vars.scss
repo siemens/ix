@@ -14,21 +14,12 @@ $menu-item-color-weak-text-fallback: light-dark(
   rgba(0, 10, 20, 0.4),
   rgba(219, 244, 255, 0.4)
 );
-$nav-item-primary-background-selected-fallback: light-dark(#ffffff, #0f1619);
-$nav-item-primary-border-color-selected-fallback: light-dark(#005e66, #00eaff);
-$nav-item-primary-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$nav-item-primary-icon-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$nav-item-primary-icon-color-selected-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$nav-item-secondary-background-selected-fallback: light-dark(#ffffff, #0f1619);
+$nav-item-primary-background-selected-fallback: light-dark(#f3f4f5, #000609);
+$nav-item-primary-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
+$nav-item-primary-icon-color-fallback: light-dark(#000609, #ffffff);
+$nav-item-primary-icon-color-selected-fallback: light-dark(#000609, #ffffff);
+$nav-item-secondary-background-selected-fallback: light-dark(#f3f4f5, #000609);
 
 :host {
   --ix-menu-item--color-focus-bdr: var(

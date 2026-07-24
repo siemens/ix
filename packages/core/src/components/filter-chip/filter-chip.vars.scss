@@ -27,15 +27,15 @@ $filter-chip-color-ghost-primary-active-fallback: light-dark(
   rgba(0, 190, 207, 0.2),
   rgba(0, 128, 128, 0.2)
 );
-$chip-primary-outline-border-color-fallback: light-dark(#006e93, #00bde3);
+$chip-primary-outline-border-color-fallback: light-dark(#006a87, #00c9e4);
 $chip-primary-outline-border-color-active-fallback: light-dark(
-  #16565c,
-  #00d3e5
+  #004e68,
+  #00def7
 );
-$chip-primary-outline-border-color-hover-fallback: light-dark(#196269, #1aecff);
-$chip-primary-outline-color-fallback: light-dark(#006e93, #00bde3);
-$chip-primary-outline-color-active-fallback: light-dark(#16565c, #00d3e5);
-$chip-primary-outline-color-hover-fallback: light-dark(#196269, #1aecff);
+$chip-primary-outline-border-color-hover-fallback: light-dark(#004f69, #00eaff);
+$chip-primary-outline-color-fallback: light-dark(#006a87, #00c9e4);
+$chip-primary-outline-color-active-fallback: light-dark(#004e68, #00def7);
+$chip-primary-outline-color-hover-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-filter-chip--focus--border-thickness: var(

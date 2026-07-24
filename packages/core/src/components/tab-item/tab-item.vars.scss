@@ -9,81 +9,63 @@
 
 $tab-item-color-1-fallback: light-dark(#ffffff, #0f1619);
 $tab-item-color-focus-bdr-fallback: #199fff;
-$pill-outline-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$animated-tab-circle-background-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
+$pill-outline-color-fallback: light-dark(#000609, #ffffff);
+$animated-tab-circle-background-fallback: light-dark(#ffffff, #1a272d);
 $animated-tab-circle-background-active-fallback: light-dark(
-  rgba(0, 190, 207, 0.2),
-  rgba(0, 128, 128, 0.2)
+  rgba(0, 148, 177, 0.2),
+  rgba(0, 111, 142, 0.15)
 );
 $animated-tab-circle-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
 $animated-tab-circle-background-hover-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.15)
+  rgba(0, 234, 255, 0.18),
+  rgba(0, 234, 255, 0.12)
 );
 $animated-tab-circle-background-selected-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
 $animated-tab-circle-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $animated-tab-circle-border-color-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
 $animated-tab-circle-border-color-selected-fallback: light-dark(
-  #005e66,
+  #004f69,
   #00eaff
 );
-$animated-tab-icon-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$animated-tab-icon-color-selected-fallback: light-dark(#005e66, #00eaff);
-$tab-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
-);
+$animated-tab-icon-color-fallback: light-dark(#000609, #ffffff);
+$animated-tab-icon-color-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-background-fallback: light-dark(rgba(243, 244, 245, 0), rgba(0, 6, 9, 0));
 $tab-background-active-fallback: light-dark(
-  rgba(0, 190, 207, 0.2),
-  rgba(0, 128, 128, 0.2)
+  rgba(0, 148, 177, 0.2),
+  rgba(0, 111, 142, 0.15)
 );
 $tab-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
 $tab-background-hover-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.15)
+  rgba(0, 234, 255, 0.18),
+  rgba(0, 234, 255, 0.12)
 );
 $tab-background-selected-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$tab-color-fallback: light-dark(rgba(0, 10, 20, 0.9), rgba(245, 252, 255, 0.9));
-$tab-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$tab-color-selected-fallback: light-dark(#005e66, #00eaff);
-$tab-indicator-background-disabled-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$tab-indicator-background-selected-fallback: light-dark(#005e66, #00eaff);
-$tab-pill-border-color-fallback: light-dark(#66727e, #b6b8b9);
-$tab-pill-border-color-disabled-fallback: light-dark(#66727e, #b6b8b9);
-$tab-pill-border-color-selected-fallback: light-dark(#005e66, #00eaff);
+$tab-color-fallback: light-dark(#000609, #ffffff);
+$tab-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$tab-color-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-indicator-background-disabled-fallback: light-dark(#aeb5b8, #72848c);
+$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-pill-border-color-fallback: light-dark(#5b6a71, #aeb5b8);
+$tab-pill-border-color-disabled-fallback: light-dark(#5b6a71, #aeb5b8);
+$tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-tab-item--color-1: var(--theme-color-1, #{$tab-item-color-1-fallback});

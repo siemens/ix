@@ -13,13 +13,13 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-helper--color: var(--theme-color-soft-text);
-  --theme-helper--color--info: var(--theme-color-std-text);
-  --theme-helper--color--invalid: var(--theme-color-alarm-text);
-  --theme-helper--color--valid: var(--theme-color-std-text);
-  --theme-helper--color--warning: var(--theme-color-std-text);
-  --theme-helper-icon--color--info: var(--theme-color-info);
-  --theme-helper-icon--color--invalid: var(--theme-color-alarm);
-  --theme-helper-icon--color--valid: var(--theme-color-success);
-  --theme-helper-icon--color--warning: var(--theme-color-warning-text);
+  --theme-helper--color: var(--theme-si-sys-text-secondary);
+  --theme-helper--color--info: var(--theme-si-sys-text-information);
+  --theme-helper--color--invalid: var(--theme-si-sys-text-danger);
+  --theme-helper--color--valid: var(--theme-si-sys-text-primary);
+  --theme-helper--color--warning: var(--theme-si-sys-text-caution);
+  --theme-helper-icon--color--info: var(--theme-si-sys-text-information);
+  --theme-helper-icon--color--invalid: var(--theme-si-sys-text-danger);
+  --theme-helper-icon--color--valid: var(--theme-si-sys-text-success);
+  --theme-helper-icon--color--warning: var(--theme-si-sys-text-caution);
 }

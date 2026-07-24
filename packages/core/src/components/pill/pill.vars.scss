@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$pill-outline-background-fallback: light-dark(#ffffff, #000000);
+$pill-outline-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
 
 :host {
   --ix-pill-outline--background: var(

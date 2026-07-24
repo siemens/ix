@@ -9,23 +9,11 @@
 
 $upload-color-alarm-fallback: light-dark(#d72332, #ff2453);
 $upload-color-success-fallback: light-dark(#2c8500, #44cc00);
-$upload-border-color-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$upload-border-color-dragover-fallback: light-dark(#005e66, #00eaff);
-$upload-text-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$upload-text-color-checking-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$upload-text-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
+$upload-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$upload-border-color-dragover-fallback: light-dark(#004f69, #00eaff);
+$upload-text-color-fallback: light-dark(#000609, #ffffff);
+$upload-text-color-checking-fallback: light-dark(#000609, #ffffff);
+$upload-text-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 
 :host {
   --ix-upload--color-alarm: var(
