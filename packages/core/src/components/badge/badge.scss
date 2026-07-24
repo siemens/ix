@@ -1,0 +1,427 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+$predefined-variants: primary, alarm, critical, warning, info, neutral, success;
+$status-icon-variants: alarm, critical, warning, info, success;
+$border-radius: 100px;
+
+:host {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  vertical-align: top;
+
+  --ix-badge-offset-x: 0rem;
+  --ix-badge-offset-y: 0rem;
+  --ix-badge-max-width: none;
+  --ix-badge-pulse-color: var(--theme-color-primary);
+  --ix-badge-animation-duration: 2s;
+
+  @include component.ix-component;
+}
+
+:host(.attached) {
+  display: inline-grid;
+}
+
+.anchor {
+  display: contents;
+}
+
+:host(.attached) ::slotted(*) {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 0;
+}
+
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.012em;
+  max-width: var(--ix-badge-max-width);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  isolation: isolate;
+}
+
+:host(.with-tooltip:not(.attached)) .indicator {
+  pointer-events: auto;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host(.attached) .indicator {
+  grid-area: 1 / 1;
+  position: absolute;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: default;
+}
+
+:host(.attached.top-after) .indicator {
+  top: var(--ix-badge-offset-y);
+  inset-inline-end: var(--ix-badge-offset-x);
+}
+
+:host(.attached.bottom-after) .indicator {
+  bottom: var(--ix-badge-offset-y);
+  inset-inline-end: var(--ix-badge-offset-x);
+}
+
+:host([type='dot']:not(.attached)),
+:host([type='counter']:not(.attached)),
+:host([type='label']:not(.attached)),
+:host([type='status-icon']:not(.attached)) {
+  display: inline-flex;
+  line-height: 0;
+  font-size: 0;
+}
+
+/* Standalone host uses font-size: 0 for sizing; restore text for nested tooltip. */
+:host ix-tooltip {
+  font-size: 0.875rem;
+  line-height: normal;
+}
+
+:host([type='dot']:not(.attached)) slot,
+:host([type='counter']:not(.attached)) slot,
+:host([type='label']:not(.attached)) slot,
+:host([type='status-icon']:not(.attached)) slot {
+  flex: 0 0 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+:host([type='dot']) .indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  min-width: 0.75rem;
+  min-height: 0.75rem;
+  padding: 0;
+  line-height: 0;
+  font-size: 0;
+  flex-shrink: 0;
+}
+
+:host([type='counter']) .indicator,
+:host([type='label']) .indicator {
+  height: 1.25rem;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  flex-shrink: 0;
+}
+
+:host([type='counter']) .indicator {
+  padding-inline: 0.25rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+:host([type='label']) .indicator {
+  padding-inline: 0.5rem;
+  gap: 0.25rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+:host([type='label']:not(.attached)) .indicator {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+:host([type='label'].outline.with-icon) .indicator {
+  padding-inline: 0.4375rem;
+}
+
+:host([type='label'].align-left) .indicator {
+  justify-content: flex-start;
+}
+
+:host([type='label']) .icon {
+  flex-shrink: 0;
+}
+
+:host([type='counter']) .label,
+:host([type='label']) .label {
+  line-height: 1;
+}
+
+:host([type='status-icon']) .indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  padding: 0;
+  line-height: 0;
+  font-size: 0;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+}
+
+/* Relative on the stack only — not on .indicator (breaks attached). */
+:host([type='status-icon']:not(.outline)) .status-icon-stack {
+  position: relative;
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+}
+
+:host([type='status-icon']) .status-icon {
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+}
+
+:host([type='status-icon']:not(.outline)) .status-icon-stack .status-icon {
+  position: absolute;
+  inset: 0;
+}
+
+@each $variant in $status-icon-variants {
+  :host([type='status-icon'].#{$variant}) {
+    --ix-badge-pulse-color: var(--theme-color-#{$variant});
+
+    .status-icon:not(.status-icon-plate) {
+      color: var(--theme-color-#{$variant});
+    }
+  }
+}
+
+/* Filled plate bang: black vs white (fixed — theme tokens flip by schema). */
+:host([type='status-icon'].critical:not(.outline)) .status-icon-plate,
+:host([type='status-icon'].warning:not(.outline)) .status-icon-plate,
+:host([type='status-icon'].success:not(.outline)) .status-icon-plate {
+  color: #000000;
+}
+
+:host([type='status-icon'].alarm:not(.outline)) .status-icon-plate,
+:host([type='status-icon'].error:not(.outline)) .status-icon-plate,
+:host([type='status-icon'].info:not(.outline)) .status-icon-plate {
+  color: #ffffff;
+}
+
+/* Error uses alarm color tokens. */
+:host([type='status-icon'].error) {
+  --ix-badge-pulse-color: var(--theme-color-alarm);
+
+  .status-icon:not(.status-icon-plate) {
+    color: var(--theme-color-alarm);
+  }
+}
+
+@each $variant in $predefined-variants {
+  :host(.#{$variant}:not(.outline):not([type='status-icon'])) {
+    --ix-badge-pulse-color: var(--theme-color-#{$variant});
+
+    .indicator {
+      background-color: var(--theme-color-#{$variant});
+      color: var(--theme-color-#{$variant}--contrast);
+    }
+  }
+
+  :host(.#{$variant}.outline:not([type='status-icon'])) {
+    --ix-badge-pulse-color: var(--theme-color-#{$variant});
+
+    .indicator {
+      background-color: var(--theme-color-ghost);
+      color: var(--theme-color-std-text);
+      @if $variant == 'alarm' {
+        border: 0.0625rem solid var(--theme-color-alarm-bdr);
+      } @else if $variant == 'warning' {
+        border: 0.0625rem solid var(--theme-color-warning-bdr);
+      } @else {
+        border: 0.0625rem solid var(--theme-color-#{$variant});
+      }
+    }
+  }
+}
+
+:host(.custom:not(.outline):not([type='status-icon'])) {
+  --ix-badge-pulse-color: var(--ix-badge-custom-background);
+
+  .indicator {
+    background-color: var(--ix-badge-custom-background);
+    color: var(--ix-badge-custom-color);
+  }
+}
+
+:host(.custom.outline:not([type='status-icon'])) {
+  --ix-badge-pulse-color: var(--ix-badge-custom-background);
+
+  .indicator {
+    background-color: var(--theme-color-ghost);
+    border: 0.0625rem solid var(--ix-badge-custom-background);
+    color: var(--ix-badge-custom-color, var(--theme-color-std-text));
+  }
+}
+
+:host(.border:not(.outline):not([type='status-icon'])) .indicator {
+  border: 0.0625rem solid var(--theme-color-1);
+}
+
+/* SR-only description slot (light DOM for aria-describedby). */
+:host ::slotted(.description) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:host(.enable-animation) .indicator {
+  overflow: visible;
+  position: relative;
+}
+
+:host(.attached.enable-animation) .indicator {
+  position: absolute;
+}
+
+/* status-icon pulse: solid halo from center. */
+:host([type='status-icon'].enable-animation) .indicator::after {
+  content: '';
+  position: absolute;
+  inset: 0.025rem;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background-color: var(--ix-badge-pulse-color);
+  transform: scale(0.521);
+  transform-origin: center;
+  opacity: 0;
+  animation: ix-badge-pulse-status var(--ix-badge-animation-duration) linear
+    infinite;
+}
+
+/* counter / label / dot pulse: expanding border ring. */
+:host(.enable-animation:not([type='status-icon'])) .indicator::after {
+  content: '';
+  position: absolute;
+  inset: 0.03125rem; /* 0.5px */
+  z-index: -1;
+  pointer-events: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-style: solid;
+  border-color: var(--ix-badge-pulse-color);
+  border-width: 0;
+  border-radius: inherit;
+  opacity: 0;
+  animation: ix-badge-pulse-border var(--ix-badge-animation-duration) linear
+    infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host(.enable-animation) .indicator::after {
+    animation: none;
+    opacity: 0;
+    transform: none;
+    background-color: transparent;
+    border-width: 0;
+  }
+}
+
+@keyframes ix-badge-pulse-border {
+  0% {
+    inset: 0.03125rem; /* 0.5px */
+    border-width: 0;
+    opacity: 0;
+  }
+
+  5% {
+    inset: 0.03125rem;
+    border-width: 0;
+    opacity: 0.5;
+  }
+
+  45% {
+    opacity: 0.4;
+  }
+
+  80% {
+    animation-timing-function: ease-out;
+    inset: -0.46875rem; /* -7.5px */
+    border-width: 0.5rem; /* 8px */
+    opacity: 0.1;
+  }
+
+  90% {
+    inset: -0.59375rem; /* -9.5px */
+    border-width: 0.625rem; /* 10px */
+    opacity: 0;
+  }
+
+  100% {
+    inset: 0.03125rem;
+    border-width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes ix-badge-pulse-status {
+  0% {
+    transform: scale(0.521);
+    opacity: 0;
+  }
+
+  5% {
+    transform: scale(0.521);
+    opacity: 0.5;
+    animation-timing-function: cubic-bezier(0.637, 0.43, 0.928, 1.008);
+  }
+
+  45% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  80% {
+    animation-timing-function: ease-out;
+    transform: scale(1.6);
+    opacity: 0.1;
+  }
+
+  90% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(0.521);
+    opacity: 0;
+  }
+}

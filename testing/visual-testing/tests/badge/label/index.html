@@ -1,0 +1,210 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Badge label</title>
+    <style>
+      body {
+        padding: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        font: var(--theme-font-3);
+        color: var(--theme-color-std-text);
+        margin: 0 0 0.75rem;
+      }
+
+      section {
+        margin-bottom: 2rem;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 3.5rem;
+      }
+
+      .variant-grid {
+        display: grid;
+        grid-template-columns: 5rem repeat(3, minmax(0, auto));
+        gap: 0.75rem 1.25rem;
+        align-items: center;
+      }
+
+      .variant-grid .header,
+      .variant-grid .row-label {
+        font: var(--theme-font-default);
+        color: var(--theme-color-soft-text);
+      }
+
+      .align-host {
+        outline: 1px dashed var(--theme-color-soft-bdr);
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo, iconStar } from '@siemens/ix-icons/icons';
+
+      addIcons({ iconInfo, iconStar });
+    </script>
+  </head>
+  <body>
+    <section>
+      <h2>Standalone · filled / outline / border</h2>
+      <div class="variant-grid">
+        <span class="header"></span>
+        <span class="header">Filled</span>
+        <span class="header">Outline</span>
+        <span class="header">Border</span>
+
+        <span class="row-label">Primary</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="primary"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="primary" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="primary" border></ix-badge>
+
+        <span class="row-label">Alarm</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="alarm"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="alarm" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="alarm" border></ix-badge>
+
+        <span class="row-label">Critical</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="critical"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="critical" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="critical" border></ix-badge>
+
+        <span class="row-label">Warning</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="warning"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="warning" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="warning" border></ix-badge>
+
+        <span class="row-label">Info</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="info"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="info" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="info" border></ix-badge>
+
+        <span class="row-label">Success</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="success"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="success" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="success" border></ix-badge>
+
+        <span class="row-label">Neutral</span>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="neutral"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="neutral" outline></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="neutral" border></ix-badge>
+
+        <span class="row-label">Custom</span>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="NEW"
+          icon="star"
+          variant="custom"
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-color-inv-std-text)"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="NEW"
+          icon="star"
+          variant="custom"
+          outline
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-chip-outline--color)"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="NEW"
+          icon="star"
+          variant="custom"
+          border
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-color-inv-std-text)"
+        ></ix-badge>
+      </div>
+    </section>
+
+    <section>
+      <h2>Icon · align-left · max-width</h2>
+      <div class="row">
+        <ix-badge class="align-host" type="label" label="NEW" variant="primary"></ix-badge>
+        <ix-badge class="align-host" type="label" label="NEW" icon="star" variant="primary"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="Featured"
+          icon="star"
+          aria-label-icon="Featured"
+          variant="warning"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="What's new"
+          icon="star"
+          align-left
+          variant="info"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="label"
+          label="What's new"
+          icon="star"
+          align-left
+          variant="info"
+          style="--ix-badge-max-width: 2.5rem"
+        ></ix-badge>
+      </div>
+    </section>
+
+    <section>
+      <h2>Attached · anchors · position · offset</h2>
+      <div class="row">
+        <ix-badge type="label" label="NEW" variant="primary">
+          <ix-button>What's new</ix-button>
+        </ix-badge>
+        <ix-badge type="label" label="NEW" icon="star" variant="alarm" outline>
+          <ix-icon-button icon="info" aria-label="Updates"></ix-icon-button>
+        </ix-badge>
+        <ix-badge type="label" label="Beta" variant="warning" border>
+          <ix-avatar username="User"></ix-avatar>
+        </ix-badge>
+        <ix-badge
+          type="label"
+          label="NEW"
+          variant="success"
+          position="bottom-after"
+        >
+          <ix-button>Bottom after</ix-button>
+        </ix-badge>
+        <ix-badge
+          type="label"
+          label="NEW"
+          variant="info"
+          offset-x="6"
+          offset-y="-4"
+        >
+          <ix-button>Offset</ix-button>
+        </ix-badge>
+      </div>
+    </section>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+- main:
+  - text: "3"
+  - button "Review"
+  - text: "1"
+  - button "What's new"
+  - text: "9"
+  - button "Bottom after"
+  - button "Messages"
+  - button "Device"
+  - text: /\d+ \d+ \d+\+ \d+\+ 8 8/
+  - img "Unread"
+  - img "Online"
+  - img "Alarm"
+  - img "Success"

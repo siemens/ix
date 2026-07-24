@@ -1,0 +1,160 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Badge status-icon</title>
+    <style>
+      body {
+        padding: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        font: var(--theme-font-3);
+        color: var(--theme-color-std-text);
+        margin: 0 0 0.75rem;
+      }
+
+      section {
+        margin-bottom: 2rem;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .variant-grid {
+        display: grid;
+        grid-template-columns: 5rem repeat(2, minmax(0, auto));
+        gap: 0.75rem 1.25rem;
+        align-items: center;
+      }
+
+      .variant-grid .header,
+      .variant-grid .row-label {
+        font: var(--theme-font-default);
+        color: var(--theme-color-soft-text);
+      }
+
+      .align-host {
+        outline: 1px dashed var(--theme-color-soft-bdr);
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconAlarm,
+        iconAlarmFilled,
+        iconCircleFilled,
+        iconError,
+        iconErrorFilled,
+        iconInfo,
+        iconInfoFilled,
+        iconRhombFilled,
+        iconSuccess,
+        iconSuccessFilled,
+        iconTriangleFilled,
+        iconWarning,
+        iconWarningFilled,
+        iconWarningRhomb,
+        iconWarningRhombFilled,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconAlarm,
+        iconAlarmFilled,
+        iconCircleFilled,
+        iconError,
+        iconErrorFilled,
+        iconInfo,
+        iconInfoFilled,
+        iconRhombFilled,
+        iconSuccess,
+        iconSuccessFilled,
+        iconTriangleFilled,
+        iconWarning,
+        iconWarningFilled,
+        iconWarningRhomb,
+        iconWarningRhombFilled,
+      });
+    </script>
+  </head>
+  <body>
+    <section>
+      <h2>Standalone · filled / outline</h2>
+      <div class="variant-grid">
+        <span class="header"></span>
+        <span class="header">Filled</span>
+        <span class="header">Outline</span>
+
+        <span class="row-label">Alarm</span>
+        <ix-badge class="align-host" type="status-icon" variant="alarm" aria-label="Alarm"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="alarm" outline aria-label="Alarm outline"></ix-badge>
+
+        <span class="row-label">Error</span>
+        <ix-badge class="align-host" type="status-icon" variant="error" aria-label="Error"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="error" outline aria-label="Error outline"></ix-badge>
+
+        <span class="row-label">Critical</span>
+        <ix-badge class="align-host" type="status-icon" variant="critical" aria-label="Critical"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="critical" outline aria-label="Critical outline"></ix-badge>
+
+        <span class="row-label">Warning</span>
+        <ix-badge class="align-host" type="status-icon" variant="warning" aria-label="Warning"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="warning" outline aria-label="Warning outline"></ix-badge>
+
+        <span class="row-label">Success</span>
+        <ix-badge class="align-host" type="status-icon" variant="success" aria-label="Success"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="success" outline aria-label="Success outline"></ix-badge>
+
+        <span class="row-label">Info</span>
+        <ix-badge class="align-host" type="status-icon" variant="info" aria-label="Info"></ix-badge>
+        <ix-badge class="align-host" type="status-icon" variant="info" outline aria-label="Info outline"></ix-badge>
+      </div>
+    </section>
+
+    <section>
+      <h2>Attached · anchors · position · offset</h2>
+      <div class="row">
+        <ix-badge type="status-icon" variant="alarm">
+          <ix-button>Alarm</ix-button>
+        </ix-badge>
+        <ix-badge type="status-icon" variant="warning" outline>
+          <ix-icon-button icon="info" aria-label="Warning"></ix-icon-button>
+        </ix-badge>
+        <ix-badge type="status-icon" variant="info">
+          <ix-avatar username="User"></ix-avatar>
+        </ix-badge>
+        <ix-badge type="status-icon" variant="success" position="bottom-after">
+          <ix-button>Bottom after</ix-button>
+        </ix-badge>
+        <ix-badge
+          type="status-icon"
+          variant="critical"
+          offset-x="6"
+          offset-y="-4"
+        >
+          <ix-button>Offset</ix-button>
+        </ix-badge>
+      </div>
+    </section>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

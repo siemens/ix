@@ -30,6 +30,11 @@ import ApplicationAppSwitchExample from '../preview-examples/application-app-swi
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -292,6 +297,11 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AvatarImage,
     AvatarInitials,
     Avatar,
+    Badge,
+    BadgeCounter,
+    BadgeDot,
+    BadgeLabel,
+    BadgeStatusIcon,
     BlindHeaderActions,
     BlindVariants,
     Blind,

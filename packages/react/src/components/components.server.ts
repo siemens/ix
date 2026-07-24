@@ -18,6 +18,7 @@ import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-a
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
 import { IxAvatar as IxAvatarElement } from "@siemens/ix/components/ix-avatar.js";
+import { IxBadge as IxBadgeElement } from "@siemens/ix/components/ix-badge.js";
 import { IxBlind as IxBlindElement } from "@siemens/ix/components/ix-blind.js";
 import { IxBreadcrumbItem as IxBreadcrumbItemElement } from "@siemens/ix/components/ix-breadcrumb-item.js";
 import { IxBreadcrumb as IxBreadcrumbElement } from "@siemens/ix/components/ix-breadcrumb.js";
@@ -199,6 +200,32 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Co
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxAvatar as StencilReactComponent<IxAvatarElement, IxAvatarEvents, Components.IxAvatar>,
+    serializeShadowRoot
+});
+
+export type IxBadgeEvents = NonNullable<unknown>;
+
+export const IxBadge: StencilReactComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge> = /*@__PURE__*/ createComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge>({
+    tagName: 'ix-badge',
+    properties: {
+        type: 'type',
+        label: 'label',
+        variant: 'variant',
+        outline: 'outline',
+        border: 'border',
+        position: 'position',
+        offsetX: 'offset-x',
+        offsetY: 'offset-y',
+        enableAnimation: 'enable-animation',
+        background: 'background',
+        badgeColor: 'badge-color',
+        icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
+        alignLeft: 'align-left',
+        tooltipText: 'tooltip-text'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxBadge as StencilReactComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge>,
     serializeShadowRoot
 });
 

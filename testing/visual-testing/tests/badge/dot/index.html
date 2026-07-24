@@ -1,0 +1,163 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Badge dot</title>
+    <style>
+      body {
+        padding: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        font: var(--theme-font-3);
+        color: var(--theme-color-std-text);
+        margin: 0 0 0.75rem;
+      }
+
+      section {
+        margin-bottom: 2rem;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .variant-grid {
+        display: grid;
+        grid-template-columns: 5rem repeat(3, minmax(0, auto));
+        gap: 0.75rem 1.25rem;
+        align-items: center;
+      }
+
+      .variant-grid .header,
+      .variant-grid .row-label {
+        font: var(--theme-font-default);
+        color: var(--theme-color-soft-text);
+      }
+
+      .align-host {
+        outline: 1px dashed var(--theme-color-soft-bdr);
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+
+      addIcons({ iconInfo });
+    </script>
+  </head>
+  <body>
+    <section>
+      <h2>Standalone · filled / outline / border</h2>
+      <div class="variant-grid">
+        <span class="header"></span>
+        <span class="header">Filled</span>
+        <span class="header">Outline</span>
+        <span class="header">Border</span>
+
+        <span class="row-label">Primary</span>
+        <ix-badge class="align-host" type="dot" variant="primary" aria-label="Primary"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="primary" outline aria-label="Primary outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="primary" border aria-label="Primary border"></ix-badge>
+
+        <span class="row-label">Alarm</span>
+        <ix-badge class="align-host" type="dot" variant="alarm" aria-label="Alarm"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="alarm" outline aria-label="Alarm outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="alarm" border aria-label="Alarm border"></ix-badge>
+
+        <span class="row-label">Critical</span>
+        <ix-badge class="align-host" type="dot" variant="critical" aria-label="Critical"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="critical" outline aria-label="Critical outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="critical" border aria-label="Critical border"></ix-badge>
+
+        <span class="row-label">Warning</span>
+        <ix-badge class="align-host" type="dot" variant="warning" aria-label="Warning"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="warning" outline aria-label="Warning outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="warning" border aria-label="Warning border"></ix-badge>
+
+        <span class="row-label">Info</span>
+        <ix-badge class="align-host" type="dot" variant="info" aria-label="Info"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="info" outline aria-label="Info outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="info" border aria-label="Info border"></ix-badge>
+
+        <span class="row-label">Success</span>
+        <ix-badge class="align-host" type="dot" variant="success" aria-label="Success"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="success" outline aria-label="Success outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="success" border aria-label="Success border"></ix-badge>
+
+        <span class="row-label">Neutral</span>
+        <ix-badge class="align-host" type="dot" variant="neutral" aria-label="Neutral"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="neutral" outline aria-label="Neutral outline"></ix-badge>
+        <ix-badge class="align-host" type="dot" variant="neutral" border aria-label="Neutral border"></ix-badge>
+
+        <span class="row-label">Custom</span>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="custom"
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-color-inv-std-text)"
+          aria-label="Custom"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="custom"
+          outline
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-chip-outline--color)"
+          aria-label="Custom outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="custom"
+          border
+          background="var(--theme-chart-11)"
+          badge-color="var(--theme-color-inv-std-text)"
+          aria-label="Custom border"
+        ></ix-badge>
+      </div>
+    </section>
+
+    <section>
+      <h2>Attached · anchors · position · offset</h2>
+      <div class="row">
+        <ix-badge type="dot" variant="alarm">
+          <ix-button>Notifications</ix-button>
+        </ix-badge>
+        <ix-badge type="dot" variant="primary" outline>
+          <ix-icon-button icon="info" aria-label="Inbox"></ix-icon-button>
+        </ix-badge>
+        <ix-badge type="dot" variant="warning" border>
+          <ix-avatar username="User"></ix-avatar>
+        </ix-badge>
+        <ix-badge type="dot" variant="info" position="bottom-after">
+          <ix-button>Bottom after</ix-button>
+        </ix-badge>
+        <ix-badge type="dot" variant="success" offset-x="6" offset-y="-4">
+          <ix-button>Offset</ix-button>
+        </ix-badge>
+      </div>
+    </section>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
