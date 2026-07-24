@@ -1,0 +1,21 @@
+packages/core/src/components/badge/badge.tsx
+  s_bd2a12deaecdda::t_096b9b226c8cd9 391,403-405,410
+packages/core/src/components/badge/test/badge.ct.ts
+  s_bd2a12deaecdda::t_c9e461d275f801 708-721
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "3e54252113975b38685eb136ba72274ca97d2c9c",
+  "prompts": {},
+  "sessions": {
+    "s_bd2a12deaecdda": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "b712e76e-d762-46ef-9b6d-2fa681d790cb",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
