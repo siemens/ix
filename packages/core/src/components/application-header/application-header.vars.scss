@@ -11,21 +11,12 @@ $application-header-color-x-weak-bdr-fallback: light-dark(
   rgba(174, 181, 189, 0.2),
   rgba(142, 157, 165, 0.2)
 );
-$app-header-background-fallback: light-dark(#eff0f1, #283236);
-$app-header-border-color-fallback: light-dark(
-  rgba(35, 48, 60, 0.15),
-  rgba(224, 245, 255, 0.25)
-);
-$app-header-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$app-header-app-icon-outline-color-fallback: light-dark(#92979b, #94a1a9);
+$app-header-background-fallback: light-dark(#ffffff, #1a272d);
+$app-header-border-color-fallback: light-dark(#e5e8e9, #34454d);
+$app-header-color-fallback: light-dark(#000609, #ffffff);
+$app-header-app-icon-outline-color-fallback: light-dark(#72848c, #e5e8e9);
 $app-header-logo-color-fallback: light-dark(#000000, #ffffff);
-$app-header-name-suffix-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
+$app-header-name-suffix-color-fallback: light-dark(#405158, #aeb5b8);
 
 :host {
   --ix-application-header--z-index-fixed: var(--theme-z-index-fixed, 1030);
@@ -41,7 +32,7 @@ $app-header-name-suffix-color-fallback: light-dark(
     --theme-color-weak-bdr,
     #{$app-header-border-color-fallback}
   );
-  --ix-app-header--border-width: var(--ix-blind--border-thickness);
+  --ix-app-header--border-width: var(--theme-border-width-default, 0.0625rem);
   --ix-app-header--color: var(
     --theme-color-std-text,
     #{$app-header-color-fallback}

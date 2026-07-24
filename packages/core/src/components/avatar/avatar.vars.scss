@@ -9,13 +9,10 @@
 
 $avatar-color-focus-bdr-fallback: #199fff;
 $avatar-background-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
 );
-$avatar-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$avatar-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
   --ix-avatar--color-focus-bdr: var(

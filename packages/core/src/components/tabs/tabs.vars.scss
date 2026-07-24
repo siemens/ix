@@ -8,11 +8,8 @@
  */
 
 $tabs-color-focus-bdr-fallback: #199fff;
-$tab-indicator-background-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$tab-indicator-background-selected-fallback: light-dark(#005e66, #00eaff);
+$tab-indicator-background-fallback: light-dark(#aeb5b8, #72848c);
+$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-tabs--color-focus-bdr: var(

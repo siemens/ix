@@ -15,6 +15,8 @@ regressionTest.describe('menu-settings', () => {
     const settingsMenuItem = page.locator('ix-menu-item#settings');
     await settingsMenuItem.click();
     await expect(page.locator('ix-menu-settings')).toHaveClass(/show/);
+    await page.getByRole('tab', { name: 'Label 1' }).click();
+    await expect(page.locator('#changeLabelButton')).toBeVisible();
     return settingsMenuItem;
   };
 
@@ -38,7 +40,6 @@ regressionTest.describe('menu-settings', () => {
     const settingsMenuItem = await openSettings(page);
 
     const firstContentButton = page.locator('#changeLabelButton');
-    await expect(firstContentButton).toBeVisible();
     await firstContentButton.click();
     await expect(settingsMenuItem.locator('ix-tooltip')).not.toHaveClass(
       /visible/
@@ -54,7 +55,6 @@ regressionTest.describe('menu-settings', () => {
     const settingsMenuItem = await openSettings(page);
 
     const firstContentButton = page.locator('#changeLabelButton');
-    await expect(firstContentButton).toBeVisible();
     await firstContentButton.click();
 
     const changedLabelTab = page.getByRole('tab', { name: 'Changed Label' });

@@ -18,7 +18,7 @@ $modal-color-std-text-fallback: light-dark(
   rgba(0, 10, 20, 0.9),
   rgba(245, 252, 255, 0.9)
 );
-$modal-background-fallback: light-dark(#eff0f1, #283236);
+$modal-background-fallback: light-dark(#ffffff, #1a272d);
 
 :host {
   --ix-modal--color-lightbox: var(

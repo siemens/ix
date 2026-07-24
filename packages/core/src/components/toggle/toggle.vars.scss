@@ -12,607 +12,151 @@ $toggle-color-weak-text-fallback: light-dark(
   rgba(0, 10, 20, 0.4),
   rgba(219, 244, 255, 0.4)
 );
-$switch-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$switch-color-active-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$switch-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$switch-color-hover-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$switch-mixed-background-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-disabled-fallback: light-dark(
-  rgba(0, 18, 36, 0.1),
-  rgba(211, 239, 253, 0.15)
-);
-$switch-mixed-background-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-mixed-background-info-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-info-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-info-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-mixed-background-invalid-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-invalid-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-invalid-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-mixed-background-valid-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-valid-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-valid-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-mixed-background-warning-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-warning-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-mixed-background-warning-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-mixed-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-info-fallback: light-dark(#0041b2, #357fff);
-$switch-mixed-border-color-info-active-fallback: light-dark(#0041b2, #357fff);
-$switch-mixed-border-color-info-hover-fallback: light-dark(#0041b2, #357fff);
-$switch-mixed-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-mixed-border-color-invalid-active-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-mixed-border-color-invalid-hover-fallback: light-dark(#d72332, #ff2453);
-$switch-mixed-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-mixed-border-color-warning-fallback: light-dark(#947100, #ffbb00);
+$switch-color-fallback: light-dark(#000609, #ffffff);
+$switch-color-active-fallback: light-dark(#000609, #ffffff);
+$switch-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$switch-color-hover-fallback: light-dark(#000609, #ffffff);
+$switch-mixed-background-fallback: light-dark(#006a87, #00c9e4);
+$switch-mixed-background-active-fallback: light-dark(#004e68, #00def7);
+$switch-mixed-background-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$switch-mixed-background-hover-fallback: light-dark(#004f69, #00eaff);
+$switch-mixed-background-info-fallback: #226ae7;
+$switch-mixed-background-info-active-fallback: #2050a2;
+$switch-mixed-background-info-hover-fallback: #215dc5;
+$switch-mixed-background-invalid-fallback: #d72323;
+$switch-mixed-background-invalid-active-fallback: #a70808;
+$switch-mixed-background-invalid-hover-fallback: #c01616;
+$switch-mixed-background-valid-fallback: light-dark(#006a87, #00c9e4);
+$switch-mixed-background-valid-active-fallback: light-dark(#004e68, #00def7);
+$switch-mixed-background-valid-hover-fallback: light-dark(#004f69, #00eaff);
+$switch-mixed-background-warning-fallback: light-dark(#ffbf0f, #ffc832);
+$switch-mixed-background-warning-active-fallback: #c69100;
+$switch-mixed-background-warning-hover-fallback: #fcb900;
+$switch-mixed-border-color-warning-fallback: light-dark(#c69100, #ffc832);
 $switch-mixed-border-color-warning-active-fallback: light-dark(
-  #947100,
-  #ffbb00
+  #c69100,
+  #ffc832
 );
-$switch-mixed-border-color-warning-hover-fallback: light-dark(#947100, #ffbb00);
-$switch-off-background-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-disabled-fallback: light-dark(
-  rgba(0, 18, 36, 0.1),
-  rgba(211, 239, 253, 0.15)
-);
-$switch-off-background-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-off-background-info-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-info-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-info-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-off-background-invalid-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-invalid-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-invalid-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-off-background-valid-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-valid-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-valid-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-off-background-warning-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-warning-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$switch-off-background-warning-hover-fallback: light-dark(
-  rgba(7, 18, 29, 0.45),
-  rgba(224, 245, 255, 0.6)
-);
-$switch-off-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-info-fallback: light-dark(#0041b2, #357fff);
-$switch-off-border-color-info-active-fallback: light-dark(#003694, #3d84ff);
-$switch-off-border-color-info-hover-fallback: light-dark(#003a9e, #4d8eff);
-$switch-off-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-off-border-color-invalid-active-fallback: light-dark(#d72332, #ff2453);
-$switch-off-border-color-invalid-hover-fallback: light-dark(#d72332, #ff2453);
-$switch-off-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-off-border-color-warning-fallback: light-dark(#947100, #ffbb00);
-$switch-off-border-color-warning-active-fallback: light-dark(#947100, #ffbb00);
-$switch-off-border-color-warning-hover-fallback: light-dark(#947100, #ffbb00);
-$switch-on-background-fallback: light-dark(#005e66, #00eaff);
-$switch-on-background-active-fallback: light-dark(#0e494e, #5cd5e0);
-$switch-on-background-disabled-fallback: light-dark(
-  rgba(0, 18, 36, 0.1),
-  rgba(211, 239, 253, 0.15)
-);
-$switch-on-background-hover-fallback: light-dark(#0f5157, #62e2ee);
-$switch-on-background-info-fallback: light-dark(#0041b2, #357fff);
-$switch-on-background-info-active-fallback: light-dark(#003694, #3d84ff);
-$switch-on-background-info-hover-fallback: light-dark(#003a9e, #4d8eff);
-$switch-on-background-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-on-background-invalid-active-fallback: light-dark(#b41d2a, #ff335f);
-$switch-on-background-invalid-hover-fallback: light-dark(#c11f2d, #ff577b);
-$switch-on-background-valid-fallback: light-dark(#005e66, #00eaff);
-$switch-on-background-valid-active-fallback: light-dark(#0e494e, #5cd5e0);
-$switch-on-background-valid-hover-fallback: light-dark(#0f5157, #62e2ee);
-$switch-on-background-warning-fallback: #ffbb00;
-$switch-on-background-warning-active-fallback: #ffba0a;
-$switch-on-background-warning-hover-fallback: #ffc533;
-$switch-on-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-info-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-info-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-info-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-invalid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-invalid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-invalid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-on-border-color-warning-fallback: light-dark(#947100, #ffbb00);
-$switch-on-border-color-warning-active-fallback: light-dark(#947100, #ffbb00);
-$switch-on-border-color-warning-hover-fallback: light-dark(#947100, #ffbb00);
-$switch-thumb-mixed-background-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-disabled-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
-);
-$switch-thumb-mixed-background-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-info-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-info-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-info-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-mixed-background-invalid-fallback: light-dark(#fcccd0, #4b1a28);
-$switch-thumb-mixed-background-invalid-active-fallback: light-dark(
-  #fcccd0,
-  #4b1a28
-);
-$switch-thumb-mixed-background-invalid-hover-fallback: light-dark(
-  #fcccd0,
-  #4b1a28
-);
-$switch-thumb-mixed-background-valid-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
+$switch-mixed-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
+$switch-off-background-fallback: light-dark(#ffffff, #1a272d);
+$switch-off-background-active-fallback: light-dark(#dcdee0, #34454d);
+$switch-off-background-hover-fallback: light-dark(#e8ebed, #273940);
+$switch-off-background-info-fallback: light-dark(#ffffff, #1a272d);
+$switch-off-background-info-active-fallback: light-dark(#dcdee0, #34454d);
+$switch-off-background-info-hover-fallback: light-dark(#e8ebed, #273940);
+$switch-off-background-invalid-fallback: light-dark(#ffffff, #1a272d);
+$switch-off-background-invalid-active-fallback: light-dark(#dcdee0, #34454d);
+$switch-off-background-invalid-hover-fallback: light-dark(#e8ebed, #273940);
+$switch-off-background-valid-fallback: light-dark(#ffffff, #1a272d);
+$switch-off-background-valid-active-fallback: light-dark(#dcdee0, #34454d);
+$switch-off-background-valid-hover-fallback: light-dark(#e8ebed, #273940);
+$switch-off-background-warning-fallback: light-dark(#ffffff, #1a272d);
+$switch-off-background-warning-active-fallback: light-dark(#dcdee0, #34454d);
+$switch-off-background-warning-hover-fallback: light-dark(#e8ebed, #273940);
+$switch-off-border-color-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-active-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$switch-off-border-color-hover-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-info-fallback: #226ae7;
+$switch-off-border-color-info-active-fallback: #226ae7;
+$switch-off-border-color-info-hover-fallback: #226ae7;
+$switch-off-border-color-invalid-fallback: #d72323;
+$switch-off-border-color-invalid-active-fallback: #d72323;
+$switch-off-border-color-invalid-hover-fallback: #d72323;
+$switch-off-border-color-valid-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-valid-active-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-valid-hover-fallback: light-dark(#5b6a71, #919ca1);
+$switch-off-border-color-warning-fallback: light-dark(#c69100, #ffc832);
+$switch-off-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
+$switch-off-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
+$switch-on-background-fallback: light-dark(#006a87, #00c9e4);
+$switch-on-background-active-fallback: light-dark(#004e68, #00def7);
+$switch-on-background-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$switch-on-background-hover-fallback: light-dark(#004f69, #00eaff);
+$switch-on-background-info-fallback: #226ae7;
+$switch-on-background-info-active-fallback: #2050a2;
+$switch-on-background-info-hover-fallback: #215dc5;
+$switch-on-background-invalid-fallback: #d72323;
+$switch-on-background-invalid-active-fallback: #a70808;
+$switch-on-background-invalid-hover-fallback: #c01616;
+$switch-on-background-valid-fallback: light-dark(#006a87, #00c9e4);
+$switch-on-background-valid-active-fallback: light-dark(#004e68, #00def7);
+$switch-on-background-valid-hover-fallback: light-dark(#004f69, #00eaff);
+$switch-on-background-warning-fallback: light-dark(#ffbf0f, #ffc832);
+$switch-on-background-warning-active-fallback: #c69100;
+$switch-on-background-warning-hover-fallback: #fcb900;
+$switch-on-border-color-warning-fallback: light-dark(#c69100, #ffc832);
+$switch-on-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
+$switch-on-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
+$switch-thumb-mixed-background-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-mixed-background-active-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-mixed-background-disabled-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-mixed-background-hover-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-mixed-background-info-fallback: #ffffff;
+$switch-thumb-mixed-background-info-active-fallback: #ffffff;
+$switch-thumb-mixed-background-info-hover-fallback: #ffffff;
+$switch-thumb-mixed-background-invalid-fallback: #ffffff;
+$switch-thumb-mixed-background-invalid-active-fallback: #ffffff;
+$switch-thumb-mixed-background-invalid-hover-fallback: #ffffff;
+$switch-thumb-mixed-background-valid-fallback: light-dark(#ffffff, #000609);
 $switch-thumb-mixed-background-valid-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
+  #ffffff,
+  #000609
 );
 $switch-thumb-mixed-background-valid-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
+  #ffffff,
+  #000609
 );
-$switch-thumb-mixed-background-warning-fallback: light-dark(#ffe8a8, #4b463a);
-$switch-thumb-mixed-background-warning-active-fallback: light-dark(
-  #ffe8a8,
-  #4b463a
-);
-$switch-thumb-mixed-background-warning-hover-fallback: light-dark(
-  #ffe8a8,
-  #4b463a
-);
-$switch-thumb-mixed-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-info-fallback: light-dark(#0041b2, #357fff);
-$switch-thumb-mixed-border-color-info-active-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
-$switch-thumb-mixed-border-color-info-hover-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
-$switch-thumb-mixed-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-thumb-mixed-border-color-invalid-active-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-mixed-border-color-invalid-hover-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-mixed-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-mixed-border-color-warning-fallback: light-dark(#947100, #ffbb00);
-$switch-thumb-mixed-border-color-warning-active-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
-$switch-thumb-mixed-border-color-warning-hover-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
-$switch-thumb-off-background-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-disabled-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
-);
-$switch-thumb-off-background-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-info-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-info-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-info-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-invalid-fallback: light-dark(#fcccd0, #4b1a28);
+$switch-thumb-mixed-background-warning-fallback: #000609;
+$switch-thumb-mixed-background-warning-active-fallback: #000609;
+$switch-thumb-mixed-background-warning-hover-fallback: #000609;
+$switch-thumb-off-background-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-active-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$switch-thumb-off-background-hover-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-info-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-info-active-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-info-hover-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-invalid-fallback: light-dark(#405158, #aeb5b8);
 $switch-thumb-off-background-invalid-active-fallback: light-dark(
-  #fcccd0,
-  #4b1a28
+  #405158,
+  #aeb5b8
 );
 $switch-thumb-off-background-invalid-hover-fallback: light-dark(
-  #fcccd0,
-  #4b1a28
+  #405158,
+  #aeb5b8
 );
-$switch-thumb-off-background-valid-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
+$switch-thumb-off-background-valid-fallback: light-dark(#405158, #aeb5b8);
 $switch-thumb-off-background-valid-active-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
+  #405158,
+  #aeb5b8
 );
-$switch-thumb-off-background-valid-hover-fallback: light-dark(
-  rgba(245, 250, 255, 0.9),
-  rgba(0, 10, 20, 0.9)
-);
-$switch-thumb-off-background-warning-fallback: light-dark(#ffe8a8, #4b463a);
+$switch-thumb-off-background-valid-hover-fallback: light-dark(#405158, #aeb5b8);
+$switch-thumb-off-background-warning-fallback: light-dark(#405158, #aeb5b8);
 $switch-thumb-off-background-warning-active-fallback: light-dark(
-  #ffe8a8,
-  #4b463a
+  #405158,
+  #aeb5b8
 );
 $switch-thumb-off-background-warning-hover-fallback: light-dark(
-  #ffe8a8,
-  #4b463a
+  #405158,
+  #aeb5b8
 );
-$switch-thumb-off-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-info-fallback: light-dark(#0041b2, #357fff);
-$switch-thumb-off-border-color-info-active-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
-$switch-thumb-off-border-color-info-hover-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
-$switch-thumb-off-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-thumb-off-border-color-invalid-active-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-off-border-color-invalid-hover-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-off-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-off-border-color-warning-fallback: light-dark(#947100, #ffbb00);
-$switch-thumb-off-border-color-warning-active-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
-$switch-thumb-off-border-color-warning-hover-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
-$switch-thumb-on-background-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-active-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-disabled-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
-);
-$switch-thumb-on-background-hover-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-info-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-info-active-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-info-hover-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-invalid-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-invalid-active-fallback: light-dark(
-  #ffffff,
-  #000000
-);
-$switch-thumb-on-background-invalid-hover-fallback: light-dark(
-  #ffffff,
-  #000000
-);
-$switch-thumb-on-background-valid-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-valid-active-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-valid-hover-fallback: light-dark(#ffffff, #000000);
-$switch-thumb-on-background-warning-fallback: #000000;
-$switch-thumb-on-background-warning-active-fallback: #000000;
-$switch-thumb-on-background-warning-hover-fallback: #000000;
-$switch-thumb-on-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-disabled-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-info-fallback: light-dark(#0041b2, #357fff);
-$switch-thumb-on-border-color-info-active-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
-$switch-thumb-on-border-color-info-hover-fallback: light-dark(#0041b2, #357fff);
-$switch-thumb-on-border-color-invalid-fallback: light-dark(#d72332, #ff2453);
-$switch-thumb-on-border-color-invalid-active-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-on-border-color-invalid-hover-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$switch-thumb-on-border-color-valid-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-valid-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-valid-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
-);
-$switch-thumb-on-border-color-warning-fallback: light-dark(#947100, #ffbb00);
-$switch-thumb-on-border-color-warning-active-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
-$switch-thumb-on-border-color-warning-hover-fallback: light-dark(
-  #947100,
-  #ffbb00
-);
+$switch-thumb-on-background-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-active-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-disabled-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-hover-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-info-fallback: #ffffff;
+$switch-thumb-on-background-info-active-fallback: #ffffff;
+$switch-thumb-on-background-info-hover-fallback: #ffffff;
+$switch-thumb-on-background-invalid-fallback: #ffffff;
+$switch-thumb-on-background-invalid-active-fallback: #ffffff;
+$switch-thumb-on-background-invalid-hover-fallback: #ffffff;
+$switch-thumb-on-background-valid-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-valid-active-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-valid-hover-fallback: light-dark(#ffffff, #000609);
+$switch-thumb-on-background-warning-fallback: #000609;
+$switch-thumb-on-background-warning-active-fallback: #000609;
+$switch-thumb-on-background-warning-hover-fallback: #000609;
 
 :host {
   --ix-toggle--default-time: var(--theme-default-time, 150ms);
@@ -624,135 +168,99 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     --theme-color-weak-text,
     #{$toggle-color-weak-text-fallback}
   );
-  --ix-switch--color: var(--theme-color-std-text, #{$switch-color-fallback});
+  --ix-switch--color: var(
+    --theme-si-sys-text-primary,
+    #{$switch-color-fallback}
+  );
   --ix-switch--color--active: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$switch-color-active-fallback}
   );
   --ix-switch--color--disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$switch-color-disabled-fallback}
   );
   --ix-switch--color--hover: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$switch-color-hover-fallback}
   );
   --ix-switch-mixed--background: var(
-    --theme-color-component-4,
+    --theme-color-primary,
     #{$switch-mixed-background-fallback}
   );
   --ix-switch-mixed--background--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-accent-active,
     #{$switch-mixed-background-active-fallback}
   );
   --ix-switch-mixed--background--disabled: var(
-    --theme-color-component-2,
+    --theme-si-sys-text-disabled,
     #{$switch-mixed-background-disabled-fallback}
   );
   --ix-switch-mixed--background--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-accent-hover,
     #{$switch-mixed-background-hover-fallback}
   );
   --ix-switch-mixed--background--info: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-information,
     #{$switch-mixed-background-info-fallback}
   );
   --ix-switch-mixed--background--info--active: var(
-    --theme-color-component-4,
+    --theme-color-info--active,
     #{$switch-mixed-background-info-active-fallback}
   );
   --ix-switch-mixed--background--info--hover: var(
-    --theme-color-component-5,
+    --theme-color-info--hover,
     #{$switch-mixed-background-info-hover-fallback}
   );
   --ix-switch-mixed--background--invalid: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-danger,
     #{$switch-mixed-background-invalid-fallback}
   );
   --ix-switch-mixed--background--invalid--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-danger-active,
     #{$switch-mixed-background-invalid-active-fallback}
   );
   --ix-switch-mixed--background--invalid--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-danger-hover,
     #{$switch-mixed-background-invalid-hover-fallback}
   );
   --ix-switch-mixed--background--valid: var(
-    --theme-color-component-4,
+    --theme-color-primary,
     #{$switch-mixed-background-valid-fallback}
   );
   --ix-switch-mixed--background--valid--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-accent-active,
     #{$switch-mixed-background-valid-active-fallback}
   );
   --ix-switch-mixed--background--valid--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-accent-hover,
     #{$switch-mixed-background-valid-hover-fallback}
   );
   --ix-switch-mixed--background--warning: var(
-    --theme-color-component-4,
+    --theme-color-warning,
     #{$switch-mixed-background-warning-fallback}
   );
   --ix-switch-mixed--background--warning--active: var(
-    --theme-color-component-4,
+    --theme-color-warning--active,
     #{$switch-mixed-background-warning-active-fallback}
   );
   --ix-switch-mixed--background--warning--hover: var(
-    --theme-color-component-5,
+    --theme-color-warning--hover,
     #{$switch-mixed-background-warning-hover-fallback}
   );
-  --ix-switch-mixed--border-color: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-fallback}
-  );
-  --ix-switch-mixed--border-color--active: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-active-fallback}
-  );
-  --ix-switch-mixed--border-color--disabled: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-disabled-fallback}
-  );
-  --ix-switch-mixed--border-color--hover: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-hover-fallback}
-  );
-  --ix-switch-mixed--border-color--info: var(
-    --theme-color-info,
-    #{$switch-mixed-border-color-info-fallback}
-  );
-  --ix-switch-mixed--border-color--info--active: var(
-    --theme-color-info,
-    #{$switch-mixed-border-color-info-active-fallback}
-  );
-  --ix-switch-mixed--border-color--info--hover: var(
-    --theme-color-info,
-    #{$switch-mixed-border-color-info-hover-fallback}
-  );
-  --ix-switch-mixed--border-color--invalid: var(
-    --theme-color-alarm-bdr,
-    #{$switch-mixed-border-color-invalid-fallback}
-  );
-  --ix-switch-mixed--border-color--invalid--active: var(
-    --theme-color-alarm-bdr,
-    #{$switch-mixed-border-color-invalid-active-fallback}
-  );
-  --ix-switch-mixed--border-color--invalid--hover: var(
-    --theme-color-alarm-bdr,
-    #{$switch-mixed-border-color-invalid-hover-fallback}
-  );
-  --ix-switch-mixed--border-color--valid: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-valid-fallback}
-  );
-  --ix-switch-mixed--border-color--valid--active: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-valid-active-fallback}
-  );
-  --ix-switch-mixed--border-color--valid--hover: var(
-    --theme-color-0,
-    #{$switch-mixed-border-color-valid-hover-fallback}
-  );
+  --ix-switch-mixed--border-color: none;
+  --ix-switch-mixed--border-color--active: none;
+  --ix-switch-mixed--border-color--disabled: none;
+  --ix-switch-mixed--border-color--hover: none;
+  --ix-switch-mixed--border-color--info: none;
+  --ix-switch-mixed--border-color--info--active: none;
+  --ix-switch-mixed--border-color--info--hover: none;
+  --ix-switch-mixed--border-color--invalid: none;
+  --ix-switch-mixed--border-color--invalid--active: none;
+  --ix-switch-mixed--border-color--invalid--hover: none;
+  --ix-switch-mixed--border-color--valid: none;
+  --ix-switch-mixed--border-color--valid--active: none;
+  --ix-switch-mixed--border-color--valid--hover: none;
   --ix-switch-mixed--border-color--warning: var(
     --theme-color-warning-bdr,
     #{$switch-mixed-border-color-warning-fallback}
@@ -766,119 +274,116 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     #{$switch-mixed-border-color-warning-hover-fallback}
   );
   --ix-switch-off--background: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-1,
     #{$switch-off-background-fallback}
   );
   --ix-switch-off--background--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-selected,
     #{$switch-off-background-active-fallback}
   );
-  --ix-switch-off--background--disabled: var(
-    --theme-color-component-2,
-    #{$switch-off-background-disabled-fallback}
-  );
+  --ix-switch-off--background--disabled: none;
   --ix-switch-off--background--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-hover,
     #{$switch-off-background-hover-fallback}
   );
   --ix-switch-off--background--info: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-1,
     #{$switch-off-background-info-fallback}
   );
   --ix-switch-off--background--info--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-selected,
     #{$switch-off-background-info-active-fallback}
   );
   --ix-switch-off--background--info--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-hover,
     #{$switch-off-background-info-hover-fallback}
   );
   --ix-switch-off--background--invalid: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-1,
     #{$switch-off-background-invalid-fallback}
   );
   --ix-switch-off--background--invalid--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-selected,
     #{$switch-off-background-invalid-active-fallback}
   );
   --ix-switch-off--background--invalid--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-hover,
     #{$switch-off-background-invalid-hover-fallback}
   );
   --ix-switch-off--background--valid: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-1,
     #{$switch-off-background-valid-fallback}
   );
   --ix-switch-off--background--valid--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-selected,
     #{$switch-off-background-valid-active-fallback}
   );
   --ix-switch-off--background--valid--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-hover,
     #{$switch-off-background-valid-hover-fallback}
   );
   --ix-switch-off--background--warning: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-1,
     #{$switch-off-background-warning-fallback}
   );
   --ix-switch-off--background--warning--active: var(
-    --theme-color-component-4,
+    --theme-si-sys-background-selected,
     #{$switch-off-background-warning-active-fallback}
   );
   --ix-switch-off--background--warning--hover: var(
-    --theme-color-component-5,
+    --theme-si-sys-background-hover,
     #{$switch-off-background-warning-hover-fallback}
   );
   --ix-switch-off--border-color: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-fallback}
   );
   --ix-switch-off--border-color--active: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-active-fallback}
   );
   --ix-switch-off--border-color--disabled: var(
-    --theme-color-0,
+    --theme-si-sys-text-disabled,
     #{$switch-off-border-color-disabled-fallback}
   );
   --ix-switch-off--border-color--hover: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-hover-fallback}
   );
   --ix-switch-off--border-color--info: var(
-    --theme-color-info,
+    --theme-si-sys-background-information,
     #{$switch-off-border-color-info-fallback}
   );
   --ix-switch-off--border-color--info--active: var(
-    --theme-color-info--active,
+    --theme-si-sys-background-information,
     #{$switch-off-border-color-info-active-fallback}
   );
   --ix-switch-off--border-color--info--hover: var(
-    --theme-color-info--hover,
+    --theme-si-sys-background-information,
     #{$switch-off-border-color-info-hover-fallback}
   );
   --ix-switch-off--border-color--invalid: var(
-    --theme-color-alarm-bdr,
+    --theme-si-sys-border-danger,
     #{$switch-off-border-color-invalid-fallback}
   );
   --ix-switch-off--border-color--invalid--active: var(
-    --theme-color-alarm-bdr,
+    --theme-si-sys-border-danger,
     #{$switch-off-border-color-invalid-active-fallback}
   );
   --ix-switch-off--border-color--invalid--hover: var(
-    --theme-color-alarm-bdr,
+    --theme-si-sys-border-danger,
     #{$switch-off-border-color-invalid-hover-fallback}
   );
   --ix-switch-off--border-color--valid: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-valid-fallback}
   );
   --ix-switch-off--border-color--valid--active: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-valid-active-fallback}
   );
   --ix-switch-off--border-color--valid--hover: var(
-    --theme-color-0,
+    --theme-si-sys-border-2,
     #{$switch-off-border-color-valid-hover-fallback}
   );
   --ix-switch-off--border-color--warning: var(
@@ -894,23 +399,23 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     #{$switch-off-border-color-warning-hover-fallback}
   );
   --ix-switch-on--background: var(
-    --theme-color-dynamic,
+    --theme-color-primary,
     #{$switch-on-background-fallback}
   );
   --ix-switch-on--background--active: var(
-    --theme-color-dynamic--active,
+    --theme-si-sys-background-accent-active,
     #{$switch-on-background-active-fallback}
   );
   --ix-switch-on--background--disabled: var(
-    --theme-color-component-2,
+    --theme-si-sys-text-disabled,
     #{$switch-on-background-disabled-fallback}
   );
   --ix-switch-on--background--hover: var(
-    --theme-color-dynamic--hover,
+    --theme-si-sys-background-accent-hover,
     #{$switch-on-background-hover-fallback}
   );
   --ix-switch-on--background--info: var(
-    --theme-color-info,
+    --theme-si-sys-background-information,
     #{$switch-on-background-info-fallback}
   );
   --ix-switch-on--background--info--active: var(
@@ -922,27 +427,27 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     #{$switch-on-background-info-hover-fallback}
   );
   --ix-switch-on--background--invalid: var(
-    --theme-color-alarm,
+    --theme-si-sys-background-danger,
     #{$switch-on-background-invalid-fallback}
   );
   --ix-switch-on--background--invalid--active: var(
-    --theme-color-alarm--active,
+    --theme-si-sys-background-danger-active,
     #{$switch-on-background-invalid-active-fallback}
   );
   --ix-switch-on--background--invalid--hover: var(
-    --theme-color-alarm--hover,
+    --theme-si-sys-background-danger-hover,
     #{$switch-on-background-invalid-hover-fallback}
   );
   --ix-switch-on--background--valid: var(
-    --theme-color-dynamic,
+    --theme-color-primary,
     #{$switch-on-background-valid-fallback}
   );
   --ix-switch-on--background--valid--active: var(
-    --theme-color-dynamic--active,
+    --theme-si-sys-background-accent-active,
     #{$switch-on-background-valid-active-fallback}
   );
   --ix-switch-on--background--valid--hover: var(
-    --theme-color-dynamic--hover,
+    --theme-si-sys-background-accent-hover,
     #{$switch-on-background-valid-hover-fallback}
   );
   --ix-switch-on--background--warning: var(
@@ -957,58 +462,19 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     --theme-color-warning--hover,
     #{$switch-on-background-warning-hover-fallback}
   );
-  --ix-switch-on--border-color: var(
-    --theme-color-0,
-    #{$switch-on-border-color-fallback}
-  );
-  --ix-switch-on--border-color--active: var(
-    --theme-color-0,
-    #{$switch-on-border-color-active-fallback}
-  );
-  --ix-switch-on--border-color--disabled: var(
-    --theme-color-0,
-    #{$switch-on-border-color-disabled-fallback}
-  );
-  --ix-switch-on--border-color--hover: var(
-    --theme-color-0,
-    #{$switch-on-border-color-hover-fallback}
-  );
-  --ix-switch-on--border-color--info: var(
-    --theme-color-0,
-    #{$switch-on-border-color-info-fallback}
-  );
-  --ix-switch-on--border-color--info--active: var(
-    --theme-color-0,
-    #{$switch-on-border-color-info-active-fallback}
-  );
-  --ix-switch-on--border-color--info--hover: var(
-    --theme-color-0,
-    #{$switch-on-border-color-info-hover-fallback}
-  );
-  --ix-switch-on--border-color--invalid: var(
-    --theme-color-0,
-    #{$switch-on-border-color-invalid-fallback}
-  );
-  --ix-switch-on--border-color--invalid--active: var(
-    --theme-color-0,
-    #{$switch-on-border-color-invalid-active-fallback}
-  );
-  --ix-switch-on--border-color--invalid--hover: var(
-    --theme-color-0,
-    #{$switch-on-border-color-invalid-hover-fallback}
-  );
-  --ix-switch-on--border-color--valid: var(
-    --theme-color-0,
-    #{$switch-on-border-color-valid-fallback}
-  );
-  --ix-switch-on--border-color--valid--active: var(
-    --theme-color-0,
-    #{$switch-on-border-color-valid-active-fallback}
-  );
-  --ix-switch-on--border-color--valid--hover: var(
-    --theme-color-0,
-    #{$switch-on-border-color-valid-hover-fallback}
-  );
+  --ix-switch-on--border-color: none;
+  --ix-switch-on--border-color--active: none;
+  --ix-switch-on--border-color--disabled: none;
+  --ix-switch-on--border-color--hover: none;
+  --ix-switch-on--border-color--info: none;
+  --ix-switch-on--border-color--info--active: none;
+  --ix-switch-on--border-color--info--hover: none;
+  --ix-switch-on--border-color--invalid: none;
+  --ix-switch-on--border-color--invalid--active: none;
+  --ix-switch-on--border-color--invalid--hover: none;
+  --ix-switch-on--border-color--valid: none;
+  --ix-switch-on--border-color--valid--active: none;
+  --ix-switch-on--border-color--valid--hover: none;
   --ix-switch-on--border-color--warning: var(
     --theme-color-warning-bdr,
     #{$switch-on-border-color-warning-fallback}
@@ -1023,311 +489,215 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
   );
   --ix-switch-thumb--box-shadow: none;
   --ix-switch-thumb-mixed--background: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-inverse,
     #{$switch-thumb-mixed-background-fallback}
   );
   --ix-switch-thumb-mixed--background--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-inverse,
     #{$switch-thumb-mixed-background-active-fallback}
   );
   --ix-switch-thumb-mixed--background--disabled: var(
-    --theme-color-component-3,
+    --theme-si-sys-text-inverse,
     #{$switch-thumb-mixed-background-disabled-fallback}
   );
   --ix-switch-thumb-mixed--background--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-inverse,
     #{$switch-thumb-mixed-background-hover-fallback}
   );
   --ix-switch-thumb-mixed--background--info: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-mixed-background-info-fallback}
   );
   --ix-switch-thumb-mixed--background--info--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-mixed-background-info-active-fallback}
   );
   --ix-switch-thumb-mixed--background--info--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-mixed-background-info-hover-fallback}
   );
   --ix-switch-thumb-mixed--background--invalid: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-mixed-background-invalid-fallback}
   );
   --ix-switch-thumb-mixed--background--invalid--active: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-mixed-background-invalid-active-fallback}
   );
   --ix-switch-thumb-mixed--background--invalid--hover: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-mixed-background-invalid-hover-fallback}
   );
   --ix-switch-thumb-mixed--background--valid: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-valid-fallback}
   );
   --ix-switch-thumb-mixed--background--valid--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-valid-active-fallback}
   );
   --ix-switch-thumb-mixed--background--valid--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-valid-hover-fallback}
   );
   --ix-switch-thumb-mixed--background--warning: var(
-    --theme-color-component-warning,
+    --theme-color-warning--contrast,
     #{$switch-thumb-mixed-background-warning-fallback}
   );
   --ix-switch-thumb-mixed--background--warning--active: var(
-    --theme-color-component-warning,
+    --theme-color-warning--contrast,
     #{$switch-thumb-mixed-background-warning-active-fallback}
   );
   --ix-switch-thumb-mixed--background--warning--hover: var(
-    --theme-color-component-warning,
+    --theme-color-warning--contrast,
     #{$switch-thumb-mixed-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-mixed--border-color: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--active: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-active-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--disabled: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-disabled-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-hover-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--info: var(
-    --theme-color-info,
-    #{$switch-thumb-mixed-border-color-info-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--info--active: var(
-    --theme-color-info,
-    #{$switch-thumb-mixed-border-color-info-active-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--info--hover: var(
-    --theme-color-info,
-    #{$switch-thumb-mixed-border-color-info-hover-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--invalid: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-mixed-border-color-invalid-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--invalid--active: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-mixed-border-color-invalid-active-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--invalid--hover: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-mixed-border-color-invalid-hover-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--valid: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-valid-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--valid--active: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-valid-active-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--valid--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-mixed-border-color-valid-hover-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--warning: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-mixed-border-color-warning-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--warning--active: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-mixed-border-color-warning-active-fallback}
-  );
-  --ix-switch-thumb-mixed--border-color--warning--hover: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-mixed-border-color-warning-hover-fallback}
-  );
+  --ix-switch-thumb-mixed--border-color: none;
+  --ix-switch-thumb-mixed--border-color--active: none;
+  --ix-switch-thumb-mixed--border-color--disabled: none;
+  --ix-switch-thumb-mixed--border-color--hover: none;
+  --ix-switch-thumb-mixed--border-color--info: none;
+  --ix-switch-thumb-mixed--border-color--info--active: none;
+  --ix-switch-thumb-mixed--border-color--info--hover: none;
+  --ix-switch-thumb-mixed--border-color--invalid: none;
+  --ix-switch-thumb-mixed--border-color--invalid--active: none;
+  --ix-switch-thumb-mixed--border-color--invalid--hover: none;
+  --ix-switch-thumb-mixed--border-color--valid: none;
+  --ix-switch-thumb-mixed--border-color--valid--active: none;
+  --ix-switch-thumb-mixed--border-color--valid--hover: none;
+  --ix-switch-thumb-mixed--border-color--warning: none;
+  --ix-switch-thumb-mixed--border-color--warning--active: none;
+  --ix-switch-thumb-mixed--border-color--warning--hover: none;
   --ix-switch-thumb-off--background: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-fallback}
   );
   --ix-switch-thumb-off--background--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-active-fallback}
   );
   --ix-switch-thumb-off--background--disabled: var(
-    --theme-color-component-3,
+    --theme-si-sys-text-disabled,
     #{$switch-thumb-off-background-disabled-fallback}
   );
   --ix-switch-thumb-off--background--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-hover-fallback}
   );
   --ix-switch-thumb-off--background--info: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-info-fallback}
   );
   --ix-switch-thumb-off--background--info--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-info-active-fallback}
   );
   --ix-switch-thumb-off--background--info--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-info-hover-fallback}
   );
   --ix-switch-thumb-off--background--invalid: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-invalid-fallback}
   );
   --ix-switch-thumb-off--background--invalid--active: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-invalid-active-fallback}
   );
   --ix-switch-thumb-off--background--invalid--hover: var(
-    --theme-color-component-error,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-invalid-hover-fallback}
   );
   --ix-switch-thumb-off--background--valid: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-valid-fallback}
   );
   --ix-switch-thumb-off--background--valid--active: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-valid-active-fallback}
   );
   --ix-switch-thumb-off--background--valid--hover: var(
-    --theme-color-inv-std-text,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-valid-hover-fallback}
   );
   --ix-switch-thumb-off--background--warning: var(
-    --theme-color-component-warning,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-warning-fallback}
   );
   --ix-switch-thumb-off--background--warning--active: var(
-    --theme-color-component-warning,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-warning-active-fallback}
   );
   --ix-switch-thumb-off--background--warning--hover: var(
-    --theme-color-component-warning,
+    --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-off--border-color: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-fallback}
-  );
-  --ix-switch-thumb-off--border-color--active: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-active-fallback}
-  );
-  --ix-switch-thumb-off--border-color--disabled: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-disabled-fallback}
-  );
-  --ix-switch-thumb-off--border-color--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-hover-fallback}
-  );
-  --ix-switch-thumb-off--border-color--info: var(
-    --theme-color-info,
-    #{$switch-thumb-off-border-color-info-fallback}
-  );
-  --ix-switch-thumb-off--border-color--info--active: var(
-    --theme-color-info,
-    #{$switch-thumb-off-border-color-info-active-fallback}
-  );
-  --ix-switch-thumb-off--border-color--info--hover: var(
-    --theme-color-info,
-    #{$switch-thumb-off-border-color-info-hover-fallback}
-  );
-  --ix-switch-thumb-off--border-color--invalid: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-off-border-color-invalid-fallback}
-  );
-  --ix-switch-thumb-off--border-color--invalid--active: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-off-border-color-invalid-active-fallback}
-  );
-  --ix-switch-thumb-off--border-color--invalid--hover: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-off-border-color-invalid-hover-fallback}
-  );
-  --ix-switch-thumb-off--border-color--valid: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-valid-fallback}
-  );
-  --ix-switch-thumb-off--border-color--valid--active: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-valid-active-fallback}
-  );
-  --ix-switch-thumb-off--border-color--valid--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-off-border-color-valid-hover-fallback}
-  );
-  --ix-switch-thumb-off--border-color--warning: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-off-border-color-warning-fallback}
-  );
-  --ix-switch-thumb-off--border-color--warning--active: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-off-border-color-warning-active-fallback}
-  );
-  --ix-switch-thumb-off--border-color--warning--hover: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-off-border-color-warning-hover-fallback}
-  );
+  --ix-switch-thumb-off--border-color: none;
+  --ix-switch-thumb-off--border-color--active: none;
+  --ix-switch-thumb-off--border-color--disabled: none;
+  --ix-switch-thumb-off--border-color--hover: none;
+  --ix-switch-thumb-off--border-color--info: none;
+  --ix-switch-thumb-off--border-color--info--active: none;
+  --ix-switch-thumb-off--border-color--info--hover: none;
+  --ix-switch-thumb-off--border-color--invalid: none;
+  --ix-switch-thumb-off--border-color--invalid--active: none;
+  --ix-switch-thumb-off--border-color--invalid--hover: none;
+  --ix-switch-thumb-off--border-color--valid: none;
+  --ix-switch-thumb-off--border-color--valid--active: none;
+  --ix-switch-thumb-off--border-color--valid--hover: none;
+  --ix-switch-thumb-off--border-color--warning: none;
+  --ix-switch-thumb-off--border-color--warning--active: none;
+  --ix-switch-thumb-off--border-color--warning--hover: none;
   --ix-switch-thumb-on--background: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-fallback}
   );
   --ix-switch-thumb-on--background--active: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-active-fallback}
   );
   --ix-switch-thumb-on--background--disabled: var(
-    --theme-color-component-3,
+    --theme-si-sys-text-inverse,
     #{$switch-thumb-on-background-disabled-fallback}
   );
   --ix-switch-thumb-on--background--hover: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-hover-fallback}
   );
   --ix-switch-thumb-on--background--info: var(
-    --theme-color-info--contrast,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-on-background-info-fallback}
   );
   --ix-switch-thumb-on--background--info--active: var(
-    --theme-color-info--contrast,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-on-background-info-active-fallback}
   );
   --ix-switch-thumb-on--background--info--hover: var(
-    --theme-color-info--contrast,
+    --theme-si-sys-text-on-information,
     #{$switch-thumb-on-background-info-hover-fallback}
   );
   --ix-switch-thumb-on--background--invalid: var(
-    --theme-color-alarm--contrast,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-on-background-invalid-fallback}
   );
   --ix-switch-thumb-on--background--invalid--active: var(
-    --theme-color-alarm--contrast,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-on-background-invalid-active-fallback}
   );
   --ix-switch-thumb-on--background--invalid--hover: var(
-    --theme-color-alarm--contrast,
+    --theme-si-sys-text-on-danger,
     #{$switch-thumb-on-background-invalid-hover-fallback}
   );
   --ix-switch-thumb-on--background--valid: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-valid-fallback}
   );
   --ix-switch-thumb-on--background--valid--active: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-valid-active-fallback}
   );
   --ix-switch-thumb-on--background--valid--hover: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-valid-hover-fallback}
   );
   --ix-switch-thumb-on--background--warning: var(
@@ -1342,68 +712,20 @@ $switch-thumb-on-border-color-warning-hover-fallback: light-dark(
     --theme-color-warning--contrast,
     #{$switch-thumb-on-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-on--border-color: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-fallback}
-  );
-  --ix-switch-thumb-on--border-color--active: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-active-fallback}
-  );
-  --ix-switch-thumb-on--border-color--disabled: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-disabled-fallback}
-  );
-  --ix-switch-thumb-on--border-color--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-hover-fallback}
-  );
-  --ix-switch-thumb-on--border-color--info: var(
-    --theme-color-info,
-    #{$switch-thumb-on-border-color-info-fallback}
-  );
-  --ix-switch-thumb-on--border-color--info--active: var(
-    --theme-color-info,
-    #{$switch-thumb-on-border-color-info-active-fallback}
-  );
-  --ix-switch-thumb-on--border-color--info--hover: var(
-    --theme-color-info,
-    #{$switch-thumb-on-border-color-info-hover-fallback}
-  );
-  --ix-switch-thumb-on--border-color--invalid: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-on-border-color-invalid-fallback}
-  );
-  --ix-switch-thumb-on--border-color--invalid--active: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-on-border-color-invalid-active-fallback}
-  );
-  --ix-switch-thumb-on--border-color--invalid--hover: var(
-    --theme-color-alarm-bdr,
-    #{$switch-thumb-on-border-color-invalid-hover-fallback}
-  );
-  --ix-switch-thumb-on--border-color--valid: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-valid-fallback}
-  );
-  --ix-switch-thumb-on--border-color--valid--active: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-valid-active-fallback}
-  );
-  --ix-switch-thumb-on--border-color--valid--hover: var(
-    --theme-color-0,
-    #{$switch-thumb-on-border-color-valid-hover-fallback}
-  );
-  --ix-switch-thumb-on--border-color--warning: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-on-border-color-warning-fallback}
-  );
-  --ix-switch-thumb-on--border-color--warning--active: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-on-border-color-warning-active-fallback}
-  );
-  --ix-switch-thumb-on--border-color--warning--hover: var(
-    --theme-color-warning-bdr,
-    #{$switch-thumb-on-border-color-warning-hover-fallback}
-  );
+  --ix-switch-thumb-on--border-color: none;
+  --ix-switch-thumb-on--border-color--active: none;
+  --ix-switch-thumb-on--border-color--disabled: none;
+  --ix-switch-thumb-on--border-color--hover: none;
+  --ix-switch-thumb-on--border-color--info: none;
+  --ix-switch-thumb-on--border-color--info--active: none;
+  --ix-switch-thumb-on--border-color--info--hover: none;
+  --ix-switch-thumb-on--border-color--invalid: none;
+  --ix-switch-thumb-on--border-color--invalid--active: none;
+  --ix-switch-thumb-on--border-color--invalid--hover: none;
+  --ix-switch-thumb-on--border-color--valid: none;
+  --ix-switch-thumb-on--border-color--valid--active: none;
+  --ix-switch-thumb-on--border-color--valid--hover: none;
+  --ix-switch-thumb-on--border-color--warning: none;
+  --ix-switch-thumb-on--border-color--warning--active: none;
+  --ix-switch-thumb-on--border-color--warning--hover: none;
 }

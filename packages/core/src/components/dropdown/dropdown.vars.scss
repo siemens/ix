@@ -15,10 +15,7 @@ $dropdown-color-std-text-fallback: light-dark(
   rgba(0, 10, 20, 0.9),
   rgba(245, 252, 255, 0.9)
 );
-$menu-header-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
+$menu-header-color-fallback: light-dark(#405158, #aeb5b8);
 
 :host {
   --ix-dropdown--color-2: var(--theme-color-2, #{$dropdown-color-2-fallback});

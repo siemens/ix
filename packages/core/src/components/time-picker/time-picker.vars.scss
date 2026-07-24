@@ -18,24 +18,18 @@ $time-picker-color-weak-text-fallback: light-dark(
   rgba(219, 244, 255, 0.4)
 );
 $time-picker-color-inv-contrast-text-fallback: light-dark(#ffffff, #000000);
-$datepicker-day-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$datepicker-day-background-selected-fallback: light-dark(#0b5e65, #00eaff);
+$datepicker-day-background-hover-fallback: light-dark(#e8ebed, #273940);
+$datepicker-day-background-selected-fallback: light-dark(#004f69, #00eaff);
 $datepicker-day-background-selected-disabled-fallback: light-dark(
-  rgba(0, 81, 89, 0.3),
+  rgba(0, 79, 105, 0.3),
   rgba(0, 234, 255, 0.3)
 );
 $datepicker-day-background-selected-hover-fallback: light-dark(
-  #005d66,
-  #52f1ff
+  #006f8e,
+  #00def7
 );
-$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000000);
-$datepicker-day-color-selected-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
+$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000609);
+$datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
 
 :host {
   --ix-time-picker--color-soft-text: var(

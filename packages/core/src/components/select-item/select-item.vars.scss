@@ -11,10 +11,7 @@ $select-item-color-std-text-fallback: light-dark(
   rgba(0, 10, 20, 0.9),
   rgba(245, 252, 255, 0.9)
 );
-$select-list-item-background-selected-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.1)
-);
+$select-list-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
 
 :host {
   --ix-select-item--color-std-text: var(

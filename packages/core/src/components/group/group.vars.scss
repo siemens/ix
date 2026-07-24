@@ -12,38 +12,20 @@ $group-color-std-text-fallback: light-dark(
   rgba(0, 10, 20, 0.9),
   rgba(245, 252, 255, 0.9)
 );
-$group-header-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$group-item-background-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$group-item-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.25)
-);
-$group-item-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.15),
-  rgba(140, 161, 171, 0.45)
-);
-$group-item-background-selected-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.1)
-);
+$group-header-color-fallback: light-dark(#000609, #ffffff);
+$group-item-background-fallback: light-dark(#ffffff, #1a272d);
+$group-item-background-active-fallback: light-dark(#dcdee0, #34454d);
+$group-item-background-hover-fallback: light-dark(#e8ebed, #273940);
+$group-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
 $group-item-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $group-item-indicator-background-selected-fallback: light-dark(
-  #005e66,
+  #004f69,
   #00eaff
 );
-$group-subheader-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$group-subheader-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
   --ix-group--color-focus-bdr: var(

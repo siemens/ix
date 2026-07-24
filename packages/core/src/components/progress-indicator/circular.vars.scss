@@ -7,113 +7,71 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$progress-indicator-fill-background-fallback: light-dark(#005e66, #00eaff);
-$progress-indicator-fill-error-background-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$progress-indicator-fill-info-background-fallback: light-dark(#0041b2, #357fff);
+$progress-indicator-fill-background-fallback: light-dark(#004f69, #00eaff);
+$progress-indicator-fill-error-background-fallback: #d72323;
+$progress-indicator-fill-info-background-fallback: #226ae7;
 $progress-indicator-fill-paused-background-fallback: light-dark(
-  #66727e,
-  #b6b8b9
+  #5b6a71,
+  #aeb5b8
 );
 $progress-indicator-fill-success-background-fallback: light-dark(
-  #2c8500,
-  #44cc00
+  #376f1c,
+  #59bd28
 );
 $progress-indicator-fill-warning-background-fallback: light-dark(
-  #947100,
-  #ffbb00
+  #c69100,
+  #ffc832
 );
-$progress-indicator-helper-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-helper-error-color-fallback: light-dark(#b81e3f, #ff7694);
-$progress-indicator-helper-icon-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-helper-icon-error-color-fallback: light-dark(
-  #d72332,
-  #ff2453
-);
-$progress-indicator-helper-icon-info-color-fallback: light-dark(
-  #0041b2,
-  #357fff
-);
+$progress-indicator-helper-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-helper-error-color-fallback: light-dark(#a70808, #ff8e8e);
+$progress-indicator-helper-icon-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-helper-icon-error-color-fallback: #d72323;
+$progress-indicator-helper-icon-info-color-fallback: #226ae7;
 $progress-indicator-helper-icon-paused-color-fallback: light-dark(
-  #66727e,
-  #b6b8b9
+  #5b6a71,
+  #aeb5b8
 );
 $progress-indicator-helper-icon-success-color-fallback: light-dark(
-  #2c8500,
-  #44cc00
+  #376f1c,
+  #59bd28
 );
 $progress-indicator-helper-icon-warning-color-fallback: light-dark(
-  #947100,
-  #ffbb00
+  #906900,
+  #ffbf0f
 );
-$progress-indicator-helper-info-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$progress-indicator-helper-paused-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$progress-indicator-helper-success-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$progress-indicator-helper-warning-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$progress-indicator-label-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-label-error-color-fallback: light-dark(#b81e3f, #ff7694);
-$progress-indicator-label-info-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-label-paused-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-label-success-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$progress-indicator-label-warning-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
+$progress-indicator-helper-info-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-paused-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-success-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-warning-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-label-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-error-color-fallback: light-dark(#a70808, #ff8e8e);
+$progress-indicator-label-info-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-paused-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-success-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-warning-color-fallback: light-dark(#405158, #aeb5b8);
 $progress-indicator-track-background-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
 );
 $progress-indicator-track-error-background-fallback: light-dark(
-  #fcccd0,
-  #4b1a28
+  #fccccc,
+  #430000
 );
 $progress-indicator-track-info-background-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
 );
 $progress-indicator-track-paused-background-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
 );
 $progress-indicator-track-success-background-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
 );
 $progress-indicator-track-warning-background-fallback: light-dark(
-  #ffe8a8,
-  #4b463a
+  #ffedba,
+  #4d3901
 );
 
 :host {

@@ -11,11 +11,8 @@ $date-time-card-shadow-4-fallback: 0 0 2px 0
     light-dark(rgba(0, 0, 0, 0.2), #000000),
   0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
   0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
-$datepicker-separator-background-fallback: light-dark(
-  rgba(174, 181, 189, 0.2),
-  rgba(142, 157, 165, 0.2)
-);
-$menu-background-fallback: light-dark(#eff0f1, #283236);
+$datepicker-separator-background-fallback: light-dark(#ebedee, #273940);
+$menu-background-fallback: light-dark(#ffffff, #1a272d);
 
 :host {
   --ix-date-time-card--shadow-4: var(

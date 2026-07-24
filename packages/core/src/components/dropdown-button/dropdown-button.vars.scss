@@ -8,465 +8,384 @@
  */
 
 $dropdown-button-color-focus-bdr-fallback: #199fff;
-$btn-danger-primary-background-fallback: light-dark(#d72332, #ff2453);
-$btn-danger-primary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-primary-background-fallback: #d72323;
+$btn-danger-primary-background-active-fallback: #a70808;
 $btn-danger-primary-background-disabled-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
-$btn-danger-primary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-primary-background-hover-fallback: #c01616;
 $btn-danger-primary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-primary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-primary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-primary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-primary-color-fallback: light-dark(#ffffff, #000000);
-$btn-danger-primary-color-active-fallback: light-dark(#ffffff, #000000);
-$btn-danger-primary-color-disabled-fallback: light-dark(#ffffff, #000000);
-$btn-danger-primary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-danger-primary-color-fallback: #ffffff;
+$btn-danger-primary-color-active-fallback: #ffffff;
+$btn-danger-primary-color-disabled-fallback: light-dark(#ffffff, #000609);
+$btn-danger-primary-color-hover-fallback: #ffffff;
 $btn-danger-secondary-background-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-secondary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-secondary-background-active-fallback: #a70808;
 $btn-danger-secondary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-secondary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
-$btn-danger-secondary-border-color-fallback: light-dark(#b81e3f, #ff7694);
-$btn-danger-secondary-border-color-active-fallback: light-dark(
-  #b41d2a,
-  #ff335f
-);
+$btn-danger-secondary-background-hover-fallback: #c01616;
+$btn-danger-secondary-border-color-fallback: light-dark(#a70808, #ff8e8e);
+$btn-danger-secondary-border-color-active-fallback: #a70808;
 $btn-danger-secondary-border-color-disabled-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
-$btn-danger-secondary-border-color-hover-fallback: light-dark(#c11f2d, #ff577b);
-$btn-danger-secondary-color-fallback: light-dark(#b81e3f, #ff7694);
-$btn-danger-secondary-color-active-fallback: light-dark(#ffffff, #000000);
-$btn-danger-secondary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-danger-secondary-color-hover-fallback: light-dark(#ffffff, #000000);
+$btn-danger-secondary-border-color-hover-fallback: #c01616;
+$btn-danger-secondary-color-fallback: light-dark(#a70808, #ff8e8e);
+$btn-danger-secondary-color-active-fallback: #ffffff;
+$btn-danger-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-danger-secondary-color-hover-fallback: #ffffff;
 $btn-danger-tertiary-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-tertiary-background-active-fallback: light-dark(#b41d2a, #ff335f);
+$btn-danger-tertiary-background-active-fallback: #a70808;
 $btn-danger-tertiary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-tertiary-background-hover-fallback: light-dark(#c11f2d, #ff577b);
+$btn-danger-tertiary-background-hover-fallback: #c01616;
 $btn-danger-tertiary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-tertiary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-tertiary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-danger-tertiary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-danger-tertiary-color-fallback: light-dark(#b81e3f, #ff7694);
-$btn-danger-tertiary-color-active-fallback: light-dark(#ffffff, #000000);
-$btn-danger-tertiary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-danger-tertiary-color-hover-fallback: light-dark(#ffffff, #000000);
-$btn-primary-background-fallback: light-dark(#006e93, #00bde3);
-$btn-primary-background-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-danger-tertiary-color-fallback: light-dark(#a70808, #ff8e8e);
+$btn-danger-tertiary-color-active-fallback: #ffffff;
+$btn-danger-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-danger-tertiary-color-hover-fallback: #ffffff;
+$btn-primary-background-fallback: light-dark(#006a87, #00c9e4);
+$btn-primary-background-active-fallback: light-dark(#004e68, #00def7);
 $btn-primary-background-disabled-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
-$btn-primary-background-hover-fallback: light-dark(#196269, #1aecff);
-$btn-primary-background-pressed-fallback: light-dark(#005e66, #00eaff);
-$btn-primary-background-pressed-active-fallback: light-dark(#0e494e, #5cd5e0);
-$btn-primary-background-pressed-hover-fallback: light-dark(#0f5157, #62e2ee);
+$btn-primary-background-hover-fallback: light-dark(#004f69, #00eaff);
+$btn-primary-background-pressed-fallback: light-dark(#004f69, #00eaff);
+$btn-primary-background-pressed-active-fallback: light-dark(#195468, #0094b1);
+$btn-primary-background-pressed-hover-fallback: light-dark(#006f8e, #00def7);
 $btn-primary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-pressed-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-pressed-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-primary-border-color-pressed-hover-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-primary-color-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-active-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-disabled-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-hover-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-pressed-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-pressed-active-fallback: light-dark(#ffffff, #000000);
-$btn-primary-color-pressed-hover-fallback: light-dark(#ffffff, #000000);
-$btn-secondary-background-fallback: light-dark(#ffffff, #000000);
-$btn-secondary-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$btn-primary-color-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-active-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-disabled-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-hover-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-pressed-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-pressed-active-fallback: light-dark(#ffffff, #000609);
+$btn-primary-color-pressed-hover-fallback: light-dark(#ffffff, #000609);
+$btn-secondary-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$btn-secondary-background-active-fallback: light-dark(#c2faff, #00212f);
 $btn-secondary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-secondary-background-hover-fallback: light-dark(#ccfbff, #002639);
-$btn-secondary-background-pressed-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 234, 255, 0.15)
-);
-$btn-secondary-background-pressed-active-fallback: light-dark(#00def2, #16565c);
-$btn-secondary-background-pressed-hover-fallback: light-dark(#00eaff, #196269);
-$btn-secondary-border-color-fallback: light-dark(#006e93, #00bde3);
-$btn-secondary-border-color-active-fallback: light-dark(#16565c, #00d3e5);
+$btn-secondary-background-hover-fallback: light-dark(#d1fbff, #003246);
+$btn-secondary-background-pressed-fallback: light-dark(#66f2ff, #195468);
+$btn-secondary-background-pressed-active-fallback: light-dark(#c2faff, #00212f);
+$btn-secondary-background-pressed-hover-fallback: light-dark(#d1fbff, #003246);
+$btn-secondary-border-color-fallback: light-dark(#006a87, #00c9e4);
+$btn-secondary-border-color-active-fallback: light-dark(#004e68, #00def7);
 $btn-secondary-border-color-disabled-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
-$btn-secondary-border-color-hover-fallback: light-dark(#196269, #1aecff);
-$btn-secondary-border-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-secondary-border-color-hover-fallback: light-dark(#004f69, #00eaff);
+$btn-secondary-border-color-pressed-fallback: light-dark(#004f69, #00eaff);
 $btn-secondary-border-color-pressed-active-fallback: light-dark(
-  #16565c,
-  #00d3e5
+  #004e68,
+  #00def7
 );
 $btn-secondary-border-color-pressed-hover-fallback: light-dark(
-  #196269,
-  #1aecff
+  #004f69,
+  #00eaff
 );
-$btn-secondary-color-fallback: light-dark(#006e93, #00bde3);
-$btn-secondary-color-active-fallback: light-dark(#16565c, #00d3e5);
-$btn-secondary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-secondary-color-hover-fallback: light-dark(#196269, #1aecff);
-$btn-secondary-color-pressed-fallback: light-dark(#005e66, #00eaff);
-$btn-secondary-color-pressed-active-fallback: light-dark(#16565c, #00d3e5);
-$btn-secondary-color-pressed-hover-fallback: light-dark(#196269, #1aecff);
+$btn-secondary-color-fallback: light-dark(#006a87, #00c9e4);
+$btn-secondary-color-active-fallback: light-dark(#004e68, #00def7);
+$btn-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-secondary-color-hover-fallback: light-dark(#004f69, #00eaff);
+$btn-secondary-color-pressed-fallback: light-dark(#004f69, #00eaff);
+$btn-secondary-color-pressed-active-fallback: light-dark(#004e68, #00def7);
+$btn-secondary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
 $btn-subtle-primary-background-fallback: light-dark(
-  rgba(0, 18, 36, 0.1),
-  rgba(211, 239, 253, 0.15)
+  rgba(0, 6, 9, 0.12),
+  rgba(255, 255, 255, 0.15)
 );
-$btn-subtle-primary-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.25)
-);
+$btn-subtle-primary-background-active-fallback: light-dark(#dcdee0, #34454d);
 $btn-subtle-primary-background-disabled-fallback: light-dark(
-  rgba(0, 18, 36, 0.1),
-  rgba(211, 239, 253, 0.15)
+  rgba(0, 6, 9, 0.12),
+  rgba(255, 255, 255, 0.15)
 );
-$btn-subtle-primary-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.15),
-  rgba(140, 161, 171, 0.45)
-);
-$btn-subtle-primary-background-pressed-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 234, 255, 0.15)
-);
+$btn-subtle-primary-background-hover-fallback: light-dark(#e8ebed, #273940);
+$btn-subtle-primary-background-pressed-fallback: light-dark(#66f2ff, #195468);
 $btn-subtle-primary-background-pressed-active-fallback: light-dark(
-  #00def2,
-  #16565c
+  #c2faff,
+  #00212f
 );
 $btn-subtle-primary-background-pressed-hover-fallback: light-dark(
-  #00eaff,
-  #196269
+  #d1fbff,
+  #003246
 );
 $btn-subtle-primary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-pressed-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-pressed-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-primary-border-color-pressed-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-primary-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-primary-color-active-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-primary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-subtle-primary-color-hover-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-primary-color-pressed-fallback: light-dark(#005e66, #00eaff);
-$btn-subtle-primary-color-pressed-active-fallback: light-dark(#005e66, #00eaff);
-$btn-subtle-primary-color-pressed-hover-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-primary-color-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-primary-color-active-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-primary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-subtle-primary-color-hover-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-primary-color-pressed-fallback: light-dark(#004f69, #00eaff);
+$btn-subtle-primary-color-pressed-active-fallback: light-dark(#004f69, #00eaff);
+$btn-subtle-primary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
 $btn-subtle-secondary-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-secondary-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
+$btn-subtle-secondary-background-active-fallback: light-dark(#dcdee0, #34454d);
 $btn-subtle-secondary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-secondary-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$btn-subtle-secondary-background-pressed-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 234, 255, 0.15)
-);
+$btn-subtle-secondary-background-hover-fallback: light-dark(#e8ebed, #273940);
+$btn-subtle-secondary-background-pressed-fallback: light-dark(#66f2ff, #195468);
 $btn-subtle-secondary-background-pressed-active-fallback: light-dark(
-  #00def2,
-  #16565c
+  #c2faff,
+  #00212f
 );
 $btn-subtle-secondary-background-pressed-hover-fallback: light-dark(
-  #00eaff,
-  #196269
+  #d1fbff,
+  #003246
 );
 $btn-subtle-secondary-border-color-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
 $btn-subtle-secondary-border-color-active-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
 $btn-subtle-secondary-border-color-disabled-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
 $btn-subtle-secondary-border-color-hover-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
 );
 $btn-subtle-secondary-border-color-pressed-fallback: light-dark(
-  rgba(0, 20, 40, 0.3),
-  rgba(211, 236, 248, 0.55)
+  #5b6a71,
+  #919ca1
 );
 $btn-subtle-secondary-border-color-pressed-active-fallback: light-dark(
-  rgba(0, 20, 40, 0.3),
-  rgba(211, 236, 248, 0.55)
+  #5b6a71,
+  #919ca1
 );
 $btn-subtle-secondary-border-color-pressed-hover-fallback: light-dark(
-  rgba(0, 20, 40, 0.3),
-  rgba(211, 236, 248, 0.55)
+  #5b6a71,
+  #919ca1
 );
-$btn-subtle-secondary-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-secondary-color-active-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-secondary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-subtle-secondary-color-hover-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-secondary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-secondary-color-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-secondary-color-active-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-subtle-secondary-color-hover-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-secondary-color-pressed-fallback: light-dark(#004f69, #00eaff);
 $btn-subtle-secondary-color-pressed-active-fallback: light-dark(
-  #005e66,
+  #004f69,
   #00eaff
 );
 $btn-subtle-secondary-color-pressed-hover-fallback: light-dark(
-  #005e66,
+  #004f69,
   #00eaff
 );
 $btn-subtle-tertiary-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-tertiary-background-active-fallback: light-dark(
-  rgba(168, 173, 179, 0.3),
-  rgba(140, 161, 171, 0.15)
-);
+$btn-subtle-tertiary-background-active-fallback: light-dark(#dcdee0, #34454d);
 $btn-subtle-tertiary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-tertiary-background-hover-fallback: light-dark(
-  rgba(168, 173, 179, 0.2),
-  rgba(140, 161, 171, 0.2)
-);
-$btn-subtle-tertiary-background-pressed-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 234, 255, 0.15)
-);
+$btn-subtle-tertiary-background-hover-fallback: light-dark(#e8ebed, #273940);
+$btn-subtle-tertiary-background-pressed-fallback: light-dark(#66f2ff, #195468);
 $btn-subtle-tertiary-background-pressed-active-fallback: light-dark(
-  #00def2,
-  #16565c
+  #c2faff,
+  #00212f
 );
 $btn-subtle-tertiary-background-pressed-hover-fallback: light-dark(
-  #00eaff,
-  #196269
+  #d1fbff,
+  #003246
 );
 $btn-subtle-tertiary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-pressed-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-pressed-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-subtle-tertiary-border-color-pressed-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-subtle-tertiary-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-tertiary-color-active-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-tertiary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-subtle-tertiary-color-hover-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$btn-subtle-tertiary-color-pressed-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-tertiary-color-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-tertiary-color-active-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-subtle-tertiary-color-hover-fallback: light-dark(#000609, #ffffff);
+$btn-subtle-tertiary-color-pressed-fallback: light-dark(#004f69, #00eaff);
 $btn-subtle-tertiary-color-pressed-active-fallback: light-dark(
-  #005e66,
+  #004f69,
   #00eaff
 );
-$btn-subtle-tertiary-color-pressed-hover-fallback: light-dark(#005e66, #00eaff);
+$btn-subtle-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
 $btn-tertiary-background-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-tertiary-background-active-fallback: light-dark(#b8edf2, #001d2b);
+$btn-tertiary-background-active-fallback: light-dark(#c2faff, #00212f);
 $btn-tertiary-background-disabled-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
 );
-$btn-tertiary-background-hover-fallback: light-dark(#ccfbff, #002639);
-$btn-tertiary-background-pressed-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 234, 255, 0.15)
-);
-$btn-tertiary-background-pressed-active-fallback: light-dark(#00def2, #16565c);
-$btn-tertiary-background-pressed-hover-fallback: light-dark(#00eaff, #196269);
+$btn-tertiary-background-hover-fallback: light-dark(#d1fbff, #003246);
+$btn-tertiary-background-pressed-fallback: light-dark(#66f2ff, #195468);
+$btn-tertiary-background-pressed-active-fallback: light-dark(#c2faff, #00212f);
+$btn-tertiary-background-pressed-hover-fallback: light-dark(#d1fbff, #003246);
 $btn-tertiary-border-color-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-disabled-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-pressed-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-pressed-active-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
 $btn-tertiary-border-color-pressed-hover-fallback: light-dark(
   rgba(255, 255, 255, 0),
-  rgba(0, 0, 0, 0)
+  rgba(0, 6, 9, 0)
 );
-$btn-tertiary-color-fallback: light-dark(#006e93, #00bde3);
-$btn-tertiary-color-active-fallback: light-dark(#16565c, #00d3e5);
-$btn-tertiary-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$btn-tertiary-color-hover-fallback: light-dark(#196269, #1aecff);
-$btn-tertiary-color-pressed-fallback: light-dark(#005e66, #00eaff);
-$btn-tertiary-color-pressed-active-fallback: light-dark(#16565c, #00d3e5);
-$btn-tertiary-color-pressed-hover-fallback: light-dark(#196269, #1aecff);
+$btn-tertiary-color-fallback: light-dark(#006a87, #00c9e4);
+$btn-tertiary-color-active-fallback: light-dark(#004e68, #00def7);
+$btn-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$btn-tertiary-color-hover-fallback: light-dark(#004f69, #00eaff);
+$btn-tertiary-color-pressed-fallback: light-dark(#004f69, #00eaff);
+$btn-tertiary-color-pressed-active-fallback: light-dark(#004e68, #00def7);
+$btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-dropdown-button--color-focus-bdr: var(
