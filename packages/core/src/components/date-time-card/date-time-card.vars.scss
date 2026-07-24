@@ -1,0 +1,27 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$date-time-card-shadow-4-fallback: 0 0 2px 0
+    light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$datepicker-separator-background-fallback: light-dark(#ebedee, #273940);
+$menu-background-fallback: light-dark(#ffffff, #1a272d);
+
+:host {
+  --ix-date-time-card--shadow-4: var(
+    --theme-shadow-4,
+    #{$date-time-card-shadow-4-fallback}
+  );
+  --ix-datepicker-separator--background: var(
+    --theme-color-x-weak-bdr,
+    #{$datepicker-separator-background-fallback}
+  );
+  --ix-menu--background: var(--theme-color-2, #{$menu-background-fallback});
+}

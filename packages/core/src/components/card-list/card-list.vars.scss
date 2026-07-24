@@ -1,0 +1,34 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$card-list-color-primary-fallback: light-dark(#006e93, #00bde3);
+$card-list-color-ghost-hover-fallback: light-dark(
+  rgba(168, 173, 179, 0.2),
+  rgba(140, 161, 171, 0.2)
+);
+$card-list-color-ghost-active-fallback: light-dark(
+  rgba(168, 173, 179, 0.3),
+  rgba(140, 161, 171, 0.15)
+);
+
+:host {
+  --ix-card-list--default-time: var(--theme-default-time, 150ms);
+  --ix-card-list--color-primary: var(
+    --theme-color-primary,
+    #{$card-list-color-primary-fallback}
+  );
+  --ix-card-list--color-ghost--hover: var(
+    --theme-color-ghost--hover,
+    #{$card-list-color-ghost-hover-fallback}
+  );
+  --ix-card-list--color-ghost--active: var(
+    --theme-color-ghost--active,
+    #{$card-list-color-ghost-active-fallback}
+  );
+}

@@ -12,6 +12,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 
+@use './button.vars' as *;
 @mixin btn-base-variant($name) {
   .btn-#{$name} {
     text-align: start;
@@ -22,41 +23,41 @@
     border-bottom-right-radius: var(--ix-button-border-radius-right);
 
     & {
-      background-color: var(--theme-btn-#{$name}--background);
-      color: var(--theme-btn-#{$name}--color);
+      background-color: var(--ix-btn-#{$name}--background);
+      color: var(--ix-btn-#{$name}--color);
 
-      --ix-button-color: var(--theme-btn-#{$name}--color);
+      --ix-button-color: var(--ix-btn-#{$name}--color);
 
-      border-width: var(--theme-btn--border-thickness);
-      border-color: var(--theme-btn-#{$name}--border-color);
+      border-width: var(--ix-btn--border-thickness);
+      border-color: var(--ix-btn-#{$name}--border-color);
       border-style: solid;
     }
 
     &.selected {
-      background-color: var(--theme-btn-#{$name}--background--pressed);
-      color: var(--theme-btn-#{$name}--color--pressed);
+      background-color: var(--ix-btn-#{$name}--background--pressed);
+      color: var(--ix-btn-#{$name}--color--pressed);
 
       @include hover.hover {
-        background-color: var(--theme-btn-#{$name}--background--pressed-hover);
-        color: var(--theme-btn-#{$name}--color--pressed-hover);
+        background-color: var(--ix-btn-#{$name}--background--pressed-hover);
+        color: var(--ix-btn-#{$name}--color--pressed-hover);
       }
 
       @include hover.active {
-        background-color: var(--theme-btn-#{$name}--background--pressed-hover);
-        color: var(--theme-btn-#{$name}--color--pressed-active);
+        background-color: var(--ix-btn-#{$name}--background--pressed-hover);
+        color: var(--ix-btn-#{$name}--color--pressed-active);
       }
     }
 
     @include hover.hover {
-      border-color: var(--theme-btn-#{$name}--border-color--hover);
-      background-color: var(--theme-btn-#{$name}--background--hover);
-      color: var(--theme-btn-#{$name}--color--hover);
+      border-color: var(--ix-btn-#{$name}--border-color--hover);
+      background-color: var(--ix-btn-#{$name}--background--hover);
+      color: var(--ix-btn-#{$name}--color--hover);
     }
 
     @include hover.active {
-      border-color: var(--theme-btn-#{$name}--border-color--active);
-      background-color: var(--theme-btn-#{$name}--background--active);
-      color: var(--theme-btn-#{$name}--color--active);
+      border-color: var(--ix-btn-#{$name}--border-color--active);
+      background-color: var(--ix-btn-#{$name}--background--active);
+      color: var(--ix-btn-#{$name}--color--active);
     }
   }
 }
@@ -66,12 +67,12 @@
     &.disabled,
     &:disabled {
       pointer-events: none;
-      border-color: var(--theme-btn-#{$name}--border-color--disabled);
-      background-color: var(--theme-btn-#{$name}--background--disabled);
-      color: var(--theme-btn-#{$name}--color--disabled);
+      border-color: var(--ix-btn-#{$name}--border-color--disabled);
+      background-color: var(--ix-btn-#{$name}--background--disabled);
+      color: var(--ix-btn-#{$name}--color--disabled);
       opacity: 1;
 
-      --ix-button-color: var(--theme-btn-#{$name}--color--disabled);
+      --ix-button-color: var(--ix-btn-#{$name}--color--disabled);
     }
   }
 }
@@ -108,8 +109,8 @@
 
 @mixin btn {
   :host {
-    --ix-button-border-radius-left: var(--theme-btn--border-radius);
-    --ix-button-border-radius-right: var(--theme-btn--border-radius);
+    --ix-button-border-radius-left: var(--ix-btn--border-radius);
+    --ix-button-border-radius-right: var(--ix-btn--border-radius);
 
     display: inline-block;
     height: 2rem;
@@ -158,15 +159,15 @@
 
   :host(.ix-focused) {
     .btn {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid var(--ix-btn--color-focus-bdr);
+      outline-offset: var(--ix-btn--focus--outline-offset);
     }
   }
 
   :host {
     .btn:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid var(--ix-btn--color-focus-bdr);
+      outline-offset: var(--ix-btn--focus--outline-offset);
     }
   }
 }

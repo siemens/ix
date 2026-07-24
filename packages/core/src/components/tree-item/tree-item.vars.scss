@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$tree-item-background-active-fallback: light-dark(#dcdee0, #34454d);
+$tree-item-background-hover-fallback: light-dark(#e8ebed, #273940);
+$tree-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$tree-item-background-selected-active-fallback: light-dark(#dcdee0, #34454d);
+$tree-item-background-selected-hover-fallback: light-dark(#e8ebed, #273940);
+
+:host {
+  --ix-tree-item--default-time: var(--theme-default-time, 150ms);
+  --ix-tree-item--background--active: var(
+    --theme-color-ghost--active,
+    #{$tree-item-background-active-fallback}
+  );
+  --ix-tree-item--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$tree-item-background-hover-fallback}
+  );
+  --ix-tree-item--background--selected: var(
+    --theme-color-ghost--selected,
+    #{$tree-item-background-selected-fallback}
+  );
+  --ix-tree-item--background--selected-active: var(
+    --theme-color-ghost--selected-active,
+    #{$tree-item-background-selected-active-fallback}
+  );
+  --ix-tree-item--background--selected-hover: var(
+    --theme-color-ghost--selected-hover,
+    #{$tree-item-background-selected-hover-fallback}
+  );
+}

@@ -1,0 +1,65 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$menu-item-color-focus-bdr-fallback: #199fff;
+$menu-item-color-primary-fallback: light-dark(#006e93, #00bde3);
+$menu-item-color-primary-contrast-fallback: light-dark(#ffffff, #000000);
+$menu-item-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$nav-item-primary-background-selected-fallback: light-dark(#f3f4f5, #000609);
+$nav-item-primary-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
+$nav-item-primary-icon-color-fallback: light-dark(#000609, #ffffff);
+$nav-item-primary-icon-color-selected-fallback: light-dark(#000609, #ffffff);
+$nav-item-secondary-background-selected-fallback: light-dark(#f3f4f5, #000609);
+
+:host {
+  --ix-menu-item--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$menu-item-color-focus-bdr-fallback}
+  );
+  --ix-menu-item--color-primary: var(
+    --theme-color-primary,
+    #{$menu-item-color-primary-fallback}
+  );
+  --ix-menu-item--color-primary--contrast: var(
+    --theme-color-primary--contrast,
+    #{$menu-item-color-primary-contrast-fallback}
+  );
+  --ix-menu-item--color-weak-text: var(
+    --theme-color-weak-text,
+    #{$menu-item-color-weak-text-fallback}
+  );
+  --ix-nav-item-primary--background--selected: var(
+    --theme-color-1,
+    #{$nav-item-primary-background-selected-fallback}
+  );
+  --ix-nav-item-primary--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$nav-item-primary-border-color-selected-fallback}
+  );
+  --ix-nav-item-primary--color: var(
+    --theme-color-std-text,
+    #{$nav-item-primary-color-fallback}
+  );
+  --ix-nav-item-primary-icon--color: var(
+    --theme-color-std-text,
+    #{$nav-item-primary-icon-color-fallback}
+  );
+  --ix-nav-item-primary-icon--color--selected: var(
+    --theme-color-std-text,
+    #{$nav-item-primary-icon-color-selected-fallback}
+  );
+  --ix-nav-item-secondary--background--selected: var(
+    --theme-color-1,
+    #{$nav-item-secondary-background-selected-fallback}
+  );
+}

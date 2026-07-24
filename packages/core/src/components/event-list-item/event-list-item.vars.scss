@@ -1,0 +1,144 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$event-list-item-weak-bdr-1-fallback: 0.0625rem solid
+  light-dark(rgba(35, 48, 60, 0.15), rgba(224, 245, 255, 0.25));
+$event-item-chevron-color-fallback: light-dark(#405158, #aeb5b8);
+$event-item-filled-background-fallback: light-dark(#ffffff, #1a272d);
+$event-item-filled-background-active-fallback: light-dark(#dcdee0, #34454d);
+$event-item-filled-background-disabled-fallback: light-dark(#ffffff, #1a272d);
+$event-item-filled-background-hover-fallback: light-dark(#e8ebed, #273940);
+$event-item-filled-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$event-item-filled-border-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-filled-border-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-filled-border-disabled-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-filled-border-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-filled-border-selected-fallback: light-dark(#004f69, #00eaff);
+$event-item-outline-background-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-outline-background-active-fallback: light-dark(#dcdee0, #34454d);
+$event-item-outline-background-disabled-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$event-item-outline-background-hover-fallback: light-dark(#e8ebed, #273940);
+$event-item-outline-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$event-item-outline-border-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-active-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-disabled-fallback: light-dark(#e5e8e9, #34454d);
+$event-item-outline-border-hover-fallback: light-dark(#aeb5b8, #72848c);
+$event-item-outline-border-selected-fallback: light-dark(#004f69, #00eaff);
+
+:host {
+  --ix-event-list-item--default-time: var(--theme-default-time, 150ms);
+  --ix-event-list-item--weak-bdr-1: var(
+    --theme-weak-bdr-1,
+    #{$event-list-item-weak-bdr-1-fallback}
+  );
+  --ix-event-item-chevron--color: var(
+    --theme-color-soft-text,
+    #{$event-item-chevron-color-fallback}
+  );
+  --ix-event-item-filled--background: var(
+    --theme-color-component-1,
+    #{$event-item-filled-background-fallback}
+  );
+  --ix-event-item-filled--background--active: var(
+    --theme-color-component-1--active,
+    #{$event-item-filled-background-active-fallback}
+  );
+  --ix-event-item-filled--background--disabled: var(
+    --theme-color-component-1,
+    #{$event-item-filled-background-disabled-fallback}
+  );
+  --ix-event-item-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$event-item-filled-background-hover-fallback}
+  );
+  --ix-event-item-filled--background--selected: var(
+    --theme-color-component-1--active,
+    #{$event-item-filled-background-selected-fallback}
+  );
+  --ix-event-item-filled--border: var(
+    --theme-color-0,
+    #{$event-item-filled-border-fallback}
+  );
+  --ix-event-item-filled--border--active: var(
+    --theme-color-0,
+    #{$event-item-filled-border-active-fallback}
+  );
+  --ix-event-item-filled--border--disabled: var(
+    --theme-color-0,
+    #{$event-item-filled-border-disabled-fallback}
+  );
+  --ix-event-item-filled--border--hover: var(
+    --theme-color-0,
+    #{$event-item-filled-border-hover-fallback}
+  );
+  --ix-event-item-filled--border--selected: var(
+    --theme-color-dynamic,
+    #{$event-item-filled-border-selected-fallback}
+  );
+  --ix-event-item-indicator--width: var(--theme-size--2, 0.5rem);
+  --ix-event-item-indicator-opacity--disabled: 0.3;
+  --ix-event-item-outline--background: var(
+    --theme-color-ghost,
+    #{$event-item-outline-background-fallback}
+  );
+  --ix-event-item-outline--background--active: var(
+    --theme-color-ghost--active,
+    #{$event-item-outline-background-active-fallback}
+  );
+  --ix-event-item-outline--background--disabled: var(
+    --theme-color-ghost,
+    #{$event-item-outline-background-disabled-fallback}
+  );
+  --ix-event-item-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$event-item-outline-background-hover-fallback}
+  );
+  --ix-event-item-outline--background--selected: var(
+    --theme-color-ghost--active,
+    #{$event-item-outline-background-selected-fallback}
+  );
+  --ix-event-item-outline--border: var(
+    --theme-color-soft-bdr,
+    #{$event-item-outline-border-fallback}
+  );
+  --ix-event-item-outline--border--active: var(
+    --theme-color-soft-bdr,
+    #{$event-item-outline-border-active-fallback}
+  );
+  --ix-event-item-outline--border--disabled: var(
+    --theme-color-weak-bdr,
+    #{$event-item-outline-border-disabled-fallback}
+  );
+  --ix-event-item-outline--border--hover: var(
+    --theme-color-soft-bdr,
+    #{$event-item-outline-border-hover-fallback}
+  );
+  --ix-event-item-outline--border--selected: var(
+    --theme-color-dynamic,
+    #{$event-item-outline-border-selected-fallback}
+  );
+}

@@ -81,12 +81,12 @@
   &:not(.disabled):not(:disabled) {
     &.hover,
     &:hover {
-      background-color: var(--theme-ghost--background--hover);
+      background-color: var(--theme-color-ghost--hover);
     }
 
     &.active,
     &:active {
-      background-color: var(--theme-ghost--background--active);
+      background-color: var(--theme-color-ghost--active);
     }
   }
 }

@@ -1,0 +1,29 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$menu-btn-background-active-fallback: light-dark(#dcdee0, #34454d);
+$menu-btn-background-hover-fallback: light-dark(#e8ebed, #273940);
+$menu-btn-color-fallback: light-dark(#000609, #ffffff);
+
+:host {
+  --ix-menu-expand-icon--default-time: var(--theme-default-time, 150ms);
+  --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);
+  --ix-menu-btn--background--active: var(
+    --theme-color-ghost--active,
+    #{$menu-btn-background-active-fallback}
+  );
+  --ix-menu-btn--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$menu-btn-background-hover-fallback}
+  );
+  --ix-menu-btn--color: var(
+    --theme-color-std-text,
+    #{$menu-btn-color-fallback}
+  );
+}

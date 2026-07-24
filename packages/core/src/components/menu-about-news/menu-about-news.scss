@@ -11,6 +11,7 @@
 @use 'mixins/break-points';
 @use 'mixins/shadows';
 @use 'mixins/shadow-dom/component';
+@use './menu-about-news.vars' as *;
 $left: 3.4rem;
 
 :host {
@@ -20,12 +21,12 @@ $left: 3.4rem;
   position: fixed;
   width: 20rem;
   height: auto;
-  background-color: var(--theme-color-2);
+  background-color: var(--ix-menu-about-news--color-2);
   border-radius: vars.$default-border-radius;
   padding: 1rem;
   left: $left;
   z-index: 10000;
-  transition: left var(--theme-default-time);
+  transition: left var(--ix-menu-about-news--default-time);
 
   margin-inline-start: var(--margin) !important;
 
@@ -43,7 +44,7 @@ $left: 3.4rem;
       width: 3rem;
 
       polygon {
-        fill: var(--theme-color-primary);
+        fill: var(--ix-menu-about-news--color-primary);
       }
     }
 
@@ -61,7 +62,7 @@ $left: 3.4rem;
   }
 
   .popover-body {
-    color: var(--theme-color-std-text);
+    color: var(--ix-menu-about-news--color-std-text);
   }
 
   .cui-popover-news-footer {
@@ -80,7 +81,7 @@ $left: 3.4rem;
     position: absolute;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: var(--theme-color-2);
+    background-color: var(--ix-menu-about-news--color-2);
     transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
   }
 }
@@ -104,7 +105,7 @@ $left: 3.4rem;
     left: calc(50% - 1rem) !important;
     bottom: 1rem !important;
     margin-inline: 0 !important;
-    z-index: calc(var(--theme-z-index-sticky) - 1);
+    z-index: calc(var(--ix-menu-about-news--z-index-sticky) - 1);
 
     .slot-container {
       overflow-y: auto;

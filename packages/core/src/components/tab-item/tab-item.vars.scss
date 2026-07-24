@@ -1,0 +1,166 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$tab-item-color-1-fallback: light-dark(#ffffff, #0f1619);
+$tab-item-color-focus-bdr-fallback: #199fff;
+$pill-outline-color-fallback: light-dark(#000609, #ffffff);
+$animated-tab-circle-background-fallback: light-dark(#ffffff, #1a272d);
+$animated-tab-circle-background-active-fallback: light-dark(
+  rgba(0, 148, 177, 0.2),
+  rgba(0, 111, 142, 0.15)
+);
+$animated-tab-circle-background-disabled-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$animated-tab-circle-background-hover-fallback: light-dark(
+  rgba(0, 234, 255, 0.18),
+  rgba(0, 234, 255, 0.12)
+);
+$animated-tab-circle-background-selected-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$animated-tab-circle-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$animated-tab-circle-border-color-disabled-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$animated-tab-circle-border-color-selected-fallback: light-dark(
+  #004f69,
+  #00eaff
+);
+$animated-tab-icon-color-fallback: light-dark(#000609, #ffffff);
+$animated-tab-icon-color-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-background-fallback: light-dark(rgba(243, 244, 245, 0), rgba(0, 6, 9, 0));
+$tab-background-active-fallback: light-dark(
+  rgba(0, 148, 177, 0.2),
+  rgba(0, 111, 142, 0.15)
+);
+$tab-background-disabled-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$tab-background-hover-fallback: light-dark(
+  rgba(0, 234, 255, 0.18),
+  rgba(0, 234, 255, 0.12)
+);
+$tab-background-selected-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$tab-color-fallback: light-dark(#000609, #ffffff);
+$tab-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$tab-color-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-indicator-background-disabled-fallback: light-dark(#aeb5b8, #72848c);
+$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
+$tab-pill-border-color-fallback: light-dark(#5b6a71, #aeb5b8);
+$tab-pill-border-color-disabled-fallback: light-dark(#5b6a71, #aeb5b8);
+$tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+
+:host {
+  --ix-tab-item--color-1: var(--theme-color-1, #{$tab-item-color-1-fallback});
+  --ix-tab-item--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$tab-item-color-focus-bdr-fallback}
+  );
+  --ix-pill-outline--color: var(
+    --theme-color-std-text,
+    #{$pill-outline-color-fallback}
+  );
+  --ix-animated-tab-circle--background: var(
+    --theme-color-component-1,
+    #{$animated-tab-circle-background-fallback}
+  );
+  --ix-animated-tab-circle--background--active: var(
+    --theme-color-ghost-primary--active,
+    #{$animated-tab-circle-background-active-fallback}
+  );
+  --ix-animated-tab-circle--background--disabled: var(
+    --theme-color-ghost,
+    #{$animated-tab-circle-background-disabled-fallback}
+  );
+  --ix-animated-tab-circle--background--hover: var(
+    --theme-color-ghost-primary--hover,
+    #{$animated-tab-circle-background-hover-fallback}
+  );
+  --ix-animated-tab-circle--background--selected: var(
+    --theme-color-ghost,
+    #{$animated-tab-circle-background-selected-fallback}
+  );
+  --ix-animated-tab-circle--border-color: var(
+    --theme-color-0,
+    #{$animated-tab-circle-border-color-fallback}
+  );
+  --ix-animated-tab-circle--border-color--disabled: var(
+    --theme-color-ghost,
+    #{$animated-tab-circle-border-color-disabled-fallback}
+  );
+  --ix-animated-tab-circle--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$animated-tab-circle-border-color-selected-fallback}
+  );
+  --ix-animated-tab-icon--color: var(
+    --theme-color-std-text,
+    #{$animated-tab-icon-color-fallback}
+  );
+  --ix-animated-tab-icon--color--selected: var(
+    --theme-color-dynamic,
+    #{$animated-tab-icon-color-selected-fallback}
+  );
+  --ix-tab--background: var(--theme-color-ghost, #{$tab-background-fallback});
+  --ix-tab--background--active: var(
+    --theme-color-ghost-primary--active,
+    #{$tab-background-active-fallback}
+  );
+  --ix-tab--background--disabled: var(
+    --theme-color-ghost,
+    #{$tab-background-disabled-fallback}
+  );
+  --ix-tab--background--hover: var(
+    --theme-color-ghost-primary--hover,
+    #{$tab-background-hover-fallback}
+  );
+  --ix-tab--background--selected: var(
+    --theme-color-ghost,
+    #{$tab-background-selected-fallback}
+  );
+  --ix-tab--color: var(--theme-color-std-text, #{$tab-color-fallback});
+  --ix-tab--color--disabled: var(
+    --theme-color-weak-text,
+    #{$tab-color-disabled-fallback}
+  );
+  --ix-tab--color--selected: var(
+    --theme-color-dynamic,
+    #{$tab-color-selected-fallback}
+  );
+  --ix-tab-indicator--background--disabled: var(
+    --theme-color-soft-bdr,
+    #{$tab-indicator-background-disabled-fallback}
+  );
+  --ix-tab-indicator--background--selected: var(
+    --theme-color-dynamic,
+    #{$tab-indicator-background-selected-fallback}
+  );
+  --ix-tab-pill--border-color: var(
+    --theme-color-neutral,
+    #{$tab-pill-border-color-fallback}
+  );
+  --ix-tab-pill--border-color--disabled: var(
+    --theme-color-neutral,
+    #{$tab-pill-border-color-disabled-fallback}
+  );
+  --ix-tab-pill--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$tab-pill-border-color-selected-fallback}
+  );
+}

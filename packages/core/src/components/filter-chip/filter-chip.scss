@@ -12,17 +12,18 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './filter-chip.vars' as *;
 :host {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   height: vars.$large-space;
   padding-left: vars.$small-space;
-  border: var(--theme-focus--border-thickness) solid
-    var(--theme-chip-primary-outline--border-color);
+  border: var(--ix-filter-chip--focus--border-thickness) solid
+    var(--ix-chip-primary-outline--border-color);
   border-radius: vars.$x-large-space;
-  background-color: var(--theme-color-ghost);
-  color: var(--theme-chip-primary-outline--color);
+  background-color: var(--ix-filter-chip--color-ghost);
+  color: var(--ix-chip-primary-outline--color);
 
   @include component.ix-component;
 
@@ -32,9 +33,9 @@
     min-width: 0;
 
     :host-context(.disabled) {
-      background-color: var(--theme-color-ghost);
-      border-color: var(--theme-color-component-4);
-      color: var(--theme-color-weak-text);
+      background-color: var(--ix-filter-chip--color-ghost);
+      border-color: var(--ix-filter-chip--color-component-4);
+      color: var(--ix-filter-chip--color-weak-text);
     }
   }
 
@@ -49,9 +50,9 @@
 }
 
 :host(.disabled) {
-  border: var(--theme-focus--border-thickness) solid
-    var(--theme-color-component-4);
-  color: var(--theme-color-weak-text);
+  border: var(--ix-filter-chip--focus--border-thickness) solid
+    var(--ix-filter-chip--color-component-4);
+  color: var(--ix-filter-chip--color-weak-text);
   padding-right: vars.$small-space;
 
   cursor: default;
@@ -63,13 +64,13 @@
 }
 
 @include hover.host-hover {
-  background-color: var(--theme-color-ghost-primary--hover);
-  border-color: var(--theme-chip-primary-outline--border-color--hover);
-  color: var(--theme-chip-primary-outline--color--hover);
+  background-color: var(--ix-filter-chip--color-ghost-primary--hover);
+  border-color: var(--ix-chip-primary-outline--border-color--hover);
+  color: var(--ix-chip-primary-outline--color--hover);
 }
 
 @include hover.host-active {
-  background-color: var(--theme-color-ghost-primary--active);
-  border-color: var(--theme-chip-primary-outline--border-color--active);
-  color: var(--theme-chip-primary-outline--color--active);
+  background-color: var(--ix-filter-chip--color-ghost-primary--active);
+  border-color: var(--ix-chip-primary-outline--border-color--active);
+  color: var(--ix-chip-primary-outline--color--active);
 }

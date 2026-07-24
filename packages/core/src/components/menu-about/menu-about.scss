@@ -11,9 +11,10 @@
 @use 'legacy/fonts';
 @use 'mixins/shadow-dom/component';
 
+@use './menu-about.vars' as *;
 :host {
   display: block;
-  background-color: var(--theme-nav-overlay--background);
+  background-color: var(--ix-nav-overlay--background);
   padding: vars.$medium-space vars.$default-space vars.$default-space
     vars.$x-large-space;
   flex-grow: 1;
@@ -32,7 +33,7 @@
     margin-bottom: vars.$small-space;
 
     h2 {
-      color: var(--theme-nav-overlay-header--color);
+      color: var(--ix-nav-overlay-header--color);
       margin-bottom: 1rem;
     }
   }

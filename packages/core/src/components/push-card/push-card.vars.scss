@@ -1,0 +1,984 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$push-card-alarm-background-fallback: #d72323;
+$push-card-alarm-background-active-fallback: #a70808;
+$push-card-alarm-background-hover-fallback: #c01616;
+$push-card-alarm-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-alarm-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-alarm-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-alarm-color-fallback: #ffffff;
+$push-card-alarm-accordion-background-fallback: #d72323;
+$push-card-alarm-accordion-background-active-fallback: #a70808;
+$push-card-alarm-accordion-background-hover-fallback: #c01616;
+$push-card-alarm-accordion-border-color-fallback: light-dark(#f3f4f5, #000609);
+$push-card-alarm-accordion-color-fallback: #ffffff;
+$push-card-alarm-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-alarm-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-alarm-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-alarm-subtext-color-fallback: #ffffff;
+$push-card-critical-background-fallback: light-dark(#ba5d00, #ff8000);
+$push-card-critical-background-active-fallback: light-dark(#824100, #ba5d00);
+$push-card-critical-background-hover-fallback: light-dark(#9a4d00, #e37200);
+$push-card-critical-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-critical-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-critical-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-critical-color-fallback: light-dark(#ffffff, #000609);
+$push-card-critical-accordion-background-fallback: light-dark(#ba5d00, #ff8000);
+$push-card-critical-accordion-background-active-fallback: light-dark(
+  #824100,
+  #ba5d00
+);
+$push-card-critical-accordion-background-hover-fallback: light-dark(
+  #9a4d00,
+  #e37200
+);
+$push-card-critical-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-critical-accordion-color-fallback: light-dark(#ffffff, #000609);
+$push-card-critical-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-critical-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-critical-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-critical-subtext-color-fallback: light-dark(#ffffff, #000609);
+$push-card-filled-background-fallback: light-dark(#ffffff, #1a272d);
+$push-card-filled-background-active-fallback: light-dark(#dcdee0, #34454d);
+$push-card-filled-background-hover-fallback: light-dark(#e8ebed, #273940);
+$push-card-filled-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-filled-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-filled-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-filled-color-fallback: light-dark(#000609, #ffffff);
+$push-card-filled-accordion-background-fallback: light-dark(#ffffff, #1a272d);
+$push-card-filled-accordion-background-active-fallback: light-dark(
+  #dcdee0,
+  #34454d
+);
+$push-card-filled-accordion-background-hover-fallback: light-dark(
+  #e8ebed,
+  #273940
+);
+$push-card-filled-accordion-border-color-fallback: light-dark(#f3f4f5, #000609);
+$push-card-filled-accordion-color-fallback: light-dark(#000609, #ffffff);
+$push-card-filled-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-filled-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-filled-accordion-frame-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-filled-subtext-color-fallback: light-dark(#405158, #aeb5b8);
+$push-card-info-background-fallback: #226ae7;
+$push-card-info-background-active-fallback: #2050a2;
+$push-card-info-background-hover-fallback: #215dc5;
+$push-card-info-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-info-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-info-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-info-color-fallback: #ffffff;
+$push-card-info-accordion-background-fallback: #226ae7;
+$push-card-info-accordion-background-active-fallback: #2050a2;
+$push-card-info-accordion-background-hover-fallback: #215dc5;
+$push-card-info-accordion-border-color-fallback: light-dark(#f3f4f5, #000609);
+$push-card-info-accordion-color-fallback: #ffffff;
+$push-card-info-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-info-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-info-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-info-subtext-color-fallback: #ffffff;
+$push-card-neutral-background-fallback: light-dark(#5b6a71, #aeb5b8);
+$push-card-neutral-background-active-fallback: light-dark(#243137, #72848c);
+$push-card-neutral-background-hover-fallback: light-dark(#34454d, #919ca1);
+$push-card-neutral-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-neutral-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-neutral-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-neutral-color-fallback: light-dark(#ffffff, #000609);
+$push-card-neutral-accordion-background-fallback: light-dark(#5b6a71, #aeb5b8);
+$push-card-neutral-accordion-background-active-fallback: light-dark(
+  #243137,
+  #72848c
+);
+$push-card-neutral-accordion-background-hover-fallback: light-dark(
+  #34454d,
+  #919ca1
+);
+$push-card-neutral-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-neutral-accordion-color-fallback: light-dark(#ffffff, #000609);
+$push-card-neutral-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-neutral-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-neutral-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-neutral-subtext-color-fallback: light-dark(#ffffff, #000609);
+$push-card-outline-background-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-outline-background-active-fallback: light-dark(#dcdee0, #34454d);
+$push-card-outline-background-hover-fallback: light-dark(#e8ebed, #273940);
+$push-card-outline-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$push-card-outline-border-color-active-fallback: light-dark(#aeb5b8, #72848c);
+$push-card-outline-border-color-hover-fallback: light-dark(#aeb5b8, #72848c);
+$push-card-outline-color-fallback: light-dark(#000609, #ffffff);
+$push-card-outline-accordion-background-fallback: light-dark(#ffffff, #1a272d);
+$push-card-outline-accordion-background-active-fallback: light-dark(
+  #dcdee0,
+  #34454d
+);
+$push-card-outline-accordion-background-hover-fallback: light-dark(
+  #e8ebed,
+  #273940
+);
+$push-card-outline-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-outline-accordion-color-fallback: light-dark(#000609, #ffffff);
+$push-card-outline-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-outline-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-outline-accordion-frame-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-outline-subtext-color-fallback: light-dark(#405158, #aeb5b8);
+$push-card-primary-background-fallback: light-dark(#006a87, #00c9e4);
+$push-card-primary-background-active-fallback: light-dark(#004e68, #00def7);
+$push-card-primary-background-hover-fallback: light-dark(#004f69, #00eaff);
+$push-card-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-primary-color-fallback: light-dark(#ffffff, #000609);
+$push-card-primary-accordion-background-fallback: light-dark(#006a87, #00c9e4);
+$push-card-primary-accordion-background-active-fallback: light-dark(
+  #004e68,
+  #00def7
+);
+$push-card-primary-accordion-background-hover-fallback: light-dark(
+  #004f69,
+  #00eaff
+);
+$push-card-primary-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-primary-accordion-color-fallback: light-dark(#ffffff, #000609);
+$push-card-primary-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-primary-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-primary-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-primary-subtext-color-fallback: light-dark(#ffffff, #000609);
+$push-card-success-background-fallback: light-dark(#376f1c, #59bd28);
+$push-card-success-background-active-fallback: light-dark(#1d3212, #99e672);
+$push-card-success-background-hover-fallback: light-dark(#2a5117, #7ad34d);
+$push-card-success-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-success-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-success-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-success-color-fallback: light-dark(#ffffff, #000609);
+$push-card-success-accordion-background-fallback: light-dark(#376f1c, #59bd28);
+$push-card-success-accordion-background-active-fallback: light-dark(
+  #1d3212,
+  #99e672
+);
+$push-card-success-accordion-background-hover-fallback: light-dark(
+  #2a5117,
+  #7ad34d
+);
+$push-card-success-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-success-accordion-color-fallback: light-dark(#ffffff, #000609);
+$push-card-success-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-success-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-success-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-success-subtext-color-fallback: light-dark(#ffffff, #000609);
+$push-card-warning-background-fallback: light-dark(#ffbf0f, #ffc832);
+$push-card-warning-background-active-fallback: #c69100;
+$push-card-warning-background-hover-fallback: #fcb900;
+$push-card-warning-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-warning-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-warning-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$push-card-warning-color-fallback: #000609;
+$push-card-warning-accordion-background-fallback: light-dark(#ffbf0f, #ffc832);
+$push-card-warning-accordion-background-active-fallback: #c69100;
+$push-card-warning-accordion-background-hover-fallback: #fcb900;
+$push-card-warning-accordion-border-color-fallback: light-dark(
+  #f3f4f5,
+  #000609
+);
+$push-card-warning-accordion-color-fallback: #000609;
+$push-card-warning-accordion-footer-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-warning-accordion-frame-background-fallback: light-dark(
+  #ffffff,
+  #1a272d
+);
+$push-card-warning-accordion-frame-border-color-fallback: light-dark(
+  #aeb5b8,
+  #72848c
+);
+$push-card-warning-subtext-color-fallback: #000609;
+
+:host {
+  --ix-push-card--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-push-card--border-width: var(--theme-border-width-default, 0.0625rem);
+  --ix-push-card--focus--outline-offset: var(
+    --theme-focus-outline-offset,
+    0.125rem
+  );
+  --ix-push-card-alarm--background: var(
+    --theme-color-alarm,
+    #{$push-card-alarm-background-fallback}
+  );
+  --ix-push-card-alarm--background--active: var(
+    --theme-color-alarm--active,
+    #{$push-card-alarm-background-active-fallback}
+  );
+  --ix-push-card-alarm--background--hover: var(
+    --theme-color-alarm--hover,
+    #{$push-card-alarm-background-hover-fallback}
+  );
+  --ix-push-card-alarm--border-color: var(
+    --theme-color-0,
+    #{$push-card-alarm-border-color-fallback}
+  );
+  --ix-push-card-alarm--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-alarm-border-color-active-fallback}
+  );
+  --ix-push-card-alarm--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-alarm-border-color-hover-fallback}
+  );
+  --ix-push-card-alarm--color: var(
+    --theme-color-alarm--contrast,
+    #{$push-card-alarm-color-fallback}
+  );
+  --ix-push-card-alarm-accordion--background: var(
+    --theme-color-alarm,
+    #{$push-card-alarm-accordion-background-fallback}
+  );
+  --ix-push-card-alarm-accordion--background--active: var(
+    --theme-color-alarm--active,
+    #{$push-card-alarm-accordion-background-active-fallback}
+  );
+  --ix-push-card-alarm-accordion--background--hover: var(
+    --theme-color-alarm--hover,
+    #{$push-card-alarm-accordion-background-hover-fallback}
+  );
+  --ix-push-card-alarm-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-alarm-accordion-border-color-fallback}
+  );
+  --ix-push-card-alarm-accordion--color: var(
+    --theme-color-alarm--contrast,
+    #{$push-card-alarm-accordion-color-fallback}
+  );
+  --ix-push-card-alarm-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-alarm-accordion-footer-background-fallback}
+  );
+  --ix-push-card-alarm-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-alarm-accordion-frame-background-fallback}
+  );
+  --ix-push-card-alarm-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-alarm-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-alarm-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-alarm-subtext--color: var(
+    --theme-color-alarm--contrast,
+    #{$push-card-alarm-subtext-color-fallback}
+  );
+  --ix-push-card-critical--background: var(
+    --theme-color-critical,
+    #{$push-card-critical-background-fallback}
+  );
+  --ix-push-card-critical--background--active: var(
+    --theme-color-critical--active,
+    #{$push-card-critical-background-active-fallback}
+  );
+  --ix-push-card-critical--background--hover: var(
+    --theme-color-critical--hover,
+    #{$push-card-critical-background-hover-fallback}
+  );
+  --ix-push-card-critical--border-color: var(
+    --theme-color-0,
+    #{$push-card-critical-border-color-fallback}
+  );
+  --ix-push-card-critical--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-critical-border-color-active-fallback}
+  );
+  --ix-push-card-critical--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-critical-border-color-hover-fallback}
+  );
+  --ix-push-card-critical--color: var(
+    --theme-color-critical--contrast,
+    #{$push-card-critical-color-fallback}
+  );
+  --ix-push-card-critical-accordion--background: var(
+    --theme-color-critical,
+    #{$push-card-critical-accordion-background-fallback}
+  );
+  --ix-push-card-critical-accordion--background--active: var(
+    --theme-color-critical--active,
+    #{$push-card-critical-accordion-background-active-fallback}
+  );
+  --ix-push-card-critical-accordion--background--hover: var(
+    --theme-color-critical--hover,
+    #{$push-card-critical-accordion-background-hover-fallback}
+  );
+  --ix-push-card-critical-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-critical-accordion-border-color-fallback}
+  );
+  --ix-push-card-critical-accordion--color: var(
+    --theme-color-critical--contrast,
+    #{$push-card-critical-accordion-color-fallback}
+  );
+  --ix-push-card-critical-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-critical-accordion-footer-background-fallback}
+  );
+  --ix-push-card-critical-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-critical-accordion-frame-background-fallback}
+  );
+  --ix-push-card-critical-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-critical-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-critical-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-critical-subtext--color: var(
+    --theme-color-critical--contrast,
+    #{$push-card-critical-subtext-color-fallback}
+  );
+  --ix-push-card-filled--background: var(
+    --theme-color-component-1,
+    #{$push-card-filled-background-fallback}
+  );
+  --ix-push-card-filled--background--active: var(
+    --theme-color-component-1--active,
+    #{$push-card-filled-background-active-fallback}
+  );
+  --ix-push-card-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$push-card-filled-background-hover-fallback}
+  );
+  --ix-push-card-filled--border-color: var(
+    --theme-color-0,
+    #{$push-card-filled-border-color-fallback}
+  );
+  --ix-push-card-filled--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-filled-border-color-active-fallback}
+  );
+  --ix-push-card-filled--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-filled-border-color-hover-fallback}
+  );
+  --ix-push-card-filled--color: var(
+    --theme-color-std-text,
+    #{$push-card-filled-color-fallback}
+  );
+  --ix-push-card-filled-accordion--background: var(
+    --theme-color-component-1,
+    #{$push-card-filled-accordion-background-fallback}
+  );
+  --ix-push-card-filled-accordion--background--active: var(
+    --theme-color-component-1--active,
+    #{$push-card-filled-accordion-background-active-fallback}
+  );
+  --ix-push-card-filled-accordion--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$push-card-filled-accordion-background-hover-fallback}
+  );
+  --ix-push-card-filled-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-filled-accordion-border-color-fallback}
+  );
+  --ix-push-card-filled-accordion--color: var(
+    --theme-color-std-text,
+    #{$push-card-filled-accordion-color-fallback}
+  );
+  --ix-push-card-filled-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-filled-accordion-footer-background-fallback}
+  );
+  --ix-push-card-filled-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-filled-accordion-frame-background-fallback}
+  );
+  --ix-push-card-filled-accordion-frame--border-color: var(
+    --theme-color-0,
+    #{$push-card-filled-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-filled-accordion-frame--border-width: var(
+    --theme-border-width-none,
+    0rem
+  );
+  --ix-push-card-filled-subtext--color: var(
+    --theme-color-soft-text,
+    #{$push-card-filled-subtext-color-fallback}
+  );
+  --ix-push-card-info--background: var(
+    --theme-color-info,
+    #{$push-card-info-background-fallback}
+  );
+  --ix-push-card-info--background--active: var(
+    --theme-color-info--active,
+    #{$push-card-info-background-active-fallback}
+  );
+  --ix-push-card-info--background--hover: var(
+    --theme-color-info--hover,
+    #{$push-card-info-background-hover-fallback}
+  );
+  --ix-push-card-info--border-color: var(
+    --theme-color-0,
+    #{$push-card-info-border-color-fallback}
+  );
+  --ix-push-card-info--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-info-border-color-active-fallback}
+  );
+  --ix-push-card-info--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-info-border-color-hover-fallback}
+  );
+  --ix-push-card-info--color: var(
+    --theme-color-info--contrast,
+    #{$push-card-info-color-fallback}
+  );
+  --ix-push-card-info-accordion--background: var(
+    --theme-color-info,
+    #{$push-card-info-accordion-background-fallback}
+  );
+  --ix-push-card-info-accordion--background--active: var(
+    --theme-color-info--active,
+    #{$push-card-info-accordion-background-active-fallback}
+  );
+  --ix-push-card-info-accordion--background--hover: var(
+    --theme-color-info--hover,
+    #{$push-card-info-accordion-background-hover-fallback}
+  );
+  --ix-push-card-info-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-info-accordion-border-color-fallback}
+  );
+  --ix-push-card-info-accordion--color: var(
+    --theme-color-info--contrast,
+    #{$push-card-info-accordion-color-fallback}
+  );
+  --ix-push-card-info-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-info-accordion-footer-background-fallback}
+  );
+  --ix-push-card-info-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-info-accordion-frame-background-fallback}
+  );
+  --ix-push-card-info-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-info-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-info-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-info-subtext--color: var(
+    --theme-color-info--contrast,
+    #{$push-card-info-subtext-color-fallback}
+  );
+  --ix-push-card-neutral--background: var(
+    --theme-color-neutral,
+    #{$push-card-neutral-background-fallback}
+  );
+  --ix-push-card-neutral--background--active: var(
+    --theme-color-neutral--active,
+    #{$push-card-neutral-background-active-fallback}
+  );
+  --ix-push-card-neutral--background--hover: var(
+    --theme-color-neutral--hover,
+    #{$push-card-neutral-background-hover-fallback}
+  );
+  --ix-push-card-neutral--border-color: var(
+    --theme-color-0,
+    #{$push-card-neutral-border-color-fallback}
+  );
+  --ix-push-card-neutral--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-neutral-border-color-active-fallback}
+  );
+  --ix-push-card-neutral--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-neutral-border-color-hover-fallback}
+  );
+  --ix-push-card-neutral--color: var(
+    --theme-color-neutral--contrast,
+    #{$push-card-neutral-color-fallback}
+  );
+  --ix-push-card-neutral-accordion--background: var(
+    --theme-color-neutral,
+    #{$push-card-neutral-accordion-background-fallback}
+  );
+  --ix-push-card-neutral-accordion--background--active: var(
+    --theme-color-neutral--active,
+    #{$push-card-neutral-accordion-background-active-fallback}
+  );
+  --ix-push-card-neutral-accordion--background--hover: var(
+    --theme-color-neutral--hover,
+    #{$push-card-neutral-accordion-background-hover-fallback}
+  );
+  --ix-push-card-neutral-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-neutral-accordion-border-color-fallback}
+  );
+  --ix-push-card-neutral-accordion--color: var(
+    --theme-color-neutral--contrast,
+    #{$push-card-neutral-accordion-color-fallback}
+  );
+  --ix-push-card-neutral-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-neutral-accordion-footer-background-fallback}
+  );
+  --ix-push-card-neutral-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-neutral-accordion-frame-background-fallback}
+  );
+  --ix-push-card-neutral-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-neutral-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-neutral-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-neutral-subtext--color: var(
+    --theme-color-neutral--contrast,
+    #{$push-card-neutral-subtext-color-fallback}
+  );
+  --ix-push-card-outline--background: var(
+    --theme-color-ghost,
+    #{$push-card-outline-background-fallback}
+  );
+  --ix-push-card-outline--background--active: var(
+    --theme-color-ghost--active,
+    #{$push-card-outline-background-active-fallback}
+  );
+  --ix-push-card-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$push-card-outline-background-hover-fallback}
+  );
+  --ix-push-card-outline--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-outline-border-color-fallback}
+  );
+  --ix-push-card-outline--border-color--active: var(
+    --theme-color-soft-bdr,
+    #{$push-card-outline-border-color-active-fallback}
+  );
+  --ix-push-card-outline--border-color--hover: var(
+    --theme-color-soft-bdr,
+    #{$push-card-outline-border-color-hover-fallback}
+  );
+  --ix-push-card-outline--color: var(
+    --theme-color-std-text,
+    #{$push-card-outline-color-fallback}
+  );
+  --ix-push-card-outline-accordion--background: var(
+    --theme-color-component-1,
+    #{$push-card-outline-accordion-background-fallback}
+  );
+  --ix-push-card-outline-accordion--background--active: var(
+    --theme-color-component-1--active,
+    #{$push-card-outline-accordion-background-active-fallback}
+  );
+  --ix-push-card-outline-accordion--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$push-card-outline-accordion-background-hover-fallback}
+  );
+  --ix-push-card-outline-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-outline-accordion-border-color-fallback}
+  );
+  --ix-push-card-outline-accordion--color: var(
+    --theme-color-std-text,
+    #{$push-card-outline-accordion-color-fallback}
+  );
+  --ix-push-card-outline-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-outline-accordion-footer-background-fallback}
+  );
+  --ix-push-card-outline-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-outline-accordion-frame-background-fallback}
+  );
+  --ix-push-card-outline-accordion-frame--border-color: var(
+    --theme-color-0,
+    #{$push-card-outline-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-outline-accordion-frame--border-width: var(
+    --theme-border-width-none,
+    0rem
+  );
+  --ix-push-card-outline-subtext--color: var(
+    --theme-color-soft-text,
+    #{$push-card-outline-subtext-color-fallback}
+  );
+  --ix-push-card-primary--background: var(
+    --theme-color-primary,
+    #{$push-card-primary-background-fallback}
+  );
+  --ix-push-card-primary--background--active: var(
+    --theme-color-primary--active,
+    #{$push-card-primary-background-active-fallback}
+  );
+  --ix-push-card-primary--background--hover: var(
+    --theme-color-primary--hover,
+    #{$push-card-primary-background-hover-fallback}
+  );
+  --ix-push-card-primary--border-color: var(
+    --theme-color-0,
+    #{$push-card-primary-border-color-fallback}
+  );
+  --ix-push-card-primary--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-primary-border-color-active-fallback}
+  );
+  --ix-push-card-primary--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-primary-border-color-hover-fallback}
+  );
+  --ix-push-card-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$push-card-primary-color-fallback}
+  );
+  --ix-push-card-primary-accordion--background: var(
+    --theme-color-primary,
+    #{$push-card-primary-accordion-background-fallback}
+  );
+  --ix-push-card-primary-accordion--background--active: var(
+    --theme-color-primary--active,
+    #{$push-card-primary-accordion-background-active-fallback}
+  );
+  --ix-push-card-primary-accordion--background--hover: var(
+    --theme-color-primary--hover,
+    #{$push-card-primary-accordion-background-hover-fallback}
+  );
+  --ix-push-card-primary-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-primary-accordion-border-color-fallback}
+  );
+  --ix-push-card-primary-accordion--color: var(
+    --theme-color-primary--contrast,
+    #{$push-card-primary-accordion-color-fallback}
+  );
+  --ix-push-card-primary-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-primary-accordion-footer-background-fallback}
+  );
+  --ix-push-card-primary-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-primary-accordion-frame-background-fallback}
+  );
+  --ix-push-card-primary-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-primary-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-primary-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-primary-subtext--color: var(
+    --theme-color-primary--contrast,
+    #{$push-card-primary-subtext-color-fallback}
+  );
+  --ix-push-card-success--background: var(
+    --theme-color-success,
+    #{$push-card-success-background-fallback}
+  );
+  --ix-push-card-success--background--active: var(
+    --theme-color-success--active,
+    #{$push-card-success-background-active-fallback}
+  );
+  --ix-push-card-success--background--hover: var(
+    --theme-color-success--hover,
+    #{$push-card-success-background-hover-fallback}
+  );
+  --ix-push-card-success--border-color: var(
+    --theme-color-0,
+    #{$push-card-success-border-color-fallback}
+  );
+  --ix-push-card-success--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-success-border-color-active-fallback}
+  );
+  --ix-push-card-success--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-success-border-color-hover-fallback}
+  );
+  --ix-push-card-success--color: var(
+    --theme-color-success--contrast,
+    #{$push-card-success-color-fallback}
+  );
+  --ix-push-card-success-accordion--background: var(
+    --theme-color-success,
+    #{$push-card-success-accordion-background-fallback}
+  );
+  --ix-push-card-success-accordion--background--active: var(
+    --theme-color-success--active,
+    #{$push-card-success-accordion-background-active-fallback}
+  );
+  --ix-push-card-success-accordion--background--hover: var(
+    --theme-color-success--hover,
+    #{$push-card-success-accordion-background-hover-fallback}
+  );
+  --ix-push-card-success-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-success-accordion-border-color-fallback}
+  );
+  --ix-push-card-success-accordion--color: var(
+    --theme-color-success--contrast,
+    #{$push-card-success-accordion-color-fallback}
+  );
+  --ix-push-card-success-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-success-accordion-footer-background-fallback}
+  );
+  --ix-push-card-success-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-success-accordion-frame-background-fallback}
+  );
+  --ix-push-card-success-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-success-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-success-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-success-subtext--color: var(
+    --theme-color-success--contrast,
+    #{$push-card-success-subtext-color-fallback}
+  );
+  --ix-push-card-warning--background: var(
+    --theme-color-warning,
+    #{$push-card-warning-background-fallback}
+  );
+  --ix-push-card-warning--background--active: var(
+    --theme-color-warning--active,
+    #{$push-card-warning-background-active-fallback}
+  );
+  --ix-push-card-warning--background--hover: var(
+    --theme-color-warning--hover,
+    #{$push-card-warning-background-hover-fallback}
+  );
+  --ix-push-card-warning--border-color: var(
+    --theme-color-0,
+    #{$push-card-warning-border-color-fallback}
+  );
+  --ix-push-card-warning--border-color--active: var(
+    --theme-color-0,
+    #{$push-card-warning-border-color-active-fallback}
+  );
+  --ix-push-card-warning--border-color--hover: var(
+    --theme-color-0,
+    #{$push-card-warning-border-color-hover-fallback}
+  );
+  --ix-push-card-warning--color: var(
+    --theme-color-warning--contrast,
+    #{$push-card-warning-color-fallback}
+  );
+  --ix-push-card-warning-accordion--background: var(
+    --theme-color-warning,
+    #{$push-card-warning-accordion-background-fallback}
+  );
+  --ix-push-card-warning-accordion--background--active: var(
+    --theme-color-warning--active,
+    #{$push-card-warning-accordion-background-active-fallback}
+  );
+  --ix-push-card-warning-accordion--background--hover: var(
+    --theme-color-warning--hover,
+    #{$push-card-warning-accordion-background-hover-fallback}
+  );
+  --ix-push-card-warning-accordion--border-color: var(
+    --theme-color-1,
+    #{$push-card-warning-accordion-border-color-fallback}
+  );
+  --ix-push-card-warning-accordion--color: var(
+    --theme-color-warning--contrast,
+    #{$push-card-warning-accordion-color-fallback}
+  );
+  --ix-push-card-warning-accordion-footer--background: var(
+    --theme-color-component-1,
+    #{$push-card-warning-accordion-footer-background-fallback}
+  );
+  --ix-push-card-warning-accordion-frame--background: var(
+    --theme-color-component-1,
+    #{$push-card-warning-accordion-frame-background-fallback}
+  );
+  --ix-push-card-warning-accordion-frame--border-color: var(
+    --theme-color-soft-bdr,
+    #{$push-card-warning-accordion-frame-border-color-fallback}
+  );
+  --ix-push-card-warning-accordion-frame--border-width: var(
+    --theme-border-width-default,
+    0.0625rem
+  );
+  --ix-push-card-warning-subtext--color: var(
+    --theme-color-warning--contrast,
+    #{$push-card-warning-subtext-color-fallback}
+  );
+}

@@ -1,0 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$pill-outline-background-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+
+:host {
+  --ix-pill-outline--background: var(
+    --theme-color-secondary,
+    #{$pill-outline-background-fallback}
+  );
+}

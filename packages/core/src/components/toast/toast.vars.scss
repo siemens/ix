@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$toast-background-fallback: light-dark(#ffffff, #1a272d);
+$toast-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$toast-box-shadow-fallback: 0 0 2px 0 light-dark(rgba(0, 6, 9, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6));
+$toast-timer-value-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
+);
+
+:host {
+  --ix-toast--medium-time: var(--theme-medium-time, 300ms);
+  --ix-toast--background: var(--theme-color-2, #{$toast-background-fallback});
+  --ix-toast--border-color: var(
+    --theme-color-0,
+    #{$toast-border-color-fallback}
+  );
+  --ix-toast--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-toast--border-radus: var(--theme-default-border-radius, 0.25rem);
+  --ix-toast--border-thickness: var(--theme-border-width-none, 0rem);
+  --ix-toast--box-shadow: var(--theme-shadow-4, #{$toast-box-shadow-fallback});
+  --ix-toast-timer-value--background: var(
+    --theme-color-component-4,
+    #{$toast-timer-value-background-fallback}
+  );
+}

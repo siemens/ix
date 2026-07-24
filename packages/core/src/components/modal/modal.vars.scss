@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$modal-color-lightbox-fallback: light-dark(
+  rgba(255, 255, 255, 0.65),
+  rgba(0, 0, 0, 0.65)
+);
+$modal-shadow-4-fallback: 0 0 2px 0 light-dark(rgba(0, 0, 0, 0.2), #000000),
+  0 4px 8px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+  0 12px 18px 0 light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$modal-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$modal-background-fallback: light-dark(#ffffff, #1a272d);
+
+:host {
+  --ix-modal--color-lightbox: var(
+    --theme-color-lightbox,
+    #{$modal-color-lightbox-fallback}
+  );
+  --ix-modal--default-border-radius: var(
+    --theme-default-border-radius,
+    0.25rem
+  );
+  --ix-modal--shadow-4: var(--theme-shadow-4, #{$modal-shadow-4-fallback});
+  --ix-modal--color-std-text: var(
+    --theme-color-std-text,
+    #{$modal-color-std-text-fallback}
+  );
+  --ix-modal--background: var(--theme-color-2, #{$modal-background-fallback});
+}

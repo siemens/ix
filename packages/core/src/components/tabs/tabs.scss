@@ -10,13 +10,14 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './tabs.vars' as *;
 @mixin tab-border($position) {
   &::before {
     content: '';
     position: absolute;
-    background-color: var(--theme-tab-indicator--background);
+    background-color: var(--ix-tab-indicator--background);
     width: 100%;
-    height: var(--theme-tab-indicator--height);
+    height: var(--ix-tab-indicator--height);
     left: 0;
     bottom: 0;
   }
@@ -24,9 +25,9 @@
   &::after {
     content: '';
     position: absolute;
-    background-color: var(--theme-tab-indicator--background--selected);
+    background-color: var(--ix-tab-indicator--background--selected);
     width: var(--ix-tab-active-indicator-width);
-    height: var(--theme-tab-indicator--height);
+    height: var(--ix-tab-indicator--height);
     left: 0;
     bottom: 0;
     transform: translateX(var(--ix-tab-active-indicator-offset));
@@ -96,7 +97,7 @@
 
   .tabs:focus-visible {
     outline-offset: -1px;
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-tabs--color-focus-bdr);
   }
 
   .tabs-context-menu {

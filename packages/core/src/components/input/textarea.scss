@@ -9,52 +9,53 @@
 @use './input.mixins.scss';
 @use 'mixins/validation/form-component';
 
+@use './textarea.vars' as *;
 @include input.input-field;
 
 @include form-component.host-valid;
 
 @include form-component.host-info {
   textarea {
-    border-color: var(--theme-input--border-color--info);
+    border-color: var(--ix-input--border-color--info);
 
     &:hover {
-      border-color: var(--theme-input--border-color--info--hover) !important;
+      border-color: var(--ix-input--border-color--info--hover) !important;
     }
 
     &:active {
-      border-color: var(--theme-input--border-color--info--active) !important;
+      border-color: var(--ix-input--border-color--info--active) !important;
     }
   }
 }
 
 @include form-component.host-warning {
   textarea {
-    background-color: var(--theme-input--background--warning);
-    border-color: var(--theme-input--border-color--warning--active) !important;
+    background-color: var(--ix-input--background--warning);
+    border-color: var(--ix-input--border-color--warning--active) !important;
 
     &:hover {
-      background-color: var(--theme-input--background--warning--hover);
-      border-color: var(--theme-input--border-color--warning--hover) !important;
+      background-color: var(--ix-input--background--warning--hover);
+      border-color: var(--ix-input--border-color--warning--hover) !important;
     }
 
     &:active {
-      border-color: var(--theme-input--border-color--warning--active) !important;
+      border-color: var(--ix-input--border-color--warning--active) !important;
     }
   }
 }
 
 @include form-component.host-invalid {
   textarea {
-    background-color: var(--theme-input--background--invalid);
-    border-color: var(--theme-input--border-color--invalid) !important;
+    background-color: var(--ix-input--background--invalid);
+    border-color: var(--ix-input--border-color--invalid) !important;
 
     &:hover {
-      background-color: var(--theme-input--background--invalid--hover);
-      border-color: var(--theme-input--border-color--invalid--hover) !important;
+      background-color: var(--ix-input--background--invalid--hover);
+      border-color: var(--ix-input--border-color--invalid--hover) !important;
     }
 
     &:active {
-      border-color: var(--theme-input--border-color--invalid--active) !important;
+      border-color: var(--ix-input--border-color--invalid--active) !important;
     }
   }
 }

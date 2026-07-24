@@ -1,0 +1,118 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$workflow-step-color-warning-fallback: #ffbb00;
+$workflow-step-color-success-fallback: light-dark(#2c8500, #44cc00);
+$workflow-step-color-alarm-fallback: light-dark(#d72332, #ff2453);
+$workflow-step-background-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$workflow-step-background-active-fallback: light-dark(#dcdee0, #34454d);
+$workflow-step-background-disabled-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$workflow-step-background-hover-fallback: light-dark(#e8ebed, #273940);
+$workflow-step-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$workflow-step-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$workflow-step-icon-default-color-fallback: light-dark(#405158, #aeb5b8);
+$workflow-step-icon-default-color-disabled-fallback: light-dark(
+  #919ca1,
+  #5b6a71
+);
+$workflow-step-icon-default-color-selected-fallback: light-dark(
+  #004f69,
+  #00eaff
+);
+$workflow-step-icon-done-color-fallback: light-dark(#006a87, #00c9e4);
+$workflow-step-icon-error-color-fallback: light-dark(#d72332, #ff2453);
+$workflow-step-icon-success-color-fallback: light-dark(#2c8500, #44cc00);
+$workflow-step-icon-warning-color-fallback: light-dark(#947100, #ffbb00);
+$workflow-step-icon-done-color-selected-fallback: light-dark(#004f69, #00eaff);
+$workflow-step-icon-status-color-disabled-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+
+:host {
+  --ix-workflow-step--color-warning: var(
+    --theme-color-warning,
+    #{$workflow-step-color-warning-fallback}
+  );
+  --ix-workflow-step--color-success: var(
+    --theme-color-success,
+    #{$workflow-step-color-success-fallback}
+  );
+  --ix-workflow-step--color-alarm: var(
+    --theme-color-alarm,
+    #{$workflow-step-color-alarm-fallback}
+  );
+  --ix-workflow--border-radius: 1px;
+  --ix-workflow-step--background: var(
+    --theme-color-ghost,
+    #{$workflow-step-background-fallback}
+  );
+  --ix-workflow-step--background--active: var(
+    --theme-color-ghost--active,
+    #{$workflow-step-background-active-fallback}
+  );
+  --ix-workflow-step--background--disabled: var(
+    --theme-color-ghost,
+    #{$workflow-step-background-disabled-fallback}
+  );
+  --ix-workflow-step--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$workflow-step-background-hover-fallback}
+  );
+  --ix-workflow-step--background--selected: var(
+    --theme-color-ghost--selected,
+    #{$workflow-step-background-selected-fallback}
+  );
+  --ix-workflow-step--color--disabled: var(
+    --theme-color-weak-text,
+    #{$workflow-step-color-disabled-fallback}
+  );
+  --ix-workflow-step-icon-default--color: var(
+    --theme-color-soft-text,
+    #{$workflow-step-icon-default-color-fallback}
+  );
+  --ix-workflow-step-icon-default--color--disabled: var(
+    --theme-color-weak-text,
+    #{$workflow-step-icon-default-color-disabled-fallback}
+  );
+  --ix-workflow-step-icon-default--color--selected: var(
+    --theme-color-dynamic,
+    #{$workflow-step-icon-default-color-selected-fallback}
+  );
+  --ix-workflow-step-icon-done--color: var(
+    --theme-color-primary,
+    #{$workflow-step-icon-done-color-fallback}
+  );
+  --ix-workflow-step-icon-error--color: var(
+    --theme-color-alarm,
+    #{$workflow-step-icon-error-color-fallback}
+  );
+  --ix-workflow-step-icon-success--color: var(
+    --theme-color-success,
+    #{$workflow-step-icon-success-color-fallback}
+  );
+  --ix-workflow-step-icon-warning--color: var(
+    --theme-color-warning-text,
+    #{$workflow-step-icon-warning-color-fallback}
+  );
+  --ix-workflow-step-icon-done--color--selected: var(
+    --theme-color-dynamic,
+    #{$workflow-step-icon-done-color-selected-fallback}
+  );
+  --ix-workflow-step-icon-status--color--disabled: var(
+    --theme-color-weak-text,
+    #{$workflow-step-icon-status-color-disabled-fallback}
+  );
+}

@@ -13,6 +13,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './group-item.vars' as *;
 $focusBorderWidth: 1px;
 
 :host {
@@ -31,15 +32,15 @@ $focusBorderWidth: 1px;
     justify-content: flex-start;
     position: relative;
     outline: none;
-    background-color: var(--theme-group-item--background);
+    background-color: var(--ix-group-item--background);
     border: 1px solid transparent;
-    color: var(--theme-color-std-text);
+    color: var(--ix-group-item--color-std-text);
     cursor: pointer;
 
     padding-left: 2.5rem;
 
     &:focus-visible {
-      border: $focusBorderWidth solid var(--theme-color-focus-bdr);
+      border: $focusBorderWidth solid var(--ix-group-item--color-focus-bdr);
     }
 
     &:disabled {
@@ -75,7 +76,7 @@ $focusBorderWidth: 1px;
     justify-content: flex-end;
     flex-grow: 1;
     white-space: nowrap;
-    color: var(--theme-color-soft-text);
+    color: var(--ix-group-item--color-soft-text);
 
     &,
     span {
@@ -87,34 +88,34 @@ $focusBorderWidth: 1px;
 
 :host(.selected) {
   border-top-width: 0.062rem !important;
-  background-color: var(--theme-color-ghost--selected);
+  background-color: var(--ix-group-item--color-ghost--selected);
 
   .group-entry-selection-indicator {
-    background-color: var(--theme-group-item-indicator--background--selected);
+    background-color: var(--ix-group-item-indicator--background--selected);
   }
 }
 
 :host(:not(.suppress-mouse-states):hover) {
-  background-color: var(--theme-color-ghost--selected-hover);
-  border-color: var(--theme-group-item--border-color--hover);
+  background-color: var(--ix-group-item--color-ghost--selected-hover);
+  border-color: var(--ix-group-item--border-color--hover);
 }
 
 :host(:not(.suppress-mouse-states).selected:hover) {
-  background-color: var(--theme-color-ghost--selected-hover);
+  background-color: var(--ix-group-item--color-ghost--selected-hover);
 }
 
 :host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
-  background-color: var(--theme-color-ghost--selected-active);
-  border-color: var(--theme-group-item--border-color--active);
+  background-color: var(--ix-group-item--color-ghost--selected-active);
+  border-color: var(--ix-group-item--border-color--active);
 }
 
 :host(:not(.suppress-mouse-states).selected:active):not(
     .suppress-mouse-states
   ) {
-  background-color: var(--theme-color-ghost--selected-active);
+  background-color: var(--ix-group-item--color-ghost--selected-active);
 }
 
 :host([disabled]) {
   pointer-events: none;
-  color: var(--theme-color-weak-text);
+  color: var(--ix-group-item--color-weak-text);
 }

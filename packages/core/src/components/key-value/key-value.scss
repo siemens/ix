@@ -1,6 +1,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 
+@use './key-value.vars' as *;
 :host(.keyValue) {
   display: flex;
   flex-direction: row;
@@ -25,7 +26,7 @@
     }
 
     .content__label {
-      color: var(--theme-color-soft-text);
+      color: var(--ix-key-value--color-soft-text);
     }
 
     .content__value {
@@ -36,7 +37,7 @@
 
 :host(.keyValue.keyValue--column) {
   padding: vars.$small-space 0;
-  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  border-bottom: 1px solid var(--ix-key-value--color-soft-bdr);
 
   .keyValue__content {
     flex-direction: column;

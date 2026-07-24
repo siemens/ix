@@ -104,7 +104,7 @@ export class WorkflowStep {
         break;
       case 'success':
         this.iconName = iconSuccess;
-        this.iconColor = 'color-success';
+        this.iconColor = 'workflow-step-icon-success--color';
         break;
       case 'done':
         this.iconName = iconCircleFilled;
@@ -112,12 +112,11 @@ export class WorkflowStep {
         break;
       case 'warning':
         this.iconName = iconWarning;
-        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
-        this.iconColor = 'color-warning-text';
+        this.iconColor = 'workflow-step-icon-warning--color';
         break;
       case 'error':
         this.iconName = iconError;
-        this.iconColor = 'color-alarm';
+        this.iconColor = 'workflow-step-icon-error--color';
         break;
       default:
         this.iconName = iconCircle;
@@ -125,7 +124,7 @@ export class WorkflowStep {
     }
 
     if (this.disabled) {
-      this.iconColor = 'workflow-step-icon-success--color--disabled';
+      this.iconColor = 'workflow-step-icon-status--color--disabled';
     }
   }
 
@@ -177,7 +176,7 @@ export class WorkflowStep {
           size="24"
         ></ix-icon>
         <ix-icon
-          color={this.iconColor}
+          style={{ color: `var(--ix-${this.iconColor})` }}
           name={this.iconName}
           class="absolute"
           size="24"

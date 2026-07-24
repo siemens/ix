@@ -1,0 +1,43 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$menu-avatar-color-focus-bdr-fallback: #199fff;
+$avatar-btn-background-active-fallback: light-dark(#dcdee0, #34454d);
+$avatar-btn-background-hover-fallback: light-dark(#e8ebed, #273940);
+$avatar-btn-color-active-fallback: light-dark(#000609, #ffffff);
+$avatar-btn-color-hover-fallback: light-dark(#000609, #ffffff);
+$nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
+
+:host {
+  --ix-menu-avatar--default-time: var(--theme-default-time, 150ms);
+  --ix-menu-avatar--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$menu-avatar-color-focus-bdr-fallback}
+  );
+  --ix-avatar-btn--background--active: var(
+    --theme-color-ghost--active,
+    #{$avatar-btn-background-active-fallback}
+  );
+  --ix-avatar-btn--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$avatar-btn-background-hover-fallback}
+  );
+  --ix-avatar-btn--color--active: var(
+    --theme-color-std-text,
+    #{$avatar-btn-color-active-fallback}
+  );
+  --ix-avatar-btn--color--hover: var(
+    --theme-color-std-text,
+    #{$avatar-btn-color-hover-fallback}
+  );
+  --ix-nav-item-primary--color: var(
+    --theme-color-std-text,
+    #{$nav-item-primary-color-fallback}
+  );
+}

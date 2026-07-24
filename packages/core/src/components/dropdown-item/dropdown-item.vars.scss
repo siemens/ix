@@ -1,0 +1,39 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$dropdown-item-color-primary-fallback: light-dark(#006e93, #00bde3);
+$dropdown-item-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$dropdown-item-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$dropdown-item-color-focus-bdr-fallback: #199fff;
+
+:host {
+  --ix-dropdown-item--color-primary: var(
+    --theme-color-primary,
+    #{$dropdown-item-color-primary-fallback}
+  );
+  --ix-dropdown-item--color-std-text: var(
+    --theme-color-std-text,
+    #{$dropdown-item-color-std-text-fallback}
+  );
+  --ix-dropdown-item--color-weak-text: var(
+    --theme-color-weak-text,
+    #{$dropdown-item-color-weak-text-fallback}
+  );
+  --ix-dropdown-item--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$dropdown-item-color-focus-bdr-fallback}
+  );
+  --ix-dropdown-item-checked-color: var(--ix-dropdown-item--color-primary);
+}

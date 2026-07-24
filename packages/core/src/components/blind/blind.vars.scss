@@ -1,0 +1,146 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'sass:map';
+
+$blind-color-ghost-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$blind-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$blind-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$blind-color-primary-fallback: light-dark(#006e93, #00bde3);
+$blind-color-soft-bdr-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$blind-color-focus-bdr-fallback: #199fff;
+$blind-base-background-fallback: light-dark(#ffffff, #1a272d);
+$blind-base-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+
+$blind-variant-fallbacks: (
+  alarm: (
+    background: light-dark(#d72332, #ff2453),
+    hover: light-dark(#c11f2d, #ff577b),
+    active: light-dark(#b41d2a, #ff335f),
+    color: light-dark(#ffffff, #000000),
+  ),
+  critical: (
+    background: light-dark(#bc5b01, #eb7a0a),
+    hover: light-dark(#ad5401, #ed8721),
+    active: light-dark(#9d4d01, #eb8014),
+    color: light-dark(#ffffff, #000000),
+  ),
+  filled: (
+    background: transparent,
+    hover: transparent,
+    active: transparent,
+    color: light-dark(rgba(0, 10, 20, 0.9), rgba(245, 252, 255, 0.9)),
+  ),
+  info: (
+    background: light-dark(#0041b2, #357fff),
+    hover: light-dark(#003a9e, #4d8eff),
+    active: light-dark(#003694, #3d84ff),
+    color: light-dark(#ffffff, #000000),
+  ),
+  neutral: (
+    background: light-dark(#66727e, #b6b8b9),
+    hover: light-dark(#5b6671, #c8cacb),
+    active: light-dark(#545e68, #acaeaf),
+    color: light-dark(#ffffff, #000000),
+  ),
+  primary: (
+    background: light-dark(#006e93, #00bde3),
+    hover: light-dark(#196269, #1aecff),
+    active: light-dark(#16565c, #00d3e5),
+    color: light-dark(#ffffff, #000000),
+  ),
+  success: (
+    background: light-dark(#2c8500, #44cc00),
+    hover: light-dark(#277500, #4eeb00),
+    active: light-dark(#246b00, #47d600),
+    color: light-dark(#ffffff, #000000),
+  ),
+  warning: (
+    background: #ffbb00,
+    hover: #ffc533,
+    active: #ffba0a,
+    color: #000000,
+  ),
+);
+
+@mixin variant-vars($variant) {
+  @if map.has-key($blind-variant-fallbacks, $variant) {
+    $fallbacks: map.get($blind-variant-fallbacks, $variant);
+
+    --ix-blind-#{$variant}--background: var(
+      --theme-color-#{$variant},
+      #{map.get($fallbacks, background)}
+    );
+    --ix-blind-#{$variant}--background--hover: var(
+      --theme-color-#{$variant}--hover,
+      #{map.get($fallbacks, hover)}
+    );
+    --ix-blind-#{$variant}--background--active: var(
+      --theme-color-#{$variant}--active,
+      #{map.get($fallbacks, active)}
+    );
+    --ix-blind-#{$variant}--color: var(
+      --theme-color-#{$variant}--contrast,
+      #{map.get($fallbacks, color)}
+    );
+  }
+}
+
+:host {
+  --ix-blind--color-ghost: var(
+    --theme-color-ghost,
+    #{$blind-color-ghost-fallback}
+  );
+  --ix-blind--color-std-text: var(
+    --theme-color-std-text,
+    #{$blind-color-std-text-fallback}
+  );
+  --ix-blind--color-soft-text: var(
+    --theme-color-soft-text,
+    #{$blind-color-soft-text-fallback}
+  );
+  --ix-blind--color-primary: var(
+    --theme-color-primary,
+    #{$blind-color-primary-fallback}
+  );
+  --ix-blind--color-soft-bdr: var(
+    --theme-color-soft-bdr,
+    #{$blind-color-soft-bdr-fallback}
+  );
+  --ix-blind--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$blind-color-focus-bdr-fallback}
+  );
+  --ix-blind--default-time: var(--theme-default-time, 150ms);
+  --ix-blind--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-blind-base--background: var(
+    --theme-color-component-1,
+    #{$blind-base-background-fallback}
+  );
+  --ix-blind-base--border-color: var(
+    --theme-color-0,
+    #{$blind-base-border-color-fallback}
+  );
+}

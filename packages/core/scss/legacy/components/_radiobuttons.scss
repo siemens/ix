@@ -36,7 +36,7 @@
     position: relative;
     user-select: none;
 
-    color: var(--theme-radiobtn-label--color);
+    color: var(--theme-color-std-text);
     margin-right: vars.$default-space;
   }
 
@@ -65,48 +65,48 @@
   .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-radiobtn--focus--outline-offset);
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:focus-visible + label {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-radiobtn--focus--outline-offset);
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:not(:checked) {
     & + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color);
+      background-color: var(--theme-color-secondary);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-contrast-bdr);
     }
 
     &:hover + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background--hover);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--hover);
+      background-color: var(--theme-color-secondary--hover);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-dynamic);
     }
 
     &:active + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background--active);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--active);
+      background-color: var(--theme-color-secondary--active);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-dynamic);
     }
 
     &:disabled + label::before {
-      background-color: var(--theme-radiobtn-unchecked--background--disabled);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--disabled);
+      background-color: var(--theme-color-ghost);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-component-4);
     }
   }
 
   .ix-form-control[type='radio']:checked {
     & + label:before {
-      background-color: var(--theme-radiobtn-checked--background);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color);
+      background-color: var(--theme-color-dynamic);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-0);
     }
 
     & + label:after {
@@ -114,7 +114,7 @@
       width: vars.$small-space;
       height: vars.$small-space;
       display: block;
-      background-color: var(--theme-radiobtn-checked--color);
+      background-color: var(--theme-color-primary--contrast);
       border-radius: 100%;
       position: absolute;
       top: 0.5rem;
@@ -122,25 +122,25 @@
     }
 
     &:hover + label:before {
-      background-color: var(--theme-radiobtn-checked--background--hover);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--hover);
+      background-color: var(--theme-color-dynamic--hover);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-0);
     }
 
     &:active + label:before {
-      background-color: var(--theme-radiobtn-checked--background--active);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--active);
+      background-color: var(--theme-color-dynamic--active);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-0);
     }
 
     &:disabled + label:before {
-      background-color: var(--theme-radiobtn-checked--background--disabled);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--disabled);
+      background-color: var(--theme-color-component-4);
+      border: var(--theme-border-width-default) solid
+        var(--theme-color-0);
     }
 
     &:disabled + label::after {
-      border-color: var(--theme-radiobtn-checked--color--disabled);
+      border-color: var(--theme-color-primary--contrast);
     }
   }
 
@@ -150,7 +150,7 @@
   }
 
   .ix-form-control[type='radio']:disabled + label {
-    color: var(--theme-radiobtn-label--color--disabled);
+    color: var(--theme-color-weak-text);
   }
 }
 

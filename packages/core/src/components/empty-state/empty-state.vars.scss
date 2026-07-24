@@ -1,0 +1,11 @@
+$empty-state-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+
+:host {
+  --ix-empty-state--color-soft-text: var(
+    --theme-color-soft-text,
+    #{$empty-state-color-soft-text-fallback}
+  );
+}

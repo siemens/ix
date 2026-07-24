@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$tabs-color-focus-bdr-fallback: #199fff;
+$tab-indicator-background-fallback: light-dark(#aeb5b8, #72848c);
+$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
+
+:host {
+  --ix-tabs--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$tabs-color-focus-bdr-fallback}
+  );
+  --ix-tab-indicator--background: var(
+    --theme-color-soft-bdr,
+    #{$tab-indicator-background-fallback}
+  );
+  --ix-tab-indicator--background--selected: var(
+    --theme-color-dynamic,
+    #{$tab-indicator-background-selected-fallback}
+  );
+  --ix-tab-indicator--height: 0.0625rem;
+}

@@ -1,0 +1,198 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$progress-indicator-fill-background-fallback: light-dark(#004f69, #00eaff);
+$progress-indicator-fill-error-background-fallback: #d72323;
+$progress-indicator-fill-info-background-fallback: #226ae7;
+$progress-indicator-fill-paused-background-fallback: light-dark(
+  #5b6a71,
+  #aeb5b8
+);
+$progress-indicator-fill-success-background-fallback: light-dark(
+  #376f1c,
+  #59bd28
+);
+$progress-indicator-fill-warning-background-fallback: light-dark(
+  #c69100,
+  #ffc832
+);
+$progress-indicator-helper-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-helper-error-color-fallback: light-dark(#a70808, #ff8e8e);
+$progress-indicator-helper-icon-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-helper-icon-error-color-fallback: #d72323;
+$progress-indicator-helper-icon-info-color-fallback: #226ae7;
+$progress-indicator-helper-icon-paused-color-fallback: light-dark(
+  #5b6a71,
+  #aeb5b8
+);
+$progress-indicator-helper-icon-success-color-fallback: light-dark(
+  #376f1c,
+  #59bd28
+);
+$progress-indicator-helper-icon-warning-color-fallback: light-dark(
+  #906900,
+  #ffbf0f
+);
+$progress-indicator-helper-info-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-paused-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-success-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-helper-warning-color-fallback: light-dark(#000609, #ffffff);
+$progress-indicator-label-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-error-color-fallback: light-dark(#a70808, #ff8e8e);
+$progress-indicator-label-info-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-paused-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-success-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-label-warning-color-fallback: light-dark(#405158, #aeb5b8);
+$progress-indicator-track-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
+);
+$progress-indicator-track-error-background-fallback: light-dark(
+  #fccccc,
+  #430000
+);
+$progress-indicator-track-info-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
+);
+$progress-indicator-track-paused-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
+);
+$progress-indicator-track-success-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
+);
+$progress-indicator-track-warning-background-fallback: light-dark(
+  #ffedba,
+  #4d3901
+);
+
+:host {
+  --ix-progress-indicator-fill--background: var(
+    --theme-color-dynamic,
+    #{$progress-indicator-fill-background-fallback}
+  );
+  --ix-progress-indicator-fill-error--background: var(
+    --theme-color-alarm,
+    #{$progress-indicator-fill-error-background-fallback}
+  );
+  --ix-progress-indicator-fill-info--background: var(
+    --theme-color-info,
+    #{$progress-indicator-fill-info-background-fallback}
+  );
+  --ix-progress-indicator-fill-paused--background: var(
+    --theme-color-neutral,
+    #{$progress-indicator-fill-paused-background-fallback}
+  );
+  --ix-progress-indicator-fill-success--background: var(
+    --theme-color-success,
+    #{$progress-indicator-fill-success-background-fallback}
+  );
+  --ix-progress-indicator-fill-warning--background: var(
+    --theme-color-warning-bdr,
+    #{$progress-indicator-fill-warning-background-fallback}
+  );
+  --ix-progress-indicator-helper--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-helper-color-fallback}
+  );
+  --ix-progress-indicator-helper-error--color: var(
+    --theme-color-alarm-text,
+    #{$progress-indicator-helper-error-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-helper-icon-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon-error--color: var(
+    --theme-color-alarm,
+    #{$progress-indicator-helper-icon-error-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon-info--color: var(
+    --theme-color-info,
+    #{$progress-indicator-helper-icon-info-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon-paused--color: var(
+    --theme-color-neutral,
+    #{$progress-indicator-helper-icon-paused-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon-success--color: var(
+    --theme-color-success,
+    #{$progress-indicator-helper-icon-success-color-fallback}
+  );
+  --ix-progress-indicator-helper-icon-warning--color: var(
+    --theme-color-warning-text,
+    #{$progress-indicator-helper-icon-warning-color-fallback}
+  );
+  --ix-progress-indicator-helper-info--color: var(
+    --theme-color-std-text,
+    #{$progress-indicator-helper-info-color-fallback}
+  );
+  --ix-progress-indicator-helper-paused--color: var(
+    --theme-color-std-text,
+    #{$progress-indicator-helper-paused-color-fallback}
+  );
+  --ix-progress-indicator-helper-success--color: var(
+    --theme-color-std-text,
+    #{$progress-indicator-helper-success-color-fallback}
+  );
+  --ix-progress-indicator-helper-warning--color: var(
+    --theme-color-std-text,
+    #{$progress-indicator-helper-warning-color-fallback}
+  );
+  --ix-progress-indicator-label--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-label-color-fallback}
+  );
+  --ix-progress-indicator-label-error--color: var(
+    --theme-color-alarm-text,
+    #{$progress-indicator-label-error-color-fallback}
+  );
+  --ix-progress-indicator-label-info--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-label-info-color-fallback}
+  );
+  --ix-progress-indicator-label-paused--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-label-paused-color-fallback}
+  );
+  --ix-progress-indicator-label-success--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-label-success-color-fallback}
+  );
+  --ix-progress-indicator-label-warning--color: var(
+    --theme-color-soft-text,
+    #{$progress-indicator-label-warning-color-fallback}
+  );
+  --ix-progress-indicator-track--background: var(
+    --theme-color-component-3,
+    #{$progress-indicator-track-background-fallback}
+  );
+  --ix-progress-indicator-track-error--background: var(
+    --theme-color-component-error,
+    #{$progress-indicator-track-error-background-fallback}
+  );
+  --ix-progress-indicator-track-info--background: var(
+    --theme-color-component-3,
+    #{$progress-indicator-track-info-background-fallback}
+  );
+  --ix-progress-indicator-track-paused--background: var(
+    --theme-color-component-3,
+    #{$progress-indicator-track-paused-background-fallback}
+  );
+  --ix-progress-indicator-track-success--background: var(
+    --theme-color-component-3,
+    #{$progress-indicator-track-success-background-fallback}
+  );
+  --ix-progress-indicator-track-warning--background: var(
+    --theme-color-component-warning,
+    #{$progress-indicator-track-warning-background-fallback}
+  );
+}

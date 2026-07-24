@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$application-switch-modal-color-ghost-selected-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.1)
+);
+$application-switch-modal-color-focus-bdr-fallback: #199fff;
+
+:host {
+  --ix-application-switch-modal--color-ghost--selected: var(
+    --theme-color-ghost--selected,
+    #{$application-switch-modal-color-ghost-selected-fallback}
+  );
+  --ix-application-switch-modal--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$application-switch-modal-color-focus-bdr-fallback}
+  );
+}

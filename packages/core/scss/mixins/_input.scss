@@ -14,14 +14,20 @@
     min-height: 2rem;
     width: auto;
     padding: $padding;
-    background-color: var(--theme-input--background);
-    color: var(--theme-input--color);
+    background-color: var(
+      --ix-input--background,
+      var(--theme-si-sys-background-1)
+    );
+    color: var(--ix-input--color, var(--theme-si-sys-text-primary));
     appearance: textfield;
     text-overflow: ellipsis;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color);
-    border-radius: var(--theme-input--border-radius);
-    box-shadow: var(--theme-input--box-shadow);
+    border: var(--ix-input--border-thickness, var(--theme-border-width-default))
+      solid var(--ix-input--border-color, var(--theme-si-sys-border-2));
+    border-radius: var(
+      --ix-input--border-radius,
+      var(--theme-small-border-radius)
+    );
+    box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
 
     @include fonts.typography-body;
   }
@@ -38,16 +44,27 @@
 
   &:-webkit-autofill,
   &:autofill {
-    -webkit-box-shadow: 0 0 0 1000px var(--theme-color-component-info) inset !important;
-    -webkit-text-fill-color: var(--theme-input--color--autofill) !important;
-    background-color: var(--theme-input--background--autofill) !important;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color--autofill) !important;
-    color: var(--theme-input--color--autofill) !important;
+    -webkit-box-shadow: 0 0 0 1000px
+      var(--ix-input--background--autofill, rgba(0, 0, 0, 0)) inset !important;
+    -webkit-text-fill-color: var(
+      --ix-input--color--autofill,
+      var(--theme-si-sys-text-primary)
+    ) !important;
+    background-color: var(
+      --ix-input--background--autofill,
+      rgba(0, 0, 0, 0)
+    ) !important;
+    border: var(--ix-input--border-thickness, var(--theme-border-width-default))
+      solid
+      var(--ix-input--border-color--autofill, var(--theme-si-sys-border-2)) !important;
+    color: var(
+      --ix-input--color--autofill,
+      var(--theme-si-sys-text-primary)
+    ) !important;
   }
 
   &::placeholder {
-    color: var(--theme-input-hint--color);
+    color: var(--ix-input-hint--color, var(--theme-si-sys-text-secondary));
   }
 
   &.hover,
@@ -60,8 +77,14 @@
         [disabled],
         :read-only
       ) {
-      border-color: var(--theme-input--border-color--hover) !important;
-      background-color: var(--theme-input--background--hover);
+      border-color: var(
+        --ix-input--border-color--hover,
+        var(--theme-si-sys-border-1)
+      ) !important;
+      background-color: var(
+        --ix-input--background--hover,
+        var(--theme-si-sys-background-4)
+      );
     }
   }
 
@@ -75,9 +98,15 @@
         [disabled],
         :read-only
       ) {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-input--focus--outline-offset);
-      border-color: var(--theme-input--border-color--focus) !important;
+      outline: 1px solid var(--theme-si-sys-effects-focus);
+      outline-offset: var(
+        --ix-input--focus--outline-offset,
+        var(--theme-focus-outline-offset)
+      );
+      border-color: var(
+        --ix-input--border-color--focus,
+        var(--theme-si-sys-border-1)
+      ) !important;
     }
   }
 
@@ -87,9 +116,12 @@
       box-shadow: none;
       background-color: transparent;
       outline: none;
-      border: var(--theme-input--border-thickness)
+      border: var(
+          --ix-input--border-thickness,
+          var(--theme-border-width-default)
+        )
         solid
-        var(--theme-input--border-color--readonly);
+        var(--ix-input--border-color--readonly, var(--theme-si-sys-border-4));
 
       &::placeholder {
         color: transparent;
@@ -102,8 +134,9 @@
     box-shadow: none;
     background-color: transparent;
     outline: none;
-    border: var(--theme-input--border-thickness) solid
-      var(--theme-input--border-color--disabled);
+    border: var(--ix-input--border-thickness, var(--theme-border-width-default))
+      solid
+      var(--ix-input--border-color--disabled, var(--theme-si-sys-border-4));
   }
 
   &:disabled::placeholder,
@@ -115,8 +148,14 @@
 @mixin element-textarea {
   & {
     min-height: 2rem;
-    padding: calc(0.375rem - var(--theme-input--border-thickness))
-      calc(0.5rem - var(--theme-input--border-thickness));
+    padding: calc(
+        0.375rem -
+          var(--ix-input--border-thickness, var(--theme-border-width-default))
+      )
+      calc(
+        0.5rem -
+          var(--ix-input--border-thickness, var(--theme-border-width-default))
+      );
 
     &:not([rows]) {
       height: 3.25rem;
@@ -126,7 +165,7 @@
 
 @mixin label($namespace: '') {
   label#{$namespace} {
-    color: var(--theme-color-soft-text);
+    color: var(--theme-si-sys-text-secondary);
     padding: 2px 0px;
   }
 
@@ -149,52 +188,85 @@
 
   @include form-component.input-info {
     & {
-      border-color: var(--theme-input--border-color--info);
+      border-color: var(
+        --ix-input--border-color--info,
+        var(--theme-si-sys-border-information)
+      );
     }
 
     &:hover {
-      border-color: var(--theme-input--border-color--info--hover) !important;
+      border-color: var(
+        --ix-input--border-color--info--hover,
+        var(--theme-si-sys-border-information)
+      ) !important;
     }
 
     &:active {
-      border-color: var(--theme-input--border-color--info--active) !important;
+      border-color: var(
+        --ix-input--border-color--info--active,
+        var(--theme-si-sys-border-information)
+      ) !important;
     }
   }
 
   @include form-component.input-warning {
     & {
-      background-color: var(--theme-input--background--warning);
+      background-color: var(
+        --ix-input--background--warning,
+        var(--theme-si-sys-background-1)
+      );
       border-color: var(
-        --theme-input--border-color--warning--active
+        --ix-input--border-color--warning--active,
+        var(--theme-color-warning-bdr)
       ) !important;
     }
 
     &:hover {
-      background-color: var(--theme-input--background--warning--hover);
-      border-color: var(--theme-input--border-color--warning--hover) !important;
+      background-color: var(
+        --ix-input--background--warning--hover,
+        var(--theme-si-sys-background-4)
+      );
+      border-color: var(
+        --ix-input--border-color--warning--hover,
+        var(--theme-color-warning-bdr)
+      ) !important;
     }
 
     &:active {
       border-color: var(
-        --theme-input--border-color--warning--active
+        --ix-input--border-color--warning--active,
+        var(--theme-color-warning-bdr)
       ) !important;
     }
   }
 
   @include form-component.input-invalid {
     & {
-      background-color: var(--theme-input--background--invalid);
-      border-color: var(--theme-input--border-color--invalid) !important;
+      background-color: var(
+        --ix-input--background--invalid,
+        var(--theme-si-sys-background-1)
+      );
+      border-color: var(
+        --ix-input--border-color--invalid,
+        var(--theme-si-sys-border-danger)
+      ) !important;
     }
 
     &:hover {
-      background-color: var(--theme-input--background--invalid--hover);
-      border-color: var(--theme-input--border-color--invalid--hover) !important;
+      background-color: var(
+        --ix-input--background--invalid--hover,
+        var(--theme-si-sys-background-4)
+      );
+      border-color: var(
+        --ix-input--border-color--invalid--hover,
+        var(--theme-si-sys-border-danger)
+      ) !important;
     }
 
     &:active {
       border-color: var(
-        --theme-input--border-color--invalid--active
+        --ix-input--border-color--invalid--active,
+        var(--theme-si-sys-border-danger)
       ) !important;
     }
   }
@@ -212,12 +284,12 @@
   form {
     textarea#{$namespace} ~ .valid-feedback,
     input#{$namespace} ~ .valid-feedback {
-      color: var(--theme-color-success);
+      color: var(--theme-si-sys-text-success);
     }
 
     textarea#{$namespace} ~ .invalid-feedback,
     input#{$namespace} ~ .invalid-feedback {
-      color: var(--theme-color-alarm-text);
+      color: var(--theme-si-sys-text-danger);
     }
   }
 
@@ -225,8 +297,14 @@
   form.was-validated {
     #{$namespace}:invalid,
     #{$namespace}.is-invalid {
-      background-color: var(--theme-input-error--background);
-      border-color: var(--theme-input-error--border-color);
+      background-color: var(
+        --ix-input-error--background,
+        var(--theme-si-sys-background-1)
+      );
+      border-color: var(
+        --ix-input-error--border-color,
+        var(--theme-si-sys-border-danger)
+      );
       background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: sketchtool 62 (101010) - https://sketch.com --%3E%3Ctitle%3Eerror%3C/title%3E%3Cdesc%3ECreated with sketchtool.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.75'%3E%3Cg id='error' fill='%23ff2640'%3E%3Cg id='error/error'%3E%3Cpath d='M256,42.6666667 C373.626371,42.6666667 469.333333,138.373627 469.333333,256 C469.333333,373.626371 373.626371,469.333333 256,469.333333 C138.373627,469.333333 42.6666667,373.626371 42.6666667,256 C42.6666667,138.373627 138.373627,42.6666667 256,42.6666667 Z M256,85.3333333 C161.559631,85.3333333 85.3333333,161.559631 85.3333333,256 C85.3333333,350.44037 161.559631,426.666667 256,426.666667 C350.44037,426.666667 426.666667,350.44037 426.666667,256 C426.666667,161.559631 350.44037,85.3333333 256,85.3333333 Z M326.248389,155.581722 L356.418278,185.751611 L286.168667,255.999667 L356.418278,326.248389 L326.248389,356.418278 L255.999667,286.168667 L185.751611,356.418278 L155.581722,326.248389 L225.829667,255.999667 L155.581722,185.751611 L185.751611,155.581722 L255.999667,225.829667 L326.248389,155.581722 Z' id='Combined-Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
       background-position: left calc(0.375em + 0.1875rem) center;
       padding-right: 0.75rem;

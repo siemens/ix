@@ -1,0 +1,76 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$group-color-focus-bdr-fallback: #199fff;
+$group-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$group-header-color-fallback: light-dark(#000609, #ffffff);
+$group-item-background-fallback: light-dark(#ffffff, #1a272d);
+$group-item-background-active-fallback: light-dark(#dcdee0, #34454d);
+$group-item-background-hover-fallback: light-dark(#e8ebed, #273940);
+$group-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$group-item-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$group-item-indicator-background-selected-fallback: light-dark(
+  #004f69,
+  #00eaff
+);
+$group-subheader-color-fallback: light-dark(#000609, #ffffff);
+
+:host {
+  --ix-group--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$group-color-focus-bdr-fallback}
+  );
+  --ix-group--default-border-radius: var(
+    --theme-default-border-radius,
+    0.25rem
+  );
+  --ix-group--color-std-text: var(
+    --theme-color-std-text,
+    #{$group-color-std-text-fallback}
+  );
+  --ix-group--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-group-header--color: var(
+    --theme-color-std-text,
+    #{$group-header-color-fallback}
+  );
+  --ix-group-item--background: var(
+    --theme-color-component-1,
+    #{$group-item-background-fallback}
+  );
+  --ix-group-item--background--active: var(
+    --theme-color-component-1--active,
+    #{$group-item-background-active-fallback}
+  );
+  --ix-group-item--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$group-item-background-hover-fallback}
+  );
+  --ix-group-item--background--selected: var(
+    --theme-color-ghost--selected,
+    #{$group-item-background-selected-fallback}
+  );
+  --ix-group-item--border-color: var(
+    --theme-color-0,
+    #{$group-item-border-color-fallback}
+  );
+  --ix-group-item-indicator--background--selected: var(
+    --theme-color-dynamic,
+    #{$group-item-indicator-background-selected-fallback}
+  );
+  --ix-group-subheader--color: var(
+    --theme-color-std-text,
+    #{$group-subheader-color-fallback}
+  );
+}

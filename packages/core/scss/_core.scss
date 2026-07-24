@@ -6,25 +6,4 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'theme/core/common' as common;
-@use 'theme/core/components' as components;
-@use 'mixins/reduce-motion' as rm;
-
-/* Common */
-@use 'misc/z-index';
-
-/* Global legacy style components  */
-@use 'legacy/components/input';
-@use 'legacy/components/checkboxes';
-@use 'legacy/components/radiobuttons';
-
-/* Global style components */
-@use 'components/links';
-@use 'components/shadows';
-@use 'components/input-group';
-@use 'components/table';
-@use 'components/fonts';
-@use 'components/button-group';
-@use 'misc/normalize';
-
-@use 'standalone';
+@use 'legacy-utilities';

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use './card-vars' as card-vars;
+@use './card.vars' as card-vars;
 
 :host {
   display: flex;
@@ -20,9 +20,9 @@
 
   width: 20rem;
 
-  border: var(--theme-card--border-width) solid
-    var(--ix-card-border-color, var(--theme-color-soft-bdr));
-  border-radius: var(--theme-card--border-radius);
+  border: var(--ix-card--border-width) solid
+    var(--ix-card-border-color, var(--ix-card--color-soft-bdr));
+  border-radius: var(--ix-card--border-radius);
 
   @include component.ix-component;
 
@@ -34,8 +34,8 @@
     width: 100%;
     height: calc(100% - 2rem);
     background-color: var(--ix-card-background, transparent);
-    border-top-left-radius: var(--theme-card--border-radius);
-    border-top-right-radius: var(--theme-card--border-radius);
+    border-top-left-radius: var(--ix-card--border-radius);
+    border-top-right-radius: var(--ix-card--border-radius);
     overflow: hidden;
   }
 
@@ -54,16 +54,16 @@
 
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
-    color: var(--theme-color-std-text);
+    color: var(--ix-card--color-std-text);
   }
 }
 
 @mixin card-variants($variant) {
   :host(.card-#{$variant}) {
-    --ix-card-background: var(--theme-card-#{$variant}--background);
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
+    --ix-card-background: var(--ix-card-#{$variant}--background);
+    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
 
-    color: var(--theme-card-#{$variant}--color);
+    color: var(--ix-card-#{$variant}--color);
 
     @if $variant == outline {
       @include accordionChevronColorPrimary;
@@ -75,7 +75,7 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   @include card-variants($variant);
 }
 
@@ -85,28 +85,26 @@
 
 @mixin card-variants-active($variant) {
   :host(.card-#{$variant}:active) {
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--active);
-    --ix-card-background: var(--theme-card-#{$variant}--background--active);
+    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--active);
+    --ix-card-background: var(--ix-card-#{$variant}--background--active);
   }
 }
 
 @mixin card-variants-hover($variant) {
   :host(.card-#{$variant}:hover) {
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--hover);
-    --ix-card-background: var(--theme-card-#{$variant}--background--hover);
+    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--hover);
+    --ix-card-background: var(--ix-card-#{$variant}--background--hover);
   }
 }
 
 @mixin card-variants-selected($variant) {
   :host(.selected.card-#{$variant}) {
-    --ix-card-border-color: var(
-      --theme-card-#{$variant}--border-color--selected
-    );
-    --ix-card-background: var(--theme-card-#{$variant}--background--selected);
+    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--selected);
+    --ix-card-background: var(--ix-card-#{$variant}--background--selected);
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   @include card-variants-hover($variant);
   @include card-variants-active($variant);
   @include card-variants-selected($variant);
@@ -116,9 +114,9 @@
   cursor: default;
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.passive.card-#{$variant}) {
-    --ix-card-background: var(--theme-card-#{$variant}--background);
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
+    --ix-card-background: var(--ix-card-#{$variant}--background);
+    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
   }
 }

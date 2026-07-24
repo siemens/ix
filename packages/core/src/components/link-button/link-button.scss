@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 
+@use './link-button.vars' as *;
 :host {
   display: inline-flex;
   height: vars.$x-large-space;
@@ -25,7 +26,7 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: var(--theme-color-primary);
+    color: var(--ix-link-button--color-primary);
     cursor: pointer;
     text-decoration: none;
 
@@ -41,16 +42,16 @@
     }
 
     @include hover.hover {
-      color: var(--theme-color-dynamic--hover);
+      color: var(--ix-link-button--color-dynamic--hover);
     }
 
     @include hover.active {
-      color: var(--theme-color-dynamic--active);
+      color: var(--ix-link-button--color-dynamic--active);
     }
 
     &.disabled {
       cursor: default;
-      color: var(--theme-color-weak-text);
+      color: var(--ix-link-button--color-weak-text);
     }
 
     a {
@@ -59,6 +60,6 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-link-button--color-focus-bdr);
   }
 }

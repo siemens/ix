@@ -10,11 +10,12 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './date-time-card.vars' as *;
 :host {
   @include component.ix-component;
 
   .card {
-    background-color: var(--theme-menu--background);
+    background-color: var(--ix-menu--background);
     width: 100%;
     box-shadow: none;
     border: none;
@@ -23,7 +24,7 @@
     flex-direction: column;
 
     &.standaloneAppearance {
-      box-shadow: var(--theme-shadow-4);
+      box-shadow: var(--ix-date-time-card--shadow-4);
       border-radius: 0.25rem;
     }
 
@@ -56,7 +57,7 @@
 
     .separator {
       height: 1px;
-      background-color: var(--theme-datepicker-separator--background);
+      background-color: var(--ix-datepicker-separator--background);
       width: 100%;
       flex: 0 1 auto;
     }

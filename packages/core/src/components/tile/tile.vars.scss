@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$tile-color-2-fallback: light-dark(#eff0f1, #283236);
+$tile-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$tile-color-1-fallback: light-dark(#ffffff, #0f1619);
+
+:host {
+  --ix-tile--color-2: var(--theme-color-2, #{$tile-color-2-fallback});
+  --ix-tile--color-std-text: var(
+    --theme-color-std-text,
+    #{$tile-color-std-text-fallback}
+  );
+  --ix-tile--color-1: var(--theme-color-1, #{$tile-color-1-fallback});
+  --ix-tile--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-tile--box-shadow: none;
+}

@@ -1,0 +1,514 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$card-variants: outline filled alarm critical warning success info neutral
+  primary;
+
+$card-color-soft-bdr-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+$card-color-std-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.9),
+  rgba(245, 252, 255, 0.9)
+);
+$card-alarm-background-fallback: #d72323;
+$card-alarm-background-active-fallback: #a70808;
+$card-alarm-background-hover-fallback: #c01616;
+$card-alarm-background-selected-fallback: #d72323;
+$card-alarm-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-alarm-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-alarm-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-alarm-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-alarm-color-fallback: #ffffff;
+$card-critical-background-fallback: light-dark(#ba5d00, #ff8000);
+$card-critical-background-active-fallback: light-dark(#824100, #ba5d00);
+$card-critical-background-hover-fallback: light-dark(#9a4d00, #e37200);
+$card-critical-background-selected-fallback: light-dark(#ba5d00, #ff8000);
+$card-critical-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-critical-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-critical-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-critical-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-critical-color-fallback: light-dark(#ffffff, #000609);
+$card-filled-background-fallback: light-dark(#ffffff, #1a272d);
+$card-filled-background-active-fallback: light-dark(#dcdee0, #34454d);
+$card-filled-background-hover-fallback: light-dark(#e8ebed, #273940);
+$card-filled-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$card-filled-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-filled-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-filled-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-filled-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-filled-color-fallback: light-dark(#000609, #ffffff);
+$card-info-background-fallback: #226ae7;
+$card-info-background-active-fallback: #2050a2;
+$card-info-background-hover-fallback: #215dc5;
+$card-info-background-selected-fallback: #226ae7;
+$card-info-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-info-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-info-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-info-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-info-color-fallback: #ffffff;
+$card-neutral-background-fallback: light-dark(#5b6a71, #aeb5b8);
+$card-neutral-background-active-fallback: light-dark(#243137, #72848c);
+$card-neutral-background-hover-fallback: light-dark(#34454d, #919ca1);
+$card-neutral-background-selected-fallback: light-dark(#5b6a71, #aeb5b8);
+$card-neutral-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-neutral-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-neutral-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-neutral-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-neutral-color-fallback: light-dark(#ffffff, #000609);
+$card-outline-background-fallback: light-dark(
+  rgba(243, 244, 245, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-outline-background-active-fallback: light-dark(#dcdee0, #34454d);
+$card-outline-background-hover-fallback: light-dark(#e8ebed, #273940);
+$card-outline-background-selected-fallback: light-dark(#dcdee0, #34454d);
+$card-outline-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$card-outline-border-color-active-fallback: light-dark(#aeb5b8, #72848c);
+$card-outline-border-color-hover-fallback: light-dark(#aeb5b8, #72848c);
+$card-outline-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-outline-color-fallback: light-dark(#000609, #ffffff);
+$card-primary-background-fallback: light-dark(#006a87, #00c9e4);
+$card-primary-background-active-fallback: light-dark(#004e68, #00def7);
+$card-primary-background-hover-fallback: light-dark(#004f69, #00eaff);
+$card-primary-background-selected-fallback: light-dark(#006a87, #00c9e4);
+$card-primary-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-primary-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-primary-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-primary-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-primary-color-fallback: light-dark(#ffffff, #000609);
+$card-success-background-fallback: light-dark(#376f1c, #59bd28);
+$card-success-background-active-fallback: light-dark(#1d3212, #99e672);
+$card-success-background-hover-fallback: light-dark(#2a5117, #7ad34d);
+$card-success-background-selected-fallback: light-dark(#376f1c, #59bd28);
+$card-success-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-success-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-success-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-success-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-success-color-fallback: light-dark(#ffffff, #000609);
+$card-warning-background-fallback: light-dark(#ffbf0f, #ffc832);
+$card-warning-background-active-fallback: #c69100;
+$card-warning-background-hover-fallback: #fcb900;
+$card-warning-background-selected-fallback: light-dark(#ffbf0f, #ffc832);
+$card-warning-border-color-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-warning-border-color-active-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-warning-border-color-hover-fallback: light-dark(
+  rgba(255, 255, 255, 0),
+  rgba(0, 6, 9, 0)
+);
+$card-warning-border-color-selected-fallback: light-dark(#004f69, #00eaff);
+$card-warning-color-fallback: #000609;
+
+:host {
+  --ix-card--color-soft-bdr: var(
+    --theme-color-soft-bdr,
+    #{$card-color-soft-bdr-fallback}
+  );
+  --ix-card--color-std-text: var(
+    --theme-color-std-text,
+    #{$card-color-std-text-fallback}
+  );
+  --ix-card--border-radius: var(--theme-default-border-radius, 0.25rem);
+  --ix-card--border-width: var(--theme-border-width-default, 0.0625rem);
+  --ix-card--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
+  --ix-card-alarm--background: var(
+    --theme-color-alarm,
+    #{$card-alarm-background-fallback}
+  );
+  --ix-card-alarm--background--active: var(
+    --theme-color-alarm--active,
+    #{$card-alarm-background-active-fallback}
+  );
+  --ix-card-alarm--background--hover: var(
+    --theme-color-alarm--hover,
+    #{$card-alarm-background-hover-fallback}
+  );
+  --ix-card-alarm--background--selected: var(
+    --theme-color-alarm,
+    #{$card-alarm-background-selected-fallback}
+  );
+  --ix-card-alarm--border-color: var(
+    --theme-color-0,
+    #{$card-alarm-border-color-fallback}
+  );
+  --ix-card-alarm--border-color--active: var(
+    --theme-color-0,
+    #{$card-alarm-border-color-active-fallback}
+  );
+  --ix-card-alarm--border-color--hover: var(
+    --theme-color-0,
+    #{$card-alarm-border-color-hover-fallback}
+  );
+  --ix-card-alarm--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-alarm-border-color-selected-fallback}
+  );
+  --ix-card-alarm--color: var(
+    --theme-color-alarm--contrast,
+    #{$card-alarm-color-fallback}
+  );
+  --ix-card-critical--background: var(
+    --theme-color-critical,
+    #{$card-critical-background-fallback}
+  );
+  --ix-card-critical--background--active: var(
+    --theme-color-critical--active,
+    #{$card-critical-background-active-fallback}
+  );
+  --ix-card-critical--background--hover: var(
+    --theme-color-critical--hover,
+    #{$card-critical-background-hover-fallback}
+  );
+  --ix-card-critical--background--selected: var(
+    --theme-color-critical,
+    #{$card-critical-background-selected-fallback}
+  );
+  --ix-card-critical--border-color: var(
+    --theme-color-0,
+    #{$card-critical-border-color-fallback}
+  );
+  --ix-card-critical--border-color--active: var(
+    --theme-color-0,
+    #{$card-critical-border-color-active-fallback}
+  );
+  --ix-card-critical--border-color--hover: var(
+    --theme-color-0,
+    #{$card-critical-border-color-hover-fallback}
+  );
+  --ix-card-critical--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-critical-border-color-selected-fallback}
+  );
+  --ix-card-critical--color: var(
+    --theme-color-critical--contrast,
+    #{$card-critical-color-fallback}
+  );
+  --ix-card-filled--background: var(
+    --theme-color-component-1,
+    #{$card-filled-background-fallback}
+  );
+  --ix-card-filled--background--active: var(
+    --theme-color-component-1--active,
+    #{$card-filled-background-active-fallback}
+  );
+  --ix-card-filled--background--hover: var(
+    --theme-color-component-1--hover,
+    #{$card-filled-background-hover-fallback}
+  );
+  --ix-card-filled--background--selected: var(
+    --theme-color-ghost--selected,
+    #{$card-filled-background-selected-fallback}
+  );
+  --ix-card-filled--border-color: var(
+    --theme-color-0,
+    #{$card-filled-border-color-fallback}
+  );
+  --ix-card-filled--border-color--active: var(
+    --theme-color-0,
+    #{$card-filled-border-color-active-fallback}
+  );
+  --ix-card-filled--border-color--hover: var(
+    --theme-color-0,
+    #{$card-filled-border-color-hover-fallback}
+  );
+  --ix-card-filled--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-filled-border-color-selected-fallback}
+  );
+  --ix-card-filled--color: var(
+    --theme-color-std-text,
+    #{$card-filled-color-fallback}
+  );
+  --ix-card-info--background: var(
+    --theme-color-info,
+    #{$card-info-background-fallback}
+  );
+  --ix-card-info--background--active: var(
+    --theme-color-info--active,
+    #{$card-info-background-active-fallback}
+  );
+  --ix-card-info--background--hover: var(
+    --theme-color-info--hover,
+    #{$card-info-background-hover-fallback}
+  );
+  --ix-card-info--background--selected: var(
+    --theme-color-info,
+    #{$card-info-background-selected-fallback}
+  );
+  --ix-card-info--border-color: var(
+    --theme-color-0,
+    #{$card-info-border-color-fallback}
+  );
+  --ix-card-info--border-color--active: var(
+    --theme-color-0,
+    #{$card-info-border-color-active-fallback}
+  );
+  --ix-card-info--border-color--hover: var(
+    --theme-color-0,
+    #{$card-info-border-color-hover-fallback}
+  );
+  --ix-card-info--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-info-border-color-selected-fallback}
+  );
+  --ix-card-info--color: var(
+    --theme-color-info--contrast,
+    #{$card-info-color-fallback}
+  );
+  --ix-card-neutral--background: var(
+    --theme-color-neutral,
+    #{$card-neutral-background-fallback}
+  );
+  --ix-card-neutral--background--active: var(
+    --theme-color-neutral--active,
+    #{$card-neutral-background-active-fallback}
+  );
+  --ix-card-neutral--background--hover: var(
+    --theme-color-neutral--hover,
+    #{$card-neutral-background-hover-fallback}
+  );
+  --ix-card-neutral--background--selected: var(
+    --theme-color-neutral,
+    #{$card-neutral-background-selected-fallback}
+  );
+  --ix-card-neutral--border-color: var(
+    --theme-color-0,
+    #{$card-neutral-border-color-fallback}
+  );
+  --ix-card-neutral--border-color--active: var(
+    --theme-color-0,
+    #{$card-neutral-border-color-active-fallback}
+  );
+  --ix-card-neutral--border-color--hover: var(
+    --theme-color-0,
+    #{$card-neutral-border-color-hover-fallback}
+  );
+  --ix-card-neutral--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-neutral-border-color-selected-fallback}
+  );
+  --ix-card-neutral--color: var(
+    --theme-color-neutral--contrast,
+    #{$card-neutral-color-fallback}
+  );
+  --ix-card-outline--background: var(
+    --theme-color-ghost,
+    #{$card-outline-background-fallback}
+  );
+  --ix-card-outline--background--active: var(
+    --theme-color-ghost--active,
+    #{$card-outline-background-active-fallback}
+  );
+  --ix-card-outline--background--hover: var(
+    --theme-color-ghost--hover,
+    #{$card-outline-background-hover-fallback}
+  );
+  --ix-card-outline--background--selected: var(
+    --theme-color-ghost--selected,
+    #{$card-outline-background-selected-fallback}
+  );
+  --ix-card-outline--border-color: var(
+    --theme-color-soft-bdr,
+    #{$card-outline-border-color-fallback}
+  );
+  --ix-card-outline--border-color--active: var(
+    --theme-color-soft-bdr,
+    #{$card-outline-border-color-active-fallback}
+  );
+  --ix-card-outline--border-color--hover: var(
+    --theme-color-soft-bdr,
+    #{$card-outline-border-color-hover-fallback}
+  );
+  --ix-card-outline--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-outline-border-color-selected-fallback}
+  );
+  --ix-card-outline--color: var(
+    --theme-color-std-text,
+    #{$card-outline-color-fallback}
+  );
+  --ix-card-primary--background: var(
+    --theme-color-primary,
+    #{$card-primary-background-fallback}
+  );
+  --ix-card-primary--background--active: var(
+    --theme-color-primary--active,
+    #{$card-primary-background-active-fallback}
+  );
+  --ix-card-primary--background--hover: var(
+    --theme-color-primary--hover,
+    #{$card-primary-background-hover-fallback}
+  );
+  --ix-card-primary--background--selected: var(
+    --theme-color-primary,
+    #{$card-primary-background-selected-fallback}
+  );
+  --ix-card-primary--border-color: var(
+    --theme-color-0,
+    #{$card-primary-border-color-fallback}
+  );
+  --ix-card-primary--border-color--active: var(
+    --theme-color-0,
+    #{$card-primary-border-color-active-fallback}
+  );
+  --ix-card-primary--border-color--hover: var(
+    --theme-color-0,
+    #{$card-primary-border-color-hover-fallback}
+  );
+  --ix-card-primary--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-primary-border-color-selected-fallback}
+  );
+  --ix-card-primary--color: var(
+    --theme-color-primary--contrast,
+    #{$card-primary-color-fallback}
+  );
+  --ix-card-success--background: var(
+    --theme-color-success,
+    #{$card-success-background-fallback}
+  );
+  --ix-card-success--background--active: var(
+    --theme-color-success--active,
+    #{$card-success-background-active-fallback}
+  );
+  --ix-card-success--background--hover: var(
+    --theme-color-success--hover,
+    #{$card-success-background-hover-fallback}
+  );
+  --ix-card-success--background--selected: var(
+    --theme-color-success,
+    #{$card-success-background-selected-fallback}
+  );
+  --ix-card-success--border-color: var(
+    --theme-color-0,
+    #{$card-success-border-color-fallback}
+  );
+  --ix-card-success--border-color--active: var(
+    --theme-color-0,
+    #{$card-success-border-color-active-fallback}
+  );
+  --ix-card-success--border-color--hover: var(
+    --theme-color-0,
+    #{$card-success-border-color-hover-fallback}
+  );
+  --ix-card-success--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-success-border-color-selected-fallback}
+  );
+  --ix-card-success--color: var(
+    --theme-color-success--contrast,
+    #{$card-success-color-fallback}
+  );
+  --ix-card-warning--background: var(
+    --theme-color-warning,
+    #{$card-warning-background-fallback}
+  );
+  --ix-card-warning--background--active: var(
+    --theme-color-warning--active,
+    #{$card-warning-background-active-fallback}
+  );
+  --ix-card-warning--background--hover: var(
+    --theme-color-warning--hover,
+    #{$card-warning-background-hover-fallback}
+  );
+  --ix-card-warning--background--selected: var(
+    --theme-color-warning,
+    #{$card-warning-background-selected-fallback}
+  );
+  --ix-card-warning--border-color: var(
+    --theme-color-0,
+    #{$card-warning-border-color-fallback}
+  );
+  --ix-card-warning--border-color--active: var(
+    --theme-color-0,
+    #{$card-warning-border-color-active-fallback}
+  );
+  --ix-card-warning--border-color--hover: var(
+    --theme-color-0,
+    #{$card-warning-border-color-hover-fallback}
+  );
+  --ix-card-warning--border-color--selected: var(
+    --theme-color-dynamic,
+    #{$card-warning-border-color-selected-fallback}
+  );
+  --ix-card-warning--color: var(
+    --theme-color-warning--contrast,
+    #{$card-warning-color-fallback}
+  );
+}

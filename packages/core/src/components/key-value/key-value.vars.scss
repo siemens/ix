@@ -1,0 +1,19 @@
+$key-value-color-soft-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.6),
+  rgba(229, 247, 255, 0.65)
+);
+$key-value-color-soft-bdr-fallback: light-dark(
+  rgba(0, 20, 40, 0.2),
+  rgba(211, 236, 248, 0.4)
+);
+
+:host {
+  --ix-key-value--color-soft-text: var(
+    --theme-color-soft-text,
+    #{$key-value-color-soft-text-fallback}
+  );
+  --ix-key-value--color-soft-bdr: var(
+    --theme-color-soft-bdr,
+    #{$key-value-color-soft-bdr-fallback}
+  );
+}

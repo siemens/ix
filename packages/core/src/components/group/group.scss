@@ -12,6 +12,7 @@
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 
+@use './group.vars' as *;
 $header-height: 4rem;
 $header-height-focus-visible: calc($header-height - 2px);
 
@@ -21,7 +22,7 @@ $header-height-focus-visible: calc($header-height - 2px);
   position: relative;
   width: 19.75rem;
   min-width: 12rem;
-  border-color: var(--theme-group-item--border-color);
+  border-color: var(--ix-group-item--border-color);
 
   @include text-truncation.ellipsis;
 
@@ -29,27 +30,27 @@ $header-height-focus-visible: calc($header-height - 2px);
     height: $header-height;
     min-height: $header-height;
     max-height: $header-height;
-    border-radius: var(--theme-group--border-radius)
-      var(--theme-group--border-radius) 0 0;
+    border-radius: var(--ix-group--border-radius) var(--ix-group--border-radius)
+      0 0;
     display: flex;
-    background-color: var(--theme-group-item--background);
-    color: var(--theme-group-header--color);
+    background-color: var(--ix-group-item--background);
+    color: var(--ix-group-header--color);
 
     cursor: pointer;
 
     @include hover.hover {
-      background-color: var(--theme-group-item--background--hover);
+      background-color: var(--ix-group-item--background--hover);
 
       &.selected {
-        background-color: var(--theme-group-item--background--selected);
+        background-color: var(--ix-group-item--background--selected);
       }
     }
 
     @include hover.active {
-      background-color: var(--theme-group-item--background--active);
+      background-color: var(--ix-group-item--background--active);
 
       &.selected {
-        background-color: var(--theme-group-item--background--selected);
+        background-color: var(--ix-group-item--background--selected);
       }
     }
 
@@ -57,9 +58,9 @@ $header-height-focus-visible: calc($header-height - 2px);
       height: $header-height-focus-visible;
       min-height: $header-height-focus-visible;
 
-      border: 1px solid var(--theme-color-focus-bdr);
-      border-radius: var(--theme-default-border-radius)
-        var(--theme-default-border-radius) 0px 0px;
+      border: 1px solid var(--ix-group--color-focus-bdr);
+      border-radius: var(--ix-group--default-border-radius)
+        var(--ix-group--default-border-radius) 0px 0px;
       outline: none;
 
       .group-header-selection-indicator {
@@ -67,8 +68,7 @@ $header-height-focus-visible: calc($header-height - 2px);
       }
 
       .group-header-content {
-        padding: calc(0.5rem - 1px) calc(0.5rem - 1px) calc(0.5rem - 1px)
-          0;
+        padding: calc(0.5rem - 1px) calc(0.5rem - 1px) calc(0.5rem - 1px) 0;
       }
 
       .btn-expand-header {
@@ -78,22 +78,18 @@ $header-height-focus-visible: calc($header-height - 2px);
     }
 
     &.selected {
-      background-color: var(--theme-group-item--background--selected);
+      background-color: var(--ix-group-item--background--selected);
 
       .group-header-selection-indicator {
-        background-color: var(
-          --theme-group-item-indicator--background--selected
-        );
+        background-color: var(--ix-group-item-indicator--background--selected);
       }
     }
 
     .group-header-selection-indicator {
-      background-color: var(--theme-color-input--focus);
+      background-color: var(--ix-color-input--focus);
 
       &.group-header-selection-indicator-item-selected {
-        background-color: var(
-          --theme-group-item-indicator--background--selected
-        );
+        background-color: var(--ix-group-item-indicator--background--selected);
       }
     }
   }
@@ -108,7 +104,7 @@ $header-height-focus-visible: calc($header-height - 2px);
 
   .group-header-selection-indicator {
     width: vars.$tiny-space;
-    border-top-left-radius: var(--theme-group--border-radius);
+    border-top-left-radius: var(--ix-group--border-radius);
   }
 
   .group-header-content {
@@ -145,7 +141,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     .group-subheader {
       height: 1.25rem;
       font-size: 0.875rem;
-      color: var(--theme-group-subheader--color);
+      color: var(--ix-group-subheader--color);
 
       @include text-truncation.ellipsis();
     }
@@ -153,7 +149,7 @@ $header-height-focus-visible: calc($header-height - 2px);
 
   .expand-icon {
     padding: 0.125rem 0.437rem;
-    color: var(--theme-color-std-text);
+    color: var(--ix-group--color-std-text);
   }
 
   .btn-expand-header {

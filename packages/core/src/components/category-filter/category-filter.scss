@@ -9,15 +9,16 @@
 
 @use 'misc/common-variables' as vars;
 @use '../button/button';
-@use 'legacy/components/dropdown';
 @use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
+@use 'mixins/internal/dropdown-item';
 @use 'mixins/input';
 @use 'mixins/shadows';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './category-filter.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -58,20 +59,20 @@
     }
 
     &:not(.readonly):not(.disabled):hover {
-      border-color: var(--theme-input--border-color--hover) !important;
-      background-color: var(--theme-input--background--hover);
+      border-color: var(--ix-input--border-color--hover) !important;
+      background-color: var(--ix-input--background--hover);
     }
 
     &:not(.readonly):not(.disabled).focus {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-input--focus--outline-offset);
-      border-color: var(--theme-input--border-color--focus) !important;
+      outline: 1px solid var(--ix-category-filter--color-focus-bdr);
+      outline-offset: var(--ix-input--focus--outline-offset);
+      border-color: var(--ix-input--border-color--focus) !important;
     }
 
     &.disabled {
-      color: var(--theme-input--color--disabled);
-      border-bottom: var(--theme-input--border-thickness, 1px) solid
-        var(--theme-input--border-color-bottom--disabled);
+      color: var(--ix-input--color--disabled);
+      border-bottom: var(--ix-input--border-thickness, 1px) solid
+        var(--ix-input--border-color-bottom--disabled);
     }
 
     display: flex;
@@ -97,7 +98,7 @@
 
     &::placeholder {
       @include fonts.typography-label;
-      color: var(--theme-color-soft-text);
+      color: var(--ix-category-filter--color-soft-text);
     }
 
     &,
@@ -134,7 +135,7 @@
     display: flex;
     align-items: center;
     height: vars.$large-space;
-    background-color: var(--theme-bg-3);
+    background-color: var(--ix-bg-3);
     border-top-left-radius: vars.$default-space;
     border-bottom-left-radius: vars.$default-space;
     padding: vars.$small-space;
@@ -155,11 +156,23 @@
   ix-dropdown {
     min-width: 10rem !important;
 
+    @include legacy-fonts.text-default-single;
+
     .dropdown-item-container {
       display: flex;
       flex-direction: column;
 
+      .dropdown-header {
+        display: flex;
+        align-items: center;
+        height: vars.$large-control-height;
+        color: var(--ix-menu-header--color);
+        padding: 0 vars.$default-space;
+      }
+
       .dropdown-item {
+        @include dropdown-item.dropdown-item;
+
         height: vars.$large-control-height;
         margin: vars.$tiny-space vars.$small-space;
         padding-inline: vars.$small-space;
@@ -172,7 +185,7 @@
         @include legacy-fonts.text-default-single;
         @include text-truncation.ellipsis;
         @include hover.focus-visible {
-          border-color: var(--theme-color-focus-bdr);
+          border-color: var(--ix-category-filter--color-focus-bdr);
         }
       }
 

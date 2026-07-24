@@ -1,0 +1,355 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$radio-color-primary-contrast-fallback: light-dark(#ffffff, #000000);
+$radio-color-focus-bdr-fallback: #199fff;
+$radiobtn-checked-background-fallback: light-dark(#006a87, #00c9e4);
+$radiobtn-checked-background-active-fallback: light-dark(#004e68, #00def7);
+$radiobtn-checked-background-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$radiobtn-checked-background-hover-fallback: light-dark(#004f69, #00eaff);
+$radiobtn-checked-background-info-fallback: #226ae7;
+$radiobtn-checked-background-info-active-fallback: #2050a2;
+$radiobtn-checked-background-info-hover-fallback: #215dc5;
+$radiobtn-checked-background-invalid-fallback: #d72323;
+$radiobtn-checked-background-invalid-active-fallback: #a70808;
+$radiobtn-checked-background-invalid-hover-fallback: #c01616;
+$radiobtn-checked-background-warning-fallback: light-dark(#ffbf0f, #ffc832);
+$radiobtn-checked-background-warning-active-fallback: #c69100;
+$radiobtn-checked-background-warning-hover-fallback: #fcb900;
+$radiobtn-checked-border-color-warning-fallback: light-dark(#c69100, #ffc832);
+$radiobtn-checked-border-color-warning-active-fallback: light-dark(
+  #c69100,
+  #ffc832
+);
+$radiobtn-checked-border-color-warning-hover-fallback: light-dark(
+  #c69100,
+  #ffc832
+);
+$radiobtn-checked-color-fallback: light-dark(#ffffff, #000609);
+$radiobtn-checked-color-active-fallback: light-dark(#ffffff, #000609);
+$radiobtn-checked-color-disabled-fallback: light-dark(#ffffff, #000609);
+$radiobtn-checked-color-hover-fallback: light-dark(#ffffff, #000609);
+$radiobtn-checked-color-info-fallback: #ffffff;
+$radiobtn-checked-color-info-active-fallback: #ffffff;
+$radiobtn-checked-color-info-hover-fallback: #ffffff;
+$radiobtn-checked-color-invalid-fallback: #ffffff;
+$radiobtn-checked-color-invalid-active-fallback: #ffffff;
+$radiobtn-checked-color-invalid-hover-fallback: #ffffff;
+$radiobtn-checked-color-warning-fallback: #000609;
+$radiobtn-checked-color-warning-active-fallback: #000609;
+$radiobtn-checked-color-warning-hover-fallback: #000609;
+$radiobtn-label-color-fallback: light-dark(#000609, #ffffff);
+$radiobtn-label-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$radiobtn-unchecked-background-fallback: light-dark(#ffffff, #1a272d);
+$radiobtn-unchecked-background-active-fallback: light-dark(#dcdee0, #34454d);
+$radiobtn-unchecked-background-disabled-fallback: light-dark(#ffffff, #1a272d);
+$radiobtn-unchecked-background-hover-fallback: light-dark(#e8ebed, #273940);
+$radiobtn-unchecked-background-info-fallback: light-dark(#ffffff, #1a272d);
+$radiobtn-unchecked-background-info-active-fallback: light-dark(
+  #dcdee0,
+  #34454d
+);
+$radiobtn-unchecked-background-info-hover-fallback: light-dark(
+  #e8ebed,
+  #273940
+);
+$radiobtn-unchecked-background-invalid-fallback: light-dark(#ffffff, #1a272d);
+$radiobtn-unchecked-background-invalid-active-fallback: light-dark(
+  #dcdee0,
+  #34454d
+);
+$radiobtn-unchecked-background-invalid-hover-fallback: light-dark(
+  #e8ebed,
+  #273940
+);
+$radiobtn-unchecked-background-warning-fallback: light-dark(#ffffff, #1a272d);
+$radiobtn-unchecked-background-warning-active-fallback: light-dark(
+  #dcdee0,
+  #34454d
+);
+$radiobtn-unchecked-background-warning-hover-fallback: light-dark(
+  #e8ebed,
+  #273940
+);
+$radiobtn-unchecked-border-color-fallback: light-dark(#5b6a71, #919ca1);
+$radiobtn-unchecked-border-color-active-fallback: light-dark(#5b6a71, #919ca1);
+$radiobtn-unchecked-border-color-disabled-fallback: light-dark(
+  #919ca1,
+  #5b6a71
+);
+$radiobtn-unchecked-border-color-hover-fallback: light-dark(#5b6a71, #919ca1);
+$radiobtn-unchecked-border-color-info-fallback: #226ae7;
+$radiobtn-unchecked-border-color-info-active-fallback: #226ae7;
+$radiobtn-unchecked-border-color-info-hover-fallback: #226ae7;
+$radiobtn-unchecked-border-color-invalid-fallback: #d72323;
+$radiobtn-unchecked-border-color-invalid-active-fallback: #d72323;
+$radiobtn-unchecked-border-color-invalid-hover-fallback: #d72323;
+$radiobtn-unchecked-border-color-warning-fallback: light-dark(#c69100, #ffc832);
+$radiobtn-unchecked-border-color-warning-active-fallback: light-dark(
+  #c69100,
+  #ffc832
+);
+$radiobtn-unchecked-border-color-warning-hover-fallback: light-dark(
+  #c69100,
+  #ffc832
+);
+
+:host {
+  --ix-radio--color-primary--contrast: var(
+    --theme-color-primary--contrast,
+    #{$radio-color-primary-contrast-fallback}
+  );
+  --ix-radio--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$radio-color-focus-bdr-fallback}
+  );
+  --ix-radiobtn--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-radiobtn--focus--outline-offset: var(
+    --theme-focus-outline-offset,
+    0.125rem
+  );
+  --ix-radiobtn-checked--background: var(
+    --theme-si-sys-background-accent,
+    #{$radiobtn-checked-background-fallback}
+  );
+  --ix-radiobtn-checked--background--active: var(
+    --theme-si-sys-background-accent-active,
+    #{$radiobtn-checked-background-active-fallback}
+  );
+  --ix-radiobtn-checked--background--disabled: var(
+    --theme-si-sys-text-disabled,
+    #{$radiobtn-checked-background-disabled-fallback}
+  );
+  --ix-radiobtn-checked--background--hover: var(
+    --theme-si-sys-background-accent-hover,
+    #{$radiobtn-checked-background-hover-fallback}
+  );
+  --ix-radiobtn-checked--background--info: var(
+    --theme-si-sys-background-information,
+    #{$radiobtn-checked-background-info-fallback}
+  );
+  --ix-radiobtn-checked--background--info--active: var(
+    --theme-color-info--active,
+    #{$radiobtn-checked-background-info-active-fallback}
+  );
+  --ix-radiobtn-checked--background--info--hover: var(
+    --theme-color-info--hover,
+    #{$radiobtn-checked-background-info-hover-fallback}
+  );
+  --ix-radiobtn-checked--background--invalid: var(
+    --theme-si-sys-background-danger,
+    #{$radiobtn-checked-background-invalid-fallback}
+  );
+  --ix-radiobtn-checked--background--invalid--active: var(
+    --theme-si-sys-background-danger-active,
+    #{$radiobtn-checked-background-invalid-active-fallback}
+  );
+  --ix-radiobtn-checked--background--invalid--hover: var(
+    --theme-si-sys-background-danger-hover,
+    #{$radiobtn-checked-background-invalid-hover-fallback}
+  );
+  --ix-radiobtn-checked--background--warning: var(
+    --theme-color-warning,
+    #{$radiobtn-checked-background-warning-fallback}
+  );
+  --ix-radiobtn-checked--background--warning--active: var(
+    --theme-color-warning--active,
+    #{$radiobtn-checked-background-warning-active-fallback}
+  );
+  --ix-radiobtn-checked--background--warning--hover: var(
+    --theme-color-warning--hover,
+    #{$radiobtn-checked-background-warning-hover-fallback}
+  );
+  --ix-radiobtn-checked--border-color: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--active: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--info: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-radiobtn-checked--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-checked-border-color-warning-fallback}
+  );
+  --ix-radiobtn-checked--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-checked-border-color-warning-active-fallback}
+  );
+  --ix-radiobtn-checked--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-checked-border-color-warning-hover-fallback}
+  );
+  --ix-radiobtn-checked--color: var(
+    --theme-si-sys-text-on-accent,
+    #{$radiobtn-checked-color-fallback}
+  );
+  --ix-radiobtn-checked--color--active: var(
+    --theme-si-sys-text-on-accent,
+    #{$radiobtn-checked-color-active-fallback}
+  );
+  --ix-radiobtn-checked--color--disabled: var(
+    --theme-si-sys-text-inverse,
+    #{$radiobtn-checked-color-disabled-fallback}
+  );
+  --ix-radiobtn-checked--color--hover: var(
+    --theme-si-sys-text-on-accent,
+    #{$radiobtn-checked-color-hover-fallback}
+  );
+  --ix-radiobtn-checked--color--info: var(
+    --theme-si-sys-text-on-information,
+    #{$radiobtn-checked-color-info-fallback}
+  );
+  --ix-radiobtn-checked--color--info--active: var(
+    --theme-si-sys-text-on-information,
+    #{$radiobtn-checked-color-info-active-fallback}
+  );
+  --ix-radiobtn-checked--color--info--hover: var(
+    --theme-si-sys-text-on-information,
+    #{$radiobtn-checked-color-info-hover-fallback}
+  );
+  --ix-radiobtn-checked--color--invalid: var(
+    --theme-si-sys-text-on-danger,
+    #{$radiobtn-checked-color-invalid-fallback}
+  );
+  --ix-radiobtn-checked--color--invalid--active: var(
+    --theme-si-sys-text-on-danger,
+    #{$radiobtn-checked-color-invalid-active-fallback}
+  );
+  --ix-radiobtn-checked--color--invalid--hover: var(
+    --theme-si-sys-text-on-danger,
+    #{$radiobtn-checked-color-invalid-hover-fallback}
+  );
+  --ix-radiobtn-checked--color--warning: var(
+    --theme-color-warning--contrast,
+    #{$radiobtn-checked-color-warning-fallback}
+  );
+  --ix-radiobtn-checked--color--warning--active: var(
+    --theme-color-warning--contrast,
+    #{$radiobtn-checked-color-warning-active-fallback}
+  );
+  --ix-radiobtn-checked--color--warning--hover: var(
+    --theme-color-warning--contrast,
+    #{$radiobtn-checked-color-warning-hover-fallback}
+  );
+  --ix-radiobtn-label--color: var(
+    --theme-si-sys-text-primary,
+    #{$radiobtn-label-color-fallback}
+  );
+  --ix-radiobtn-label--color--disabled: var(
+    --theme-si-sys-text-disabled,
+    #{$radiobtn-label-color-disabled-fallback}
+  );
+  --ix-radiobtn-unchecked--background: var(
+    --theme-si-sys-background-1,
+    #{$radiobtn-unchecked-background-fallback}
+  );
+  --ix-radiobtn-unchecked--background--active: var(
+    --theme-si-sys-background-selected,
+    #{$radiobtn-unchecked-background-active-fallback}
+  );
+  --ix-radiobtn-unchecked--background--disabled: var(
+    --theme-si-sys-background-1,
+    #{$radiobtn-unchecked-background-disabled-fallback}
+  );
+  --ix-radiobtn-unchecked--background--hover: var(
+    --theme-si-sys-background-hover,
+    #{$radiobtn-unchecked-background-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--background--info: var(
+    --theme-si-sys-background-1,
+    #{$radiobtn-unchecked-background-info-fallback}
+  );
+  --ix-radiobtn-unchecked--background--info--active: var(
+    --theme-si-sys-background-selected,
+    #{$radiobtn-unchecked-background-info-active-fallback}
+  );
+  --ix-radiobtn-unchecked--background--info--hover: var(
+    --theme-si-sys-background-hover,
+    #{$radiobtn-unchecked-background-info-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--background--invalid: var(
+    --theme-si-sys-background-1,
+    #{$radiobtn-unchecked-background-invalid-fallback}
+  );
+  --ix-radiobtn-unchecked--background--invalid--active: var(
+    --theme-si-sys-background-selected,
+    #{$radiobtn-unchecked-background-invalid-active-fallback}
+  );
+  --ix-radiobtn-unchecked--background--invalid--hover: var(
+    --theme-si-sys-background-hover,
+    #{$radiobtn-unchecked-background-invalid-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--background--warning: var(
+    --theme-si-sys-background-1,
+    #{$radiobtn-unchecked-background-warning-fallback}
+  );
+  --ix-radiobtn-unchecked--background--warning--active: var(
+    --theme-si-sys-background-selected,
+    #{$radiobtn-unchecked-background-warning-active-fallback}
+  );
+  --ix-radiobtn-unchecked--background--warning--hover: var(
+    --theme-si-sys-background-hover,
+    #{$radiobtn-unchecked-background-warning-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color: var(
+    --theme-si-sys-border-2,
+    #{$radiobtn-unchecked-border-color-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--active: var(
+    --theme-si-sys-border-2,
+    #{$radiobtn-unchecked-border-color-active-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--disabled: var(
+    --theme-si-sys-text-disabled,
+    #{$radiobtn-unchecked-border-color-disabled-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--hover: var(
+    --theme-si-sys-border-2,
+    #{$radiobtn-unchecked-border-color-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--info: var(
+    --theme-si-sys-border-information,
+    #{$radiobtn-unchecked-border-color-info-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--info--active: var(
+    --theme-si-sys-border-information,
+    #{$radiobtn-unchecked-border-color-info-active-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--info--hover: var(
+    --theme-si-sys-border-information,
+    #{$radiobtn-unchecked-border-color-info-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--invalid: var(
+    --theme-si-sys-border-danger,
+    #{$radiobtn-unchecked-border-color-invalid-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--invalid--active: var(
+    --theme-si-sys-border-danger,
+    #{$radiobtn-unchecked-border-color-invalid-active-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--invalid--hover: var(
+    --theme-si-sys-border-danger,
+    #{$radiobtn-unchecked-border-color-invalid-hover-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-unchecked-border-color-warning-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-unchecked-border-color-warning-active-fallback}
+  );
+  --ix-radiobtn-unchecked--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #{$radiobtn-unchecked-border-color-warning-hover-fallback}
+  );
+}

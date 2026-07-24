@@ -108,6 +108,19 @@ function copyDistCssToDist() {
 
   cssFiles = [
     ...cssFiles,
+    ...compileCore('ix-foundation.scss', 'siemens-ix-foundation.css'),
+  ];
+
+  cssFiles = [
+    ...cssFiles,
+    ...compileCore(
+      'ix-legacy-utilities.scss',
+      'siemens-ix-legacy-utilities.css'
+    ),
+  ];
+
+  cssFiles = [
+    ...cssFiles,
     ...compileCore('ix-standalone.scss', 'siemens-ix-standalone.css'),
   ];
 

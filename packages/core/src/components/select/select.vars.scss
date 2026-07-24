@@ -1,0 +1,126 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$select-inset-shadow-1-fallback: inset 0 2px 4px 0
+  light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+$select-color-focus-bdr-fallback: #199fff;
+$input-background-fallback: light-dark(#ffffff, #1a272d);
+$input-background-hover-fallback: light-dark(#fafafa, #0e1b20);
+$input-background-invalid-fallback: light-dark(#ffffff, #1a272d);
+$input-background-warning-fallback: light-dark(#ffffff, #1a272d);
+$input-border-color-fallback: light-dark(#5b6a71, #919ca1);
+$input-border-color-disabled-fallback: light-dark(#ebedee, #34454d);
+$input-border-color-hover-fallback: light-dark(#000609, #ffffff);
+$input-border-color-info-fallback: #226ae7;
+$input-border-color-info-active-fallback: #226ae7;
+$input-border-color-info-hover-fallback: #226ae7;
+$input-border-color-invalid-fallback: #d72323;
+$input-border-color-invalid-active-fallback: #d72323;
+$input-border-color-invalid-hover-fallback: #d72323;
+$input-border-color-readonly-fallback: light-dark(#ebedee, #34454d);
+$input-border-color-warning-fallback: light-dark(#c69100, #ffc832);
+$input-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
+$input-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
+$input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
+$input-select-icon-color-fallback: light-dark(#405158, #aeb5b8);
+$select-list-item-hint-color-fallback: light-dark(#405158, #aeb5b8);
+
+:host {
+  --ix-select--inset-shadow-1: var(
+    --theme-inset-shadow-1,
+    #{$select-inset-shadow-1-fallback}
+  );
+  --ix-select--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$select-color-focus-bdr-fallback}
+  );
+  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
+  --ix-input--background: var(
+    --theme-si-sys-background-1,
+    #{$input-background-fallback}
+  );
+  --ix-input--background--hover: var(
+    --theme-si-sys-background-4,
+    #{$input-background-hover-fallback}
+  );
+  --ix-input--background--invalid: var(
+    --theme-si-sys-background-1,
+    #{$input-background-invalid-fallback}
+  );
+  --ix-input--background--warning: var(
+    --theme-si-sys-background-1,
+    #{$input-background-warning-fallback}
+  );
+  --ix-input--border-color: var(
+    --theme-si-sys-border-2,
+    #{$input-border-color-fallback}
+  );
+  --ix-input--border-color--disabled: var(
+    --theme-si-sys-border-4,
+    #{$input-border-color-disabled-fallback}
+  );
+  --ix-input--border-color--hover: var(
+    --theme-si-sys-border-1,
+    #{$input-border-color-hover-fallback}
+  );
+  --ix-input--border-color--info: var(
+    --theme-si-sys-border-information,
+    #{$input-border-color-info-fallback}
+  );
+  --ix-input--border-color--info--active: var(
+    --theme-si-sys-border-information,
+    #{$input-border-color-info-active-fallback}
+  );
+  --ix-input--border-color--info--hover: var(
+    --theme-si-sys-border-information,
+    #{$input-border-color-info-hover-fallback}
+  );
+  --ix-input--border-color--invalid: var(
+    --theme-si-sys-border-danger,
+    #{$input-border-color-invalid-fallback}
+  );
+  --ix-input--border-color--invalid--active: var(
+    --theme-si-sys-border-danger,
+    #{$input-border-color-invalid-active-fallback}
+  );
+  --ix-input--border-color--invalid--hover: var(
+    --theme-si-sys-border-danger,
+    #{$input-border-color-invalid-hover-fallback}
+  );
+  --ix-input--border-color--readonly: var(
+    --theme-si-sys-border-4,
+    #{$input-border-color-readonly-fallback}
+  );
+  --ix-input--border-color--warning: var(
+    --theme-color-warning-bdr,
+    #{$input-border-color-warning-fallback}
+  );
+  --ix-input--border-color--warning--active: var(
+    --theme-color-warning-bdr,
+    #{$input-border-color-warning-active-fallback}
+  );
+  --ix-input--border-color--warning--hover: var(
+    --theme-color-warning-bdr,
+    #{$input-border-color-warning-hover-fallback}
+  );
+  --ix-input--border-radius: var(--theme-small-border-radius, 0.125rem);
+  --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-input--color--disabled: var(
+    --theme-si-sys-text-disabled,
+    #{$input-color-disabled-fallback}
+  );
+  --ix-input-select-icon--color: var(
+    --theme-color-soft-text,
+    #{$input-select-icon-color-fallback}
+  );
+  --ix-select-list-item-hint--color: var(
+    --theme-color-soft-text,
+    #{$select-list-item-hint-color-fallback}
+  );
+}

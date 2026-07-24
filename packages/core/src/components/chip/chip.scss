@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 
+@use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 $padding-inline: 0.75rem;
@@ -20,8 +21,8 @@ $outline-border-width: 0.0625rem;
 
 @mixin chip-focus-outline {
   &:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-btn--focus--outline-offset);
+    outline: 1px solid var(--ix-chip--color-focus-bdr);
+    outline-offset: var(--ix-btn--focus--outline-offset);
   }
 }
 
@@ -183,7 +184,7 @@ $outline-border-width: 0.0625rem;
     cursor: pointer;
     appearance: none;
     font: inherit;
-    color: var(--theme-color-std-text);
+    color: var(--ix-chip--color-std-text);
     border-radius: 50%;
     flex-shrink: 0;
     z-index: 1;
@@ -202,14 +203,14 @@ $outline-border-width: 0.0625rem;
   }
 
   &.primary:not(.outline) {
-    color: var(--theme-chip-primary--color);
+    color: var(--ix-chip-primary--color);
 
     .chip-main {
       @include chip-main-interactive-states(
-        var(--theme-color-primary),
-        var(--theme-chip-primary--background--hover),
-        var(--theme-chip-primary--background--active),
-        var(--theme-chip-primary--color)
+        var(--ix-chip--color-primary),
+        var(--ix-chip-primary--background--hover),
+        var(--ix-chip-primary--background--active),
+        var(--ix-chip-primary--color)
       );
     }
 
@@ -217,68 +218,68 @@ $outline-border-width: 0.0625rem;
       color: inherit;
 
       @include chip-close-surface(
-        var(--theme-chip-close-btn--background),
-        var(--theme-chip-primary--background--hover),
-        var(--theme-chip-primary--background--active)
+        var(--ix-chip-close-btn--background),
+        var(--ix-chip-primary--background--hover),
+        var(--ix-chip-primary--background--active)
       );
     }
   }
 
   &.primary.outline {
-    color: var(--theme-chip-primary-outline--color--display);
-    background-color: var(--theme-chip-primary-outline--background);
+    color: var(--ix-chip-primary-outline--color--display);
+    background-color: var(--ix-chip-primary-outline--background);
     border: solid $outline-border-width
-      var(--theme-chip-primary-outline--border-color);
+      var(--ix-chip-primary-outline--border-color);
 
     &:hover:not(.inactive) {
-      border-color: var(--theme-chip-primary-outline--border-color--hover);
+      border-color: var(--ix-chip-primary-outline--border-color--hover);
     }
 
     &:active:not(.inactive) {
-      border-color: var(--theme-chip-primary-outline--border-color--active);
+      border-color: var(--ix-chip-primary-outline--border-color--active);
     }
 
     .chip-main {
       @include chip-main-interactive-states(
         transparent,
-        var(--theme-chip-primary-outline--background--hover),
-        var(--theme-chip-primary-outline--background--active),
-        var(--theme-chip-primary-outline--color--display)
+        var(--ix-chip-primary-outline--background--hover),
+        var(--ix-chip-primary-outline--background--active),
+        var(--ix-chip-primary-outline--color--display)
       );
     }
 
     &.icon .with-icon {
-      color: var(--theme-color-primary);
+      color: var(--ix-chip--color-primary);
     }
 
     &:hover:not(.inactive).icon .with-icon {
-      color: var(--theme-chip-primary-outline--color--hover);
+      color: var(--ix-chip-primary-outline--color--hover);
     }
 
     &:active:not(.inactive).icon .with-icon {
-      color: var(--theme-chip-primary-outline--color--active);
+      color: var(--ix-chip-primary-outline--color--active);
     }
 
     .chip-close {
       color: inherit;
 
       @include chip-close-hover-active-states(
-        var(--theme-chip-primary-outline--background--hover),
-        var(--theme-chip-primary-outline--background--active)
+        var(--ix-chip-primary-outline--background--hover),
+        var(--ix-chip-primary-outline--background--active)
       );
     }
   }
 
   @each $color in $predefined-chips {
     &.#{$color}:not(.outline) {
-      color: var(--theme-color-#{$color}--contrast);
+      color: var(--ix-chip-#{$color}--color--contrast);
 
       .chip-main {
         @include chip-main-interactive-states(
-          var(--theme-color-#{$color}),
-          var(--theme-color-#{$color}--hover),
-          var(--theme-color-#{$color}--active),
-          var(--theme-color-#{$color}--contrast)
+          var(--ix-chip-#{$color}--background),
+          var(--ix-chip-#{$color}--background--hover),
+          var(--ix-chip-#{$color}--background--active),
+          var(--ix-chip-#{$color}--color--contrast)
         );
       }
 
@@ -286,32 +287,32 @@ $outline-border-width: 0.0625rem;
         color: inherit;
 
         @include chip-close-surface(
-          var(--theme-chip-close-btn--background),
-          var(--theme-color-#{$color}--hover),
-          var(--theme-color-#{$color}--active)
+          var(--ix-chip-close-btn--background),
+          var(--ix-chip-#{$color}--background--hover),
+          var(--ix-chip-#{$color}--background--active)
         );
       }
     }
 
     &.#{$color}.outline {
-      color: var(--theme-chip-outline--color);
-      background-color: var(--theme-chip-outline--background);
-      border-color: var(--theme-color-#{$color});
+      color: var(--ix-chip-outline--color);
+      background-color: var(--ix-chip-outline--background);
+      border-color: var(--ix-chip-#{$color}--border-color);
 
       .chip-main {
         @include chip-main-interactive-states(
           transparent,
-          var(--theme-chip-outline--background--hover),
-          var(--theme-chip-outline--background--active),
-          var(--theme-chip-outline--color)
+          var(--ix-chip-outline--background--hover),
+          var(--ix-chip-outline--background--active),
+          var(--ix-chip-outline--color)
         );
       }
 
       &.icon .with-icon {
         @if $color == 'warning' {
-          color: var(--theme-color-warning-text);
+          color: var(--ix-chip--color-warning-text);
         } @else {
-          color: var(--theme-color-#{$color});
+          color: var(--ix-chip-#{$color}--color);
         }
       }
 
@@ -319,8 +320,8 @@ $outline-border-width: 0.0625rem;
         color: inherit;
 
         @include chip-close-hover-active-states(
-          var(--theme-chip-outline--background--hover),
-          var(--theme-chip-outline--background--active)
+          var(--ix-chip-outline--background--hover),
+          var(--ix-chip-outline--background--active)
         );
       }
     }
@@ -328,20 +329,20 @@ $outline-border-width: 0.0625rem;
 
   &.outline .chip-close {
     @include chip-close-surface(
-      var(--theme-chip-close-btn--background),
-      var(--theme-chip-close-btn--background--hover),
-      var(--theme-chip-close-btn--background--active)
+      var(--ix-chip-close-btn--background),
+      var(--ix-chip-close-btn--background--hover),
+      var(--ix-chip-close-btn--background--active)
     );
   }
 
   &.custom.outline {
-    background-color: var(--theme-chip-outline--background);
+    background-color: var(--ix-chip-outline--background);
 
     .chip-main {
       @include chip-main-interactive-states(
         transparent,
-        var(--theme-chip-outline--background--hover),
-        var(--theme-chip-outline--background--active)
+        var(--ix-chip-outline--background--hover),
+        var(--ix-chip-outline--background--active)
       );
     }
 
@@ -349,8 +350,8 @@ $outline-border-width: 0.0625rem;
       color: inherit;
 
       @include chip-close-hover-active-states(
-        var(--theme-chip-outline--background--hover),
-        var(--theme-chip-outline--background--active)
+        var(--ix-chip-outline--background--hover),
+        var(--ix-chip-outline--background--active)
       );
     }
   }
@@ -382,7 +383,7 @@ $outline-border-width: 0.0625rem;
       color: inherit;
 
       @include chip-close-surface(
-        var(--theme-chip-close-btn--background),
+        var(--ix-chip-close-btn--background),
         color-mix(in srgb, currentColor 10%, transparent),
         color-mix(in srgb, currentColor 20%, transparent)
       );

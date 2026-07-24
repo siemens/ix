@@ -10,6 +10,7 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './tab-item.vars' as *;
 :host {
   position: relative;
   display: flex;
@@ -18,8 +19,8 @@
   line-height: 20px;
   font-size: 14px;
   font-weight: bold;
-  background-color: var(--theme-tab--background);
-  color: var(--theme-tab--color);
+  background-color: var(--ix-tab--background);
+  color: var(--ix-tab--color);
   touch-action: none; // Disable default touch behaviors for drag
 
   height: 2.5rem;
@@ -52,18 +53,18 @@
     align-items: center;
     height: 3rem;
     width: 3rem;
-    background-color: var(--theme-animated-tab-circle--background);
+    background-color: var(--ix-animated-tab-circle--background);
     border-radius: 50%;
-    border: 2px solid var(--theme-animated-tab-circle--border-color);
-    color: var(--theme-animated-tab-icon--color);
+    border: 2px solid var(--ix-animated-tab-circle--border-color);
+    color: var(--ix-animated-tab-icon--color);
     cursor: pointer;
 
     &:hover {
-      background-color: var(--theme-animated-tab-circle--background--hover);
+      background-color: var(--ix-animated-tab-circle--background--hover);
     }
 
     &:active {
-      background-color: var(--theme-animated-tab-circle--background--active);
+      background-color: var(--ix-animated-tab-circle--background--active);
     }
   }
 
@@ -72,8 +73,8 @@
     z-index: 1;
     height: 16px;
     width: auto;
-    background-color: var(--theme-color-1);
-    border: 1px solid var(--theme-tab-pill--border-color);
+    background-color: var(--ix-tab-item--color-1);
+    border: 1px solid var(--ix-tab-pill--border-color);
     border-radius: 100px;
     bottom: 6px;
     display: flex;
@@ -83,15 +84,15 @@
     padding-right: 0.25rem;
     font-size: 12px;
     line-height: 14px;
-    color: var(--theme-pill-outline--color);
+    color: var(--ix-pill-outline--color);
     cursor: pointer;
 
     &.selected {
-      border-color: var(--theme-tab-pill--border-color--selected);
+      border-color: var(--ix-tab-pill--border-color--selected);
     }
 
     &.disabled {
-      border-color: var(--theme-tab-pill--border-color--disabled);
+      border-color: var(--ix-tab-pill--border-color--disabled);
       cursor: default;
     }
   }
@@ -118,8 +119,8 @@
 }
 
 :host(.selected:not(.disabled)) {
-  background-color: var(--theme-tab--background--selected);
-  color: var(--theme-tab--color--selected);
+  background-color: var(--ix-tab--background--selected);
+  color: var(--ix-tab--color--selected);
 
   &::after {
     content: '';
@@ -127,23 +128,23 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--theme-tab-indicator--background--selected);
+    background-color: var(--ix-tab-indicator--background--selected);
   }
 
   .circle {
-    background-color: var(--theme-animated-tab-circle--background--selected);
-    color: var(--theme-animated-tab-icon--color--selected);
-    border-color: var(--theme-animated-tab-circle--border-color--selected);
+    background-color: var(--ix-animated-tab-circle--background--selected);
+    color: var(--ix-animated-tab-icon--color--selected);
+    border-color: var(--ix-animated-tab-circle--border-color--selected);
 
     &:hover {
-      background-color: var(--theme-animated-tab-circle--background--selected);
+      background-color: var(--ix-animated-tab-circle--background--selected);
     }
   }
 }
 
 :host(.selected.bottom:not(.disabled)) {
-  background-color: var(--theme-tab--background--selected);
-  color: var(--theme-tab--color--selected);
+  background-color: var(--ix-tab--background--selected);
+  color: var(--ix-tab--color--selected);
 
   &::after {
     bottom: 0px;
@@ -157,28 +158,28 @@
 }
 
 :host(:hover:not(.circle):not(.disabled)) {
-  background-color: var(--theme-tab--background--hover);
-  color: var(--theme-tab-color-hover);
+  background-color: var(--ix-tab--background--hover);
+  color: var(--ix-tab-color-hover);
 }
 
 :host(:active:not(.circle):not(.disabled)) {
-  background-color: var(--theme-tab--background--active);
-  color: var(--theme-tab-color--active);
+  background-color: var(--ix-tab--background--active);
+  color: var(--ix-tab-color--active);
 }
 
 :host(.disabled) {
   cursor: default;
-  color: var(--theme-tab--color--disabled);
-  background-color: var(--theme-tab--background--disabled);
+  color: var(--ix-tab--color--disabled);
+  background-color: var(--ix-tab--background--disabled);
   pointer-events: none;
 
   &::after {
-    background-color: var(--theme-tab-indicator--background--disabled);
+    background-color: var(--ix-tab-indicator--background--disabled);
   }
 
   .circle {
-    background-color: var(--theme-animated-tab-circle--background--disabled);
-    border-color: var(--theme-animated-tab-circle--border-color--disabled);
+    background-color: var(--ix-animated-tab-circle--background--disabled);
+    border-color: var(--ix-animated-tab-circle--border-color--disabled);
     cursor: default;
   }
 }
@@ -203,7 +204,7 @@
 
 :host(:not(.circle):focus-visible) {
   outline-offset: -0.0625rem;
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline: 0.0625rem solid var(--ix-tab-item--color-focus-bdr);
 }
 
 :host(.circle:focus-visible) {
@@ -211,6 +212,6 @@
 
   .circle {
     outline-offset: 0.125rem;
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline: 0.0625rem solid var(--ix-tab-item--color-focus-bdr);
   }
 }

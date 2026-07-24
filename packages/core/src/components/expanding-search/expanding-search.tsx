@@ -168,7 +168,6 @@ export class ExpandingSearch
         >
           <input
             class={{
-              'ix-form-control': true,
               input: this.expanded,
               'disable-pointer': !this.expanded,
               'opacity-before': !this.expanded,

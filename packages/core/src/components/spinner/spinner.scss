@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 
+@use './spinner.vars' as *;
 @mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
   :host {
     display: block;
@@ -86,7 +87,7 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--ix-button-color, var(--theme-color-soft-text));
+      var(--ix-button-color, var(--ix-spinner--color-soft-text));
     animation: clipMask 3s linear infinite;
   }
 
@@ -97,15 +98,15 @@
     inset: 8.33%;
     border-radius: 100%;
     //TODO(IX-3400): Replace track color with proper CSS variables when available
-    border: $track-size solid var(--theme-color-component-3);
+    border: $track-size solid var(--ix-spinner--color-component-3);
   }
 
   .primary::after {
-    border-color: var(--theme-color-dynamic);
+    border-color: var(--ix-spinner--color-dynamic);
   }
 
   .primary::before {
-    border-color: var(--theme-color-ghost--hover);
+    border-color: var(--ix-spinner--color-ghost--hover);
   }
 }
 

@@ -1,0 +1,89 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$filter-chip-color-ghost-fallback: light-dark(
+  rgba(166, 171, 140, 0),
+  rgba(255, 255, 255, 0)
+);
+$filter-chip-color-component-4-fallback: light-dark(
+  rgba(5, 18, 31, 0.3),
+  rgba(214, 242, 255, 0.42)
+);
+$filter-chip-color-weak-text-fallback: light-dark(
+  rgba(0, 10, 20, 0.4),
+  rgba(219, 244, 255, 0.4)
+);
+$filter-chip-color-ghost-primary-hover-fallback: light-dark(
+  rgba(0, 234, 255, 0.2),
+  rgba(0, 255, 255, 0.15)
+);
+$filter-chip-color-ghost-primary-active-fallback: light-dark(
+  rgba(0, 190, 207, 0.2),
+  rgba(0, 128, 128, 0.2)
+);
+$chip-primary-outline-border-color-fallback: light-dark(#006a87, #00c9e4);
+$chip-primary-outline-border-color-active-fallback: light-dark(
+  #004e68,
+  #00def7
+);
+$chip-primary-outline-border-color-hover-fallback: light-dark(#004f69, #00eaff);
+$chip-primary-outline-color-fallback: light-dark(#006a87, #00c9e4);
+$chip-primary-outline-color-active-fallback: light-dark(#004e68, #00def7);
+$chip-primary-outline-color-hover-fallback: light-dark(#004f69, #00eaff);
+
+:host {
+  --ix-filter-chip--focus--border-thickness: var(
+    --theme-focus--border-thickness,
+    0.0625rem
+  );
+  --ix-filter-chip--color-ghost: var(
+    --theme-color-ghost,
+    #{$filter-chip-color-ghost-fallback}
+  );
+  --ix-filter-chip--color-component-4: var(
+    --theme-color-component-4,
+    #{$filter-chip-color-component-4-fallback}
+  );
+  --ix-filter-chip--color-weak-text: var(
+    --theme-color-weak-text,
+    #{$filter-chip-color-weak-text-fallback}
+  );
+  --ix-filter-chip--color-ghost-primary--hover: var(
+    --theme-color-ghost-primary--hover,
+    #{$filter-chip-color-ghost-primary-hover-fallback}
+  );
+  --ix-filter-chip--color-ghost-primary--active: var(
+    --theme-color-ghost-primary--active,
+    #{$filter-chip-color-ghost-primary-active-fallback}
+  );
+  --ix-chip-primary-outline--border-color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-border-color-fallback}
+  );
+  --ix-chip-primary-outline--border-color--active: var(
+    --theme-color-primary--active,
+    #{$chip-primary-outline-border-color-active-fallback}
+  );
+  --ix-chip-primary-outline--border-color--hover: var(
+    --theme-color-primary--hover,
+    #{$chip-primary-outline-border-color-hover-fallback}
+  );
+  --ix-chip-primary-outline--color: var(
+    --theme-color-primary,
+    #{$chip-primary-outline-color-fallback}
+  );
+  --ix-chip-primary-outline--color--active: var(
+    --theme-color-primary--active,
+    #{$chip-primary-outline-color-active-fallback}
+  );
+  --ix-chip-primary-outline--color--hover: var(
+    --theme-color-primary--hover,
+    #{$chip-primary-outline-color-hover-fallback}
+  );
+}

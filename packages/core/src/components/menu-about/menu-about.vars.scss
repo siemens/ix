@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$nav-overlay-background-fallback: light-dark(
+  rgba(240, 241, 242, 0.85),
+  rgba(14, 27, 32, 0.85)
+);
+$nav-overlay-header-color-fallback: light-dark(#000609, #ffffff);
+
+:host {
+  --ix-nav-overlay--background: var(
+    --theme-color-backdrop-3,
+    #{$nav-overlay-background-fallback}
+  );
+  --ix-nav-overlay-header--color: var(
+    --theme-color-std-text,
+    #{$nav-overlay-header-color-fallback}
+  );
+}

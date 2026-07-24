@@ -1,0 +1,148 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$slider-color-focus-bdr-fallback: #199fff;
+$slider-color-warning-40-fallback: rgba(255, 187, 0, 0.4);
+$slider-color-warning-fallback: #ffbb00;
+$slider-color-info-40-fallback: light-dark(
+  rgba(0, 65, 177, 0.4),
+  rgba(53, 127, 255, 0.4)
+);
+$slider-color-info-fallback: light-dark(#0041b2, #357fff);
+$slider-color-success-40-fallback: light-dark(
+  rgba(44, 133, 0, 0.4),
+  rgba(68, 204, 0, 0.4)
+);
+$slider-color-success-fallback: light-dark(#2c8500, #44cc00);
+$slider-thumb-background-fallback: light-dark(#004f69, #00eaff);
+$slider-thumb-background-active-fallback: light-dark(#195468, #0094b1);
+$slider-thumb-background-disabled-fallback: light-dark(#adb0b3, #72848c);
+$slider-thumb-background-hover-fallback: light-dark(#006f8e, #00def7);
+$slider-thumb-background-invalid-fallback: #d72323;
+$slider-thumb-background-invalid-active-fallback: #a70808;
+$slider-thumb-background-invalid-hover-fallback: #c01616;
+$slider-trace-background-fallback: light-dark(#004f69, #00eaff);
+$slider-trace-background-disabled-fallback: light-dark(
+  rgba(0, 6, 9, 0.2),
+  rgba(255, 255, 255, 0.3)
+);
+$slider-trace-background-invalid-fallback: #d72323;
+$slider-trace-marker-background-fallback: light-dark(#004f69, #00eaff);
+$slider-trace-marker-background-disabled-fallback: light-dark(#adb0b3, #72848c);
+$slider-trace-marker-background-invalid-fallback: #d72323;
+$slider-track-background-fallback: light-dark(
+  rgba(0, 6, 9, 0.3),
+  rgba(255, 255, 255, 0.45)
+);
+$slider-track-background-disabled-fallback: light-dark(
+  rgba(0, 6, 9, 0.12),
+  rgba(255, 255, 255, 0.15)
+);
+$slider-track-marker-background-fallback: light-dark(#72848c, #e5e8e9);
+$slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
+
+:host {
+  --ix-slider--default-time: var(--theme-default-time, 150ms);
+  --ix-slider--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #{$slider-color-focus-bdr-fallback}
+  );
+  --ix-slider--color-warning-40: var(
+    --theme-color-warning-40,
+    #{$slider-color-warning-40-fallback}
+  );
+  --ix-slider--color-warning: var(
+    --theme-color-warning,
+    #{$slider-color-warning-fallback}
+  );
+  --ix-slider--color-info-40: var(
+    --theme-color-info-40,
+    #{$slider-color-info-40-fallback}
+  );
+  --ix-slider--color-info: var(
+    --theme-color-info,
+    #{$slider-color-info-fallback}
+  );
+  --ix-slider--color-success-40: var(
+    --theme-color-success-40,
+    #{$slider-color-success-40-fallback}
+  );
+  --ix-slider--color-success: var(
+    --theme-color-success,
+    #{$slider-color-success-fallback}
+  );
+  --ix-slider-thumb--background: var(
+    --theme-color-dynamic,
+    #{$slider-thumb-background-fallback}
+  );
+  --ix-slider-thumb--background--active: var(
+    --theme-color-dynamic--active,
+    #{$slider-thumb-background-active-fallback}
+  );
+  --ix-slider-thumb--background--disabled: var(
+    --theme-color-7,
+    #{$slider-thumb-background-disabled-fallback}
+  );
+  --ix-slider-thumb--background--hover: var(
+    --theme-color-dynamic--hover,
+    #{$slider-thumb-background-hover-fallback}
+  );
+  --ix-slider-thumb--background--invalid: var(
+    --theme-color-alarm,
+    #{$slider-thumb-background-invalid-fallback}
+  );
+  --ix-slider-thumb--background--invalid--active: var(
+    --theme-color-alarm--active,
+    #{$slider-thumb-background-invalid-active-fallback}
+  );
+  --ix-slider-thumb--background--invalid--hover: var(
+    --theme-color-alarm--hover,
+    #{$slider-thumb-background-invalid-hover-fallback}
+  );
+  --ix-slider-trace--background: var(
+    --theme-color-dynamic,
+    #{$slider-trace-background-fallback}
+  );
+  --ix-slider-trace--background--disabled: var(
+    --theme-color-component-3,
+    #{$slider-trace-background-disabled-fallback}
+  );
+  --ix-slider-trace--background--invalid: var(
+    --theme-color-alarm,
+    #{$slider-trace-background-invalid-fallback}
+  );
+  --ix-slider-trace-marker--background: var(
+    --theme-color-dynamic,
+    #{$slider-trace-marker-background-fallback}
+  );
+  --ix-slider-trace-marker--background--disabled: var(
+    --theme-color-7,
+    #{$slider-trace-marker-background-disabled-fallback}
+  );
+  --ix-slider-trace-marker--background--invalid: var(
+    --theme-color-alarm,
+    #{$slider-trace-marker-background-invalid-fallback}
+  );
+  --ix-slider-track--background: var(
+    --theme-color-component-4,
+    #{$slider-track-background-fallback}
+  );
+  --ix-slider-track--background--disabled: var(
+    --theme-color-component-2,
+    #{$slider-track-background-disabled-fallback}
+  );
+  --ix-slider-track-marker--background: var(
+    --theme-color-8,
+    #{$slider-track-marker-background-fallback}
+  );
+  --ix-slider-track-marker--background--disabled: var(
+    --theme-color-5,
+    #{$slider-track-marker-background-disabled-fallback}
+  );
+}

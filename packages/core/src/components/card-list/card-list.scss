@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 
+@use './card-list.vars' as *;
 $CardList__Title__Height: 1.5rem;
 
 :host {
@@ -36,7 +37,7 @@ $CardList__Title__Height: 1.5rem;
 
   .CardList__Title__Button {
     margin-right: 1rem;
-    transition: var(--theme-default-time) transform ease-in-out;
+    transition: var(--ix-card-list--default-time) transform ease-in-out;
   }
 
   .CardList__Title__Button__Collapsed {
@@ -56,7 +57,7 @@ $CardList__Title__Height: 1.5rem;
     height: calc(100% - #{$CardList__Title__Height});
     width: 100%;
     gap: 1.5rem;
-    transition: var(--theme-default-time) ease-in-out;
+    transition: var(--ix-card-list--default-time) ease-in-out;
     overflow: auto;
   }
 
@@ -106,8 +107,8 @@ $CardList__Title__Height: 1.5rem;
     max-height: 11.25rem;
     height: 11.25rem;
 
-    --ix-card-border-color: var(--theme-color-primary);
-    color: var(--theme-color-primary);
+    --ix-card-border-color: var(--ix-card-list--color-primary);
+    color: var(--ix-card-list--color-primary);
   }
 
   .CardList__Style__Infinite__Scroll .Show__All__Card {
@@ -119,11 +120,11 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .Show__All__Card:hover {
-    background-color: var(--theme-color-ghost--hover);
+    background-color: var(--ix-card-list--color-ghost--hover);
   }
 
   .Show__All__Card:active {
-    background-color: var(--theme-color-ghost--active);
+    background-color: var(--ix-card-list--color-ghost--active);
   }
 
   .Show__All__Card__Content {
