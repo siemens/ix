@@ -115,7 +115,7 @@ export class Application {
 
   private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
   private mainElement?: HTMLElement;
-  private temporaryFocusTarget?: HTMLElement;
+  private temporaryFocusTargetRestore?: () => void;
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
@@ -134,6 +134,12 @@ export class Application {
       return;
     }
     this.menu?.toggleMenu(false);
+  }
+
+  private onContentKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.onContentClick();
+    }
   }
 
   private setBreakpoints(breakpoints: Breakpoint[]) {
@@ -192,11 +198,10 @@ export class Application {
 
   private findCustomSkipLinkTarget(targetId: string) {
     const matches = Array.from(
-      this.hostElement.querySelectorAll<HTMLElement>('[id]')
+      this.hostElement.querySelectorAll(`[id="${CSS.escape(targetId)}"]`)
     ).filter(
-      (element) =>
+      (element): element is HTMLElement =>
         element instanceof HTMLElement &&
-        element.id === targetId &&
         this.isOwnedLightDomDescendant(element)
     );
 
@@ -211,23 +216,25 @@ export class Application {
   }
 
   private restoreTemporaryTargetFocusability = () => {
-    this.temporaryFocusTarget?.removeEventListener(
-      'blur',
-      this.restoreTemporaryTargetFocusability
-    );
-    if (this.temporaryFocusTarget?.getAttribute('tabindex') === '-1') {
-      this.temporaryFocusTarget.removeAttribute('tabindex');
-    }
-    this.temporaryFocusTarget = undefined;
+    this.temporaryFocusTargetRestore?.();
   };
 
   private focusCustomSkipLinkTarget(target: HTMLElement) {
+    this.restoreTemporaryTargetFocusability();
+
     if (target.tabIndex < 0 && !target.hasAttribute('tabindex')) {
       target.setAttribute('tabindex', '-1');
-      this.temporaryFocusTarget = target;
-      target.addEventListener('blur', this.restoreTemporaryTargetFocusability, {
-        once: true,
-      });
+      const restore = () => {
+        target.removeEventListener('blur', restore);
+        if (target.getAttribute('tabindex') === '-1') {
+          target.removeAttribute('tabindex');
+        }
+        if (this.temporaryFocusTargetRestore === restore) {
+          this.temporaryFocusTargetRestore = undefined;
+        }
+      };
+      this.temporaryFocusTargetRestore = restore;
+      target.addEventListener('blur', restore, { once: true });
     }
 
     try {
@@ -383,6 +390,7 @@ export class Application {
               tabIndex={-1}
               ref={(element) => (this.mainElement = element)}
               onClick={() => this.onContentClick()}
+              onKeyDown={(event) => this.onContentKeyDown(event)}
             >
               <slot></slot>
             </main>

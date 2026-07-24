@@ -26,12 +26,11 @@
     position: absolute;
     inset-block-start: -100%;
     inset-inline-start: calc(
-      var(--ix-safe-area-inset-left, 0rem) +
-        var(--theme-focus--border-thickness) +
-        var(--theme-btn--focus--outline-offset)
+      var(--ix-safe-area-inset-left, 0rem)
+        + var(--theme-focus--border-thickness)
+        + var(--theme-btn--focus--outline-offset)
     );
     z-index: calc(var(--theme-z-index-fixed) + 1);
-
     padding: var(--theme-space-1) var(--theme-space-3);
     background-color: var(--theme-color-2);
     color: var(--theme-color-primary);
@@ -39,9 +38,9 @@
 
     &:focus {
       inset-block-start: calc(
-        var(--ix-safe-area-inset-top, 0rem) +
-          var(--theme-focus--border-thickness) +
-          var(--theme-btn--focus--outline-offset)
+        var(--ix-safe-area-inset-top, 0rem)
+          + var(--theme-focus--border-thickness)
+          + var(--theme-btn--focus--outline-offset)
       );
     }
 
@@ -99,9 +98,9 @@
 
 :host(:dir(rtl)) .skip-link {
   inset-inline-start: calc(
-    var(--ix-safe-area-inset-right, 0rem) +
-      var(--theme-focus--border-thickness) +
-      var(--theme-btn--focus--outline-offset)
+    var(--ix-safe-area-inset-right, 0rem)
+      + var(--theme-focus--border-thickness)
+      + var(--theme-btn--focus--outline-offset)
   );
 }
 

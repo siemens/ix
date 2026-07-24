@@ -72,6 +72,33 @@ regressionTest(
 );
 
 regressionTest(
+  'closes an unpinned menu with Escape from the main content',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application force-breakpoint="md">
+        <ix-menu>
+          <ix-menu-item>Home</ix-menu-item>
+        </ix-menu>
+        Page content
+      </ix-application>
+    `);
+
+    const menu = page.locator('ix-menu');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleMenu(true)
+    );
+    await expect(menu).toHaveClass(/\bexpanded\b/);
+
+    const main = page.locator('ix-application').locator('main');
+    await main.press('Enter');
+    await expect(menu).toHaveClass(/\bexpanded\b/);
+
+    await main.press('Escape');
+    await expect(menu).not.toHaveClass(/\bexpanded\b/);
+  }
+);
+
+regressionTest(
   'shows the skip link at logical top-start only while focused',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 800, height: 600 });
@@ -85,7 +112,10 @@ regressionTest(
     await expect(link).toBeInViewport();
     const outlineInset = await link.evaluate((element) => {
       const style = getComputedStyle(element);
-      return parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset);
+      return (
+        Number.parseFloat(style.outlineWidth) +
+        Number.parseFloat(style.outlineOffset)
+      );
     });
     const ltrBox = await link.boundingBox();
     expect(ltrBox?.x).toBe(outlineInset);
@@ -160,6 +190,58 @@ regressionTest(
 
     await page.locator('#next').focus();
     await expect(target).not.toHaveAttribute('tabindex');
+  }
+);
+
+regressionTest(
+  'supports custom target IDs that require selector escaping',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application skip-link-target-id='content"section'>
+        <h1 id='content"section'>Escaped target</h1>
+      </ix-application>
+    `);
+
+    const link = page.getByRole('link', { name: 'Skip to main content' });
+    await link.focus();
+    await link.press('Enter');
+
+    await expect(page.getByText('Escaped target')).toBeFocused();
+  }
+);
+
+regressionTest(
+  'restores temporary focusability when switching custom targets',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application skip-link-target-id="first-target">
+        <h1 id="first-target">First target</h1>
+        <h2 id="second-target">Second target</h2>
+        <button id="next">Next</button>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const link = page.getByRole('link', { name: 'Skip to main content' });
+    const firstTarget = page.locator('#first-target');
+    const secondTarget = page.locator('#second-target');
+
+    await link.evaluate((element: HTMLAnchorElement) => element.click());
+    await expect(firstTarget).toBeFocused();
+    await expect(firstTarget).toHaveAttribute('tabindex', '-1');
+
+    await application.evaluate((element: HTMLIxApplicationElement) => {
+      element.skipLinkTargetId = 'second-target';
+    });
+    await expect(link).toHaveAttribute('href', '#second-target');
+    await link.evaluate((element: HTMLAnchorElement) => element.click());
+
+    await expect(firstTarget).not.toHaveAttribute('tabindex');
+    await expect(secondTarget).toBeFocused();
+    await expect(secondTarget).toHaveAttribute('tabindex', '-1');
+
+    await page.locator('#next').focus();
+    await expect(secondTarget).not.toHaveAttribute('tabindex');
   }
 );
 
