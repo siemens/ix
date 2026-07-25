@@ -80,7 +80,7 @@ export const AttachedWithCount: Story = {
  */
 export const AttachedDot: Story = {
   render: stencil(() => (
-    <ix-badge variant="primary">
+    <ix-badge type="dot" variant="primary">
       <ix-icon-button icon="info" aria-label="Notifications"></ix-icon-button>
     </ix-badge>
   )),

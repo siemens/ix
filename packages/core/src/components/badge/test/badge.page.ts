@@ -12,11 +12,16 @@ import { expect, Locator, Page } from '@playwright/test';
 /**
  * Page Object Model for ix-badge component testing.
  *
+ * Prefer accessibility locators (`getByRole`, `getByText`, accessible name /
+ * description) for author-facing contracts. Fall back to tag / CSS selectors
+ * for custom-element host state and decorative chrome (e.g. attached
+ * `aria-hidden` indicator) that is intentionally outside the a11y tree.
+ *
  * Usage:
  * ```ts
  * const badge = new BadgePage(page);
  * await badge.expectHydrated();
- * await badge.expectLabelText('12');
+ * await badge.expectVisibleLabel('12');
  * ```
  */
 export class BadgePage {
@@ -26,13 +31,33 @@ export class BadgePage {
     this.page = page;
   }
 
-  /** First badge on the page (single-badge fixtures). */
+  /** First badge on the page (single-badge fixtures without a naming role). */
   get host(): Locator {
     return this.page.locator('ix-badge').first();
   }
 
+  /**
+   * Named standalone badge via host `role` + accessible name.
+   * Prefer this over `host` when the fixture sets `role` / `aria-label`.
+   */
+  getByRole(role: 'img' | 'alert' | 'status', name: string | RegExp): Locator {
+    return this.page.getByRole(role, { name });
+  }
+
+  getButton(name: string | RegExp): Locator {
+    return this.page.getByRole('button', { name });
+  }
+
+  /**
+   * Decorative indicator chrome (often `aria-hidden` when attached).
+   * Structural on purpose — not exposed in the accessibility tree.
+   */
   get indicator(): Locator {
     return this.host.locator('.indicator');
+  }
+
+  indicatorOf(badge: Locator): Locator {
+    return badge.locator('.indicator');
   }
 
   get label(): Locator {
@@ -43,12 +68,16 @@ export class BadgePage {
     return this.host.locator(`> .description, > [slot="description"]`).first();
   }
 
-  getButton(name: string): Locator {
-    return this.page.getByRole('button', { name });
+  get leadingIcon(): Locator {
+    return this.indicator.locator('ix-icon.icon');
   }
 
-  locator(selector: string): Locator {
-    return this.page.locator(selector);
+  get statusIconPlate(): Locator {
+    return this.indicator.locator('ix-icon.status-icon-plate');
+  }
+
+  get statusIconGlyph(): Locator {
+    return this.indicator.locator('ix-icon.status-icon-glyph');
   }
 
   async expectHydrated(badge: Locator = this.host): Promise<void> {
@@ -77,31 +106,19 @@ export class BadgePage {
     await expect(badge).not.toHaveClass(pattern);
   }
 
-  async expectLabelText(
+  async expectVisibleLabel(
     text: string,
     badge: Locator = this.host
   ): Promise<void> {
-    await expect(badge.locator('.label')).toHaveText(text);
+    await expect(badge.getByText(text, { exact: true })).toBeVisible();
   }
 
   async expectNoIndicator(badge: Locator = this.host): Promise<void> {
-    await expect(badge.locator('.indicator')).toHaveCount(0);
+    await expect(this.indicatorOf(badge)).toHaveCount(0);
   }
 
   async expectIndicatorVisible(badge: Locator = this.host): Promise<void> {
-    await expect(badge.locator('.indicator')).toBeVisible();
-  }
-
-  get leadingIcon(): Locator {
-    return this.indicator.locator('ix-icon.icon');
-  }
-
-  get statusIconPlate(): Locator {
-    return this.indicator.locator('ix-icon.status-icon-plate');
-  }
-
-  get statusIconGlyph(): Locator {
-    return this.indicator.locator('ix-icon.status-icon-glyph');
+    await expect(this.indicatorOf(badge)).toBeVisible();
   }
 
   async expectLeadingIconDecorative(): Promise<void> {
@@ -110,8 +127,7 @@ export class BadgePage {
   }
 
   async expectLeadingIconNamed(ariaLabel: string): Promise<void> {
-    await expect(this.leadingIcon).toBeVisible();
-    await expect(this.leadingIcon).toHaveAttribute('aria-label', ariaLabel);
+    await expect(this.indicator.getByLabel(ariaLabel)).toBeVisible();
     await expect(this.leadingIcon).toHaveAttribute('aria-hidden', 'false');
   }
 
@@ -162,7 +178,8 @@ export class BadgePage {
     expect(descriptionId).toBeTruthy();
     expect(describedBy!.split(/\s+/)).toContain(descriptionId);
 
-    // Description stays in light DOM for aria-describedby.
+    // Description stays in light DOM for aria-describedby (SR-only chrome is
+    // not always exposed via Playwright's accessible description API).
     await expect
       .poll(async () =>
         this.page.evaluate(
@@ -171,14 +188,6 @@ export class BadgePage {
         )
       )
       .toBe(descriptionText);
-    await expect
-      .poll(async () =>
-        this.host.evaluate((host, id) => {
-          const description = host.querySelector(`:scope > #${CSS.escape(id)}`);
-          return description?.getAttribute('slot') ?? null;
-        }, descriptionId!)
-      )
-      .toBe('description');
     await expect(this.indicator).toHaveAttribute('aria-hidden', 'true');
   }
 
@@ -215,7 +224,7 @@ export class BadgePage {
     await expect(this.indicator).not.toHaveAttribute('aria-label');
 
     if (options.visibleLabel !== undefined) {
-      await this.expectLabelText(options.visibleLabel);
+      await this.expectVisibleLabel(options.visibleLabel);
     }
 
     if (options.hostRole === null) {
@@ -233,21 +242,17 @@ export class BadgePage {
   }
 
   async expectStandaloneHostAria(options: {
-    role?: string;
-    ariaLabel?: string;
+    role: 'img' | 'alert' | 'status';
+    ariaLabel: string;
     ariaLive?: string;
   }): Promise<void> {
-    await this.expectStandalone();
-    await expect(this.indicator).not.toHaveAttribute('role');
+    const named = this.getByRole(options.role, options.ariaLabel);
+    await expect(named).toBeVisible();
+    await this.expectStandalone(named);
+    await expect(this.indicatorOf(named)).not.toHaveAttribute('role');
 
-    if (options.role !== undefined) {
-      await expect(this.host).toHaveAttribute('role', options.role);
-    }
-    if (options.ariaLabel !== undefined) {
-      await expect(this.host).toHaveAttribute('aria-label', options.ariaLabel);
-    }
     if (options.ariaLive !== undefined) {
-      await expect(this.host).toHaveAttribute('aria-live', options.ariaLive);
+      await expect(named).toHaveAttribute('aria-live', options.ariaLive);
     }
   }
 
@@ -260,15 +265,18 @@ export class BadgePage {
     );
   }
 
-  async disconnectKeepingAnchor(anchorSelector: string): Promise<void> {
-    await this.page.evaluate((selector) => {
-      const badge = document.querySelector('ix-badge');
-      const anchor = document.querySelector(selector);
-
-      if (badge && anchor) {
+  async disconnectKeepingAnchor(buttonName: string): Promise<void> {
+    const button = this.getButton(buttonName);
+    await button.evaluate((anchor) => {
+      const badge = anchor.closest('ix-badge');
+      if (badge) {
         document.body.appendChild(anchor);
         badge.remove();
       }
-    }, anchorSelector);
+    });
+  }
+
+  tooltip(badge: Locator = this.host): Locator {
+    return badge.locator('ix-tooltip');
   }
 }

@@ -284,6 +284,7 @@ export namespace Components {
      * Overlay indicator for counts, labels, dots, and status icons.
      * **Attached** (default slot has content): the indicator is decorative.
      * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
@@ -5275,6 +5276,7 @@ declare global {
      * Overlay indicator for counts, labels, dots, and status icons.
      * **Attached** (default slot has content): the indicator is decorative.
      * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
@@ -7164,6 +7166,7 @@ declare namespace LocalJSX {
      * Overlay indicator for counts, labels, dots, and status icons.
      * **Attached** (default slot has content): the indicator is decorative.
      * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
@@ -13408,6 +13411,7 @@ declare module "@stencil/core" {
              * Overlay indicator for counts, labels, dots, and status icons.
              * **Attached** (default slot has content): the indicator is decorative.
              * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+             * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
              * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
              * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
              * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).

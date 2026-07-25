@@ -63,7 +63,7 @@ regressionTest.describe('ix-badge', () => {
       await badge.expectHydrated();
       await badge.expectStandalone();
       await expect(badge.host).toHaveAttribute('variant', 'info');
-      await badge.expectLabelText('12');
+      await badge.expectVisibleLabel('12');
     });
 
     regressionTest(
@@ -84,7 +84,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest('formats overflow label as 99+', async ({ mount, page }) => {
       await mount(`<ix-badge label="142" variant="primary"></ix-badge>`);
       const badge = new BadgePage(page);
-      await badge.expectLabelText('99+');
+      await badge.expectVisibleLabel('99+');
     });
 
     regressionTest(
@@ -92,7 +92,7 @@ regressionTest.describe('ix-badge', () => {
       async ({ mount, page }) => {
         await mount(`<ix-badge label="99+" variant="primary"></ix-badge>`);
         const badge = new BadgePage(page);
-        await badge.expectLabelText('99+');
+        await badge.expectVisibleLabel('99+');
       }
     );
 
@@ -151,16 +151,16 @@ regressionTest.describe('ix-badge', () => {
         await mount(
           html`
             <ix-badge
-              id="filled"
               type="status-icon"
               variant="info"
+              role="img"
               aria-label="Info filled"
             ></ix-badge>
             <ix-badge
-              id="outline"
               type="status-icon"
               variant="info"
               outline
+              role="img"
               aria-label="Info outline"
             ></ix-badge>
           `,
@@ -168,22 +168,30 @@ regressionTest.describe('ix-badge', () => {
         );
 
         const badge = new BadgePage(page);
-        const filled = badge.locator('#filled');
-        const outline = badge.locator('#outline');
+        const filled = badge.getByRole('img', 'Info filled');
+        const outline = badge.getByRole('img', 'Info outline');
 
         await expect(filled).toHaveClass(/\binfo\b/);
         await expect(outline).toHaveClass(/\boutline\b/);
-        await expect(filled.locator('ix-icon.status-icon-glyph')).toBeVisible();
-        await expect(filled.locator('ix-icon.status-icon-plate')).toBeVisible();
-        await expect(outline.locator('ix-icon.status-icon')).toBeVisible();
-        await expect(outline.locator('ix-icon.status-icon-plate')).toHaveCount(
-          0
-        );
+        await expect(
+          badge.indicatorOf(filled).locator('ix-icon.status-icon-glyph')
+        ).toBeVisible();
+        await expect(
+          badge.indicatorOf(filled).locator('ix-icon.status-icon-plate')
+        ).toBeVisible();
+        await expect(
+          badge.indicatorOf(outline).locator('ix-icon.status-icon')
+        ).toBeVisible();
+        await expect(
+          badge.indicatorOf(outline).locator('ix-icon.status-icon-plate')
+        ).toHaveCount(0);
 
-        const filledName = await filled
+        const filledName = await badge
+          .indicatorOf(filled)
           .locator('ix-icon.status-icon-glyph')
           .evaluate((el: HTMLIxIconElement) => el.name);
-        const outlineName = await outline
+        const outlineName = await badge
+          .indicatorOf(outline)
           .locator('ix-icon.status-icon')
           .evaluate((el: HTMLIxIconElement) => el.name);
 
@@ -331,6 +339,28 @@ regressionTest.describe('ix-badge', () => {
 
   regressionTest.describe('attached accessibility', () => {
     regressionTest(
+      'discards host ARIA when attached (anchor owns naming)',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-badge
+            label="3"
+            variant="alarm"
+            role="status"
+            aria-label="Should not stay on host"
+          >
+            <button>Messages</button>
+          </ix-badge>
+        `);
+
+        const badge = new BadgePage(page);
+        await badge.expectAttached();
+        await expect(badge.host).not.toHaveAttribute('role');
+        await expect(badge.host).not.toHaveAttribute('aria-label');
+        await badge.expectAttachedTextLabelA11y('Messages', '3');
+      }
+    );
+
+    regressionTest(
       'sets aria-describedby for text label on anchor',
       async ({ mount, page }) => {
         await mount(html`
@@ -380,7 +410,7 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest(
-      'updates hidden description when label changes',
+      'updates accessible description when label changes',
       async ({ mount, page }) => {
         await mount(html`
           <ix-badge label="3" variant="alarm">
@@ -389,47 +419,46 @@ regressionTest.describe('ix-badge', () => {
         `);
 
         const badge = new BadgePage(page);
-        await expect(badge.description).toHaveText('3');
+        await badge.expectAttachedTextLabelA11y('Messages', '3');
 
         await badge.setLabel('8');
 
-        await expect(badge.description).toHaveText('8');
+        await badge.expectAttachedTextLabelA11y('Messages', '8');
       }
     );
 
     regressionTest(
-      'removes aria-describedby from anchor on disconnect',
+      'removes accessible description from anchor on disconnect',
       async ({ mount, page }) => {
         await mount(html`
           <ix-badge label="3">
-            <button id="anchor">Messages</button>
+            <button>Messages</button>
           </ix-badge>
         `);
 
         const badge = new BadgePage(page);
-        const button = badge.locator('#anchor');
-        await expect(button).toHaveAttribute('aria-describedby', /.+/);
+        const button = badge.getButton('Messages');
+        await badge.expectAttachedTextLabelA11y('Messages', '3');
 
-        await badge.disconnectKeepingAnchor('#anchor');
+        await badge.disconnectKeepingAnchor('Messages');
 
         await expect(button).not.toHaveAttribute('aria-describedby');
       }
     );
 
     regressionTest(
-      'restores aria-describedby after reconnect',
+      'restores accessible description after reconnect',
       async ({ mount, page }) => {
         await mount(html`
           <div id="mount">
             <ix-badge label="3">
-              <button id="anchor">Messages</button>
+              <button>Messages</button>
             </ix-badge>
           </div>
         `);
 
         const badge = new BadgePage(page);
-        const button = badge.locator('#anchor');
-        await expect(button).toHaveAttribute('aria-describedby', /.+/);
+        await badge.expectAttachedTextLabelA11y('Messages', '3');
 
         await page.evaluate(() => {
           const host = document.querySelector('ix-badge');
@@ -440,7 +469,6 @@ regressionTest.describe('ix-badge', () => {
           }
         });
 
-        await expect(button).toHaveAttribute('aria-describedby', /.+/);
         await badge.expectAttachedTextLabelA11y('Messages', '3');
       }
     );
@@ -454,7 +482,7 @@ regressionTest.describe('ix-badge', () => {
       const badge = new BadgePage(page);
 
       await expect(badge.host).toHaveAttribute('type', 'label');
-      await badge.expectLabelText('NEW');
+      await badge.expectVisibleLabel('NEW');
     });
 
     regressionTest(
@@ -501,7 +529,7 @@ regressionTest.describe('ix-badge', () => {
         const badge = new BadgePage(page);
 
         await badge.expectLeadingIconNamed('Featured');
-        await badge.expectLabelText('NEW');
+        await badge.expectVisibleLabel('NEW');
       }
     );
 
@@ -587,6 +615,7 @@ regressionTest.describe('ix-badge', () => {
           role: 'alert',
           ariaLabel: 'Urgent update',
         });
+        await expect(badge.getByRole('alert', 'Urgent update')).toBeVisible();
       }
     );
 
@@ -616,7 +645,7 @@ regressionTest.describe('ix-badge', () => {
         await badge.host.hover();
 
         await expect(badge.host).not.toHaveAttribute('tooltip-text');
-        await expect(badge.host.locator('ix-tooltip')).not.toBeAttached();
+        await expect(badge.tooltip()).not.toBeAttached();
       }
     );
 
@@ -630,10 +659,7 @@ regressionTest.describe('ix-badge', () => {
         await badge.expectHydrated();
         await badge.indicator.hover();
 
-        await expectVisibleTooltipText(
-          badge.host.locator('ix-tooltip'),
-          'Label'
-        );
+        await expectVisibleTooltipText(badge.tooltip(), 'Label');
       }
     );
 
@@ -647,10 +673,7 @@ regressionTest.describe('ix-badge', () => {
         await badge.expectHydrated();
         await badge.indicator.hover();
 
-        await expectVisibleTooltipText(
-          badge.host.locator('ix-tooltip'),
-          'Twelve items'
-        );
+        await expectVisibleTooltipText(badge.tooltip(), 'Twelve items');
       }
     );
 
@@ -661,13 +684,11 @@ regressionTest.describe('ix-badge', () => {
           `<ix-badge type="dot" variant="alarm" role="img" aria-label="Unread" tooltip-text></ix-badge>`
         );
         const badge = new BadgePage(page);
-        await badge.expectHydrated();
-        await badge.indicator.hover();
+        const named = badge.getByRole('img', 'Unread');
+        await badge.expectHydrated(named);
+        await badge.indicatorOf(named).hover();
 
-        await expectVisibleTooltipText(
-          badge.host.locator('ix-tooltip'),
-          'Unread'
-        );
+        await expectVisibleTooltipText(badge.tooltip(named), 'Unread');
       }
     );
 
@@ -684,7 +705,7 @@ regressionTest.describe('ix-badge', () => {
         await badge.expectAttached();
         await badge.indicator.hover();
 
-        await expect(badge.host.locator('ix-tooltip')).not.toBeAttached();
+        await expect(badge.tooltip()).not.toBeAttached();
       }
     );
   });

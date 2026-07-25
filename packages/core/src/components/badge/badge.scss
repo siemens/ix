@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './badge.vars' as *;
 
 $predefined-variants: primary, alarm, critical, warning, info, neutral, success;
 $status-icon-variants: alarm, critical, warning, info, success;
@@ -19,12 +20,6 @@ $border-radius: 100px;
   width: fit-content;
   max-width: 100%;
   vertical-align: top;
-
-  --ix-badge-offset-x: 0rem;
-  --ix-badge-offset-y: 0rem;
-  --ix-badge-max-width: none;
-  --ix-badge-pulse-color: var(--theme-color-primary);
-  --ix-badge-animation-duration: 2s;
 
   @include component.ix-component;
 }

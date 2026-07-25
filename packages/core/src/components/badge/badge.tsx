@@ -55,6 +55,7 @@ const BADGE_DESCRIPTION_SLOT = 'description';
  *
  * **Attached** (default slot has content): the indicator is decorative.
  * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+ * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
  *
  * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
  * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
@@ -214,19 +215,21 @@ export class Badge
   private hasDisconnected = false;
 
   override componentWillLoad() {
+    // Mixin strips host ARIA into `inheritAriaAttributes` and removes them from the host.
     super.componentWillLoad();
     this.descriptionId = `${this.getHostElementId()}-description`;
     const hasAnchor = this.detectHasAnchor();
 
     if (hasAnchor) {
       this.hasAnchor = true;
-      a11yHostAttributes(this.hostElement);
+      // Attached: discard host ARIA — the anchor owns naming; the indicator is decorative
+      // (`aria-hidden`) and count/label text is exposed via `aria-describedby` on the anchor.
       this.inheritAriaAttributes = {};
       return;
     }
 
     this.hasAnchor = false;
-    // Preserve author ARIA for standalone mode.
+    // Standalone: keep mixin-captured ARIA and re-apply on `<Host>` in `render()`.
   }
 
   override componentDidLoad() {
@@ -302,6 +305,8 @@ export class Badge
 
     if (hasAnchor) {
       this.hasAnchor = true;
+      // Strip any ARIA still on the host (e.g. re-applied while standalone) and discard —
+      // attached mode must not keep role / aria-* on the wrapper.
       a11yHostAttributes(this.hostElement);
       this.inheritAriaAttributes = {};
       this.descriptionId = `${this.getHostElementId()}-description`;
@@ -309,7 +314,7 @@ export class Badge
     }
 
     this.hasAnchor = false;
-    // Re-apply author ARIA after leaving attached mode.
+    // Leaving attached: capture any author ARIA set on the host for standalone `<Host>`.
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
   }
 
@@ -405,10 +410,7 @@ export class Badge
     }
 
     return (
-      <ix-tooltip
-        for={this.indicatorElementRef.waitForCurrent()}
-        aria-label={text}
-      >
+      <ix-tooltip for={this.indicatorElementRef.waitForCurrent()}>
         {text}
       </ix-tooltip>
     );
