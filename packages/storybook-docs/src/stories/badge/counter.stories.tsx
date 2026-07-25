@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html, type TemplateResult } from 'lit';
+import { stencil } from '@utils/stencil-render';
 import {
+  attachedVariantGridHeaders,
   cell,
   counterBadge,
   iconButtonAnchor,
@@ -17,77 +19,72 @@ import {
   themePanel,
   VARIANT_ROWS,
   variantGridHeaders,
-  attachedVariantGridHeaders,
 } from './badge-preview.shared';
 
 /**
  * Mirrors `packages/react-test-app/src/preview-examples/badge.tsx`
  * (`/preview/badge`).
  */
-function standaloneVariantGrid(): TemplateResult {
-  return html`
+function standaloneVariantGrid(): VNode {
+  return (
     <div class="variant-grid">
-      ${variantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(`${variant} · filled`, counterBadge({ variant }))}
-          ${cell(`${variant} · outline`, counterBadge({ variant, outline: true }))}
-          ${cell(`${variant} · border`, counterBadge({ variant, border: true }))}
-          ${cell(
-            `${variant} · pulse`,
-            html`<div class="grid-cell-pulse-group">
-              ${counterBadge({ variant, enableAnimation: true })}
-              ${counterBadge({ variant, outline: true, enableAnimation: true })}
-            </div>`
-          )}
-        `
-      )}
+      {variantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(`${variant} · filled`, counterBadge({ variant })),
+        cell(`${variant} · outline`, counterBadge({ variant, outline: true })),
+        cell(`${variant} · border`, counterBadge({ variant, border: true })),
+        cell(
+          `${variant} · pulse`,
+          <div class="grid-cell-pulse-group">
+            {counterBadge({ variant, enableAnimation: true })}
+            {counterBadge({ variant, outline: true, enableAnimation: true })}
+          </div>
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function attachedVariantGrid(): TemplateResult {
-  return html`
+function attachedVariantGrid(): VNode {
+  return (
     <div class="variant-grid variant-grid--attached">
-      ${attachedVariantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(
-            `${variant} · filled · attached`,
-            counterBadge({
-              variant,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · border · attached`,
-            counterBadge({
-              variant,
-              border: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · pulse · attached`,
-            counterBadge({
-              variant,
-              enableAnimation: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-        `
-      )}
+      {attachedVariantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(
+          `${variant} · filled · attached`,
+          counterBadge({
+            variant,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · border · attached`,
+          counterBadge({
+            variant,
+            border: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · pulse · attached`,
+          counterBadge({
+            variant,
+            enableAnimation: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function badgeCounterPreview(): TemplateResult {
-  return html`
+function badgeCounterPreview(): VNode {
+  return (
     <div class="badge-preview">
       <section>
         <h2>type="counter"</h2>
@@ -100,8 +97,8 @@ function badgeCounterPreview(): TemplateResult {
       <section class="theme-section">
         <h2>Variants — standalone</h2>
         <p class="edge-note">No default slot → standalone counter.</p>
-        ${themePanel('dark', 'Dark', standaloneVariantGrid())}
-        ${themePanel('light', 'Light', standaloneVariantGrid())}
+        {themePanel('dark', 'Dark', standaloneVariantGrid())}
+        {themePanel('light', 'Light', standaloneVariantGrid())}
       </section>
 
       <section class="theme-section">
@@ -110,46 +107,46 @@ function badgeCounterPreview(): TemplateResult {
           Default slot wraps anchor; counter overlays top-trailing (−10px /
           −10px default offset).
         </p>
-        ${themePanel('dark', 'Dark', attachedVariantGrid())}
-        ${themePanel('light', 'Light', attachedVariantGrid())}
+        {themePanel('dark', 'Dark', attachedVariantGrid())}
+        {themePanel('light', 'Light', attachedVariantGrid())}
       </section>
 
       <section>
         <h2>Standalone counts</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'type="counter" label="1"',
             counterBadge({ variant: 'primary', label: '1' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="12"',
             counterBadge({ variant: 'alarm', label: '12' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="99"',
             counterBadge({ variant: 'warning', label: '99' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="100" → 99+',
             counterBadge({ variant: 'info', label: '100' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="142" → 99+',
             counterBadge({ variant: 'critical', label: '142' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="0"',
             counterBadge({ variant: 'neutral', label: '0' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="-1"',
             counterBadge({ variant: 'success', label: '-1' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="-99"',
             counterBadge({ variant: 'primary', label: '-99' })
           )}
-          ${cell(
+          {cell(
             'type="counter" label="-100" (literal)',
             counterBadge({ variant: 'alarm', label: '-100' })
           )}
@@ -159,16 +156,16 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Attached anchors</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'IxButton anchor',
             counterBadge({
               variant: 'alarm',
               label: '3',
-              children: html`<ix-button>Notifications</ix-button>`,
+              children: <ix-button>Notifications</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxIconButton anchor',
             counterBadge({
               variant: 'info',
@@ -177,12 +174,12 @@ function badgeCounterPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxAvatar anchor',
             counterBadge({
               variant: 'primary',
               label: '12',
-              children: html`<ix-avatar username="User"></ix-avatar>`,
+              children: <ix-avatar username="User"></ix-avatar>,
             }),
             true
           )}
@@ -192,40 +189,36 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Formatting</h2>
         <div class="demo-grid">
-          ${cell('label="1"', counterBadge({ variant: 'alarm', label: '1' }))}
-          ${cell('label="99"', counterBadge({ variant: 'alarm', label: '99' }))}
-          ${cell(
+          {cell('label="1"', counterBadge({ variant: 'alarm', label: '1' }))}
+          {cell('label="99"', counterBadge({ variant: 'alarm', label: '99' }))}
+          {cell(
             'label="100" → 99+',
             counterBadge({ variant: 'alarm', label: '100' })
           )}
-          ${cell(
+          {cell(
             'label="3.7" → 3',
             counterBadge({ variant: 'alarm', label: '3.7' })
           )}
-          ${cell(
+          {cell(
             'label="99.9" → 99',
             counterBadge({ variant: 'alarm', label: '99.9' })
           )}
-          ${cell(
+          {cell(
             'label="007" → 7',
             counterBadge({ variant: 'alarm', label: '007' })
           )}
-          ${cell('label="-1"', counterBadge({ variant: 'alarm', label: '-1' }))}
-          ${cell(
+          {cell('label="-1"', counterBadge({ variant: 'alarm', label: '-1' }))}
+          {cell(
             'label="new" → no indicator',
             counterBadge({ variant: 'alarm', label: 'new' })
           )}
-          ${cell(
+          {cell(
             'label="99+" → 99+',
             counterBadge({ variant: 'alarm', label: '99+' })
           )}
-          ${cell(
+          {cell(
             'no label → no indicator',
-            html`<ix-badge
-              class="align-host"
-              type="counter"
-              variant="alarm"
-            ></ix-badge>`
+            <ix-badge class="align-host" type="counter" variant="alarm"></ix-badge>
           )}
         </div>
       </section>
@@ -233,44 +226,44 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Position and offset</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'position="top-after" (default)',
             counterBadge({
               variant: 'warning',
               label: '5',
-              children: html`<ix-button>Top after</ix-button>`,
+              children: <ix-button>Top after</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'position="bottom-after"',
             counterBadge({
               variant: 'warning',
               label: '99',
               position: 'bottom-after',
-              children: html`<ix-avatar username="User"></ix-avatar>`,
+              children: <ix-avatar username="User"></ix-avatar>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'offsetX={6} offsetY={-4}',
             counterBadge({
               variant: 'info',
               label: '2',
               offsetX: 6,
               offsetY: -4,
-              children: html`<ix-button>Offset</ix-button>`,
+              children: <ix-button>Offset</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'Custom offset',
             counterBadge({
               variant: 'alarm',
               label: '1',
               offsetX: -4,
               offsetY: 2,
-              children: html`<ix-button>Custom offset</ix-button>`,
+              children: <ix-button>Custom offset</ix-button>,
             }),
             true
           )}
@@ -283,8 +276,8 @@ function badgeCounterPreview(): TemplateResult {
           <p class="animation-spec-label">Pulsing (bool)</p>
           <p class="edge-note animation-spec-note">warning · counter</p>
           <div class="animation-pulsing-row">
-            ${cell('filled', counterBadge({ variant: 'warning', label: '1' }))}
-            ${cell(
+            {cell('filled', counterBadge({ variant: 'warning', label: '1' }))}
+            {cell(
               'filled · pulse',
               counterBadge({
                 variant: 'warning',
@@ -292,11 +285,11 @@ function badgeCounterPreview(): TemplateResult {
                 enableAnimation: true,
               })
             )}
-            ${cell(
+            {cell(
               'outline',
               counterBadge({ variant: 'warning', label: '1', outline: true })
             )}
-            ${cell(
+            {cell(
               'outline · pulse',
               counterBadge({
                 variant: 'warning',
@@ -309,7 +302,7 @@ function badgeCounterPreview(): TemplateResult {
 
           <p class="animation-spec-label">Live pulse</p>
           <div class="animation-live-row">
-            ${cell(
+            {cell(
               'standalone · 2s',
               counterBadge({
                 variant: 'primary',
@@ -317,7 +310,7 @@ function badgeCounterPreview(): TemplateResult {
                 enableAnimation: true,
               })
             )}
-            ${cell(
+            {cell(
               'attached · 2s',
               counterBadge({
                 variant: 'primary',
@@ -327,7 +320,7 @@ function badgeCounterPreview(): TemplateResult {
               }),
               true
             )}
-            ${cell(
+            {cell(
               'standalone · 6s',
               counterBadge({
                 variant: 'warning',
@@ -343,20 +336,20 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Width</h2>
         <div class="demo-grid">
-          ${cell('label="1"', counterBadge({ variant: 'primary', label: '1' }))}
-          ${cell(
+          {cell('label="1"', counterBadge({ variant: 'primary', label: '1' }))}
+          {cell(
             'label="12"',
             counterBadge({ variant: 'primary', label: '12' })
           )}
-          ${cell(
+          {cell(
             'label="99"',
             counterBadge({ variant: 'primary', label: '99' })
           )}
-          ${cell(
+          {cell(
             'label="142" → 99+',
             counterBadge({ variant: 'primary', label: '142' })
           )}
-          ${cell(
+          {cell(
             '--ix-badge-max-width: 2rem',
             counterBadge({
               variant: 'primary',
@@ -370,28 +363,32 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Container bounds</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             '32px IxIconButton',
             counterBadge({
               variant: 'alarm',
               label: '1',
-              children: html`<ix-icon-button
-                icon="info"
-                aria-label="Notifications on 32px icon button"
-              ></ix-icon-button>`,
+              children: (
+                <ix-icon-button
+                  icon="info"
+                  aria-label="Notifications on 32px icon button"
+                ></ix-icon-button>
+              ),
             }),
             true
           )}
-          ${cell(
+          {cell(
             '24px IxIcon size="24"',
             counterBadge({
               variant: 'alarm',
               label: '12',
-              children: html`<ix-icon
-                name="home"
-                size="24"
-                aria-label="Home icon 24px"
-              ></ix-icon>`,
+              children: (
+                <ix-icon
+                  name="home"
+                  size="24"
+                  aria-label="Home icon 24px"
+                ></ix-icon>
+              ),
             }),
             true
           )}
@@ -401,20 +398,20 @@ function badgeCounterPreview(): TemplateResult {
       <section>
         <h2>Accessibility</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'role="alert" · standalone',
-            html`<ix-badge
+            <ix-badge
               class="align-host"
               type="counter"
               label="3"
               role="alert"
               variant="alarm"
-            ></ix-badge>`
+            ></ix-badge>
           )}
         </div>
       </section>
     </div>
-  `;
+  );
 }
 
 const meta = {
@@ -428,5 +425,5 @@ type Story = StoryObj;
 
 export const Counter: Story = {
   name: 'Counter',
-  render: () => badgeCounterPreview(),
+  render: stencil(() => badgeCounterPreview()),
 };

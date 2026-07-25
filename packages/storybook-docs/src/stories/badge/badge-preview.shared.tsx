@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { html, nothing, type TemplateResult } from 'lit';
-import { styleMap } from 'lit/directives/style-map.js';
+import { h, type VNode } from '@stencil/core';
 import './badge-preview.css';
 
 /** Aligned with chip / react badge preview custom tokens. */
@@ -50,58 +49,56 @@ export const showcaseParameters = {
 
 export function cell(
   label: string,
-  content: TemplateResult | typeof nothing,
+  content: VNode | null | undefined,
   attached = false
-): TemplateResult {
-  return html`
-    <div class="grid-cell${attached ? ' grid-cell--attached' : ''}">
-      <span class="grid-cell-label">${label}</span>
-      ${content}
+): VNode {
+  return (
+    <div class={`grid-cell${attached ? ' grid-cell--attached' : ''}`}>
+      <span class="grid-cell-label">{label}</span>
+      {content}
     </div>
-  `;
+  );
 }
 
 export function themePanel(
   colorSchema: 'dark' | 'light',
   title: string,
-  content: TemplateResult
-): TemplateResult {
-  return html`
+  content: VNode
+): VNode {
+  return (
     <section
       class="theme-panel"
-      data-ix-color-schema=${colorSchema}
+      data-ix-color-schema={colorSchema}
       data-ix-theme="classic"
     >
-      <h3 class="theme-panel-title">${title}</h3>
-      ${content}
+      <h3 class="theme-panel-title">{title}</h3>
+      {content}
     </section>
-  `;
+  );
 }
 
-export function variantGridHeaders(): TemplateResult {
-  return html`
-    <span class="variant-grid-corner" aria-hidden="true"></span>
-    <span class="variant-grid-header">Filled</span>
-    <span class="variant-grid-header">Outline</span>
-    <span class="variant-grid-header">Border</span>
-    <span class="variant-grid-header">Pulse</span>
-  `;
+export function variantGridHeaders(): VNode[] {
+  return [
+    <span class="variant-grid-corner" aria-hidden="true"></span>,
+    <span class="variant-grid-header">Filled</span>,
+    <span class="variant-grid-header">Outline</span>,
+    <span class="variant-grid-header">Border</span>,
+    <span class="variant-grid-header">Pulse</span>,
+  ];
 }
 
 /** Attached grids omit Outline — not recommended on anchors. */
-export function attachedVariantGridHeaders(): TemplateResult {
-  return html`
-    <span class="variant-grid-corner" aria-hidden="true"></span>
-    <span class="variant-grid-header">Filled</span>
-    <span class="variant-grid-header">Border</span>
-    <span class="variant-grid-header">Pulse</span>
-  `;
+export function attachedVariantGridHeaders(): VNode[] {
+  return [
+    <span class="variant-grid-corner" aria-hidden="true"></span>,
+    <span class="variant-grid-header">Filled</span>,
+    <span class="variant-grid-header">Border</span>,
+    <span class="variant-grid-header">Pulse</span>,
+  ];
 }
 
-export function iconButtonAnchor(ariaLabel: string): TemplateResult {
-  return html`
-    <ix-icon-button icon="info" aria-label=${ariaLabel}></ix-icon-button>
-  `;
+export function iconButtonAnchor(ariaLabel: string): VNode {
+  return <ix-icon-button icon="info" aria-label={ariaLabel}></ix-icon-button>;
 }
 
 type CustomColors = {
@@ -144,8 +141,8 @@ export function counterBadge(options: {
   offsetY?: number;
   hostStyle?: Record<string, string>;
   custom?: CustomColors;
-  children?: TemplateResult | typeof nothing;
-}): TemplateResult {
+  children?: VNode | null;
+}): VNode {
   const {
     variant,
     label = '1',
@@ -163,24 +160,25 @@ export function counterBadge(options: {
   const background = resolveCustomBackground(variant, custom);
   const badgeColor = resolveCustomBadgeColor(variant, outline, custom);
 
-  return html`
+  return (
     <ix-badge
       class="align-host"
       type="counter"
-      label=${label}
-      variant=${variant}
-      ?outline=${outline}
-      ?border=${border}
-      ?enable-animation=${enableAnimation}
-      position=${position ?? nothing}
-      offset-x=${offsetX ?? nothing}
-      offset-y=${offsetY ?? nothing}
-      background=${background ?? nothing}
-      badge-color=${badgeColor ?? nothing}
-      style=${hostStyle ? styleMap(hostStyle) : nothing}
-      >${children ?? nothing}</ix-badge
+      label={label}
+      variant={variant}
+      outline={outline || undefined}
+      border={border || undefined}
+      enableAnimation={enableAnimation || undefined}
+      position={position}
+      offsetX={offsetX}
+      offsetY={offsetY}
+      background={background}
+      badgeColor={badgeColor}
+      style={hostStyle}
     >
-  `;
+      {children}
+    </ix-badge>
+  );
 }
 
 export function labelBadge(options: {
@@ -199,8 +197,8 @@ export function labelBadge(options: {
   ariaLabel?: string;
   role?: string;
   custom?: CustomColors;
-  children?: TemplateResult | typeof nothing;
-}): TemplateResult {
+  children?: VNode | null;
+}): VNode {
   const {
     variant,
     label = 'NEW',
@@ -223,29 +221,30 @@ export function labelBadge(options: {
   const background = resolveCustomBackground(variant, custom);
   const badgeColor = resolveCustomBadgeColor(variant, outline, custom);
 
-  return html`
+  return (
     <ix-badge
       class="align-host"
       type="label"
-      label=${label}
-      icon=${icon}
-      aria-label-icon=${ariaLabelIcon ?? nothing}
-      aria-label=${ariaLabel ?? nothing}
-      role=${role ?? nothing}
-      ?align-left=${alignLeft}
-      variant=${variant}
-      ?outline=${outline}
-      ?border=${border}
-      ?enable-animation=${enableAnimation}
-      position=${position ?? nothing}
-      offset-x=${offsetX ?? nothing}
-      offset-y=${offsetY ?? nothing}
-      background=${background ?? nothing}
-      badge-color=${badgeColor ?? nothing}
-      style=${hostStyle ? styleMap(hostStyle) : nothing}
-      >${children ?? nothing}</ix-badge
+      label={label}
+      icon={icon}
+      ariaLabelIcon={ariaLabelIcon}
+      aria-label={ariaLabel}
+      role={role}
+      alignLeft={alignLeft || undefined}
+      variant={variant}
+      outline={outline || undefined}
+      border={border || undefined}
+      enableAnimation={enableAnimation || undefined}
+      position={position}
+      offsetX={offsetX}
+      offsetY={offsetY}
+      background={background}
+      badgeColor={badgeColor}
+      style={hostStyle}
     >
-  `;
+      {children}
+    </ix-badge>
+  );
 }
 
 export function dotBadge(options: {
@@ -259,8 +258,8 @@ export function dotBadge(options: {
   ariaLabel?: string;
   role?: string;
   custom?: CustomColors;
-  children?: TemplateResult | typeof nothing;
-}): TemplateResult {
+  children?: VNode | null;
+}): VNode {
   const {
     variant,
     outline = false,
@@ -278,24 +277,25 @@ export function dotBadge(options: {
   const background = resolveCustomBackground(variant, custom);
   const badgeColor = resolveCustomBadgeColor(variant, outline, custom);
 
-  return html`
+  return (
     <ix-badge
       class="align-host"
       type="dot"
-      variant=${variant}
-      aria-label=${ariaLabel ?? nothing}
-      role=${role ?? nothing}
-      ?outline=${outline}
-      ?border=${border}
-      ?enable-animation=${enableAnimation}
-      position=${position ?? nothing}
-      offset-x=${offsetX ?? nothing}
-      offset-y=${offsetY ?? nothing}
-      background=${background ?? nothing}
-      badge-color=${badgeColor ?? nothing}
-      >${children ?? nothing}</ix-badge
+      variant={variant}
+      aria-label={ariaLabel}
+      role={role}
+      outline={outline || undefined}
+      border={border || undefined}
+      enableAnimation={enableAnimation || undefined}
+      position={position}
+      offsetX={offsetX}
+      offsetY={offsetY}
+      background={background}
+      badgeColor={badgeColor}
     >
-  `;
+      {children}
+    </ix-badge>
+  );
 }
 
 export function statusIconBadge(options: {
@@ -308,8 +308,8 @@ export function statusIconBadge(options: {
   offsetY?: number;
   ariaLabel?: string;
   role?: string;
-  children?: TemplateResult | typeof nothing;
-}): TemplateResult {
+  children?: VNode | null;
+}): VNode {
   const {
     variant,
     outline = false,
@@ -323,20 +323,21 @@ export function statusIconBadge(options: {
     children,
   } = options;
 
-  return html`
+  return (
     <ix-badge
       class="align-host"
       type="status-icon"
-      variant=${variant}
-      aria-label=${ariaLabel ?? nothing}
-      role=${role ?? nothing}
-      ?outline=${outline}
-      ?border=${border}
-      ?enable-animation=${enableAnimation}
-      position=${position ?? nothing}
-      offset-x=${offsetX ?? nothing}
-      offset-y=${offsetY ?? nothing}
-      >${children ?? nothing}</ix-badge
+      variant={variant}
+      aria-label={ariaLabel}
+      role={role}
+      outline={outline || undefined}
+      border={border || undefined}
+      enableAnimation={enableAnimation || undefined}
+      position={position}
+      offsetX={offsetX}
+      offsetY={offsetY}
     >
-  `;
+      {children}
+    </ix-badge>
+  );
 }

@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html, type TemplateResult } from 'lit';
+import { stencil } from '@utils/stencil-render';
 import {
+  attachedVariantGridHeaders,
   cell,
   dotBadge,
   iconButtonAnchor,
@@ -17,77 +19,72 @@ import {
   themePanel,
   VARIANT_ROWS,
   variantGridHeaders,
-  attachedVariantGridHeaders,
 } from './badge-preview.shared';
 
 /**
  * Mirrors `packages/react-test-app/src/preview-examples/badge-dot.tsx`
  * (`/preview/badge-dot`).
  */
-function standaloneVariantGrid(): TemplateResult {
-  return html`
+function standaloneVariantGrid(): VNode {
+  return (
     <div class="variant-grid">
-      ${variantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(`${variant} · filled`, dotBadge({ variant }))}
-          ${cell(`${variant} · outline`, dotBadge({ variant, outline: true }))}
-          ${cell(`${variant} · border`, dotBadge({ variant, border: true }))}
-          ${cell(
-            `${variant} · pulse`,
-            html`<div class="grid-cell-pulse-group">
-              ${dotBadge({ variant, enableAnimation: true })}
-              ${dotBadge({ variant, outline: true, enableAnimation: true })}
-            </div>`
-          )}
-        `
-      )}
+      {variantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(`${variant} · filled`, dotBadge({ variant })),
+        cell(`${variant} · outline`, dotBadge({ variant, outline: true })),
+        cell(`${variant} · border`, dotBadge({ variant, border: true })),
+        cell(
+          `${variant} · pulse`,
+          <div class="grid-cell-pulse-group">
+            {dotBadge({ variant, enableAnimation: true })}
+            {dotBadge({ variant, outline: true, enableAnimation: true })}
+          </div>
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function attachedVariantGrid(): TemplateResult {
-  return html`
+function attachedVariantGrid(): VNode {
+  return (
     <div class="variant-grid variant-grid--attached">
-      ${attachedVariantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(
-            `${variant} · filled · attached`,
-            dotBadge({
-              variant,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · border · attached`,
-            dotBadge({
-              variant,
-              border: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · pulse · attached`,
-            dotBadge({
-              variant,
-              enableAnimation: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-        `
-      )}
+      {attachedVariantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(
+          `${variant} · filled · attached`,
+          dotBadge({
+            variant,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · border · attached`,
+          dotBadge({
+            variant,
+            border: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · pulse · attached`,
+          dotBadge({
+            variant,
+            enableAnimation: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function badgeDotPreview(): TemplateResult {
-  return html`
+function badgeDotPreview(): VNode {
+  return (
     <div class="badge-preview">
       <section>
         <h2>Dot badge</h2>
@@ -100,8 +97,8 @@ function badgeDotPreview(): TemplateResult {
       </section>
 
       <section class="theme-section">
-        ${themePanel('dark', 'Dark', standaloneVariantGrid())}
-        ${themePanel('light', 'Light', standaloneVariantGrid())}
+        {themePanel('dark', 'Dark', standaloneVariantGrid())}
+        {themePanel('light', 'Light', standaloneVariantGrid())}
       </section>
 
       <section>
@@ -110,14 +107,14 @@ function badgeDotPreview(): TemplateResult {
           Icon button anchor; dot overlays top-trailing (−0.375rem default
           offset).
         </p>
-        ${themePanel('dark', 'Dark', attachedVariantGrid())}
-        ${themePanel('light', 'Light', attachedVariantGrid())}
+        {themePanel('dark', 'Dark', attachedVariantGrid())}
+        {themePanel('light', 'Light', attachedVariantGrid())}
       </section>
 
       <section>
         <h2>Attached anchors</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'IxIconButton · alarm',
             dotBadge({
               variant: 'alarm',
@@ -125,19 +122,19 @@ function badgeDotPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxButton · primary',
             dotBadge({
               variant: 'primary',
-              children: html`<ix-button>Messages</ix-button>`,
+              children: <ix-button>Messages</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxAvatar · success',
             dotBadge({
               variant: 'success',
-              children: html`<ix-avatar username="User"></ix-avatar>`,
+              children: <ix-avatar username="User"></ix-avatar>,
             }),
             true
           )}
@@ -147,7 +144,7 @@ function badgeDotPreview(): TemplateResult {
       <section>
         <h2>Placement</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'position="top-after" (default)',
             dotBadge({
               variant: 'alarm',
@@ -155,7 +152,7 @@ function badgeDotPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'position="bottom-after"',
             dotBadge({
               variant: 'info',
@@ -164,7 +161,7 @@ function badgeDotPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'offsetX={6} offsetY={-4}',
             dotBadge({
               variant: 'warning',
@@ -184,14 +181,14 @@ function badgeDotPreview(): TemplateResult {
           <code>aria-describedby</code> on anchor when attached).
         </p>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'aria-label="Unread messages"',
             dotBadge({
               variant: 'alarm',
               ariaLabel: 'Unread messages',
             })
           )}
-          ${cell(
+          {cell(
             'role="alert" · aria-label="Action required"',
             dotBadge({
               variant: 'critical',
@@ -205,11 +202,11 @@ function badgeDotPreview(): TemplateResult {
       <section>
         <h2>Pulse</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'filled · pulse · standalone',
             dotBadge({ variant: 'warning', enableAnimation: true })
           )}
-          ${cell(
+          {cell(
             'filled · pulse · attached',
             dotBadge({
               variant: 'warning',
@@ -221,7 +218,7 @@ function badgeDotPreview(): TemplateResult {
         </div>
       </section>
     </div>
-  `;
+  );
 }
 
 const meta = {
@@ -235,5 +232,5 @@ type Story = StoryObj;
 
 export const Dot: Story = {
   name: 'Dot',
-  render: () => badgeDotPreview(),
+  render: stencil(() => badgeDotPreview()),
 };

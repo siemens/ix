@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html, type TemplateResult } from 'lit';
+import { stencil } from '@utils/stencil-render';
 import {
+  attachedVariantGridHeaders,
   cell,
   iconButtonAnchor,
   labelBadge,
@@ -17,77 +19,72 @@ import {
   themePanel,
   VARIANT_ROWS,
   variantGridHeaders,
-  attachedVariantGridHeaders,
 } from './badge-preview.shared';
 
 /**
  * Mirrors `packages/react-test-app/src/preview-examples/badge-label.tsx`
  * (`/preview/badge-label`).
  */
-function standaloneVariantGrid(): TemplateResult {
-  return html`
+function standaloneVariantGrid(): VNode {
+  return (
     <div class="variant-grid">
-      ${variantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(`${variant} · filled`, labelBadge({ variant }))}
-          ${cell(`${variant} · outline`, labelBadge({ variant, outline: true }))}
-          ${cell(`${variant} · border`, labelBadge({ variant, border: true }))}
-          ${cell(
-            `${variant} · pulse`,
-            html`<div class="grid-cell-pulse-group">
-              ${labelBadge({ variant, enableAnimation: true })}
-              ${labelBadge({ variant, outline: true, enableAnimation: true })}
-            </div>`
-          )}
-        `
-      )}
+      {variantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(`${variant} · filled`, labelBadge({ variant })),
+        cell(`${variant} · outline`, labelBadge({ variant, outline: true })),
+        cell(`${variant} · border`, labelBadge({ variant, border: true })),
+        cell(
+          `${variant} · pulse`,
+          <div class="grid-cell-pulse-group">
+            {labelBadge({ variant, enableAnimation: true })}
+            {labelBadge({ variant, outline: true, enableAnimation: true })}
+          </div>
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function attachedVariantGrid(): TemplateResult {
-  return html`
+function attachedVariantGrid(): VNode {
+  return (
     <div class="variant-grid variant-grid--attached">
-      ${attachedVariantGridHeaders()}
-      ${VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(
-            `${variant} · filled · attached`,
-            labelBadge({
-              variant,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · border · attached`,
-            labelBadge({
-              variant,
-              border: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · pulse · attached`,
-            labelBadge({
-              variant,
-              enableAnimation: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-        `
-      )}
+      {attachedVariantGridHeaders()}
+      {VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(
+          `${variant} · filled · attached`,
+          labelBadge({
+            variant,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · border · attached`,
+          labelBadge({
+            variant,
+            border: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · pulse · attached`,
+          labelBadge({
+            variant,
+            enableAnimation: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function badgeLabelPreview(): TemplateResult {
-  return html`
+function badgeLabelPreview(): VNode {
+  return (
     <div class="badge-preview">
       <section>
         <h2>Label badge</h2>
@@ -101,8 +98,8 @@ function badgeLabelPreview(): TemplateResult {
       </section>
 
       <section class="theme-section">
-        ${themePanel('dark', 'Dark', standaloneVariantGrid())}
-        ${themePanel('light', 'Light', standaloneVariantGrid())}
+        {themePanel('dark', 'Dark', standaloneVariantGrid())}
+        {themePanel('light', 'Light', standaloneVariantGrid())}
       </section>
 
       <section>
@@ -111,22 +108,22 @@ function badgeLabelPreview(): TemplateResult {
           Icon button anchor; label overlays top-trailing (−0.625rem default
           offset).
         </p>
-        ${themePanel('dark', 'Dark', attachedVariantGrid())}
-        ${themePanel('light', 'Light', attachedVariantGrid())}
+        {themePanel('dark', 'Dark', attachedVariantGrid())}
+        {themePanel('light', 'Light', attachedVariantGrid())}
       </section>
 
       <section>
         <h2>Icon</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'icon={star} · decorative (default)',
             labelBadge({ variant: 'primary' })
           )}
-          ${cell(
+          {cell(
             'icon={star} · decorative · warning',
             labelBadge({ variant: 'warning' })
           )}
-          ${cell(
+          {cell(
             'icon={star} · aria-label-icon="Featured"',
             labelBadge({
               variant: 'success',
@@ -140,11 +137,11 @@ function badgeLabelPreview(): TemplateResult {
       <section>
         <h2>Align left</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'default · icon + text',
             labelBadge({ variant: 'info', label: "What's new" })
           )}
-          ${cell(
+          {cell(
             'alignLeft · icon + text',
             labelBadge({
               variant: 'primary',
@@ -152,7 +149,7 @@ function badgeLabelPreview(): TemplateResult {
               alignLeft: true,
             })
           )}
-          ${cell(
+          {cell(
             'alignLeft · --ix-badge-max-width: 2.5rem',
             labelBadge({
               variant: 'alarm',
@@ -167,7 +164,7 @@ function badgeLabelPreview(): TemplateResult {
       <section>
         <h2>Attached anchors</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'IxIconButton · alarm',
             labelBadge({
               variant: 'alarm',
@@ -175,19 +172,19 @@ function badgeLabelPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxButton · primary · warning badge',
             labelBadge({
               variant: 'warning',
-              children: html`<ix-button>Messages</ix-button>`,
+              children: <ix-button>Messages</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxAvatar · success',
             labelBadge({
               variant: 'success',
-              children: html`<ix-avatar username="User"></ix-avatar>`,
+              children: <ix-avatar username="User"></ix-avatar>,
             }),
             true
           )}
@@ -197,7 +194,7 @@ function badgeLabelPreview(): TemplateResult {
       <section>
         <h2>Placement</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'position="top-after" (default)',
             labelBadge({
               variant: 'alarm',
@@ -205,7 +202,7 @@ function badgeLabelPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'position="bottom-after"',
             labelBadge({
               variant: 'info',
@@ -214,7 +211,7 @@ function badgeLabelPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'offsetX={6} offsetY={-4}',
             labelBadge({
               variant: 'warning',
@@ -231,10 +228,11 @@ function badgeLabelPreview(): TemplateResult {
         <h2>Standalone a11y</h2>
         <p class="edge-note">
           Attached: label text via <code>aria-describedby</code> on anchor.
-          Standalone: author ARIA stays on the host (pill-like; opt-in live region).
+          Standalone: author ARIA stays on the host (pill-like; opt-in live
+          region).
         </p>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'aria-label="New content available"',
             labelBadge({
               variant: 'primary',
@@ -242,7 +240,7 @@ function badgeLabelPreview(): TemplateResult {
               ariaLabel: 'New content available',
             })
           )}
-          ${cell(
+          {cell(
             'role="alert" · aria-label="Action required"',
             labelBadge({
               variant: 'critical',
@@ -257,11 +255,11 @@ function badgeLabelPreview(): TemplateResult {
       <section>
         <h2>Pulse</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'filled · pulse · standalone',
             labelBadge({ variant: 'warning', enableAnimation: true })
           )}
-          ${cell(
+          {cell(
             'filled · pulse · attached',
             labelBadge({
               variant: 'warning',
@@ -273,7 +271,7 @@ function badgeLabelPreview(): TemplateResult {
         </div>
       </section>
     </div>
-  `;
+  );
 }
 
 const meta = {
@@ -287,5 +285,5 @@ type Story = StoryObj;
 
 export const Label: Story = {
   name: 'Label',
-  render: () => badgeLabelPreview(),
+  render: stencil(() => badgeLabelPreview()),
 };

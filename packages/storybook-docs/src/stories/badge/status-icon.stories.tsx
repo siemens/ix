@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html, type TemplateResult } from 'lit';
+import { stencil } from '@utils/stencil-render';
 import {
+  attachedVariantGridHeaders,
   cell,
   iconButtonAnchor,
   showcaseParameters,
@@ -17,87 +19,79 @@ import {
   statusIconBadge,
   themePanel,
   variantGridHeaders,
-  attachedVariantGridHeaders,
 } from './badge-preview.shared';
 
 /**
  * Mirrors `packages/react-test-app/src/preview-examples/badge-status-icon.tsx`
  * (`/preview/badge-status-icon`).
  */
-function standaloneVariantGrid(): TemplateResult {
-  return html`
+function standaloneVariantGrid(): VNode {
+  return (
     <div class="variant-grid">
-      ${variantGridHeaders()}
-      ${STATUS_ICON_VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(`${variant} · filled`, statusIconBadge({ variant }))}
-          ${cell(
-            `${variant} · outline`,
-            statusIconBadge({ variant, outline: true })
-          )}
-          ${cell(
-            `${variant} · border`,
-            statusIconBadge({ variant, border: true })
-          )}
-          ${cell(
-            `${variant} · pulse`,
-            html`<div class="grid-cell-pulse-group">
-              ${statusIconBadge({ variant, enableAnimation: true })}
-              ${statusIconBadge({
-                variant,
-                outline: true,
-                enableAnimation: true,
-              })}
-            </div>`
-          )}
-        `
-      )}
-    </div>
-  `;
-}
-
-function attachedVariantGrid(): TemplateResult {
-  return html`
-    <div class="variant-grid variant-grid--attached">
-      ${attachedVariantGridHeaders()}
-      ${STATUS_ICON_VARIANT_ROWS.map(
-        ({ label, variant }) => html`
-          <span class="variant-grid-row-label">${label}</span>
-          ${cell(
-            `${variant} · filled · attached`,
-            statusIconBadge({
+      {variantGridHeaders()}
+      {STATUS_ICON_VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(`${variant} · filled`, statusIconBadge({ variant })),
+        cell(
+          `${variant} · outline`,
+          statusIconBadge({ variant, outline: true })
+        ),
+        cell(`${variant} · border`, statusIconBadge({ variant, border: true })),
+        cell(
+          `${variant} · pulse`,
+          <div class="grid-cell-pulse-group">
+            {statusIconBadge({ variant, enableAnimation: true })}
+            {statusIconBadge({
               variant,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · border · attached`,
-            statusIconBadge({
-              variant,
-              border: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-          ${cell(
-            `${variant} · pulse · attached`,
-            statusIconBadge({
-              variant,
+              outline: true,
               enableAnimation: true,
-              children: iconButtonAnchor(`${label} anchor`),
-            }),
-            true
-          )}
-        `
-      )}
+            })}
+          </div>
+        ),
+      ])}
     </div>
-  `;
+  );
 }
 
-function badgeStatusIconPreview(): TemplateResult {
-  return html`
+function attachedVariantGrid(): VNode {
+  return (
+    <div class="variant-grid variant-grid--attached">
+      {attachedVariantGridHeaders()}
+      {STATUS_ICON_VARIANT_ROWS.flatMap(({ label, variant }) => [
+        <span class="variant-grid-row-label">{label}</span>,
+        cell(
+          `${variant} · filled · attached`,
+          statusIconBadge({
+            variant,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · border · attached`,
+          statusIconBadge({
+            variant,
+            border: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+        cell(
+          `${variant} · pulse · attached`,
+          statusIconBadge({
+            variant,
+            enableAnimation: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          }),
+          true
+        ),
+      ])}
+    </div>
+  );
+}
+
+function badgeStatusIconPreview(): VNode {
+  return (
     <div class="badge-preview">
       <section>
         <h2>Status-icon badge</h2>
@@ -110,8 +104,8 @@ function badgeStatusIconPreview(): TemplateResult {
       </section>
 
       <section class="theme-section">
-        ${themePanel('dark', 'Dark', standaloneVariantGrid())}
-        ${themePanel('light', 'Light', standaloneVariantGrid())}
+        {themePanel('dark', 'Dark', standaloneVariantGrid())}
+        {themePanel('light', 'Light', standaloneVariantGrid())}
       </section>
 
       <section>
@@ -120,14 +114,14 @@ function badgeStatusIconPreview(): TemplateResult {
           Icon button anchor; status icon overlays top-trailing (−0.625rem
           default offset).
         </p>
-        ${themePanel('dark', 'Dark', attachedVariantGrid())}
-        ${themePanel('light', 'Light', attachedVariantGrid())}
+        {themePanel('dark', 'Dark', attachedVariantGrid())}
+        {themePanel('light', 'Light', attachedVariantGrid())}
       </section>
 
       <section>
         <h2>Attached anchors</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'IxIconButton · alarm',
             statusIconBadge({
               variant: 'alarm',
@@ -135,19 +129,19 @@ function badgeStatusIconPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxButton · primary · warning badge',
             statusIconBadge({
               variant: 'warning',
-              children: html`<ix-button>Messages</ix-button>`,
+              children: <ix-button>Messages</ix-button>,
             }),
             true
           )}
-          ${cell(
+          {cell(
             'IxAvatar · success',
             statusIconBadge({
               variant: 'success',
-              children: html`<ix-avatar username="User"></ix-avatar>`,
+              children: <ix-avatar username="User"></ix-avatar>,
             }),
             true
           )}
@@ -157,7 +151,7 @@ function badgeStatusIconPreview(): TemplateResult {
       <section>
         <h2>Placement</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'position="top-after" (default)',
             statusIconBadge({
               variant: 'alarm',
@@ -165,7 +159,7 @@ function badgeStatusIconPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'position="bottom-after"',
             statusIconBadge({
               variant: 'info',
@@ -174,7 +168,7 @@ function badgeStatusIconPreview(): TemplateResult {
             }),
             true
           )}
-          ${cell(
+          {cell(
             'offsetX={6} offsetY={-4}',
             statusIconBadge({
               variant: 'warning',
@@ -194,14 +188,14 @@ function badgeStatusIconPreview(): TemplateResult {
           <code>aria-describedby</code> on anchor when attached).
         </p>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'aria-label="Action required"',
             statusIconBadge({
               variant: 'alarm',
               ariaLabel: 'Action required',
             })
           )}
-          ${cell(
+          {cell(
             'role="alert" · aria-label="Critical failure"',
             statusIconBadge({
               variant: 'critical',
@@ -215,11 +209,11 @@ function badgeStatusIconPreview(): TemplateResult {
       <section>
         <h2>Pulse</h2>
         <div class="demo-grid">
-          ${cell(
+          {cell(
             'filled · pulse · standalone',
             statusIconBadge({ variant: 'warning', enableAnimation: true })
           )}
-          ${cell(
+          {cell(
             'filled · pulse · attached',
             statusIconBadge({
               variant: 'warning',
@@ -231,7 +225,7 @@ function badgeStatusIconPreview(): TemplateResult {
         </div>
       </section>
     </div>
-  `;
+  );
 }
 
 const meta = {
@@ -245,5 +239,5 @@ type Story = StoryObj;
 
 export const StatusIcon: Story = {
   name: 'Status icon',
-  render: () => badgeStatusIconPreview(),
+  render: stencil(() => badgeStatusIconPreview()),
 };
