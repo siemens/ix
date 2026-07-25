@@ -11,14 +11,14 @@ import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
 import {
-  attachedVariantGridHeaders,
+  buildAttachedVariantGrid,
+  buildStandaloneVariantGrid,
   cell,
   dotBadge,
   iconButtonAnchor,
   showcaseParameters,
   themePanel,
   VARIANT_ROWS,
-  variantGridHeaders,
 } from './badge-preview.shared';
 
 /**
@@ -26,61 +26,11 @@ import {
  * (`/preview/badge-dot`).
  */
 function standaloneVariantGrid(): VNode {
-  return (
-    <div class="variant-grid">
-      {variantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(`${variant} · filled`, dotBadge({ variant })),
-        cell(`${variant} · outline`, dotBadge({ variant, outline: true })),
-        cell(`${variant} · border`, dotBadge({ variant, border: true })),
-        cell(
-          `${variant} · pulse`,
-          <div class="grid-cell-pulse-group">
-            {dotBadge({ variant, enableAnimation: true })}
-            {dotBadge({ variant, outline: true, enableAnimation: true })}
-          </div>
-        ),
-      ])}
-    </div>
-  );
+  return buildStandaloneVariantGrid(VARIANT_ROWS, dotBadge);
 }
 
 function attachedVariantGrid(): VNode {
-  return (
-    <div class="variant-grid variant-grid--attached">
-      {attachedVariantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(
-          `${variant} · filled · attached`,
-          dotBadge({
-            variant,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · border · attached`,
-          dotBadge({
-            variant,
-            border: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · pulse · attached`,
-          dotBadge({
-            variant,
-            enableAnimation: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-      ])}
-    </div>
-  );
+  return buildAttachedVariantGrid(VARIANT_ROWS, dotBadge);
 }
 
 function badgeDotPreview(): VNode {
@@ -89,10 +39,14 @@ function badgeDotPreview(): VNode {
       <section>
         <h2>Dot badge</h2>
         <p class="edge-intro">
-          <code>type="dot"</code> · 12×12px circle · no <code>label</code>.
-          Attached default offset −6px / −6px (top-trailing). Standalone dots
-          need <code>aria-label</code> on the host; attached dots are decorative
-          (anchor carries meaning).
+          <code>type="dot"</code>
+          {' · 12×12px circle · no '}
+          <code>label</code>
+          {
+            '. Attached default offset −6px / −6px (top-trailing). Standalone dots need '
+          }
+          <code>aria-label</code>
+          {' on the host; attached dots are decorative (anchor carries meaning).'}
         </p>
       </section>
 
@@ -177,8 +131,10 @@ function badgeDotPreview(): VNode {
       <section>
         <h2>Standalone a11y</h2>
         <p class="edge-note">
-          Set <code>aria-label</code> on <code>ix-badge</code> (no
-          <code>aria-describedby</code> on anchor when attached).
+          Set <code>aria-label</code> on <code>ix-badge</code>
+          {' (no '}
+          <code>aria-describedby</code>
+          {' on anchor when attached).'}
         </p>
         <div class="demo-grid">
           {cell(

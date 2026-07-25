@@ -11,14 +11,14 @@ import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
 import {
-  attachedVariantGridHeaders,
+  buildAttachedVariantGrid,
+  buildStandaloneVariantGrid,
   cell,
   counterBadge,
   iconButtonAnchor,
   showcaseParameters,
   themePanel,
   VARIANT_ROWS,
-  variantGridHeaders,
 } from './badge-preview.shared';
 
 /**
@@ -26,61 +26,11 @@ import {
  * (`/preview/badge`).
  */
 function standaloneVariantGrid(): VNode {
-  return (
-    <div class="variant-grid">
-      {variantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(`${variant} · filled`, counterBadge({ variant })),
-        cell(`${variant} · outline`, counterBadge({ variant, outline: true })),
-        cell(`${variant} · border`, counterBadge({ variant, border: true })),
-        cell(
-          `${variant} · pulse`,
-          <div class="grid-cell-pulse-group">
-            {counterBadge({ variant, enableAnimation: true })}
-            {counterBadge({ variant, outline: true, enableAnimation: true })}
-          </div>
-        ),
-      ])}
-    </div>
-  );
+  return buildStandaloneVariantGrid(VARIANT_ROWS, counterBadge);
 }
 
 function attachedVariantGrid(): VNode {
-  return (
-    <div class="variant-grid variant-grid--attached">
-      {attachedVariantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(
-          `${variant} · filled · attached`,
-          counterBadge({
-            variant,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · border · attached`,
-          counterBadge({
-            variant,
-            border: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · pulse · attached`,
-          counterBadge({
-            variant,
-            enableAnimation: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-      ])}
-    </div>
-  );
+  return buildAttachedVariantGrid(VARIANT_ROWS, counterBadge);
 }
 
 function badgeCounterPreview(): VNode {
@@ -89,7 +39,7 @@ function badgeCounterPreview(): VNode {
       <section>
         <h2>type="counter"</h2>
         <p class="edge-intro">
-          Solid cell border = alignment grid; dashed outline =
+          Solid cell border = alignment grid; dashed outline ={' '}
           <code>ix-badge</code> host bounds.
         </p>
       </section>

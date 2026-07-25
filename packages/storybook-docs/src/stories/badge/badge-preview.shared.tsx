@@ -79,26 +79,131 @@ export function themePanel(
 
 export function variantGridHeaders(): VNode[] {
   return [
-    <span class="variant-grid-corner" aria-hidden="true"></span>,
-    <span class="variant-grid-header">Filled</span>,
-    <span class="variant-grid-header">Outline</span>,
-    <span class="variant-grid-header">Border</span>,
-    <span class="variant-grid-header">Pulse</span>,
+    <span key="header-corner" class="variant-grid-corner" aria-hidden="true"></span>,
+    <span key="header-filled" class="variant-grid-header">
+      Filled
+    </span>,
+    <span key="header-outline" class="variant-grid-header">
+      Outline
+    </span>,
+    <span key="header-border" class="variant-grid-header">
+      Border
+    </span>,
+    <span key="header-pulse" class="variant-grid-header">
+      Pulse
+    </span>,
   ];
 }
 
 /** Attached grids omit Outline — not recommended on anchors. */
 export function attachedVariantGridHeaders(): VNode[] {
   return [
-    <span class="variant-grid-corner" aria-hidden="true"></span>,
-    <span class="variant-grid-header">Filled</span>,
-    <span class="variant-grid-header">Border</span>,
-    <span class="variant-grid-header">Pulse</span>,
+    <span
+      key="attached-header-corner"
+      class="variant-grid-corner"
+      aria-hidden="true"
+    ></span>,
+    <span key="attached-header-filled" class="variant-grid-header">
+      Filled
+    </span>,
+    <span key="attached-header-border" class="variant-grid-header">
+      Border
+    </span>,
+    <span key="attached-header-pulse" class="variant-grid-header">
+      Pulse
+    </span>,
   ];
 }
 
 export function iconButtonAnchor(ariaLabel: string): VNode {
   return <ix-icon-button icon="info" aria-label={ariaLabel}></ix-icon-button>;
+}
+
+type VariantRow<V extends string> = {
+  label: string;
+  variant: V;
+};
+
+type VariantGridBadgeFactory<V extends string> = (options: {
+  variant: V;
+  outline?: boolean;
+  border?: boolean;
+  enableAnimation?: boolean;
+  children?: VNode | null;
+}) => VNode;
+
+export function buildStandaloneVariantGrid<V extends string>(
+  rows: readonly VariantRow<V>[],
+  createBadge: VariantGridBadgeFactory<V>
+): VNode {
+  return (
+    <div class="variant-grid">
+      {variantGridHeaders()}
+      {rows.flatMap(({ label, variant }) => [
+        <span key={`${variant}-label`} class="variant-grid-row-label">
+          {label}
+        </span>,
+        <div key={`${variant}-filled`} class="grid-cell">
+          <span class="grid-cell-label">{`${variant} · filled`}</span>
+          {createBadge({ variant })}
+        </div>,
+        <div key={`${variant}-outline`} class="grid-cell">
+          <span class="grid-cell-label">{`${variant} · outline`}</span>
+          {createBadge({ variant, outline: true })}
+        </div>,
+        <div key={`${variant}-border`} class="grid-cell">
+          <span class="grid-cell-label">{`${variant} · border`}</span>
+          {createBadge({ variant, border: true })}
+        </div>,
+        <div key={`${variant}-pulse`} class="grid-cell">
+          <span class="grid-cell-label">{`${variant} · pulse`}</span>
+          <div class="grid-cell-pulse-group">
+            {createBadge({ variant, enableAnimation: true })}
+            {createBadge({ variant, outline: true, enableAnimation: true })}
+          </div>
+        </div>,
+      ])}
+    </div>
+  );
+}
+
+export function buildAttachedVariantGrid<V extends string>(
+  rows: readonly VariantRow<V>[],
+  createBadge: VariantGridBadgeFactory<V>
+): VNode {
+  return (
+    <div class="variant-grid variant-grid--attached">
+      {attachedVariantGridHeaders()}
+      {rows.flatMap(({ label, variant }) => [
+        <span key={`${variant}-attached-label`} class="variant-grid-row-label">
+          {label}
+        </span>,
+        <div key={`${variant}-attached-filled`} class="grid-cell grid-cell--attached">
+          <span class="grid-cell-label">{`${variant} · filled · attached`}</span>
+          {createBadge({
+            variant,
+            children: iconButtonAnchor(`${label} anchor`),
+          })}
+        </div>,
+        <div key={`${variant}-attached-border`} class="grid-cell grid-cell--attached">
+          <span class="grid-cell-label">{`${variant} · border · attached`}</span>
+          {createBadge({
+            variant,
+            border: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          })}
+        </div>,
+        <div key={`${variant}-attached-pulse`} class="grid-cell grid-cell--attached">
+          <span class="grid-cell-label">{`${variant} · pulse · attached`}</span>
+          {createBadge({
+            variant,
+            enableAnimation: true,
+            children: iconButtonAnchor(`${label} anchor`),
+          })}
+        </div>,
+      ])}
+    </div>
+  );
 }
 
 type CustomColors = {

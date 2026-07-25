@@ -11,14 +11,14 @@ import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
 import {
-  attachedVariantGridHeaders,
+  buildAttachedVariantGrid,
+  buildStandaloneVariantGrid,
   cell,
   iconButtonAnchor,
   labelBadge,
   showcaseParameters,
   themePanel,
   VARIANT_ROWS,
-  variantGridHeaders,
 } from './badge-preview.shared';
 
 /**
@@ -26,61 +26,11 @@ import {
  * (`/preview/badge-label`).
  */
 function standaloneVariantGrid(): VNode {
-  return (
-    <div class="variant-grid">
-      {variantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(`${variant} · filled`, labelBadge({ variant })),
-        cell(`${variant} · outline`, labelBadge({ variant, outline: true })),
-        cell(`${variant} · border`, labelBadge({ variant, border: true })),
-        cell(
-          `${variant} · pulse`,
-          <div class="grid-cell-pulse-group">
-            {labelBadge({ variant, enableAnimation: true })}
-            {labelBadge({ variant, outline: true, enableAnimation: true })}
-          </div>
-        ),
-      ])}
-    </div>
-  );
+  return buildStandaloneVariantGrid(VARIANT_ROWS, labelBadge);
 }
 
 function attachedVariantGrid(): VNode {
-  return (
-    <div class="variant-grid variant-grid--attached">
-      {attachedVariantGridHeaders()}
-      {VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(
-          `${variant} · filled · attached`,
-          labelBadge({
-            variant,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · border · attached`,
-          labelBadge({
-            variant,
-            border: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · pulse · attached`,
-          labelBadge({
-            variant,
-            enableAnimation: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-      ])}
-    </div>
-  );
+  return buildAttachedVariantGrid(VARIANT_ROWS, labelBadge);
 }
 
 function badgeLabelPreview(): VNode {
@@ -89,11 +39,16 @@ function badgeLabelPreview(): VNode {
       <section>
         <h2>Label badge</h2>
         <p class="edge-intro">
-          <code>type="label"</code> · text pill (20px height) ·
-          <code>label</code> required · body-regular typography · leading
-          <code>icon</code> in examples. Optional
-          <code>aria-label-icon</code> and <code>align-left</code>. Attached
-          default offset −10px / −10px.
+          <code>type="label"</code>
+          {' · text pill (20px height) · '}
+          <code>label</code>
+          {' required · body-regular typography · leading '}
+          <code>icon</code>
+          {' in examples. Optional '}
+          <code>aria-label-icon</code>
+          {' and '}
+          <code>align-left</code>
+          {'. Attached default offset −10px / −10px.'}
         </p>
       </section>
 
@@ -227,9 +182,10 @@ function badgeLabelPreview(): VNode {
       <section>
         <h2>Standalone a11y</h2>
         <p class="edge-note">
-          Attached: label text via <code>aria-describedby</code> on anchor.
-          Standalone: author ARIA stays on the host (pill-like; opt-in live
-          region).
+          Attached: label text via <code>aria-describedby</code>
+          {
+            ' on anchor. Standalone: author ARIA stays on the host (pill-like; opt-in live region).'
+          }
         </p>
         <div class="demo-grid">
           {cell(

@@ -11,14 +11,14 @@ import { h, type VNode } from '@stencil/core';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
 import {
-  attachedVariantGridHeaders,
+  buildAttachedVariantGrid,
+  buildStandaloneVariantGrid,
   cell,
   iconButtonAnchor,
   showcaseParameters,
   STATUS_ICON_VARIANT_ROWS,
   statusIconBadge,
   themePanel,
-  variantGridHeaders,
 } from './badge-preview.shared';
 
 /**
@@ -26,68 +26,11 @@ import {
  * (`/preview/badge-status-icon`).
  */
 function standaloneVariantGrid(): VNode {
-  return (
-    <div class="variant-grid">
-      {variantGridHeaders()}
-      {STATUS_ICON_VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(`${variant} · filled`, statusIconBadge({ variant })),
-        cell(
-          `${variant} · outline`,
-          statusIconBadge({ variant, outline: true })
-        ),
-        cell(`${variant} · border`, statusIconBadge({ variant, border: true })),
-        cell(
-          `${variant} · pulse`,
-          <div class="grid-cell-pulse-group">
-            {statusIconBadge({ variant, enableAnimation: true })}
-            {statusIconBadge({
-              variant,
-              outline: true,
-              enableAnimation: true,
-            })}
-          </div>
-        ),
-      ])}
-    </div>
-  );
+  return buildStandaloneVariantGrid(STATUS_ICON_VARIANT_ROWS, statusIconBadge);
 }
 
 function attachedVariantGrid(): VNode {
-  return (
-    <div class="variant-grid variant-grid--attached">
-      {attachedVariantGridHeaders()}
-      {STATUS_ICON_VARIANT_ROWS.flatMap(({ label, variant }) => [
-        <span class="variant-grid-row-label">{label}</span>,
-        cell(
-          `${variant} · filled · attached`,
-          statusIconBadge({
-            variant,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · border · attached`,
-          statusIconBadge({
-            variant,
-            border: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-        cell(
-          `${variant} · pulse · attached`,
-          statusIconBadge({
-            variant,
-            enableAnimation: true,
-            children: iconButtonAnchor(`${label} anchor`),
-          }),
-          true
-        ),
-      ])}
-    </div>
-  );
+  return buildAttachedVariantGrid(STATUS_ICON_VARIANT_ROWS, statusIconBadge);
 }
 
 function badgeStatusIconPreview(): VNode {
@@ -96,10 +39,16 @@ function badgeStatusIconPreview(): VNode {
       <section>
         <h2>Status-icon badge</h2>
         <p class="edge-intro">
-          <code>type="status-icon"</code> · 20×20px circle · icon from
-          <code>variant</code> · no <code>label</code>. Attached default offset
-          −10px / −10px. Same a11y as dot: attached = decorative; standalone
-          needs <code>aria-label</code> on the host.
+          <code>type="status-icon"</code>
+          {' · 20×20px circle · icon from '}
+          <code>variant</code>
+          {' · no '}
+          <code>label</code>
+          {
+            '. Attached default offset −10px / −10px. Same a11y as dot: attached = decorative; standalone needs '
+          }
+          <code>aria-label</code>
+          {' on the host.'}
         </p>
       </section>
 
@@ -184,8 +133,10 @@ function badgeStatusIconPreview(): VNode {
       <section>
         <h2>Standalone a11y</h2>
         <p class="edge-note">
-          Set <code>aria-label</code> on <code>ix-badge</code> (no
-          <code>aria-describedby</code> on anchor when attached).
+          Set <code>aria-label</code> on <code>ix-badge</code>
+          {' (no '}
+          <code>aria-describedby</code>
+          {' on anchor when attached).'}
         </p>
         <div class="demo-grid">
           {cell(

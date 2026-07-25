@@ -46,7 +46,7 @@ export default () => {
         <IxBadge type="counter" label="12" variant="info"></IxBadge>
         <IxBadge type="counter" label="99" variant="warning"></IxBadge>
         <IxBadge type="counter" label="142" variant="primary"></IxBadge>
-        <IxBadge type="counter" label="99+" variant="alarm"></IxBadge>
+        <IxBadge type="counter" label="100" variant="alarm"></IxBadge>
         <IxBadge type="counter" label="8" variant="primary" outline></IxBadge>
         <IxBadge type="counter" label="8" variant="primary" border></IxBadge>
 
