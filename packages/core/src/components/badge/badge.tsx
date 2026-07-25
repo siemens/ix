@@ -410,7 +410,10 @@ export class Badge
     }
 
     return (
-      <ix-tooltip for={this.indicatorElementRef.waitForCurrent()}>
+      <ix-tooltip
+        for={this.indicatorElementRef.waitForCurrent()}
+        aria-label={text}
+      >
         {text}
       </ix-tooltip>
     );

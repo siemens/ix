@@ -710,7 +710,7 @@ regressionTest.describe('ix-badge', () => {
     );
   });
 
-  regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
     await mount(html`
       <div style="display:flex;gap:1rem;align-items:center;">
         <ix-badge label="3" variant="alarm">
@@ -740,6 +740,10 @@ regressionTest.describe('ix-badge', () => {
         ></ix-badge>
       </div>
     `);
+
+    // Nested tooltips must hydrate (`role="tooltip"`) before axe; otherwise
+    // `aria-label` on `ix-tooltip` trips aria-prohibited-attr.
+    await expect(page.locator('ix-tooltip.hydrated')).toHaveCount(2);
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
