@@ -741,9 +741,10 @@ regressionTest.describe('ix-badge', () => {
       </div>
     `);
 
-    // Nested tooltips must hydrate (`role="tooltip"`) before axe; otherwise
-    // `aria-label` on `ix-tooltip` trips aria-prohibited-attr.
-    await expect(page.locator('ix-tooltip.hydrated')).toHaveCount(2);
+    // Nested tooltips must expose `role="tooltip"` before axe; otherwise
+    // `aria-label` on `ix-tooltip` trips aria-prohibited-attr. Slot text alone is
+    // not enough: content is projected into an inert dialog until shown.
+    await expect(page.getByRole('tooltip')).toHaveCount(2);
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
