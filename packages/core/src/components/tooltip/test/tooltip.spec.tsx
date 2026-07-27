@@ -10,6 +10,12 @@
 import { render, h } from '@stencil/vitest';
 import { describe, expect, it, vi } from 'vitest';
 
+globalThis.ResizeObserver = class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+} as unknown as typeof ResizeObserver;
+
 const flushTimeout = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 describe('ix-tooltip', () => {
