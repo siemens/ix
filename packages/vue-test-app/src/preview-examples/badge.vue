@@ -16,11 +16,11 @@ import { IxBadge, IxButton, IxIconButton } from '@siemens/ix-vue';
 
 <template>
   <div class="row">
-    <IxBadge type="counter" label="3" variant="alarm"><IxButton>Review</IxButton></IxBadge>
-    <IxBadge type="counter" label="1" variant="alarm" enable-animation><IxIconButton :icon="iconInfo" aria-label="What's new"></IxIconButton></IxBadge>
-    <IxBadge type="counter" label="9" variant="success" position="bottom-after"><IxButton>Bottom after</IxButton></IxBadge>
-    <IxBadge type="dot" variant="alarm"><IxButton>Messages</IxButton></IxBadge>
-    <IxBadge type="status-icon" variant="warning"><IxButton>Device</IxButton></IxBadge>
+    <IxBadge type="counter" label="3" variant="alarm"><IxButton aria-label="Review, 3 unread">Review</IxButton></IxBadge>
+    <IxBadge type="counter" label="1" variant="alarm" enable-animation><IxIconButton :icon="iconInfo" aria-label="What's new, 1 notification"></IxIconButton></IxBadge>
+    <IxBadge type="counter" label="9" variant="success" position="bottom-after"><IxButton aria-label="Bottom after, 9 items">Bottom after</IxButton></IxBadge>
+    <IxBadge type="dot" variant="alarm"><IxButton aria-label="Messages, unread">Messages</IxButton></IxBadge>
+    <IxBadge type="status-icon" variant="warning"><IxButton aria-label="Device, warning">Device</IxButton></IxBadge>
   </div>
 
   <div class="row">

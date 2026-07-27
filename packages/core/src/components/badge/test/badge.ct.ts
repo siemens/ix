@@ -486,6 +486,34 @@ regressionTest.describe('ix-badge', () => {
     });
 
     regressionTest(
+      'allows selecting standalone label text',
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-badge type="label" label="Selectable text" variant="info"></ix-badge>`
+        );
+        const badge = new BadgePage(page);
+        await badge.expectHydrated();
+
+        await expect(badge.indicator).toHaveCSS('user-select', 'text');
+      }
+    );
+
+    regressionTest(
+      'keeps attached label text non-selectable',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-badge type="label" label="Status">
+            <button>Row</button>
+          </ix-badge>
+        `);
+        const badge = new BadgePage(page);
+        await badge.expectAttached();
+
+        await expect(badge.indicator).toHaveCSS('user-select', 'none');
+      }
+    );
+
+    regressionTest(
       'renders no indicator for empty label text',
       async ({ mount, page }) => {
         await mount(

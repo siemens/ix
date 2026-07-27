@@ -55,6 +55,13 @@ $border-radius: 100px;
   isolation: isolate;
 }
 
+/* Standalone text badges: allow selecting label/count text (usage guide). */
+:host([type='label']:not(.attached)) .indicator,
+:host([type='counter']:not(.attached)) .indicator {
+  pointer-events: auto;
+  user-select: text;
+}
+
 :host(.with-tooltip:not(.attached)) .indicator {
   pointer-events: auto;
 }
@@ -72,6 +79,7 @@ $border-radius: 100px;
   position: absolute;
   z-index: 1;
   pointer-events: auto;
+  user-select: none;
   cursor: default;
 }
 

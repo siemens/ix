@@ -17,11 +17,14 @@ export default () => {
     <>
       <div className="row">
         <IxBadge type="counter" label="3" variant="alarm">
-          <IxButton>Review</IxButton>
+          <IxButton aria-label="Review, 3 unread">Review</IxButton>
         </IxBadge>
 
         <IxBadge type="counter" label="1" variant="alarm" enableAnimation>
-          <IxIconButton icon={iconInfo} aria-label="What's new"></IxIconButton>
+          <IxIconButton
+            icon={iconInfo}
+            aria-label="What's new, 1 notification"
+          ></IxIconButton>
         </IxBadge>
 
         <IxBadge
@@ -30,15 +33,15 @@ export default () => {
           variant="success"
           position="bottom-after"
         >
-          <IxButton>Bottom after</IxButton>
+          <IxButton aria-label="Bottom after, 9 items">Bottom after</IxButton>
         </IxBadge>
 
         <IxBadge type="dot" variant="alarm">
-          <IxButton>Messages</IxButton>
+          <IxButton aria-label="Messages, unread">Messages</IxButton>
         </IxBadge>
 
         <IxBadge type="status-icon" variant="warning">
-          <IxButton>Device</IxButton>
+          <IxButton aria-label="Device, warning">Device</IxButton>
         </IxBadge>
       </div>
 
