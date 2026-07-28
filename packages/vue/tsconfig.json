@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "./dist",
     "lib": ["dom", "es2020"],
     "module": "es2015",
