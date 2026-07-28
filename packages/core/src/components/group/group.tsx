@@ -77,16 +77,6 @@ export class Group {
   @Prop() expandOnHeaderClick = false;
 
   /**
-   * Aria label for collapse action
-   */
-  @Prop() ariaLabelCollapse = 'Collapse';
-
-  /**
-   * Aria label for expand action
-   */
-  @Prop() ariaLabelExpand = 'Expand';
-
-  /**
    * Emits when whole group gets selected.
    */
   @Event() selectGroup!: EventEmitter<boolean>;
@@ -145,29 +135,6 @@ export class Group {
     }
   }
 
-  private onHeaderKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Enter') {
-      return;
-    }
-
-    event.preventDefault();
-    this.onExpandClick(event);
-  }
-
-  private onChevronKeyDown(event: KeyboardEvent) {
-    if (event.key === ' ') {
-      event.preventDefault();
-      return;
-    }
-
-    if (event.key !== 'Enter') {
-      return;
-    }
-
-    event.preventDefault();
-    this.onExpandClick(event);
-  }
-
   private onHeaderClick(event: Event) {
     if (this.suppressHeaderSelection) {
       this.onExpandClick(event);
@@ -176,6 +143,13 @@ export class Group {
 
     this.changeHeaderSelection(!this.selected);
     this.changeItemIndex();
+  }
+
+  private onHeaderKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onHeaderClick(event as unknown as Event);
+    }
   }
 
   private changeHeaderSelection(newSelection: boolean) {
@@ -265,14 +239,6 @@ export class Group {
   }
 
   render() {
-    const headerRole = this.suppressHeaderSelection ? undefined : 'checkbox';
-    const headerAriaChecked = !this.suppressHeaderSelection
-      ? String(this.selected)
-      : undefined;
-    const expandIconName = this.expanded
-      ? iconChevronUpSmall
-      : iconChevronDownSmall;
-
     return (
       <Host>
         <div
@@ -281,15 +247,20 @@ export class Group {
             expand: this.expanded,
             selected: this.selected,
           }}
-          tabindex="0"
-          role={headerRole}
-          aria-checked={headerAriaChecked}
-          onKeyDown={(event) =>
-            event.target === event.currentTarget && this.onHeaderKeyDown(event)
+          role="button"
+          aria-expanded={String(this.expanded)}
+          aria-pressed={
+            this.suppressHeaderSelection ? undefined : String(this.selected)
           }
+          tabindex="0"
+          onKeyDown={(e: KeyboardEvent) => this.onHeaderKeyDown(e)}
         >
           <div
             class="group-header-clickable"
+            aria-expanded={String(this.expanded)}
+            aria-pressed={
+              this.suppressHeaderSelection ? undefined : String(this.selected)
+            }
             onClick={(e) => this.onHeaderClick(e)}
           >
             <div
@@ -300,24 +271,15 @@ export class Group {
               }}
             ></div>
             <div class="btn-expand-header">
-              <button
+              <ix-icon
                 data-testid="expand-collapsed-icon"
-                type="button"
-                aria-expanded={this.expanded ? 'true' : 'false'}
-                aria-label={
-                  this.expanded ? this.ariaLabelCollapse : this.ariaLabelExpand
-                }
+                class={{
+                  hidden: !this.showExpandCollapsedIcon,
+                }}
+                name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
+                aria-hidden="true"
                 onClick={(event: Event) => this.onExpandClick(event)}
-                onKeyDown={(event) => this.onChevronKeyDown(event)}
-              >
-                <ix-icon
-                  class={{
-                    hidden: !this.showExpandCollapsedIcon,
-                  }}
-                  aria-hidden="true"
-                  name={expandIconName}
-                ></ix-icon>
-              </button>
+              ></ix-icon>
             </div>
 
             <div class="group-header-content">

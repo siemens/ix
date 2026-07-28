@@ -14,8 +14,6 @@ export const IxGroup: StencilVueComponent<JSX.IxGroup> = /*@__PURE__*/ defineCon
   'selected',
   'index',
   'expandOnHeaderClick',
-  'ariaLabelCollapse',
-  'ariaLabelExpand',
   'selectGroup',
   'selectItem',
   'expandedChanged'
