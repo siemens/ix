@@ -490,6 +490,7 @@ regressionTest(
     // Category should be expanded initially because one item is active
     const menuItems = categoryElement.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
+    // Waiting for aria-posinset to ensure tabindex intialization is complete
     await expect(categoryButton).toHaveAttribute('aria-posinset', '1');
 
     await categoryButton.focus();
