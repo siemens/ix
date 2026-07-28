@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
