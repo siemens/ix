@@ -146,7 +146,10 @@ export class Group {
   }
 
   private onHeaderKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ') {
+    if (
+      (event.key === 'Enter' || event.key === ' ') &&
+      event.target === event.currentTarget
+    ) {
       event.preventDefault();
       this.onHeaderClick(event as unknown as Event);
     }
@@ -277,7 +280,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
-                aria-hidden="true"
+                aria-hidden={this.suppressHeaderSelection ? 'true' : 'false'}
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>
             </div>
