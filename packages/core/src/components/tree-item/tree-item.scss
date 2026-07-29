@@ -34,7 +34,7 @@
     @include text-truncation.ellipsis;
 
     &:focus-visible {
-      @include focus-visible.ix-focus-visible();
+      @include focus-visible.ix-focus-visible;
     }
 
     .tree-node-text {
@@ -59,7 +59,7 @@
       }
 
       &:focus-visible {
-        @include focus-visible.ix-focus-visible();
+        @include focus-visible.ix-focus-visible;
       }
     }
   }

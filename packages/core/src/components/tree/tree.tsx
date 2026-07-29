@@ -359,10 +359,18 @@ export class Tree {
 
       if (focusInfo) {
         const treeItem = this.hostElement.querySelector<HTMLElement>(
-          `[data-tree-node-id="${focusInfo.nodeId}"]`
+          `[data-tree-node-id="${CSS.escape(focusInfo.nodeId)}"]`
         );
         if (focusInfo.target === 'chevron') {
-          treeItem?.shadowRoot?.querySelector<HTMLElement>('ix-icon')?.focus();
+          const chevron =
+            treeItem?.shadowRoot?.querySelector<HTMLElement>('ix-icon');
+          if (chevron) {
+            chevron.focus();
+          } else {
+            treeItem?.shadowRoot
+              ?.querySelector<HTMLElement>('.tree-node-container')
+              ?.focus();
+          }
         } else {
           treeItem?.shadowRoot
             ?.querySelector<HTMLElement>('.tree-node-container')

@@ -88,6 +88,8 @@ export class TreeItem {
               color="color-std-text"
               tabIndex={isDisabled ? -1 : 0}
               role="button"
+              aria-expanded={!!this.context?.isExpanded}
+              aria-disabled={isDisabled ?? false}
               aria-label={
                 this.ariaLabelChevronIcon ??
                 (this.context?.isExpanded
@@ -119,6 +121,7 @@ export class TreeItem {
           class="tree-node-container"
           role="button"
           tabIndex={isDisabled ? -1 : 0}
+          aria-disabled={isDisabled ?? false}
           onKeyDown={(e: KeyboardEvent) => {
             if (isDisabled) {
               return;
