@@ -771,7 +771,7 @@ regressionTest(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should expand item when Enter is pressed on chevron',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
@@ -792,7 +792,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should expand item when Space is pressed on chevron',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
@@ -813,7 +813,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should select item when Enter is pressed on tree-node-container',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
@@ -831,7 +831,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should select item when Space is pressed on tree-node-container',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
@@ -849,7 +849,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'disabled item should not respond to keyboard activation',
   async ({ mount, page }) => {
     await mount(`
@@ -909,7 +909,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should preserve focus on tree-node-container after refreshTree',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
