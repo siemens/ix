@@ -355,9 +355,7 @@ async function generateApiMarkdown() {
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
         docs: serializeMarkdownForJsx(
-          expandJsdocNewlinesForMarkdown(
-            parseJSDocsToMarkdown(prop.docs ?? '')
-          )
+          expandJsdocNewlinesForMarkdown(parseJSDocsToMarkdown(prop.docs ?? ''))
         ),
       })),
     });
@@ -386,7 +384,7 @@ async function generateApiMarkdown() {
               ['deprecated', 'since'].includes(name)
             )
           ),
-          comment: escapeBackticks(
+          comment: serializeMarkdownForJsx(
             expandJsdocNewlinesForMarkdown(
               parseJSDocsToMarkdown(method.docs ?? '')
             )
@@ -413,9 +411,7 @@ async function generateApiMarkdown() {
         ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
         docs: serializeMarkdownForJsx(
-          expandJsdocNewlinesForMarkdown(
-            parseJSDocsToMarkdown(tag.docs ?? '')
-          )
+          expandJsdocNewlinesForMarkdown(parseJSDocsToMarkdown(tag.docs ?? ''))
         ),
       })),
     });
