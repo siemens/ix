@@ -185,7 +185,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-color-hover-fallback}
   );
   --ix-switch-mixed--background: var(
-    --theme-color-primary,
+    --theme-si-sys-background-accent,
     #{$switch-mixed-background-fallback}
   );
   --ix-switch-mixed--background--active: var(
@@ -205,11 +205,11 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-mixed-background-info-fallback}
   );
   --ix-switch-mixed--background--info--active: var(
-    --theme-color-info--active,
+    --theme-si-sys-background-information-active,
     #{$switch-mixed-background-info-active-fallback}
   );
   --ix-switch-mixed--background--info--hover: var(
-    --theme-color-info--hover,
+    --theme-si-sys-background-information-hover,
     #{$switch-mixed-background-info-hover-fallback}
   );
   --ix-switch-mixed--background--invalid: var(
@@ -225,7 +225,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-mixed-background-invalid-hover-fallback}
   );
   --ix-switch-mixed--background--valid: var(
-    --theme-color-primary,
+    --theme-si-sys-background-accent,
     #{$switch-mixed-background-valid-fallback}
   );
   --ix-switch-mixed--background--valid--active: var(
@@ -248,19 +248,19 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-color-warning--hover,
     #{$switch-mixed-background-warning-hover-fallback}
   );
-  --ix-switch-mixed--border-color: none;
-  --ix-switch-mixed--border-color--active: none;
-  --ix-switch-mixed--border-color--disabled: none;
-  --ix-switch-mixed--border-color--hover: none;
-  --ix-switch-mixed--border-color--info: none;
-  --ix-switch-mixed--border-color--info--active: none;
-  --ix-switch-mixed--border-color--info--hover: none;
-  --ix-switch-mixed--border-color--invalid: none;
-  --ix-switch-mixed--border-color--invalid--active: none;
-  --ix-switch-mixed--border-color--invalid--hover: none;
-  --ix-switch-mixed--border-color--valid: none;
-  --ix-switch-mixed--border-color--valid--active: none;
-  --ix-switch-mixed--border-color--valid--hover: none;
+  --ix-switch-mixed--border-color: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--active: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--info: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-switch-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
   --ix-switch-mixed--border-color--warning: var(
     --theme-color-warning-bdr,
     #{$switch-mixed-border-color-warning-fallback}
@@ -281,7 +281,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-si-sys-background-selected,
     #{$switch-off-background-active-fallback}
   );
-  --ix-switch-off--background--disabled: none;
+  --ix-switch-off--background--disabled: rgba(0, 0, 0, 0);
   --ix-switch-off--background--hover: var(
     --theme-si-sys-background-hover,
     #{$switch-off-background-hover-fallback}
@@ -399,7 +399,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-off-border-color-warning-hover-fallback}
   );
   --ix-switch-on--background: var(
-    --theme-color-primary,
+    --theme-si-sys-background-accent,
     #{$switch-on-background-fallback}
   );
   --ix-switch-on--background--active: var(
@@ -419,11 +419,11 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-on-background-info-fallback}
   );
   --ix-switch-on--background--info--active: var(
-    --theme-color-info--active,
+    --theme-si-sys-background-information-active,
     #{$switch-on-background-info-active-fallback}
   );
   --ix-switch-on--background--info--hover: var(
-    --theme-color-info--hover,
+    --theme-si-sys-background-information-hover,
     #{$switch-on-background-info-hover-fallback}
   );
   --ix-switch-on--background--invalid: var(
@@ -439,7 +439,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-on-background-invalid-hover-fallback}
   );
   --ix-switch-on--background--valid: var(
-    --theme-color-primary,
+    --theme-si-sys-background-accent,
     #{$switch-on-background-valid-fallback}
   );
   --ix-switch-on--background--valid--active: var(
@@ -462,19 +462,19 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-color-warning--hover,
     #{$switch-on-background-warning-hover-fallback}
   );
-  --ix-switch-on--border-color: none;
-  --ix-switch-on--border-color--active: none;
-  --ix-switch-on--border-color--disabled: none;
-  --ix-switch-on--border-color--hover: none;
-  --ix-switch-on--border-color--info: none;
-  --ix-switch-on--border-color--info--active: none;
-  --ix-switch-on--border-color--info--hover: none;
-  --ix-switch-on--border-color--invalid: none;
-  --ix-switch-on--border-color--invalid--active: none;
-  --ix-switch-on--border-color--invalid--hover: none;
-  --ix-switch-on--border-color--valid: none;
-  --ix-switch-on--border-color--valid--active: none;
-  --ix-switch-on--border-color--valid--hover: none;
+  --ix-switch-on--border-color: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--active: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--info: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-switch-on--border-color--valid--hover: rgba(0, 0, 0, 0);
   --ix-switch-on--border-color--warning: var(
     --theme-color-warning-bdr,
     #{$switch-on-border-color-warning-fallback}
@@ -487,13 +487,13 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-color-warning-bdr,
     #{$switch-on-border-color-warning-hover-fallback}
   );
-  --ix-switch-thumb--box-shadow: none;
+  --ix-switch-thumb--box-shadow: transparent;
   --ix-switch-thumb-mixed--background: var(
-    --theme-si-sys-text-inverse,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-fallback}
   );
   --ix-switch-thumb-mixed--background--active: var(
-    --theme-si-sys-text-inverse,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-active-fallback}
   );
   --ix-switch-thumb-mixed--background--disabled: var(
@@ -501,7 +501,7 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     #{$switch-thumb-mixed-background-disabled-fallback}
   );
   --ix-switch-thumb-mixed--background--hover: var(
-    --theme-si-sys-text-inverse,
+    --theme-si-sys-text-on-accent,
     #{$switch-thumb-mixed-background-hover-fallback}
   );
   --ix-switch-thumb-mixed--background--info: var(
@@ -552,22 +552,22 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-color-warning--contrast,
     #{$switch-thumb-mixed-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-mixed--border-color: none;
-  --ix-switch-thumb-mixed--border-color--active: none;
-  --ix-switch-thumb-mixed--border-color--disabled: none;
-  --ix-switch-thumb-mixed--border-color--hover: none;
-  --ix-switch-thumb-mixed--border-color--info: none;
-  --ix-switch-thumb-mixed--border-color--info--active: none;
-  --ix-switch-thumb-mixed--border-color--info--hover: none;
-  --ix-switch-thumb-mixed--border-color--invalid: none;
-  --ix-switch-thumb-mixed--border-color--invalid--active: none;
-  --ix-switch-thumb-mixed--border-color--invalid--hover: none;
-  --ix-switch-thumb-mixed--border-color--valid: none;
-  --ix-switch-thumb-mixed--border-color--valid--active: none;
-  --ix-switch-thumb-mixed--border-color--valid--hover: none;
-  --ix-switch-thumb-mixed--border-color--warning: none;
-  --ix-switch-thumb-mixed--border-color--warning--active: none;
-  --ix-switch-thumb-mixed--border-color--warning--hover: none;
+  --ix-switch-thumb-mixed--border-color: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--info: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-mixed--border-color--warning--hover: rgba(0, 0, 0, 0);
   --ix-switch-thumb-off--background: var(
     --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-fallback}
@@ -632,22 +632,22 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-si-sys-text-secondary,
     #{$switch-thumb-off-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-off--border-color: none;
-  --ix-switch-thumb-off--border-color--active: none;
-  --ix-switch-thumb-off--border-color--disabled: none;
-  --ix-switch-thumb-off--border-color--hover: none;
-  --ix-switch-thumb-off--border-color--info: none;
-  --ix-switch-thumb-off--border-color--info--active: none;
-  --ix-switch-thumb-off--border-color--info--hover: none;
-  --ix-switch-thumb-off--border-color--invalid: none;
-  --ix-switch-thumb-off--border-color--invalid--active: none;
-  --ix-switch-thumb-off--border-color--invalid--hover: none;
-  --ix-switch-thumb-off--border-color--valid: none;
-  --ix-switch-thumb-off--border-color--valid--active: none;
-  --ix-switch-thumb-off--border-color--valid--hover: none;
-  --ix-switch-thumb-off--border-color--warning: none;
-  --ix-switch-thumb-off--border-color--warning--active: none;
-  --ix-switch-thumb-off--border-color--warning--hover: none;
+  --ix-switch-thumb-off--border-color: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--info: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-off--border-color--warning--hover: rgba(0, 0, 0, 0);
   --ix-switch-thumb-on--background: var(
     --theme-si-sys-text-on-accent,
     #{$switch-thumb-on-background-fallback}
@@ -712,20 +712,20 @@ $switch-thumb-on-background-warning-hover-fallback: #000609;
     --theme-color-warning--contrast,
     #{$switch-thumb-on-background-warning-hover-fallback}
   );
-  --ix-switch-thumb-on--border-color: none;
-  --ix-switch-thumb-on--border-color--active: none;
-  --ix-switch-thumb-on--border-color--disabled: none;
-  --ix-switch-thumb-on--border-color--hover: none;
-  --ix-switch-thumb-on--border-color--info: none;
-  --ix-switch-thumb-on--border-color--info--active: none;
-  --ix-switch-thumb-on--border-color--info--hover: none;
-  --ix-switch-thumb-on--border-color--invalid: none;
-  --ix-switch-thumb-on--border-color--invalid--active: none;
-  --ix-switch-thumb-on--border-color--invalid--hover: none;
-  --ix-switch-thumb-on--border-color--valid: none;
-  --ix-switch-thumb-on--border-color--valid--active: none;
-  --ix-switch-thumb-on--border-color--valid--hover: none;
-  --ix-switch-thumb-on--border-color--warning: none;
-  --ix-switch-thumb-on--border-color--warning--active: none;
-  --ix-switch-thumb-on--border-color--warning--hover: none;
+  --ix-switch-thumb-on--border-color: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--info: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-switch-thumb-on--border-color--warning--hover: rgba(0, 0, 0, 0);
 }

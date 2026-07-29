@@ -33,27 +33,25 @@ $input-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-bottom-disabled-fallback: light-dark(#ebedee, #34454d);
 $input-border-color-bottom-readonly-fallback: light-dark(#ebedee, #34454d);
-$input-box-shadow-fallback: inset 0 2px 4px 0
-  light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6));
 $input-color-fallback: light-dark(#000609, #ffffff);
 $input-color-autofill-fallback: light-dark(#000609, #ffffff);
 $input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 $input-error-background-fallback: light-dark(#ffffff, #1a272d);
 $input-error-border-color-fallback: #d72323;
-$input-error-icon-color-fallback: #d72323;
-$input-extra-background-active-fallback: light-dark(#d1fbff, #00212f);
-$input-extra-background-hover-fallback: light-dark(#d1fbff, #00212f);
+$input-error-icon-color-fallback: light-dark(#a70808, #ff8e8e);
+$input-extra-background-active-fallback: light-dark(#fafafa, #0e1b20);
+$input-extra-background-hover-fallback: light-dark(#fafafa, #0e1b20);
 $input-gripper-color-fallback: light-dark(#919ca1, #5b6a71);
 $input-gripper-color-focus-fallback: light-dark(#919ca1, #5b6a71);
 $input-gripper-color-hover-fallback: light-dark(#919ca1, #5b6a71);
 $input-hint-color-fallback: light-dark(#405158, #aeb5b8);
 $input-search-icon-color-fallback: light-dark(#006a87, #00c9e4);
 $input-search-icon-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$input-search-icon-color-focus-fallback: light-dark(#004f69, #00eaff);
+$input-search-icon-color-focus-fallback: light-dark(#006a87, #00c9e4);
 $input-search-icon-color-hover-fallback: light-dark(#004f69, #00eaff);
-$input-select-icon-color-fallback: light-dark(#405158, #aeb5b8);
-$input-select-icon-color-active-fallback: light-dark(#004f69, #00eaff);
-$input-select-icon-color-hover-fallback: light-dark(#004f69, #00eaff);
+$input-select-icon-color-fallback: light-dark(#000609, #ffffff);
+$input-select-icon-color-active-fallback: light-dark(#000609, #ffffff);
+$input-select-icon-color-hover-fallback: light-dark(#000609, #ffffff);
 $input-unit-color-fallback: light-dark(#405158, #aeb5b8);
 
 :host {
@@ -166,10 +164,7 @@ $input-unit-color-fallback: light-dark(#405158, #aeb5b8);
   );
   --ix-input--border-radius: var(--theme-small-border-radius, 0.125rem);
   --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
-  --ix-input--box-shadow: var(
-    --theme-inset-shadow-1,
-    #{$input-box-shadow-fallback}
-  );
+  --ix-input--box-shadow: none;
   --ix-input--color: var(--theme-si-sys-text-primary, #{$input-color-fallback});
   --ix-input--color--autofill: var(
     --theme-si-sys-text-primary,
@@ -192,27 +187,27 @@ $input-unit-color-fallback: light-dark(#405158, #aeb5b8);
     #{$input-error-border-color-fallback}
   );
   --ix-input-error-icon--color: var(
-    --theme-color-alarm,
+    --theme-si-sys-text-danger,
     #{$input-error-icon-color-fallback}
   );
   --ix-input-extra--background--active: var(
-    --theme-color-component-8--hover,
+    --theme-si-sys-background-4,
     #{$input-extra-background-active-fallback}
   );
   --ix-input-extra--background--hover: var(
-    --theme-color-component-8--hover,
+    --theme-si-sys-background-4,
     #{$input-extra-background-hover-fallback}
   );
   --ix-input-gripper--color: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$input-gripper-color-fallback}
   );
   --ix-input-gripper--color--focus: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$input-gripper-color-focus-fallback}
   );
   --ix-input-gripper--color--hover: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$input-gripper-color-hover-fallback}
   );
   --ix-input-hint--color: var(
@@ -220,35 +215,35 @@ $input-unit-color-fallback: light-dark(#405158, #aeb5b8);
     #{$input-hint-color-fallback}
   );
   --ix-input-search-icon--color: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$input-search-icon-color-fallback}
   );
   --ix-input-search-icon--color--disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$input-search-icon-color-disabled-fallback}
   );
   --ix-input-search-icon--color--focus: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-accent,
     #{$input-search-icon-color-focus-fallback}
   );
   --ix-input-search-icon--color--hover: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-accent-hover,
     #{$input-search-icon-color-hover-fallback}
   );
   --ix-input-select-icon--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-primary,
     #{$input-select-icon-color-fallback}
   );
   --ix-input-select-icon--color--active: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-primary,
     #{$input-select-icon-color-active-fallback}
   );
   --ix-input-select-icon--color--hover: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-primary,
     #{$input-select-icon-color-hover-fallback}
   );
   --ix-input-unit--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$input-unit-color-fallback}
   );
 }

@@ -28,7 +28,7 @@ $input-border-color-warning-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
 $input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$input-select-icon-color-fallback: light-dark(#405158, #aeb5b8);
+$input-select-icon-color-fallback: light-dark(#000609, #ffffff);
 $select-list-item-hint-color-fallback: light-dark(#405158, #aeb5b8);
 
 :host {
@@ -116,7 +116,7 @@ $select-list-item-hint-color-fallback: light-dark(#405158, #aeb5b8);
     #{$input-color-disabled-fallback}
   );
   --ix-input-select-icon--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-primary,
     #{$input-select-icon-color-fallback}
   );
   --ix-select-list-item-hint--color: var(

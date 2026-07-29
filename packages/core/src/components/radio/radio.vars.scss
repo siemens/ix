@@ -48,7 +48,6 @@ $radiobtn-label-color-fallback: light-dark(#000609, #ffffff);
 $radiobtn-label-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 $radiobtn-unchecked-background-fallback: light-dark(#ffffff, #1a272d);
 $radiobtn-unchecked-background-active-fallback: light-dark(#dcdee0, #34454d);
-$radiobtn-unchecked-background-disabled-fallback: light-dark(#ffffff, #1a272d);
 $radiobtn-unchecked-background-hover-fallback: light-dark(#e8ebed, #273940);
 $radiobtn-unchecked-background-info-fallback: light-dark(#ffffff, #1a272d);
 $radiobtn-unchecked-background-info-active-fallback: light-dark(
@@ -135,11 +134,11 @@ $radiobtn-unchecked-border-color-warning-hover-fallback: light-dark(
     #{$radiobtn-checked-background-info-fallback}
   );
   --ix-radiobtn-checked--background--info--active: var(
-    --theme-color-info--active,
+    --theme-si-sys-background-information-active,
     #{$radiobtn-checked-background-info-active-fallback}
   );
   --ix-radiobtn-checked--background--info--hover: var(
-    --theme-color-info--hover,
+    --theme-si-sys-background-information-hover,
     #{$radiobtn-checked-background-info-hover-fallback}
   );
   --ix-radiobtn-checked--background--invalid: var(
@@ -256,10 +255,7 @@ $radiobtn-unchecked-border-color-warning-hover-fallback: light-dark(
     --theme-si-sys-background-selected,
     #{$radiobtn-unchecked-background-active-fallback}
   );
-  --ix-radiobtn-unchecked--background--disabled: var(
-    --theme-si-sys-background-1,
-    #{$radiobtn-unchecked-background-disabled-fallback}
-  );
+  --ix-radiobtn-unchecked--background--disabled: rgba(0, 0, 0, 0);
   --ix-radiobtn-unchecked--background--hover: var(
     --theme-si-sys-background-hover,
     #{$radiobtn-unchecked-background-hover-fallback}

@@ -20,8 +20,8 @@
   --theme-checkbox-checked--background--disabled: var(--theme-si-sys-text-disabled);
   --theme-checkbox-checked--background--hover: var(--theme-si-sys-background-accent-hover);
   --theme-checkbox-checked--background--info: var(--theme-si-sys-background-information);
-  --theme-checkbox-checked--background--info--active: var(--theme-color-info--active);
-  --theme-checkbox-checked--background--info--hover: var(--theme-color-info--hover);
+  --theme-checkbox-checked--background--info--active: var(--theme-si-sys-background-information-active);
+  --theme-checkbox-checked--background--info--hover: var(--theme-si-sys-background-information-hover);
   --theme-checkbox-checked--background--invalid: var(--theme-si-sys-background-danger);
   --theme-checkbox-checked--background--invalid--active: var(--theme-si-sys-background-danger-active);
   --theme-checkbox-checked--background--invalid--hover: var(--theme-si-sys-background-danger-hover);
@@ -105,10 +105,10 @@
   --theme-checkbox-unchecked--background--warning: var(--theme-si-sys-background-1);
   --theme-checkbox-unchecked--background--warning--active: var(--theme-si-sys-background-selected);
   --theme-checkbox-unchecked--background--warning--hover: var(--theme-si-sys-background-hover);
-  --theme-checkbox-unchecked--border-color: var(--theme-si-sys-border-1);
-  --theme-checkbox-unchecked--border-color--active: var(--theme-si-sys-border-1);
+  --theme-checkbox-unchecked--border-color: var(--theme-si-sys-border-2);
+  --theme-checkbox-unchecked--border-color--active: var(--theme-si-sys-border-2);
   --theme-checkbox-unchecked--border-color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-checkbox-unchecked--border-color--hover: var(--theme-si-sys-border-1);
+  --theme-checkbox-unchecked--border-color--hover: var(--theme-si-sys-border-2);
   --theme-checkbox-unchecked--border-color--info: var(--theme-si-sys-border-information);
   --theme-checkbox-unchecked--border-color--info--active: var(--theme-si-sys-border-information);
   --theme-checkbox-unchecked--border-color--info--hover: var(--theme-si-sys-border-information);

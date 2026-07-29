@@ -20,8 +20,8 @@
   --theme-radiobtn-checked--background--disabled: var(--theme-si-sys-text-disabled);
   --theme-radiobtn-checked--background--hover: var(--theme-si-sys-background-accent-hover);
   --theme-radiobtn-checked--background--info: var(--theme-si-sys-background-information);
-  --theme-radiobtn-checked--background--info--active: var(--theme-color-info--active);
-  --theme-radiobtn-checked--background--info--hover: var(--theme-color-info--hover);
+  --theme-radiobtn-checked--background--info--active: var(--theme-si-sys-background-information-active);
+  --theme-radiobtn-checked--background--info--hover: var(--theme-si-sys-background-information-hover);
   --theme-radiobtn-checked--background--invalid: var(--theme-si-sys-background-danger);
   --theme-radiobtn-checked--background--invalid--active: var(--theme-si-sys-background-danger-active);
   --theme-radiobtn-checked--background--invalid--hover: var(--theme-si-sys-background-danger-hover);
@@ -58,7 +58,7 @@
   --theme-radiobtn-label--color--disabled: var(--theme-si-sys-text-disabled);
   --theme-radiobtn-unchecked--background: var(--theme-si-sys-background-1);
   --theme-radiobtn-unchecked--background--active: var(--theme-si-sys-background-selected);
-  --theme-radiobtn-unchecked--background--disabled: var(--theme-si-sys-background-1);
+  --theme-radiobtn-unchecked--background--disabled: rgba(0, 0, 0, 0);
   --theme-radiobtn-unchecked--background--hover: var(--theme-si-sys-background-hover);
   --theme-radiobtn-unchecked--background--info: var(--theme-si-sys-background-1);
   --theme-radiobtn-unchecked--background--info--active: var(--theme-si-sys-background-selected);

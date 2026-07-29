@@ -12,9 +12,9 @@ $application-header-color-x-weak-bdr-fallback: light-dark(
   rgba(142, 157, 165, 0.2)
 );
 $app-header-background-fallback: light-dark(#ffffff, #1a272d);
-$app-header-border-color-fallback: light-dark(#e5e8e9, #34454d);
+$app-header-border-color-fallback: light-dark(#ebedee, #34454d);
 $app-header-color-fallback: light-dark(#000609, #ffffff);
-$app-header-app-icon-outline-color-fallback: light-dark(#72848c, #e5e8e9);
+$app-header-app-icon-outline-color-fallback: light-dark(#5b6a71, #919ca1);
 $app-header-logo-color-fallback: light-dark(#000000, #ffffff);
 $app-header-name-suffix-color-fallback: light-dark(#405158, #aeb5b8);
 
@@ -25,28 +25,28 @@ $app-header-name-suffix-color-fallback: light-dark(#405158, #aeb5b8);
     #{$application-header-color-x-weak-bdr-fallback}
   );
   --ix-app-header--background: var(
-    --theme-color-2,
+    --theme-si-sys-background-1,
     #{$app-header-background-fallback}
   );
   --ix-app-header--border-color: var(
-    --theme-color-weak-bdr,
+    --theme-si-sys-border-4,
     #{$app-header-border-color-fallback}
   );
   --ix-app-header--border-width: var(--theme-border-width-default, 0.0625rem);
   --ix-app-header--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$app-header-color-fallback}
   );
   --ix-app-header-app-icon--outline-color: var(
-    --theme-color-8,
+    --theme-si-sys-border-2,
     #{$app-header-app-icon-outline-color-fallback}
   );
   --ix-app-header-logo--color: var(
-    --theme-color-logo,
+    --theme-si-sys-effects-logo,
     #{$app-header-logo-color-fallback}
   );
   --ix-app-header-name-suffix--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$app-header-name-suffix-color-fallback}
   );
   --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);

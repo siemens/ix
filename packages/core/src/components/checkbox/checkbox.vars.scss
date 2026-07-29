@@ -108,13 +108,13 @@ $checkbox-unchecked-background-warning-hover-fallback: light-dark(
   #e8ebed,
   #273940
 );
-$checkbox-unchecked-border-color-fallback: light-dark(#000609, #ffffff);
-$checkbox-unchecked-border-color-active-fallback: light-dark(#000609, #ffffff);
+$checkbox-unchecked-border-color-fallback: light-dark(#5b6a71, #919ca1);
+$checkbox-unchecked-border-color-active-fallback: light-dark(#5b6a71, #919ca1);
 $checkbox-unchecked-border-color-disabled-fallback: light-dark(
   #919ca1,
   #5b6a71
 );
-$checkbox-unchecked-border-color-hover-fallback: light-dark(#000609, #ffffff);
+$checkbox-unchecked-border-color-hover-fallback: light-dark(#5b6a71, #919ca1);
 $checkbox-unchecked-border-color-info-fallback: #226ae7;
 $checkbox-unchecked-border-color-info-active-fallback: #226ae7;
 $checkbox-unchecked-border-color-info-hover-fallback: #226ae7;
@@ -167,11 +167,11 @@ $checkbox-unchecked-border-color-warning-hover-fallback: light-dark(
     #{$checkbox-checked-background-info-fallback}
   );
   --ix-checkbox-checked--background--info--active: var(
-    --theme-color-info--active,
+    --theme-si-sys-background-information-active,
     #{$checkbox-checked-background-info-active-fallback}
   );
   --ix-checkbox-checked--background--info--hover: var(
-    --theme-color-info--hover,
+    --theme-si-sys-background-information-hover,
     #{$checkbox-checked-background-info-hover-fallback}
   );
   --ix-checkbox-checked--background--invalid: var(
@@ -444,11 +444,11 @@ $checkbox-unchecked-border-color-warning-hover-fallback: light-dark(
     #{$checkbox-unchecked-background-warning-hover-fallback}
   );
   --ix-checkbox-unchecked--border-color: var(
-    --theme-si-sys-border-1,
+    --theme-si-sys-border-2,
     #{$checkbox-unchecked-border-color-fallback}
   );
   --ix-checkbox-unchecked--border-color--active: var(
-    --theme-si-sys-border-1,
+    --theme-si-sys-border-2,
     #{$checkbox-unchecked-border-color-active-fallback}
   );
   --ix-checkbox-unchecked--border-color--disabled: var(
@@ -456,7 +456,7 @@ $checkbox-unchecked-border-color-warning-hover-fallback: light-dark(
     #{$checkbox-unchecked-border-color-disabled-fallback}
   );
   --ix-checkbox-unchecked--border-color--hover: var(
-    --theme-si-sys-border-1,
+    --theme-si-sys-border-2,
     #{$checkbox-unchecked-border-color-hover-fallback}
   );
   --ix-checkbox-unchecked--border-color--info: var(

@@ -23,6 +23,9 @@ $avatar-color-fallback: light-dark(#000609, #ffffff);
     --theme-color-component-3,
     #{$avatar-background-fallback}
   );
-  --ix-avatar--color: var(--theme-color-std-text, #{$avatar-color-fallback});
+  --ix-avatar--color: var(
+    --theme-si-sys-text-primary,
+    #{$avatar-color-fallback}
+  );
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
 }

@@ -21,19 +21,19 @@ $nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
     #{$menu-avatar-color-focus-bdr-fallback}
   );
   --ix-avatar-btn--background--active: var(
-    --theme-color-ghost--active,
+    --theme-si-sys-background-selected,
     #{$avatar-btn-background-active-fallback}
   );
   --ix-avatar-btn--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$avatar-btn-background-hover-fallback}
   );
   --ix-avatar-btn--color--active: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$avatar-btn-color-active-fallback}
   );
   --ix-avatar-btn--color--hover: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$avatar-btn-color-hover-fallback}
   );
   --ix-nav-item-primary--color: var(

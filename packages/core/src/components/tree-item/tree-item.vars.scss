@@ -16,23 +16,23 @@ $tree-item-background-selected-hover-fallback: light-dark(#e8ebed, #273940);
 :host {
   --ix-tree-item--default-time: var(--theme-default-time, 150ms);
   --ix-tree-item--background--active: var(
-    --theme-color-ghost--active,
+    --theme-si-sys-background-selected,
     #{$tree-item-background-active-fallback}
   );
   --ix-tree-item--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$tree-item-background-hover-fallback}
   );
   --ix-tree-item--background--selected: var(
-    --theme-color-ghost--selected,
+    --theme-si-sys-background-selected,
     #{$tree-item-background-selected-fallback}
   );
   --ix-tree-item--background--selected-active: var(
-    --theme-color-ghost--selected-active,
+    --theme-si-sys-background-selected,
     #{$tree-item-background-selected-active-fallback}
   );
   --ix-tree-item--background--selected-hover: var(
-    --theme-color-ghost--selected-hover,
+    --theme-si-sys-background-hover,
     #{$tree-item-background-selected-hover-fallback}
   );
 }
