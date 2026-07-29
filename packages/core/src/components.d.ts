@@ -6014,7 +6014,7 @@ declare global {
         new (): HTMLIxMenuAvatarItemElement;
     };
     interface HTMLIxMenuCategoryElementEventMap {
-        "closeOtherCategories": any;
+        "closeOtherCategories": string;
     }
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9727,7 +9727,7 @@ declare namespace LocalJSX {
           * Show notification count on the category
          */
         "notifications"?: number;
-        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<string>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0

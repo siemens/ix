@@ -130,6 +130,54 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'should not close current category dropdown on own closeOtherCategories event',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category 1">
+            <ix-menu-item>Item 1</ix-menu-item>
+          </ix-menu-category>
+          <ix-menu-category label="Category 2">
+            <ix-menu-item>Item 2</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
+      );
+
+    const categoryOne = page.locator('ix-menu-category').nth(0);
+    const dropdownOne = categoryOne.locator('ix-dropdown');
+
+    await categoryOne.hover();
+    await expect(dropdownOne).toBeVisible();
+
+    const sourceCategoryId = await categoryOne
+      .locator('.category-parent')
+      .getAttribute('id');
+
+    expect(sourceCategoryId).toBeTruthy();
+
+    await page.evaluate((id) => {
+      window.dispatchEvent(
+        new CustomEvent('closeOtherCategories', {
+          detail: id,
+          bubbles: true,
+          composed: true,
+        })
+      );
+    }, sourceCategoryId);
+
+    await expect(dropdownOne).toBeVisible();
+  }
+);
+
+regressionTest(
   'should collapse category after collapse menu',
   async ({ mount, page }) => {
     await mount(`
