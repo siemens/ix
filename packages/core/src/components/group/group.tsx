@@ -146,7 +146,7 @@ export class Group {
   }
 
   private onHeaderKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.onHeaderClick(event as unknown as Event);
     }
