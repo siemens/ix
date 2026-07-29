@@ -70,6 +70,9 @@ function CardListTitle(props: {
   );
 }
 
+/**
+ * @slot default - Cards displayed in the list.
+ */
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',

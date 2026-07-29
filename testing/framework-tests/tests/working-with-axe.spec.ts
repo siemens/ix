@@ -62,5 +62,14 @@ import './generated/toggle-indeterminate-axe.spec';
 import './generated/pill-axe.spec';
 import './generated/pill-variants-axe.spec';
 
+// Popover tests
+import './generated/popover-axe.spec';
+
 // Chip tests
 import './generated/chip-axe.spec';
+
+// Chat tests
+import './generated/chat-axe.spec';
+import './generated/chat-ai-message-axe.spec';
+import './generated/chat-input-axe.spec';
+import './generated/chat-user-message-axe.spec';

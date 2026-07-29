@@ -121,7 +121,6 @@ export default class EchartsLineMultipleYAxis implements OnDestroy, OnInit {
       legend: {
         show: true,
         bottom: '0',
-        left: '0',
       },
       xAxis: [
         {

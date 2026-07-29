@@ -44,6 +44,9 @@ export default class EchartsBarHorizontalStacked implements OnDestroy, OnInit {
   }));
 
   options: EChartsOption = {
+    grid: {
+      bottom: 100,
+    },
     xAxis: {
       type: 'value',
       name: 'Revenue (in Millions of USD)',
@@ -59,7 +62,7 @@ export default class EchartsBarHorizontalStacked implements OnDestroy, OnInit {
     legend: {
       show: true,
       bottom: '0',
-      left: '0',
+      padding: 16,
     },
     series: this.series,
   };

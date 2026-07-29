@@ -33,6 +33,9 @@ import {
   AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
+/**
+ * @slot default - Dropdown items for the split button.
+ */
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',

@@ -13,7 +13,7 @@ import type { ContentHeaderVariant } from './content-header.types';
 
 /**
  * @slot header - Content to be placed in the header area next to the title
- * @slot - Default slot for action buttons or other content
+ * @slot default - Default slot for action buttons or other content
  */
 @Component({
   tag: 'ix-content-header',

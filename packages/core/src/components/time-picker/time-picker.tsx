@@ -65,9 +65,6 @@ const MINUTE_INTERVAL_DEFAULT = 1;
 const SECOND_INTERVAL_DEFAULT = 1;
 const MILLISECOND_INTERVAL_DEFAULT = 100;
 
-const CONFIRM_BUTTON_DEFAULT = 'Confirm';
-const HEADER_DEFAULT = 'Time';
-
 const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   hour: '',
   minute: '',
@@ -128,7 +125,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) hourInterval: number = HOUR_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) hourInterval: number = 1;
   @Watch('hourInterval')
   watchHourIntervalPropHandler(newValue: number) {
     if (
@@ -149,7 +146,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) minuteInterval: number = MINUTE_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) minuteInterval: number = 1;
   @Watch('minuteInterval')
   watchMinuteIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
@@ -166,7 +163,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) secondInterval: number = SECOND_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) secondInterval: number = 1;
   @Watch('secondInterval')
   watchSecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
@@ -183,8 +180,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) millisecondInterval: number =
-    MILLISECOND_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) millisecondInterval: number = 100;
   @Watch('millisecondInterval')
   watchMillisecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 999) {
@@ -317,13 +313,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   /**
    * Text of the time confirm button.
    */
-  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime =
-    CONFIRM_BUTTON_DEFAULT;
+  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime = 'Confirm';
 
   /**
    * Text for the top header.
    */
-  @Prop({ attribute: 'i18n-header' }) i18nHeader: string = HEADER_DEFAULT;
+  @Prop({ attribute: 'i18n-header' }) i18nHeader: string = 'Time';
 
   /**
    * Text for the hour column header.

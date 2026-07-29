@@ -53,7 +53,6 @@ function getOptions(): EChartsOption {
     legend: {
       icon: 'rect',
       bottom: '0',
-      left: '0',
     },
     series: [
       {

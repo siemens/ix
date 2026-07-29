@@ -32,6 +32,9 @@ import {
 } from './tree-model';
 import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
+/**
+ * @slot default - Tree items.
+ */
 @Component({
   tag: 'ix-tree',
   styleUrl: 'tree.css',

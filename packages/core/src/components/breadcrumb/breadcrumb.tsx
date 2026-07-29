@@ -25,6 +25,9 @@ import { DefaultMixins } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
 import type { BreadcrumbClick } from './breadcrumb.types';
 
+/**
+ * @slot default - Breadcrumb items.
+ */
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',

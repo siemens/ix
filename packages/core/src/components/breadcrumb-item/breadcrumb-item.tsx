@@ -29,6 +29,9 @@ import {
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
+/**
+ * @slot default - Breadcrumb item label.
+ */
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',

@@ -26,6 +26,12 @@ import {
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot header - Content displayed in the group header.
+ * @slot dropdown - Dropdown used for the group context menu.
+ * @slot default - Group items.
+ * @slot footer - Content displayed below the group items.
+ */
 @Component({
   tag: 'ix-group',
   styleUrl: 'group.scss',

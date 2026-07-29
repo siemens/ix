@@ -32,6 +32,9 @@ export type ToggleButtonVariant = Exclude<
   `danger-${BaseButtonVariant}`
 >;
 
+/**
+ * @slot default - Toggle button label.
+ */
 @Component({
   tag: 'ix-toggle-button',
   shadow: true,

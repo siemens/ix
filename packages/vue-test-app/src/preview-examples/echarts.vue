@@ -49,7 +49,6 @@ const options: EChartsOption = {
   legend: {
     icon: 'rect',
     bottom: 0,
-    left: 0,
   },
   grid: {
     left: '3%',

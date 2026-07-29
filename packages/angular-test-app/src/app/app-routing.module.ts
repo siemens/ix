@@ -47,6 +47,10 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -182,6 +186,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
+import Popover from '../preview-examples/popover';
 import PopoverNews from '../preview-examples/popover-news';
 import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
@@ -416,6 +421,22 @@ const routes: Routes = [
       {
         path: 'category-filter',
         component: CategoryFilter,
+      },
+      {
+        path: 'chat',
+        component: Chat,
+      },
+      {
+        path: 'chat-ai-message',
+        component: ChatAiMessage,
+      },
+      {
+        path: 'chat-input',
+        component: ChatInput,
+      },
+      {
+        path: 'chat-user-message',
+        component: ChatUserMessage,
       },
       {
         path: 'checkbox-indeterminate',
@@ -824,6 +845,7 @@ const routes: Routes = [
       { path: 'pane-layout', component: PaneLayout },
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
+      { path: 'popover', component: Popover },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'radio', component: Radio },
@@ -874,10 +896,6 @@ const routes: Routes = [
         component: Pill,
       },
       { path: 'pill-variants', component: PillVariants },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
       {
         path: 'push-card',
         component: PushCard,

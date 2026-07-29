@@ -50,6 +50,10 @@ import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
+import Chat from './preview-examples/chat.vue';
+import ChatAiMessage from './preview-examples/chat-ai-message.vue';
+import ChatInput from './preview-examples/chat-input.vue';
+import ChatUserMessage from './preview-examples/chat-user-message.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -175,6 +179,7 @@ import PaneLayout from './preview-examples/pane-layout.vue';
 import Pane from './preview-examples/pane.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
+import Popover from './preview-examples/popover.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -292,6 +297,10 @@ const routes: IxPreviewRoutes = {
   '/preview/card-list': CardList,
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
+  '/preview/chat': Chat,
+  '/preview/chat-ai-message': ChatAiMessage,
+  '/preview/chat-input': ChatInput,
+  '/preview/chat-user-message': ChatUserMessage,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
@@ -412,6 +421,7 @@ const routes: IxPreviewRoutes = {
   '/preview/toggle-custom-toggle': ToggleCustomLabel,
   '/preview/tree': Tree,
   '/preview/tree-custom': TreeCustom,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/settings': Settings,
   '/preview/settings-legacy': SettingsLegacy,

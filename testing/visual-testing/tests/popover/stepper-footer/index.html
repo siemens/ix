@@ -1,0 +1,35 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Popover stepper footer</title>
+  </head>
+  <body style="padding: 12rem">
+    <ix-button id="trigger">Open</ix-button>
+    <ix-popover id="popover" trigger="trigger" placement="bottom" has-spike>
+      <ix-popover-header hide-close>Step 1 of 3</ix-popover-header>
+      <ix-popover-content no-padding>
+        Click the sidebar to navigate between pages.
+      </ix-popover-content>
+      <ix-popover-footer alignment="vertical">
+        <span slot="start">1 / 3</span>
+        <ix-button>Next</ix-button>
+      </ix-popover-footer>
+    </ix-popover>
+    <script type="module">
+      await customElements.whenDefined('ix-popover');
+      await document.querySelector('ix-popover')?.showPopover();
+    </script>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
