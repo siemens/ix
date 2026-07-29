@@ -542,7 +542,9 @@ function generateFunctionMDX(
 
     return {
       name: func.name,
-      comment: escapeBackticks(func.comment),
+      comment: serializeMarkdownForJsx(
+        expandJsdocNewlinesForMarkdown(func.comment)
+      ),
       returnType: escapeBackticks(func.returnType),
       parameters: formattedParams,
       hasParameters: formattedParams.length > 0,
