@@ -93,7 +93,7 @@ const updateModel = async (tree: Locator, updatedModel: any) => {
 };
 
 regressionTest.describe('accessibility', () => {
-  regressionTest.only('collapsed', async ({ mount, page, makeAxeBuilder }) => {
+  regressionTest('collapsed', async ({ mount, page, makeAxeBuilder }) => {
     await initializeTree(mount, page);
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();
