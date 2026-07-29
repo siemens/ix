@@ -437,7 +437,6 @@ regressionTest(
     `);
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveClass(/hydrated/);
-    await expect(categoryElement).toHaveClass(/hydrated/);
     await expect(page.locator('ix-menu')).not.toHaveClass(/expanded/);
 
     const categoryParent = categoryElement.locator('.category-parent');
