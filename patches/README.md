@@ -1,4 +1,15 @@
-# Stencil Core Patch
+# Stencil Patches
+
+## Vue Output Target
+
+`@stencil__vue-output-target.patch` reconciles reactive Vue class bindings in
+the generated component runtime. Without the patch, classes are added when a
+binding becomes active but are not removed when the binding becomes inactive.
+
+The patch updates both the ESM and CommonJS runtime bundles and should be
+removed after the fix is available in an upstream release.
+
+## Stencil Core
 
 ## Why This Patch Exists
 

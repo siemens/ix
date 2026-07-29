@@ -25,3 +25,4 @@ overrides:
 
 patchedDependencies:
   '@stencil/core': "patches/@stencil__core.patch"
+  '@stencil/vue-output-target': "patches/@stencil__vue-output-target.patch"
