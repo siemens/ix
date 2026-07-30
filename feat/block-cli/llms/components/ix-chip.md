@@ -14,6 +14,32 @@
 
 Example source links are relative to this Markdown file.
 
+- chat
+  - angular:
+    - `angular/chat.html`: [source](../../examples/angular-examples/src/preview-examples/chat.html)
+    - `angular/chat.ts`: [source](../../examples/angular-examples/src/preview-examples/chat.ts)
+  - angular-standalone:
+    - `angular-standalone/chat.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/chat.html)
+    - `angular-standalone/chat.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/chat.ts)
+  - html:
+    - `html/chat.html`: [source](../../examples/html-examples/src/preview-examples/chat.html)
+  - react:
+    - `react/chat.tsx`: [source](../../examples/react-examples/src/preview-examples/chat.tsx)
+  - vue:
+    - `vue/chat.vue`: [source](../../examples/vue-examples/src/preview-examples/chat.vue)
+- chat-ai-message
+  - angular:
+    - `angular/chat-ai-message.html`: [source](../../examples/angular-examples/src/preview-examples/chat-ai-message.html)
+    - `angular/chat-ai-message.ts`: [source](../../examples/angular-examples/src/preview-examples/chat-ai-message.ts)
+  - angular-standalone:
+    - `angular-standalone/chat-ai-message.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/chat-ai-message.html)
+    - `angular-standalone/chat-ai-message.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/chat-ai-message.ts)
+  - html:
+    - `html/chat-ai-message.html`: [source](../../examples/html-examples/src/preview-examples/chat-ai-message.html)
+  - react:
+    - `react/chat-ai-message.tsx`: [source](../../examples/react-examples/src/preview-examples/chat-ai-message.tsx)
+  - vue:
+    - `vue/chat-ai-message.vue`: [source](../../examples/vue-examples/src/preview-examples/chat-ai-message.vue)
 - chip
   - angular:
     - `angular/chip.css`: [source](../../examples/angular-examples/src/preview-examples/chip.css)
@@ -44,7 +70,7 @@ Example source links are relative to this Markdown file.
 - `chipColor`; attr: `chip-color`; type: `string | undefined` - Custom font and icon color. Only has an effect on chips with `variant='custom'`
 - `closable`; attr: `closable`; type: `boolean`; default: `false` - Show close icon
 - `icon`; attr: `icon`; type: `string | undefined` - Show icon
-- `inactive`; attr: `inactive`; type: `boolean`; default: `false` - Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+- `inactive`; attr: `inactive`; type: `boolean`; default: `false` - Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
 - `outline`; attr: `outline`; type: `boolean`; default: `false` - Show chip with outline style
 - `tooltipText`; attr: `tooltip-text`; type: `boolean | string`; default: `false` - Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
 - `variant`; attr: `variant`; type: `"alarm" | "critical" | "custom" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'primary'` - Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.

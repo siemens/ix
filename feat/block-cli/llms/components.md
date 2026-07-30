@@ -2,7 +2,7 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 108 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
+This index links to all 113 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
 
 ## Components
 
@@ -20,6 +20,11 @@ This index links to all 108 generated component detail files. Each detail file i
 - [ix-card-list](components/ix-card-list.md): Container that arranges multiple cards in a list or grid layout.
 - [ix-card-title](components/ix-card-title.md): Title area of a card.
 - [ix-category-filter](components/ix-category-filter.md): Input for building and refining searches using category-based filter criteria.
+- [ix-chat](components/ix-chat.md): No component summary available.
+- [ix-chat-ai-message](components/ix-chat-ai-message.md): No component summary available.
+- [ix-chat-attachment](components/ix-chat-attachment.md): No component summary available.
+- [ix-chat-input](components/ix-chat-input.md): No component summary available.
+- [ix-chat-user-message](components/ix-chat-user-message.md): No component summary available.
 - [ix-checkbox](components/ix-checkbox.md): Lets users select an option or toggle a single value on or off.
 - [ix-checkbox-group](components/ix-checkbox-group.md): Groups related checkboxes together.
 - [ix-chip](components/ix-chip.md): Compact element that represents an attribute, tag, or entity, optionally dismissible.

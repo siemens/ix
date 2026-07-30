@@ -186,6 +186,22 @@
           "path": "feat/block-cli/examples/category-filter-suggestions.json"
         },
         {
+          "name": "chat",
+          "path": "feat/block-cli/examples/chat.json"
+        },
+        {
+          "name": "chat-ai-message",
+          "path": "feat/block-cli/examples/chat-ai-message.json"
+        },
+        {
+          "name": "chat-input",
+          "path": "feat/block-cli/examples/chat-input.json"
+        },
+        {
+          "name": "chat-user-message",
+          "path": "feat/block-cli/examples/chat-user-message.json"
+        },
+        {
           "name": "checkbox",
           "path": "feat/block-cli/examples/checkbox.json"
         },
