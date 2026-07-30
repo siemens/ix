@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
@@ -100,6 +101,92 @@ regressionTest(
       element.disabled = false;
     });
     await expect(dynamicButton).not.toHaveAttribute('disabled');
+  }
+);
+
+regressionTest(
+  'applies active button appearance while dropdown is expanded',
+  async ({ page, mount }) => {
+    await mount(`
+    <ix-dropdown-button label="Open">
+      <ix-dropdown-item label="Test"></ix-dropdown-item>
+    </ix-dropdown-button>
+  `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    const trigger = dropdownButton.locator('ix-button');
+
+    const getTriggerBackground = () =>
+      trigger.evaluate((el) => {
+        const button = el.shadowRoot?.querySelector('button');
+        return button ? getComputedStyle(button).backgroundColor : '';
+      });
+
+    const closedBackground = await getTriggerBackground();
+
+    await dropdownButton.click();
+    await expect(dropdownButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(dropdownButton.locator('ix-dropdown')).toBeVisible();
+
+    const openBackground = await getTriggerBackground();
+    expect(openBackground).not.toBe(closedBackground);
+
+    const activeBackground = await dropdownButton.evaluate((el) => {
+      const probe = document.createElement('div');
+      probe.style.backgroundColor =
+        'var(--theme-btn-primary--background--active)';
+      el.appendChild(probe);
+      const value = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return value;
+    });
+
+    expect(openBackground).toBe(activeBackground);
+  }
+);
+
+regressionTest(
+  'applies active icon button appearance while dropdown is expanded',
+  async ({ page, mount }) => {
+    await mount(
+      `
+    <ix-dropdown-button icon="checkboxes">
+      <ix-dropdown-item label="Test"></ix-dropdown-item>
+    </ix-dropdown-button>
+  `,
+      {
+        icons: { iconCheckboxes },
+      }
+    );
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    const trigger = dropdownButton.locator('ix-icon-button');
+
+    const getTriggerBackground = () =>
+      trigger.evaluate((el) => {
+        const button = el.shadowRoot?.querySelector('button');
+        return button ? getComputedStyle(button).backgroundColor : '';
+      });
+
+    const closedBackground = await getTriggerBackground();
+
+    await dropdownButton.click();
+    await expect(dropdownButton).toHaveAttribute('aria-expanded', 'true');
+
+    const openBackground = await getTriggerBackground();
+    expect(openBackground).not.toBe(closedBackground);
+
+    const activeBackground = await dropdownButton.evaluate((el) => {
+      const probe = document.createElement('div');
+      probe.style.backgroundColor =
+        'var(--theme-btn-primary--background--active)';
+      el.appendChild(probe);
+      const value = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return value;
+    });
+
+    expect(openBackground).toBe(activeBackground);
   }
 );
 
