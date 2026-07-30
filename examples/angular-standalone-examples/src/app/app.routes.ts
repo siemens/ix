@@ -100,6 +100,14 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/category-filter-suggestions').then(
       (m) => m.default
     ),
+  'preview/chat': () =>
+    import('../preview-examples/chat').then((m) => m.default),
+  'preview/chat-ai-message': () =>
+    import('../preview-examples/chat-ai-message').then((m) => m.default),
+  'preview/chat-input': () =>
+    import('../preview-examples/chat-input').then((m) => m.default),
+  'preview/chat-user-message': () =>
+    import('../preview-examples/chat-user-message').then((m) => m.default),
   'preview/checkbox': () =>
     import('../preview-examples/checkbox').then((m) => m.default),
   'preview/checkbox-indeterminate': () =>
