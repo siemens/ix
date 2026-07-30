@@ -13,7 +13,12 @@ import {
   A11yAttributeName,
   A11yAttributes,
   a11yHostAttributes,
+  getA11yAttributeNames,
 } from './../../../a11y';
+import {
+  interceptAriaReflectionRemovals,
+  interceptHostAttributeRemovals,
+} from './aria-attribute-interceptors';
 
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
@@ -31,6 +36,13 @@ export const InheritAriaAttributesMixin = <
   {
     @State() inheritAriaAttributes: A11yAttributes = {};
 
+    // Distinguish mixin cleanup from attributes removed by consumers.
+    forwardedAriaAttributeRemovals = new Set<A11yAttributeName>();
+    forwardedAriaAttributes = new Set<A11yAttributeName>();
+    removeHostAttribute?: HTMLElement['removeAttribute'];
+
+    ignoredAriaAttributes?: Set<A11yAttributeName>;
+
     constructor(...args: any[]) {
       super(...args);
     }
@@ -39,11 +51,58 @@ export const InheritAriaAttributesMixin = <
       return [];
     }
 
+    isIgnoredAriaAttribute = (attributeName: A11yAttributeName) => {
+      this.ignoredAriaAttributes ??= new Set(this.getIgnoredAriaAttributes());
+      return this.ignoredAriaAttributes.has(attributeName);
+    };
+
     override componentWillLoad(): Promise<void> | void {
+      if (!this.hostElement) {
+        return;
+      }
+
+      this.ignoredAriaAttributes = new Set(this.getIgnoredAriaAttributes());
       this.inheritAriaAttributes = a11yHostAttributes(
-        this.hostElement!,
-        this.getIgnoredAriaAttributes ? this.getIgnoredAriaAttributes() : []
+        this.hostElement,
+        this.getIgnoredAriaAttributes()
       );
+      this.forwardedAriaAttributes = new Set(
+        getA11yAttributeNames().filter(
+          (attributeName) => !this.isIgnoredAriaAttribute(attributeName)
+        )
+      );
+
+      this.removeHostAttribute = interceptHostAttributeRemovals(
+        this.hostElement,
+        {
+          isIgnored: this.isIgnoredAriaAttribute,
+          isInherited: (attributeName) =>
+            attributeName in this.inheritAriaAttributes,
+          onAttributeRemoved: (attributeName) =>
+            this.removeInheritedAriaAttribute(attributeName),
+        }
+      );
+
+      interceptAriaReflectionRemovals(
+        this.hostElement,
+        this.forwardedAriaAttributes,
+        {
+          onAttributeRemoved: (attributeName) =>
+            this.removeInheritedAriaAttribute(attributeName),
+          removeHostAttribute: (attributeName) =>
+            this.removeHostAttribute?.(attributeName),
+        }
+      );
+    }
+
+    removeInheritedAriaAttribute(attributeName: A11yAttributeName) {
+      if (!(attributeName in this.inheritAriaAttributes)) {
+        return;
+      }
+
+      const updatedAttributes = { ...this.inheritAriaAttributes };
+      delete updatedAttributes[attributeName];
+      this.inheritAriaAttributes = updatedAttributes;
     }
 
     @Watch('role')
@@ -102,18 +161,34 @@ export const InheritAriaAttributesMixin = <
       _: string | null,
       propName: string
     ) {
-      const ignoredAttributes = this.getIgnoredAriaAttributes();
-      if (ignoredAttributes.includes(propName as A11yAttributeName)) {
+      const attributeName = propName as A11yAttributeName;
+
+      if (this.isIgnoredAriaAttribute(attributeName)) {
         return;
       }
 
-      const updateAttribute = {
-        [propName]: newValue,
-      };
+      if (newValue === null) {
+        if (this.forwardedAriaAttributeRemovals.delete(attributeName)) {
+          return;
+        }
+
+        this.removeInheritedAriaAttribute(attributeName);
+        return;
+      }
+
       this.inheritAriaAttributes = {
         ...this.inheritAriaAttributes,
-        ...updateAttribute,
+        [attributeName]: newValue,
       };
+      this.forwardedAriaAttributes.add(attributeName);
+
+      if (this.hostElement) {
+        this.forwardedAriaAttributeRemovals.add(attributeName);
+        this.removeHostAttribute?.(attributeName);
+        queueMicrotask(() => {
+          this.forwardedAriaAttributeRemovals.delete(attributeName);
+        });
+      }
     }
   }
 

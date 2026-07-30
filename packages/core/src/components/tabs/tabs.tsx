@@ -137,6 +137,7 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override componentWillLoad() {
+    super.componentWillLoad();
     this.onComponentChildrenChange();
     if (this.activeTabKey) {
       this.setTabActive(this.activeTabKey);

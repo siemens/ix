@@ -466,7 +466,7 @@ regressionTest(
 
 regressionTest(
   'should move into expanded category items when pressing ArrowDown on category button',
-  async ({ mount, page }) => {
+  async ({ mount, page, makeAxeBuilder }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
 
     await mount(`
@@ -506,5 +506,8 @@ regressionTest(
     // Press ArrowUp should wrap around to last item (not exit to category)
     await page.keyboard.press('ArrowUp');
     await expect(items.nth(0)).toHaveVisibleFocus();
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
