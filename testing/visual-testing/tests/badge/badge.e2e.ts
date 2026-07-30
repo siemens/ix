@@ -38,4 +38,11 @@ regressionTest.describe('badge', () => {
     await badge.waitForReady();
     await badge.expectSnapshot();
   });
+
+  regressionTest('attached-layout', async ({ page }) => {
+    const badge = new BadgeVisualPage(page);
+    await badge.gotoAttachedLayout();
+    await badge.waitForReady();
+    await badge.expectSnapshot();
+  });
 });

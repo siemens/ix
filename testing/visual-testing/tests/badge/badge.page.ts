@@ -13,6 +13,7 @@ export const BADGE_COUNTER_ROUTE = 'badge/counter';
 export const BADGE_LABEL_ROUTE = 'badge/label';
 export const BADGE_DOT_ROUTE = 'badge/dot';
 export const BADGE_STATUS_ICON_ROUTE = 'badge/status-icon';
+export const BADGE_ATTACHED_LAYOUT_ROUTE = 'badge/attached-layout';
 
 /**
  * Page Object Model for ix-badge visual regression tests.
@@ -42,6 +43,10 @@ export class BadgeVisualPage {
 
   async gotoStatusIcon(): Promise<void> {
     await this.page.goto(BADGE_STATUS_ICON_ROUTE);
+  }
+
+  async gotoAttachedLayout(): Promise<void> {
+    await this.page.goto(BADGE_ATTACHED_LAYOUT_ROUTE);
   }
 
   async waitForReady(): Promise<void> {

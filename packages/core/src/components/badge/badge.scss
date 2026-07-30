@@ -24,16 +24,11 @@ $border-radius: 100px;
   @include component.ix-component;
 }
 
-:host(.attached) {
-  display: inline-grid;
-}
-
 .anchor {
   display: contents;
 }
 
 :host(.attached) ::slotted(*) {
-  grid-area: 1 / 1;
   position: relative;
   z-index: 0;
 }
@@ -75,7 +70,6 @@ $border-radius: 100px;
 }
 
 :host(.attached) .indicator {
-  grid-area: 1 / 1;
   position: absolute;
   z-index: 1;
   pointer-events: auto;
