@@ -208,6 +208,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
             variant="tertiary"
             enableTopLayer={this.enableTopLayer}
             aria-current="page"
+            aria-label={`Show ${labelLastItem.label ?? labelLastItem.innerText}`}
           >
             <ix-icon
               slot="button-label"
