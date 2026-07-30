@@ -283,7 +283,8 @@ $border-radius: 100px;
 }
 
 :host(.border:not(.outline):not([type='status-icon'])) .indicator {
-  border: 0.0625rem solid var(--theme-color-1);
+  outline: 0.0625rem solid var(--theme-color-1);
+  outline-offset: 0;
 }
 
 /* SR-only description slot (light DOM for aria-describedby). */
