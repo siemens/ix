@@ -148,8 +148,7 @@ export class Badge
    *
    * @since 5.2.0
    */
-  @Prop({ attribute: 'enable-animation', reflect: true }) enableAnimation =
-    false;
+  @Prop({ reflect: true }) enableAnimation = false;
 
   /**
    * Custom background or border color.
