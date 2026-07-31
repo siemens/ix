@@ -34,7 +34,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(linkButton).toHaveClass(/\bhydrated\b/);
   await expect(link).toHaveAttribute('href', 'https://ix.siemens.io/');
   await expect(link).not.toHaveAttribute('title');
-  await expect(link).not.toHaveAttribute('aria-disabled');
+  await expect(link).toHaveAttribute('aria-disabled', 'false');
   await expect(link).not.toHaveAttribute('tabindex');
 });
 
@@ -48,7 +48,7 @@ regressionTest(
     `);
 
     const linkButton = page.locator('ix-link-button');
-    const link = linkButton.locator('a');
+    const link = linkButton.getByRole('link', { name: 'IX home' });
     const previousButton = page.getByRole('button', { name: 'Previous' });
     const nextButton = page.getByRole('button', { name: 'Next' });
 
