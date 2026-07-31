@@ -542,11 +542,13 @@ const createLargeTreeModel = (itemCount: number): Record<string, any> => {
 async function waitForTreeToSettle(tree: Locator, page: Page) {
   await expect(tree.locator('ix-tree-item').first()).toHaveClass(/hydrated/);
   await expect(tree.locator('ix-tree-item:not(.hydrated)')).toHaveCount(0);
+  await waitForNextTick(page);
+  await waitForNextTick(page);
+}
+
+async function waitForNextTick(page: Page) {
   await page.evaluate(
-    () =>
-      new Promise<void>((resolve) => {
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
-      })
+    () => new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
   );
 }
 

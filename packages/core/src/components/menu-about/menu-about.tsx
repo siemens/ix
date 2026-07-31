@@ -20,6 +20,7 @@ import {
   Prop,
 } from '@stencil/core';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
+import { resolveTabKey } from '../tabs/tab-key';
 
 /**
  * @slot default - About overlay content.
@@ -101,8 +102,7 @@ export class MenuAbout {
     }
     if (this.activeTabKey === undefined && this.items.length > 0) {
       const firstItem = this.items[0];
-      this.activeTabKey =
-        firstItem.tabKey ?? firstItem.getAttribute('tab-key') ?? undefined;
+      this.activeTabKey = resolveTabKey(firstItem);
     }
   }
 

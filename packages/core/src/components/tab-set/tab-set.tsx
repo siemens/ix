@@ -10,6 +10,7 @@
 import { Component, Element, Host, h } from '@stencil/core';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { resolveTabKey } from '../tabs/tab-key';
 
 /**
  * @internal
@@ -49,7 +50,7 @@ export class TabSet {
   private getTabKey(
     element: HTMLIxTabItemElement | HTMLIxTabPanelElement
   ): string | undefined {
-    return element.tabKey ?? element.getAttribute('tab-key') ?? undefined;
+    return resolveTabKey(element);
   }
 
   private get activeTabKey(): string | undefined {
