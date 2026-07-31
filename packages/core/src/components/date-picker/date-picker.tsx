@@ -856,7 +856,7 @@ export class DatePicker
     const focusedDay = focusedDayElement?.dataset.calendarDay;
 
     if (focusedDay) {
-      this.focusedDay = parseInt(focusedDay, 10);
+      this.focusedDay = Number.parseInt(focusedDay, 10);
       return;
     }
 
