@@ -15,7 +15,7 @@ $category-filter-color-soft-text-fallback: light-dark(
 $input-background-hover-fallback: light-dark(#fafafa, #0e1b20);
 $input-border-color-focus-fallback: light-dark(#000609, #ffffff);
 $input-border-color-hover-fallback: light-dark(#000609, #ffffff);
-$input-border-color-bottom-disabled-fallback: light-dark(#ebedee, #34454d);
+$input-border-color-bottom-disabled-fallback: light-dark(#ebedee, #405158);
 $input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 $menu-header-color-fallback: light-dark(#405158, #aeb5b8);
 
@@ -54,7 +54,7 @@ $menu-header-color-fallback: light-dark(#405158, #aeb5b8);
     0.125rem
   );
   --ix-menu-header--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$menu-header-color-fallback}
   );
 }

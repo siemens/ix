@@ -23,8 +23,11 @@ $tooltip-background-fallback: light-dark(#ffffff, #1a272d);
   );
   --ix-tooltip--shadow-4: var(--theme-shadow-4, #{$tooltip-shadow-4-fallback});
   --ix-tooltip--background: var(
-    --theme-color-2,
+    --theme-si-sys-background-1,
     #{$tooltip-background-fallback}
   );
-  --ix-tootlip--background: var(--theme-color-2, light-dark(#ffffff, #1a272d));
+  --ix-tootlip--background: var(
+    --theme-si-sys-background-1,
+    light-dark(#ffffff, #1a272d)
+  );
 }

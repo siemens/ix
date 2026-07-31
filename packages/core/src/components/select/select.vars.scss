@@ -15,7 +15,7 @@ $input-background-hover-fallback: light-dark(#fafafa, #0e1b20);
 $input-background-invalid-fallback: light-dark(#ffffff, #1a272d);
 $input-background-warning-fallback: light-dark(#ffffff, #1a272d);
 $input-border-color-fallback: light-dark(#5b6a71, #919ca1);
-$input-border-color-disabled-fallback: light-dark(#ebedee, #34454d);
+$input-border-color-disabled-fallback: light-dark(#ebedee, #405158);
 $input-border-color-hover-fallback: light-dark(#000609, #ffffff);
 $input-border-color-info-fallback: #226ae7;
 $input-border-color-info-active-fallback: #226ae7;
@@ -23,7 +23,7 @@ $input-border-color-info-hover-fallback: #226ae7;
 $input-border-color-invalid-fallback: #d72323;
 $input-border-color-invalid-active-fallback: #d72323;
 $input-border-color-invalid-hover-fallback: #d72323;
-$input-border-color-readonly-fallback: light-dark(#ebedee, #34454d);
+$input-border-color-readonly-fallback: light-dark(#ebedee, #405158);
 $input-border-color-warning-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
 $input-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
@@ -120,7 +120,7 @@ $select-list-item-hint-color-fallback: light-dark(#405158, #aeb5b8);
     #{$input-select-icon-color-fallback}
   );
   --ix-select-list-item-hint--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$select-list-item-hint-color-fallback}
   );
 }

@@ -19,7 +19,7 @@ $select-list-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
     #{$select-item-color-std-text-fallback}
   );
   --ix-select-list-item--background--selected: var(
-    --theme-color-ghost--selected,
+    --theme-si-sys-background-selected,
     #{$select-list-item-background-selected-fallback}
   );
 }

@@ -15,16 +15,8 @@ $flip-alarm-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-alarm-border-color-fallback: #d72323;
 $flip-alarm-color-fallback: light-dark(#000609, #ffffff);
 $flip-alarm-footer-background-fallback: #d72323;
-$flip-alarm-footer-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $flip-alarm-footer-color-fallback: #ffffff;
 $flip-filled-background-fallback: light-dark(#ffffff, #1a272d);
-$flip-filled-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $flip-filled-color-fallback: light-dark(#000609, #ffffff);
 $flip-filled-footer-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-filled-footer-border-color-fallback: light-dark(#f3f4f5, #000609);
@@ -33,40 +25,20 @@ $flip-info-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-info-border-color-fallback: #226ae7;
 $flip-info-color-fallback: light-dark(#000609, #ffffff);
 $flip-info-footer-background-fallback: #226ae7;
-$flip-info-footer-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $flip-info-footer-color-fallback: #ffffff;
-$flip-outline-background-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
-$flip-outline-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$flip-outline-border-color-fallback: light-dark(#72848c, #5b6a71);
 $flip-outline-color-fallback: light-dark(#000609, #ffffff);
-$flip-outline-footer-background-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
-$flip-outline-footer-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$flip-outline-footer-border-color-fallback: light-dark(#72848c, #5b6a71);
 $flip-outline-footer-color-fallback: light-dark(#000609, #ffffff);
 $flip-primary-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-primary-border-color-fallback: light-dark(#006a87, #00c9e4);
 $flip-primary-color-fallback: light-dark(#000609, #ffffff);
 $flip-primary-footer-background-fallback: light-dark(#006a87, #00c9e4);
-$flip-primary-footer-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $flip-primary-footer-color-fallback: light-dark(#ffffff, #000609);
 $flip-warning-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-warning-border-color-fallback: light-dark(#c69100, #ffc832);
 $flip-warning-color-fallback: light-dark(#000609, #ffffff);
 $flip-warning-footer-background-fallback: light-dark(#ffbf0f, #ffc832);
-$flip-warning-footer-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $flip-warning-footer-color-fallback: #000609;
 
 :host {
@@ -76,127 +48,109 @@ $flip-warning-footer-color-fallback: #000609;
   );
   --ix-flip--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-flip-alarm--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-alarm-background-fallback}
   );
   --ix-flip-alarm--border-color: var(
-    --theme-color-alarm,
+    --theme-si-sys-border-danger,
     #{$flip-alarm-border-color-fallback}
   );
   --ix-flip-alarm--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-alarm-color-fallback}
   );
   --ix-flip-alarm-footer--background: var(
-    --theme-color-alarm,
+    --theme-si-sys-background-danger,
     #{$flip-alarm-footer-background-fallback}
   );
-  --ix-flip-alarm-footer--border-color: var(
-    --theme-color-0,
-    #{$flip-alarm-footer-border-color-fallback}
-  );
+  --ix-flip-alarm-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-alarm-footer--color: var(
-    --theme-color-alarm--contrast,
+    --theme-si-sys-text-on-danger,
     #{$flip-alarm-footer-color-fallback}
   );
   --ix-flip-filled--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-filled-background-fallback}
   );
-  --ix-flip-filled--border-color: var(
-    --theme-color-0,
-    #{$flip-filled-border-color-fallback}
-  );
+  --ix-flip-filled--border-color: rgba(0, 0, 0, 0);
   --ix-flip-filled--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-filled-color-fallback}
   );
   --ix-flip-filled-footer--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-filled-footer-background-fallback}
   );
   --ix-flip-filled-footer--border-color: var(
-    --theme-color-1,
+    --theme-si-sys-background-0,
     #{$flip-filled-footer-border-color-fallback}
   );
   --ix-flip-filled-footer--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-filled-footer-color-fallback}
   );
   --ix-flip-info--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-info-background-fallback}
   );
   --ix-flip-info--border-color: var(
-    --theme-color-info,
+    --theme-si-sys-border-information,
     #{$flip-info-border-color-fallback}
   );
   --ix-flip-info--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-info-color-fallback}
   );
   --ix-flip-info-footer--background: var(
-    --theme-color-info,
+    --theme-si-sys-background-information,
     #{$flip-info-footer-background-fallback}
   );
-  --ix-flip-info-footer--border-color: var(
-    --theme-color-0,
-    #{$flip-info-footer-border-color-fallback}
-  );
+  --ix-flip-info-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-info-footer--color: var(
-    --theme-color-info--contrast,
+    --theme-si-sys-text-on-information,
     #{$flip-info-footer-color-fallback}
   );
-  --ix-flip-outline--background: var(
-    --theme-color-0,
-    #{$flip-outline-background-fallback}
-  );
+  --ix-flip-outline--background: rgba(0, 0, 0, 0);
   --ix-flip-outline--border-color: var(
-    --theme-color-soft-bdr,
+    --theme-si-sys-border-3,
     #{$flip-outline-border-color-fallback}
   );
   --ix-flip-outline--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-outline-color-fallback}
   );
-  --ix-flip-outline-footer--background: var(
-    --theme-color-0,
-    #{$flip-outline-footer-background-fallback}
-  );
+  --ix-flip-outline-footer--background: rgba(0, 0, 0, 0);
   --ix-flip-outline-footer--border-color: var(
-    --theme-color-soft-bdr,
+    --theme-si-sys-border-3,
     #{$flip-outline-footer-border-color-fallback}
   );
   --ix-flip-outline-footer--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-outline-footer-color-fallback}
   );
   --ix-flip-primary--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-primary-background-fallback}
   );
   --ix-flip-primary--border-color: var(
-    --theme-color-primary,
+    --theme-si-sys-border-accent,
     #{$flip-primary-border-color-fallback}
   );
   --ix-flip-primary--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-primary-color-fallback}
   );
   --ix-flip-primary-footer--background: var(
-    --theme-color-primary,
+    --theme-si-sys-background-accent,
     #{$flip-primary-footer-background-fallback}
   );
-  --ix-flip-primary-footer--border-color: var(
-    --theme-color-0,
-    #{$flip-primary-footer-border-color-fallback}
-  );
+  --ix-flip-primary-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-primary-footer--color: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$flip-primary-footer-color-fallback}
   );
   --ix-flip-warning--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$flip-warning-background-fallback}
   );
   --ix-flip-warning--border-color: var(
@@ -204,17 +158,14 @@ $flip-warning-footer-color-fallback: #000609;
     #{$flip-warning-border-color-fallback}
   );
   --ix-flip-warning--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-warning-color-fallback}
   );
   --ix-flip-warning-footer--background: var(
     --theme-color-warning,
     #{$flip-warning-footer-background-fallback}
   );
-  --ix-flip-warning-footer--border-color: var(
-    --theme-color-0,
-    #{$flip-warning-footer-border-color-fallback}
-  );
+  --ix-flip-warning-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-warning-footer--color: var(
     --theme-color-warning--contrast,
     #{$flip-warning-footer-color-fallback}

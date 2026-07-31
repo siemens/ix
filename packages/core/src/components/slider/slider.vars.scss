@@ -78,7 +78,7 @@ $slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
     #{$slider-color-success-fallback}
   );
   --ix-slider-thumb--background: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$slider-thumb-background-fallback}
   );
   --ix-slider-thumb--background--active: var(
@@ -94,19 +94,19 @@ $slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
     #{$slider-thumb-background-hover-fallback}
   );
   --ix-slider-thumb--background--invalid: var(
-    --theme-color-alarm,
+    --theme-si-sys-background-danger,
     #{$slider-thumb-background-invalid-fallback}
   );
   --ix-slider-thumb--background--invalid--active: var(
-    --theme-color-alarm--active,
+    --theme-si-sys-background-danger-active,
     #{$slider-thumb-background-invalid-active-fallback}
   );
   --ix-slider-thumb--background--invalid--hover: var(
-    --theme-color-alarm--hover,
+    --theme-si-sys-background-danger-hover,
     #{$slider-thumb-background-invalid-hover-fallback}
   );
   --ix-slider-trace--background: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$slider-trace-background-fallback}
   );
   --ix-slider-trace--background--disabled: var(
@@ -114,11 +114,11 @@ $slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
     #{$slider-trace-background-disabled-fallback}
   );
   --ix-slider-trace--background--invalid: var(
-    --theme-color-alarm,
+    --theme-si-sys-background-danger,
     #{$slider-trace-background-invalid-fallback}
   );
   --ix-slider-trace-marker--background: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$slider-trace-marker-background-fallback}
   );
   --ix-slider-trace-marker--background--disabled: var(
@@ -126,7 +126,7 @@ $slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
     #{$slider-trace-marker-background-disabled-fallback}
   );
   --ix-slider-trace-marker--background--invalid: var(
-    --theme-color-alarm,
+    --theme-si-sys-background-danger,
     #{$slider-trace-marker-background-invalid-fallback}
   );
   --ix-slider-track--background: var(

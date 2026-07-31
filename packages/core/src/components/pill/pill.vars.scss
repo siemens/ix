@@ -8,13 +8,13 @@
  */
 
 $pill-outline-background-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
+  rgba(0, 106, 135, 0),
+  rgba(0, 201, 228, 0)
 );
 
 :host {
   --ix-pill-outline--background: var(
-    --theme-color-secondary,
+    --theme-si-sys-background-accent-secondary,
     #{$pill-outline-background-fallback}
   );
 }

@@ -17,10 +17,6 @@ $group-item-background-fallback: light-dark(#ffffff, #1a272d);
 $group-item-background-active-fallback: light-dark(#dcdee0, #34454d);
 $group-item-background-hover-fallback: light-dark(#e8ebed, #273940);
 $group-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
-$group-item-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $group-item-indicator-background-selected-fallback: light-dark(
   #004f69,
   #00eaff
@@ -42,35 +38,32 @@ $group-subheader-color-fallback: light-dark(#000609, #ffffff);
   );
   --ix-group--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-group-header--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$group-header-color-fallback}
   );
   --ix-group-item--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$group-item-background-fallback}
   );
   --ix-group-item--background--active: var(
-    --theme-color-component-1--active,
+    --theme-si-sys-background-selected,
     #{$group-item-background-active-fallback}
   );
   --ix-group-item--background--hover: var(
-    --theme-color-component-1--hover,
+    --theme-si-sys-background-hover,
     #{$group-item-background-hover-fallback}
   );
   --ix-group-item--background--selected: var(
-    --theme-color-ghost--selected,
+    --theme-si-sys-background-selected,
     #{$group-item-background-selected-fallback}
   );
-  --ix-group-item--border-color: var(
-    --theme-color-0,
-    #{$group-item-border-color-fallback}
-  );
+  --ix-group-item--border-color: rgba(0, 0, 0, 0);
   --ix-group-item-indicator--background--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$group-item-indicator-background-selected-fallback}
   );
   --ix-group-subheader--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$group-subheader-color-fallback}
   );
 }

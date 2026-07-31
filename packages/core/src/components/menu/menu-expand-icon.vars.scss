@@ -15,15 +15,15 @@ $menu-btn-color-fallback: light-dark(#000609, #ffffff);
   --ix-menu-expand-icon--default-time: var(--theme-default-time, 150ms);
   --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);
   --ix-menu-btn--background--active: var(
-    --theme-color-ghost--active,
+    --theme-si-sys-background-selected,
     #{$menu-btn-background-active-fallback}
   );
   --ix-menu-btn--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$menu-btn-background-hover-fallback}
   );
   --ix-menu-btn--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$menu-btn-color-fallback}
   );
 }

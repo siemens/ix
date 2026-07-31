@@ -13,14 +13,14 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-link-btn--border-color: var(--theme-color-ghost);
-  --theme-link-btn--border-color--active: var(--theme-color-ghost);
-  --theme-link-btn--border-color--disabled: var(--theme-color-ghost);
-  --theme-link-btn--border-color--hover: var(--theme-color-ghost);
-  --theme-link-btn--border-color--visited: var(--theme-color-ghost);
-  --theme-link-btn--color: var(--theme-color-primary);
-  --theme-link-btn--color--active: var(--theme-color-primary--active);
-  --theme-link-btn--color--disabled: var(--theme-color-weak-text);
-  --theme-link-btn--color--hover: var(--theme-color-primary--hover);
-  --theme-link-btn--color--visited: var(--theme-color-primary);
+  --theme-link-btn--border-color: rgba(0, 0, 0, 0);
+  --theme-link-btn--border-color--active: rgba(0, 0, 0, 0);
+  --theme-link-btn--border-color--disabled: rgba(0, 0, 0, 0);
+  --theme-link-btn--border-color--hover: rgba(0, 0, 0, 0);
+  --theme-link-btn--border-color--visited: rgba(0, 0, 0, 0);
+  --theme-link-btn--color: var(--theme-si-sys-text-accent);
+  --theme-link-btn--color--active: var(--theme-si-sys-text-accent-active);
+  --theme-link-btn--color--disabled: var(--theme-si-sys-text-disabled);
+  --theme-link-btn--color--hover: var(--theme-si-sys-text-accent-hover);
+  --theme-link-btn--color--visited: var(--theme-si-sys-text-accent);
 }

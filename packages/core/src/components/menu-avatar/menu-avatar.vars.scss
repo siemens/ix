@@ -37,7 +37,7 @@ $nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
     #{$avatar-btn-color-hover-fallback}
   );
   --ix-nav-item-primary--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$nav-item-primary-color-fallback}
   );
 }

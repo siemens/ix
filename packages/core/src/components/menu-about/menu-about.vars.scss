@@ -19,7 +19,7 @@ $nav-overlay-header-color-fallback: light-dark(#000609, #ffffff);
     #{$nav-overlay-background-fallback}
   );
   --ix-nav-overlay-header--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$nav-overlay-header-color-fallback}
   );
 }

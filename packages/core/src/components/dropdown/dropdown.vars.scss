@@ -33,7 +33,7 @@ $menu-header-color-fallback: light-dark(#405158, #aeb5b8);
     #{$dropdown-color-std-text-fallback}
   );
   --ix-menu-header--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$menu-header-color-fallback}
   );
 }

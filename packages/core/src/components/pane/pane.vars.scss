@@ -8,14 +8,14 @@
  */
 
 $pane-floating-background-fallback: light-dark(#ffffff, #1a272d);
-$pane-floating-border-color-fallback: light-dark(#e5e8e9, #34454d);
+$pane-floating-border-color-fallback: light-dark(#ebedee, #405158);
 $pane-floating-box-shadow-fallback: -4px 0 8px 0
     light-dark(rgba(0, 6, 9, 0.2), #000000),
   4px 0 8px 0 light-dark(rgba(0, 6, 9, 0.2), #000000),
   0 0 16px 0 light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6));
 $pane-floating-color-fallback: light-dark(#000609, #ffffff);
 $pane-inline-background-fallback: light-dark(#f3f4f5, #000609);
-$pane-inline-border-color-fallback: light-dark(#aeb5b8, #72848c);
+$pane-inline-border-color-fallback: light-dark(#72848c, #5b6a71);
 $pane-inline-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
@@ -26,11 +26,11 @@ $pane-inline-color-fallback: light-dark(#000609, #ffffff);
   --ix-app-header--border-width: var(--theme-border-width-default, 0.0625rem);
   --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-pane-floating--background: var(
-    --theme-color-2,
+    --theme-si-sys-background-1,
     #{$pane-floating-background-fallback}
   );
   --ix-pane-floating--border-color: var(
-    --theme-color-weak-bdr,
+    --theme-si-sys-border-4,
     #{$pane-floating-border-color-fallback}
   );
   --ix-pane-floating--box-shadow: var(
@@ -38,20 +38,20 @@ $pane-inline-color-fallback: light-dark(#000609, #ffffff);
     #{$pane-floating-box-shadow-fallback}
   );
   --ix-pane-floating--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$pane-floating-color-fallback}
   );
   --ix-pane-inline--background: var(
-    --theme-color-1,
+    --theme-si-sys-background-0,
     #{$pane-inline-background-fallback}
   );
   --ix-pane-inline--border-color: var(
-    --theme-color-soft-bdr,
+    --theme-si-sys-border-3,
     #{$pane-inline-border-color-fallback}
   );
   --ix-pane-inline--box-shadow: none;
   --ix-pane-inline--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$pane-inline-color-fallback}
   );
 }

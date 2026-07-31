@@ -33,14 +33,6 @@ $group-item-color-weak-text-fallback: light-dark(
   rgba(219, 244, 255, 0.4)
 );
 $group-item-background-fallback: light-dark(#ffffff, #1a272d);
-$group-item-border-color-active-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
-$group-item-border-color-hover-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
 $group-item-indicator-background-selected-fallback: light-dark(
   #004f69,
   #00eaff
@@ -76,19 +68,13 @@ $group-item-indicator-background-selected-fallback: light-dark(
     #{$group-item-color-weak-text-fallback}
   );
   --ix-group-item--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$group-item-background-fallback}
   );
-  --ix-group-item--border-color--active: var(
-    --theme-color-0,
-    #{$group-item-border-color-active-fallback}
-  );
-  --ix-group-item--border-color--hover: var(
-    --theme-color-0,
-    #{$group-item-border-color-hover-fallback}
-  );
+  --ix-group-item--border-color--active: rgba(0, 0, 0, 0);
+  --ix-group-item--border-color--hover: rgba(0, 0, 0, 0);
   --ix-group-item-indicator--background--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$group-item-indicator-background-selected-fallback}
   );
 }

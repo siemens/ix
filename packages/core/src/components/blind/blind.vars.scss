@@ -8,7 +8,6 @@
  */
 
 @use 'sass:map';
-
 $blind-color-ghost-fallback: light-dark(
   rgba(166, 171, 140, 0),
   rgba(255, 255, 255, 0)
@@ -28,11 +27,6 @@ $blind-color-soft-bdr-fallback: light-dark(
 );
 $blind-color-focus-bdr-fallback: #199fff;
 $blind-base-background-fallback: light-dark(#ffffff, #1a272d);
-$blind-base-border-color-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
-);
-
 $blind-variant-fallbacks: (
   alarm: (
     background: light-dark(#d72332, #ff2453),
@@ -136,11 +130,8 @@ $blind-variant-fallbacks: (
   --ix-blind--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
   --ix-blind-base--background: var(
-    --theme-color-component-1,
+    --theme-si-sys-background-1,
     #{$blind-base-background-fallback}
   );
-  --ix-blind-base--border-color: var(
-    --theme-color-0,
-    #{$blind-base-border-color-fallback}
-  );
+  --ix-blind-base--border-color: rgba(0, 0, 0, 0);
 }

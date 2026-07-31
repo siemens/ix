@@ -39,27 +39,27 @@ $nav-item-secondary-background-selected-fallback: light-dark(#f3f4f5, #000609);
     #{$menu-item-color-weak-text-fallback}
   );
   --ix-nav-item-primary--background--selected: var(
-    --theme-color-1,
+    --theme-si-sys-background-0,
     #{$nav-item-primary-background-selected-fallback}
   );
   --ix-nav-item-primary--border-color--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-border-accent-hover,
     #{$nav-item-primary-border-color-selected-fallback}
   );
   --ix-nav-item-primary--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$nav-item-primary-color-fallback}
   );
   --ix-nav-item-primary-icon--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$nav-item-primary-icon-color-fallback}
   );
   --ix-nav-item-primary-icon--color--selected: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$nav-item-primary-icon-color-selected-fallback}
   );
   --ix-nav-item-secondary--background--selected: var(
-    --theme-color-1,
+    --theme-si-sys-background-0,
     #{$nav-item-secondary-background-selected-fallback}
   );
 }

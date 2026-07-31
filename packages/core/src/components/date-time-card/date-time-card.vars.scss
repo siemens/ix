@@ -23,5 +23,8 @@ $menu-background-fallback: light-dark(#ffffff, #1a272d);
     --theme-color-x-weak-bdr,
     #{$datepicker-separator-background-fallback}
   );
-  --ix-menu--background: var(--theme-color-2, #{$menu-background-fallback});
+  --ix-menu--background: var(
+    --theme-si-sys-background-1,
+    #{$menu-background-fallback}
+  );
 }

@@ -30,19 +30,19 @@ $kpi-display-value-color-fallback: light-dark(
   );
   --ix-kpi--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-kpi-display--background--active: var(
-    --theme-color-ghost--active,
+    --theme-si-sys-background-selected,
     #{$kpi-display-background-active-fallback}
   );
   --ix-kpi-display--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$kpi-display-background-hover-fallback}
   );
   --ix-kpi-display-icon--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$kpi-display-icon-color-fallback}
   );
   --ix-kpi-display-label--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$kpi-display-label-color-fallback}
   );
   --ix-kpi-display-units--color: var(

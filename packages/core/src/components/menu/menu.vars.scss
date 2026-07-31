@@ -24,7 +24,10 @@ $navigation-box-shadow-fallback: -4px 0 8px 0
     #{$menu-color-shadow-1-fallback}
   );
   --ix-menu--default-time: var(--theme-default-time, 150ms);
-  --ix-nav--background: var(--theme-color-2, #{$nav-background-fallback});
+  --ix-nav--background: var(
+    --theme-si-sys-background-1,
+    #{$nav-background-fallback}
+  );
   --ix-navigation--box-shadow: var(
     --theme-shadow-2,
     #{$navigation-box-shadow-fallback}

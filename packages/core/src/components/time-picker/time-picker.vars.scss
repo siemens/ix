@@ -54,11 +54,11 @@ $datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
     #{$time-picker-color-inv-contrast-text-fallback}
   );
   --ix-datepicker-day--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$datepicker-day-background-hover-fallback}
   );
   --ix-datepicker-day--background--selected: var(
-    --theme-color-component-9,
+    --theme-si-sys-background-accent-hover,
     #{$datepicker-day-background-selected-fallback}
   );
   --ix-datepicker-day--background--selected-disabled: var(
@@ -70,11 +70,11 @@ $datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
     #{$datepicker-day-background-selected-hover-fallback}
   );
   --ix-datepicker-day--color--selected: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$datepicker-day-color-selected-fallback}
   );
   --ix-datepicker-day--color--selected-disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$datepicker-day-color-selected-disabled-fallback}
   );
 }

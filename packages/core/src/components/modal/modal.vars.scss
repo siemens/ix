@@ -34,5 +34,8 @@ $modal-background-fallback: light-dark(#ffffff, #1a272d);
     --theme-color-std-text,
     #{$modal-color-std-text-fallback}
   );
-  --ix-modal--background: var(--theme-color-2, #{$modal-background-fallback});
+  --ix-modal--background: var(
+    --theme-si-sys-background-1,
+    #{$modal-background-fallback}
+  );
 }

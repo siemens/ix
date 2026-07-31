@@ -10,15 +10,7 @@
 $workflow-step-color-warning-fallback: #ffbb00;
 $workflow-step-color-success-fallback: light-dark(#2c8500, #44cc00);
 $workflow-step-color-alarm-fallback: light-dark(#d72332, #ff2453);
-$workflow-step-background-fallback: light-dark(
-  rgba(243, 244, 245, 0),
-  rgba(0, 6, 9, 0)
-);
 $workflow-step-background-active-fallback: light-dark(#dcdee0, #34454d);
-$workflow-step-background-disabled-fallback: light-dark(
-  rgba(243, 244, 245, 0),
-  rgba(0, 6, 9, 0)
-);
 $workflow-step-background-hover-fallback: light-dark(#e8ebed, #273940);
 $workflow-step-background-selected-fallback: light-dark(#dcdee0, #34454d);
 $workflow-step-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
@@ -55,44 +47,38 @@ $workflow-step-icon-status-color-disabled-fallback: light-dark(
     #{$workflow-step-color-alarm-fallback}
   );
   --ix-workflow--border-radius: 1px;
-  --ix-workflow-step--background: var(
-    --theme-color-ghost,
-    #{$workflow-step-background-fallback}
-  );
+  --ix-workflow-step--background: rgba(0, 0, 0, 0);
   --ix-workflow-step--background--active: var(
-    --theme-color-ghost--active,
+    --theme-si-sys-background-selected,
     #{$workflow-step-background-active-fallback}
   );
-  --ix-workflow-step--background--disabled: var(
-    --theme-color-ghost,
-    #{$workflow-step-background-disabled-fallback}
-  );
+  --ix-workflow-step--background--disabled: rgba(0, 0, 0, 0);
   --ix-workflow-step--background--hover: var(
-    --theme-color-ghost--hover,
+    --theme-si-sys-background-hover,
     #{$workflow-step-background-hover-fallback}
   );
   --ix-workflow-step--background--selected: var(
-    --theme-color-ghost--selected,
+    --theme-si-sys-background-selected,
     #{$workflow-step-background-selected-fallback}
   );
   --ix-workflow-step--color--disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$workflow-step-color-disabled-fallback}
   );
   --ix-workflow-step-icon-default--color: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$workflow-step-icon-default-color-fallback}
   );
   --ix-workflow-step-icon-default--color--disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$workflow-step-icon-default-color-disabled-fallback}
   );
   --ix-workflow-step-icon-default--color--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-accent-hover,
     #{$workflow-step-icon-default-color-selected-fallback}
   );
   --ix-workflow-step-icon-done--color: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$workflow-step-icon-done-color-fallback}
   );
   --ix-workflow-step-icon-error--color: var(
@@ -108,7 +94,7 @@ $workflow-step-icon-status-color-disabled-fallback: light-dark(
     #{$workflow-step-icon-warning-color-fallback}
   );
   --ix-workflow-step-icon-done--color--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-text-accent-hover,
     #{$workflow-step-icon-done-color-selected-fallback}
   );
   --ix-workflow-step-icon-status--color--disabled: var(

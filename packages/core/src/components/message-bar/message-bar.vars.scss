@@ -15,8 +15,8 @@ $message-bar-color-info-fallback: light-dark(#0041b2, #357fff);
 $message-bar-color-neutral-fallback: light-dark(#66727e, #b6b8b9);
 $message-bar-color-primary-fallback: light-dark(#006e93, #00bde3);
 $messagebar-background-fallback: light-dark(
-  rgba(255, 255, 255, 0),
-  rgba(0, 6, 9, 0)
+  rgba(0, 106, 135, 0),
+  rgba(0, 201, 228, 0)
 );
 
 :host {
@@ -51,7 +51,7 @@ $messagebar-background-fallback: light-dark(
   --ix-message-bar--border-radius: var(--theme-default-border-radius, 0.25rem);
   --ix-message-bar--border-thickness: var(--theme-border-width-thick, 0.125rem);
   --ix-messagebar--background: var(
-    --theme-color-secondary,
+    --theme-si-sys-background-accent-secondary,
     #{$messagebar-background-fallback}
   );
 }

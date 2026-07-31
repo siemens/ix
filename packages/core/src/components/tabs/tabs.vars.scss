@@ -8,7 +8,7 @@
  */
 
 $tabs-color-focus-bdr-fallback: #199fff;
-$tab-indicator-background-fallback: light-dark(#aeb5b8, #72848c);
+$tab-indicator-background-fallback: light-dark(#72848c, #5b6a71);
 $tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
@@ -17,11 +17,11 @@ $tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
     #{$tabs-color-focus-bdr-fallback}
   );
   --ix-tab-indicator--background: var(
-    --theme-color-soft-bdr,
+    --theme-si-sys-border-3,
     #{$tab-indicator-background-fallback}
   );
   --ix-tab-indicator--background--selected: var(
-    --theme-color-dynamic,
+    --theme-si-sys-background-accent-hover,
     #{$tab-indicator-background-selected-fallback}
   );
   --ix-tab-indicator--height: 0.0625rem;
