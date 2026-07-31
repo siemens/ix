@@ -18,6 +18,7 @@ import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
+import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -73,6 +74,7 @@ export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./componen
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
+export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderVariant } from "./components/content-header/content-header.types";
@@ -625,6 +627,154 @@ export namespace Components {
         "uniqueCategories": boolean;
     }
     /**
+     * @since 5.2.0
+     */
+    interface IxChat {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @default ''
+         */
+        "fileName": string;
+        /**
+          * Hide the remove action.
+          * @default false
+         */
+        "hideRemoveButton": boolean;
+        /**
+          * Icon displayed before the file name.
+          * @default iconTxtDocument
+         */
+        "icon": string;
+        /**
+          * Enable preview interaction for default attachments.
+          * @default false
+         */
+        "previewSupported": boolean;
+        /**
+          * Accessible label for the remove action.
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel": string;
+        /**
+          * Upload status of the attachment.
+          * @default 'default'
+         */
+        "status": ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+         */
+        "characterLimit"?: number;
+        /**
+          * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold": number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer": string;
+        /**
+          * Focuses the chat input.
+          * @since 5.1.0
+         */
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Returns the native textarea element used by the chat input.
+          * @since 5.1.0
+         */
+        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached": string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning": string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @default false
+         */
+        "insertLineBreakOnEnter": boolean;
+        /**
+          * The maximum length of the chat input.
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @default 6
+         */
+        "maxRows": number;
+        /**
+          * Minimum number of visible text rows.
+          * @default 1
+         */
+        "minRows": number;
+        /**
+          * The name of the chat input.
+         */
+        "name"?: string;
+        /**
+          * The placeholder text for the chat input.
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder": string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
+          * Accessible label for the native textarea.
+          * @default 'Chat input'
+         */
+        "textareaLabel": string;
+        /**
+          * The value of the chat input.
+          * @default ''
+         */
+        "value": string;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Text displayed in the user message bubble.
+         */
+        "message"?: string;
+    }
+    /**
      * @form-ready 
      */
     interface IxCheckbox {
@@ -745,7 +895,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive": boolean;
@@ -4747,6 +4897,14 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatAttachmentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatAttachmentElement;
+}
+export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatInputElement;
+}
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCheckboxElement;
@@ -5152,6 +5310,78 @@ declare global {
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatElement extends Components.IxChat, HTMLStencilElement {
+    }
+    var HTMLIxChatElement: {
+        prototype: HTMLIxChatElement;
+        new (): HTMLIxChatElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatAiMessageElement extends Components.IxChatAiMessage, HTMLStencilElement {
+    }
+    var HTMLIxChatAiMessageElement: {
+        prototype: HTMLIxChatAiMessageElement;
+        new (): HTMLIxChatAiMessageElement;
+    };
+    interface HTMLIxChatAttachmentElementEventMap {
+        "attachmentClick": void;
+        "removeClick": void;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatAttachmentElement extends Components.IxChatAttachment, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatAttachmentElementEventMap>(type: K, listener: (this: HTMLIxChatAttachmentElement, ev: IxChatAttachmentCustomEvent<HTMLIxChatAttachmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatAttachmentElement: {
+        prototype: HTMLIxChatAttachmentElement;
+        new (): HTMLIxChatAttachmentElement;
+    };
+    interface HTMLIxChatInputElementEventMap {
+        "valueChange": string;
+        "ixBlur": void;
+        "ixChange": string;
+        "promptSubmit": string;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatInputElement: {
+        prototype: HTMLIxChatInputElement;
+        new (): HTMLIxChatInputElement;
+    };
+    /**
+     * @since 5.2.0
+     */
+    interface HTMLIxChatUserMessageElement extends Components.IxChatUserMessage, HTMLStencilElement {
+    }
+    var HTMLIxChatUserMessageElement: {
+        prototype: HTMLIxChatUserMessageElement;
+        new (): HTMLIxChatUserMessageElement;
     };
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
@@ -6535,6 +6765,11 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chat": HTMLIxChatElement;
+        "ix-chat-ai-message": HTMLIxChatAiMessageElement;
+        "ix-chat-attachment": HTMLIxChatAttachmentElement;
+        "ix-chat-input": HTMLIxChatInputElement;
+        "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
@@ -7209,6 +7444,171 @@ declare namespace LocalJSX {
         "uniqueCategories"?: boolean;
     }
     /**
+     * @since 5.2.0
+     */
+    interface IxChat {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAiMessage {
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatAttachment {
+        /**
+          * Name of the attached file.
+          * @default ''
+         */
+        "fileName"?: string;
+        /**
+          * Hide the remove action.
+          * @default false
+         */
+        "hideRemoveButton"?: boolean;
+        /**
+          * Icon displayed before the file name.
+          * @default iconTxtDocument
+         */
+        "icon"?: string;
+        /**
+          * Event emitted when the attachment is clicked.
+         */
+        "onAttachmentClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Event emitted when the remove action is clicked.
+         */
+        "onRemoveClick"?: (event: IxChatAttachmentCustomEvent<void>) => void;
+        /**
+          * Enable preview interaction for default attachments.
+          * @default false
+         */
+        "previewSupported"?: boolean;
+        /**
+          * Accessible label for the remove action.
+          * @default 'Remove attachment'
+         */
+        "removeAriaLabel"?: string;
+        /**
+          * Upload status of the attachment.
+          * @default 'default'
+         */
+        "status"?: ChatAttachmentStatus;
+    }
+    /**
+     * @since 5.2.0
+     * @form-ready 
+     */
+    interface IxChatInput {
+        /**
+          * Character limit used for the optional inline character limit message. Falls back to `maxLength` when not set.
+         */
+        "characterLimit"?: number;
+        /**
+          * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
+          * @default 0.9
+         */
+        "characterLimitWarningThreshold"?: number;
+        /**
+          * Specifies whether the chat input is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Disclaimer text displayed below the chat input.
+          * @default 'This content is AI-generated. Always verify the information for accuracy.'
+         */
+        "disclaimer"?: string;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * i18n label for the hard character limit message. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default 'Character limit reached ({current} / {limit} characters)'
+         */
+        "i18nCharacterLimitReached"?: string;
+        /**
+          * i18n label for the soft character limit warning. Use `{current}` and `{limit}` placeholders to place the values in any order.
+          * @default "You're nearing the limit ({current} / {limit} characters)"
+         */
+        "i18nCharacterLimitWarning"?: string;
+        /**
+          * If true, pressing Enter inserts a line break instead of submitting the prompt.
+          * @default false
+         */
+        "insertLineBreakOnEnter"?: boolean;
+        /**
+          * The maximum length of the chat input.
+         */
+        "maxLength"?: number;
+        /**
+          * Maximum number of visible text rows before the input becomes scrollable.
+          * @default 6
+         */
+        "maxRows"?: number;
+        /**
+          * Minimum number of visible text rows.
+          * @default 1
+         */
+        "minRows"?: number;
+        /**
+          * The name of the chat input.
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the chat input loses focus.
+         */
+        "onIxBlur"?: (event: IxChatInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the chat input loses focus and the value has changed.
+         */
+        "onIxChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the prompt is submitted by the send button or Enter key.
+         */
+        "onPromptSubmit"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * Event emitted when the value of the chat input changes.
+         */
+        "onValueChange"?: (event: IxChatInputCustomEvent<string>) => void;
+        /**
+          * The placeholder text for the chat input.
+          * @default 'Enter a command, question or topic...'
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the chat input is readonly.
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * The state of the chat input, which can be either 'input' or 'processing'.
+          * @default 'input'
+         */
+        "state"?: 'input' | 'processing';
+        /**
+          * Accessible label for the native textarea.
+          * @default 'Chat input'
+         */
+        "textareaLabel"?: string;
+        /**
+          * The value of the chat input.
+          * @default ''
+         */
+        "value"?: string;
+    }
+    /**
+     * @since 5.2.0
+     */
+    interface IxChatUserMessage {
+        /**
+          * Text displayed in the user message bubble.
+         */
+        "message"?: string;
+    }
+    /**
      * @form-ready 
      */
     interface IxCheckbox {
@@ -7340,7 +7740,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
           * @default false
          */
         "inactive"?: boolean;
@@ -11678,6 +12078,35 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatAttachmentAttributes {
+        "fileName": string;
+        "status": ChatAttachmentStatus;
+        "icon": string;
+        "hideRemoveButton": boolean;
+        "previewSupported": boolean;
+        "removeAriaLabel": string;
+    }
+    interface IxChatInputAttributes {
+        "state": 'input' | 'processing';
+        "name": string;
+        "placeholder": string;
+        "value": string;
+        "disabled": boolean;
+        "readonly": boolean;
+        "textareaLabel": string;
+        "maxLength": number;
+        "characterLimit": number;
+        "i18nCharacterLimitReached": string;
+        "i18nCharacterLimitWarning": string;
+        "characterLimitWarningThreshold": number;
+        "minRows": number;
+        "maxRows": number;
+        "insertLineBreakOnEnter": boolean;
+        "disclaimer": string;
+    }
+    interface IxChatUserMessageAttributes {
+        "message": string;
+    }
     interface IxCheckboxAttributes {
         "name": string;
         "value": string;
@@ -12628,6 +13057,11 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
+        "ix-chat": IxChat;
+        "ix-chat-ai-message": IxChatAiMessage;
+        "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
+        "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
+        "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
@@ -12749,6 +13183,27 @@ declare module "@stencil/core" {
             "ix-card-list": LocalJSX.IntrinsicElements["ix-card-list"] & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IntrinsicElements["ix-card-title"] & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IntrinsicElements["ix-category-filter"] & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat": LocalJSX.IntrinsicElements["ix-chat"] & JSXBase.HTMLAttributes<HTMLIxChatElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-ai-message": LocalJSX.IntrinsicElements["ix-chat-ai-message"] & JSXBase.HTMLAttributes<HTMLIxChatAiMessageElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-attachment": LocalJSX.IntrinsicElements["ix-chat-attachment"] & JSXBase.HTMLAttributes<HTMLIxChatAttachmentElement>;
+            /**
+             * @since 5.2.0
+             * @form-ready 
+             */
+            "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
+            /**
+             * @since 5.2.0
+             */
+            "ix-chat-user-message": LocalJSX.IntrinsicElements["ix-chat-user-message"] & JSXBase.HTMLAttributes<HTMLIxChatUserMessageElement>;
             /**
              * @form-ready 
              */
