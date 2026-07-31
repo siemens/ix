@@ -259,6 +259,7 @@ export class Dropdown
   private readonly dialogRef = makeRef<HTMLDialogElement>();
   private intersectObserverTrigger?: IntersectionObserver;
   private triggerElement?: Element;
+  private triggerResolutionToken = 0;
   private anchorElement?: Element;
   private forwardQueryElement: HTMLElement | null = null;
   private dropdownElementId = `dropdown-${sequenceId++}`;
@@ -324,6 +325,7 @@ export class Dropdown
       (target) =>
         target === trigger ||
         (typeof trigger === 'string' &&
+          trigger !== '' &&
           target instanceof HTMLElement &&
           target.id === trigger)
     );
@@ -518,6 +520,11 @@ export class Dropdown
   }
 
   private async registerListener(element: ElementReference) {
+    if (!element) {
+      return;
+    }
+
+    const resolutionToken = ++this.triggerResolutionToken;
     const immediateElement = this.resolveImmediateElement(element);
     const canRegisterImmediately =
       immediateElement &&
@@ -535,11 +542,13 @@ export class Dropdown
       return;
     }
 
-    this.triggerElement = await this.resolveElement(element);
+    const resolvedElement = await this.resolveElement(element);
 
-    if (!this.triggerElement) {
+    if (!resolvedElement || resolutionToken !== this.triggerResolutionToken) {
       return;
     }
+
+    this.triggerElement = resolvedElement;
 
     this.addEventListenersFor();
     this.discoverSubmenu();
@@ -746,7 +755,7 @@ export class Dropdown
     newTriggerValue: ElementReference,
     oldTriggerValue: ElementReference | undefined
   ) {
-    if (newTriggerValue && newTriggerValue !== oldTriggerValue) {
+    if (newTriggerValue !== oldTriggerValue) {
       this.disposeClickListener?.();
       this.disposeClickListener = undefined;
       this.disposeKeyListener?.();
