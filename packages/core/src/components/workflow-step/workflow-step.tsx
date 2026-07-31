@@ -189,7 +189,7 @@ export class WorkflowStep {
       <Host class={{ 'host-vertical': this.vertical }}>
         <div
           tabIndex={this.disabled || !this.clickable ? -1 : 0}
-          role={this.clickable ? 'button' : 'undefined'}
+          role={this.clickable ? 'button' : undefined}
           aria-disabled={this.disabled ? 'true' : undefined}
           aria-current={this.selected ? 'step' : undefined}
           onClick={() => this.onStepClick()}
