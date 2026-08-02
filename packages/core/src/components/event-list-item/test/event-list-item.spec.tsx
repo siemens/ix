@@ -15,7 +15,7 @@ describe('event-list-item', () => {
     const { root } = await render(<ix-event-list-item></ix-event-list-item>);
 
     expect(root.tagName).toBe('IX-EVENT-LIST-ITEM');
-    expect(root).toHaveClass('hydrated');
+    expect(root).toHaveAttribute('hydrated');
     expect(root.shadowRoot?.querySelector('[role="listitem"]')).not.toBeNull();
   });
 });

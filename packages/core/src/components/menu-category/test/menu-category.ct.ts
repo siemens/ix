@@ -20,7 +20,7 @@ regressionTest('renders', async ({ mount, page }) => {
     </ix-application>
     `);
   const element = page.locator('ix-menu-category');
-  await expect(element).toHaveClass('hydrated');
+  await expect(element).toHaveAttribute('hydrated');
 });
 
 regressionTest('should collapse by click', async ({ mount, page }) => {
