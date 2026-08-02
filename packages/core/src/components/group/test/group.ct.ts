@@ -103,7 +103,7 @@ regressionTest(
     });
 
     await groupItem.click();
-    await expect(groupItem).not.toHaveClass(/hydrated selected/);
+    await expect(groupItem).not.toHaveClass(/\bselected\b/);
   }
 );
 

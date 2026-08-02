@@ -719,9 +719,7 @@ regressionTest.describe('A11y', () => {
       );
       await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
       await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
-      await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
-        /hydrated/
-      );
+      await expect(page.locator('ix-dropdown-item').first()).toHaveAttribute('hydrated');
     });
 
     regressionTest.describe('ArrowDown', () => {

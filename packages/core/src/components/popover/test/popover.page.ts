@@ -428,9 +428,7 @@ export async function injectLateNestedPopover(page: Page): Promise<void> {
     await customElements.whenDefined('ix-button');
   });
 
-  await expect(page.locator('ix-popover#inner-popover')).toHaveClass(
-    /hydrated/
-  );
+  await expect(page.locator('ix-popover#inner-popover')).toHaveAttribute('hydrated');
   await expect(page.locator('ix-button#inner-trigger')).toHaveAttribute(
     'data-ix-popover-trigger',
     ''

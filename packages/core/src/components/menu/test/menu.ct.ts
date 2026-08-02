@@ -495,7 +495,7 @@ regressionTest(
     });
 
     await mount(`<ix-menu><ix-menu-item>Item</ix-menu-item></ix-menu>`);
-    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
 
     await page.evaluate(() => {
       document.querySelector('ix-menu')?.remove();
@@ -506,7 +506,7 @@ regressionTest(
       document.body.appendChild(menu);
     });
 
-    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
 
     expect(consoleWarnings).not.toContain('Menu already defined');
   }

@@ -953,9 +953,7 @@ regressionTest.describe('ix-popover', () => {
         });
 
         await page.waitForSelector('#shadow-trigger');
-        await expect(page.locator('ix-popover').first()).toHaveClass(
-          /hydrated/
-        );
+        await expect(page.locator('ix-popover').first()).toHaveAttribute('hydrated');
 
         await page.locator('#shadow-trigger').click();
         await expect(page.locator('#shadow-panel-1')).toBeFocused();

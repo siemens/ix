@@ -151,7 +151,8 @@ regressionTest.describe('chip test', () => {
 regressionTest('check inactive class', async ({ mount, page }) => {
   await mount(`<ix-chip inactive>test</ix-chip>`);
   const chip = page.locator('ix-chip');
-  await expect(chip).toHaveClass('inactive hydrated');
+  await expect(chip).toHaveClass('inactive');
+  await expect(chip).toHaveAttribute('hydrated');
 });
 
 regressionTest(
