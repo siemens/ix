@@ -16,7 +16,7 @@ regressionTest('renders', async ({ mount, page }) => {
   });
 
   const button = page.locator('ix-icon-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
   expect(button.allInnerTexts).not.toEqual('Content');
 
   await expect(button.locator('ix-icon')).toBeVisible();

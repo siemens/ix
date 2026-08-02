@@ -20,7 +20,7 @@ regressionTest('renders', async ({ mount, page }) => {
       </ix-menu>
     `);
   const element = page.locator('ix-menu');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
@@ -545,7 +545,7 @@ regressionTest.describe('menu-avatar tooltip', () => {
       await button.hover();
 
       const tooltip = page.locator('ix-tooltip');
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText('John Doe');
 
@@ -555,7 +555,7 @@ regressionTest.describe('menu-avatar tooltip', () => {
 
       await button.hover();
 
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText('other text');
     }

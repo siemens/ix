@@ -176,7 +176,7 @@ regressionTest.describe('time input tests', () => {
 
       const timeInputElement = page.locator('ix-time-input');
 
-      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await expect(timeInputElement).toHaveAttribute('hydrated');
       await timeInputElement.locator('input').fill('invalid-time');
       await timeInputElement.locator('input').blur();
       await expect(

@@ -402,7 +402,7 @@ export async function mountPopover(
   await mount(markup);
   // Wait for the component to hydrate - using first() is acceptable here
   // as we just need to ensure at least one popover is hydrated
-  await expect(page.locator('ix-popover').first()).toHaveClass(/hydrated/);
+  await expect(page.locator('ix-popover').first()).toHaveAttribute('hydrated');
 }
 
 /**

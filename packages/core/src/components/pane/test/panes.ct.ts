@@ -14,7 +14,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
   const pane = page.locator('ix-pane');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
 });
 
 regressionTest('expanded', async ({ mount, page }) => {
@@ -53,7 +53,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const content = pane.locator('.side-pane-content');
     await expect(content).toHaveClass(/no-padding/);
@@ -122,7 +122,7 @@ regressionTest('close on click outside', async ({ page, mount }) => {
     <button>Element outside</button>`);
 
   const pane = page.locator('ix-pane');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
 
   const exampleContent = page.getByLabel('test content');
   await expect(exampleContent).toBeVisible();
@@ -156,7 +156,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.getByLabel('myclose').click();
 
@@ -194,7 +194,7 @@ regressionTest(
       `);
 
       const pane = page.locator('ix-pane');
-      await expect(pane).toHaveClass(/hydrated/);
+      await expect(pane).toHaveAttribute('hydrated');
 
       const iconButton = pane.locator('ix-icon-button');
       await expect(iconButton).toBeVisible();
@@ -220,7 +220,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const emittedValue = await page.evaluate(() => {
       return new Promise<boolean>((resolve) => {
@@ -263,7 +263,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const iconButton = pane.locator('ix-icon-button');
 
@@ -302,8 +302,8 @@ regressionTest(
 
     const pane1 = page.locator('#pane1');
     const pane2 = page.locator('#pane2');
-    await expect(pane1).toHaveClass(/hydrated/);
-    await expect(pane2).toHaveClass(/hydrated/);
+    await expect(pane1).toHaveAttribute('hydrated');
+    await expect(pane2).toHaveAttribute('hydrated');
 
     await pane2.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;
@@ -342,7 +342,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;
@@ -367,7 +367,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;

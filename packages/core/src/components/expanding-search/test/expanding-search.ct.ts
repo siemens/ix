@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const button = page.locator('ix-expanding-search');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 });
 
 regressionTest('expands input', async ({ mount, page }) => {

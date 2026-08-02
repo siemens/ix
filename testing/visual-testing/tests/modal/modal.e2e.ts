@@ -97,7 +97,7 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
   const modal = page.locator('ix-modal');
   const dialog = modal.locator('dialog');
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
-  await expect(modal).toHaveClass(/hydrated/);
+  await expect(modal).toHaveAttribute('hydrated');
   await expect(dialog).toBeVisible();
 
   const dropdown = page.locator('ix-dropdown-button');
@@ -152,7 +152,7 @@ regressionTest('modal should show centered', async ({ mount, page }) => {
   const modal = page.locator('ix-modal');
   const dialog = modal.locator('dialog');
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
-  await expect(modal).toHaveClass(/hydrated/);
+  await expect(modal).toHaveAttribute('hydrated');
   await expect(dialog).toBeVisible();
 
   await expect(dialog).toHaveCSS('opacity', '1');

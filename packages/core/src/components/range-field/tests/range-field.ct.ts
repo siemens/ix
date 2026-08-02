@@ -66,7 +66,7 @@ regressionTest('renders time-range', async ({ mount, page }) => {
   const inputRangeElement = page.locator('ix-range-field');
 
   await expect(inputRangeElement).toBeVisible();
-  await expect(inputRangeElement).toHaveClass(/hydrated/);
+  await expect(inputRangeElement).toHaveAttribute('hydrated');
 });
 
 regressionTest('renders date-range', async ({ mount, page }) => {
@@ -82,7 +82,7 @@ regressionTest('renders date-range', async ({ mount, page }) => {
   const inputRangeElement = page.locator('ix-range-field');
 
   await expect(inputRangeElement).toBeVisible();
-  await expect(inputRangeElement).toHaveClass(/hydrated/);
+  await expect(inputRangeElement).toHaveAttribute('hydrated');
 });
 
 regressionTest('renders datetime-range', async ({ mount, page }) => {
@@ -98,7 +98,7 @@ regressionTest('renders datetime-range', async ({ mount, page }) => {
   const inputRangeElement = page.locator('ix-range-field');
 
   await expect(inputRangeElement).toBeVisible();
-  await expect(inputRangeElement).toHaveClass(/hydrated/);
+  await expect(inputRangeElement).toHaveAttribute('hydrated');
 });
 
 regressionTest(
@@ -124,7 +124,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const consoleError = await consoleErrorPromise;
     expect(consoleError.text()).toContain(errorMessage);
@@ -146,7 +146,7 @@ regressionTest('hide arrow between range inputs', async ({ mount, page }) => {
   const arrowElement = inputRangeElement.locator('.range-delimiter');
 
   await expect(inputRangeElement).toBeVisible();
-  await expect(inputRangeElement).toHaveClass(/hydrated/);
+  await expect(inputRangeElement).toHaveAttribute('hydrated');
 
   await expect(arrowElement).not.toBeVisible();
 });
@@ -166,7 +166,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-date-input').first();
     const secondInput = page.locator('ix-date-input').nth(1);
@@ -193,7 +193,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-date-input').first();
     const secondInput = page.locator('ix-date-input').nth(1);
@@ -220,7 +220,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-date-input').first();
     const secondInput = page.locator('ix-date-input').nth(1);
@@ -247,7 +247,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-date-input').first();
     const secondInput = page.locator('ix-date-input').nth(1);
@@ -274,7 +274,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-date-input').first();
     const secondInput = page.locator('ix-date-input').nth(1);
@@ -317,7 +317,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-time-input').first();
     const secondInput = page.locator('ix-time-input').nth(1);
@@ -362,7 +362,7 @@ regressionTest(
     const inputRangeElement = page.locator('ix-range-field');
 
     await expect(inputRangeElement).toBeVisible();
-    await expect(inputRangeElement).toHaveClass(/hydrated/);
+    await expect(inputRangeElement).toHaveAttribute('hydrated');
 
     const firstInput = page.locator('ix-datetime-input').first();
     const secondInput = page.locator('ix-datetime-input').nth(1);

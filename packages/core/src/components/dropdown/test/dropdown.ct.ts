@@ -537,7 +537,7 @@ regressionTest.describe('nested dropdown 2/3', () => {
       )
       .toBe(true);
 
-    await expect(nestedDropdownItem).toHaveClass(/hydrated/);
+    await expect(nestedDropdownItem).toHaveAttribute('hydrated');
   });
 });
 
@@ -654,7 +654,7 @@ regressionTest.describe('resolve during element connect', () => {
     });
 
     const dropdown = page.locator('ix-dropdown');
-    await expect(dropdown).toHaveClass(/hydrated/);
+    await expect(dropdown).toHaveAttribute('hydrated');
     await page.locator('ix-button').first().click();
 
     await expect
@@ -717,8 +717,8 @@ regressionTest.describe('A11y', () => {
           icons: { iconPrint },
         }
       );
-      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
+      await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
       await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
         /hydrated/
       );
@@ -806,8 +806,8 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
-  await expect(trigger).toHaveClass(/hydrated/);
-  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(trigger).toHaveAttribute('hydrated');
+  await expect(dropdown).toHaveAttribute('hydrated');
   await expect(trigger).toBeVisible();
   await expect(dropdown).toBeVisible();
 

@@ -356,7 +356,7 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    await expect(tabs.nth(0)).toHaveClass(/hydrated/);
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
 
     for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
       await expect(tabs.nth(0)).toHaveClass(

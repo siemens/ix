@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-custom-field></ix-custom-field>`);
   const customFieldElement = page.locator('ix-custom-field');
-  await expect(customFieldElement).toHaveClass(/hydrated/);
+  await expect(customFieldElement).toHaveAttribute('hydrated');
 });
 
 regressionTest('renders with label', async ({ mount, page }) => {
@@ -20,8 +20,8 @@ regressionTest('renders with label', async ({ mount, page }) => {
   const customFieldElement = page.locator('ix-custom-field');
   const fieldLabel = customFieldElement.locator('ix-field-label');
   const typography = fieldLabel.locator('label').locator('ix-typography');
-  await expect(customFieldElement).toHaveClass(/hydrated/);
-  await expect(fieldLabel).toHaveClass(/hydrated/);
+  await expect(customFieldElement).toHaveAttribute('hydrated');
+  await expect(fieldLabel).toHaveAttribute('hydrated');
   await expect(typography).toHaveClass(/typography-label/);
   await expect(fieldLabel.filter({ hasText: 'Label' })).toHaveText(/Label/);
 });
@@ -32,8 +32,8 @@ regressionTest('renders with helper-text', async ({ mount, page }) => {
   );
   const customFieldElement = page.locator('ix-custom-field');
   const fieldWrapper = customFieldElement.locator('ix-field-wrapper');
-  await expect(customFieldElement).toHaveClass(/hydrated/);
-  await expect(fieldWrapper).toHaveClass(/hydrated/);
+  await expect(customFieldElement).toHaveAttribute('hydrated');
+  await expect(fieldWrapper).toHaveAttribute('hydrated');
   await expect(fieldWrapper).toContainText('Some helper text');
 });
 
@@ -45,8 +45,8 @@ regressionTest('renders with invalid-text', async ({ mount, page }) => {
   );
   const customFieldElement = page.locator('ix-custom-field');
   const fieldWrapper = customFieldElement.locator('ix-field-wrapper');
-  await expect(customFieldElement).toHaveClass(/hydrated/);
-  await expect(fieldWrapper).toHaveClass(/hydrated/);
+  await expect(customFieldElement).toHaveAttribute('hydrated');
+  await expect(fieldWrapper).toHaveAttribute('hydrated');
   await expect(fieldWrapper.filter({ hasText: 'Error' })).toHaveText(/Error/);
 });
 
@@ -61,8 +61,8 @@ regressionTest(
     );
     const customFieldElement = page.locator('ix-custom-field');
     const fieldWrapper = customFieldElement.locator('ix-field-wrapper');
-    await expect(customFieldElement).toHaveClass(/hydrated/);
-    await expect(fieldWrapper).toHaveClass(/hydrated/);
+    await expect(customFieldElement).toHaveAttribute('hydrated');
+    await expect(fieldWrapper).toHaveAttribute('hydrated');
     await expect(
       fieldWrapper.filter({ hasText: 'Some helper text' })
     ).toHaveText(/Some helper text/);
@@ -81,8 +81,8 @@ regressionTest('renders with required label', async ({ mount, page }) => {
   const customFieldElement = page.locator('ix-custom-field');
   const fieldLabel = customFieldElement.locator('ix-field-label');
   const typography = fieldLabel.locator('label').locator('ix-typography');
-  await expect(customFieldElement).toHaveClass(/hydrated/);
-  await expect(fieldLabel).toHaveClass(/hydrated/);
+  await expect(customFieldElement).toHaveAttribute('hydrated');
+  await expect(fieldLabel).toHaveAttribute('hydrated');
   await expect(typography).toHaveClass(/typography-label/);
   await expect(fieldLabel.filter({ hasText: 'Label*' })).toHaveText(/Label*/);
 });

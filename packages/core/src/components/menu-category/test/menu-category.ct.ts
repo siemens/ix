@@ -255,7 +255,7 @@ regressionTest('do not show tooltip', async ({ mount, page }) => {
     </ix-application>
     `);
   const categoryElement = page.locator('ix-menu-category');
-  await expect(categoryElement).toHaveClass(/hydrated/);
+  await expect(categoryElement).toHaveAttribute('hydrated');
 
   await categoryElement.hover();
   await page.waitForTimeout(1500);
@@ -283,7 +283,7 @@ regressionTest('collapse after category blur', async ({ mount, page }) => {
     hasText: 'Other',
   });
   const categoryElement = page.locator('ix-menu-category');
-  await expect(categoryElement).toHaveClass(/hydrated/);
+  await expect(categoryElement).toHaveAttribute('hydrated');
 
   await categoryElement.hover();
 
@@ -310,7 +310,7 @@ regressionTest(
     </ix-application>
     `);
     const categoryElement = page.locator('ix-menu-category');
-    await expect(categoryElement).toHaveClass(/hydrated/);
+    await expect(categoryElement).toHaveAttribute('hydrated');
 
     // Navigate to category
     await page.keyboard.press('Tab');
@@ -437,7 +437,7 @@ regressionTest(
     `);
 
     const categoryElement = page.locator('ix-menu-category');
-    await expect(categoryElement).toHaveClass(/hydrated/);
+    await expect(categoryElement).toHaveAttribute('hydrated');
 
     // Navigate to category
     await page.keyboard.press('Tab');

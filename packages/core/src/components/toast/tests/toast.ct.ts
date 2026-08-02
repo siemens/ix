@@ -26,7 +26,7 @@ regressionTest('renders', async ({ mount, page }) => {
   });
 
   const toast = page.locator('ix-toast');
-  await expect(toast).toHaveClass(/hydrated/);
+  await expect(toast).toHaveAttribute('hydrated');
   await expect(toast).toBeVisible();
 });
 
@@ -43,7 +43,7 @@ regressionTest(
     });
 
     const toast = page.locator('ix-toast');
-    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('hydrated');
     await expect(toast).toHaveAttribute('role', 'alert');
     await expect(toast).toHaveAttribute('aria-live', 'polite');
     await expect(toast).toHaveAttribute('aria-atomic', 'true');
@@ -79,7 +79,7 @@ regressionTest(
 
     const toast = page.locator('ix-toast');
     const closeToast = toast.locator('ix-icon-button');
-    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('hydrated');
 
     await closeToast.click();
     await expect(toast).not.toBeVisible();
@@ -156,14 +156,14 @@ regressionTest(
       window.toast({ message: 'Default type toast' });
     });
     const toastEl = page.locator('ix-toast').first();
-    await expect(toastEl).toHaveClass(/hydrated/);
+    await expect(toastEl).toHaveAttribute('hydrated');
     await expect(toastEl).toHaveAttribute('type', 'info');
     for (const type of ['info', 'success', 'error', 'warning'] as const) {
       await page.evaluate((t) => {
         window.toast({ message: `${t} toast`, type: t });
       }, type);
       const lastToast = page.locator('ix-toast').last();
-      await expect(lastToast).toHaveClass(/hydrated/);
+      await expect(lastToast).toHaveAttribute('hydrated');
       await expect(lastToast).toHaveAttribute('type', type);
     }
   }
