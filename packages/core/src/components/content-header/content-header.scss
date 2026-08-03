@@ -16,9 +16,10 @@
   .titleGroup {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-width: 0;
     margin-right: 0.5rem;
+    overflow: hidden;
 
     .titleOverflow {
       overflow-wrap: break-word;
@@ -53,15 +54,16 @@
   .actions {
     flex: 0 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
+    gap: 0.5rem;
 
-  ::slotted([slot='secondary-actions']) {
-  --ix-button-height: 2rem;
-  --ix-button-text-white-space: normal;
-  --ix-button-word-break: break-word;
-  --ix-button-inner-overflow: visible;
-  --ix-button-content-overflow: visible;
-  }
+    ::slotted([slot='secondary-actions']) {
+      --ix-button-height: 2rem;
+      --ix-button-text-white-space: nowrap;
+      --ix-button-word-break: normal;
+      --ix-button-inner-overflow: hidden;
+      --ix-button-content-overflow: hidden;
+    }
   }
 }

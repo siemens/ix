@@ -23,9 +23,9 @@ import type { Disposable } from '../utils/typed-event';
 import type { ContentHeaderVariant } from './content-header.types';
 
 /**
- * @slot header - Content to be placed in the header area next to the title
- * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu on small viewports
- * @slot default - Default slot for action buttons or other content
+ * @slot header            - Content to be placed in the header area next to the title
+ * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu
+ * @slot default           - Default slot for action buttons or other content
  */
 @Component({
   tag: 'ix-content-header',
@@ -41,23 +41,17 @@ export class ContentHeader {
   @Prop() variant: ContentHeaderVariant = 'primary';
 
   /**
-   * Title of Header
+   * Variant of content header
    */
   @Prop() headerTitle?: string;
 
-  /**
-   * Subtitle of Header
-   */
+  /** Subtitle of Header */
   @Prop() headerSubtitle: string | undefined = undefined;
 
-  /**
-   * Display a back button
-   */
+  /** Display a back button */
   @Prop() hasBackButton: boolean = false;
 
-  /**
-   * Triggered when back button is clicked
-   */
+  /** Triggered when back button is clicked */
   @Event() backButtonClick!: EventEmitter<void>;
 
   @State() isSmallBreakpoint = false;
@@ -66,26 +60,99 @@ export class ContentHeader {
   breakpointDisposable?: Disposable;
   hasDisconnected = false;
   secondarySlot: HTMLSlotElement | null = null;
+  defaultSlot: HTMLSlotElement | null = null;
 
-  readonly breakpointChangeHandler = (breakpoint: string) => {
-    this.isSmallBreakpoint = breakpoint === 'sm';
+  private resizeObserver?: ResizeObserver;
+  private titleGroupEl?: HTMLDivElement;
+  private actionsEl?: HTMLDivElement;
+  private backButtonEl?: HTMLElement;
+  private cachedRequiredWidth = 0;
+  private isTransitioning = false;
+
+  readonly breakpointChangeHandler = () => {
+    this.updateOverflowState();
   };
 
-  readonly slotChangeHandler = () => this.checkSecondarySlot();
+  readonly slotChangeHandler = () => {
+    this.checkSecondarySlot();
+    if (!this.isSmallBreakpoint) {
+      this.refreshCache();
+    }
+    this.updateOverflowState();
+  };
+
+  private refreshCache() {
+    if (!this.titleGroupEl || !this.actionsEl) return;
+    const titleWidth = this.titleGroupEl.scrollWidth;
+    const actionsWidth = this.actionsEl.offsetWidth;
+    const backWidth = this.backButtonEl?.offsetWidth ?? 0;
+    if (actionsWidth > 0) {
+      this.cachedRequiredWidth = titleWidth + actionsWidth + backWidth;
+    }
+  }
+
+  private updateOverflowState() {
+    if (this.isTransitioning) return;
+    if (!this.titleGroupEl || !this.actionsEl) return;
+
+    if (!this.isSmallBreakpoint) {
+      this.refreshCache();
+    }
+
+    const shouldOverflow =
+      this.cachedRequiredWidth > this.hostElement.clientWidth;
+
+    if (shouldOverflow !== this.isSmallBreakpoint) {
+      this.isTransitioning = true;
+      this.isSmallBreakpoint = shouldOverflow;
+
+      requestAnimationFrame(() => {
+        this.isTransitioning = false;
+        if (!this.isSmallBreakpoint) {
+          this.refreshCache();
+        }
+      });
+    }
+  }
 
   checkSecondarySlot() {
     this.hasSecondaryActions = Array.from(this.hostElement.childNodes).some(
       (node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          return false;
-        }
+        if (node.nodeType === Node.TEXT_NODE) return false;
         return (node as Element).getAttribute?.('slot') === 'secondary-actions';
       }
     );
   }
 
+  private attachSlotListeners() {
+    const secSlot = this.hostElement.shadowRoot?.querySelector(
+      'slot[name="secondary-actions"]'
+    ) as HTMLSlotElement | null;
+
+    if (secSlot) {
+      this.secondarySlot = secSlot;
+      secSlot.addEventListener('slotchange', this.slotChangeHandler);
+    }
+
+    const defSlot = this.hostElement.shadowRoot?.querySelector(
+      'slot:not([name])'
+    ) as HTMLSlotElement | null;
+
+    if (defSlot) {
+      this.defaultSlot = defSlot;
+      defSlot.addEventListener('slotchange', this.slotChangeHandler);
+    }
+  }
+
+  private detachSlotListeners() {
+    this.secondarySlot?.removeEventListener(
+      'slotchange',
+      this.slotChangeHandler
+    );
+    this.defaultSlot?.removeEventListener('slotchange', this.slotChangeHandler);
+  }
+
   private subscribeToBreakpointChanges() {
-    this.isSmallBreakpoint = applicationLayoutService.breakpoint === 'sm';
     this.breakpointDisposable = applicationLayoutService.onChange.on(
       this.breakpointChangeHandler
     );
@@ -97,38 +164,43 @@ export class ContentHeader {
 
   componentDidLoad() {
     this.checkSecondarySlot();
+    this.attachSlotListeners();
 
-    const slot = this.hostElement.shadowRoot?.querySelector(
-      'slot[name="secondary-actions"]'
-    ) as HTMLSlotElement | null;
+    this.resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(() => this.updateOverflowState());
+    });
+    this.resizeObserver.observe(this.hostElement);
 
-    if (slot) {
-      this.secondarySlot = slot;
-      slot.addEventListener('slotchange', this.slotChangeHandler);
-    }
+    requestAnimationFrame(() => {
+      this.refreshCache();
+      this.updateOverflowState();
+    });
   }
 
   connectedCallback() {
     if (this.hasDisconnected && globalThis.window !== undefined) {
       this.subscribeToBreakpointChanges();
+      this.attachSlotListeners();
 
-      const slot = this.hostElement.shadowRoot?.querySelector(
-        'slot[name="secondary-actions"]'
-      ) as HTMLSlotElement | null;
-
-      if (slot) {
-        this.secondarySlot = slot;
-        slot.addEventListener('slotchange', this.slotChangeHandler);
+      if (!this.resizeObserver) {
+        this.resizeObserver = new ResizeObserver(() => {
+          requestAnimationFrame(() => this.updateOverflowState());
+        });
       }
+
+      this.resizeObserver.observe(this.hostElement);
+
+      requestAnimationFrame(() => {
+        this.refreshCache();
+        this.updateOverflowState();
+      });
     }
   }
 
   disconnectedCallback() {
     this.breakpointDisposable?.dispose();
-    this.secondarySlot?.removeEventListener(
-      'slotchange',
-      this.slotChangeHandler
-    );
+    this.detachSlotListeners();
+    this.resizeObserver?.disconnect();
     this.hasDisconnected = true;
   }
 
@@ -140,11 +212,15 @@ export class ContentHeader {
             class="backButton"
             variant="tertiary"
             icon={iconArrowLeft}
+            ref={(el) => (this.backButtonEl = el as HTMLElement)}
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}
 
-        <div class="titleGroup">
+        <div
+          class="titleGroup"
+          ref={(el) => (this.titleGroupEl = el as HTMLDivElement)}
+        >
           <div class="headerTitleRow">
             <ix-typography
               format={this.variant === 'secondary' ? 'h4' : 'h3'}
@@ -175,10 +251,14 @@ export class ContentHeader {
         </div>
 
         {this.isSmallBreakpoint ? (
-          <div class="actions">
+          <div
+            class="actions"
+            ref={(el) => (this.actionsEl = el as HTMLDivElement)}
+          >
             <slot />
             {this.hasSecondaryActions && (
               <ix-dropdown-button
+                class="secondaryActionsDropdown"
                 icon={iconMoreMenu}
                 variant="tertiary"
                 label=""
@@ -189,7 +269,10 @@ export class ContentHeader {
             )}
           </div>
         ) : (
-          <div class="actions">
+          <div
+            class="actions"
+            ref={(el) => (this.actionsEl = el as HTMLDivElement)}
+          >
             <slot name="secondary-actions" />
             <slot />
           </div>
