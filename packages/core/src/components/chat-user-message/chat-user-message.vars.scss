@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$chat-user-message-background-fallback: light-dark(#e0f2f4, #00212f);
+$chat-user-message-color-fallback: light-dark(#000609, #ffffff);
+
+:host {
+  --ix-chat-user-message--background: var(
+    --theme-color-component-8,
+    #{$chat-user-message-background-fallback}
+  );
+  --ix-chat-user-message--color: var(
+    --theme-color-std-text,
+    #{$chat-user-message-color-fallback}
+  );
+  --ix-chat-user-message--color-focus-bdr: var(
+    --theme-color-focus-bdr,
+    #199fff
+  );
+}
