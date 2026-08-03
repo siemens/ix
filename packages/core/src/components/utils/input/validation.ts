@@ -113,6 +113,7 @@ export function HookValidationLifecycle(options?: {
   return (proto: IxComponentInterface, methodName: string) => {
     let checkIfRequiredFunction: (() => Promise<void>) | null;
     let classMutationObserver: ClassMutationObserver | null;
+    let checkTimeoutId: ReturnType<typeof setTimeout> | null = null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
@@ -121,9 +122,14 @@ export function HookValidationLifecycle(options?: {
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
 
+      if (checkTimeoutId != null) {
+        clearTimeout(checkTimeoutId);
+        checkTimeoutId = null;
+      }
+
       checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
-        if (skipValidation) {
+        if (skipValidation || !host.isConnected) {
           return;
         }
 
@@ -131,11 +137,28 @@ export function HookValidationLifecycle(options?: {
           return;
         }
 
-        const validationElement = await host.getNativeInputElement?.();
+        let validationElement:
+          | HTMLInputElement
+          | HTMLTextAreaElement
+          | undefined;
+        try {
+          validationElement = await host.getNativeInputElement?.();
+        } catch {
+          // Native input may be missing during connect/teardown (e.g. ix-select).
+          validationElement = undefined;
+        }
+
+        if (!host.isConnected) {
+          return;
+        }
 
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
           const touched = await isTouched(host);
+
+          if (!host.isConnected) {
+            return;
+          }
 
           if (host.required) {
             host.classList.toggle('ix-invalid--required', !hasValue && touched);
@@ -150,6 +173,10 @@ export function HookValidationLifecycle(options?: {
         ) {
           const validityState = await host.getValidityState();
           const touched = await isTouched(host);
+
+          if (!host.isConnected) {
+            return;
+          }
 
           host.classList.toggle(
             `ix-invalid--validity-patternMismatch`,
@@ -170,6 +197,10 @@ export function HookValidationLifecycle(options?: {
 
             const ariaHelperMessageElement =
               await fieldWrapper.getAriaHelperMessageElement();
+
+            if (!host.isConnected) {
+              return;
+            }
 
             if (ariaHelperMessageElement) {
               validationElement.setAttribute(
@@ -201,7 +232,12 @@ export function HookValidationLifecycle(options?: {
       host.addEventListener('checkedChange', checkIfRequiredFunction);
       host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
-      setTimeout(checkIfRequiredFunction);
+      checkTimeoutId = setTimeout(() => {
+        checkTimeoutId = null;
+        if (checkIfRequiredFunction) {
+          void checkIfRequiredFunction().catch(() => undefined);
+        }
+      });
       return connectedCallback?.call(this);
     };
 
@@ -224,6 +260,11 @@ export function HookValidationLifecycle(options?: {
 
     proto.disconnectedCallback = function () {
       const host = getElement(this);
+
+      if (checkTimeoutId != null) {
+        clearTimeout(checkTimeoutId);
+        checkTimeoutId = null;
+      }
 
       if (host && classMutationObserver) {
         classMutationObserver.destroy();
