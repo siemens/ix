@@ -43,7 +43,7 @@ $menu-expanded-width: 16rem;
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
+      outline: 1px solid var(--ix-menu--color-focus-bdr);
       outline-offset: -1px;
     }
   }
@@ -75,7 +75,7 @@ $menu-expanded-width: 16rem;
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
+      outline: 1px solid var(--ix-menu--color-focus-bdr);
       outline-offset: -1px;
     }
   }

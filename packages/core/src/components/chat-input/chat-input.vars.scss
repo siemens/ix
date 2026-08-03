@@ -17,6 +17,8 @@ $chat-input-border-color-readonly-fallback: light-dark(#ebedee, #405158);
 $chat-input-color-fallback: light-dark(#000609, #ffffff);
 $chat-input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 $chat-input-hint-color-fallback: light-dark(#405158, #aeb5b8);
+$chat-input-color-info-fallback: light-dark(#2050a2, #a9c3f1);
+$chat-input-color-warning-fallback: light-dark(#9a4d00, #ff9225);
 
 :host {
   --ix-chat-input--background: var(
@@ -69,5 +71,16 @@ $chat-input-hint-color-fallback: light-dark(#405158, #aeb5b8);
     --theme-focus-outline-offset,
     0.125rem
   );
-  --ix-chat-input--color-focus-bdr: var(--theme-color-focus-bdr, #199fff);
+  --ix-chat-input--color-focus-bdr: var(
+    --theme-si-sys-effects-focus,
+    #199fff
+  );
+  --ix-chat-input--color-info: var(
+    --theme-si-sys-text-information,
+    #{$chat-input-color-info-fallback}
+  );
+  --ix-chat-input--color-warning: var(
+    --theme-si-sys-text-warning,
+    #{$chat-input-color-warning-fallback}
+  );
 }

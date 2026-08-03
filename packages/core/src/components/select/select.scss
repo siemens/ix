@@ -123,7 +123,7 @@
           cursor: pointer;
 
           &:focus-visible {
-            outline: 1px solid var(--theme-color-focus-bdr);
+            outline: 1px solid var(--ix-select--color-focus-bdr);
             outline-offset: var(--theme-btn--focus--outline-offset);
           }
         }

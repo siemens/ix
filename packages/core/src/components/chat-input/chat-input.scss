@@ -135,11 +135,11 @@
   }
 
   .character-limit--soft ix-icon {
-    color: var(--theme-color-info);
+    color: var(--ix-chat-input--color-info);
   }
 
   .character-limit--hard ix-icon {
-    color: var(--theme-color-warning);
+    color: var(--ix-chat-input--color-warning);
   }
 
   .action-row {

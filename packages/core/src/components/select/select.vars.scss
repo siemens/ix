@@ -37,7 +37,7 @@ $select-list-item-hint-color-fallback: light-dark(#405158, #aeb5b8);
     #{$select-inset-shadow-1-fallback}
   );
   --ix-select--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$select-color-focus-bdr-fallback}
   );
   --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
