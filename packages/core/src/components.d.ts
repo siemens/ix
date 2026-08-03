@@ -277,6 +277,12 @@ export namespace Components {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+        /**
+          * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis. Note: Only working if avatar is part of the ix-application-header
+          * @since 5.2.0
+          * @default false
+         */
+        "wrapUsername": boolean;
     }
     interface IxBlind {
         /**
@@ -7043,6 +7049,12 @@ declare namespace LocalJSX {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+        /**
+          * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis. Note: Only working if avatar is part of the ix-application-header
+          * @since 5.2.0
+          * @default false
+         */
+        "wrapUsername"?: boolean;
     }
     interface IxBlind {
         /**
@@ -11999,6 +12011,7 @@ declare namespace LocalJSX {
         "extra": string;
         "tooltipText": string;
         "ariaLabelTooltip": string;
+        "wrapUsername": boolean;
     }
     interface IxBlindAttributes {
         "collapsed": boolean;

@@ -12,5 +12,6 @@ export const IxAvatar: StencilVueComponent<JSX.IxAvatar> = /*@__PURE__*/ defineC
   'username',
   'extra',
   'tooltipText',
-  'ariaLabelTooltip'
+  'ariaLabelTooltip',
+  'wrapUsername'
 ]);
