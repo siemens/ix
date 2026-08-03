@@ -28,9 +28,9 @@ $input-border-color-invalid-fallback: #d72323;
 $input-border-color-invalid-active-fallback: #d72323;
 $input-border-color-invalid-hover-fallback: #d72323;
 $input-border-color-readonly-fallback: light-dark(#ebedee, #405158);
-$input-border-color-warning-fallback: light-dark(#c69100, #ffc832);
-$input-border-color-warning-active-fallback: light-dark(#c69100, #ffc832);
-$input-border-color-warning-hover-fallback: light-dark(#c69100, #ffc832);
+$input-border-color-warning-fallback: light-dark(#ba5d00, #ff8000);
+$input-border-color-warning-active-fallback: light-dark(#ba5d00, #ff8000);
+$input-border-color-warning-hover-fallback: light-dark(#ba5d00, #ff8000);
 $input-border-color-bottom-disabled-fallback: light-dark(#ebedee, #405158);
 $input-border-color-bottom-readonly-fallback: light-dark(#ebedee, #405158);
 $input-color-fallback: light-dark(#000609, #ffffff);
@@ -143,15 +143,15 @@ $input-unit-color-fallback: light-dark(#405158, #aeb5b8);
     #{$input-border-color-readonly-fallback}
   );
   --ix-input--border-color--warning: var(
-    --theme-color-warning-bdr,
+    --theme-si-sys-background-warning,
     #{$input-border-color-warning-fallback}
   );
   --ix-input--border-color--warning--active: var(
-    --theme-color-warning-bdr,
+    --theme-si-sys-background-warning,
     #{$input-border-color-warning-active-fallback}
   );
   --ix-input--border-color--warning--hover: var(
-    --theme-color-warning-bdr,
+    --theme-si-sys-background-warning,
     #{$input-border-color-warning-hover-fallback}
   );
   --ix-input--border-color-bottom--disabled: var(

@@ -21,7 +21,7 @@ $action-card-color-focus-bdr-fallback: #199fff;
     #{$action-card-focus-outline-offset-fallback}
   );
   --ix-action-card--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$action-card-color-focus-bdr-fallback}
   );
 }

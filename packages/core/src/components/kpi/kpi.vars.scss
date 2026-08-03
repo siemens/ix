@@ -7,25 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$kpi-color-alarm-fallback: light-dark(#d72332, #ff2453);
-$kpi-color-warning-fallback: #ffbb00;
+$kpi-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
+$kpi-color-warning-fallback: light-dark(#9a4d00, #ff9225);
 $kpi-display-background-active-fallback: light-dark(#dcdee0, #34454d);
 $kpi-display-background-hover-fallback: light-dark(#e8ebed, #273940);
 $kpi-display-icon-color-fallback: light-dark(#000609, #ffffff);
 $kpi-display-label-color-fallback: light-dark(#405158, #aeb5b8);
-$kpi-display-units-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
-$kpi-display-value-color-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$kpi-display-units-color-fallback: light-dark(#000609, #ffffff);
+$kpi-display-value-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
-  --ix-kpi--color-alarm: var(--theme-color-alarm, #{$kpi-color-alarm-fallback});
+  --ix-kpi--color-alarm: var(
+    --theme-si-sys-text-danger,
+    #{$kpi-color-alarm-fallback}
+  );
   --ix-kpi--color-warning: var(
-    --theme-color-warning,
+    --theme-si-sys-text-warning,
     #{$kpi-color-warning-fallback}
   );
   --ix-kpi--border-radius: var(--theme-default-border-radius, 0.25rem);
@@ -46,11 +43,11 @@ $kpi-display-value-color-fallback: light-dark(
     #{$kpi-display-label-color-fallback}
   );
   --ix-kpi-display-units--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$kpi-display-units-color-fallback}
   );
   --ix-kpi-display-value--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$kpi-display-value-color-fallback}
   );
 }

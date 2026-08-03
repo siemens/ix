@@ -7,10 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$flip-tile-color-std-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$flip-tile-color-std-text-fallback: light-dark(#000609, #ffffff);
 $flip-alarm-background-fallback: light-dark(#ffffff, #1a272d);
 $flip-alarm-border-color-fallback: #d72323;
 $flip-alarm-color-fallback: light-dark(#000609, #ffffff);
@@ -36,14 +33,14 @@ $flip-primary-color-fallback: light-dark(#000609, #ffffff);
 $flip-primary-footer-background-fallback: light-dark(#006a87, #00c9e4);
 $flip-primary-footer-color-fallback: light-dark(#ffffff, #000609);
 $flip-warning-background-fallback: light-dark(#ffffff, #1a272d);
-$flip-warning-border-color-fallback: light-dark(#c69100, #ffc832);
+$flip-warning-border-color-fallback: light-dark(#ba5d00, #ff8000);
 $flip-warning-color-fallback: light-dark(#000609, #ffffff);
-$flip-warning-footer-background-fallback: light-dark(#ffbf0f, #ffc832);
-$flip-warning-footer-color-fallback: #000609;
+$flip-warning-footer-background-fallback: light-dark(#ba5d00, #ff8000);
+$flip-warning-footer-color-fallback: light-dark(#ffffff, #000609);
 
 :host {
   --ix-flip-tile--color-std-text: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$flip-tile-color-std-text-fallback}
   );
   --ix-flip--border-radius: var(--theme-default-border-radius, 0.25rem);
@@ -154,7 +151,7 @@ $flip-warning-footer-color-fallback: #000609;
     #{$flip-warning-background-fallback}
   );
   --ix-flip-warning--border-color: var(
-    --theme-color-warning-bdr,
+    --theme-si-sys-background-warning,
     #{$flip-warning-border-color-fallback}
   );
   --ix-flip-warning--color: var(
@@ -162,12 +159,12 @@ $flip-warning-footer-color-fallback: #000609;
     #{$flip-warning-color-fallback}
   );
   --ix-flip-warning-footer--background: var(
-    --theme-color-warning,
+    --theme-si-sys-background-warning,
     #{$flip-warning-footer-background-fallback}
   );
   --ix-flip-warning-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-warning-footer--color: var(
-    --theme-color-warning--contrast,
+    --theme-si-sys-text-on-warning,
     #{$flip-warning-footer-color-fallback}
   );
 }

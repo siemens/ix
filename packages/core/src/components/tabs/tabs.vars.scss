@@ -13,7 +13,7 @@ $tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-tabs--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$tabs-color-focus-bdr-fallback}
   );
   --ix-tab-indicator--background: var(

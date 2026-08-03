@@ -17,7 +17,7 @@ $nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
 :host {
   --ix-menu-avatar--default-time: var(--theme-default-time, 150ms);
   --ix-menu-avatar--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$menu-avatar-color-focus-bdr-fallback}
   );
   --ix-avatar-btn--background--active: var(

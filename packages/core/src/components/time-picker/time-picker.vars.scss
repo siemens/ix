@@ -7,17 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$time-picker-color-soft-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
-$time-picker-color-primary-fallback: light-dark(#006e93, #00bde3);
+$time-picker-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
+$time-picker-color-primary-fallback: light-dark(#006a87, #00c9e4);
 $time-picker-color-focus-bdr-fallback: #199fff;
-$time-picker-color-weak-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
-$time-picker-color-inv-contrast-text-fallback: light-dark(#ffffff, #000000);
+$time-picker-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
+$time-picker-color-inv-contrast-text-fallback: light-dark(#ffffff, #000609);
 $datepicker-day-background-hover-fallback: light-dark(#e8ebed, #273940);
 $datepicker-day-background-selected-fallback: light-dark(#004f69, #00eaff);
 $datepicker-day-background-selected-disabled-fallback: light-dark(
@@ -33,24 +27,24 @@ $datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
 
 :host {
   --ix-time-picker--color-soft-text: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$time-picker-color-soft-text-fallback}
   );
   --ix-time-picker--color-primary: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$time-picker-color-primary-fallback}
   );
   --ix-time-picker--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$time-picker-color-focus-bdr-fallback}
   );
   --ix-time-picker--color-weak-text: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$time-picker-color-weak-text-fallback}
   );
   --ix-time-picker--font-weight-bold: var(--theme-font-weight-bold, 700);
   --ix-time-picker--color-inv-contrast-text: var(
-    --theme-color-inv-contrast-text,
+    --theme-si-sys-text-inverse,
     #{$time-picker-color-inv-contrast-text-fallback}
   );
   --ix-datepicker-day--background--hover: var(

@@ -9,24 +9,18 @@
 
 $card-variants: outline filled alarm critical warning success info neutral
   primary;
-$card-color-soft-bdr-fallback: light-dark(
-  rgba(0, 20, 40, 0.2),
-  rgba(211, 236, 248, 0.4)
-);
-$card-color-std-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$card-color-soft-bdr-fallback: light-dark(#72848c, #5b6a71);
+$card-color-std-text-fallback: light-dark(#000609, #ffffff);
 $card-alarm-background-fallback: #d72323;
 $card-alarm-background-active-fallback: #a70808;
 $card-alarm-background-hover-fallback: #c01616;
 $card-alarm-background-selected-fallback: #d72323;
 $card-alarm-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 $card-alarm-color-fallback: #ffffff;
-$card-critical-background-fallback: light-dark(#ba5d00, #ff8000);
-$card-critical-background-active-fallback: light-dark(#824100, #ba5d00);
-$card-critical-background-hover-fallback: light-dark(#9a4d00, #e37200);
-$card-critical-background-selected-fallback: light-dark(#ba5d00, #ff8000);
+$card-critical-background-fallback: #a733bc;
+$card-critical-background-active-fallback: #52245c;
+$card-critical-background-hover-fallback: #740089;
+$card-critical-background-selected-fallback: #a733bc;
 $card-critical-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 $card-critical-color-fallback: light-dark(#ffffff, #000609);
 $card-filled-background-fallback: light-dark(#ffffff, #1a272d);
@@ -41,12 +35,12 @@ $card-info-background-hover-fallback: #215dc5;
 $card-info-background-selected-fallback: #226ae7;
 $card-info-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 $card-info-color-fallback: #ffffff;
-$card-neutral-background-fallback: light-dark(#5b6a71, #aeb5b8);
-$card-neutral-background-active-fallback: light-dark(#243137, #72848c);
-$card-neutral-background-hover-fallback: light-dark(#34454d, #919ca1);
-$card-neutral-background-selected-fallback: light-dark(#5b6a71, #aeb5b8);
+$card-neutral-background-fallback: light-dark(#919ca1, #5b6a71);
+$card-neutral-background-active-fallback: light-dark(#dcdee0, #34454d);
+$card-neutral-background-hover-fallback: light-dark(#e8ebed, #273940);
+$card-neutral-background-selected-fallback: light-dark(#919ca1, #5b6a71);
 $card-neutral-border-color-selected-fallback: light-dark(#004f69, #00eaff);
-$card-neutral-color-fallback: light-dark(#ffffff, #000609);
+$card-neutral-color-fallback: light-dark(#000609, #ffffff);
 $card-outline-background-active-fallback: light-dark(#dcdee0, #34454d);
 $card-outline-background-hover-fallback: light-dark(#e8ebed, #273940);
 $card-outline-background-selected-fallback: light-dark(#dcdee0, #34454d);
@@ -67,20 +61,20 @@ $card-success-background-hover-fallback: light-dark(#2a5117, #7ad34d);
 $card-success-background-selected-fallback: light-dark(#376f1c, #59bd28);
 $card-success-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 $card-success-color-fallback: light-dark(#ffffff, #000609);
-$card-warning-background-fallback: light-dark(#ffbf0f, #ffc832);
-$card-warning-background-active-fallback: #c69100;
-$card-warning-background-hover-fallback: #fcb900;
-$card-warning-background-selected-fallback: light-dark(#ffbf0f, #ffc832);
+$card-warning-background-fallback: light-dark(#ba5d00, #ff8000);
+$card-warning-background-active-fallback: light-dark(#824100, #ba5d00);
+$card-warning-background-hover-fallback: light-dark(#9a4d00, #e37200);
+$card-warning-background-selected-fallback: light-dark(#ba5d00, #ff8000);
 $card-warning-border-color-selected-fallback: light-dark(#004f69, #00eaff);
-$card-warning-color-fallback: #000609;
+$card-warning-color-fallback: light-dark(#ffffff, #000609);
 
 :host {
   --ix-card--color-soft-bdr: var(
-    --theme-color-soft-bdr,
+    --theme-si-sys-border-3,
     #{$card-color-soft-bdr-fallback}
   );
   --ix-card--color-std-text: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$card-color-std-text-fallback}
   );
   --ix-card--border-radius: var(--theme-default-border-radius, 0.25rem);
@@ -114,19 +108,19 @@ $card-warning-color-fallback: #000609;
     #{$card-alarm-color-fallback}
   );
   --ix-card-critical--background: var(
-    --theme-color-critical,
+    --theme-si-sys-background-critical,
     #{$card-critical-background-fallback}
   );
   --ix-card-critical--background--active: var(
-    --theme-color-critical--active,
+    --theme-si-sys-background-critical-active,
     #{$card-critical-background-active-fallback}
   );
   --ix-card-critical--background--hover: var(
-    --theme-color-critical--hover,
+    --theme-si-sys-background-critical-hover,
     #{$card-critical-background-hover-fallback}
   );
   --ix-card-critical--background--selected: var(
-    --theme-color-critical,
+    --theme-si-sys-background-critical,
     #{$card-critical-background-selected-fallback}
   );
   --ix-card-critical--border-color: rgba(0, 0, 0, 0);
@@ -137,7 +131,7 @@ $card-warning-color-fallback: #000609;
     #{$card-critical-border-color-selected-fallback}
   );
   --ix-card-critical--color: var(
-    --theme-color-critical--contrast,
+    --theme-si-sys-text-on-warning,
     #{$card-critical-color-fallback}
   );
   --ix-card-filled--background: var(
@@ -195,19 +189,19 @@ $card-warning-color-fallback: #000609;
     #{$card-info-color-fallback}
   );
   --ix-card-neutral--background: var(
-    --theme-color-neutral,
+    --theme-si-sys-background-neutral,
     #{$card-neutral-background-fallback}
   );
   --ix-card-neutral--background--active: var(
-    --theme-color-neutral--active,
+    --theme-si-sys-background-selected,
     #{$card-neutral-background-active-fallback}
   );
   --ix-card-neutral--background--hover: var(
-    --theme-color-neutral--hover,
+    --theme-si-sys-background-hover,
     #{$card-neutral-background-hover-fallback}
   );
   --ix-card-neutral--background--selected: var(
-    --theme-color-neutral,
+    --theme-si-sys-background-neutral,
     #{$card-neutral-background-selected-fallback}
   );
   --ix-card-neutral--border-color: rgba(0, 0, 0, 0);
@@ -218,7 +212,7 @@ $card-warning-color-fallback: #000609;
     #{$card-neutral-border-color-selected-fallback}
   );
   --ix-card-neutral--color: var(
-    --theme-color-neutral--contrast,
+    --theme-si-sys-text-primary,
     #{$card-neutral-color-fallback}
   );
   --ix-card-outline--background: rgba(0, 0, 0, 0);
@@ -309,19 +303,19 @@ $card-warning-color-fallback: #000609;
     #{$card-success-color-fallback}
   );
   --ix-card-warning--background: var(
-    --theme-color-warning,
+    --theme-si-sys-background-warning,
     #{$card-warning-background-fallback}
   );
   --ix-card-warning--background--active: var(
-    --theme-color-warning--active,
+    --theme-si-sys-background-warning-active,
     #{$card-warning-background-active-fallback}
   );
   --ix-card-warning--background--hover: var(
-    --theme-color-warning--hover,
+    --theme-si-sys-background-warning-hover,
     #{$card-warning-background-hover-fallback}
   );
   --ix-card-warning--background--selected: var(
-    --theme-color-warning,
+    --theme-si-sys-background-warning,
     #{$card-warning-background-selected-fallback}
   );
   --ix-card-warning--border-color: rgba(0, 0, 0, 0);
@@ -332,7 +326,7 @@ $card-warning-color-fallback: #000609;
     #{$card-warning-border-color-selected-fallback}
   );
   --ix-card-warning--color: var(
-    --theme-color-warning--contrast,
+    --theme-si-sys-text-on-warning,
     #{$card-warning-color-fallback}
   );
 }

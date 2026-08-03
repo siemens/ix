@@ -8,10 +8,7 @@
  */
 
 $category-filter-color-focus-bdr-fallback: #199fff;
-$category-filter-color-soft-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.6),
-  rgba(229, 247, 255, 0.65)
-);
+$category-filter-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
 $input-background-hover-fallback: light-dark(#fafafa, #0e1b20);
 $input-border-color-focus-fallback: light-dark(#000609, #ffffff);
 $input-border-color-hover-fallback: light-dark(#000609, #ffffff);
@@ -21,11 +18,11 @@ $menu-header-color-fallback: light-dark(#405158, #aeb5b8);
 
 :host {
   --ix-category-filter--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$category-filter-color-focus-bdr-fallback}
   );
   --ix-category-filter--color-soft-text: var(
-    --theme-color-soft-text,
+    --theme-si-sys-text-secondary,
     #{$category-filter-color-soft-text-fallback}
   );
   --ix-input--background--hover: var(

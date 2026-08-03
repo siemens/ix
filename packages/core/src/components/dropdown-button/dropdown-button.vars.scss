@@ -201,7 +201,7 @@ $btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
 
 :host {
   --ix-dropdown-button--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$dropdown-button-color-focus-bdr-fallback}
   );
   --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);

@@ -13,7 +13,6 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-company-logo-figma-only: company-logo-alt;
   --theme-si-sys-background-0: #000609;
   --theme-si-sys-background-1: #1a272d;
   --theme-si-sys-background-2: #0b171c;
@@ -165,6 +164,10 @@
   --theme-si-sys-effects-backdrop: rgba(0, 0, 0, 0.70);
   --theme-si-sys-effects-focus: #199fff;
   --theme-si-sys-effects-logo: #ffffff;
+  --theme-si-sys-effects-shadow-1: 0px 0.5px 1px 0px rgba(0, 0, 0, 0.14), 0px -0.25px 1px 0px rgba(0, 0, 0, 0.12);
+  --theme-si-sys-effects-shadow-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.14), 0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
+  --theme-si-sys-effects-shadow-3: 0px 2px 6px 0px rgba(0, 0, 0, 0.14), 0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
+  --theme-si-sys-effects-shadow-4: 0px 4px 12px 0px rgba(0, 0, 0, 0.14), 0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
   --theme-si-sys-text-accent: #00c9e4;
   --theme-si-sys-text-accent-active: #00def7;
   --theme-si-sys-text-accent-hover: #00eaff;
@@ -190,5 +193,4 @@
   --theme-si-sys-text-secondary: #aeb5b8;
   --theme-si-sys-text-success: #99e672;
   --theme-si-sys-text-warning: #ff9225;
-  --theme-theme-name-figma-only: Classic Dark (Open-Source);
 }

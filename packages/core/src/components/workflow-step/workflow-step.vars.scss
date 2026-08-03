@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$workflow-step-color-warning-fallback: #ffbb00;
-$workflow-step-color-success-fallback: light-dark(#2c8500, #44cc00);
-$workflow-step-color-alarm-fallback: light-dark(#d72332, #ff2453);
+$workflow-step-color-warning-fallback: light-dark(#9a4d00, #ff9225);
+$workflow-step-color-success-fallback: light-dark(#376f1c, #99e672);
+$workflow-step-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
 $workflow-step-background-active-fallback: light-dark(#dcdee0, #34454d);
 $workflow-step-background-hover-fallback: light-dark(#e8ebed, #273940);
 $workflow-step-background-selected-fallback: light-dark(#dcdee0, #34454d);
@@ -24,26 +24,26 @@ $workflow-step-icon-default-color-selected-fallback: light-dark(
   #00eaff
 );
 $workflow-step-icon-done-color-fallback: light-dark(#006a87, #00c9e4);
-$workflow-step-icon-error-color-fallback: light-dark(#d72332, #ff2453);
-$workflow-step-icon-success-color-fallback: light-dark(#2c8500, #44cc00);
-$workflow-step-icon-warning-color-fallback: light-dark(#947100, #ffbb00);
+$workflow-step-icon-error-color-fallback: light-dark(#a70808, #ff8e8e);
+$workflow-step-icon-success-color-fallback: light-dark(#376f1c, #99e672);
+$workflow-step-icon-warning-color-fallback: light-dark(#9a4d00, #ff9225);
 $workflow-step-icon-done-color-selected-fallback: light-dark(#004f69, #00eaff);
 $workflow-step-icon-status-color-disabled-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
+  #919ca1,
+  #5b6a71
 );
 
 :host {
   --ix-workflow-step--color-warning: var(
-    --theme-color-warning,
+    --theme-si-sys-text-warning,
     #{$workflow-step-color-warning-fallback}
   );
   --ix-workflow-step--color-success: var(
-    --theme-color-success,
+    --theme-si-sys-text-success,
     #{$workflow-step-color-success-fallback}
   );
   --ix-workflow-step--color-alarm: var(
-    --theme-color-alarm,
+    --theme-si-sys-text-danger,
     #{$workflow-step-color-alarm-fallback}
   );
   --ix-workflow--border-radius: 1px;
@@ -82,15 +82,15 @@ $workflow-step-icon-status-color-disabled-fallback: light-dark(
     #{$workflow-step-icon-done-color-fallback}
   );
   --ix-workflow-step-icon-error--color: var(
-    --theme-color-alarm,
+    --theme-si-sys-text-danger,
     #{$workflow-step-icon-error-color-fallback}
   );
   --ix-workflow-step-icon-success--color: var(
-    --theme-color-success,
+    --theme-si-sys-text-success,
     #{$workflow-step-icon-success-color-fallback}
   );
   --ix-workflow-step-icon-warning--color: var(
-    --theme-color-warning-text,
+    --theme-si-sys-text-warning,
     #{$workflow-step-icon-warning-color-fallback}
   );
   --ix-workflow-step-icon-done--color--selected: var(
@@ -98,7 +98,7 @@ $workflow-step-icon-status-color-disabled-fallback: light-dark(
     #{$workflow-step-icon-done-color-selected-fallback}
   );
   --ix-workflow-step-icon-status--color--disabled: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$workflow-step-icon-status-color-disabled-fallback}
   );
 }

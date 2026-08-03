@@ -7,10 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$application-header-color-x-weak-bdr-fallback: light-dark(
-  rgba(174, 181, 189, 0.2),
-  rgba(142, 157, 165, 0.2)
-);
+$application-header-color-x-weak-bdr-fallback: light-dark(#ebedee, #405158);
 $app-header-background-fallback: light-dark(#ffffff, #1a272d);
 $app-header-border-color-fallback: light-dark(#ebedee, #405158);
 $app-header-color-fallback: light-dark(#000609, #ffffff);
@@ -21,7 +18,7 @@ $app-header-name-suffix-color-fallback: light-dark(#405158, #aeb5b8);
 :host {
   --ix-application-header--z-index-fixed: var(--theme-z-index-fixed, 1030);
   --ix-application-header--color-x-weak-bdr: var(
-    --theme-color-x-weak-bdr,
+    --theme-si-sys-border-4,
     #{$application-header-color-x-weak-bdr-fallback}
   );
   --ix-app-header--background: var(

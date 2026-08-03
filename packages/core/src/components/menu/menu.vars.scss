@@ -12,10 +12,8 @@ $menu-color-shadow-1-fallback: light-dark(
   rgba(0, 0, 0, 0.6)
 );
 $nav-background-fallback: light-dark(#ffffff, #1a272d);
-$navigation-box-shadow-fallback: -4px 0 8px 0
-    light-dark(rgba(0, 6, 9, 0.2), #000000),
-  4px 0 8px 0 light-dark(rgba(0, 6, 9, 0.2), #000000),
-  0 0 16px 0 light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6));
+$navigation-box-shadow-fallback: 0px 1px 2px 0px rgba(0, 0, 0, 0.14),
+  0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
 
 :host {
   --ix-menu--z-index-sticky: var(--theme-z-index-sticky, 1020);
@@ -30,7 +28,7 @@ $navigation-box-shadow-fallback: -4px 0 8px 0
     #{$nav-background-fallback}
   );
   --ix-navigation--box-shadow: var(
-    --theme-shadow-2,
+    --theme-si-sys-effects-shadow-2,
     #{$navigation-box-shadow-fallback}
   );
 }

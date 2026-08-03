@@ -7,45 +7,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tab-item-color-1-fallback: light-dark(#ffffff, #0f1619);
+$tab-item-color-1-fallback: light-dark(#f3f4f5, #000609);
 $tab-item-color-focus-bdr-fallback: #199fff;
 $pill-outline-color-fallback: light-dark(#000609, #ffffff);
 $animated-tab-circle-background-fallback: light-dark(#ffffff, #1a272d);
-$animated-tab-circle-background-active-fallback: light-dark(
-  rgba(0, 148, 177, 0.2),
-  rgba(0, 111, 142, 0.15)
-);
-$animated-tab-circle-background-hover-fallback: light-dark(
-  rgba(0, 234, 255, 0.18),
-  rgba(0, 234, 255, 0.12)
-);
+$animated-tab-circle-background-active-fallback: light-dark(#c2faff, #00212f);
+$animated-tab-circle-background-hover-fallback: light-dark(#d1fbff, #003246);
 $animated-tab-circle-border-color-selected-fallback: light-dark(
   #004f69,
   #00eaff
 );
 $animated-tab-icon-color-fallback: light-dark(#000609, #ffffff);
 $animated-tab-icon-color-selected-fallback: light-dark(#004f69, #00eaff);
-$tab-background-active-fallback: light-dark(
-  rgba(0, 148, 177, 0.2),
-  rgba(0, 111, 142, 0.15)
-);
-$tab-background-hover-fallback: light-dark(
-  rgba(0, 234, 255, 0.18),
-  rgba(0, 234, 255, 0.12)
-);
+$tab-background-active-fallback: light-dark(#c2faff, #00212f);
+$tab-background-hover-fallback: light-dark(#d1fbff, #003246);
 $tab-color-fallback: light-dark(#000609, #ffffff);
 $tab-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 $tab-color-selected-fallback: light-dark(#004f69, #00eaff);
 $tab-indicator-background-disabled-fallback: light-dark(#72848c, #5b6a71);
 $tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
-$tab-pill-border-color-fallback: light-dark(#5b6a71, #aeb5b8);
-$tab-pill-border-color-disabled-fallback: light-dark(#5b6a71, #aeb5b8);
+$tab-pill-border-color-fallback: light-dark(#72848c, #5b6a71);
+$tab-pill-border-color-disabled-fallback: light-dark(#72848c, #5b6a71);
 $tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 
 :host {
-  --ix-tab-item--color-1: var(--theme-color-1, #{$tab-item-color-1-fallback});
+  --ix-tab-item--color-1: var(
+    --theme-si-sys-background-0,
+    #{$tab-item-color-1-fallback}
+  );
   --ix-tab-item--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$tab-item-color-focus-bdr-fallback}
   );
   --ix-pill-outline--color: var(
@@ -57,12 +48,12 @@ $tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
     #{$animated-tab-circle-background-fallback}
   );
   --ix-animated-tab-circle--background--active: var(
-    --theme-color-ghost-primary--active,
+    --theme-si-sys-background-accent-secondary-active,
     #{$animated-tab-circle-background-active-fallback}
   );
   --ix-animated-tab-circle--background--disabled: rgba(0, 0, 0, 0);
   --ix-animated-tab-circle--background--hover: var(
-    --theme-color-ghost-primary--hover,
+    --theme-si-sys-background-accent-secondary-hover,
     #{$animated-tab-circle-background-hover-fallback}
   );
   --ix-animated-tab-circle--background--selected: rgba(0, 0, 0, 0);
@@ -82,12 +73,12 @@ $tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
   );
   --ix-tab--background: rgba(0, 0, 0, 0);
   --ix-tab--background--active: var(
-    --theme-color-ghost-primary--active,
+    --theme-si-sys-background-accent-secondary-active,
     #{$tab-background-active-fallback}
   );
   --ix-tab--background--disabled: rgba(0, 0, 0, 0);
   --ix-tab--background--hover: var(
-    --theme-color-ghost-primary--hover,
+    --theme-si-sys-background-accent-secondary-hover,
     #{$tab-background-hover-fallback}
   );
   --ix-tab--background--selected: rgba(0, 0, 0, 0);
@@ -109,11 +100,11 @@ $tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
     #{$tab-indicator-background-selected-fallback}
   );
   --ix-tab-pill--border-color: var(
-    --theme-color-neutral,
+    --theme-si-sys-border-3,
     #{$tab-pill-border-color-fallback}
   );
   --ix-tab-pill--border-color--disabled: var(
-    --theme-color-neutral,
+    --theme-si-sys-border-3,
     #{$tab-pill-border-color-disabled-fallback}
   );
   --ix-tab-pill--border-color--selected: var(

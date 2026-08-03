@@ -16,7 +16,7 @@ $avatar-color-fallback: light-dark(#000609, #ffffff);
 
 :host {
   --ix-avatar--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$avatar-color-focus-bdr-fallback}
   );
   --ix-avatar--background: var(

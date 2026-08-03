@@ -8,18 +8,12 @@
  */
 
 $slider-color-focus-bdr-fallback: #199fff;
-$slider-color-warning-40-fallback: rgba(255, 187, 0, 0.4);
-$slider-color-warning-fallback: #ffbb00;
-$slider-color-info-40-fallback: light-dark(
-  rgba(0, 65, 177, 0.4),
-  rgba(53, 127, 255, 0.4)
-);
-$slider-color-info-fallback: light-dark(#0041b2, #357fff);
-$slider-color-success-40-fallback: light-dark(
-  rgba(44, 133, 0, 0.4),
-  rgba(68, 204, 0, 0.4)
-);
-$slider-color-success-fallback: light-dark(#2c8500, #44cc00);
+$slider-color-warning-40-fallback: light-dark(#ffedba, #322501);
+$slider-color-warning-fallback: light-dark(#9a4d00, #ff9225);
+$slider-color-info-40-fallback: light-dark(#d2e0f7, #1a386b);
+$slider-color-info-fallback: light-dark(#2050a2, #a9c3f1);
+$slider-color-success-40-fallback: light-dark(#d1f2c1, #1d3212);
+$slider-color-success-fallback: light-dark(#376f1c, #99e672);
 $slider-thumb-background-fallback: light-dark(#004f69, #00eaff);
 $slider-thumb-background-active-fallback: light-dark(#195468, #0094b1);
 $slider-thumb-background-disabled-fallback: light-dark(#adb0b3, #72848c);
@@ -50,31 +44,31 @@ $slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
 :host {
   --ix-slider--default-time: var(--theme-default-time, 150ms);
   --ix-slider--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$slider-color-focus-bdr-fallback}
   );
   --ix-slider--color-warning-40: var(
-    --theme-color-warning-40,
+    --theme-si-sys-background-caution-subtle,
     #{$slider-color-warning-40-fallback}
   );
   --ix-slider--color-warning: var(
-    --theme-color-warning,
+    --theme-si-sys-text-warning,
     #{$slider-color-warning-fallback}
   );
   --ix-slider--color-info-40: var(
-    --theme-color-info-40,
+    --theme-si-sys-background-information-subtle,
     #{$slider-color-info-40-fallback}
   );
   --ix-slider--color-info: var(
-    --theme-color-info,
+    --theme-si-sys-text-information,
     #{$slider-color-info-fallback}
   );
   --ix-slider--color-success-40: var(
-    --theme-color-success-40,
+    --theme-si-sys-background-success-subtle,
     #{$slider-color-success-40-fallback}
   );
   --ix-slider--color-success: var(
-    --theme-color-success,
+    --theme-si-sys-text-success,
     #{$slider-color-success-fallback}
   );
   --ix-slider-thumb--background: var(

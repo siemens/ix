@@ -8,12 +8,9 @@
  */
 
 $menu-item-color-focus-bdr-fallback: #199fff;
-$menu-item-color-primary-fallback: light-dark(#006e93, #00bde3);
-$menu-item-color-primary-contrast-fallback: light-dark(#ffffff, #000000);
-$menu-item-color-weak-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.4),
-  rgba(219, 244, 255, 0.4)
-);
+$menu-item-color-primary-fallback: light-dark(#006a87, #00c9e4);
+$menu-item-color-primary-contrast-fallback: light-dark(#ffffff, #000609);
+$menu-item-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
 $nav-item-primary-background-selected-fallback: light-dark(#f3f4f5, #000609);
 $nav-item-primary-border-color-selected-fallback: light-dark(#004f69, #00eaff);
 $nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
@@ -23,19 +20,19 @@ $nav-item-secondary-background-selected-fallback: light-dark(#f3f4f5, #000609);
 
 :host {
   --ix-menu-item--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$menu-item-color-focus-bdr-fallback}
   );
   --ix-menu-item--color-primary: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$menu-item-color-primary-fallback}
   );
   --ix-menu-item--color-primary--contrast: var(
-    --theme-color-primary--contrast,
+    --theme-si-sys-text-on-accent,
     #{$menu-item-color-primary-contrast-fallback}
   );
   --ix-menu-item--color-weak-text: var(
-    --theme-color-weak-text,
+    --theme-si-sys-text-disabled,
     #{$menu-item-color-weak-text-fallback}
   );
   --ix-nav-item-primary--background--selected: var(

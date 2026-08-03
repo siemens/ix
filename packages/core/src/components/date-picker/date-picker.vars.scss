@@ -66,7 +66,7 @@ $select-list-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
 
 :host {
   --ix-date-picker--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #{$date-picker-color-focus-bdr-fallback}
   );
   --ix-date-picker--font-weight-bold: var(--theme-font-weight-bold, 700);

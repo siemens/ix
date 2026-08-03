@@ -42,7 +42,7 @@ regressionTest(
 
     const getFallbackColor = (colorScheme: 'light' | 'dark') =>
       breadcrumb.evaluate((element, scheme) => {
-        element.style.setProperty('--theme-color-soft-text', 'initial');
+        element.style.setProperty('--theme-si-sys-text-secondary', 'initial');
         element.style.colorScheme = scheme;
 
         const marker = document.createElement('span');
@@ -54,12 +54,8 @@ regressionTest(
         return color;
       }, colorScheme);
 
-    await expect(getFallbackColor('light')).resolves.toBe(
-      'rgba(0, 10, 20, 0.6)'
-    );
-    await expect(getFallbackColor('dark')).resolves.toBe(
-      'rgba(229, 247, 255, 0.65)'
-    );
+    await expect(getFallbackColor('light')).resolves.toBe('rgb(64, 81, 88)');
+    await expect(getFallbackColor('dark')).resolves.toBe('rgb(174, 181, 184)');
   }
 );
 

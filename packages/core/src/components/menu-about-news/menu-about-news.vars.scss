@@ -7,25 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-about-news-color-2-fallback: light-dark(#eff0f1, #283236);
-$menu-about-news-color-primary-fallback: light-dark(#006e93, #00bde3);
-$menu-about-news-color-std-text-fallback: light-dark(
-  rgba(0, 10, 20, 0.9),
-  rgba(245, 252, 255, 0.9)
-);
+$menu-about-news-color-2-fallback: light-dark(#ffffff, #1a272d);
+$menu-about-news-color-primary-fallback: light-dark(#006a87, #00c9e4);
+$menu-about-news-color-std-text-fallback: light-dark(#000609, #ffffff);
 
 :host {
   --ix-menu-about-news--color-2: var(
-    --theme-color-2,
+    --theme-si-sys-background-1,
     #{$menu-about-news-color-2-fallback}
   );
   --ix-menu-about-news--default-time: var(--theme-default-time, 150ms);
   --ix-menu-about-news--color-primary: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$menu-about-news-color-primary-fallback}
   );
   --ix-menu-about-news--color-std-text: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$menu-about-news-color-std-text-fallback}
   );
   --ix-menu-about-news--z-index-sticky: var(--theme-z-index-sticky, 1020);

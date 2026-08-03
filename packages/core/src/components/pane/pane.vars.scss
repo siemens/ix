@@ -9,10 +9,8 @@
 
 $pane-floating-background-fallback: light-dark(#ffffff, #1a272d);
 $pane-floating-border-color-fallback: light-dark(#ebedee, #405158);
-$pane-floating-box-shadow-fallback: -4px 0 8px 0
-    light-dark(rgba(0, 6, 9, 0.2), #000000),
-  4px 0 8px 0 light-dark(rgba(0, 6, 9, 0.2), #000000),
-  0 0 16px 0 light-dark(rgba(0, 6, 9, 0.1), rgba(0, 0, 0, 0.6));
+$pane-floating-box-shadow-fallback: 0px 1px 2px 0px rgba(0, 0, 0, 0.14),
+  0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
 $pane-floating-color-fallback: light-dark(#000609, #ffffff);
 $pane-inline-background-fallback: light-dark(#f3f4f5, #000609);
 $pane-inline-border-color-fallback: light-dark(#72848c, #5b6a71);
@@ -34,7 +32,7 @@ $pane-inline-color-fallback: light-dark(#000609, #ffffff);
     #{$pane-floating-border-color-fallback}
   );
   --ix-pane-floating--box-shadow: var(
-    --theme-shadow-2,
+    --theme-si-sys-effects-shadow-2,
     #{$pane-floating-box-shadow-fallback}
   );
   --ix-pane-floating--color: var(

@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$upload-color-alarm-fallback: light-dark(#d72332, #ff2453);
-$upload-color-success-fallback: light-dark(#2c8500, #44cc00);
+$upload-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
+$upload-color-success-fallback: light-dark(#376f1c, #99e672);
 $upload-border-color-fallback: light-dark(#72848c, #5b6a71);
 $upload-border-color-dragover-fallback: light-dark(#004f69, #00eaff);
 $upload-text-color-fallback: light-dark(#000609, #ffffff);
@@ -17,11 +17,11 @@ $upload-text-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
 
 :host {
   --ix-upload--color-alarm: var(
-    --theme-color-alarm,
+    --theme-si-sys-text-danger,
     #{$upload-color-alarm-fallback}
   );
   --ix-upload--color-success: var(
-    --theme-color-success,
+    --theme-si-sys-text-success,
     #{$upload-color-success-fallback}
   );
   --ix-upload--border-color: var(

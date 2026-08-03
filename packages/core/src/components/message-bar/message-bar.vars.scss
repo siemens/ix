@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$message-bar-color-alarm-fallback: light-dark(#d72332, #ff2453);
-$message-bar-color-critical-fallback: light-dark(#bc5b01, #eb7a0a);
-$message-bar-color-warning-fallback: #ffbb00;
-$message-bar-color-success-fallback: light-dark(#2c8500, #44cc00);
-$message-bar-color-info-fallback: light-dark(#0041b2, #357fff);
-$message-bar-color-neutral-fallback: light-dark(#66727e, #b6b8b9);
-$message-bar-color-primary-fallback: light-dark(#006e93, #00bde3);
+$message-bar-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
+$message-bar-color-critical-fallback: light-dark(#740089, #d59cde);
+$message-bar-color-warning-fallback: light-dark(#9a4d00, #ff9225);
+$message-bar-color-success-fallback: light-dark(#376f1c, #99e672);
+$message-bar-color-info-fallback: light-dark(#2050a2, #a9c3f1);
+$message-bar-color-neutral-fallback: light-dark(#405158, #aeb5b8);
+$message-bar-color-primary-fallback: light-dark(#006a87, #00c9e4);
 $messagebar-background-fallback: light-dark(
   rgba(0, 106, 135, 0),
   rgba(0, 201, 228, 0)
@@ -21,31 +21,31 @@ $messagebar-background-fallback: light-dark(
 
 :host {
   --ix-message-bar--color-alarm: var(
-    --theme-color-alarm,
+    --theme-si-sys-text-danger,
     #{$message-bar-color-alarm-fallback}
   );
   --ix-message-bar--color-critical: var(
-    --theme-color-critical,
+    --theme-si-sys-text-critical,
     #{$message-bar-color-critical-fallback}
   );
   --ix-message-bar--color-warning: var(
-    --theme-color-warning,
+    --theme-si-sys-text-warning,
     #{$message-bar-color-warning-fallback}
   );
   --ix-message-bar--color-success: var(
-    --theme-color-success,
+    --theme-si-sys-text-success,
     #{$message-bar-color-success-fallback}
   );
   --ix-message-bar--color-info: var(
-    --theme-color-info,
+    --theme-si-sys-text-information,
     #{$message-bar-color-info-fallback}
   );
   --ix-message-bar--color-neutral: var(
-    --theme-color-neutral,
+    --theme-si-sys-text-secondary,
     #{$message-bar-color-neutral-fallback}
   );
   --ix-message-bar--color-primary: var(
-    --theme-color-primary,
+    --theme-si-sys-text-accent,
     #{$message-bar-color-primary-fallback}
   );
   --ix-message-bar--border-radius: var(--theme-default-border-radius, 0.25rem);

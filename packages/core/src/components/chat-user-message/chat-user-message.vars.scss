@@ -16,11 +16,11 @@ $chat-user-message-color-fallback: light-dark(#000609, #ffffff);
     #{$chat-user-message-background-fallback}
   );
   --ix-chat-user-message--color: var(
-    --theme-color-std-text,
+    --theme-si-sys-text-primary,
     #{$chat-user-message-color-fallback}
   );
   --ix-chat-user-message--color-focus-bdr: var(
-    --theme-color-focus-bdr,
+    --theme-si-sys-effects-focus,
     #199fff
   );
 }
