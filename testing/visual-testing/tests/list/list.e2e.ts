@@ -23,4 +23,29 @@ regressionTest.describe('list', () => {
     await firstItem.hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('dragging', async ({ page }) => {
+    await page.goto('list/basic');
+    const items = page.locator('ix-list-item');
+    const gripperBounds = await items
+      .first()
+      .locator('.drag-gripper')
+      .boundingBox();
+    const targetBounds = await items.nth(2).boundingBox();
+
+    expect(gripperBounds).not.toBeNull();
+    expect(targetBounds).not.toBeNull();
+    await page.mouse.move(
+      gripperBounds!.x + gripperBounds!.width / 2,
+      gripperBounds!.y + gripperBounds!.height / 2
+    );
+    await page.mouse.down();
+    await page.mouse.move(
+      targetBounds!.x + targetBounds!.width / 2,
+      targetBounds!.y + targetBounds!.height / 2
+    );
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.mouse.up();
+  });
 });

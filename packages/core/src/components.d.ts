@@ -41,7 +41,7 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-import { ListItemGap } from "./components/list/list";
+import { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 import { ListItemVariant } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
@@ -98,7 +98,7 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-export { ListItemGap } from "./components/list/list";
+export { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 export { ListItemVariant } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
@@ -2393,6 +2393,12 @@ export namespace Components {
      * @since 5.2.0
      */
     interface IxList {
+        /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 5.2.0
+          * @default false
+         */
+        "draggable": boolean;
         /**
           * Display dividers between direct list items.
           * @since 5.2.0
@@ -4915,6 +4921,10 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
+export interface IxListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListElement;
+}
 export interface IxListItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxListItemElement;
@@ -5764,10 +5774,21 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxListElementEventMap {
+        "itemOrderChange": ListItemOrderChangeEvent;
+    }
     /**
      * @since 5.2.0
      */
     interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxListElement: {
         prototype: HTMLIxListElement;
@@ -9195,6 +9216,12 @@ declare namespace LocalJSX {
      */
     interface IxList {
         /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 5.2.0
+          * @default false
+         */
+        "draggable"?: boolean;
+        /**
           * Display dividers between direct list items.
           * @since 5.2.0
           * @default false
@@ -9206,6 +9233,11 @@ declare namespace LocalJSX {
           * @default 12
          */
         "itemGap"?: ListItemGap;
+        /**
+          * Emitted after a list item has been reordered.
+          * @since 5.2.0
+         */
+        "onItemOrderChange"?: (event: IxListCustomEvent<ListItemOrderChangeEvent>) => void;
     }
     /**
      * @since 5.2.0
@@ -12308,6 +12340,7 @@ declare namespace LocalJSX {
     interface IxListAttributes {
         "hasDivider": boolean;
         "itemGap": ListItemGap;
+        "draggable": boolean;
     }
     interface IxListItemAttributes {
         "variant": ListItemVariant;

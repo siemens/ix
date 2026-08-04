@@ -1665,17 +1665,19 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxList,
-  inputs: ['hasDivider', 'itemGap']
+  inputs: ['draggable', 'hasDivider', 'itemGap']
 })
 @Component({
   selector: 'ix-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasDivider', 'itemGap'],
+  inputs: ['draggable', 'hasDivider', 'itemGap'],
+  outputs: ['itemOrderChange'],
 })
 export class IxList {
   protected el: HTMLIxListElement;
+  @Output() itemOrderChange = new EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1683,7 +1685,14 @@ export class IxList {
 }
 
 
-export declare interface IxList extends Components.IxList {}
+import type { ListItemOrderChangeEvent as IIxListListItemOrderChangeEvent } from '@siemens/ix/components';
+
+export declare interface IxList extends Components.IxList {
+  /**
+   * Emitted after a list item has been reordered. @since 5.2.0
+   */
+  itemOrderChange: EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>;
+}
 
 
 @ProxyCmp({

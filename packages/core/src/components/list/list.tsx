@@ -7,10 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 export type ListItemGap = 0 | 4 | 8 | 12;
+
+export interface ListItemOrderChangeEvent {
+  item: HTMLIxListItemElement;
+  oldIndex: number;
+  newIndex: number;
+}
 
 const actionFocusableSelector = [
   'button',
@@ -53,7 +68,27 @@ export class List {
    */
   @Prop() itemGap: ListItemGap = 12;
 
+  /**
+   * Enable drag-and-drop reordering of direct list items.
+   * @since 5.2.0
+   */
+  // eslint-disable-next-line @stencil-community/reserved-member-names -- Public API intentionally follows the native draggable name.
+  @Prop({ reflect: true }) draggable = false;
+
+  /**
+   * Emitted after a list item has been reordered.
+   * @since 5.2.0
+   */
+  @Event() itemOrderChange!: EventEmitter<ListItemOrderChangeEvent>;
+
   private activeItem?: HTMLIxListItemElement;
+  private draggedItem?: HTMLIxListItemElement;
+  private dragMode?: 'keyboard' | 'pointer';
+  private dragOriginalIndex = -1;
+  private dragOriginalNextSibling: ChildNode | null = null;
+  private dragPlaceholder?: HTMLDivElement;
+  private dragPointerId?: number;
+  private dragStartY = 0;
   private readonly originalActionTabIndex = new WeakMap<HTMLElement, string>();
   private readonly mutationObserver = createMutationObserver(() =>
     this.synchronizeItems()
@@ -71,6 +106,14 @@ export class List {
 
   disconnectedCallback() {
     this.mutationObserver.disconnect();
+  }
+
+  @Watch('draggable')
+  protected draggableChanged() {
+    if (!this.draggable && this.draggedItem) {
+      this.cancelReorder();
+    }
+    this.synchronizeItems();
   }
 
   private get items() {
@@ -97,6 +140,18 @@ export class List {
 
   private getPrimaryAction(item: HTMLIxListItemElement) {
     return item.shadowRoot?.querySelector<HTMLButtonElement>('.primary-action');
+  }
+
+  private getDragGripper(item: HTMLIxListItemElement) {
+    return item.shadowRoot?.querySelector<HTMLButtonElement>('.drag-gripper');
+  }
+
+  private announce(item: HTMLIxListItemElement, message: string) {
+    const announcement =
+      item.shadowRoot?.querySelector<HTMLElement>('.drag-announcement');
+    if (announcement) {
+      announcement.textContent = message;
+    }
   }
 
   private getActionElements(item: HTMLIxListItemElement) {
@@ -150,9 +205,232 @@ export class List {
     this.items.forEach((item) => {
       const isActive =
         item === this.activeItem && !item.disabled && !item.hidden;
+      item.toggleAttribute('data-list-draggable', this.draggable);
       item.tabIndex = isActive ? 0 : -1;
+      const primaryAction = this.getPrimaryAction(item);
+      if (primaryAction) {
+        primaryAction.tabIndex = isActive ? 0 : -1;
+      }
+      const gripper = this.getDragGripper(item);
+      if (gripper) {
+        gripper.disabled = Boolean(
+          !this.draggable || item.disabled || item.hidden
+        );
+      }
       this.setActionTabOrder(item, isActive);
     });
+  }
+
+  private getItemLabel(item: HTMLIxListItemElement) {
+    return item.label || 'List item';
+  }
+
+  private announcePosition(item: HTMLIxListItemElement) {
+    const position = this.items.indexOf(item) + 1;
+    this.announce(
+      item,
+      `${this.getItemLabel(item)}, position ${position} of ${this.items.length}`
+    );
+  }
+
+  private beginReorder(
+    item: HTMLIxListItemElement,
+    mode: 'keyboard' | 'pointer'
+  ) {
+    if (!this.draggable || item.disabled || item.hidden || this.draggedItem) {
+      return false;
+    }
+
+    this.draggedItem = item;
+    this.dragMode = mode;
+    this.dragOriginalIndex = this.items.indexOf(item);
+    this.dragOriginalNextSibling = item.nextSibling;
+    item.classList.add('dragging');
+    this.getDragGripper(item)?.setAttribute('aria-pressed', 'true');
+    this.announce(
+      item,
+      `${this.getItemLabel(
+        item
+      )} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.`
+    );
+    return true;
+  }
+
+  private createDragPlaceholder(item: HTMLIxListItemElement) {
+    const itemBounds = item.getBoundingClientRect();
+    const placeholder = document.createElement('div');
+    placeholder.className = 'ix-list-drag-placeholder';
+    placeholder.setAttribute('aria-hidden', 'true');
+    placeholder.style.height = `${itemBounds.height}px`;
+    this.hostElement.insertBefore(placeholder, item);
+    this.dragPlaceholder = placeholder;
+
+    item.style.setProperty('--ix-list-drag-left', `${itemBounds.left}px`);
+    item.style.setProperty('--ix-list-drag-top', `${itemBounds.top}px`);
+    item.style.setProperty('--ix-list-drag-width', `${itemBounds.width}px`);
+    item.classList.add('pointer-dragging');
+  }
+
+  private movePlaceholder(clientY: number) {
+    const item = this.draggedItem;
+    const placeholder = this.dragPlaceholder;
+    if (!item || !placeholder) {
+      return;
+    }
+
+    const candidates = this.items.filter(
+      (candidate) => candidate !== item && !candidate.hidden
+    );
+    const beforeItem = candidates.find((candidate) => {
+      const bounds = candidate.getBoundingClientRect();
+      return clientY < bounds.top + bounds.height / 2;
+    });
+
+    if (beforeItem) {
+      this.hostElement.insertBefore(placeholder, beforeItem);
+    } else {
+      this.hostElement.appendChild(placeholder);
+    }
+  }
+
+  private moveKeyboardItem(item: HTMLIxListItemElement, offset: number) {
+    const items = this.items;
+    const currentIndex = items.indexOf(item);
+    const newIndex = Math.min(
+      Math.max(currentIndex + offset, 0),
+      items.length - 1
+    );
+    const target = items[newIndex];
+
+    if (!target || target === item) {
+      return;
+    }
+
+    if (offset < 0) {
+      this.hostElement.insertBefore(item, target);
+    } else {
+      this.hostElement.insertBefore(item, target.nextSibling);
+    }
+
+    this.activeItem = item;
+    this.synchronizeItems();
+    this.getDragGripper(item)?.focus({ preventScroll: true });
+    item.scrollIntoView({ block: 'nearest' });
+    this.announcePosition(item);
+  }
+
+  private cleanupReorder() {
+    const item = this.draggedItem;
+    if (item) {
+      item.classList.remove('dragging', 'pointer-dragging');
+      this.getDragGripper(item)?.setAttribute('aria-pressed', 'false');
+      item.style.removeProperty('--ix-list-drag-left');
+      item.style.removeProperty('--ix-list-drag-top');
+      item.style.removeProperty('--ix-list-drag-width');
+      item.style.removeProperty('--ix-list-drag-y');
+    }
+    this.dragPlaceholder?.remove();
+    this.draggedItem = undefined;
+    this.dragMode = undefined;
+    this.dragPlaceholder = undefined;
+    this.dragPointerId = undefined;
+  }
+
+  private finishReorder() {
+    const item = this.draggedItem;
+    if (!item) {
+      return;
+    }
+
+    if (this.dragPlaceholder) {
+      this.hostElement.insertBefore(item, this.dragPlaceholder);
+    }
+
+    const oldIndex = this.dragOriginalIndex;
+    const newIndex = this.items.indexOf(item);
+    this.cleanupReorder();
+    this.activeItem = item;
+    this.synchronizeItems();
+    this.getDragGripper(item)?.focus({ preventScroll: true });
+
+    if (oldIndex !== newIndex) {
+      this.itemOrderChange.emit({ item, oldIndex, newIndex });
+    }
+    this.announce(
+      item,
+      `${this.getItemLabel(item)} dropped at position ${newIndex + 1} of ${
+        this.items.length
+      }.`
+    );
+  }
+
+  private cancelReorder() {
+    const item = this.draggedItem;
+    if (!item) {
+      return;
+    }
+
+    const nextSibling = this.dragOriginalNextSibling;
+    if (nextSibling?.parentNode === this.hostElement) {
+      this.hostElement.insertBefore(item, nextSibling);
+    } else {
+      this.hostElement.appendChild(item);
+    }
+
+    this.cleanupReorder();
+    this.activeItem = item;
+    this.synchronizeItems();
+    this.getDragGripper(item)?.focus({ preventScroll: true });
+    this.announce(item, `${this.getItemLabel(item)} reorder cancelled.`);
+  }
+
+  private handlePointerDown(event: PointerEvent) {
+    const gripper = event
+      .composedPath()
+      .find(
+        (element): element is HTMLButtonElement =>
+          element instanceof HTMLButtonElement &&
+          element.classList.contains('drag-gripper')
+      );
+    const item = this.getItemFromEvent(event);
+    if (!gripper || !item || event.button !== 0) {
+      return;
+    }
+
+    if (!this.beginReorder(item, 'pointer')) {
+      return;
+    }
+
+    event.preventDefault();
+    this.dragPointerId = event.pointerId;
+    this.dragStartY = event.clientY;
+    this.createDragPlaceholder(item);
+    gripper.setPointerCapture(event.pointerId);
+  }
+
+  private handlePointerMove(event: PointerEvent) {
+    const item = this.draggedItem;
+    if (
+      !item ||
+      this.dragMode !== 'pointer' ||
+      event.pointerId !== this.dragPointerId
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    item.style.setProperty(
+      '--ix-list-drag-y',
+      `${event.clientY - this.dragStartY}px`
+    );
+    this.movePlaceholder(event.clientY);
+  }
+
+  private handlePointerEnd(event: PointerEvent) {
+    if (this.dragMode !== 'pointer' || event.pointerId !== this.dragPointerId) {
+      return;
+    }
+    this.finishReorder();
   }
 
   private focusItem(item: HTMLIxListItemElement) {
@@ -194,12 +472,55 @@ export class List {
 
     const eventPath = event.composedPath();
     const primaryAction = this.getPrimaryAction(item);
+    const dragGripper = this.getDragGripper(item);
+    const isDragGripper = !!dragGripper && eventPath.includes(dragGripper);
     const actionElements = this.getActionElements(item);
     const actionIndex = actionElements.findIndex((element) =>
       eventPath.includes(element)
     );
     const isPrimaryAction =
       !!primaryAction && eventPath.includes(primaryAction);
+
+    if (isDragGripper) {
+      if (this.draggedItem === item && this.dragMode === 'keyboard') {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          this.moveKeyboardItem(item, event.key === 'ArrowDown' ? 1 : -1);
+          return;
+        }
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          this.finishReorder();
+          return;
+        }
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          this.cancelReorder();
+          return;
+        }
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.beginReorder(item, 'keyboard');
+        return;
+      }
+
+      if (event.key === 'ArrowRight' || event.key === 'Tab') {
+        event.preventDefault();
+        primaryAction?.focus();
+      }
+      return;
+    }
+
+    if (
+      isPrimaryAction &&
+      event.key === 'ArrowLeft' &&
+      this.draggable &&
+      !dragGripper?.disabled
+    ) {
+      event.preventDefault();
+      dragGripper?.focus();
+      return;
+    }
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
@@ -278,8 +599,14 @@ export class List {
         role="list"
         onFocusin={(event: FocusEvent) => this.handleFocusIn(event)}
         onKeydown={(event: KeyboardEvent) => this.handleKeyDown(event)}
+        onPointerDown={(event: PointerEvent) => this.handlePointerDown(event)}
+        onPointerMove={(event: PointerEvent) => this.handlePointerMove(event)}
+        onPointerUp={(event: PointerEvent) => this.handlePointerEnd(event)}
+        onPointerCancel={() => this.cancelReorder()}
+        onDragStart={(event: DragEvent) => event.preventDefault()}
         class={{
           'has-divider': this.hasDivider,
+          draggable: this.draggable,
         }}
         style={{
           '--ix-list-item-gap': `${this.itemGap}px`,

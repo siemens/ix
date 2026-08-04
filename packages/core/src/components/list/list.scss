@@ -17,6 +17,31 @@
   overflow-y: auto;
 }
 
+::slotted(.ix-list-drag-placeholder) {
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+::slotted(ix-list-item.pointer-dragging) {
+  position: fixed;
+  z-index: 1;
+  top: var(--ix-list-drag-top);
+  left: var(--ix-list-drag-left);
+  width: var(--ix-list-drag-width);
+  box-shadow: var(--theme-shadow-1);
+  cursor: grabbing;
+  pointer-events: none;
+  transform: translateY(var(--ix-list-drag-y, 0));
+}
+
+:host(.has-divider) ::slotted(.ix-list-drag-placeholder) {
+  height: 0.25rem !important;
+  border-top: 1px solid var(--theme-color-std-bdr);
+  border-radius: 0;
+}
+
 :host(.has-divider) ::slotted(ix-list-item:not(:last-of-type)) {
   --ix-list-item-divider-color: var(--theme-color-soft-bdr);
   --ix-list-item-bottom-radius: 0;

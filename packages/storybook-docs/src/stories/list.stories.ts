@@ -31,7 +31,7 @@ const meta = {
   title: 'Example/List',
   tags: [],
   render: (args) => {
-    const list = genericRender('ix-list', args) as HTMLIxListElement;
+    const list = genericRender('ix-list', args) as unknown as HTMLIxListElement;
     list.setAttribute('aria-label', 'Projects');
 
     const firstItem = createItem('Factory overview', {
@@ -77,6 +77,23 @@ export const Spaced: Story = {
   args: {
     hasDivider: false,
     itemGap: 8,
+  },
+};
+
+export const Draggable: Story = {
+  render: (args) => {
+    const list = meta.render(args);
+    list.addEventListener('itemOrderChange', () => {
+      list.dataset.order = Array.from(list.querySelectorAll('ix-list-item'))
+        .map((item) => item.label)
+        .join(',');
+    });
+    return list;
+  },
+  args: {
+    draggable: true,
+    hasDivider: false,
+    itemGap: 4,
   },
 };
 

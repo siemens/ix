@@ -39,6 +39,27 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'focuses the primary action with the keyboard',
+  async ({ mount, page }) => {
+    await mount(`
+    <div>
+      <button id="before-list-item">Before list item</button>
+      <ix-list-item label="Project Alpha"></ix-list-item>
+    </div>
+  `);
+
+    const item = page.locator('ix-list-item');
+    const primaryAction = item.locator('.primary-action');
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(primaryAction).toHaveAttribute('tabindex', '0');
+    await page.locator('#before-list-item').focus();
+    await page.keyboard.press('Tab');
+
+    await expect(primaryAction).toBeFocused();
+  }
+);
+
+regressionTest(
   'renders standard content and custom content',
   async ({ mount, page }) => {
     await mount(`

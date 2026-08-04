@@ -18,6 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { iconDragGripper } from '@siemens/ix-icons/icons';
 import { A11yAttributeName, a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -143,6 +144,10 @@ export class ListItem
     if (!this.hostElement.hasAttribute('tabindex')) {
       this.hostElement.tabIndex = 0;
     }
+    const primaryAction = this.primaryActionRef.current;
+    if (primaryAction) {
+      primaryAction.tabIndex = this.disabled ? -1 : this.hostElement.tabIndex;
+    }
   }
 
   private activateItem() {
@@ -223,6 +228,18 @@ export class ListItem
       >
         <div class="item-surface">
           <button
+            class="drag-gripper"
+            type="button"
+            tabindex={-1}
+            disabled={this.disabled}
+            aria-pressed="false"
+            aria-label={
+              this.label ? `Reorder ${this.label}` : 'Reorder list item'
+            }
+          >
+            <ix-icon name={iconDragGripper} aria-hidden="true"></ix-icon>
+          </button>
+          <button
             {...this.inheritAriaAttributes}
             ref={this.primaryActionRef}
             class="primary-action"
@@ -260,6 +277,7 @@ export class ListItem
             {tooltip}
           </ix-tooltip>
         ) : null}
+        <div class="drag-announcement" aria-live="polite" aria-atomic="true" />
       </Host>
     );
   }
