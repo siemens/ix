@@ -120,6 +120,50 @@ regressionTest.describe('embedded into header', () => {
     }
   );
 
+  regressionTest(
+    'should apply no-truncate class when wrapUsername is true',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
+  regressionTest(
+    'should not apply no-truncate class when wrapUsername is false',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo">
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).not.toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
   regressionTest('should show no tooltip', async ({ page, mount }) => {
     await mount(`<ix-avatar aria-label-tooltip="myTooltip"></ix-avatar>`);
 
