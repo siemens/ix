@@ -1,0 +1,57 @@
+{
+  "name": "@siemens/ix-vue",
+  "homepage": "https://ix.siemens.io",
+  "author": "Siemens AG",
+  "license": "MIT",
+  "version": "5.1.1",
+  "description": "Siemens iX for Vue",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "READMEOSS.html",
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm clean && vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist",
+    "clean": "rimraf dist",
+    "lint": "eslint src --ext .ts",
+    "test.setup": "playwright install chromium --with-deps",
+    "test": "vitest --config=vitest.config.ts run",
+    "test.watch": "vitest --config=vitest.config.ts"
+  },
+  "dependencies": {
+    "@siemens/ix": "~5.1.1",
+    "@stencil/vue-output-target": "^0.13.2"
+  },
+  "devDependencies": {
+    "@siemens/ix": "workspace:*",
+    "@testing-library/vue": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitest/browser": "^3.2.4",
+    "eslint": "catalog:",
+    "eslint-config-ix": "workspace:*",
+    "eslint-plugin-vue": "^9.27.0",
+    "playwright": "^1.57.0",
+    "rimraf": "catalog:",
+    "typescript": "^5.8.3",
+    "vite": "catalog:",
+    "vitest": "^3.2.4",
+    "vue": "^3.4.34",
+    "vue-tsc": "^2.2.10"
+  },
+  "peerDependencies": {
+    "@siemens/ix-icons": "^3.4.0",
+    "vue": ">=3.2.45"
+  }
+}

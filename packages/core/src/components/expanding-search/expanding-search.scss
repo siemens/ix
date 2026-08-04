@@ -1,0 +1,138 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'misc/common-variables' as vars;
+@use 'legacy/components/forms';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+
+$container-width: 11.5625rem;
+
+:host {
+  display: inline-flex;
+  width: auto;
+  height: vars.$x-large-space;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  @include component.ix-component;
+
+  .input-container {
+    transition: all var(--theme-medium-time) ease-in-out;
+  }
+
+  input {
+    box-shadow: var(--theme-input--box-shadow);
+    cursor: auto !important;
+    width: 100%;
+  }
+
+  .expanded {
+    width: $container-width;
+
+    &.fullWidth {
+      width: 100%;
+    }
+  }
+
+  .collapsed {
+    width: vars.$large-space;
+    border: none;
+  }
+
+  /*collapsed view*/
+  .btn-search-icon {
+    align-self: center;
+    margin: auto;
+    position: relative;
+  }
+
+  .btn-search {
+    display: flex;
+    max-width: vars.$x-large-space;
+    max-height: vars.$x-large-space;
+    border-radius: var(--theme-input--border-radius);
+    transition: all var(--theme-default-time) ease-in-out;
+    z-index: 1;
+    align-items: center;
+    position: relative;
+    border: none;
+
+    @include hover.hover {
+      border-color: transparent;
+    }
+
+    @include hover.active {
+      border-color: transparent;
+    }
+
+    @include hover.focus {
+      outline: none;
+    }
+
+    @include hover.focus-visible {
+      outline: var(--focus--border-color);
+      outline-width: 1px;
+      outline-style: solid;
+    }
+  }
+
+  .btn-search.btn-search--expanded {
+    margin-left: 0.25rem;
+    pointer-events: none;
+  }
+
+  .btn-search:active {
+    width: vars.$x-large-space;
+    height: vars.$x-large-space;
+    border-radius: var(--theme-input--border-radius);
+    border: var(--theme-std-bdr-1) !important;
+  }
+
+  /*expanded view*/
+  .input-container {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .btn-clear {
+    position: absolute;
+    border-radius: var(--theme-input--border-radius);
+    right: 0px;
+    margin-right: 0.25rem;
+  }
+
+  .input {
+    padding-left: vars.$x-large-space !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .opacity-before {
+    opacity: 0;
+  }
+
+  .opacity-after {
+    opacity: 1;
+  }
+}
+
+:host(.right-position) {
+  width: $container-width !important;
+}
+
+:host(.right-position.fullWidth) {
+  width: 100% !important;
+
+  .fullWidth {
+    width: 100% !important;
+  }
+}

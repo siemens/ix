@@ -1,0 +1,95 @@
+@use 'misc/common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+
+:host {
+  @include component.ix-component;
+
+  .label__subHeader {
+    color: var(--theme-color-soft-text);
+  }
+}
+
+:host(.emptyState.emptyState--large) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: vars.$default-space;
+
+  .emptyState__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ix-icon {
+      transform: scale(1.75);
+    }
+  }
+
+  .emptyState__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: vars.$large-space;
+
+    .content__label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: vars.$small-space;
+    }
+  }
+
+  .label__subHeader,
+  ix-typography {
+    text-align: center;
+  }
+}
+
+:host(.emptyState.emptyState--compact) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: vars.$default-space;
+
+  .emptyState__icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: vars.$large-control-height;
+  }
+
+  .emptyState__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: vars.$default-space;
+  }
+}
+
+:host(.emptyState.emptyState--compactBreak) {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: vars.$default-space;
+
+  .emptyState__icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: vars.$large-control-height;
+  }
+
+  .emptyState__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: vars.$small-space;
+  }
+}

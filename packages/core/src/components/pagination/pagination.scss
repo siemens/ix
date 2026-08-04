@@ -1,0 +1,70 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'legacy/components/forms';
+@use '../icon-button/icon-button';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  @include component.ix-component;
+
+  &,
+  .advanced-pagination,
+  .item-count {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .basic-pagination {
+    padding: 0 0.125rem;
+  }
+
+  .advanced-pagination {
+    padding: 0 vars.$medium-space;
+  }
+
+  .page-selection {
+    width: 4.125rem;
+    text-align: center;
+    margin: 0 vars.$small-space;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+  }
+
+  .page-buttons {
+    white-space: nowrap;
+  }
+
+  .total-count {
+    white-space: nowrap;
+  }
+
+  .item-count {
+    flex-grow: 1;
+    justify-content: flex-end;
+    margin-inline-start: vars.$large-space;
+
+    ix-select {
+      width: 4.5rem;
+      margin-inline-start: vars.$large-space;
+    }
+  }
+
+  button {
+    width: auto;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  button + button {
+    margin-inline-start: 0.125rem;
+  }
+}

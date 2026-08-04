@@ -1,0 +1,24 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline-start: vars.$large-space;
+  margin-inline-end: vars.$large-space;
+  margin-block-end: vars.$tiny-space;
+
+  slot::slotted(*) {
+    display: flex;
+    margin-inline-end: 0.625rem;
+  }
+}

@@ -1,0 +1,65 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  justify-content: flex-start;
+  height: 2.5rem;
+  align-items: center;
+  background-color: transparent;
+
+  @include component.ix-component;
+
+  .previous-button {
+    width: auto;
+    min-width: 0px;
+    margin-right: 0.25rem;
+  }
+
+  .crumb-dropdown {
+    overflow: visible;
+  }
+
+  .remove-anchor::after {
+    display: none;
+  }
+
+  .more-text {
+    display: flex;
+
+    .more-text-ellipsis {
+      width: 1rem;
+      display: inline-block;
+      font-weight: vars.$font-weight-bold;
+    }
+
+    ix-icon {
+      // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
+      // using padding-top to achieve same position as before
+      padding-top: 2px;
+    }
+  }
+
+  nav,
+  ol,
+  .crumb-items {
+    display: contents;
+  }
+
+  .chevron {
+    margin-left: 0.5rem;
+    margin-right: 0rem;
+    color: var(--theme-color-soft-text);
+  }
+}

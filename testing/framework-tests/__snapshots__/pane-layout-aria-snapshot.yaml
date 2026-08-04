@@ -1,0 +1,14 @@
+- complementary:
+  - button "Double Chevron Down"
+  - text: Pane Top
+- complementary:
+  - button "Double Chevron Right"
+  - text: Pane Left
+- button "Toggle Variant"
+- button "Toggle Layout"
+- complementary:
+  - button "Double Chevron Left"
+  - text: Pane Right
+- complementary:
+  - button "Double Chevron Up"
+  - text: Pane Bottom

@@ -1,0 +1,113 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.ag-radio-button {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  margin: 0 0.25rem;
+}
+
+.ag-radio-button-input-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.ag-radio-button-input {
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  min-width: 1.125rem;
+  max-width: 1.125rem;
+  min-height: 1.125rem;
+  max-height: 1.125rem;
+  margin: 0;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+
+  background-color: var(--theme-radiobtn-unchecked--background);
+  border: var(--theme-radiobtn--border-thickness, 1px) solid
+    var(--theme-radiobtn-unchecked--border-color);
+}
+
+.ag-radio-button-input:hover {
+  background-color: var(--theme-radiobtn-unchecked--background--hover);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-unchecked--border-color--hover);
+}
+
+.ag-radio-button-input:active {
+  background-color: var(--theme-radiobtn-unchecked--background--active);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-unchecked--border-color--active);
+}
+
+.ag-radio-button-input:checked,
+.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input {
+  background-color: var(--theme-radiobtn-checked--background);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-checked--border-color);
+}
+
+.ag-radio-button-input:checked:hover,
+.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:hover {
+  background-color: var(--theme-radiobtn-checked--background--hover);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-checked--border-color--hover);
+}
+
+.ag-radio-button-input:checked:active,
+.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:active {
+  background-color: var(--theme-radiobtn-checked--background--active);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-checked--border-color--active);
+}
+
+.ag-radio-button-input:checked::after,
+.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100px;
+  background-color: var(--theme-color-primary--contrast);
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.ag-radio-button-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--theme-radiobtn-unchecked--background--disabled);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-unchecked--border-color--disabled);
+}
+
+.ag-radio-button-input:checked:disabled,
+.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:disabled {
+  background-color: var(--theme-radiobtn-checked--background--disabled);
+  border: var(--theme-radiobtn--border-thickness) solid
+    var(--theme-radiobtn-checked--border-color--disabled);
+}
+
+.ag-radio-button-input:focus-visible {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-radiobtn--focus--outline-offset);
+}
+
+.ag-filter-condition {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}

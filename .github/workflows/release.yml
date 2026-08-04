@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  release:
+    if: ${{ github.repository == 'siemens/ix' }}
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --force
+
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@^11.8.0 --no-man
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          publish: pnpm ci:publish
+          version: pnpm ci:version

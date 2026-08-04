@@ -1,0 +1,31 @@
+- main:
+  - button "Primary"
+  - button "Close chip"
+  - button "Alarm"
+  - button "Close chip"
+  - button "Critical"
+  - button "Warning"
+  - group:
+    - button "In review": Info
+    - tooltip "Open details for this status"
+  - button "Success"
+  - button "Neutral"
+  - button "Custom"
+  - button "Close chip"
+  - button "Chip with icon"
+  - button "Close chip"
+  - button "Primary"
+  - button "Close chip"
+  - button "Alarm"
+  - button "Close chip"
+  - button "Critical"
+  - button "Warning"
+  - group:
+    - button "In review": Info
+    - tooltip "Open details for this status"
+  - button "Success"
+  - button "Neutral"
+  - button "Custom"
+  - button "Close chip"
+  - button "Chip without icon"
+  - button "Close chip"

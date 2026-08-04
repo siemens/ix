@@ -1,0 +1,7 @@
+- img
+- text: Custom filter text
+- button "Close Small"
+- text: Vendor != IBM
+- button "Close Small"
+- textbox "Filter by"
+- button "Clear"

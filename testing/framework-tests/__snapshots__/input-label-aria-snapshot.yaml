@@ -1,0 +1,3 @@
+- text: Some label
+- textbox "Some placeholder": Some example text
+- text: Some helper text

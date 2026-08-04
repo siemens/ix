@@ -1,0 +1,122 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+
+@mixin tab-border($position) {
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--theme-tab-indicator--background);
+    width: 100%;
+    height: var(--theme-tab-indicator--height);
+    left: 0;
+    bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--theme-tab-indicator--background--selected);
+    width: var(--ix-tab-active-indicator-width);
+    height: var(--theme-tab-indicator--height);
+    left: 0;
+    bottom: 0;
+    transform: translateX(var(--ix-tab-active-indicator-offset));
+  }
+
+  @if $position == 'top' {
+    &::before,
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+  } @else if $position == 'bottom' {
+    &::before,
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
+
+:host {
+  width: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  @include component.ix-component;
+
+  .tabs-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    &.top {
+      @include tab-border('top');
+    }
+
+    &.bottom {
+      @include tab-border('bottom');
+    }
+  }
+
+  .tabs {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    touch-action: pan-y;
+
+    padding-right: 2.75rem;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tabs.tabs-stretched {
+    padding-right: 0px;
+  }
+
+  .tabs:focus-visible {
+    outline-offset: -1px;
+    outline: 1px solid var(--theme-color-focus-bdr);
+  }
+
+  .tabs-context-menu {
+    margin-right: 0.5rem;
+  }
+
+  .overflow-shadow-container {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
+    overflow: auto;
+  }
+
+  .overflow-shadow {
+    mask-image: linear-gradient(
+      90deg,
+      black calc(100% - 45px),
+      transparent 100%
+    );
+  }
+}

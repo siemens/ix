@@ -1,0 +1,34 @@
+- heading "Status - Default" [level=2]
+- text: Download
+- img
+- text: /\d+% This is a help text for the progress indicator/
+- heading "Status - Success" [level=2]
+- text: Download
+- img
+- text: /\d+%/
+- img
+- text: This is a help text for the progress indicator
+- heading "Status - Error" [level=2]
+- text: Download
+- img
+- text: /\d+%/
+- img
+- text: This is a help text for the progress indicator
+- heading "Status - Info" [level=2]
+- text: Download
+- img
+- text: /\d+%/
+- img
+- text: This is a help text for the progress indicator
+- heading "Status - Warning" [level=2]
+- text: Download
+- img
+- text: /\d+%/
+- img
+- text: This is a help text for the progress indicator
+- heading "Status - Paused" [level=2]
+- text: Download
+- img
+- text: /\d+%/
+- img
+- text: This is a help text for the progress indicator

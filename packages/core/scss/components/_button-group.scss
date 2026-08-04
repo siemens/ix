@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.ix-button-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  ix-button:first-child {
+    --ix-button-border-radius-right: 0;
+  }
+
+  ix-button:last-child {
+    --ix-button-border-radius-left: 0;
+  }
+
+  ix-button:not(:first-child):not(:last-child) {
+    --ix-button-border-radius-right: 0;
+    --ix-button-border-radius-left: 0;
+  }
+}

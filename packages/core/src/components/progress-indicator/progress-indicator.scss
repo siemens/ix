@@ -1,0 +1,156 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use './linear' as linear;
+@use './circular' as circular;
+@use './progress-indicator-vars' as progress-vars;
+
+:host {
+  display: block;
+  position: relative;
+  width: 24rem;
+  height: fit-content;
+
+  .progress-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .label {
+    margin: 0.5rem 0 0.25rem 0;
+  }
+
+  .helper-text {
+    display: flex;
+    align-items: center;
+    margin: 0.25rem 0px;
+    gap: 0.25rem;
+    color: var(--theme-progress-indicator-helper--color);
+
+    ix-icon {
+      margin: 0.125rem;
+      color: var(--theme-progress-indicator-helper-icon--color);
+    }
+
+    @each $state in progress-vars.$progress-indicator-states {
+      &.#{$state} {
+        color: var(--theme-progress-indicator-helper-#{$state}--color);
+
+        ix-icon {
+          color: var(--theme-progress-indicator-helper-icon-#{$state}--color);
+        }
+      }
+    }
+
+    .text {
+      &.align-left {
+        text-align: start;
+      }
+
+      &.align-right {
+        text-align: end;
+      }
+
+      &.align-center {
+        text-align: center;
+      }
+    }
+  }
+
+  .progress-indicator {
+    display: flex;
+    flex-direction: column;
+
+    &.text-center {
+      align-items: center;
+    }
+
+    &.text-left {
+      align-items: flex-start;
+    }
+
+    &.text-right {
+      align-items: flex-end;
+    }
+
+    --ix-progress-indicator-margin: 0.5rem 0;
+
+    height: 100%;
+
+    &.xs {
+      --ix-progress-indicator-height: 0.125rem;
+      --ix-progress-indicator-margin: 0.25rem 0;
+    }
+
+    &.sm {
+      --ix-progress-indicator-height: 0.25rem;
+      --ix-progress-indicator-margin: 0.375rem 0;
+    }
+
+    &.md {
+      --ix-progress-indicator-height: 0.5rem;
+    }
+
+    &.lg {
+      --ix-progress-indicator-height: 1rem;
+    }
+
+    &.xl {
+      --ix-progress-indicator-height: 1.5rem;
+    }
+
+    --ix-progress-indicator-color: var(
+      --theme-progress-indicator-fill--background
+    );
+
+    @each $state in progress-vars.$progress-indicator-states {
+      &.#{$state} {
+        --ix-progress-indicator-color: var(
+          --theme-progress-indicator-fill-#{$state}--background
+        );
+      }
+    }
+  }
+}
+
+:host(.linear) {
+  .progress-indicator {
+    &.xs {
+      --ix-progress-indicator-height: 0.125rem;
+    }
+
+    &.sm {
+      --ix-progress-indicator-height: 0.25rem;
+    }
+
+    &.md {
+      --ix-progress-indicator-height: 0.5rem;
+    }
+
+    &.lg {
+      --ix-progress-indicator-height: 1rem;
+    }
+
+    &.xl {
+      --ix-progress-indicator-height: 1.5rem;
+    }
+  }
+
+  @include linear.linear;
+
+  .linear-slot {
+    min-width: 2.25rem;
+  }
+}
+
+:host(.circular) {
+  @include circular.circular;
+}

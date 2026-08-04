@@ -1,0 +1,325 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import {
+  IxFormComponent,
+  IxInputFieldComponent,
+  ValidationResults,
+  shouldSuppressInternalValidation,
+} from '../utils/input';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { convertToRemString } from '../utils/rwd.util';
+import { generateUUID } from '../utils/uuid';
+import { shakeInput } from './input.animation';
+
+export function createIdIfNotExists(
+  element: IxFormComponent,
+  idPrefix: string = 'input'
+) {
+  return element.hasAttribute('id')
+    ? element.getAttribute('id')
+    : `${idPrefix}-${generateUUID()}`;
+}
+
+export function mapValidationResult<T>(
+  ref: IxInputFieldComponent<T>,
+  result: ValidationResults
+) {
+  ref.isInvalid = result.isInvalid || result.isInvalidByRequired;
+  ref.isValid = result.isValid;
+  ref.isInfo = result.isInfo;
+  ref.isWarning = result.isWarning;
+}
+
+export function checkAllowedKeys<T>(
+  comp: IxInputFieldComponent<T>,
+  event: KeyboardEvent
+) {
+  if (comp.allowedCharactersPattern) {
+    const regex = new RegExp(comp.allowedCharactersPattern);
+    if (!regex.test(event.key)) {
+      event.preventDefault();
+      shakeInput(comp.inputRef.current);
+    }
+  }
+}
+
+export async function checkInternalValidity<T>(
+  comp: IxFormComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement
+) {
+  const validityState = input.validity;
+  const currentValidityState = !comp.hostElement.classList.contains(
+    'ix-invalid--validity-invalid'
+  );
+  const newValidityState = validityState.valid;
+
+  if (currentValidityState !== newValidityState) {
+    const eventResult = comp.validityStateChange.emit(validityState);
+    if (eventResult.defaultPrevented) {
+      return;
+    }
+
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      !newValidityState
+    );
+  }
+
+  if (comp.value === null || comp.value === undefined) {
+    return;
+  }
+
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
+    return;
+  }
+
+  const { valid } = validityState;
+  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
+}
+
+export function onInputBlur<T>(
+  comp: IxFormComponent<T>,
+  input?: HTMLInputElement | HTMLTextAreaElement | null
+) {
+  comp.ixBlur.emit();
+
+  if (!input) {
+    throw new Error('Input element is not available');
+  }
+
+  input.setAttribute('data-ix-touched', 'true');
+  checkInternalValidity(comp, input);
+}
+
+export function applyPaddingEnd(
+  inputElement: HTMLElement | null,
+  width: number,
+  options: {
+    slotEnd: boolean;
+    additionalPaddingRight?: string;
+  }
+) {
+  if (!inputElement) {
+    return;
+  }
+
+  const remInPixels = 16;
+  const padding = convertToRemString(width + remInPixels / 2);
+
+  if (options.slotEnd) {
+    inputElement.style.paddingRight = `calc(${padding} + ${
+      options.additionalPaddingRight ?? '0rem'
+    })`;
+  } else {
+    inputElement.style.paddingLeft = padding;
+  }
+}
+
+export function adjustPaddingForStartAndEnd(
+  startElement: HTMLElement | null,
+  endElement: HTMLElement | null,
+  inputElement: HTMLElement | null
+) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (startElement) {
+        const startBoundingRect = startElement.getBoundingClientRect();
+        if (startBoundingRect) {
+          applyPaddingEnd(inputElement, startBoundingRect.width, {
+            slotEnd: false,
+          });
+        }
+      }
+
+      if (endElement) {
+        const endBoundingRect = endElement.getBoundingClientRect();
+        if (endBoundingRect) {
+          applyPaddingEnd(inputElement, endBoundingRect.width, {
+            slotEnd: true,
+          });
+        }
+      }
+    });
+  });
+}
+
+export function getAriaAttributesForInput(
+  component: IxInputFieldComponent
+): A11yAttributes {
+  const inputAria: A11yAttributes = {
+    'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
+    'aria-required': `${a11yBoolean(component.required)}`,
+  };
+
+  if (component.isInvalid && component.invalidText) {
+    inputAria['aria-errormessage'] = component.invalidText;
+  }
+  return inputAria;
+}
+
+export type DisposableChangesAndVisibilityObservers = () => void;
+
+export const addDisposableChangesAndVisibilityObservers = (
+  element: HTMLElement,
+  callback: () => void
+): DisposableChangesAndVisibilityObservers => {
+  const intersectionObserver = observeElementUntilVisible(element, callback);
+  const mutationObserver = createMutationObserver(callback);
+
+  mutationObserver.observe(element, {
+    subtree: true,
+    attributes: true,
+  });
+
+  return () => {
+    intersectionObserver.disconnect();
+    mutationObserver.disconnect();
+  };
+};
+
+function observeElementUntilVisible(
+  hostElement: HTMLElement,
+  updateCallback: () => void
+): IntersectionObserver {
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        updateCallback();
+      }
+    });
+  });
+
+  intersectionObserver.observe(hostElement);
+  return intersectionObserver;
+}
+
+export function handleSubmitOnEnterKeydown(
+  event: KeyboardEvent,
+  suppressSubmitOnEnter: boolean,
+  form: HTMLFormElement | null | undefined
+) {
+  if (suppressSubmitOnEnter || event.key !== 'Enter' || !form) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]'
+  );
+
+  if (submitButton) {
+    form.requestSubmit(submitButton);
+  } else if (form.length === 1) {
+    form.requestSubmit();
+  }
+}
+
+export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
+  comp.initialValue = currentValue;
+}
+
+export function onInputBlurWithChange<T>(
+  comp: IxFormComponent<T> & {
+    initialValue?: T;
+    ixChange: { emit: (value: T) => void };
+  },
+  input?: HTMLInputElement | HTMLTextAreaElement | null,
+  currentValue?: T
+) {
+  onInputBlur(comp, input);
+
+  if (comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue!);
+    comp.initialValue = currentValue;
+  }
+}
+
+export function onEnterKeyChangeEmit<T>(
+  event: KeyboardEvent,
+  comp: { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  currentValue: T
+) {
+  if (event.key === 'Enter' && comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue);
+    comp.initialValue = currentValue;
+  }
+}
+
+export interface PickerValidityStateTracker {
+  lastEmittedPatternMismatch?: boolean;
+  lastEmittedValueMissing?: boolean;
+}
+
+export function createPickerValidityStateTracker(): PickerValidityStateTracker {
+  return {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
+}
+
+export interface PickerValidityContext {
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState: () => Promise<ValidityState>;
+  emit: (state: {
+    patternMismatch: boolean;
+    valueMissing: boolean;
+    invalidReason?: string;
+  }) => void;
+}
+
+export interface PickerInputComponent<T> {
+  validityTracker: PickerValidityStateTracker;
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState(): Promise<ValidityState>;
+  validityStateChange: { emit: (state: T) => void };
+}
+
+export function emitPickerValidityState<T>(component: PickerInputComponent<T>) {
+  return emitPickerValidityStateChangeIfChanged(component.validityTracker, {
+    touched: component.touched,
+    invalidReason: component.invalidReason,
+    getValidityState: () => component.getValidityState(),
+    emit: (state) => component.validityStateChange.emit(state as T),
+  });
+}
+
+export async function emitPickerValidityStateChangeIfChanged(
+  tracker: PickerValidityStateTracker,
+  context: PickerValidityContext
+): Promise<void> {
+  if (!context.touched) {
+    return;
+  }
+
+  const state = await context.getValidityState();
+  const currentPatternMismatch = state.patternMismatch;
+  const currentValueMissing = state.valueMissing;
+
+  if (
+    tracker.lastEmittedPatternMismatch === currentPatternMismatch &&
+    tracker.lastEmittedValueMissing === currentValueMissing
+  ) {
+    return;
+  }
+
+  tracker.lastEmittedPatternMismatch = currentPatternMismatch;
+  tracker.lastEmittedValueMissing = currentValueMissing;
+
+  context.emit({
+    patternMismatch: currentPatternMismatch,
+    valueMissing: currentValueMissing,
+    invalidReason: context.invalidReason,
+  });
+}

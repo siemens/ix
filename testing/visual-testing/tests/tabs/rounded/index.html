@@ -1,0 +1,115 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Rounded top placement with icon prop -->
+    <ix-tabs rounded placement="top" active-tab-key="r-top-1">
+      <ix-tab-item
+        tab-key="r-top-1"
+        icon="success"
+        label="Success"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-2"
+        icon="tree"
+        label="Tree"
+        counter="200"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-3"
+        icon="maintenance"
+        label="Maintenance"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-4"
+        icon="sound-loud"
+        label="Sound"
+        disabled
+        counter="24"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-5"
+        icon="hierarchy"
+        label="Hierarchy"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-top-6"
+        icon="calendar-settings"
+        label="Calendar settings"
+        disabled
+      ></ix-tab-item>
+    </ix-tabs>
+
+    <!-- Rounded bottom placement with icon prop -->
+    <ix-tabs rounded active-tab-key="r-bot-1">
+      <ix-tab-item
+        tab-key="r-bot-1"
+        icon="success"
+        label="Success"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-2"
+        icon="tree"
+        label="Tree"
+        counter="200"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-3"
+        icon="maintenance"
+        label="Maintenance"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-4"
+        icon="sound-loud"
+        label="Sound"
+        disabled
+        counter="24"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-5"
+        icon="hierarchy"
+        label="Hierarchy"
+      ></ix-tab-item>
+      <ix-tab-item
+        tab-key="r-bot-6"
+        icon="calendar-settings"
+        label="Calendar settings"
+        disabled
+      ></ix-tab-item>
+    </ix-tabs>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

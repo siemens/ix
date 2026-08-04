@@ -1,0 +1,120 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
+
+$focusBorderWidth: 1px;
+
+:host {
+  display: flex;
+  min-height: 2.25rem;
+  height: 2.25rem;
+
+  @include component.ix-component;
+
+  > button,
+  > .group-footer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    outline: none;
+    background-color: var(--theme-group-item--background);
+    border: 1px solid transparent;
+    color: var(--theme-color-std-text);
+    cursor: pointer;
+
+    padding-left: 2.5rem;
+
+    &:focus-visible {
+      border: $focusBorderWidth solid var(--theme-color-focus-bdr);
+    }
+
+    &:disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .group-footer {
+    cursor: default;
+    border: none;
+  }
+
+  ix-icon {
+    margin-right: vars.$tiny-space;
+    margin-top: -0.125rem;
+  }
+
+  .group-entry-selection-indicator {
+    position: absolute;
+    left: -#{$focusBorderWidth};
+    height: calc(100% + #{$focusBorderWidth * 2});
+    width: vars.$tiny-space;
+  }
+
+  .group-entry-text {
+    @include fonts.text-default;
+    @include text-truncation.ellipsis();
+  }
+
+  .group-entry-text-secondary {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    white-space: nowrap;
+    color: var(--theme-color-soft-text);
+
+    &,
+    span {
+      @include fonts.text-default;
+      @include text-truncation.ellipsis;
+    }
+  }
+}
+
+:host(.selected) {
+  border-top-width: 0.062rem !important;
+  background-color: var(--theme-color-ghost--selected);
+
+  .group-entry-selection-indicator {
+    background-color: var(--theme-group-item-indicator--background--selected);
+  }
+}
+
+:host(:not(.suppress-mouse-states):hover) {
+  background-color: var(--theme-color-ghost--selected-hover);
+  border-color: var(--theme-group-item--border-color--hover);
+}
+
+:host(:not(.suppress-mouse-states).selected:hover) {
+  background-color: var(--theme-color-ghost--selected-hover);
+}
+
+:host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
+  background-color: var(--theme-color-ghost--selected-active);
+  border-color: var(--theme-group-item--border-color--active);
+}
+
+:host(:not(.suppress-mouse-states).selected:active):not(
+    .suppress-mouse-states
+  ) {
+  background-color: var(--theme-color-ghost--selected-active);
+}
+
+:host([disabled]) {
+  pointer-events: none;
+  color: var(--theme-color-weak-text);
+}

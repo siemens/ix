@@ -1,0 +1,8 @@
+- main:
+  - tablist:
+    - tab
+    - tab /\d+/
+    - tab
+    - tab /\d+/
+    - tab
+    - tab

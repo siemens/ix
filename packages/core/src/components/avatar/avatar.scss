@@ -1,0 +1,130 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use './../button/button-mixin';
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/scrollbar';
+
+@use '../utils/focus/focus-proxy' as focus-proxy;
+
+:host {
+  display: flex;
+  position: relative;
+  width: fit-content;
+
+  @include scrollbar.scrollbar();
+
+  .avatar {
+    display: flex;
+    align-items: center;
+
+    > .avatar-image {
+      height: 2rem;
+      width: 2rem;
+      min-height: 2rem;
+      min-width: 2rem;
+      border-radius: 100px;
+    }
+
+    > .avatar-initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      width: 2rem;
+      min-height: 2rem;
+      min-width: 2rem;
+      border-radius: 100px;
+      background-color: var(--theme-avatar--background);
+      color: var(--theme-avatar--color);
+
+      > ix-typography {
+        // Fix to get the text vertically centered
+        margin-top: 1px;
+      }
+    }
+
+    #avatar-path-background {
+      fill: var(--theme-avatar--background);
+    }
+
+    #avatar-path-person {
+      fill: var(--theme-avatar--color);
+    }
+  }
+}
+
+:host {
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 2.5rem;
+    padding: 1rem;
+    width: 12.75rem;
+    min-width: 12.75rem;
+    max-width: 12.75rem;
+
+    gap: 1rem;
+
+    .avatar {
+      width: 2rem;
+      pointer-events: none;
+    }
+
+    .user {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 10rem;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .username {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .extra {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+:host(.avatar-button) {
+  button {
+    border-radius: 100px !important;
+
+    @include button-mixin.btn-base;
+
+    & {
+      padding: 0px;
+    }
+  }
+
+  @include button-mixin.btn-base-variant('tertiary');
+
+  button:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+
+  .avatar {
+    transform: scale(0.8);
+  }
+
+  @include focus-proxy.focus-proxy();
+}

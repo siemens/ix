@@ -1,0 +1,140 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/hover';
+
+$itemPadding: 0.5rem;
+$itemPaddingRight: 1.5rem;
+$focusBorder: 0.0625rem;
+
+@mixin applyItemWidth($padding, $paddingRight) {
+  width: calc(100% - #{$padding} - #{$paddingRight});
+
+  padding: 0 $padding;
+  padding-right: $paddingRight;
+}
+
+:host {
+  --ix-dropdown-item-checked-color: var(--theme-color-primary);
+
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  height: 2.5rem;
+  width: auto;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include component.ix-component;
+
+  .dropdown-item {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    height: calc(100% - 2px);
+    border: $focusBorder solid transparent;
+    white-space: nowrap;
+
+    @include applyItemWidth($itemPadding, $itemPaddingRight);
+  }
+
+  .dropdown-item.no-checked-field {
+    @include applyItemWidth(1rem, $itemPaddingRight);
+  }
+
+  .dropdown-item-checked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    width: 1rem;
+    min-width: 1rem;
+    margin-right: 0.5rem;
+
+    color: var(--ix-dropdown-item-checked-color);
+  }
+
+  .dropdown-item-icon {
+    margin-right: 0.5rem;
+    color: var(--theme-color-std-text);
+  }
+
+  .dropdown-item-text {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+  }
+
+  .dropdown-item-end {
+    margin-left: auto;
+  }
+}
+
+:host(.icon-only) {
+  .dropdown-item-icon {
+    margin-right: 0px;
+  }
+
+  .dropdown-item-checked {
+    display: none;
+  }
+
+  .dropdown-item {
+    @include applyItemWidth(0.5rem, 0.5rem);
+  }
+}
+
+:host(.submenu) {
+  .dropdown-item {
+    @include applyItemWidth($itemPadding, 0.5rem);
+  }
+}
+
+@include hover.ghost-hover-pressed;
+
+:host(.disabled) {
+  pointer-events: none;
+  color: var(--theme-color-weak-text) !important;
+
+  .dropdown-item-icon {
+    color: var(--theme-color-weak-text) !important;
+  }
+}
+
+:host(:focus-visible) {
+  outline: none;
+
+  .dropdown-item {
+    border-color: var(--theme-color-focus-bdr);
+  }
+}
+
+:host(.ix-focused) {
+  outline: none;
+
+  .dropdown-item {
+    border-color: var(--theme-color-focus-bdr);
+  }
+}
+
+:host(.outline-visible) {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: -0.0625rem;
+}
+
+:host([hidden]) {
+  display: none !important;
+}

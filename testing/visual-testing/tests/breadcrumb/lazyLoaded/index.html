@@ -1,0 +1,48 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-breadcrumb>
+      <ix-breadcrumb-item
+        label="Item1"
+        breadcrumb-key="item-1"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item2"
+        breadcrumb-key="item-2"
+      ></ix-breadcrumb-item>
+      <ix-breadcrumb-item
+        label="Item3"
+        breadcrumb-key="item-3"
+      ></ix-breadcrumb-item>
+    </ix-breadcrumb>
+
+    <script>
+      const instance = document.querySelector('ix-breadcrumb');
+      instance.nextItems = [
+        { label: 'Next Item 1', breadcrumbKey: 'next-item-1' },
+        { label: 'Next Item 2', breadcrumbKey: 'next-item-2' },
+        { label: 'Next Item 3', breadcrumbKey: 'next-item-3' },
+        { label: 'Next Item 4', breadcrumbKey: 'next-item-4' },
+        { label: 'Next Item 5', breadcrumbKey: 'next-item-5' },
+        { label: 'Next Item 6', breadcrumbKey: 'next-item-6' },
+        { label: 'Next Item 7', breadcrumbKey: 'next-item-7' },
+        { label: 'Next Item 8', breadcrumbKey: 'next-item-8' },
+      ];
+    </script>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

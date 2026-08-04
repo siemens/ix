@@ -1,0 +1,76 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use '../button/button-mixin';
+@use '../button/button';
+
+@include button-mixin.all-btn-variants;
+
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: 0.25rem;
+  max-width: 15rem;
+  min-width: 0;
+
+  @include component.ix-component;
+
+  li {
+    display: contents;
+  }
+
+  .btn {
+    pointer-events: all;
+    width: fit-content;
+    padding-right: 0;
+    padding-left: 0.25rem;
+  }
+
+  .chevron {
+    pointer-events: none;
+    margin-left: 0.5rem;
+    margin-right: 0rem;
+    color: var(--theme-color-soft-text);
+  }
+
+  ::slotted(a[href]) {
+    text-decoration: none !important;
+  }
+
+  ::slotted(a[href]:active) {
+    text-decoration: none !important;
+  }
+}
+
+:host(:last-child) {
+  .btn:not(.dropdown-trigger) {
+    color: var(--theme-color-soft-text);
+  }
+}
+
+:host(.hide-chevron) {
+  cursor: default;
+
+  .btn {
+    padding-right: 0.5rem;
+    pointer-events: none;
+  }
+}
+
+:host(.invisible) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  outline: none;
+}

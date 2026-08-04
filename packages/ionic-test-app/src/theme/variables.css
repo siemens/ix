@@ -1,0 +1,104 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+:root.md,
+:root.ios {
+  /*
+  * Define the safe areas for the mobile application e.g to handle the iphone notch
+  */
+  --ix-safe-area-inset-top: env(safe-area-inset-top);
+  --ix-safe-area-inset-right: env(safe-area-inset-right);
+  --ix-safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --ix-safe-area-inset-left: env(safe-area-inset-left);
+}
+
+body[data-screen-orientation='landscape-primary'] {
+  /*
+  * If the device is in landscape-primary orientation,
+  * we need to adjust the safe areas for the menu.
+  * The data-screen-orientation attribute is added by the main.ts file
+  */
+  --ix-application-menu-safe-area-left: var(--ix-safe-area-inset-left);
+}
+
+:root .md,
+:root .ios,
+:root body[class*='theme-'] {
+  /*
+  * Re-map the ix colors with the ionic theme
+  */
+  --ion-background-color: var(--theme-color-1);
+  --ion-color-primary: var(--theme-color-primary);
+  --ion-text-color: var(--theme-color-std-text);
+  --ion-item-background: var(--theme-color-1);
+  --ion-toolbar-background: var(--theme-app-header--background);
+
+  --ion-padding: 16px;
+  --ion-margin: 16px;
+  --ion-font-family: var(--theme-font-sans);
+}
+
+:root body[class*='theme-'] {
+  --ion-color-primary: var(--theme-color-primary);
+  --ion-color-primary-rgb: var(--theme-color-primary-rbg);
+  --ion-color-primary-contrast: var(--theme-color-primary--contrast);
+  --ion-color-primary-contrast-rgb: var(--theme-color-primary--contrast-rgb);
+  --ion-color-primary-shade: var(--theme-color-primary--disabled);
+  --ion-color-primary-tint: var(--theme-color-primary--hover);
+
+  --ion-color-secondary: var(--theme-color-secondary);
+  --ion-color-secondary-rgb: var(--theme-color-secondary-rgb);
+  --ion-color-secondary-contrast: var(--theme-color-secondary-contrast);
+  --ion-color-secondary-contrast-rgb: var(--theme-color-secondary-contrast-rgb);
+  --ion-color-secondary-shade: var(--theme-color-secondary--disabled);
+  --ion-color-secondary-tint: var(--theme-color-secondary--hover);
+
+  --ion-color-tertiary: var(--theme-color-neutral);
+  --ion-color-tertiary-rgb: var(--theme-color-neutral-rgb);
+  --ion-color-tertiary-contrast: var(--theme-color-contrast-text);
+  --ion-color-tertiary-contrast-rgb: var(--theme-color-contrast-text-rgb);
+  --ion-color-tertiary-shade: var(--theme-color-1);
+  --ion-color-tertiary-tint: var(--theme-color-7);
+
+  --ion-color-success: var(--theme-color-success);
+  --ion-color-success-rgb: var(--theme-color-success-rgb);
+  --ion-color-success-contrast: var(--theme-color-success--contrast);
+  --ion-color-success-contrast-rgb: var(--theme-color-success--contrast-rgb);
+  --ion-color-success-shade: var(--theme-color-success--disabled);
+  --ion-color-success-tint: var(--theme-color-success--hover);
+
+  --ion-color-warning: var(--theme-color-warning);
+  --ion-color-warning-rgb: var(--theme-color-warning-rgb);
+  --ion-color-warning-contrast: var(--theme-color-warning--contrast);
+  --ion-color-warning-contrast-rgb: var(--theme-color-warning--contrast-rgb);
+  --ion-color-warning-shade: var(--theme-color-warning--disabled);
+  --ion-color-warning-tint: var(--theme-color-warning--hover);
+
+  --ion-color-danger: var(--theme-color-alarm);
+  --ion-color-danger-rgb: var(--theme-color-alarm-rgb);
+  --ion-color-danger-contrast: var(--theme-color-alarm--contrast);
+  --ion-color-danger-contrast-rgb: var(--theme-color-alarm--contrast-rgb);
+  --ion-color-danger-shade: var(--theme-color-alarm-10);
+  --ion-color-danger-tint: var(--theme-color-alarm-40);
+
+  --ion-color-light: var(--theme-color-8);
+  --ion-color-light-rgb: var(--theme-color-8-rgb);
+  --ion-color-light-contrast: var(--theme-color-inv-std-text);
+  --ion-color-light-contrast-rgb: var(--theme-color-inv-std-text-rgb);
+  --ion-color-light-shade: var(--theme-color-neutral);
+  --ion-color-light-tint: var(--theme-color-contrast-bdr);
+
+  --ion-color-medium: var(--theme-color-5);
+  --ion-color-medium-rgb: var(--theme-color-5-rgb);
+  --ion-color-medium-contrast: var(--theme-color-contrast-text);
+  --ion-color-medium-contrast-rgb: var(--theme-color-contrast-text-rgb);
+  --ion-color-medium-shade: var(--theme-color-4);
+  --ion-color-medium-tint: var(--theme-color-6);
+
+  --ion-color-dark: var(--theme-color-2);
+  --ion-color-dark-rgb: var(--theme-color-2-rgb);
+  --ion-color-dark-contrast: var(--theme-color-contrast-text);
+  --ion-color-dark-contrast-rgb: var(--theme-color-contrast-text-rgb);
+  --ion-color-dark-shade: var(--theme-color-1);
+  --ion-color-dark-tint: var(--theme-color-7);
+}

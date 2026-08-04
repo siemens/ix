@@ -1,0 +1,176 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/host-disabled';
+@use 'misc/common-variables' as vars;
+
+$default-event-list-item-height: 2.5rem;
+
+@mixin host-variants($variant) {
+  :host(.event-list-item-#{$variant}) {
+    .event-list-item {
+      --ix-event-list-item--color-border: var(
+        --theme-event-item-#{$variant}--border
+      );
+
+      // Backgrounds
+      --ix-event-list-item--background: var(
+        --theme-event-item-#{$variant}--background
+      );
+      --ix-event-list-item--background--hover: var(
+        --theme-event-item-#{$variant}--background--hover
+      );
+      --ix-event-list-item--background--active: var(
+        --theme-event-item-#{$variant}--background--active
+      );
+      --ix-event-list-item--background--selected: var(
+        --theme-event-item-#{$variant}--background--selected
+      );
+
+      // Borders
+      --ix-event-list-item--border--hover: var(
+        --theme-event-item-#{$variant}--border--hover
+      );
+      --ix-event-list-item--border--active: var(
+        --theme-event-item-#{$variant}--border--active
+      );
+      --ix-event-list-item--border--selected: var(
+        --theme-event-item-#{$variant}--border--selected
+      );
+      --ix-event-list-item--border--disabled: var(
+        --theme-event-item-#{$variant}--border--disabled
+      );
+    }
+  }
+}
+
+@include host-variants('outline');
+@include host-variants('filled');
+
+:host {
+  @include component.ix-component;
+
+  .event-list-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: var(--event-list-item-height, $default-event-list-item-height);
+    max-height: var(--event-list-item-height, $default-event-list-item-height);
+    border-radius: var(
+      --event-list-item-border-radius,
+      vars.$default-border-radius
+    );
+    background-color: var(--ix-event-list-item--background);
+    overflow: hidden;
+    transition: var(--theme-default-time);
+    cursor: pointer;
+    margin-bottom: var(--event-list-item-margin-bottom, vars.$small-space);
+
+    .indicator {
+      height: 100%;
+      width: vars.$small-space;
+      max-width: vars.$small-space;
+      min-width: vars.$small-space;
+      border-top-left-radius: var(
+        --event-list-item-border-radius,
+        vars.$default-border-radius
+      );
+      border-bottom-left-radius: var(
+        --event-list-item-border-radius,
+        vars.$default-border-radius
+      );
+    }
+
+    .indicator-empty {
+      border: var(--theme-weak-bdr-1);
+      border-right: none;
+    }
+
+    .event-list-item-container {
+      display: flex;
+      flex-grow: 1;
+      width: calc(100% - (#{vars.$default-space} + #{vars.$small-space}));
+      height: 100%;
+      border: 0.062rem solid;
+      border-color: var(--ix-event-list-item--color-border);
+      border-top-left-radius: 0;
+      border-top-right-radius: var(
+        --event-list-item-border-radius,
+        vars.$default-border-radius
+      );
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: var(
+        --event-list-item-border-radius,
+        vars.$default-border-radius
+      );
+      border-left: none;
+      padding-left: vars.$default-space;
+
+      @include text-truncation.ellipsis;
+    }
+
+    .event-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: var(--event-list-item-height, 100%);
+      max-height: var(--event-list-item-height, 100%);
+      white-space: var(--event-list-item-content-white-space, inherit);
+      overflow: hidden;
+      padding-inline-end: vars.$small-space;
+    }
+
+    .chevron-icon {
+      margin-left: auto;
+      margin-right: vars.$small-space;
+      opacity: 0.6;
+      align-self: center;
+    }
+
+    &:not(.selected) {
+      @include hover.hover {
+        background-color: var(--ix-event-list-item--background--hover);
+      }
+
+      @include hover.active {
+        background-color: var(--ix-event-list-item--background--active);
+      }
+
+      .event-list-item-container {
+        @include hover.hover {
+          border-color: var(--ix-event-list-item--border--hover);
+        }
+
+        @include hover.active {
+          border-color: var(--ix-event-list-item--border--active);
+        }
+      }
+    }
+
+    &.selected .event-list-item-container {
+      background-color: var(--ix-event-list-item--background--selected);
+      border-color: var(--ix-event-list-item--border--selected);
+    }
+
+    &[disabled],
+    &.disabled {
+      pointer-events: none;
+
+      .event-list-item-container {
+        background-color: var(--ix-event-list-item--background--disabled);
+        border-color: var(--ix-event-list-item--border--disabled);
+      }
+    }
+  }
+}
+
+@include host-disabled.host-disabled;

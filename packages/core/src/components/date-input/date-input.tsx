@@ -1,0 +1,625 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { iconCalendar } from '@siemens/ix-icons/icons';
+import {
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Method,
+  Mixin,
+  Prop,
+  State,
+  Watch,
+  h,
+} from '@stencil/core';
+import { DateTime } from 'luxon';
+import { SlotEnd, SlotStart } from '../input/input.fc';
+import {
+  DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
+  addDisposableChangesAndVisibilityObservers,
+  adjustPaddingForStartAndEnd,
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
+  handleSubmitOnEnterKeydown,
+  onInputBlurWithChange,
+} from '../input/input.util';
+import {
+  ClassMutationObserver,
+  HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
+  createClassMutationObserver,
+  getValidationText,
+} from '../utils/input';
+import {
+  closeDropdown as closeDropdownUtil,
+  createValidityState,
+  handleIconClick,
+  openDropdown as openDropdownUtil,
+} from '../utils/input/picker-input.util';
+import { MakeRef, makeRef } from '../utils/make-ref';
+import type { DateInputValidityState } from './date-input.types';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InputPickerMixin,
+  InputPickerMixinContract,
+} from '../utils/internal/mixins/input/input-picker.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { forceTabIndex } from '../utils/a11y';
+
+/**
+ * @form-ready
+ *
+ * @slot start - Element will be displayed at the start of the input
+ * @slot end - Element will be displayed at the end of the input
+ */
+@Component({
+  tag: 'ix-date-input',
+  styleUrl: 'date-input.scss',
+  shadow: {
+    delegatesFocus: true,
+  },
+  formAssociated: true,
+})
+export class DateInput
+  extends Mixin(...DefaultMixins, InputPickerMixin)
+  implements IxInputFieldComponent<string | undefined>, InputPickerMixinContract
+{
+  @Element() override hostElement!: HTMLIxDateInputElement;
+  @AttachInternals() formInternals!: ElementInternals;
+
+  /**
+   * Name of the input element.
+   */
+  @Prop({ reflect: true }) name?: string;
+
+  /**
+   * Placeholder of the input element.
+   */
+  @Prop({ reflect: true }) placeholder?: string;
+
+  /**
+   * Value of the input element.
+   */
+  @Prop({ reflect: true, mutable: true }) value?: string = '';
+
+  @Watch('value') watchValuePropHandler(newValue: string) {
+    this.onInput(newValue);
+  }
+
+  /**
+   * The earliest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() minDate = '';
+
+  /**
+   * The latest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() maxDate = '';
+
+  /**
+   * Locale identifier (e.g. 'en' or 'de').
+   * The locale is used to translate the labels for weekdays and months.
+   * It also determines the default order of weekdays based on the locale's conventions.
+   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
+   * It does not affect the values returned by methods and events.
+   */
+  @Prop() locale?: string;
+
+  /**
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   */
+  @Prop() format: string = 'yyyy/LL/dd';
+
+  /**
+   * Required attribute.
+   */
+  @Prop() required?: boolean;
+
+  /**
+   * Helper text below the input field.
+   */
+  @Prop() helperText?: string;
+
+  /**
+   * Label of the input field.
+   */
+  @Prop() label?: string;
+
+  /**
+   * ARIA label for the calendar icon button.
+   * Will be set as aria-label on the nested HTML button element.
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
+
+  /**
+   * Error text below the input field.
+   */
+  @Prop({ reflect: true }) invalidText?: string;
+
+  /**
+   * Readonly attribute.
+   */
+  @Prop() readonly: boolean = false;
+
+  /**
+   * Disabled attribute.
+   */
+  @Prop() disabled: boolean = false;
+
+  /**
+   * Info text below the input field.
+   */
+  @Prop() infoText?: string;
+
+  /**
+   * Warning text below the input field.
+   */
+  @Prop() warningText?: string;
+
+  /**
+   * Valid text below the input field.
+   */
+  @Prop() validText?: string;
+
+  /**
+   * Show text as tooltip.
+   */
+  @Prop() showTextAsTooltip?: boolean;
+
+  /**
+   * I18n string for the error message when the date is not parsable.
+   */
+  @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
+    'Date is not valid';
+
+  /**
+   * Shows week numbers displayed on the left side of the date picker.
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
+   * ARIA label for the previous month icon button.
+   * Will be set as aria-label on the nested HTML button element.
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
+
+  /**
+   * ARIA label for the next month icon button.
+   * Will be set as aria-label on the nested HTML button element.
+   */
+  @Prop() ariaLabelNextMonthButton?: string = 'Next month';
+
+  /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * Value change event. Emitted when the input value changes.
+   */
+  @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
+
+  /**
+   * Validation state change event. Emitted when the validation state changes.
+   */
+  @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
+
+  /** @internal */
+  @Event() ixFocus!: EventEmitter<void>;
+
+  /** @internal */
+  @Event() ixBlur!: EventEmitter<void>;
+  /**
+   * Change event. Emitted when the date input loses focus and the value has changed.
+   *
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string | undefined>;
+  @State() show = false;
+  @State() from?: string | null = null;
+  @State() isInputInvalid = false;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() focus = false;
+
+  private readonly slotStartRef = makeRef<HTMLDivElement>();
+  private readonly slotEndRef = makeRef<HTMLDivElement>();
+  private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
+  private readonly inputElementRef = makeRef<HTMLInputElement>();
+  private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+
+  private classObserver?: ClassMutationObserver;
+
+  public initialValue?: string;
+
+  public invalidReason?: string;
+
+  public touched = false;
+
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
+
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  updateFormInternalValue(value: string | undefined): void {
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
+    this.value = value;
+  }
+
+  override connectedCallback(): void {
+    this.classObserver = createClassMutationObserver(this.hostElement, () =>
+      this.checkClassList()
+    );
+
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
+  }
+
+  override componentWillLoad(): void {
+    this.onInput(this.value);
+    if (this.isInputInvalid) {
+      this.from = null;
+    } else {
+      this.watchValue();
+    }
+
+    this.checkClassList();
+    this.updateFormInternalValue(this.value);
+  }
+
+  private updatePaddings() {
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputElementRef.current
+    );
+  }
+
+  override disconnectedCallback(): void {
+    this.classObserver?.destroy();
+    this.disposableChangesAndVisibilityObservers?.();
+  }
+
+  @Watch('value')
+  watchValue() {
+    this.from = this.value;
+  }
+
+  /** @internal */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(!!this.value);
+  }
+
+  /** @internal */
+  @Method()
+  getAssociatedFormElement(): Promise<HTMLFormElement | null> {
+    return Promise.resolve(this.formInternals.form);
+  }
+
+  async onInput(value: string | undefined) {
+    this.value = value;
+    if (!value) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
+      this.updateFormInternalValue(value);
+      this.valueChange.emit(value);
+      return;
+    }
+
+    if (!this.format) {
+      return;
+    }
+
+    const date = DateTime.fromFormat(value, this.format);
+    const minDate = DateTime.fromFormat(this.minDate, this.format);
+    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+
+    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+
+    if (this.isInputInvalid) {
+      this.invalidReason = date.invalidReason ?? undefined;
+      this.from = undefined;
+    } else {
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
+    }
+
+    this.emitValidityStateChangeIfChanged();
+    this.valueChange.emit(value);
+  }
+
+  onCalenderClick(event: Event) {
+    handleIconClick(
+      event,
+      this.show,
+      () => this.openDropdown(),
+      this.inputElementRef
+    );
+  }
+
+  async openDropdown() {
+    return openDropdownUtil(this.dropdownElementRef);
+  }
+
+  async closeDropdown() {
+    return closeDropdownUtil(this.dropdownElementRef);
+  }
+
+  private checkClassList() {
+    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+  }
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
+
+  private renderInput() {
+    return (
+      <div class="input-wrapper">
+        <SlotStart
+          slotStartRef={this.slotStartRef}
+          onSlotChange={() => this.updatePaddings()}
+        ></SlotStart>
+        <input
+          aria-haspopup="true"
+          autoComplete="off"
+          class={{
+            'is-invalid': this.isInputInvalid,
+          }}
+          disabled={this.disabled}
+          readOnly={this.readonly}
+          readonly={this.readonly}
+          required={this.required}
+          ref={this.inputElementRef}
+          type="text"
+          value={this.value ?? ''}
+          placeholder={this.placeholder}
+          name={this.name}
+          onInput={(event) => {
+            const target = event.target as HTMLInputElement;
+            this.onInput(target.value);
+          }}
+          onClick={(event) => {
+            if (this.show) {
+              event.stopPropagation();
+              event.preventDefault();
+            }
+          }}
+          onFocus={async () => {
+            this.ixFocus.emit();
+          }}
+          onBlur={() => {
+            this.touched = true;
+            onInputBlurWithChange(
+              this,
+              this.inputElementRef.current,
+              this.value
+            );
+            this.emitValidityStateChangeIfChanged();
+          }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
+          }}
+        ></input>
+        <SlotEnd
+          slotEndRef={this.slotEndRef}
+          onSlotChange={() => this.updatePaddings()}
+        >
+          <ix-icon-button
+            tabindex={-1}
+            ref={(ref) => forceTabIndex(ref, -1)}
+            aria-label={this.ariaLabelCalendarButton}
+            data-testid="open-calendar"
+            class={{ 'calendar-hidden': this.disabled || this.readonly }}
+            variant="subtle-tertiary"
+            size="16"
+            icon={iconCalendar}
+            onClick={(event) => this.onCalenderClick(event)}
+          ></ix-icon-button>
+        </SlotEnd>
+      </div>
+    );
+  }
+
+  @HookValidationLifecycle()
+  hookValidationLifecycle({
+    isInfo,
+    isInvalid,
+    isInvalidByRequired,
+    isValid,
+    isWarning,
+  }: ValidationResults) {
+    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInfo = isInfo;
+    this.isValid = isValid;
+    this.isWarning = isWarning;
+  }
+
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityState(this);
+  }
+
+  /** @internal */
+  @Method()
+  getValidityState(): Promise<ValidityState> {
+    return Promise.resolve(
+      createValidityState(this.isInputInvalid, !!this.required, this.value)
+    );
+  }
+
+  /**
+   * Get the native input element
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLInputElement> {
+    return this.inputElementRef.waitForCurrent();
+  }
+
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Returns whether the text field has been touched.
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
+  getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
+    return this.dropdownElementRef;
+  }
+
+  override render() {
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
+
+    return (
+      <Host
+        class={{
+          disabled: this.disabled,
+          readonly: this.readonly,
+        }}
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
+      >
+        <ix-field-wrapper
+          label={this.label}
+          helperText={this.helperText}
+          isInvalid={this.isInvalid}
+          invalidText={invalidText}
+          infoText={this.infoText}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
+          warningText={this.warningText}
+          isValid={this.isValid}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          required={this.required}
+          controlRef={this.inputElementRef}
+        >
+          {this.renderInput()}
+        </ix-field-wrapper>
+        <ix-dropdown
+          data-testid="date-dropdown"
+          trigger={this.inputElementRef.waitForCurrent()}
+          ref={this.dropdownElementRef}
+          closeBehavior="outside"
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
+          show={this.show}
+          onShowChanged={(event) => {
+            this.show = event.detail;
+          }}
+          focusTrapOptions={{
+            targetElement: this.datepickerRef,
+            trapFocusInShadowDom: true,
+          }}
+          callbackFocusElement={async () => {
+            this.datepickerRef.current?.focusActiveDay();
+            return true;
+          }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+        >
+          <ix-date-picker
+            ref={this.datepickerRef}
+            format={this.format}
+            locale={this.locale}
+            singleSelection
+            from={this.from ?? ''}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            onDateChange={(event) => {
+              const { from } = event.detail;
+              this.onInput(from);
+              if (this.initialValue !== from) {
+                this.ixChange.emit(from);
+                this.initialValue = from;
+              }
+            }}
+            showWeekNumbers={this.showWeekNumbers}
+            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+            embedded
+          ></ix-date-picker>
+        </ix-dropdown>
+      </Host>
+    );
+  }
+}

@@ -1,0 +1,41 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use 'legacy/components/button-group';
+
+@use './../utils/focus/focus-proxy';
+
+:host {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  .left-button {
+    width: calc(100% - 2rem);
+    --ix-button-border-radius-right: 0;
+  }
+
+  .right-button {
+    width: 2rem;
+    --ix-dropdown-button-border-radius-left: 0;
+  }
+
+  @include component.ix-component;
+
+  .left-button-border {
+    border-top-width: 0.125rem;
+    border-right-width: 0;
+    border-left-width: 0.125rem;
+    border-bottom-width: 0.125rem;
+
+    margin-right: 0.125rem;
+  }
+
+  @include focus-proxy.focus-proxy;
+}

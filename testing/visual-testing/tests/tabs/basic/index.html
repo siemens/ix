@@ -1,0 +1,111 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      .test {
+        margin-bottom: 2rem;
+        width: 40rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Label prop variant -->
+    <div class="test">
+      <ix-tabs active-tab-key="tab-1">
+        <ix-tab-item tab-key="tab-1" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-2" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-3" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-4" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-5" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-6" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-7" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-8" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="tab-9" label="Example"></ix-tab-item>
+      </ix-tabs>
+    </div>
+
+    <!-- Slot variant -->
+    <div class="test">
+      <ix-tabs active-tab-key="slot-1">
+        <ix-tab-item tab-key="slot-1">Slot Tab 1</ix-tab-item>
+        <ix-tab-item tab-key="slot-2">Slot Tab 2</ix-tab-item>
+        <ix-tab-item tab-key="slot-3">Slot Tab 3</ix-tab-item>
+        <ix-tab-item tab-key="slot-4">Slot Tab 4</ix-tab-item>
+      </ix-tabs>
+    </div>
+
+    <!-- Small icon-only variant -->
+    <div class="test">
+      <ix-tabs small active-tab-key="icon-1">
+        <ix-tab-item tab-key="icon-1" icon="success"></ix-tab-item>
+        <ix-tab-item tab-key="icon-2" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="icon-3" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="icon-4" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="icon-5" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="icon-6" icon="tree"></ix-tab-item>
+        <ix-tab-item tab-key="icon-7" icon="maintenance"></ix-tab-item>
+        <ix-tab-item tab-key="icon-8" icon="sound-loud" disabled></ix-tab-item>
+        <ix-tab-item tab-key="icon-9" icon="hierarchy"></ix-tab-item>
+        <ix-tab-item tab-key="icon-10" icon="calendar-settings" disabled></ix-tab-item>
+      </ix-tabs>
+    </div>
+
+    <!-- Top placement with label prop -->
+    <div class="test">
+      <ix-tabs placement="top" active-tab-key="top-1">
+        <ix-tab-item tab-key="top-1" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-2" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-3" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-4" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-5" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-6" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-7" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-8" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="top-9" label="Example"></ix-tab-item>
+      </ix-tabs>
+    </div>
+
+    <!-- Top placement with slot content -->
+    <div class="test">
+      <ix-tabs placement="top" active-tab-key="top-slot-1">
+        <ix-tab-item tab-key="top-slot-1">Slot Top 1</ix-tab-item>
+        <ix-tab-item tab-key="top-slot-2">Slot Top 2</ix-tab-item>
+        <ix-tab-item tab-key="top-slot-3">Slot Top 3</ix-tab-item>
+        <ix-tab-item tab-key="top-slot-4">Slot Top 4</ix-tab-item>
+      </ix-tabs>
+    </div>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

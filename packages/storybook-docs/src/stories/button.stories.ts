@@ -1,0 +1,156 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import type { Components } from '@siemens/ix/components';
+import { genericRender, makeArgTypes } from './utils/generic-render';
+import { action } from 'storybook/actions';
+
+type Element = Components.IxButton & {
+  defaultSlot: string;
+  styles?: Record<string, string>;
+};
+
+const meta = {
+  title: 'Example/Button',
+  tags: [],
+  render: (args) => genericRender('ix-button', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-button', {
+    styles: {
+      control: { type: 'object' },
+    },
+  }),
+  args: {},
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=225-5535&m=dev',
+    },
+  },
+} satisfies Meta<Element>;
+
+export default meta;
+type Story = StoryObj<Element>;
+
+export const Primary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'primary',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'secondary',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'tertiary',
+  },
+};
+
+export const SubtlePrimary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-primary',
+  },
+};
+
+export const SubtleSecondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-secondary',
+  },
+};
+
+export const SubtleTertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-tertiary',
+  },
+};
+
+export const DangerPrimary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-primary',
+  },
+};
+
+export const DangerSecondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-secondary',
+  },
+};
+
+export const DangerTertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-tertiary',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    defaultSlot: 'Button',
+    loading: true,
+  },
+};
+
+export const SecondaryWithIcon: Story = {
+  args: {
+    defaultSlot: 'Button',
+    disabled: false,
+    icon: 'eye',
+    loading: false,
+    variant: 'secondary',
+  },
+};
+
+export const ButtonIconRight: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
+    variant: 'primary',
+  },
+};
+
+export const ButtonCustomWidth: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
+    variant: 'primary',
+    styles: {
+      width: '400px',
+    },
+  },
+};
+
+export const TypeSubmit: Story = {
+  render: (args) => {
+    const button = genericRender('ix-button', args);
+    const form = document.createElement('form');
+    form.appendChild(button);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      action('Form submitted')();
+    });
+
+    return form;
+  },
+  args: {
+    defaultSlot: 'Button',
+    type: 'submit',
+  },
+};

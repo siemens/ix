@@ -1,0 +1,39 @@
+{
+  "name": "storybook-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build.watch": "storybook dev -p 6006",
+    "build.watch.no-open": "storybook dev -p 6006 --no-open",
+    "build": "storybook build",
+    "test.a11y": "vitest --project=storybook",
+    "test.setup": "playwright install chromium --with-deps"
+  },
+  "dependencies": {
+    "@maskito/core": "^3.2.0",
+    "@maskito/kit": "^3.2.0",
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-icons": "catalog:",
+    "@stencil/core": "^4.43.4",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-designs": "^11.1.1",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/addon-links": "^10.1.11",
+    "@storybook/addon-themes": "^10.1.11",
+    "@storybook/addon-vitest": "^10.1.11",
+    "@storybook/web-components-vite": "^10.1.11",
+    "@types/fs-extra": "^9.0.13",
+    "fs-extra": "^11.2.0",
+    "storybook": "^10.1.11",
+    "typescript": "~5.6.2",
+    "vite": "catalog:",
+    "vitest": "^4.0.17",
+    "playwright": "catalog:",
+    "@vitest/browser-playwright": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17"
+  }
+}

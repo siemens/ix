@@ -1,0 +1,53 @@
+{
+  "name": "@siemens/ix-angular",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/angular"
+  },
+  "version": "5.1.1",
+  "description": "Siemens iX for Angular",
+  "scripts": {
+    "build": "ng-packagr -c tsconfig.json",
+    "fix-packagejson": "",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@siemens/ix": "~5.1.1",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=20.0.0",
+    "@angular/forms": ">=20.0.0",
+    "@siemens/ix-icons": "^3.4.0"
+  },
+  "devDependencies": {
+    "@angular/animations": "^20.1.4",
+    "@angular/common": "^20.3.14",
+    "@angular/compiler": "^20.3.18",
+    "@angular/compiler-cli": "^20.1.4",
+    "@angular/core": "^20.3.25",
+    "@angular/forms": "^20.1.4",
+    "@angular/platform-browser": "^20.1.4",
+    "@angular/platform-browser-dynamic": "^20.1.4",
+    "@angular/router": "^20.1.4",
+    "@jest/globals": "^30.2.0",
+    "@siemens/ix": "workspace:*",
+    "@types/jest": "^29.5.12",
+    "fs-extra": "^10.1.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.2.0",
+    "ng-packagr": "^20.1.0",
+    "rxjs": "~7.8.0",
+    "ts-jest": "^29.2.3",
+    "tslib": "^2.3.0",
+    "typescript": "~5.8.2",
+    "zone.js": "~0.15.0"
+  },
+  "publishConfig": {
+    "directory": "dist"
+  }
+}

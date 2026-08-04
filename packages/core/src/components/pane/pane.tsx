@@ -1,0 +1,833 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import {
+  iconClose,
+  iconDoubleChevronDown,
+  iconDoubleChevronLeft,
+  iconDoubleChevronRight,
+  iconDoubleChevronUp,
+} from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
+import type { JSAnimation } from 'animejs';
+import { animate } from 'animejs';
+import Animation from '../utils/animation';
+import { applicationLayoutService } from '../utils/application-layout';
+import { matchBreakpoint } from '../utils/breakpoints';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
+import type {
+  BorderlessChangedEvent,
+  Composition,
+  ExpandedChangedEvent,
+  HideOnCollapseChangedEvent,
+  SlotChangedEvent,
+  VariantChangedEvent,
+} from './pane.types';
+import { a11yBoolean } from '../utils/a11y';
+
+/**
+ * @slot header - Additional slot for the header content
+ * @slot default - Pane body content.
+ */
+@Component({
+  tag: 'ix-pane',
+  styleUrl: 'pane.scss',
+  shadow: true,
+})
+export class Pane {
+  @Element() hostElement!: HTMLIxPaneElement;
+
+  /**
+   * Title of the side panel
+   */
+  @Prop() heading?: string;
+
+  /**
+   * Variant of the side pane.
+   * Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
+   */
+  @Prop() variant: 'floating' | 'inline' = 'inline';
+
+  /**
+   * Define if the pane should have a collapsed state
+   */
+  @Prop() hideOnCollapse: boolean = false;
+
+  /**
+   * The maximum size of the sidebar, when it is expanded
+   */
+  @Prop() size:
+    | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%' = '240px';
+
+  /**
+   * Toggle the border of the pane.
+   * Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
+   */
+  @Prop() borderless: boolean = false;
+
+  /**
+   * Remove the padding of the content area.
+   * If set to `true` the left, right and bottom padding of the content area is removed.
+   *
+   * @since 5.1.0
+   */
+  @Prop() noPadding: boolean = false;
+
+  /**
+   * State of the pane
+   */
+  @Prop({ mutable: true }) expanded: boolean = false;
+
+  /**
+   * Defines the position of the pane inside it's container.
+   * Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
+   */
+  @Prop({ mutable: true }) composition: Composition = 'top';
+
+  /**
+   * Name of the icon
+   */
+  @Prop() icon?: string;
+
+  /**
+   * If true, the pane will close when clicking outside of it
+   */
+  @Prop() closeOnClickOutside = false;
+
+  /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label close or collapse button
+   */
+  @Prop() ariaLabelCollapseCloseButton?: string;
+
+  /**
+   * @internal
+   * Prevents overwriting of the variant and borderless property when used inside layout
+   */
+  @Prop() ignoreLayoutSettings: boolean = false;
+
+  /**
+   * @internal
+   */
+  @Prop({ mutable: true }) isMobile: boolean = false;
+
+  /**
+   * This event is triggered when the pane either expands or contracts
+   */
+  @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
+
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  @Event() variantChanged!: EventEmitter<VariantChangedEvent>;
+
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  @Event() borderlessChanged!: EventEmitter<BorderlessChangedEvent>;
+
+  /**
+   * @internal
+   */
+  @Event() hideOnCollapseChanged!: EventEmitter<HideOnCollapseChangedEvent>;
+
+  /**
+   * @internal
+   */
+  @Event() slotChanged!: EventEmitter<SlotChangedEvent>;
+
+  @State() private expandIcon = '';
+  @State() private showContent = false;
+  @State() private minimizeIcon = '';
+  @State() private floating = false;
+  @State() private parentWidthPx = 0;
+  @State() private parentHeightPx = 0;
+
+  private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
+  private static readonly collapsedPane = '40px';
+  private static readonly collapsedPaneMobile = '48px';
+  private readonly animations: Map<string, JSAnimation> = new Map();
+  private animationCounter = 0;
+
+  private mutationObserver?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
+  private disposableWindowClick?: DisposableEventListener;
+  private disposableKeydown?: DisposableEventListener;
+  private focusTrap?: FocusTrapResult;
+  private focusReturnElement?: HTMLElement;
+
+  get currentSlot() {
+    return this.hostElement.getAttribute('slot');
+  }
+
+  get isBottomTopPane() {
+    return this.composition === 'bottom' || this.composition === 'top';
+  }
+
+  get isLeftRightPane() {
+    return this.composition === 'left' || this.composition === 'right';
+  }
+
+  get isMobileTop() {
+    return this.composition === 'top' || this.composition === 'left';
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.disconnect();
+    this.disposableWindowClick?.();
+    this.disposableKeydown?.();
+    this.focusTrap?.destroy();
+  }
+
+  @Watch('expanded')
+  async onExpandedChange() {
+    if (!this.closeOnClickOutside || !this.expanded) {
+      this.disposableWindowClick?.();
+    } else {
+      this.disposableWindowClick = addDisposableEventListener(
+        window,
+        'click',
+        (event) => {
+          const path = event.composedPath?.() || [];
+          if (!path.includes(this.hostElement)) {
+            this.dispatchExpandedChangedEvent();
+          }
+        }
+      );
+    }
+
+    this.registerEscapeListener();
+
+    if (!this.floating) {
+      return;
+    }
+
+    if (this.expanded) {
+      const activeElement = document.activeElement;
+      this.focusReturnElement =
+        activeElement instanceof HTMLElement ? activeElement : undefined;
+      this.focusTrap = await addFocusTrap(this.hostElement, {
+        trapFocusInShadowDom: 'both',
+      });
+    } else {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+      requestAnimationFrameNoNgZone(() => {
+        const elementToFocus = this.focusReturnElement;
+        this.focusReturnElement = undefined;
+
+        if (elementToFocus && typeof elementToFocus.focus === 'function') {
+          elementToFocus.focus();
+        }
+      });
+    }
+  }
+
+  componentWillLoad() {
+    this.onExpandedChange();
+
+    this.floating = this.variant === 'floating';
+
+    if (this.expanded) {
+      this.onParentSizeChange();
+    }
+
+    this.isMobile = matchBreakpoint('sm');
+    applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
+
+    if (this.currentSlot) {
+      this.setPosition(this.currentSlot);
+    }
+    this.setIcons();
+
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'slot'
+        ) {
+          const newSlot = this.currentSlot;
+          const oldSlot = mutation.oldValue;
+
+          if (newSlot !== oldSlot) {
+            this.slotChanged.emit({
+              slot: oldSlot ?? '',
+              newSlot: newSlot ?? '',
+            });
+
+            if (newSlot) {
+              this.setPosition(newSlot);
+            }
+          }
+        }
+      });
+    });
+    this.mutationObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeOldValue: true,
+    });
+
+    const parentElement = this.hostElement.parentElement;
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
+      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
+    });
+    if (parentElement) this.resizeObserver.observe(parentElement);
+  }
+
+  private setPosition(value: string) {
+    if (Pane.validPositions.includes(value)) {
+      this.composition = value as Composition;
+    }
+  }
+
+  private getExpandPaneSize() {
+    let expandPaneSize: string;
+
+    if (this.isBottomTopPane) {
+      if (this.size.includes('px')) {
+        const referenceValue = Math.round(this.parentHeightPx / 2);
+        const currentValue = Number(this.size.replace('px', ''));
+
+        if (referenceValue && referenceValue < currentValue) {
+          expandPaneSize = `${referenceValue}px`;
+        } else {
+          expandPaneSize = `${currentValue}px`;
+        }
+      } else {
+        if (this.size === '50%') {
+          expandPaneSize = `${Math.round(this.parentHeightPx / 2)}px`;
+        } else {
+          expandPaneSize = `${Math.round(this.parentHeightPx / 3)}px`;
+        }
+      }
+    } else {
+      if (this.size.includes('px')) {
+        const referenceValue = Math.round(this.parentWidthPx / 2);
+        const currentValue = Number(this.size.replace('px', ''));
+
+        if (referenceValue && referenceValue < currentValue) {
+          expandPaneSize = `${referenceValue}px`;
+        } else {
+          expandPaneSize = `${currentValue}px`;
+        }
+      } else {
+        if (this.size === '50%') {
+          expandPaneSize = `${Math.round(this.parentWidthPx / 2)}px`;
+        } else {
+          expandPaneSize = `${Math.round(this.parentWidthPx / 3)}px`;
+        }
+      }
+    }
+
+    return expandPaneSize;
+  }
+
+  private setIcons() {
+    const { expandIcon, minimizeIcon } = this.getIconNames();
+    this.expandIcon = expandIcon;
+    this.minimizeIcon = minimizeIcon;
+  }
+
+  private getIconNames(): { expandIcon: string; minimizeIcon: string } {
+    let expandIcon = '';
+    let minimizeIcon = '';
+
+    switch (this.composition) {
+      case 'left':
+        expandIcon = this.isMobile
+          ? iconDoubleChevronUp
+          : iconDoubleChevronLeft;
+        minimizeIcon = this.isMobile
+          ? iconDoubleChevronDown
+          : iconDoubleChevronRight;
+        break;
+      case 'right':
+        expandIcon = this.isMobile
+          ? iconDoubleChevronDown
+          : iconDoubleChevronRight;
+        minimizeIcon = this.isMobile
+          ? iconDoubleChevronUp
+          : iconDoubleChevronLeft;
+        break;
+      case 'bottom':
+        expandIcon = iconDoubleChevronDown;
+        minimizeIcon = iconDoubleChevronUp;
+        break;
+      case 'top':
+        expandIcon = iconDoubleChevronUp;
+        minimizeIcon = iconDoubleChevronDown;
+        break;
+    }
+
+    return { expandIcon, minimizeIcon };
+  }
+
+  private getKey() {
+    return (this.animationCounter++).toString();
+  }
+
+  private animateVerticalFadeIn(size: string) {
+    let key = this.getKey();
+    let animation = animate(this.hostElement, {
+      duration: Animation.mediumTime,
+      width: size,
+      easing: 'easeInOutSine',
+      delay: 0,
+      begin: () => {
+        if (!this.expanded) {
+          this.showContent = false;
+          this.animateVerticalPadding('0px');
+        } else {
+          this.animateVerticalPadding('8px');
+        }
+      },
+      complete: () => {
+        this.onAnimationComplete(key);
+      },
+    });
+
+    this.animations.set(key, animation);
+  }
+
+  private animateHorizontalFadeIn(size: string) {
+    let key = this.getKey();
+    let animation = animate(this.hostElement, {
+      duration: Animation.mediumTime,
+      height: size,
+      easing: 'easeInOutSine',
+      delay: 0,
+      onBegin: () => {
+        if (!this.expanded) {
+          this.showContent = false;
+          if (!this.isMobile) this.animateHorizontalPadding('0px');
+        } else {
+          if (!this.isMobile) this.animateHorizontalPadding('8px');
+        }
+      },
+      onComplete: () => {
+        this.onAnimationComplete(key);
+      },
+    });
+
+    this.animations.set(key, animation);
+  }
+
+  private onAnimationComplete(key: string) {
+    if (this.expanded) {
+      this.showContent = true;
+      if (this.floating) {
+        requestAnimationFrameNoNgZone(() => {
+          this.focusFirstSlottedElement();
+        });
+      }
+    }
+    this.animations.delete(key);
+  }
+
+  private removePadding() {
+    animate(this.hostElement.shadowRoot!.querySelector('#title-div')!, {
+      duration: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      delay: 0,
+    });
+  }
+
+  private animateHorizontalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
+    let key = this.getKey();
+    let animation = animate(
+      this.hostElement.shadowRoot!.querySelector('#title-div')!,
+      {
+        duration: duration,
+        paddingTop: size,
+        paddingBottom: size,
+        easing: 'easeInOutSine',
+        delay: 0,
+        onComplete: () => {
+          this.animations.delete(key);
+        },
+      }
+    );
+
+    this.animations.set(key, animation);
+  }
+
+  private animateVerticalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
+    let key = this.getKey();
+    let animation = animate(
+      this.hostElement.shadowRoot!.querySelector('#title-div')!,
+      {
+        duration: duration,
+        paddingLeft: size,
+        paddingRight: size,
+        easing: 'easeInOutSine',
+        delay: 0,
+        onComplete: () => {
+          this.animations.delete(key);
+        },
+      }
+    );
+
+    this.animations.set(key, animation);
+  }
+
+  private clearAnimations() {
+    this.animations.forEach((animation) => animation.pause());
+    this.animations.clear();
+    this.animationCounter = 0;
+  }
+
+  @Watch('isMobile')
+  onMobileChange() {
+    this.setIcons();
+    this.hostElement.style.removeProperty('width');
+    this.hostElement.style.removeProperty('height');
+    this.hostElement.style.removeProperty('min-height');
+    this.onParentSizeChange();
+  }
+
+  @Watch('composition')
+  onPositionChange() {
+    this.setIcons();
+    this.hostElement.style.removeProperty('width');
+    this.hostElement.style.removeProperty('height');
+    this.onParentSizeChange();
+  }
+
+  @Watch('hideOnCollapse')
+  onHideOnCollapseChange(value: boolean) {
+    this.onParentSizeChange();
+
+    this.hideOnCollapseChanged.emit({
+      slot: this.currentSlot ?? '',
+      hideOnCollapse: value,
+    });
+  }
+
+  @Watch('variant')
+  onVariantChange(value: 'inline' | 'floating') {
+    this.floating = value === 'floating';
+
+    this.variantChanged.emit({
+      slot: this.currentSlot ?? '',
+      variant: value,
+    });
+
+    if (value !== 'floating') {
+      this.focusTrap?.destroy();
+      this.focusTrap = undefined;
+    }
+
+    this.registerEscapeListener();
+  }
+
+  @Watch('borderless')
+  onBorderlessChange(value: boolean) {
+    this.borderlessChanged.emit({
+      slot: this.currentSlot ?? '',
+      borderless: value,
+    });
+  }
+
+  private focusFirstSlottedElement() {
+    const autofocusEl =
+      this.hostElement.querySelector<HTMLElement>('[autofocus]');
+
+    if (autofocusEl) {
+      autofocusEl.focus();
+      return;
+    }
+
+    const closeBtn =
+      this.hostElement.shadowRoot?.querySelector<HTMLElement>('.title-icon');
+
+    if (closeBtn) {
+      closeBtn.focus();
+    }
+  }
+
+  private registerEscapeListener() {
+    this.disposableKeydown?.();
+    this.disposableKeydown = undefined;
+
+    if (!this.floating || !this.expanded) {
+      return;
+    }
+
+    this.disposableKeydown = addDisposableEventListener(
+      this.hostElement,
+      'keydown',
+      (event) => {
+        if ((event as KeyboardEvent).key !== 'Escape') {
+          return;
+        }
+        this.dispatchExpandedChangedEvent();
+      }
+    );
+  }
+
+  private dispatchExpandedChangedEvent() {
+    const newExpandedValue = !this.expanded;
+    const event = this.expandedChanged.emit({
+      slot: this.currentSlot ?? '',
+      expanded: newExpandedValue,
+    });
+
+    if (!event.defaultPrevented) {
+      this.expanded = newExpandedValue;
+    }
+  }
+
+  @Watch('parentHeightPx')
+  @Watch('parentWidthPx')
+  onParentSizeChange() {
+    this.clearAnimations();
+    this.removePadding();
+
+    if (this.expanded) {
+      if (this.isMobile) {
+        this.hostElement.style.height = '100%';
+      } else {
+        const expandPaneSize = this.getExpandPaneSize();
+
+        if (this.isBottomTopPane) {
+          this.hostElement.style.height = expandPaneSize;
+          this.animateHorizontalPadding('8px', 0);
+        } else {
+          this.hostElement.style.width = expandPaneSize;
+          this.animateVerticalPadding('8px', 0);
+        }
+      }
+
+      this.showContent = true;
+    } else {
+      this.showContent = false;
+
+      if (this.isMobile) {
+        this.hostElement.style.height = this.hideOnCollapse
+          ? '0'
+          : Pane.collapsedPaneMobile;
+      } else {
+        if (this.isBottomTopPane) {
+          this.hostElement.style.height = this.hideOnCollapse
+            ? '0'
+            : Pane.collapsedPane;
+        } else {
+          this.hostElement.style.width = this.hideOnCollapse
+            ? '0'
+            : Pane.collapsedPane;
+        }
+      }
+    }
+  }
+
+  @Watch('expanded')
+  @Watch('size')
+  onSizeChange() {
+    if (this.expanded) {
+      if (this.isMobile) {
+        this.hostElement.style.minHeight = this.hideOnCollapse
+          ? '0'
+          : Pane.collapsedPaneMobile;
+        this.animateHorizontalFadeIn('100%');
+      } else {
+        const expandPaneSize = this.getExpandPaneSize();
+
+        if (this.isBottomTopPane) {
+          this.hostElement.style.height = this.hideOnCollapse
+            ? '0'
+            : Pane.collapsedPane;
+          this.animateHorizontalFadeIn(expandPaneSize);
+        } else {
+          this.hostElement.style.width = this.hideOnCollapse
+            ? '0'
+            : Pane.collapsedPane;
+          this.animateVerticalFadeIn(expandPaneSize);
+        }
+      }
+    } else {
+      this.showContent = false;
+
+      if (this.isMobile) {
+        this.hostElement.style.height = Pane.collapsedPaneMobile;
+      } else {
+        if (this.isBottomTopPane) {
+          this.animateHorizontalFadeIn(Pane.collapsedPane);
+        } else {
+          this.animateVerticalFadeIn(Pane.collapsedPane);
+        }
+      }
+    }
+  }
+
+  render() {
+    const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
+
+    let paneButtonAriaLabel: string;
+    if (this.ariaLabelCollapseCloseButton) {
+      paneButtonAriaLabel = this.ariaLabelCollapseCloseButton;
+    } else if (this.expanded) {
+      paneButtonAriaLabel =
+        this.isMobile || this.hideOnCollapse ? 'Close pane' : 'Collapse pane';
+    } else {
+      paneButtonAriaLabel = 'Expand pane';
+    }
+
+    return (
+      <Host
+        class={{
+          'floating-pane': this.floating,
+          'inline-pane': !this.floating,
+          'mobile-overlay': this.expanded && this.isMobile,
+          'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
+          'bottom-expanded':
+            this.expanded && !this.isMobileTop && this.isMobile,
+          'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
+          'left-right-pane': this.isLeftRightPane && !this.isMobile,
+          [`${this.composition}-pane-border`]:
+            !this.borderless && !this.isMobile && !this.floating,
+          'nav-left-border':
+            !this.borderless &&
+            !this.isMobile &&
+            this.composition !== 'right' &&
+            this.floating,
+          'mobile-border-top':
+            !this.borderless &&
+            this.isMobileTop &&
+            this.isMobile &&
+            !this.expanded &&
+            !this.floating,
+          'mobile-border-bottom':
+            !this.borderless &&
+            !this.isMobileTop &&
+            this.isMobile &&
+            !this.expanded &&
+            !this.floating,
+          'not-visible': this.hideOnCollapse && !this.expanded,
+        }}
+        aria-expanded={a11yBoolean(this.expanded)}
+      >
+        <aside
+          id={`pane-${this.composition}`}
+          class={{
+            'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
+            'left-right-pane': this.isLeftRightPane && !this.isMobile,
+            'mobile-pane': this.isMobile,
+            expanded: this.expanded,
+          }}
+        >
+          <div
+            id="title-div"
+            class={{
+              title:
+                !this.isMobile && !this.hideOnCollapse && !this.showContent,
+              'title-finished':
+                !this.isMobile && !this.hideOnCollapse && this.showContent,
+              'title-expanded':
+                !this.isMobile && !this.hideOnCollapse && this.expanded,
+              'title-hide-on-collapse': !this.isMobile && this.hideOnCollapse,
+              'title-mobile': this.isMobile,
+              'header-gap': !this.isMobile && !this.hideOnCollapse,
+            }}
+          >
+            <ix-icon-button
+              class="title-icon"
+              size="24"
+              icon={
+                this.expanded
+                  ? this.isMobile || this.hideOnCollapse
+                    ? iconClose
+                    : this.expandIcon
+                  : this.minimizeIcon
+              }
+              iconColor={
+                this.expanded && (this.isMobile || this.hideOnCollapse)
+                  ? 'color-soft-text'
+                  : undefined
+              }
+              variant="subtle-tertiary"
+              onClick={() => this.dispatchExpandedChangedEvent()}
+              aria-controls={`pane-${this.composition}`}
+              aria-label={paneButtonAriaLabel}
+            />
+            <div
+              class={{
+                'title-text': true,
+                rotate: rotate,
+              }}
+            >
+              {this.icon && (
+                <ix-icon
+                  class="pane-icon"
+                  size="24"
+                  name={this.icon}
+                  aria-label={this.ariaLabelIcon}
+                ></ix-icon>
+              )}
+              <div class="title-text-overflow">
+                <ix-typography format="h4">{this.heading}</ix-typography>
+              </div>
+              {this.expanded && (
+                <div class="slot-header">
+                  <slot name="header"></slot>
+                </div>
+              )}
+            </div>
+          </div>
+          <div
+            class={{
+              'side-pane-content': true,
+              'no-padding': this.noPadding,
+            }}
+            hidden={!this.showContent}
+          >
+            <slot></slot>
+          </div>
+        </aside>
+      </Host>
+    );
+  }
+}

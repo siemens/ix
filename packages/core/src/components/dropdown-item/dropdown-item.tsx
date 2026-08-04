@@ -1,0 +1,211 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Mixin,
+  Prop,
+} from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import type { IxDropdownItemRole } from './dropdown-item.types';
+
+/**
+ * @slot default - Dropdown item content.
+ */
+@Component({
+  tag: 'ix-dropdown-item',
+  styleUrl: 'dropdown-item.scss',
+  shadow: {
+    delegatesFocus: false,
+  },
+})
+export class DropdownItem
+  extends Mixin(...DefaultMixins, ComponentIdMixin, FocusVisibleMixin)
+  implements DropdownItemWrapper, ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxDropdownItemElement;
+
+  /**
+   * Label of dropdown item
+   */
+  @Prop({ reflect: true }) label?: string;
+
+  /**
+   * Icon of dropdown item
+   */
+  @Prop() icon?: string;
+
+  /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label for the item's button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
+
+  /**
+   * Display hover state
+   */
+  @Prop() hover = false;
+
+  /**
+   * Disable item and remove event listeners
+   */
+  @Prop({ reflect: true }) disabled = false;
+
+  /**
+   * Whether the item is checked or not. If true a checkmark will mark the item as checked.
+   */
+  @Prop({ reflect: true }) checked = false;
+
+  /**
+   * Role of the host surface.
+   * Use `option` when the item represents a listbox option (e.g. inside select); use `menuitem` in menus.
+   *
+   * @since 5.0.0
+   */
+  @Prop() itemRole: IxDropdownItemRole = 'menuitem';
+
+  /** @internal */
+  @Prop() isSubMenu = false;
+
+  /** @internal */
+  @Prop() suppressChecked = false;
+
+  /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
+
+  /** @internal */
+  @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
+
+  /** @internal */
+  @Method()
+  async emitItemClick() {
+    this.itemClick.emit(this.hostElement);
+  }
+
+  /** @internal */
+  @Method()
+  async getDropdownItemElement() {
+    return this.hostElement;
+  }
+
+  private isIconOnly() {
+    return (
+      this.label === undefined &&
+      this.hostElement.innerText === '' &&
+      this.icon !== undefined
+    );
+  }
+
+  override render() {
+    const id = this.getHostElementId();
+
+    let submenuAriaAttributes: A11yAttributes = {};
+
+    if (this.isSubMenu) {
+      submenuAriaAttributes = {
+        'aria-haspopup': 'menu',
+        'aria-expanded': 'false',
+      };
+    }
+
+    return (
+      <Host
+        id={id}
+        role={this.itemRole}
+        aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.hostElement.ariaLabel ?? this.ariaLabelButton}
+        class={{
+          hover: this.hover,
+          'icon-only': this.isIconOnly(),
+          disabled: this.disabled,
+          submenu: this.isSubMenu,
+          [IX_FOCUS_VISIBLE]: !this.disabled,
+          'outline-visible': this.hasVisualFocus,
+        }}
+        onClick={() => {
+          if (!this.disabled) {
+            this.emitItemClick();
+          }
+        }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (!this.disabled && (event.key === 'Enter' || event.key === ' ')) {
+            this.emitItemClick();
+          }
+        }}
+        {...submenuAriaAttributes}
+      >
+        <div
+          class={{
+            'dropdown-item': true,
+            'no-checked-field': this.suppressChecked,
+            disabled: this.disabled,
+          }}
+        >
+          {!this.suppressChecked ? (
+            <div class="dropdown-item-checked">
+              {this.checked ? (
+                <ix-icon
+                  aria-hidden="true"
+                  class="checkmark"
+                  name={iconSingleCheck}
+                  size="16"
+                ></ix-icon>
+              ) : null}
+            </div>
+          ) : null}
+          {this.icon ? (
+            <ix-icon
+              class="dropdown-item-icon"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
+          ) : null}
+          <div class="dropdown-item-text">
+            {this.label}
+            <slot></slot>
+          </div>
+          <div class="dropdown-item-end">
+            <slot name="end"></slot>
+            {this.isSubMenu ? (
+              <ix-icon
+                name={iconChevronRightSmall}
+                class={'submenu-icon'}
+              ></ix-icon>
+            ) : null}
+          </div>
+        </div>
+      </Host>
+    );
+  }
+}

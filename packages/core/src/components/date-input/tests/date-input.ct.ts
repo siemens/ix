@@ -1,0 +1,291 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { Locator, expect } from '@playwright/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
+
+const createDateInputAccessor = async (dateInput: Locator) => {
+  const dateDropdown = dateInput.getByTestId('date-dropdown');
+
+  const handle = {
+    openByCalender: async () => {
+      const trigger = dateInput.getByTestId('open-calendar');
+      await trigger.click();
+      await expect(dateDropdown).toHaveClass(/show/);
+    },
+    selectDay: async (day: number) => {
+      const dayButton = dateInput
+        .locator('ix-dropdown .calendar-item')
+        .filter({ hasText: new RegExp(`^${day}$`) })
+        .first();
+
+      await expect(dayButton).toBeVisible();
+      await dayButton.click();
+    },
+  };
+
+  return handle;
+};
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateInputElement = page.locator('ix-date-input');
+  await expect(dateInputElement).toHaveClass(/hydrated/);
+});
+
+regressionTest(
+  'select date by open calendar trigger',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInput.openByCalender();
+
+    await dateInput.selectDay(10);
+    await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
+  }
+);
+
+regressionTest('select date by focus', async ({ mount, page }) => {
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateInputElement = page.locator('ix-date-input');
+  await expect(dateInputElement).toHaveClass(/hydrated/);
+
+  const dateDropdown = dateInputElement.getByTestId('date-dropdown');
+  const dateInput = await createDateInputAccessor(dateInputElement);
+  await dateInputElement.locator('input').focus();
+  await page.keyboard.press('ArrowDown');
+  await expect(dateDropdown).toHaveClass(/show/);
+
+  await dateInput.selectDay(10);
+  await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
+  await expect(dateDropdown).not.toHaveClass(/show/);
+});
+
+regressionTest('select date by input', async ({ mount, page }) => {
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateInputElement = page.locator('ix-date-input');
+  await expect(dateInputElement).toHaveClass(/hydrated/);
+
+  const dateInput = await createDateInputAccessor(dateInputElement);
+  await dateInput.openByCalender();
+  await dateInputElement.locator('input').fill('2025/10/10');
+
+  await expect(dateInputElement.getByTestId('date-dropdown')).not.toHaveClass(
+    /show/
+  );
+  await expect(dateInputElement).toHaveAttribute('value', '2025/10/10');
+
+  await dateInput.openByCalender();
+
+  await expect(dateInputElement.locator('.calendar-item.selected')).toHaveText(
+    '10'
+  );
+});
+
+regressionTest(
+  'select date by input with invalid date',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInputElement.locator('input').fill('2025/10/10/10');
+    await dateInput.openByCalender();
+    await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
+
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Date is not valid' })
+    ).toHaveText(/Date is not valid/);
+  }
+);
+
+regressionTest(
+  'select date by input with invalid date - i18n',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInputElement.locator('input').fill('2025/10/10/10');
+    await dateInput.openByCalender();
+    await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
+
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Datum nicht korrekt!' })
+    ).toHaveText(/Datum nicht korrekt!/);
+  }
+);
+
+regressionTest('required', async ({ mount, page }) => {
+  await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
+  const dateInputElement = page.locator('ix-date-input');
+  const input = dateInputElement.getByRole('textbox');
+  await expect(dateInputElement).toHaveAttribute('required');
+
+  await expect(dateInputElement.locator('ix-field-label')).toHaveText(
+    'MyLabel*'
+  );
+
+  await input.focus();
+  await page.waitForTimeout(50);
+  await input.blur();
+
+  await expect(dateInputElement).toHaveClass(/ix-invalid--required/, {
+    timeout: 5000,
+  });
+});
+
+regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-date-input name="my-field-name"></ix-date-input></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const input = page.locator('ix-date-input').locator('input');
+  await input.fill('2024/05/05');
+  await input.blur();
+
+  const formData = await getFormValue(formElement, 'my-field-name', page);
+  expect(formData).toBe('2024/05/05');
+});
+
+regressionTest(
+  `form-ready - ix-date-input initial value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-date-input name="my-field-name" value="2024/12/12"></ix-date-input></form>`
+    );
+
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const componentValue = await page
+      .locator('ix-date-input')
+      .evaluate((el: HTMLIxDateInputElement) => el.value);
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe(componentValue);
+  }
+);
+
+regressionTest(
+  'updating component value attribute updates validity',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await dateInput.evaluateHandle((el) => {
+      el.setAttribute('value', 'invalid-date');
+    });
+
+    await expect(input).toHaveClass(/is-invalid/);
+
+    await dateInput.evaluateHandle((el) => {
+      el.setAttribute('value', '2024/05/05');
+    });
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'invalidText property takes precedence over i18n error message',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2024/05/05" invalid-text="Custom error message"></ix-date-input>`
+    );
+
+    const dateInputElement = page.locator('ix-date-input');
+
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await dateInputElement.locator('input').fill('invalid-date');
+    await dateInputElement.locator('input').blur();
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Custom error message' })
+    ).toHaveText(/Custom error message/);
+  }
+);
+
+regressionTest.describe('keyboard navigation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await dateInputElement.locator('input').focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();
+  });
+
+  regressionTest('Home moves focus to first day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Home');
+    await expect(page.locator('[data-calendar-day="4"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/04');
+  });
+
+  regressionTest('End moves focus to last day of week', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('End');
+    await expect(page.locator('[data-calendar-day="10"]')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/09/10');
+  });
+
+  regressionTest('PageUp navigates to previous month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageUp');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/08/05');
+  });
+
+  regressionTest('PageDown navigates to next month', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2023/10/05');
+  });
+
+  regressionTest(
+    'Shift+PageUp navigates to previous year',
+    async ({ page }) => {
+      const dateInputElement = page.locator('ix-date-input');
+      await page.keyboard.press('Shift+PageUp');
+      await page.keyboard.press('Enter');
+      await expect(dateInputElement).toHaveAttribute('value', '2022/09/05');
+    }
+  );
+
+  regressionTest('Shift+PageDown navigates to next year', async ({ page }) => {
+    const dateInputElement = page.locator('ix-date-input');
+    await page.keyboard.press('Shift+PageDown');
+    await page.keyboard.press('Enter');
+    await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
+  });
+});

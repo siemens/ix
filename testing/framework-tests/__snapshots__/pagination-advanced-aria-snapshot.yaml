@@ -1,0 +1,8 @@
+- button "Chevron Left Small" [disabled]
+- text: Page
+- spinbutton "Page selection input"
+- text: /of \d+/
+- button "Chevron Right Small"
+- text: Items
+- textbox: /\d+/
+- button "Open select dropdown"

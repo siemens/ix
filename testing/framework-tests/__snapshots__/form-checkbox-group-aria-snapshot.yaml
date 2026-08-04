@@ -1,0 +1,7 @@
+- text: Terms of something
+- checkbox "I agree everything":
+  - button:
+    - img
+- checkbox "I agree with most of it":
+  - button:
+    - img

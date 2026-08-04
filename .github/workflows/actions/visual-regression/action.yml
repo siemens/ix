@@ -1,0 +1,70 @@
+name: 'Visual regression tests'
+description: 'Visual regression tests'
+inputs:
+  projectName:
+    description: 'Name of the project to run tests for'
+    required: true
+  artifactName:
+    description: 'Name of the artifact to upload'
+    required: true
+  projectPath:
+    description: 'Path to the project blob reports'
+    required: false
+    default: ''
+  shardIndex:
+    description: 'Shard index for parallel test execution'
+    required: false
+    default: ''
+  shardTotal:
+    description: 'Total number of shards for parallel test execution'
+    required: false
+    default: ''
+  skipTestsetup:
+    description: 'Whether to skip the test setup step (installing browsers, etc.)'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Playwright Browsers
+      if: ${{ inputs.skipTestsetup == 'false' }}
+      shell: bash
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm run test.setup --cache-dir=.turbo --filter $PROJECT_NAME
+
+    - name: Build
+      if: ${{ inputs.shardIndex != '' && inputs.shardTotal != '' }}
+      shell: bash
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm run build --cache-dir=.turbo --filter $PROJECT_NAME
+
+    - name: Test
+      shell: bash
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+        SHARD_INDEX: ${{ inputs.shardIndex }}
+        SHARD_TOTAL: ${{ inputs.shardTotal }}
+      run: |
+        if [ -n "$SHARD_INDEX" ] && [ -n "$SHARD_TOTAL" ]; then
+          pnpm run build --cache-dir=.turbo --filter "${{ inputs.projectName == 'visual-testing' && '@siemens/ix' || inputs.projectName }}"
+          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARD_INDEX/$SHARD_TOTAL
+        else
+          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME
+        fi
+
+    - uses: actions/upload-artifact@v4
+      if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.artifactName }}-blob-report-${{ inputs.shardIndex }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1
+
+    - uses: actions/upload-artifact@v4
+      if: failure() && inputs.shardIndex == '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1

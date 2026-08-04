@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconAdd } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconAdd,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-empty-state
+      layout="compactBreak"
+      header="No elements available"
+      sub-header="Create an element first"
+      icon="add"
+      action="Create element"
+    ></ix-empty-state>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "name": "@siemens/ix-aggrid",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/aggrid"
+  },
+  "license": "MIT",
+  "description": "AG Grid theme based on ix theme variables",
+  "version": "5.0.1",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "READMEOSS.html",
+    "dist/"
+  ],
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build.watch": "rollup -c -w",
+    "test.setup": "playwright install chromium --with-deps",
+    "build": "npm run clean && npm run compile",
+    "clean": "rimraf dist",
+    "compile": "rollup -c",
+    "visual-regression": "playwright test --config=playwright.config.ts"
+  },
+  "devDependencies": {
+    "@esbuild/linux-arm64": "catalog:",
+    "@playwright/test": "catalog:",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@siemens/ix-icons": "catalog:",
+    "@siemens/ix": "workspace:*",
+    "@types/node": "^24.0.3",
+    "ag-grid-community-35": "npm:ag-grid-community@^35.0.0",
+    "ag-grid-community-34": "npm:ag-grid-community@^34.3.0",
+    "ag-grid-community": "^33.3.2",
+    "http-server": "^14.1.1",
+    "rimraf": "catalog:",
+    "rollup-plugin-import-css": "^4.2.0",
+    "rollup": "^4.43.0",
+    "typescript": "^5.8.3",
+    "vite": "catalog:"
+  },
+  "peerDependencies": {
+    "@siemens/ix": "^5.0.0",
+    "ag-grid-community": "^33 || ^34 || ^35"
+  }
+}

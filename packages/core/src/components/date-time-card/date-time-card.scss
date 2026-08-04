@@ -1,0 +1,88 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+
+:host {
+  @include component.ix-component;
+
+  .card {
+    background-color: var(--theme-menu--background);
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    border-radius: unset;
+    display: flex;
+    flex-direction: column;
+
+    &.standaloneAppearance {
+      box-shadow: var(--theme-shadow-4);
+      border-radius: 0.25rem;
+    }
+
+    &.rounded {
+      border-radius: 4px;
+    }
+
+    &.left {
+      border-radius: 4px 0 0 4px;
+      height: 100%;
+    }
+
+    &.right {
+      border-radius: 0 4px 4px 0;
+      height: 100%;
+    }
+
+    &.straight {
+      border-radius: 0;
+    }
+
+    .header-container {
+      width: 100%;
+
+      .header {
+        padding: vars.$medium-space vars.$default-space;
+        flex: 0 1 auto;
+      }
+    }
+
+    .separator {
+      height: 1px;
+      background-color: var(--theme-datepicker-separator--background);
+      width: 100%;
+      flex: 0 1 auto;
+    }
+
+    .content {
+      padding: 0 vars.$default-space vars.$default-space vars.$default-space;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &--time-picker {
+        padding: 0 vars.$default-space;
+      }
+
+      &--no-padding {
+        padding: 0;
+      }
+    }
+
+    .footer-container {
+      width: 100%;
+
+      .footer {
+        padding: vars.$default-space;
+      }
+    }
+  }
+}

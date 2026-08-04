@@ -1,0 +1,162 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Range field test</title>
+    <style>
+      .range-field-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="range-field-wrapper">
+      <h1>Labels</h1>
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem">
+        <ix-time-input label="Start time" value="08:00:00"></ix-time-input>
+        <ix-time-input label="End time" value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem">
+        <ix-datetime-input
+          label="Start date and time"
+          value="2022/10/01 08:00:00"
+        ></ix-datetime-input>
+        <ix-datetime-input
+          label="End date and time"
+          value="2022/10/01 17:00:00"
+        ></ix-datetime-input>
+      </ix-range-field>
+
+      <h1>Without labels</h1>
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input value="2022/10/01"></ix-date-input>
+        <ix-date-input value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem">
+        <ix-time-input value="08:00:00"></ix-time-input>
+        <ix-time-input value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem">
+        <ix-datetime-input value="2022/10/01 08:00:00"></ix-datetime-input>
+        <ix-datetime-input value="2022/10/01 17:00:00"></ix-datetime-input>
+      </ix-range-field>
+
+      <h1>Labels no arrow</h1>
+      <ix-range-field type="date-range" style="width: 32rem" hide-arrow>
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem" hide-arrow>
+        <ix-time-input label="Start time" value="08:00:00"></ix-time-input>
+        <ix-time-input label="End time" value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem" hide-arrow>
+        <ix-datetime-input
+          label="Start date and time"
+          value="2022/10/01 08:00:00"
+        ></ix-datetime-input>
+        <ix-datetime-input
+          label="End date and time"
+          value="2022/10/01 17:00:00"
+        ></ix-datetime-input>
+      </ix-range-field>
+
+      <h1>Without labels no arrow</h1>
+      <ix-range-field type="date-range" style="width: 32rem" hide-arrow>
+        <ix-date-input value="2022/10/01"></ix-date-input>
+        <ix-date-input value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem" hide-arrow>
+        <ix-time-input value="08:00:00"></ix-time-input>
+        <ix-time-input value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem" hide-arrow>
+        <ix-datetime-input value="2022/10/01 08:00:00"></ix-datetime-input>
+        <ix-datetime-input value="2022/10/01 17:00:00"></ix-datetime-input>
+      </ix-range-field>
+
+      <h1>Mixed with and without label</h1>
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem">
+        <ix-time-input label="Start time" value="08:00:00"></ix-time-input>
+        <ix-time-input value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem">
+        <ix-datetime-input
+          label="Start date and time"
+          value="2022/10/01 08:00:00"
+        ></ix-datetime-input>
+        <ix-datetime-input value="2022/10/01 17:00:00"></ix-datetime-input>
+      </ix-range-field>
+
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem">
+        <ix-time-input label="Start time" value="08:00:00"></ix-time-input>
+        <ix-time-input value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem">
+        <ix-datetime-input
+          label="Start date and time"
+          value="2022/10/01 08:00:00"
+        ></ix-datetime-input>
+        <ix-datetime-input value="2022/10/01 17:00:00"></ix-datetime-input>
+      </ix-range-field>
+
+      <h1>Mixed with and without label no arrow</h1>
+      <ix-range-field type="date-range" style="width: 32rem" hide-arrow>
+        <ix-date-input value="2022/10/01"></ix-date-input>
+        <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+
+      <ix-range-field type="time-range" style="width: 32rem" hide-arrow>
+        <ix-time-input value="08:00:00"></ix-time-input>
+        <ix-time-input label="End time" value="17:00:00"></ix-time-input>
+      </ix-range-field>
+
+      <ix-range-field type="datetime-range" style="width: 32rem" hide-arrow>
+        <ix-datetime-input value="2022/10/01 08:00:00"></ix-datetime-input>
+        <ix-datetime-input
+          label="End date and time"
+          value="2022/10/01 17:00:00"
+        ></ix-datetime-input>
+      </ix-range-field>
+    </div>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

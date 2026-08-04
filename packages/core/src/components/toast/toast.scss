@@ -1,0 +1,113 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 17.5rem;
+  max-width: 17.5rem;
+  min-height: 3.5rem;
+
+  pointer-events: all;
+
+  background-color: var(--theme-toast--background);
+  border: var(--theme-toast--border-thickness) solid
+    var(--theme-toast--border-color);
+  border-radius: var(
+    --theme-toast--border-radius,
+    var(--theme-toast--border-radus)
+  );
+  box-shadow: var(--theme-toast--box-shadow);
+
+  --animate-duration: var(--theme-medium-time);
+
+  @include component.ix-component;
+
+  .toast-body {
+    display: flex;
+    position: relative;
+    min-height: 3.5rem;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0.75rem 0.75rem 0.25rem;
+
+    .toast-icon {
+      display: flex;
+      align-items: flex-start;
+      padding: 0.25rem;
+    }
+
+    .toast-content {
+      overflow: hidden;
+      min-width: 0;
+      width: 100%;
+      padding: 0.25rem;
+
+      .toast-title {
+        min-width: 0;
+        margin: 0.25rem 0px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      .toast-message {
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+
+        @include fonts.text-default;
+      }
+
+      .toast-action {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .toast-close {
+    display: flex;
+    position: relative;
+    pointer-events: all;
+    margin-left: auto;
+    margin-right: 0px;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .toast-progress-bar {
+    position: absolute;
+    bottom: 0;
+    height: 0.125rem;
+    width: 100%;
+    background-color: var(--theme-toast-timer-value--background);
+    transform-origin: left;
+
+    &--animated {
+      animation: trackProgress linear 1 forwards;
+    }
+  }
+
+  @keyframes trackProgress {
+    0% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+  }
+}

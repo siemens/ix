@@ -1,0 +1,86 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import type { Components } from '@siemens/ix/components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { genericRender, makeArgTypes } from './utils/generic-render';
+
+type Element = Components.IxTimePicker;
+
+const meta = {
+  title: 'Example/TimePicker',
+  tags: [],
+  render: (args) => genericRender('ix-time-picker', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-time-picker', {}),
+  parameters: {},
+} satisfies Meta<Element>;
+
+export default meta;
+type Story = StoryObj<Element>;
+
+export const Default: Story = {
+  args: {
+    time: '09:30:00',
+    format: 'HH:mm:ss',
+    corners: 'rounded',
+    embedded: false,
+  },
+};
+
+export const AMPM: Story = {
+  args: {
+    time: '09:30:00 AM',
+    format: 'hh:mm:ss a',
+    corners: 'straight',
+    embedded: false,
+    minuteInterval: 1,
+  },
+};
+
+export const Milliseconds: Story = {
+  args: {
+    time: '09:30:00.100',
+    format: 'hh:mm:ss.SSS',
+    corners: 'straight',
+    embedded: false,
+    minuteInterval: 1,
+  },
+};
+
+export const Intervals: Story = {
+  args: {
+    time: '09:30:00.100',
+    format: 'hh:mm:ss.SSS',
+    corners: 'straight',
+    embedded: false,
+    minuteInterval: 15,
+    hourInterval: 1,
+    millisecondInterval: 50,
+    secondInterval: 30,
+  },
+};
+
+export const HourOnly: Story = {
+  args: {
+    time: '09',
+    format: 'HH',
+    corners: 'rounded',
+    embedded: false,
+  },
+};
+
+export const MinMaxTime: Story = {
+  args: {
+    time: '12:00:00',
+    format: 'HH:mm:ss',
+    corners: 'rounded',
+    embedded: false,
+    minTime: '08:00:00',
+    maxTime: '17:30:00',
+  },
+};

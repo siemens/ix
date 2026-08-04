@@ -1,0 +1,69 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+
+  .titleGroup {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 0.5rem;
+    overflow: hidden;
+
+    .titleOverflow {
+      overflow-wrap: break-word;
+    }
+
+    .headerTitleRow {
+      display: flex;
+
+      .headerSlot {
+        display: inline-flex;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .secondary {
+      padding: 0.25rem 0;
+    }
+  }
+
+  .subtitle {
+    margin-top: -0.125rem;
+  }
+
+  .backButton {
+    margin-right: 0.5rem;
+  }
+
+  .buttons {
+    flex: 0 0 auto;
+  }
+
+  .actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    ::slotted([slot='secondary-actions']) {
+      --ix-button-height: 2rem;
+      --ix-button-text-white-space: nowrap;
+      --ix-button-word-break: normal;
+      --ix-button-inner-overflow: hidden;
+      --ix-button-content-overflow: hidden;
+    }
+  }
+}

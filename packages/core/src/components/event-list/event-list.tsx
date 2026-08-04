@@ -1,0 +1,185 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { convertToRemString } from '../utils/rwd.util';
+import { animate } from 'animejs';
+
+/**
+ * @slot default - Event list items.
+ */
+@Component({
+  tag: 'ix-event-list',
+  styleUrl: 'event-list.scss',
+  shadow: true,
+})
+export class EventList {
+  private readonly mutationObserver = createMutationObserver(
+    this.onMutation.bind(this)
+  );
+
+  private static readonly fadeOutDuration = 50;
+  private static readonly fadeInDuration = 150;
+
+  @Element() hostElement!: HTMLIxEventListElement;
+
+  /**
+   * Determines the height of list items.
+   * This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value.
+   * In case a number is supplied it will get converted to rem internally.
+   * Defaults to 'S'.
+   */
+  @Prop() itemHeight: 'S' | 'L' | number = 'S';
+
+  /**
+   * Make event-list items more compact
+   */
+  @Prop() compact = false;
+
+  /**
+   * Animate state change transitions. Defaults to 'false'.
+   */
+  @Prop() animated = false;
+
+  /**
+   * Display a chevron icon in list items. Defaults to 'false'
+   */
+  @Prop() chevron = false;
+
+  @Watch('chevron')
+  watchChevron(chevron: boolean | undefined) {
+    this.handleChevron(chevron);
+  }
+
+  componentDidLoad() {
+    if (this.animated) {
+      this.triggerFadeIn();
+    }
+
+    if (!Number.isNaN(Number(this.itemHeight))) {
+      const height = convertToRemString(this.itemHeight as number);
+      this.hostElement
+        .querySelectorAll('ix-event-list-item')
+        .forEach((item) => {
+          this.setCustomHeight(item as HTMLElement, height);
+        });
+    }
+
+    this.handleChevron(this.chevron);
+
+    this.mutationObserver.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  private onMutation(mutationRecords: Array<MutationRecord>) {
+    this.triggerFadeOut().then(() => {
+      if (!Number.isNaN(Number(this.itemHeight))) {
+        const height = convertToRemString(this.itemHeight as number);
+        const eventListItems = this.findEventListItems(mutationRecords);
+        eventListItems.forEach((item) => this.setCustomHeight(item, height));
+      }
+
+      this.handleChevron(this.chevron);
+      this.triggerFadeIn();
+    });
+  }
+
+  private findEventListItems(mutationRecords: MutationRecord[]): HTMLElement[] {
+    const eventListItems: HTMLElement[] = [];
+
+    mutationRecords.forEach((mutation) => {
+      if (mutation.type !== 'childList') {
+        return;
+      }
+
+      mutation.addedNodes.forEach((node) => {
+        const element = node as HTMLElement;
+
+        if (element.tagName === 'IX-EVENT-LIST-ITEM') {
+          eventListItems.push(element);
+        }
+      });
+    });
+
+    return eventListItems;
+  }
+
+  private setCustomHeight(item: HTMLElement, height: string) {
+    item.style.setProperty('--event-list-item-height', height);
+  }
+
+  private triggerFadeOut(): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.animated) {
+        resolve();
+      }
+
+      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+
+      animate(listElement!, {
+        opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
+        duration: EventList.fadeOutDuration,
+        onComplete: () => {
+          resolve();
+        },
+      });
+    });
+  }
+
+  private triggerFadeIn() {
+    if (!this.animated) {
+      return;
+    }
+
+    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
+    listItems.forEach((e, i) => {
+      const delay = i * 80;
+      const offset = delay / (delay + EventList.fadeInDuration);
+      animate(e, {
+        offset: offset,
+        duration: EventList.fadeInDuration + delay,
+        opacity: [0, 1],
+        easing: 'easeInOutSine',
+        delay: delay,
+        autoplay: true,
+      });
+    });
+  }
+
+  private handleChevron(chevron: boolean | undefined): void {
+    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
+
+    listItems.forEach((e) => {
+      if (chevron) {
+        e.setAttribute('chevron', 'true');
+      } else if (chevron !== undefined) {
+        e.removeAttribute('chevron');
+      }
+    });
+  }
+
+  render() {
+    return (
+      <Host
+        class={{
+          'item-size-s': this.itemHeight === 'S',
+          'item-size-l': this.itemHeight === 'L',
+          compact: this.compact,
+        }}
+      >
+        <div role="list">
+          <slot></slot>
+        </div>
+      </Host>
+    );
+  }
+}

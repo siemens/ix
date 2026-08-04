@@ -1,0 +1,102 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use './flip-tile-vars' as flip-tile-vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/fonts';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  perspective: 1000px;
+  border-radius: var(--theme-flip--border-radius)
+    var(--theme-flip--border-radius) 0 0;
+
+  @include component.ix-component;
+
+  .flip-tile-header {
+    display: flex;
+    align-items: center;
+    height: vars.$large-control-height;
+    padding: 0 vars.$small-space 0 vars.$default-space;
+
+    .header-slot-container {
+      flex-grow: 1;
+      min-width: 0;
+
+      @include text-truncation.ellipsis;
+    }
+  }
+
+  .content-container {
+    flex-grow: 1;
+    margin: vars.$default-space;
+  }
+
+  .flip-tile-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transform-style: preserve-3d;
+    border-radius: var(--theme-flip--border-radius)
+      var(--theme-flip--border-radius) 0 0;
+
+    .footer {
+      height: 3rem;
+      align-items: center;
+      justify-content: center;
+      padding: 0 vars.$small-space;
+
+      :first-child {
+        height: 100%;
+
+        @include text-truncation.ellipsis;
+      }
+    }
+
+    ::slotted(*) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+
+      @include text-truncation.ellipsis;
+    }
+  }
+
+  &:hover .flip-tile-container .footer ix-icon {
+    color: var(--theme-color-std-text);
+  }
+}
+
+@each $variant in flip-tile-vars.$flip-tile-variants {
+  :host(.flip-tile-variant-#{$variant}) {
+    border: solid 1px var(--theme-flip-#{$variant}--border-color);
+
+    .flip-tile-container {
+      background-color: var(--theme-flip-#{$variant}--background);
+      color: var(--theme-flip-#{$variant}--color);
+
+      .footer {
+        display: none;
+        border-top: 1px
+          solid
+          var(--theme-flip-#{$variant}-footer--border-color);
+        background-color: var(--theme-flip-#{$variant}-footer--background);
+        color: var(--theme-flip-#{$variant}-footer--color);
+      }
+
+      .footer.show-footer {
+        display: flex;
+      }
+    }
+  }
+}

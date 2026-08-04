@@ -1,0 +1,24 @@
+name: Contribution welcome labeling
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  comment-issue:
+    if: ${{ github.repository == 'siemens/ix' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Contribution welcome comment created
+        if: "contains(github.event.label.name, 'Contribution welcome')"
+        uses: actions-cool/issues-helper@a610082f8ac0cf03e357eb8dd0d5e2ba075e017e
+        with:
+          actions: 'create-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            This issue is labeled as `Contribution welcome 👨‍💻` and is open for community contributions. The IX team has reviewed it and accepted it, though it doesn't have a set priority yet.
+            If you'd like to work on this, please leave a comment here to indicate your intention to submit a pull request. This will help us coordinate and ensure there's no duplicated effort.
+
+            Thanks for your contribution!

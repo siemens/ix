@@ -1,0 +1,22 @@
+@use 'misc/common-variables' as vars;
+
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  gap: vars.$default-space;
+
+  width: 100%;
+
+  .title-actions {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    gap: 0.25rem;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,128 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { iconClose, iconShout } from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Mixin,
+} from '@stencil/core';
+import { DefaultMixins } from '../utils/internal/component';
+
+/**
+ * @slot default - News content.
+ */
+@Component({
+  tag: 'ix-menu-about-news',
+  styleUrl: 'menu-about-news.scss',
+  shadow: true,
+})
+export class MenuAboutNews extends Mixin(...DefaultMixins) {
+  @Element() override hostElement!: HTMLIxMenuAboutNewsElement;
+  /**
+   * Show about news
+   */
+  @Prop({ mutable: true, reflect: true }) show = false;
+
+  /**
+   * Title of the about news
+   */
+  @Prop() label?: string;
+
+  /**
+   * i18n label for 'Show more' button
+   */
+  @Prop({ attribute: 'i18n-show-more' }) i18nShowMore = 'Show more';
+
+  /**
+   * Subtitle of the about news
+   */
+  @Prop() aboutItemLabel?: string;
+
+  /**
+   * Defines which tab should be active, used when the about news is used in combination with ix-menu-about
+   *
+   * @since 5.0.0
+   */
+  @Prop() activeAboutTabKey?: string;
+
+  /**
+   * Show More button is pressed
+   */
+  @Event() showMore!: EventEmitter<MouseEvent>;
+
+  /**
+   * Popover closed
+   */
+  @Event() closePopover!: EventEmitter<void>;
+
+  /** @internal */
+  @Prop() expanded = false;
+
+  override render() {
+    return (
+      <Host
+        class={{
+          expanded: this.expanded,
+          show: !this.show,
+        }}
+      >
+        <div class="banner-container">
+          <ix-icon
+            color="color-inv-contrast-text"
+            name={iconShout}
+            size="32"
+          ></ix-icon>
+          <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="0 0 48 0 48 56 24 48 0 56" />
+          </svg>
+        </div>
+
+        <div class="cui-popover-news-header">
+          <ix-typography format="label" bold>
+            {this.label}
+          </ix-typography>
+        </div>
+
+        <ix-icon-button
+          size="24"
+          icon={iconClose}
+          iconColor="color-soft-text"
+          variant="tertiary"
+          onClick={() => {
+            this.show = false;
+            this.closePopover.emit();
+          }}
+        ></ix-icon-button>
+        <div class="slot-container">
+          <slot></slot>
+        </div>
+        {this.activeAboutTabKey ? (
+          <div class="cui-popover-news-footer">
+            <ix-button
+              variant="primary"
+              onClick={(event) => {
+                this.show = false;
+                this.showMore.emit(event);
+              }}
+            >
+              {this.i18nShowMore}
+            </ix-button>
+          </div>
+        ) : null}
+        <div id="arrow"></div>
+      </Host>
+    );
+  }
+}

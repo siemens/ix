@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!doctype html>
+<html dir="ltr" lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="ix:legacy-icons" content="false" />
+    <title>Stencil Component Starter</title>
+    <script type="module" src="./build/siemens-ix.esm.js"></script>
+    <script nomodule src="./build/siemens-ix.js"></script>
+    <link rel="stylesheet" href="./build/siemens-ix.css" />
+    <script type="module">
+      import { defineCustomElement } from '/node_modules/@siemens/ix-icons/components/ix-icon.js';
+      import { addIcons } from '/node_modules/@siemens/ix-icons/dist/index.js';
+      import * as icons from '/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      defineCustomElement();
+
+      /**
+       * Preload all icons
+       */
+      addIcons(icons);
+    </script>
+  </head>
+  <body>
+    <ix-playground></ix-playground>
+  </body>
+</html>

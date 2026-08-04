@@ -1,0 +1,212 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use 'mixins/break-points';
+
+:host {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: end;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  min-height: 3rem;
+  padding-top: var(--ix-safe-area-inset-top, 0rem);
+  padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
+  padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
+
+  color: var(--theme-app-header--color);
+  background-color: var(--theme-app-header--background);
+
+  border-bottom: var(--theme-app-header--border-width) solid
+    var(--theme-app-header--border-color);
+
+  z-index: var(--theme-z-index-fixed);
+
+  @include component.ix-component;
+
+  .left-side,
+  .right-side {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    align-items: center;
+    min-width: 0;
+    min-height: 3rem;
+    height: 100%;
+  }
+
+  .left-side {
+    flex: 0 1 auto;
+
+    .app-icon {
+      display: block;
+      position: relative;
+      width: 2rem;
+      min-width: 2rem;
+      max-width: 2rem;
+      height: 2rem;
+      min-height: 2rem;
+      max-height: 2rem;
+    }
+
+    .app-icon.app-icon-outline {
+      outline: 1px solid var(--theme-app-header-app-icon--outline-color);
+      border-radius: 0.125rem;
+    }
+
+    .app-icon img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.125rem;
+    }
+
+    .app-switch {
+      margin: 0 0.625rem;
+    }
+
+    .app-switch.without-app-icon {
+      margin-left: 0px;
+    }
+
+    .name {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+      color: var(--theme-app-header--color);
+      min-width: 0;
+
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .application-name,
+    .application-name-suffix {
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      text-overflow: ellipsis;
+      text-wrap: nowrap;
+    }
+
+    .application-name {
+      flex: 0 1 auto;
+      min-width: 0;
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+
+    .application-name-suffix {
+      flex: 1 1 auto;
+      margin-top: 0.4rem;
+      min-width: 0;
+      flex-shrink: 1;
+      color: var(--theme-app-header-name-suffix--color);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      height: 32px;
+      overflow: hidden;
+      line-height: 0rem;
+      color: var(--theme-app-header-logo--color);
+      margin-right: 1rem;
+      margin-left: 1rem;
+      min-width: fit-content;
+    }
+
+    .logo.hide-logo {
+      display: none;
+    }
+  }
+
+  .right-side {
+    flex: 1 1 auto;
+    overflow: hidden;
+    justify-content: space-between;
+
+    .content,
+    .secondary {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 100%;
+    }
+
+    .content {
+      min-width: max-content;
+    }
+
+    .secondary {
+      overflow: hidden;
+    }
+
+    .dropdown {
+      overflow: visible;
+    }
+
+    .dropdown-content > .slot-content-active {
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border-top: none;
+    }
+
+    .dropdown-content .slot-content-active ~ .slot-content-active {
+      border-top: 1px solid var(--theme-color-x-weak-bdr);
+    }
+
+    .context-menu {
+      display: none;
+    }
+
+    .context-menu.context-menu-visible {
+      display: block;
+      margin-left: 0.5rem;
+    }
+
+    ::slotted(ix-avatar) {
+      margin-left: 0.5rem;
+    }
+
+    .primary-navigation {
+      align-self: end;
+    }
+  }
+
+  .right-side.sm {
+    justify-content: end;
+  }
+
+  @include break-points.media-breakpoint-match('sm') {
+    .logo {
+      margin-left: 0.5rem;
+      display: none !important;
+    }
+
+    .content,
+    .secondary,
+    .app-icon {
+      display: none;
+    }
+  }
+}
+
+:host(.hide-bottom-border) {
+  border-bottom: none;
+}

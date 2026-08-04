@@ -1,0 +1,48 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import {
+  ModalService as BaseModalService,
+  ModalConfig,
+} from '@siemens/ix-angular/common';
+import { ModalInstance } from '@siemens/ix';
+import {
+  ApplicationRef,
+  EnvironmentInjector,
+  Injectable,
+  Injector,
+} from '@angular/core';
+
+import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
+export { IxActiveModal } from '@siemens/ix-angular/common';
+
+@Injectable({ providedIn: 'root' })
+export class ModalService extends BaseModalService {
+  constructor(
+    appRef: ApplicationRef,
+    environmentInjector: EnvironmentInjector,
+    injector: Injector
+  ) {
+    super(appRef, environmentInjector, injector);
+
+    defineCustomElement();
+  }
+
+  public override open<TData = any, TReason = any>(
+    config: ModalConfig<TData>
+  ): Promise<ModalInstance<TReason>> {
+    return super.open(config);
+  }
+
+  public override close<TReason = any>(
+    instance: ModalInstance<TReason>,
+    reason?: TReason
+  ): void {
+    super.close(instance, reason);
+  }
+}

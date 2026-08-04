@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest a feature / idea for this project
+labels: ['type: enhancement', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We appreciate your feedback on how to improve this project.
+
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description:  Make sure to not violate these rules
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md).
+          required: true
+        - label: I have not leaked any internal/restricted information like screenshots, videos, code snippets, links etc.
+          required: true
+
+  - type: textarea
+    id: Suggestion
+    attributes:
+      label: Suggestion / feature request
+      description: Describe the feature(s) you would like to see added.
+      placeholder: Tell us your suggestion
+      value: 'Your suggestion here'
+    validations:
+      required: true

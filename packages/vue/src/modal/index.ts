@@ -1,0 +1,62 @@
+import {
+  type ModalConfig as IxModalConfig,
+  type ModalInstance as IxModalInstance,
+  type ModalLoadingContext,
+  type ModalLoadingOptions,
+} from '@siemens/ix';
+import {
+  closeModal as _closeModal,
+  createShowModalLoading,
+  dismissModal as _dismissModal,
+  showModal as _showModal,
+} from '@siemens/ix/components';
+import { VNode } from 'vue';
+import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
+import { defineCustomElement as defineIxModalLoading } from '@siemens/ix/components/ix-modal-loading.js';
+
+export type { ModalLoadingOptions } from '@siemens/ix';
+
+const showModalWithDependencies = _showModal.withDependencies([
+  { tag: 'ix-modal', define: defineIxModal },
+]);
+
+const showModalLoadingWithDependencies = createShowModalLoading([
+  { tag: 'ix-modal', define: defineIxModal },
+  { tag: 'ix-modal-loading', define: defineIxModalLoading },
+]);
+
+export { default as Modal } from './Modal.vue';
+export { default as IxOverlay } from './IxOverlay.vue';
+export * from './constants';
+export * from './modal-slot-props';
+
+export type ModalConfig = {
+  content: VNode;
+};
+
+export async function showModal(
+  config: Omit<IxModalConfig, 'content'> & ModalConfig
+) {
+  return showModalWithDependencies(config);
+}
+
+export function showModalLoading(
+  options: ModalLoadingOptions
+): Promise<ModalLoadingContext> {
+  return showModalLoadingWithDependencies(options);
+}
+
+export function dismissModal(modalInstance: IxModalInstance) {
+  if (modalInstance?.htmlElement) {
+    _dismissModal(modalInstance.htmlElement);
+  }
+}
+
+export function closeModal<T = any>(
+  modalInstance: IxModalInstance,
+  reason?: T
+) {
+  if (modalInstance?.htmlElement) {
+    _closeModal(modalInstance.htmlElement, reason);
+  }
+}

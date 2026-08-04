@@ -1,0 +1,57 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import {
+  ApplicationRef,
+  EnvironmentInjector,
+  Injectable,
+  Injector,
+} from '@angular/core';
+import { ModalInstance } from '@siemens/ix';
+import {
+  ModalConfig,
+  ModalService as BaseModalService,
+} from '@siemens/ix-angular/common';
+
+export type ModalContext<T> = {
+  close: ((result: any) => void) | null;
+  dismiss: ((result?: any) => void) | null;
+  data?: T;
+};
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ModalService extends BaseModalService {
+  constructor(
+    appRef: ApplicationRef,
+    environmentInjector: EnvironmentInjector,
+    injector: Injector
+  ) {
+    super(appRef, environmentInjector, injector);
+  }
+
+  /**
+   * Opens a modal based on ModalConfig
+   */
+  public override open<TData = any, TReason = any>(
+    config: ModalConfig<TData>
+  ): Promise<ModalInstance<TReason>> {
+    return super.open(config);
+  }
+
+  /**
+   * Closes a modal based on a ModalInstance
+   */
+  public override close<TReason = any>(
+    instance: ModalInstance<TReason>,
+    reason?: TReason
+  ): void {
+    super.close(instance, reason);
+  }
+}

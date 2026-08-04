@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  position: relative;
+  margin: 0 0.75rem;
+
+  --ix-layout-grid-gap: 1.5rem;
+
+  .container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: var(--ix-layout-grid-gap);
+  }
+
+  ::slotted(*) {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

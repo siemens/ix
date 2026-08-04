@@ -1,0 +1,67 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  position: relative;
+  margin-bottom: 0.5rem;
+  margin-right: 0.75rem;
+
+  @include component.ix-component;
+
+  .avatar {
+    all: unset;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    width: 100%;
+    max-height: 2.5rem;
+    padding-left: 0.25rem;
+    margin-left: 0.41rem;
+    margin-right: 0.35rem;
+    transition: var(--theme-default-time);
+
+    .avatar-name {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-left: vars.$default-space;
+      line-height: 1.14;
+
+      .text-default-single {
+        color: var(--theme-nav-item-primary--color);
+        @include text-truncation.ellipsis;
+      }
+    }
+
+    border-radius: 1.25rem;
+
+    @include hover.hover {
+      background-color: var(--theme-avatar-btn--background--hover);
+      color: var(--theme-avatar-btn--color--hover);
+    }
+
+    @include hover.active {
+      background-color: var(--theme-avatar-btn--background--active);
+      color: var(--theme-avatar-btn--color--active);
+    }
+  }
+
+  .avatar:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+  }
+}

@@ -1,0 +1,235 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { iconEye } from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
+import { animate } from 'animejs';
+import Animation from '../utils/animation';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { FlipTileVariant } from './flip-tile.types';
+import { hasSlottedElements } from '../utils/shadow-dom';
+
+/**
+ * @slot header - Content displayed in the tile header.
+ * @slot default - Flip tile pages.
+ * @slot footer - Content displayed in the tile footer.
+ */
+@Component({
+  tag: 'ix-flip-tile',
+  styleUrl: 'flip-tile.scss',
+  shadow: true,
+})
+export class FlipTile {
+  @Element() hostElement!: HTMLIxFlipTileElement;
+
+  /**
+   * Variation of the Flip
+   *
+   * @since 4.0.0
+   */
+  @Prop() variant: FlipTileVariant = 'filled';
+
+  /**
+   * Height interpreted as REM
+   */
+  @Prop() height: number | 'auto' = 15.125;
+
+  /**
+   * Width interpreted as REM
+   */
+  @Prop() width: number | 'auto' = 16;
+
+  /**
+   * Index of the currently visible content
+   * @since 3.0.0
+   */
+  @Prop() index = 0;
+
+  /**
+   * ARIA label for the eye icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEyeIconButton?: string;
+
+  /**
+   * Event emitted when the index changes
+   * @since 3.0.0
+   */
+  @Event() toggle!: EventEmitter<number>;
+
+  @State() isFlipAnimationActive: boolean = false;
+
+  @State() hasFooterSlot = false;
+
+  private contentItems: Array<HTMLIxFlipTileContentElement> = [];
+  private observer?: MutationObserver;
+
+  @Watch('index')
+  watchIndex(newIndex: number, oldIndex: number) {
+    if (newIndex === oldIndex) {
+      return;
+    }
+
+    this.doFlipAnimation(newIndex);
+  }
+
+  componentDidLoad() {
+    this.observer = createMutationObserver(() => this.updateContentItems());
+    this.observer.observe(this.hostElement, {
+      childList: true,
+    });
+  }
+
+  componentWillLoad() {
+    this.updateContentItems();
+    this.updateContentVisibility(this.index);
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private handleFooterSlotChange(event: Event) {
+    const { target } = event;
+    const slot = target as HTMLSlotElement;
+    this.hasFooterSlot = hasSlottedElements(slot);
+  }
+
+  private updateContentItems() {
+    this.contentItems = Array.from(
+      this.hostElement.querySelectorAll('ix-flip-tile-content')
+    );
+  }
+
+  private updateContentVisibility(indexVisible: number) {
+    this.contentItems.forEach(
+      (content, index) => (content.contentVisible = index === indexVisible)
+    );
+  }
+
+  private toggleIndex() {
+    let newIndex;
+
+    const oldIndex = this.index;
+
+    if (this.index >= this.contentItems.length - 1) {
+      newIndex = 0;
+    } else {
+      newIndex = this.index + 1;
+    }
+
+    const { defaultPrevented } = this.toggle.emit(newIndex);
+
+    if (defaultPrevented) {
+      this.index = oldIndex;
+      return;
+    }
+
+    this.doFlipAnimation(newIndex);
+  }
+
+  private doFlipAnimation(index: number) {
+    if (this.isFlipAnimationActive) {
+      return;
+    }
+
+    this.isFlipAnimationActive = true;
+
+    animate(
+      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      {
+        keyframes: {
+          '0%': {
+            transform: 'rotateY(0)',
+          },
+          '50%': {
+            transform: 'rotateY(90deg)',
+          },
+          '51%': {
+            transform: 'rotateY(270deg)',
+          },
+          '100%': {
+            transform: 'rotateY(360deg)',
+          },
+        },
+        duration: Animation.defaultTime,
+        easing: 'ease-in-out',
+        onComplete: () => {
+          this.index = index;
+          this.updateContentVisibility(this.index);
+        },
+      }
+    );
+
+    setTimeout(() => {
+      this.isFlipAnimationActive = false;
+    }, 2 * Animation.defaultTime);
+  }
+
+  render() {
+    return (
+      <Host
+        class={{
+          [`flip-tile-variant-${this.variant}`]: true,
+        }}
+        style={{
+          height: `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          'min-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          'max-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          width: `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+          'min-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+          'max-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+        }}
+      >
+        <div class="flip-tile-container">
+          <div class="flip-tile-header">
+            <div class="header-slot-container text-l-title">
+              <slot name="header"></slot>
+            </div>
+            <ix-icon-button
+              icon={iconEye}
+              variant="tertiary"
+              onClick={() => this.toggleIndex()}
+              aria-label={this.ariaLabelEyeIconButton}
+            ></ix-icon-button>
+          </div>
+
+          <div class="content-container">
+            <slot></slot>
+          </div>
+          <div
+            class={{
+              footer: true,
+              'show-footer': this.hasFooterSlot,
+            }}
+          >
+            <slot
+              name="footer"
+              onSlotchange={(event) => this.handleFooterSlotChange(event)}
+            ></slot>
+          </div>
+        </div>
+      </Host>
+    );
+  }
+}

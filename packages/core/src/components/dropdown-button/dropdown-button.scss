@@ -1,0 +1,143 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'misc/common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+
+@mixin triangle($name: '') {
+  @if ($name != '') {
+    $name: '#{$name}-';
+  }
+
+  .triangle.#{$name}primary {
+    color: var(--theme-btn-#{$name}primary--color);
+  }
+  .triangle.#{$name}secondary {
+    color: var(--theme-btn-#{$name}secondary--color);
+  }
+  .triangle.#{$name}tertiary {
+    color: var(--theme-btn-#{$name}tertiary--color);
+  }
+
+  .triangle.#{$name}primary.disabled {
+    color: var(--theme-btn-#{$name}primary--color--disabled);
+  }
+  .triangle.#{$name}secondary.disabled {
+    color: var(--theme-btn-#{$name}secondary--color--disabled);
+  }
+  .triangle.#{$name}tertiary.disabled {
+    color: var(--theme-btn-#{$name}tertiary--color--disabled);
+  }
+}
+
+:host {
+  display: inline-block;
+  position: relative;
+  height: vars.$x-large-space;
+  width: auto;
+
+  --ix-dropdown-button-border-radius-left: var(--theme-btn--border-radius);
+  --ix-dropdown-button-border-radius-right: var(--theme-btn--border-radius);
+
+  border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
+  border-bottom-left-radius: var(--ix-dropdown-button-border-radius-left);
+  border-top-right-radius: var(--ix-dropdown-button-border-radius-right);
+  border-bottom-right-radius: var(--ix-dropdown-button-border-radius-right);
+
+  @include component.ix-component;
+
+  .hide {
+    display: none;
+  }
+
+  ix-button,
+  ix-icon-button {
+    --ix-button-border-radius-left: var(
+      --ix-dropdown-button-border-radius-left
+    );
+    --ix-button-border-radius-right: var(
+      --ix-dropdown-button-border-radius-right
+    );
+  }
+
+  .dropdown-button {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dropdown-button > ix-button {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dropdown-button .button-label {
+    margin-right: auto;
+    min-width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .dropdown-button .dropdown-icon {
+    margin-right: 0.25rem;
+  }
+
+  .triangle {
+    position: absolute;
+    margin-inline-start: 1.5625rem;
+    margin-block-start: -0.4375rem;
+    border-right: 0 solid transparent;
+    border-left: 4px solid transparent;
+    border-top: 0 solid transparent;
+    border-bottom: 4px solid;
+    color: var(--theme-btn-primary--color);
+  }
+
+  @include triangle();
+  @include triangle('subtle');
+  @include triangle('danger');
+
+  .content {
+    display: flex;
+    align-items: center;
+  }
+
+  .remove-button-min-width {
+    min-width: 0px;
+  }
+}
+
+:host(.host-context-date-picker),
+:host(.host-context-breadcrumb) {
+  .internal-button {
+    min-width: 0px;
+    padding: 0;
+  }
+}
+
+:host(.host-context-date-picker) {
+  ix-dropdown {
+    max-height: 15.625rem;
+    overflow-y: scroll;
+  }
+}
+
+:host(:focus-visible) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+
+:host([aria-expanded='true']:focus-visible) {
+  outline: none;
+}
+
+:host(.disabled) {
+  pointer-events: none;
+}

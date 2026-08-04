@@ -1,0 +1,56 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "BASE_URL"],
+  "globalDependencies": [".env"],
+  "ui": "stream",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "components/**",
+        "hydrate/**",
+        "dist/**",
+        "dist-css/**",
+        "build/**",
+        "storybook-static/**",
+        "www/**",
+        "loader/**",
+        "api-docs/**",
+        "component-doc.json",
+        "component-usage-by-component.json",
+        "component-usage.json"
+      ],
+      "outputLogs": "new-only"
+    },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "persistent": true
+    },
+    "lint": {
+      "cache": false
+    },
+    "visual-regression": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "test.setup": {
+      "cache": false
+    },
+    "test": {
+      "cache": false
+    },
+    "test.memlab": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "build.watch": {
+      "cache": false
+    },
+    "storybook": {
+      "persistent": true,
+      "dependsOn": ["build.watch"],
+      "cache": false
+    }
+  }
+}

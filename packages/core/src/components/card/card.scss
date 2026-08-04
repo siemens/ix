@@ -1,0 +1,124 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use './card-vars' as card-vars;
+
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
+  overflow: hidden;
+  cursor: pointer;
+
+  width: 20rem;
+
+  border: var(--theme-card--border-width) solid
+    var(--ix-card-border-color, var(--theme-color-soft-bdr));
+  border-radius: var(--theme-card--border-radius);
+
+  @include component.ix-component;
+
+  .card-content {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100% - 2rem);
+    background-color: var(--ix-card-background, transparent);
+    border-top-left-radius: var(--theme-card--border-radius);
+    border-top-right-radius: var(--theme-card--border-radius);
+    overflow: hidden;
+  }
+
+  .card-content-wrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .card-footer {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+}
+
+@mixin accordionChevronColorPrimary {
+  ::slotted(ix-card-accordion) {
+    color: var(--theme-color-std-text);
+  }
+}
+
+@mixin card-variants($variant) {
+  :host(.card-#{$variant}) {
+    --ix-card-background: var(--theme-card-#{$variant}--background);
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
+
+    color: var(--theme-card-#{$variant}--color);
+
+    @if $variant == outline {
+      @include accordionChevronColorPrimary;
+    }
+
+    @if $variant == filled {
+      @include accordionChevronColorPrimary;
+    }
+  }
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  @include card-variants($variant);
+}
+
+:host(:not(.card-insight, .card-outline)) {
+  --ix-card-border-color: transparent;
+}
+
+@mixin card-variants-active($variant) {
+  :host(.card-#{$variant}:active) {
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--active);
+    --ix-card-background: var(--theme-card-#{$variant}--background--active);
+  }
+}
+
+@mixin card-variants-hover($variant) {
+  :host(.card-#{$variant}:hover) {
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--hover);
+    --ix-card-background: var(--theme-card-#{$variant}--background--hover);
+  }
+}
+
+@mixin card-variants-selected($variant) {
+  :host(.selected.card-#{$variant}) {
+    --ix-card-border-color: var(
+      --theme-card-#{$variant}--border-color--selected
+    );
+    --ix-card-background: var(--theme-card-#{$variant}--background--selected);
+  }
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  @include card-variants-hover($variant);
+  @include card-variants-active($variant);
+  @include card-variants-selected($variant);
+}
+
+:host(.passive) {
+  cursor: default;
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  :host(.passive.card-#{$variant}) {
+    --ix-card-background: var(--theme-card-#{$variant}--background);
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
+  }
+}

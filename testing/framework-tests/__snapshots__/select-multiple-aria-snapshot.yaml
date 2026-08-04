@@ -1,0 +1,6 @@
+- text: Item 1
+- button "Close Small"
+- text: Item 3
+- button "Close Small"
+- textbox "Select an option"
+- button "Open select dropdown"

@@ -1,0 +1,12 @@
+- checkbox "Option group":
+  - button:
+    - img
+- checkbox "Sub option one" [checked]:
+  - button:
+    - img
+- checkbox "Sub option one" [checked]:
+  - button:
+    - img
+- checkbox "Sub option one":
+  - button:
+    - img

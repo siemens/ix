@@ -1,0 +1,30 @@
+- text: Terms of something
+- checkbox "I agree everything":
+  - button:
+    - img
+- img
+- text: Info text Terms of something
+- checkbox "I agree everything":
+  - button:
+    - img
+- checkbox "I disagree everything":
+  - button:
+    - img
+- img
+- text: Warning text Terms of something
+- checkbox "I agree everything":
+  - button:
+    - img
+- checkbox "I disagree everything":
+  - button:
+    - img
+- img
+- text: Invalid text Terms of something
+- checkbox "I agree everything":
+  - button:
+    - img
+- checkbox "I disagree everything":
+  - button:
+    - img
+- img
+- text: Valid text

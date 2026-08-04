@@ -1,0 +1,65 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './mixins/hover';
+
+@mixin no-link-decoration {
+  text-decoration: none;
+  color: unset;
+}
+
+a[href] {
+  color: var(--theme-color-primary);
+  text-underline-offset: 0.2rem;
+
+  @include hover.hover {
+    color: var(--theme-color-dynamic);
+  }
+
+  @include hover.active {
+    color: var(--theme-color-dynamic);
+  }
+
+  @include hover.visited {
+    color: var(--theme-color-primary);
+  }
+
+  @include hover.focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: 0.2rem;
+  }
+
+  .glyph {
+    vertical-align: middle;
+
+    &::before {
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+}
+
+a[href]:not(.disabled):not(:disabled) {
+  cursor: pointer;
+}
+
+/**
+* Workaround for missing :has selector implementation in Firefox
+* Separate CSS selectors required, because Firefox will ignore combined selector with
+* unsupported CSS pseudo selector (:has).
+* e.g
+* ix-menu > a[href], a[href]:has(+ ix-menu-item)
+*/
+ix-menu > a[href] {
+  @include no-link-decoration();
+}
+
+a[href]:has(+ ix-menu-item) {
+  @include no-link-decoration();
+}

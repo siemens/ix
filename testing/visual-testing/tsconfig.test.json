@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "es2017",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveSymlinks": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "paths": {
+      "@utils/test": ["./tests/utils/test"]
+    },
+    "noEmit": true,
+    "types": ["node", "@siemens/ix-icons"]
+  },
+  "include": ["tests", "tests/runtime.d.ts"],
+  "exclude": ["node_modules"]
+}

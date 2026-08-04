@@ -1,0 +1,30 @@
+- grid:
+  - rowgroup:
+    - row "Column with Header Selection Type Status HW version":
+      - columnheader "Column with Header Selection":
+        - checkbox "Column with Header Selection"
+      - columnheader "Type"
+      - columnheader "Status"
+      - columnheader "HW version"
+  - rowgroup:
+    - row "Press Space to toggle row selection (unchecked) Equipment Normal 2.0":
+      - gridcell "Press Space to toggle row selection (unchecked)":
+        - checkbox "Press Space to toggle row selection (unchecked)"
+      - gridcell "Equipment"
+      - gridcell "Normal"
+      - gridcell "2.0"
+    - row "Press Space to toggle row selection (unchecked) Positioner Maintenance 1.0":
+      - gridcell "Press Space to toggle row selection (unchecked)":
+        - checkbox "Press Space to toggle row selection (unchecked)"
+      - gridcell "Positioner"
+      - gridcell "Maintenance"
+      - gridcell "1.0"
+    - row "Press Space to toggle row selection (unchecked) Pressure sensor Unknown N/A":
+      - gridcell "Press Space to toggle row selection (unchecked)":
+        - checkbox "Press Space to toggle row selection (unchecked)"
+      - gridcell "Pressure sensor"
+      - gridcell "Unknown"
+      - gridcell "N/A"
+  - rowgroup
+  - rowgroup
+  - rowgroup

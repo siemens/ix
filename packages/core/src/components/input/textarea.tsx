@@ -1,0 +1,421 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import {
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+  h,
+} from '@stencil/core';
+import {
+  HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
+} from '../utils/input';
+import { makeRef } from '../utils/make-ref';
+import { TextareaElement } from './input.fc';
+import {
+  getAriaAttributesForInput,
+  mapValidationResult,
+  onInputFocus,
+  onInputBlurWithChange,
+  checkInternalValidity,
+} from './input.util';
+import { normalizeCssDimension } from '../utils/unit-conversion.util';
+import type { TextareaResizeBehavior } from './textarea.types';
+
+let sequentialInstanceId = 0;
+
+/**
+ * @form-ready
+ */
+@Component({
+  tag: 'ix-textarea',
+  styleUrl: 'textarea.scss',
+  shadow: true,
+  formAssociated: true,
+})
+export class Textarea implements IxInputFieldComponent<string> {
+  @Element() hostElement!: HTMLIxTextareaElement;
+  @AttachInternals() formInternals!: ElementInternals;
+
+  /**
+   * The name of the textarea field.
+   */
+  @Prop({ reflect: true }) name?: string;
+
+  /**
+   * The placeholder text for the textarea field.
+   */
+  @Prop({ reflect: true }) placeholder?: string;
+
+  /**
+   * The value of the textarea field.
+   */
+  @Prop({ reflect: true, mutable: true }) value: string = '';
+
+  /**
+   * Determines if the textarea field is required.
+   */
+  @Prop({ reflect: true }) required: boolean = false;
+
+  /**
+   * Determines if the textarea field is disabled.
+   */
+  @Prop() disabled: boolean = false;
+
+  /**
+   * Determines if the textarea field is readonly.
+   */
+  @Prop() readonly: boolean = false;
+
+  /**
+   * The helper text for the textarea field.
+   */
+  @Prop() helperText?: string;
+
+  /**
+   * The info text for the textarea field.
+   */
+  @Prop() infoText?: string;
+
+  /**
+   * Determines if the text should be displayed as a tooltip.
+   */
+  @Prop() showTextAsTooltip?: boolean;
+
+  /**
+   * The valid text for the textarea field.
+   */
+  @Prop() validText?: string;
+
+  /**
+   * The warning text for the textarea field.
+   */
+  @Prop() warningText?: string;
+
+  /**
+   * The label for the textarea field.
+   */
+  @Prop({ reflect: true }) label?: string;
+
+  /**
+   * The error text for the textarea field.
+   */
+  @Prop() invalidText?: string;
+
+  /**
+   * The height of the textarea field (e.g. "52px").
+   * Will take precedence over `textareaRows` prop if both are set.
+   */
+  @Prop() textareaHeight?: string;
+
+  /**
+   * The width of the textarea field (e.g. "200px").
+   * Will take precedence over `textareaCols` prop if both are set.
+   */
+  @Prop() textareaWidth?: string;
+
+  /**
+   * The height of the textarea specified by number of rows.
+   * Will be overridden by `textareaHeight` prop if both are set.
+   */
+  @Prop() textareaRows?: number;
+
+  /**
+   * The width of the textarea specified by number of characters.
+   * Will be overridden by `textareaWidth` prop if both are set.
+   */
+  @Prop() textareaCols?: number;
+
+  /**
+   * Determines the resize behavior of the textarea field.
+   * Resizing can be enabled in one direction, both directions or completely disabled.
+   */
+  @Prop() resizeBehavior: TextareaResizeBehavior = 'both';
+
+  /**
+   * The maximum length of the textarea field.
+   */
+  @Prop() maxLength?: number;
+
+  /**
+   * The minimum length of the textarea field.
+   */
+  @Prop() minLength?: number;
+
+  /**
+   * Event emitted when the value of the textarea field changes.
+   */
+  @Event() valueChange!: EventEmitter<string>;
+
+  /**
+   * Event emitted when the validity state of the textarea field changes.
+   */
+  @Event() validityStateChange!: EventEmitter<ValidityState>;
+
+  /**
+   * Event emitted when the textarea field loses focus.
+   */
+  @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the textarea field loses focus and the value has changed.
+   *@since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() isInvalidByRequired = false;
+
+  private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
+    this.initResizeObserver();
+  });
+  private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
+  private touched = false;
+  /** @internal */
+  public initialValue?: string;
+  private resizeObserver?: ResizeObserver;
+  private isManuallyResized = false;
+  @State() private manualHeight?: string;
+  @State() private manualWidth?: string;
+  private isProgrammaticResize = false;
+  private lastObservedInlineHeight?: string;
+  private lastObservedInlineWidth?: string;
+
+  @HookValidationLifecycle()
+  updateClassMappings(result: ValidationResults) {
+    mapValidationResult(this, result);
+  }
+
+  @Watch('textareaHeight')
+  @Watch('textareaWidth')
+  @Watch('textareaRows')
+  @Watch('textareaCols')
+  onDimensionPropsChange() {
+    this.resetManualResizeState();
+    this.isProgrammaticResize = true;
+  }
+
+  @Watch('resizeBehavior')
+  onResizeBehaviorChange() {
+    this.initResizeObserver();
+  }
+
+  componentWillLoad() {
+    this.updateFormInternalValue(this.value);
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+  }
+
+  private resetManualResizeState() {
+    this.isManuallyResized = false;
+    this.manualHeight = undefined;
+    this.manualWidth = undefined;
+  }
+
+  private updateLastObservedInlineStyles(textarea: HTMLTextAreaElement) {
+    this.lastObservedInlineHeight = textarea.style.height;
+    this.lastObservedInlineWidth = textarea.style.width;
+  }
+
+  private hasInlineStyleChange(textarea: HTMLTextAreaElement) {
+    return (
+      textarea.style.height !== this.lastObservedInlineHeight ||
+      textarea.style.width !== this.lastObservedInlineWidth
+    );
+  }
+
+  private initResizeObserver() {
+    this.resizeObserver?.disconnect();
+
+    const textarea = this.textAreaRef.current;
+    if (!textarea) return;
+
+    if (this.resizeBehavior === 'none') return;
+
+    let isInitialResize = true;
+    this.updateLastObservedInlineStyles(textarea);
+
+    this.resizeObserver = new ResizeObserver(() => {
+      const textarea = this.textAreaRef.current;
+
+      if (!textarea) {
+        return;
+      }
+
+      if (isInitialResize) {
+        isInitialResize = false;
+        this.updateLastObservedInlineStyles(textarea);
+        return;
+      }
+
+      const hasInlineStyleChange = this.hasInlineStyleChange(textarea);
+      this.updateLastObservedInlineStyles(textarea);
+
+      if (!hasInlineStyleChange) {
+        return;
+      }
+
+      if (this.isProgrammaticResize) {
+        this.isProgrammaticResize = false;
+        return;
+      }
+
+      this.isManuallyResized = true;
+      this.manualHeight = textarea.style.height;
+      this.manualWidth = textarea.style.width;
+    });
+
+    this.resizeObserver.observe(textarea);
+  }
+
+  updateFormInternalValue(value: string) {
+    this.formInternals.setFormValue(value);
+    this.value = value;
+    if (this.textAreaRef.current && this.touched) {
+      checkInternalValidity(this, this.textAreaRef.current);
+    }
+  }
+
+  /** @internal */
+  @Method()
+  async getAssociatedFormElement(): Promise<HTMLFormElement | null> {
+    return this.formInternals.form;
+  }
+
+  /** @internal */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(!!this.value);
+  }
+
+  /**
+   * Get the native textarea element.
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLTextAreaElement> {
+    return this.textAreaRef.waitForCurrent();
+  }
+
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Check if the textarea field has been touched.
+   * @internal
+   * */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
+  private getTextareaHeight(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualHeight;
+    }
+
+    return normalizeCssDimension(this.textareaHeight);
+  }
+
+  private getTextareaWidth(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualWidth || '100%';
+    }
+
+    return normalizeCssDimension(this.textareaWidth);
+  }
+
+  render() {
+    return (
+      <Host
+        class={{
+          disabled: this.disabled,
+          readonly: this.readonly,
+        }}
+      >
+        <ix-field-wrapper
+          required={this.required}
+          label={this.label}
+          helperText={this.helperText}
+          invalidText={this.invalidText}
+          infoText={this.infoText}
+          warningText={this.warningText}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          isInvalid={this.isInvalid}
+          isValid={this.isValid}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
+          controlRef={this.textAreaRef}
+        >
+          {!!this.maxLength && this.maxLength > 0 && (
+            <ix-typography
+              class="bottom-text"
+              slot="bottom-right"
+              textColor="soft"
+            >
+              {(this.value ?? '').length}/{this.maxLength}
+            </ix-typography>
+          )}
+          <div class="input-wrapper">
+            <TextareaElement
+              id={this.inputId}
+              minLength={this.minLength}
+              maxLength={this.maxLength}
+              textareaCols={this.textareaCols}
+              textareaRows={this.textareaRows}
+              textareaHeight={this.getTextareaHeight()}
+              textareaWidth={this.getTextareaWidth()}
+              resizeBehavior={this.resizeBehavior}
+              readonly={this.readonly}
+              disabled={this.disabled}
+              isInvalid={this.isInvalid}
+              required={this.required}
+              value={this.value}
+              placeholder={this.placeholder}
+              textAreaRef={this.textAreaRef}
+              ariaAttributes={getAriaAttributesForInput(this)}
+              onFocus={() => onInputFocus(this, this.value)}
+              valueChange={(value) => this.valueChange.emit(value)}
+              updateFormInternalValue={(value) =>
+                this.updateFormInternalValue(value)
+              }
+              onBlur={() => {
+                onInputBlurWithChange(
+                  this,
+                  this.textAreaRef.current,
+                  this.value
+                );
+                this.touched = true;
+              }}
+            ></TextareaElement>
+          </div>
+        </ix-field-wrapper>
+      </Host>
+    );
+  }
+}

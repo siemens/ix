@@ -1,0 +1,6 @@
+- main:
+  - group "Datetime range":
+    - textbox "Start date and time"
+    - button "Toggle calendar"
+    - textbox "End date and time"
+    - button "Toggle calendar"

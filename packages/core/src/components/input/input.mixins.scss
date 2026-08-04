@@ -1,0 +1,170 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/input';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/validation/form-component';
+
+@include input.form;
+
+@mixin applySpacingToStartSlot {
+  .start-container ::slotted(*) {
+    margin-left: 0.5rem;
+  }
+
+  .start-container ::slotted(ix-icon.size-24),
+  .start-container ::slotted(ix-icon-button.btn-icon-16) {
+    margin-left: 0.25rem;
+  }
+
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  .start-container ::slotted(ix-icon-button.btn-icon-32) {
+    margin-left: 0;
+  }
+}
+
+$input-end-container-inset: 0.25rem;
+
+@mixin applySpacingToEndSlot {
+  .end-container ::slotted(*) {
+    margin-right: calc(0.5rem - #{$input-end-container-inset});
+  }
+
+  .end-container ::slotted(ix-icon.size-24),
+  .end-container ::slotted(ix-icon-button.btn-icon-16) {
+    margin-right: calc(0.25rem - #{$input-end-container-inset});
+  }
+
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  .end-container ::slotted(ix-icon-button.btn-icon-32) {
+    margin-right: calc(0rem - #{$input-end-container-inset});
+  }
+}
+
+@mixin input-field {
+  :host {
+    display: inline-block;
+    position: relative;
+
+    width: auto;
+
+    @include component.ix-component;
+
+    .input-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+    }
+
+    .start-container,
+    .end-container {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .start-container {
+      left: var(--theme-input--border-thickness);
+    }
+
+    .end-container {
+      right: #{$input-end-container-inset};
+    }
+
+    @include applySpacingToStartSlot;
+    @include applySpacingToEndSlot;
+
+    .bottom-text {
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .input-wrapper:hover input:not(:disabled):not(:read-only) {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
+    }
+  }
+
+  :host(.disabled) {
+    pointer-events: none;
+
+    input,
+    textarea {
+      pointer-events: none;
+      color: var(--theme-input--color--disabled);
+    }
+  }
+
+  @include form-component.host-valid;
+
+  @include form-component.host-info {
+    input {
+      border-color: var(--theme-input--border-color--info);
+    }
+
+    input:hover,
+    .input-wrapper:hover input {
+      border-color: var(--theme-input--border-color--info--hover) !important;
+    }
+
+    input:active {
+      border-color: var(--theme-input--border-color--info--active) !important;
+    }
+  }
+
+  @include form-component.host-warning {
+    input {
+      background-color: var(--theme-input--background--warning);
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+
+    input:hover,
+    .input-wrapper:hover input {
+      background-color: var(--theme-input--background--warning--hover);
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+
+    input:active {
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+  }
+
+  @include form-component.host-invalid {
+    input {
+      background-color: var(--theme-input--background--invalid);
+      border-color: var(--theme-input--border-color--invalid) !important;
+    }
+
+    input:hover,
+    .input-wrapper:hover input {
+      background-color: var(--theme-input--background--invalid--hover);
+      border-color: var(--theme-input--border-color--invalid--hover) !important;
+    }
+
+    input:active {
+      border-color: var(
+        --theme-input--border-color--invalid--active
+      ) !important;
+    }
+  }
+}

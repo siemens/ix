@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  flex-direction: column;
+
+  @include component.ix-component;
+
+  ix-application-header {
+    z-index: calc(var(--theme-z-index-sticky) + 1);
+  }
+
+  .logo-wrapper {
+    display: contents;
+  }
+
+  .application {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .content-area {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
+    width: 100%;
+    margin-left: var(--ix-application-menu-margin-left);
+    min-width: 0;
+  }
+
+  main {
+    display: block;
+    position: relative;
+    flex-grow: 1;
+
+    width: 100%;
+    padding-bottom: var(--ix-safe-area-inset-bottom);
+    overflow: auto;
+  }
+
+  footer {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+}
+
+:host(.breakpoint-md) {
+  --ix-application-menu-margin-left: calc(
+    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  );
+
+  aside.slotted {
+    margin-left: var(--ix-application-menu-margin-left);
+  }
+
+  aside.slotted + .content-area {
+    margin-left: 0;
+  }
+
+  aside:not(.slotted) + .content-area {
+    margin-left: var(--ix-application-menu-margin-left);
+  }
+}
+
+:host(.breakpoint-lg) {
+  --ix-application-menu-margin-left: 0;
+}
+
+:host(.breakpoint-sm) {
+  --ix-application-menu-margin-left: var(
+    --ix-application-menu-safe-area-left,
+    0rem
+  );
+}

@@ -1,0 +1,121 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/*'
+      - 'release-*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.run_attempt }}
+          path: ./packages/documentation/build
+
+  visual-testing-core:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/visual-regression
+        with:
+          projectName: '@siemens/ix'
+          artifactName: 'core'
+          projectPath: './packages/core/blob-report/'
+          shardIndex: '${{ matrix.shardIndex }}'
+          shardTotal: '${{ matrix.shardTotal }}'
+
+  merge-core-reports:
+    if: failure()
+    needs: [visual-testing-core]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/merge-reports
+        with:
+          projectName: '@siemens/ix'
+          artifactName: 'core'
+          blobPattern: '@siemens/ix-blob-report-*'
+
+  visual-testing-aggrid:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/visual-regression
+        with:
+          projectName: '@siemens/ix-aggrid'
+          artifactName: 'aggrid'
+          projectPath: './packages/aggrid/playwright-report/'
+
+  visual-testing-echarts:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/visual-regression
+        with:
+          projectName: '@siemens/ix-echarts'
+          artifactName: 'echarts'
+          projectPath: './packages/echarts/playwright-report/'
+
+  unit:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/unit
+
+  accessibility:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/storybook
+
+  unit-memlab:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: |
+          cd testing/performance-memlab
+          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm test.memlab

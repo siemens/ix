@@ -1,0 +1,1847 @@
+# @siemens/ix
+
+## 5.1.1
+
+### Patch Changes
+
+- [#2648](https://github.com/siemens/ix/pull/2648) [`1eee43f`](https://github.com/siemens/ix/commit/1eee43f4abb64db905bca3254dc1965b13c6d067) Thanks [@lzeiml](https://github.com/lzeiml)! - Fix `ix-select` to avoid console errors when toggling the `disabled` property. Fixes [#2646](https://github.com/siemens/ix/issues/2646)
+
+- [#2637](https://github.com/siemens/ix/pull/2637) [`31aec70`](https://github.com/siemens/ix/commit/31aec70c834f616fe99d68422dc96206b57ffe54) Thanks [@SaiYugandhar03](https://github.com/SaiYugandhar03)! - Update the disabled and readonly text contrast for these components:
+
+  - **ix-input**
+  - **ix-number-input**
+  - **ix-date-input**
+  - **ix-date-time-input**
+  - **ix-time-input**
+  - **ix-textarea**
+
+  Fixes [#2600](https://github.com/siemens/ix/issues/2600)
+
+## 5.1.0
+
+### Minor Changes
+
+- [#2473](https://github.com/siemens/ix/pull/2473) [`a16ab0a`](https://github.com/siemens/ix/commit/a16ab0a66673340870cd66e2b394a0225dfd73e1) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Floating **ix-pane**s can be closed via* Escape*, will set focus to descendant on open and restore focus once closed and employ a focus trap.
+
+  Fixes [#2333](https://github.com/siemens/ix/issues/2333)
+
+- [#2573](https://github.com/siemens/ix/pull/2573) [`0648d8d`](https://github.com/siemens/ix/commit/0648d8dac0ca906892786503f2bba60ad2c6a37b) Thanks [@lzeiml](https://github.com/lzeiml)! - Improved **ix-menu** accessibility by implementing the W3C menubar pattern, adding better keyboard navigation and screenreader suppport.
+  Added properties `i18nAriaLabelMenu` and `i18nNavigationHint` for screenreader translations.
+
+- [#2574](https://github.com/siemens/ix/pull/2574) [`94017ad`](https://github.com/siemens/ix/commit/94017adda0e5a2d14c36c03d624d8e20f921dde8) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Add **ix-popover** with optional **ix-popover-header**, **ix-popover-content**, **ix-popover-image**, and **ix-popover-footer** for anchored floating panels. Supports click and hover triggers, placement, nesting, focus management, and programmatic open/close.
+
+- [#2619](https://github.com/siemens/ix/pull/2619) [`3244cb6`](https://github.com/siemens/ix/commit/3244cb6f6444b7b1714f014d7fb1bac5b1f6741a) Thanks [@lzeiml](https://github.com/lzeiml)! - Selected chips in `ix-select` with `mode="multiple"` are now laid out on a single row. When the selected chips no longer fit the available width, the chips that would overflow are collapsed into a non-removable "+N" overflow indicator chip. Clicking (or activating via keyboard) the indicator opens a dropdown listing the hidden items, each of which can be removed.
+
+  This replaces the previous multi-row wrapping/scrolling chip layout. A new `i18nMoreItems` property (default `'{count} more'`) provides the accessible label for the overflow indicator, where `{count}` is replaced with the number of hidden items.
+
+- [#2589](https://github.com/siemens/ix/pull/2589) [`a2f425c`](https://github.com/siemens/ix/commit/a2f425c4fa4d7eb4f47d11b2bdc760d287ef464d) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Added a `noPadding` property to **ix-pane**. When set to `true`, the left, right and bottom padding of the content area is removed while the title keeps its padding.
+
+- [#2567](https://github.com/siemens/ix/pull/2567) [`64e649a`](https://github.com/siemens/ix/commit/64e649a2954aea5d694f6631c8e45a20bcc57c75) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Fix `disabled` prop on `ix-select-item` having no effect. The `disabled` state is now reflected to the host, propagated to the underlying `ix-dropdown-item` and the item is excluded from mouse and keyboard selection in `ix-select`.
+
+### Patch Changes
+
+- [#2581](https://github.com/siemens/ix/pull/2581) [`5ad2fc5`](https://github.com/siemens/ix/commit/5ad2fc5cf44056c28c1deea56aa8e974c79ef39f) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update layout of app switch modal invoked by **ix-application** to match design guideline.
+  Set color of **ix-blind** header actions slot icon button according to blind variant.
+  Remove background from disabled **ix-breadcrumb-item**s.
+  Reduce **ix-date-picker** month and year selection button paddings to move them closer together.
+
+- [#2620](https://github.com/siemens/ix/pull/2620) [`d1c6895`](https://github.com/siemens/ix/commit/d1c68956f67726af2d2d59adafd1d82a233f60be) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix **ix-checkbox** layout to match the design specification. Label-less instances no longer leave empty space beside the control, the interactive area is 24×24 px, and checkbox and label are vertically centered with a 6 px gap.
+
+- [#2565](https://github.com/siemens/ix/pull/2565) [`7c34939`](https://github.com/siemens/ix/commit/7c34939c4589d31ee51cf0564ff59bdc08121426) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Unregister **ix-menu** from **menu-service** on disconnect to prevent warnings.
+
+  Fixes [#2128](https://github.com/siemens/ix/issues/2128)
+
+- [#2586](https://github.com/siemens/ix/pull/2586) [`74d6524`](https://github.com/siemens/ix/commit/74d652426bfdbb188d8460dc025a352b67f99506) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Disabled buttons are now correctly inaccessible, preventing unintended interactions.
+
+- [#2523](https://github.com/siemens/ix/pull/2523) [`7a6cb52`](https://github.com/siemens/ix/commit/7a6cb52cbaf17997e482e5e2e14dd2d7485bf039) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix `ix-input` password eye icon: remove debug `color: red` style and conditionally render the toggle button instead of hiding it via CSS class.
+
+- [#2618](https://github.com/siemens/ix/pull/2618) [`d9fe735`](https://github.com/siemens/ix/commit/d9fe735dbc430d94ae63ad427710dfb484f502f3) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix `ix-select` so the hidden focus proxy no longer creates an unnecessary dropdown scrollbar when the select is rendered lower in the viewport.
+
+  Fixes [#2615](https://github.com/siemens/ix/issues/2615)
+
+- [#2571](https://github.com/siemens/ix/pull/2571) [`e727b72`](https://github.com/siemens/ix/commit/e727b72162027a8278dd518cebd952e9edd2ea93) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Make sure the **ix-application**'s `force-breakpoint` property takes effect even if changed during runtime.
+
+- [#2575](https://github.com/siemens/ix/pull/2575) [`1342470`](https://github.com/siemens/ix/commit/1342470aed386d0ca9a28d85c0064b12be54b66c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update stencil and stencil output target to latest version
+
+- [#2513](https://github.com/siemens/ix/pull/2513) [`33c0eb9`](https://github.com/siemens/ix/commit/33c0eb9616610a62af194b5fba0eebdb4d26efe5) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Re-register tigger and DOM change listeners after **ix-tooltip** was re-attached.
+
+  Fixes [#2481](https://github.com/siemens/ix/issues/2481)
+
+- [#2572](https://github.com/siemens/ix/pull/2572) [`5f2fa82`](https://github.com/siemens/ix/commit/5f2fa82dba306886452dc0428fcfb83b94306fa4) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Fix ix-modal-header title layout so long words wrap inside the modal and no longer push the close button outside the dialog. Fixes [#2500](https://github.com/siemens/ix/issues/2500)
+
+- [#2522](https://github.com/siemens/ix/pull/2522) [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update margins for menu buttons in **ix-menu**.
+
+- [#2522](https://github.com/siemens/ix/pull/2522) [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update margins for **ix-content**.
+
+- [#2625](https://github.com/siemens/ix/pull/2625) [`ffd8c48`](https://github.com/siemens/ix/commit/ffd8c48a597aab7a5bb1a79cf92f5e84953510c9) Thanks [@spike-rabbit](https://github.com/spike-rabbit)! - Fix **ix-action-card** to render its content inside a `button` element so it is keyboard-focusable and exposed as a button to assistive technologies, improving accessibility.
+
+  Note: the default slot is intended for non-interactive content. Nested interactive elements (links, buttons, inputs) inside the card are not supported, as the card is now a single button.
+
+- [#2570](https://github.com/siemens/ix/pull/2570) [`47d93f3`](https://github.com/siemens/ix/commit/47d93f33213ee841f181283fec99decd0b1f8a0a) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent `undefined` access of internal element during render phase. Affected components: `ix-date-input`, `ix-dropdown-button`, `ix-menu-category` and `ix-time-input`.
+
+  Fixes [#2568](https://github.com/siemens/ix/issues/2568)
+
+- [#2497](https://github.com/siemens/ix/pull/2497) [`f66d556`](https://github.com/siemens/ix/commit/f66d556d359719455765b66a603e4ab664b44ac2) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Update color and rotation of **ix-card-list** chevron icon to match style guide.
+
+## 5.0.0
+
+### Major Changes
+
+- [#2514](https://github.com/siemens/ix/pull/2514) [`73a2ed3`](https://github.com/siemens/ix/commit/73a2ed3ef3f29a31391ff4ac858a66e77f9fac28) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking (v5):** Remove the **`placement`** property (and **`placement`** attribute) from **`ix-split-button`**. It was not wired to the internal dropdown, so it had no effect; removing it only drops a misleading no-op from the public API. See **`BREAKING_CHANGES/v5.md`**.
+
+- [#2524](https://github.com/siemens/ix/pull/2524) [`f2c8b83`](https://github.com/siemens/ix/commit/f2c8b83475c078575b2d47f465e10307b68b108f) Thanks [@danielleroux](https://github.com/danielleroux)! - Require `breadcrumbKey` on `ix-breadcrumb-item`, change `ix-breadcrumb` `nextItems` entries from strings to `{ label, breadcrumbKey }` objects, and export the shared `BreadcrumbClick` payload type so breadcrumb click events expose stable item keys.
+
+  This change was necessary to identify breadcrumb items in a stable way, as their labels may not be unique and can change over time. The `breadcrumbKey` provides a consistent identifier for each breadcrumb item, allowing for more reliable event handling and state management in applications using the breadcrumb component.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Update `ix-date-dropdown` quick date selection from a list to a picker, with quick date options displayed on the left side.
+
+  Removed attributes:
+
+  - `ariaLabelDropdownButton`: Provided `aria-label` will be passthrough the component shadow-dom to the actual button
+  - `customRangeDisabled` (also contain removal of `i18nCustomItem`): Removed because `ix-date-dropdown` will be a picker with quick selection on the left side.
+
+- [#2516](https://github.com/siemens/ix/pull/2516) [`91f811a`](https://github.com/siemens/ix/commit/91f811af47662c550a2f23e29b5280db49869039) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-chip:** Status-filled hover/active colors and padding use design tokens; custom-color chips keep the overlay behavior.
+  **ix-chip:** Add `ariaLabelIcon`, forward host ARIA to the main control, optional host `role="group"`, a native close button, and tooltip labeling; React, Angular, and Vue expose `ariaLabelIcon`.
+
+- [#2309](https://github.com/siemens/ix/pull/2309) [`3964a2a`](https://github.com/siemens/ix/commit/3964a2af37422056acfcd40bfde31ebe5f0235ad) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Removed the left margin for **ix-chip** and **ix-pill**. This margin was also present if there was no leading sibling that is also a chip/pill causing it to waste screen real estate and distort layout alignments.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77) Thanks [@danielleroux](https://github.com/danielleroux)! - Update `ix-application` theming inputs to use the new `colorSchema` API.
+
+  The `themeSystemAppearance` property has been replaced by `colorSchema`, and consumers using `theme` or theme-related configuration on `ix-application` have to migrate to the updated theme-switching behavior.
+
+- [#2508](https://github.com/siemens/ix/pull/2508) [`cdae15b`](https://github.com/siemens/ix/commit/cdae15b5baef1824d68e57f96370e6b31c767417) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-time-picker`:** optional **`minTime`** and **`maxTime`** constrain selectable values (same string shape as **`format`** / **`time`**). Values outside the inclusive range are disabled in the picker rings.
+
+  **Breaking (v5):** the hour column header **attribute** is renamed from **`i18n-column-header`** to **`i18n-hour-column-header`**. The **`i18nHourColumnHeader`** property is unchanged—update static HTML or attribute-based markup. Migration: **`BREAKING_CHANGES/v5.md`**.
+
+- [#2545](https://github.com/siemens/ix/pull/2545) [`ba15b50`](https://github.com/siemens/ix/commit/ba15b505cf4dcb1086794d15e235690fdd7ca51a) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **Select listbox accessibility**
+
+  **ix-select:** Screen reader output for the dropdown list follows listbox semantics: the focus proxy sets **aria-selected** from real selection state (and the add row from **checked**), no longer sets **aria-checked** on proxy options, and uses **value** as a fallback accessible name when **label** is absent.
+
+  **ix-select-item:** With **`disableAriaSelectHandling`** enabled on the host, keyboard focus visibility is no longer mirrored to **aria-selected** on **`ix-select-item`**, so assistive technologies do not treat every focused row as selected.
+
+  **ix-dropdown-item:** New **`itemRole`** prop (**`menuitem`** | **`option`**, default **`menuitem`**) sets the host **`role`**; **`ix-select-item`** passes **`option`** for listbox usage. Documented with **`@since 5.0.0`**. Generated React, Angular, and Vue bindings include **`itemRole`** / **`item-role`**.
+
+  **ix-select (multiple mode):** Passes **`ariaLabelCloseIconButton`** on each **`ix-filter-chip`** (via **`i18n-remove-selected-item`**, default prefix **`Remove`**) so the close control is announced with the item label (e.g. “Remove Item 1”). Documented with **`@since 5.0.0`**.
+
+- [#2525](https://github.com/siemens/ix/pull/2525) [`7042a10`](https://github.com/siemens/ix/commit/7042a1021a4499c38f4a66aac9e5f32e9431062c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update the required @siemens/ix-icons peer dependency to ^3.4.0. This is a breaking change that requires consumers to update their @siemens/ix-icons dependency to version 3.4.0 or higher.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`b00da1c`](https://github.com/siemens/ix/commit/b00da1c87f93c86a6c60f40d2ae7952d345ab8d0) Thanks [@danielleroux](https://github.com/danielleroux)! - - The `toast` function now appends directly to the `ix-toast-container` host element instead of using a separate container element.
+
+  ## Removed properties
+
+  - `containerClass` - Set `class` on the `ix-toast-container` element itself if needed.
+  - `containerId` - Just use `id` on the `ix-toast-container` element if needed.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - **Refactor keyboard navigation for dropdown-related components**
+
+  Refactors keyboard navigation to align with W3C accessibility patterns for dropdown-related components, significantly improving accessibility and user experience:
+
+  ## Component Changes
+
+  ### Date Picker
+
+  - Added comprehensive keyboard navigation support:
+    - `Home`/`End`: Navigate to first/last day of week
+    - `PageUp`/`PageDown`: Navigate to previous/next month
+    - `Shift+PageUp`/`Shift+PageDown`: Navigate to previous/next year
+    - `ArrowLeft`/`ArrowRight`/`ArrowUp`/`ArrowDown`: Navigate between days
+    - `Enter`/`Space`: Select focused day
+    - `Escape`: Close picker
+  - Replaced manual year/month dropdown with accessible `ix-dropdown-button` components
+  - Implemented visual focus mode with `aria-activedescendant` for embedded pickers
+  - Added infinite scrolling for year selection with IntersectionObserver
+  - Improved ARIA labels: `ariaLabelMonthSelection` and `ariaLabelYearSelection` props
+  - Calendar days now have proper `role="button"` and descriptive `aria-label` attributes
+
+  ### Date Input
+
+  - Implemented `aria-activedescendant` pattern for combobox interaction
+  - Added keyboard forwarding to embedded date picker
+  - `ArrowDown` opens picker and activates keyboard navigation
+  - `Escape` closes picker and returns focus to input
+  - Focus management improved with `delegatesFocus` shadow DOM option
+
+  ### Date Dropdown
+
+  - Enhanced focus handling with `onFocusout` to close dropdown when focus leaves
+  - Auto-focus date picker when opened via keyboard
+  - Added `suppressOverflowBehavior` to prevent unwanted repositioning
+
+  ### Dropdown & Dropdown Button
+
+  - New props: `disableFocusHandling`, `disableFocusTrap`
+  - New events: `showChange` (preventable), `showChanged` (post-change)
+  - Improved focus proxy for dropdown items with proper `role="menuitem"`
+  - Better keyboard navigation with arrow keys, Home, End, Enter, Escape
+
+  ### Breadcrumb
+
+  - Complete refactor using `ix-dropdown-button` for previous/next items
+  - Added `role="navigation"` and `role="listitem"` for proper semantics
+  - Improved ARIA labels (default: "Show previous breadcrumb items")
+  - Each breadcrumb item now has `aria-current="page"` for the current page
+  - Keyboard navigation now works consistently across all breadcrumb dropdowns
+
+  ### Avatar
+
+  - Implemented focus proxy pattern for dropdown menu items
+  - Added `aria-activedescendant` support
+  - Button now has `role="combobox"` with proper `aria-controls` and `aria-expanded`
+  - Menu items properly labeled with `role="menuitem"`
+
+  ### Button
+
+  - Added `.ix-focused` class for programmatic focus indication
+  - Fixed focus-visible styles to work consistently
+  - Disabled buttons now have `tabindex="-1"`
+
+  ### Application Header
+
+  - Added `role="banner"` for proper landmark semantics
+  - Fixed overflow context menu visibility logic for small viewports
+
+  ## Breaking Changes
+
+  - `ix-breadcrumb-item`: `ariaLabelButton` prop deprecated in favor of direct `aria-label` attribute
+  - Date picker month/year selection UI completely redesigned (visual breaking change)
+  - Internal structure for all `ix-dropdown` related components are changed
+
+- [#2503](https://github.com/siemens/ix/pull/2503) [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08) Thanks [@danielleroux](https://github.com/danielleroux)! - **Update `ix-menu-about` and `ix-menu-settings` for key-based tabs and slotted `ix-tabs` opt-in**
+
+  `ix-menu-about` and `ix-menu-settings` keep their legacy `ix-menu-about-item` / `ix-menu-settings-item` rendering by default. To switch to slotted `ix-tabs` / `ix-tab-item` markup, set the new `suppressLegacyTabs` prop on the parent menu component. `ix-menu-about-news` still uses `activeAboutTabKey` instead of `aboutItemLabel`.
+
+  ### Breaking Changes
+
+  #### ix-menu-about / ix-menu-settings
+
+  - The slotted `ix-tabs` integration path uses the new `suppressLegacyTabs` prop on the parent menu component.
+  - `ix-menu-about` renamed `activeTabLabel` to `activeTabKey` for legacy item-based integrations.
+
+  #### ix-menu-about-item / ix-menu-settings-item
+
+  - `tabKey` is now required when using legacy item-based integrations.
+  - `ix-menu-about-item` changed from `shadow: true` to `shadow: false`.
+
+  #### ix-menu-about-news
+
+  - New `activeAboutTabKey` prop replaces `aboutItemLabel` as the condition for showing the "Show more" footer button.
+  - The `aboutItemLabel` prop no longer controls footer visibility. Use `activeAboutTabKey` instead.
+
+  ### Migration
+
+  Use the existing `ix-tabs` pattern in your application (`ix-menu-about` / `ix-menu-settings`), and show the matching slotted content based on the active tab key. Set `suppressLegacyTabs` on the `ix-menu-about` / `ix-menu-settings` and `active-tab-key` on the nested `ix-tabs`, not on `ix-menu-about` or `ix-menu-settings`.
+
+  ```html
+  <!-- Slotted ix-tabs path -->
+  <ix-menu-about suppress-legacy-tabs>
+    <ix-tabs active-tab-key="tab-1">
+      <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+      <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+    </ix-tabs>
+    <!-- render the matching content in the slot using the active tab key -->
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-about active-tab-key="tab-1">
+    <ix-menu-about-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-about-item
+    >
+    <ix-menu-about-item tab-key="tab-2" label="Tab 2"
+      >Content 2</ix-menu-about-item
+    >
+  </ix-menu-about>
+  ```
+
+  ```html
+  <!-- Legacy item-based path -->
+  <ix-menu-settings active-tab-key="tab-1">
+    <ix-menu-settings-item tab-key="tab-1" label="Tab 1"
+      >Content 1</ix-menu-settings-item
+    >
+  </ix-menu-settings>
+  ```
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - **Breaking (v5):** `showModalLoading()` now returns a `Promise<ModalLoadingContext>`. Await the call before using `update()` or `finish()` on the returned loading context.
+
+- [#2471](https://github.com/siemens/ix/pull/2471) [`e324caa`](https://github.com/siemens/ix/commit/e324caa330a2e99d34f309402ccd68d39156dc93) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Add **non-blocking** dialog mode to **ix-modal** with **`isNonBlocking`** and **`ModalConfig.isNonBlocking`**: opens with **`dialog.show()`** so the page stays interactive (no lightbox or focus trap; **`aria-modal`** is false). After open, **`showModal()`** schedules initial focus on the first light-DOM match for **`[autofocus]`** or **`[auto-focus]`** (with **`focusVisible: true`**).
+
+  **Breaking (v5):** Remove **`disableEscapeClose`**. Escape and **`cancel`** always go through **`dismissModal()`**; use **`beforeDismiss`** to veto dismissal (e.g. replace **`disableEscapeClose`** with **`beforeDismiss: () => false`**). **`showModalLoading`** is updated accordingly; **`closeModal`** from **`finish()`** is unchanged.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove legacy accessible-name properties from button components. Set the native `aria-label` attribute on the host element instead; it is applied to the inner interactive surface.
+
+  - **ix-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-button**: `a11yLabel` (**a11y-label**)
+  - **ix-toggle-button**: `ariaLabelButton` (**aria-label-button**)
+  - **ix-icon-toggle-button**: `ariaLabelIconButton` (**aria-label-icon-button**)
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) for migration examples.
+
+- [#2475](https://github.com/siemens/ix/pull/2475) [`834bbbf`](https://github.com/siemens/ix/commit/834bbbf8cc30d75c5d3fdf3cf91e93a7498150a0) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **`ix-card-list` breaking change:** selecting the show-all button or show-more card now reveals all hidden cards by default and toggles back to the hidden-overflow state from the show-less button. To keep the previous event-only behavior, call `preventDefault()` on the cancelable `showAllClick` or `showMoreCardClick` event.
+
+  Fixes #1367 and Fixes #2353
+
+- [#2503](https://github.com/siemens/ix/pull/2503) [`8c7fb12`](https://github.com/siemens/ix/commit/8c7fb12c2e5abfde5474146004cef16de0fa0e08) Thanks [@danielleroux](https://github.com/danielleroux)! - **Refactor ix-tabs and ix-tab-item to use key-based tab identification**
+
+  Replaces the index-based tab selection model with a string key-based approach, improving reliability when tabs are added, removed, or reordered dynamically.
+
+  ## Breaking Changes
+
+  ### ix-tabs
+
+  - Removed `selected` prop (number index). Use `activeTabKey` (string) instead.
+  - Removed `ariaLabelChevronLeftIconButton` and `ariaLabelChevronRightIconButton` props. When the tab list overflows and `layout` is not `stretched`, `ix-tabs` now shows an `ix-dropdown-button` with all tabs instead of scroll arrows; no overflow button is rendered while all tabs fit or while `layout` is `stretched`.
+  - Removed `selectedChange` event. Use `tabChange` which emits the active `tabKey` string instead of an index.
+
+  ### ix-tab-item
+
+  - New required `tabKey` prop to uniquely identify each tab.
+  - Added `label` prop for setting tab text (preferred over slot content).
+  - Added `icon` prop for setting an icon on the tab.
+  - Added `closable` prop and `tabClose` event for closable tabs.
+  - `small`, `layout`, `placement`, and `rounded` props are now internal and set automatically by the parent `ix-tabs`.
+
+  ### Migration
+
+  ```html
+  <!-- Before -->
+  <ix-tabs selected="1">
+    <ix-tab-item>Tab 1</ix-tab-item>
+    <ix-tab-item>Tab 2</ix-tab-item>
+  </ix-tabs>
+
+  <!-- After -->
+  <ix-tabs active-tab-key="tab-2">
+    <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
+    <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
+  </ix-tabs>
+  ```
+
+  Replace removed `selectedChange` event listeners with `tabChange`:
+
+  ```js
+  // Before
+  tabs.addEventListener('selectedChange', (e) => console.log(e.detail)); // 0, 1, 2...
+
+  // After
+  tabs.addEventListener('tabChange', (e) => console.log(e.detail)); // 'tab-1', 'tab-2'...
+  ```
+
+- [#2548](https://github.com/siemens/ix/pull/2548) [`3ece658`](https://github.com/siemens/ix/commit/3ece658f4328b91f649a4dc06857358d9fd07144) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove pre-v5 deprecated components, properties, and the `showModalLoading` string overload.
+
+  **Removed components:** `ix-input-group` (use `ix-input`); `ix-validation-tooltip` (use built-in validation on `ix-input` / `ix-select`); `ix-drawer` (use `ix-pane`).
+
+  **Removed properties:** `ariaLabelMenuExpandIconButton` on `ix-application-header`; `a11yLabel` on `ix-avatar`; `ariaLabelButton` on `ix-breadcrumb-item`; `ariaLabelChevronDownIconButton` on `ix-select`; `error` on `ix-slider` (use `class="ix-invalid"` and `invalid-text` instead).
+
+  **Removed util overload:** `showModalLoading(message: string)` — use `showModalLoading({ message: '...' })` instead.
+
+  See `BREAKING_CHANGES/v5.md` (section **Removed deprecated components and APIs**) for migration details.
+
+- [#2538](https://github.com/siemens/ix/pull/2538) [`909bb6a`](https://github.com/siemens/ix/commit/909bb6a13107e8d438ed879bf7735941ce44f99d) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove no-op **`ModalConfig`** fields **`container`**, **`keyboard`**, and **`title`** from the **`showModal`** API. They had no effect in v4; delete them from config objects.
+
+  See [Breaking changes v5](../BREAKING_CHANGES/v5.md) (**ModalConfig**: removed no-op options) for migration.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove unused **i18n-expand-sidebar** property from **ix-menu**
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`f9e3802`](https://github.com/siemens/ix/commit/f9e3802332deeff4a4f89872440e690fefdf1f77) Thanks [@danielleroux](https://github.com/danielleroux)! - Update the public theme-switcher API to support explicit `system` color schema handling and unified theme change events.
+
+  Consumers using `themeSwitcher.themeChanged`, `themeSwitcher.schemaChanged`, `setTheme()`, or `ThemeVariant` must update to the new event detail payload and consolidated color-schema behavior. Existing listeners expecting a string event payload or relying on `schemaChanged` will need to be migrated.
+
+- [#2470](https://github.com/siemens/ix/pull/2470) [`b5e7384`](https://github.com/siemens/ix/commit/b5e7384ddb2a085f3730d657d5ff867e5603fb46) Thanks [@danielleroux](https://github.com/danielleroux)! - Migrate the public theming API from legacy theme classes to `data-ix-theme` and `data-ix-color-schema`, including explicit `system` color schema handling.
+
+  Consumers must stop using legacy theme classes such as `theme-classic-dark` and `theme-classic-light` and move to attribute-based theming on `<html>`.
+
+### Minor Changes
+
+- [#2359](https://github.com/siemens/ix/pull/2359) [`8378937`](https://github.com/siemens/ix/commit/8378937cd0bfe0dab0e98e7460a277fe275c5d51) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Added `ix-datetime-input` component based on datetime-picker
+
+- [#2279](https://github.com/siemens/ix/pull/2279) [`40cfbe0`](https://github.com/siemens/ix/commit/40cfbe0b2ca2b6a0cc6059ce4d2b58fb20a5c72a) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Add disabled-state support for **ix-tree-item**, including the exposed **disabled** property and corresponding tree item state handling.
+  Improve **ix-tree** and **ix-tree-item** accessibility by updating ARIA roles and positional attributes.
+
+  Fixes #2091
+
+- [#2521](https://github.com/siemens/ix/pull/2521) [`36ce453`](https://github.com/siemens/ix/commit/36ce453749a78c9df2078cefc840d4dc1dfb8a5b) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **`ix-datetime-input`:** Add **`minTime`** and **`maxTime`** so the combined date-time field can constrain the time portion.
+
+- [#2517](https://github.com/siemens/ix/pull/2517) [`653f136`](https://github.com/siemens/ix/commit/653f13653a332aad0107e29de1b26d0cc2bc8784) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Extend time bounds to **`ix-time-input`** and **`ix-datetime-picker`** with optional **`minTime`** / **`maxTime`** (same string shape as each component’s time format tokens). For **`ix-datetime-picker`**, validation and UI stay aligned: with **`minDate`** / **`maxDate`**, **`minTime`** applies on the minimum day, **`maxTime`** on the maximum day, and days in between are not time-clamped by those props; with no date bounds, **`minTime`** / **`maxTime`** act as a daily time window.
+
+  **`ix-time-picker`:** constraint checks use the full span of each hour, minute, and second candidate so disabled states match inclusive bounds (for example, an hour remains selectable when **`minTime`** falls mid-hour).
+
+- [#2458](https://github.com/siemens/ix/pull/2458) [`a6a5309`](https://github.com/siemens/ix/commit/a6a530950acd733b2a07a602ecdbabf120719449) Thanks [@danielleroux](https://github.com/danielleroux)! - `ix-dropdown` now observes the visibility of the trigger element in the viewport while the dropdown is open. If the trigger element scrolls outside the visible viewport, the dropdown will automatically close to prevent it from remaining visible in an unexpected screen position. To keep the dropdown open regardless of trigger visibility, set `suppressTriggerVisibilityCheck` to `true`.
+
+- [#2437](https://github.com/siemens/ix/pull/2437) [`4161ab9`](https://github.com/siemens/ix/commit/4161ab9e7188ce96991b0922999867d0f550005a) Thanks [@danielleroux](https://github.com/danielleroux)! - Add new component `ix-range-field` which can currently display range related inputs. Supported components: `ix-date-input`, `ix-time-input` and `ix-datetime-input`.
+
+- [#2478](https://github.com/siemens/ix/pull/2478) [`4231d51`](https://github.com/siemens/ix/commit/4231d51264e66629a704b93b46e58e5bac4b7810) Thanks [@khathija-ahamadi](https://github.com/khathija-ahamadi)! - Support directory upload in **ix-upload**.
+
+  Fixes #2053
+  Fixes #2354
+
+### Patch Changes
+
+- [#2534](https://github.com/siemens/ix/pull/2534) [`8765757`](https://github.com/siemens/ix/commit/8765757dd53c958ea0e1a481acb499cfee2e3eae) Thanks [@danielleroux](https://github.com/danielleroux)! - Reduce icon size of `ix-datetime-input` to 16
+
+- [#2505](https://github.com/siemens/ix/pull/2505) [`ce6cd94`](https://github.com/siemens/ix/commit/ce6cd949652759897f15dea38be7cf3a28aa0841) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Fixed a bug that would display **ix-avatar**'s tooltip when hovering dropdown-items. Fixes #2400
+
+- [#2549](https://github.com/siemens/ix/pull/2549) [`d10b03c`](https://github.com/siemens/ix/commit/d10b03c34b2ac1c100bdff9523ae53ff4db3cecc) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **ix-breadcrumb-item:** Remove the slide-in (`translateX` + opacity) enter animation, and propagate `aria-label` (and other host-level ARIA attributes) to the inner button
+
+- [#2496](https://github.com/siemens/ix/pull/2496) [`c97d897`](https://github.com/siemens/ix/commit/c97d8973556588498aa4e56e1f75a8e57a4efd5c) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Apply the pointer cursor to checkbox labels so clickable checkbox text has the expected interactive affordance.
+
+- [#2542](https://github.com/siemens/ix/pull/2542) [`1333ad8`](https://github.com/siemens/ix/commit/1333ad838050601fd87de4c2c81c291e42c9ceea) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-chip:** Apply the `primary` style when no `variant` is set or the provided value is not one of the supported variants, so chips no longer render unstyled when consumers omit `variant` or pass an empty/unknown value. The same fallback applies in combination with `outline`, which now renders as outline `primary` by default.
+
+- [#2502](https://github.com/siemens/ix/pull/2502) [`60a9728`](https://github.com/siemens/ix/commit/60a97283b68c3505950fe7760d53f6380d0f64c4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix hover and active background colors of filled status chips (alarm, critical, warning, info, neutral, success) to use the correct design tokens (`--theme-color-*--hover` / `--theme-color-*--active`) instead of a semi-transparent black overlay, aligning the rendered result with the Figma specification. Custom color chips retain the overlay approach. Chip padding is also corrected to be uniform across icon and non-icon variants.
+
+- [#2511](https://github.com/siemens/ix/pull/2511) [`fdb15b2`](https://github.com/siemens/ix/commit/fdb15b26af22ab06a5a2166e60c88dc5a726fe5b) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix classic theme hover and active states for buttons, chips, links, and invalid switches, and align classic light and dark variable application with the supported data-attribute theme selectors.
+
+- [#2544](https://github.com/siemens/ix/pull/2544) [`3e90786`](https://github.com/siemens/ix/commit/3e90786b75a84cfb554221049cc99674ef43fc70) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **ix-dropdown-button:** Hide the trigger's focus outline while the dropdown is expanded so focus is shown only on the active dropdown item.
+
+  **ix-breadcrumb:** Stop clipping the focus outline of items flush with the host edges (e.g. the first breadcrumb item or the `...` previous-items button).
+
+- [#2540](https://github.com/siemens/ix/pull/2540) [`cbb0716`](https://github.com/siemens/ix/commit/cbb07167624b78e7c471825ad334a9c019b0d351) Thanks [@lzeiml](https://github.com/lzeiml)! - Set the correct background color for **ix-select** with `ix-warning`.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Hide the overflow context menu in `ix-application-header` when switching from a small to a medium or large viewport.
+
+- [#2465](https://github.com/siemens/ix/pull/2465) [`7406be7`](https://github.com/siemens/ix/commit/7406be793067b6e8b4365d2c365d6d2785a99b46) Thanks [@danielleroux](https://github.com/danielleroux)! - Set predefined `aria-label` and `aria-pressed` attributes to the `ix-menu` expand button
+
+- [#2532](https://github.com/siemens/ix/pull/2532) [`2ec2c70`](https://github.com/siemens/ix/commit/2ec2c7081e9757b79f21a3ece47074149c5af6de) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-date-picker**: fix arrow-key navigation in the day grid while NVDA is running by applying w3 ARIA grid pattern.
+  **ix-time-picker**: fix arrow-key navigation in the time columns while NVDA is running by applying aria-role `listbox`.
+
+- [#2558](https://github.com/siemens/ix/pull/2558) [`4d35515`](https://github.com/siemens/ix/commit/4d3551582390ca15a0e523a9258c6766de678896) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix striped HTML tables (`.ix-table-striped`) so alternating row backgrounds are visible.
+
+- [#2557](https://github.com/siemens/ix/pull/2557) [`64e6cfe`](https://github.com/siemens/ix/commit/64e6cfe19ce0c1b4350492cbdd15c2e96ea64795) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-input:** Align start/end slot spacing with design tiers.
+
+- [#2484](https://github.com/siemens/ix/pull/2484) [`4643a65`](https://github.com/siemens/ix/commit/4643a65f65a463e535daf799f65f7a6cc423e11d) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - Toast component now supports screen reader announcements
+
+- [#2555](https://github.com/siemens/ix/pull/2555) [`5f141c1`](https://github.com/siemens/ix/commit/5f141c1a8774a0a190f8a51fc23dd8e1a0eabd08) Thanks [@lzeiml](https://github.com/lzeiml)! - Improved keyboard navigation and accessibility for **ix-menu-items** nested inside **ix-menu-category**.
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - Render modal loading update messages as plain text so text passed to `update()` is not interpreted as HTML.
+
+- [#2415](https://github.com/siemens/ix/pull/2415) [`f4f8921`](https://github.com/siemens/ix/commit/f4f89214d5e0065248d1610a3bb7837c74417610) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-pill:** `aria-label`, `aria-labelledby`, and other ARIA attributes set on the host are now exposed on the pill for assistive technologies. Icons are treated as decorative by default; use **`aria-label-icon`** when the icon carries meaning screen readers should hear.
+
+- [#2268](https://github.com/siemens/ix/pull/2268) [`c81324b`](https://github.com/siemens/ix/commit/c81324b9b27320bd355c880a1ccffc82732f26a3) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent _ix-group_ from crashing during construction
+
+- [#2541](https://github.com/siemens/ix/pull/2541) [`130df33`](https://github.com/siemens/ix/commit/130df33a9215ddf6cd8e1f6807ef58cff6a02351) Thanks [@danielleroux](https://github.com/danielleroux)! - Improve React and Vue wrapper tree shaking so bundlers can exclude unused IX components when importing individual framework components.
+
+- [#2405](https://github.com/siemens/ix/pull/2405) [`22699fa`](https://github.com/siemens/ix/commit/22699fa8d411239fe14f067d21ff6b1c08dd0355) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **ix-toggle:** Exposes correct **switch** semantics (`role`, `aria-checked`, `aria-disabled`), keyboard interaction (**Space** / **Enter**), and a **stable accessible name** (set **`aria-label`** or **`aria-labelledby`** on the host; name does not change with state; state is conveyed via `aria-checked`). Visible on/off copy is **not** used as the accessible name.
+
+## 4.4.0
+
+### Minor Changes
+
+- [#2453](https://github.com/siemens/ix/pull/2453) [`a88927f`](https://github.com/siemens/ix/commit/a88927faf284034ff2a7135528476cc29e837a59) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option _centered_ to **ix-modal-loading**.
+
+- [#2364](https://github.com/siemens/ix/pull/2364) [`fb7e38d`](https://github.com/siemens/ix/commit/fb7e38df37cbe16f37a4f0e70f14eaccb32c05ff) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Add property **itemCountOptions** to \*\*ix-pagination.
+
+  Fixes #2103
+
+- [#2352](https://github.com/siemens/ix/pull/2352) [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9) Thanks [@danielleroux](https://github.com/danielleroux)! - If an icon is provided via import like `<IxIcon name={iconDocument}></IxIcon>` the fallback will now be resolved. Works only if https://github.com/siemens/ix-icons/pull/112 is merged and released
+
+### Patch Changes
+
+- [#2336](https://github.com/siemens/ix/pull/2336) [`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Trigger **validityStateChange** events everytime values change for **ix-input**, **ix-number-input**, **ix-textarea**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #2315 and #2323
+
+- [#2419](https://github.com/siemens/ix/pull/2419) [`b0f7e21`](https://github.com/siemens/ix/commit/b0f7e2110a436a5467426417c0aacbc7bc37a90b) Thanks [@danielleroux](https://github.com/danielleroux)! - CSS variables updated:
+  `--theme-color-secondary--hover` from `#002E38` to `#002639`
+  `--theme-color-secondary--active` from `#00252E` to `#001D2B`
+
+- [#2391](https://github.com/siemens/ix/pull/2391) [`a66629c`](https://github.com/siemens/ix/commit/a66629c5bd7ba377db9996ceb2bccd930c1df777) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Prevent redundant eye icon in **ix-input**s of type password rendered by Microsoft user agents.
+
+  Fixes #2367.
+
+- [#2404](https://github.com/siemens/ix/pull/2404) [`07501d6`](https://github.com/siemens/ix/commit/07501d6fb131bd228eadb865c4bd56149edb6e17) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Keep user input if select items change in _ix-select_.
+
+  Fixes #1716
+
+- [#2259](https://github.com/siemens/ix/pull/2259) [`1ab8b30`](https://github.com/siemens/ix/commit/1ab8b3083c3b78d535b77082ea64571da3b102d5) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Make sure custom **ix-tree-item**s allow selection via mouse click.
+
+  Fixes #2098
+
+- [#2355](https://github.com/siemens/ix/pull/2355) [`6868d5b`](https://github.com/siemens/ix/commit/6868d5b35885923045c1b83bded5574a97b2e69e) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add change event to **ix-input**, **ix-date-input** and **ix-time-input**.
+
+  Fixes #1811
+
+- [#2357](https://github.com/siemens/ix/pull/2357) [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Toggle theme mode will work in _ix-menu_.
+
+  Fixes #2326
+
+- [#2441](https://github.com/siemens/ix/pull/2441) [`72ef7ef`](https://github.com/siemens/ix/commit/72ef7ef34a5b716a2a827dd49e7357af3a92da30) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Unify hover behavior for input end slots and use 16px icon in end-slot icon buttons.
+
+  **Affected components:** ix-input (password toggle), ix-date-input (calendar), ix-time-input (clock).
+
+- [#2408](https://github.com/siemens/ix/pull/2408) [`a5f8477`](https://github.com/siemens/ix/commit/a5f84772b3055503205547cdf04e3bb2484c70d0) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Reflect disabled state to DOM for **ix-group-item**.
+
+  Reflect disabled state to DOM for **ix-group-item**.
+
+  Fixes #2370
+
+- [#2422](https://github.com/siemens/ix/pull/2422) [`b38ca0a`](https://github.com/siemens/ix/commit/b38ca0a2548c189cd27c34beb9261b193de08af0) Thanks [@khathija-ahamadi](https://github.com/khathija-ahamadi)! - Prevent dragging of **ix-upload** element itself.
+
+  Fixes #2390
+
+- [#2410](https://github.com/siemens/ix/pull/2410) [`80cf574`](https://github.com/siemens/ix/commit/80cf5743952a01713ed51e8244ec5e504491b559) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Make sure contained elements don't close **ix-modal** unintentionally if _closeOnBackdropClick_ is set.
+
+  Fixes #2401
+
+- [#2434](https://github.com/siemens/ix/pull/2434) [`420de9b`](https://github.com/siemens/ix/commit/420de9b579b3cb7c2345e75e7339bcfc95c13b0f) Thanks [@danielleroux](https://github.com/danielleroux)! - Update color tokens from input elements
+
+- [#2363](https://github.com/siemens/ix/pull/2363) [`c4c70a9`](https://github.com/siemens/ix/commit/c4c70a9d9f52f150a8b727f845b7aabf297e2939) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed a floating point precision error when using stepper buttons in **ix-number-input**. Closes #2360
+
+- [#2381](https://github.com/siemens/ix/pull/2381) [`a35d9b7`](https://github.com/siemens/ix/commit/a35d9b78409a0927193f4277f35b03490dd0d3d4) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Show overflow context menu only if neccessary (small viewport or explicit overflow content) in _ix-application-header_.
+
+  Fixes #2346
+
+- [#2377](https://github.com/siemens/ix/pull/2377) [`3551db0`](https://github.com/siemens/ix/commit/3551db057e91abe2d5dac1db83034a654e0a062b) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Submit forms with submit button element, only if button is accessible in light DOM to prevent error.
+
+  Fixes #2362
+
+- [#2440](https://github.com/siemens/ix/pull/2440) [`d980365`](https://github.com/siemens/ix/commit/d9803655eae044f15c67520cffb797f217fa02aa) Thanks [@danielleroux](https://github.com/danielleroux)! - Add missing time unit to css variables `--theme-default-time`, `--theme-medium-time`, `--theme-short-time`, `--theme-slow-time` and `--theme-x-slow-time`
+
+- [#2361](https://github.com/siemens/ix/pull/2361) [`ed5ef88`](https://github.com/siemens/ix/commit/ed5ef889b0fe6e5e253692722644da69df0bd8a4) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add default strings for ARIA attributes for:
+
+  - **ix-chip**
+  - **ix-date-input**
+  - **ix-date-picker**
+  - **ix-datetime-picker**
+  - **ix-drawer**
+  - **ix-dropdown-button**
+  - **ix-expanding-search**
+  - **ix-modal-header**
+  - **ix-pagination**
+  - **ix-pane**
+  - **ix-select**
+  - **ix-tabs**
+  - **ix-toast**
+  - **ix-tree-item**
+
+- [#2416](https://github.com/siemens/ix/pull/2416) [`6741f86`](https://github.com/siemens/ix/commit/6741f866aea666cfd63d63f9f642c6cd7efd6e39) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Esure correct icon orientaion and single-click close behavior in **ix-pane**.
+
+  Fixes #2325
+
+- [#2357](https://github.com/siemens/ix/pull/2357) [`aec1cad`](https://github.com/siemens/ix/commit/aec1cad39c63e703bb19030f751d3054e370f02c) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - _Theme switcher_ correctly supports legacy CSS theme class based approach.
+
+- [#2293](https://github.com/siemens/ix/pull/2293) [`0933909`](https://github.com/siemens/ix/commit/09339098ba688b625034c30dc7318c7f3c5ed353) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Make sure property `textareaRows` is applied when set on **ix-textarea**.
+  Properties `textareaHeight` and `textareaWidth` handle units like REM, EM, px, and % correctly.
+
+  Fixes #1975
+
+- [#2375](https://github.com/siemens/ix/pull/2375) [`22b09ee`](https://github.com/siemens/ix/commit/22b09eea166e81751f7886dcaf4624037ca846e1) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Enable keyboard interaction (toggle submenu) on **ix-menu-item** while NVDA screen reader is active.
+
+- [#2382](https://github.com/siemens/ix/pull/2382) [`ef0c635`](https://github.com/siemens/ix/commit/ef0c635c9f4def8e350caaf0fa9bac84cdba3a61) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Enable touch scrolling for **ix-tabs** on mobile devices using Pointer Events API.
+
+  Fixes #1296
+
+- [#2457](https://github.com/siemens/ix/pull/2457) [`ab2099e`](https://github.com/siemens/ix/commit/ab2099e468dfb70e7d4b640fcf631496acd5ee1d) Thanks [@SaiYugandhar03](https://github.com/SaiYugandhar03)! - Reflect the `type` as string property to the DOM of an `ix-toast`
+
+## 4.3.0
+
+### Minor Changes
+
+- [#2341](https://github.com/siemens/ix/pull/2341) [`0299abd`](https://github.com/siemens/ix/commit/0299abd202dcbdfb8b9483015ae8548fb7a21372) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **feat(dropdown): add enableTopLayer prop for Popover API rendering**
+
+  Introduces a new `enableTopLayer` prop for `ix-dropdown` and all consuming components to enable rendering in the browser's top layer using the Popover API. This resolves z-index and stacking context issues, particularly with AG Grid and other complex layouts.
+
+- [#2280](https://github.com/siemens/ix/pull/2280) [`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add property `passive` to **ix-card**, **ix-action-card**, and **ix-push-card** allowing to suppress mouse states.
+
+- [#2287](https://github.com/siemens/ix/pull/2287) [`fb0edfd`](https://github.com/siemens/ix/commit/fb0edfde119ae83bcb0acb6af641a7e24401b7fc) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Improved accessibility for the following components: `ix-menu`, `ix-menu-item`, `ix-menu-settings`, `ix-menu-about`, `ix-menu-expand-icon`, and `ix-icon-button`.
+
+  **API changes:**
+
+  - `ix-menu-settings`: Added `ariaLabelCloseButton` prop (default: "Close Settings")
+  - `ix-menu-about`: Added `ariaLabelCloseButton` prop (default: "Close About")
+
+  **Deprecations (will be removed in 5.0.0):**
+
+  - `ix-menu`: `i18nExpandSidebar` prop
+  - `ix-application-header`: `ariaLabelMenuExpandIconButton` prop
+
+- [#2282](https://github.com/siemens/ix/pull/2282) [`79eed16`](https://github.com/siemens/ix/commit/79eed1645d0f9e23203b26c81e81dc21c818bde3) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - add new `hide-icon` property for _ix-toast_ component
+
+- [#2051](https://github.com/siemens/ix/pull/2051) [`3c937af`](https://github.com/siemens/ix/commit/3c937afc722fa2d09e6c8e43756c8e7a15391448) Thanks [@1307-Dev](https://github.com/1307-Dev)! - `ix-slider` is now `form-ready`
+
+### Patch Changes
+
+- [#2256](https://github.com/siemens/ix/pull/2256) [`1340274`](https://github.com/siemens/ix/commit/1340274534b269f89151452ab48093b5800951ad) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Prevent **ix-drawer** from emitting redundant close events.
+
+  Fixes #2086
+
+- [#2302](https://github.com/siemens/ix/pull/2302) [`605ef5b`](https://github.com/siemens/ix/commit/605ef5b30a4cae9d6091cae48504fa42ba69f9ff) Thanks [@alexkaduk](https://github.com/alexkaduk)! - fix(message-bar): remove text truncation and fix action button alignment for examples
+
+  - Remove text-truncation ellipsis mixin to allow text wrapping
+  - Fix CSS class name from .message-bar-danger to .message-bar-alarm
+  - Action buttons are now correctly right-aligned with justify-content: space-between
+
+  Fixes #2258
+
+- [#2337](https://github.com/siemens/ix/pull/2337) [`8a1de8b`](https://github.com/siemens/ix/commit/8a1de8b1c0142d8c3a162b740e40d68301330768) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Add properties **tooltipText** and **ariaLabelTooltip** to **ix-menu-avatar**.
+
+- [#2303](https://github.com/siemens/ix/pull/2303) [`04279c1`](https://github.com/siemens/ix/commit/04279c1a2bb3c92344c0958731d1f061faff6af6) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Fix scrolling behaviour for **ix-tabs** on small viewports, ensuring the selected tab will be visible at all times.
+
+  Fixes #2260
+
+- [#2320](https://github.com/siemens/ix/pull/2320) [`00366ae`](https://github.com/siemens/ix/commit/00366ae3fd06d74a6af7a037728de9b60694d80f) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Prevent **ix-tree** from triggering infinite calls to requestAnimationFrame while it is idle.
+
+  Fixes #2247
+
+- [#2230](https://github.com/siemens/ix/pull/2230) [`0847ca9`](https://github.com/siemens/ix/commit/0847ca9ca8d258ffd64657bd823fbb90cf44f250) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Fix responsive behavior of **ix-pane-layout**.
+
+  Fixes #2157
+
+- [#2295](https://github.com/siemens/ix/pull/2295) [`dcc06b0`](https://github.com/siemens/ix/commit/dcc06b0f924f468ae4341f729062408b6689093b) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Sync **ix-field-label** with invalid state of related form element.
+
+  Fixes #2226
+
+- [#2298](https://github.com/siemens/ix/pull/2298) [`07e1ad1`](https://github.com/siemens/ix/commit/07e1ad1954afb98479441c90167787535e5c432e) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Set property `value` to empty string instead of empty array when clearing **ix-select** in single mode.
+
+  Fixes #2219
+
+- [#2373](https://github.com/siemens/ix/pull/2373) [`3d0bbb9`](https://github.com/siemens/ix/commit/3d0bbb976b23db3b50721f198109be0a2c9aef42) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove blur effect from modal backdrop
+
+- [#2261](https://github.com/siemens/ix/pull/2261) [`f7345bd`](https://github.com/siemens/ix/commit/f7345bde3489d6eea36aa7d85b7fba6f2ee0092e) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Reflect `disabled` attribute in DOM for **ix-dropdown-button** and **ix-dropdown-item**.
+  Also prevent event emission for disabled components and set `aria-disabled` and `tabIndex` accrodingly.
+
+  Fixes #2114.
+
+- [#2328](https://github.com/siemens/ix/pull/2328) [`ca01772`](https://github.com/siemens/ix/commit/ca01772b9f6cb83b84e5ebccbdf740ca3920727b) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Prevent **ix-toast** from clipping overflowing text content.
+
+- [#2329](https://github.com/siemens/ix/pull/2329) [`828110e`](https://github.com/siemens/ix/commit/828110eadd0658df444405fd9eb7f89bc7fa7aef) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Make sure centered **ix-modal** will get displayed in desired place on every render.
+
+  Fixes #2190
+
+- [#2305](https://github.com/siemens/ix/pull/2305) [`089f850`](https://github.com/siemens/ix/commit/089f85033cad045dc55133577073ab58c074f4b4) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-menu-category** now correctly collapses with **ix-menu** when programmatically changing **ix-menu's** `expand` attribute.
+  Fixes #2151
+
+- [#2243](https://github.com/siemens/ix/pull/2243) [`d2a0d17`](https://github.com/siemens/ix/commit/d2a0d17153c5c62cbee4e6a483076c9fad990984) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Prevent CSS classes from getting lost when dynamically adding **ix-tab-item**s to **ix-tabs**.
+
+  Fixes #2043
+
+## 4.2.0
+
+### Patch Changes
+
+- [#2285](https://github.com/siemens/ix/pull/2285) [`3cb0ab3`](https://github.com/siemens/ix/commit/3cb0ab37db2d75dac634e44ca1dfe16652836829) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix `invalidText` property not being applied to **ix-date-input** and **ix-time-input** when internal validation fails.
+
+  The `invalidText` property now correctly takes precedence over the i18n error messages when both are set. Previously, the i18n message would always be shown for internal validation errors (unparsable dates/times or min/max violations), ignoring the user's custom `invalidText`.
+
+  Fixes #2183.
+
+- [#2284](https://github.com/siemens/ix/pull/2284) [`9cb98da`](https://github.com/siemens/ix/commit/9cb98da8dcf6f1a30a22bfc66f36a818904290c3) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed an issue in **ix-time-picker** where focusing numbers would scroll the page outside the component container.
+
+  Fixes #2138
+
+- [#2214](https://github.com/siemens/ix/pull/2214) [`4dbed06`](https://github.com/siemens/ix/commit/4dbed06e2ace5396754eb88ac7bbe57802bdea7d) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update counter pill background for **ix-tab-item**.
+
+## 4.1.0
+
+### Minor Changes
+
+- [#2213](https://github.com/siemens/ix/pull/2213) [`18969f0`](https://github.com/siemens/ix/commit/18969f056eb088f7ef92ae85a2150ee4036d3628) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Correct non numeric page value or page value beyond the range of _ix-pagination_. Closes #2144
+
+- [#2081](https://github.com/siemens/ix/pull/2081) [`1623c19`](https://github.com/siemens/ix/commit/1623c196cde78f8357b2060d28d8658ec4330b56) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Added support for implicit form submission when pressing Enter in `ix-input`, `ix-number-input`, `ix-date-input` and `ix-time-input` forms
+
+- [#2048](https://github.com/siemens/ix/pull/2048) [`0a23b64`](https://github.com/siemens/ix/commit/0a23b640efc3fc6f10921f29b51d9a1e5a48391e) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Allow to individually disable button and dropdown button in **ix-split-button**s.
+
+- [#2062](https://github.com/siemens/ix/pull/2062) [`95523d3`](https://github.com/siemens/ix/commit/95523d3f0db649e66ddc504b8a06d9ed039fe446) Thanks [@lzeiml](https://github.com/lzeiml)! - Add support for numbers in scientific notation (e.g. 1E-2) for **ix-number-input**.
+
+- [#2062](https://github.com/siemens/ix/pull/2062) [`95523d3`](https://github.com/siemens/ix/commit/95523d3f0db649e66ddc504b8a06d9ed039fe446) Thanks [@lzeiml](https://github.com/lzeiml)! - Add temporary property `allowEmptyValueChange` to **ix-number-input**. Setting this property enables `valueChange` to emit null values.
+
+  Fixes #1968.
+
+- [#1979](https://github.com/siemens/ix/pull/1979) [`73ebf49`](https://github.com/siemens/ix/commit/73ebf49f5d99b32e21545e544b89da23c54f33d2) Thanks [@hawacodes](https://github.com/hawacodes)! - `ix-select` automatically showing an 'All' chip when all items are selected in multiple mode and `collapse-multiple-selection=true` is provided
+
+### Patch Changes
+
+- [#2156](https://github.com/siemens/ix/pull/2156) [`6a075cd`](https://github.com/siemens/ix/commit/6a075cd5f33da7dc6d1cbc9ef93f1c8b07a8fa92) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Make sure arrow position is correct even after placement of **ix-tooltip** changes.
+
+  Fixes #2076 and #2099.
+
+- [#2181](https://github.com/siemens/ix/pull/2181) [`1e58f0e`](https://github.com/siemens/ix/commit/1e58f0ecfae98125ff442e921132c846f0c2646f) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - add `text-alignment` property to input components
+
+- [#2033](https://github.com/siemens/ix/pull/2033) [`a56c2e1`](https://github.com/siemens/ix/commit/a56c2e14820f288625c9253895ceb21ec3f29ccb) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Prevent empty space if no icon is shown in **category-filter**.
+
+- [#2171](https://github.com/siemens/ix/pull/2171) [`6bee493`](https://github.com/siemens/ix/commit/6bee4933f7ef777c3aa8db0c724185be57763e32) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Prevent showing empty tooltip for inputs if `show-text-as-tooltip=true`. Closes #2147
+
+- [#2275](https://github.com/siemens/ix/pull/2275) [`7c571f0`](https://github.com/siemens/ix/commit/7c571f064c7c04359f9cc67be6e3d39c144a5580) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Always show underline for **ix-link-button** and HTML anchor tags.
+
+- [#2208](https://github.com/siemens/ix/pull/2208) [`36b7634`](https://github.com/siemens/ix/commit/36b7634766b3bfbe41220636f62b1cb80742844f) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Prevent emitting validityStateChange event if now actual validity is changed. Closes #2095
+
+- [#2105](https://github.com/siemens/ix/pull/2105) [`d9268c2`](https://github.com/siemens/ix/commit/d9268c24431fb7bf84041b7ae83b10c2abcab2dd) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Remove filter from dropdown and input when selecting an item in **ix-select**.
+
+- [#2189](https://github.com/siemens/ix/pull/2189) [`9954ba9`](https://github.com/siemens/ix/commit/9954ba9f0e0ec12d58c76f628c3ee5e5170d21b8) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update padding and icon alignment of **ix-tooltip**.
+
+- [#2044](https://github.com/siemens/ix/pull/2044) [`6fb28fa`](https://github.com/siemens/ix/commit/6fb28faee5266639d04b215305716e6191e87de7) Thanks [@Nadim901](https://github.com/Nadim901)! - Prevent `ix-menu-settings` and `ix-menu-about` to trigger tabChange event twice. Fixes #1596
+
+- [#2080](https://github.com/siemens/ix/pull/2080) [`eb33537`](https://github.com/siemens/ix/commit/eb335371e8969318d379c1ea0891b9aba39a4a1c) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Only focus input after user interaction with **ix-category-filter**.
+
+- [#2269](https://github.com/siemens/ix/pull/2269) [`1cbe35f`](https://github.com/siemens/ix/commit/1cbe35f290d8e746b9900fdcf9b7b0bd05d850d3) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Update layout for **ix-date-picker** and **ix-time-picker**.
+
+## 4.0.0
+
+### Major Changes
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `showItemCount` to `hideItemCount` and changed default value from `true` to `false` in **ix-pagination**.
+
+- [#2239](https://github.com/siemens/ix/pull/2239) [`e5642cb2e159ef989728ad7494048da771c45bb4`](https://github.com/siemens/ix/commit/e5642cb2e159ef989728ad7494048da771c45bb4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Remove `ix-basic-navigation` and `ix-map-navigation`
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `dismissible` to `persistent` and changed default value from `true` to `false` in **ix-message-bar**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed `customRangeAllowed` to `customRangeDisabled` and changed default value from `true` to `false` in **ix-date-dropdown**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `autoClose` to `preventAutoClose` and changed the default value from `true` to `false` in **ix-toast**.
+
+- [#2077](https://github.com/siemens/ix/pull/2077) [`092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad`](https://github.com/siemens/ix/commit/092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed an issue that caused the content-area in **ix-application** to grow beyond screen width for wide content. For more information check out BREAKING_CHANGES.md
+
+  Added text truncation with ellipsis and a title tooltip to `header-title` and `header-subtitle` in **ix-content-header**.
+
+  Fixes #2010
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `collapsed` to `expanded` and event `collapsedChanged` to `expandedChanged`. The `expanded` property's default value is now `false` in **ix-group**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed `focusable` to `disabled` and changed default value from `true` to `false` in **ix-group-item**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed `showLogoutButton` to `hideLogoutButton` and changed default value from `true` to `false` in **ix-menu-avatar**.
+
+- [#2160](https://github.com/siemens/ix/pull/2160) [`7b016f7a85df558c3042d58a88093ecc55cf85be`](https://github.com/siemens/ix/commit/7b016f7a85df558c3042d58a88093ecc55cf85be) Thanks [@danielleroux](https://github.com/danielleroux)! - Rename attribute names for all `i18n-*` properties.
+
+  New name:
+  From `i-1-8-n-my-attribute` to `i18n-my-attribute`.
+
+  Components:
+
+  - `ix-card-list`
+  - `ix-category-filter`
+  - `ix-datetime-picker`
+  - `ix-menu`
+  - `ix-menu-about-news`
+  - `ix-menu-avatar`
+  - `ix-pagination`
+  - `ix-select`
+  - `ix-update`
+
+- [#2104](https://github.com/siemens/ix/pull/2104) [`aecc8b764bbea9bdc3c9358981201a813074eb48`](https://github.com/siemens/ix/commit/aecc8b764bbea9bdc3c9358981201a813074eb48) Thanks [@danielleroux](https://github.com/danielleroux)! - - Add additional variants `primary`, `secondary`, `tertiary`, `subtle-primary`, `subtle-secondary`, `subtle-tertiary`, `danger-primary`, `danger-secondary` and `danger-tertiary`
+
+  - Adapt styling of `secondary` variant
+  - Remove **ghost** and **outline** property from `ix-button`, `ix-toggle-button`, `ix-dropdown-button`, `ix-icon-button` and other button components to get replaced with new introduced variants.
+  - Remove button tokens for `ghost` and `outline` variants.
+
+  For more information please read BREAKING_CHANGES for version 4.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Removed deprecated type value `danger` in **ix-message-bar**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `range` to `singleSelection` and changed default value from `true` to `false`in **ix-date-picker** and **ix-datetime-picker**.
+
+- [#2135](https://github.com/siemens/ix/pull/2135) [`cd31b3cae80618364395e3ce88dd4f0b69b9b0c6`](https://github.com/siemens/ix/commit/cd31b3cae80618364395e3ce88dd4f0b69b9b0c6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - The **themeSwitcher**'s **setTheme** and **setVariant** methods no longer take a target parameter. Before this parameter was used to specify the target element to set/change the theme configurations on.
+  Now all configuration will be made on the HTML tag.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Removed unused **ix-menu** property `enableSettings`.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Changed default value of property `animated` from `true` to `false` in **ix-event-list**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed `active` to `inactive` and changed default value from `true` to `false` in **ix-chip**.
+
+- [#2227](https://github.com/siemens/ix/pull/2227) [`f678f19ca6b259ba3d66c49ce53270815b937895`](https://github.com/siemens/ix/commit/f678f19ca6b259ba3d66c49ce53270815b937895) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Remove unused property **offsetBottom** from **ix-menu-about-news**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - The deprecated properties `showHour`, `showMinutes`, and `showSeconds` have been removed from
+  **ix-time-picker** and **ix-datetime-picker**.
+  These properties had no effect on the components. Their functionality is already covered by other properties like `time` and `format`.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `collapse` to `expanded` and changed default value from `true` to `false` in **ix-push-card**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `repeatCategories` to `uniqueCategories` and changed default value from `true` to `false` in **ix-category-filter**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `ghost` to `subtle` and changed default value from `true` to `false` in **ix-breadcrumb**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Multiple **ix-modal** boolean properties have been renamed:
+
+  `animation` -> `disableAnimation`
+  `backdrop` -> `hideBackdrop`
+  `closeOnEscape` -> `disableEscapeClose`
+
+  All used to have a default value of `true`. They all default to `false` now.
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`cd14905100a62b9e8ee2eb7e1f357e49e4e4f519`](https://github.com/siemens/ix/commit/cd14905100a62b9e8ee2eb7e1f357e49e4e4f519) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduced new `variant` for **ix-flip-tile**
+
+  BREAKING-CHANGES:
+
+  - Rename `state`to `variant`
+  - Rename `FlipTileState` to `FlipTileVariant` and renamed type member `none` to `outline`.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Renamed property `standaloneAppearance` to `embedded` and changed default value from `true` to `false` in **ix-time-picker**.
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Multiple **ix-breadcrumb-item** properties have been renamed:
+
+  `ghost` -> `subtle`
+  `visible` -> `invisible`
+  `showChevron` -> `hideChevron`
+
+  All used to have a default value of `true`. They all default to `false` now.
+
+### Minor Changes
+
+- [#2075](https://github.com/siemens/ix/pull/2075) [`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926) Thanks [@danielleroux](https://github.com/danielleroux)! - All components with animations respects the **prefers-reduced-motion** feature and avoid any animation
+
+- [#2245](https://github.com/siemens/ix/pull/2245) [`8952a1828ba059175226fb71dfe0a9900c5ad851`](https://github.com/siemens/ix/commit/8952a1828ba059175226fb71dfe0a9900c5ad851) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Improve `ix-radio-group` and `ix-radio` to be aligned with w3c pattern
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`d6faa3105d70647b1d8f71731c661a8dc29e1b98`](https://github.com/siemens/ix/commit/d6faa3105d70647b1d8f71731c661a8dc29e1b98) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduced new `variant` for **ix-card-accordion**
+
+- [#2111](https://github.com/siemens/ix/pull/2111) [`ffa50a961498753dde31ba9e77953d966fdcca4d`](https://github.com/siemens/ix/commit/ffa50a961498753dde31ba9e77953d966fdcca4d) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-pane** improvements:
+
+  - add `header` slot to additional content inside the header like ix-pills
+  - `closeOnClickOutside` property to close pane if user clicked outside of an pane
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option `icon-right` to **ix-button** and **ix-toggle-button**
+
+- [#2068](https://github.com/siemens/ix/pull/2068) [`12951cce1836ec91e784a133cbfdb861c8d2e564`](https://github.com/siemens/ix/commit/12951cce1836ec91e784a133cbfdb861c8d2e564) Thanks [@danielleroux](https://github.com/danielleroux)! - Added new `properties` to **ix-application-header**
+
+  - `nameSuffix` text to show next to the application name
+  - `companyLogo` an alternative to logo slot just for an image path
+  - `companyAlt` alt property to company logo `img` tag
+  - `appIcon` image path for the app icon
+  - `appIconAlt` alt property of the app icon `img` tag
+  - `hideBottomBorder` disable button border to create an extended header
+
+  Added new `slot` to **ix-application-header**
+
+  - `secondary` Additional slot to render content. Similar to the default slot the content will be hidden on smaller screens.
+
+  Align basic styling of **ix-application-header** e.g. gaps and margins
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`ff575ce5521c0aebcce0c817020121b7d81c4978`](https://github.com/siemens/ix/commit/ff575ce5521c0aebcce0c817020121b7d81c4978) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `outline` and `filled` to **ix-event-list-item**
+
+- [#2069](https://github.com/siemens/ix/pull/2069) [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `tooltipText` to **ix-menu-item** and **ix-menu-category**
+
+- [#2115](https://github.com/siemens/ix/pull/2115) [`b5c479fc224b1a02b431b7f4cb5b82e7b8d608bd`](https://github.com/siemens/ix/commit/b5c479fc224b1a02b431b7f4cb5b82e7b8d608bd) Thanks [@philSixZero](https://github.com/philSixZero)! - The **ix-buttpm** component now renders as an anchor (<a>) tag when an href property is provided
+
+  - New properties `target` and `rel` were added to support enhanced link behavior
+  - Related components (**ix-breadcrumb-item**, **ix-menu-item**) were updated to support the `href` property
+
+  Fixes #2011
+
+- [#2058](https://github.com/siemens/ix/pull/2058) [`f620eb52672cb5208fa971dc4db2861d6ca455d8`](https://github.com/siemens/ix/commit/f620eb52672cb5208fa971dc4db2861d6ca455d8) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add methods **pause** and **resume** to the `ix-toast`.
+  Which make it possible to pause/resume the logic of the autoClose feature.
+
+### Patch Changes
+
+- [#2207](https://github.com/siemens/ix/pull/2207) [`121ccb7418926b4577dd790c22fe8581d5f7f08c`](https://github.com/siemens/ix/commit/121ccb7418926b4577dd790c22fe8581d5f7f08c) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Correct margin between **ix-toggle** swtich and label.
+
+- [#2202](https://github.com/siemens/ix/pull/2202) [`00d7577e103ecc6f921677e3b66b0361dd055239`](https://github.com/siemens/ix/commit/00d7577e103ecc6f921677e3b66b0361dd055239) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Prevent weekday texts from getting truncated prematurely in **ix-date-picker**.
+
+- [#2067](https://github.com/siemens/ix/pull/2067) [`802a4ea2d9ae775e93a73ae51337c8374edfecf3`](https://github.com/siemens/ix/commit/802a4ea2d9ae775e93a73ae51337c8374edfecf3) Thanks [@Nadim901](https://github.com/Nadim901)! - Filter dropdown of **ix-select** even if text input is equal to currently selected item.
+
+  Fixes #1991.
+
+- [#2188](https://github.com/siemens/ix/pull/2188) [`071d3bf69ab5229f6b937ebfcc9cb6e6b688d022`](https://github.com/siemens/ix/commit/071d3bf69ab5229f6b937ebfcc9cb6e6b688d022) Thanks [@danielleroux](https://github.com/danielleroux)! - Provide fallback ARIA label for header icon in **ix-action-card**.
+
+- [#2218](https://github.com/siemens/ix/pull/2218) [`cf50694a7c4ae6287d5deb286a3ffc53c072cd22`](https://github.com/siemens/ix/commit/cf50694a7c4ae6287d5deb286a3ffc53c072cd22) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Preserve manual resize dimensions during re-renders of **ix-textarea**.
+
+- [#2175](https://github.com/siemens/ix/pull/2175) [`113c45e102e0d2cb856701402ce255f5c972752a`](https://github.com/siemens/ix/commit/113c45e102e0d2cb856701402ce255f5c972752a) Thanks [@danielleroux](https://github.com/danielleroux)! - Add thumb border and valid state styling and update design tokens for **ix-toggle**.
+
+- [#2186](https://github.com/siemens/ix/pull/2186) [`b19621236813a58bec015aed094e1dfeb8b957df`](https://github.com/siemens/ix/commit/b19621236813a58bec015aed094e1dfeb8b957df) Thanks [@danielleroux](https://github.com/danielleroux)! - Improve color contrast for warning state in these components:
+
+  **ix-chip**
+  **ix-message-bar**
+  **ix-modal**
+  **ix-pill**
+  **ix-spinner**
+  **ix-toast**
+  **ix-workflow-steps**
+
+- [#2237](https://github.com/siemens/ix/pull/2237) [`dfb056a6355b2e13bcba23ecf17217fad1d7d8b9`](https://github.com/siemens/ix/commit/dfb056a6355b2e13bcba23ecf17217fad1d7d8b9) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Delegate focus to nested button for **ix-button**.
+
+- [#2106](https://github.com/siemens/ix/pull/2106) [`d25492c57edb9e7f60c970cb26de4d5b8bdf8ee8`](https://github.com/siemens/ix/commit/d25492c57edb9e7f60c970cb26de4d5b8bdf8ee8) Thanks [@lzeiml](https://github.com/lzeiml)! - - Fixed validation logic incorrectly treating 0 as an invalid value due to falsy evaluation
+
+  - Fixed invalid-text not displaying when native HTML5 validation fails (e.g., min/max constraints)
+
+  Fixes #2061
+
+- [#2092](https://github.com/siemens/ix/pull/2092) [`db2bbf5e55d5f7aca2c9e255dae917b746048d09`](https://github.com/siemens/ix/commit/db2bbf5e55d5f7aca2c9e255dae917b746048d09) Thanks [@lzeiml](https://github.com/lzeiml)! - Fix **theme-switcher** to detect and toggle theme changes on both document.body and document.documentElement.
+
+- [#1984](https://github.com/siemens/ix/pull/1984) [`ace22d0fd9a126891ef2f6ad60c35751488b81a1`](https://github.com/siemens/ix/commit/ace22d0fd9a126891ef2f6ad60c35751488b81a1) Thanks [@Raghavendra5577](https://github.com/Raghavendra5577)! - Update margins to match design for **ix-toggle**.
+
+- [#2188](https://github.com/siemens/ix/pull/2188) [`071d3bf69ab5229f6b937ebfcc9cb6e6b688d022`](https://github.com/siemens/ix/commit/071d3bf69ab5229f6b937ebfcc9cb6e6b688d022) Thanks [@danielleroux](https://github.com/danielleroux)! - Update ix-icons to latest version 3.2.0
+
+- [#2168](https://github.com/siemens/ix/pull/2168) [`39425cad90443e258d43f4b35291877de2590dac`](https://github.com/siemens/ix/commit/39425cad90443e258d43f4b35291877de2590dac) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Fixed a bug where the **ix-modal** was shown outside the viewport if the user has scrolled down on the page.
+  Closes #2083
+
+- [#1998](https://github.com/siemens/ix/pull/1998) [`a2f040aaf72b90ba230daf747092d1844d7aff6a`](https://github.com/siemens/ix/commit/a2f040aaf72b90ba230daf747092d1844d7aff6a) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Add header slot to **ix-content-header** to allow adding elements next to title text.
+
+- [#1928](https://github.com/siemens/ix/pull/1928) [`2fca705485f72455cde6c99fa8d3578cee7bb7c3`](https://github.com/siemens/ix/commit/2fca705485f72455cde6c99fa8d3578cee7bb7c3) Thanks [@Raghavendra5577](https://github.com/Raghavendra5577)! - Increase active area of **ix-radio**
+
+- [#2143](https://github.com/siemens/ix/pull/2143) [`ac68db8e038872fb4249fa755d5d5f78b4a6d532`](https://github.com/siemens/ix/commit/ac68db8e038872fb4249fa755d5d5f78b4a6d532) Thanks [@lzeiml](https://github.com/lzeiml)! - - Improved documentation for `locale` property in date-picker and date-input components
+
+  - Added missing `hideHeader` property to time-input
+  - Added missing return types for methods in date-picker and time-picker
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Adapt border radius (2px) to fit to latest design specs
+
+- [#2166](https://github.com/siemens/ix/pull/2166) [`2617f86ed1d368fe3d309487ef531df20174c840`](https://github.com/siemens/ix/commit/2617f86ed1d368fe3d309487ef531df20174c840) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix mouse states and focus visualisation for **ix-group** and **ix-group-item**.
+
+- [#2054](https://github.com/siemens/ix/pull/2054) [`4151d42ccd0a80932593796fb3586c0534faaaaf`](https://github.com/siemens/ix/commit/4151d42ccd0a80932593796fb3586c0534faaaaf) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Decrease vertical gap of **ix-radio** group
+
+- [#1995](https://github.com/siemens/ix/pull/1995) [`294dbe56899a9f63582af324d4f9b9efd8c5805b`](https://github.com/siemens/ix/commit/294dbe56899a9f63582af324d4f9b9efd8c5805b) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update close button color to match Figma design for:
+
+  - **ix-category-filter**
+  - **ix-drawer**
+  - **ix-menu-about-news**
+  - **ix-menu-tabs**
+  - **ix-message-bar**
+  - **ix-modal-header**
+  - **ix-pane**
+  - **ix-toast**
+
+- [#2059](https://github.com/siemens/ix/pull/2059) [`1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9`](https://github.com/siemens/ix/commit/1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9) Thanks [@danielleroux](https://github.com/danielleroux)! - Move safeArea variables to `:root` level
+
+- [#2118](https://github.com/siemens/ix/pull/2118) [`9b1d1ceb9fc17cd956d60a5e0bf02fb8a1482a06`](https://github.com/siemens/ix/commit/9b1d1ceb9fc17cd956d60a5e0bf02fb8a1482a06) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add `aria-labelledby` to **ix-action-card** only when `ariaLabelCard` property is not set and `heading` property is set.
+
+- [#2191](https://github.com/siemens/ix/pull/2191) [`4e278da029b79548fd97840bd0d89e79b1614a7e`](https://github.com/siemens/ix/commit/4e278da029b79548fd97840bd0d89e79b1614a7e) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Prevent **ix-select** from showing unwanted scrollbar.
+
+  Fixes #2170
+
+- [#2193](https://github.com/siemens/ix/pull/2193) [`0387086225eb438def5ff7b4956025afd34c7e18`](https://github.com/siemens/ix/commit/0387086225eb438def5ff7b4956025afd34c7e18) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Hide show password button for disabled **ix-input**s of type password.
+
+  Fixes #2180
+
+## 3.2.0
+
+### Minor Changes
+
+- [#2004](https://github.com/siemens/ix/pull/2004) [`e8e660fd56af649eace36a313b33cda8ebb69469`](https://github.com/siemens/ix/commit/e8e660fd56af649eace36a313b33cda8ebb69469) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update theme files to new token structure and add support for new theming syntax (**data-ix-theme**, **data-ix-color-schema**).
+
+- [#1951](https://github.com/siemens/ix/pull/1951) [`ecbbd0a7435722731337b3da6cb83bb2d40654aa`](https://github.com/siemens/ix/commit/ecbbd0a7435722731337b3da6cb83bb2d40654aa) Thanks [@danielleroux](https://github.com/danielleroux)! - Add **ix-progress-indicator**
+
+  Fixes #651
+
+- [#2005](https://github.com/siemens/ix/pull/2005) [`76016130da552410c00e0a0ea0c3bc58a015c132`](https://github.com/siemens/ix/commit/76016130da552410c00e0a0ea0c3bc58a015c132) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-tree**: add method `markItemAsDirty` to flag tree items which request a hard rerender
+
+- [#1974](https://github.com/siemens/ix/pull/1974) [`6b9a8fc5922f936a96e3f09e8ea11e0720aa5383`](https://github.com/siemens/ix/commit/6b9a8fc5922f936a96e3f09e8ea11e0720aa5383) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove internal type definition from public api types.
+
+  Fixes #1969
+
+- [#1986](https://github.com/siemens/ix/pull/1986) [`e44cb4912b89ab91c6ace605ff939dd4121f0a7f`](https://github.com/siemens/ix/commit/e44cb4912b89ab91c6ace605ff939dd4121f0a7f) Thanks [@lzeiml](https://github.com/lzeiml)! - Added properties to set aria-labels for the following components:
+
+  - ix-action-card
+  - ix-avatar
+  - ix-breadcrumb-item
+  - ix-button
+  - ix-card-accordion
+  - ix-card-list
+  - ix-category-filter
+  - ix-chip
+  - ix-date-input
+  - ix-date-picker
+  - ix-datetime-picker
+  - ix-drawer
+  - ix-dropdown-button
+  - ix-dropdown-item
+  - ix-empty-state
+  - ix-event-list-item
+  - ix-expanding-search
+  - ix-filter-chip
+  - ix-group-item
+  - ix-icon-toggle-button
+  - ix-key-value
+  - ix-kpi
+  - ix-link-button
+  - ix-map-navigation-overlay
+  - ix-modal-header
+  - ix-pagination
+  - ix-pane
+  - ix-pill
+  - ix-select
+  - ix-split-button
+  - ix-tabs
+  - ix-toast
+  - ix-toggle-button
+  - ix-tree-item
+
+- [#1864](https://github.com/siemens/ix/pull/1864) [`4077296037dd7889ddeb175559aca11f93a33312`](https://github.com/siemens/ix/commit/4077296037dd7889ddeb175559aca11f93a33312) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add option for action button slot to **ix-toast**
+
+- [#1877](https://github.com/siemens/ix/pull/1877) [`813b9cea25e8f6d948a992f9145254bf7045adf0`](https://github.com/siemens/ix/commit/813b9cea25e8f6d948a992f9145254bf7045adf0) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add `centerContent` property to `ix-chip`.
+
+  Fixes #1854
+
+- [#1853](https://github.com/siemens/ix/pull/1853) [`b67d0122acdf2f4f7df1f8d85bbd5a3fafe38624`](https://github.com/siemens/ix/commit/b67d0122acdf2f4f7df1f8d85bbd5a3fafe38624) Thanks [@lzeiml](https://github.com/lzeiml)! - Rework `ix-time-picker` according to new design
+
+  The ix-time-picker has been reworked to a new design and now uses different columns with selectable numbers to select the time. Milliseconds can now be selected as well.
+  There are also new interval properties to control which numbers are displayed for hours, minutes, seconds and milliseconds.
+  Additionally the displayed columns are now determined by the used format, making the showHour, showMinutes, showSeconds properties deprecated and will be removed with 4.0.0.
+  The numbers for hours, minutes, etc. can also be selected by tabbing onto the first number, and then using arrow keys and Enter to select the desired time.
+
+  Add new `ix-time-input` component
+
+  The time-input component has been added as well, combining an input field and the new ix-time-picker, similar to the ix-date-input.
+
+- [#2002](https://github.com/siemens/ix/pull/2002) [`963502f6fe2e5194c34f4c8780820f30b581b7de`](https://github.com/siemens/ix/commit/963502f6fe2e5194c34f4c8780820f30b581b7de) Thanks [@lzeiml](https://github.com/lzeiml)! - The following properties have been added to ix-date-input: minDate, maxDate, weekStartIndex. Fixes #1965
+
+### Patch Changes
+
+- [#1882](https://github.com/siemens/ix/pull/1882) [`455933edb3f3b9d8145ea4f58007fe815f46f841`](https://github.com/siemens/ix/commit/455933edb3f3b9d8145ea4f58007fe815f46f841) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Gracefully handle whitespace and undefined texts in `ix-field-wrapper`.
+
+- [#1950](https://github.com/siemens/ix/pull/1950) [`1d273b149630b4f80ebe370963df4269ab813e4f`](https://github.com/siemens/ix/commit/1d273b149630b4f80ebe370963df4269ab813e4f) Thanks [@Nadim901](https://github.com/Nadim901)! - Keep **ix-modal** open after mouse down on backdrop and mouse up over modal or vice versa.
+
+  Fixes #1663
+
+- [#1963](https://github.com/siemens/ix/pull/1963) [`6642dbb398850508497bd96e00e19fd4da3aa616`](https://github.com/siemens/ix/commit/6642dbb398850508497bd96e00e19fd4da3aa616) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Align expand/collapse arrows with design for:
+
+  - **ix-blind**
+  - **ix-card**
+  - **ix-dropdown-button**
+  - **ix-group**
+  - **ix-select**
+  - **ix-tree-item**
+
+- [#1947](https://github.com/siemens/ix/pull/1947) [`6f12a6a14ebd090c979b5c5a7b30b27ef40a0e95`](https://github.com/siemens/ix/commit/6f12a6a14ebd090c979b5c5a7b30b27ef40a0e95) Thanks [@Nadim901](https://github.com/Nadim901)! - Break label text of **ix-toggle** in case of text overflow.
+
+  Fixes #683
+
+- [#2014](https://github.com/siemens/ix/pull/2014) [`39c9694bd3cd5864e127a8628e49c895add5da62`](https://github.com/siemens/ix/commit/39c9694bd3cd5864e127a8628e49c895add5da62) Thanks [@danielleroux](https://github.com/danielleroux)! - Increase z-index for `toast`s
+
+  Fixes #1908
+
+- [#1941](https://github.com/siemens/ix/pull/1941) [`f892591ef14286ed7876ca0b071a8fd35de79bbf`](https://github.com/siemens/ix/commit/f892591ef14286ed7876ca0b071a8fd35de79bbf) Thanks [@Raghavendra5577](https://github.com/Raghavendra5577)! - **Ix-modal** animation is always identical regardless of poisition.
+  It will appear from above and disappear towards the top of the screen again.
+  It will only travel it's own height before animation ends, not the whole distance from/to top.
+
+- [#2016](https://github.com/siemens/ix/pull/2016) [`3f0d55ae2f195e6c86a73c409ea28976dc3f2961`](https://github.com/siemens/ix/commit/3f0d55ae2f195e6c86a73c409ea28976dc3f2961) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Ensure that setting max-width on **ix-chip** and/or **ix-pill** will affect componet width.
+
+- [#1980](https://github.com/siemens/ix/pull/1980) [`3d953256650eaa541dfbb93ec5e98a48212d97ad`](https://github.com/siemens/ix/commit/3d953256650eaa541dfbb93ec5e98a48212d97ad) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Set soft text as subheading color for filled and outline variant of **ix-action-card**.
+
+  Fixes #1967
+
+- [#2034](https://github.com/siemens/ix/pull/2034) [`4d4e5672137dc5b803d267e0564bb5944f4d9ae2`](https://github.com/siemens/ix/commit/4d4e5672137dc5b803d267e0564bb5944f4d9ae2) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Fix styling of tooltip container height in **ix-tooltip**.
+
+  Fixes #2009.
+
+- [#1994](https://github.com/siemens/ix/pull/1994) [`d346cc2d69596c0a72e7ef77b64097d8500a999c`](https://github.com/siemens/ix/commit/d346cc2d69596c0a72e7ef77b64097d8500a999c) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Set background-color explicitly for outline variants of **ix-chip** and **ix-pill**.
+
+- [#2022](https://github.com/siemens/ix/pull/2022) [`152d7af26f90e2f489d4bae99c60369449b910db`](https://github.com/siemens/ix/commit/152d7af26f90e2f489d4bae99c60369449b910db) Thanks [@danielleroux](https://github.com/danielleroux)! - Add additional check if the helper text is undefined to hide empty validation text
+
+  Fixes #2021
+
+- [#1943](https://github.com/siemens/ix/pull/1943) [`9776d7fb0cc5bb3b9afb4982cbceb00a8c638549`](https://github.com/siemens/ix/commit/9776d7fb0cc5bb3b9afb4982cbceb00a8c638549) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Remove obsolete console warning message for formerly illegal property combinations for **ix-toggle-button** and **ix-icon-toggle-button**.
+
+- [#1945](https://github.com/siemens/ix/pull/1945) [`a3ac05becce0e245f0397a8f6b9789176b7728e6`](https://github.com/siemens/ix/commit/a3ac05becce0e245f0397a8f6b9789176b7728e6) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Align **ix-pill** and **ix-chip** vertically flush, with or without icons.
+
+- [#1985](https://github.com/siemens/ix/pull/1985) [`2496426f26665cd848a66bc69395a7d0261fa5a5`](https://github.com/siemens/ix/commit/2496426f26665cd848a66bc69395a7d0261fa5a5) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Don't take up space for empty dropdown slot in **ix-group**.
+
+  Fixes #1486
+
+- [#1993](https://github.com/siemens/ix/pull/1993) [`b519b420fd3ca5de9c73c227ce78431b520ec4a6`](https://github.com/siemens/ix/commit/b519b420fd3ca5de9c73c227ce78431b520ec4a6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Improve jsdocs for **ix-date-picker** to better describe `locale` property
+
+- [#2015](https://github.com/siemens/ix/pull/2015) [`023cad0595fb3b110de2f62d982c32275b4aaea6`](https://github.com/siemens/ix/commit/023cad0595fb3b110de2f62d982c32275b4aaea6) Thanks [@danielleroux](https://github.com/danielleroux)! - Update to stenciljs v4.36.0
+
+  Fixes #1543 #1286
+
+- [#1873](https://github.com/siemens/ix/pull/1873) [`b630ffefe83f20c458bbef88d21918479e1ae540`](https://github.com/siemens/ix/commit/b630ffefe83f20c458bbef88d21918479e1ae540) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Align visual appearance of **ix-workflow** to component state
+
+  Fixes #1808
+
+- [#1978](https://github.com/siemens/ix/pull/1978) [`1055e0127f0e25a654f5a7d69e5db102340a3a83`](https://github.com/siemens/ix/commit/1055e0127f0e25a654f5a7d69e5db102340a3a83) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Fix order of bottom menu items in **ix-menu**. Now "Settings" appears first and "About and legal information" appears last.
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1793](https://github.com/siemens/ix/pull/1793) [`826c656ab14e4e67aad0edf4e5dbacdb6add4e23`](https://github.com/siemens/ix/commit/826c656ab14e4e67aad0edf4e5dbacdb6add4e23) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add `form` attribute to `ix-button` to support automatic form submit.
+
+  Fixes #1653
+
+- [#1856](https://github.com/siemens/ix/pull/1856) [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add oval attribute to **ix-icon-toggle-button**.
+
+### Patch Changes
+
+- [#1922](https://github.com/siemens/ix/pull/1922) [`634fa40faac751464a5da789adf0614e323236f9`](https://github.com/siemens/ix/commit/634fa40faac751464a5da789adf0614e323236f9) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Match icon color to border color for outline **ix-chip**.
+
+- [#1925](https://github.com/siemens/ix/pull/1925) [`1da72685f28e77b457386d8df3caaaa7302a28c7`](https://github.com/siemens/ix/commit/1da72685f28e77b457386d8df3caaaa7302a28c7) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Update global anchor tag styling.
+
+- [#1887](https://github.com/siemens/ix/pull/1887) [`3aaaadbeb2c735d0e242be7f9a777437edfcbe2b`](https://github.com/siemens/ix/commit/3aaaadbeb2c735d0e242be7f9a777437edfcbe2b) Thanks [@tiagogviegas](https://github.com/tiagogviegas)! - skip render of ix-icon on `ix-pill` and `ix-chip` when `icon` is not set.
+
+  Fixes #1885
+  Fixes #1879
+
+- [#1874](https://github.com/siemens/ix/pull/1874) [`9346254f83af3316950a3681557939e74ba399e6`](https://github.com/siemens/ix/commit/9346254f83af3316950a3681557939e74ba399e6) Thanks [@danielleroux](https://github.com/danielleroux)! - Move falsy dependencies from "dependencies" to "devDependencies"
+
+- [#1762](https://github.com/siemens/ix/pull/1762) [`ec011a4b76b25916c04e918e20b448c2f87978f5`](https://github.com/siemens/ix/commit/ec011a4b76b25916c04e918e20b448c2f87978f5) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Ensure that all items can be reached via scrolling inside overflowing `ix-dropdown`. Fixes #1671
+
+- [#1888](https://github.com/siemens/ix/pull/1888) [`f99ca055f217ef87a10047ea3b48f4ecc1e2522b`](https://github.com/siemens/ix/commit/f99ca055f217ef87a10047ea3b48f4ecc1e2522b) Thanks [@danielleroux](https://github.com/danielleroux)! - Show correct icons within predefined message modals
+
+  Fixes #1886
+
+- [#1849](https://github.com/siemens/ix/pull/1849) [`f1ea5f5c142311fc815adc3ac786e1c65f2498ad`](https://github.com/siemens/ix/commit/f1ea5f5c142311fc815adc3ac786e1c65f2498ad) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Ensure that the toast position is applied correctly, even if the custom component is not defined yet.
+
+  Fixes: #1381
+
+- [#1914](https://github.com/siemens/ix/pull/1914) [`3c2a336ed03a0766fcc909a1b0cdfdc9026d00f4`](https://github.com/siemens/ix/commit/3c2a336ed03a0766fcc909a1b0cdfdc9026d00f4) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Set correct margin between button and label for `ix-toggle`.
+
+## 3.0.0
+
+### Major Changes
+
+- [#1581](https://github.com/siemens/ix/pull/1581) [`7eb4d5147056e1e3252e387e5a718df7e593909e`](https://github.com/siemens/ix/commit/7eb4d5147056e1e3252e387e5a718df7e593909e) Thanks [@matthiashader](https://github.com/matthiashader)! - Component Updates and Enhancements
+
+  New Variants for Card Components:
+
+  - **ix-action-card**, **ix-card**, and **ix-push-card**:
+    - The `insight` and `notification` variants have been **replaced by** `outline` and `filled`.
+
+  Property Updates:
+
+  - **ix-chip**:
+    - The `color` property has been **replaced by** `chipColor`.
+  - **ix-event-list**:
+    - The `color` attribute has been **replaced by** `itemColor`.
+  - **ix-icon-button**:
+    - The `color` attribute has been **replaced by** `iconColor`.
+    - Size `32` has been removed.
+  - **ix-pill**:
+    - The `color` attribute has been **replaced by** `pillColor`.
+  - **ix-typography**:
+    - The `color` attribute has been **replaced by** `textColor`.
+  - **ix-select**:
+    - The `selectedIndices` attribute has been **replaced by** `value`.
+    - The `itemSelectionChange` event has been **replaced by** `valueChange`.
+  - **ix-select-item**:
+    - The type of the `value` property type has been updated to `string`.
+
+  Date and Time Picker Enhancements:
+
+  - **ix-date-picker**:
+    - Removed attributes: `individual` and `eventDelimiter`.
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+  - **ix-datetime-picker**:
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+    - Removed the `eventDelimiter` property.
+  - **ix-time-picker**:
+    - Removed attributes: `individual` and `showTimeReference`.
+
+  Removed Features:
+
+  - **ix-menu**:
+    - Removed the `maxVisibleMenuItems` attribute.
+  - **ix-menu-item**:
+    - The `tabIcon` attribute has been removed and replaced with `icon`.
+
+  Other Changes:
+
+  - **ix-modal**:
+    - The `keyboard` attribute has been **replaced by** `closeOnEscape`.
+
+- [#1700](https://github.com/siemens/ix/pull/1700) [`2e2972260eafb1a87b84e5a705e3c932b15b8467`](https://github.com/siemens/ix/commit/2e2972260eafb1a87b84e5a705e3c932b15b8467) Thanks [@jul-lam](https://github.com/jul-lam)! - The **ix-tooltip** is working as expected when utilized for an **ix-dropdown-item** inside an **ix-dropdown**. The tooltip is now displayed outside the dropdown without breaking its layout.
+
+  Fixes #1618
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`8b757805d65f62e9296e6d1abd67a8f0b30099f3`](https://github.com/siemens/ix/commit/8b757805d65f62e9296e6d1abd67a8f0b30099f3) Thanks [@matthiashader](https://github.com/matthiashader)! - Adapt the event signature of the `dateSelect` event of the `ix-date-picker` to reflect undefined values.
+
+- [#1578](https://github.com/siemens/ix/pull/1578) [`dd8b3eb28eb162f30c5fef27b369036b3bd6dd8b`](https://github.com/siemens/ix/commit/dd8b3eb28eb162f30c5fef27b369036b3bd6dd8b) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove `devDependency` and `peerDependency` to bootstrap. For more information checkout BREAKING_CHANGES.md
+
+- [#1817](https://github.com/siemens/ix/pull/1817) [`e4a8d713614c2a5f4850d26a81655756ad48e76d`](https://github.com/siemens/ix/commit/e4a8d713614c2a5f4850d26a81655756ad48e76d) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-content**: add padding to right side of content area
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760`](https://github.com/siemens/ix/commit/f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent global styling for `input` and `textarea`. If you still want to use the legacy styling provide a `class="ix-form-control"` to `input` or `textarea`.
+  Prevent global styling for `label`. If you still want to use the legacy styling provide a `class="ix-form-label"` to `label`.
+
+  Fixes #1398
+
+- [#1831](https://github.com/siemens/ix/pull/1831) [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-tree**: Fix typo of `isExpanded` of `nodeToggled`-event.
+
+- [#1457](https://github.com/siemens/ix/pull/1457) [`3d62fffdc107bfc92b2ecad8437662dc7c03796f`](https://github.com/siemens/ix/commit/3d62fffdc107bfc92b2ecad8437662dc7c03796f) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/pane-layout): remove absolute positioning
+
+- [#1642](https://github.com/siemens/ix/pull/1642) [`c9c5bf0451998ce94a57247b974e00176f294437`](https://github.com/siemens/ix/commit/c9c5bf0451998ce94a57247b974e00176f294437) Thanks [@danielleroux](https://github.com/danielleroux)! - The **VariantMapping** that mapped legacy font classes to current ones was removed.
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`23402fc1ab914b7b6ca73f938b12c66dd1fd5120`](https://github.com/siemens/ix/commit/23402fc1ab914b7b6ca73f938b12c66dd1fd5120) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove legacy `classic` theme
+
+- [#1830](https://github.com/siemens/ix/pull/1830) [`00b3988f7955d97080653544daf94fbd215ca0fb`](https://github.com/siemens/ix/commit/00b3988f7955d97080653544daf94fbd215ca0fb) Thanks [@danielleroux](https://github.com/danielleroux)! - Replace button group class `.btn-group` with `.ix-button-group`
+
+- [#1850](https://github.com/siemens/ix/pull/1850) [`6c9a6c87cd31976a6341a3d5b038d2ff0b9a104d`](https://github.com/siemens/ix/commit/6c9a6c87cd31976a6341a3d5b038d2ff0b9a104d) Thanks [@danielleroux](https://github.com/danielleroux)! - Change minimum required `@siemens/ix-icons` to `^3.0.0` from `^2.0.0`
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760`](https://github.com/siemens/ix/commit/f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760) Thanks [@danielleroux](https://github.com/danielleroux)! - Change default width from `input.ix-from-control` from `width: 100%` to `width: auto`
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`db785bb8a4cc0654104cb24d420b7a1e2d45fdba`](https://github.com/siemens/ix/commit/db785bb8a4cc0654104cb24d420b7a1e2d45fdba) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-date-dropdown`: Adapt the types `DateDropdownOption` and `DateRangeChangeEvent` to reflect the changed signature of the `ix-date-picker`'s `dateSelect` event.
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`db785bb8a4cc0654104cb24d420b7a1e2d45fdba`](https://github.com/siemens/ix/commit/db785bb8a4cc0654104cb24d420b7a1e2d45fdba) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-date-input`: Adapt the `value` property and the `valueChange` event to reflect the changed signature of the `date-picker`'s `dateSelect` event.
+
+- [#1613](https://github.com/siemens/ix/pull/1613) [`b3846c925ec4f03fd5d26b0b66042185b766f099`](https://github.com/siemens/ix/commit/b3846c925ec4f03fd5d26b0b66042185b766f099) Thanks [@jul-lam](https://github.com/jul-lam)! - **ix-application** now utilizes full viewport height and full viewport width
+
+- [#1273](https://github.com/siemens/ix/pull/1273) [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/checkbox): allow multiline labels and align checkbox at the top
+
+### Minor Changes
+
+- [#1737](https://github.com/siemens/ix/pull/1737) [`149dfbd6518e94da9e966d06ea2292c8e96772ce`](https://github.com/siemens/ix/commit/149dfbd6518e94da9e966d06ea2292c8e96772ce) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Add new types `critical`, `success`, `primary`, and `neutral`, and deprecate type `danger`.
+  Additionally, add new `NotificationColor` colors `color-critical`, `color-alarm`, `color-neutral`, and `color-primary`.
+
+- [#1697](https://github.com/siemens/ix/pull/1697) [`9e13a08340efc9cb7dd1f0ef7d56481c8b5dcbbe`](https://github.com/siemens/ix/commit/9e13a08340efc9cb7dd1f0ef7d56481c8b5dcbbe) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - `ix-chip` and `ix-pill`: Add property `tooltip-text` to display an `ix-tooltip` with customizable text.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-flip-tile`: Expsose `index` property to allow setting of displayed content and add `toggle` event.
+
+- [#1803](https://github.com/siemens/ix/pull/1803) [`278d51b7597afadd7fa765187e3cf9e8cd5385c6`](https://github.com/siemens/ix/commit/278d51b7597afadd7fa765187e3cf9e8cd5385c6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - **ix-tree**: Fix a bug where an event was not emitted when clicking tree items.
+  **ix-tree**: Introduce a new attribute to enable tree items to be toggled on click.
+
+  Fixes #1633.
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduce `required` property for **ix-radio**. To make the **ix-radio-group** required at least one **ix-radio** must be `required`
+
+- [#1814](https://github.com/siemens/ix/pull/1814) [`bc33e84a3ad378470dbbdff8dd85877c21355bae`](https://github.com/siemens/ix/commit/bc33e84a3ad378470dbbdff8dd85877c21355bae) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add additional color `alarm-contrast`, `critical-contrast`, `warning-contrast`, `success-contrast`, `info-contrast`, `neutral-contrast` and `primary-contrast` to **ix-typography**
+
+- [#1688](https://github.com/siemens/ix/pull/1688) [`5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Event `closedChange` can now be prevented via `event.preventDefault()`.
+  An additional event is added to get notified after the close animation of the `ix-message-bar` is finished.
+
+- [#1743](https://github.com/siemens/ix/pull/1743) [`4bdec91e4a837e487caa4a25407f24eb37616531`](https://github.com/siemens/ix/commit/4bdec91e4a837e487caa4a25407f24eb37616531) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-date-picker**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-datetime-picker**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-date-dropdown**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-date-input**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-menu`: Add `openSettings` and `openAbout` events. Event `expandChange` can now be prevented via `event.preventDefault()`.
+
+- [#1767](https://github.com/siemens/ix/pull/1767) [`30a98977feb83c7fb8ec8ca76a4b524042b2e5af`](https://github.com/siemens/ix/commit/30a98977feb83c7fb8ec8ca76a4b524042b2e5af) Thanks [@raunak-matai](https://github.com/raunak-matai)! - Handle `preventDefault()` on native `click` event for `ix-tab-item`.
+
+  Fixes #1655.
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`d20b43d5f5bd5291b5125b120d2bb2d72286acfd`](https://github.com/siemens/ix/commit/d20b43d5f5bd5291b5125b120d2bb2d72286acfd) Thanks [@danielleroux](https://github.com/danielleroux)! - Add new global class `.ix-table` and `.ix-table-striped` to display a simple html table
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ìx-drawer`: Events `open` and `drawerClose` can now be prevented via`event.preventDefault()`.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add `tabChange` event to `ix-menu-settings` and `ix-menu-about`.
+
+- [#1760](https://github.com/siemens/ix/pull/1760) [`ac163467de8fc4d943f5366415492a9a02748999`](https://github.com/siemens/ix/commit/ac163467de8fc4d943f5366415492a9a02748999) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-datetime-picker**: Time selection headline can now be translated via property `i18nTime`.
+
+### Patch Changes
+
+- [#1798](https://github.com/siemens/ix/pull/1798) [`40e8c510e15dba741601b3b19b6025c024e170ef`](https://github.com/siemens/ix/commit/40e8c510e15dba741601b3b19b6025c024e170ef) Thanks [@lzeiml](https://github.com/lzeiml)! - If an invalid date string is passed to the **ix-date-picker**, a console error will be thrown and the string will not be used.
+
+- [#1791](https://github.com/siemens/ix/pull/1791) [`838c19239ac8a85e2d644696cc1fd3a67f5509d5`](https://github.com/siemens/ix/commit/838c19239ac8a85e2d644696cc1fd3a67f5509d5) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-tree**: Init hyperlist after re-attaching tree to DOM.
+
+  Fixes #1703.
+
+- [#1818](https://github.com/siemens/ix/pull/1818) [`c7456367e276c31a9eb6c7cea8270857b5810360`](https://github.com/siemens/ix/commit/c7456367e276c31a9eb6c7cea8270857b5810360) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add drop shadow to **ix-datetime-picker**.
+
+  Fixes #1299.
+
+- [#1706](https://github.com/siemens/ix/pull/1706) [`e8bd3b6301d7553e6a02b79e2925aa0595b674ca`](https://github.com/siemens/ix/commit/e8bd3b6301d7553e6a02b79e2925aa0595b674ca) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-menu-category**: Dynamically added items are now instantly visible. This is achieved by adjusting the max-height everytime an item gets added.
+
+  Fixes #1606
+
+- [#1821](https://github.com/siemens/ix/pull/1821) [`d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6`](https://github.com/siemens/ix/commit/d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Remove space before required asterisk in **ix-field-label**.
+
+  Fixes #1634.
+
+- [#1683](https://github.com/siemens/ix/pull/1683) [`aa63b4fd901bc50e98877826699412affa127ae7`](https://github.com/siemens/ix/commit/aa63b4fd901bc50e98877826699412affa127ae7) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - `active=false` of the `ix-chip` will now show the chip as not interactable.
+
+  Fixed #1656
+
+- [#1828](https://github.com/siemens/ix/pull/1828) [`009519637b668f74f8abae7bd682c67045d2876f`](https://github.com/siemens/ix/commit/009519637b668f74f8abae7bd682c67045d2876f) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Handle `null` gracefully in **ix-textarea**.
+
+  Fixes #1789.
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent required **ix-number-input** from becoming invalid if value is zero
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`e8049c9966e7d5019c8ed0ae0e6cf2597f81dce5`](https://github.com/siemens/ix/commit/e8049c9966e7d5019c8ed0ae0e6cf2597f81dce5) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent **ix-application-header** from waiting until the corporate logo is defined.
+
+- [#1840](https://github.com/siemens/ix/pull/1840) [`74ddf7d9931d3e7d123d34f42718a47b98de42a9`](https://github.com/siemens/ix/commit/74ddf7d9931d3e7d123d34f42718a47b98de42a9) Thanks [@danielleroux](https://github.com/danielleroux)! - Align colors of **ix-toggle-button** (primary only) with the latest figma specs
+
+- [#1838](https://github.com/siemens/ix/pull/1838) [`c7ce5be2cf5707b980d484e60dcc7dfa1814656b`](https://github.com/siemens/ix/commit/c7ce5be2cf5707b980d484e60dcc7dfa1814656b) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `z-index` to **ix-validation-tooltip** to prevent overlapping labels
+
+- [#1790](https://github.com/siemens/ix/pull/1790) [`ff816a840b609491e1a647d64f6bad489ad214f0`](https://github.com/siemens/ix/commit/ff816a840b609491e1a647d64f6bad489ad214f0) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - **ix-select**: Allow re-opening of dropdown after clearing the select in `editable` mode.
+
+  Fixes #1770.
+
+- [#1681](https://github.com/siemens/ix/pull/1681) [`5b56d90813239cb34d28b4c20255392b9dd1d66f`](https://github.com/siemens/ix/commit/5b56d90813239cb34d28b4c20255392b9dd1d66f) Thanks [@jul-lam](https://github.com/jul-lam)! - Update `@floating-ui/dom` dependency to fix a wrong placement of the `ix-dropdown` if the dropdown is placed inside a `dialog`-element with animations in certain environments.
+
+- [#1708](https://github.com/siemens/ix/pull/1708) [`96c8f78e4d3d4d304b1d5a41504d5b24401ea461`](https://github.com/siemens/ix/commit/96c8f78e4d3d4d304b1d5a41504d5b24401ea461) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-radio**: Now doesn't change height/layout anymore when clicked. This is achieved by changing the way one of the component's divs is rendered.
+  **ix-checkbox**: Now doesn't change height/layout anymore when clicked. This is achieved by changing the way one of the component's SVGs is rendered.
+
+  Fixes #1702
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`8324312fa39abc53711850d4a94b765d994f15cd`](https://github.com/siemens/ix/commit/8324312fa39abc53711850d4a94b765d994f15cd) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-drawer**: Remove `transition` attribute from the styling to prevent conflicts between `animejs`
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`b66381a68f94df878605a290a52c84d31fa45bf1`](https://github.com/siemens/ix/commit/b66381a68f94df878605a290a52c84d31fa45bf1) Thanks [@danielleroux](https://github.com/danielleroux)! - Relpace throw error of **ix-select-item** with a warning if no value is provided
+
+- [#1797](https://github.com/siemens/ix/pull/1797) [`df00884a5b65c7047ddc3506b8eaac66819c4ceb`](https://github.com/siemens/ix/commit/df00884a5b65c7047ddc3506b8eaac66819c4ceb) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Fix button inside **ix-upload** component to be selectable via keyboard navigation.
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - min-length of **ix-input** is now working as expected
+
+- [#1699](https://github.com/siemens/ix/pull/1699) [`093c78352916a193e7f2cbfab692362c4ba0de9a`](https://github.com/siemens/ix/commit/093c78352916a193e7f2cbfab692362c4ba0de9a) Thanks [@danielleroux](https://github.com/danielleroux)! - Update classic theme colors to match latest figma specs
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Show `required` validation error only after first interaction (pointer/focus) with **ix-checkbox**, **ix-radio** and **ix-toggle**
+
+- [#1561](https://github.com/siemens/ix/pull/1561) [`699958d387c1044b50def5071369f27de49f56ef`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - Update slot references for **ix-input-group**.
+
+- [#1687](https://github.com/siemens/ix/pull/1687) [`2d4e3b8cdb756dff44627941adfea6a0230ccf26`](https://github.com/siemens/ix/commit/2d4e3b8cdb756dff44627941adfea6a0230ccf26) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix issue of `ix-button` which prevent a form get submitted twice in row.
+
+- [#1642](https://github.com/siemens/ix/pull/1642) [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): semver from stencil/core to minor
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`c448755f97b66af96cce435025dc1f37892e9eb8`](https://github.com/siemens/ix/commit/c448755f97b66af96cce435025dc1f37892e9eb8) Thanks [@danielleroux](https://github.com/danielleroux)! - Cleanup validation references for all validation components (e.g. `ix-date-input`, `ix-input`).
+
+- [#1691](https://github.com/siemens/ix/pull/1691) [`8726afc094adf2ddb4f8e927c6a42aa8dc0ed589`](https://github.com/siemens/ix/commit/8726afc094adf2ddb4f8e927c6a42aa8dc0ed589) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-workflow-step`: change icon for 'done' state to be different from the one shown for 'success' state to pervent confusion.
+
+- [#1682](https://github.com/siemens/ix/pull/1682) [`f41b5d60299cb874cec9730394038dd4c2df8a60`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent input elements like (`ix-input`, `ix-number-input`, `ix-date-input`, `ix-select`, `ix-textarea`) to show `required` validation error without any user interaction.
+
+  If the class `ix-invalid` is applied programmatically an error message is still shown even without a user interaction.
+
+  Fixes #1638, #1680
+
+- [#1831](https://github.com/siemens/ix/pull/1831) [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80) Thanks [@danielleroux](https://github.com/danielleroux)! - Avoid leaking event listener of **ix-tree**
+
+- [#1768](https://github.com/siemens/ix/pull/1768) [`8002d9a68ef8a5279d43726ecad28e85ad0ac53a`](https://github.com/siemens/ix/commit/8002d9a68ef8a5279d43726ecad28e85ad0ac53a) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - **ix-event-list**: Set custom height for dynamically created `ix-event-list-item`s.
+
+  Fixes #1684.
+
+- [#1561](https://github.com/siemens/ix/pull/1561) [`699958d387c1044b50def5071369f27de49f56ef`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - **ix-drawer**: Allow nested content to calculate it's layout properly by setting drawer width explicitly.
+
+- [#1769](https://github.com/siemens/ix/pull/1769) [`dacbced83d226380c256d868620ee640996cf229`](https://github.com/siemens/ix/commit/dacbced83d226380c256d868620ee640996cf229) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Refactor return type of `focusInput` method of `IxInputFieldComponent` interface to `Promise<void>`.
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`df65c4d5436bf97f08dc2ec2899e2556c4ad7eaa`](https://github.com/siemens/ix/commit/df65c4d5436bf97f08dc2ec2899e2556c4ad7eaa) Thanks [@danielleroux](https://github.com/danielleroux)! - Update @stencil/core dependency to 4.27.1
+
+## 3.0.0-alpha.4
+
+### Minor Changes
+
+- [#1803](https://github.com/siemens/ix/pull/1803) [`278d51b7597afadd7fa765187e3cf9e8cd5385c6`](https://github.com/siemens/ix/commit/278d51b7597afadd7fa765187e3cf9e8cd5385c6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - **ix-tree**: Fix a bug where an event was not emitted when clicking tree items.
+  **ix-tree**: Introduce a new attribute to enable tree items to be toggled on click.
+
+  Fixes #1633.
+
+- [#1814](https://github.com/siemens/ix/pull/1814) [`bc33e84a3ad378470dbbdff8dd85877c21355bae`](https://github.com/siemens/ix/commit/bc33e84a3ad378470dbbdff8dd85877c21355bae) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add additional color `alarm-contrast`, `critical-contrast`, `warning-contrast`, `success-contrast`, `info-contrast`, `neutral-contrast` and `primary-contrast` to **ix-typography**
+
+### Patch Changes
+
+- [#1798](https://github.com/siemens/ix/pull/1798) [`40e8c510e15dba741601b3b19b6025c024e170ef`](https://github.com/siemens/ix/commit/40e8c510e15dba741601b3b19b6025c024e170ef) Thanks [@lzeiml](https://github.com/lzeiml)! - If an invalid date string is passed to the **ix-date-picker**, a console error will be thrown and the string will not be used.
+
+- [#1791](https://github.com/siemens/ix/pull/1791) [`838c19239ac8a85e2d644696cc1fd3a67f5509d5`](https://github.com/siemens/ix/commit/838c19239ac8a85e2d644696cc1fd3a67f5509d5) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-tree**: Init hyperlist after re-attaching tree to DOM.
+
+  Fixes #1703.
+
+- [#1821](https://github.com/siemens/ix/pull/1821) [`d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6`](https://github.com/siemens/ix/commit/d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Remove space before required asterisk in **ix-field-label**.
+
+  Fixes #1634.
+
+- [#1790](https://github.com/siemens/ix/pull/1790) [`ff816a840b609491e1a647d64f6bad489ad214f0`](https://github.com/siemens/ix/commit/ff816a840b609491e1a647d64f6bad489ad214f0) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - **ix-select**: Allow re-opening of dropdown after clearing the select in `editable` mode.
+
+  Fixes #1770.
+
+- [#1797](https://github.com/siemens/ix/pull/1797) [`df00884a5b65c7047ddc3506b8eaac66819c4ceb`](https://github.com/siemens/ix/commit/df00884a5b65c7047ddc3506b8eaac66819c4ceb) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Fix button inside **ix-upload** component to be selectable via keyboard navigation.
+
+- [#1768](https://github.com/siemens/ix/pull/1768) [`8002d9a68ef8a5279d43726ecad28e85ad0ac53a`](https://github.com/siemens/ix/commit/8002d9a68ef8a5279d43726ecad28e85ad0ac53a) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - **ix-event-list**: Set custom height for dynamically created `ix-event-list-item`s.
+
+  Fixes #1684.
+
+## 3.0.0-alpha.3
+
+## 3.0.0-alpha.2
+
+### Major Changes
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`23402fc1ab914b7b6ca73f938b12c66dd1fd5120`](https://github.com/siemens/ix/commit/23402fc1ab914b7b6ca73f938b12c66dd1fd5120) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove legacy `classic` theme
+
+### Patch Changes
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`b66381a68f94df878605a290a52c84d31fa45bf1`](https://github.com/siemens/ix/commit/b66381a68f94df878605a290a52c84d31fa45bf1) Thanks [@danielleroux](https://github.com/danielleroux)! - Relpace throw error of **ix-select-item** with a warning if no value is provided
+
+## 3.0.0-alpha.1
+
+### Minor Changes
+
+- [#1767](https://github.com/siemens/ix/pull/1767) [`30a98977feb83c7fb8ec8ca76a4b524042b2e5af`](https://github.com/siemens/ix/commit/30a98977feb83c7fb8ec8ca76a4b524042b2e5af) Thanks [@raunak-matai](https://github.com/raunak-matai)! - Handle `preventDefault()` on native `click` event for `ix-tab-item`.
+
+  Fixes #1655.
+
+### Patch Changes
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`e8049c9966e7d5019c8ed0ae0e6cf2597f81dce5`](https://github.com/siemens/ix/commit/e8049c9966e7d5019c8ed0ae0e6cf2597f81dce5) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent **ix-application-header** from waiting until the corporate logo is defined.
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`8324312fa39abc53711850d4a94b765d994f15cd`](https://github.com/siemens/ix/commit/8324312fa39abc53711850d4a94b765d994f15cd) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-drawer**: Remove `transition` attribute from the styling to prevent conflicts between `animejs`
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`c448755f97b66af96cce435025dc1f37892e9eb8`](https://github.com/siemens/ix/commit/c448755f97b66af96cce435025dc1f37892e9eb8) Thanks [@danielleroux](https://github.com/danielleroux)! - Cleanup validation references for all validation components (e.g. `ix-date-input`, `ix-input`).
+
+- [#1724](https://github.com/siemens/ix/pull/1724) [`df65c4d5436bf97f08dc2ec2899e2556c4ad7eaa`](https://github.com/siemens/ix/commit/df65c4d5436bf97f08dc2ec2899e2556c4ad7eaa) Thanks [@danielleroux](https://github.com/danielleroux)! - Update @stencil/core dependency to 4.27.1
+
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1581](https://github.com/siemens/ix/pull/1581) [`7eb4d5147056e1e3252e387e5a718df7e593909e`](https://github.com/siemens/ix/commit/7eb4d5147056e1e3252e387e5a718df7e593909e) Thanks [@matthiashader](https://github.com/matthiashader)! - Component Updates and Enhancements
+
+  New Variants for Card Components:
+
+  - **ix-action-card**, **ix-card**, and **ix-push-card**:
+    - The `insight` and `notification` variants have been **replaced by** `outline` and `filled`.
+
+  Property Updates:
+
+  - **ix-chip**:
+    - The `color` property has been **replaced by** `chipColor`.
+  - **ix-event-list**:
+    - The `color` attribute has been **replaced by** `itemColor`.
+  - **ix-icon-button**:
+    - The `color` attribute has been **replaced by** `iconColor`.
+    - Size `32` has been removed.
+  - **ix-pill**:
+    - The `color` attribute has been **replaced by** `pillColor`.
+  - **ix-typography**:
+    - The `color` attribute has been **replaced by** `textColor`.
+  - **ix-select**:
+    - The `selectedIndices` attribute has been **replaced by** `value`.
+    - The `itemSelectionChange` event has been **replaced by** `valueChange`.
+  - **ix-select-item**:
+    - The type of the `value` property type has been updated to `string`.
+
+  Date and Time Picker Enhancements:
+
+  - **ix-date-picker**:
+    - Removed attributes: `individual` and `eventDelimiter`.
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+  - **ix-datetime-picker**:
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+    - Removed the `eventDelimiter` property.
+  - **ix-time-picker**:
+    - Removed attributes: `individual` and `showTimeReference`.
+
+  Removed Features:
+
+  - **ix-menu**:
+    - Removed the `maxVisibleMenuItems` attribute.
+  - **ix-menu-item**:
+    - The `tabIcon` attribute has been removed and replaced with `icon`.
+
+  Other Changes:
+
+  - **ix-modal**:
+    - The `keyboard` attribute has been **replaced by** `closeOnEscape`.
+
+- [#1700](https://github.com/siemens/ix/pull/1700) [`2e2972260eafb1a87b84e5a705e3c932b15b8467`](https://github.com/siemens/ix/commit/2e2972260eafb1a87b84e5a705e3c932b15b8467) Thanks [@jul-lam](https://github.com/jul-lam)! - The **ix-tooltip** is working as expected when utilized for an **ix-dropdown-item** inside an **ix-dropdown**. The tooltip is now displayed outside the dropdown without breaking its layout.
+
+  Fixes #1618
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`8b757805d65f62e9296e6d1abd67a8f0b30099f3`](https://github.com/siemens/ix/commit/8b757805d65f62e9296e6d1abd67a8f0b30099f3) Thanks [@matthiashader](https://github.com/matthiashader)! - Adapt the event signature of the `dateSelect` event of the `ix-date-picker` to reflect undefined values.
+
+- [#1578](https://github.com/siemens/ix/pull/1578) [`dd8b3eb28eb162f30c5fef27b369036b3bd6dd8b`](https://github.com/siemens/ix/commit/dd8b3eb28eb162f30c5fef27b369036b3bd6dd8b) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove `devDependency` and `peerDependency` to bootstrap. For more information checkout BREAKING_CHANGES.md
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760`](https://github.com/siemens/ix/commit/f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent global styling for `input` and `textarea`. If you still want to use the legacy styling provide a `class="ix-form-control"` to `input` or `textarea`.
+  Prevent global styling for `label`. If you still want to use the legacy styling provide a `class="ix-form-label"` to `label`.
+
+  Fixes #1398
+
+- [#1457](https://github.com/siemens/ix/pull/1457) [`3d62fffdc107bfc92b2ecad8437662dc7c03796f`](https://github.com/siemens/ix/commit/3d62fffdc107bfc92b2ecad8437662dc7c03796f) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/pane-layout): remove absolute positioning
+
+- [#1330](https://github.com/siemens/ix/pull/1330) [`c9c5bf0451998ce94a57247b974e00176f294437`](https://github.com/siemens/ix/commit/c9c5bf0451998ce94a57247b974e00176f294437) Thanks [@github-actions](https://github.com/apps/github-actions)! - The **VariantMapping** that mapped legacy font classes to current ones was removed.
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760`](https://github.com/siemens/ix/commit/f6fd42a74b42ff0f9f2ffd2b4c2a49fbb4402760) Thanks [@danielleroux](https://github.com/danielleroux)! - Change default width from `input.ix-from-control` from `width: 100%` to `width: auto`
+
+- [#1743](https://github.com/siemens/ix/pull/1743) [`4bdec91e4a837e487caa4a25407f24eb37616531`](https://github.com/siemens/ix/commit/4bdec91e4a837e487caa4a25407f24eb37616531) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-date-picker**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-datetime-picker**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-date-dropdown**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+  **ix-date-input**: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`db785bb8a4cc0654104cb24d420b7a1e2d45fdba`](https://github.com/siemens/ix/commit/db785bb8a4cc0654104cb24d420b7a1e2d45fdba) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-date-dropdown`: Adapt the types `DateDropdownOption` and `DateRangeChangeEvent` to reflect the changed signature of the `ix-date-picker`'s `dateSelect` event.
+
+- [#1742](https://github.com/siemens/ix/pull/1742) [`db785bb8a4cc0654104cb24d420b7a1e2d45fdba`](https://github.com/siemens/ix/commit/db785bb8a4cc0654104cb24d420b7a1e2d45fdba) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-date-input`: Adapt the `value` property and the `valueChange` event to reflect the changed signature of the `date-picker`'s `dateSelect` event.
+
+- [#1613](https://github.com/siemens/ix/pull/1613) [`b3846c925ec4f03fd5d26b0b66042185b766f099`](https://github.com/siemens/ix/commit/b3846c925ec4f03fd5d26b0b66042185b766f099) Thanks [@jul-lam](https://github.com/jul-lam)! - **ix-application** now utilizes full viewport height and full viewport width
+
+- [#1273](https://github.com/siemens/ix/pull/1273) [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/checkbox): allow multiline labels and align checkbox at the top
+
+### Minor Changes
+
+- [#1737](https://github.com/siemens/ix/pull/1737) [`149dfbd6518e94da9e966d06ea2292c8e96772ce`](https://github.com/siemens/ix/commit/149dfbd6518e94da9e966d06ea2292c8e96772ce) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Add new types `critical`, `success`, `primary`, and `neutral`, and deprecate type `danger`.
+  Additionally, add new `NotificationColor` colors `color-critical`, `color-alarm`, `color-neutral`, and `color-primary`.
+
+- [#1697](https://github.com/siemens/ix/pull/1697) [`9e13a08340efc9cb7dd1f0ef7d56481c8b5dcbbe`](https://github.com/siemens/ix/commit/9e13a08340efc9cb7dd1f0ef7d56481c8b5dcbbe) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - `ix-chip` and `ix-pill`: Add property `tooltip-text` to display an `ix-tooltip` with customizable text.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-flip-tile`: Expsose `index` property to allow setting of displayed content and add `toggle` event.
+
+- [#1688](https://github.com/siemens/ix/pull/1688) [`5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Event `closedChange` can now be prevented via `event.preventDefault()`.
+  An additional event is added to get notified after the close animation of the `ix-message-bar` is finished.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-menu`: Add `openSettings` and `openAbout` events. Event `expandChange` can now be prevented via `event.preventDefault()`.
+
+- [#1758](https://github.com/siemens/ix/pull/1758) [`d20b43d5f5bd5291b5125b120d2bb2d72286acfd`](https://github.com/siemens/ix/commit/d20b43d5f5bd5291b5125b120d2bb2d72286acfd) Thanks [@danielleroux](https://github.com/danielleroux)! - Add new global class `.ix-table` and `.ix-table-striped` to display a simple html table
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ìx-drawer`: Events `open` and `drawerClose` can now be prevented via`event.preventDefault()`.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b0de0961b464d305f633e1115a5926a`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add `tabChange` event to `ix-menu-settings` and `ix-menu-about`.
+
+- [#1760](https://github.com/siemens/ix/pull/1760) [`ac163467de8fc4d943f5366415492a9a02748999`](https://github.com/siemens/ix/commit/ac163467de8fc4d943f5366415492a9a02748999) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-datetime-picker**: Time selection headline can now be translated via property `i18nTime`.
+
+### Patch Changes
+
+- [#1706](https://github.com/siemens/ix/pull/1706) [`e8bd3b6301d7553e6a02b79e2925aa0595b674ca`](https://github.com/siemens/ix/commit/e8bd3b6301d7553e6a02b79e2925aa0595b674ca) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-menu-category**: Dynamically added items are now instantly visible. This is achieved by adjusting the max-height everytime an item gets added.
+
+  Fixes #1606
+
+- [#1683](https://github.com/siemens/ix/pull/1683) [`aa63b4fd901bc50e98877826699412affa127ae7`](https://github.com/siemens/ix/commit/aa63b4fd901bc50e98877826699412affa127ae7) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - `active=false` of the `ix-chip` will now show the chip as not interactable.
+
+  Fixed #1656
+
+- [#1681](https://github.com/siemens/ix/pull/1681) [`5b56d90813239cb34d28b4c20255392b9dd1d66f`](https://github.com/siemens/ix/commit/5b56d90813239cb34d28b4c20255392b9dd1d66f) Thanks [@jul-lam](https://github.com/jul-lam)! - Update `@floating-ui/dom` dependency to fix a wrong placement of the `ix-dropdown` if the dropdown is placed inside a `dialog`-element with animations in certain environments.
+
+- [#1708](https://github.com/siemens/ix/pull/1708) [`96c8f78e4d3d4d304b1d5a41504d5b24401ea461`](https://github.com/siemens/ix/commit/96c8f78e4d3d4d304b1d5a41504d5b24401ea461) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-radio**: Now doesn't change height/layout anymore when clicked. This is achieved by changing the way one of the component's divs is rendered.
+  **ix-checkbox**: Now doesn't change height/layout anymore when clicked. This is achieved by changing the way one of the component's SVGs is rendered.
+
+  Fixes #1702
+
+- [#1699](https://github.com/siemens/ix/pull/1699) [`093c78352916a193e7f2cbfab692362c4ba0de9a`](https://github.com/siemens/ix/commit/093c78352916a193e7f2cbfab692362c4ba0de9a) Thanks [@danielleroux](https://github.com/danielleroux)! - Update classic theme colors to match latest figma specs
+
+- [#1561](https://github.com/siemens/ix/pull/1561) [`699958d387c1044b50def5071369f27de49f56ef`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - Update slot references for **ix-input-group**.
+
+- [#1687](https://github.com/siemens/ix/pull/1687) [`2d4e3b8cdb756dff44627941adfea6a0230ccf26`](https://github.com/siemens/ix/commit/2d4e3b8cdb756dff44627941adfea6a0230ccf26) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix issue of `ix-button` which prevent a form get submitted twice in row.
+
+- [#1330](https://github.com/siemens/ix/pull/1330) [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb) Thanks [@github-actions](https://github.com/apps/github-actions)! - fix(core): semver from stencil/core to minor
+
+- [#1691](https://github.com/siemens/ix/pull/1691) [`8726afc094adf2ddb4f8e927c6a42aa8dc0ed589`](https://github.com/siemens/ix/commit/8726afc094adf2ddb4f8e927c6a42aa8dc0ed589) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-workflow-step`: change icon for 'done' state to be different from the one shown for 'success' state to pervent confusion.
+
+- [#1682](https://github.com/siemens/ix/pull/1682) [`f41b5d60299cb874cec9730394038dd4c2df8a60`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent input elements like (`ix-input`, `ix-number-input`, `ix-date-input`, `ix-select`, `ix-textarea`) to show `required` validation error without any user interaction.
+
+  If the class `ix-invalid` is applied programmatically an error message is still shown even without a user interaction.
+
+  Fixes #1638, #1680
+
+- [#1561](https://github.com/siemens/ix/pull/1561) [`699958d387c1044b50def5071369f27de49f56ef`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - **ix-drawer**: Allow nested content to calculate it's layout properly by setting drawer width explicitly.
+
+- [#1769](https://github.com/siemens/ix/pull/1769) [`dacbced83d226380c256d868620ee640996cf229`](https://github.com/siemens/ix/commit/dacbced83d226380c256d868620ee640996cf229) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Refactor return type of `focusInput` method of `IxInputFieldComponent` interface to `Promise<void>`.
+
+## 2.7.0
+
+### Minor Changes
+
+- [#1654](https://github.com/siemens/ix/pull/1654) [`07c9f3d66e`](https://github.com/siemens/ix/commit/07c9f3d66e33ee2770dceaf0046fbdb52f882543) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add openAppSwitch event to **ix-application-header** and **ix-menu**.
+
+- [#1609](https://github.com/siemens/ix/pull/1609) [`89801b1149`](https://github.com/siemens/ix/commit/89801b1149b18c580a4fee6563638a8883fad2d1) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `meta`-tag feature to disable default load of `@siemens/ix-icons`
+
+  ```html
+  <meta name="ix:legacy-icons" content="false" />
+  ```
+
+  In addition the warning is removed if no icon component is provided.
+
+- [#1669](https://github.com/siemens/ix/pull/1669) [`6ce292968e`](https://github.com/siemens/ix/commit/6ce292968ed808e06cde79d459ee8b45a4edc6e4) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Prevent `ix-select` list items to expand beyond screen width and add properties: dropdown-width + dropdown-max-width
+
+- [#1635](https://github.com/siemens/ix/pull/1635) [`9a5fff63e6`](https://github.com/siemens/ix/commit/9a5fff63e6230a95ce6f6abfe39c1256fb26b515) Thanks [@matthiashader](https://github.com/matthiashader)! - Add additional button properties to **ix-date-dropdown** and **ix-expanding-search**.
+
+### Patch Changes
+
+- [#1658](https://github.com/siemens/ix/pull/1658) [`9b91179825`](https://github.com/siemens/ix/commit/9b911798254f74ea16ecb5144bc2a1dc3f4f80ce) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Adjust `ix-pill` spacing between text + icon and icon only
+
+- [#1659](https://github.com/siemens/ix/pull/1659) [`d28d62160e`](https://github.com/siemens/ix/commit/d28d62160e69388089dec58040c915ca69749462) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix `ix-select` in editable mode to correctly select a known item when confirmed with Enter.
+
+- [#1648](https://github.com/siemens/ix/pull/1648) [`1625ddc001`](https://github.com/siemens/ix/commit/1625ddc001b451069a200da171fd1df92846c3a6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Fix **ix-select** keyboard navigation and wrap behavior when new items are created
+
+- [#1652](https://github.com/siemens/ix/pull/1652) [`3f5d0a4f39`](https://github.com/siemens/ix/commit/3f5d0a4f39c589408f8f352a3c9ec039f42190b9) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix the disable state of `ix-checkbox` if `disabled=undefined` is provided.
+
+- [#1617](https://github.com/siemens/ix/pull/1617) [`e2316d8b6d`](https://github.com/siemens/ix/commit/e2316d8b6d514217b97790f9a86bd1bbf30e7f44) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Automatically expand **ix-menu-category** if nested menu item becomes active.
+
+- [#1672](https://github.com/siemens/ix/pull/1672) [`4558698209`](https://github.com/siemens/ix/commit/455869820982501461b3d75c3f87fbdcf81fab01) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix initial overlapping between value and end slots on `ix-input`, `ix-number-input` and `ix-date-input`
+
+- [#1666](https://github.com/siemens/ix/pull/1666) [`0234ccf941`](https://github.com/siemens/ix/commit/0234ccf9419cd6fee18690106405da26d4e50bb6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix padding for **ix-textarea**.
+
+- [#1665](https://github.com/siemens/ix/pull/1665) [`72dd729926`](https://github.com/siemens/ix/commit/72dd729926578f6f9b78f2268a315b6e7d0d12cc) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix behavior where internal validation logic removes validation classes from `ix-input`, `ix-input-number` etc.
+
+- [#1651](https://github.com/siemens/ix/pull/1651) [`f3c8ab8b01`](https://github.com/siemens/ix/commit/f3c8ab8b01d6bbdf075f19e998f2aa33bde1d68a) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - Fix the disable state of `ix-radio` if `disabled=undefined` is provided.
+
+- [#1621](https://github.com/siemens/ix/pull/1621) [`e263955649`](https://github.com/siemens/ix/commit/e263955649d8377ec592e81dfca1387e04936d94) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Set correct cursors and handle overflow for **ix-card** and **ix-push-card**.
+
+## 2.6.1
+
+### Patch Changes
+
+- [#1587](https://github.com/siemens/ix/pull/1587) [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1) Thanks [@danielleroux](https://github.com/danielleroux)! - Adjust the spacing of the toggle
+
+- [#1587](https://github.com/siemens/ix/pull/1587) [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1) Thanks [@danielleroux](https://github.com/danielleroux)! - Align label overflow behavior of **ix-toggle** to wrap
+
+- [#1574](https://github.com/siemens/ix/pull/1574) [`57586a7fd1`](https://github.com/siemens/ix/commit/57586a7fd1766d0b8bef04d7c0e32f348775b977) Thanks [@matthiashader](https://github.com/matthiashader)! - Hide clear button in **ix-select** for disabled and readonly states.
+
+- [#1595](https://github.com/siemens/ix/pull/1595) [`77f76febbc`](https://github.com/siemens/ix/commit/77f76febbc00df91a3d27f43845f2cfadd9234ac) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix undefined access of **ix-select** during rendering of label
+
+- [#1603](https://github.com/siemens/ix/pull/1603) [`0fe4d521ed`](https://github.com/siemens/ix/commit/0fe4d521ed0c269e63136d31d17a21022866988c) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove _hyperlist_ from the dependencies
+
+- [#1587](https://github.com/siemens/ix/pull/1587) [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1) Thanks [@danielleroux](https://github.com/danielleroux)! - Increase gap between switch and label of **ix-toggle**
+
+- [#1588](https://github.com/siemens/ix/pull/1588) [`1c65a17d69`](https://github.com/siemens/ix/commit/1c65a17d6911e5be72e7612e87d0b7fbeeeacc73) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Enable the possibility to use autofocus within **ix-modal**
+
+- [#1587](https://github.com/siemens/ix/pull/1587) [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1) Thanks [@danielleroux](https://github.com/danielleroux)! - Make **ix-toggle** not clickable if disabled property is present (Fixes #1585)
+
+## 2.6.0
+
+### Minor Changes
+
+- [#1533](https://github.com/siemens/ix/pull/1533) [`3e2835ff8f`](https://github.com/siemens/ix/commit/3e2835ff8f4a66d6b36e1dcf4081ea6409f95e67) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/message): add options to set size and position
+
+- [#1549](https://github.com/siemens/ix/pull/1549) [`a5e217270f`](https://github.com/siemens/ix/commit/a5e217270f3181569f2eb21a3b25a0c075d8afc8) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/date-dropdown|date-picker|datetime-picker): add missing properties to picker components
+
+- [#1497](https://github.com/siemens/ix/pull/1497) [`eb97f91e9d`](https://github.com/siemens/ix/commit/eb97f91e9d6c945b0a1b6e22581aa8223309d164) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core): improve component a11y
+
+- [#1562](https://github.com/siemens/ix/pull/1562) [`70ea07da0c`](https://github.com/siemens/ix/commit/70ea07da0c582c7eff87e161e455434c54f23140) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add filter cleared event to ix-categroy-filter.
+
+- [#1318](https://github.com/siemens/ix/pull/1318) [`f5af78e208`](https://github.com/siemens/ix/commit/f5af78e20804ca0f737eb5ca2fbc5e54bfc8c1c3) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduce several new input components:
+
+  - `ix-input` for text based inputs
+  - `ix-number-input` for number based inputs with optional stepper buttons
+  - `ix-date-input` which shows a date picker within a dropdown
+  - `ix-textarea` for larger text inputs
+  - `ix-radio` and `ix-radio-group`
+  - `ix-checkbox`
+  - `ix-custom-field` to wrap custom components
+
+  Introduce a new layout component `ix-layout-auto` to make it easier to create a typical input forms.
+
+  Enhanced the compatibility with Forms for the following components:
+
+  - `ix-select`
+  - `ix-toggle`
+
+  > _Deprecation:_
+  >
+  > Native css stylings for `input` and `textarea` (e.g `input[type="checkbox"]` and `input[type="radio"]`) are deprecated and will be removed in upcoming major release.
+
+- [#1563](https://github.com/siemens/ix/pull/1563) [`d6da6adfd6`](https://github.com/siemens/ix/commit/d6da6adfd654f5a17180befbdae0e8f20a63fd80) Thanks [@matthiashader](https://github.com/matthiashader)! - Update expandedChange event to trigger only on user interactions and add unnamed default slot for ix-pane-layout content.
+
+### Patch Changes
+
+- [#1489](https://github.com/siemens/ix/pull/1489) [`6041b3da11`](https://github.com/siemens/ix/commit/6041b3da1163463926ab204d7bad4064e9a2c279) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/modal): duplicate event firing
+
+- [#1488](https://github.com/siemens/ix/pull/1488) [`d201c557e4`](https://github.com/siemens/ix/commit/d201c557e4f30a4e722d2d5d580133da6919cf71) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): replace font styles with actual formats
+
+- [#1499](https://github.com/siemens/ix/pull/1499) [`7fe0136cad`](https://github.com/siemens/ix/commit/7fe0136cadbe3ea134c0f6f36c5e222fc49b2951) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/modal): figma - code mismatch
+
+- [#1514](https://github.com/siemens/ix/pull/1514) [`60760bcdb0`](https://github.com/siemens/ix/commit/60760bcdb0a2f91e2aed07bcb2f4848c8c96458f) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/content-header): adapt spacing
+
+- [#1560](https://github.com/siemens/ix/pull/1560) [`d7e977759b`](https://github.com/siemens/ix/commit/d7e977759be79f73a4ab68f904e59941df493deb) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Enable discovery of trigger elements if in same shadow DOM for ix-tooltip and ix-dropdown.
+
+- [#1469](https://github.com/siemens/ix/pull/1469) [`cc6091fca5`](https://github.com/siemens/ix/commit/cc6091fca58700a8a09119d34a669ed5a654627f) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/menu-about): set index if selected is set on tab-item
+
+- [#1527](https://github.com/siemens/ix/pull/1527) [`ed676579f0`](https://github.com/siemens/ix/commit/ed676579f0cae3938e6c0d0d0f30249e0bee2d9e) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/checkbox): page jumps on checkbox click in scrollable ix-content
+
+- [#1571](https://github.com/siemens/ix/pull/1571) [`720fb53c72`](https://github.com/siemens/ix/commit/720fb53c7250d0e5f91b5976d8b660a09bd678c1) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Prevent null pointer exception in ix-menu component.
+
+- [#1557](https://github.com/siemens/ix/pull/1557) [`dc59d67a89`](https://github.com/siemens/ix/commit/dc59d67a89589ffc5442e2ded9004b6031a6bff2) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/select): check if value is defined, before updating selection
+
+- [#1468](https://github.com/siemens/ix/pull/1468) [`d5affb02b3`](https://github.com/siemens/ix/commit/d5affb02b371e3541c546e272e2389b678630dd4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/slider): update tooltip on steps below 1
+
+- [#1519](https://github.com/siemens/ix/pull/1519) [`ecf02d5bd5`](https://github.com/siemens/ix/commit/ecf02d5bd5d2e7131b3e24a490df7ee87527df6c) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/button): fix keyboard navigation & accessibility
+
+- [#1541](https://github.com/siemens/ix/pull/1541) [`7347c40993`](https://github.com/siemens/ix/commit/7347c4099354ffd3c0c24c7826d63b012e7007ca) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/spinner): move styling into shadow dom
+
+- [#1548](https://github.com/siemens/ix/pull/1548) [`19b6842282`](https://github.com/siemens/ix/commit/19b68422829b72d2cfafdde18a7095b79918e660) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/select): update input value on slot change
+
+- [#1318](https://github.com/siemens/ix/pull/1318) [`f5af78e208`](https://github.com/siemens/ix/commit/f5af78e20804ca0f737eb5ca2fbc5e54bfc8c1c3) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-drawer**: the full-height property is now working
+
+- [#1476](https://github.com/siemens/ix/pull/1476) [`7f371654a5`](https://github.com/siemens/ix/commit/7f371654a5510bc525d88d05f1d116f117c050d1) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/input): remove hover state from readonly and disabled variant
+
+- [#1318](https://github.com/siemens/ix/pull/1318) [`f5af78e208`](https://github.com/siemens/ix/commit/f5af78e20804ca0f737eb5ca2fbc5e54bfc8c1c3) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove `border-radius` from `<input />` if `readonly` or `disable` is set
+
+- [#1516](https://github.com/siemens/ix/pull/1516) [`ff99d8cdef`](https://github.com/siemens/ix/commit/ff99d8cdef1052a3c0b7c2d6619de0a8cc50efd7) Thanks [@h4de5](https://github.com/h4de5)! - fix(core/icon-toggle-button): remove console.log
+
+- [#1522](https://github.com/siemens/ix/pull/1522) [`1a13a46096`](https://github.com/siemens/ix/commit/1a13a46096f35574e64aa24e67aec85a785cb42e) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core): prevent detached dom nodes
+
+- [#1498](https://github.com/siemens/ix/pull/1498) [`0b41424d95`](https://github.com/siemens/ix/commit/0b41424d951bd07c49b66b33fb151da85dd803e8) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - fix(card): card-filled colors for hover/active states
+
+- [#1492](https://github.com/siemens/ix/pull/1492) [`20553f5e63`](https://github.com/siemens/ix/commit/20553f5e63b88f09c30f07194e1d33e68e93535b) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/card-list): adapt title margin to figma
+
+- [#1483](https://github.com/siemens/ix/pull/1483) [`a0316f5994`](https://github.com/siemens/ix/commit/a0316f59944dc93e8bc1e0009e8a45c9ad4f275f) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): clean up disconnected dropdowns
+
+- [#1558](https://github.com/siemens/ix/pull/1558) [`8e72ec818c`](https://github.com/siemens/ix/commit/8e72ec818cce3895b9410e6fcfe743498351b1ed) Thanks [@matthiashader](https://github.com/matthiashader)! - Improve responsive behaviour of `ix-datetime-picker` on small screens
+
+- [#1506](https://github.com/siemens/ix/pull/1506) [`393b51d03b`](https://github.com/siemens/ix/commit/393b51d03b830d8fd5cb8e8cfdea6bcd85b571ef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/upload): disable file browser if control is disabled
+
+## 2.5.0
+
+### Minor Changes
+
+- [#1317](https://github.com/siemens/ix/pull/1317) [`c8b2d3caf2`](https://github.com/siemens/ix/commit/c8b2d3caf263982133af881e72bafca7cdb7dc38) Thanks [@matthiashader](https://github.com/matthiashader)! - feat(core/push-card): add alternative card types
+
+- [#1422](https://github.com/siemens/ix/pull/1422) [`34ddfd0410`](https://github.com/siemens/ix/commit/34ddfd041025b251451d46668bc733d84b176c14) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core): add css safe areas
+
+- [#1454](https://github.com/siemens/ix/pull/1454) [`da1f10e8ca`](https://github.com/siemens/ix/commit/da1f10e8ca6c639ff7e549454f5de4a76505204c) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core/group): handle preventDefault for events
+
+- [#1449](https://github.com/siemens/ix/pull/1449) [`f91b0a5bed`](https://github.com/siemens/ix/commit/f91b0a5bed9c41aa8a94c4142cc381592fa3b7ed) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core/application-header): hide toggle menu if header used outside of application frame
+
+### Patch Changes
+
+- [#1441](https://github.com/siemens/ix/pull/1441) [`a69f108ba8`](https://github.com/siemens/ix/commit/a69f108ba8676b5f4c6f0d3dc4cfa9d483c89f53) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/category-filter): does not clear category preview
+
+- [#1462](https://github.com/siemens/ix/pull/1462) [`501cce588b`](https://github.com/siemens/ix/commit/501cce588b44881c934c45cdfa5795ebafcbb644) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): cutoff near viewport edges
+
+- [#1343](https://github.com/siemens/ix/pull/1343) [`b4a306ef90`](https://github.com/siemens/ix/commit/b4a306ef909704cb3f0a5826b34aa52f0cbcb276) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/dropdown): spacing and color
+
+- [#1401](https://github.com/siemens/ix/pull/1401) [`1b4da95e21`](https://github.com/siemens/ix/commit/1b4da95e21aea5a28ede042289e38dd88c79512f) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/select): set value before triggering event
+
+- [#1444](https://github.com/siemens/ix/pull/1444) [`5acd52a874`](https://github.com/siemens/ix/commit/5acd52a8741889af40ebde253ee35c6b5c8a1be6) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): styles bleeding in
+
+- [#1428](https://github.com/siemens/ix/pull/1428) [`c19a537552`](https://github.com/siemens/ix/commit/c19a5375524a9c29bc4380119f40d3d829c104ce) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/tree): handle text overflow gracefully
+
+- [#1354](https://github.com/siemens/ix/pull/1354) [`938ca56ca5`](https://github.com/siemens/ix/commit/938ca56ca58def8c96267db8044d2f44110cbf69) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/card-list): card-list show all not getting truncated
+
+- [#1438](https://github.com/siemens/ix/pull/1438) [`00c68b5af2`](https://github.com/siemens/ix/commit/00c68b5af2dfb7c9baa99bc1645124c30e9788e2) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): cancel tooltip positioning when reference is not visible
+
+- [#1409](https://github.com/siemens/ix/pull/1409) [`5343eed4ea`](https://github.com/siemens/ix/commit/5343eed4eab708148139036aab3f3b0e5699df39) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): export TypedEvent
+
+- [#1460](https://github.com/siemens/ix/pull/1460) [`2401b2ee27`](https://github.com/siemens/ix/commit/2401b2ee27d4975cbe77bab2c6300abc791f4310) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/tree): prevent hyperlist from disposing dropdowns linked to tree items
+
+- [#1370](https://github.com/siemens/ix/pull/1370) [`69658147c8`](https://github.com/siemens/ix/commit/69658147c8e462504e6ec30790d44f60dfec97e1) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/menu-item): occasionally empty tooltips in menu-item
+
+- [#1454](https://github.com/siemens/ix/pull/1454) [`da1f10e8ca`](https://github.com/siemens/ix/commit/da1f10e8ca6c639ff7e549454f5de4a76505204c) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/group): remove max-width restriction
+
+## 2.4.1
+
+### Patch Changes
+
+- [#1382](https://github.com/siemens/ix/pull/1382) [`24a9514772`](https://github.com/siemens/ix/commit/24a951477268f25b68ac7acb97b9c7302692912f) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - fix(core/avatar): include scrollbar mixin to apply styling
+
+- [#1379](https://github.com/siemens/ix/pull/1379) [`97291dbd76`](https://github.com/siemens/ix/commit/97291dbd7694e1d5b4705e4b89a41c114acd1f20) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): stop auto update when closing dropdown
+
+- [#1380](https://github.com/siemens/ix/pull/1380) [`55783f7a0d`](https://github.com/siemens/ix/commit/55783f7a0d812c69f3825d44244f2a96daca74e4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/group-item): allow clicks on supress click event
+
+- [#1380](https://github.com/siemens/ix/pull/1380) [`55783f7a0d`](https://github.com/siemens/ix/commit/55783f7a0d812c69f3825d44244f2a96daca74e4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/application-header): increase font
+
+- [#1386](https://github.com/siemens/ix/pull/1386) [`1cfadcd3b2`](https://github.com/siemens/ix/commit/1cfadcd3b249d8e16d14121cdb87c2a6ff28e28a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/tabs): re-render each time parent container changes size
+
+- [#1390](https://github.com/siemens/ix/pull/1390) [`6c8e3b789b`](https://github.com/siemens/ix/commit/6c8e3b789b026f0728bbe6dbb453984c1f9a2e24) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/tabs): minimize tab auto scroll distance
+
+- [#1375](https://github.com/siemens/ix/pull/1375) [`c8580e421b`](https://github.com/siemens/ix/commit/c8580e421b70b56a8cafb55cc4de07802adae497) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/slider): hide slider reference visual for extrema
+
+- [#1374](https://github.com/siemens/ix/pull/1374) [`f57e82fcf3`](https://github.com/siemens/ix/commit/f57e82fcf3d643cb966db7da54508e0d622a0b86) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): destroy auto update cycle before starting a new one
+
+- [#1391](https://github.com/siemens/ix/pull/1391) [`a650347f34`](https://github.com/siemens/ix/commit/a650347f346d7b711142af8e7249a5abf1188c8b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/pagination): disable buttons if count is unset
+
+- [#1373](https://github.com/siemens/ix/pull/1373) [`bb1f9c3d4c`](https://github.com/siemens/ix/commit/bb1f9c3d4c606643263942c53dd58d07890bfa46) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/application-header): prevent chrome crash after resize window
+
+## 2.4.0
+
+### Minor Changes
+
+- [`6ab338a65d`](https://github.com/siemens/ix/commit/6ab338a65d6ce79672e0233cbfad41a3b3bb44d7) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core/select): allow prevention of events
+
+### Patch Changes
+
+- [#1360](https://github.com/siemens/ix/pull/1360) [`af16f8f7bf`](https://github.com/siemens/ix/commit/af16f8f7bfb98fe693bd09a71223e6e3450fb3f8) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): prevent minor update of stencil/core
+
+- [#1355](https://github.com/siemens/ix/pull/1355) [`dff51d292c`](https://github.com/siemens/ix/commit/dff51d292ce64f2c4fc5c7461dd5fae0d6c2d961) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown button): prevent close on click if close behaviour is outside
+
+- [#1335](https://github.com/siemens/ix/pull/1335) [`47d2fe98a3`](https://github.com/siemens/ix/commit/47d2fe98a318ed79f657bdc2e1803a044978b201) Thanks [@danielleroux](https://github.com/danielleroux)! - build: remove internal polyfills
+
+## 2.3.0
+
+### Minor Changes
+
+- [#1264](https://github.com/siemens/ix/pull/1264) [`57fa02891e`](https://github.com/siemens/ix/commit/57fa02891e0d81a44a470a4e3c17fe116af36925) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/date-dropdown): add disabled property
+
+- [#1320](https://github.com/siemens/ix/pull/1320) [`bace31f8d5`](https://github.com/siemens/ix/commit/bace31f8d596ea00c75626110dbdf029c211fdbd) Thanks [@PhentomPT](https://github.com/PhentomPT)! - feat(core): add hydrate output target
+
+- [#1277](https://github.com/siemens/ix/pull/1277) [`55d9fca5b4`](https://github.com/siemens/ix/commit/55d9fca5b41c1ae6fa257a4a1da69e4a0efaad34) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/button|icon-button): add danger variant
+
+- [#1306](https://github.com/siemens/ix/pull/1306) [`6118ff3e83`](https://github.com/siemens/ix/commit/6118ff3e834e4c148bb5616e7fa6c4d48b8b8801) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/theme): sync css variables
+
+- [#1292](https://github.com/siemens/ix/pull/1292) [`c1d4f7d6b9`](https://github.com/siemens/ix/commit/c1d4f7d6b977945ded8e2f718d7b6df1f71f0557) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/split-button): add close behavior
+
+### Patch Changes
+
+- [#1336](https://github.com/siemens/ix/pull/1336) [`1db5a061f5`](https://github.com/siemens/ix/commit/1db5a061f56af548aedf5e86049a4e26ccd4f44d) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/panes): rotate icon at left and right pane
+
+- [#1261](https://github.com/siemens/ix/pull/1261) [`c025a49c02`](https://github.com/siemens/ix/commit/c025a49c0216800274581ee67884e488c1bfdfce) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/date-dropdown): show year and month dropdown
+
+- [#1312](https://github.com/siemens/ix/pull/1312) [`f4eeebfd5e`](https://github.com/siemens/ix/commit/f4eeebfd5e5ad3a582b98816270ac9cf400d2933) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/chip): adjust width on outline variant
+
+- [#1243](https://github.com/siemens/ix/pull/1243) [`b4b06a6b40`](https://github.com/siemens/ix/commit/b4b06a6b40a76e2749aad7134efeb53904b4dc8c) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/event-list-item): add aria-disabled attribute to list element
+
+- [#1246](https://github.com/siemens/ix/pull/1246) [`756bc424a8`](https://github.com/siemens/ix/commit/756bc424a8e0a1d26cb7058dfce5e5418e9ab569) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/category-filter): open dropdown on text input and keep it open
+
+- [#1285](https://github.com/siemens/ix/pull/1285) [`9ee4aab8fa`](https://github.com/siemens/ix/commit/9ee4aab8faa483cd3e066c353bfc34527ad88aa3) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/blind): avoid unnecessary wrapping
+
+- [#1274](https://github.com/siemens/ix/pull/1274) [`4418b8cebd`](https://github.com/siemens/ix/commit/4418b8cebda2f7dd475cfaba72e2240137fa5973) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/base-button): set aria disabled
+
+- [#1260](https://github.com/siemens/ix/pull/1260) [`90a7b71940`](https://github.com/siemens/ix/commit/90a7b719405df0885823836964a0db99966fe458) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/group): show expand-collapse icon
+
+- [#1313](https://github.com/siemens/ix/pull/1313) [`e74e830308`](https://github.com/siemens/ix/commit/e74e830308bca2dc532d6321e17acfa518d178d1) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/scrollbar): fix firefox appearance (scrollbar & input & tabs)
+
+- [#1262](https://github.com/siemens/ix/pull/1262) [`5eea8d18bf`](https://github.com/siemens/ix/commit/5eea8d18bfe80eaad111cb38b880f6a0a9cd0bd6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/group-context-menu): set default cursor
+
+- [#1297](https://github.com/siemens/ix/pull/1297) [`7f31b94599`](https://github.com/siemens/ix/commit/7f31b945994c6ca24550a2b7fac07d9a8db8fcb3) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/workflow-step): load icon names before component is initialized
+
+- [#1230](https://github.com/siemens/ix/pull/1230) [`5b2df0c4d4`](https://github.com/siemens/ix/commit/5b2df0c4d4e35a7224ac70cef22a1b89fef4a222) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/event-list): event-list-items not selectabe in chrome
+
+- [#1251](https://github.com/siemens/ix/pull/1251) [`346fb9a2de`](https://github.com/siemens/ix/commit/346fb9a2dedf1f37d8c952b84567545b174eed10) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/tooltip): null check before event listener gets registered on trigger
+
+- [#1311](https://github.com/siemens/ix/pull/1311) [`70ec75b65d`](https://github.com/siemens/ix/commit/70ec75b65d3540dc6c9bd9369222a43ede81eac7) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): adjust arrow height
+
+- [#1334](https://github.com/siemens/ix/pull/1334) [`5149f1a535`](https://github.com/siemens/ix/commit/5149f1a535b041d469e23bd2221d12e4b639d73c) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): prevent closing
+
+- [#1244](https://github.com/siemens/ix/pull/1244) [`1a0175f11e`](https://github.com/siemens/ix/commit/1a0175f11e20afcd3e6d357a856c9c8764cfa390) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - docs(core/menu-about): update jsdocs for label property
+
+- [#1225](https://github.com/siemens/ix/pull/1225) [`a35859addc`](https://github.com/siemens/ix/commit/a35859addcccffd56bc5844f0455decbdbcc11d2) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/group): use correct cursors
+
+- [#1287](https://github.com/siemens/ix/pull/1287) [`bee3696005`](https://github.com/siemens/ix/commit/bee3696005a284707118d7e6e3155ede54886140) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/select): rollback and fix object iteration
+
+- [#1293](https://github.com/siemens/ix/pull/1293) [`fb48f05e57`](https://github.com/siemens/ix/commit/fb48f05e570e61a42ddd7cf3dae1eafafe236945) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/menu): use label property to render internal menu items
+
+- [#1339](https://github.com/siemens/ix/pull/1339) [`9e75d7bd2d`](https://github.com/siemens/ix/commit/9e75d7bd2df4222913a093d7f4e899e4dc5fcb43) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/menu): fix firefox overflow behavior and input styling
+
+- [#1219](https://github.com/siemens/ix/pull/1219) [`544ceed834`](https://github.com/siemens/ix/commit/544ceed8349d94fe060dfcbd8d5f45526ec75dff) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/workflow): add flexible layout
+
+## 2.2.1
+
+### Patch Changes
+
+- [#1241](https://github.com/siemens/ix/pull/1241) [`b38d2d3506`](https://github.com/siemens/ix/commit/b38d2d350656034ef1926fdcf5db2ca9d4251403) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): add null check for trigger element
+
+- [#1237](https://github.com/siemens/ix/pull/1237) [`707252448c`](https://github.com/siemens/ix/commit/707252448c470b1cf8a78f696146fddd55050336) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/input): update autofill styling
+
+## 2.2.0
+
+### Minor Changes
+
+- [#1197](https://github.com/siemens/ix/pull/1197) [`3cd3da9802`](https://github.com/siemens/ix/commit/3cd3da980276a1f5c324200a1194b5427c83007a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/card-list): make show all button optional
+
+- [#1156](https://github.com/siemens/ix/pull/1156) [`1d278044d3`](https://github.com/siemens/ix/commit/1d278044d30efdb12dc1f46187327e435d652a40) Thanks [@jul-lam](https://github.com/jul-lam)! - feat(core/menu): make behavior at breakpoint 'lg' configurable and change 'md' breakpoint menu icons
+
+- [#1233](https://github.com/siemens/ix/pull/1233) [`830a65b7de`](https://github.com/siemens/ix/commit/830a65b7deb9013a6f1f1b4d288a4a49f625161e) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/category-filter): make logical operator optional
+
+- [#1200](https://github.com/siemens/ix/pull/1200) [`179ca17515`](https://github.com/siemens/ix/commit/179ca1751559b208f8215e237c3da030db3b6829) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core/menu-item): show tooltip on hover
+
+### Patch Changes
+
+- [#1198](https://github.com/siemens/ix/pull/1198) [`87f0e37224`](https://github.com/siemens/ix/commit/87f0e37224bbe9b41db9d81b24d95dfbe3f71187) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/workflow-steps): fix initial layout shift
+
+- [#1212](https://github.com/siemens/ix/pull/1212) [`5b4e96e295`](https://github.com/siemens/ix/commit/5b4e96e2954d9c690158b0acf1eb927ac79f24b9) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - refactor(core): use custom properties for css transition times
+
+- [#1186](https://github.com/siemens/ix/pull/1186) [`b7a56fe19f`](https://github.com/siemens/ix/commit/b7a56fe19fdc0d0a233435561424ef96a5424c2c) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/blind): show ellipsis if text overflows
+
+- [#1218](https://github.com/siemens/ix/pull/1218) [`d95d5e9d6a`](https://github.com/siemens/ix/commit/d95d5e9d6af4e2213ec258e04bd8eae01c40d9d2) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/input-group): update margin
+
+- [#1201](https://github.com/siemens/ix/pull/1201) [`34b50efa59`](https://github.com/siemens/ix/commit/34b50efa59dfd4dbd10262ae8866f10efd1800c8) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/toast|react/toast|vue/toast): predefine custom elements before usage
+
+- [#1175](https://github.com/siemens/ix/pull/1175) [`f31adf04fd`](https://github.com/siemens/ix/commit/f31adf04fd9f400e5caa29a90e82e1fb32d00cc8) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/slider): adjust tick color
+
+- [#1184](https://github.com/siemens/ix/pull/1184) [`22b06f77d9`](https://github.com/siemens/ix/commit/22b06f77d9ff98ff96a90ca1d13b53523ac102d2) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): update classic theme values
+
+- [#1196](https://github.com/siemens/ix/pull/1196) [`04b03d4d5d`](https://github.com/siemens/ix/commit/04b03d4d5dbef9256781b6d46e260847004e776a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/select): arrow key navigation
+
+- [#1178](https://github.com/siemens/ix/pull/1178) [`5b51722f58`](https://github.com/siemens/ix/commit/5b51722f58a5de6a29696eb585c166d98ee9331b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/action-card): change subheading color
+
+- [#1139](https://github.com/siemens/ix/pull/1139) [`99886e0a5f`](https://github.com/siemens/ix/commit/99886e0a5ff84391c9e99e07a30bd4999e894125) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/date-dropdown): update the date when the props are changed
+
+- [#1151](https://github.com/siemens/ix/pull/1151) [`c87a28eede`](https://github.com/siemens/ix/commit/c87a28eede47152b5cb6b7529aa436966129e0b0) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(category-filter|input-group): align styling
+
+- [#1159](https://github.com/siemens/ix/pull/1159) [`f5e4c832f9`](https://github.com/siemens/ix/commit/f5e4c832f900e28bf072ecc411560fad94174678) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/select): non string values for the "value" prop of select-items are not working
+
+- [#1221](https://github.com/siemens/ix/pull/1221) [`555a5a3bf1`](https://github.com/siemens/ix/commit/555a5a3bf18e8bfbbb7d14452974427f68e2cc67) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/tooltip): prevent focusin event call showTooltip
+
+- [#1195](https://github.com/siemens/ix/pull/1195) [`3542def781`](https://github.com/siemens/ix/commit/3542def7819b68ad7c93155a078058d9dbfcc309) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/select): reset input text on blur
+
+- [#1185](https://github.com/siemens/ix/pull/1185) [`cb46c070a2`](https://github.com/siemens/ix/commit/cb46c070a299bde7e7d403b0d97fbb8bfd481591) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/toggle): convert circle width and height to rem
+
+- [#1171](https://github.com/siemens/ix/pull/1171) [`4a8303f9f5`](https://github.com/siemens/ix/commit/4a8303f9f5a89fdbb017e1efddbf1bf15ea987f4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/card): adjust selected background color
+
+- [#1214](https://github.com/siemens/ix/pull/1214) [`22a83d9196`](https://github.com/siemens/ix/commit/22a83d9196fc0537ee23db810e61f885689522c0) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/select-item): check by undefined not by value
+
+- [#1192](https://github.com/siemens/ix/pull/1192) [`1876e96b6b`](https://github.com/siemens/ix/commit/1876e96b6b0acf8af8b001012dfb1a15550b3d8e) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/dropdown): resolve trigger during element connect phase
+
+- [#1158](https://github.com/siemens/ix/pull/1158) [`cba4a44cb0`](https://github.com/siemens/ix/commit/cba4a44cb00b701b2b03a012fd1bfff9891e4b3d) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/application-switch-modal): add border-radius to app icon

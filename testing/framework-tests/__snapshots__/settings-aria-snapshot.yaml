@@ -1,0 +1,10 @@
+- navigation:
+  - button "Settings" [expanded]
+  - tooltip "Settings"
+- region "Settings":
+  - heading "Settings" [level=2]
+  - button "Close Settings"
+  - text: Example Setting 1 Example Setting 2
+- complementary
+- main
+- contentinfo

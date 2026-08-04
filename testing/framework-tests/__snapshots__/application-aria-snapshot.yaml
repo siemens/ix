@@ -1,0 +1,7 @@
+- text: My Application
+- navigation:
+  - button "Item 1"
+  - button "Item 2"
+- complementary
+- main: My Content Page
+- contentinfo

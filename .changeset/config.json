@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "siemens/ix" }],
+  "commit": false,
+  "linked": [],
+  "fixed": [
+    [
+      "@siemens/ix",
+      "@siemens/ix-angular",
+      "@siemens/ix-react",
+      "@siemens/ix-vue",
+      "@siemens/ix-docs"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "privatePackages": false,
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
+}

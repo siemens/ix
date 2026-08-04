@@ -1,0 +1,68 @@
+@use 'misc/common-variables' as vars;
+@use 'mixins/text-truncation';
+
+:host(.keyValue) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: vars.$default-space;
+
+  .keyValue__icon {
+    padding: vars.$tiny-space 0;
+  }
+
+  .keyValue__content {
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-start;
+
+    &,
+    .content__label,
+    .content__value {
+      max-width: 100%;
+
+      @include text-truncation.ellipsis;
+    }
+
+    .content__label {
+      color: var(--theme-color-soft-text);
+    }
+
+    .content__value {
+      width: 100%;
+    }
+  }
+}
+
+:host(.keyValue.keyValue--column) {
+  padding: vars.$small-space 0;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+
+  .keyValue__content {
+    flex-direction: column;
+
+    .content__label,
+    .content__value:not(.has-customValue) {
+      padding: 2px 0;
+    }
+  }
+}
+
+:host(.keyValue.keyValue--row) {
+  padding: vars.$tiny-space 0;
+
+  .keyValue__content {
+    flex-direction: row;
+    gap: vars.$default-space;
+    align-items: center;
+
+    .content__label,
+    .content__value:not(.has-customValue) {
+      padding: 6px 0;
+    }
+
+    .content__label {
+      min-width: 8rem;
+    }
+  }
+}

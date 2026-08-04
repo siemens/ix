@@ -1,0 +1,6 @@
+- main:
+  - tablist:
+    - tab "Tab 1"
+    - tab "Tab 2"
+    - tab "Tab 3"
+  - tabpanel "Example content"

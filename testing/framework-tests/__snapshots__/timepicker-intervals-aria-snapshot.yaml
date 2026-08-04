@@ -1,0 +1,22 @@
+- text: Time hr
+- 'button "hr: 1"'
+- 'button "hr: 3"'
+- 'button "hr: 5"'
+- 'button "hr: 7"'
+- 'button "hr: 9"'
+- 'button /hr: \d+/'
+- text: ": min"
+- 'button "min: 0"'
+- 'button /min: \d+/'
+- 'button /min: \d+/'
+- 'button /min: \d+/'
+- text: ": sec"
+- 'button "sec: 0"'
+- 'button /sec: \d+/'
+- 'button /sec: \d+/'
+- 'button /sec: \d+/'
+- 'button /sec: \d+/'
+- 'button /sec: \d+/'
+- button "AM"
+- button "PM"
+- button "Confirm"

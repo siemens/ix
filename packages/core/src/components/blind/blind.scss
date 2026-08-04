@@ -1,0 +1,222 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+
+@mixin blind($variant: 'filled') {
+  :host(.blind-#{$variant}) {
+    @if $variant == 'outline' {
+      border: solid
+        var(--theme-blind--border-thickness)
+        var(--theme-blind-base--border-color);
+    }
+
+    .blind-header {
+      @if $variant == 'outline' {
+        background-color: var(--theme-color-ghost);
+      } @else {
+        background-color: var(--theme-color-#{$variant});
+      }
+
+      @if $variant == 'filled' or $variant == 'outline' {
+        @include hover.ghost-hover-pressed;
+      } @else {
+        @include hover.hover {
+          background-color: var(--theme-color-#{$variant}--hover);
+        }
+
+        @include hover.active {
+          background-color: var(--theme-color-#{$variant}--active);
+        }
+      }
+    }
+
+    @if $variant == 'filled' or $variant == 'outline' {
+      .blind-header-title-label {
+        color: var(--theme-color-std-text);
+      }
+
+      .blind-header-title-sublabel {
+        color: var(--theme-color-soft-text);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--theme-color-primary);
+      }
+    } @else {
+      .blind-header-title-label,
+      .blind-header-title-sublabel {
+        color: var(--theme-color-#{$variant}--contrast);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--theme-color-#{$variant}--contrast);
+      }
+    }
+
+    @if $variant == 'outline' {
+      border-color: var(--theme-color-soft-bdr);
+    } @else {
+      background-color: var(--theme-blind-base--background);
+    }
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--theme-blind--border-radius);
+  overflow: hidden;
+
+  @include component.ix-component;
+
+  .blind-header-wrapper {
+    position: relative;
+    min-height: 3rem;
+    height: 3rem;
+    overflow: hidden;
+  }
+
+  .blind-header-content {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    padding-left: 0.5rem;
+  }
+
+  .blind-header-title {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 0.5rem;
+  }
+
+  .blind-header {
+    all: unset;
+    @include text-truncation.ellipsis;
+
+    display: block;
+    position: absolute;
+
+    top: 0px;
+    left: 0px;
+
+    pointer-events: all;
+
+    padding-left: 2.5rem;
+    min-height: 3rem;
+    height: 3rem;
+    width: calc(100% - 2 * var(--theme-blind--border-thickness));
+    border: solid var(--theme-blind--border-thickness) transparent;
+    border-radius: var(--theme-blind--border-radius)
+      var(--theme-blind--border-radius) 0 0;
+    cursor: pointer;
+
+    @include hover.focus-visible {
+      border-color: var(--theme-color-focus-bdr);
+      outline: none;
+    }
+  }
+
+  .blind-header-title-icon,
+  .collapse-icon {
+    margin-right: vars.$small-space;
+  }
+
+  .blind-header-title-row {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .blind-header-title-col {
+    display: inline-flex;
+    align-items: center;
+    width: calc(100% - 1rem);
+    overflow: hidden;
+  }
+
+  .blind-header-title-col:not(:first-of-type) {
+    justify-content: flex-end;
+  }
+  ix-typography {
+    flex-grow: 1;
+    @include text-truncation.ellipsis;
+  }
+
+  .blind-header-title-label {
+    padding-inline-end: 0.5rem;
+    @include text-truncation.ellipsis;
+  }
+
+  .blind-header-title-sublabel {
+    padding-inline: 0.5rem;
+    @include text-truncation.ellipsis;
+  }
+
+  .blind-header-title {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .blind-header-labels {
+    display: inline-flex;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .blind-content {
+    display: block;
+    padding: 1rem;
+    transition-property: padding;
+    transition-duration: var(--theme-default-time);
+    transition-timing-function: ease-in;
+
+    &.hide {
+      max-height: 0;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  .header-actions {
+    pointer-events: all;
+    margin-left: auto;
+  }
+}
+
+$blind-variants: (
+  alarm,
+  critical,
+  info,
+  neutral,
+  filled,
+  success,
+  warning,
+  primary,
+  outline
+);
+
+@each $variant in $blind-variants {
+  @include blind($variant);
+}

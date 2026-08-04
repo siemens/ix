@@ -1,0 +1,185 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import type { IxModalSize } from '../../modal/modal.types';
+import { getCoreDelegate, resolveDelegate } from '../delegate';
+import { createDependencyFunction } from '../dependency-function';
+import { TypedEvent } from '../typed-event';
+
+export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
+/**
+ * Set accessibility attributes on modal element
+ */
+export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
+  const ariaDescribedby = config.ariaDescribedby;
+  const ariaLabelledby = config.ariaLabelledby;
+
+  delete config['ariaDescribedby'];
+  delete config['ariaLabelledby'];
+
+  if (ariaDescribedby) {
+    element.setAttribute('aria-describedby', ariaDescribedby);
+  }
+
+  if (ariaLabelledby) {
+    element.setAttribute('aria-labelledby', ariaLabelledby);
+  }
+}
+
+export interface ModalConfig<TReason = any, CONTENT = any> {
+  /**
+   * Enable modal animation
+   */
+  animation?: boolean;
+  /**
+   * ID of element describing the modal
+   */
+  ariaDescribedby?: string;
+  /**
+   * ID of element labeling the modal
+   */
+  ariaLabelledby?: string;
+  /**
+   * Show backdrop behind modal
+   */
+  backdrop?: boolean;
+  /**
+   * Dismiss modal on backdrop click (ignored when **isNonBlocking** is `true`)
+   */
+  closeOnBackdropClick?: boolean;
+  /**
+   * Called before modal is dismissed
+   */
+  beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
+  /**
+   * Center modal vertically
+   */
+  centered?: boolean;
+  /**
+   * Non-modal dialog: page stays interactive, no lightbox or focus trap; `aria-modal` is `false`.
+   * Set before calling `showModal()`; changing while open is unsupported.
+   */
+  isNonBlocking?: boolean;
+  /**
+   * Modal content
+   */
+  content: CONTENT | string;
+  /**
+   * Modal size
+   */
+  size?: IxModalSize;
+}
+
+export interface ModalInstance<TReason = any> {
+  /**
+   * The Modal HTML Element
+   */
+  htmlElement: HTMLIxModalElement;
+  /**
+   * Event that fires when closing the modal
+   */
+  onClose: TypedEvent<TReason>;
+  /**
+   * Event that fires when dismissing the modal
+   */
+  onDismiss: TypedEvent<TReason>;
+}
+
+function getIxModal(element: Element) {
+  return element.closest('ix-modal');
+}
+
+/**
+ * Close closest ix-modal relative to a provided element
+ */
+export function closeModal<TClose = any>(
+  element: Element,
+  closeResult: TClose
+) {
+  const dialog = getIxModal(element);
+  if (dialog) {
+    dialog.closeModal(closeResult);
+    return;
+  }
+}
+
+/**
+ * Dismiss closest ix-modal relative to a provided element
+ */
+export function dismissModal(element: Element, dismissResult?: any) {
+  const dialog = getIxModal(element);
+  if (dialog) {
+    dialog.dismissModal(dismissResult);
+    return;
+  }
+}
+
+/**
+ * Show modal with given configuration
+ */
+export const showModal = createDependencyFunction(
+  async function <T>(config: ModalConfig<T>): Promise<ModalInstance<T>> {
+    const delegate = resolveDelegate();
+    let dialogRef: HTMLIxModalElement | undefined;
+    const onClose = new TypedEvent<T>();
+    const onDismiss = new TypedEvent<T>();
+
+    if (typeof config.content === 'string') {
+      const dialog = document.createElement('ix-modal');
+      dialog.innerText = config.content;
+      dialogRef = await getCoreDelegate().attachView(dialog);
+    }
+
+    if (
+      config.content instanceof HTMLElement &&
+      config.content.tagName !== 'IX-MODAL'
+    ) {
+      const dialog = document.createElement('ix-modal');
+      dialog.appendChild(config.content);
+      dialogRef = await getCoreDelegate().attachView(dialog);
+    }
+    if (!dialogRef) {
+      dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
+    }
+
+    setA11yAttributes(dialogRef, config);
+    Object.assign(dialogRef, config);
+
+    await dialogRef.showModal();
+    dialogRef.addEventListener(
+      'dialogClose',
+      async ({ detail }: CustomEvent) => {
+        onClose.emit(detail);
+        await delegate.removeView(dialogRef);
+      }
+    );
+
+    dialogRef.addEventListener(
+      'dialogDismiss',
+      async ({ detail }: CustomEvent) => {
+        onDismiss.emit(detail);
+        await delegate.removeView(dialogRef);
+      }
+    );
+
+    return {
+      htmlElement: dialogRef,
+      onClose,
+      onDismiss,
+    };
+  },
+  [
+    {
+      tag: 'ix-modal',
+      define: () => {
+        // Empty function body, because only necessary for dist-custom-elements
+      },
+    },
+  ]
+);

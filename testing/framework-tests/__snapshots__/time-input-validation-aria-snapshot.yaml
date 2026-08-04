@@ -1,0 +1,16 @@
+- textbox: /\d+:\d+:\d+/
+- button "Toggle time picker"
+- img
+- text: Info text
+- textbox: /\d+:\d+:\d+/
+- button "Toggle time picker"
+- img
+- text: Warning text
+- textbox: /\d+:\d+:\d+/
+- button "Toggle time picker"
+- img
+- text: Valid text
+- textbox: /\d+:\d+:\d+/
+- button "Toggle time picker"
+- img
+- text: Invalid text

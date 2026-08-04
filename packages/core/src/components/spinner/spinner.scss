@@ -1,0 +1,116 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+@mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
+  :host {
+    display: block;
+    position: relative;
+
+    @include component.ix-component;
+  }
+
+  .#{$size-name} {
+    width: $size;
+    height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
+    border-radius: 100%;
+    position: relative;
+    animation: rotate 2s linear infinite;
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes clipMask {
+      0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+      }
+      12.5% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+      }
+      25% {
+        clip-path: polygon(
+          50% 50%,
+          0 0,
+          100% 0,
+          100% 100%,
+          100% 100%,
+          100% 100%
+        );
+      }
+      37.5% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+      }
+      50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+      }
+      62.5% {
+        clip-path: polygon(50% 50%, 100% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+      }
+      75% {
+        clip-path: polygon(
+          50% 50%,
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          0 100%,
+          0 0
+        );
+      }
+      87.5% {
+        clip-path: polygon(50% 50%, 0 100%, 0 100%, 0 100%, 0 100%, 0 0);
+      }
+      100% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+      }
+    }
+  }
+
+  .#{$size-name}::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 8.33%;
+    border-radius: 100%;
+    border: $track-size solid
+      var(--ix-button-color, var(--theme-color-soft-text));
+    animation: clipMask 3s linear infinite;
+  }
+
+  .#{$size-name}:not(.hide-track)::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 8.33%;
+    border-radius: 100%;
+    //TODO(IX-3400): Replace track color with proper CSS variables when available
+    border: $track-size solid var(--theme-color-component-3);
+  }
+
+  .primary::after {
+    border-color: var(--theme-color-dynamic);
+  }
+
+  .primary::before {
+    border-color: var(--theme-color-ghost--hover);
+  }
+}
+
+@include ix-spinner($size-name: 'xx-small', $size: 0.75rem, $track-size: 1px);
+@include ix-spinner($size-name: 'x-small', $size: 1.25rem, $track-size: 2px);
+@include ix-spinner($size-name: 'small', $size: 1.5rem, $track-size: 2px);
+@include ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 2px);
+@include ix-spinner($size-name: 'large', $size: 6rem, $track-size: 4px);

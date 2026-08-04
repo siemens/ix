@@ -1,0 +1,102 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts';
+
+@mixin set-height($height) {
+  height: $height;
+  min-height: $height;
+  max-height: $height;
+}
+
+$heightSmall: 2.5rem;
+$heightMedium: 5rem;
+$heightBig: 10rem;
+$width: 11.937rem;
+
+:host {
+  min-width: $width;
+  max-width: $width;
+  width: $width;
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--theme-tile--border);
+  border-radius: var(--theme-tile--border-radius);
+
+  background-color: var(--theme-color-2);
+  color: var(--theme-color-std-text);
+  box-shadow: var(--theme-tile--box-shadow);
+
+  // @each $key, $value in $color-map-status {
+  //   &.tile-#{$key} {
+  //     background-color: #{$value};
+  //     color: automatic-text-color($value, 65);
+  //   }
+  // }
+
+  @include component.ix-component;
+
+  .tile-header {
+    display: flex;
+    align-items: center;
+
+    @include fonts.text-l-title;
+  }
+
+  .tile-header,
+  .tile-subheader,
+  .tile-content,
+  .tile-footer {
+    padding: 0 vars.$default-space;
+  }
+
+  .tile-header,
+  .tile-content {
+    flex-grow: 1;
+  }
+
+  .tile-header.has-content {
+    display: flex;
+    height: vars.$large-control-height;
+    max-height: vars.$large-control-height;
+    padding-inline-end: vars.$small-space;
+  }
+
+  .tile-subheader {
+    color: var(--theme-btn-invisible-secondary--color);
+    flex-grow: 0;
+  }
+
+  .tile-footer.has-content {
+    border-block-start: 1px solid var(--theme-color-1);
+    height: vars.$large-control-height;
+  }
+}
+
+:host(.tile-small) {
+  @include set-height($heightSmall);
+}
+
+:host(.tile-medium) {
+  @include set-height($heightMedium);
+}
+
+:host(.tile-big) {
+  @include set-height($heightBig);
+}
+
+:host(:active),
+:host(:focus-visible),
+:host(:visited) {
+  outline: none;
+}

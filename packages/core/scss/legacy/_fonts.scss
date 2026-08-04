@@ -1,0 +1,70 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'legacy/mixins/fonts';
+
+.text-xs {
+  @include fonts.text-xs;
+}
+
+.text-s {
+  @include fonts.text-s;
+}
+
+.text-caption {
+  @include fonts.text-caption;
+}
+
+.text-caption-single {
+  @include fonts.text-caption-single;
+}
+
+.text-default {
+  @include fonts.text-default;
+}
+
+.text-default-single {
+  @include fonts.text-default-single;
+}
+
+.text-default-title {
+  @include fonts.text-default-title;
+}
+
+.text-default-title-single {
+  @include fonts.text-default-title-single;
+}
+
+.text-l {
+  @include fonts.text-l;
+}
+
+.text-l-single {
+  @include fonts.text-l-single;
+}
+
+.text-l-title {
+  @include fonts.text-l-title;
+}
+
+.text-l-title-single {
+  @include fonts.text-l-title-single;
+}
+
+.text-h2 {
+  @include fonts.text-h2;
+}
+
+.text-xl {
+  @include fonts.text-xl;
+}
+
+a {
+  color: var(--theme-color-primary);
+}

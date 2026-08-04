@@ -1,0 +1,68 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+
+:host {
+  margin: vars.$small-space vars.$small-space 0rem vars.$small-space;
+
+  @include component.ix-component;
+
+  .message-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    min-height: 3.375rem;
+    padding: calc(
+        #{vars.$medium-space} - var(--theme-message-bar--border-thickness)
+      )
+      vars.$medium-space
+      calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
+      vars.$default-space;
+    border-radius: var(--theme-message-bar--border-radius);
+    background-color: var(--theme-messagebar--background);
+  }
+
+  $message-types: (
+    'alarm': var(--theme-color-alarm),
+    'danger': var(--theme-color-alarm),
+    'critical': var(--theme-color-critical),
+    'warning': var(--theme-color-warning),
+    'success': var(--theme-color-success),
+    'info': var(--theme-color-info),
+    'neutral': var(--theme-color-neutral),
+    'primary': var(--theme-color-primary),
+  );
+
+  @each $type, $color in $message-types {
+    .#{$type} {
+      border: solid var(--theme-message-bar--border-thickness) $color;
+    }
+  }
+
+  .message-content {
+    flex-grow: 1;
+    align-self: center;
+    min-height: 1.25rem;
+    padding: 0 vars.$default-space;
+    font-weight: normal;
+    white-space: normal;
+  }
+
+  ix-icon {
+    margin-top: vars.$tiny-space;
+  }
+
+  .message-bar-hidden {
+    display: none;
+  }
+}

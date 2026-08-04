@@ -1,0 +1,84 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+  width: 100%;
+
+  cursor: pointer;
+
+  @include component.ix-component;
+
+  .tree-node-container {
+    display: flex;
+    align-items: center;
+    height: vars.$x-large-space;
+    flex-grow: 1;
+    align-items: center;
+
+    @include text-truncation.ellipsis;
+
+    .tree-node-text {
+      @include text-truncation.ellipsis;
+    }
+  }
+
+  .icon-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+
+    ix-icon {
+      transition: transform var(--theme-default-time) ease-in-out;
+
+      &.icon-toggle-down {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+:host(:not(.disabled):not(.selected).hover),
+:host(:not(.disabled):not(.selected):hover) {
+  background-color: var(--theme-tree-item--background--hover);
+}
+
+:host(:not(.disabled):not(.selected).active),
+:host(:not(.disabled):not(.selected):active) {
+  background-color: var(--theme-tree-item--background--active);
+}
+
+:host(.selected) {
+  background-color: var(--theme-tree-item--background--selected);
+}
+
+:host(.selected.hover),
+:host(.selected:hover) {
+  background-color: var(--theme-tree-item--background--selected-hover);
+}
+
+:host(.selected.active),
+:host(.selected:active) {
+  background-color: var(--theme-tree-item--background--selected-active);
+}
+
+:host(.disabled) {
+  opacity: 0.5;
+  pointer-events: none;
+}

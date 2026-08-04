@@ -1,0 +1,336 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+
+@mixin track {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']::-webkit-slider-runnable-track {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']::-moz-range-track {
+    @content;
+  }
+}
+
+@mixin clear-browser-thumb {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range' i]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -6px;
+  }
+
+  // Firefox
+  input[type='range' i]::-moz-range-thumb {
+    border: none;
+    border-radius: 0;
+  }
+}
+
+@mixin thumb {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-hover {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:hover::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:hover::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-active {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:active::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:active::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-focus {
+  input[type='range']:focus {
+    outline: none;
+  }
+
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:focus-visible::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:focus-visible::-moz-range-thumb {
+    @content;
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 2rem;
+  justify-content: center;
+
+  --thumb-size: 1rem;
+  --value: 0;
+  --trace-start: 0;
+  --trace-end: 0;
+  --trace-reference: 0;
+
+  // Theme colors:
+  --trace-reference-color: var(--theme-slider-track-marker--background);
+  --trace-color: var(--theme-slider-trace--background);
+  --tick-color: var(--theme-slider-track-marker--background);
+  --tick-color--active: var(--theme-slider-trace-marker--background);
+  --track-color: var(--theme-slider-track--background);
+
+  @include component.ix-component;
+
+  input[type='range'] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    height: 1.5rem;
+    margin: 0;
+  }
+
+  // Trace line
+  input[type='range'].trace::before {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: -1;
+    width: calc((var(--trace-end) - var(--trace-start)) * 100%);
+    left: calc(var(--trace-start) * 100%);
+    height: 4px;
+    background-color: var(--trace-color);
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: clamp(
+        0rem,
+        calc((0.01 - var(--trace-start)) * 999rem),
+        0.125rem
+      )
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((0.01 - var(--trace-start)) * 999rem), 0.125rem);
+  }
+
+  .slider-container {
+    width: 100%;
+
+    .slider {
+      width: 100%;
+
+      input[type='range'] {
+        width: 100%;
+      }
+    }
+  }
+
+  // Trace reference
+  input[type='range'].trace:not(.hide-trace-reference)::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 16px;
+    background-color: var(--trace-reference-color);
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% * var(--trace-reference));
+  }
+
+  @include track() {
+    background: transparent;
+    height: 0.25rem;
+  }
+
+  @include clear-browser-thumb();
+
+  @include thumb() {
+    border-radius: 50%;
+    background-color: var(--theme-slider-thumb--background);
+    height: var(--thumb-size);
+    width: var(--thumb-size);
+    transition: all var(--theme-default-time) ease-in-out;
+    z-index: 10;
+  }
+
+  @include thumb-hover() {
+    background-color: var(--theme-slider-thumb--background--hover);
+  }
+
+  @include thumb-active() {
+    background-color: var(--theme-slider-thumb--background--active);
+  }
+
+  @include thumb-focus() {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: 0.125rem;
+  }
+
+  /* style datalist */
+  .ticks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .ticks circle.tick {
+    --tick-size: 6px;
+    --tick-radius: calc(var(--tick-size) / 2);
+    r: var(--tick-radius);
+    fill: var(--tick-color);
+    transform: translate(
+      calc(
+        var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2
+      ),
+      50%
+    );
+  }
+
+  .ticks .tick.tick-at-min {
+    transform: translate(var(--tick-radius), 50%);
+  }
+
+  .ticks .tick.tick-at-max {
+    transform: translate(calc(100% - var(--tick-radius)), 50%);
+  }
+
+  .ticks .tick.tick-active {
+    fill: var(--tick-color--active);
+  }
+
+  .slider {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+  }
+
+  .track {
+    position: absolute;
+    background-color: var(--track-color);
+    height: 4px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    border-radius: 2px;
+  }
+
+  .thumb {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hide-tooltip {
+    display: none;
+  }
+
+  .label {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.5rem;
+
+    min-height: 0px;
+  }
+}
+
+:host(.invalid) {
+  --trace-color: var(--theme-slider-trace--background--invalid);
+  --tick-color--active: var(--theme-slider-trace-marker--background--invalid);
+
+  @include thumb {
+    background-color: var(--theme-slider-thumb--background--invalid);
+  }
+
+  @include thumb-hover() {
+    background-color: var(--theme-slider-thumb--background--invalid--hover);
+  }
+
+  @include thumb-active() {
+    background-color: var(--theme-slider-thumb--background--invalid--active);
+  }
+}
+
+:host(.disabled) {
+  pointer-events: none;
+
+  --track-color: var(--theme-slider-track--background--disabled);
+  --trace-color: var(--theme-slider-trace--background--disabled);
+  --tick-color: var(--theme-slider-track-marker--background--disabled);
+  --tick-color--active: var(--theme-slider-trace-marker--background--disabled);
+
+  @include thumb {
+    background-color: var(--theme-slider-thumb--background--disabled);
+  }
+}
+
+:host(.warning) {
+  --trace-color: var(--theme-color-warning-40);
+  --tick-color--active: var(--theme-color-warning);
+
+  @include thumb() {
+    background-color: var(--theme-color-warning);
+  }
+}
+
+:host(.info) {
+  --trace-color: var(--theme-color-info-40);
+  --tick-color--active: var(--theme-color-info);
+
+  @include thumb() {
+    background-color: var(--theme-color-info);
+  }
+}
+
+:host(.valid) {
+  --trace-color: var(--theme-color-success-40);
+  --tick-color--active: var(--theme-color-success);
+
+  @include thumb() {
+    background-color: var(--theme-color-success);
+  }
+}

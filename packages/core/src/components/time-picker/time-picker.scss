@@ -1,0 +1,188 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+@use 'mixins/input';
+@use 'legacy/components/forms';
+
+@include input.form;
+
+:host {
+  display: block;
+  position: relative;
+  width: fit-content;
+
+  @include component.ix-component;
+
+  .standaloneAppearance {
+    box-shadow: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: vars.$default-control-height;
+  }
+
+  .clock {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    .flex {
+      display: flex;
+      height: 100%;
+      align-items: start;
+
+      .columns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .column-header {
+          height: 2.5rem;
+          width: 2.5rem;
+          line-height: 2.5rem;
+          text-align: center;
+          color: var(--theme-color-soft-text);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+
+      .column-separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+        margin-top: 3rem;
+        width: 0.5rem;
+      }
+    }
+
+    .element-list {
+      list-style-type: none;
+      overflow: auto;
+      padding: 0.0625rem;
+      margin: -0.0625rem;
+      max-height: calc(2.5rem * 6 + 0.125rem * 6);
+
+      button {
+        all: unset;
+      }
+
+      .element-container {
+        box-sizing: border-box;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.125rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: var(--theme-color-primary);
+
+        &:hover:not(.disabled) {
+          background-color: var(--theme-datepicker-day--background--hover);
+        }
+
+        &:focus-visible {
+          box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
+        }
+
+        &.disabled {
+          cursor: default;
+
+          &:not(.selected) {
+            color: var(--theme-color-weak-text);
+          }
+        }
+
+        &:not(.selected).disabled:hover,
+        &:not(.selected).disabled:active {
+          background-color: transparent;
+        }
+
+        &.selected {
+          background-color: var(--theme-datepicker-day--background--selected);
+          color: var(--theme-datepicker-day--color--selected);
+          font-weight: var(--theme-font-weight-bold);
+
+          &:hover:not(.disabled) {
+            background-color: var(
+              --theme-datepicker-day--background--selected-hover
+            );
+          }
+
+          &:focus-visible {
+            border: 0.0625rem solid var(--theme-color-inv-contrast-text);
+          }
+
+          &.disabled {
+            background-color: var(
+              --theme-datepicker-day--background--selected-disabled
+            );
+            color: var(--theme-datepicker-day--color--selected-disabled);
+          }
+        }
+      }
+
+      .element-list-padding {
+        width: 2.5rem;
+        height: calc(2.5rem * 5 + 5 * 0.125rem);
+        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
+      }
+    }
+
+    div.element-list {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .confirm-button {
+      margin-left: auto;
+    }
+
+    &--compact {
+      flex-direction: column;
+      align-items: center;
+
+      .confirm-button {
+        margin-left: initial;
+      }
+    }
+  }
+
+  .default-space {
+    margin-left: vars.$default-space;
+  }
+
+  .text-align {
+    text-align: center;
+  }
+}

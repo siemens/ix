@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use './../card/card-vars' as card-vars;
+
+:host {
+  display: block;
+  position: relative;
+
+  ix-card {
+    cursor: default;
+  }
+
+  ix-card-accordion {
+    cursor: pointer;
+  }
+
+  .icon {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  ix-card-title {
+    height: 2.5rem;
+  }
+
+  ix-card-content {
+    height: 11rem;
+  }
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  :host(.card-#{$variant}) {
+    ix-card-content {
+      border-bottom: var(--theme-push-card--border-width)
+        solid
+        var(--theme-push-card-#{$variant}-accordion--border-color);
+    }
+  }
+}

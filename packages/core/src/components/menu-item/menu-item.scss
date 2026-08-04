@@ -1,0 +1,186 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+
+$menuItemHeight: 3rem;
+$menuItemPadding: 0.875rem;
+
+:host {
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  height: var(--ix-menu-item-height, $menuItemHeight);
+  min-height: var(--ix-menu-item-height, $menuItemHeight);
+  max-height: var(--ix-menu-item-height, $menuItemHeight);
+
+  .tab {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: var(--ix-menu-item-height, $menuItemHeight);
+    width: calc(100%);
+    z-index: 500;
+    padding-left: $menuItemPadding;
+
+    @include hover.ghost-hover-pressed;
+  }
+
+  .tab-icon {
+    color: var(--theme-nav-item-primary-icon--color);
+    position: relative;
+    pointer-events: none;
+  }
+
+  .tab:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: -1px;
+  }
+
+  .notification {
+    display: inline-flex;
+    position: absolute;
+    top: 0.25rem;
+    left: 1.5rem;
+
+    .pill {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 0.5rem;
+      min-width: 1rem;
+      position: relative;
+      border-radius: 6.25rem;
+      background-color: var(--theme-color-primary);
+      font-size: 0.75rem;
+      font-weight: bold;
+      line-height: 1;
+      font-family:
+        Siemens Sans,
+        Arial,
+        sans-serif;
+      color: var(--theme-color-primary--contrast);
+      padding: vars.$tiny-space;
+    }
+  }
+
+  .tab-text {
+    display: block;
+    color: var(--theme-nav-item-primary--color);
+    margin: 0 1rem 0 1.25rem;
+    user-select: none;
+    width: 100%;
+
+    @include text-truncation.ellipsis;
+  }
+}
+
+:host(.active),
+:host(.selected) {
+  .tab {
+    background-color: var(--theme-nav-item-primary--background--selected);
+  }
+
+  .tab::before {
+    content: '';
+    background-color: var(--theme-nav-item-primary--border-color--selected);
+    height: var(--ix-menu-item-height, $menuItemHeight);
+    width: 0.25rem;
+    left: 0;
+    position: absolute;
+  }
+
+  .tab > .glyph {
+    color: var(--theme-nav-item-primary-icon--color--selected);
+  }
+}
+
+:host(.disabled) {
+  color: var(--theme-color-weak-text);
+  pointer-events: none;
+  cursor: default;
+
+  .tab > .tab-icon {
+    color: var(--theme-color-weak-text);
+  }
+
+  .tab-text {
+    color: var(--theme-color-weak-text);
+  }
+}
+
+:host(.bottom-tab),
+:host([slot='bottom']) {
+  $bottom-height: 2.25rem;
+
+  min-height: $bottom-height;
+  height: $bottom-height;
+  max-height: $bottom-height;
+
+  .tab {
+    height: $bottom-height;
+  }
+
+  .tab::before {
+    height: $bottom-height;
+    background-color: transparent;
+  }
+
+  &.active,
+  &.selected {
+    &:hover {
+      background-color: var(--theme-nav-item-secondary--background--selected);
+    }
+
+    &:active {
+      background-color: var(--theme-nav-item-secondary--background--selected);
+    }
+  }
+}
+
+:host(.bottom-tab.active),
+:host(.bottom-tab.selected),
+:host(.active[slot='bottom']),
+:host(.selected[slot='bottom']) {
+  .tab {
+    background-color: var(--theme-nav-item-secondary--background--selected);
+  }
+}
+
+:host(.tab-nested) {
+  .tab {
+    flex-direction: row;
+    padding-left: calc(0.5rem + $menuItemPadding);
+
+    .notification {
+      position: relative;
+      top: 0;
+      left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .tab-icon {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .tab-text {
+      margin-left: 0.5rem;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+}

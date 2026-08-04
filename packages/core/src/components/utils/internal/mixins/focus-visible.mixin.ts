@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { MixedInCtor, Prop, Watch } from '@stencil/core';
+import { StencilLifecycle } from '../component';
+import { a11yBoolean } from '../../a11y';
+
+export interface FocusVisibleMixinContract {
+  ixFocusVisible: boolean;
+  $internal_checkAriaSelected(focusVisible: boolean): void;
+}
+
+export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
+  Base: B
+) => {
+  class FocusVisibleMixinCtor
+    extends Base
+    implements FocusVisibleMixinContract
+  {
+    /**
+     * @internal
+     */
+    @Prop({ reflect: true }) ixFocusVisible = false;
+
+    /**
+     * When `true`, do not map keyboard focus visibility to `aria-selected` on the host.
+     * Use when selection state must not mirror roving focus (e.g. `ix-select-item`).
+     *
+     * @internal
+     */
+    @Prop() disableAriaSelectHandling: boolean = false;
+
+    constructor(...args: any[]) {
+      super(...args);
+    }
+
+    override componentDidLoad(): void {
+      if (super.componentDidLoad) {
+        super.componentDidLoad();
+      }
+    }
+
+    @Watch('ixFocusVisible')
+    $internal_checkAriaSelected(focusVisible: boolean) {
+      if (!this.hostElement) {
+        return;
+      }
+
+      if (this.disableAriaSelectHandling) {
+        this.hostElement.removeAttribute('aria-selected');
+        return;
+      }
+
+      this.hostElement.ariaSelected = a11yBoolean(focusVisible);
+    }
+  }
+
+  return FocusVisibleMixinCtor;
+};

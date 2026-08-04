@@ -1,0 +1,261 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  min-height: 1.5rem;
+  max-height: calc(100% - 0.5rem);
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
+
+  @include component.ix-component;
+
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    max-height: 100%;
+  }
+
+  .label {
+    word-break: break-word;
+    display: block;
+    white-space: normal;
+    overflow: hidden;
+    margin-block-start: 0.125rem;
+    margin-inline-start: 0.5rem;
+    min-height: 1rem;
+  }
+
+  .switch {
+    all: unset;
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    min-width: 3rem;
+    max-width: 3rem;
+    height: 1.5rem;
+  }
+
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--theme-switch-off--background);
+    transition: var(--theme-default-time);
+    border-radius: 1.5rem;
+    border: 0.0625rem solid transparent;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 1.125rem;
+    width: 1.125rem;
+    left: 0.125rem;
+    bottom: 0.125rem;
+    background-color: var(--theme-switch-thumb-off--background);
+    transition: var(--theme-default-time);
+    border-radius: 50%;
+    border: 1px solid var(--theme-switch-thumb-off--border-color);
+  }
+
+  .switch.checked > .slider::before {
+    background-color: var(--theme-switch-thumb-on--background);
+    transform: translateX(1.5rem);
+  }
+
+  .switch > .slider {
+    border-color: var(--theme-switch-off--border-color);
+  }
+
+  .switch:hover > .slider {
+    background-color: var(--theme-switch-off--background--hover);
+    border-color: var(--theme-switch-off--border-color--hover);
+  }
+
+  .switch:hover > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--hover);
+    border: 1px solid var(--theme-switch-thumb-off--border-color--hover);
+  }
+
+  .switch:active > .slider {
+    background-color: var(--theme-switch-off--background--active);
+    border-color: var(--theme-switch-off--border-color--active);
+  }
+
+  .switch:active > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--active);
+    border: 1px solid var(--theme-switch-thumb-off--border-color--active);
+  }
+
+  .switch.checked > .slider {
+    background-color: var(--theme-switch-on--background);
+    border-color: var(--theme-switch-on--border-color);
+  }
+
+  .switch.checked > .slider:before {
+    border: 1px solid var(--theme-switch-thumb-on--border-color);
+  }
+
+  .switch.checked:hover > .slider {
+    background-color: var(--theme-switch-on--background--hover);
+    border-color: var(--theme-switch-on--border-color--hover);
+  }
+
+  .switch.checked:hover > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--hover);
+    border: 1px solid var(--theme-switch-thumb-on--border-color--hover);
+  }
+
+  .switch.checked:active > .slider {
+    background-color: var(--theme-switch-on--background--active);
+    border-color: var(--theme-switch-on--border-color--active);
+  }
+
+  .switch.checked:active > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--active);
+    border: 1px solid var(--theme-switch-thumb-on--border-color--active);
+  }
+
+  .switch.indeterminate > .slider::before {
+    transform: translateX(0.75rem);
+  }
+}
+
+:host(:not(.disabled)) {
+  .wrapper {
+    cursor: pointer;
+  }
+}
+
+:host(:focus),
+:host(:focus-visible) {
+  outline: none;
+}
+
+:host(:not(.disabled):focus-visible) .switch > .slider {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: 0.0625rem;
+}
+
+:host(.disabled) {
+  pointer-events: none;
+
+  .switch {
+    opacity: 0.5;
+  }
+
+  .switch > .slider {
+    background-color: var(--theme-switch-off--background--disabled);
+  }
+
+  .switch > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--disabled);
+  }
+
+  .switch.checked > .slider {
+    background-color: var(--theme-switch-on--background--disabled);
+  }
+
+  .switch.checked > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--disabled);
+  }
+
+  .label {
+    color: var(--theme-color-weak-text);
+  }
+}
+
+@mixin toggle-variant($selector) {
+  :host(#{$selector}:not(.disabled)) {
+    .slider {
+      @content;
+    }
+  }
+}
+
+@mixin define-toggle-vars($state, $type) {
+  --theme-switch-#{$state}--background: var(
+    --theme-switch-#{$state}--background--#{$type}
+  );
+  --theme-switch-#{$state}--background--hover: var(
+    --theme-switch-#{$state}--background--#{$type}--hover
+  );
+  --theme-switch-#{$state}--background--active: var(
+    --theme-switch-#{$state}--background--#{$type}--active
+  );
+
+  --theme-switch-thumb-#{$state}--border-color: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}
+  );
+  --theme-switch-thumb-#{$state}--border-color--hover: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}--hover
+  );
+  --theme-switch-thumb-#{$state}--border-color--active: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}--active
+  );
+
+  --theme-switch-thumb-#{$state}--background: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}
+  );
+  --theme-switch-thumb-#{$state}--background--hover: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}--hover
+  );
+  --theme-switch-thumb-#{$state}--background--active: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}--active
+  );
+
+  --theme-switch-#{$state}--border-color: var(
+    --theme-switch-#{$state}--border-color--#{$type}
+  );
+  --theme-switch-#{$state}--border-color--hover: var(
+    --theme-switch-#{$state}--border-color--#{$type}--hover
+  );
+  --theme-switch-#{$state}--border-color--active: var(
+    --theme-switch-#{$state}--border-color--#{$type}--active
+  );
+}
+
+@include toggle-variant($selector: '.ix-valid') {
+  @include define-toggle-vars('off', 'valid');
+  @include define-toggle-vars('on', 'valid');
+  @include define-toggle-vars('mixed', 'valid');
+}
+
+@include toggle-variant($selector: '.ix-info') {
+  @include define-toggle-vars('off', 'info');
+  @include define-toggle-vars('on', 'info');
+  @include define-toggle-vars('mixed', 'info');
+}
+
+@include toggle-variant($selector: '.ix-warning') {
+  @include define-toggle-vars('off', 'warning');
+  @include define-toggle-vars('on', 'warning');
+  @include define-toggle-vars('mixed', 'warning');
+}
+
+@include toggle-variant($selector: '.ix-invalid--required') {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
+}
+
+@include toggle-variant($selector: '.ix-invalid') {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
+}

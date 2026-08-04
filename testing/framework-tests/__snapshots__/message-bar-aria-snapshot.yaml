@@ -1,0 +1,10 @@
+- alert:
+  - img
+  - text: Message text
+- alert:
+  - img
+  - text: Message text
+- alert:
+  - img
+  - text: Message text
+  - button "Action"
