@@ -1,0 +1,296 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/fonts';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  min-width: 0;
+  color: var(--theme-color-std-text);
+
+  @include component.ix-component;
+}
+
+.markdown {
+  min-width: 0;
+  overflow-wrap: anywhere;
+
+  @include fonts.typography-body;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p,
+  ul,
+  ol,
+  dl,
+  blockquote,
+  pre,
+  table,
+  figure,
+  details {
+    margin: 0 0 var(--theme-space-3);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: var(--theme-space-5) 0 var(--theme-space-2);
+    color: inherit;
+    overflow-wrap: anywhere;
+  }
+
+  h1 {
+    @include fonts.typography-h1;
+  }
+
+  h2 {
+    @include fonts.typography-h2;
+  }
+
+  h3 {
+    @include fonts.typography-h3;
+  }
+
+  h4 {
+    @include fonts.typography-h4;
+  }
+
+  h5 {
+    @include fonts.typography-h5;
+  }
+
+  h6 {
+    @include fonts.typography-h6;
+  }
+
+  a {
+    color: var(--theme-color-dynamic);
+    text-decoration: underline;
+    text-underline-offset: 0.125rem;
+
+    &:hover {
+      color: var(--theme-color-dynamic--hover);
+    }
+
+    &:active {
+      color: var(--theme-color-dynamic--active);
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--theme-color-focus-bdr);
+      outline-offset: 0.125rem;
+      border-radius: var(--theme-default-border-radius);
+    }
+  }
+
+  strong,
+  b {
+    font-weight: var(--theme-font-weight-bold);
+  }
+
+  ul,
+  ol {
+    padding-left: var(--theme-space-5);
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li {
+    margin-bottom: var(--theme-space-1);
+
+    > ul,
+    > ol {
+      margin-top: var(--theme-space-1);
+      margin-bottom: 0;
+    }
+  }
+
+  .contains-task-list {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .task-list-item {
+    display: block;
+  }
+
+  .task-list-item ix-checkbox {
+    display: block;
+  }
+
+  blockquote {
+    padding: var(--theme-space-2) var(--theme-space-3);
+    border-left: 0.25rem solid var(--theme-color-primary);
+    color: var(--theme-color-soft-text);
+    background-color: var(--theme-color-ghost-alt);
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  hr {
+    height: 0;
+    margin: var(--theme-space-4) 0;
+    border: 0;
+    border-top: var(--theme-weak-bdr);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--theme-default-border-radius);
+  }
+
+  figure {
+    max-width: 100%;
+  }
+
+  figcaption {
+    margin-top: var(--theme-space-1);
+    color: var(--theme-color-soft-text);
+
+    @include fonts.typography-body-sm;
+  }
+
+  code,
+  kbd,
+  samp {
+    padding: 0.125rem 0.25rem;
+    border-radius: var(--theme-default-border-radius);
+    background-color: var(--theme-color-ghost-alt);
+
+    @include fonts.typography-code-sm;
+  }
+
+  pre {
+    max-width: 100%;
+    padding: var(--theme-space-3);
+    overflow: auto;
+    border: var(--theme-weak-bdr);
+    border-radius: var(--theme-default-border-radius);
+    background-color: var(--theme-color-ghost-alt);
+
+    code {
+      display: block;
+      min-width: max-content;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      background: transparent;
+      white-space: pre;
+
+      @include fonts.typography-code;
+    }
+
+    .hljs-comment,
+    .hljs-quote {
+      color: var(--theme-color-soft-text);
+      font-style: italic;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-literal,
+    .hljs-section,
+    .hljs-link {
+      color: var(--theme-color-dynamic);
+    }
+
+    .hljs-string,
+    .hljs-title,
+    .hljs-name,
+    .hljs-type,
+    .hljs-attribute,
+    .hljs-symbol,
+    .hljs-bullet,
+    .hljs-addition,
+    .hljs-variable,
+    .hljs-template-tag,
+    .hljs-template-variable {
+      color: var(--theme-color-success);
+    }
+
+    .hljs-number,
+    .hljs-meta,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-params {
+      color: var(--theme-color-primary);
+    }
+
+    .hljs-deletion {
+      color: var(--theme-color-alarm);
+    }
+
+    .hljs-emphasis {
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      font-weight: var(--theme-font-weight-bold);
+    }
+  }
+
+  table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: var(--theme-space-2) var(--theme-space-3);
+    border: var(--theme-weak-bdr);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: var(--theme-font-weight-bold);
+    background-color: var(--theme-color-ghost-alt);
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: var(--theme-color-ghost);
+  }
+
+  dt {
+    font-weight: var(--theme-font-weight-bold);
+  }
+
+  dd {
+    margin: 0 0 var(--theme-space-2) var(--theme-space-4);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: var(--theme-font-weight-bold);
+  }
+}

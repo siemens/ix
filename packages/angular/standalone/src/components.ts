@@ -64,6 +64,7 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
+import { defineCustomElement as defineIxMarkdown } from '@siemens/ix/components/ix-markdown.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -1812,6 +1813,38 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxMarkdown,
+  inputs: ['components', 'data', 'markdown', 'renderer']
+})
+@Component({
+  selector: 'ix-markdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['components', 'data', 'markdown', 'renderer'],
+  outputs: ['renderError'],
+})
+export class IxMarkdown {
+  protected el: HTMLIxMarkdownElement;
+  @Output() renderError = new EventEmitter<CustomEvent<IIxMarkdownMarkdownRenderErrorEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { MarkdownRenderErrorEvent as IIxMarkdownMarkdownRenderErrorEvent } from '@siemens/ix/components';
+
+export declare interface IxMarkdown extends Components.IxMarkdown {
+  /**
+   * Emitted when the current Markdown cannot be parsed or rendered. @since 5.2.0
+   */
+  renderError: EventEmitter<CustomEvent<IIxMarkdownMarkdownRenderErrorEvent>>;
+}
 
 
 @ProxyCmp({

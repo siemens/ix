@@ -1,0 +1,75 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Markdown</title>
+    <style>
+      .page {
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 2rem;
+        color: var(--theme-color-std-text);
+        background: var(--theme-color-1);
+      }
+
+      ix-markdown {
+        max-width: 46rem;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <ix-markdown></ix-markdown>
+    </main>
+
+    <script type="module">
+      import { render } from '@siemens/ix/markdown/highlight';
+      import './../../utils/test/runtime/main.ts';
+
+      await customElements.whenDefined('ix-markdown');
+
+      const markdown = document.querySelector('ix-markdown');
+      markdown.renderer = render;
+      markdown.data = { status: 'success' };
+      markdown.components = { status: 'ix-pill' };
+      markdown.markdown = `# Asset health report
+
+The **compressor train** is stable. Read the [maintenance guide](https://example.com) before the next inspection.
+
+> Vibration increased slightly after the last shift change, but remains below the warning threshold.
+
+## Current state
+
+- Temperature trend is flat
+- [x] Alarm acknowledged
+- [ ] Inspection scheduled
+
+| Measurement | Value | State |
+| --- | ---: | --- |
+| Temperature | 68 °C | Normal |
+| Vibration | 2.4 mm/s | Observe |
+
+Use \`getAssetStatus()\` to retrieve the latest state.
+
+\`\`\`ts
+const status = await getAssetStatus('compressor-01');
+console.log(status.health);
+\`\`\`
+
+::status{:variant="data.status" outline}
+Operating normally
+::`;
+    </script>
+  </body>
+</html>

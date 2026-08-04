@@ -42,6 +42,7 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { MarkdownComponentMap, MarkdownData, MarkdownRenderer, MarkdownRenderErrorEvent } from "./components/markdown/markdown.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -98,6 +99,7 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { MarkdownComponentMap, MarkdownData, MarkdownRenderer, MarkdownRenderErrorEvent } from "./components/markdown/markdown.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2534,6 +2536,34 @@ export namespace Components {
           * Url for the link button
          */
         "url"?: string;
+    }
+    /**
+     * Render Markdown and registered custom elements with Siemens iX styling.
+     * Consumers must load any IX or custom elements referenced by the Markdown.
+     * @since 5.2.0
+     */
+    interface IxMarkdown {
+        /**
+          * Map Markdown component aliases to custom-element tag names.
+          * @since 5.2.0
+         */
+        "components"?: MarkdownComponentMap;
+        /**
+          * Runtime data available to Markdown component bindings.
+          * @since 5.2.0
+         */
+        "data"?: MarkdownData;
+        /**
+          * Markdown source rendered by the component.
+          * @since 5.2.0
+          * @default ''
+         */
+        "markdown": string;
+        /**
+          * Renderer used to transform Markdown into verified HTML.  Import a renderer from `@siemens/ix/markdown` or `@siemens/ix/markdown/highlight`.
+          * @since 5.2.0
+         */
+        "renderer"?: MarkdownRenderer;
     }
     interface IxMenu {
         /**
@@ -4985,6 +5015,10 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
+export interface IxMarkdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMarkdownElement;
+}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -5902,6 +5936,28 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxMarkdownElementEventMap {
+        "renderError": MarkdownRenderErrorEvent;
+    }
+    /**
+     * Render Markdown and registered custom elements with Siemens iX styling.
+     * Consumers must load any IX or custom elements referenced by the Markdown.
+     * @since 5.2.0
+     */
+    interface HTMLIxMarkdownElement extends Components.IxMarkdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxMarkdownElement: {
+        prototype: HTMLIxMarkdownElement;
+        new (): HTMLIxMarkdownElement;
+    };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
@@ -6813,6 +6869,7 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
+        "ix-markdown": HTMLIxMarkdownElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -9458,6 +9515,39 @@ declare namespace LocalJSX {
           * Url for the link button
          */
         "url"?: string;
+    }
+    /**
+     * Render Markdown and registered custom elements with Siemens iX styling.
+     * Consumers must load any IX or custom elements referenced by the Markdown.
+     * @since 5.2.0
+     */
+    interface IxMarkdown {
+        /**
+          * Map Markdown component aliases to custom-element tag names.
+          * @since 5.2.0
+         */
+        "components"?: MarkdownComponentMap;
+        /**
+          * Runtime data available to Markdown component bindings.
+          * @since 5.2.0
+         */
+        "data"?: MarkdownData;
+        /**
+          * Markdown source rendered by the component.
+          * @since 5.2.0
+          * @default ''
+         */
+        "markdown"?: string;
+        /**
+          * Emitted when the current Markdown cannot be parsed or rendered.
+          * @since 5.2.0
+         */
+        "onRenderError"?: (event: IxMarkdownCustomEvent<MarkdownRenderErrorEvent>) => void;
+        /**
+          * Renderer used to transform Markdown into verified HTML.  Import a renderer from `@siemens/ix/markdown` or `@siemens/ix/markdown/highlight`.
+          * @since 5.2.0
+         */
+        "renderer"?: MarkdownRenderer;
     }
     interface IxMenu {
         /**
@@ -12509,6 +12599,9 @@ declare namespace LocalJSX {
         "url": string;
         "target": '_self' | '_blank' | '_parent' | '_top';
     }
+    interface IxMarkdownAttributes {
+        "markdown": string;
+    }
     interface IxMenuAttributes {
         "showSettings": boolean;
         "showAbout": boolean;
@@ -13105,6 +13198,7 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-markdown": Omit<IxMarkdown, keyof IxMarkdownAttributes> & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes]?: IxMarkdown[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `attr:${K}`]?: IxMarkdownAttributes[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `prop:${K}`]?: IxMarkdown[K] };
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -13263,6 +13357,12 @@ declare module "@stencil/core" {
             "ix-layout-auto": LocalJSX.IntrinsicElements["ix-layout-auto"] & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IntrinsicElements["ix-layout-grid"] & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * Render Markdown and registered custom elements with Siemens iX styling.
+             * Consumers must load any IX or custom elements referenced by the Markdown.
+             * @since 5.2.0
+             */
+            "ix-markdown": LocalJSX.IntrinsicElements["ix-markdown"] & JSXBase.HTMLAttributes<HTMLIxMarkdownElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             /**

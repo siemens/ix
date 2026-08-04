@@ -58,6 +58,18 @@
       "import": "./components/index.js",
       "default": "./components/index.js"
     },
+    "./markdown": {
+      "types": "./dist/markdown/index.d.ts",
+      "import": "./dist/markdown/index.js",
+      "require": "./dist/markdown/index.cjs",
+      "default": "./dist/markdown/index.js"
+    },
+    "./markdown/highlight": {
+      "types": "./dist/markdown/highlight.d.ts",
+      "import": "./dist/markdown/highlight.js",
+      "require": "./dist/markdown/highlight.cjs",
+      "default": "./dist/markdown/highlight.js"
+    },
     "./dist/siemens-ix/siemens-ix.css": "./dist/siemens-ix/siemens-ix.css",
     "./dist/siemens-ix/siemens-ix-core.css": "./dist/siemens-ix/siemens-ix-core.css",
     "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
@@ -66,7 +78,8 @@
     "./scss/*": "./scss/*"
   },
   "scripts": {
-    "build": "stencil build --prod && npm run build.scss",
+    "build": "stencil build --prod && npm run build.markdown && npm run build.scss",
+    "build.markdown": "rollup -c rollup.markdown.config.mjs",
     "build.scss": "tsx ./scripts/build/build-css.ts",
     "build.watch": "stencil build --watch",
     "lint": "eslint src",
@@ -93,7 +106,11 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "catalog:",
+    "@comark/html": "^0.5.1",
     "@playwright/test": "catalog:",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@siemens/ix-icons": "catalog:",
     "@stencil-community/eslint-plugin": "^0.10.0",
     "@stencil-community/postcss": "^2.2.0",
@@ -114,12 +131,14 @@
     "@typescript-eslint/parser": "^8.56.1",
     "animate.css": "~4.1.1",
     "autoprefixer": "10.4.20",
+    "comark": "^0.5.1",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "catalog:",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
     "fs-extra": "^10.1.0",
+    "highlight.js": "^11.11.1",
     "http-server": "^14.1.1",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
@@ -127,6 +146,8 @@
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",
     "rimraf": "catalog:",
+    "rollup": "^4.60.1",
+    "rollup-plugin-dts": "^6.4.1",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",

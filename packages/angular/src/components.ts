@@ -1706,6 +1706,38 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
+  inputs: ['components', 'data', 'markdown', 'renderer']
+})
+@Component({
+  selector: 'ix-markdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['components', 'data', 'markdown', 'renderer'],
+  outputs: ['renderError'],
+  standalone: false
+})
+export class IxMarkdown {
+  protected el: HTMLIxMarkdownElement;
+  @Output() renderError = new EventEmitter<CustomEvent<IIxMarkdownMarkdownRenderErrorEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { MarkdownRenderErrorEvent as IIxMarkdownMarkdownRenderErrorEvent } from '@siemens/ix';
+
+export declare interface IxMarkdown extends Components.IxMarkdown {
+  /**
+   * Emitted when the current Markdown cannot be parsed or rendered. @since 5.2.0
+   */
+  renderError: EventEmitter<CustomEvent<IIxMarkdownMarkdownRenderErrorEvent>>;
+}
+
+
+@ProxyCmp({
   inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nAriaLabelMenu', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nNavigationHint', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
