@@ -7,11 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$breadcrumb-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-
 :host {
-  --ix-breadcrumb--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$breadcrumb-color-soft-text-fallback}
-  );
+  --ix-breadcrumb--color-soft-text: var(--theme-si-sys-text-secondary);
 }

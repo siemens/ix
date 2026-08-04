@@ -7,49 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$pane-floating-background-fallback: light-dark(#ffffff, #1a272d);
-$pane-floating-border-color-fallback: light-dark(#ebedee, #405158);
-$pane-floating-box-shadow-fallback: 0px 1px 2px 0px rgba(0, 0, 0, 0.14),
-  0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
-$pane-floating-color-fallback: light-dark(#000609, #ffffff);
-$pane-inline-background-fallback: light-dark(#f3f4f5, #000609);
-$pane-inline-border-color-fallback: light-dark(#72848c, #5b6a71);
-$pane-inline-color-fallback: light-dark(#000609, #ffffff);
-
 :host {
-  --ix-pane--space-1: var(--theme-space-1, 0.5rem);
-  --ix-pane--space--1: var(--theme-space--1, 0.25rem);
-  --ix-pane--space-2: var(--theme-space-2, 0.75rem);
-  --ix-pane--space-3: var(--theme-space-3, 1rem);
-  --ix-app-header--border-width: var(--theme-border-width-default, 0.0625rem);
-  --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
-  --ix-pane-floating--background: var(
-    --theme-si-sys-background-1,
-    #{$pane-floating-background-fallback}
-  );
-  --ix-pane-floating--border-color: var(
-    --theme-si-sys-border-4,
-    #{$pane-floating-border-color-fallback}
-  );
-  --ix-pane-floating--box-shadow: var(
-    --theme-si-sys-effects-shadow-2,
-    #{$pane-floating-box-shadow-fallback}
-  );
-  --ix-pane-floating--color: var(
-    --theme-si-sys-text-primary,
-    #{$pane-floating-color-fallback}
-  );
-  --ix-pane-inline--background: var(
-    --theme-si-sys-background-0,
-    #{$pane-inline-background-fallback}
-  );
-  --ix-pane-inline--border-color: var(
-    --theme-si-sys-border-3,
-    #{$pane-inline-border-color-fallback}
-  );
+  --ix-pane--space-1: var(--theme-space-1);
+  --ix-pane--space--1: var(--theme-space--1);
+  --ix-pane--space-2: var(--theme-space-2);
+  --ix-pane--space-3: var(--theme-space-3);
+  --ix-app-header--border-width: var(--theme-border-width-default);
+  --ix-blind--border-thickness: var(--theme-border-width-default);
+  --ix-pane-floating--background: var(--theme-si-sys-background-1);
+  --ix-pane-floating--border-color: var(--theme-si-sys-border-4);
+  --ix-pane-floating--box-shadow: var(--theme-si-sys-effects-shadow-2);
+  --ix-pane-floating--color: var(--theme-si-sys-text-primary);
+  --ix-pane-inline--background: var(--theme-si-sys-background-0);
+  --ix-pane-inline--border-color: var(--theme-si-sys-border-3);
   --ix-pane-inline--box-shadow: none;
-  --ix-pane-inline--color: var(
-    --theme-si-sys-text-primary,
-    #{$pane-inline-color-fallback}
-  );
+  --ix-pane-inline--color: var(--theme-si-sys-text-primary);
 }

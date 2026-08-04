@@ -7,11 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$datepicker-separator-background-fallback: light-dark(#ebedee, #405158);
-
 :host {
-  --ix-datepicker-separator--background: var(
-    --theme-si-sys-border-4,
-    #{$datepicker-separator-background-fallback}
-  );
+  --ix-datepicker-separator--background: var(--theme-si-sys-border-4);
 }

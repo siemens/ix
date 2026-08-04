@@ -7,12 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-category-color-ghost-active-fallback: light-dark(#dcdee0, #34454d);
-
 :host {
-  --ix-menu-category--default-time: var(--theme-default-time, 150ms);
+  --ix-menu-category--default-time: var(--theme-default-time);
   --ix-menu-category--color-ghost--active: var(
-    --theme-si-sys-background-selected,
-    #{$menu-category-color-ghost-active-fallback}
+    --theme-si-sys-background-selected
   );
 }

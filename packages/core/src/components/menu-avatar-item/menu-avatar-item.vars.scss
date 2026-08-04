@@ -7,11 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-avatar-item-color-std-text-fallback: light-dark(#000609, #ffffff);
-
 :host {
-  --ix-menu-avatar-item--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$menu-avatar-item-color-std-text-fallback}
-  );
+  --ix-menu-avatar-item--color-std-text: var(--theme-si-sys-text-primary);
 }

@@ -7,108 +7,47 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tab-item-color-1-fallback: light-dark(#f3f4f5, #000609);
-$tab-item-color-focus-bdr-fallback: #199fff;
-$pill-outline-color-fallback: light-dark(#000609, #ffffff);
-$animated-tab-circle-background-fallback: light-dark(#ffffff, #1a272d);
-$animated-tab-circle-background-active-fallback: light-dark(#c2faff, #00212f);
-$animated-tab-circle-background-hover-fallback: light-dark(#d1fbff, #003246);
-$animated-tab-circle-border-color-selected-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-$animated-tab-icon-color-fallback: light-dark(#000609, #ffffff);
-$animated-tab-icon-color-selected-fallback: light-dark(#004f69, #00eaff);
-$tab-background-active-fallback: light-dark(#c2faff, #00212f);
-$tab-background-hover-fallback: light-dark(#d1fbff, #003246);
-$tab-color-fallback: light-dark(#000609, #ffffff);
-$tab-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$tab-color-selected-fallback: light-dark(#004f69, #00eaff);
-$tab-indicator-background-disabled-fallback: light-dark(#72848c, #5b6a71);
-$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
-$tab-pill-border-color-fallback: light-dark(#72848c, #5b6a71);
-$tab-pill-border-color-disabled-fallback: light-dark(#72848c, #5b6a71);
-$tab-pill-border-color-selected-fallback: light-dark(#004f69, #00eaff);
-
 :host {
-  --ix-tab-item--color-1: var(
-    --theme-si-sys-background-0,
-    #{$tab-item-color-1-fallback}
-  );
-  --ix-tab-item--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$tab-item-color-focus-bdr-fallback}
-  );
-  --ix-pill-outline--color: var(
-    --theme-si-sys-text-primary,
-    #{$pill-outline-color-fallback}
-  );
-  --ix-animated-tab-circle--background: var(
-    --theme-si-sys-background-1,
-    #{$animated-tab-circle-background-fallback}
-  );
+  --ix-tab-item--color-1: var(--theme-si-sys-background-0);
+  --ix-tab-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-pill-outline--color: var(--theme-si-sys-text-primary);
+  --ix-animated-tab-circle--background: var(--theme-si-sys-background-1);
   --ix-animated-tab-circle--background--active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$animated-tab-circle-background-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-animated-tab-circle--background--disabled: rgba(0, 0, 0, 0);
   --ix-animated-tab-circle--background--hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$animated-tab-circle-background-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-animated-tab-circle--background--selected: rgba(0, 0, 0, 0);
   --ix-animated-tab-circle--border-color: rgba(0, 0, 0, 0);
   --ix-animated-tab-circle--border-color--disabled: rgba(0, 0, 0, 0);
   --ix-animated-tab-circle--border-color--selected: var(
-    --theme-si-sys-border-accent-hover,
-    #{$animated-tab-circle-border-color-selected-fallback}
+    --theme-si-sys-border-accent-hover
   );
-  --ix-animated-tab-icon--color: var(
-    --theme-si-sys-text-primary,
-    #{$animated-tab-icon-color-fallback}
-  );
+  --ix-animated-tab-icon--color: var(--theme-si-sys-text-primary);
   --ix-animated-tab-icon--color--selected: var(
-    --theme-si-sys-text-accent-hover,
-    #{$animated-tab-icon-color-selected-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-tab--background: rgba(0, 0, 0, 0);
   --ix-tab--background--active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$tab-background-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-tab--background--disabled: rgba(0, 0, 0, 0);
   --ix-tab--background--hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$tab-background-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-tab--background--selected: rgba(0, 0, 0, 0);
-  --ix-tab--color: var(--theme-si-sys-text-primary, #{$tab-color-fallback});
-  --ix-tab--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$tab-color-disabled-fallback}
-  );
-  --ix-tab--color--selected: var(
-    --theme-si-sys-text-accent-hover,
-    #{$tab-color-selected-fallback}
-  );
-  --ix-tab-indicator--background--disabled: var(
-    --theme-si-sys-border-3,
-    #{$tab-indicator-background-disabled-fallback}
-  );
+  --ix-tab--color: var(--theme-si-sys-text-primary);
+  --ix-tab--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-tab--color--selected: var(--theme-si-sys-text-accent-hover);
+  --ix-tab-indicator--background--disabled: var(--theme-si-sys-border-3);
   --ix-tab-indicator--background--selected: var(
-    --theme-si-sys-background-accent-hover,
-    #{$tab-indicator-background-selected-fallback}
+    --theme-si-sys-background-accent-hover
   );
-  --ix-tab-pill--border-color: var(
-    --theme-si-sys-border-3,
-    #{$tab-pill-border-color-fallback}
-  );
-  --ix-tab-pill--border-color--disabled: var(
-    --theme-si-sys-border-3,
-    #{$tab-pill-border-color-disabled-fallback}
-  );
+  --ix-tab-pill--border-color: var(--theme-si-sys-border-3);
+  --ix-tab-pill--border-color--disabled: var(--theme-si-sys-border-3);
   --ix-tab-pill--border-color--selected: var(
-    --theme-si-sys-border-accent-hover,
-    #{$tab-pill-border-color-selected-fallback}
+    --theme-si-sys-border-accent-hover
   );
 }

@@ -7,165 +7,44 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$badge-primary-background-fallback: light-dark(#006a87, #00c9e4);
-$badge-primary-border-color-fallback: light-dark(#006a87, #00c9e4);
-$badge-primary-color-fallback: light-dark(#006a87, #00c9e4);
-$badge-primary-contrast-color-fallback: light-dark(#ffffff, #000609);
-$badge-alarm-background-fallback: #d72323;
-$badge-alarm-border-color-fallback: #d72323;
-$badge-alarm-color-fallback: light-dark(#a70808, #ff8e8e);
-$badge-alarm-contrast-color-fallback: #ffffff;
-$badge-critical-background-fallback: #a733bc;
-$badge-critical-border-color-fallback: #a733bc;
-$badge-critical-color-fallback: light-dark(#740089, #d59cde);
-$badge-critical-contrast-color-fallback: light-dark(#ffffff, #000609);
-$badge-warning-background-fallback: light-dark(#ba5d00, #ff8000);
-$badge-warning-border-color-fallback: light-dark(#ba5d00, #ff8000);
-$badge-warning-color-fallback: light-dark(#9a4d00, #ff9225);
-$badge-warning-contrast-color-fallback: light-dark(#ffffff, #000609);
-$badge-info-background-fallback: #226ae7;
-$badge-info-border-color-fallback: #226ae7;
-$badge-info-color-fallback: light-dark(#2050a2, #a9c3f1);
-$badge-info-contrast-color-fallback: #ffffff;
-$badge-success-background-fallback: light-dark(#376f1c, #59bd28);
-$badge-success-border-color-fallback: light-dark(#376f1c, #59bd28);
-$badge-success-color-fallback: light-dark(#376f1c, #99e672);
-$badge-success-contrast-color-fallback: light-dark(#ffffff, #000609);
-$badge-neutral-background-fallback: light-dark(#919ca1, #5b6a71);
-$badge-neutral-border-color-fallback: light-dark(#72848c, #5b6a71);
-$badge-neutral-color-fallback: light-dark(#405158, #aeb5b8);
-$badge-neutral-contrast-color-fallback: light-dark(#000609, #ffffff);
-$badge-default-color-fallback: light-dark(#000609, #ffffff);
-$badge-contrast-ring-color-fallback: light-dark(#f3f4f5, #000609);
-
 :host {
   --ix-badge-offset-x: 0rem;
   --ix-badge-offset-y: 0rem;
   --ix-badge-max-width: none;
   --ix-badge-animation-duration: 2s;
 
-  --ix-badge-primary-background: var(
-    --theme-si-sys-background-accent,
-    #{$badge-primary-background-fallback}
-  );
-  --ix-badge-primary-border-color: var(
-    --theme-si-sys-border-accent,
-    #{$badge-primary-border-color-fallback}
-  );
-  --ix-badge-primary-color: var(
-    --theme-si-sys-text-accent,
-    #{$badge-primary-color-fallback}
-  );
-  --ix-badge-primary-contrast-color: var(
-    --theme-si-sys-text-on-accent,
-    #{$badge-primary-contrast-color-fallback}
-  );
-  --ix-badge-alarm-background: var(
-    --theme-si-sys-background-danger,
-    #{$badge-alarm-background-fallback}
-  );
-  --ix-badge-alarm-border-color: var(
-    --theme-si-sys-border-danger,
-    #{$badge-alarm-border-color-fallback}
-  );
-  --ix-badge-alarm-color: var(
-    --theme-si-sys-text-danger,
-    #{$badge-alarm-color-fallback}
-  );
-  --ix-badge-alarm-contrast-color: var(
-    --theme-si-sys-text-on-danger,
-    #{$badge-alarm-contrast-color-fallback}
-  );
-  --ix-badge-critical-background: var(
-    --theme-si-sys-background-critical,
-    #{$badge-critical-background-fallback}
-  );
-  --ix-badge-critical-border-color: var(
-    --theme-si-sys-border-critical,
-    #{$badge-critical-border-color-fallback}
-  );
-  --ix-badge-critical-color: var(
-    --theme-si-sys-text-critical,
-    #{$badge-critical-color-fallback}
-  );
-  --ix-badge-critical-contrast-color: var(
-    --theme-si-sys-text-on-warning,
-    #{$badge-critical-contrast-color-fallback}
-  );
-  --ix-badge-warning-background: var(
-    --theme-si-sys-background-warning,
-    #{$badge-warning-background-fallback}
-  );
-  --ix-badge-warning-border-color: var(
-    --theme-si-sys-background-warning,
-    #{$badge-warning-border-color-fallback}
-  );
-  --ix-badge-warning-color: var(
-    --theme-si-sys-text-warning,
-    #{$badge-warning-color-fallback}
-  );
-  --ix-badge-warning-contrast-color: var(
-    --theme-si-sys-text-on-warning,
-    #{$badge-warning-contrast-color-fallback}
-  );
-  --ix-badge-info-background: var(
-    --theme-si-sys-background-information,
-    #{$badge-info-background-fallback}
-  );
-  --ix-badge-info-border-color: var(
-    --theme-si-sys-border-information,
-    #{$badge-info-border-color-fallback}
-  );
-  --ix-badge-info-color: var(
-    --theme-si-sys-text-information,
-    #{$badge-info-color-fallback}
-  );
-  --ix-badge-info-contrast-color: var(
-    --theme-si-sys-text-on-information,
-    #{$badge-info-contrast-color-fallback}
-  );
-  --ix-badge-success-background: var(
-    --theme-si-sys-background-success,
-    #{$badge-success-background-fallback}
-  );
-  --ix-badge-success-border-color: var(
-    --theme-si-sys-border-success,
-    #{$badge-success-border-color-fallback}
-  );
-  --ix-badge-success-color: var(
-    --theme-si-sys-text-success,
-    #{$badge-success-color-fallback}
-  );
-  --ix-badge-success-contrast-color: var(
-    --theme-si-sys-text-on-success,
-    #{$badge-success-contrast-color-fallback}
-  );
-  --ix-badge-neutral-background: var(
-    --theme-si-sys-background-neutral,
-    #{$badge-neutral-background-fallback}
-  );
-  --ix-badge-neutral-border-color: var(
-    --theme-si-sys-border-3,
-    #{$badge-neutral-border-color-fallback}
-  );
-  --ix-badge-neutral-color: var(
-    --theme-si-sys-text-secondary,
-    #{$badge-neutral-color-fallback}
-  );
-  --ix-badge-neutral-contrast-color: var(
-    --theme-si-sys-text-primary,
-    #{$badge-neutral-contrast-color-fallback}
-  );
+  --ix-badge-primary-background: var(--theme-si-sys-background-accent);
+  --ix-badge-primary-border-color: var(--theme-si-sys-border-accent);
+  --ix-badge-primary-color: var(--theme-si-sys-text-accent);
+  --ix-badge-primary-contrast-color: var(--theme-si-sys-text-on-accent);
+  --ix-badge-alarm-background: var(--theme-si-sys-background-danger);
+  --ix-badge-alarm-border-color: var(--theme-si-sys-border-danger);
+  --ix-badge-alarm-color: var(--theme-si-sys-text-danger);
+  --ix-badge-alarm-contrast-color: var(--theme-si-sys-text-on-danger);
+  --ix-badge-critical-background: var(--theme-si-sys-background-critical);
+  --ix-badge-critical-border-color: var(--theme-si-sys-border-critical);
+  --ix-badge-critical-color: var(--theme-si-sys-text-critical);
+  --ix-badge-critical-contrast-color: var(--theme-si-sys-text-on-warning);
+  --ix-badge-warning-background: var(--theme-si-sys-background-warning);
+  --ix-badge-warning-border-color: var(--theme-si-sys-background-warning);
+  --ix-badge-warning-color: var(--theme-si-sys-text-warning);
+  --ix-badge-warning-contrast-color: var(--theme-si-sys-text-on-warning);
+  --ix-badge-info-background: var(--theme-si-sys-background-information);
+  --ix-badge-info-border-color: var(--theme-si-sys-border-information);
+  --ix-badge-info-color: var(--theme-si-sys-text-information);
+  --ix-badge-info-contrast-color: var(--theme-si-sys-text-on-information);
+  --ix-badge-success-background: var(--theme-si-sys-background-success);
+  --ix-badge-success-border-color: var(--theme-si-sys-border-success);
+  --ix-badge-success-color: var(--theme-si-sys-text-success);
+  --ix-badge-success-contrast-color: var(--theme-si-sys-text-on-success);
+  --ix-badge-neutral-background: var(--theme-si-sys-background-neutral);
+  --ix-badge-neutral-border-color: var(--theme-si-sys-border-3);
+  --ix-badge-neutral-color: var(--theme-si-sys-text-secondary);
+  --ix-badge-neutral-contrast-color: var(--theme-si-sys-text-primary);
 
   --ix-badge-outline-background: transparent;
-  --ix-badge-default-color: var(
-    --theme-si-sys-text-primary,
-    #{$badge-default-color-fallback}
-  );
-  --ix-badge-contrast-ring-color: var(
-    --theme-si-sys-background-0,
-    #{$badge-contrast-ring-color-fallback}
-  );
+  --ix-badge-default-color: var(--theme-si-sys-text-primary);
+  --ix-badge-contrast-ring-color: var(--theme-si-sys-background-0);
 
   --ix-badge-pulse-color: var(--ix-badge-primary-background);
 }

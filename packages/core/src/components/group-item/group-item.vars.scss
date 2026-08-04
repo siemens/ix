@@ -7,56 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$group-item-color-std-text-fallback: light-dark(#000609, #ffffff);
-$group-item-color-focus-bdr-fallback: #199fff;
-$group-item-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$group-item-color-ghost-selected-fallback: light-dark(#dcdee0, #34454d);
-$group-item-color-ghost-selected-hover-fallback: light-dark(#e8ebed, #273940);
-$group-item-color-ghost-selected-active-fallback: light-dark(#dcdee0, #34454d);
-$group-item-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$group-item-background-fallback: light-dark(#ffffff, #1a272d);
-$group-item-indicator-background-selected-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-
 :host {
-  --ix-group-item--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$group-item-color-std-text-fallback}
-  );
-  --ix-group-item--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$group-item-color-focus-bdr-fallback}
-  );
-  --ix-group-item--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$group-item-color-soft-text-fallback}
-  );
+  --ix-group-item--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-group-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-group-item--color-soft-text: var(--theme-si-sys-text-secondary);
   --ix-group-item--color-ghost--selected: var(
-    --theme-si-sys-background-selected,
-    #{$group-item-color-ghost-selected-fallback}
+    --theme-si-sys-background-selected
   );
   --ix-group-item--color-ghost--selected-hover: var(
-    --theme-si-sys-background-hover,
-    #{$group-item-color-ghost-selected-hover-fallback}
+    --theme-si-sys-background-hover
   );
   --ix-group-item--color-ghost--selected-active: var(
-    --theme-si-sys-background-selected,
-    #{$group-item-color-ghost-selected-active-fallback}
+    --theme-si-sys-background-selected
   );
-  --ix-group-item--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$group-item-color-weak-text-fallback}
-  );
-  --ix-group-item--background: var(
-    --theme-si-sys-background-1,
-    #{$group-item-background-fallback}
-  );
+  --ix-group-item--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-group-item--background: var(--theme-si-sys-background-1);
   --ix-group-item--border-color--active: rgba(0, 0, 0, 0);
   --ix-group-item--border-color--hover: rgba(0, 0, 0, 0);
   --ix-group-item-indicator--background--selected: var(
-    --theme-si-sys-background-accent-hover,
-    #{$group-item-indicator-background-selected-fallback}
+    --theme-si-sys-background-accent-hover
   );
 }

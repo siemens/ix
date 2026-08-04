@@ -7,26 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tooltip-color-std-text-fallback: light-dark(#000609, #ffffff);
-$tooltip-shadow-4-fallback: 0px 4px 12px 0px rgba(0, 0, 0, 0.14),
-  0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
-$tooltip-background-fallback: light-dark(#ffffff, #1a272d);
-
 :host {
-  --ix-tooltip--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$tooltip-color-std-text-fallback}
-  );
-  --ix-tooltip--shadow-4: var(
-    --theme-si-sys-effects-shadow-4,
-    #{$tooltip-shadow-4-fallback}
-  );
-  --ix-tooltip--background: var(
-    --theme-si-sys-background-1,
-    #{$tooltip-background-fallback}
-  );
-  --ix-tootlip--background: var(
-    --theme-si-sys-background-1,
-    light-dark(#ffffff, #1a272d)
-  );
+  --ix-tooltip--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-tooltip--shadow-4: var(--theme-si-sys-effects-shadow-4);
+  --ix-tooltip--background: var(--theme-si-sys-background-1);
+  --ix-tootlip--background: var(--theme-si-sys-background-1);
 }

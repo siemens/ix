@@ -7,29 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$spinner-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$spinner-color-component-3-fallback: light-dark(
-  rgba(4, 20, 37, 0.2),
-  rgba(217, 243, 255, 0.4)
-);
-$spinner-color-dynamic-fallback: light-dark(#004f69, #00eaff);
-$spinner-color-ghost-hover-fallback: light-dark(#e8ebed, #273940);
-
 :host {
-  --ix-spinner--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$spinner-color-soft-text-fallback}
-  );
-  --ix-spinner--color-component-3: var(
-    --theme-color-component-3,
-    #{$spinner-color-component-3-fallback}
-  );
-  --ix-spinner--color-dynamic: var(
-    --theme-si-sys-text-accent-hover,
-    #{$spinner-color-dynamic-fallback}
-  );
-  --ix-spinner--color-ghost--hover: var(
-    --theme-si-sys-background-hover,
-    #{$spinner-color-ghost-hover-fallback}
-  );
+  --ix-spinner--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-spinner--color-component-3: var(--theme-color-component-3);
+  --ix-spinner--color-dynamic: var(--theme-si-sys-text-accent-hover);
+  --ix-spinner--color-ghost--hover: var(--theme-si-sys-background-hover);
 }

@@ -1,13 +1,4 @@
-$key-value-list-color-weak-bdr-fallback: light-dark(#ebedee, #405158);
-$key-value-list-color-ghost-alt-fallback: light-dark(#ffffff, #1a272d);
-
 :host {
-  --ix-key-value-list--color-weak-bdr: var(
-    --theme-si-sys-border-4,
-    #{$key-value-list-color-weak-bdr-fallback}
-  );
-  --ix-key-value-list--color-ghost-alt: var(
-    --theme-si-sys-background-1,
-    #{$key-value-list-color-ghost-alt-fallback}
-  );
+  --ix-key-value-list--color-weak-bdr: var(--theme-si-sys-border-4);
+  --ix-key-value-list--color-ghost-alt: var(--theme-si-sys-background-1);
 }

@@ -7,42 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$upload-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
-$upload-color-success-fallback: light-dark(#376f1c, #99e672);
-$upload-border-color-fallback: light-dark(#72848c, #5b6a71);
-$upload-border-color-dragover-fallback: light-dark(#004f69, #00eaff);
-$upload-text-color-fallback: light-dark(#000609, #ffffff);
-$upload-text-color-checking-fallback: light-dark(#000609, #ffffff);
-$upload-text-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-
 :host {
-  --ix-upload--color-alarm: var(
-    --theme-si-sys-text-danger,
-    #{$upload-color-alarm-fallback}
-  );
-  --ix-upload--color-success: var(
-    --theme-si-sys-text-success,
-    #{$upload-color-success-fallback}
-  );
-  --ix-upload--border-color: var(
-    --theme-si-sys-border-3,
-    #{$upload-border-color-fallback}
-  );
-  --ix-upload--border-color--dragover: var(
-    --theme-si-sys-border-accent-hover,
-    #{$upload-border-color-dragover-fallback}
-  );
-  --ix-upload--border-radius: var(--theme-default-border-radius, 0.25rem);
-  --ix-upload-text--color: var(
-    --theme-si-sys-text-primary,
-    #{$upload-text-color-fallback}
-  );
-  --ix-upload-text--color--checking: var(
-    --theme-si-sys-text-primary,
-    #{$upload-text-color-checking-fallback}
-  );
-  --ix-upload-text--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$upload-text-color-disabled-fallback}
-  );
+  --ix-upload--color-alarm: var(--theme-si-sys-text-danger);
+  --ix-upload--color-success: var(--theme-si-sys-text-success);
+  --ix-upload--border-color: var(--theme-si-sys-border-3);
+  --ix-upload--border-color--dragover: var(--theme-si-sys-border-accent-hover);
+  --ix-upload--border-radius: var(--theme-default-border-radius);
+  --ix-upload-text--color: var(--theme-si-sys-text-primary);
+  --ix-upload-text--color--checking: var(--theme-si-sys-text-primary);
+  --ix-upload-text--color--disabled: var(--theme-si-sys-text-disabled);
 }

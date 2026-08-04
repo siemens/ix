@@ -13,31 +13,31 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-slider-thumb--background: var(--theme-si-sys-background-accent-hover);
-  --theme-slider-thumb--background--active: var(--theme-color-dynamic--active);
-  --theme-slider-thumb--background--disabled: var(--theme-color-7);
-  --theme-slider-thumb--background--hover: var(--theme-color-dynamic--hover);
+  --theme-slider-thumb--background: var(--theme-si-sys-background-accent);
+  --theme-slider-thumb--background--active: var(--theme-si-sys-background-accent-active);
+  --theme-slider-thumb--background--disabled: var(--theme-si-sys-background-neutral);
+  --theme-slider-thumb--background--hover: var(--theme-si-sys-background-accent-hover);
   --theme-slider-thumb--background--info: var(--theme-si-sys-background-information);
   --theme-slider-thumb--background--info--active: var(--theme-si-sys-background-information-active);
   --theme-slider-thumb--background--info--hover: var(--theme-si-sys-background-information-hover);
   --theme-slider-thumb--background--invalid: var(--theme-si-sys-background-danger);
   --theme-slider-thumb--background--invalid--active: var(--theme-si-sys-background-danger-active);
   --theme-slider-thumb--background--invalid--hover: var(--theme-si-sys-background-danger-hover);
-  --theme-slider-thumb--background--warning: var(--theme-color-warning);
-  --theme-slider-thumb--background--warning--active: var(--theme-color-warning--active);
-  --theme-slider-thumb--background--warning--hover: var(--theme-color-warning--hover);
-  --theme-slider-trace--background: var(--theme-si-sys-background-accent-hover);
-  --theme-slider-trace--background--disabled: var(--theme-color-component-3);
-  --theme-slider-trace--background--info: var(--theme-si-sys-background-information);
-  --theme-slider-trace--background--invalid: var(--theme-si-sys-background-danger);
-  --theme-slider-trace--background--warning: var(--theme-color-warning-bdr);
-  --theme-slider-trace-marker--background: var(--theme-si-sys-background-accent-hover);
-  --theme-slider-trace-marker--background--disabled: var(--theme-color-7);
+  --theme-slider-thumb--background--warning: var(--theme-si-sys-background-warning);
+  --theme-slider-thumb--background--warning--active: var(--theme-si-sys-background-warning-active);
+  --theme-slider-thumb--background--warning--hover: var(--theme-si-sys-background-warning-hover);
+  --theme-slider-trace--background: var(--theme-si-sys-border-accent);
+  --theme-slider-trace--background--disabled: var(--theme-si-sys-border-3);
+  --theme-slider-trace--background--info: var(--theme-si-sys-border-information);
+  --theme-slider-trace--background--invalid: var(--theme-si-sys-border-danger);
+  --theme-slider-trace--background--warning: var(--theme-si-sys-border-warning);
+  --theme-slider-trace-marker--background: var(--theme-si-sys-background-accent);
+  --theme-slider-trace-marker--background--disabled: var(--theme-si-sys-background-neutral);
   --theme-slider-trace-marker--background--info: var(--theme-si-sys-background-information);
   --theme-slider-trace-marker--background--invalid: var(--theme-si-sys-background-danger);
-  --theme-slider-trace-marker--background--warning: var(--theme-color-warning);
-  --theme-slider-track--background: var(--theme-color-component-4);
-  --theme-slider-track--background--disabled: var(--theme-color-component-2);
-  --theme-slider-track-marker--background: var(--theme-color-8);
-  --theme-slider-track-marker--background--disabled: var(--theme-color-5);
+  --theme-slider-trace-marker--background--warning: var(--theme-si-sys-background-warning);
+  --theme-slider-track--background: var(--theme-si-sys-border-4);
+  --theme-slider-track--background--disabled: var(--theme-si-sys-border-4);
+  --theme-slider-track-marker--background: var(--theme-si-sys-border-4);
+  --theme-slider-track-marker--background--disabled: var(--theme-si-sys-background-neutral);
 }

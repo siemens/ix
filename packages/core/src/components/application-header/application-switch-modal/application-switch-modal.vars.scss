@@ -7,19 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$application-switch-modal-color-ghost-selected-fallback: light-dark(
-  rgba(0, 234, 255, 0.2),
-  rgba(0, 255, 255, 0.1)
-);
-$application-switch-modal-color-focus-bdr-fallback: #199fff;
-
 :host {
   --ix-application-switch-modal--color-ghost--selected: var(
-    --theme-color-ghost--selected,
-    #{$application-switch-modal-color-ghost-selected-fallback}
+    --theme-color-ghost--selected
   );
-  --ix-application-switch-modal--color-focus-bdr: var(
-    --theme-color-focus-bdr,
-    #{$application-switch-modal-color-focus-bdr-fallback}
-  );
+  --ix-application-switch-modal--color-focus-bdr: var(--theme-color-focus-bdr);
 }

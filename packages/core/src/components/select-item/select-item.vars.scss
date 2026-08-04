@@ -7,16 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$select-item-color-std-text-fallback: light-dark(#000609, #ffffff);
-$select-list-item-background-selected-fallback: light-dark(#dcdee0, #34454d);
-
 :host {
-  --ix-select-item--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$select-item-color-std-text-fallback}
-  );
+  --ix-select-item--color-std-text: var(--theme-si-sys-text-primary);
   --ix-select-list-item--background--selected: var(
-    --theme-si-sys-background-selected,
-    #{$select-list-item-background-selected-fallback}
+    --theme-si-sys-background-selected
   );
 }

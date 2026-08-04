@@ -8,66 +8,6 @@
  */
 
 @use 'sass:map';
-$blind-color-ghost-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
-);
-$blind-color-std-text-fallback: light-dark(#000609, #ffffff);
-$blind-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$blind-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$blind-color-soft-bdr-fallback: light-dark(#72848c, #5b6a71);
-$blind-color-focus-bdr-fallback: #199fff;
-$blind-base-background-fallback: light-dark(#ffffff, #1a272d);
-$blind-variant-fallbacks: (
-  alarm: (
-    background: #d72323,
-    hover: #c01616,
-    active: #a70808,
-    color: #ffffff,
-  ),
-  critical: (
-    background: #a733bc,
-    hover: #740089,
-    active: #52245c,
-    color: light-dark(#ffffff, #000609),
-  ),
-  filled: (
-    background: transparent,
-    hover: transparent,
-    active: transparent,
-    color: light-dark(rgba(0, 10, 20, 0.9), rgba(245, 252, 255, 0.9)),
-  ),
-  info: (
-    background: #226ae7,
-    hover: #215dc5,
-    active: #2050a2,
-    color: #ffffff,
-  ),
-  neutral: (
-    background: light-dark(#919ca1, #5b6a71),
-    hover: light-dark(#e8ebed, #273940),
-    active: light-dark(#dcdee0, #34454d),
-    color: light-dark(#000609, #ffffff),
-  ),
-  primary: (
-    background: light-dark(#006a87, #00c9e4),
-    hover: light-dark(#004f69, #00eaff),
-    active: light-dark(#004e68, #00def7),
-    color: light-dark(#ffffff, #000609),
-  ),
-  success: (
-    background: light-dark(#376f1c, #59bd28),
-    hover: light-dark(#2a5117, #7ad34d),
-    active: light-dark(#1d3212, #99e672),
-    color: light-dark(#ffffff, #000609),
-  ),
-  warning: (
-    background: light-dark(#ba5d00, #ff8000),
-    hover: light-dark(#9a4d00, #e37200),
-    active: light-dark(#824100, #ba5d00),
-    color: light-dark(#ffffff, #000609),
-  ),
-);
 
 // si/sys token names per variant (background/hover/active/contrast), per the
 // SI Theme Token Migration Guide. Naming isn't uniform across variants
@@ -120,69 +60,42 @@ $blind-variant-sys-tokens: (
 );
 
 @mixin variant-vars($variant) {
-  @if map.has-key($blind-variant-fallbacks, $variant) {
-    $fallbacks: map.get($blind-variant-fallbacks, $variant);
-    $sys-tokens: map.get($blind-variant-sys-tokens, $variant);
+  $sys-tokens: map.get($blind-variant-sys-tokens, $variant);
 
-    @if $sys-tokens {
-      --ix-blind-#{$variant}--background: var(
-        --theme-si-sys-#{map.get($sys-tokens, background)},
-        #{map.get($fallbacks, background)}
-      );
-      --ix-blind-#{$variant}--background--hover: var(
-        --theme-si-sys-#{map.get($sys-tokens, hover)},
-        #{map.get($fallbacks, hover)}
-      );
-      --ix-blind-#{$variant}--background--active: var(
-        --theme-si-sys-#{map.get($sys-tokens, active)},
-        #{map.get($fallbacks, active)}
-      );
-      --ix-blind-#{$variant}--color: var(
-        --theme-si-sys-#{map.get($sys-tokens, contrast)},
-        #{map.get($fallbacks, color)}
-      );
-    } @else {
-      // "filled" (and any future variant without a sys mapping) keeps its
-      // local fallback value directly; no legacy or sys token applies.
-      --ix-blind-#{$variant}--background: #{map.get($fallbacks, background)};
-      --ix-blind-#{$variant}--background--hover: #{map.get($fallbacks, hover)};
-      --ix-blind-#{$variant}--background--active: #{map.get(
-          $fallbacks,
-          active
-        )};
-      --ix-blind-#{$variant}--color: #{map.get($fallbacks, color)};
-    }
+  @if $sys-tokens {
+    --ix-blind-#{$variant}--background: var(
+      --theme-si-sys-#{map.get($sys-tokens, background)}
+    );
+    --ix-blind-#{$variant}--background--hover: var(
+      --theme-si-sys-#{map.get($sys-tokens, hover)}
+    );
+    --ix-blind-#{$variant}--background--active: var(
+      --theme-si-sys-#{map.get($sys-tokens, active)}
+    );
+    --ix-blind-#{$variant}--color: var(
+      --theme-si-sys-#{map.get($sys-tokens, contrast)}
+    );
+  } @else if $variant == 'filled' {
+    --ix-blind-filled--background: transparent;
+    --ix-blind-filled--background--hover: transparent;
+    --ix-blind-filled--background--active: transparent;
+    --ix-blind-filled--color: light-dark(
+      rgba(0, 10, 20, 0.9),
+      rgba(245, 252, 255, 0.9)
+    );
   }
 }
 
 :host {
   --ix-blind--color-ghost: transparent;
-  --ix-blind--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$blind-color-std-text-fallback}
-  );
-  --ix-blind--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$blind-color-soft-text-fallback}
-  );
-  --ix-blind--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$blind-color-primary-fallback}
-  );
-  --ix-blind--color-soft-bdr: var(
-    --theme-si-sys-border-3,
-    #{$blind-color-soft-bdr-fallback}
-  );
-  --ix-blind--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$blind-color-focus-bdr-fallback}
-  );
-  --ix-blind--default-time: var(--theme-default-time, 150ms);
-  --ix-blind--border-radius: var(--theme-default-border-radius, 0.25rem);
-  --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
-  --ix-blind-base--background: var(
-    --theme-si-sys-background-1,
-    #{$blind-base-background-fallback}
-  );
+  --ix-blind--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-blind--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-blind--color-primary: var(--theme-si-sys-text-accent);
+  --ix-blind--color-soft-bdr: var(--theme-si-sys-border-3);
+  --ix-blind--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-blind--default-time: var(--theme-default-time);
+  --ix-blind--border-radius: var(--theme-default-border-radius);
+  --ix-blind--border-thickness: var(--theme-border-width-default);
+  --ix-blind-base--background: var(--theme-si-sys-background-1);
   --ix-blind-base--border-color: rgba(0, 0, 0, 0);
 }

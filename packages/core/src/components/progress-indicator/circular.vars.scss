@@ -7,198 +7,81 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$progress-indicator-fill-background-fallback: light-dark(#004f69, #00eaff);
-$progress-indicator-fill-error-background-fallback: #d72323;
-$progress-indicator-fill-info-background-fallback: #226ae7;
-$progress-indicator-fill-paused-background-fallback: light-dark(
-  #919ca1,
-  #5b6a71
-);
-$progress-indicator-fill-success-background-fallback: light-dark(
-  #376f1c,
-  #59bd28
-);
-$progress-indicator-fill-warning-background-fallback: light-dark(
-  #ba5d00,
-  #ff8000
-);
-$progress-indicator-helper-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-helper-error-color-fallback: light-dark(#a70808, #ff8e8e);
-$progress-indicator-helper-icon-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-helper-icon-error-color-fallback: light-dark(
-  #a70808,
-  #ff8e8e
-);
-$progress-indicator-helper-icon-info-color-fallback: light-dark(
-  #2050a2,
-  #a9c3f1
-);
-$progress-indicator-helper-icon-paused-color-fallback: light-dark(
-  #919ca1,
-  #5b6a71
-);
-$progress-indicator-helper-icon-success-color-fallback: light-dark(
-  #376f1c,
-  #99e672
-);
-$progress-indicator-helper-icon-warning-color-fallback: light-dark(
-  #9a4d00,
-  #ff9225
-);
-$progress-indicator-helper-info-color-fallback: light-dark(#000609, #ffffff);
-$progress-indicator-helper-paused-color-fallback: light-dark(#000609, #ffffff);
-$progress-indicator-helper-success-color-fallback: light-dark(#000609, #ffffff);
-$progress-indicator-helper-warning-color-fallback: light-dark(#000609, #ffffff);
-$progress-indicator-label-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-label-error-color-fallback: light-dark(#a70808, #ff8e8e);
-$progress-indicator-label-info-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-label-paused-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-label-success-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-label-warning-color-fallback: light-dark(#405158, #aeb5b8);
-$progress-indicator-track-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.2),
-  rgba(255, 255, 255, 0.3)
-);
-$progress-indicator-track-error-background-fallback: light-dark(
-  #fccccc,
-  #430000
-);
-$progress-indicator-track-info-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.2),
-  rgba(255, 255, 255, 0.3)
-);
-$progress-indicator-track-paused-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.2),
-  rgba(255, 255, 255, 0.3)
-);
-$progress-indicator-track-success-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.2),
-  rgba(255, 255, 255, 0.3)
-);
-$progress-indicator-track-warning-background-fallback: light-dark(
-  #fee5cc,
-  #3c1e00
-);
-
 :host {
   --ix-progress-indicator-fill--background: var(
-    --theme-si-sys-background-accent-hover,
-    #{$progress-indicator-fill-background-fallback}
+    --theme-si-sys-background-accent-hover
   );
   --ix-progress-indicator-fill-error--background: var(
-    --theme-si-sys-background-danger,
-    #{$progress-indicator-fill-error-background-fallback}
+    --theme-si-sys-background-danger
   );
   --ix-progress-indicator-fill-info--background: var(
-    --theme-si-sys-background-information,
-    #{$progress-indicator-fill-info-background-fallback}
+    --theme-si-sys-background-information
   );
   --ix-progress-indicator-fill-paused--background: var(
-    --theme-si-sys-background-neutral,
-    #{$progress-indicator-fill-paused-background-fallback}
+    --theme-si-sys-background-neutral
   );
   --ix-progress-indicator-fill-success--background: var(
-    --theme-si-sys-background-success,
-    #{$progress-indicator-fill-success-background-fallback}
+    --theme-si-sys-background-success
   );
   --ix-progress-indicator-fill-warning--background: var(
-    --theme-si-sys-background-warning,
-    #{$progress-indicator-fill-warning-background-fallback}
+    --theme-si-sys-background-warning
   );
-  --ix-progress-indicator-helper--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-helper-color-fallback}
-  );
-  --ix-progress-indicator-helper-error--color: var(
-    --theme-si-sys-text-danger,
-    #{$progress-indicator-helper-error-color-fallback}
-  );
+  --ix-progress-indicator-helper--color: var(--theme-si-sys-text-secondary);
+  --ix-progress-indicator-helper-error--color: var(--theme-si-sys-text-danger);
   --ix-progress-indicator-helper-icon--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-helper-icon-color-fallback}
+    --theme-si-sys-text-secondary
   );
   --ix-progress-indicator-helper-icon-error--color: var(
-    --theme-si-sys-text-danger,
-    #{$progress-indicator-helper-icon-error-color-fallback}
+    --theme-si-sys-text-danger
   );
   --ix-progress-indicator-helper-icon-info--color: var(
-    --theme-si-sys-text-information,
-    #{$progress-indicator-helper-icon-info-color-fallback}
+    --theme-si-sys-text-information
   );
   --ix-progress-indicator-helper-icon-paused--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-helper-icon-paused-color-fallback}
+    --theme-si-sys-text-secondary
   );
   --ix-progress-indicator-helper-icon-success--color: var(
-    --theme-si-sys-text-success,
-    #{$progress-indicator-helper-icon-success-color-fallback}
+    --theme-si-sys-text-success
   );
   --ix-progress-indicator-helper-icon-warning--color: var(
-    --theme-si-sys-text-warning,
-    #{$progress-indicator-helper-icon-warning-color-fallback}
+    --theme-si-sys-text-warning
   );
-  --ix-progress-indicator-helper-info--color: var(
-    --theme-si-sys-text-primary,
-    #{$progress-indicator-helper-info-color-fallback}
-  );
+  --ix-progress-indicator-helper-info--color: var(--theme-si-sys-text-primary);
   --ix-progress-indicator-helper-paused--color: var(
-    --theme-si-sys-text-primary,
-    #{$progress-indicator-helper-paused-color-fallback}
+    --theme-si-sys-text-primary
   );
   --ix-progress-indicator-helper-success--color: var(
-    --theme-si-sys-text-primary,
-    #{$progress-indicator-helper-success-color-fallback}
+    --theme-si-sys-text-primary
   );
   --ix-progress-indicator-helper-warning--color: var(
-    --theme-si-sys-text-primary,
-    #{$progress-indicator-helper-warning-color-fallback}
+    --theme-si-sys-text-primary
   );
-  --ix-progress-indicator-label--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-label-color-fallback}
-  );
-  --ix-progress-indicator-label-error--color: var(
-    --theme-si-sys-text-danger,
-    #{$progress-indicator-label-error-color-fallback}
-  );
-  --ix-progress-indicator-label-info--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-label-info-color-fallback}
-  );
+  --ix-progress-indicator-label--color: var(--theme-si-sys-text-secondary);
+  --ix-progress-indicator-label-error--color: var(--theme-si-sys-text-danger);
+  --ix-progress-indicator-label-info--color: var(--theme-si-sys-text-secondary);
   --ix-progress-indicator-label-paused--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-label-paused-color-fallback}
+    --theme-si-sys-text-secondary
   );
   --ix-progress-indicator-label-success--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-label-success-color-fallback}
+    --theme-si-sys-text-secondary
   );
   --ix-progress-indicator-label-warning--color: var(
-    --theme-si-sys-text-secondary,
-    #{$progress-indicator-label-warning-color-fallback}
+    --theme-si-sys-text-secondary
   );
-  --ix-progress-indicator-track--background: var(
-    --theme-color-component-3,
-    #{$progress-indicator-track-background-fallback}
-  );
+  --ix-progress-indicator-track--background: var(--theme-color-component-3);
   --ix-progress-indicator-track-error--background: var(
-    --theme-si-sys-background-danger-subtle,
-    #{$progress-indicator-track-error-background-fallback}
+    --theme-si-sys-background-danger-subtle
   );
   --ix-progress-indicator-track-info--background: var(
-    --theme-color-component-3,
-    #{$progress-indicator-track-info-background-fallback}
+    --theme-color-component-3
   );
   --ix-progress-indicator-track-paused--background: var(
-    --theme-color-component-3,
-    #{$progress-indicator-track-paused-background-fallback}
+    --theme-color-component-3
   );
   --ix-progress-indicator-track-success--background: var(
-    --theme-color-component-3,
-    #{$progress-indicator-track-success-background-fallback}
+    --theme-color-component-3
   );
   --ix-progress-indicator-track-warning--background: var(
-    --theme-si-sys-background-warning-subtle,
-    #{$progress-indicator-track-warning-background-fallback}
+    --theme-si-sys-background-warning-subtle
   );
 }

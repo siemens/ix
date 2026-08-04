@@ -7,22 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$card-list-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$card-list-color-ghost-hover-fallback: light-dark(#e8ebed, #273940);
-$card-list-color-ghost-active-fallback: light-dark(#dcdee0, #34454d);
-
 :host {
-  --ix-card-list--default-time: var(--theme-default-time, 150ms);
-  --ix-card-list--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$card-list-color-primary-fallback}
-  );
-  --ix-card-list--color-ghost--hover: var(
-    --theme-si-sys-background-hover,
-    #{$card-list-color-ghost-hover-fallback}
-  );
-  --ix-card-list--color-ghost--active: var(
-    --theme-si-sys-background-selected,
-    #{$card-list-color-ghost-active-fallback}
-  );
+  --ix-card-list--default-time: var(--theme-default-time);
+  --ix-card-list--color-primary: var(--theme-si-sys-text-accent);
+  --ix-card-list--color-ghost--hover: var(--theme-si-sys-background-hover);
+  --ix-card-list--color-ghost--active: var(--theme-si-sys-background-selected);
 }

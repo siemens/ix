@@ -7,21 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$action-card-border-radius-fallback: 0.25rem;
-$action-card-focus-outline-offset-fallback: 0.125rem;
-$action-card-color-focus-bdr-fallback: #199fff;
-
 :host {
-  --ix-action-card--border-radius: var(
-    --theme-default-border-radius,
-    #{$action-card-border-radius-fallback}
-  );
-  --ix-action-card--focus--outline-offset: var(
-    --theme-focus-outline-offset,
-    #{$action-card-focus-outline-offset-fallback}
-  );
-  --ix-action-card--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$action-card-color-focus-bdr-fallback}
-  );
+  --ix-action-card--border-radius: var(--theme-default-border-radius);
+  --ix-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-action-card--color-focus-bdr: var(--theme-si-sys-effects-focus);
 }

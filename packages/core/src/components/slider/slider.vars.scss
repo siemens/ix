@@ -7,136 +7,46 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$slider-color-focus-bdr-fallback: #199fff;
-$slider-color-warning-40-fallback: light-dark(#ffedba, #322501);
-$slider-color-warning-fallback: light-dark(#9a4d00, #ff9225);
-$slider-color-info-40-fallback: light-dark(#d2e0f7, #1a386b);
-$slider-color-info-fallback: light-dark(#2050a2, #a9c3f1);
-$slider-color-success-40-fallback: light-dark(#d1f2c1, #1d3212);
-$slider-color-success-fallback: light-dark(#376f1c, #99e672);
-$slider-thumb-background-fallback: light-dark(#004f69, #00eaff);
-$slider-thumb-background-active-fallback: light-dark(#195468, #0094b1);
-$slider-thumb-background-disabled-fallback: light-dark(#adb0b3, #72848c);
-$slider-thumb-background-hover-fallback: light-dark(#006f8e, #00def7);
-$slider-thumb-background-invalid-fallback: #d72323;
-$slider-thumb-background-invalid-active-fallback: #a70808;
-$slider-thumb-background-invalid-hover-fallback: #c01616;
-$slider-trace-background-fallback: light-dark(#004f69, #00eaff);
-$slider-trace-background-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.2),
-  rgba(255, 255, 255, 0.3)
-);
-$slider-trace-background-invalid-fallback: #d72323;
-$slider-trace-marker-background-fallback: light-dark(#004f69, #00eaff);
-$slider-trace-marker-background-disabled-fallback: light-dark(#adb0b3, #72848c);
-$slider-trace-marker-background-invalid-fallback: #d72323;
-$slider-track-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$slider-track-background-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.12),
-  rgba(255, 255, 255, 0.15)
-);
-$slider-track-marker-background-fallback: light-dark(#72848c, #e5e8e9);
-$slider-track-marker-background-disabled-fallback: light-dark(#dcdee0, #405158);
-
 :host {
-  --ix-slider--default-time: var(--theme-default-time, 150ms);
-  --ix-slider--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$slider-color-focus-bdr-fallback}
-  );
-  --ix-slider--color-warning-40: var(
-    --theme-si-sys-background-caution-subtle,
-    #{$slider-color-warning-40-fallback}
-  );
-  --ix-slider--color-warning: var(
-    --theme-si-sys-text-warning,
-    #{$slider-color-warning-fallback}
-  );
-  --ix-slider--color-info-40: var(
-    --theme-si-sys-background-information-subtle,
-    #{$slider-color-info-40-fallback}
-  );
-  --ix-slider--color-info: var(
-    --theme-si-sys-text-information,
-    #{$slider-color-info-fallback}
-  );
-  --ix-slider--color-success-40: var(
-    --theme-si-sys-background-success-subtle,
-    #{$slider-color-success-40-fallback}
-  );
-  --ix-slider--color-success: var(
-    --theme-si-sys-text-success,
-    #{$slider-color-success-fallback}
-  );
-  --ix-slider-thumb--background: var(
-    --theme-si-sys-background-accent-hover,
-    #{$slider-thumb-background-fallback}
-  );
+  --ix-slider--default-time: var(--theme-default-time);
+  --ix-slider--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-slider--color-warning-40: var(--theme-si-sys-background-caution-subtle);
+  --ix-slider--color-warning: var(--theme-si-sys-text-warning);
+  --ix-slider--color-info-40: var(--theme-si-sys-background-information-subtle);
+  --ix-slider--color-info: var(--theme-si-sys-text-information);
+  --ix-slider--color-success-40: var(--theme-si-sys-background-success-subtle);
+  --ix-slider--color-success: var(--theme-si-sys-text-success);
+  --ix-slider-thumb--background: var(--theme-si-sys-background-accent);
   --ix-slider-thumb--background--active: var(
-    --theme-color-dynamic--active,
-    #{$slider-thumb-background-active-fallback}
+    --theme-si-sys-background-accent-active
   );
   --ix-slider-thumb--background--disabled: var(
-    --theme-color-7,
-    #{$slider-thumb-background-disabled-fallback}
+    --theme-si-sys-background-neutral
   );
   --ix-slider-thumb--background--hover: var(
-    --theme-color-dynamic--hover,
-    #{$slider-thumb-background-hover-fallback}
+    --theme-si-sys-background-accent-hover
   );
-  --ix-slider-thumb--background--invalid: var(
-    --theme-si-sys-background-danger,
-    #{$slider-thumb-background-invalid-fallback}
-  );
+  --ix-slider-thumb--background--invalid: var(--theme-si-sys-background-danger);
   --ix-slider-thumb--background--invalid--active: var(
-    --theme-si-sys-background-danger-active,
-    #{$slider-thumb-background-invalid-active-fallback}
+    --theme-si-sys-background-danger-active
   );
   --ix-slider-thumb--background--invalid--hover: var(
-    --theme-si-sys-background-danger-hover,
-    #{$slider-thumb-background-invalid-hover-fallback}
+    --theme-si-sys-background-danger-hover
   );
-  --ix-slider-trace--background: var(
-    --theme-si-sys-background-accent-hover,
-    #{$slider-trace-background-fallback}
-  );
-  --ix-slider-trace--background--disabled: var(
-    --theme-color-component-3,
-    #{$slider-trace-background-disabled-fallback}
-  );
-  --ix-slider-trace--background--invalid: var(
-    --theme-si-sys-background-danger,
-    #{$slider-trace-background-invalid-fallback}
-  );
-  --ix-slider-trace-marker--background: var(
-    --theme-si-sys-background-accent-hover,
-    #{$slider-trace-marker-background-fallback}
-  );
+  --ix-slider-trace--background: var(--theme-si-sys-border-accent);
+  --ix-slider-trace--background--disabled: var(--theme-si-sys-border-3);
+  --ix-slider-trace--background--invalid: var(--theme-si-sys-border-danger);
+  --ix-slider-trace-marker--background: var(--theme-si-sys-background-accent);
   --ix-slider-trace-marker--background--disabled: var(
-    --theme-color-7,
-    #{$slider-trace-marker-background-disabled-fallback}
+    --theme-si-sys-background-neutral
   );
   --ix-slider-trace-marker--background--invalid: var(
-    --theme-si-sys-background-danger,
-    #{$slider-trace-marker-background-invalid-fallback}
+    --theme-si-sys-background-danger
   );
-  --ix-slider-track--background: var(
-    --theme-color-component-4,
-    #{$slider-track-background-fallback}
-  );
-  --ix-slider-track--background--disabled: var(
-    --theme-color-component-2,
-    #{$slider-track-background-disabled-fallback}
-  );
-  --ix-slider-track-marker--background: var(
-    --theme-color-8,
-    #{$slider-track-marker-background-fallback}
-  );
+  --ix-slider-track--background: var(--theme-si-sys-border-4);
+  --ix-slider-track--background--disabled: var(--theme-si-sys-border-4);
+  --ix-slider-track-marker--background: var(--theme-si-sys-border-4);
   --ix-slider-track-marker--background--disabled: var(
-    --theme-color-5,
-    #{$slider-track-marker-background-disabled-fallback}
+    --theme-si-sys-background-neutral
   );
 }

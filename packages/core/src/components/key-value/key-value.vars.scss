@@ -1,13 +1,4 @@
-$key-value-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$key-value-color-soft-bdr-fallback: light-dark(#72848c, #5b6a71);
-
 :host {
-  --ix-key-value--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$key-value-color-soft-text-fallback}
-  );
-  --ix-key-value--color-soft-bdr: var(
-    --theme-si-sys-border-3,
-    #{$key-value-color-soft-bdr-fallback}
-  );
+  --ix-key-value--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-key-value--color-soft-bdr: var(--theme-si-sys-border-3);
 }

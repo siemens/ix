@@ -7,32 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$dropdown-color-2-fallback: light-dark(#ffffff, #1a272d);
-$dropdown-shadow-4-fallback: 0px 4px 12px 0px rgba(0, 0, 0, 0.14),
-  0px -0.25px 2px 0px rgba(0, 0, 0, 0.08);
-$dropdown-color-std-text-fallback: light-dark(#000609, #ffffff);
-$menu-header-color-fallback: light-dark(#405158, #aeb5b8);
-
 :host {
-  --ix-dropdown--color-2: var(
-    --theme-si-sys-background-1,
-    #{$dropdown-color-2-fallback}
-  );
-  --ix-dropdown--default-border-radius: var(
-    --theme-default-border-radius,
-    0.25rem
-  );
-  --ix-dropdown--z-index-dropdown: var(--theme-z-index-dropdown, 1060);
-  --ix-dropdown--shadow-4: var(
-    --theme-si-sys-effects-shadow-4,
-    #{$dropdown-shadow-4-fallback}
-  );
-  --ix-dropdown--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$dropdown-color-std-text-fallback}
-  );
-  --ix-menu-header--color: var(
-    --theme-si-sys-text-secondary,
-    #{$menu-header-color-fallback}
-  );
+  --ix-dropdown--color-2: var(--theme-si-sys-background-1);
+  --ix-dropdown--default-border-radius: var(--theme-default-border-radius);
+  --ix-dropdown--z-index-dropdown: var(--theme-z-index-dropdown);
+  --ix-dropdown--shadow-4: var(--theme-si-sys-effects-shadow-4);
+  --ix-dropdown--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-menu-header--color: var(--theme-si-sys-text-secondary);
 }

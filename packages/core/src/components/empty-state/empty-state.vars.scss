@@ -1,8 +1,3 @@
-$empty-state-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-
 :host {
-  --ix-empty-state--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$empty-state-color-soft-text-fallback}
-  );
+  --ix-empty-state--color-soft-text: var(--theme-si-sys-text-secondary);
 }

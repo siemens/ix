@@ -7,27 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$dropdown-item-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$dropdown-item-color-std-text-fallback: light-dark(#000609, #ffffff);
-$dropdown-item-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$dropdown-item-color-focus-bdr-fallback: #199fff;
-
 :host {
-  --ix-dropdown-item--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$dropdown-item-color-primary-fallback}
-  );
-  --ix-dropdown-item--color-std-text: var(
-    --theme-si-sys-text-primary,
-    #{$dropdown-item-color-std-text-fallback}
-  );
-  --ix-dropdown-item--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$dropdown-item-color-weak-text-fallback}
-  );
-  --ix-dropdown-item--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$dropdown-item-color-focus-bdr-fallback}
-  );
+  --ix-dropdown-item--color-primary: var(--theme-si-sys-text-accent);
+  --ix-dropdown-item--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-dropdown-item--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-dropdown-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
   --ix-dropdown-item-checked-color: var(--ix-dropdown-item--color-primary);
 }

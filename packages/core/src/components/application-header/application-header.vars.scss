@@ -7,44 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$application-header-color-x-weak-bdr-fallback: light-dark(#ebedee, #405158);
-$app-header-background-fallback: light-dark(#ffffff, #1a272d);
-$app-header-border-color-fallback: light-dark(#ebedee, #405158);
-$app-header-color-fallback: light-dark(#000609, #ffffff);
-$app-header-app-icon-outline-color-fallback: light-dark(#5b6a71, #919ca1);
-$app-header-logo-color-fallback: light-dark(#000000, #ffffff);
-$app-header-name-suffix-color-fallback: light-dark(#405158, #aeb5b8);
-
 :host {
-  --ix-application-header--z-index-fixed: var(--theme-z-index-fixed, 1030);
-  --ix-application-header--color-x-weak-bdr: var(
-    --theme-si-sys-border-4,
-    #{$application-header-color-x-weak-bdr-fallback}
-  );
-  --ix-app-header--background: var(
-    --theme-si-sys-background-1,
-    #{$app-header-background-fallback}
-  );
-  --ix-app-header--border-color: var(
-    --theme-si-sys-border-4,
-    #{$app-header-border-color-fallback}
-  );
-  --ix-app-header--border-width: var(--theme-border-width-default, 0.0625rem);
-  --ix-app-header--color: var(
-    --theme-si-sys-text-primary,
-    #{$app-header-color-fallback}
-  );
-  --ix-app-header-app-icon--outline-color: var(
-    --theme-si-sys-border-2,
-    #{$app-header-app-icon-outline-color-fallback}
-  );
-  --ix-app-header-logo--color: var(
-    --theme-si-sys-effects-logo,
-    #{$app-header-logo-color-fallback}
-  );
-  --ix-app-header-name-suffix--color: var(
-    --theme-si-sys-text-secondary,
-    #{$app-header-name-suffix-color-fallback}
-  );
-  --ix-blind--border-thickness: var(--theme-border-width-default, 0.0625rem);
+  --ix-application-header--z-index-fixed: var(--theme-z-index-fixed);
+  --ix-application-header--color-x-weak-bdr: var(--theme-si-sys-border-4);
+  --ix-app-header--background: var(--theme-si-sys-background-1);
+  --ix-app-header--border-color: var(--theme-si-sys-border-4);
+  --ix-app-header--border-width: var(--theme-border-width-default);
+  --ix-app-header--color: var(--theme-si-sys-text-primary);
+  --ix-app-header-app-icon--outline-color: var(--theme-si-sys-border-2);
+  --ix-app-header-logo--color: var(--theme-si-sys-effects-logo);
+  --ix-app-header-name-suffix--color: var(--theme-si-sys-text-secondary);
+  --ix-blind--border-thickness: var(--theme-border-width-default);
 }

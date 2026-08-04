@@ -7,11 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$divider-color-x-weak-bdr-fallback: light-dark(#ebedee, #405158);
-
 :host {
-  --ix-divider--color-x-weak-bdr: var(
-    --theme-si-sys-border-4,
-    #{$divider-color-x-weak-bdr-fallback}
-  );
+  --ix-divider--color-x-weak-bdr: var(--theme-si-sys-border-4);
 }

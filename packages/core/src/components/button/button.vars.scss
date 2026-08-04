@@ -7,341 +7,81 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$btn-color-focus-bdr-fallback: #199fff;
-$btn-danger-primary-background-fallback: #d72323;
-$btn-danger-primary-background-active-fallback: #a70808;
-$btn-danger-primary-background-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-danger-primary-background-hover-fallback: #c01616;
-$btn-danger-primary-color-fallback: #ffffff;
-$btn-danger-primary-color-active-fallback: #ffffff;
-$btn-danger-primary-color-disabled-fallback: light-dark(#ffffff, #000609);
-$btn-danger-primary-color-hover-fallback: #ffffff;
-$btn-danger-secondary-background-active-fallback: #a70808;
-$btn-danger-secondary-background-hover-fallback: #c01616;
-$btn-danger-secondary-border-color-fallback: light-dark(#a70808, #ff8e8e);
-$btn-danger-secondary-border-color-active-fallback: #a70808;
-$btn-danger-secondary-border-color-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-danger-secondary-border-color-hover-fallback: #c01616;
-$btn-danger-secondary-color-fallback: light-dark(#a70808, #ff8e8e);
-$btn-danger-secondary-color-active-fallback: #ffffff;
-$btn-danger-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-danger-secondary-color-hover-fallback: #ffffff;
-$btn-danger-tertiary-background-active-fallback: #a70808;
-$btn-danger-tertiary-background-hover-fallback: #c01616;
-$btn-danger-tertiary-color-fallback: light-dark(#a70808, #ff8e8e);
-$btn-danger-tertiary-color-active-fallback: #ffffff;
-$btn-danger-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-danger-tertiary-color-hover-fallback: #ffffff;
-$btn-primary-background-fallback: light-dark(#006a87, #00c9e4);
-$btn-primary-background-active-fallback: light-dark(#004e68, #00def7);
-$btn-primary-background-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-primary-background-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-primary-background-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-primary-background-pressed-active-fallback: light-dark(#195468, #0094b1);
-$btn-primary-background-pressed-hover-fallback: light-dark(#006f8e, #00def7);
-$btn-primary-color-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-active-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-disabled-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-hover-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-pressed-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-pressed-active-fallback: light-dark(#ffffff, #000609);
-$btn-primary-color-pressed-hover-fallback: light-dark(#ffffff, #000609);
-$btn-secondary-background-fallback: light-dark(
-  rgba(0, 106, 135, 0),
-  rgba(0, 201, 228, 0)
-);
-$btn-secondary-background-active-fallback: light-dark(#c2faff, #00212f);
-$btn-secondary-background-hover-fallback: light-dark(#d1fbff, #003246);
-$btn-secondary-background-pressed-fallback: light-dark(#66f2ff, #195468);
-$btn-secondary-background-pressed-active-fallback: light-dark(#c2faff, #00212f);
-$btn-secondary-background-pressed-hover-fallback: light-dark(#d1fbff, #003246);
-$btn-secondary-border-color-fallback: light-dark(#006a87, #00c9e4);
-$btn-secondary-border-color-active-fallback: light-dark(#1a272d, #00def7);
-$btn-secondary-border-color-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-secondary-border-color-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-secondary-border-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-secondary-border-color-pressed-active-fallback: light-dark(
-  #1a272d,
-  #00def7
-);
-$btn-secondary-border-color-pressed-hover-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-$btn-secondary-color-fallback: light-dark(#006a87, #00c9e4);
-$btn-secondary-color-active-fallback: light-dark(#004e68, #00def7);
-$btn-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-secondary-color-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-secondary-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-secondary-color-pressed-active-fallback: light-dark(#004e68, #00def7);
-$btn-secondary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-primary-background-fallback: light-dark(
-  rgba(0, 6, 9, 0.12),
-  rgba(255, 255, 255, 0.15)
-);
-$btn-subtle-primary-background-active-fallback: light-dark(#dcdee0, #34454d);
-$btn-subtle-primary-background-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.12),
-  rgba(255, 255, 255, 0.15)
-);
-$btn-subtle-primary-background-hover-fallback: light-dark(#e8ebed, #273940);
-$btn-subtle-primary-background-pressed-fallback: light-dark(#66f2ff, #195468);
-$btn-subtle-primary-background-pressed-active-fallback: light-dark(
-  #c2faff,
-  #00212f
-);
-$btn-subtle-primary-background-pressed-hover-fallback: light-dark(
-  #d1fbff,
-  #003246
-);
-$btn-subtle-primary-color-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-primary-color-active-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-primary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-subtle-primary-color-hover-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-primary-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-primary-color-pressed-active-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-primary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-secondary-background-active-fallback: light-dark(#dcdee0, #34454d);
-$btn-subtle-secondary-background-hover-fallback: light-dark(#e8ebed, #273940);
-$btn-subtle-secondary-background-pressed-fallback: light-dark(#66f2ff, #195468);
-$btn-subtle-secondary-background-pressed-active-fallback: light-dark(
-  #c2faff,
-  #00212f
-);
-$btn-subtle-secondary-background-pressed-hover-fallback: light-dark(
-  #d1fbff,
-  #003246
-);
-$btn-subtle-secondary-border-color-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-subtle-secondary-border-color-active-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-subtle-secondary-border-color-disabled-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-subtle-secondary-border-color-hover-fallback: light-dark(
-  rgba(0, 6, 9, 0.3),
-  rgba(255, 255, 255, 0.45)
-);
-$btn-subtle-secondary-border-color-pressed-fallback: light-dark(
-  #5b6a71,
-  #919ca1
-);
-$btn-subtle-secondary-border-color-pressed-active-fallback: light-dark(
-  #5b6a71,
-  #919ca1
-);
-$btn-subtle-secondary-border-color-pressed-hover-fallback: light-dark(
-  #5b6a71,
-  #919ca1
-);
-$btn-subtle-secondary-color-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-secondary-color-active-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-secondary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-subtle-secondary-color-hover-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-secondary-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-secondary-color-pressed-active-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-$btn-subtle-secondary-color-pressed-hover-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-$btn-subtle-tertiary-background-active-fallback: light-dark(#dcdee0, #34454d);
-$btn-subtle-tertiary-background-hover-fallback: light-dark(#e8ebed, #273940);
-$btn-subtle-tertiary-background-pressed-fallback: light-dark(#66f2ff, #195468);
-$btn-subtle-tertiary-background-pressed-active-fallback: light-dark(
-  #c2faff,
-  #00212f
-);
-$btn-subtle-tertiary-background-pressed-hover-fallback: light-dark(
-  #d1fbff,
-  #003246
-);
-$btn-subtle-tertiary-color-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-tertiary-color-active-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-subtle-tertiary-color-hover-fallback: light-dark(#000609, #ffffff);
-$btn-subtle-tertiary-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-subtle-tertiary-color-pressed-active-fallback: light-dark(
-  #004f69,
-  #00eaff
-);
-$btn-subtle-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-tertiary-background-active-fallback: light-dark(#c2faff, #00212f);
-$btn-tertiary-background-hover-fallback: light-dark(#d1fbff, #003246);
-$btn-tertiary-background-pressed-fallback: light-dark(#66f2ff, #195468);
-$btn-tertiary-background-pressed-active-fallback: light-dark(#c2faff, #00212f);
-$btn-tertiary-background-pressed-hover-fallback: light-dark(#d1fbff, #003246);
-$btn-tertiary-color-fallback: light-dark(#006a87, #00c9e4);
-$btn-tertiary-color-active-fallback: light-dark(#004e68, #00def7);
-$btn-tertiary-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$btn-tertiary-color-hover-fallback: light-dark(#004f69, #00eaff);
-$btn-tertiary-color-pressed-fallback: light-dark(#004f69, #00eaff);
-$btn-tertiary-color-pressed-active-fallback: light-dark(#004e68, #00def7);
-$btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
-
 :host {
-  --ix-btn--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$btn-color-focus-bdr-fallback}
-  );
-  --ix-btn--border-radius: var(--theme-small-border-radius, 0.125rem);
-  --ix-btn--border-thickness: var(--theme-border-width-default, 0.0625rem);
-  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset, 0.125rem);
-  --ix-btn-danger-primary--background: var(
-    --theme-si-sys-background-danger,
-    #{$btn-danger-primary-background-fallback}
-  );
+  --ix-btn--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-btn--border-radius: var(--theme-small-border-radius);
+  --ix-btn--border-thickness: var(--theme-border-width-default);
+  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-btn-danger-primary--background: var(--theme-si-sys-background-danger);
   --ix-btn-danger-primary--background--active: var(
-    --theme-si-sys-background-danger-active,
-    #{$btn-danger-primary-background-active-fallback}
+    --theme-si-sys-background-danger-active
   );
-  --ix-btn-danger-primary--background--disabled: var(
-    --theme-color-component-4,
-    #{$btn-danger-primary-background-disabled-fallback}
-  );
+  --ix-btn-danger-primary--background--disabled: var(--theme-color-component-4);
   --ix-btn-danger-primary--background--hover: var(
-    --theme-si-sys-background-danger-hover,
-    #{$btn-danger-primary-background-hover-fallback}
+    --theme-si-sys-background-danger-hover
   );
   --ix-btn-danger-primary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-danger-primary--border-color--active: rgba(0, 0, 0, 0);
   --ix-btn-danger-primary--border-color--disabled: rgba(0, 0, 0, 0);
   --ix-btn-danger-primary--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-btn-danger-primary--color: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-primary-color-fallback}
-  );
-  --ix-btn-danger-primary--color--active: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-primary-color-active-fallback}
-  );
-  --ix-btn-danger-primary--color--disabled: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-danger-primary-color-disabled-fallback}
-  );
-  --ix-btn-danger-primary--color--hover: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-primary-color-hover-fallback}
-  );
+  --ix-btn-danger-primary--color: var(--theme-si-sys-text-on-danger);
+  --ix-btn-danger-primary--color--active: var(--theme-si-sys-text-on-danger);
+  --ix-btn-danger-primary--color--disabled: var(--theme-si-sys-text-on-accent);
+  --ix-btn-danger-primary--color--hover: var(--theme-si-sys-text-on-danger);
   --ix-btn-danger-secondary--background: rgba(0, 0, 0, 0);
   --ix-btn-danger-secondary--background--active: var(
-    --theme-si-sys-background-danger-active,
-    #{$btn-danger-secondary-background-active-fallback}
+    --theme-si-sys-background-danger-active
   );
   --ix-btn-danger-secondary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-danger-secondary--background--hover: var(
-    --theme-si-sys-background-danger-hover,
-    #{$btn-danger-secondary-background-hover-fallback}
+    --theme-si-sys-background-danger-hover
   );
-  --ix-btn-danger-secondary--border-color: var(
-    --theme-si-sys-text-danger,
-    #{$btn-danger-secondary-border-color-fallback}
-  );
+  --ix-btn-danger-secondary--border-color: var(--theme-si-sys-text-danger);
   --ix-btn-danger-secondary--border-color--active: var(
-    --theme-si-sys-background-danger-active,
-    #{$btn-danger-secondary-border-color-active-fallback}
+    --theme-si-sys-background-danger-active
   );
   --ix-btn-danger-secondary--border-color--disabled: var(
-    --theme-color-component-4,
-    #{$btn-danger-secondary-border-color-disabled-fallback}
+    --theme-color-component-4
   );
   --ix-btn-danger-secondary--border-color--hover: var(
-    --theme-si-sys-background-danger-hover,
-    #{$btn-danger-secondary-border-color-hover-fallback}
+    --theme-si-sys-background-danger-hover
   );
-  --ix-btn-danger-secondary--color: var(
-    --theme-si-sys-text-danger,
-    #{$btn-danger-secondary-color-fallback}
-  );
-  --ix-btn-danger-secondary--color--active: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-secondary-color-active-fallback}
-  );
-  --ix-btn-danger-secondary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-danger-secondary-color-disabled-fallback}
-  );
-  --ix-btn-danger-secondary--color--hover: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-secondary-color-hover-fallback}
-  );
+  --ix-btn-danger-secondary--color: var(--theme-si-sys-text-danger);
+  --ix-btn-danger-secondary--color--active: var(--theme-si-sys-text-on-danger);
+  --ix-btn-danger-secondary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-danger-secondary--color--hover: var(--theme-si-sys-text-on-danger);
   --ix-btn-danger-tertiary--background: rgba(0, 0, 0, 0);
   --ix-btn-danger-tertiary--background--active: var(
-    --theme-si-sys-background-danger-active,
-    #{$btn-danger-tertiary-background-active-fallback}
+    --theme-si-sys-background-danger-active
   );
   --ix-btn-danger-tertiary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-danger-tertiary--background--hover: var(
-    --theme-si-sys-background-danger-hover,
-    #{$btn-danger-tertiary-background-hover-fallback}
+    --theme-si-sys-background-danger-hover
   );
   --ix-btn-danger-tertiary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-danger-tertiary--border-color--active: rgba(0, 0, 0, 0);
   --ix-btn-danger-tertiary--border-color--disabled: rgba(0, 0, 0, 0);
   --ix-btn-danger-tertiary--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-btn-danger-tertiary--color: var(
-    --theme-si-sys-text-danger,
-    #{$btn-danger-tertiary-color-fallback}
-  );
-  --ix-btn-danger-tertiary--color--active: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-tertiary-color-active-fallback}
-  );
-  --ix-btn-danger-tertiary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-danger-tertiary-color-disabled-fallback}
-  );
-  --ix-btn-danger-tertiary--color--hover: var(
-    --theme-si-sys-text-on-danger,
-    #{$btn-danger-tertiary-color-hover-fallback}
-  );
-  --ix-btn-primary--background: var(
-    --theme-si-sys-background-accent,
-    #{$btn-primary-background-fallback}
-  );
+  --ix-btn-danger-tertiary--color: var(--theme-si-sys-text-danger);
+  --ix-btn-danger-tertiary--color--active: var(--theme-si-sys-text-on-danger);
+  --ix-btn-danger-tertiary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-danger-tertiary--color--hover: var(--theme-si-sys-text-on-danger);
+  --ix-btn-primary--background: var(--theme-si-sys-background-accent);
   --ix-btn-primary--background--active: var(
-    --theme-si-sys-background-accent-active,
-    #{$btn-primary-background-active-fallback}
+    --theme-si-sys-background-accent-active
   );
-  --ix-btn-primary--background--disabled: var(
-    --theme-color-component-4,
-    #{$btn-primary-background-disabled-fallback}
-  );
+  --ix-btn-primary--background--disabled: var(--theme-color-component-4);
   --ix-btn-primary--background--hover: var(
-    --theme-si-sys-background-accent-hover,
-    #{$btn-primary-background-hover-fallback}
+    --theme-si-sys-background-accent-hover
   );
   --ix-btn-primary--background--pressed: var(
-    --theme-si-sys-background-accent-hover,
-    #{$btn-primary-background-pressed-fallback}
+    --theme-si-sys-background-accent-hover
   );
   --ix-btn-primary--background--pressed-active: var(
-    --theme-color-dynamic--active,
-    #{$btn-primary-background-pressed-active-fallback}
+    --theme-color-dynamic--active
   );
   --ix-btn-primary--background--pressed-hover: var(
-    --theme-color-dynamic--hover,
-    #{$btn-primary-background-pressed-hover-fallback}
+    --theme-color-dynamic--hover
   );
   --ix-btn-primary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-primary--border-color--active: rgba(0, 0, 0, 0);
@@ -350,142 +90,72 @@ $btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
   --ix-btn-primary--border-color--pressed: rgba(0, 0, 0, 0);
   --ix-btn-primary--border-color--pressed-hover: rgba(0, 0, 0, 0);
   --ix-btn-primary--border-color--pressed-hover-active: rgba(0, 0, 0, 0);
-  --ix-btn-primary--color: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-fallback}
-  );
-  --ix-btn-primary--color--active: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-active-fallback}
-  );
-  --ix-btn-primary--color--disabled: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-disabled-fallback}
-  );
-  --ix-btn-primary--color--hover: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-hover-fallback}
-  );
-  --ix-btn-primary--color--pressed: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-pressed-fallback}
-  );
-  --ix-btn-primary--color--pressed-active: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-pressed-active-fallback}
-  );
-  --ix-btn-primary--color--pressed-hover: var(
-    --theme-si-sys-text-on-accent,
-    #{$btn-primary-color-pressed-hover-fallback}
-  );
+  --ix-btn-primary--color: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--active: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--disabled: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--hover: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--pressed: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--pressed-active: var(--theme-si-sys-text-on-accent);
+  --ix-btn-primary--color--pressed-hover: var(--theme-si-sys-text-on-accent);
   --ix-btn-secondary--background: var(
-    --theme-si-sys-background-accent-secondary,
-    #{$btn-secondary-background-fallback}
+    --theme-si-sys-background-accent-secondary
   );
   --ix-btn-secondary--background--active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-secondary-background-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-secondary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-secondary--background--hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-secondary-background-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
-  --ix-btn-secondary--background--pressed: var(
-    --theme-color-component-7,
-    #{$btn-secondary-background-pressed-fallback}
-  );
+  --ix-btn-secondary--background--pressed: var(--theme-color-component-7);
   --ix-btn-secondary--background--pressed-active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-secondary-background-pressed-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-secondary--background--pressed-hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-secondary-background-pressed-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
-  --ix-btn-secondary--border-color: var(
-    --theme-si-sys-border-accent,
-    #{$btn-secondary-border-color-fallback}
-  );
+  --ix-btn-secondary--border-color: var(--theme-si-sys-border-accent);
   --ix-btn-secondary--border-color--active: var(
-    --theme-si-sys-border-accent-active,
-    #{$btn-secondary-border-color-active-fallback}
+    --theme-si-sys-border-accent-active
   );
-  --ix-btn-secondary--border-color--disabled: var(
-    --theme-color-component-4,
-    #{$btn-secondary-border-color-disabled-fallback}
-  );
+  --ix-btn-secondary--border-color--disabled: var(--theme-color-component-4);
   --ix-btn-secondary--border-color--hover: var(
-    --theme-si-sys-border-accent-hover,
-    #{$btn-secondary-border-color-hover-fallback}
+    --theme-si-sys-border-accent-hover
   );
   --ix-btn-secondary--border-color--pressed: var(
-    --theme-si-sys-border-accent-hover,
-    #{$btn-secondary-border-color-pressed-fallback}
+    --theme-si-sys-border-accent-hover
   );
   --ix-btn-secondary--border-color--pressed-active: var(
-    --theme-si-sys-border-accent-active,
-    #{$btn-secondary-border-color-pressed-active-fallback}
+    --theme-si-sys-border-accent-active
   );
   --ix-btn-secondary--border-color--pressed-hover: var(
-    --theme-si-sys-border-accent-hover,
-    #{$btn-secondary-border-color-pressed-hover-fallback}
+    --theme-si-sys-border-accent-hover
   );
-  --ix-btn-secondary--color: var(
-    --theme-si-sys-text-accent,
-    #{$btn-secondary-color-fallback}
-  );
-  --ix-btn-secondary--color--active: var(
-    --theme-si-sys-text-accent-active,
-    #{$btn-secondary-color-active-fallback}
-  );
-  --ix-btn-secondary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-secondary-color-disabled-fallback}
-  );
-  --ix-btn-secondary--color--hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-secondary-color-hover-fallback}
-  );
-  --ix-btn-secondary--color--pressed: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-secondary-color-pressed-fallback}
-  );
+  --ix-btn-secondary--color: var(--theme-si-sys-text-accent);
+  --ix-btn-secondary--color--active: var(--theme-si-sys-text-accent-active);
+  --ix-btn-secondary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-secondary--color--hover: var(--theme-si-sys-text-accent-hover);
+  --ix-btn-secondary--color--pressed: var(--theme-si-sys-text-accent-hover);
   --ix-btn-secondary--color--pressed-active: var(
-    --theme-si-sys-text-accent-active,
-    #{$btn-secondary-color-pressed-active-fallback}
+    --theme-si-sys-text-accent-active
   );
   --ix-btn-secondary--color--pressed-hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-secondary-color-pressed-hover-fallback}
+    --theme-si-sys-text-accent-hover
   );
-  --ix-btn-subtle-primary--background: var(
-    --theme-color-component-2,
-    #{$btn-subtle-primary-background-fallback}
-  );
+  --ix-btn-subtle-primary--background: var(--theme-color-component-2);
   --ix-btn-subtle-primary--background--active: var(
-    --theme-si-sys-background-selected,
-    #{$btn-subtle-primary-background-active-fallback}
+    --theme-si-sys-background-selected
   );
-  --ix-btn-subtle-primary--background--disabled: var(
-    --theme-color-component-2,
-    #{$btn-subtle-primary-background-disabled-fallback}
-  );
+  --ix-btn-subtle-primary--background--disabled: var(--theme-color-component-2);
   --ix-btn-subtle-primary--background--hover: var(
-    --theme-si-sys-background-hover,
-    #{$btn-subtle-primary-background-hover-fallback}
+    --theme-si-sys-background-hover
   );
-  --ix-btn-subtle-primary--background--pressed: var(
-    --theme-color-component-7,
-    #{$btn-subtle-primary-background-pressed-fallback}
-  );
+  --ix-btn-subtle-primary--background--pressed: var(--theme-color-component-7);
   --ix-btn-subtle-primary--background--pressed-active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-subtle-primary-background-pressed-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-subtle-primary--background--pressed-hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-subtle-primary-background-pressed-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-btn-subtle-primary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-subtle-primary--border-color--active: rgba(0, 0, 0, 0);
@@ -494,133 +164,82 @@ $btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
   --ix-btn-subtle-primary--border-color--pressed: rgba(0, 0, 0, 0);
   --ix-btn-subtle-primary--border-color--pressed-active: rgba(0, 0, 0, 0);
   --ix-btn-subtle-primary--border-color--pressed-hover: rgba(0, 0, 0, 0);
-  --ix-btn-subtle-primary--color: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-primary-color-fallback}
-  );
-  --ix-btn-subtle-primary--color--active: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-primary-color-active-fallback}
-  );
-  --ix-btn-subtle-primary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-subtle-primary-color-disabled-fallback}
-  );
-  --ix-btn-subtle-primary--color--hover: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-primary-color-hover-fallback}
-  );
+  --ix-btn-subtle-primary--color: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-primary--color--active: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-primary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-subtle-primary--color--hover: var(--theme-si-sys-text-primary);
   --ix-btn-subtle-primary--color--pressed: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-primary-color-pressed-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-primary--color--pressed-active: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-primary-color-pressed-active-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-primary--color--pressed-hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-primary-color-pressed-hover-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-secondary--background: rgba(0, 0, 0, 0);
   --ix-btn-subtle-secondary--background--active: var(
-    --theme-si-sys-background-selected,
-    #{$btn-subtle-secondary-background-active-fallback}
+    --theme-si-sys-background-selected
   );
   --ix-btn-subtle-secondary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-subtle-secondary--background--hover: var(
-    --theme-si-sys-background-hover,
-    #{$btn-subtle-secondary-background-hover-fallback}
+    --theme-si-sys-background-hover
   );
   --ix-btn-subtle-secondary--background--pressed: var(
-    --theme-color-component-7,
-    #{$btn-subtle-secondary-background-pressed-fallback}
+    --theme-color-component-7
   );
   --ix-btn-subtle-secondary--background--pressed-active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-subtle-secondary-background-pressed-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-subtle-secondary--background--pressed-hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-subtle-secondary-background-pressed-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
-  --ix-btn-subtle-secondary--border-color: var(
-    --theme-color-component-4,
-    #{$btn-subtle-secondary-border-color-fallback}
-  );
+  --ix-btn-subtle-secondary--border-color: var(--theme-color-component-4);
   --ix-btn-subtle-secondary--border-color--active: var(
-    --theme-color-component-4,
-    #{$btn-subtle-secondary-border-color-active-fallback}
+    --theme-color-component-4
   );
   --ix-btn-subtle-secondary--border-color--disabled: var(
-    --theme-color-component-4,
-    #{$btn-subtle-secondary-border-color-disabled-fallback}
+    --theme-color-component-4
   );
   --ix-btn-subtle-secondary--border-color--hover: var(
-    --theme-color-component-4,
-    #{$btn-subtle-secondary-border-color-hover-fallback}
+    --theme-color-component-4
   );
   --ix-btn-subtle-secondary--border-color--pressed: var(
-    --theme-si-sys-border-2,
-    #{$btn-subtle-secondary-border-color-pressed-fallback}
+    --theme-si-sys-border-2
   );
   --ix-btn-subtle-secondary--border-color--pressed-active: var(
-    --theme-si-sys-border-2,
-    #{$btn-subtle-secondary-border-color-pressed-active-fallback}
+    --theme-si-sys-border-2
   );
   --ix-btn-subtle-secondary--border-color--pressed-hover: var(
-    --theme-si-sys-border-2,
-    #{$btn-subtle-secondary-border-color-pressed-hover-fallback}
+    --theme-si-sys-border-2
   );
-  --ix-btn-subtle-secondary--color: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-secondary-color-fallback}
-  );
-  --ix-btn-subtle-secondary--color--active: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-secondary-color-active-fallback}
-  );
-  --ix-btn-subtle-secondary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-subtle-secondary-color-disabled-fallback}
-  );
-  --ix-btn-subtle-secondary--color--hover: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-secondary-color-hover-fallback}
-  );
+  --ix-btn-subtle-secondary--color: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-secondary--color--active: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-secondary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-subtle-secondary--color--hover: var(--theme-si-sys-text-primary);
   --ix-btn-subtle-secondary--color--pressed: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-secondary-color-pressed-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-secondary--color--pressed-active: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-secondary-color-pressed-active-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-secondary--color--pressed-hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-secondary-color-pressed-hover-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-tertiary--background: rgba(0, 0, 0, 0);
   --ix-btn-subtle-tertiary--background--active: var(
-    --theme-si-sys-background-selected,
-    #{$btn-subtle-tertiary-background-active-fallback}
+    --theme-si-sys-background-selected
   );
   --ix-btn-subtle-tertiary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-subtle-tertiary--background--hover: var(
-    --theme-si-sys-background-hover,
-    #{$btn-subtle-tertiary-background-hover-fallback}
+    --theme-si-sys-background-hover
   );
-  --ix-btn-subtle-tertiary--background--pressed: var(
-    --theme-color-component-7,
-    #{$btn-subtle-tertiary-background-pressed-fallback}
-  );
+  --ix-btn-subtle-tertiary--background--pressed: var(--theme-color-component-7);
   --ix-btn-subtle-tertiary--background--pressed-active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-subtle-tertiary-background-pressed-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-subtle-tertiary--background--pressed-hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-subtle-tertiary-background-pressed-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-btn-subtle-tertiary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-subtle-tertiary--border-color--active: rgba(0, 0, 0, 0);
@@ -629,55 +248,33 @@ $btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
   --ix-btn-subtle-tertiary--border-color--pressed: rgba(0, 0, 0, 0);
   --ix-btn-subtle-tertiary--border-color--pressed-active: rgba(0, 0, 0, 0);
   --ix-btn-subtle-tertiary--border-color--pressed-hover: rgba(0, 0, 0, 0);
-  --ix-btn-subtle-tertiary--color: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-tertiary-color-fallback}
-  );
-  --ix-btn-subtle-tertiary--color--active: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-tertiary-color-active-fallback}
-  );
-  --ix-btn-subtle-tertiary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-subtle-tertiary-color-disabled-fallback}
-  );
-  --ix-btn-subtle-tertiary--color--hover: var(
-    --theme-si-sys-text-primary,
-    #{$btn-subtle-tertiary-color-hover-fallback}
-  );
+  --ix-btn-subtle-tertiary--color: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-tertiary--color--active: var(--theme-si-sys-text-primary);
+  --ix-btn-subtle-tertiary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-subtle-tertiary--color--hover: var(--theme-si-sys-text-primary);
   --ix-btn-subtle-tertiary--color--pressed: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-tertiary-color-pressed-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-tertiary--color--pressed-active: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-tertiary-color-pressed-active-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-subtle-tertiary--color--pressed-hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-subtle-tertiary-color-pressed-hover-fallback}
+    --theme-si-sys-text-accent-hover
   );
   --ix-btn-tertiary--background: rgba(0, 0, 0, 0);
   --ix-btn-tertiary--background--active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-tertiary-background-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-tertiary--background--disabled: rgba(0, 0, 0, 0);
   --ix-btn-tertiary--background--hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-tertiary-background-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
-  --ix-btn-tertiary--background--pressed: var(
-    --theme-color-component-7,
-    #{$btn-tertiary-background-pressed-fallback}
-  );
+  --ix-btn-tertiary--background--pressed: var(--theme-color-component-7);
   --ix-btn-tertiary--background--pressed-active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$btn-tertiary-background-pressed-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
   --ix-btn-tertiary--background--pressed-hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$btn-tertiary-background-pressed-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-btn-tertiary--border-color: rgba(0, 0, 0, 0);
   --ix-btn-tertiary--border-color--active: rgba(0, 0, 0, 0);
@@ -686,32 +283,15 @@ $btn-tertiary-color-pressed-hover-fallback: light-dark(#004f69, #00eaff);
   --ix-btn-tertiary--border-color--pressed: rgba(0, 0, 0, 0);
   --ix-btn-tertiary--border-color--pressed-active: rgba(0, 0, 0, 0);
   --ix-btn-tertiary--border-color--pressed-hover: rgba(0, 0, 0, 0);
-  --ix-btn-tertiary--color: var(
-    --theme-si-sys-text-accent,
-    #{$btn-tertiary-color-fallback}
-  );
-  --ix-btn-tertiary--color--active: var(
-    --theme-si-sys-text-accent-active,
-    #{$btn-tertiary-color-active-fallback}
-  );
-  --ix-btn-tertiary--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$btn-tertiary-color-disabled-fallback}
-  );
-  --ix-btn-tertiary--color--hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-tertiary-color-hover-fallback}
-  );
-  --ix-btn-tertiary--color--pressed: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-tertiary-color-pressed-fallback}
-  );
+  --ix-btn-tertiary--color: var(--theme-si-sys-text-accent);
+  --ix-btn-tertiary--color--active: var(--theme-si-sys-text-accent-active);
+  --ix-btn-tertiary--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-btn-tertiary--color--hover: var(--theme-si-sys-text-accent-hover);
+  --ix-btn-tertiary--color--pressed: var(--theme-si-sys-text-accent-hover);
   --ix-btn-tertiary--color--pressed-active: var(
-    --theme-si-sys-text-accent-active,
-    #{$btn-tertiary-color-pressed-active-fallback}
+    --theme-si-sys-text-accent-active
   );
   --ix-btn-tertiary--color--pressed-hover: var(
-    --theme-si-sys-text-accent-hover,
-    #{$btn-tertiary-color-pressed-hover-fallback}
+    --theme-si-sys-text-accent-hover
   );
 }

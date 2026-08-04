@@ -7,22 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$tabs-color-focus-bdr-fallback: #199fff;
-$tab-indicator-background-fallback: light-dark(#72848c, #5b6a71);
-$tab-indicator-background-selected-fallback: light-dark(#004f69, #00eaff);
-
 :host {
-  --ix-tabs--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$tabs-color-focus-bdr-fallback}
-  );
-  --ix-tab-indicator--background: var(
-    --theme-si-sys-border-3,
-    #{$tab-indicator-background-fallback}
-  );
+  --ix-tabs--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-tab-indicator--background: var(--theme-si-sys-border-3);
   --ix-tab-indicator--background--selected: var(
-    --theme-si-sys-background-accent-hover,
-    #{$tab-indicator-background-selected-fallback}
+    --theme-si-sys-background-accent-hover
   );
   --ix-tab-indicator--height: 0.0625rem;
 }

@@ -7,51 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$message-bar-color-alarm-fallback: light-dark(#a70808, #ff8e8e);
-$message-bar-color-critical-fallback: light-dark(#740089, #d59cde);
-$message-bar-color-warning-fallback: light-dark(#9a4d00, #ff9225);
-$message-bar-color-success-fallback: light-dark(#376f1c, #99e672);
-$message-bar-color-info-fallback: light-dark(#2050a2, #a9c3f1);
-$message-bar-color-neutral-fallback: light-dark(#405158, #aeb5b8);
-$message-bar-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$messagebar-background-fallback: light-dark(
-  rgba(0, 106, 135, 0),
-  rgba(0, 201, 228, 0)
-);
-
 :host {
-  --ix-message-bar--color-alarm: var(
-    --theme-si-sys-text-danger,
-    #{$message-bar-color-alarm-fallback}
-  );
-  --ix-message-bar--color-critical: var(
-    --theme-si-sys-text-critical,
-    #{$message-bar-color-critical-fallback}
-  );
-  --ix-message-bar--color-warning: var(
-    --theme-si-sys-text-warning,
-    #{$message-bar-color-warning-fallback}
-  );
-  --ix-message-bar--color-success: var(
-    --theme-si-sys-text-success,
-    #{$message-bar-color-success-fallback}
-  );
-  --ix-message-bar--color-info: var(
-    --theme-si-sys-text-information,
-    #{$message-bar-color-info-fallback}
-  );
-  --ix-message-bar--color-neutral: var(
-    --theme-si-sys-text-secondary,
-    #{$message-bar-color-neutral-fallback}
-  );
-  --ix-message-bar--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$message-bar-color-primary-fallback}
-  );
-  --ix-message-bar--border-radius: var(--theme-default-border-radius, 0.25rem);
-  --ix-message-bar--border-thickness: var(--theme-border-width-thick, 0.125rem);
-  --ix-messagebar--background: var(
-    --theme-si-sys-background-accent-secondary,
-    #{$messagebar-background-fallback}
-  );
+  --ix-message-bar--color-alarm: var(--theme-si-sys-text-danger);
+  --ix-message-bar--color-critical: var(--theme-si-sys-text-critical);
+  --ix-message-bar--color-warning: var(--theme-si-sys-text-warning);
+  --ix-message-bar--color-success: var(--theme-si-sys-text-success);
+  --ix-message-bar--color-info: var(--theme-si-sys-text-information);
+  --ix-message-bar--color-neutral: var(--theme-si-sys-text-secondary);
+  --ix-message-bar--color-primary: var(--theme-si-sys-text-accent);
+  --ix-message-bar--border-radius: var(--theme-default-border-radius);
+  --ix-message-bar--border-thickness: var(--theme-border-width-thick);
+  --ix-messagebar--background: var(--theme-si-sys-background-accent-secondary);
 }

@@ -7,71 +7,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$filter-chip-color-ghost-fallback: light-dark(
-  rgba(166, 171, 140, 0),
-  rgba(255, 255, 255, 0)
-);
-$filter-chip-color-component-4-fallback: light-dark(
-  rgba(5, 18, 31, 0.3),
-  rgba(214, 242, 255, 0.42)
-);
-$filter-chip-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$filter-chip-color-ghost-primary-hover-fallback: light-dark(#d1fbff, #003246);
-$filter-chip-color-ghost-primary-active-fallback: light-dark(#c2faff, #00212f);
-$chip-primary-outline-border-color-fallback: light-dark(#006a87, #00c9e4);
-$chip-primary-outline-border-color-active-fallback: light-dark(
-  #1a272d,
-  #00def7
-);
-$chip-primary-outline-border-color-hover-fallback: light-dark(#004f69, #00eaff);
-$chip-primary-outline-color-fallback: light-dark(#006a87, #00c9e4);
-$chip-primary-outline-color-active-fallback: light-dark(#1a272d, #00def7);
-$chip-primary-outline-color-hover-fallback: light-dark(#004f69, #00eaff);
-
 :host {
   --ix-filter-chip--focus--border-thickness: var(
-    --theme-focus--border-thickness,
-    0.0625rem
+    --theme-focus--border-thickness
   );
   --ix-filter-chip--color-ghost: transparent;
-  --ix-filter-chip--color-component-4: var(
-    --theme-color-component-4,
-    #{$filter-chip-color-component-4-fallback}
-  );
-  --ix-filter-chip--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$filter-chip-color-weak-text-fallback}
-  );
+  --ix-filter-chip--color-component-4: var(--theme-color-component-4);
+  --ix-filter-chip--color-weak-text: var(--theme-si-sys-text-disabled);
   --ix-filter-chip--color-ghost-primary--hover: var(
-    --theme-si-sys-background-accent-secondary-hover,
-    #{$filter-chip-color-ghost-primary-hover-fallback}
+    --theme-si-sys-background-accent-secondary-hover
   );
   --ix-filter-chip--color-ghost-primary--active: var(
-    --theme-si-sys-background-accent-secondary-active,
-    #{$filter-chip-color-ghost-primary-active-fallback}
+    --theme-si-sys-background-accent-secondary-active
   );
-  --ix-chip-primary-outline--border-color: var(
-    --theme-si-sys-border-accent,
-    #{$chip-primary-outline-border-color-fallback}
-  );
+  --ix-chip-primary-outline--border-color: var(--theme-si-sys-border-accent);
   --ix-chip-primary-outline--border-color--active: var(
-    --theme-si-sys-border-accent-active,
-    #{$chip-primary-outline-border-color-active-fallback}
+    --theme-si-sys-border-accent-active
   );
   --ix-chip-primary-outline--border-color--hover: var(
-    --theme-si-sys-border-accent-hover,
-    #{$chip-primary-outline-border-color-hover-fallback}
+    --theme-si-sys-border-accent-hover
   );
-  --ix-chip-primary-outline--color: var(
-    --theme-si-sys-border-accent,
-    #{$chip-primary-outline-color-fallback}
-  );
+  --ix-chip-primary-outline--color: var(--theme-si-sys-border-accent);
   --ix-chip-primary-outline--color--active: var(
-    --theme-si-sys-border-accent-active,
-    #{$chip-primary-outline-color-active-fallback}
+    --theme-si-sys-border-accent-active
   );
   --ix-chip-primary-outline--color--hover: var(
-    --theme-si-sys-border-accent-hover,
-    #{$chip-primary-outline-color-hover-fallback}
+    --theme-si-sys-border-accent-hover
   );
 }

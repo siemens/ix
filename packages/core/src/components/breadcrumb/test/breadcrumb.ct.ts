@@ -34,31 +34,6 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(breadcrumbItem3).toBeVisible();
 });
 
-regressionTest(
-  'uses the color scheme for the token fallback',
-  async ({ mount, page }) => {
-    await mount('<ix-breadcrumb></ix-breadcrumb>');
-    const breadcrumb = page.locator('ix-breadcrumb');
-
-    const getFallbackColor = (colorScheme: 'light' | 'dark') =>
-      breadcrumb.evaluate((element, scheme) => {
-        element.style.setProperty('--theme-si-sys-text-secondary', 'initial');
-        element.style.colorScheme = scheme;
-
-        const marker = document.createElement('span');
-        marker.style.color = 'var(--ix-breadcrumb--color-soft-text)';
-        element.shadowRoot?.append(marker);
-
-        const color = getComputedStyle(marker).color;
-        marker.remove();
-        return color;
-      }, colorScheme);
-
-    await expect(getFallbackColor('light')).resolves.toBe('rgb(64, 81, 88)');
-    await expect(getFallbackColor('dark')).resolves.toBe('rgb(174, 181, 184)');
-  }
-);
-
 regressionTest('should show hidden items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb visible-item-count="2">

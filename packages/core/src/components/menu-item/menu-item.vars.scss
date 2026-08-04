@@ -7,56 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$menu-item-color-focus-bdr-fallback: #199fff;
-$menu-item-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$menu-item-color-primary-contrast-fallback: light-dark(#ffffff, #000609);
-$menu-item-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$nav-item-primary-background-selected-fallback: light-dark(#f3f4f5, #000609);
-$nav-item-primary-border-color-selected-fallback: light-dark(#004f69, #00eaff);
-$nav-item-primary-color-fallback: light-dark(#000609, #ffffff);
-$nav-item-primary-icon-color-fallback: light-dark(#000609, #ffffff);
-$nav-item-primary-icon-color-selected-fallback: light-dark(#000609, #ffffff);
-$nav-item-secondary-background-selected-fallback: light-dark(#f3f4f5, #000609);
-
 :host {
-  --ix-menu-item--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$menu-item-color-focus-bdr-fallback}
-  );
-  --ix-menu-item--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$menu-item-color-primary-fallback}
-  );
-  --ix-menu-item--color-primary--contrast: var(
-    --theme-si-sys-text-on-accent,
-    #{$menu-item-color-primary-contrast-fallback}
-  );
-  --ix-menu-item--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$menu-item-color-weak-text-fallback}
-  );
-  --ix-nav-item-primary--background--selected: var(
-    --theme-si-sys-background-0,
-    #{$nav-item-primary-background-selected-fallback}
-  );
+  --ix-menu-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-menu-item--color-primary: var(--theme-si-sys-text-accent);
+  --ix-menu-item--color-primary--contrast: var(--theme-si-sys-text-on-accent);
+  --ix-menu-item--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-nav-item-primary--background--selected: var(--theme-si-sys-background-0);
   --ix-nav-item-primary--border-color--selected: var(
-    --theme-si-sys-border-accent-hover,
-    #{$nav-item-primary-border-color-selected-fallback}
+    --theme-si-sys-border-accent-hover
   );
-  --ix-nav-item-primary--color: var(
-    --theme-si-sys-text-primary,
-    #{$nav-item-primary-color-fallback}
-  );
-  --ix-nav-item-primary-icon--color: var(
-    --theme-si-sys-text-primary,
-    #{$nav-item-primary-icon-color-fallback}
-  );
-  --ix-nav-item-primary-icon--color--selected: var(
-    --theme-si-sys-text-primary,
-    #{$nav-item-primary-icon-color-selected-fallback}
-  );
+  --ix-nav-item-primary--color: var(--theme-si-sys-text-primary);
+  --ix-nav-item-primary-icon--color: var(--theme-si-sys-text-primary);
+  --ix-nav-item-primary-icon--color--selected: var(--theme-si-sys-text-primary);
   --ix-nav-item-secondary--background--selected: var(
-    --theme-si-sys-background-0,
-    #{$nav-item-secondary-background-selected-fallback}
+    --theme-si-sys-background-0
   );
 }

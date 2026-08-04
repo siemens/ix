@@ -7,51 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$category-filter-color-focus-bdr-fallback: #199fff;
-$category-filter-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$input-background-hover-fallback: light-dark(#fafafa, #0e1b20);
-$input-border-color-focus-fallback: light-dark(#000609, #ffffff);
-$input-border-color-hover-fallback: light-dark(#000609, #ffffff);
-$input-border-color-bottom-disabled-fallback: light-dark(#ebedee, #405158);
-$input-color-disabled-fallback: light-dark(#919ca1, #5b6a71);
-$menu-header-color-fallback: light-dark(#405158, #aeb5b8);
-
 :host {
-  --ix-category-filter--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$category-filter-color-focus-bdr-fallback}
-  );
-  --ix-category-filter--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$category-filter-color-soft-text-fallback}
-  );
-  --ix-input--background--hover: var(
-    --theme-si-sys-background-4,
-    #{$input-background-hover-fallback}
-  );
-  --ix-input--border-color--focus: var(
-    --theme-si-sys-border-1,
-    #{$input-border-color-focus-fallback}
-  );
-  --ix-input--border-color--hover: var(
-    --theme-si-sys-border-1,
-    #{$input-border-color-hover-fallback}
-  );
-  --ix-input--border-color-bottom--disabled: var(
-    --theme-si-sys-border-4,
-    #{$input-border-color-bottom-disabled-fallback}
-  );
-  --ix-input--border-thickness: var(--theme-border-width-default, 0.0625rem);
-  --ix-input--color--disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$input-color-disabled-fallback}
-  );
-  --ix-input--focus--outline-offset: var(
-    --theme-focus-outline-offset,
-    0.125rem
-  );
-  --ix-menu-header--color: var(
-    --theme-si-sys-text-secondary,
-    #{$menu-header-color-fallback}
-  );
+  --ix-category-filter--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-category-filter--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-input--background--hover: var(--theme-si-sys-background-4);
+  --ix-input--border-color--focus: var(--theme-si-sys-border-1);
+  --ix-input--border-color--hover: var(--theme-si-sys-border-1);
+  --ix-input--border-color-bottom--disabled: var(--theme-si-sys-border-4);
+  --ix-input--border-thickness: var(--theme-border-width-default);
+  --ix-input--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-input--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-menu-header--color: var(--theme-si-sys-text-secondary);
 }

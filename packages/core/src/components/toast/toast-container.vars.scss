@@ -8,5 +8,5 @@
  */
 
 :host {
-  --ix-toast-container--z-index-toast: var(--theme-z-index-toast, 1080);
+  --ix-toast-container--z-index-toast: var(--theme-z-index-toast);
 }

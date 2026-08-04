@@ -7,31 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$link-button-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$link-button-color-dynamic-hover-fallback: light-dark(#0f5157, #62e2ee);
-$link-button-color-dynamic-active-fallback: light-dark(#0e494e, #5cd5e0);
-$link-button-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$link-button-color-focus-bdr-fallback: #199fff;
-
 :host {
-  --ix-link-button--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$link-button-color-primary-fallback}
-  );
-  --ix-link-button--color-dynamic--hover: var(
-    --theme-color-dynamic--hover,
-    #{$link-button-color-dynamic-hover-fallback}
-  );
-  --ix-link-button--color-dynamic--active: var(
-    --theme-color-dynamic--active,
-    #{$link-button-color-dynamic-active-fallback}
-  );
-  --ix-link-button--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$link-button-color-weak-text-fallback}
-  );
-  --ix-link-button--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$link-button-color-focus-bdr-fallback}
-  );
+  --ix-link-button--color-primary: var(--theme-si-sys-text-accent);
+  --ix-link-button--color-dynamic--hover: var(--theme-color-dynamic--hover);
+  --ix-link-button--color-dynamic--active: var(--theme-color-dynamic--active);
+  --ix-link-button--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-link-button--color-focus-bdr: var(--theme-si-sys-effects-focus);
 }

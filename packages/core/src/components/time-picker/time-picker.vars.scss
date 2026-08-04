@@ -7,68 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$time-picker-color-soft-text-fallback: light-dark(#405158, #aeb5b8);
-$time-picker-color-primary-fallback: light-dark(#006a87, #00c9e4);
-$time-picker-color-focus-bdr-fallback: #199fff;
-$time-picker-color-weak-text-fallback: light-dark(#919ca1, #5b6a71);
-$time-picker-color-inv-contrast-text-fallback: light-dark(#ffffff, #000609);
-$datepicker-day-background-hover-fallback: light-dark(#e8ebed, #273940);
-$datepicker-day-background-selected-fallback: light-dark(#004f69, #00eaff);
-$datepicker-day-background-selected-disabled-fallback: light-dark(
-  rgba(0, 79, 105, 0.3),
-  rgba(0, 234, 255, 0.3)
-);
-$datepicker-day-background-selected-hover-fallback: light-dark(
-  #006f8e,
-  #00def7
-);
-$datepicker-day-color-selected-fallback: light-dark(#ffffff, #000609);
-$datepicker-day-color-selected-disabled-fallback: light-dark(#919ca1, #5b6a71);
-
 :host {
-  --ix-time-picker--color-soft-text: var(
-    --theme-si-sys-text-secondary,
-    #{$time-picker-color-soft-text-fallback}
-  );
-  --ix-time-picker--color-primary: var(
-    --theme-si-sys-text-accent,
-    #{$time-picker-color-primary-fallback}
-  );
-  --ix-time-picker--color-focus-bdr: var(
-    --theme-si-sys-effects-focus,
-    #{$time-picker-color-focus-bdr-fallback}
-  );
-  --ix-time-picker--color-weak-text: var(
-    --theme-si-sys-text-disabled,
-    #{$time-picker-color-weak-text-fallback}
-  );
-  --ix-time-picker--font-weight-bold: var(--theme-font-weight-bold, 700);
-  --ix-time-picker--color-inv-contrast-text: var(
-    --theme-si-sys-text-inverse,
-    #{$time-picker-color-inv-contrast-text-fallback}
-  );
-  --ix-datepicker-day--background--hover: var(
-    --theme-si-sys-background-hover,
-    #{$datepicker-day-background-hover-fallback}
-  );
+  --ix-time-picker--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-time-picker--color-primary: var(--theme-si-sys-text-accent);
+  --ix-time-picker--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-time-picker--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-time-picker--font-weight-bold: var(--theme-font-weight-bold);
+  --ix-time-picker--color-inv-contrast-text: var(--theme-si-sys-text-inverse);
+  --ix-datepicker-day--background--hover: var(--theme-si-sys-background-hover);
   --ix-datepicker-day--background--selected: var(
-    --theme-si-sys-background-accent-hover,
-    #{$datepicker-day-background-selected-fallback}
+    --theme-si-sys-background-accent-hover
   );
   --ix-datepicker-day--background--selected-disabled: var(
-    --theme-color-component-9--disabled,
-    #{$datepicker-day-background-selected-disabled-fallback}
+    --theme-color-component-9--disabled
   );
   --ix-datepicker-day--background--selected-hover: var(
-    --theme-color-component-9--hover,
-    #{$datepicker-day-background-selected-hover-fallback}
+    --theme-color-component-9--hover
   );
-  --ix-datepicker-day--color--selected: var(
-    --theme-si-sys-text-on-accent,
-    #{$datepicker-day-color-selected-fallback}
-  );
+  --ix-datepicker-day--color--selected: var(--theme-si-sys-text-on-accent);
   --ix-datepicker-day--color--selected-disabled: var(
-    --theme-si-sys-text-disabled,
-    #{$datepicker-day-color-selected-disabled-fallback}
+    --theme-si-sys-text-disabled
   );
 }
