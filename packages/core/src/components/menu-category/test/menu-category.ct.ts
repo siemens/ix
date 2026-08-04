@@ -491,8 +491,10 @@ regressionTest(
     const menuItems = categoryElement.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
 
+    // Wait for hydration before programmatic focus — otherwise focus is lost when
+    // Stencil replaces the light DOM / attaches the shadow button (delegatesFocus).
+    await expect(categoryButton).toHaveClass(/hydrated/);
     await categoryButton.focus();
-
     await expect(categoryButton).toBeFocused();
 
     // Press ArrowDown should move focus to the first nested item
