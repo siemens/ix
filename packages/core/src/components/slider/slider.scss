@@ -310,7 +310,7 @@
 }
 
 :host(.warning) {
-  --trace-color: var(--ix-slider--color-warning-40);
+  --trace-color: var(--ix-slider--color-warning);
   --tick-color--active: var(--ix-slider--color-warning);
 
   @include thumb() {
@@ -319,7 +319,7 @@
 }
 
 :host(.info) {
-  --trace-color: var(--ix-slider--color-info-40);
+  --trace-color: var(--ix-slider--color-info);
   --tick-color--active: var(--ix-slider--color-info);
 
   @include thumb() {
@@ -328,7 +328,7 @@
 }
 
 :host(.valid) {
-  --trace-color: var(--ix-slider--color-success-40);
+  --trace-color: var(--ix-slider--color-success);
   --tick-color--active: var(--ix-slider--color-success);
 
   @include thumb() {
