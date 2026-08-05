@@ -1,0 +1,69 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Badge attached layout</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .page {
+        display: block;
+        padding: 20px;
+        box-sizing: border-box;
+        max-width: 30rem;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .host-block {
+        display: block;
+        position: relative;
+        background: var(--theme-color-alarm);
+        color: var(--theme-color-alarm--contrast);
+        width: 50%;
+        height: 6rem;
+        box-sizing: border-box;
+        padding: 0.75rem;
+      }
+
+      .host-block.sibling {
+        background: var(--theme-color-info);
+        color: var(--theme-color-info--contrast);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="row">
+        <ix-badge type="counter" label="5" variant="alarm">
+          <div class="host-block">Content (inside ix-badge)</div>
+        </ix-badge>
+        <div class="host-block sibling">Content (always outside badge)</div>
+      </div>
+    </div>
+
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
