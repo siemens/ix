@@ -107,6 +107,10 @@ export function checkFieldClasses(
   };
 }
 
+function isMissingNativeInputError(error: unknown): boolean {
+  return error instanceof Error && error.message === 'Input element not found';
+}
+
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
@@ -143,8 +147,11 @@ export function HookValidationLifecycle(options?: {
           | undefined;
         try {
           validationElement = await host.getNativeInputElement?.();
-        } catch {
-          // Native input may be missing during connect/teardown (e.g. ix-select).
+        } catch (error) {
+          // Expected during connect/teardown when the native input is unset (e.g. ix-select).
+          if (!isMissingNativeInputError(error)) {
+            throw error;
+          }
           validationElement = undefined;
         }
 
@@ -235,7 +242,12 @@ export function HookValidationLifecycle(options?: {
       checkTimeoutId = setTimeout(() => {
         checkTimeoutId = null;
         if (checkIfRequiredFunction) {
-          void checkIfRequiredFunction().catch(() => undefined);
+          void checkIfRequiredFunction().catch((error) => {
+            if (isMissingNativeInputError(error)) {
+              return;
+            }
+            console.error(error);
+          });
         }
       });
       return connectedCallback?.call(this);
