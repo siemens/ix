@@ -107,8 +107,22 @@ export function checkFieldClasses(
   };
 }
 
+/**
+ * Thrown when a form control’s native input is not available yet (or already gone).
+ */
+export class NativeInputNotFoundError extends Error {
+  constructor(message = 'Input element not found') {
+    super(message);
+    this.name = 'NativeInputNotFoundError';
+  }
+}
+
 function isMissingNativeInputError(error: unknown): boolean {
-  return error instanceof Error && error.message === 'Input element not found';
+  return (
+    error instanceof NativeInputNotFoundError ||
+    // Cross-bundle / duplicated class copies still carry the stable name.
+    (error instanceof Error && error.name === 'NativeInputNotFoundError')
+  );
 }
 
 export function HookValidationLifecycle(options?: {
