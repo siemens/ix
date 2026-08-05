@@ -1,0 +1,263 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { iconInfo } from '@siemens/ix-icons/icons';
+import './badge-label.scoped.css';
+
+import { IxBadge } from '@siemens/ix-react';
+
+const CUSTOM_BACKGROUND = 'var(--theme-chart-11)';
+const CUSTOM_COLOR = 'var(--theme-color-inv-std-text)';
+const CUSTOM_OUTLINE_COLOR = 'var(--theme-chip-outline--color)';
+
+export default () => {
+  return (
+    <div className="container">
+      <IxBadge
+        type="label"
+        label="Primary"
+        variant="primary"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Primary"
+        variant="primary"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Primary"
+        variant="primary"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Primary"
+        variant="primary"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Alarm"
+        variant="alarm"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Alarm"
+        variant="alarm"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Alarm"
+        variant="alarm"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Alarm"
+        variant="alarm"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Critical"
+        variant="critical"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Critical"
+        variant="critical"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Critical"
+        variant="critical"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Critical"
+        variant="critical"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Warning"
+        variant="warning"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Warning"
+        variant="warning"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Warning"
+        variant="warning"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Warning"
+        variant="warning"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Info"
+        variant="info"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Info"
+        variant="info"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Info"
+        variant="info"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Info"
+        variant="info"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Neutral"
+        variant="neutral"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Neutral"
+        variant="neutral"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Neutral"
+        variant="neutral"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Neutral"
+        variant="neutral"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Success"
+        variant="success"
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Success"
+        variant="success"
+        outline
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Success"
+        variant="success"
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Success"
+        variant="success"
+        outline
+        enableAnimation
+        icon={iconInfo}
+      ></IxBadge>
+
+      <IxBadge
+        type="label"
+        label="Custom"
+        variant="custom"
+        icon={iconInfo}
+        background={CUSTOM_BACKGROUND}
+        badgeColor={CUSTOM_COLOR}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Custom"
+        variant="custom"
+        outline
+        icon={iconInfo}
+        background={CUSTOM_BACKGROUND}
+        badgeColor={CUSTOM_OUTLINE_COLOR}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Custom"
+        variant="custom"
+        enableAnimation
+        icon={iconInfo}
+        background={CUSTOM_BACKGROUND}
+        badgeColor={CUSTOM_COLOR}
+      ></IxBadge>
+      <IxBadge
+        type="label"
+        label="Custom"
+        variant="custom"
+        outline
+        enableAnimation
+        icon={iconInfo}
+        background={CUSTOM_BACKGROUND}
+        badgeColor={CUSTOM_OUTLINE_COLOR}
+      ></IxBadge>
+    </div>
+  );
+};
