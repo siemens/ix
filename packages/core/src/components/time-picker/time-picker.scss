@@ -94,7 +94,7 @@
         color: var(--ix-time-picker--color-primary);
 
         &:hover:not(.disabled) {
-          background-color: var(--ix-datepicker-day--background--hover);
+          background-color: var(--ix-time-picker-day--background--hover);
         }
 
         &:focus-visible {
@@ -115,13 +115,13 @@
         }
 
         &.selected {
-          background-color: var(--ix-datepicker-day--background--selected);
-          color: var(--ix-datepicker-day--color--selected);
+          background-color: var(--ix-time-picker-day--background--selected);
+          color: var(--ix-time-picker-day--color--selected);
           font-weight: var(--ix-time-picker--font-weight-bold);
 
           &:hover:not(.disabled) {
             background-color: var(
-              --ix-datepicker-day--background--selected-hover
+              --ix-time-picker-day--background--selected-hover
             );
           }
 
@@ -132,9 +132,9 @@
 
           &.disabled {
             background-color: var(
-              --ix-datepicker-day--background--selected-disabled
+              --ix-time-picker-day--background--selected-disabled
             );
-            color: var(--ix-datepicker-day--color--selected-disabled);
+            color: var(--ix-time-picker-day--color--selected-disabled);
           }
         }
       }

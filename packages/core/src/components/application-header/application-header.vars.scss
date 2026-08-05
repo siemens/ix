@@ -10,12 +10,13 @@
 :host {
   --ix-application-header--z-index-fixed: var(--theme-z-index-fixed);
   --ix-application-header--color-x-weak-bdr: var(--theme-si-sys-border-4);
-  --ix-app-header--background: var(--theme-si-sys-background-1);
-  --ix-app-header--border-color: var(--theme-si-sys-border-4);
-  --ix-app-header--border-width: var(--theme-border-width-default);
-  --ix-app-header--color: var(--theme-si-sys-text-primary);
-  --ix-app-header-app-icon--outline-color: var(--theme-si-sys-border-2);
-  --ix-app-header-logo--color: var(--theme-si-sys-effects-logo);
-  --ix-app-header-name-suffix--color: var(--theme-si-sys-text-secondary);
-  --ix-blind--border-width: var(--theme-border-width-default);
+  --ix-application-header--background: var(--theme-si-sys-background-1);
+  --ix-application-header--border-color: var(--theme-si-sys-border-4);
+  --ix-application-header--border-width: var(--theme-border-width-default);
+  --ix-application-header--color: var(--theme-si-sys-text-primary);
+  --ix-application-header-app-icon--outline-color: var(--theme-si-sys-border-2);
+  --ix-application-header-logo--color: var(--theme-si-sys-effects-logo);
+  --ix-application-header-name-suffix--color: var(
+    --theme-si-sys-text-secondary
+  );
 }

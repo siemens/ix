@@ -11,359 +11,359 @@
   --ix-toggle--default-time: var(--theme-default-time);
   --ix-toggle--color-focus-bdr: var(--theme-si-sys-effects-focus);
   --ix-toggle--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-switch--color: var(--theme-si-sys-text-primary);
-  --ix-switch--color--active: var(--theme-si-sys-text-primary);
-  --ix-switch--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-switch--color--hover: var(--theme-si-sys-text-primary);
-  --ix-switch-mixed--background: var(--theme-si-sys-background-accent);
-  --ix-switch-mixed--background--active: var(
+  --ix-toggle--color: var(--theme-si-sys-text-primary);
+  --ix-toggle--color--active: var(--theme-si-sys-text-primary);
+  --ix-toggle--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-toggle--color--hover: var(--theme-si-sys-text-primary);
+  --ix-toggle-mixed--background: var(--theme-si-sys-background-accent);
+  --ix-toggle-mixed--background--active: var(
     --theme-si-sys-background-accent-active
   );
-  --ix-switch-mixed--background--disabled: var(--theme-si-sys-text-disabled);
-  --ix-switch-mixed--background--hover: var(
+  --ix-toggle-mixed--background--disabled: var(--theme-si-sys-text-disabled);
+  --ix-toggle-mixed--background--hover: var(
     --theme-si-sys-background-accent-hover
   );
-  --ix-switch-mixed--background--info: var(
+  --ix-toggle-mixed--background--info: var(
     --theme-si-sys-background-information
   );
-  --ix-switch-mixed--background--info--active: var(
+  --ix-toggle-mixed--background--info--active: var(
     --theme-si-sys-background-information-active
   );
-  --ix-switch-mixed--background--info--hover: var(
+  --ix-toggle-mixed--background--info--hover: var(
     --theme-si-sys-background-information-hover
   );
-  --ix-switch-mixed--background--invalid: var(--theme-si-sys-background-danger);
-  --ix-switch-mixed--background--invalid--active: var(
+  --ix-toggle-mixed--background--invalid: var(--theme-si-sys-background-danger);
+  --ix-toggle-mixed--background--invalid--active: var(
     --theme-si-sys-background-danger-active
   );
-  --ix-switch-mixed--background--invalid--hover: var(
+  --ix-toggle-mixed--background--invalid--hover: var(
     --theme-si-sys-background-danger-hover
   );
-  --ix-switch-mixed--background--valid: var(--theme-si-sys-background-accent);
-  --ix-switch-mixed--background--valid--active: var(
+  --ix-toggle-mixed--background--valid: var(--theme-si-sys-background-accent);
+  --ix-toggle-mixed--background--valid--active: var(
     --theme-si-sys-background-accent-active
   );
-  --ix-switch-mixed--background--valid--hover: var(
+  --ix-toggle-mixed--background--valid--hover: var(
     --theme-si-sys-background-accent-hover
   );
-  --ix-switch-mixed--background--warning: var(
+  --ix-toggle-mixed--background--warning: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-mixed--background--warning--active: var(
+  --ix-toggle-mixed--background--warning--active: var(
     --theme-si-sys-background-warning-active
   );
-  --ix-switch-mixed--background--warning--hover: var(
+  --ix-toggle-mixed--background--warning--hover: var(
     --theme-si-sys-background-warning-hover
   );
-  --ix-switch-mixed--border-color: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--active: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--info: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--info--active: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--invalid: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--valid: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-mixed--border-color--warning: var(
+  --ix-toggle-mixed--border-color: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--active: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--info: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-mixed--border-color--warning: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-mixed--border-color--warning--active: var(
+  --ix-toggle-mixed--border-color--warning--active: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-mixed--border-color--warning--hover: var(
+  --ix-toggle-mixed--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-off--background: var(--theme-si-sys-background-1);
-  --ix-switch-off--background--active: var(--theme-si-sys-background-selected);
-  --ix-switch-off--background--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-off--background--hover: var(--theme-si-sys-background-hover);
-  --ix-switch-off--background--info: var(--theme-si-sys-background-1);
-  --ix-switch-off--background--info--active: var(
+  --ix-toggle-off--background: var(--theme-si-sys-background-1);
+  --ix-toggle-off--background--active: var(--theme-si-sys-background-selected);
+  --ix-toggle-off--background--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-off--background--hover: var(--theme-si-sys-background-hover);
+  --ix-toggle-off--background--info: var(--theme-si-sys-background-1);
+  --ix-toggle-off--background--info--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-switch-off--background--info--hover: var(
+  --ix-toggle-off--background--info--hover: var(
     --theme-si-sys-background-hover
   );
-  --ix-switch-off--background--invalid: var(--theme-si-sys-background-1);
-  --ix-switch-off--background--invalid--active: var(
+  --ix-toggle-off--background--invalid: var(--theme-si-sys-background-1);
+  --ix-toggle-off--background--invalid--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-switch-off--background--invalid--hover: var(
+  --ix-toggle-off--background--invalid--hover: var(
     --theme-si-sys-background-hover
   );
-  --ix-switch-off--background--valid: var(--theme-si-sys-background-1);
-  --ix-switch-off--background--valid--active: var(
+  --ix-toggle-off--background--valid: var(--theme-si-sys-background-1);
+  --ix-toggle-off--background--valid--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-switch-off--background--valid--hover: var(
+  --ix-toggle-off--background--valid--hover: var(
     --theme-si-sys-background-hover
   );
-  --ix-switch-off--background--warning: var(--theme-si-sys-background-1);
-  --ix-switch-off--background--warning--active: var(
+  --ix-toggle-off--background--warning: var(--theme-si-sys-background-1);
+  --ix-toggle-off--background--warning--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-switch-off--background--warning--hover: var(
+  --ix-toggle-off--background--warning--hover: var(
     --theme-si-sys-background-hover
   );
-  --ix-switch-off--border-color: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--active: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-switch-off--border-color--hover: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--info: var(
+  --ix-toggle-off--border-color: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--active: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-toggle-off--border-color--hover: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--info: var(
     --theme-si-sys-background-information
   );
-  --ix-switch-off--border-color--info--active: var(
+  --ix-toggle-off--border-color--info--active: var(
     --theme-si-sys-background-information
   );
-  --ix-switch-off--border-color--info--hover: var(
+  --ix-toggle-off--border-color--info--hover: var(
     --theme-si-sys-background-information
   );
-  --ix-switch-off--border-color--invalid: var(--theme-si-sys-border-danger);
-  --ix-switch-off--border-color--invalid--active: var(
+  --ix-toggle-off--border-color--invalid: var(--theme-si-sys-border-danger);
+  --ix-toggle-off--border-color--invalid--active: var(
     --theme-si-sys-border-danger
   );
-  --ix-switch-off--border-color--invalid--hover: var(
+  --ix-toggle-off--border-color--invalid--hover: var(
     --theme-si-sys-border-danger
   );
-  --ix-switch-off--border-color--valid: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--valid--active: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--valid--hover: var(--theme-si-sys-border-2);
-  --ix-switch-off--border-color--warning: var(
+  --ix-toggle-off--border-color--valid: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--valid--active: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--valid--hover: var(--theme-si-sys-border-2);
+  --ix-toggle-off--border-color--warning: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-off--border-color--warning--active: var(
+  --ix-toggle-off--border-color--warning--active: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-off--border-color--warning--hover: var(
+  --ix-toggle-off--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-on--background: var(--theme-si-sys-background-accent);
-  --ix-switch-on--background--active: var(
+  --ix-toggle-on--background: var(--theme-si-sys-background-accent);
+  --ix-toggle-on--background--active: var(
     --theme-si-sys-background-accent-active
   );
-  --ix-switch-on--background--disabled: var(--theme-si-sys-text-disabled);
-  --ix-switch-on--background--hover: var(
+  --ix-toggle-on--background--disabled: var(--theme-si-sys-text-disabled);
+  --ix-toggle-on--background--hover: var(
     --theme-si-sys-background-accent-hover
   );
-  --ix-switch-on--background--info: var(--theme-si-sys-background-information);
-  --ix-switch-on--background--info--active: var(
+  --ix-toggle-on--background--info: var(--theme-si-sys-background-information);
+  --ix-toggle-on--background--info--active: var(
     --theme-si-sys-background-information-active
   );
-  --ix-switch-on--background--info--hover: var(
+  --ix-toggle-on--background--info--hover: var(
     --theme-si-sys-background-information-hover
   );
-  --ix-switch-on--background--invalid: var(--theme-si-sys-background-danger);
-  --ix-switch-on--background--invalid--active: var(
+  --ix-toggle-on--background--invalid: var(--theme-si-sys-background-danger);
+  --ix-toggle-on--background--invalid--active: var(
     --theme-si-sys-background-danger-active
   );
-  --ix-switch-on--background--invalid--hover: var(
+  --ix-toggle-on--background--invalid--hover: var(
     --theme-si-sys-background-danger-hover
   );
-  --ix-switch-on--background--valid: var(--theme-si-sys-background-accent);
-  --ix-switch-on--background--valid--active: var(
+  --ix-toggle-on--background--valid: var(--theme-si-sys-background-accent);
+  --ix-toggle-on--background--valid--active: var(
     --theme-si-sys-background-accent-active
   );
-  --ix-switch-on--background--valid--hover: var(
+  --ix-toggle-on--background--valid--hover: var(
     --theme-si-sys-background-accent-hover
   );
-  --ix-switch-on--background--warning: var(--theme-si-sys-background-warning);
-  --ix-switch-on--background--warning--active: var(
+  --ix-toggle-on--background--warning: var(--theme-si-sys-background-warning);
+  --ix-toggle-on--background--warning--active: var(
     --theme-si-sys-background-warning-active
   );
-  --ix-switch-on--background--warning--hover: var(
+  --ix-toggle-on--background--warning--hover: var(
     --theme-si-sys-background-warning-hover
   );
-  --ix-switch-on--border-color: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--active: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--info: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--info--active: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--info--hover: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--invalid: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--invalid--active: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--valid: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--valid--active: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--valid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-on--border-color--warning: var(--theme-si-sys-background-warning);
-  --ix-switch-on--border-color--warning--active: var(
+  --ix-toggle-on--border-color: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--active: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--info: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-on--border-color--warning: var(--theme-si-sys-background-warning);
+  --ix-toggle-on--border-color--warning--active: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-on--border-color--warning--hover: var(
+  --ix-toggle-on--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
-  --ix-switch-thumb--box-shadow: transparent;
-  --ix-switch-thumb-mixed--background: var(--theme-si-sys-text-on-accent);
-  --ix-switch-thumb-mixed--background--active: var(
+  --ix-toggle-thumb--box-shadow: transparent;
+  --ix-toggle-thumb-mixed--background: var(--theme-si-sys-text-on-accent);
+  --ix-toggle-thumb-mixed--background--active: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-mixed--background--disabled: var(
+  --ix-toggle-thumb-mixed--background--disabled: var(
     --theme-si-sys-text-inverse
   );
-  --ix-switch-thumb-mixed--background--hover: var(
+  --ix-toggle-thumb-mixed--background--hover: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-mixed--background--info: var(
+  --ix-toggle-thumb-mixed--background--info: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-mixed--background--info--active: var(
+  --ix-toggle-thumb-mixed--background--info--active: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-mixed--background--info--hover: var(
+  --ix-toggle-thumb-mixed--background--info--hover: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-mixed--background--invalid: var(
+  --ix-toggle-thumb-mixed--background--invalid: var(
     --theme-si-sys-text-on-danger
   );
-  --ix-switch-thumb-mixed--background--invalid--active: var(
+  --ix-toggle-thumb-mixed--background--invalid--active: var(
     --theme-si-sys-text-on-danger
   );
-  --ix-switch-thumb-mixed--background--invalid--hover: var(
+  --ix-toggle-thumb-mixed--background--invalid--hover: var(
     --theme-si-sys-text-on-danger
   );
-  --ix-switch-thumb-mixed--background--valid: var(
+  --ix-toggle-thumb-mixed--background--valid: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-mixed--background--valid--active: var(
+  --ix-toggle-thumb-mixed--background--valid--active: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-mixed--background--valid--hover: var(
+  --ix-toggle-thumb-mixed--background--valid--hover: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-mixed--background--warning: var(
+  --ix-toggle-thumb-mixed--background--warning: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-mixed--background--warning--active: var(
+  --ix-toggle-thumb-mixed--background--warning--active: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-mixed--background--warning--hover: var(
+  --ix-toggle-thumb-mixed--background--warning--hover: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-mixed--border-color: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--info: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--info--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--invalid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--valid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--warning: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--warning--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-mixed--border-color--warning--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--background: var(--theme-si-sys-text-secondary);
-  --ix-switch-thumb-off--background--active: var(--theme-si-sys-text-secondary);
-  --ix-switch-thumb-off--background--disabled: var(
+  --ix-toggle-thumb-mixed--border-color: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--info: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-mixed--border-color--warning--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--background: var(--theme-si-sys-text-secondary);
+  --ix-toggle-thumb-off--background--active: var(--theme-si-sys-text-secondary);
+  --ix-toggle-thumb-off--background--disabled: var(
     --theme-si-sys-text-disabled
   );
-  --ix-switch-thumb-off--background--hover: var(--theme-si-sys-text-secondary);
-  --ix-switch-thumb-off--background--info: var(--theme-si-sys-text-secondary);
-  --ix-switch-thumb-off--background--info--active: var(
+  --ix-toggle-thumb-off--background--hover: var(--theme-si-sys-text-secondary);
+  --ix-toggle-thumb-off--background--info: var(--theme-si-sys-text-secondary);
+  --ix-toggle-thumb-off--background--info--active: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--info--hover: var(
+  --ix-toggle-thumb-off--background--info--hover: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--invalid: var(
+  --ix-toggle-thumb-off--background--invalid: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--invalid--active: var(
+  --ix-toggle-thumb-off--background--invalid--active: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--invalid--hover: var(
+  --ix-toggle-thumb-off--background--invalid--hover: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--valid: var(--theme-si-sys-text-secondary);
-  --ix-switch-thumb-off--background--valid--active: var(
+  --ix-toggle-thumb-off--background--valid: var(--theme-si-sys-text-secondary);
+  --ix-toggle-thumb-off--background--valid--active: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--valid--hover: var(
+  --ix-toggle-thumb-off--background--valid--hover: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--warning: var(
+  --ix-toggle-thumb-off--background--warning: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--warning--active: var(
+  --ix-toggle-thumb-off--background--warning--active: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--background--warning--hover: var(
+  --ix-toggle-thumb-off--background--warning--hover: var(
     --theme-si-sys-text-secondary
   );
-  --ix-switch-thumb-off--border-color: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--info: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--info--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--info--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--invalid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--invalid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--invalid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--valid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--valid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--valid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--warning: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--warning--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-off--border-color--warning--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--background: var(--theme-si-sys-text-on-accent);
-  --ix-switch-thumb-on--background--active: var(--theme-si-sys-text-on-accent);
-  --ix-switch-thumb-on--background--disabled: var(--theme-si-sys-text-inverse);
-  --ix-switch-thumb-on--background--hover: var(--theme-si-sys-text-on-accent);
-  --ix-switch-thumb-on--background--info: var(
+  --ix-toggle-thumb-off--border-color: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--info: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-off--border-color--warning--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--background: var(--theme-si-sys-text-on-accent);
+  --ix-toggle-thumb-on--background--active: var(--theme-si-sys-text-on-accent);
+  --ix-toggle-thumb-on--background--disabled: var(--theme-si-sys-text-inverse);
+  --ix-toggle-thumb-on--background--hover: var(--theme-si-sys-text-on-accent);
+  --ix-toggle-thumb-on--background--info: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-on--background--info--active: var(
+  --ix-toggle-thumb-on--background--info--active: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-on--background--info--hover: var(
+  --ix-toggle-thumb-on--background--info--hover: var(
     --theme-si-sys-text-on-information
   );
-  --ix-switch-thumb-on--background--invalid: var(--theme-si-sys-text-on-danger);
-  --ix-switch-thumb-on--background--invalid--active: var(
+  --ix-toggle-thumb-on--background--invalid: var(--theme-si-sys-text-on-danger);
+  --ix-toggle-thumb-on--background--invalid--active: var(
     --theme-si-sys-text-on-danger
   );
-  --ix-switch-thumb-on--background--invalid--hover: var(
+  --ix-toggle-thumb-on--background--invalid--hover: var(
     --theme-si-sys-text-on-danger
   );
-  --ix-switch-thumb-on--background--valid: var(--theme-si-sys-text-on-accent);
-  --ix-switch-thumb-on--background--valid--active: var(
+  --ix-toggle-thumb-on--background--valid: var(--theme-si-sys-text-on-accent);
+  --ix-toggle-thumb-on--background--valid--active: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-on--background--valid--hover: var(
+  --ix-toggle-thumb-on--background--valid--hover: var(
     --theme-si-sys-text-on-accent
   );
-  --ix-switch-thumb-on--background--warning: var(
+  --ix-toggle-thumb-on--background--warning: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-on--background--warning--active: var(
+  --ix-toggle-thumb-on--background--warning--active: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-on--background--warning--hover: var(
+  --ix-toggle-thumb-on--background--warning--hover: var(
     --theme-si-sys-text-on-warning
   );
-  --ix-switch-thumb-on--border-color: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--info: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--info--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--info--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--invalid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--invalid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--valid: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--valid--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--valid--hover: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--warning: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--warning--active: rgba(0, 0, 0, 0);
-  --ix-switch-thumb-on--border-color--warning--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--info: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--valid: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--valid--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--valid--hover: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--warning: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--warning--active: rgba(0, 0, 0, 0);
+  --ix-toggle-thumb-on--border-color--warning--hover: rgba(0, 0, 0, 0);
 }

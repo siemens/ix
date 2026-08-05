@@ -10,33 +10,35 @@
 :host {
   --ix-select--inset-shadow-1: var(--theme-inset-shadow-1);
   --ix-select--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-btn--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-input--background: var(--theme-si-sys-background-1);
-  --ix-input--background--hover: var(--theme-si-sys-background-4);
-  --ix-input--background--invalid: var(--theme-si-sys-background-1);
-  --ix-input--background--warning: var(--theme-si-sys-background-1);
-  --ix-input--border-color: var(--theme-si-sys-border-2);
-  --ix-input--border-color--disabled: var(--theme-si-sys-border-4);
-  --ix-input--border-color--hover: var(--theme-si-sys-border-1);
-  --ix-input--border-color--info: var(--theme-si-sys-border-information);
-  --ix-input--border-color--info--active: var(
+  --ix-select--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-select--background: var(--theme-si-sys-background-1);
+  --ix-select--background--hover: var(--theme-si-sys-background-4);
+  --ix-select--background--invalid: var(--theme-si-sys-background-1);
+  --ix-select--background--warning: var(--theme-si-sys-background-1);
+  --ix-select--border-color: var(--theme-si-sys-border-2);
+  --ix-select--border-color--disabled: var(--theme-si-sys-border-4);
+  --ix-select--border-color--hover: var(--theme-si-sys-border-1);
+  --ix-select--border-color--info: var(--theme-si-sys-border-information);
+  --ix-select--border-color--info--active: var(
     --theme-si-sys-border-information
   );
-  --ix-input--border-color--info--hover: var(--theme-si-sys-border-information);
-  --ix-input--border-color--invalid: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--invalid--active: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--invalid--hover: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--readonly: var(--theme-si-sys-border-4);
-  --ix-input--border-color--warning: var(--theme-si-sys-background-warning);
-  --ix-input--border-color--warning--active: var(
+  --ix-select--border-color--info--hover: var(
+    --theme-si-sys-border-information
+  );
+  --ix-select--border-color--invalid: var(--theme-si-sys-border-danger);
+  --ix-select--border-color--invalid--active: var(--theme-si-sys-border-danger);
+  --ix-select--border-color--invalid--hover: var(--theme-si-sys-border-danger);
+  --ix-select--border-color--readonly: var(--theme-si-sys-border-4);
+  --ix-select--border-color--warning: var(--theme-si-sys-background-warning);
+  --ix-select--border-color--warning--active: var(
     --theme-si-sys-background-warning
   );
-  --ix-input--border-color--warning--hover: var(
+  --ix-select--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
-  --ix-input--border-radius: var(--theme-small-border-radius);
-  --ix-input--border-thickness: var(--theme-border-width-default);
-  --ix-input--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-input-select-icon--color: var(--theme-si-sys-text-primary);
-  --ix-select-list-item-hint--color: var(--theme-si-sys-text-secondary);
+  --ix-select--border-radius: var(--theme-small-border-radius);
+  --ix-select--border-thickness: var(--theme-border-width-default);
+  --ix-select--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-select-icon--color: var(--theme-si-sys-text-primary);
+  --ix-select-item-hint--color: var(--theme-si-sys-text-secondary);
 }

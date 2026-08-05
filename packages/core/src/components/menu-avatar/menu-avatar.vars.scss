@@ -10,9 +10,11 @@
 :host {
   --ix-menu-avatar--default-time: var(--theme-default-time);
   --ix-menu-avatar--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-avatar-btn--background--active: var(--theme-si-sys-background-selected);
-  --ix-avatar-btn--background--hover: var(--theme-si-sys-background-hover);
-  --ix-avatar-btn--color--active: var(--theme-si-sys-text-primary);
-  --ix-avatar-btn--color--hover: var(--theme-si-sys-text-primary);
-  --ix-nav-item-primary--color: var(--theme-si-sys-text-primary);
+  --ix-menu-avatar-btn--background--active: var(
+    --theme-si-sys-background-selected
+  );
+  --ix-menu-avatar-btn--background--hover: var(--theme-si-sys-background-hover);
+  --ix-menu-avatar-btn--color--active: var(--theme-si-sys-text-primary);
+  --ix-menu-avatar-btn--color--hover: var(--theme-si-sys-text-primary);
+  --ix-menu-avatar-item-primary--color: var(--theme-si-sys-text-primary);
 }

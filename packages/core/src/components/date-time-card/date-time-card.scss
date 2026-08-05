@@ -15,7 +15,7 @@
   @include component.ix-component;
 
   .card {
-    background-color: var(--ix-menu--background);
+    background-color: var(--ix-date-time-card--background);
     width: 100%;
     box-shadow: none;
     border: none;
@@ -57,7 +57,7 @@
 
     .separator {
       height: 1px;
-      background-color: var(--ix-datepicker-separator--background);
+      background-color: var(--ix-date-time-card-separator--background);
       width: 100%;
       flex: 0 1 auto;
     }

@@ -44,7 +44,7 @@
       line-height: 1.14;
 
       .text-default-single {
-        color: var(--ix-nav-item-primary--color);
+        color: var(--ix-menu-avatar-item-primary--color);
         @include text-truncation.ellipsis;
       }
     }
@@ -52,13 +52,13 @@
     border-radius: 1.25rem;
 
     @include hover.hover {
-      background-color: var(--ix-avatar-btn--background--hover);
-      color: var(--ix-avatar-btn--color--hover);
+      background-color: var(--ix-menu-avatar-btn--background--hover);
+      color: var(--ix-menu-avatar-btn--color--hover);
     }
 
     @include hover.active {
-      background-color: var(--ix-avatar-btn--background--active);
-      color: var(--ix-avatar-btn--color--active);
+      background-color: var(--ix-menu-avatar-btn--background--active);
+      color: var(--ix-menu-avatar-btn--color--active);
     }
   }
 

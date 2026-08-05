@@ -13,7 +13,7 @@
 @use './pane.vars' as *;
 @mixin set-border($composition) {
   @if $composition {
-    border-#{$composition}: var(--ix-app-header--border-width)
+    border-#{$composition}: var(--ix-pane--border-width)
       solid
       var(--ix-pane--border-color);
   }
@@ -211,8 +211,7 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--ix-app-header--border-width) solid
-    var(--ix-pane--border-color);
+  border-left: var(--ix-pane--border-width) solid var(--ix-pane--border-color);
 }
 
 :host(.left-pane-border) {

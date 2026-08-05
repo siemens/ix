@@ -18,7 +18,8 @@
   display: flex;
   flex-direction: column;
   perspective: 1000px;
-  border-radius: var(--ix-flip--border-radius) var(--ix-flip--border-radius) 0 0;
+  border-radius: var(--ix-flip-tile--border-radius)
+    var(--ix-flip-tile--border-radius) 0 0;
 
   @include component.ix-component;
 
@@ -46,8 +47,8 @@
     flex-direction: column;
     height: 100%;
     transform-style: preserve-3d;
-    border-radius: var(--ix-flip--border-radius) var(--ix-flip--border-radius) 0
-      0;
+    border-radius: var(--ix-flip-tile--border-radius)
+      var(--ix-flip-tile--border-radius) 0 0;
 
     .footer {
       height: 3rem;
@@ -73,23 +74,25 @@
   }
 
   &:hover .flip-tile-container .footer ix-icon {
-    color: var(--ix-flip-tile--color-std-text);
+    color: var(--ix-flip-tile-tile--color-std-text);
   }
 }
 
 @each $variant in flip-tile-vars.$flip-tile-variants {
   :host(.flip-tile-variant-#{$variant}) {
-    border: solid 1px var(--ix-flip-#{$variant}--border-color);
+    border: solid 1px var(--ix-flip-tile-#{$variant}--border-color);
 
     .flip-tile-container {
-      background-color: var(--ix-flip-#{$variant}--background);
-      color: var(--ix-flip-#{$variant}--color);
+      background-color: var(--ix-flip-tile-#{$variant}--background);
+      color: var(--ix-flip-tile-#{$variant}--color);
 
       .footer {
         display: none;
-        border-top: 1px solid var(--ix-flip-#{$variant}-footer--border-color);
-        background-color: var(--ix-flip-#{$variant}-footer--background);
-        color: var(--ix-flip-#{$variant}-footer--color);
+        border-top: 1px
+          solid
+          var(--ix-flip-tile-#{$variant}-footer--border-color);
+        background-color: var(--ix-flip-tile-#{$variant}-footer--background);
+        color: var(--ix-flip-tile-#{$variant}-footer--color);
       }
 
       .footer.show-footer {

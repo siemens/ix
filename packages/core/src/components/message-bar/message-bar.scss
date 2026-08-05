@@ -30,7 +30,7 @@
       calc(#{vars.$medium-space} - var(--ix-message-bar--border-thickness))
       vars.$default-space;
     border-radius: var(--ix-message-bar--border-radius);
-    background-color: var(--ix-messagebar--background);
+    background-color: var(--ix-message-bar--background);
   }
 
   $message-types: (

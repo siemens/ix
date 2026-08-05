@@ -46,7 +46,7 @@
 
     .btn:focus-visible {
       outline: 1px solid var(--ix-date-dropdown--color-focus-bdr);
-      outline-offset: var(--ix-btn--focus--outline-offset);
+      outline-offset: var(--ix-date-dropdown--focus--outline-offset);
     }
 
     @include button-mixin.btn-base-variant('subtle-tertiary');

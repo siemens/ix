@@ -9,9 +9,9 @@
 
 :host {
   --ix-tabs--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-tab-indicator--background: var(--theme-si-sys-border-3);
-  --ix-tab-indicator--background--selected: var(
+  --ix-tabs-indicator--background: var(--theme-si-sys-border-3);
+  --ix-tabs-indicator--background--selected: var(
     --theme-si-sys-background-accent-hover
   );
-  --ix-tab-indicator--height: 0.0625rem;
+  --ix-tabs-indicator--height: 0.0625rem;
 }

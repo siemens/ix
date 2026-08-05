@@ -22,11 +22,11 @@
   padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
   padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
 
-  color: var(--ix-app-header--color);
-  background-color: var(--ix-app-header--background);
+  color: var(--ix-application-header--color);
+  background-color: var(--ix-application-header--background);
 
-  border-bottom: var(--ix-app-header--border-width) solid
-    var(--ix-app-header--border-color);
+  border-bottom: var(--ix-application-header--border-width) solid
+    var(--ix-application-header--border-color);
 
   z-index: var(--ix-application-header--z-index-fixed);
 
@@ -59,7 +59,7 @@
     }
 
     .app-icon.app-icon-outline {
-      outline: 1px solid var(--ix-app-header-app-icon--outline-color);
+      outline: 1px solid var(--ix-application-header-app-icon--outline-color);
       border-radius: 0.125rem;
     }
 
@@ -87,7 +87,7 @@
 
       margin-left: 0.75rem;
       margin-right: 0.75rem;
-      color: var(--ix-app-header--color);
+      color: var(--ix-application-header--color);
       min-width: 0;
 
       gap: 0.75rem;
@@ -114,7 +114,7 @@
       margin-top: 0.4rem;
       min-width: 0;
       flex-shrink: 1;
-      color: var(--ix-app-header-name-suffix--color);
+      color: var(--ix-application-header-name-suffix--color);
     }
 
     .logo {
@@ -124,7 +124,7 @@
       height: 32px;
       overflow: hidden;
       line-height: 0rem;
-      color: var(--ix-app-header-logo--color);
+      color: var(--ix-application-header-logo--color);
       margin-right: 1rem;
       margin-left: 1rem;
       min-width: fit-content;

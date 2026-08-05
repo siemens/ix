@@ -9,8 +9,12 @@
 
 :host {
   --ix-menu-expand-icon--default-time: var(--theme-default-time);
-  --ix-btn--border-radius: var(--theme-small-border-radius);
-  --ix-menu-btn--background--active: var(--theme-si-sys-background-selected);
-  --ix-menu-btn--background--hover: var(--theme-si-sys-background-hover);
-  --ix-menu-btn--color: var(--theme-si-sys-text-primary);
+  --ix-menu-expand-icon--border-radius: var(--theme-small-border-radius);
+  --ix-menu-expand-icon--background--active: var(
+    --theme-si-sys-background-selected
+  );
+  --ix-menu-expand-icon--background--hover: var(
+    --theme-si-sys-background-hover
+  );
+  --ix-menu-expand-icon--color: var(--theme-si-sys-text-primary);
 }

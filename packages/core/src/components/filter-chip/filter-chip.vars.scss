@@ -20,18 +20,20 @@
   --ix-filter-chip--color-ghost-primary--active: var(
     --theme-si-sys-background-accent-secondary-active
   );
-  --ix-chip-primary-outline--border-color: var(--theme-si-sys-border-accent);
-  --ix-chip-primary-outline--border-color--active: var(
+  --ix-filter-chip-primary-outline--border-color: var(
+    --theme-si-sys-border-accent
+  );
+  --ix-filter-chip-primary-outline--border-color--active: var(
     --theme-si-sys-border-accent-active
   );
-  --ix-chip-primary-outline--border-color--hover: var(
+  --ix-filter-chip-primary-outline--border-color--hover: var(
     --theme-si-sys-border-accent-hover
   );
-  --ix-chip-primary-outline--color: var(--theme-si-sys-border-accent);
-  --ix-chip-primary-outline--color--active: var(
+  --ix-filter-chip-primary-outline--color: var(--theme-si-sys-border-accent);
+  --ix-filter-chip-primary-outline--color--active: var(
     --theme-si-sys-border-accent-active
   );
-  --ix-chip-primary-outline--color--hover: var(
+  --ix-filter-chip-primary-outline--color--hover: var(
     --theme-si-sys-border-accent-hover
   );
 }

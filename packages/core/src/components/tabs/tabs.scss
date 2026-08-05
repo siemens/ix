@@ -15,9 +15,9 @@
   &::before {
     content: '';
     position: absolute;
-    background-color: var(--ix-tab-indicator--background);
+    background-color: var(--ix-tabs-indicator--background);
     width: 100%;
-    height: var(--ix-tab-indicator--height);
+    height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
   }
@@ -25,9 +25,9 @@
   &::after {
     content: '';
     position: absolute;
-    background-color: var(--ix-tab-indicator--background--selected);
+    background-color: var(--ix-tabs-indicator--background--selected);
     width: var(--ix-tab-active-indicator-width);
-    height: var(--ix-tab-indicator--height);
+    height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
     transform: translateX(var(--ix-tab-active-indicator-offset));

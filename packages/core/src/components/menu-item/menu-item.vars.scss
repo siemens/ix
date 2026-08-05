@@ -12,14 +12,18 @@
   --ix-menu-item--color-primary: var(--theme-si-sys-text-accent);
   --ix-menu-item--color-primary--contrast: var(--theme-si-sys-text-on-accent);
   --ix-menu-item--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-nav-item-primary--background--selected: var(--theme-si-sys-background-0);
-  --ix-nav-item-primary--border-color--selected: var(
+  --ix-menu-item-primary--background--selected: var(
+    --theme-si-sys-background-0
+  );
+  --ix-menu-item-primary--border-color--selected: var(
     --theme-si-sys-border-accent-hover
   );
-  --ix-nav-item-primary--color: var(--theme-si-sys-text-primary);
-  --ix-nav-item-primary-icon--color: var(--theme-si-sys-text-primary);
-  --ix-nav-item-primary-icon--color--selected: var(--theme-si-sys-text-primary);
-  --ix-nav-item-secondary--background--selected: var(
+  --ix-menu-item-primary--color: var(--theme-si-sys-text-primary);
+  --ix-menu-item-primary-icon--color: var(--theme-si-sys-text-primary);
+  --ix-menu-item-primary-icon--color--selected: var(
+    --theme-si-sys-text-primary
+  );
+  --ix-menu-item-secondary--background--selected: var(
     --theme-si-sys-background-0
   );
 }

@@ -8,13 +8,8 @@
  */
 
 :host {
-  --ix-helper--color: var(--theme-si-sys-text-secondary);
-  --ix-helper--color--info: var(--theme-si-sys-text-information);
-  --ix-helper--color--invalid: var(--theme-si-sys-text-danger);
-  --ix-helper--color--valid: var(--theme-si-sys-text-primary);
-  --ix-helper--color--warning: var(--theme-si-sys-text-warning);
-  --ix-helper-icon--color--info: var(--theme-si-sys-text-information);
-  --ix-helper-icon--color--invalid: var(--theme-si-sys-text-danger);
-  --ix-helper-icon--color--valid: var(--theme-si-sys-text-success);
-  --ix-helper-icon--color--warning: var(--theme-si-sys-text-warning);
+  --ix-field-wrapper-icon--color--info: var(--theme-si-sys-text-information);
+  --ix-field-wrapper-icon--color--invalid: var(--theme-si-sys-text-danger);
+  --ix-field-wrapper-icon--color--valid: var(--theme-si-sys-text-success);
+  --ix-field-wrapper-icon--color--warning: var(--theme-si-sys-text-warning);
 }

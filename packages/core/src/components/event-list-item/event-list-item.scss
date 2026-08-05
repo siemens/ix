@@ -20,35 +20,35 @@ $default-event-list-item-height: 2.5rem;
   :host(.event-list-item-#{$variant}) {
     .event-list-item {
       --ix-event-list-item--color-border: var(
-        --ix-event-item-#{$variant}--border
+        --ix-event-list-item-#{$variant}--border
       );
 
       // Backgrounds
       --ix-event-list-item--background: var(
-        --ix-event-item-#{$variant}--background
+        --ix-event-list-item-#{$variant}--background
       );
       --ix-event-list-item--background--hover: var(
-        --ix-event-item-#{$variant}--background--hover
+        --ix-event-list-item-#{$variant}--background--hover
       );
       --ix-event-list-item--background--active: var(
-        --ix-event-item-#{$variant}--background--active
+        --ix-event-list-item-#{$variant}--background--active
       );
       --ix-event-list-item--background--selected: var(
-        --ix-event-item-#{$variant}--background--selected
+        --ix-event-list-item-#{$variant}--background--selected
       );
 
       // Borders
       --ix-event-list-item--border--hover: var(
-        --ix-event-item-#{$variant}--border--hover
+        --ix-event-list-item-#{$variant}--border--hover
       );
       --ix-event-list-item--border--active: var(
-        --ix-event-item-#{$variant}--border--active
+        --ix-event-list-item-#{$variant}--border--active
       );
       --ix-event-list-item--border--selected: var(
-        --ix-event-item-#{$variant}--border--selected
+        --ix-event-list-item-#{$variant}--border--selected
       );
       --ix-event-list-item--border--disabled: var(
-        --ix-event-item-#{$variant}--border--disabled
+        --ix-event-list-item-#{$variant}--border--disabled
       );
     }
   }

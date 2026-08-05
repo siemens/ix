@@ -32,7 +32,7 @@ $container-width: 11.5625rem;
   input {
     @include input-control.input-control;
 
-    box-shadow: var(--ix-input--box-shadow);
+    box-shadow: var(--ix-expanding-search--box-shadow);
     cursor: auto !important;
     width: 100%;
   }
@@ -61,7 +61,7 @@ $container-width: 11.5625rem;
     display: flex;
     max-width: vars.$x-large-space;
     max-height: vars.$x-large-space;
-    border-radius: var(--ix-input--border-radius);
+    border-radius: var(--ix-expanding-search--border-radius);
     transition: all var(--ix-expanding-search--default-time) ease-in-out;
     z-index: 1;
     align-items: center;
@@ -95,7 +95,7 @@ $container-width: 11.5625rem;
   .btn-search:active {
     width: vars.$x-large-space;
     height: vars.$x-large-space;
-    border-radius: var(--ix-input--border-radius);
+    border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search--std-bdr-1) !important;
   }
 
@@ -109,7 +109,7 @@ $container-width: 11.5625rem;
 
   .btn-clear {
     position: absolute;
-    border-radius: var(--ix-input--border-radius);
+    border-radius: var(--ix-expanding-search--border-radius);
     right: 0px;
     margin-right: 0.25rem;
   }

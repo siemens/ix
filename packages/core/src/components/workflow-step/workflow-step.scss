@@ -38,7 +38,7 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--ix-workflow-step--background);
-    border-radius: var(--ix-workflow--border-radius);
+    border-radius: var(--ix-workflow-step--border-radius);
     padding: 1.125rem 0 vars.$small-space 0;
 
     .wrapper {

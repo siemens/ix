@@ -8,42 +8,50 @@
  */
 
 :host {
-  --ix-flip-tile--color-std-text: var(--theme-si-sys-text-primary);
-  --ix-flip--border-radius: var(--theme-default-border-radius);
-  --ix-flip-alarm--background: var(--theme-si-sys-background-1);
-  --ix-flip-alarm--border-color: var(--theme-si-sys-border-danger);
-  --ix-flip-alarm--color: var(--theme-si-sys-text-primary);
-  --ix-flip-alarm-footer--background: var(--theme-si-sys-background-danger);
-  --ix-flip-alarm-footer--border-color: rgba(0, 0, 0, 0);
-  --ix-flip-alarm-footer--color: var(--theme-si-sys-text-on-danger);
-  --ix-flip-filled--background: var(--theme-si-sys-background-1);
-  --ix-flip-filled--border-color: rgba(0, 0, 0, 0);
-  --ix-flip-filled--color: var(--theme-si-sys-text-primary);
-  --ix-flip-filled-footer--background: var(--theme-si-sys-background-1);
-  --ix-flip-filled-footer--border-color: var(--theme-si-sys-background-0);
-  --ix-flip-filled-footer--color: var(--theme-si-sys-text-primary);
-  --ix-flip-info--background: var(--theme-si-sys-background-1);
-  --ix-flip-info--border-color: var(--theme-si-sys-border-information);
-  --ix-flip-info--color: var(--theme-si-sys-text-primary);
-  --ix-flip-info-footer--background: var(--theme-si-sys-background-information);
-  --ix-flip-info-footer--border-color: rgba(0, 0, 0, 0);
-  --ix-flip-info-footer--color: var(--theme-si-sys-text-on-information);
-  --ix-flip-outline--background: rgba(0, 0, 0, 0);
-  --ix-flip-outline--border-color: var(--theme-si-sys-border-3);
-  --ix-flip-outline--color: var(--theme-si-sys-text-primary);
-  --ix-flip-outline-footer--background: rgba(0, 0, 0, 0);
-  --ix-flip-outline-footer--border-color: var(--theme-si-sys-border-3);
-  --ix-flip-outline-footer--color: var(--theme-si-sys-text-primary);
-  --ix-flip-primary--background: var(--theme-si-sys-background-1);
-  --ix-flip-primary--border-color: var(--theme-si-sys-border-accent);
-  --ix-flip-primary--color: var(--theme-si-sys-text-primary);
-  --ix-flip-primary-footer--background: var(--theme-si-sys-background-accent);
-  --ix-flip-primary-footer--border-color: rgba(0, 0, 0, 0);
-  --ix-flip-primary-footer--color: var(--theme-si-sys-text-on-accent);
-  --ix-flip-warning--background: var(--theme-si-sys-background-1);
-  --ix-flip-warning--border-color: var(--theme-si-sys-background-warning);
-  --ix-flip-warning--color: var(--theme-si-sys-text-primary);
-  --ix-flip-warning-footer--background: var(--theme-si-sys-background-warning);
-  --ix-flip-warning-footer--border-color: rgba(0, 0, 0, 0);
-  --ix-flip-warning-footer--color: var(--theme-si-sys-text-on-warning);
+  --ix-flip-tile-tile--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-flip-tile--border-radius: var(--theme-default-border-radius);
+  --ix-flip-tile-alarm--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-alarm--border-color: var(--theme-si-sys-border-danger);
+  --ix-flip-tile-alarm--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-alarm-footer--background: var(
+    --theme-si-sys-background-danger
+  );
+  --ix-flip-tile-alarm-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-alarm-footer--color: var(--theme-si-sys-text-on-danger);
+  --ix-flip-tile-filled--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-filled--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-filled-footer--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-filled-footer--border-color: var(--theme-si-sys-background-0);
+  --ix-flip-tile-filled-footer--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-info--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-info--border-color: var(--theme-si-sys-border-information);
+  --ix-flip-tile-info--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-info-footer--background: var(
+    --theme-si-sys-background-information
+  );
+  --ix-flip-tile-info-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-info-footer--color: var(--theme-si-sys-text-on-information);
+  --ix-flip-tile-outline--background: rgba(0, 0, 0, 0);
+  --ix-flip-tile-outline--border-color: var(--theme-si-sys-border-3);
+  --ix-flip-tile-outline--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-outline-footer--background: rgba(0, 0, 0, 0);
+  --ix-flip-tile-outline-footer--border-color: var(--theme-si-sys-border-3);
+  --ix-flip-tile-outline-footer--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-primary--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-primary--border-color: var(--theme-si-sys-border-accent);
+  --ix-flip-tile-primary--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-primary-footer--background: var(
+    --theme-si-sys-background-accent
+  );
+  --ix-flip-tile-primary-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-primary-footer--color: var(--theme-si-sys-text-on-accent);
+  --ix-flip-tile-warning--background: var(--theme-si-sys-background-1);
+  --ix-flip-tile-warning--border-color: var(--theme-si-sys-background-warning);
+  --ix-flip-tile-warning--color: var(--theme-si-sys-text-primary);
+  --ix-flip-tile-warning-footer--background: var(
+    --theme-si-sys-background-warning
+  );
+  --ix-flip-tile-warning-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-warning-footer--color: var(--theme-si-sys-text-on-warning);
 }

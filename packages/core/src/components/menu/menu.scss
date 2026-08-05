@@ -119,10 +119,10 @@ $menu-expanded-width: 16rem;
     padding-left: var(--ix-application-menu-safe-area-left, 0rem);
 
     &.expanded {
-      box-shadow: var(--ix-navigation--box-shadow);
+      box-shadow: var(--ix-menu--box-shadow);
     }
 
-    background-color: var(--ix-nav--background);
+    background-color: var(--ix-menu--background);
     transition: width var(--ix-menu--default-time) ease-in-out;
   }
 

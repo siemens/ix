@@ -128,7 +128,7 @@ $outline-border-width: 0.0625rem;
 
       &:focus-visible {
         outline: 1px solid #199fff;
-        outline-offset: var(--ix-btn--focus--outline-offset);
+        outline-offset: var(--ix-chip--focus--outline-offset);
       }
     }
   }
@@ -208,7 +208,7 @@ $outline-border-width: 0.0625rem;
       @if $interaction {
         &:focus-visible {
           outline: 1px solid #199fff;
-          outline-offset: var(--ix-btn--focus--outline-offset);
+          outline-offset: var(--ix-chip--focus--outline-offset);
         }
       }
     }

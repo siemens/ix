@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
     height: vars.$large-control-height;
-    color: var(--ix-menu-header--color);
+    color: var(--ix-dropdown-header--color);
     padding: 0 vars.$default-space;
   }
 }
@@ -82,7 +82,7 @@ $dropdown-offset: 3rem;
     display: flex;
     align-items: center;
     height: vars.$large-control-height;
-    color: var(--ix-menu-header--color);
+    color: var(--ix-dropdown-header--color);
     padding: 0 vars.$default-space;
   }
 

@@ -8,22 +8,28 @@
  */
 
 :host {
-  --ix-input--background--invalid: var(--theme-si-sys-background-1);
-  --ix-input--background--invalid--hover: var(--theme-si-sys-background-4);
-  --ix-input--background--warning: var(--theme-si-sys-background-1);
-  --ix-input--background--warning--hover: var(--theme-si-sys-background-4);
-  --ix-input--border-color--info: var(--theme-si-sys-border-information);
-  --ix-input--border-color--info--active: var(
+  --ix-textarea--background--invalid: var(--theme-si-sys-background-1);
+  --ix-textarea--background--invalid--hover: var(--theme-si-sys-background-4);
+  --ix-textarea--background--warning: var(--theme-si-sys-background-1);
+  --ix-textarea--background--warning--hover: var(--theme-si-sys-background-4);
+  --ix-textarea--border-color--info: var(--theme-si-sys-border-information);
+  --ix-textarea--border-color--info--active: var(
     --theme-si-sys-border-information
   );
-  --ix-input--border-color--info--hover: var(--theme-si-sys-border-information);
-  --ix-input--border-color--invalid: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--invalid--active: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--invalid--hover: var(--theme-si-sys-border-danger);
-  --ix-input--border-color--warning--active: var(
+  --ix-textarea--border-color--info--hover: var(
+    --theme-si-sys-border-information
+  );
+  --ix-textarea--border-color--invalid: var(--theme-si-sys-border-danger);
+  --ix-textarea--border-color--invalid--active: var(
+    --theme-si-sys-border-danger
+  );
+  --ix-textarea--border-color--invalid--hover: var(
+    --theme-si-sys-border-danger
+  );
+  --ix-textarea--border-color--warning--active: var(
     --theme-si-sys-background-warning
   );
-  --ix-input--border-color--warning--hover: var(
+  --ix-textarea--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
 }
