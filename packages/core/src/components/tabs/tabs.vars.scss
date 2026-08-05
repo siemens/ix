@@ -8,7 +8,7 @@
  */
 
 :host {
-  --ix-tabs--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-tabs--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-tabs-indicator--background: var(--theme-si-sys-border-3);
   --ix-tabs-indicator--background--selected: var(
     --theme-si-sys-background-accent-hover

@@ -8,8 +8,8 @@
  */
 
 :host {
-  --ix-tab-item--color-1: var(--theme-si-sys-background-0);
-  --ix-tab-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-tab-item-pill--background: var(--theme-si-sys-background-0);
+  --ix-tab-item--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-tab-item-pill-outline--color: var(--theme-si-sys-text-primary);
   --ix-tab-item-animated-circle--background: var(--theme-si-sys-background-1);
   --ix-tab-item-animated-circle--background--active: var(
@@ -39,7 +39,9 @@
   );
   --ix-tab-item--background--selected: rgba(0, 0, 0, 0);
   --ix-tab-item--color: var(--theme-si-sys-text-primary);
+  --ix-tab-item--color--active: var(--theme-si-sys-text-primary);
   --ix-tab-item--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-tab-item--color--hover: var(--theme-si-sys-text-primary);
   --ix-tab-item--color--selected: var(--theme-si-sys-text-accent-hover);
   --ix-tab-item-indicator--background--disabled: var(--theme-si-sys-border-3);
   --ix-tab-item-indicator--background--selected: var(

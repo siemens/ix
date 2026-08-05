@@ -8,8 +8,8 @@
  */
 
 :host {
-  --ix-select--inset-shadow-1: var(--theme-inset-shadow-1);
-  --ix-select--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-select--box-shadow: var(--theme-inset-shadow-1);
+  --ix-select--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-select--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-select--background: var(--theme-si-sys-background-1);
   --ix-select--background--hover: var(--theme-si-sys-background-4);
@@ -37,8 +37,10 @@
     --theme-si-sys-background-warning
   );
   --ix-select--border-radius: var(--theme-small-border-radius);
-  --ix-select--border-thickness: var(--theme-border-width-default);
+  --ix-select--border-width: var(--theme-border-width-default);
   --ix-select--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-select--color--readonly: var(--theme-si-sys-text-primary);
   --ix-select-icon--color: var(--theme-si-sys-text-primary);
   --ix-select-item-hint--color: var(--theme-si-sys-text-secondary);
+  --ix-select-overflow-button--color--active: var(--theme-si-sys-text-primary);
 }

@@ -30,18 +30,20 @@
 
   .popover-close {
     align-self: flex-start;
-    border-radius: var(--ix-popover-header--small-border-radius);
+    border-radius: var(--ix-popover-header-close-button--border-radius);
 
     --ix-icon-button-color: var(--ix-popover-close--color);
     --ix-button-tertiary--color: var(--ix-popover-close--color);
     --ix-button-tertiary--color--hover: var(--ix-popover-close--color);
     --ix-button-tertiary--color--active: var(--ix-popover-close--color);
-    --ix-button-tertiary--background: var(--ix-popover-close-btn--background);
+    --ix-button-tertiary--background: var(
+      --ix-popover-close-button--background
+    );
     --ix-button-tertiary--background--hover: var(
-      --ix-popover-close-btn--background--hover
+      --ix-popover-close-button--background--hover
     );
     --ix-button-tertiary--background--active: var(
-      --ix-popover-close-btn--background--active
+      --ix-popover-close-button--background--active
     );
     --ix-button-tertiary--border-color: transparent;
     --ix-button-tertiary--border-color--hover: transparent;

@@ -26,10 +26,10 @@
   width: auto;
   height: fit-content;
   background: var(--ix-tooltip--background);
-  color: var(--ix-tooltip--color-std-text);
+  color: var(--ix-tooltip--color);
   padding: 0.375rem 0.75rem;
 
-  box-shadow: var(--ix-tooltip--shadow-4);
+  box-shadow: var(--ix-tooltip--box-shadow);
   border-radius: 0.25rem;
 }
 

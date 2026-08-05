@@ -126,7 +126,7 @@
   :host([indeterminate].disabled) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--disabled);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--disabled);
     }
   }
@@ -211,7 +211,7 @@
   :host(#{$selector}[indeterminate].disabled) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--disabled);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--disabled);
     }
   }

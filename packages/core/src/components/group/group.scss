@@ -86,7 +86,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     }
 
     .group-header-selection-indicator {
-      background-color: var(--ix-color-input--focus);
+      background-color: var(--ix-group-header-selection-indicator--background);
 
       &.group-header-selection-indicator-item-selected {
         background-color: var(--ix-group-item-indicator--background--selected);

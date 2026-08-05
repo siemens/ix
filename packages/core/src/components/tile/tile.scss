@@ -31,11 +31,11 @@ $width: 11.937rem;
 
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--ix-tile--border);
+  border: var(--ix-tile--border-width) solid var(--ix-tile--border-color);
   border-radius: var(--ix-tile--border-radius);
 
-  background-color: var(--ix-tile--color-2);
-  color: var(--ix-tile--color-std-text);
+  background-color: var(--ix-tile--background);
+  color: var(--ix-tile--color);
   box-shadow: var(--ix-tile--box-shadow);
 
   // @each $key, $value in $color-map-status {
@@ -74,12 +74,12 @@ $width: 11.937rem;
   }
 
   .tile-subheader {
-    color: var(--ix-tile--color-soft-text);
+    color: var(--ix-tile-subheader--color);
     flex-grow: 0;
   }
 
   .tile-footer.has-content {
-    border-block-start: 1px solid var(--ix-tile--color-1);
+    border-block-start: 1px solid var(--ix-tile-footer--border-color);
     height: vars.$large-control-height;
   }
 }

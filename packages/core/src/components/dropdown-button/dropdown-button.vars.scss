@@ -8,9 +8,7 @@
  */
 
 :host {
-  --ix-dropdown-button--outline-color--focus: var(
-    --theme-si-sys-effects-focus
-  );
+  --ix-dropdown-button--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-dropdown-button--border-radius: var(--theme-small-border-radius);
   --ix-dropdown-button--border-width: var(--theme-border-width-default);
   --ix-dropdown-button--focus--outline-offset: var(

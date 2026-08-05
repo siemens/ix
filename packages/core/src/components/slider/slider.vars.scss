@@ -8,11 +8,23 @@
  */
 
 :host {
-  --ix-slider--default-time: var(--theme-default-time);
-  --ix-slider--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-slider--color-warning: var(--theme-si-sys-text-warning);
-  --ix-slider--color-info: var(--theme-si-sys-text-information);
-  --ix-slider--color-success: var(--theme-si-sys-text-success);
+  --ix-slider-thumb--transition-duration: var(--theme-default-time);
+  --ix-slider-thumb--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-slider-trace--background--warning: var(--theme-si-sys-text-warning);
+  --ix-slider-trace-marker--background--warning: var(
+    --theme-si-sys-text-warning
+  );
+  --ix-slider-thumb--background--warning: var(--theme-si-sys-text-warning);
+  --ix-slider-trace--background--info: var(--theme-si-sys-text-information);
+  --ix-slider-trace-marker--background--info: var(
+    --theme-si-sys-text-information
+  );
+  --ix-slider-thumb--background--info: var(--theme-si-sys-text-information);
+  --ix-slider-trace--background--success: var(--theme-si-sys-text-success);
+  --ix-slider-trace-marker--background--success: var(
+    --theme-si-sys-text-success
+  );
+  --ix-slider-thumb--background--success: var(--theme-si-sys-text-success);
   --ix-slider-thumb--background: var(--theme-si-sys-background-accent);
   --ix-slider-thumb--background--active: var(
     --theme-si-sys-background-accent-active

@@ -134,7 +134,7 @@ $menu-expanded-width: 16rem;
     left: 3.25rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
-    background-color: var(--ix-sidebar-overlay-blur);
+    background-color: var(--ix-menu-overlay--background);
     transition: left var(--ix-menu-overlay--transition-duration) ease-in-out;
   }
 

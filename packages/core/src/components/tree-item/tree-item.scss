@@ -46,7 +46,8 @@
     min-width: 2rem;
 
     ix-icon {
-      transition: transform var(--ix-tree-item--default-time) ease-in-out;
+      transition: transform var(--ix-tree-item-expand-icon--transition-duration)
+        ease-in-out;
 
       &.icon-toggle-down {
         transform: rotate(90deg);

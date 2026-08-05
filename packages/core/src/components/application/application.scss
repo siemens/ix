@@ -21,7 +21,7 @@
   @include component.ix-component;
 
   ix-application-header {
-    z-index: calc(var(--ix-application-header--z-index) + 1);
+    z-index: calc(var(--ix-application-child-header--z-index) + 1);
   }
 
   .logo-wrapper {

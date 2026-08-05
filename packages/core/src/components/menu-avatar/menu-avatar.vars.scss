@@ -12,11 +12,13 @@
   --ix-menu-avatar-button--outline-color--focus: var(
     --theme-si-sys-effects-focus
   );
-  --ix-menu-avatar-btn--background--active: var(
+  --ix-menu-avatar-button--background--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-menu-avatar-btn--background--hover: var(--theme-si-sys-background-hover);
-  --ix-menu-avatar-btn--color--active: var(--theme-si-sys-text-primary);
-  --ix-menu-avatar-btn--color--hover: var(--theme-si-sys-text-primary);
+  --ix-menu-avatar-button--background--hover: var(
+    --theme-si-sys-background-hover
+  );
+  --ix-menu-avatar-button--color--active: var(--theme-si-sys-text-primary);
+  --ix-menu-avatar-button--color--hover: var(--theme-si-sys-text-primary);
   --ix-menu-avatar-item-primary--color: var(--theme-si-sys-text-primary);
 }

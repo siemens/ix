@@ -8,9 +8,7 @@
  */
 
 :host {
-  --ix-filter-chip--border-width: var(
-    --theme-focus--border-thickness
-  );
+  --ix-filter-chip--border-width: var(--theme-focus--border-thickness);
   --ix-filter-chip--background: transparent;
   --ix-filter-chip--border-color--disabled: var(--theme-color-component-4);
   --ix-filter-chip--color--disabled: var(--theme-si-sys-text-disabled);

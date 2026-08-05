@@ -91,12 +91,14 @@ $chip-color-sys-tokens: (
   --ix-chip--background--active: var(--theme-si-sys-background-selected);
   --ix-chip--background--hover: var(--theme-si-sys-background-hover);
   --ix-chip--color: var(--theme-si-sys-text-primary);
-  --ix-chip-close-btn--background: rgba(0, 0, 0, 0);
-  --ix-chip-close-btn--background--active: var(
+  --ix-chip-close-button--background: rgba(0, 0, 0, 0);
+  --ix-chip-close-button--background--active: var(
     --theme-si-sys-background-selected
   );
-  --ix-chip-close-btn--background--hover: var(--theme-si-sys-background-hover);
-  --ix-chip-close-btn--color: var(--theme-si-sys-text-secondary);
+  --ix-chip-close-button--background--hover: var(
+    --theme-si-sys-background-hover
+  );
+  --ix-chip-close-button--color: var(--theme-si-sys-text-secondary);
   --ix-chip-outline--background: var(
     --theme-si-sys-background-accent-secondary
   );

@@ -40,8 +40,7 @@ $focusBorderWidth: 1px;
     padding-left: 2.5rem;
 
     &:focus-visible {
-      border: $focusBorderWidth solid
-        var(--ix-group-item--border-color--focus);
+      border: $focusBorderWidth solid var(--ix-group-item--border-color--focus);
     }
 
     &:disabled {

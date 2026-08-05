@@ -73,7 +73,7 @@
     z-index: 1;
     height: 16px;
     width: auto;
-    background-color: var(--ix-tab-item--color-1);
+    background-color: var(--ix-tab-item-pill--background);
     border: 1px solid var(--ix-tab-item-pill--border-color);
     border-radius: 100px;
     bottom: 6px;
@@ -166,12 +166,12 @@
 
 :host(:hover:not(.circle):not(.disabled)) {
   background-color: var(--ix-tab-item--background--hover);
-  color: var(--ix-tab-color-hover);
+  color: var(--ix-tab-item--color--hover);
 }
 
 :host(:active:not(.circle):not(.disabled)) {
   background-color: var(--ix-tab-item--background--active);
-  color: var(--ix-tab-color--active);
+  color: var(--ix-tab-item--color--active);
 }
 
 :host(.disabled) {
@@ -211,7 +211,7 @@
 
 :host(:not(.circle):focus-visible) {
   outline-offset: -0.0625rem;
-  outline: 0.0625rem solid var(--ix-tab-item--color-focus-bdr);
+  outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
 }
 
 :host(.circle:focus-visible) {
@@ -219,6 +219,6 @@
 
   .circle {
     outline-offset: 0.125rem;
-    outline: 0.0625rem solid var(--ix-tab-item--color-focus-bdr);
+    outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
   }
 }

@@ -8,10 +8,19 @@
  */
 
 :host {
-  --ix-pane--space-1: var(--theme-space-1);
-  --ix-pane--space--1: var(--theme-space--1);
-  --ix-pane--space-2: var(--theme-space-2);
-  --ix-pane--space-3: var(--theme-space-3);
+  --ix-pane-title--gap: var(--theme-space-1);
+  --ix-pane-header--gap: var(--theme-space-1);
+  --ix-pane-top-bottom-title--margin-block: var(--theme-space--1);
+  --ix-pane-top-bottom-title--margin-inline: var(--theme-space-2);
+  --ix-pane-title-finished--margin: var(--theme-space-2);
+  --ix-pane-title-collapsed--margin: var(--theme-space-2);
+  --ix-pane-left-right-title--margin-block: var(--theme-space-2);
+  --ix-pane-left-right-title--margin-inline: var(--theme-space--1);
+  --ix-pane-mobile-title--margin-block: var(--theme-space-1);
+  --ix-pane-mobile-title--margin-inline: var(--theme-space-2);
+  --ix-pane-content--padding-block-start: var(--theme-space-1);
+  --ix-pane-content--padding-inline: var(--theme-space-2);
+  --ix-pane-content--padding-block-end: var(--theme-space-3);
   --ix-pane--border-width: var(--theme-border-width-default);
   --ix-pane-floating--background: var(--theme-si-sys-background-1);
   --ix-pane-floating--border-color: var(--theme-si-sys-border-4);

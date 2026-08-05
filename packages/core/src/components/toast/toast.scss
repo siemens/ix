@@ -25,11 +25,11 @@
   pointer-events: all;
 
   background-color: var(--ix-toast--background);
-  border: var(--ix-toast--border-thickness) solid var(--ix-toast--border-color);
-  border-radius: var(--ix-toast--border-radius, var(--ix-toast--border-radus));
+  border: var(--ix-toast--border-width) solid var(--ix-toast--border-color);
+  border-radius: var(--ix-toast--border-radius);
   box-shadow: var(--ix-toast--box-shadow);
 
-  --animate-duration: var(--ix-toast--medium-time);
+  --animate-duration: var(--ix-toast--animation-duration);
 
   @include component.ix-component;
 

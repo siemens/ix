@@ -17,12 +17,12 @@
   }
 
   ix-dropdown-item {
-    color: var(--ix-select-item--color-std-text);
+    color: var(--ix-select-item--color);
   }
 
   .select-item-checked {
     background-color: var(--ix-select-item--background--selected);
-    --ix-dropdown-item-checkmark--color: var(--ix-select-item--color-std-text);
+    --ix-dropdown-item-checkmark--color: var(--ix-select-item--color);
   }
 }
 

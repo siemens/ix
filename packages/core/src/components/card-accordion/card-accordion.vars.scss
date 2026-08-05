@@ -13,14 +13,10 @@
     --theme-default-time
   );
   --ix-card-accordion-content--transition-duration: var(--theme-default-time);
-  --ix-card-accordion--outline-color--focus: var(
-    --theme-si-sys-effects-focus
-  );
+  --ix-card-accordion--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-card-accordion-content--color: var(--theme-si-sys-text-primary);
   --ix-card-accordion-footer--background: var(--theme-si-sys-background-1);
-  --ix-card-accordion-footer--border-radius: var(
-    --theme-default-border-radius
-  );
+  --ix-card-accordion-footer--border-radius: var(--theme-default-border-radius);
   --ix-card-accordion--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-card-accordion-alarm-accordion--background: var(
     --theme-si-sys-background-danger

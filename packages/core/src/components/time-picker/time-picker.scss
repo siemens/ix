@@ -54,7 +54,7 @@
           width: 2.5rem;
           line-height: 2.5rem;
           text-align: center;
-          color: var(--ix-time-picker--color-soft-text);
+          color: var(--ix-time-picker-column-header--color);
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -91,21 +91,22 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        color: var(--ix-time-picker--color-primary);
+        color: var(--ix-time-picker-day--color);
 
         &:hover:not(.disabled) {
           background-color: var(--ix-time-picker-day--background--hover);
         }
 
         &:focus-visible {
-          box-shadow: 0 0 0 1px var(--ix-time-picker--color-focus-bdr);
+          box-shadow: 0 0 0 1px
+            var(--ix-time-picker-day--box-shadow-color--focus);
         }
 
         &.disabled {
           cursor: default;
 
           &:not(.selected) {
-            color: var(--ix-time-picker--color-weak-text);
+            color: var(--ix-time-picker-day--color--disabled);
           }
         }
 
@@ -117,7 +118,7 @@
         &.selected {
           background-color: var(--ix-time-picker-day--background--selected);
           color: var(--ix-time-picker-day--color--selected);
-          font-weight: var(--ix-time-picker--font-weight-bold);
+          font-weight: var(--ix-time-picker-day--font-weight--selected);
 
           &:hover:not(.disabled) {
             background-color: var(
@@ -127,7 +128,7 @@
 
           &:focus-visible {
             border: 0.0625rem solid
-              var(--ix-time-picker--color-inv-contrast-text);
+              var(--ix-time-picker-day--border-color--selected-focus);
           }
 
           &.disabled {

@@ -218,7 +218,7 @@ $outline-border-width: 0.0625rem;
       color: inherit;
 
       @include chip-close-surface(
-        var(--ix-chip-close-btn--background),
+        var(--ix-chip-close-button--background),
         var(--ix-chip-primary--background--hover),
         var(--ix-chip-primary--background--active)
       );
@@ -287,7 +287,7 @@ $outline-border-width: 0.0625rem;
         color: inherit;
 
         @include chip-close-surface(
-          var(--ix-chip-close-btn--background),
+          var(--ix-chip-close-button--background),
           var(--ix-chip-#{$color}--background--hover),
           var(--ix-chip-#{$color}--background--active)
         );
@@ -329,9 +329,9 @@ $outline-border-width: 0.0625rem;
 
   &.outline .chip-close {
     @include chip-close-surface(
-      var(--ix-chip-close-btn--background),
-      var(--ix-chip-close-btn--background--hover),
-      var(--ix-chip-close-btn--background--active)
+      var(--ix-chip-close-button--background),
+      var(--ix-chip-close-button--background--hover),
+      var(--ix-chip-close-button--background--active)
     );
   }
 
@@ -383,7 +383,7 @@ $outline-border-width: 0.0625rem;
       color: inherit;
 
       @include chip-close-surface(
-        var(--ix-chip-close-btn--background),
+        var(--ix-chip-close-button--background),
         color-mix(in srgb, currentColor 10%, transparent),
         color-mix(in srgb, currentColor 20%, transparent)
       );

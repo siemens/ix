@@ -8,9 +8,7 @@
  */
 
 :host {
-  --ix-date-picker-day--outline-color--focus: var(
-    --theme-si-sys-effects-focus
-  );
+  --ix-date-picker-day--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-date-picker-day--font-weight--selected: var(--theme-font-weight-bold);
   --ix-date-picker-weekday--font-size: var(--theme-ms-0);
   --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);

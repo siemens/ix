@@ -52,13 +52,13 @@
     border-radius: 1.25rem;
 
     @include hover.hover {
-      background-color: var(--ix-menu-avatar-btn--background--hover);
-      color: var(--ix-menu-avatar-btn--color--hover);
+      background-color: var(--ix-menu-avatar-button--background--hover);
+      color: var(--ix-menu-avatar-button--color--hover);
     }
 
     @include hover.active {
-      background-color: var(--ix-menu-avatar-btn--background--active);
-      color: var(--ix-menu-avatar-btn--color--active);
+      background-color: var(--ix-menu-avatar-button--background--active);
+      color: var(--ix-menu-avatar-button--color--active);
     }
   }
 

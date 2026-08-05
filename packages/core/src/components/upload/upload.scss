@@ -115,11 +115,11 @@
         margin-inline-end: vars.$small-space;
 
         &.icon-error {
-          color: var(--ix-upload--color-alarm);
+          color: var(--ix-upload-error-icon--color);
         }
 
         &.icon-success {
-          color: var(--ix-upload--color-success);
+          color: var(--ix-upload-success-icon--color);
         }
       }
     }

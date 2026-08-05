@@ -8,5 +8,7 @@
  */
 
 :host {
-  --ix-popover-header--small-border-radius: var(--theme-small-border-radius);
+  --ix-popover-header-close-button--border-radius: var(
+    --theme-small-border-radius
+  );
 }

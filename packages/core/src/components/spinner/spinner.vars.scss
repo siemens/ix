@@ -8,8 +8,10 @@
  */
 
 :host {
-  --ix-spinner--color-soft-text: var(--theme-si-sys-text-secondary);
-  --ix-spinner--color-component-3: var(--theme-color-component-3);
-  --ix-spinner--color-dynamic: var(--theme-si-sys-text-accent-hover);
-  --ix-spinner--color-ghost--hover: var(--theme-si-sys-background-hover);
+  --ix-spinner--border-color: var(--theme-si-sys-text-secondary);
+  --ix-spinner-track--border-color: var(--theme-color-component-3);
+  --ix-spinner-primary--border-color: var(--theme-si-sys-text-accent-hover);
+  --ix-spinner-primary-track--border-color: var(
+    --theme-si-sys-background-hover
+  );
 }

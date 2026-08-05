@@ -8,12 +8,16 @@
  */
 
 :host {
-  --ix-time-picker--color-soft-text: var(--theme-si-sys-text-secondary);
-  --ix-time-picker--color-primary: var(--theme-si-sys-text-accent);
-  --ix-time-picker--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-time-picker--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-time-picker--font-weight-bold: var(--theme-font-weight-bold);
-  --ix-time-picker--color-inv-contrast-text: var(--theme-si-sys-text-inverse);
+  --ix-time-picker-column-header--color: var(--theme-si-sys-text-secondary);
+  --ix-time-picker-day--color: var(--theme-si-sys-text-accent);
+  --ix-time-picker-day--box-shadow-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
+  --ix-time-picker-day--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-time-picker-day--font-weight--selected: var(--theme-font-weight-bold);
+  --ix-time-picker-day--border-color--selected-focus: var(
+    --theme-si-sys-text-inverse
+  );
   --ix-time-picker-day--background--hover: var(--theme-si-sys-background-hover);
   --ix-time-picker-day--background--selected: var(
     --theme-si-sys-background-accent-hover

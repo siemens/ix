@@ -11,12 +11,42 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const componentsRoot = path.resolve('src/components');
+const scssRoot = path.resolve('scss');
 const customPropertyDeclarationPattern = /(--ix-[a-z0-9-]+)\s*:/g;
+const customPropertyReferencePattern = /--ix-[a-z0-9-]+/g;
+const customPropertyVariablePattern = /var\(\s*(--ix-[a-z0-9-]+)\s*([,)])/g;
+const undeclaredCustomPropertyAllowlist = new Set([
+  '--ix-badge-custom-background',
+  '--ix-badge-custom-color',
+  '--ix-layout-grid-columns',
+  '--ix-tab-active-indicator-offset',
+  '--ix-tab-active-indicator-width',
+]);
+const legacyPurposePatterns = [
+  /--(?:default|medium)-time(?:--|$)/,
+  /--color-(?:std-text|soft-text|weak-text|focus-bdr|x-weak-bdr|weak-bdr|component-\d+|\d+)(?:--|$)/,
+  /--color-(?:ghost|dynamic|primary|lightbox|inv-contrast-text|alarm|warning|success|info|critical|neutral)(?:--|$)/,
+  /--border-thickness(?:--|$)/,
+  /--(?:default|small)-border-radius(?:--|$)/,
+  /--(?:inset-)?shadow-\d+(?:--|$)/,
+  /--z-index-(?:sticky|fixed|toast|dropdown)(?:--|$)/,
+  /--font-weight-bold(?:--|$)/,
+  /--ms-\d+(?:--|$)/,
+  /--hint-color(?:--|$)/,
+  /--(?:x-weak|weak|std)-bdr(?:-\d+)?(?:--|$)/,
+  /--space--?\d+(?:--|$)/,
+  /-btn(?:--|-)/,
+  /radus/,
+];
 
 const componentNameOverrides: Record<string, string> = {
   'progress-indicator/circular': 'progress-indicator',
   'progress-indicator/linear': 'progress-indicator',
 };
+
+const sourceFiles = [componentsRoot, scssRoot].flatMap((sourceRoot) =>
+  ['.scss', '.ts', '.tsx'].flatMap((suffix) => findFiles(sourceRoot, suffix))
+);
 
 function findFiles(directory: string, suffix: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -86,5 +116,56 @@ describe('component CSS custom properties', () => {
     );
 
     expect(duplicates).toEqual([]);
+  });
+
+  it('uses purpose-based names instead of legacy token value names', () => {
+    const violations = sourceFiles.flatMap((sourcePath) => {
+      const references = [
+        ...fs
+          .readFileSync(sourcePath, 'utf8')
+          .matchAll(customPropertyReferencePattern),
+      ].map((match) => match[0]);
+
+      return [...new Set(references)]
+        .filter((customProperty) =>
+          legacyPurposePatterns.some((pattern) => pattern.test(customProperty))
+        )
+        .map(
+          (customProperty) =>
+            `${path.relative(process.cwd(), sourcePath)}: ${customProperty}`
+        );
+    });
+
+    expect(violations).toEqual([]);
+  });
+
+  it('declares fallback-free local variable references', () => {
+    const declarations = new Set(
+      sourceFiles.flatMap((sourcePath) =>
+        [
+          ...fs
+            .readFileSync(sourcePath, 'utf8')
+            .matchAll(customPropertyDeclarationPattern),
+        ].map((match) => match[1])
+      )
+    );
+    const unresolvedReferences = sourceFiles.flatMap((sourcePath) =>
+      [
+        ...fs
+          .readFileSync(sourcePath, 'utf8')
+          .matchAll(customPropertyVariablePattern),
+      ]
+        .filter(
+          (match) =>
+            match[2] === ')' &&
+            !declarations.has(match[1]) &&
+            !undeclaredCustomPropertyAllowlist.has(match[1])
+        )
+        .map(
+          (match) => `${path.relative(process.cwd(), sourcePath)}: ${match[1]}`
+        )
+    );
+
+    expect(unresolvedReferences).toEqual([]);
   });
 });

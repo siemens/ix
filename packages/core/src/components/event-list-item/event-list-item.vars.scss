@@ -24,11 +24,11 @@
   --ix-event-list-item-filled--background--selected: var(
     --theme-si-sys-background-selected
   );
-  --ix-event-list-item-filled--border: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border--active: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border--disabled: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border--hover: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border--selected: var(
+  --ix-event-list-item-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--active: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--selected: var(
     --theme-si-sys-border-accent-hover
   );
   --ix-event-list-item-indicator--width: var(--theme-size--2);
@@ -44,11 +44,17 @@
   --ix-event-list-item-outline--background--selected: var(
     --theme-si-sys-background-selected
   );
-  --ix-event-list-item-outline--border: var(--theme-si-sys-border-3);
-  --ix-event-list-item-outline--border--active: var(--theme-si-sys-border-3);
-  --ix-event-list-item-outline--border--disabled: var(--theme-si-sys-border-4);
-  --ix-event-list-item-outline--border--hover: var(--theme-si-sys-border-3);
-  --ix-event-list-item-outline--border--selected: var(
+  --ix-event-list-item-outline--border-color: var(--theme-si-sys-border-3);
+  --ix-event-list-item-outline--border-color--active: var(
+    --theme-si-sys-border-3
+  );
+  --ix-event-list-item-outline--border-color--disabled: var(
+    --theme-si-sys-border-4
+  );
+  --ix-event-list-item-outline--border-color--hover: var(
+    --theme-si-sys-border-3
+  );
+  --ix-event-list-item-outline--border-color--selected: var(
     --theme-si-sys-border-accent-hover
   );
 }

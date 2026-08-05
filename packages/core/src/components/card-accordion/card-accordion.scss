@@ -111,12 +111,8 @@
     height: 1rem;
 
     background-color: var(--ix-card-accordion-footer--background);
-    border-bottom-left-radius: var(
-      --ix-card-accordion-footer--border-radius
-    );
-    border-bottom-right-radius: var(
-      --ix-card-accordion-footer--border-radius
-    );
+    border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);
+    border-bottom-right-radius: var(--ix-card-accordion-footer--border-radius);
   }
 }
 

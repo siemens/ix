@@ -8,9 +8,7 @@
  */
 
 :host {
-  --ix-flip-tile-footer-icon--color--hover: var(
-    --theme-si-sys-text-primary
-  );
+  --ix-flip-tile-footer-icon--color--hover: var(--theme-si-sys-text-primary);
   --ix-flip-tile--border-radius: var(--theme-default-border-radius);
   --ix-flip-tile-alarm--background: var(--theme-si-sys-background-1);
   --ix-flip-tile-alarm--border-color: var(--theme-si-sys-border-danger);

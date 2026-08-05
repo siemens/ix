@@ -8,8 +8,8 @@
  */
 
 :host {
-  --ix-upload--color-alarm: var(--theme-si-sys-text-danger);
-  --ix-upload--color-success: var(--theme-si-sys-text-success);
+  --ix-upload-error-icon--color: var(--theme-si-sys-text-danger);
+  --ix-upload-success-icon--color: var(--theme-si-sys-text-success);
   --ix-upload--border-color: var(--theme-si-sys-border-3);
   --ix-upload--border-color--dragover: var(--theme-si-sys-border-accent-hover);
   --ix-upload--border-radius: var(--theme-default-border-radius);

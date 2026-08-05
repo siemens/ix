@@ -84,15 +84,15 @@
         }
 
         &.warning {
-          background-color: var(--ix-workflow-step--color-warning);
+          background-color: var(--ix-workflow-step-line--background--warning);
         }
 
         &.success {
-          background-color: var(--ix-workflow-step--color-success);
+          background-color: var(--ix-workflow-step-line--background--success);
         }
 
         &.error {
-          background-color: var(--ix-workflow-step--color-alarm);
+          background-color: var(--ix-workflow-step-line--background--error);
         }
       }
 

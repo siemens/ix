@@ -97,7 +97,7 @@
 
   .tabs:focus-visible {
     outline-offset: -1px;
-    outline: 1px solid var(--ix-tabs--color-focus-bdr);
+    outline: 1px solid var(--ix-tabs--outline-color--focus);
   }
 
   .tabs-context-menu {

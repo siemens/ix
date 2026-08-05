@@ -8,7 +8,7 @@
  */
 
 :host {
-  --ix-tooltip--color-std-text: var(--theme-si-sys-text-primary);
-  --ix-tooltip--shadow-4: var(--theme-si-sys-effects-shadow-4);
+  --ix-tooltip--color: var(--theme-si-sys-text-primary);
+  --ix-tooltip--box-shadow: var(--theme-si-sys-effects-shadow-4);
   --ix-tooltip--background: var(--theme-si-sys-background-1);
 }

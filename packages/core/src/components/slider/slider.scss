@@ -181,7 +181,7 @@
     background-color: var(--ix-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
-    transition: all var(--ix-slider--default-time) ease-in-out;
+    transition: all var(--ix-slider-thumb--transition-duration) ease-in-out;
     z-index: 10;
   }
 
@@ -194,7 +194,7 @@
   }
 
   @include thumb-focus() {
-    outline: 1px solid var(--ix-slider--color-focus-bdr);
+    outline: 1px solid var(--ix-slider-thumb--outline-color--focus);
     outline-offset: 0.125rem;
   }
 
@@ -310,28 +310,28 @@
 }
 
 :host(.warning) {
-  --trace-color: var(--ix-slider--color-warning);
-  --tick-color--active: var(--ix-slider--color-warning);
+  --trace-color: var(--ix-slider-trace--background--warning);
+  --tick-color--active: var(--ix-slider-trace-marker--background--warning);
 
   @include thumb() {
-    background-color: var(--ix-slider--color-warning);
+    background-color: var(--ix-slider-thumb--background--warning);
   }
 }
 
 :host(.info) {
-  --trace-color: var(--ix-slider--color-info);
-  --tick-color--active: var(--ix-slider--color-info);
+  --trace-color: var(--ix-slider-trace--background--info);
+  --tick-color--active: var(--ix-slider-trace-marker--background--info);
 
   @include thumb() {
-    background-color: var(--ix-slider--color-info);
+    background-color: var(--ix-slider-thumb--background--info);
   }
 }
 
 :host(.valid) {
-  --trace-color: var(--ix-slider--color-success);
-  --tick-color--active: var(--ix-slider--color-success);
+  --trace-color: var(--ix-slider-trace--background--success);
+  --tick-color--active: var(--ix-slider-trace-marker--background--success);
 
   @include thumb() {
-    background-color: var(--ix-slider--color-success);
+    background-color: var(--ix-slider-thumb--background--success);
   }
 }

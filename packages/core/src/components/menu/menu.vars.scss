@@ -12,11 +12,10 @@
   --ix-menu-tabs-shadow--color: var(--theme-color-shadow-1);
   --ix-menu-tabs-shadow--transition-duration: var(--theme-default-time);
   --ix-menu-panel--transition-duration: var(--theme-default-time);
+  --ix-menu-overlay--background: rgba(0, 0, 0, 0);
   --ix-menu-overlay--transition-duration: var(--theme-default-time);
   --ix-menu-tabs--outline-color--focus: var(--theme-si-sys-effects-focus);
-  --ix-menu-navigation--outline-color--focus: var(
-    --theme-si-sys-effects-focus
-  );
+  --ix-menu-navigation--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-menu--background: var(--theme-si-sys-background-1);
   --ix-menu--box-shadow: var(--theme-si-sys-effects-shadow-2);
 }

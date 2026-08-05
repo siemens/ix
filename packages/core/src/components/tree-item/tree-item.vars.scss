@@ -8,7 +8,7 @@
  */
 
 :host {
-  --ix-tree-item--default-time: var(--theme-default-time);
+  --ix-tree-item-expand-icon--transition-duration: var(--theme-default-time);
   --ix-tree-item--background--active: var(--theme-si-sys-background-selected);
   --ix-tree-item--background--hover: var(--theme-si-sys-background-hover);
   --ix-tree-item--background--selected: var(--theme-si-sys-background-selected);
