@@ -785,7 +785,6 @@ export class Select
     const emptyValue = this.isSingleMode ? '' : [];
     this.value = emptyValue;
     this.emitValueChange(emptyValue);
-    this.syncValidationClasses();
     this.dropdownShow = false;
   }
 
