@@ -26,6 +26,11 @@ import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import Badge from './preview-examples/badge.vue';
+import BadgeCounter from './preview-examples/badge-counter.vue';
+import BadgeDot from './preview-examples/badge-dot.vue';
+import BadgeLabel from './preview-examples/badge-label.vue';
+import BadgeStatusIcon from './preview-examples/badge-status-icon.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import Blind from './preview-examples/blind.vue';
@@ -50,6 +55,10 @@ import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
+import Chat from './preview-examples/chat.vue';
+import ChatAiMessage from './preview-examples/chat-ai-message.vue';
+import ChatInput from './preview-examples/chat-input.vue';
+import ChatUserMessage from './preview-examples/chat-user-message.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -272,6 +281,11 @@ const routes: IxPreviewRoutes = {
   '/preview/avatar-image': AvatarImage,
   '/preview/avatar-initials': AvatarInitials,
   '/preview/avatar': Avatar,
+  '/preview/badge': Badge,
+  '/preview/badge-counter': BadgeCounter,
+  '/preview/badge-dot': BadgeDot,
+  '/preview/badge-label': BadgeLabel,
+  '/preview/badge-status-icon': BadgeStatusIcon,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -293,6 +307,10 @@ const routes: IxPreviewRoutes = {
   '/preview/card-list': CardList,
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
+  '/preview/chat': Chat,
+  '/preview/chat-ai-message': ChatAiMessage,
+  '/preview/chat-input': ChatInput,
+  '/preview/chat-user-message': ChatUserMessage,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
