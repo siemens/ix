@@ -13,12 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use '../si-reference' as reference_variables;
-@use './legacy-variables' as light_legacy;
-@use './sys-variables' as light_sys;
+@use "../composition" as tokens;
 
-[data-ix-theme='classic'][data-ix-color-schema='light'] {
-  @include light_legacy.setVars;
-  @include reference_variables.setVars;
-  @include light_sys.setVars;
+[data-ix-theme="classic"][data-ix-color-schema="light"] {
+  @include tokens.complete-light();
 }
