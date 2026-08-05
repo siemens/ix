@@ -135,7 +135,7 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid var(--ix-dropdown-button--color-focus-bdr);
+  outline: 1px solid var(--ix-dropdown-button--outline-color--focus);
   outline-offset: var(--ix-dropdown-button--focus--outline-offset);
 }
 

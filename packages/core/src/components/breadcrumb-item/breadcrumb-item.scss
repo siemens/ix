@@ -41,7 +41,7 @@
     pointer-events: none;
     margin-left: 0.5rem;
     margin-right: 0rem;
-    color: var(--ix-breadcrumb-item--color-soft-text);
+    color: var(--ix-breadcrumb-item-separator--color);
   }
 
   ::slotted(a[href]) {
@@ -55,7 +55,7 @@
 
 :host(:last-child) {
   .btn:not(.dropdown-trigger) {
-    color: var(--ix-breadcrumb-item--color-soft-text);
+    color: var(--ix-breadcrumb-item-current--color);
   }
 }
 

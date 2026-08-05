@@ -8,8 +8,20 @@
  */
 
 :host {
-  --ix-card-list--default-time: var(--theme-default-time);
-  --ix-card-list--color-primary: var(--theme-si-sys-text-accent);
-  --ix-card-list--color-ghost--hover: var(--theme-si-sys-background-hover);
-  --ix-card-list--color-ghost--active: var(--theme-si-sys-background-selected);
+  --ix-card-list-title-button--transition-duration: var(--theme-default-time);
+  --ix-card-list-content--transition-duration: var(--theme-default-time);
+  --ix-card-list-show-all--border-color: var(--theme-si-sys-text-accent);
+  --ix-card-list-show-all--color: var(--theme-si-sys-text-accent);
+  --ix-card-list-show-all--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
+  --ix-card-list-show-all--focus-outline-offset: var(
+    --theme-focus-outline-offset
+  );
+  --ix-card-list-show-all--background--hover: var(
+    --theme-si-sys-background-hover
+  );
+  --ix-card-list-show-all--background--active: var(
+    --theme-si-sys-background-selected
+  );
 }

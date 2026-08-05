@@ -72,7 +72,7 @@ $default-event-list-item-height: 2.5rem;
     );
     background-color: var(--ix-event-list-item--background);
     overflow: hidden;
-    transition: var(--ix-event-list-item--default-time);
+    transition: var(--ix-event-list-item--transition-duration);
     cursor: pointer;
     margin-bottom: var(--event-list-item-margin-bottom, vars.$small-space);
 
@@ -92,7 +92,7 @@ $default-event-list-item-height: 2.5rem;
     }
 
     .indicator-empty {
-      border: var(--ix-event-list-item--weak-bdr-1);
+      border: var(--ix-event-list-item-empty-indicator--border);
       border-right: none;
     }
 

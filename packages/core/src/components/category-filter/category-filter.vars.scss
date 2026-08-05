@@ -8,15 +8,22 @@
  */
 
 :host {
-  --ix-category-filter--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-category-filter--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-category-filter--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
+  --ix-category-filter-dropdown-item--border-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
+  --ix-category-filter-placeholder--color: var(
+    --theme-si-sys-text-secondary
+  );
   --ix-category-filter--background--hover: var(--theme-si-sys-background-4);
   --ix-category-filter--border-color--focus: var(--theme-si-sys-border-1);
   --ix-category-filter--border-color--hover: var(--theme-si-sys-border-1);
   --ix-category-filter--border-color-bottom--disabled: var(
     --theme-si-sys-border-4
   );
-  --ix-category-filter--border-thickness: var(--theme-border-width-default);
+  --ix-category-filter--border-width: var(--theme-border-width-default);
   --ix-category-filter--color--disabled: var(--theme-si-sys-text-disabled);
   --ix-category-filter--focus--outline-offset: var(
     --theme-focus-outline-offset

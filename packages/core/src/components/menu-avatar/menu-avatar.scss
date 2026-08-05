@@ -33,7 +33,7 @@
     padding-left: 0.25rem;
     margin-left: 0.41rem;
     margin-right: 0.35rem;
-    transition: var(--ix-menu-avatar--default-time);
+    transition: var(--ix-menu-avatar-button--transition-duration);
 
     .avatar-name {
       display: flex;
@@ -63,6 +63,6 @@
   }
 
   .avatar:focus-visible {
-    outline: 1px solid var(--ix-menu-avatar--color-focus-bdr);
+    outline: 1px solid var(--ix-menu-avatar-button--outline-color--focus);
   }
 }

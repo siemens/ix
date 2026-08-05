@@ -35,11 +35,11 @@
     border-block-end: 2px solid grey;
 
     &.alarm {
-      border-block-end-color: var(--ix-kpi--color-alarm);
+      border-block-end-color: var(--ix-kpi-display--border-color--alarm);
     }
 
     &.warning {
-      border-block-end-color: var(--ix-kpi--color-warning);
+      border-block-end-color: var(--ix-kpi-display--border-color--warning);
     }
 
     .kpi-label {

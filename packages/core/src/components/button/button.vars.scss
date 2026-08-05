@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-button--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-button--outline-color--focus: var(--theme-si-sys-effects-focus);
   --ix-button--border-radius: var(--theme-small-border-radius);
-  --ix-button--border-thickness: var(--theme-border-width-default);
+  --ix-button--border-width: var(--theme-border-width-default);
   --ix-button--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-button-danger-primary--background: var(--theme-si-sys-background-danger);
   --ix-button-danger-primary--background--active: var(

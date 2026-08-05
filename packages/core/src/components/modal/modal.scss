@@ -9,7 +9,7 @@
 
 @use './modal.vars' as *;
 ::backdrop {
-  background: var(--ix-modal--color-lightbox, #0000008c);
+  background: var(--ix-modal-backdrop--background, #0000008c);
 }
 
 :focus-visible {
@@ -36,10 +36,10 @@
     flex-direction: column;
     position: fixed;
     border: none;
-    border-radius: var(--ix-modal--default-border-radius);
+    border-radius: var(--ix-modal--border-radius);
     background: var(--ix-modal--background);
-    box-shadow: var(--ix-modal--shadow-4);
-    color: var(--ix-modal--color-std-text);
+    box-shadow: var(--ix-modal--box-shadow);
+    color: var(--ix-modal--color);
     overflow: visible;
     max-height: 80vh;
     pointer-events: all;

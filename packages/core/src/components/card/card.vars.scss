@@ -11,8 +11,8 @@ $card-variants: outline filled alarm critical warning success info neutral
   primary;
 
 :host {
-  --ix-card--color-soft-bdr: var(--theme-si-sys-border-3);
-  --ix-card--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-card--border-color: var(--theme-si-sys-border-3);
+  --ix-card-accordion--color: var(--theme-si-sys-text-primary);
   --ix-card--border-radius: var(--theme-default-border-radius);
   --ix-card--border-width: var(--theme-border-width-default);
   --ix-card--focus--outline-offset: var(--theme-focus-outline-offset);

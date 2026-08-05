@@ -8,5 +8,6 @@
  */
 
 :host {
-  --ix-breadcrumb-item--color-soft-text: var(--theme-si-sys-text-secondary);
+  --ix-breadcrumb-item-separator--color: var(--theme-si-sys-text-secondary);
+  --ix-breadcrumb-item-current--color: var(--theme-si-sys-text-secondary);
 }

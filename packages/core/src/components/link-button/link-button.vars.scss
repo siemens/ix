@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-link-button--color-primary: var(--theme-si-sys-text-accent);
-  --ix-link-button--color-dynamic--hover: var(--theme-color-dynamic--hover);
-  --ix-link-button--color-dynamic--active: var(--theme-color-dynamic--active);
-  --ix-link-button--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-link-button--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-link-button--color: var(--theme-si-sys-text-accent);
+  --ix-link-button--color--hover: var(--theme-color-dynamic--hover);
+  --ix-link-button--color--active: var(--theme-color-dynamic--active);
+  --ix-link-button--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-link-button--outline-color--focus: var(--theme-si-sys-effects-focus);
 }

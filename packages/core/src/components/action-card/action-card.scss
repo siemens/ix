@@ -34,7 +34,7 @@
     box-shadow: initial;
 
     &:focus-visible {
-      outline: 1px solid var(--ix-action-card--color-focus-bdr);
+      outline: 1px solid var(--ix-action-card--outline-color--focus);
       outline-offset: var(--ix-action-card--focus--outline-offset);
     }
 

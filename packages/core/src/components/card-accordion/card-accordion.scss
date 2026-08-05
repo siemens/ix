@@ -16,7 +16,7 @@
   position: relative;
   flex-direction: column;
   width: 100%;
-  transition: var(--ix-card-accordion--default-time) ease-in-out;
+  transition: var(--ix-card-accordion--transition-duration) ease-in-out;
   --ix-card-accordion-expanded-height: 14.75rem;
 
   @include component.ix-component;
@@ -35,7 +35,7 @@
     justify-content: flex-start;
 
     @include hover.focus-visible {
-      outline: 1px solid var(--ix-card-accordion--color-focus-bdr);
+      outline: 1px solid var(--ix-card-accordion--outline-color--focus);
       outline-offset: var(--ix-card-accordion--focus--outline-offset);
     }
   }
@@ -51,7 +51,8 @@
 
   .expand-icon {
     margin-left: 0.5rem;
-    transition: var(--ix-card-accordion--default-time) transform ease-in-out;
+    transition: var(--ix-card-accordion-expand-icon--transition-duration)
+      transform ease-in-out;
   }
 
   .expand-icon.show {
@@ -64,7 +65,8 @@
     width: 100%;
     height: 0;
     overflow: hidden;
-    transition: height var(--ix-card-accordion--default-time) ease-in-out;
+    transition: height var(--ix-card-accordion-content--transition-duration)
+      ease-in-out;
   }
 
   .expand-content::after {
@@ -88,14 +90,15 @@
 
   .expand-content-body {
     opacity: 0;
-    transition: opacity var(--ix-card-accordion--default-time) ease-in-out;
+    transition: opacity var(--ix-card-accordion-content--transition-duration)
+      ease-in-out;
   }
 
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
     height: calc(var(--ix-card-accordion-expanded-height) - 1rem);
-    color: var(--ix-card-accordion--color-std-text);
+    color: var(--ix-card-accordion-content--color);
     opacity: 1;
   }
 
@@ -107,9 +110,13 @@
     width: 100%;
     height: 1rem;
 
-    background-color: var(--ix-card-accordion--color-component-1);
-    border-bottom-left-radius: var(--ix-card-accordion--default-border-radius);
-    border-bottom-right-radius: var(--ix-card-accordion--default-border-radius);
+    background-color: var(--ix-card-accordion-footer--background);
+    border-bottom-left-radius: var(
+      --ix-card-accordion-footer--border-radius
+    );
+    border-bottom-right-radius: var(
+      --ix-card-accordion-footer--border-radius
+    );
   }
 }
 
@@ -152,7 +159,7 @@
     }
 
     .expand-content.show .expand-content-body {
-      color: var(--ix-card-accordion--color-std-text);
+      color: var(--ix-card-accordion-content--color);
     }
 
     .expand-content-footer {

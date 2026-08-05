@@ -8,8 +8,8 @@
  */
 
 :host {
-  --ix-kpi--color-alarm: var(--theme-si-sys-text-danger);
-  --ix-kpi--color-warning: var(--theme-si-sys-text-warning);
+  --ix-kpi-display--border-color--alarm: var(--theme-si-sys-text-danger);
+  --ix-kpi-display--border-color--warning: var(--theme-si-sys-text-warning);
   --ix-kpi--border-radius: var(--theme-default-border-radius);
   --ix-kpi-display--background--active: var(--theme-si-sys-background-selected);
   --ix-kpi-display--background--hover: var(--theme-si-sys-background-hover);

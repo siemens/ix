@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-group--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-group--default-border-radius: var(--theme-default-border-radius);
-  --ix-group--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-group-header--border-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-group-header--border-radius--focus: var(--theme-default-border-radius);
+  --ix-group-expand-icon--color: var(--theme-si-sys-text-primary);
   --ix-group--border-radius: var(--theme-default-border-radius);
   --ix-group-header--color: var(--theme-si-sys-text-primary);
   --ix-group-item--background: var(--theme-si-sys-background-1);

@@ -8,10 +8,10 @@
  */
 
 :host {
-  --ix-checkbox--color-primary--contrast: var(--theme-si-sys-text-on-accent);
-  --ix-checkbox--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-checkbox--space-0: var(--theme-space-0);
-  --ix-checkbox--border-thickness: var(--theme-border-width-default);
+  --ix-checkbox-checkmark--color: var(--theme-si-sys-text-on-accent);
+  --ix-checkbox--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-checkbox-label--gap: var(--theme-space-0);
+  --ix-checkbox--border-width: var(--theme-border-width-default);
   --ix-checkbox--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-checkbox-checked--background: var(--theme-si-sys-background-accent);
   --ix-checkbox-checked--background--active: var(
@@ -232,5 +232,4 @@
   --ix-checkbox-unchecked--border-color--warning--hover: var(
     --theme-si-sys-background-warning
   );
-  --ix-checkbox-check-color: var(--ix-checkbox--color-primary--contrast);
 }

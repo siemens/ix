@@ -45,7 +45,7 @@ $menuItemPadding: 0.875rem;
   }
 
   .tab:focus-visible {
-    outline: 1px solid var(--ix-menu-item--color-focus-bdr);
+    outline: 1px solid var(--ix-menu-item-tab--outline-color--focus);
     outline-offset: -1px;
   }
 
@@ -63,12 +63,12 @@ $menuItemPadding: 0.875rem;
       min-width: 1rem;
       position: relative;
       border-radius: 6.25rem;
-      background-color: var(--ix-menu-item--color-primary);
+      background-color: var(--ix-menu-item-notification--background);
       font-size: 0.75rem;
       font-weight: bold;
       line-height: 1;
       font-family: Siemens Sans, Arial, sans-serif;
-      color: var(--ix-menu-item--color-primary--contrast);
+      color: var(--ix-menu-item-notification--color);
       padding: vars.$tiny-space;
     }
   }
@@ -105,16 +105,16 @@ $menuItemPadding: 0.875rem;
 }
 
 :host(.disabled) {
-  color: var(--ix-menu-item--color-weak-text);
+  color: var(--ix-menu-item--color--disabled);
   pointer-events: none;
   cursor: default;
 
   .tab > .tab-icon {
-    color: var(--ix-menu-item--color-weak-text);
+    color: var(--ix-menu-item--color--disabled);
   }
 
   .tab-text {
-    color: var(--ix-menu-item--color-weak-text);
+    color: var(--ix-menu-item--color--disabled);
   }
 }
 

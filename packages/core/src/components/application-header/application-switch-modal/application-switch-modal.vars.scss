@@ -8,8 +8,10 @@
  */
 
 :host {
-  --ix-application-switch-modal--color-ghost--selected: var(
+  --ix-application-switch-modal-app-entry--background--selected: var(
     --theme-color-ghost--selected
   );
-  --ix-application-switch-modal--color-focus-bdr: var(--theme-color-focus-bdr);
+  --ix-application-switch-modal-app-entry--border-color--focus: var(
+    --theme-color-focus-bdr
+  );
 }

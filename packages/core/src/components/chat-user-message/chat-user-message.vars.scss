@@ -10,5 +10,7 @@
 :host {
   --ix-chat-user-message--background: var(--theme-color-component-8);
   --ix-chat-user-message--color: var(--theme-si-sys-text-primary);
-  --ix-chat-user-message--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-chat-user-message--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
 }

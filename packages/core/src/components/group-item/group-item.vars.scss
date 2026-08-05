@@ -8,19 +8,19 @@
  */
 
 :host {
-  --ix-group-item--color-std-text: var(--theme-si-sys-text-primary);
-  --ix-group-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-group-item--color-soft-text: var(--theme-si-sys-text-secondary);
-  --ix-group-item--color-ghost--selected: var(
+  --ix-group-item--color: var(--theme-si-sys-text-primary);
+  --ix-group-item--border-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-group-item-subtitle--color: var(--theme-si-sys-text-secondary);
+  --ix-group-item--background--selected: var(
     --theme-si-sys-background-selected
   );
-  --ix-group-item--color-ghost--selected-hover: var(
+  --ix-group-item--background--selected-hover: var(
     --theme-si-sys-background-hover
   );
-  --ix-group-item--color-ghost--selected-active: var(
+  --ix-group-item--background--selected-active: var(
     --theme-si-sys-background-selected
   );
-  --ix-group-item--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-group-item--color--disabled: var(--theme-si-sys-text-disabled);
   --ix-group-item--background: var(--theme-si-sys-background-1);
   --ix-group-item--border-color--active: rgba(0, 0, 0, 0);
   --ix-group-item--border-color--hover: rgba(0, 0, 0, 0);

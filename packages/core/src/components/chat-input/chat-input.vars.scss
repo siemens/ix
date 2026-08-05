@@ -16,13 +16,17 @@
   --ix-chat-input--border-color--disabled: var(--theme-si-sys-border-4);
   --ix-chat-input--border-color--readonly: var(--theme-si-sys-border-4);
   --ix-chat-input--border-radius: var(--theme-small-border-radius);
-  --ix-chat-input--border-thickness: var(--theme-border-width-default);
+  --ix-chat-input--border-width: var(--theme-border-width-default);
   --ix-chat-input--box-shadow: none;
   --ix-chat-input--color: var(--theme-si-sys-text-primary);
   --ix-chat-input--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-chat-input--hint-color: var(--theme-si-sys-text-secondary);
+  --ix-chat-input-placeholder--color: var(--theme-si-sys-text-secondary);
   --ix-chat-input--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-chat-input--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-chat-input--color-info: var(--theme-si-sys-text-information);
-  --ix-chat-input--color-warning: var(--theme-si-sys-text-warning);
+  --ix-chat-input--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-chat-input-character-limit-soft-icon--color: var(
+    --theme-si-sys-text-information
+  );
+  --ix-chat-input-character-limit-hard-icon--color: var(
+    --theme-si-sys-text-warning
+  );
 }

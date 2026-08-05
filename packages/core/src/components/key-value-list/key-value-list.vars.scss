@@ -1,4 +1,6 @@
 :host {
-  --ix-key-value-list--color-weak-bdr: var(--theme-si-sys-border-4);
-  --ix-key-value-list--color-ghost-alt: var(--theme-si-sys-background-1);
+  --ix-key-value-list-item--border-color: var(--theme-si-sys-border-4);
+  --ix-key-value-list-item--background--alternating: var(
+    --theme-si-sys-background-1
+  );
 }

@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-dropdown-item--color-primary: var(--theme-si-sys-text-accent);
-  --ix-dropdown-item--color-std-text: var(--theme-si-sys-text-primary);
-  --ix-dropdown-item--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-dropdown-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-dropdown-item-checked-color: var(--ix-dropdown-item--color-primary);
+  --ix-dropdown-item-checkmark--color: var(--theme-si-sys-text-accent);
+  --ix-dropdown-item-icon--color: var(--theme-si-sys-text-primary);
+  --ix-dropdown-item--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-dropdown-item--border-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-dropdown-item--outline-color--focus: var(--theme-si-sys-effects-focus);
 }

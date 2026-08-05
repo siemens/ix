@@ -11,7 +11,7 @@
 @use './menu-avatar-item.vars' as *;
 :host {
   display: block;
-  color: var(--ix-menu-avatar-item--color-std-text);
+  color: var(--ix-menu-avatar-item--color);
 
   @include component.ix-component;
 }

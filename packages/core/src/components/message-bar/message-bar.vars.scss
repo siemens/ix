@@ -8,14 +8,14 @@
  */
 
 :host {
-  --ix-message-bar--color-alarm: var(--theme-si-sys-text-danger);
-  --ix-message-bar--color-critical: var(--theme-si-sys-text-critical);
-  --ix-message-bar--color-warning: var(--theme-si-sys-text-warning);
-  --ix-message-bar--color-success: var(--theme-si-sys-text-success);
-  --ix-message-bar--color-info: var(--theme-si-sys-text-information);
-  --ix-message-bar--color-neutral: var(--theme-si-sys-text-secondary);
-  --ix-message-bar--color-primary: var(--theme-si-sys-text-accent);
+  --ix-message-bar--border-color--alarm: var(--theme-si-sys-text-danger);
+  --ix-message-bar--border-color--critical: var(--theme-si-sys-text-critical);
+  --ix-message-bar--border-color--warning: var(--theme-si-sys-text-warning);
+  --ix-message-bar--border-color--success: var(--theme-si-sys-text-success);
+  --ix-message-bar--border-color--info: var(--theme-si-sys-text-information);
+  --ix-message-bar--border-color--neutral: var(--theme-si-sys-text-secondary);
+  --ix-message-bar--border-color--primary: var(--theme-si-sys-text-accent);
   --ix-message-bar--border-radius: var(--theme-default-border-radius);
-  --ix-message-bar--border-thickness: var(--theme-border-width-thick);
+  --ix-message-bar--border-width: var(--theme-border-width-thick);
   --ix-message-bar--background: var(--theme-si-sys-background-accent-secondary);
 }

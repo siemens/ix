@@ -26,7 +26,9 @@ $container-width: 11.5625rem;
   @include component.ix-component;
 
   .input-container {
-    transition: all var(--ix-expanding-search--medium-time) ease-in-out;
+    transition: all
+      var(--ix-expanding-search-input-container--transition-duration)
+      ease-in-out;
   }
 
   input {
@@ -62,7 +64,8 @@ $container-width: 11.5625rem;
     max-width: vars.$x-large-space;
     max-height: vars.$x-large-space;
     border-radius: var(--ix-expanding-search--border-radius);
-    transition: all var(--ix-expanding-search--default-time) ease-in-out;
+    transition: all var(--ix-expanding-search-button--transition-duration)
+      ease-in-out;
     z-index: 1;
     align-items: center;
     position: relative;
@@ -96,7 +99,7 @@ $container-width: 11.5625rem;
     width: vars.$x-large-space;
     height: vars.$x-large-space;
     border-radius: var(--ix-expanding-search--border-radius);
-    border: var(--ix-expanding-search--std-bdr-1) !important;
+    border: var(--ix-expanding-search-button--border--active) !important;
   }
 
   /*expanded view*/

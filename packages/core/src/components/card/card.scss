@@ -21,7 +21,7 @@
   width: 20rem;
 
   border: var(--ix-card--border-width) solid
-    var(--ix-card-border-color, var(--ix-card--color-soft-bdr));
+    var(--ix-card-border-color, var(--ix-card--border-color));
   border-radius: var(--ix-card--border-radius);
 
   @include component.ix-component;
@@ -54,7 +54,7 @@
 
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
-    color: var(--ix-card--color-std-text);
+    color: var(--ix-card-accordion--color);
   }
 }
 

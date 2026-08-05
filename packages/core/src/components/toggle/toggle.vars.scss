@@ -8,9 +8,10 @@
  */
 
 :host {
-  --ix-toggle--default-time: var(--theme-default-time);
-  --ix-toggle--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-toggle--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-toggle-track--transition-duration: var(--theme-default-time);
+  --ix-toggle-thumb--transition-duration: var(--theme-default-time);
+  --ix-toggle--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-toggle-label--color--disabled: var(--theme-si-sys-text-disabled);
   --ix-toggle--color: var(--theme-si-sys-text-primary);
   --ix-toggle--color--active: var(--theme-si-sys-text-primary);
   --ix-toggle--color--disabled: var(--theme-si-sys-text-disabled);

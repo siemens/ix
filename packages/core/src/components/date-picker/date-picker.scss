@@ -112,7 +112,7 @@
       cursor: pointer;
 
       &:focus-visible {
-        outline: 1px solid var(--ix-date-picker--color-focus-bdr);
+        outline: 1px solid var(--ix-date-picker-day--outline-color--focus);
         outline-offset: var(--ix-date-picker--focus--outline-offset);
       }
 
@@ -205,7 +205,7 @@
         background-color: var(--ix-date-picker-day--background--selected);
         color: var(--ix-date-picker-day--color--selected);
         border: 1px solid var(--ix-date-picker-day--background--selected);
-        font-weight: var(--ix-date-picker--font-weight-bold);
+        font-weight: var(--ix-date-picker-day--font-weight--selected);
 
         &:hover {
           background-color: var(
@@ -257,7 +257,7 @@
 
       &.week-day {
         color: var(--ix-date-picker-weekday--color);
-        font-size: var(--ix-date-picker--ms-0);
+        font-size: var(--ix-date-picker-weekday--font-size);
         line-height: 143%;
         border: none;
         background: none;

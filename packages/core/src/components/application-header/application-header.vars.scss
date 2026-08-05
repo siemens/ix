@@ -8,8 +8,10 @@
  */
 
 :host {
-  --ix-application-header--z-index-fixed: var(--theme-z-index-fixed);
-  --ix-application-header--color-x-weak-bdr: var(--theme-si-sys-border-4);
+  --ix-application-header--z-index: var(--theme-z-index-fixed);
+  --ix-application-header-dropdown-item--border-color: var(
+    --theme-si-sys-border-4
+  );
   --ix-application-header--background: var(--theme-si-sys-background-1);
   --ix-application-header--border-color: var(--theme-si-sys-border-4);
   --ix-application-header--border-width: var(--theme-border-width-default);

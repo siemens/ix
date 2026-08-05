@@ -8,16 +8,16 @@
  */
 
 :host {
-  --ix-filter-chip--focus--border-thickness: var(
+  --ix-filter-chip--border-width: var(
     --theme-focus--border-thickness
   );
-  --ix-filter-chip--color-ghost: transparent;
-  --ix-filter-chip--color-component-4: var(--theme-color-component-4);
-  --ix-filter-chip--color-weak-text: var(--theme-si-sys-text-disabled);
-  --ix-filter-chip--color-ghost-primary--hover: var(
+  --ix-filter-chip--background: transparent;
+  --ix-filter-chip--border-color--disabled: var(--theme-color-component-4);
+  --ix-filter-chip--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-filter-chip--background--hover: var(
     --theme-si-sys-background-accent-secondary-hover
   );
-  --ix-filter-chip--color-ghost-primary--active: var(
+  --ix-filter-chip--background--active: var(
     --theme-si-sys-background-accent-secondary-active
   );
   --ix-filter-chip-primary-outline--border-color: var(

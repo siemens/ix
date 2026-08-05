@@ -74,7 +74,7 @@ $outline-border-width: 0.0625rem;
             .with-icon {
               //TODO(IX-3400): Replace warning check with proper CSS variable when available
               @if $color == 'warning' {
-                color: var(--ix-chip--color-warning-text);
+                color: var(--ix-chip-warning-icon--color);
               } @else {
                 color: var(--ix-chip-#{$color}--color);
               }
@@ -108,7 +108,7 @@ $outline-border-width: 0.0625rem;
   }
 
   .container.primary {
-    background-color: var(--ix-chip--color-primary);
+    background-color: var(--ix-chip-primary--background);
     color: var(--ix-chip-primary--color);
 
     .close-button {
@@ -145,7 +145,7 @@ $outline-border-width: 0.0625rem;
     }
 
     .with-icon {
-      color: var(--ix-chip--color-primary);
+      color: var(--ix-chip-primary-icon--color);
     }
 
     @if $interaction {

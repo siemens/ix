@@ -36,7 +36,7 @@ $focus-bdr-width: 0.0625rem;
     fill: var(--ix-menu-expand-icon--color);
     opacity: 1;
     x: 2px;
-    transition: x 0.075s ease-in var(--ix-menu-expand-icon--default-time),
+    transition: x 0.075s ease-in var(--ix-menu-expand-icon--transition-delay),
       transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
       opacity 0.075s linear 0.075s;
     transform-origin: center;

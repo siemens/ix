@@ -36,7 +36,8 @@
   .category-chevron {
     margin-left: auto;
     margin-right: 0;
-    transition: var(--ix-menu-category--default-time) transform ease-in-out;
+    transition: var(--ix-menu-category-chevron--transition-duration) transform
+      ease-in-out;
   }
 
   .category-chevron--open {
@@ -46,7 +47,8 @@
   .menu-items {
     overflow: hidden;
     max-height: 0;
-    transition: var(--ix-menu-category--default-time) max-height ease-in-out;
+    transition: var(--ix-menu-category-items--transition-duration) max-height
+      ease-in-out;
   }
 
   .menu-items--expanded {
@@ -76,7 +78,7 @@
 }
 
 :host(.expanded) {
-  background-color: var(--ix-menu-category--color-ghost--active);
+  background-color: var(--ix-menu-category--background--expanded);
 }
 
 :host {

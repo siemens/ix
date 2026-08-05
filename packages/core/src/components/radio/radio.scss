@@ -54,7 +54,7 @@
 
   .checkmark {
     border-radius: 100px;
-    background-color: var(--ix-radio--color-primary--contrast);
+    background-color: var(--ix-radio-checkmark--background);
     width: 0.5rem;
     height: 0.5rem;
   }
@@ -64,7 +64,7 @@
   :host {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color);
     }
   }
@@ -72,7 +72,7 @@
   :host(:hover) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--hover);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--hover);
     }
   }
@@ -80,7 +80,7 @@
   :host(:active) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--active);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--active);
     }
   }
@@ -89,7 +89,7 @@
   :host([indeterminate]) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color);
     }
   }
@@ -98,7 +98,7 @@
   :host([indeterminate]:hover) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--hover);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--hover);
     }
   }
@@ -107,7 +107,7 @@
   :host([indeterminate]:active) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--active);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--active);
     }
   }
@@ -117,7 +117,7 @@
 
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--disabled);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--disabled);
     }
   }
@@ -132,7 +132,7 @@
   }
 
   :host(:focus-visible) {
-    outline: 0.0625rem solid var(--ix-radio--color-focus-bdr);
+    outline: 0.0625rem solid var(--ix-radio--outline-color--focus);
     outline-offset: var(--ix-radio--focus--outline-offset);
   }
 
@@ -151,7 +151,7 @@
   :host(#{$selector}) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color);
     }
   }
@@ -159,7 +159,7 @@
   :host(#{$selector}:hover) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--hover);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--hover);
     }
   }
@@ -167,7 +167,7 @@
   :host(#{$selector}:active) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--active);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--active);
     }
   }
@@ -176,7 +176,7 @@
   :host(#{$selector}[indeterminate]) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color);
     }
   }
@@ -185,7 +185,7 @@
   :host(#{$selector}[indeterminate]:hover) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--hover);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--hover);
     }
   }
@@ -194,7 +194,7 @@
   :host(#{$selector}[indeterminate]:active) {
     .radio-checkmark {
       background-color: var(--ix-radio-checked--background--active);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-checked--border-color--active);
     }
   }
@@ -202,7 +202,7 @@
   :host(#{$selector}.disabled) {
     .radio-checkmark {
       background-color: var(--ix-radio-unchecked--background--disabled);
-      border: var(--ix-radio--border-thickness) solid
+      border: var(--ix-radio--border-width) solid
         var(--ix-radio-unchecked--border-color--disabled);
     }
   }

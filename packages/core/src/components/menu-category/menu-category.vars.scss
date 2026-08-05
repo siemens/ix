@@ -8,8 +8,9 @@
  */
 
 :host {
-  --ix-menu-category--default-time: var(--theme-default-time);
-  --ix-menu-category--color-ghost--active: var(
+  --ix-menu-category-chevron--transition-duration: var(--theme-default-time);
+  --ix-menu-category-items--transition-duration: var(--theme-default-time);
+  --ix-menu-category--background--expanded: var(
     --theme-si-sys-background-selected
   );
 }

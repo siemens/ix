@@ -6,7 +6,7 @@
   @include component.ix-component;
 
   .label__subHeader {
-    color: var(--ix-empty-state--color-soft-text);
+    color: var(--ix-empty-state-label--color);
   }
 }
 

@@ -28,7 +28,7 @@
 
       --ix-button-color: var(--ix-button-#{$name}--color);
 
-      border-width: var(--ix-button--border-thickness);
+      border-width: var(--ix-button--border-width);
       border-color: var(--ix-button-#{$name}--border-color);
       border-style: solid;
     }
@@ -159,14 +159,14 @@
 
   :host(.ix-focused) {
     .btn {
-      outline: 1px solid var(--ix-button--color-focus-bdr);
+      outline: 1px solid var(--ix-button--outline-color--focus);
       outline-offset: var(--ix-button--focus--outline-offset);
     }
   }
 
   :host {
     .btn:focus-visible {
-      outline: 1px solid var(--ix-button--color-focus-bdr);
+      outline: 1px solid var(--ix-button--outline-color--focus);
       outline-offset: var(--ix-button--focus--outline-offset);
     }
   }

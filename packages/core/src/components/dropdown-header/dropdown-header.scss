@@ -21,7 +21,7 @@
   overflow: hidden;
   cursor: default;
 
-  color: var(--ix-dropdown-header--color-soft-text);
+  color: var(--ix-dropdown-header--color);
 
   @include component.ix-component;
 }

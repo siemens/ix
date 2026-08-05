@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-radio--color-primary--contrast: var(--theme-si-sys-text-on-accent);
-  --ix-radio--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-radio--border-thickness: var(--theme-border-width-default);
+  --ix-radio-checkmark--background: var(--theme-si-sys-text-on-accent);
+  --ix-radio--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-radio--border-width: var(--theme-border-width-default);
   --ix-radio--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-radio-checked--background: var(--theme-si-sys-background-accent);
   --ix-radio-checked--background--active: var(

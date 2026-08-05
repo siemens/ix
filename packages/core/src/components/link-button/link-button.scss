@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: var(--ix-link-button--color-primary);
+    color: var(--ix-link-button--color);
     cursor: pointer;
     text-decoration: none;
 
@@ -42,16 +42,16 @@
     }
 
     @include hover.hover {
-      color: var(--ix-link-button--color-dynamic--hover);
+      color: var(--ix-link-button--color--hover);
     }
 
     @include hover.active {
-      color: var(--ix-link-button--color-dynamic--active);
+      color: var(--ix-link-button--color--active);
     }
 
     &.disabled {
       cursor: default;
-      color: var(--ix-link-button--color-weak-text);
+      color: var(--ix-link-button--color--disabled);
     }
 
     a {
@@ -60,6 +60,6 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--ix-link-button--color-focus-bdr);
+    outline: 1px solid var(--ix-link-button--outline-color--focus);
   }
 }

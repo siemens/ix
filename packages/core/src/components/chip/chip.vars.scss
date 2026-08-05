@@ -60,11 +60,11 @@ $chip-color-sys-tokens: (
 }
 
 :host {
-  --ix-chip--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-chip--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-chip--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-chip-close--color: var(--theme-si-sys-text-primary);
   --ix-chip--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-chip--color-warning-text: var(--theme-si-sys-text-warning);
-  --ix-chip--color-primary: var(--theme-si-sys-text-accent);
+  --ix-chip-warning-icon--color: var(--theme-si-sys-text-warning);
+  --ix-chip-primary-icon--color: var(--theme-si-sys-text-accent);
 
   @each $color in (alarm, critical, warning, info, neutral, success) {
     --ix-chip-#{$color}--background: var(

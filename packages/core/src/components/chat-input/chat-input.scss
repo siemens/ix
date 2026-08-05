@@ -25,7 +25,7 @@
     padding: var(--theme-space-2);
     box-sizing: border-box;
     background-color: var(--ix-chat-input--background);
-    border: var(--ix-chat-input--border-thickness) solid
+    border: var(--ix-chat-input--border-width) solid
       var(--ix-chat-input--border-color);
     border-radius: var(--ix-chat-input--border-radius);
     box-shadow: var(--ix-chat-input--box-shadow);
@@ -60,7 +60,7 @@
   }
 
   .chat-input:focus-within {
-    outline: 1px solid var(--ix-chat-input--color-focus-bdr);
+    outline: 1px solid var(--ix-chat-input--outline-color--focus);
     outline-offset: var(--ix-chat-input--focus--outline-offset);
     border-color: var(--ix-chat-input--border-color--focus);
   }
@@ -119,7 +119,7 @@
   }
 
   textarea::placeholder {
-    color: var(--ix-chat-input--hint-color);
+    color: var(--ix-chat-input-placeholder--color);
   }
 
   .character-limit {
@@ -135,11 +135,11 @@
   }
 
   .character-limit--soft ix-icon {
-    color: var(--ix-chat-input--color-info);
+    color: var(--ix-chat-input-character-limit-soft-icon--color);
   }
 
   .character-limit--hard ix-icon {
-    color: var(--ix-chat-input--color-warning);
+    color: var(--ix-chat-input-character-limit-hard-icon--color);
   }
 
   .action-row {

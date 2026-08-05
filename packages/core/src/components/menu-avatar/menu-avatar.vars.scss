@@ -8,8 +8,10 @@
  */
 
 :host {
-  --ix-menu-avatar--default-time: var(--theme-default-time);
-  --ix-menu-avatar--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-menu-avatar-button--transition-duration: var(--theme-default-time);
+  --ix-menu-avatar-button--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
   --ix-menu-avatar-btn--background--active: var(
     --theme-si-sys-background-selected
   );

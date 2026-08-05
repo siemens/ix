@@ -183,7 +183,7 @@ export class Checkbox implements IxFormComponent<string> {
               y="8"
               width="12"
               height="2"
-              fill="var(--ix-checkbox-check-color)"
+              fill="var(--ix-checkbox-checkmark--color)"
             />
           </Fragment>
         )}
@@ -191,7 +191,7 @@ export class Checkbox implements IxFormComponent<string> {
         {this.checked && (
           <path
             d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--ix-checkbox-check-color)"
+            stroke="var(--ix-checkbox-checkmark--color)"
             stroke-width="2"
           />
         )}

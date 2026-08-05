@@ -8,8 +8,8 @@
  */
 
 :host {
-  --ix-event-list-item--default-time: var(--theme-default-time);
-  --ix-event-list-item--weak-bdr-1: var(--theme-weak-bdr-1);
+  --ix-event-list-item--transition-duration: var(--theme-default-time);
+  --ix-event-list-item-empty-indicator--border: var(--theme-weak-bdr-1);
   --ix-event-list-item-chevron--color: var(--theme-si-sys-text-secondary);
   --ix-event-list-item-filled--background: var(--theme-si-sys-background-1);
   --ix-event-list-item-filled--background--active: var(

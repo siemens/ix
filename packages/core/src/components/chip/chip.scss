@@ -21,7 +21,7 @@ $outline-border-width: 0.0625rem;
 
 @mixin chip-focus-outline {
   &:focus-visible {
-    outline: 1px solid var(--ix-chip--color-focus-bdr);
+    outline: 1px solid var(--ix-chip--outline-color--focus);
     outline-offset: var(--ix-chip--focus--outline-offset);
   }
 }
@@ -184,7 +184,7 @@ $outline-border-width: 0.0625rem;
     cursor: pointer;
     appearance: none;
     font: inherit;
-    color: var(--ix-chip--color-std-text);
+    color: var(--ix-chip-close--color);
     border-radius: 50%;
     flex-shrink: 0;
     z-index: 1;
@@ -207,7 +207,7 @@ $outline-border-width: 0.0625rem;
 
     .chip-main {
       @include chip-main-interactive-states(
-        var(--ix-chip--color-primary),
+        var(--ix-chip-primary--background),
         var(--ix-chip-primary--background--hover),
         var(--ix-chip-primary--background--active),
         var(--ix-chip-primary--color)
@@ -249,7 +249,7 @@ $outline-border-width: 0.0625rem;
     }
 
     &.icon .with-icon {
-      color: var(--ix-chip--color-primary);
+      color: var(--ix-chip-primary-icon--color);
     }
 
     &:hover:not(.inactive).icon .with-icon {
@@ -310,7 +310,7 @@ $outline-border-width: 0.0625rem;
 
       &.icon .with-icon {
         @if $color == 'warning' {
-          color: var(--ix-chip--color-warning-text);
+          color: var(--ix-chip-warning-icon--color);
         } @else {
           color: var(--ix-chip-#{$color}--color);
         }

@@ -8,10 +8,15 @@
  */
 
 :host {
-  --ix-menu--z-index-sticky: var(--theme-z-index-sticky);
-  --ix-menu--color-shadow-1: var(--theme-color-shadow-1);
-  --ix-menu--default-time: var(--theme-default-time);
-  --ix-menu--color-focus-bdr: var(--theme-si-sys-effects-focus);
+  --ix-menu--z-index: var(--theme-z-index-sticky);
+  --ix-menu-tabs-shadow--color: var(--theme-color-shadow-1);
+  --ix-menu-tabs-shadow--transition-duration: var(--theme-default-time);
+  --ix-menu-panel--transition-duration: var(--theme-default-time);
+  --ix-menu-overlay--transition-duration: var(--theme-default-time);
+  --ix-menu-tabs--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-menu-navigation--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
   --ix-menu--background: var(--theme-si-sys-background-1);
   --ix-menu--box-shadow: var(--theme-si-sys-effects-shadow-2);
 }

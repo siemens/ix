@@ -8,9 +8,11 @@
  */
 
 :host {
-  --ix-date-picker--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-date-picker--font-weight-bold: var(--theme-font-weight-bold);
-  --ix-date-picker--ms-0: var(--theme-ms-0);
+  --ix-date-picker-day--outline-color--focus: var(
+    --theme-si-sys-effects-focus
+  );
+  --ix-date-picker-day--font-weight--selected: var(--theme-font-weight-bold);
+  --ix-date-picker-weekday--font-size: var(--theme-ms-0);
   --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--active: var(

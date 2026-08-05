@@ -8,9 +8,9 @@
  */
 
 :host {
-  --ix-modal--color-lightbox: var(--theme-si-sys-effects-backdrop);
-  --ix-modal--default-border-radius: var(--theme-default-border-radius);
-  --ix-modal--shadow-4: var(--theme-si-sys-effects-shadow-4);
-  --ix-modal--color-std-text: var(--theme-si-sys-text-primary);
+  --ix-modal-backdrop--background: var(--theme-si-sys-effects-backdrop);
+  --ix-modal--border-radius: var(--theme-default-border-radius);
+  --ix-modal--box-shadow: var(--theme-si-sys-effects-shadow-4);
+  --ix-modal--color: var(--theme-si-sys-text-primary);
   --ix-modal--background: var(--theme-si-sys-background-1);
 }

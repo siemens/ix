@@ -24,29 +24,29 @@
     justify-content: space-between;
     min-height: 3.375rem;
     padding: calc(
-        #{vars.$medium-space} - var(--ix-message-bar--border-thickness)
+        #{vars.$medium-space} - var(--ix-message-bar--border-width)
       )
       vars.$medium-space
-      calc(#{vars.$medium-space} - var(--ix-message-bar--border-thickness))
+      calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
       vars.$default-space;
     border-radius: var(--ix-message-bar--border-radius);
     background-color: var(--ix-message-bar--background);
   }
 
   $message-types: (
-    'alarm': var(--ix-message-bar--color-alarm),
-    'danger': var(--ix-message-bar--color-alarm),
-    'critical': var(--ix-message-bar--color-critical),
-    'warning': var(--ix-message-bar--color-warning),
-    'success': var(--ix-message-bar--color-success),
-    'info': var(--ix-message-bar--color-info),
-    'neutral': var(--ix-message-bar--color-neutral),
-    'primary': var(--ix-message-bar--color-primary),
+    'alarm': var(--ix-message-bar--border-color--alarm),
+    'danger': var(--ix-message-bar--border-color--alarm),
+    'critical': var(--ix-message-bar--border-color--critical),
+    'warning': var(--ix-message-bar--border-color--warning),
+    'success': var(--ix-message-bar--border-color--success),
+    'info': var(--ix-message-bar--border-color--info),
+    'neutral': var(--ix-message-bar--border-color--neutral),
+    'primary': var(--ix-message-bar--border-color--primary),
   );
 
   @each $type, $color in $message-types {
     .#{$type} {
-      border: solid var(--ix-message-bar--border-thickness) $color;
+      border: solid var(--ix-message-bar--border-width) $color;
     }
   }
 

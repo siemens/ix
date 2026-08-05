@@ -19,10 +19,10 @@
   justify-content: space-between;
   height: vars.$large-space;
   padding-left: vars.$small-space;
-  border: var(--ix-filter-chip--focus--border-thickness) solid
+  border: var(--ix-filter-chip--border-width) solid
     var(--ix-filter-chip-primary-outline--border-color);
   border-radius: vars.$x-large-space;
-  background-color: var(--ix-filter-chip--color-ghost);
+  background-color: var(--ix-filter-chip--background);
   color: var(--ix-filter-chip-primary-outline--color);
 
   @include component.ix-component;
@@ -33,9 +33,9 @@
     min-width: 0;
 
     :host-context(.disabled) {
-      background-color: var(--ix-filter-chip--color-ghost);
-      border-color: var(--ix-filter-chip--color-component-4);
-      color: var(--ix-filter-chip--color-weak-text);
+      background-color: var(--ix-filter-chip--background);
+      border-color: var(--ix-filter-chip--border-color--disabled);
+      color: var(--ix-filter-chip--color--disabled);
     }
   }
 
@@ -50,9 +50,9 @@
 }
 
 :host(.disabled) {
-  border: var(--ix-filter-chip--focus--border-thickness) solid
-    var(--ix-filter-chip--color-component-4);
-  color: var(--ix-filter-chip--color-weak-text);
+  border: var(--ix-filter-chip--border-width) solid
+    var(--ix-filter-chip--border-color--disabled);
+  color: var(--ix-filter-chip--color--disabled);
   padding-right: vars.$small-space;
 
   cursor: default;
@@ -64,13 +64,13 @@
 }
 
 @include hover.host-hover {
-  background-color: var(--ix-filter-chip--color-ghost-primary--hover);
+  background-color: var(--ix-filter-chip--background--hover);
   border-color: var(--ix-filter-chip-primary-outline--border-color--hover);
   color: var(--ix-filter-chip-primary-outline--color--hover);
 }
 
 @include hover.host-active {
-  background-color: var(--ix-filter-chip--color-ghost-primary--active);
+  background-color: var(--ix-filter-chip--background--active);
   border-color: var(--ix-filter-chip-primary-outline--border-color--active);
   color: var(--ix-filter-chip-primary-outline--color--active);
 }

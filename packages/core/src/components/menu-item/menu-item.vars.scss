@@ -8,10 +8,10 @@
  */
 
 :host {
-  --ix-menu-item--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-menu-item--color-primary: var(--theme-si-sys-text-accent);
-  --ix-menu-item--color-primary--contrast: var(--theme-si-sys-text-on-accent);
-  --ix-menu-item--color-weak-text: var(--theme-si-sys-text-disabled);
+  --ix-menu-item-tab--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-menu-item-notification--background: var(--theme-si-sys-text-accent);
+  --ix-menu-item-notification--color: var(--theme-si-sys-text-on-accent);
+  --ix-menu-item--color--disabled: var(--theme-si-sys-text-disabled);
   --ix-menu-item-primary--background--selected: var(
     --theme-si-sys-background-0
   );
