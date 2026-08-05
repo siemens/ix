@@ -8,6 +8,22 @@
  */
 import { regressionTest, test, expect } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
