@@ -1624,8 +1624,6 @@ test('does not emit unhandled rejection when select is unmounted during validati
     });
   });
 
-  // Issue #2669: mount ix-select, then tear it down so the connect-time
-  // validation setTimeout can race with disconnect.
   await mount(`<div id="select-host"></div>`);
 
   await page.evaluate(
