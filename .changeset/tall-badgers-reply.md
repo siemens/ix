@@ -2,6 +2,6 @@
 '@siemens/ix': patch
 ---
 
-Make sure **ix-menu-category** does not close itself during touch interaction by checking component ID.
+Prevent **ix-menu-category** from closing its dropdown during touch interaction.
 
 Fixes #2679

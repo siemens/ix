@@ -190,6 +190,23 @@ regressionTest(
     }, sourceCategoryId);
 
     await expect(dropdownOne).toBeVisible();
+
+    const categoryTwo = page.locator('ix-menu-category').nth(1);
+    const dropdownTwo = categoryTwo.locator('ix-dropdown');
+    await categoryTwo.hover();
+    await expect(dropdownTwo).toBeVisible();
+
+    await page.evaluate((id) => {
+      window.dispatchEvent(
+        new CustomEvent('closeOtherCategories', {
+          detail: id,
+          bubbles: true,
+          composed: true,
+        })
+      );
+    }, sourceCategoryId);
+
+    await expect(dropdownTwo).not.toBeVisible();
   }
 );
 
