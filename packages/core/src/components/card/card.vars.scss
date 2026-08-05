@@ -47,7 +47,7 @@ $card-variants: outline filled alarm critical warning success info neutral
   --ix-card-critical--border-color--selected: var(
     --theme-si-sys-border-accent-hover
   );
-  --ix-card-critical--color: var(--theme-si-sys-text-on-warning);
+  --ix-card-critical--color: var(--theme-si-sys-text-on-critical);
   --ix-card-filled--background: var(--theme-si-sys-background-1);
   --ix-card-filled--background--active: var(--theme-si-sys-background-selected);
   --ix-card-filled--background--hover: var(--theme-si-sys-background-hover);
