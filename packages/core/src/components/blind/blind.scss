@@ -8,7 +8,6 @@
  */
 
 @use 'sass:list';
-@use 'sass:map';
 @use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/hover';
@@ -16,23 +15,13 @@
 @use 'mixins/shadow-dom/component';
 @use './blind.vars' as blind-vars;
 
-$blind-status-border: (
-  alarm: var(--theme-color-alarm-bdr),
-  critical: var(--theme-color-critical),
-  warning: var(--theme-color-warning-bdr),
-  info: var(--theme-color-info),
-  success: var(--theme-color-success),
-  neutral: var(--theme-color-neutral),
-  primary: var(--theme-color-primary),
-);
-
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
     @include blind-vars.variant-vars($variant);
 
     .blind-header {
       @if $variant == 'outline' {
-        background-color: var(--ix-blind--color-ghost);
+        background-color: var(--ix-blind-outline-header--background);
       } @else {
         background-color: var(--ix-blind-#{$variant}--background);
       }
@@ -51,20 +40,24 @@ $blind-status-border: (
     }
 
     @if $variant == 'filled' or $variant == 'outline' {
-      .blind-header-title-label {
-        color: var(--ix-blind--color-std-text);
+      .blind-header-title-label,
+      .blind-header-title-icon,
+      .collapse-icon {
+        color: var(--ix-blind-header--color);
       }
 
       .blind-header-title-sublabel {
-        color: var(--ix-blind--color-soft-text);
+        color: var(--ix-blind-header-sublabel--color);
       }
 
       .header-actions {
-        --ix-icon-button-color: var(--ix-blind--color-primary);
+        --ix-icon-button-color: var(--ix-blind-header-actions--color);
       }
     } @else {
       .blind-header-title-label,
-      .blind-header-title-sublabel {
+      .blind-header-title-sublabel,
+      .blind-header-title-icon,
+      .collapse-icon {
         color: var(--ix-blind-#{$variant}--color);
       }
 
@@ -76,8 +69,8 @@ $blind-status-border: (
     @if $variant == 'outline' {
       .blind-header-wrapper {
         border: solid
-          var(--ix-blind--border-thickness)
-          var(--ix-blind--color-soft-bdr);
+          var(--ix-blind--border-width)
+          var(--ix-blind-outline--border-color);
         border-bottom: none;
         border-radius: var(--ix-blind--border-radius)
           var(--ix-blind--border-radius)
@@ -85,11 +78,11 @@ $blind-status-border: (
           0;
 
         @include hover.hover {
-          border-color: var(--theme-color-ghost--hover);
+          border-color: var(--ix-blind-outline--border-color--hover);
         }
 
         @include hover.active {
-          border-color: var(--theme-color-ghost--active);
+          border-color: var(--ix-blind-outline--border-color--active);
         }
       }
 
@@ -107,20 +100,20 @@ $blind-status-border: (
 
         @if $variant == 'outline' {
           border: solid
-            var(--ix-blind--border-thickness)
-            var(--ix-blind--color-soft-bdr);
+            var(--ix-blind--border-width)
+            var(--ix-blind-outline--border-color);
           border-top: none;
         } @else {
           border: solid
-            var(--ix-blind--border-thickness)
-            #{map.get($blind-status-border, $variant)};
+            var(--ix-blind--border-width)
+            var(--ix-blind-#{$variant}--background);
           border-top: none;
         }
       }
     }
 
     @if $variant != 'outline' {
-      background-color: var(--ix-blind-base--background);
+      background-color: var(--ix-blind--background);
     }
   }
 
@@ -182,14 +175,14 @@ $blind-status-border: (
     padding-left: 2.5rem;
     min-height: 3rem;
     height: 3rem;
-    width: calc(100% - 2 * var(--ix-blind--border-thickness));
-    border: solid var(--ix-blind--border-thickness) transparent;
+    width: calc(100% - 2 * var(--ix-blind--border-width));
+    border: solid var(--ix-blind--border-width) transparent;
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
       0 0;
     cursor: pointer;
 
     @include hover.focus-visible {
-      border-color: var(--ix-blind--color-focus-bdr);
+      border-color: var(--ix-blind-header--border-color--focus);
       outline: none;
     }
   }
@@ -248,7 +241,7 @@ $blind-status-border: (
     display: block;
     padding: 1rem;
     transition-property: padding;
-    transition-duration: var(--ix-blind--default-time);
+    transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;
 
     &.hide {
@@ -284,16 +277,16 @@ $blind-variants: (
 :host(.blind-outline[collapsed]) {
   .blind-header-wrapper {
     box-sizing: border-box;
-    border-bottom: solid var(--ix-blind--border-thickness)
-      var(--ix-blind--color-soft-bdr);
+    border-bottom: solid var(--ix-blind--border-width)
+      var(--ix-blind-outline--border-color);
     border-radius: var(--ix-blind--border-radius);
 
     @include hover.hover {
-      border-color: var(--theme-color-ghost--hover);
+      border-color: var(--ix-blind-outline--border-color--hover);
     }
 
     @include hover.active {
-      border-color: var(--theme-color-ghost--active);
+      border-color: var(--ix-blind-outline--border-color--active);
     }
   }
 

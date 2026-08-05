@@ -87,15 +87,18 @@ $blind-variant-sys-tokens: (
 }
 
 :host {
-  --ix-blind--color-ghost: transparent;
-  --ix-blind--color-std-text: var(--theme-si-sys-text-primary);
-  --ix-blind--color-soft-text: var(--theme-si-sys-text-secondary);
-  --ix-blind--color-primary: var(--theme-si-sys-text-accent);
-  --ix-blind--color-soft-bdr: var(--theme-si-sys-border-3);
-  --ix-blind--color-focus-bdr: var(--theme-si-sys-effects-focus);
-  --ix-blind--default-time: var(--theme-default-time);
+  --ix-blind-outline-header--background: transparent;
+  --ix-blind-header--color: var(--theme-si-sys-text-primary);
+  --ix-blind-header-sublabel--color: var(--theme-si-sys-text-secondary);
+  --ix-blind-header-actions--color: var(--theme-si-sys-text-accent);
+  --ix-blind-outline--border-color: var(--theme-si-sys-border-3);
+  --ix-blind-outline--border-color--hover: var(--theme-si-sys-background-hover);
+  --ix-blind-outline--border-color--active: var(
+    --theme-si-sys-background-selected
+  );
+  --ix-blind-header--border-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-blind-content--transition-duration: var(--theme-default-time);
   --ix-blind--border-radius: var(--theme-default-border-radius);
-  --ix-blind--border-thickness: var(--theme-border-width-default);
-  --ix-blind-base--background: var(--theme-si-sys-background-1);
-  --ix-blind-base--border-color: rgba(0, 0, 0, 0);
+  --ix-blind--border-width: var(--theme-border-width-default);
+  --ix-blind--background: var(--theme-si-sys-background-1);
 }
