@@ -17,13 +17,25 @@
 import { Locator } from '@playwright/test';
 import { regressionTest, expect } from '@utils/test';
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
   await mount(`
   <ix-breadcrumb>
     <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
     <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
     <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
+
+  const breadcrumb = page.locator('ix-breadcrumb');
+
+  await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+    bc.nextItems = [{ label: 'Next Item 1', breadcrumbKey: 'next-item-1' }];
+  });
+
+  const nextButton = breadcrumb.locator('ix-dropdown-button.next-button');
+
+  await expect(
+    nextButton.getByRole('button', { name: 'Show Item 3 next items' })
+  ).toBeVisible();
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -253,6 +265,9 @@ regressionTest(
 
     const nextButton = breadcrumb.locator('ix-dropdown-button.next-button');
     await expect(nextButton).toBeVisible();
-    await expect(nextButton).toHaveAttribute('aria-label', 'Show Item 3');
+    await expect(nextButton).toHaveAttribute(
+      'aria-label',
+      'Show Item 3 next items'
+    );
   }
 );
