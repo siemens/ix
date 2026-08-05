@@ -164,6 +164,52 @@ regressionTest.describe('embedded into header', () => {
     }
   );
 
+  regressionTest(
+    'should keep the popup width fixed and wrap long usernames when wrapUsername is true',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      const userInfo = avatar.locator('.user-info');
+
+      const initialMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      const longUsername = 'verylongstringthatisnotfullydisplayed';
+      await avatar.evaluate((element, value) => {
+        element.setAttribute('username', value);
+      }, longUsername);
+
+      await expect(userInfo).toHaveText(new RegExp(longUsername));
+
+      const updatedMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      expect(updatedMetrics.width).toBe(initialMetrics.width);
+      expect(updatedMetrics.height).toBeGreaterThan(initialMetrics.height);
+    }
+  );
+
   regressionTest('should show no tooltip', async ({ page, mount }) => {
     await mount(`<ix-avatar aria-label-tooltip="myTooltip"></ix-avatar>`);
 
