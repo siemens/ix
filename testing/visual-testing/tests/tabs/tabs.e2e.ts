@@ -26,6 +26,20 @@ regressionTest.describe('tabs', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('stretched/ellipsed', async ({ page }) => {
+    await page.goto('tabs/stretched');
+
+    const tabItem = page.locator("[tab-key='se-1']");
+    const text = tabItem.locator('.text');
+
+    const isEllipsed = await text.evaluate(
+      (element) => element.scrollWidth > element.clientWidth
+    );
+    expect(isEllipsed).toBe(true);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('overflow', async ({ page }) => {
     await page.goto('tabs/overflow');
 
