@@ -17,7 +17,6 @@ import {
   Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { a11yBoolean } from '../utils/a11y';
 import {
   iconChevronLeftSmall,
   iconChevronRightSmall,
@@ -166,7 +165,8 @@ export class Pagination {
       onClick: () => this.selectPage(index),
       selected: this.selectedPage === index,
       ariaAttributes: {
-        'aria-pressed': a11yBoolean(this.selectedPage === index),
+        'aria-label': `Go to ${this.i18nPage} ${index + 1}`,
+        ...(this.selectedPage === index ? { 'aria-current': 'page' } : {}),
       },
     };
 
@@ -198,7 +198,14 @@ export class Pagination {
         },
       };
       pageButtons.push(this.getPageButton(0));
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{ 'aria-label': 'Jump backward pages, button' }}
+        >
+          ...
+        </BaseButton>
+      );
 
       if (hasOverflowEnd) {
         start = this.count - this.maxCountPages + 2;
@@ -232,7 +239,14 @@ export class Pagination {
           }
         },
       };
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{ 'aria-label': 'Jump forward pages, button' }}
+        >
+          ...
+        </BaseButton>
+      );
       pageButtons.push(this.getPageButton(this.count - 1));
     }
 
@@ -249,9 +263,10 @@ export class Pagination {
 
   render() {
     return (
-      <Host>
+      <Host role="navigation" aria-label="Pagination">
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
+          tabIndex={!this.count || this.selectedPage === 0 ? -1 : 0}
           variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
@@ -298,6 +313,9 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
+          tabIndex={
+            !this.count || this.selectedPage === this.count - 1 ? -1 : 0
+          }
           variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
