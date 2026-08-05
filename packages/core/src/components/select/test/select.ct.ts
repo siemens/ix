@@ -1623,8 +1623,8 @@ test('required select prevents form submission when empty', async ({
   await submitButton.click();
 
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const accessibilityScanResults_required = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_required.violations).toEqual([]);
+  const a11y = await makeAxeBuilder().analyze();
+  expect(a11y.violations).toEqual([]);
 });
 
 test('multiple required selects prevent form submission when any is empty', async ({
@@ -1658,8 +1658,8 @@ test('multiple required selects prevent form submission when any is empty', asyn
 
   await submitButton.click();
   await expect(locationSelect).toHaveClass(/ix-invalid--required/);
-  const accessibilityScanResults_multiple = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_multiple.violations).toEqual([]);
+  const a11yMultiple = await makeAxeBuilder().analyze();
+  expect(a11yMultiple.violations).toEqual([]);
 
   await locationSelect.locator('[data-select-dropdown]').click();
   await locationSelect.locator('ix-select-item').first().click();
@@ -1694,8 +1694,8 @@ test('custom invalidText is used for validation feedback', async ({
   await submitButton.click();
   const fieldWrapper = select.locator('ix-field-wrapper');
   await expect(fieldWrapper).toContainText('Please select your department');
-  const accessibilityScanResults_customInvalidText = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_customInvalidText.violations).toEqual([]);
+  const a11yCustomInvalidText = await makeAxeBuilder().analyze();
+  expect(a11yCustomInvalidText.violations).toEqual([]);
 });
 
 test('novalidate form attribute disables validation', async ({
@@ -1727,7 +1727,11 @@ test('novalidate form attribute disables validation', async ({
   await expect(select).not.toHaveClass(/ix-invalid--required/);
 });
 
-test('multiple mode validation works correctly', async ({ mount, page, makeAxeBuilder }) => {
+test('multiple mode validation works correctly', async ({
+  mount,
+  page,
+  makeAxeBuilder,
+}) => {
   await mount(`
       <form>
         <ix-select name="departments" required mode="multiple">
@@ -1747,8 +1751,8 @@ test('multiple mode validation works correctly', async ({ mount, page, makeAxeBu
 
   await submitButton.click();
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const accessibilityScanResults_multipleMode = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_multipleMode.violations).toEqual([]);
+  const a11yMultipleMode = await makeAxeBuilder().analyze();
+  expect(a11yMultipleMode.violations).toEqual([]);
 
   await page.locator('[data-select-dropdown]').click();
   await page.locator('ix-select-item').first().click();
@@ -1781,8 +1785,8 @@ test('programmatic value setting updates validation state', async ({
 
   await submitButton.click();
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const accessibilityScanResults_programmaticBefore = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_programmaticBefore.violations).toEqual([]);
+  const a11yBefore = await makeAxeBuilder().analyze();
+  expect(a11yBefore.violations).toEqual([]);
 
   await select.evaluate((el: HTMLIxSelectElement) => {
     el.value = '1';
@@ -1790,6 +1794,6 @@ test('programmatic value setting updates validation state', async ({
 
   await page.waitForTimeout(100);
   await expect(select).not.toHaveClass(/ix-invalid--required/);
-  const accessibilityScanResults_programmaticAfter = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults_programmaticAfter.violations).toEqual([]);
+  const a11yAfter = await makeAxeBuilder().analyze();
+  expect(a11yAfter.violations).toEqual([]);
 });
