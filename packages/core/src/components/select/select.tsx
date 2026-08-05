@@ -288,6 +288,12 @@ export class Select
   private formSubmissionAttempted = false;
   private formSubmitHandler?: (event: Event) => void;
   private associatedForm: HTMLFormElement | null = null;
+  private readonly invalidHandler = (event: Event) => {
+    event.preventDefault();
+    this.formSubmissionAttempted = true;
+    this.touched = true;
+    this.syncValidationClasses();
+  };
 
   private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
@@ -312,7 +318,7 @@ export class Select
   private touched = false;
 
   private get parentForm(): HTMLFormElement | null {
-    return this.hostElement.closest('form');
+    return this.formInternals.form;
   }
 
   private isFormNoValidate(): boolean {
@@ -388,7 +394,7 @@ export class Select
         this.formSubmissionAttempted = true;
         this.touched = true;
         this.syncValidationClasses();
-        if (this.required && !this.hasValue()) {
+        if (!this.isFormNoValidate() && this.required && !this.hasValue()) {
           event.preventDefault();
           event.stopPropagation();
           return false;
@@ -399,12 +405,7 @@ export class Select
       });
     }
 
-    this.hostElement.addEventListener('invalid', (event: Event) => {
-      event.preventDefault();
-      this.formSubmissionAttempted = true;
-      this.touched = true;
-      this.syncValidationClasses();
-    });
+    this.hostElement.addEventListener('invalid', this.invalidHandler);
   }
 
   @Watch('disabled')
@@ -652,6 +653,7 @@ export class Select
         }
       );
     }
+    this.hostElement.removeEventListener('invalid', this.invalidHandler);
     this.associatedForm = null;
     this.chipsResizeObserver?.disconnect();
   }
