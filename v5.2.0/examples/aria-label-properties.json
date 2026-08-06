@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"aria-label-properties","variants":{"html":{"files":[{"target":"html/aria-label-properties.html","source":"html-examples/src/preview-examples/aria-label-properties.html"}],"dependencies":[{"name":"@siemens/ix","version":"^4.0.0"},{"name":"@siemens/ix-icons","version":"^3.3.0"}]}}}

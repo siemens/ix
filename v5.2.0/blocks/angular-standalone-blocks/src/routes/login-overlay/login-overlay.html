@@ -1,0 +1,51 @@
+<div class="overlay">
+  <header class="nameSection">
+    <p class="systemName">SYSTEM NAME</p>
+    <h1 class="productName"></h1>
+    <ix-typography format="display-xl">Product Name</ix-typography>
+  </header>
+
+  <form class="loginFormSection" (submit)="$event.preventDefault()">
+    <ix-input
+      type="email"
+      label="Username*"
+      [value]="username"
+      (input)="onUsernameInput($event)"
+    ></ix-input>
+
+    <div class="passwordSection">
+      <ix-input
+        type="password"
+        label="Password*"
+        [value]="password"
+        (input)="onPasswordInput($event)"
+      ></ix-input>
+      <a class="link" href="#">Forgot password</a>
+    </div>
+
+    <ix-button type="submit" class="fullWidthButton">Log in</ix-button>
+  </form>
+
+  <div class="registerSection">
+    <p class="registerText">Don’t have an account?</p>
+    <a class="link" href="#">Register now</a>
+  </div>
+
+  <div class="alternativeLoginSection">
+    <div class="separator">
+      <span class="separatorLine"></span>
+      <span class="separatorText">or</span>
+      <span class="separatorLine"></span>
+    </div>
+
+    <ix-button variant="secondary" class="fullWidthButton">
+      Log in with Siemens ID
+    </ix-button>
+    <ix-button variant="secondary" class="fullWidthButton">
+      Log in with Lorem Ipsum
+    </ix-button>
+    <ix-button variant="secondary" class="fullWidthButton">
+      Log in with Dolor
+    </ix-button>
+  </div>
+</div>

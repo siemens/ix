@@ -1,0 +1,88 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+  background: var(--theme-color-1);
+}
+
+.spacer {
+  flex: 1 1 0;
+  width: 100%;
+}
+
+.content {
+  width: min(100%, 50rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.errorCode {
+  margin: 0;
+  font-size: clamp(7rem, 18vw, 15rem);
+  line-height: 1;
+  font-weight: var(--theme-font-weight-bold);
+  letter-spacing: -0.0375rem;
+  background-image: linear-gradient(124deg, #00ffb9 15%, #00cccc 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.textContent {
+  width: min(100%, 37.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  color: var(--theme-color-std-text);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--theme-font-size-display-xl);
+  line-height: 1;
+  font-weight: var(--theme-font-weight-bold);
+  letter-spacing: -0.013125rem;
+}
+
+.message {
+  margin: 0;
+  max-width: 30rem;
+  font-size: var(--theme-font-size-body-lg);
+  line-height: 1.5;
+  letter-spacing: 0.012rem;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem;
+  }
+
+  .content {
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 7vw, var(--theme-font-size-display-xl));
+  }
+
+  .message {
+    font-size: var(--theme-font-size-body);
+  }
+}

@@ -1,0 +1,49 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-layout-grid class="theme-switcher">
+  <ix-row>
+    <ix-col size="2">
+      <span>Light/Dark</span>
+    </ix-col>
+    <ix-col>
+      <ix-button (click)="toggleMode()" [disabled]="useSystemTheme">
+        Toggle mode
+      </ix-button>
+    </ix-col>
+  </ix-row>
+
+  <ix-row>
+    <ix-col size="2">Theme</ix-col>
+    <ix-col>
+      <ix-select
+        [value]="selectedVariant"
+        (valueChange)="onValueChange($event)"
+        [disabled]="useSystemTheme"
+        placeholder="Select a theme"
+      >
+        <ix-select-item
+          *ngFor="let variant of variants"
+          [label]="variant"
+          [value]="variant"
+        ></ix-select-item>
+      </ix-select>
+    </ix-col>
+  </ix-row>
+
+  <ix-row>
+    <ix-col size="2"></ix-col>
+    <ix-col>
+      <ix-checkbox
+        label="Use system"
+        (checkedChange)="onSystemMode($event)"
+      ></ix-checkbox>
+    </ix-col>
+  </ix-row>
+</ix-layout-grid>
