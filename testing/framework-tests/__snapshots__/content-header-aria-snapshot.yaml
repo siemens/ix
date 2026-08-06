@@ -1,5 +1,5 @@
 - button "Arrow Left"
-- text: Content title Subtitle
+- text: Content title that remains compact when horizontal space is limited Supporting context is available from the native tooltip
 - button "Button1"
 - button "Button2"
 - button "Button3"

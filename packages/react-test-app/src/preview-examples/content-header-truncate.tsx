@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,6 +15,7 @@ export default () => {
       hasBackButton
       headerTitle="Content title that remains compact when horizontal space is limited"
       headerSubtitle="Supporting context is available from the native tooltip"
+      textOverflow="truncate"
     >
       <IxButton variant="tertiary">Button1</IxButton>
       <IxButton variant="tertiary">Button2</IxButton>

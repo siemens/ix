@@ -62,6 +62,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderTruncate from '../preview-examples/content-header-truncate';
 import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
@@ -546,6 +547,10 @@ const routes: Routes = [
       {
         path: 'content-header',
         component: ContentHeader,
+      },
+      {
+        path: 'content-header-truncate',
+        component: ContentHeaderTruncate,
       },
       {
         path: 'content-header-with-slot',

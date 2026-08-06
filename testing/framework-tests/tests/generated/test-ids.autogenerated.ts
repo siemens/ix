@@ -206,6 +206,7 @@ export const testIds = [
   "content",
   "content-header",
   "content-header-with-slot",
+  "content-header-truncate",
   "content-header-no-back",
   "chip",
   "checkbox",

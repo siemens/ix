@@ -128,6 +128,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/content-header').then((m) => m.default),
   'preview/content-header-no-back': () =>
     import('../preview-examples/content-header-no-back').then((m) => m.default),
+  'preview/content-header-truncate': () =>
+    import('../preview-examples/content-header-truncate').then(
+      (m) => m.default
+    ),
   'preview/content-header-with-slot': () =>
     import('../preview-examples/content-header-with-slot').then(
       (m) => m.default

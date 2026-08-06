@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -16,6 +16,7 @@ import { IxButton, IxContentHeader } from '@siemens/ix-vue';
     has-back-button
     header-title="Content title that remains compact when horizontal space is limited"
     header-subtitle="Supporting context is available from the native tooltip"
+    text-overflow="truncate"
   >
     <IxButton variant="tertiary">Button1</IxButton>
     <IxButton variant="tertiary">Button2</IxButton>

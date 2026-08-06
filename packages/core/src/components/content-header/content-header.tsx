@@ -9,7 +9,10 @@
 
 import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { ContentHeaderVariant } from './content-header.types';
+import type {
+  ContentHeaderTextOverflow,
+  ContentHeaderVariant,
+} from './content-header.types';
 
 /**
  * @slot header - Content to be placed in the header area next to the title
@@ -35,6 +38,13 @@ export class ContentHeader {
    * Subtitle of Header
    */
   @Prop() headerSubtitle: string | undefined = undefined;
+
+  /**
+   * Controls how the title and subtitle handle limited horizontal space.
+   *
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
 
   /**
    * Display a back button
@@ -64,8 +74,12 @@ export class ContentHeader {
               format={this.variant === 'secondary' ? 'h4' : 'h3'}
               class={{
                 secondary: this.variant === 'secondary',
-                titleOverflow: true,
+                headerText: true,
+                truncate: this.textOverflow === 'truncate',
               }}
+              title={
+                this.textOverflow === 'truncate' ? this.headerTitle : undefined
+              }
             >
               {this.headerTitle}
             </ix-typography>
@@ -79,9 +93,14 @@ export class ContentHeader {
               text-color={'soft'}
               class={{
                 subtitle: this.variant === 'secondary',
-                titleOverflow: true,
+                headerText: true,
+                truncate: this.textOverflow === 'truncate',
               }}
-              title={this.headerSubtitle}
+              title={
+                this.textOverflow === 'truncate'
+                  ? this.headerSubtitle
+                  : undefined
+              }
             >
               {this.headerSubtitle}
             </ix-typography>

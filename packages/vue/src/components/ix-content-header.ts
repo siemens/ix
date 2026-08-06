@@ -10,6 +10,7 @@ export const IxContentHeader: StencilVueComponent<JSX.IxContentHeader> = /*@__PU
   'variant',
   'headerTitle',
   'headerSubtitle',
+  'textOverflow',
   'hasBackButton',
   'backButtonClick'
 ], [

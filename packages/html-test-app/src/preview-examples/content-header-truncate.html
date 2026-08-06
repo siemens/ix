@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Siemens AG
+SPDX-FileCopyrightText: 2026 Siemens AG
 
 SPDX-License-Identifier: MIT
 
@@ -12,13 +12,14 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content header example</title>
+    <title>Content header truncation example</title>
   </head>
   <body>
     <ix-content-header
       has-back-button
       header-title="Content title that remains compact when horizontal space is limited"
       header-subtitle="Supporting context is available from the native tooltip"
+      text-overflow="truncate"
     >
       <ix-button variant="tertiary">Button1</ix-button>
       <ix-button variant="tertiary">Button2</ix-button>
