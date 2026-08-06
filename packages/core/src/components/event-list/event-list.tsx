@@ -12,6 +12,9 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import { animate } from 'animejs';
 
+/**
+ * @slot default - Event list items.
+ */
 @Component({
   tag: 'ix-event-list',
   styleUrl: 'event-list.scss',

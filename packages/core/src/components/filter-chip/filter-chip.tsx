@@ -18,6 +18,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @slot default - Filter chip label.
+ */
 @Component({
   tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',

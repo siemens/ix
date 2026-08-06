@@ -26,6 +26,7 @@ const mediaQueryCollection: Array<{
 
 /**
  * @internal
+ * @slot default - Grid items arranged by the configured template.
  */
 @Component({
   tag: 'ix-css-grid',

@@ -21,6 +21,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @slot default - Avatar dropdown items.
+ */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',

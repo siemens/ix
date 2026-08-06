@@ -123,6 +123,43 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   await expect(dropdown).not.toHaveClass(/show/);
 });
 
+test('toggles disabled without dropdown trigger errors', async ({
+  mount,
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') {
+      consoleErrors.push(msg.text());
+    }
+  });
+
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const dropdownTrigger = page.locator('[data-select-dropdown]');
+
+  await expect(select).toHaveClass(/hydrated/);
+  await expect(dropdownTrigger).toHaveCount(1);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.disabled = true;
+  });
+  await expect(dropdownTrigger).toHaveCount(0);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.disabled = false;
+  });
+  await expect(dropdownTrigger).toHaveCount(1);
+
+  expect(consoleErrors).toEqual([]);
+});
+
 test('does not select an item when ix-select-item is disabled', async ({
   mount,
   page,
