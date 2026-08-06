@@ -17,7 +17,6 @@ interface BlockDocument {
   description: string;
   keywords: string;
   sourceCode: string;
-  dependencies: string;
   files: string;
   path: string;
 }
@@ -117,14 +116,7 @@ export async function buildSearchIndex(
       if (!variant || typeof variant !== 'object') continue;
 
       const sourceCodeParts: string[] = [];
-      const dependencies: string[] = [];
       const files: string[] = [];
-
-      if (Array.isArray((variant as any).dependencies)) {
-        for (const dep of (variant as any).dependencies) {
-          dependencies.push(`${dep.name}@${dep.version}`);
-        }
-      }
 
       if (Array.isArray((variant as any).files)) {
         for (const file of (variant as any).files) {
@@ -162,7 +154,6 @@ export async function buildSearchIndex(
           description: blockDescription,
           keywords: blockKeywords.join(' '),
           sourceCode: sourceCodeParts.join('\n'),
-          dependencies: dependencies.join(' '),
           files: files.join(' '),
           path: `${pathPrefix}/${blockPath}`,
         });
@@ -181,14 +172,7 @@ export async function buildSearchIndex(
     }
 
     const miniSearch = new MiniSearch<BlockDocument>({
-      fields: [
-        'name',
-        'description',
-        'keywords',
-        'sourceCode',
-        'dependencies',
-        'files',
-      ],
+      fields: ['name', 'description', 'keywords', 'sourceCode', 'files'],
       storeFields: ['id', 'name', 'description', 'keywords', 'path'],
       searchOptions: {
         boost: { name: 3, description: 2, keywords: 2, files: 1.5 },

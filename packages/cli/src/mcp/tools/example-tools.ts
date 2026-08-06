@@ -90,22 +90,12 @@ export const exampleTools: ToolDefinition[] = [
             const files = variant.files
               .map((f: { target: string }) => `  - ${f.target}`)
               .join('\n');
-            const deps = variant.dependencies
-              ? variant.dependencies
-                  .map(
-                    (d: { name: string; version: string }) =>
-                      `  - ${d.name}@${d.version}`
-                  )
-                  .join('\n')
-              : '  None';
 
             exampleDetails = dedent`
 
             **Top Result Details: ${exampleDef.name}**
             - Files:
             ${files}
-            - Dependencies:
-            ${deps}
             `;
           }
         } catch (err) {
@@ -187,18 +177,11 @@ export const exampleTools: ToolDefinition[] = [
           .map((file) => `**${file.path}**\n\`\`\`\n${file.content}\n\`\`\``)
           .join('\n\n---\n\n');
 
-        const depsList = exampleCode.dependencies
-          .map((d) => `  - ${d.name}@${d.version}`)
-          .join('\n');
-
         return {
           content: [
             {
               type: 'text',
               text: dedent`# Example: ${exampleCode.name} (${context.framework})
-
-              ## Dependencies
-              ${depsList}
 
               ## Source Files
 

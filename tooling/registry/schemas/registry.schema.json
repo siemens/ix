@@ -88,6 +88,7 @@
           "properties": {
             "entrypoint": { "type": "string", "pattern": "\\.txt$" },
             "components": { "type": "string", "pattern": "\\.md$" },
+            "examples": { "type": "string", "pattern": "\\.md$" },
             "blocks": { "type": "string", "pattern": "\\.md$" }
           },
           "additionalProperties": false

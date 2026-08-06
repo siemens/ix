@@ -1027,6 +1027,7 @@
       "llms": {
         "entrypoint": "llms.txt",
         "components": "llms/components.md",
+        "examples": "llms/examples.md",
         "blocks": "llms/blocks.md"
       }
     }

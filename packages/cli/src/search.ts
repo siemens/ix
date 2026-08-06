@@ -52,7 +52,6 @@ const FALLBACK_SEARCH_FIELDS = [
   'description',
   'keywords',
   'sourceCode',
-  'dependencies',
   'files',
 ];
 

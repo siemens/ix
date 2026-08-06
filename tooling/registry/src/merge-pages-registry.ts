@@ -29,6 +29,7 @@ type RegistryVersionEntry = {
   llms?: {
     entrypoint: string;
     components: string;
+    examples?: string;
     blocks: string;
   };
   searchIndex?: {
@@ -147,6 +148,9 @@ function prefixLlms(
   return {
     entrypoint: prefixVersionPath(version, llms.entrypoint),
     components: prefixVersionPath(version, llms.components),
+    examples: llms.examples
+      ? prefixVersionPath(version, llms.examples)
+      : undefined,
     blocks: prefixVersionPath(version, llms.blocks),
   };
 }
@@ -229,8 +233,8 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
     b.localeCompare(a)
   );
   const latest = registry['dist-tags']?.latest;
-  const tagEntries = Object.entries(registry['dist-tags'] ?? {}).sort(([a], [b]) =>
-    a.localeCompare(b)
+  const tagEntries = Object.entries(registry['dist-tags'] ?? {}).sort(
+    ([a], [b]) => a.localeCompare(b)
   );
 
   const versionLinks = versions
@@ -268,21 +272,36 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
         return `- ${version}: Block LLM docs unavailable.`;
       }
 
-      return `- [${version} blocks](${blocksPath}): Registry block metadata, variants, files, dependencies, and component usage availability for ${version}.`;
+      return `- [${version} blocks](${blocksPath}): Registry block metadata, variants, files, and component usage availability for ${version}.`;
+    })
+    .join('\n');
+
+  const exampleLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const examplesPath = entry.llms?.examples;
+
+      if (!examplesPath) {
+        return `- ${version}: Example LLM docs unavailable.`;
+      }
+
+      return `- [${version} examples](${examplesPath}): Registry examples with related iX components, framework variants, and source files for ${version}.`;
     })
     .join('\n');
 
   return `# Siemens iX Registry
 
-> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component and block context.
+> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component, example, and block context.
 
 Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
 
-Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage or block docs for complete copyable UI patterns.
+Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage, example docs for practical framework code, or block docs for complete copyable UI patterns.
 
 Component docs contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Figma IDs identify design-system counterparts and should be used for mapping design resources to iX components, not as runtime APIs.
 
-Block docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, dependencies, and component usage availability.
+Example docs contain related iX components, framework variants, and source files so examples can be found without first navigating through component docs.
+
+Block docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, and component usage availability.
 
 If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
 
@@ -295,6 +314,10 @@ ${versionLinks || '- No registry versions available.'}
 ## Component docs
 
 ${componentLinks || '- No component LLM docs available.'}
+
+## Example docs
+
+${exampleLinks || '- No example LLM docs available.'}
 
 ## Block docs
 

@@ -15,6 +15,7 @@ export type RegistryIndex = {
       llms?: {
         entrypoint: string;
         components: string;
+        examples?: string;
         blocks: string;
       };
       searchIndex?: {
@@ -70,7 +71,6 @@ export type ExampleDefinition = {
 export type ExampleVariant = {
   preview?: string;
   files: Array<{ source: string; target: string; type?: string }>;
-  dependencies: Array<{ name: string; version: string }>;
 };
 
 async function fetchJson<T>(url: string): Promise<T> {
@@ -368,7 +368,6 @@ export interface ExampleCode {
   name: string;
   framework: string;
   files: ExampleCodeFile[];
-  dependencies: Array<{ name: string; version: string }>;
 }
 
 export async function getExampleCode(
@@ -420,6 +419,5 @@ export async function getExampleCode(
     name: exampleDef.name,
     framework,
     files,
-    dependencies: variant.dependencies,
   };
 }

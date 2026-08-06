@@ -31,6 +31,7 @@ type UnifiedRegistry = {
       llms?: {
         entrypoint: string;
         components: string;
+        examples: string;
         blocks: string;
       };
     }
@@ -53,6 +54,7 @@ interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
   llms: {
     entrypoint: string;
     components: string;
+    examples: string;
     blocks: string;
   };
 }

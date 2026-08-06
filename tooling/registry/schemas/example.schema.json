@@ -41,7 +41,7 @@
   "definitions": {
     "variant": {
       "type": "object",
-      "required": ["files", "dependencies"],
+      "required": ["files"],
       "properties": {
         "preview": {
           "type": "string"
@@ -60,22 +60,6 @@
                 "type": "string"
               },
               "type": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          }
-        },
-        "dependencies": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["name", "version"],
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "version": {
                 "type": "string"
               }
             },

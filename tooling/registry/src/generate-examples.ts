@@ -149,45 +149,12 @@ function generateBlockJson(example: ExampleMetadata): any {
     variants: {},
   };
 
-  const dependencies = [
-    { name: '@siemens/ix', version: '^4.0.0' },
-    { name: '@siemens/ix-icons', version: '^3.3.0' },
-  ];
-
   for (const [framework, files] of example.files.entries()) {
     if (files.length === 0) continue;
 
     const variant: any = {
       files: [],
-      dependencies: [...dependencies],
     };
-
-    switch (framework) {
-      case 'react':
-        variant.dependencies.push({
-          name: '@siemens/ix-react',
-          version: '^4.0.0',
-        });
-        break;
-      case 'angular':
-        variant.dependencies.push({
-          name: '@siemens/ix-angular',
-          version: '^4.0.0',
-        });
-        break;
-      case 'angular-standalone':
-        variant.dependencies.push({
-          name: '@siemens/ix-angular',
-          version: '^4.0.0',
-        });
-        break;
-      case 'vue':
-        variant.dependencies.push({
-          name: '@siemens/ix-vue',
-          version: '^4.0.0',
-        });
-        break;
-    }
 
     for (const file of files) {
       const targetFileName = getTargetFileName(file, example.name);

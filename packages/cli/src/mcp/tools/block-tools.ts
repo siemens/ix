@@ -9,7 +9,7 @@ const searchBlocksSchema = z.object({
   query: z
     .string()
     .describe(
-      'Search query to find blocks (searches name, description, keywords, source code, dependencies, and files)'
+      'Search query to find blocks (searches name, description, keywords, source code, and files)'
     ),
   limit: z
     .number()
@@ -24,7 +24,7 @@ export const blockTools: ToolDefinition[] = [
   {
     name: searchBlocksName,
     description:
-      'Search the Siemens IX blocks registry. Searches across block names, descriptions, keywords, source code, dependencies, and file paths to find matching UI blocks/components.',
+      'Search the Siemens IX blocks registry. Searches across block names, descriptions, keywords, source code, and file paths to find matching UI blocks/components.',
     schema: searchBlocksSchema,
     handler: async (args, context) => {
       try {
@@ -83,14 +83,6 @@ export const blockTools: ToolDefinition[] = [
             const files = frameworkVariant.files
               .map((f: { target: string }) => `  - ${f.target}`)
               .join('\n');
-            const deps = frameworkVariant.dependencies
-              ? frameworkVariant.dependencies
-                  .map(
-                    (d: { name: string; version: string }) =>
-                      `  - ${d.name}@${d.version}`
-                  )
-                  .join('\n')
-              : '  None';
 
             blockDetails = dedent`
 
@@ -100,8 +92,6 @@ export const blockTools: ToolDefinition[] = [
             - Available frameworks: ${variants}
             - Files:
             ${files}
-            - Dependencies:
-            ${deps}
             `;
           }
         } catch (err) {

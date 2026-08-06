@@ -22,20 +22,6 @@
           "target": "react/error-page.module.css",
           "source": "react-blocks/src/routes/error-page/error-page.module.css"
         }
-      ],
-      "dependencies": [
-        {
-          "name": "@siemens/ix",
-          "version": "^4.0.0"
-        },
-        {
-          "name": "@siemens/ix-icons",
-          "version": "^3.3.0"
-        },
-        {
-          "name": "@siemens/ix-react",
-          "version": "^4.0.0"
-        }
       ]
     },
     "angular": {
@@ -51,20 +37,6 @@
         {
           "target": "angular/error-page.css",
           "source": "angular-standalone-blocks/src/routes/error-page/error-page.css"
-        }
-      ],
-      "dependencies": [
-        {
-          "name": "@siemens/ix",
-          "version": "^4.0.0"
-        },
-        {
-          "name": "@siemens/ix-icons",
-          "version": "^3.3.0"
-        },
-        {
-          "name": "@siemens/ix-angular",
-          "version": "^4.0.0"
         }
       ]
     }
