@@ -18,6 +18,50 @@ const CARDS_HTML = `
   <ix-card><ix-card-content>Card 5</ix-card-content></ix-card>
 `;
 
+regressionTest.only(
+  'prevents focus from remaining in collapsed card content',
+  async ({ mount, page }) => {
+    await mount(`
+      <button id="before">Before</button>
+      <ix-card-list
+        label="Test"
+        aria-label-expand-button="Toggle card list"
+        hide-show-all
+      >
+        <ix-card>
+          <ix-card-content>
+            <button id="card-action">Card action</button>
+          </ix-card-content>
+        </ix-card>
+      </ix-card-list>
+      <button id="after">After</button>
+    `);
+
+    const cardList = page.locator('ix-card-list');
+    const collapseButton = cardList.getByRole('button', {
+      name: 'Toggle card list',
+    });
+    const cardAction = page.locator('#card-action');
+    const content = cardList.locator('.CardList__Content');
+    const after = page.locator('#after');
+
+    await expect(cardList).toHaveClass(/\bhydrated\b/);
+
+    await cardAction.focus();
+    await expect(cardAction).toBeFocused();
+
+    await cardList.evaluate((element: HTMLIxCardListElement) => {
+      element.collapse = true;
+    });
+
+    await expect(collapseButton).toBeFocused();
+    await expect(content).toHaveJSProperty('inert', true);
+
+    await page.keyboard.press('Tab');
+    await expect(after).toBeFocused();
+  }
+);
+
 regressionTest(
   'show all button reveals all hidden cards',
   async ({ mount, page }) => {
