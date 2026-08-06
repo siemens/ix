@@ -10,7 +10,7 @@
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
-import { componentUsagePlugin } from '../../tooling/component-usage-plugin';
+import { componentUsagePlugin } from '../../tooling/registry/src/component-usage-plugin';
 
 const __dirname = path.resolve();
 
