@@ -367,7 +367,9 @@ async function generateApiMarkdown() {
         const parameters = method.parameters.map((parameter) => ({
           name: parameter.name,
           type: escapeBackticks(parameter.type),
-          optional: method.signature.includes(`${parameter.name}?:`),
+          optional: new RegExp(`\\b${parameter.name}\\?:`).test(
+            method.signature
+          ),
         }));
 
         return {
