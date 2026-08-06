@@ -76,7 +76,7 @@ export const Default: Story = {
 export const Spaced: Story = {
   args: {
     hasDivider: false,
-    itemGap: 8,
+    itemGap: '8',
   },
 };
 

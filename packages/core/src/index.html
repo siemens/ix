@@ -31,9 +31,108 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-list>
-      <ix-list-item>test</ix-list-item>
-      <ix-list-item>test</ix-list-item>
-    </ix-list>
+    <div style="width: 400px; margin: 12px">
+      <ix-list has-divider item-gap="0">
+        <ix-list-item
+          variant="ghost"
+          icon="project"
+          label="test"
+        ></ix-list-item>
+        <ix-list-item
+          variant="ghost"
+          icon="project"
+          label="test 2"
+        ></ix-list-item>
+        <ix-list-item
+          variant="ghost"
+          icon="project"
+          label="test 3"
+        ></ix-list-item>
+        <ix-list-item
+          variant="ghost"
+          icon="project"
+          label="test 4"
+        ></ix-list-item>
+      </ix-list>
+    </div>
+
+    <div style="width: 400px; margin: 12px; margin-top: 40px">
+      <ix-list draggable>
+        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
+        <ix-list-item icon="project" label="test 4"></ix-list-item>
+      </ix-list>
+    </div>
+
+    <div style="width: 400px; margin: 12px; margin-top: 40px">
+      <ix-list>
+        <ix-list-item checkbox icon="project" label="test"></ix-list-item>
+        <ix-list-item checkbox icon="project" label="test 2"></ix-list-item>
+        <ix-list-item checkbox icon="project" label="test 3"></ix-list-item>
+        <ix-list-item checkbox icon="project" label="test 4"></ix-list-item>
+      </ix-list>
+    </div>
+
+    <div style="width: 400px; margin: 12px; margin-top: 40px">
+      <ix-list>
+        <ix-list-item icon="project" label="test">
+          <div slot="additional-actions">
+            <ix-icon-button
+              icon="edit-document"
+              variant="ghost"
+            ></ix-icon-button>
+            <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="ghost"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 2">
+          <div slot="additional-actions">
+            <ix-icon-button
+              icon="edit-document"
+              variant="ghost"
+            ></ix-icon-button>
+            <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="ghost"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 3">
+          <div slot="additional-actions">
+            <ix-icon-button
+              icon="edit-document"
+              variant="ghost"
+            ></ix-icon-button>
+            <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="ghost"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 4">
+          <div slot="additional-actions">
+            <ix-icon-button
+              icon="edit-document"
+              variant="ghost"
+            ></ix-icon-button>
+            <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="ghost"
+          ></ix-icon-button>
+        </ix-list-item>
+      </ix-list>
+    </div>
   </body>
 </html>

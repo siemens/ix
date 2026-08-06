@@ -16,7 +16,6 @@ import {
   Host,
   Mixin,
   Prop,
-  State,
 } from '@stencil/core';
 import { iconDragGripper } from '@siemens/ix-icons/icons';
 import { A11yAttributeName, a11yBoolean } from '../utils/a11y';
@@ -30,7 +29,6 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
-import { hasSlottedContent } from '../utils/shadow-dom';
 
 export type ListItemVariant = 'ghost' | 'outline' | 'filled';
 
@@ -134,8 +132,6 @@ export class ListItem
 
   private readonly primaryActionRef = makeRef<HTMLButtonElement>();
 
-  @State() private hasCustomContent = false;
-
   override getIgnoredAriaAttributes(): A11yAttributeName[] {
     return ['role', 'aria-checked', 'aria-disabled', 'aria-pressed'];
   }
@@ -158,14 +154,16 @@ export class ListItem
     this.itemClick.emit(this.hostElement);
 
     if (this.checkbox) {
-      this.selectedChange.emit(!this.selected);
+      this.selected = !this.selected;
+      this.selectedChange.emit(this.selected);
     }
   }
 
   private handleDefaultSlotChange(event: Event) {
-    this.hasCustomContent = hasSlottedContent(
-      event.currentTarget as HTMLSlotElement
-    );
+    console.log(event);
+    // this.hasCustomContent = hasSlottedContent(
+    //   event.currentTarget as HTMLSlotElement
+    // );
   }
 
   private renderStandardContent(labelId: string) {
@@ -176,7 +174,7 @@ export class ListItem
             class="selection-checkbox"
             checked={this.selected}
             aria-hidden="true"
-            inert
+            tabIndex={-1}
           ></ix-checkbox>
         ) : null}
         {this.icon ? (
@@ -258,25 +256,24 @@ export class ListItem
             }
             onClick={() => this.activateItem()}
           >
-            <div hidden={this.hasCustomContent}>
-              {this.renderStandardContent(labelId)}
-            </div>
+            {this.renderStandardContent(labelId)}
+
             <slot
               onSlotchange={(event) => this.handleDefaultSlotChange(event)}
             ></slot>
           </button>
-          <div class="action" inert={this.disabled}>
-            <slot name="action"></slot>
-          </div>
           <div class="additional-actions" inert={this.disabled}>
             <slot name="additional-actions"></slot>
           </div>
+          <div class="action" inert={this.disabled}>
+            <slot name="action"></slot>
+          </div>
         </div>
-        {tooltip ? (
+        {/* {tooltip ? (
           <ix-tooltip for={this.primaryActionRef.waitForCurrent()}>
             {tooltip}
           </ix-tooltip>
-        ) : null}
+        ) : null} */}
         <div class="drag-announcement" aria-live="polite" aria-atomic="true" />
       </Host>
     );
