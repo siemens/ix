@@ -11,6 +11,27 @@ import { test, viewPorts } from '@utils/test';
 import { ApplicationLayoutContext } from '../../utils/application-layout/context';
 import { ContextType } from '../../utils/context';
 
+test('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+test('renders application name as h1', async ({ mount, page }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const heading = page
+    .locator('ix-application-header')
+    .locator('h1.application-name');
+  await expect(heading).toBeVisible();
+  await expect(heading).toContainText('Test Application');
+});
+
 test('renders', async ({ mount, page }) => {
   page.setViewportSize({
     height: 500,
