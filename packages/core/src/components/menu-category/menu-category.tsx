@@ -41,6 +41,9 @@ const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 let categorySequenceId = 0;
 
+/**
+ * @slot default - Menu items in the category.
+ */
 @Component({
   tag: 'ix-menu-category',
   styleUrl: 'menu-category.scss',
@@ -78,7 +81,7 @@ export class MenuCategory
 
   /** @internal */
   @Event({ bubbles: true, cancelable: true })
-  closeOtherCategories!: EventEmitter;
+  closeOtherCategories!: EventEmitter<string>;
 
   @State() menuExpand = false;
   @State() showItems = false;
@@ -168,7 +171,7 @@ export class MenuCategory
     if (this.ixMenu?.expand) {
       return;
     }
-    this.closeOtherCategories.emit();
+    this.closeOtherCategories.emit(this.categoryId);
 
     if (this.dropdownRef.current) {
       const ref = dropdownController.getDropdownById(
@@ -182,7 +185,11 @@ export class MenuCategory
   }
 
   @Listen('closeOtherCategories', { target: 'window' })
-  private hideMenuItemDropdown() {
+  private hideMenuItemDropdown(event?: CustomEvent<string>) {
+    if (event?.detail === this.categoryId) {
+      return;
+    }
+
     if (this.dropdownRef.current) {
       const ref = dropdownController.getDropdownById(
         this.dropdownRef.current.dataset.ixDropdown!

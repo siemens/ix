@@ -1,0 +1,99 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use './mixins/action.mixin';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  @include component.ix-component;
+
+  .message {
+    width: fit-content;
+    min-width: max(15.375rem, 45%);
+    max-width: 80%;
+    box-sizing: border-box;
+    padding: var(--theme-space-2) var(--theme-space-3);
+    border-radius: var(--theme-default-border-radius);
+    background-color: var(--theme-color-component-8);
+    color: var(--theme-color-std-text);
+  }
+
+  .attachments {
+    display: none;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--theme-space-1) 0;
+    width: 100%;
+    max-width: 75%;
+    margin-bottom: var(--theme-space-1);
+    overflow: hidden;
+  }
+
+  .attachments ::slotted(ix-chat-attachment) {
+    flex: 0 1 6.375rem;
+    padding-left: var(--theme-space-1);
+  }
+
+  .attachment-overflow {
+    margin-bottom: var(--theme-space-1);
+    --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
+    --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
+  }
+
+  .message-text {
+    display: block;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--theme-space-1);
+    min-height: 2rem;
+    margin-top: var(--theme-space-1);
+
+    @include action.animate-action;
+  }
+
+  .actions ::slotted(ix-icon-button) {
+    flex: 0 0 auto;
+  }
+}
+
+:host(.has-attachments) {
+  .attachments {
+    display: flex;
+  }
+}
+
+:host(:focus-visible) {
+  outline: none;
+
+  .message {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-focus-outline-offset);
+  }
+}
+
+:host(.has-actions:focus),
+:host(.has-actions:hover),
+:host(.has-actions:focus-within) {
+  .actions {
+    @include action.show-action;
+  }
+}

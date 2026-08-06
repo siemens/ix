@@ -36,7 +36,7 @@ import { a11yBoolean } from '../utils/a11y';
 let sequenceId = 0;
 
 /**
- * @slot menu-item-label Custom label
+ * @slot default - Custom menu item label.
  */
 @Component({
   tag: 'ix-menu-item',

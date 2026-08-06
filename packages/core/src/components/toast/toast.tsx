@@ -27,6 +27,10 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Toast message content.
+ * @slot action - Action displayed next to the toast message.
+ */
 @Component({
   tag: 'ix-toast',
   styleUrl: 'toast.scss',

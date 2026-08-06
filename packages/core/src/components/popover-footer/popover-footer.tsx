@@ -13,7 +13,7 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 /**
  * Footer section for actions and optional leading metadata.
  *
- * @slot - Footer actions (typically buttons), aligned to the end.
+ * @slot default - Footer actions (typically buttons), aligned to the end.
  * @slot start - Optional leading content (for example version text or step indicators).
  *
  * @since 5.1.0

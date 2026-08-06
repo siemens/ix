@@ -44,6 +44,10 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 import type { KeyboardNavigationBoundaryContext } from '../dropdown/dropdown-focus';
 
+/**
+ * @slot button-label - Custom content displayed next to the button label.
+ * @slot default - Dropdown items.
+ */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',

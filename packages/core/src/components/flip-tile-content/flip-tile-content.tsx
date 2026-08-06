@@ -8,6 +8,9 @@
  */
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @slot default - Flip tile body content.
+ */
 @Component({
   tag: 'ix-flip-tile-content',
   styleUrl: 'flip-tile-content.css',
