@@ -27,6 +27,24 @@ Example source links are relative to this Markdown file.
     - `react/application-header.tsx`: [source](../../examples/react-examples/src/preview-examples/application-header.tsx)
   - vue:
     - `vue/application-header.vue`: [source](../../examples/vue-examples/src/preview-examples/application-header.vue)
+- badge
+  - angular:
+    - `angular/badge.css`: [source](../../examples/angular-examples/src/preview-examples/badge.css)
+    - `angular/badge.html`: [source](../../examples/angular-examples/src/preview-examples/badge.html)
+    - `angular/badge.ts`: [source](../../examples/angular-examples/src/preview-examples/badge.ts)
+  - angular-standalone:
+    - `angular-standalone/badge.css`: [source](../../examples/angular-standalone-examples/src/preview-examples/badge.css)
+    - `angular-standalone/badge.html`: [source](../../examples/angular-standalone-examples/src/preview-examples/badge.html)
+    - `angular-standalone/badge.ts`: [source](../../examples/angular-standalone-examples/src/preview-examples/badge.ts)
+  - html:
+    - `html/badge.css`: [source](../../examples/html-examples/src/preview-examples/badge.css)
+    - `html/badge.html`: [source](../../examples/html-examples/src/preview-examples/badge.html)
+  - react:
+    - `react/badge.scoped.css`: [source](../../examples/react-examples/src/preview-examples/badge.scoped.css)
+    - `react/badge.tsx`: [source](../../examples/react-examples/src/preview-examples/badge.tsx)
+  - vue:
+    - `vue/badge.css`: [source](../../examples/vue-examples/src/preview-examples/badge.css)
+    - `vue/badge.vue`: [source](../../examples/vue-examples/src/preview-examples/badge.vue)
 - blind-header-actions
   - angular:
     - `angular/blind-header-actions.css`: [source](../../examples/angular-examples/src/preview-examples/blind-header-actions.css)

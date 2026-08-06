@@ -86,6 +86,26 @@
           "path": "feat/block-cli/examples/avatar-initials.json"
         },
         {
+          "name": "badge",
+          "path": "feat/block-cli/examples/badge.json"
+        },
+        {
+          "name": "badge-counter",
+          "path": "feat/block-cli/examples/badge-counter.json"
+        },
+        {
+          "name": "badge-dot",
+          "path": "feat/block-cli/examples/badge-dot.json"
+        },
+        {
+          "name": "badge-label",
+          "path": "feat/block-cli/examples/badge-label.json"
+        },
+        {
+          "name": "badge-status-icon",
+          "path": "feat/block-cli/examples/badge-status-icon.json"
+        },
+        {
           "name": "basic-navigation-migration",
           "path": "feat/block-cli/examples/basic-navigation-migration.json"
         },

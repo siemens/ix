@@ -2,7 +2,7 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 113 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
+This index links to all 114 generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
 
 ## Components
 
@@ -10,6 +10,7 @@ This index links to all 113 generated component detail files. Each detail file i
 - [ix-application](components/ix-application.md): Root container that sets up the overall application shell and layout.
 - [ix-application-header](components/ix-application-header.md): Top header bar of the application shell holding branding, navigation, and actions.
 - [ix-avatar](components/ix-avatar.md): Displays a user's profile image, initials, or a placeholder icon.
+- [ix-badge](components/ix-badge.md): Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge-max-width`.
 - [ix-blind](components/ix-blind.md): Collapsible container that expands and collapses to show or hide its content.
 - [ix-breadcrumb](components/ix-breadcrumb.md): Navigation trail that shows the user's location within a hierarchy.
 - [ix-breadcrumb-item](components/ix-breadcrumb-item.md): A single entry within a breadcrumb navigation trail.
