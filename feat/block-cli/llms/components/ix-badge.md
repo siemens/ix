@@ -4,11 +4,11 @@
 
 ## Documentation
 
-- None
+- https://ix.siemens.io//docs/components/badge/guide.md
 
 ## Figma IDs
 
-- None
+- 138424:114072
 
 ## Related examples
 
@@ -133,4 +133,5 @@ Example source links are relative to this Markdown file.
 
 ## Slots
 
-- None
+- `` - Anchor element to which the badge is attached. Leave empty to render the badge standalone.
+- `description` - Screen-reader description associated with the attached anchor.
