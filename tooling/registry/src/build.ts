@@ -38,38 +38,39 @@ const __ix_component_search_index = path.join(
   __ix_package,
   'component-search-index.json'
 );
+const __blocks_root = path.join(__dirname, '..', '..', 'blocks');
 const __html_examples_component_usage_by_component = path.join(
   __examples_root,
   'html-examples',
   'component-usage-by-component.json'
 );
+const __react_blocks_component_usage_by_component = path.join(
+  __blocks_root,
+  'react-blocks',
+  'component-usage-by-component.json'
+);
 
-function normalizeRelatedExamples(
-  input: Record<string, string[]>
+type BlockDefinition = {
+  name: string;
+  variants?: Record<
+    string,
+    {
+      files?: Array<{ source: string }>;
+    }
+  >;
+};
+
+function normalizeRelationships(
+  input: Record<string, string[]>,
+  resolveEntryName: (file: string) => string | null
 ): Record<string, string[]> {
   const result: Record<string, string[]> = {};
 
-  const toExampleName = (value: string): string | null => {
-    const normalized = value.replace(/\\/g, '/');
-    const previewExampleMatch = normalized.match(
-      /\/src\/preview-examples\/([^/]+)\.html$/
-    );
-
-    if (previewExampleMatch?.[1]) {
-      return previewExampleMatch[1];
-    }
-
-    const htmlFileMatch = normalized.match(/([^/]+)\.html$/);
-    if (htmlFileMatch?.[1]) {
-      return htmlFileMatch[1];
-    }
-
-    return null;
-  };
-
   for (const [component, entries] of Object.entries(input)) {
     const normalizedEntries = Array.from(
-      new Set(entries.map(toExampleName).filter((name): name is string => !!name))
+      new Set(
+        entries.map(resolveEntryName).filter((name): name is string => !!name)
+      )
     ).sort();
 
     if (normalizedEntries.length > 0) {
@@ -78,6 +79,46 @@ function normalizeRelatedExamples(
   }
 
   return result;
+}
+
+function toExampleName(value: string): string | null {
+  const normalized = value.replace(/\\/g, '/');
+  const previewExampleMatch = normalized.match(
+    /\/src\/preview-examples\/([^/]+)\.html$/
+  );
+
+  if (previewExampleMatch?.[1]) {
+    return previewExampleMatch[1];
+  }
+
+  const htmlFileMatch = normalized.match(/([^/]+)\.html$/);
+  return htmlFileMatch?.[1] ?? null;
+}
+
+function normalizeSourcePath(value: string): string {
+  return value.replace(/\\/g, '/').replace(/^\/+/, '');
+}
+
+async function readBlockNamesByReactSource(): Promise<Map<string, string>> {
+  const blockFiles = await glob(path.join(__blocks_root, '*.json'), {
+    absolute: true,
+  });
+  const blocks = await Promise.all(
+    blockFiles.map(async (file) => (await fs.readJson(file)) as BlockDefinition)
+  );
+  const blockNamesBySource = new Map<string, string>();
+
+  for (const block of blocks) {
+    for (const file of block.variants?.react?.files ?? []) {
+      const source = normalizeSourcePath(file.source);
+      const relativeSource = source.startsWith('react-blocks/')
+        ? source.slice('react-blocks/'.length)
+        : source;
+      blockNamesBySource.set(relativeSource, block.name);
+    }
+  }
+
+  return blockNamesBySource;
 }
 
 interface Ctx {
@@ -244,6 +285,10 @@ const task = new Listr<Ctx>([
         dest,
         'component-related-examples.json'
       );
+      const componentRelatedBlocksTarget = path.join(
+        dest,
+        'component-related-blocks.json'
+      );
 
       if (await fs.pathExists(__html_examples_component_usage_by_component)) {
         const relatedExamples = (await fs.readJson(
@@ -252,7 +297,7 @@ const task = new Listr<Ctx>([
 
         await fs.outputJson(
           componentRelatedExamplesTarget,
-          normalizeRelatedExamples(relatedExamples),
+          normalizeRelationships(relatedExamples, toExampleName),
           { spaces: 2 }
         );
       } else {
@@ -260,6 +305,45 @@ const task = new Listr<Ctx>([
           `⚠️  Related examples file not found: ${__html_examples_component_usage_by_component}. Creating empty mapping.`
         );
         await fs.outputJson(componentRelatedExamplesTarget, {}, { spaces: 2 });
+      }
+
+      if (await fs.pathExists(__react_blocks_component_usage_by_component)) {
+        const [relatedBlocks, blockNamesBySource] = await Promise.all([
+          fs.readJson(__react_blocks_component_usage_by_component) as Promise<
+            Record<string, string[]>
+          >,
+          readBlockNamesByReactSource(),
+        ]);
+        const unmappedBlockFiles = Array.from(
+          new Set(
+            Object.values(relatedBlocks)
+              .flat()
+              .map(normalizeSourcePath)
+              .filter((file) => !blockNamesBySource.has(file))
+          )
+        ).sort();
+
+        if (unmappedBlockFiles.length > 0) {
+          throw new Error(
+            `Component usage found in React files not declared by a block: ${unmappedBlockFiles.join(
+              ', '
+            )}`
+          );
+        }
+
+        await fs.outputJson(
+          componentRelatedBlocksTarget,
+          normalizeRelationships(
+            relatedBlocks,
+            (file) => blockNamesBySource.get(normalizeSourcePath(file)) ?? null
+          ),
+          { spaces: 2 }
+        );
+      } else {
+        console.warn(
+          `⚠️  Related blocks file not found: ${__react_blocks_component_usage_by_component}. Creating empty mapping.`
+        );
+        await fs.outputJson(componentRelatedBlocksTarget, {}, { spaces: 2 });
       }
     },
   },
@@ -288,6 +372,7 @@ const task = new Listr<Ctx>([
           componentIndex: 'ix/component-index.json',
           componentSearchIndex: 'ix/component-search-index.json',
           componentRelatedExamples: 'ix/component-related-examples.json',
+          componentRelatedBlocks: 'ix/component-related-blocks.json',
         },
       });
     },
@@ -386,6 +471,11 @@ const task = new Listr<Ctx>([
           ctx.dist,
           'ix',
           'component-related-examples.json'
+        ),
+        componentRelatedBlocksPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-blocks.json'
         ),
         blocksDir: path.join(ctx.dist, 'blocks'),
         examplesDir: path.join(ctx.dist, 'examples'),

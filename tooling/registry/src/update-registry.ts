@@ -27,6 +27,7 @@ type UnifiedRegistry = {
         componentIndex: string;
         componentSearchIndex: string;
         componentRelatedExamples: string;
+        componentRelatedBlocks?: string;
       };
       llms?: {
         entrypoint: string;
@@ -47,6 +48,7 @@ interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
     componentIndex: string;
     componentSearchIndex: string;
     componentRelatedExamples: string;
+    componentRelatedBlocks: string;
   };
 }
 

@@ -18,6 +18,7 @@ type ComponentRegistryEntry = {
     componentIndex: string;
     componentSearchIndex: string;
     componentRelatedExamples?: string;
+    componentRelatedBlocks?: string;
   };
 };
 

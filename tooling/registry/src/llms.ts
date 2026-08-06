@@ -83,11 +83,10 @@ export type GenerateLlmsOptions = {
   distDir: string;
   componentDocPath: string;
   componentRelatedExamplesPath: string;
+  componentRelatedBlocksPath: string;
   blocksDir: string;
   examplesDir: string;
 };
-
-const UNAVAILABLE_FROM_JSON = 'unavailable (not present in registry JSON)';
 
 function sortByName<T extends { name: string }>(items: T[]): T[] {
   return [...items].sort((a, b) => a.name.localeCompare(b.name));
@@ -261,21 +260,60 @@ function renderRelatedExamples(
     .join('\n');
 }
 
-function invertRelatedExamples(
-  relatedExamples: Record<string, string[]>
+function renderRelatedBlocks(
+  blockNames: string[],
+  blocksByName: Record<string, BlockDefinition>
+): string {
+  if (blockNames.length === 0) {
+    return '- None';
+  }
+
+  return blockNames
+    .map((blockName) => {
+      const block = blocksByName[blockName];
+      const variants = Object.entries(block?.variants ?? {}).sort(([a], [b]) =>
+        a.localeCompare(b)
+      );
+      const blockLink = markdownLink(blockName, `../blocks.md#${blockName}`);
+
+      if (variants.length === 0) {
+        return `- ${blockLink}`;
+      }
+
+      const sourceLinks = variants
+        .map(([framework, variant]) => {
+          const links = (variant.files ?? []).map((file) => {
+            const href = `../../blocks/${file.source}`;
+            return `    - \`${file.target}\`: ${markdownLink('source', href)}`;
+          });
+
+          return links.length > 0
+            ? `  - ${framework}:\n${links.join('\n')}`
+            : null;
+        })
+        .filter(Boolean)
+        .join('\n');
+
+      return sourceLinks ? `- ${blockLink}\n${sourceLinks}` : `- ${blockLink}`;
+    })
+    .join('\n');
+}
+
+function invertRelationships(
+  relationships: Record<string, string[]>
 ): Record<string, string[]> {
   const relatedComponents: Record<string, string[]> = {};
 
-  for (const [componentTag, exampleNames] of Object.entries(relatedExamples)) {
-    for (const exampleName of exampleNames) {
-      relatedComponents[exampleName] ??= [];
-      relatedComponents[exampleName].push(componentTag);
+  for (const [componentTag, entryNames] of Object.entries(relationships)) {
+    for (const entryName of entryNames) {
+      relatedComponents[entryName] ??= [];
+      relatedComponents[entryName].push(componentTag);
     }
   }
 
   return Object.fromEntries(
-    Object.entries(relatedComponents).map(([exampleName, componentTags]) => [
-      exampleName,
+    Object.entries(relatedComponents).map(([entryName, componentTags]) => [
+      entryName,
       [...new Set(componentTags)].sort(),
     ])
   );
@@ -284,11 +322,14 @@ function invertRelatedExamples(
 function renderComponentDetail(
   component: ComponentDoc,
   relatedExamples: Record<string, string[]>,
-  examplesByName: Record<string, ExampleDefinition>
+  examplesByName: Record<string, ExampleDefinition>,
+  relatedBlocks: Record<string, string[]>,
+  blocksByName: Record<string, BlockDefinition>
 ): string {
   const docs = documentationUrls(component);
   const figma = figmaIds(component);
   const examples = normalizeRelatedExamples(relatedExamples, component.tag);
+  const blocks = [...(relatedBlocks[component.tag] ?? [])].sort();
 
   return `# ${component.tag}
 
@@ -310,7 +351,9 @@ ${renderRelatedExamples(examples, examplesByName)}
 
 ## Related blocks
 
-- ${UNAVAILABLE_FROM_JSON}
+Block and source links are relative to this Markdown file.
+
+${renderRelatedBlocks(blocks, blocksByName)}
 
 ## Properties
 
@@ -340,12 +383,34 @@ function renderComponentsIndex(components: ComponentDoc[]): string {
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all ${components.length} generated component detail files. Each detail file includes API metadata, related examples when available as JSON, Figma IDs, and explicitly unavailable relationships where registry JSON does not provide the data.
+This index links to all ${components.length} generated component detail files. Each detail file includes API metadata, related examples and blocks from generated relationship maps, and Figma IDs.
 
 ## Components
 
 ${links}
 `;
+}
+
+function renderComponentLinks(
+  componentTags: string[],
+  availableComponentTags: Set<string>
+): string {
+  if (componentTags.length === 0) {
+    return 'None listed in relationship map';
+  }
+
+  return componentTags
+    .map((componentTag) => {
+      if (!availableComponentTags.has(componentTag)) {
+        return `\`${componentTag}\``;
+      }
+
+      return markdownLink(
+        `\`${componentTag}\``,
+        `components/${componentTag}.md`
+      );
+    })
+    .join(', ');
 }
 
 function renderExample(
@@ -357,21 +422,10 @@ function renderExample(
     a.localeCompare(b)
   );
   const componentTags = relatedComponents[example.name] ?? [];
-  const componentLinks =
-    componentTags.length > 0
-      ? componentTags
-          .map((componentTag) => {
-            if (!availableComponentTags.has(componentTag)) {
-              return `\`${componentTag}\``;
-            }
-
-            return markdownLink(
-              `\`${componentTag}\``,
-              `components/${componentTag}.md`
-            );
-          })
-          .join(', ')
-      : 'None listed in relationship map';
+  const componentLinks = renderComponentLinks(
+    componentTags,
+    availableComponentTags
+  );
   const variantSections =
     variants.length === 0
       ? '- None'
@@ -411,7 +465,7 @@ function renderExamples(
   relatedExamples: Record<string, string[]>,
   components: ComponentDoc[]
 ): string {
-  const relatedComponents = invertRelatedExamples(relatedExamples);
+  const relatedComponents = invertRelationships(relatedExamples);
   const availableComponentTags = new Set(
     components.map((component) => component.tag)
   );
@@ -430,9 +484,17 @@ ${examples
 `;
 }
 
-function renderBlock(block: BlockDefinition): string {
+function renderBlock(
+  block: BlockDefinition,
+  relatedComponents: Record<string, string[]>,
+  availableComponentTags: Set<string>
+): string {
   const variants = Object.entries(block.variants ?? {}).sort(([a], [b]) =>
     a.localeCompare(b)
+  );
+  const componentLinks = renderComponentLinks(
+    relatedComponents[block.name] ?? [],
+    availableComponentTags
   );
   const variantSections =
     variants.length === 0
@@ -469,20 +531,31 @@ ${files || '  - None'}`;
       : 'None'
   }
 - Preview: ${block.preview ? `\`${block.preview}\`` : 'None'}
-- Used iX components: ${UNAVAILABLE_FROM_JSON}
+- Used iX components: ${componentLinks}
 
 ${variantSections}
 `;
 }
 
-function renderBlocks(blocks: BlockDefinition[]): string {
+function renderBlocks(
+  blocks: BlockDefinition[],
+  relatedBlocks: Record<string, string[]>,
+  components: ComponentDoc[]
+): string {
+  const relatedComponents = invertRelationships(relatedBlocks);
+  const availableComponentTags = new Set(
+    components.map((component) => component.tag)
+  );
+
   return `# Siemens iX blocks
 
-> Block-focused LLM documentation generated from registry block JSON metadata.
+> Block-focused LLM documentation generated from registry block JSON metadata and component relationships.
 
-Each block includes a description of when to use it, searchable keywords, previews, framework variants, and source files. Source links are relative to this Markdown file. Used iX component relationships are marked unavailable because this relationship is not present in registry JSON.
+Each block includes a description of when to use it, searchable keywords, previews, related iX components, framework variants, and source files. Source and component links are relative to this Markdown file.
 
-${blocks.map(renderBlock).join('\n')}
+${blocks
+  .map((block) => renderBlock(block, relatedComponents, availableComponentTags))
+  .join('\n')}
 `;
 }
 
@@ -493,21 +566,19 @@ function renderLlmsTxt(): string {
 
 Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for practical framework code, open the example docs first; for complete copyable UI patterns, open the block docs first.
 
-Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Use related examples to validate generated component code.
+Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related blocks, and Figma main component IDs. Use related examples to validate generated component code and related blocks to discover complete UI patterns.
 
 Examples provide direct access to framework variants, source files, and related iX components without first navigating through a component detail page.
 
-Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, framework variants, source files, and component usage availability. Use blocks when generating larger page sections or reusable patterns.
+Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and source files. Use blocks when generating larger page sections or reusable patterns.
 
 Figma IDs come from component \`figma-main-component-id\` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
-
-When a relationship is marked unavailable, do not infer it. It means the registry JSON does not provide that relationship.
 
 ## Registry LLM docs
 
 - [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
 - [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and source files.
-- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, framework variants, files, and unavailable component-usage relationships.
+- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, related iX components, framework variants, and files.
 
 ## Optional
 
@@ -536,8 +607,14 @@ export async function generateLlmsArtifacts(
   const relatedExamples = (await fs.readJson(
     options.componentRelatedExamplesPath
   )) as Record<string, string[]>;
+  const relatedBlocks = (await fs.readJson(
+    options.componentRelatedBlocksPath
+  )) as Record<string, string[]>;
   const components = sortComponents(componentDoc.components ?? []);
   const blocks = await readBlocks(options.blocksDir);
+  const blocksByName = Object.fromEntries(
+    blocks.map((block) => [block.name, block])
+  );
   const examplesByName = await readExamples(options.examplesDir);
   const examples = sortByName(Object.values(examplesByName));
 
@@ -564,13 +641,19 @@ export async function generateLlmsArtifacts(
     ),
     fs.writeFile(
       path.join(llmsDir, 'blocks.md'),
-      renderBlocks(blocks),
+      renderBlocks(blocks, relatedBlocks, components),
       'utf-8'
     ),
     ...components.map((component) =>
       fs.writeFile(
         path.join(componentDetailsDir, componentDetailFileName(component)),
-        renderComponentDetail(component, relatedExamples, examplesByName),
+        renderComponentDetail(
+          component,
+          relatedExamples,
+          examplesByName,
+          relatedBlocks,
+          blocksByName
+        ),
         'utf-8'
       )
     ),

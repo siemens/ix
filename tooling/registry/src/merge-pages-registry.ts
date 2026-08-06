@@ -25,6 +25,7 @@ type RegistryVersionEntry = {
     componentIndex: string;
     componentSearchIndex: string;
     componentRelatedExamples: string;
+    componentRelatedBlocks?: string;
   };
   llms?: {
     entrypoint: string;
@@ -134,6 +135,14 @@ function prefixComponents(
       version,
       components.componentRelatedExamples
     ),
+    ...(components.componentRelatedBlocks
+      ? {
+          componentRelatedBlocks: prefixVersionPath(
+            version,
+            components.componentRelatedBlocks
+          ),
+        }
+      : {}),
   };
 }
 

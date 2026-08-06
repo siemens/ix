@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import { componentUsagePlugin } from '../../tooling/component-usage-plugin';
 
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [react(), componentUsagePlugin()],
   resolve: {
     dedupe: ['react', 'react-dom'],
   },

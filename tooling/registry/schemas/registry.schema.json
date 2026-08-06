@@ -77,6 +77,10 @@
             "componentRelatedExamples": {
               "type": "string",
               "pattern": "\\.json$"
+            },
+            "componentRelatedBlocks": {
+              "type": "string",
+              "pattern": "\\.json$"
             }
           },
           "additionalProperties": false

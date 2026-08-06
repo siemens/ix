@@ -11,6 +11,7 @@ export type RegistryIndex = {
         componentIndex: string;
         componentSearchIndex: string;
         componentRelatedExamples?: string;
+        componentRelatedBlocks?: string;
       };
       llms?: {
         entrypoint: string;
