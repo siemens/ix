@@ -23,6 +23,25 @@ import type {
   shadow: true,
 })
 export class IxTypography {
+  private static readonly textColors: Record<TypographyColors, string> = {
+    alarm: '--theme-si-sys-text-danger',
+    'alarm-contrast': '--theme-si-sys-text-on-danger',
+    contrast: '--theme-si-sys-text-primary',
+    'critical-contrast': '--theme-si-sys-text-on-warning',
+    'info-contrast': '--theme-si-sys-text-on-information',
+    'inv-contrast': '--theme-si-sys-text-inverse',
+    'inv-soft': '--theme-si-sys-text-inverse',
+    'inv-std': '--theme-si-sys-text-inverse',
+    'inv-weak': '--theme-si-sys-text-inverse',
+    'neutral-contrast': '--theme-si-sys-text-primary',
+    'primary-contrast': '--theme-si-sys-text-on-accent',
+    soft: '--theme-si-sys-text-secondary',
+    std: '--theme-si-sys-text-primary',
+    'success-contrast': '--theme-si-sys-text-on-success',
+    'warning-contrast': '--theme-si-sys-text-on-warning',
+    weak: '--theme-si-sys-text-disabled',
+  };
+
   /**
    * Text format
    */
@@ -44,11 +63,7 @@ export class IxTypography {
   @Prop() textDecoration: TextDecoration = 'none';
 
   private static getTextColor(color: TypographyColors) {
-    if (color.startsWith('inv-') || !color.endsWith('-contrast')) {
-      return `var(--theme-color-${color}-text)`;
-    }
-
-    return `var(--theme-color-${color.replace('-', '--')})`;
+    return `var(${IxTypography.textColors[color]})`;
   }
 
   render() {
