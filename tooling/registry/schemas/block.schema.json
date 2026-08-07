@@ -10,7 +10,7 @@
     },
     "name": {
       "type": "string",
-      "pattern": "^[a-z0-9-]+$"
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
     "description": {
       "type": "string",
@@ -50,6 +50,26 @@
   },
   "additionalProperties": false,
   "definitions": {
+    "safeRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?!.*[:?#\\\\%])(?!(?:.*/)?\\.{1,2}(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "dependency": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^@siemens/[a-z0-9._-]+$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
     "variant": {
       "type": "object",
       "required": ["files"],
@@ -62,14 +82,21 @@
             "required": ["source", "target"],
             "properties": {
               "source": {
-                "type": "string"
+                "$ref": "#/definitions/safeRelativePath"
               },
               "target": {
-                "type": "string"
+                "$ref": "#/definitions/safeRelativePath"
               }
             },
             "additionalProperties": false
           }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dependency"
+          },
+          "uniqueItems": true
         }
       },
       "additionalProperties": false

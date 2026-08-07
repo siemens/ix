@@ -6,99 +6,140 @@ import {
   configExists,
   CONFIG_FILE_NAME,
   loadConfig,
-  addBlockToConfig,
   defaultRegistry,
+  withProjectLock,
 } from '../config';
 import { detectFramework } from '../detect';
-import { installBlock } from '../installer';
 import {
-  fetchRegistryIndex,
-  fetchBlockDefinition,
+  applyInstallPlan,
+  assertConflictsAllowed,
+  prepareBlockInstall,
+  reportInstallPlan,
+} from '../installer';
+import {
+  fetchValidatedRegistryIndex,
+  fetchValidatedBlockDefinition,
   resolveRegistryVersion,
 } from '../registry';
+import { assertValidBlockName } from '../validation';
+
+type AddOptions = {
+  registry: string;
+  tag: string;
+  framework: string;
+  dryRun: boolean;
+  force: boolean;
+  tokens: string;
+};
+
+async function runAddUnlocked(
+  blockNameInput: string,
+  opts: AddOptions,
+  cwd = process.cwd()
+): Promise<void> {
+  const blockName = assertValidBlockName(blockNameInput);
+
+  if (!(await configExists(cwd))) {
+    throw new Error(
+      `${CONFIG_FILE_NAME} not found. Run 'ix init' first to create it.`
+    );
+  }
+
+  const config = await loadConfig(cwd);
+  const index = await fetchValidatedRegistryIndex(opts.registry);
+  const selectedVersion = resolveRegistryVersion(index, opts.tag);
+  const selected = index.versions[selectedVersion];
+  const entry = selected.blocks.find((block) => block.name === blockName);
+  if (!entry) {
+    throw new Error(
+      `Block '${blockName}' not found in registry '${index.name}' for version '${selectedVersion}'.`
+    );
+  }
+
+  const blockDef = await fetchValidatedBlockDefinition(
+    opts.registry,
+    entry.path
+  );
+  const framework =
+    opts.framework === 'auto' ? await detectFramework(cwd) : opts.framework;
+  if (framework !== 'react' && framework !== 'angular') {
+    throw new Error(
+      `Unknown framework '${framework}'. Use react, angular, or auto.`
+    );
+  }
+
+  let tokens: unknown;
+  try {
+    tokens = JSON.parse(opts.tokens);
+  } catch (error) {
+    throw new Error(`--tokens must be valid JSON: ${(error as Error).message}`);
+  }
+  if (
+    !tokens ||
+    Array.isArray(tokens) ||
+    typeof tokens !== 'object' ||
+    Object.values(tokens).some((value) => typeof value !== 'string')
+  ) {
+    throw new Error('--tokens must be a JSON object with string values.');
+  }
+
+  const previousFiles = config.blocks.find(
+    (block) => block.name === blockName
+  )?.files;
+  const plan = await prepareBlockInstall({
+    cwd,
+    baseUrl: opts.registry,
+    blockEntryPath: entry.path,
+    blockDef,
+    expectedBlockName: blockName,
+    framework,
+    tokens: tokens as Record<string, string>,
+    targetFolder: config.targetFolder,
+    previousFiles,
+    force: opts.force,
+  });
+  reportInstallPlan(plan, opts.dryRun);
+
+  if (opts.dryRun) {
+    assertConflictsAllowed(plan);
+    console.log(`Dry run complete for '${blockName}' (${framework}).`);
+    return;
+  }
+
+  await applyInstallPlan(plan, config, selectedVersion);
+  console.log(`✅ Installed '${blockName}' (${framework})`);
+}
+
+export async function runAdd(
+  blockNameInput: string,
+  opts: AddOptions,
+  cwd = process.cwd()
+): Promise<void> {
+  return withProjectLock(cwd, () => runAddUnlocked(blockNameInput, opts, cwd));
+}
 
 export const addCommand = new Command('add')
+  .description('Install or update a block from an IX registry')
   .argument('<blockName>', 'Block name (e.g. hero)')
   .option('-r, --registry <url>', 'Registry base URL', defaultRegistry)
-  .option('-t, --tag <tag>', 'Registry tag/version (e.g. latest, main, v4.3.0)', 'latest')
+  .option(
+    '-t, --tag <tag>',
+    'Registry tag/version (e.g. latest, main, v4.3.0)',
+    'latest'
+  )
   .option('-f, --framework <fw>', 'react|angular|auto', 'auto')
   .option('--dry-run', 'Print what would be done, without writing files', false)
+  .option('--force', 'Overwrite modified or untracked conflicting files', false)
   .option(
     '--tokens <json>',
     'JSON map for token replacement (e.g. {"__IX_PREFIX__":"Ix"})',
     '{}'
   )
-  .action(async (blockName, opts) => {
-    const cwd = process.cwd();
-
-    if (!(await configExists(cwd))) {
-      console.error(
-        `❌ ${CONFIG_FILE_NAME} not found. Run 'ix init' first to create it.`
-      );
-      process.exit(1);
-    }
-
-    let config;
+  .action(async (blockName: string, opts: AddOptions) => {
     try {
-      config = await loadConfig(cwd);
+      await runAdd(blockName, opts);
     } catch (error) {
       console.error(`❌ ${(error as Error).message}`);
-      process.exit(1);
+      process.exitCode = 1;
     }
-
-    const baseUrl = opts.registry.replace(/\/+$/, '');
-    const index = await fetchRegistryIndex(baseUrl);
-
-    const selectedVersion = resolveRegistryVersion(index, opts.tag);
-    const selected = index.versions[selectedVersion];
-    const entry = selected.blocks.find((b) => b.name === blockName);
-    if (!entry) {
-      console.error(
-        `Block '${blockName}' not found in registry '${index.name}' for version '${selectedVersion}'.`
-      );
-      process.exit(1);
-    }
-
-    const blockDef = await fetchBlockDefinition(baseUrl, entry.path);
-
-    const fw: 'react' | 'angular' =
-      opts.framework === 'auto'
-        ? await detectFramework(process.cwd())
-        : opts.framework;
-
-    if (fw !== 'react' && fw !== 'angular') {
-      console.error(`Unknown framework '${fw}'. Use react|angular|auto.`);
-      process.exit(1);
-    }
-
-    const variant = blockDef.variants[fw];
-    if (!variant) {
-      console.error(`Block '${blockName}' has no variant for '${fw}'.`);
-      process.exit(1);
-    }
-
-    let tokens: Record<string, string> = {};
-    try {
-      tokens = JSON.parse(opts.tokens);
-    } catch {
-      console.error(`--tokens must be valid JSON`);
-      process.exit(1);
-    }
-
-    const installedFiles = await installBlock({
-      cwd,
-      baseUrl,
-      blockEntryPath: entry.path,
-      blockDef,
-      framework: fw,
-      dryRun: !!opts.dryRun,
-      tokens,
-      targetFolder: config.targetFolder,
-    });
-
-    if (!opts.dryRun) {
-      await addBlockToConfig(cwd, blockName, selectedVersion, installedFiles);
-    }
-
-    console.log(`✅ Installed '${blockName}' (${fw})`);
   });

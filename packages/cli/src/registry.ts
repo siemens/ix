@@ -74,8 +74,184 @@ export type ExampleVariant = {
   files: Array<{ source: string; target: string; type?: string }>;
 };
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+const RegistryIndexSchema = z
+  .object({
+    name: z.string().min(1),
+    'dist-tags': z.record(z.string(), z.string()),
+    versions: z.record(
+      z.string(),
+      z
+        .object({
+          blocks: z.array(
+            z.object({
+              name: z
+                .string()
+                .regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+              path: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+            })
+          ),
+        })
+        .passthrough()
+    ),
+  })
+  .passthrough();
+
+const BlockDefinitionSchema = z
+  .object({
+    name: z.string().regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+    description: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
+    preview: z.string().optional(),
+    variants: z.object({
+      react: z
+        .object({
+          files: z.array(
+            z.object({
+              source: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+              target: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+            })
+          ),
+          dependencies: z
+            .array(z.object({ name: z.string().min(1), version: z.string() }))
+            .optional(),
+        })
+        .optional(),
+      angular: z
+        .object({
+          files: z.array(
+            z.object({
+              source: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+              target: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+            })
+          ),
+          dependencies: z
+            .array(z.object({ name: z.string().min(1), version: z.string() }))
+            .optional(),
+        })
+        .optional(),
+      vue: z
+        .object({
+          files: z.array(
+            z.object({
+              source: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+              target: z
+                .string()
+                .refine(isSafeRelativePath, 'must be a safe relative path'),
+            })
+          ),
+          dependencies: z
+            .array(z.object({ name: z.string().min(1), version: z.string() }))
+            .optional(),
+        })
+        .optional(),
+    }),
+  })
+  .passthrough();
+
+function registryRootUrl(baseUrl: string): URL {
+  let root: URL;
+  try {
+    root = new URL(baseUrl);
+  } catch {
+    throw new Error(`Invalid registry URL '${baseUrl}'.`);
+  }
+
+  if (root.protocol !== 'https:' && root.protocol !== 'http:') {
+    throw new Error(
+      `Invalid registry URL protocol '${root.protocol}'. Use http or https.`
+    );
+  }
+
+  root.pathname = `${root.pathname.replace(/\/+$/, '')}/`;
+  root.search = '';
+  root.hash = '';
+  return root;
+}
+
+function assertUrlInside(root: URL, candidate: URL, label: string): void {
+  const rootPath = decodeURIComponent(root.pathname);
+  const candidatePath = decodeURIComponent(candidate.pathname);
+  if (
+    root.origin !== candidate.origin ||
+    (candidatePath !== rootPath &&
+      !candidatePath.startsWith(
+        rootPath.endsWith('/') ? rootPath : `${rootPath}/`
+      ))
+  ) {
+    throw new Error(`${label} resolves outside the allowed registry path.`);
+  }
+}
+
+export function assertRegistryFetchResponse(
+  response: Response,
+  requestedUrl: string,
+  allowedRootUrl: string
+): void {
+  if (response.redirected) {
+    throw new Error(`Registry request was redirected: ${requestedUrl}`);
+  }
+
+  const finalUrl = new URL(response.url || requestedUrl);
+  assertUrlInside(new URL(allowedRootUrl), finalUrl, 'Registry response URL');
+}
+
+export function resolveRegistryResourceUrl(
+  baseUrl: string,
+  resourcePath: string
+): string {
+  assertSafeRelativePath('registry resource path', resourcePath);
+  const root = registryRootUrl(baseUrl);
+  const resolved = new URL(resourcePath, root);
+  assertUrlInside(root, resolved, 'Registry resource path');
+  return resolved.href;
+}
+
+export function resolveBlockSourceUrl(
+  baseUrl: string,
+  blockEntryPath: string,
+  sourcePath: string
+): string {
+  const entryUrl = new URL(resolveRegistryResourceUrl(baseUrl, blockEntryPath));
+  assertSafeRelativePath('block source path', sourcePath);
+  const payloadRoot = new URL('./', entryUrl);
+  const sourceUrl = new URL(sourcePath, payloadRoot);
+  assertUrlInside(payloadRoot, sourceUrl, 'Block source path');
+  return sourceUrl.href;
+}
+
+function parseRegistryData<T>(
+  schema: z.ZodType<T>,
+  value: unknown,
+  label: string
+): T {
+  const result = schema.safeParse(value);
+  if (!result.success) {
+    throw new Error(
+      `Invalid ${label}:\n${formatZodIssues(
+        result.error
+      )}\nThe registry response is not safe to use.`
+    );
+  }
+  return result.data;
+}
+
+async function fetchJson<T>(baseUrl: string, resourcePath: string): Promise<T> {
+  const root = registryRootUrl(baseUrl);
+  const url = resolveRegistryResourceUrl(baseUrl, resourcePath);
+  const res = await fetch(url, { redirect: 'error' });
+  assertRegistryFetchResponse(res, url, root.href);
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
   return (await res.json()) as T;
 }
@@ -93,16 +269,19 @@ function resolveVersionKey(
     return null;
   }
 
-  if (registry.versions[candidate]) {
+  if (Object.hasOwn(registry.versions, candidate)) {
     return candidate;
   }
 
-  if (candidate.startsWith('v') && registry.versions[candidate.slice(1)]) {
+  if (
+    candidate.startsWith('v') &&
+    Object.hasOwn(registry.versions, candidate.slice(1))
+  ) {
     return candidate.slice(1);
   }
 
   const vPrefixedCandidate = `v${candidate}`;
-  if (registry.versions[vPrefixedCandidate]) {
+  if (Object.hasOwn(registry.versions, vPrefixedCandidate)) {
     return vPrefixedCandidate;
   }
 
@@ -307,15 +486,37 @@ export function resolveExamplesSearchIndexPath(
 export async function fetchRegistryIndex(
   baseUrl: string
 ): Promise<RegistryIndex> {
-  return await fetchJson<RegistryIndex>(`${baseUrl}/registry.json`);
+  return await fetchJson<RegistryIndex>(baseUrl, 'registry.json');
+}
+
+export async function fetchValidatedRegistryIndex(
+  baseUrl: string
+): Promise<RegistryIndex> {
+  const value = await fetchJson<unknown>(baseUrl, 'registry.json');
+  return parseRegistryData(
+    RegistryIndexSchema,
+    value,
+    'registry index'
+  ) as RegistryIndex;
 }
 
 export async function fetchBlockDefinition(
   baseUrl: string,
   blockPath: string
 ): Promise<BlockDefinition> {
-  // blockPath like "blocks/hero/block.json"
-  return await fetchJson<BlockDefinition>(`${baseUrl}/${blockPath}`);
+  return await fetchJson<BlockDefinition>(baseUrl, blockPath);
+}
+
+export async function fetchValidatedBlockDefinition(
+  baseUrl: string,
+  blockPath: string
+): Promise<BlockDefinition> {
+  const value = await fetchJson<unknown>(baseUrl, blockPath);
+  return parseRegistryData(
+    BlockDefinitionSchema,
+    value,
+    `block definition '${blockPath}'`
+  ) as BlockDefinition;
 }
 
 export async function listAllBlocks(
@@ -349,15 +550,14 @@ export async function listAllBlocks(
 export async function fetchExamplesRegistryIndex(
   baseUrl: string
 ): Promise<ExamplesRegistryIndex> {
-  return await fetchJson<ExamplesRegistryIndex>(`${baseUrl}/registry.json`);
+  return await fetchJson<ExamplesRegistryIndex>(baseUrl, 'registry.json');
 }
 
 export async function fetchExampleDefinition(
   baseUrl: string,
   examplePath: string
 ): Promise<ExampleDefinition> {
-  // examplePath like "examples/button.json"
-  return await fetchJson<ExampleDefinition>(`${baseUrl}/${examplePath}`);
+  return await fetchJson<ExampleDefinition>(baseUrl, examplePath);
 }
 
 export interface ExampleCodeFile {
@@ -422,3 +622,10 @@ export async function getExampleCode(
     files,
   };
 }
+import { z } from 'zod';
+import {
+  BLOCK_NAME_PATTERN,
+  assertSafeRelativePath,
+  formatZodIssues,
+  isSafeRelativePath,
+} from './validation';

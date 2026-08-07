@@ -8,6 +8,12 @@
  */
 import fs from 'fs-extra';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import {
+  assertDeploymentVersion,
+  determineLatestRegistryVersion,
+} from './deployment-policy';
+import { assertJsonSchema, compileJsonSchema } from './schema-validation';
 
 type SearchIndexMap = {
   html?: string;
@@ -17,7 +23,7 @@ type SearchIndexMap = {
   vue?: string;
 };
 
-type RegistryVersionEntry = {
+export type RegistryVersionEntry = {
   blocks: Array<{ name: string; path: string }>;
   examples: Array<{ name: string; path: string }>;
   components: {
@@ -39,7 +45,7 @@ type RegistryVersionEntry = {
   };
 };
 
-type RegistryIndex = {
+export type RegistryIndex = {
   $schema?: string;
   name: string;
   'dist-tags': Record<string, string>;
@@ -51,8 +57,6 @@ type CliArgs = {
   pagesDir: string;
   outDir: string;
   version: string;
-  shouldUpdateLatest: boolean;
-  latestTag: string;
 };
 
 function parseArgs(): CliArgs {
@@ -71,22 +75,20 @@ function parseArgs(): CliArgs {
   const pagesDir = getArg('pages-dir');
   const outDir = getArg('out-dir');
   const version = getArg('version');
-  const latestTag = getArg('latest-tag') ?? version;
-  const shouldUpdateLatest = getArg('update-latest') === 'true';
 
-  if (!distDir || !pagesDir || !outDir || !version || !latestTag) {
+  if (!distDir || !pagesDir || !outDir || !version) {
     throw new Error(
-      'Missing arguments. Required: --dist-dir --pages-dir --out-dir --version --latest-tag --update-latest'
+      'Missing arguments. Required: --dist-dir --pages-dir --out-dir --version'
     );
   }
+
+  assertDeploymentVersion(version);
 
   return {
     distDir,
     pagesDir,
     outDir,
     version,
-    shouldUpdateLatest,
-    latestTag,
   };
 }
 
@@ -172,17 +174,17 @@ async function readJsonIfExists<T>(filePath: string): Promise<T | null> {
   return fs.readJson(filePath);
 }
 
-function mergeRegistry(
+export function mergeRegistry(
   existingRegistry: RegistryIndex | null,
   currentRegistry: RegistryIndex,
-  version: string,
-  latestTag: string,
-  shouldUpdateLatest: boolean
+  version: string
 ): RegistryIndex {
+  assertDeploymentVersion(version);
+
   const baseRegistry: RegistryIndex = existingRegistry ?? {
     $schema: currentRegistry.$schema,
     name: currentRegistry.name,
-    'dist-tags': { latest: latestTag },
+    'dist-tags': {},
     versions: {},
   };
 
@@ -229,9 +231,11 @@ function mergeRegistry(
 
   baseRegistry['dist-tags'] = {
     ...baseRegistry['dist-tags'],
-    latest: shouldUpdateLatest
-      ? latestTag
-      : baseRegistry['dist-tags']?.latest ?? latestTag,
+    latest: determineLatestRegistryVersion(
+      baseRegistry['dist-tags']?.latest,
+      Object.keys(baseRegistry.versions),
+      version
+    ),
   };
 
   return baseRegistry;
@@ -338,12 +342,13 @@ ${blockLinks || '- No block LLM docs available.'}
 `;
 }
 
-async function copyVersionPayload(
+export async function copyVersionPayload(
   distDir: string,
   outDir: string,
   version: string
 ): Promise<void> {
   const versionDir = path.join(outDir, version);
+  await fs.remove(versionDir);
   await fs.ensureDir(versionDir);
 
   const files = await fs.readdir(distDir);
@@ -363,12 +368,19 @@ async function main() {
   const args = parseArgs();
 
   await fs.ensureDir(args.outDir);
+  await fs.remove(path.join(args.outDir, '.git'));
 
   if (await fs.pathExists(args.pagesDir)) {
     await fs.copy(args.pagesDir, args.outDir, {
       dereference: true,
       overwrite: true,
       errorOnExist: false,
+      filter: (source) => {
+        const relativePath = path.relative(args.pagesDir, source);
+        return (
+          relativePath !== '.git' && !relativePath.startsWith(`.git${path.sep}`)
+        );
+      },
     });
   }
 
@@ -413,10 +425,13 @@ async function main() {
   const mergedRegistry = mergeRegistry(
     existingRegistry,
     currentRegistry,
-    args.version,
-    args.latestTag,
-    args.shouldUpdateLatest
+    args.version
   );
+  const registrySchemaPath = (await fs.pathExists(sourceRegistrySchemaPath))
+    ? sourceRegistrySchemaPath
+    : sourceRegistrySchemaFallbackPath;
+  const validateRegistry = await compileJsonSchema(registrySchemaPath);
+  assertJsonSchema(mergedRegistry, validateRegistry, 'merged registry');
 
   await fs.writeJson(existingRegistryPath, mergedRegistry, { spaces: 2 });
   await fs.writeFile(
@@ -431,7 +446,13 @@ async function main() {
   console.log('   - root llms.txt updated');
 }
 
-main().catch((error) => {
-  console.error('❌ Failed to merge registry for deployment:', error);
-  process.exit(1);
-});
+const entrypoint = process.argv[1]
+  ? pathToFileURL(process.argv[1]).href
+  : undefined;
+
+if (entrypoint === import.meta.url) {
+  main().catch((error) => {
+    console.error('❌ Failed to merge registry for deployment:', error);
+    process.exit(1);
+  });
+}

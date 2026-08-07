@@ -33,12 +33,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Check for gh-pages branch
+        id: pages-branch
+        run: |
+          set +e
+          OUTPUT="$(git ls-remote --exit-code --heads origin refs/heads/gh-pages 2>&1)"
+          STATUS=$?
+          set -e
+
+          case "${STATUS}" in
+            0)
+              echo "exists=true" >> "$GITHUB_OUTPUT"
+              ;;
+            2)
+              echo "exists=false" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "${OUTPUT}" >&2
+              echo "Unable to determine whether the remote gh-pages branch exists." >&2
+              exit "${STATUS}"
+              ;;
+          esac
+
       - name: Checkout gh-pages
+        if: steps.pages-branch.outputs.exists == 'true'
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        continue-on-error: true
         with:
           ref: gh-pages
           path: .gh-pages
+
+      - name: Initialize empty Pages state
+        if: steps.pages-branch.outputs.exists == 'false'
+        run: mkdir -p ./.gh-pages
 
       - uses: ./.github/workflows/actions/turbo
 
@@ -48,25 +74,10 @@ jobs:
           REGISTRY_NAME: ${{ inputs.registry_name }}
         run: |
           REF_NAME="${REGISTRY_NAME:-${GITHUB_REF_NAME}}"
-
-          if [[ "${REF_NAME}" == "main" ]]; then
-            VERSION="main"
-          elif [[ "${REF_NAME}" == release-registry/* ]]; then
-            VERSION="${REF_NAME#release-registry/}"
-          else
-            VERSION="${REF_NAME}"
-          fi
-
-          LATEST_TAG="${VERSION}"
+          VERSION="$(pnpm --filter registry exec tsx src/deployment-policy.ts resolve-version "${REF_NAME}")"
 
           echo "registry_version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "registry_path_prefix=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "registry_latest_tag=${LATEST_TAG}" >> "$GITHUB_OUTPUT"
-          if [[ "${VERSION}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "update_latest=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "update_latest=false" >> "$GITHUB_OUTPUT"
-          fi
 
           echo "Deploying registry version '${VERSION}'"
 
@@ -77,14 +88,12 @@ jobs:
           echo "REGISTRY_NAME=${{ inputs.registry_name }}"
           echo "registry_version=${{ steps.deploy-meta.outputs.registry_version }}"
           echo "registry_path_prefix=${{ steps.deploy-meta.outputs.registry_path_prefix }}"
-          echo "registry_latest_tag=${{ steps.deploy-meta.outputs.registry_latest_tag }}"
-          echo "update_latest=${{ steps.deploy-meta.outputs.update_latest }}"
 
       - name: Build
         env:
           REGISTRY_VERSION: ${{ steps.deploy-meta.outputs.registry_version }}
           REGISTRY_PATH_PREFIX: ${{ steps.deploy-meta.outputs.registry_path_prefix }}
-          REGISTRY_LATEST_TAG: ${{ steps.deploy-meta.outputs.registry_latest_tag }}
+          REGISTRY_LATEST_TAG: ${{ steps.deploy-meta.outputs.registry_version }}
         run: pnpm build --filter registry --cache-dir=.turbo
 
       - name: Debug dist artifacts
@@ -101,17 +110,11 @@ jobs:
         run: |
           rm -rf ./tooling/registry/deploy
 
-          if [[ ! -d ./.gh-pages/.git ]]; then
-            mkdir -p ./.gh-pages
-          fi
-
           pnpm --filter registry exec tsx src/merge-pages-registry.ts \
             --dist-dir ./dist \
             --pages-dir ../../.gh-pages \
             --out-dir ./deploy \
-            --version "${{ steps.deploy-meta.outputs.registry_version }}" \
-            --latest-tag "${{ steps.deploy-meta.outputs.registry_latest_tag }}" \
-            --update-latest "${{ steps.deploy-meta.outputs.update_latest }}"
+            --version "${{ steps.deploy-meta.outputs.registry_version }}"
 
       - name: Debug merged deploy folder
         run: |

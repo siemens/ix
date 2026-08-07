@@ -14,6 +14,8 @@ import { glob } from 'glob';
 import { buildSearchIndex } from './search-index';
 import { generateExampleBlocks } from './generate-examples';
 import { generateLlmsArtifacts } from './llms';
+import { generateBlockDefinitions } from './block-dependencies';
+import { validateJsonFiles } from './schema-validation';
 import {
   updateComponentsRegistry,
   updateBlocksRegistry,
@@ -22,6 +24,7 @@ import {
 } from './update-registry';
 
 const __dirname = path.resolve();
+const __workspace_root = path.join(__dirname, '..', '..');
 const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
 const __angular_standalone_blocks = path.join(
@@ -32,6 +35,8 @@ const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
 const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
+const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
+const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
 const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __ix_component_index = path.join(__ix_package, 'component-index.json');
 const __ix_component_search_index = path.join(
@@ -150,6 +155,15 @@ const task = new Listr<Ctx>([
       console.log(`📌 Registry version: ${ctx.registryVersion}`);
       console.log(`📂 Registry path prefix: ${ctx.registryPathPrefix}`);
       console.log(`🏷️  Registry latest tag: ${ctx.registryLatestTag}`);
+    },
+  },
+  {
+    title: 'Validate source block definitions',
+    task: async () => {
+      const files = await glob(path.join(__blocks_root, '*.json'), {
+        absolute: true,
+      });
+      await validateJsonFiles(files, __block_schema);
     },
   },
   {
@@ -390,20 +404,15 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy block JSON files to dist',
+    title: 'Generate block definitions with dependency metadata',
     task: async (ctx) => {
       const dest = path.join(ctx.dist, 'blocks');
-      const files = await glob(
-        path.join(__dirname, '..', '..', 'blocks', '*.json'),
-        { absolute: true }
-      );
-      await Promise.all(
-        files.map((file) =>
-          fs.copy(file, path.join(dest, path.basename(file)), {
-            dereference: true,
-          })
-        )
-      );
+      await generateBlockDefinitions({
+        blocksDir: __blocks_root,
+        outputDir: dest,
+        registryVersion: ctx.registryVersion,
+        workspaceRoot: __workspace_root,
+      });
     },
   },
   {
@@ -458,6 +467,19 @@ const task = new Listr<Ctx>([
           }
         })
       );
+    },
+  },
+  {
+    title: 'Validate generated block and example definitions',
+    task: async (ctx) => {
+      const [blockFiles, exampleFiles] = await Promise.all([
+        glob(path.join(ctx.dist, 'blocks', '*.json'), { absolute: true }),
+        glob(path.join(ctx.dist, 'examples', '*.json'), { absolute: true }),
+      ]);
+      await Promise.all([
+        validateJsonFiles(blockFiles, __block_schema),
+        validateJsonFiles(exampleFiles, __example_schema),
+      ]);
     },
   },
   {
@@ -525,6 +547,15 @@ const task = new Listr<Ctx>([
       registry.versions[ctx.registryVersion].searchIndex ??= {};
       registry.versions[ctx.registryVersion].searchIndex.examples = indexPaths;
       await fs.writeJson(registryPath, registry, { spaces: 2 });
+    },
+  },
+  {
+    title: 'Validate generated registry manifest',
+    task: async (ctx) => {
+      await validateJsonFiles(
+        [path.join(ctx.dist, 'registry.json')],
+        __registry_schema_template
+      );
     },
   },
   {

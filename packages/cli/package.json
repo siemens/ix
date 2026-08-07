@@ -4,16 +4,20 @@
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
-  "bin": "dist/cli.mjs",
+  "bin": {
+    "ix": "dist/cli.mjs"
+  },
   "files": [
     "dist",
     "README.md",
     "READMEOSS.html"
   ],
   "scripts": {
-    "build": "tsdown && cp src/ix-blocks.schema.json dist/",
+    "build": "pnpm run typecheck && pnpm run test && tsdown && cp src/ix-blocks.schema.json dist/",
     "dev": "cp src/ix-blocks.schema.json dist/ && tsdown --watch",
-    "start": "tsx src/cli.ts"
+    "start": "tsx src/cli.ts",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.3",

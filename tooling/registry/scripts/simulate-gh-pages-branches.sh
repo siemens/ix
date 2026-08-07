@@ -28,11 +28,6 @@ fi
 
 LATEST_TAG="${RELEASE_VERSION}"
 
-UPDATE_LATEST="false"
-if [[ "${RELEASE_VERSION}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  UPDATE_LATEST="true"
-fi
-
 print_summary() {
   local target_dir="$1"
   node -e '
@@ -69,19 +64,15 @@ run_build() {
 
 run_merge() {
   local version="$1"
-  local latest_tag="$2"
-  local update_latest="$3"
 
-  echo "🔀 Merging into simulated gh-pages: version='${version}', update_latest='${update_latest}'"
+  echo "🔀 Merging into simulated gh-pages: version='${version}'"
   (
     cd "${REGISTRY_DIR}"
     pnpm exec tsx src/merge-pages-registry.ts \
       --dist-dir "${DIST_DIR}" \
       --pages-dir "${PAGES_DIR}" \
       --out-dir "${OUT_DIR}" \
-      --version "${version}" \
-      --latest-tag "${latest_tag}" \
-      --update-latest "${update_latest}"
+      --version "${version}"
   )
 
   rm -rf "${PAGES_DIR}"
@@ -99,7 +90,7 @@ mkdir -p "${PAGES_DIR}" "${OUT_DIR}"
 
 # 1) Simulate push to main
 run_build "main" "main" "main"
-run_merge "main" "main" "false"
+run_merge "main"
 
 echo ""
 echo "📍 State after main deployment"
@@ -107,7 +98,7 @@ print_summary "${PAGES_DIR}"
 
 # 2) Simulate push to release-registry/<version>
 run_build "${RELEASE_VERSION}" "${LATEST_TAG}" "${RELEASE_VERSION}"
-run_merge "${RELEASE_VERSION}" "${LATEST_TAG}" "${UPDATE_LATEST}"
+run_merge "${RELEASE_VERSION}"
 
 echo ""
 echo "📍 State after release-registry/${RELEASE_VERSION} deployment"

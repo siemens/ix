@@ -39,6 +39,11 @@
   },
   "additionalProperties": false,
   "definitions": {
+    "safeRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?!.*[:?#\\\\%])(?!(?:.*/)?\\.{1,2}(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
     "variant": {
       "type": "object",
       "required": ["files"],
@@ -54,10 +59,10 @@
             "required": ["source", "target"],
             "properties": {
               "source": {
-                "type": "string"
+                "$ref": "#/definitions/safeRelativePath"
               },
               "target": {
-                "type": "string"
+                "$ref": "#/definitions/safeRelativePath"
               },
               "type": {
                 "type": "string"

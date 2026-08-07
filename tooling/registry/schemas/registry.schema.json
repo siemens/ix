@@ -128,7 +128,7 @@
         "name": {
           "type": "string",
           "description": "Block identifier",
-          "pattern": "^[a-z0-9-]+$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "path": {
           "type": "string",
