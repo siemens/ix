@@ -18,7 +18,7 @@ const CARDS_HTML = `
   <ix-card><ix-card-content>Card 5</ix-card-content></ix-card>
 `;
 
-regressionTest.only(
+regressionTest(
   'prevents focus from remaining in collapsed card content',
   async ({ mount, page }) => {
     await mount(`
