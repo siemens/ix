@@ -166,7 +166,9 @@ export class Pagination {
       selected: this.selectedPage === index,
       ariaAttributes: {
         'aria-label': `Go to ${this.i18nPage} ${index + 1}`,
-        ...(this.selectedPage === index ? { 'aria-current': 'page' } : {}),
+        ...(this.selectedPage === index
+          ? { 'aria-current': 'page', 'aria-selected': 'true' }
+          : {}),
       },
     };
 
@@ -201,7 +203,7 @@ export class Pagination {
       pageButtons.push(
         <BaseButton
           {...baseButtonProps}
-          ariaAttributes={{ 'aria-label': 'Jump backward pages, button' }}
+          ariaAttributes={{ 'aria-label': 'Jump backward 3 pages' }}
         >
           ...
         </BaseButton>
@@ -242,7 +244,7 @@ export class Pagination {
       pageButtons.push(
         <BaseButton
           {...baseButtonProps}
-          ariaAttributes={{ 'aria-label': 'Jump forward pages, button' }}
+          ariaAttributes={{ 'aria-label': 'Jump forward 3 pages' }}
         >
           ...
         </BaseButton>
