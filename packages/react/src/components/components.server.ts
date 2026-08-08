@@ -1046,7 +1046,9 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents, Compo
         expanded: 'expanded',
         selected: 'selected',
         index: 'index',
-        expandOnHeaderClick: 'expand-on-header-click'
+        expandOnHeaderClick: 'expand-on-header-click',
+        i18nExpandGroup: 'i-1-8n-expand-group',
+        i18nCollapseGroup: 'i-1-8n-collapse-group'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxGroup as StencilReactComponent<IxGroupElement, IxGroupEvents, Components.IxGroup>,

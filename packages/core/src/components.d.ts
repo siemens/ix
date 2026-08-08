@@ -2254,6 +2254,16 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * ARIA label prefix for the collapse action
+          * @default 'Collapse'
+         */
+        "i18nCollapseGroup": string;
+        /**
+          * ARIA label prefix for the expand action
+          * @default 'Expand'
+         */
+        "i18nExpandGroup": string;
+        /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
         "index"?: number;
@@ -9271,6 +9281,16 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * ARIA label prefix for the collapse action
+          * @default 'Collapse'
+         */
+        "i18nCollapseGroup"?: string;
+        /**
+          * ARIA label prefix for the expand action
+          * @default 'Expand'
+         */
+        "i18nExpandGroup"?: string;
+        /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
         "index"?: number;
@@ -12650,6 +12670,8 @@ declare namespace LocalJSX {
         "selected": boolean;
         "index": number;
         "expandOnHeaderClick": boolean;
+        "i18nExpandGroup": string;
+        "i18nCollapseGroup": string;
     }
     interface IxGroupItemAttributes {
         "icon": string;

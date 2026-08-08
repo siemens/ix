@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronDownSmall,
+  iconChevronUpSmall,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -15,16 +19,19 @@ import {
   h,
   Host,
   Listen,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { hasSlottedElements } from '../utils/shadow-dom';
-import {
-  iconChevronDownSmall,
-  iconChevronUpSmall,
-} from '@siemens/ix-icons/icons';
 
 /**
  * @slot header - Content displayed in the group header.
@@ -37,8 +44,11 @@ import {
   styleUrl: 'group.scss',
   shadow: true,
 })
-export class Group {
-  @Element() hostElement!: HTMLIxGroupElement;
+export class Group
+  extends Mixin(...DefaultMixins, ComponentIdMixin)
+  implements ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxGroupElement;
 
   /**
    * Prevent header from being selectable
@@ -77,6 +87,16 @@ export class Group {
   @Prop() expandOnHeaderClick = false;
 
   /**
+   * ARIA label prefix for the expand action
+   */
+  @Prop() i18nExpandGroup = 'Expand';
+
+  /**
+   * ARIA label prefix for the collapse action
+   */
+  @Prop() i18nCollapseGroup = 'Collapse';
+
+  /**
    * Emits when whole group gets selected.
    */
   @Event() selectGroup!: EventEmitter<boolean>;
@@ -100,6 +120,11 @@ export class Group {
   @State() hasDropdown = false;
 
   private observer: MutationObserver = null!;
+  private expandButtonEl?: HTMLButtonElement;
+
+  private get contentId() {
+    return `${this.getHostElementId()}-content`;
+  }
 
   @Watch('selected')
   selectedChanged(newSelected: boolean) {
@@ -124,15 +149,54 @@ export class Group {
     return this.hostElement.shadowRoot?.querySelector('.group-content');
   }
 
-  private onExpandClick(event: Event) {
+  private getExpandButtonLabel() {
+    const action = this.expanded
+      ? this.i18nCollapseGroup
+      : this.i18nExpandGroup;
+    return this.header ? `${action} ${this.header}` : action;
+  }
+
+  private getSelectButtonLabel() {
+    return this.header || undefined;
+  }
+
+  private toggleExpanded(event?: Event) {
     const oldExpanded = this.expanded;
     this.expanded = !this.expanded;
     const { defaultPrevented } = this.expandedChanged.emit(this.expanded);
-    event.stopPropagation();
+    event?.stopPropagation();
 
     if (defaultPrevented) {
       this.expanded = oldExpanded;
     }
+  }
+
+  private collapseAndFocusExpand() {
+    if (!this.expanded) {
+      return;
+    }
+
+    const oldExpanded = this.expanded;
+    this.expanded = false;
+    const { defaultPrevented } = this.expandedChanged.emit(this.expanded);
+
+    if (defaultPrevented) {
+      this.expanded = oldExpanded;
+      return;
+    }
+
+    if (this.showExpandCollapsedIcon) {
+      this.expandButtonEl?.focus();
+    }
+  }
+
+  private isGroupDropdownOpen() {
+    const dropdown = this.hostElement.querySelector('ix-dropdown');
+    return !!dropdown?.show;
+  }
+
+  private onExpandClick(event: Event) {
+    this.toggleExpanded(event);
   }
 
   private onHeaderClick(event: Event) {
@@ -194,7 +258,12 @@ export class Group {
     this.hasDropdown = !!this.hostElement.querySelector('[slot="dropdown"]');
   }
 
-  componentWillRender() {
+  private onDefaultSlotChange() {
+    const slot = this.hostElement.shadowRoot?.querySelector('slot:not([name])');
+    this.showExpandCollapsedIcon = hasSlottedElements(slot);
+  }
+
+  override componentWillRender() {
     this.groupItems.forEach((item, index) => {
       item.selected = index === this.index;
       item.index = index;
@@ -202,7 +271,8 @@ export class Group {
     this.checkDropdownSlot();
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
+    super.componentDidLoad?.();
     this.observer = createMutationObserver(() => {
       this.slotSize = this.groupItems.length;
     });
@@ -214,9 +284,11 @@ export class Group {
     });
     this.checkDropdownSlot();
     this.slotSize = this.groupItems.length;
+    this.onDefaultSlotChange();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback?.();
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -231,21 +303,96 @@ export class Group {
     }
   }
 
-  render() {
+  private onKeyDown(event: KeyboardEvent) {
+    if (event.key !== 'Escape' || !this.expanded || event.defaultPrevented) {
+      return;
+    }
+
+    if (this.isGroupDropdownOpen()) {
+      return;
+    }
+
+    event.preventDefault();
+    this.collapseAndFocusExpand();
+  }
+
+  private renderHeaderContent() {
     return (
-      <Host>
+      <div class="group-header-content">
+        {this.header ? (
+          <div class="group-header-props-container">
+            <div class="group-header-title">
+              <span title={this.header}>{this.header}</span>
+            </div>
+            <div class="group-subheader" title={this.subHeader}>
+              {this.subHeader}
+            </div>
+          </div>
+        ) : null}
+        <slot name="header"></slot>
+      </div>
+    );
+  }
+
+  private renderHeaderSelect() {
+    if (this.suppressHeaderSelection) {
+      return (
+        <div
+          class="group-header-select group-header-select--static"
+          onClick={(e) => this.onHeaderClick(e)}
+        >
+          {this.renderHeaderContent()}
+        </div>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        class="group-header-select"
+        aria-pressed={a11yBoolean(this.selected)}
+        aria-label={this.getSelectButtonLabel()}
+        onClick={(e) => this.onHeaderClick(e)}
+      >
+        {this.renderHeaderContent()}
+      </button>
+    );
+  }
+
+  private renderExpandButton() {
+    return (
+      <button
+        type="button"
+        class={{
+          'btn-expand-header': true,
+          hidden: !this.showExpandCollapsedIcon,
+        }}
+        aria-expanded={a11yBoolean(this.expanded)}
+        aria-controls={this.contentId}
+        aria-label={this.getExpandButtonLabel()}
+        ref={(el) => (this.expandButtonEl = el)}
+        onClick={(event: Event) => this.onExpandClick(event)}
+      >
+        <ix-icon
+          data-testid="expand-collapsed-icon"
+          aria-hidden="true"
+          name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
+        ></ix-icon>
+      </button>
+    );
+  }
+
+  override render() {
+    return (
+      <Host onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}>
         <div
           class={{
             'group-header': true,
             expand: this.expanded,
             selected: this.selected,
           }}
-          tabindex="0"
         >
-          <div
-            class="group-header-clickable"
-            onClick={(e) => this.onHeaderClick(e)}
-          >
+          <div class="group-header-clickable">
             <div
               class={{
                 'group-header-selection-indicator': true,
@@ -253,29 +400,9 @@ export class Group {
                   this.itemSelected,
               }}
             ></div>
-            <div class="btn-expand-header">
-              <ix-icon
-                data-testid="expand-collapsed-icon"
-                class={{
-                  hidden: !this.showExpandCollapsedIcon,
-                }}
-                name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
-                onClick={(event: Event) => this.onExpandClick(event)}
-              ></ix-icon>
-            </div>
-
-            <div class="group-header-content">
-              {this.header ? (
-                <div class="group-header-props-container">
-                  <div class="group-header-title">
-                    <span title={this.header}>{this.header}</span>
-                  </div>
-                  <div class="group-subheader" title={this.subHeader}>
-                    {this.subHeader}
-                  </div>
-                </div>
-              ) : null}
-              <slot name="header"></slot>
+            <div class="group-header-actions">
+              {this.renderHeaderSelect()}
+              {this.renderExpandButton()}
             </div>
           </div>
           {this.hasDropdown && (
@@ -285,6 +412,7 @@ export class Group {
           )}
         </div>
         <div
+          id={this.contentId}
           class={{
             'group-content': true,
           }}
@@ -294,15 +422,7 @@ export class Group {
               display: this.expanded ? 'contents' : 'none',
             }}
           >
-            <slot
-              onSlotchange={() => {
-                const slot =
-                  this.hostElement.shadowRoot?.querySelector(
-                    'slot:not([name])'
-                  );
-                this.showExpandCollapsedIcon = hasSlottedElements(slot);
-              }}
-            ></slot>
+            <slot onSlotchange={() => this.onDefaultSlotChange()}></slot>
             <ix-group-item
               class={{
                 footer: true,
