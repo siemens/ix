@@ -121,6 +121,7 @@ export class Group
 
   private observer: MutationObserver = null!;
   private expandButtonEl?: HTMLButtonElement;
+  private skipEscapeCollapse = false;
 
   private get contentId() {
     return `${this.getHostElementId()}-content`;
@@ -276,6 +277,9 @@ export class Group
     this.observer = createMutationObserver(() => {
       this.slotSize = this.groupItems.length;
     });
+    // Capture before dropdown trigger closes the menu on Escape (bubble),
+    // so we can skip collapsing on the same key press.
+    this.hostElement.addEventListener('keydown', this.onKeyDownCapture, true);
     if (!this.groupContent) {
       return;
     }
@@ -289,6 +293,11 @@ export class Group
 
   override disconnectedCallback() {
     super.disconnectedCallback?.();
+    this.hostElement.removeEventListener(
+      'keydown',
+      this.onKeyDownCapture,
+      true
+    );
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -303,12 +312,23 @@ export class Group
     }
   }
 
+  private readonly onKeyDownCapture = (event: KeyboardEvent) => {
+    if (event.key !== 'Escape' || !this.expanded) {
+      return;
+    }
+
+    if (this.isGroupDropdownOpen()) {
+      this.skipEscapeCollapse = true;
+    }
+  };
+
   private onKeyDown(event: KeyboardEvent) {
     if (event.key !== 'Escape' || !this.expanded || event.defaultPrevented) {
       return;
     }
 
-    if (this.isGroupDropdownOpen()) {
+    if (this.skipEscapeCollapse || this.isGroupDropdownOpen()) {
+      this.skipEscapeCollapse = false;
       return;
     }
 
@@ -316,9 +336,16 @@ export class Group
     this.collapseAndFocusExpand();
   }
 
-  private renderHeaderContent() {
+  private renderHeaderContent(options?: {
+    contentId?: string;
+    ariaHidden?: boolean;
+  }) {
     return (
-      <div class="group-header-content">
+      <div
+        class="group-header-content"
+        id={options?.contentId}
+        aria-hidden={options?.ariaHidden ? 'true' : undefined}
+      >
         {this.header ? (
           <div class="group-header-props-container">
             <div class="group-header-title">
@@ -335,10 +362,13 @@ export class Group
   }
 
   private renderHeaderSelect() {
+    const headerContentId = `${this.getHostElementId()}-header-content`;
+    const selectLabel = this.getSelectButtonLabel();
+
     if (this.suppressHeaderSelection) {
       return (
         <div
-          class="group-header-select group-header-select--static"
+          class="group-header-select-area group-header-select-area--static"
           onClick={(e) => this.onHeaderClick(e)}
         >
           {this.renderHeaderContent()}
@@ -347,15 +377,20 @@ export class Group
     }
 
     return (
-      <button
-        type="button"
-        class="group-header-select"
-        aria-pressed={a11yBoolean(this.selected)}
-        aria-label={this.getSelectButtonLabel()}
-        onClick={(e) => this.onHeaderClick(e)}
-      >
-        {this.renderHeaderContent()}
-      </button>
+      <div class="group-header-select-area">
+        <button
+          type="button"
+          class="group-header-select"
+          aria-pressed={a11yBoolean(this.selected)}
+          aria-label={selectLabel}
+          aria-labelledby={selectLabel ? undefined : headerContentId}
+          onClick={(e) => this.onHeaderClick(e)}
+        ></button>
+        {this.renderHeaderContent({
+          contentId: headerContentId,
+          ariaHidden: !!selectLabel,
+        })}
+      </div>
     );
   }
 
@@ -367,6 +402,7 @@ export class Group
           'btn-expand-header': true,
           hidden: !this.showExpandCollapsedIcon,
         }}
+        data-testid="expand-collapsed-button"
         aria-expanded={a11yBoolean(this.expanded)}
         aria-controls={this.contentId}
         aria-label={this.getExpandButtonLabel()}

@@ -93,43 +93,44 @@ $header-height: 4rem;
     border-top-left-radius: var(--ix-group-border-radius);
   }
 
-  .group-header-select {
-    appearance: none;
-    box-sizing: border-box;
+  .group-header-select-area {
+    position: relative;
     display: flex;
     flex: 1;
-    align-items: center;
+    align-items: stretch;
     align-self: stretch;
-    width: 100%;
     min-width: 0;
     min-height: 100%;
+
+    &--static {
+      cursor: pointer;
+    }
+  }
+
+  .group-header-select {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: var(--ix-group-focus-border-thickness) solid transparent;
+    border: none;
     background: transparent;
-    color: inherit;
-    font: inherit;
-    text-align: start;
     cursor: pointer;
     border-radius: 0 var(--ix-group-border-radius) 0 0;
 
     @include hover.focus-visible {
-      outline: none;
-      border-color: var(--ix-group-focus-border-color);
+      outline: var(--ix-group-focus-border-thickness) solid
+        var(--ix-group-focus-border-color);
+      outline-offset: calc(-1 * var(--ix-group-focus-border-thickness));
       border-radius: var(--ix-group-focus-border-radius);
-    }
-
-    &--static {
-      cursor: pointer;
-      border: none;
-      border-radius: 0;
     }
   }
 
   .group-header-content {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     align-self: stretch;
     min-width: 0;
@@ -176,25 +177,28 @@ $header-height: 4rem;
   .btn-expand-header {
     appearance: none;
     box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
     justify-content: center;
-    align-self: center;
+    // Native <button> flex items do not stretch like the old <div>; pin to top.
+    align-self: flex-start;
     order: -1;
     margin: vars.$small-space;
     margin-inline-end: vars.$tiny-space;
     min-width: 1.5rem;
-    height: 1.5rem;
     padding: 0;
-    border: var(--ix-group-focus-border-thickness) solid transparent;
+    border: none;
     background: transparent;
     color: inherit;
+    line-height: 0;
     cursor: pointer;
     border-radius: var(--ix-group-focus-border-radius);
 
     @include hover.focus-visible {
-      outline: none;
-      border-color: var(--ix-group-focus-border-color);
+      outline: var(--ix-group-focus-border-thickness) solid
+        var(--ix-group-focus-border-color);
+      outline-offset: calc(-1 * var(--ix-group-focus-border-thickness));
     }
   }
 
