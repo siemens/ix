@@ -2255,11 +2255,13 @@ export namespace Components {
         "header"?: string;
         /**
           * ARIA label prefix for the collapse action
+          * @since 5.2.0
           * @default 'Collapse'
          */
         "i18nCollapseGroup": string;
         /**
           * ARIA label prefix for the expand action
+          * @since 5.2.0
           * @default 'Expand'
          */
         "i18nExpandGroup": string;
@@ -9282,11 +9284,13 @@ declare namespace LocalJSX {
         "header"?: string;
         /**
           * ARIA label prefix for the collapse action
+          * @since 5.2.0
           * @default 'Collapse'
          */
         "i18nCollapseGroup"?: string;
         /**
           * ARIA label prefix for the expand action
+          * @since 5.2.0
           * @default 'Expand'
          */
         "i18nExpandGroup"?: string;

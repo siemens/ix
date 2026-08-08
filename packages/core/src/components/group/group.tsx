@@ -88,11 +88,15 @@ export class Group
 
   /**
    * ARIA label prefix for the expand action
+   *
+   * @since 5.2.0
    */
   @Prop() i18nExpandGroup = 'Expand';
 
   /**
    * ARIA label prefix for the collapse action
+   *
+   * @since 5.2.0
    */
   @Prop() i18nCollapseGroup = 'Collapse';
 
