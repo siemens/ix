@@ -145,6 +145,22 @@ export class Group {
     this.changeItemIndex();
   }
 
+  private onHeaderKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (this.showExpandCollapsedIcon) {
+        // The chevron is aria-hidden and not focusable, so Enter/Space always
+        // toggles expand/collapse when children are present — regardless of
+        // suppressHeaderSelection, which only governs mouse-click behaviour.
+        this.onExpandClick(event);
+      } else {
+        this.onHeaderClick(event);
+      }
+    } else if (event.key === 'Escape' && this.expanded) {
+      this.onExpandClick(event);
+    }
+  }
+
   private changeHeaderSelection(newSelection: boolean) {
     const oldIsHeaderSelected = this.selected;
     const newIsHeaderSelected = newSelection;
@@ -241,6 +257,11 @@ export class Group {
             selected: this.selected,
           }}
           tabindex="0"
+          role={this.showExpandCollapsedIcon ? 'button' : undefined}
+          aria-expanded={
+            this.showExpandCollapsedIcon ? String(this.expanded) : undefined
+          }
+          onKeyDown={(e: KeyboardEvent) => this.onHeaderKeyDown(e)}
         >
           <div
             class="group-header-clickable"
@@ -261,6 +282,7 @@ export class Group {
                 }}
                 name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
                 onClick={(event: Event) => this.onExpandClick(event)}
+                aria-hidden="true"
               ></ix-icon>
             </div>
 

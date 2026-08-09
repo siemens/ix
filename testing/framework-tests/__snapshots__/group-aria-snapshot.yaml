@@ -1,2 +1,1 @@
-- img
-- text: Header text Subheader text
+- button "Header text Subheader text" [expanded=false]

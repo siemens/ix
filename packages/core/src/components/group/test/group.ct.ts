@@ -172,3 +172,146 @@ regressionTest(
     await expect(groupItem).toHaveClass(/selected/);
   }
 );
+
+regressionTest(
+  'chevron icon is hidden from accessibility tree',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+    await expect(expandIcon).toHaveAttribute('aria-hidden', 'true');
+  }
+);
+
+regressionTest(
+  'header has role=button and aria-expanded when group has children',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await expect(header).toHaveAttribute('role', 'button');
+    await expect(header).toHaveAttribute('aria-expanded', 'false');
+  }
+);
+
+regressionTest(
+  'aria-expanded updates when group is expanded',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await expect(header).toHaveAttribute('aria-expanded', 'false');
+    await group.getByTestId('expand-collapsed-icon').click();
+    await expect(header).toHaveAttribute('aria-expanded', 'true');
+  }
+);
+
+regressionTest(
+  'header has no role or aria-expanded when group has no children',
+  async ({ mount, page }) => {
+    await mount(`<ix-group header="Test"></ix-group>`);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await expect(header).not.toHaveAttribute('role');
+    await expect(header).not.toHaveAttribute('aria-expanded');
+  }
+);
+
+regressionTest('can expand group using Enter key', async ({ mount, page }) => {
+  await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+  const group = page.locator('ix-group');
+  await expect(group).toHaveClass(/hydrated/);
+  const header = group.locator('.group-header');
+  await header.focus();
+  await expect(group).not.toHaveAttribute('expanded');
+  await page.keyboard.press('Enter');
+  await expect(group).toHaveAttribute('expanded', '');
+});
+
+regressionTest('can expand group using Space key', async ({ mount, page }) => {
+  await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+  const group = page.locator('ix-group');
+  await expect(group).toHaveClass(/hydrated/);
+  const header = group.locator('.group-header');
+  await header.focus();
+  await page.keyboard.press('Space');
+  await expect(group).toHaveAttribute('expanded', '');
+});
+
+regressionTest(
+  'can collapse expanded group using Escape key',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test" expanded>
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await header.focus();
+    await expect(group).toHaveAttribute('expanded', '');
+    await page.keyboard.press('Escape');
+    await expect(group).not.toHaveAttribute('expanded');
+  }
+);
+
+regressionTest(
+  'focus stays on header after keyboard expand/collapse',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await header.focus();
+    await page.keyboard.press('Enter');
+    await expect(header).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(header).toBeFocused();
+  }
+);
+
+regressionTest(
+  'Escape key does not collapse group when already closed',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test">
+      <ix-group-item>Item 1</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    await expect(group).toHaveClass(/hydrated/);
+    const header = group.locator('.group-header');
+    await header.focus();
+    await page.keyboard.press('Escape');
+    await expect(group).not.toHaveAttribute('expanded');
+  }
+);
