@@ -548,6 +548,55 @@ regressionTest(
 );
 
 regressionTest(
+  'should allow scrolling in dropdown with many items when no category item is active',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category label">
+            <ix-menu-item>Item 1</ix-menu-item>
+            <ix-menu-item>Item 2</ix-menu-item>
+            <ix-menu-item>Item 3</ix-menu-item>
+            <ix-menu-item>Item 4</ix-menu-item>
+            <ix-menu-item>Item 5</ix-menu-item>
+            <ix-menu-item>Item 6</ix-menu-item>
+            <ix-menu-item>Item 7</ix-menu-item>
+            <ix-menu-item>Item 8</ix-menu-item>
+            <ix-menu-item>Item 9</ix-menu-item>
+            <ix-menu-item>Item 10</ix-menu-item>
+            <ix-menu-item>Item 11</ix-menu-item>
+            <ix-menu-item>Item 12</ix-menu-item>
+            <ix-menu-item>Item 13</ix-menu-item>
+            <ix-menu-item>Item 14</ix-menu-item>
+            <ix-menu-item>Item 15</ix-menu-item>
+            <ix-menu-item>Item 16</ix-menu-item>
+            <ix-menu-item>Item 17</ix-menu-item>
+            <ix-menu-item>Item 18</ix-menu-item>
+            <ix-menu-item>Item 19</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const menuCategory = page.locator('ix-menu-category');
+    await menuCategory.hover();
+
+    const dropdown = menuCategory.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const isScrollable = await dropdown.evaluate((el) => {
+      return el.scrollHeight > el.clientHeight;
+    });
+    expect(isScrollable).toBe(true);
+
+    const lastItem = menuCategory
+      .locator('ix-menu-item:not(.category-parent)')
+      .last();
+    await expect(lastItem).not.toBeHidden();
+  }
+);
+
+regressionTest(
   'should move into expanded category items when pressing ArrowDown on category button',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });

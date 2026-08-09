@@ -173,6 +173,10 @@ export class MenuCategory
     }
     this.closeOtherCategories.emit(this.categoryId);
 
+    // Unhide items before presenting so the dropdown can correctly calculate
+    // its height and enable scrolling when there are many children.
+    this.showDropdown = true;
+
     if (this.dropdownRef.current) {
       const ref = dropdownController.getDropdownById(
         this.dropdownRef.current.dataset.ixDropdown!
