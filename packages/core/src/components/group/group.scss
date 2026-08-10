@@ -75,7 +75,13 @@ $header-height: 4rem;
     height: 100%;
     align-items: stretch;
 
-    @include text-truncation.ellipsis;
+    // Select focus wraps the full header chrome (indicator + title + expand),
+    // excluding the context-menu slot
+    &:has(.group-header-select:focus-visible) {
+      outline: var(--ix-group-focus-border-thickness) solid
+        var(--ix-group-focus-border-color);
+      outline-offset: calc(-1 * var(--ix-group-focus-border-thickness));
+    }
   }
 
   .group-header-actions {
@@ -121,10 +127,7 @@ $header-height: 4rem;
     border-radius: 0 var(--ix-group-border-radius) 0 0;
 
     @include hover.focus-visible {
-      outline: var(--ix-group-focus-border-thickness) solid
-        var(--ix-group-focus-border-color);
-      outline-offset: calc(-1 * var(--ix-group-focus-border-thickness));
-      border-radius: var(--ix-group-focus-border-radius);
+      outline: none;
     }
   }
 
