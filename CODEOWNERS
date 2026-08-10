@@ -1,0 +1,7 @@
+* @siemens/siemens-ix-developers
+
+/testing/visual-testing/ @siemens/siemens-ix-owners
+/packages/core/component-api.json @siemens/siemens-ix-owners
+/**/package.json @siemens/siemens-ix-owners
+/pnpm-lock.yaml @siemens/siemens-ix-owners
+/pnpm-workspace.yaml @siemens/siemens-ix-owners
