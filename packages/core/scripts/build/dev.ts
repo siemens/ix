@@ -21,8 +21,12 @@ interface TraverseOptions {
 
 const compareBy =
   <T>(selector: (value: T) => string) =>
-  (a: T, b: T) =>
-    selector(a).localeCompare(selector(b));
+  (a: T, b: T) => {
+    const valueA = selector(a);
+    const valueB = selector(b);
+
+    return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+  };
 
 export const createComponentApi = (docs: JsonDocs) => ({
   components: [...docs.components]
@@ -69,10 +73,10 @@ export const createComponentApi = (docs: JsonDocs) => ({
         })),
       slots: component.slots
         .map((slot) => slot.name || 'default')
-        .sort((a, b) => a.localeCompare(b)),
+        .sort(compareBy((slot) => slot)),
       cssParts: component.parts
         .map((part) => part.name)
-        .sort((a, b) => a.localeCompare(b)),
+        .sort(compareBy((part) => part)),
       cssStates: [...component.customStates]
         .sort(compareBy((state) => state.name))
         .map((state) => ({

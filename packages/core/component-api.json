@@ -4713,22 +4713,22 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "expanded",
-          "attribute": "expanded",
+          "name": "expandOnHeaderClick",
+          "attribute": "expand-on-header-click",
           "type": "boolean",
-          "mutable": true,
-          "reflectToAttribute": true,
+          "mutable": false,
+          "reflectToAttribute": false,
           "default": "false",
           "optional": false,
           "required": false,
           "deprecated": false
         },
         {
-          "name": "expandOnHeaderClick",
-          "attribute": "expand-on-header-click",
+          "name": "expanded",
+          "attribute": "expanded",
           "type": "boolean",
-          "mutable": false,
-          "reflectToAttribute": false,
+          "mutable": true,
+          "reflectToAttribute": true,
           "default": "false",
           "optional": false,
           "required": false,
@@ -6968,16 +6968,6 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "allowedCharactersPattern",
-          "attribute": "allowed-characters-pattern",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "allowEmptyValueChange",
           "attribute": "allow-empty-value-change",
           "type": "boolean",
@@ -6985,6 +6975,16 @@
           "reflectToAttribute": true,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "allowedCharactersPattern",
+          "attribute": "allowed-characters-pattern",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -9173,8 +9173,8 @@
           "deprecated": false
         },
         {
-          "name": "disabled",
-          "attribute": "disabled",
+          "name": "disableDropdownButton",
+          "attribute": "disable-dropdown-button",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -9184,8 +9184,8 @@
           "deprecated": false
         },
         {
-          "name": "disableDropdownButton",
-          "attribute": "disable-dropdown-button",
+          "name": "disabled",
+          "attribute": "disabled",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
