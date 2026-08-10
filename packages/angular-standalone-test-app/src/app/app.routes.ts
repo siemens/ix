@@ -52,6 +52,16 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/avatar-image').then((m) => m.default),
   'preview/avatar-initials': () =>
     import('../preview-examples/avatar-initials').then((m) => m.default),
+  'preview/badge': () =>
+    import('../preview-examples/badge').then((m) => m.default),
+  'preview/badge-counter': () =>
+    import('../preview-examples/badge-counter').then((m) => m.default),
+  'preview/badge-dot': () =>
+    import('../preview-examples/badge-dot').then((m) => m.default),
+  'preview/badge-label': () =>
+    import('../preview-examples/badge-label').then((m) => m.default),
+  'preview/badge-status-icon': () =>
+    import('../preview-examples/badge-status-icon').then((m) => m.default),
   'preview/blind': () =>
     import('../preview-examples/blind').then((m) => m.default),
   'preview/blind-header-actions': () =>
@@ -98,6 +108,14 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/category-filter-suggestions').then(
       (m) => m.default
     ),
+  'preview/chat': () =>
+    import('../preview-examples/chat').then((m) => m.default),
+  'preview/chat-ai-message': () =>
+    import('../preview-examples/chat-ai-message').then((m) => m.default),
+  'preview/chat-input': () =>
+    import('../preview-examples/chat-input').then((m) => m.default),
+  'preview/chat-user-message': () =>
+    import('../preview-examples/chat-user-message').then((m) => m.default),
   'preview/checkbox': () =>
     import('../preview-examples/checkbox').then((m) => m.default),
   'preview/checkbox-indeterminate': () =>
@@ -123,9 +141,7 @@ export const routePaths: IxPreviewRoutes = {
   'preview/date-dropdown': () =>
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
-    import('../preview-examples/date-dropdown-presets').then(
-      (m) => m.default
-    ),
+    import('../preview-examples/date-dropdown-presets').then((m) => m.default),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
   'preview/datetime-range': () =>
