@@ -7,26 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-chat-input--background: var(--theme-si-sys-background-1);
-  --ix-chat-input--background--hover: var(--theme-si-sys-background-4);
-  --ix-chat-input--border-color: var(--theme-si-sys-border-2);
-  --ix-chat-input--border-color--hover: var(--theme-si-sys-border-1);
-  --ix-chat-input--border-color--focus: var(--theme-si-sys-border-1);
-  --ix-chat-input--border-color--disabled: var(--theme-si-sys-border-4);
-  --ix-chat-input--border-color--readonly: var(--theme-si-sys-border-4);
+  --ix-chat-input--background: #{sys.$si-sys-background-1};
+  --ix-chat-input--background--hover: #{sys.$si-sys-background-4};
+  --ix-chat-input--border-color: #{sys.$si-sys-border-2};
+  --ix-chat-input--border-color--hover: #{sys.$si-sys-border-1};
+  --ix-chat-input--border-color--focus: #{sys.$si-sys-border-1};
+  --ix-chat-input--border-color--disabled: #{sys.$si-sys-border-4};
+  --ix-chat-input--border-color--readonly: #{sys.$si-sys-border-4};
   --ix-chat-input--border-radius: var(--theme-small-border-radius);
   --ix-chat-input--border-width: var(--theme-border-width-default);
   --ix-chat-input--box-shadow: none;
-  --ix-chat-input--color: var(--theme-si-sys-text-primary);
-  --ix-chat-input--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-chat-input-placeholder--color: var(--theme-si-sys-text-secondary);
+  --ix-chat-input--color: #{sys.$si-sys-text-primary};
+  --ix-chat-input--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-chat-input-placeholder--color: #{sys.$si-sys-text-secondary};
   --ix-chat-input--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-chat-input--outline-color--focus: var(--theme-si-sys-effects-focus);
-  --ix-chat-input-character-limit-soft-icon--color: var(
-    --theme-si-sys-text-information
-  );
-  --ix-chat-input-character-limit-hard-icon--color: var(
-    --theme-si-sys-text-warning
-  );
+  --ix-chat-input--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-chat-input-character-limit-soft-icon--color: #{sys.$si-sys-text-information};
+  --ix-chat-input-character-limit-hard-icon--color: #{sys.$si-sys-text-warning};
 }

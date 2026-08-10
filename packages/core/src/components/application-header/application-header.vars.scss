@@ -7,18 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
   --ix-application-header--z-index: var(--theme-z-index-fixed);
-  --ix-application-header-dropdown-item--border-color: var(
-    --theme-si-sys-border-4
-  );
-  --ix-application-header--background: var(--theme-si-sys-background-1);
-  --ix-application-header--border-color: var(--theme-si-sys-border-4);
+  --ix-application-header-dropdown-item--border-color: #{sys.$si-sys-border-4};
+  --ix-application-header--background: #{sys.$si-sys-background-1};
+  --ix-application-header--border-color: #{sys.$si-sys-border-4};
   --ix-application-header--border-width: var(--theme-border-width-default);
-  --ix-application-header--color: var(--theme-si-sys-text-primary);
-  --ix-application-header-app-icon--outline-color: var(--theme-si-sys-border-2);
-  --ix-application-header-logo--color: var(--theme-si-sys-effects-logo);
-  --ix-application-header-name-suffix--color: var(
-    --theme-si-sys-text-secondary
-  );
+  --ix-application-header--color: #{sys.$si-sys-text-primary};
+  --ix-application-header-app-icon--outline-color: #{sys.$si-sys-border-2};
+  --ix-application-header-logo--color: #{sys.$si-sys-effects-logo};
+  --ix-application-header-name-suffix--color: #{sys.$si-sys-text-secondary};
 }

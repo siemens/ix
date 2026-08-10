@@ -7,40 +7,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
   --ix-select--box-shadow: var(--theme-inset-shadow-1);
-  --ix-select--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-select--outline-color--focus: #{sys.$si-sys-effects-focus};
   --ix-select--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-select--background: var(--theme-si-sys-background-1);
-  --ix-select--background--hover: var(--theme-si-sys-background-4);
-  --ix-select--background--invalid: var(--theme-si-sys-background-1);
-  --ix-select--background--warning: var(--theme-si-sys-background-1);
-  --ix-select--border-color: var(--theme-si-sys-border-2);
-  --ix-select--border-color--disabled: var(--theme-si-sys-border-4);
-  --ix-select--border-color--hover: var(--theme-si-sys-border-1);
-  --ix-select--border-color--info: var(--theme-si-sys-border-information);
-  --ix-select--border-color--info--active: var(
-    --theme-si-sys-border-information
-  );
-  --ix-select--border-color--info--hover: var(
-    --theme-si-sys-border-information
-  );
-  --ix-select--border-color--invalid: var(--theme-si-sys-border-danger);
-  --ix-select--border-color--invalid--active: var(--theme-si-sys-border-danger);
-  --ix-select--border-color--invalid--hover: var(--theme-si-sys-border-danger);
-  --ix-select--border-color--readonly: var(--theme-si-sys-border-4);
-  --ix-select--border-color--warning: var(--theme-si-sys-background-warning);
-  --ix-select--border-color--warning--active: var(
-    --theme-si-sys-background-warning
-  );
-  --ix-select--border-color--warning--hover: var(
-    --theme-si-sys-background-warning
-  );
+  --ix-select--background: #{sys.$si-sys-background-1};
+  --ix-select--background--hover: #{sys.$si-sys-background-4};
+  --ix-select--background--invalid: #{sys.$si-sys-background-1};
+  --ix-select--background--warning: #{sys.$si-sys-background-1};
+  --ix-select--border-color: #{sys.$si-sys-border-2};
+  --ix-select--border-color--disabled: #{sys.$si-sys-border-4};
+  --ix-select--border-color--hover: #{sys.$si-sys-border-1};
+  --ix-select--border-color--info: #{sys.$si-sys-border-information};
+  --ix-select--border-color--info--active: #{sys.$si-sys-border-information};
+  --ix-select--border-color--info--hover: #{sys.$si-sys-border-information};
+  --ix-select--border-color--invalid: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--invalid--active: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--invalid--hover: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--readonly: #{sys.$si-sys-border-4};
+  --ix-select--border-color--warning: #{sys.$si-sys-background-warning};
+  --ix-select--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-select--border-color--warning--hover: #{sys.$si-sys-background-warning};
   --ix-select--border-radius: var(--theme-small-border-radius);
   --ix-select--border-width: var(--theme-border-width-default);
-  --ix-select--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-select--color--readonly: var(--theme-si-sys-text-primary);
-  --ix-select-icon--color: var(--theme-si-sys-text-primary);
-  --ix-select-item-hint--color: var(--theme-si-sys-text-secondary);
-  --ix-select-overflow-button--color--active: var(--theme-si-sys-text-primary);
+  --ix-select--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-select--color--readonly: #{sys.$si-sys-text-primary};
+  --ix-select-icon--color: #{sys.$si-sys-text-primary};
+  --ix-select-item-hint--color: #{sys.$si-sys-text-secondary};
+  --ix-select-overflow-button--color--active: #{sys.$si-sys-text-primary};
 }

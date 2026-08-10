@@ -7,40 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-workflow-step-line--background--warning: var(
-    --theme-si-sys-text-warning
-  );
-  --ix-workflow-step-line--background--success: var(
-    --theme-si-sys-text-success
-  );
-  --ix-workflow-step-line--background--error: var(--theme-si-sys-text-danger);
+  --ix-workflow-step-line--background--warning: #{sys.$si-sys-text-warning};
+  --ix-workflow-step-line--background--success: #{sys.$si-sys-text-success};
+  --ix-workflow-step-line--background--error: #{sys.$si-sys-text-danger};
   --ix-workflow-step--border-radius: 1px;
   --ix-workflow-step--background: rgba(0, 0, 0, 0);
-  --ix-workflow-step--background--active: var(
-    --theme-si-sys-background-selected
-  );
+  --ix-workflow-step--background--active: #{sys.$si-sys-background-selected};
   --ix-workflow-step--background--disabled: rgba(0, 0, 0, 0);
-  --ix-workflow-step--background--hover: var(--theme-si-sys-background-hover);
-  --ix-workflow-step--background--selected: var(
-    --theme-si-sys-background-selected
-  );
-  --ix-workflow-step--color--disabled: var(--theme-si-sys-text-disabled);
-  --ix-workflow-step-icon-default--color: var(--theme-si-sys-text-secondary);
-  --ix-workflow-step-icon-default--color--disabled: var(
-    --theme-si-sys-text-disabled
-  );
-  --ix-workflow-step-icon-default--color--selected: var(
-    --theme-si-sys-text-accent
-  );
-  --ix-workflow-step-icon-done--color: var(--theme-si-sys-text-accent);
-  --ix-workflow-step-icon-error--color: var(--theme-si-sys-text-danger);
-  --ix-workflow-step-icon-success--color: var(--theme-si-sys-text-success);
-  --ix-workflow-step-icon-warning--color: var(--theme-si-sys-text-warning);
-  --ix-workflow-step-icon-done--color--selected: var(
-    --theme-si-sys-text-accent
-  );
-  --ix-workflow-step-icon-status--color--disabled: var(
-    --theme-si-sys-text-disabled
-  );
+  --ix-workflow-step--background--hover: #{sys.$si-sys-background-hover};
+  --ix-workflow-step--background--selected: #{sys.$si-sys-background-selected};
+  --ix-workflow-step--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-workflow-step-icon-default--color: #{sys.$si-sys-text-secondary};
+  --ix-workflow-step-icon-default--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-workflow-step-icon-default--color--selected: #{sys.$si-sys-text-accent};
+  --ix-workflow-step-icon-done--color: #{sys.$si-sys-text-accent};
+  --ix-workflow-step-icon-error--color: #{sys.$si-sys-text-danger};
+  --ix-workflow-step-icon-success--color: #{sys.$si-sys-text-success};
+  --ix-workflow-step-icon-warning--color: #{sys.$si-sys-text-warning};
+  --ix-workflow-step-icon-done--color--selected: #{sys.$si-sys-text-accent};
+  --ix-workflow-step-icon-status--color--disabled: #{sys.$si-sys-text-disabled};
 }

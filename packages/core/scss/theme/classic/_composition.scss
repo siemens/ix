@@ -15,9 +15,9 @@
 
 @use './si-reference' as reference_variables;
 @use './dark/legacy-variables' as dark_legacy_variables;
-@use './dark/sys-variables' as dark_sys_variables;
+@use './dark/sys.vars' as dark_sys_vars;
 @use './light/legacy-variables' as light_legacy_variables;
-@use './light/sys-variables' as light_sys_variables;
+@use './light/sys.vars' as light_sys_vars;
 
 @mixin shared {
   @include reference_variables.setVars();
@@ -25,7 +25,7 @@
 
 @mixin dark {
   @include dark_legacy_variables.setVars();
-  @include dark_sys_variables.setVars();
+  @include dark_sys_vars.setVars();
 }
 
 @mixin complete-dark {
@@ -35,7 +35,7 @@
 
 @mixin light {
   @include light_legacy_variables.setVars();
-  @include light_sys_variables.setVars();
+  @include light_sys_vars.setVars();
 }
 
 @mixin complete-light {

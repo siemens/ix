@@ -7,74 +7,67 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
 @use 'sass:map';
 
-// si/sys token names per variant (background/hover/active/contrast), per the
+// si/sys token values per variant (background/hover/active/contrast), per the
 // SI Theme Token Migration Guide. Naming isn't uniform across variants
 // (e.g. neutral hover/active reuse the generic background-hover/-selected
 // tokens instead of a neutral-hover/-active token), so each variant needs an
 // explicit mapping rather than string interpolation.
-$blind-variant-sys-tokens: (
+$blind-variant-sys-values: (
   alarm: (
-    background: background-danger,
-    hover: background-danger-hover,
-    active: background-danger-active,
-    contrast: text-on-danger,
+    background: sys.$si-sys-background-danger,
+    hover: sys.$si-sys-background-danger-hover,
+    active: sys.$si-sys-background-danger-active,
+    contrast: sys.$si-sys-text-on-danger,
   ),
   critical: (
-    background: background-critical,
-    hover: background-critical-hover,
-    active: background-critical-active,
-    contrast: text-on-critical,
+    background: sys.$si-sys-background-critical,
+    hover: sys.$si-sys-background-critical-hover,
+    active: sys.$si-sys-background-critical-active,
+    contrast: sys.$si-sys-text-on-critical,
   ),
   info: (
-    background: background-information,
-    hover: background-information-hover,
-    active: background-information-active,
-    contrast: text-on-information,
+    background: sys.$si-sys-background-information,
+    hover: sys.$si-sys-background-information-hover,
+    active: sys.$si-sys-background-information-active,
+    contrast: sys.$si-sys-text-on-information,
   ),
   neutral: (
-    background: background-neutral,
-    hover: background-hover,
-    active: background-selected,
-    contrast: text-primary,
+    background: sys.$si-sys-background-neutral,
+    hover: sys.$si-sys-background-hover,
+    active: sys.$si-sys-background-selected,
+    contrast: sys.$si-sys-text-primary,
   ),
   primary: (
-    background: background-accent,
-    hover: background-accent-hover,
-    active: background-accent-active,
-    contrast: text-on-accent,
+    background: sys.$si-sys-background-accent,
+    hover: sys.$si-sys-background-accent-hover,
+    active: sys.$si-sys-background-accent-active,
+    contrast: sys.$si-sys-text-on-accent,
   ),
   success: (
-    background: background-success,
-    hover: background-success-hover,
-    active: background-success-active,
-    contrast: text-on-success,
+    background: sys.$si-sys-background-success,
+    hover: sys.$si-sys-background-success-hover,
+    active: sys.$si-sys-background-success-active,
+    contrast: sys.$si-sys-text-on-success,
   ),
   warning: (
-    background: background-warning,
-    hover: background-warning-hover,
-    active: background-warning-active,
-    contrast: text-on-warning,
+    background: sys.$si-sys-background-warning,
+    hover: sys.$si-sys-background-warning-hover,
+    active: sys.$si-sys-background-warning-active,
+    contrast: sys.$si-sys-text-on-warning,
   ),
 );
 
 @mixin variant-vars($variant) {
-  $sys-tokens: map.get($blind-variant-sys-tokens, $variant);
+  $sys-values: map.get($blind-variant-sys-values, $variant);
 
-  @if $sys-tokens {
-    --ix-blind-#{$variant}--background: var(
-      --theme-si-sys-#{map.get($sys-tokens, background)}
-    );
-    --ix-blind-#{$variant}--background--hover: var(
-      --theme-si-sys-#{map.get($sys-tokens, hover)}
-    );
-    --ix-blind-#{$variant}--background--active: var(
-      --theme-si-sys-#{map.get($sys-tokens, active)}
-    );
-    --ix-blind-#{$variant}--color: var(
-      --theme-si-sys-#{map.get($sys-tokens, contrast)}
-    );
+  @if $sys-values {
+    --ix-blind-#{$variant}--background: #{map.get($sys-values, background)};
+    --ix-blind-#{$variant}--background--hover: #{map.get($sys-values, hover)};
+    --ix-blind-#{$variant}--background--active: #{map.get($sys-values, active)};
+    --ix-blind-#{$variant}--color: #{map.get($sys-values, contrast)};
   } @else if $variant == 'filled' {
     --ix-blind-filled--background: transparent;
     --ix-blind-filled--background--hover: transparent;
@@ -88,17 +81,15 @@ $blind-variant-sys-tokens: (
 
 :host {
   --ix-blind-outline-header--background: transparent;
-  --ix-blind-header--color: var(--theme-si-sys-text-primary);
-  --ix-blind-header-sublabel--color: var(--theme-si-sys-text-secondary);
-  --ix-blind-header-actions--color: var(--theme-si-sys-text-accent);
-  --ix-blind-outline--border-color: var(--theme-si-sys-border-3);
-  --ix-blind-outline--border-color--hover: var(--theme-si-sys-background-hover);
-  --ix-blind-outline--border-color--active: var(
-    --theme-si-sys-background-selected
-  );
-  --ix-blind-header--border-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-blind-header--color: #{sys.$si-sys-text-primary};
+  --ix-blind-header-sublabel--color: #{sys.$si-sys-text-secondary};
+  --ix-blind-header-actions--color: #{sys.$si-sys-text-accent};
+  --ix-blind-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-blind-outline--border-color--hover: #{sys.$si-sys-background-hover};
+  --ix-blind-outline--border-color--active: #{sys.$si-sys-background-selected};
+  --ix-blind-header--border-color--focus: #{sys.$si-sys-effects-focus};
   --ix-blind-content--transition-duration: var(--theme-default-time);
   --ix-blind--border-radius: var(--theme-default-border-radius);
   --ix-blind--border-width: var(--theme-border-width-default);
-  --ix-blind--background: var(--theme-si-sys-background-1);
+  --ix-blind--background: #{sys.$si-sys-background-1};
 }

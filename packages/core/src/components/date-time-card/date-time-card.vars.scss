@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-date-time-card--box-shadow: var(--theme-si-sys-effects-shadow-4);
-  --ix-date-time-card-separator--background: var(--theme-si-sys-border-4);
-  --ix-date-time-card--background: var(--theme-si-sys-background-1);
+  --ix-date-time-card--box-shadow: #{sys.$si-sys-effects-shadow-4};
+  --ix-date-time-card-separator--background: #{sys.$si-sys-border-4};
+  --ix-date-time-card--background: #{sys.$si-sys-background-1};
 }

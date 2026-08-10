@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-divider--border-color: var(--theme-si-sys-border-4);
+  --ix-divider--border-color: #{sys.$si-sys-border-4};
 }

@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-upload-error-icon--color: var(--theme-si-sys-text-danger);
-  --ix-upload-success-icon--color: var(--theme-si-sys-text-success);
-  --ix-upload--border-color: var(--theme-si-sys-border-3);
-  --ix-upload--border-color--dragover: var(--theme-si-sys-border-accent-hover);
+  --ix-upload-error-icon--color: #{sys.$si-sys-text-danger};
+  --ix-upload-success-icon--color: #{sys.$si-sys-text-success};
+  --ix-upload--border-color: #{sys.$si-sys-border-3};
+  --ix-upload--border-color--dragover: #{sys.$si-sys-border-accent-hover};
   --ix-upload--border-radius: var(--theme-default-border-radius);
-  --ix-upload-text--color: var(--theme-si-sys-text-primary);
-  --ix-upload-text--color--checking: var(--theme-si-sys-text-primary);
-  --ix-upload-text--color--disabled: var(--theme-si-sys-text-disabled);
+  --ix-upload-text--color: #{sys.$si-sys-text-primary};
+  --ix-upload-text--color--checking: #{sys.$si-sys-text-primary};
+  --ix-upload-text--color--disabled: #{sys.$si-sys-text-disabled};
 }

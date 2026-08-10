@@ -1,3 +1,5 @@
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-empty-state-label--color: var(--theme-si-sys-text-secondary);
+  --ix-empty-state-label--color: #{sys.$si-sys-text-secondary};
 }

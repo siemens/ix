@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-tile--background: var(--theme-si-sys-background-1);
-  --ix-tile--color: var(--theme-si-sys-text-primary);
-  --ix-tile-subheader--color: var(--theme-si-sys-text-secondary);
-  --ix-tile-footer--border-color: var(--theme-si-sys-background-0);
+  --ix-tile--background: #{sys.$si-sys-background-1};
+  --ix-tile--color: #{sys.$si-sys-text-primary};
+  --ix-tile-subheader--color: #{sys.$si-sys-text-secondary};
+  --ix-tile-footer--border-color: #{sys.$si-sys-background-0};
   --ix-tile--border-color: rgba(0, 0, 0, 0);
   --ix-tile--border-radius: var(--theme-default-border-radius);
   --ix-tile--border-width: var(--theme-border-width-none);

@@ -11,11 +11,10 @@ import { compile, compileString } from 'sass';
 import { describe, expect, it } from 'vitest';
 
 const themeRoot = path.resolve('scss/theme/classic');
+const scssRoot = path.resolve('scss');
 
-const referenceUsagePattern =
-  /var\((--theme-si-classic-ref-[a-zA-Z0-9-]+)\)/g;
-const referenceDeclarationPattern =
-  /^\s*(--theme-si-classic-ref-[a-zA-Z0-9-]+):/gm;
+const referenceUsagePattern = /var\((--theme-si-ref-[a-zA-Z0-9-]+)\)/g;
+const referenceDeclarationPattern = /^\s*(--theme-si-ref-[a-zA-Z0-9-]+):/gm;
 
 describe('classic theme CSS', () => {
   it.each(['dark', 'light'] as const)(
@@ -53,5 +52,15 @@ describe('classic theme CSS', () => {
 
     expect(referenceDeclarations.length).toBeGreaterThan(0);
     expect(referenceDeclarations).toEqual([...new Set(referenceDeclarations)]);
+  });
+});
+
+describe('system Sass variables', () => {
+  it('emits no CSS when loaded', () => {
+    const css = compileString("@use 'theme/core/sys.variables';", {
+      loadPaths: [scssRoot],
+    }).css;
+
+    expect(css).toBe('');
   });
 });

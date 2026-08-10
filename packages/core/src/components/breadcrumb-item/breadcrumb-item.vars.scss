@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-breadcrumb-item-separator--color: var(--theme-si-sys-text-secondary);
-  --ix-breadcrumb-item-current--color: var(--theme-si-sys-text-secondary);
+  --ix-breadcrumb-item-separator--color: #{sys.$si-sys-text-secondary};
+  --ix-breadcrumb-item-current--color: #{sys.$si-sys-text-secondary};
 }

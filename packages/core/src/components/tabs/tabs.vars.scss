@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-tabs--outline-color--focus: var(--theme-si-sys-effects-focus);
-  --ix-tabs-indicator--background: var(--theme-si-sys-border-3);
-  --ix-tabs-indicator--background--selected: var(
-    --theme-si-sys-background-accent-hover
-  );
+  --ix-tabs--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-tabs-indicator--background: #{sys.$si-sys-border-3};
+  --ix-tabs-indicator--background--selected: #{sys.$si-sys-background-accent-hover};
   --ix-tabs-indicator--height: 0.0625rem;
 }

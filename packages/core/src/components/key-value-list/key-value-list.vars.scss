@@ -1,6 +1,6 @@
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-key-value-list-item--border-color: var(--theme-si-sys-border-4);
-  --ix-key-value-list-item--background--alternating: var(
-    --theme-si-sys-background-1
-  );
+  --ix-key-value-list-item--border-color: #{sys.$si-sys-border-4};
+  --ix-key-value-list-item--background--alternating: #{sys.$si-sys-background-1};
 }

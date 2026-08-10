@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
   --ix-menu-settings-overlay--background: var(--theme-color-backdrop-3);
-  --ix-menu-settings-overlay-header--color: var(--theme-si-sys-text-primary);
+  --ix-menu-settings-overlay-header--color: #{sys.$si-sys-text-primary};
 }

@@ -7,29 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-textarea--background--invalid: var(--theme-si-sys-background-1);
-  --ix-textarea--background--invalid--hover: var(--theme-si-sys-background-4);
-  --ix-textarea--background--warning: var(--theme-si-sys-background-1);
-  --ix-textarea--background--warning--hover: var(--theme-si-sys-background-4);
-  --ix-textarea--border-color--info: var(--theme-si-sys-border-information);
-  --ix-textarea--border-color--info--active: var(
-    --theme-si-sys-border-information
-  );
-  --ix-textarea--border-color--info--hover: var(
-    --theme-si-sys-border-information
-  );
-  --ix-textarea--border-color--invalid: var(--theme-si-sys-border-danger);
-  --ix-textarea--border-color--invalid--active: var(
-    --theme-si-sys-border-danger
-  );
-  --ix-textarea--border-color--invalid--hover: var(
-    --theme-si-sys-border-danger
-  );
-  --ix-textarea--border-color--warning--active: var(
-    --theme-si-sys-background-warning
-  );
-  --ix-textarea--border-color--warning--hover: var(
-    --theme-si-sys-background-warning
-  );
+  --ix-textarea--background--invalid: #{sys.$si-sys-background-1};
+  --ix-textarea--background--invalid--hover: #{sys.$si-sys-background-4};
+  --ix-textarea--background--warning: #{sys.$si-sys-background-1};
+  --ix-textarea--background--warning--hover: #{sys.$si-sys-background-4};
+  --ix-textarea--border-color--info: #{sys.$si-sys-border-information};
+  --ix-textarea--border-color--info--active: #{sys.$si-sys-border-information};
+  --ix-textarea--border-color--info--hover: #{sys.$si-sys-border-information};
+  --ix-textarea--border-color--invalid: #{sys.$si-sys-border-danger};
+  --ix-textarea--border-color--invalid--active: #{sys.$si-sys-border-danger};
+  --ix-textarea--border-color--invalid--hover: #{sys.$si-sys-border-danger};
+  --ix-textarea--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-textarea--border-color--warning--hover: #{sys.$si-sys-background-warning};
 }

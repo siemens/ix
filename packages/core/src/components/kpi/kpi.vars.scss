@@ -7,14 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-kpi-display--border-color--alarm: var(--theme-si-sys-text-danger);
-  --ix-kpi-display--border-color--warning: var(--theme-si-sys-text-warning);
+  --ix-kpi-display--border-color--alarm: #{sys.$si-sys-text-danger};
+  --ix-kpi-display--border-color--warning: #{sys.$si-sys-text-warning};
   --ix-kpi--border-radius: var(--theme-default-border-radius);
-  --ix-kpi-display--background--active: var(--theme-si-sys-background-selected);
-  --ix-kpi-display--background--hover: var(--theme-si-sys-background-hover);
-  --ix-kpi-display-icon--color: var(--theme-si-sys-text-primary);
-  --ix-kpi-display-label--color: var(--theme-si-sys-text-secondary);
-  --ix-kpi-display-units--color: var(--theme-si-sys-text-primary);
-  --ix-kpi-display-value--color: var(--theme-si-sys-text-primary);
+  --ix-kpi-display--background--active: #{sys.$si-sys-background-selected};
+  --ix-kpi-display--background--hover: #{sys.$si-sys-background-hover};
+  --ix-kpi-display-icon--color: #{sys.$si-sys-text-primary};
+  --ix-kpi-display-label--color: #{sys.$si-sys-text-secondary};
+  --ix-kpi-display-units--color: #{sys.$si-sys-text-primary};
+  --ix-kpi-display-value--color: #{sys.$si-sys-text-primary};
 }

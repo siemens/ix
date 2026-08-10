@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-field-wrapper-icon--color--info: var(--theme-si-sys-text-information);
-  --ix-field-wrapper-icon--color--invalid: var(--theme-si-sys-text-danger);
-  --ix-field-wrapper-icon--color--valid: var(--theme-si-sys-text-success);
-  --ix-field-wrapper-icon--color--warning: var(--theme-si-sys-text-warning);
+  --ix-field-wrapper-icon--color--info: #{sys.$si-sys-text-information};
+  --ix-field-wrapper-icon--color--invalid: #{sys.$si-sys-text-danger};
+  --ix-field-wrapper-icon--color--valid: #{sys.$si-sys-text-success};
+  --ix-field-wrapper-icon--color--warning: #{sys.$si-sys-text-warning};
 }

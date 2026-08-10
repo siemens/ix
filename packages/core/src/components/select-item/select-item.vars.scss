@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-select-item--color: var(--theme-si-sys-text-primary);
-  --ix-select-item--background--selected: var(
-    --theme-si-sys-background-selected
-  );
+  --ix-select-item--color: #{sys.$si-sys-text-primary};
+  --ix-select-item--background--selected: #{sys.$si-sys-background-selected};
 }

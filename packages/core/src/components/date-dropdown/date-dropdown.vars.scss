@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
   --ix-date-dropdown-divider--border: var(--theme-x-weak-bdr-1);
-  --ix-date-dropdown--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-effects-focus};
   --ix-date-dropdown--focus--outline-offset: var(--theme-focus-outline-offset);
 }

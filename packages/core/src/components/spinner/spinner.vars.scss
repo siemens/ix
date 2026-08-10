@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
-  --ix-spinner--border-color: var(--theme-si-sys-text-secondary);
+  --ix-spinner--border-color: #{sys.$si-sys-text-secondary};
   --ix-spinner-track--border-color: var(--theme-color-component-3);
-  --ix-spinner-primary--border-color: var(--theme-si-sys-text-accent-hover);
-  --ix-spinner-primary-track--border-color: var(
-    --theme-si-sys-background-hover
-  );
+  --ix-spinner-primary--border-color: #{sys.$si-sys-text-accent-hover};
+  --ix-spinner-primary-track--border-color: #{sys.$si-sys-background-hover};
 }

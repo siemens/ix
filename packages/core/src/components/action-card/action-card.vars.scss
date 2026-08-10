@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'theme/core/sys.variables' as sys;
+
 :host {
   --ix-action-card--border-radius: var(--theme-default-border-radius);
   --ix-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
-  --ix-action-card--outline-color--focus: var(--theme-si-sys-effects-focus);
+  --ix-action-card--outline-color--focus: #{sys.$si-sys-effects-focus};
 }
