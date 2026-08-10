@@ -280,6 +280,7 @@ $blind-variants: (
 
 :host(.blind-outline[collapsed]) {
   .blind-header-wrapper {
+    box-sizing: border-box;
     border-bottom: solid var(--theme-blind--border-thickness)
       var(--theme-color-soft-bdr);
     border-radius: var(--theme-blind--border-radius);

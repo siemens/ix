@@ -16,6 +16,7 @@
   flex-direction: column;
   width: 100%;
   transition: var(--theme-default-time) ease-in-out;
+  --ix-card-accordion-expanded-height: 14.75rem;
 
   @include component.ix-component;
 
@@ -75,7 +76,7 @@
   }
 
   .expand-content.show {
-    height: 14.75rem;
+    height: var(--ix-card-accordion-expanded-height);
   }
 
   .expand-content-inner {
@@ -92,7 +93,7 @@
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
-    height: calc(14.75rem - 1rem);
+    height: calc(var(--ix-card-accordion-expanded-height) - 1rem);
     color: var(--theme-color-std-text);
     opacity: 1;
   }
