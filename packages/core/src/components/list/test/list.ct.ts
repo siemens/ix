@@ -356,9 +356,11 @@ regressionTest(
     await mount(`
     <div>
       <ix-list>
-        <ix-list-item label="Project Alpha">
-          <button slot="action">Persistent action</button>
-          <button slot="additional-actions">Additional action</button>
+        <ix-list-item label="Project Alpha" action-on-hover>
+          <div slot="action">
+            <button>First action</button>
+            <button>Second action</button>
+          </div>
         </ix-list-item>
         <ix-list-item label="Project Beta">
           <button slot="action">Inactive action</button>
@@ -370,28 +372,49 @@ regressionTest(
 
     const firstItem = page.locator('ix-list-item').first();
     const primaryAction = firstItem.locator('.primary-action');
-    const persistentAction = firstItem.locator('[slot="action"]');
-    const additionalAction = firstItem.locator('[slot="additional-actions"]');
+    const firstAction = firstItem.locator('[slot="action"] button').nth(0);
+    const secondAction = firstItem.locator('[slot="action"] button').nth(1);
 
     await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
     await expect(firstItem).toHaveClass(/\bhydrated\b/);
     await primaryAction.focus();
     await primaryAction.press('Tab');
-    await expect(persistentAction).toBeFocused();
+    await expect(firstAction).toBeFocused();
 
-    await persistentAction.press('Tab');
-    await expect(additionalAction).toBeFocused();
+    await firstAction.press('Tab');
+    await expect(secondAction).toBeFocused();
 
-    await additionalAction.press('Shift+Tab');
-    await expect(persistentAction).toBeFocused();
+    await secondAction.press('Shift+Tab');
+    await expect(firstAction).toBeFocused();
 
-    await persistentAction.press('ArrowLeft');
+    await firstAction.press('ArrowLeft');
     await expect(primaryAction).toBeFocused();
 
     await primaryAction.press('Tab');
-    await persistentAction.press('Tab');
-    await additionalAction.press('Tab');
+    await firstAction.press('Tab');
+    await secondAction.press('Tab');
     await expect(page.locator('#after-list')).toBeFocused();
+  }
+);
+
+regressionTest(
+  'traverses the selection checkbox separately from the primary action',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list>
+      <ix-list-item label="Project Alpha" checkbox></ix-list-item>
+    </ix-list>
+  `);
+
+    const item = page.locator('ix-list-item');
+    const primaryAction = item.locator('.primary-action');
+    const checkboxButton = item.locator('ix-checkbox button');
+
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    await primaryAction.focus();
+    await primaryAction.press('Tab');
+
+    await expect(checkboxButton).toBeFocused();
   }
 );
 

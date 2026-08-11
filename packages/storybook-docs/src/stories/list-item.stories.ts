@@ -23,17 +23,12 @@ const meta = {
     const list = document.createElement('ix-list');
     const item = genericRender('ix-list-item', args) as HTMLIxListItemElement;
 
-    const persistentAction = document.createElement('ix-button');
-    persistentAction.slot = 'action';
-    persistentAction.variant = 'tertiary';
-    persistentAction.textContent = 'Open';
+    const action = document.createElement('ix-button');
+    action.slot = 'action';
+    action.variant = 'tertiary';
+    action.textContent = 'Open';
 
-    const additionalAction = document.createElement('ix-button');
-    additionalAction.slot = 'additional-actions';
-    additionalAction.variant = 'tertiary';
-    additionalAction.textContent = 'Details';
-
-    item.append(persistentAction, additionalAction);
+    item.append(action);
     item.addEventListener('selectedChange', (event) => {
       item.selected = (event as CustomEvent<boolean>).detail;
     });
@@ -72,6 +67,13 @@ export const Filled: Story = {
     description: 'Updated 5 minutes ago',
     status: 'Online',
     variant: 'filled',
+  },
+};
+
+export const ActionOnHover: Story = {
+  args: {
+    label: 'Factory overview',
+    actionOnHover: true,
   },
 };
 

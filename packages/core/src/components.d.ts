@@ -2417,6 +2417,12 @@ export namespace Components {
      */
     interface IxListItem {
         /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 5.2.0
+          * @default false
+         */
+        "actionOnHover": boolean;
+        /**
           * Accessible label for the item icon.
           * @since 5.2.0
          */
@@ -9244,6 +9250,12 @@ declare namespace LocalJSX {
      */
     interface IxListItem {
         /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 5.2.0
+          * @default false
+         */
+        "actionOnHover"?: boolean;
+        /**
           * Accessible label for the item icon.
           * @since 5.2.0
          */
@@ -12354,6 +12366,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "checkbox": boolean;
         "hasDivider": boolean;
+        "actionOnHover": boolean;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;

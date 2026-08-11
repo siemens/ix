@@ -1697,14 +1697,14 @@ export declare interface IxList extends Components.IxList {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxListItem,
-  inputs: ['ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant']
+  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant'],
+  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant'],
   outputs: ['itemClick', 'selectedChange'],
 })
 export class IxListItem {

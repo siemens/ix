@@ -155,13 +155,14 @@ export class List {
   }
 
   private getActionElements(item: HTMLIxListItemElement) {
+    const selectionCheckbox = item.shadowRoot
+      ?.querySelector<HTMLIxCheckboxElement>('.selection-checkbox')
+      ?.shadowRoot?.querySelector<HTMLButtonElement>('button');
     const slotElements = Array.from(
-      item.querySelectorAll<HTMLElement>(
-        ':scope > [slot="action"], :scope > [slot="additional-actions"]'
-      )
+      item.querySelectorAll<HTMLElement>(':scope > [slot="action"]')
     );
 
-    return slotElements.flatMap((element) => {
+    const actionElements = slotElements.flatMap((element) => {
       if (element.matches(actionFocusableSelector)) {
         return [element];
       }
@@ -170,6 +171,10 @@ export class List {
         element.querySelectorAll<HTMLElement>(actionFocusableSelector)
       );
     });
+
+    return selectionCheckbox
+      ? [selectionCheckbox, ...actionElements]
+      : actionElements;
   }
 
   private setActionTabOrder(item: HTMLIxListItemElement, enabled: boolean) {

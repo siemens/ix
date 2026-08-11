@@ -33,9 +33,8 @@ import { makeRef } from '../utils/make-ref';
 export type ListItemVariant = 'ghost' | 'outline' | 'filled';
 
 /**
- * @slot default - Custom content replacing the standard icon, label, description, and status layout.
- * @slot action - Persistent trailing controls.
- * @slot additional-actions - Secondary controls revealed when the item is hovered or focused.
+ * @slot default - Non-interactive custom content replacing the standard icon, label, description, and status layout.
+ * @slot action - Interactive trailing controls that do not activate the item.
  * @since 5.2.0
  */
 
@@ -119,6 +118,12 @@ export class ListItem
   @Prop({ reflect: true }) hasDivider = false;
 
   /**
+   * Show action slot content only when the item is hovered or focused.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) actionOnHover = false;
+
+  /**
    * Emitted when the primary item surface is activated.
    * @since 5.2.0
    */
@@ -152,11 +157,10 @@ export class ListItem
     }
 
     this.itemClick.emit(this.hostElement);
+  }
 
-    if (this.checkbox) {
-      this.selected = !this.selected;
-      this.selectedChange.emit(this.selected);
-    }
+  private handleSelectedChange(event: CustomEvent<boolean>) {
+    this.selectedChange.emit(event.detail);
   }
 
   private handleDefaultSlotChange(event: Event) {
@@ -169,14 +173,6 @@ export class ListItem
   private renderStandardContent(labelId: string) {
     return (
       <div class="standard-content">
-        {this.checkbox ? (
-          <ix-checkbox
-            class="selection-checkbox"
-            checked={this.selected}
-            aria-hidden="true"
-            tabIndex={-1}
-          ></ix-checkbox>
-        ) : null}
         {this.icon ? (
           <ix-icon
             class="item-icon"
@@ -210,7 +206,6 @@ export class ListItem
     const hasInheritedLabel =
       !!this.inheritAriaAttributes['aria-label'] ||
       !!this.inheritAriaAttributes['aria-labelledby'];
-    const tooltip = this.tooltipText ?? this.label;
 
     return (
       <Host
@@ -244,10 +239,6 @@ export class ListItem
             type="button"
             tabindex={-1}
             disabled={this.disabled}
-            role={this.checkbox ? 'checkbox' : undefined}
-            aria-checked={
-              this.checkbox ? a11yBoolean(this.selected) : undefined
-            }
             aria-pressed={
               this.checkbox ? undefined : a11yBoolean(this.selected)
             }
@@ -262,9 +253,17 @@ export class ListItem
               onSlotchange={(event) => this.handleDefaultSlotChange(event)}
             ></slot>
           </button>
-          <div class="additional-actions" inert={this.disabled}>
-            <slot name="additional-actions"></slot>
-          </div>
+          {this.checkbox ? (
+            <ix-checkbox
+              class="selection-checkbox"
+              checked={this.selected}
+              disabled={this.disabled}
+              aria-label={
+                this.label ? `Select ${this.label}` : 'Select list item'
+              }
+              onCheckedChange={(event) => this.handleSelectedChange(event)}
+            ></ix-checkbox>
+          ) : null}
           <div class="action" inert={this.disabled}>
             <slot name="action"></slot>
           </div>

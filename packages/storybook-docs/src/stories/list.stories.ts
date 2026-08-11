@@ -35,20 +35,15 @@ const meta = {
     list.setAttribute('aria-label', 'Projects');
 
     const firstItem = createItem('Factory overview', {
+      actionOnHover: true,
       description: 'Updated 5 minutes ago',
       status: 'Online',
     });
-    const persistentAction = document.createElement('ix-button');
-    persistentAction.slot = 'action';
-    persistentAction.variant = 'tertiary';
-    persistentAction.textContent = 'Open';
-    firstItem.appendChild(persistentAction);
-
-    const additionalAction = document.createElement('ix-button');
-    additionalAction.slot = 'additional-actions';
-    additionalAction.variant = 'tertiary';
-    additionalAction.textContent = 'Details';
-    firstItem.appendChild(additionalAction);
+    const action = document.createElement('ix-button');
+    action.slot = 'action';
+    action.variant = 'tertiary';
+    action.textContent = 'Open';
+    firstItem.appendChild(action);
 
     list.append(
       firstItem,

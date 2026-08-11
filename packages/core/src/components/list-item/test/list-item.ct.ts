@@ -14,7 +14,6 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
     <ix-list>
       <ix-list-item label="Project Alpha" description="Updated today">
         <button slot="action" aria-label="Open project">Open</button>
-        <button slot="additional-actions" aria-label="More actions">More</button>
       </ix-list-item>
     </ix-list>
   `);
@@ -89,7 +88,7 @@ regressionTest(
 );
 
 regressionTest(
-  'uses checkbox semantics and controlled selection',
+  'changes selection only when the checkbox is activated',
   async ({ mount, page }) => {
     await mount(
       `<ix-list-item label="Selectable" checkbox selected></ix-list-item>`
@@ -97,22 +96,34 @@ regressionTest(
 
     const item = page.locator('ix-list-item');
     const primaryAction = item.locator('.primary-action');
-    const selectedChange = item.evaluate(
-      (element) =>
-        new Promise<boolean>((resolve) => {
-          element.addEventListener('selectedChange', (event) =>
-            resolve((event as CustomEvent<boolean>).detail)
-          );
-        })
-    );
+    const selectedChanges = await item.evaluateHandle((element) => {
+      const details: boolean[] = [];
+      element.addEventListener('selectedChange', (event) =>
+        details.push((event as CustomEvent<boolean>).detail)
+      );
+      return details;
+    });
+    const itemClicks = await item.evaluateHandle((element) => {
+      const count = { value: 0 };
+      element.addEventListener('itemClick', () => count.value++);
+      return count;
+    });
 
-    await expect(primaryAction).toHaveAttribute('role', 'checkbox');
-    await expect(primaryAction).toHaveAttribute('aria-checked', 'true');
-    await expect(item.locator('ix-checkbox')).toHaveAttribute('checked', '');
-    await expect(item.locator('ix-checkbox')).toHaveAttribute('inert', '');
+    const checkbox = item.locator('ix-checkbox');
+
+    await expect(primaryAction).not.toHaveAttribute('role', 'checkbox');
+    await expect(primaryAction).not.toHaveAttribute('aria-checked', 'true');
+    await expect(checkbox).toHaveAttribute('checked', '');
+    await expect(checkbox).toHaveAttribute('aria-label', 'Select Selectable');
     await primaryAction.click();
+    expect(await selectedChanges.evaluate((details) => details)).toEqual([]);
+    await expect(primaryAction).toBeFocused();
+    await checkbox.locator('button').click();
 
-    expect(await selectedChange).toBe(false);
+    expect(await selectedChanges.evaluate((details) => details)).toEqual([
+      false,
+    ]);
+    expect(await itemClicks.evaluate((count) => count.value)).toBe(1);
     await expect(item).toHaveAttribute('selected', '');
   }
 );
@@ -123,7 +134,6 @@ regressionTest(
     await mount(`
     <ix-list-item label="Project Alpha">
       <button slot="action">Action</button>
-      <button slot="additional-actions">Additional action</button>
     </ix-list-item>
   `);
 
@@ -136,31 +146,77 @@ regressionTest(
 
     await item.locator('.primary-action').click();
     await item.locator('[slot="action"]').click();
-    await item.locator('[slot="additional-actions"]').click();
 
     expect(await eventCounter.evaluate((counter) => counter.itemClick)).toBe(1);
   }
 );
 
 regressionTest(
-  'reveals additional actions on hover and focus',
+  'shows actions by default',
   async ({ mount, page }) => {
     await mount(`
     <ix-list-item label="Project Alpha">
-      <button slot="additional-actions">Additional action</button>
+      <button slot="action">Action</button>
+    </ix-list-item>
+  `);
+
+    await expect(page.locator('ix-list-item .action')).toHaveCSS(
+      'visibility',
+      'visible'
+    );
+  }
+);
+
+regressionTest(
+  'does not show the item pressed state for interactive controls',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list-item label="Project Alpha" checkbox>
+      <button slot="action">Action</button>
+    </ix-list-item>
+  `);
+
+    const itemSurface = page.locator('ix-list-item .item-surface');
+    const controls = [
+      page.locator('ix-list-item ix-checkbox button'),
+      page.locator('ix-list-item [slot="action"]'),
+    ];
+
+    for (const control of controls) {
+      await control.hover();
+      const hoverBackground = await itemSurface.evaluate(
+        (element) => getComputedStyle(element).backgroundColor
+      );
+
+      await page.mouse.down();
+      await expect(itemSurface).toHaveCSS(
+        'background-color',
+        hoverBackground
+      );
+      await page.mouse.up();
+    }
+  }
+);
+
+regressionTest(
+  'reveals actions on hover and focus when configured',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list-item label="Project Alpha" action-on-hover>
+      <button slot="action">Action</button>
     </ix-list-item>
   `);
 
     const item = page.locator('ix-list-item');
-    const additionalActions = item.locator('.additional-actions');
+    const action = item.locator('.action');
 
-    await expect(additionalActions).toHaveCSS('visibility', 'hidden');
+    await expect(action).toHaveCSS('visibility', 'hidden');
     await item.hover();
-    await expect(additionalActions).toHaveCSS('visibility', 'visible');
+    await expect(action).toHaveCSS('visibility', 'visible');
 
     await page.mouse.move(0, 0);
     await item.focus();
-    await expect(additionalActions).toHaveCSS('visibility', 'visible');
+    await expect(action).toHaveCSS('visibility', 'visible');
   }
 );
 

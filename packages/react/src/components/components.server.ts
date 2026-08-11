@@ -1177,7 +1177,8 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
         selected: 'selected',
         disabled: 'disabled',
         checkbox: 'checkbox',
-        hasDivider: 'has-divider'
+        hasDivider: 'has-divider',
+        actionOnHover: 'action-on-hover'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxListItem as StencilReactComponent<IxListItemElement, IxListItemEvents, Components.IxListItem>,
