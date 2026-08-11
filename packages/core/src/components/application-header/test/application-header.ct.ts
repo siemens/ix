@@ -32,6 +32,13 @@ test('renders application name as h1', async ({ mount, page }) => {
   await expect(heading).toBeVisible();
 });
 
+test('does not render h1 when name is omitted', async ({ mount, page }) => {
+  await mount(`<ix-application-header></ix-application-header>`);
+
+  const heading = page.locator('ix-application-header').locator('h1');
+  await expect(heading).toHaveCount(0);
+});
+
 test('renders', async ({ mount, page }) => {
   page.setViewportSize({
     height: 500,
