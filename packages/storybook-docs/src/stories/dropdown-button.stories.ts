@@ -32,6 +32,27 @@ export const Primary: Story = {
   },
 };
 
+export const WithDropdownItems: Story = {
+  args: {
+    label: 'Button',
+    variant: 'primary',
+  },
+  render: (args) => {
+    const container = genericRender('ix-dropdown-button', args);
+    const dropdownButton = container.querySelector('ix-dropdown-button')!;
+
+    ['Dropdown Item 1', 'Dropdown Item 2', 'Dropdown Item 3'].forEach(
+      (label) => {
+        const dropdownItem = document.createElement('ix-dropdown-item');
+        dropdownItem.label = label;
+        dropdownButton.appendChild(dropdownItem);
+      }
+    );
+
+    return container;
+  },
+};
+
 export const Secondary: Story = {
   args: {
     label: 'Button',
