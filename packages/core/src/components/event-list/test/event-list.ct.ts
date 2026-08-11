@@ -19,6 +19,66 @@ import 'jest';
 import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
+regressionTest(
+  'does not log anime.js warning on child mutation when animated is false (default)',
+  async ({ mount, page }) => {
+    const warnings: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'warning') {
+        warnings.push(msg.text());
+      }
+    });
+
+    await mount(`
+      <ix-event-list>
+        <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
+      </ix-event-list>
+    `);
+
+    await page.evaluate(() => {
+      const list = document.querySelector('ix-event-list');
+      const item = document.createElement('ix-event-list-item');
+      item.textContent = 'Item 2';
+      list!.appendChild(item);
+    });
+
+    await page.waitForTimeout(200);
+
+    const animeWarnings = warnings.filter((w) => w.includes('No target found'));
+    expect(animeWarnings).toHaveLength(0);
+  }
+);
+
+regressionTest(
+  'does not log anime.js warning on child mutation when animated is true',
+  async ({ mount, page }) => {
+    const warnings: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'warning') {
+        warnings.push(msg.text());
+      }
+    });
+
+    await mount(`
+      <ix-event-list animated>
+        <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
+      </ix-event-list>
+    `);
+
+    await page.evaluate(() => {
+      const list = document.querySelector('ix-event-list');
+      const item = document.createElement('ix-event-list-item');
+      item.textContent = 'Item 2';
+      list!.appendChild(item);
+    });
+
+    await page.waitForTimeout(300);
+
+    const animeWarnings = warnings.filter((w) => w.includes('No target found'));
+    expect(animeWarnings).toHaveLength(0);
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
