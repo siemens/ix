@@ -165,10 +165,8 @@ export class Pagination {
       onClick: () => this.selectPage(index),
       selected: this.selectedPage === index,
       ariaAttributes: {
-        'aria-label': `Go to ${this.i18nPage} ${index + 1}`,
-        ...(this.selectedPage === index
-          ? { 'aria-current': 'page', 'aria-selected': 'true' }
-          : {}),
+        'aria-label': `${this.i18nPage} ${index + 1}`,
+        ...(this.selectedPage === index ? { 'aria-current': 'page' } : {}),
       },
     };
 
@@ -187,6 +185,7 @@ export class Pagination {
     let start = 0;
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
+    const jump = Math.max(0, 2 * pageCount + 1);
 
     if (hasOverflowStart) {
       const baseButtonProps = {
@@ -203,7 +202,13 @@ export class Pagination {
       pageButtons.push(
         <BaseButton
           {...baseButtonProps}
-          ariaAttributes={{ 'aria-label': 'Jump backward 3 pages' }}
+          ariaAttributes={{
+            'aria-label': `Jump backward to ${this.i18nPage} ${
+              (hasOverflowEnd
+                ? this.selectedPage - jump
+                : this.count - this.maxCountPages) + 1
+            }`,
+          }}
         >
           ...
         </BaseButton>
@@ -244,7 +249,13 @@ export class Pagination {
       pageButtons.push(
         <BaseButton
           {...baseButtonProps}
-          ariaAttributes={{ 'aria-label': 'Jump forward 3 pages' }}
+          ariaAttributes={{
+            'aria-label': `Jump forward to ${this.i18nPage} ${
+              (hasOverflowStart
+                ? this.selectedPage + jump
+                : this.maxCountPages - 1) + 1
+            }`,
+          }}
         >
           ...
         </BaseButton>
