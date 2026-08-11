@@ -45,14 +45,16 @@ for (const { variant, expected, hasSecondaryClass } of variants) {
         `<ix-content-header ${variant} header-title="My Content Page"></ix-content-header>`
       );
 
-      const heading = page
-        .locator('ix-content-header')
-        .locator('h2.header-title');
+      const heading = page.getByRole('heading', {
+        level: 2,
+        name: 'My Content Page',
+      });
       await expect(heading).toBeVisible();
-      await expect(heading).toContainText('My Content Page');
 
       if (hasSecondaryClass) {
-        await expect(heading).toHaveClass(/\bsecondary\b/);
+        await expect(
+          page.locator('ix-content-header').locator('h2.header-title')
+        ).toHaveClass(/\bsecondary\b/);
       }
     }
   );

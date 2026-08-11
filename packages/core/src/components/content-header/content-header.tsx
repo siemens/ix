@@ -60,15 +60,17 @@ export class ContentHeader {
 
         <div class="titleGroup">
           <div class="headerTitleRow">
-            <h2
-              class={{
-                'header-title': true,
-                secondary: this.variant === 'secondary',
-                titleOverflow: true,
-              }}
-            >
-              {this.headerTitle}
-            </h2>
+            {this.headerTitle && (
+              <h2
+                class={{
+                  'header-title': true,
+                  secondary: this.variant === 'secondary',
+                  titleOverflow: true,
+                }}
+              >
+                {this.headerTitle}
+              </h2>
+            )}
             <div class="headerSlot">
               <slot name="header" />
             </div>

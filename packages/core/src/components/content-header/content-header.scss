@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/fonts';
+@use 'misc/common-variables' as vars;
 
 :host {
   display: flex;
@@ -30,12 +31,14 @@
 
     .header-title {
       @include fonts.typography-h3;
+
       margin: 0;
       padding: 0;
 
       &.secondary {
         @include fonts.typography-h4;
-        padding: 0.25rem 0;
+
+        padding: vars.$tiny-space 0;
       }
     }
 

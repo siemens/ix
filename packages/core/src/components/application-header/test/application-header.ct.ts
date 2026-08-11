@@ -25,11 +25,11 @@ test('renders application name as h1', async ({ mount, page }) => {
     `<ix-application-header name="Test Application"></ix-application-header>`
   );
 
-  const heading = page
-    .locator('ix-application-header')
-    .locator('h1.application-name');
+  const heading = page.getByRole('heading', {
+    level: 1,
+    name: 'Test Application',
+  });
   await expect(heading).toBeVisible();
-  await expect(heading).toContainText('Test Application');
 });
 
 test('renders', async ({ mount, page }) => {

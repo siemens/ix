@@ -406,7 +406,7 @@ export class ApplicationHeader {
             ></slot>
           </div>
           <div class="name">
-            <h1 class="application-name">{this.name}</h1>
+            {this.name && <h1 class="application-name">{this.name}</h1>}
             {this.nameSuffix && this.breakpoint !== 'sm' && (
               <ix-typography format="body-xs" class="application-name-suffix">
                 {this.nameSuffix}
