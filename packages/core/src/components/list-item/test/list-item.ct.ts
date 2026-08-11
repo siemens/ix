@@ -129,10 +129,11 @@ regressionTest(
 );
 
 regressionTest(
-  'emits itemClick for primary activation only',
+  'emits itemClick for non-interactive item areas only',
   async ({ mount, page }) => {
     await mount(`
-    <ix-list-item label="Project Alpha">
+    <ix-list-item label="Project Alpha" checkbox>
+      <span class="custom-content">Custom content</span>
       <button slot="action">Action</button>
     </ix-list-item>
   `);
@@ -145,27 +146,27 @@ regressionTest(
     });
 
     await item.locator('.primary-action').click();
+    await item.locator('.custom-content').click();
+    await item.locator('.item-surface').click({ position: { x: 2, y: 2 } });
+    await item.locator('ix-checkbox button').click();
     await item.locator('[slot="action"]').click();
 
-    expect(await eventCounter.evaluate((counter) => counter.itemClick)).toBe(1);
+    expect(await eventCounter.evaluate((counter) => counter.itemClick)).toBe(3);
   }
 );
 
-regressionTest(
-  'shows actions by default',
-  async ({ mount, page }) => {
-    await mount(`
+regressionTest('shows actions by default', async ({ mount, page }) => {
+  await mount(`
     <ix-list-item label="Project Alpha">
       <button slot="action">Action</button>
     </ix-list-item>
   `);
 
-    await expect(page.locator('ix-list-item .action')).toHaveCSS(
-      'visibility',
-      'visible'
-    );
-  }
-);
+  await expect(page.locator('ix-list-item .action')).toHaveCSS(
+    'visibility',
+    'visible'
+  );
+});
 
 regressionTest(
   'does not show the item pressed state for interactive controls',
@@ -189,10 +190,7 @@ regressionTest(
       );
 
       await page.mouse.down();
-      await expect(itemSurface).toHaveCSS(
-        'background-color',
-        hoverBackground
-      );
+      await expect(itemSurface).toHaveCSS('background-color', hoverBackground);
       await page.mouse.up();
     }
   }

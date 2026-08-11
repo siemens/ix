@@ -10,7 +10,6 @@ export const IxListItem: StencilVueComponent<JSX.IxListItem> = /*@__PURE__*/ def
   'variant',
   'label',
   'description',
-  'status',
   'icon',
   'ariaLabelIcon',
   'tooltipText',

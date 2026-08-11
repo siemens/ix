@@ -75,6 +75,14 @@ export const Spaced: Story = {
   },
 };
 
+export const ItemDefaults: Story = {
+  args: {
+    variant: 'outline',
+    checkbox: true,
+    actionOnHover: true,
+  },
+};
+
 export const Draggable: Story = {
   render: (args) => {
     const list = meta.render(args);

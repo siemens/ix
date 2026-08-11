@@ -17,6 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import type { ListItemVariant } from '../list-item/list-item';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 export type ListItemGap = 0 | 4 | 8 | 12;
@@ -42,6 +43,34 @@ const actionFocusableSelector = [
   'ix-split-button',
   'ix-toggle',
 ].join(',');
+
+type InheritedItemProperty =
+  | 'variant'
+  | 'disabled'
+  | 'checkbox'
+  | 'actionOnHover'
+  | 'hasDivider';
+
+const inheritedItemProperties: Array<{
+  property: InheritedItemProperty;
+  attribute: string;
+}> = [
+  { property: 'variant', attribute: 'variant' },
+  { property: 'disabled', attribute: 'disabled' },
+  { property: 'checkbox', attribute: 'checkbox' },
+  { property: 'actionOnHover', attribute: 'action-on-hover' },
+  { property: 'hasDivider', attribute: 'has-divider' },
+];
+
+const itemPropertyDefaults: Required<
+  Pick<HTMLIxListItemElement, InheritedItemProperty>
+> = {
+  variant: 'filled',
+  disabled: false,
+  checkbox: false,
+  actionOnHover: false,
+  hasDivider: false,
+};
 
 /**
  * @slot default - List items and optional group separators.
@@ -69,6 +98,30 @@ export class List {
   @Prop() itemGap: ListItemGap = 12;
 
   /**
+   * Default visual variant for list items that do not define their own variant.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) variant?: ListItemVariant;
+
+  /**
+   * Default disabled state for list items that do not define their own state.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) disabled?: boolean;
+
+  /**
+   * Display selection checkboxes on list items that do not define their own setting.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) checkbox?: boolean;
+
+  /**
+   * Show action content on hover or focus for list items that do not define their own setting.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) actionOnHover?: boolean;
+
+  /**
    * Enable drag-and-drop reordering of direct list items.
    * @since 5.2.0
    */
@@ -90,13 +143,29 @@ export class List {
   private dragPointerId?: number;
   private dragStartY = 0;
   private readonly originalActionTabIndex = new WeakMap<HTMLElement, string>();
+  private readonly inheritedItemValues = new WeakMap<
+    HTMLIxListItemElement,
+    Partial<Record<InheritedItemProperty, ListItemVariant | boolean>>
+  >();
+  private readonly overriddenItemProperties = new WeakMap<
+    HTMLIxListItemElement,
+    Set<InheritedItemProperty>
+  >();
   private readonly mutationObserver = createMutationObserver(() =>
     this.synchronizeItems()
   );
 
   componentDidLoad() {
     this.mutationObserver.observe(this.hostElement, {
-      attributeFilter: ['disabled', 'hidden', 'slot'],
+      attributeFilter: [
+        'action-on-hover',
+        'checkbox',
+        'disabled',
+        'has-divider',
+        'hidden',
+        'slot',
+        'variant',
+      ],
       attributes: true,
       childList: true,
       subtree: true,
@@ -113,6 +182,15 @@ export class List {
     if (!this.draggable && this.draggedItem) {
       this.cancelReorder();
     }
+    this.synchronizeItems();
+  }
+
+  @Watch('variant')
+  @Watch('disabled')
+  @Watch('checkbox')
+  @Watch('actionOnHover')
+  @Watch('hasDivider')
+  protected itemDefaultsChanged() {
     this.synchronizeItems();
   }
 
@@ -200,7 +278,57 @@ export class List {
     });
   }
 
+  private applyItemDefaults(item: HTMLIxListItemElement) {
+    let overriddenProperties = this.overriddenItemProperties.get(item);
+    let inheritedValues = this.inheritedItemValues.get(item);
+
+    if (!overriddenProperties) {
+      overriddenProperties = new Set(
+        inheritedItemProperties
+          .filter(({ attribute }) => item.hasAttribute(attribute))
+          .map(({ property }) => property)
+      );
+      this.overriddenItemProperties.set(item, overriddenProperties);
+    }
+
+    if (!inheritedValues) {
+      inheritedValues = {};
+      this.inheritedItemValues.set(item, inheritedValues);
+    }
+
+    inheritedItemProperties.forEach(({ property }) => {
+      if (overriddenProperties.has(property)) {
+        return;
+      }
+
+      const inheritedValue = inheritedValues[property];
+      if (inheritedValue !== undefined && item[property] !== inheritedValue) {
+        overriddenProperties.add(property);
+        delete inheritedValues[property];
+        return;
+      }
+
+      const listValue = this[property];
+      if (listValue === undefined) {
+        if (inheritedValue !== undefined) {
+          const defaultValue = itemPropertyDefaults[property];
+          if (item[property] !== defaultValue) {
+            item[property] = defaultValue as never;
+          }
+          delete inheritedValues[property];
+        }
+        return;
+      }
+
+      if (item[property] !== listValue) {
+        item[property] = listValue as never;
+      }
+      inheritedValues[property] = listValue;
+    });
+  }
+
   private synchronizeItems() {
+    this.items.forEach((item) => this.applyItemDefaults(item));
     const enabledItems = this.enabledItems;
 
     if (!this.activeItem || !enabledItems.includes(this.activeItem)) {

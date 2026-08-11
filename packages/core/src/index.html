@@ -32,26 +32,14 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div style="width: 400px; margin: 12px">
-      <ix-list has-divider item-gap="0">
+      <ix-list has-divider item-gap="0" variant="ghost">
+        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
         <ix-list-item
-          variant="ghost"
-          icon="project"
-          label="test"
-        ></ix-list-item>
-        <ix-list-item
-          variant="ghost"
-          icon="project"
-          label="test 2"
-        ></ix-list-item>
-        <ix-list-item
-          variant="ghost"
-          icon="project"
-          label="test 3"
-        ></ix-list-item>
-        <ix-list-item
-          variant="ghost"
           icon="project"
           label="test 4"
+          has-divider="false"
         ></ix-list-item>
       </ix-list>
     </div>
@@ -75,8 +63,8 @@ SPDX-License-Identifier: MIT
     </div>
 
     <div style="width: 400px; margin: 12px; margin-top: 40px">
-      <ix-list>
-        <ix-list-item icon="project" label="test" action-on-hover>
+      <ix-list action-on-hover>
+        <ix-list-item icon="project" label="test">
           <div slot="action">
             <ix-icon-button
               icon="edit-document"
@@ -85,7 +73,7 @@ SPDX-License-Identifier: MIT
             <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
           </div>
         </ix-list-item>
-        <ix-list-item icon="project" label="test 2" action-on-hover>
+        <ix-list-item icon="project" label="test 2">
           <div slot="action">
             <ix-icon-button
               icon="edit-document"
@@ -94,7 +82,7 @@ SPDX-License-Identifier: MIT
             <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
           </div>
         </ix-list-item>
-        <ix-list-item icon="project" label="test 3" action-on-hover>
+        <ix-list-item icon="project" label="test 3">
           <div slot="action">
             <ix-icon-button
               icon="edit-document"
@@ -103,7 +91,7 @@ SPDX-License-Identifier: MIT
             <ix-icon-button icon="trashcan" variant="ghost"></ix-icon-button>
           </div>
         </ix-list-item>
-        <ix-list-item icon="project" label="test 4" action-on-hover>
+        <ix-list-item icon="project" label="test 4">
           <div slot="action">
             <ix-icon-button
               icon="edit-document"

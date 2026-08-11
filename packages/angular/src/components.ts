@@ -1558,14 +1558,14 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
-  inputs: ['draggable', 'hasDivider', 'itemGap']
+  inputs: ['actionOnHover', 'checkbox', 'disabled', 'draggable', 'hasDivider', 'itemGap', 'variant']
 })
 @Component({
   selector: 'ix-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['draggable', 'hasDivider', 'itemGap'],
+  inputs: ['actionOnHover', 'checkbox', 'disabled', 'draggable', 'hasDivider', 'itemGap', 'variant'],
   outputs: ['itemOrderChange'],
   standalone: false
 })
@@ -1590,14 +1590,14 @@ export declare interface IxList extends Components.IxList {
 
 
 @ProxyCmp({
-  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant']
+  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'status', 'tooltipText', 'variant'],
+  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant'],
   outputs: ['itemClick', 'selectedChange'],
   standalone: false
 })

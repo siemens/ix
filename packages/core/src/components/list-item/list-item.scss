@@ -12,6 +12,7 @@
 }
 
 .item-surface {
+  cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
@@ -43,7 +44,10 @@
   background-color: var(--theme-color-ghost--hover);
 }
 
-:host(:not(.disabled)) .item-surface:has(.primary-action:active) {
+:host(:not(.disabled))
+  .item-surface:active:not(
+    :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
+  ) {
   background-color: var(--theme-color-ghost--active);
 }
 
@@ -53,19 +57,24 @@
 }
 
 :host([variant='filled']:not(.disabled))
-  .item-surface:has(.primary-action:active),
-:host(.selected:not(.disabled)) .item-surface:has(.primary-action:active) {
+  .item-surface:active:not(
+    :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
+  ),
+:host(.selected:not(.disabled))
+  .item-surface:active:not(
+    :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
+  ) {
   background-color: var(--theme-color-component-1--active);
 }
 
-:host(.has-divider) .item-surface,
-:host-context(ix-list.has-divider) .item-surface {
+:host(.has-divider) .item-surface {
   border-bottom-color: var(--theme-color-soft-bdr);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .primary-action {
+  cursor: pointer;
   display: block;
   flex: 1 1 auto;
   min-width: 0;
@@ -76,7 +85,6 @@
   color: inherit;
   background: transparent;
   text-align: start;
-  cursor: pointer;
 }
 
 .primary-action:focus-visible::after {

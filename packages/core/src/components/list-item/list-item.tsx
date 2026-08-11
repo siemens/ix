@@ -32,6 +32,22 @@ import { makeRef } from '../utils/make-ref';
 
 export type ListItemVariant = 'ghost' | 'outline' | 'filled';
 
+const interactiveElementSelector = [
+  'a[href]',
+  'button',
+  'input',
+  'select',
+  'textarea',
+  '[contenteditable]',
+  '[tabindex]',
+  'ix-button',
+  'ix-checkbox',
+  'ix-dropdown-button',
+  'ix-icon-button',
+  'ix-split-button',
+  'ix-toggle',
+].join(',');
+
 /**
  * @slot default - Non-interactive custom content replacing the standard icon, label, description, and status layout.
  * @slot action - Interactive trailing controls that do not activate the item.
@@ -68,12 +84,6 @@ export class ListItem
    * @since 5.2.0
    */
   @Prop() description?: string;
-
-  /**
-   * Status displayed at the end of the standard item content.
-   * @since 5.2.0
-   */
-  @Prop() status?: string;
 
   /**
    * Icon displayed by the standard item layout.
@@ -151,8 +161,18 @@ export class ListItem
     }
   }
 
-  private activateItem() {
-    if (this.disabled) {
+  private activateItem(event: MouseEvent) {
+    if (
+      this.disabled ||
+      event.composedPath().some((element) => {
+        return (
+          element instanceof HTMLElement &&
+          element !== this.hostElement &&
+          element !== this.primaryActionRef.current &&
+          element.matches(interactiveElementSelector)
+        );
+      })
+    ) {
       return;
     }
 
@@ -191,11 +211,6 @@ export class ListItem
             <span class="description">{this.description}</span>
           ) : null}
         </span>
-        {this.status ? (
-          <ix-pill class="status" variant="neutral">
-            {this.status}
-          </ix-pill>
-        ) : null}
       </div>
     );
   }
@@ -212,6 +227,7 @@ export class ListItem
         id={hostId}
         role="listitem"
         aria-disabled={a11yBoolean(this.disabled)}
+        onClick={(event: MouseEvent) => this.activateItem(event)}
         class={{
           disabled: this.disabled,
           selected: this.selected,
@@ -245,7 +261,6 @@ export class ListItem
             aria-labelledby={
               !hasInheritedLabel && this.label ? labelId : undefined
             }
-            onClick={() => this.activateItem()}
           >
             {this.renderStandardContent(labelId)}
 

@@ -41,8 +41,3 @@
   border-top: 1px solid var(--theme-color-std-bdr);
   border-radius: 0;
 }
-
-:host(.has-divider) ::slotted(ix-list-item:not(:last-of-type)) {
-  --ix-list-item-divider-color: var(--theme-color-soft-bdr);
-  --ix-list-item-bottom-radius: 0;
-}

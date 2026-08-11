@@ -9,6 +9,10 @@ import { defineCustomElement as defineIxList } from '@siemens/ix/components/ix-l
 export const IxList: StencilVueComponent<JSX.IxList> = /*@__PURE__*/ defineContainer<JSX.IxList>('ix-list', defineIxList, [
   'hasDivider',
   'itemGap',
+  'variant',
+  'disabled',
+  'checkbox',
+  'actionOnHover',
   'draggable',
   'itemOrderChange'
 ], [

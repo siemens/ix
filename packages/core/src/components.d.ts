@@ -43,6 +43,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 import { ListItemVariant } from "./components/list-item/list-item";
+import { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -100,6 +101,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 export { ListItemVariant } from "./components/list-item/list-item";
+export { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2394,6 +2396,21 @@ export namespace Components {
      */
     interface IxList {
         /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 5.2.0
+         */
+        "disabled"?: boolean;
+        /**
           * Enable drag-and-drop reordering of direct list items.
           * @since 5.2.0
           * @default false
@@ -2411,6 +2428,11 @@ export namespace Components {
           * @default 12
          */
         "itemGap": ListItemGap;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 5.2.0
+         */
+        "variant"?: ListItemVariant;
     }
     /**
      * @since 5.2.0
@@ -2467,11 +2489,6 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * Status displayed at the end of the standard item content.
-          * @since 5.2.0
-         */
-        "status"?: string;
-        /**
           * Tooltip text for the primary item surface. Uses the item label by default.
           * @since 5.2.0
          */
@@ -2481,7 +2498,7 @@ export namespace Components {
           * @since 5.2.0
           * @default 'filled'
          */
-        "variant": ListItemVariant;
+        "variant": ListItemVariant1;
     }
     interface IxMenu {
         /**
@@ -9222,6 +9239,21 @@ declare namespace LocalJSX {
      */
     interface IxList {
         /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 5.2.0
+         */
+        "disabled"?: boolean;
+        /**
           * Enable drag-and-drop reordering of direct list items.
           * @since 5.2.0
           * @default false
@@ -9244,6 +9276,11 @@ declare namespace LocalJSX {
           * @since 5.2.0
          */
         "onItemOrderChange"?: (event: IxListCustomEvent<ListItemOrderChangeEvent>) => void;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 5.2.0
+         */
+        "variant"?: ListItemVariant;
     }
     /**
      * @since 5.2.0
@@ -9310,11 +9347,6 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * Status displayed at the end of the standard item content.
-          * @since 5.2.0
-         */
-        "status"?: string;
-        /**
           * Tooltip text for the primary item surface. Uses the item label by default.
           * @since 5.2.0
          */
@@ -9324,7 +9356,7 @@ declare namespace LocalJSX {
           * @since 5.2.0
           * @default 'filled'
          */
-        "variant"?: ListItemVariant;
+        "variant"?: ListItemVariant1;
     }
     interface IxMenu {
         /**
@@ -12352,13 +12384,16 @@ declare namespace LocalJSX {
     interface IxListAttributes {
         "hasDivider": boolean;
         "itemGap": ListItemGap;
+        "variant": ListItemVariant;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "actionOnHover": boolean;
         "draggable": boolean;
     }
     interface IxListItemAttributes {
         "variant": ListItemVariant;
         "label": string;
         "description": string;
-        "status": string;
         "icon": string;
         "ariaLabelIcon": string;
         "tooltipText": string;

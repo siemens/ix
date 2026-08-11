@@ -305,23 +305,109 @@ regressionTest('applies item gap and dividers', async ({ mount, page }) => {
   await mount(`
     <ix-list item-gap="8" has-divider>
       <ix-list-item label="Project Alpha"></ix-list-item>
-      <ix-list-item label="Project Beta"></ix-list-item>
+      <ix-list-item label="Project Beta" has-divider="false"></ix-list-item>
     </ix-list>
   `);
 
   const list = page.locator('ix-list');
-  const firstItem = list.locator('ix-list-item').first();
+  const items = list.locator('ix-list-item');
   await expect(list.locator('.list')).toHaveCSS('gap', '8px');
+  await expect(items.nth(0)).toHaveAttribute('has-divider', '');
   await expect
     .poll(() =>
-      firstItem.evaluate((element) =>
-        getComputedStyle(element).getPropertyValue(
-          '--ix-list-item-divider-color'
-        )
-      )
+      items
+        .nth(0)
+        .locator('.item-surface')
+        .evaluate((element) => getComputedStyle(element).borderBottomColor)
     )
-    .not.toBe('');
+    .not.toBe('rgba(0, 0, 0, 0)');
+  await expect(items.nth(1)).not.toHaveAttribute('has-divider', '');
+  await expect(items.nth(1).locator('.item-surface')).toHaveCSS(
+    'border-bottom-color',
+    'rgba(0, 0, 0, 0)'
+  );
 });
+
+regressionTest(
+  'applies item defaults and preserves item overrides',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list variant="ghost" disabled checkbox action-on-hover>
+      <ix-list-item label="Inherited"></ix-list-item>
+      <ix-list-item label="Overridden" variant="outline"></ix-list-item>
+      <ix-list-item
+        label="Boolean overrides"
+        disabled="false"
+        checkbox="false"
+        action-on-hover="false"
+      ></ix-list-item>
+    </ix-list>
+  `);
+
+    const list = page.locator('ix-list');
+    const items = list.locator('ix-list-item');
+    const inheritedItem = items.nth(0);
+    const overriddenItem = items.nth(1);
+    const booleanOverrides = items.nth(2);
+
+    await expect(inheritedItem).toHaveAttribute('variant', 'ghost');
+    await expect(inheritedItem).toHaveAttribute('disabled', '');
+    await expect(inheritedItem).toHaveAttribute('checkbox', '');
+    await expect(inheritedItem).toHaveAttribute('action-on-hover', '');
+    await expect(overriddenItem).toHaveAttribute('variant', 'outline');
+    await expect(booleanOverrides).not.toHaveAttribute('disabled', '');
+    await expect(booleanOverrides).not.toHaveAttribute('checkbox', '');
+    await expect(booleanOverrides).not.toHaveAttribute('action-on-hover', '');
+
+    await overriddenItem.evaluate((item) => {
+      item.disabled = false;
+      item.checkbox = false;
+      item.actionOnHover = false;
+    });
+    await list.evaluate((element) => {
+      element.disabled = false;
+      element.checkbox = false;
+      element.actionOnHover = false;
+    });
+    await list.evaluate((element) => {
+      element.disabled = true;
+      element.checkbox = true;
+      element.actionOnHover = true;
+    });
+
+    await expect(overriddenItem).not.toHaveAttribute('disabled', '');
+    await expect(overriddenItem).not.toHaveAttribute('checkbox', '');
+    await expect(overriddenItem).not.toHaveAttribute('action-on-hover', '');
+  }
+);
+
+regressionTest(
+  'applies item defaults to dynamic children and updates inherited values',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list variant="ghost">
+      <ix-list-item label="Existing"></ix-list-item>
+    </ix-list>
+  `);
+
+    const list = page.locator('ix-list');
+    await list.evaluate((element) => {
+      element.variant = 'outline';
+      const item = document.createElement('ix-list-item');
+      item.label = 'Dynamic';
+      element.appendChild(item);
+    });
+
+    await expect(list.locator('ix-list-item').nth(0)).toHaveAttribute(
+      'variant',
+      'outline'
+    );
+    await expect(list.locator('ix-list-item').nth(1)).toHaveAttribute(
+      'variant',
+      'outline'
+    );
+  }
+);
 
 regressionTest(
   'moves focus and skips disabled items',

@@ -1152,6 +1152,10 @@ export const IxList: StencilReactComponent<IxListElement, IxListEvents, Componen
     properties: {
         hasDivider: 'has-divider',
         itemGap: 'item-gap',
+        variant: 'variant',
+        disabled: 'disabled',
+        checkbox: 'checkbox',
+        actionOnHover: 'action-on-hover',
         draggable: 'draggable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -1170,7 +1174,6 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
         variant: 'variant',
         label: 'label',
         description: 'description',
-        status: 'status',
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
         tooltipText: 'tooltip-text',
