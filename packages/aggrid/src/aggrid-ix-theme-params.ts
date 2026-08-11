@@ -127,6 +127,6 @@ export const aggridIxThemeParams = {
   dragAndDropImageBorder: `false`,
   menuBorder: `false`,
   headerFontWeight: `700`,
-  inputBorder: `var(--theme-border-width-default) solid var(--theme-input--border-color)`,
-  inputFocusBorder: `var(--theme-focus-border-thickness) solid var(--theme-input--border-color--focus)`,
+  inputBorder: `var(--theme-border-width-default) solid var(--si-sys-border-2)`,
+  inputFocusBorder: `var(--theme-focus-border-thickness) solid var(--si-sys-border-1)`,
 };

@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 .ix-button-group {
-  position: relative;
-  display: inline-flex;
-  vertical-align: middle;
-
   ix-button:first-child {
     --ix-button-border-radius-right: 0;
   }
@@ -23,4 +19,10 @@
     --ix-button-border-radius-right: 0;
     --ix-button-border-radius-left: 0;
   }
+}
+
+.ix-button-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
 }

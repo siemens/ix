@@ -1,5 +1,6 @@
 ---
 '@siemens/ix': major
+'@siemens/ix-aggrid': patch
 ---
 
 Migrate remaining legacy `--theme-color-*` references in component styles to the new `si/sys` design tokens, per the SI Theme Token Migration Guide (v6.0 scope, including breaking direct/conditional mappings).
@@ -11,6 +12,9 @@ Migrate remaining legacy `--theme-color-*` references in component styles to the
 - Migrated legacy color names in component TypeScript, notification icons, custom-color examples, and typography's runtime color resolution to direct SI system tokens.
 - Fixed a stale, undefined `--theme-input--color--disabled` CSS custom property reference in the shared input styles (affecting `ix-input`, `ix-textarea`, `ix-number-input`, `ix-date-input`, `ix-time-input`) to correctly use the existing `--ix-input--color--disabled` component token, and corrected the `ix-message-bar` neutral border from the undefined `--si-sys-border-secondary` token to `--si-sys-border-neutral`.
 - **Breaking:** Renamed all Siemens system custom properties from `--theme-si-sys-*` to `--si-sys-*` and all Siemens reference custom properties from `--theme-si-classic-ref-*` / `--theme-si-ref-*` to `--si-ref-*`. This includes color, effects, shadows, and typography tokens; token values are unchanged.
+- **Breaking:** Removed the generated `--theme-<component>-*` aliases from the standard IX foundation and theme CSS. Components and global style utilities now own scoped, purpose-based `--ix-*` defaults. The generated aliases remain available through the opt-in `@siemens/ix/scss/deprecated/components` Sass mixin for downstream styles that still reference them, but they no longer customize migrated IX components.
+- **Breaking:** Removed the unused `legacy/components/dropdown`, `legacy/components/modal`, and `legacy/components/button-group` Sass modules. These modules were not included in the compiled IX CSS; downstream projects that imported them directly must remove those imports and use the corresponding IX components or supported global styles.
+- Updated the AG Grid theme integration to consume system and supported common tokens directly, preserving its checkbox, radio button, input, and header styling without the removed component aliases.
 - **Breaking:** Color properties forwarded to `@siemens/ix-icons`, including `iconColor` and event-list `itemColor`, now require a complete CSS custom-property name such as `--si-sys-text-danger`. The exported `NotificationColor` literals include the leading `--`.
 
 Minor visual changes are expected for classic light/dark themes wherever a `warning`/`critical`/`neutral` breaking color mapping or the shadow-token recombination applies; all other migrated tokens resolve to the same rendered colors as before. Visual regression snapshots were updated accordingly.

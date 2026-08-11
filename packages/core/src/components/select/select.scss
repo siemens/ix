@@ -123,7 +123,7 @@
 
           &:focus-visible {
             outline: 1px solid var(--ix-select--outline-color--focus);
-            outline-offset: var(--theme-btn--focus--outline-offset);
+            outline-offset: var(--ix-select--focus--outline-offset);
           }
         }
       }

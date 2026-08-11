@@ -9,29 +9,37 @@
 
 @use './mixins/hover';
 
+a[href] {
+  --ix-link--color: var(--theme-color-primary);
+  --ix-link--color--active: var(--theme-color-dynamic);
+  --ix-link--color--hover: var(--theme-color-dynamic);
+  --ix-link--color--visited: var(--theme-color-primary);
+  --ix-link--outline-color--focus: var(--theme-color-focus-bdr);
+}
+
 @mixin no-link-decoration {
   text-decoration: none;
   color: unset;
 }
 
 a[href] {
-  color: var(--theme-color-primary);
+  color: var(--ix-link--color);
   text-underline-offset: 0.2rem;
 
   @include hover.hover {
-    color: var(--theme-color-dynamic);
+    color: var(--ix-link--color--hover);
   }
 
   @include hover.active {
-    color: var(--theme-color-dynamic);
+    color: var(--ix-link--color--active);
   }
 
   @include hover.visited {
-    color: var(--theme-color-primary);
+    color: var(--ix-link--color--visited);
   }
 
   @include hover.focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-link--outline-color--focus);
     outline-offset: 0.2rem;
   }
 

@@ -393,6 +393,6 @@ $outline-border-width: 0.0625rem;
 
 :host(.attachment-chip) {
   .chip-wrap {
-    border-radius: var(--theme-btn--border-radius);
+    border-radius: var(--ix-chip-attachment--border-radius);
   }
 }

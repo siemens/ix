@@ -78,7 +78,7 @@ function chipMatrixPair(
           variant="custom"
           outline
           background="var(--theme-chart-11)"
-          chip-color="var(--theme-chip-outline--color)"
+          chip-color="var(--si-sys-text-primary)"
           ?closable=${closable}
           >${label}</ix-chip
         >
@@ -96,7 +96,7 @@ function chipMatrixPair(
         variant="custom"
         outline
         background="var(--theme-chart-11)"
-        chip-color="var(--theme-chip-outline--color)"
+        chip-color="var(--si-sys-text-primary)"
         ?closable=${closable}
         >${label}</ix-chip
       >
@@ -134,8 +134,7 @@ function chipMatrixOverview(): TemplateResult {
     closable: boolean,
     showIcon: boolean
   ): TemplateResult => html`
-    ${colheads}
-    ${chipMatrixDefaultPair(closable, showIcon)}
+    ${colheads} ${chipMatrixDefaultPair(closable, showIcon)}
     ${CHIP_MATRIX_VARIANTS.map((v) => chipMatrixPair(v, closable, showIcon))}
   `;
 

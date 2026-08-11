@@ -8,6 +8,14 @@
  */
 @use 'mixins/fonts';
 
+.typography-weight-bold {
+  --ix-typography--emphasis-font-weight: 700;
+}
+
+a {
+  --ix-typography--link-color: var(--theme-color-primary);
+}
+
 @mixin font-label {
   .typography-label {
     @include fonts.typography-label;
@@ -126,11 +134,11 @@
   }
 
   .typography-weight-bold {
-    font-weight: 700 !important;
+    font-weight: var(--ix-typography--emphasis-font-weight) !important;
   }
 
   a {
-    color: var(--theme-color-primary);
+    color: var(--ix-typography--link-color);
   }
 }
 
