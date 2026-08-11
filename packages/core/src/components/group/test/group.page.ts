@@ -23,7 +23,7 @@ export class GroupPage {
     return this.page.locator('ix-group').first();
   }
 
-  /** Stable across Expand/Collapse accessible-name changes. */
+  /** Prefer test id: select and expand can share the same accessible name. */
   get expandButton(): Locator {
     return this.host.getByTestId('expand-collapsed-button');
   }
@@ -40,8 +40,9 @@ export class GroupPage {
     return this.host.locator('ix-dropdown');
   }
 
-  selectButton(name: string | RegExp = 'Header text'): Locator {
-    return this.host.getByRole('button', { name, exact: true });
+  /** Header select control (`aria-pressed`); not the expand disclosure. */
+  selectButton(_name: string | RegExp = 'Header text'): Locator {
+    return this.host.locator('button.group-header-select');
   }
 
   itemButton(name: string | RegExp): Locator {
@@ -93,9 +94,9 @@ export class GroupPage {
   }
 
   async expectNoSelectButton(
-    name: string | RegExp = 'Header text'
+    _name: string | RegExp = 'Header text'
   ): Promise<void> {
-    await expect(this.selectButton(name)).toHaveCount(0);
+    await expect(this.selectButton()).toHaveCount(0);
   }
 
   async expectExpandIconDecorative(): Promise<void> {

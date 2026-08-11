@@ -199,7 +199,7 @@ regressionTest(
 
     await group.expectExpandAria({
       expanded: false,
-      accessibleName: 'Expand Header text',
+      accessibleName: 'Header text',
     });
     await group.expectExpandControlsContent();
     await group.expectExpandIconDecorative();
@@ -207,7 +207,7 @@ regressionTest(
     await group.clickExpand();
     await group.expectExpandAria({
       expanded: true,
-      accessibleName: 'Collapse Header text',
+      accessibleName: 'Header text',
     });
   }
 );

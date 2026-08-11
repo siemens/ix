@@ -87,20 +87,6 @@ export class Group
   @Prop() expandOnHeaderClick = false;
 
   /**
-   * ARIA label prefix for the expand action
-   *
-   * @since 5.2.0
-   */
-  @Prop() i18nExpandGroup = 'Expand';
-
-  /**
-   * ARIA label prefix for the collapse action
-   *
-   * @since 5.2.0
-   */
-  @Prop() i18nCollapseGroup = 'Collapse';
-
-  /**
    * Emits when whole group gets selected.
    */
   @Event() selectGroup!: EventEmitter<boolean>;
@@ -154,11 +140,12 @@ export class Group
     return this.hostElement.shadowRoot?.querySelector('.group-content');
   }
 
+  /**
+   * Accessible name for the expand disclosure control.
+   * Uses the header text only; expanded/collapsed state comes from **aria-expanded**.
+   */
   private getExpandButtonLabel() {
-    const action = this.expanded
-      ? this.i18nCollapseGroup
-      : this.i18nExpandGroup;
-    return this.header ? `${action} ${this.header}` : action;
+    return this.header || undefined;
   }
 
   private getSelectButtonLabel() {
