@@ -21,6 +21,11 @@ import ApplicationAppSwitchExample from '../preview-examples/application-app-swi
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -47,6 +52,10 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -182,6 +191,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
+import Popover from '../preview-examples/popover';
 import PopoverNews from '../preview-examples/popover-news';
 import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
@@ -333,6 +343,26 @@ const routes: Routes = [
         component: Avatar,
       },
       {
+        path: 'badge',
+        component: Badge,
+      },
+      {
+        path: 'badge-counter',
+        component: BadgeCounter,
+      },
+      {
+        path: 'badge-dot',
+        component: BadgeDot,
+      },
+      {
+        path: 'badge-label',
+        component: BadgeLabel,
+      },
+      {
+        path: 'badge-status-icon',
+        component: BadgeStatusIcon,
+      },
+      {
         path: 'blind-header-actions',
         component: BlindHeaderActions,
       },
@@ -416,6 +446,22 @@ const routes: Routes = [
       {
         path: 'category-filter',
         component: CategoryFilter,
+      },
+      {
+        path: 'chat',
+        component: Chat,
+      },
+      {
+        path: 'chat-ai-message',
+        component: ChatAiMessage,
+      },
+      {
+        path: 'chat-input',
+        component: ChatInput,
+      },
+      {
+        path: 'chat-user-message',
+        component: ChatUserMessage,
       },
       {
         path: 'checkbox-indeterminate',
@@ -824,6 +870,7 @@ const routes: Routes = [
       { path: 'pane-layout', component: PaneLayout },
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
+      { path: 'popover', component: Popover },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'radio', component: Radio },
@@ -874,10 +921,6 @@ const routes: Routes = [
         component: Pill,
       },
       { path: 'pill-variants', component: PillVariants },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
       {
         path: 'push-card',
         component: PushCard,

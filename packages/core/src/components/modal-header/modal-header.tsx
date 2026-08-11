@@ -20,6 +20,9 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 import { iconClose } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Modal header content.
+ */
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',

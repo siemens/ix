@@ -120,7 +120,7 @@ export function tryFocusElement(
     return;
   }
   try {
-    element.focus(options as DomFocusOptions);
+    element.focus(options);
   } catch {}
 }
 
@@ -184,7 +184,8 @@ export const getHostElement = (element: HTMLElement): HTMLElement => {
 
 export const focusElementInContext = <T extends HTMLElement>(
   hostToFocus: HTMLElement | null | undefined,
-  fallbackElement: T
+  fallbackElement: T,
+  options?: IxFocusOptions
 ) => {
   let elementToFocus = hostToFocus;
 
@@ -196,9 +197,9 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 
   if (elementToFocus) {
-    focusElement(elementToFocus);
+    tryFocusElement(elementToFocus, options);
   } else {
-    focusElement(fallbackElement);
+    tryFocusElement(fallbackElement, options);
   }
 };
 

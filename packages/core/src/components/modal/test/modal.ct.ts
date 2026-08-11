@@ -260,10 +260,9 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
 
       await page.locator('[data-select-dropdown]').click();
 
-      const dropdownItem = page.getByRole('option', {
-        name: 'Item 1',
-        exact: true,
-      });
+      const dropdownItem = page.locator(
+        '#overflow-select ix-select-item[value="2"]'
+      );
       await expect(dropdownItem).toBeVisible();
 
       const modalBox = await modalDialog.boundingBox();

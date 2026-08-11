@@ -33,6 +33,9 @@ interface MessageTypeConfig {
   color: NotificationColor;
 }
 
+/**
+ * @slot default - Message content.
+ */
 @Component({
   tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',

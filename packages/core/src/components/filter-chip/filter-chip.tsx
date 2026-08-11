@@ -18,6 +18,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @slot default - Filter chip label.
+ */
 @Component({
   tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',
@@ -35,6 +38,13 @@ export class FilterChip {
    * If true the filter chip will be in readonly mode
    */
   @Prop() readonly = false;
+
+  /**
+   * If true the close button will not be rendered.
+   * Primarily used for overflow chip.
+   *
+   */
+  @Prop() hideCloseButton = false;
 
   /**
    * ARIA label for the close icon button
@@ -56,13 +66,17 @@ export class FilterChip {
   render() {
     return (
       <Host
-        class={{ disabled: this.disabled, readonly: this.readonly }}
+        class={{
+          disabled: this.disabled,
+          readonly: this.readonly,
+          'hide-close-button': this.hideCloseButton,
+        }}
         title={this.hostElement.textContent}
       >
         <div class="slot-container">
           <slot></slot>
         </div>
-        {!this.disabled && !this.readonly ? (
+        {!this.disabled && !this.readonly && !this.hideCloseButton ? (
           <ix-icon-button
             variant="tertiary"
             oval

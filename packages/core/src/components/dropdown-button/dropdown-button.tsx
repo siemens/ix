@@ -43,6 +43,10 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 import { closestPassShadow } from '../utils/shadow-dom';
 
+/**
+ * @slot button-label - Custom content displayed next to the button label.
+ * @slot default - Dropdown items.
+ */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',

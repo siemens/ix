@@ -21,8 +21,31 @@
 
   @include component.ix-component;
 
+
+  button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+    text-align: start;
+    padding: 0;
+    border: 0;
+    border-radius: var(--theme-btn--border-radius);
+    box-shadow: initial;
+
+    &:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+
+    &[disabled] {
+      cursor: default;
+    }
+  }
+
   ix-card {
     width: 100%;
     height: 100%;
   }
 }
+

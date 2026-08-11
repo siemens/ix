@@ -18,5 +18,6 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'href',
   'target',
   'rel',
-  'isCategory'
+  'isCategory',
+  'menuCategoryLabel'
 ]);

@@ -7,12 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h } from '@stencil/core';
+
+type FocusProxyProps = {
+  hostId: string;
+  otherProps: Record<string, string | boolean | undefined>;
+};
+
 /**
  * Add a focus proxy element to the DOM to allow for better keyboard navigation and accessibility.
  *
  * Important: Also import the focus proxy mixin in the host component's scss file to ensure the proxy is visually hidden but still accessible to screen readers and keyboard navigation.
  */
-export const FocusProxy = (props: { hostId: string; otherProps: any }) => {
+export const FocusProxy = (props: FocusProxyProps) => {
   return (
     <ul
       class="proxy-list"
@@ -32,16 +38,18 @@ export const updateFocusProxyList = <T extends HTMLElement>(
   modifyProxyElement?: (item: T, proxyElement: HTMLLIElement) => void
 ) => {
   if (proxyListElement && items.length > 0) {
-    const top =
-      items[0].getBoundingClientRect().top -
-      items[0].getBoundingClientRect().height +
-      8;
+    const itemRect = items[0].getBoundingClientRect();
+    const containerRect = (
+      proxyListElement.offsetParent ?? proxyListElement.parentElement
+    )?.getBoundingClientRect();
+    const top = containerRect
+      ? Math.max(0, itemRect.top - containerRect.top - itemRect.height + 8)
+      : 0;
 
     proxyListElement.innerHTML = '';
     proxyListElement.style.top = top + 'px';
     proxyListElement.style.padding = '0px';
     proxyListElement.style.margin = '0px';
-    proxyListElement.innerHTML = '';
     items.forEach((item) => {
       const li = document.createElement('li');
       li.id = item.id + '-' + PROXY_LISTITEM_ID_SUFFIX;

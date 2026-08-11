@@ -29,6 +29,9 @@ import { DefaultMixins } from '../utils/internal/component';
 import { InheritAriaAttributesMixin } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+/**
+ * @slot default - Tab items.
+ */
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',

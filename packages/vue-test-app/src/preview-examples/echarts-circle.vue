@@ -51,10 +51,10 @@ function getOptions(): EChartsOption {
     legend: {
       icon: 'rect',
       bottom: '0',
-      left: '0',
     },
     series: [
       {
+        bottom: 16,
         name: 'OS Share',
         type: 'pie',
         radius: ['60%', '90%'],

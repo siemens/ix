@@ -30,6 +30,11 @@ import ApplicationAppSwitchExample from '../preview-examples/application-app-swi
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -56,6 +61,10 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -193,6 +202,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
+import Popover from '../preview-examples/popover';
 import PopoverNews from '../preview-examples/popover-news';
 import ProgressIndicator from '../preview-examples/progress-indicator';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
@@ -287,6 +297,11 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AvatarImage,
     AvatarInitials,
     Avatar,
+    Badge,
+    BadgeCounter,
+    BadgeDot,
+    BadgeLabel,
+    BadgeStatusIcon,
     BlindHeaderActions,
     BlindVariants,
     Blind,
@@ -311,6 +326,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CardList,
     CategoryFilterSuggestions,
     CategoryFilter,
+    Chat,
+    ChatAiMessage,
+    ChatInput,
+    ChatUserMessage,
     CheckboxIndeterminate,
     Checkbox,
     Chip,
@@ -426,6 +445,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     PaneLayout,
     Pill,
     PillVariants,
+    Popover,
     PopoverNews,
     Radiobutton,
     Radio,

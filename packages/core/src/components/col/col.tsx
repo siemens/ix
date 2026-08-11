@@ -13,6 +13,9 @@ import type { ColumnSize } from './col.types';
 
 type GridBreakpoint = Breakpoint | '';
 
+/**
+ * @slot default - Column content.
+ */
 @Component({
   tag: 'ix-col',
   styleUrl: 'col.scss',
