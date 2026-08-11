@@ -133,6 +133,8 @@ export class DropdownButton
   @State() dropdownShow = false;
 
   private inheritAriaAttributes: A11yAttributes = {};
+  private hostAriaLabel?: string;
+  private renderedAriaLabel?: string;
 
   private dropdownButtonId = this.getHostElementId();
 
@@ -180,6 +182,12 @@ export class DropdownButton
   }
 
   override componentWillRender(): Promise<void> | void {
+    const hostAriaLabel =
+      this.hostElement.getAttribute('aria-label') ?? undefined;
+    if (hostAriaLabel !== this.renderedAriaLabel) {
+      this.hostAriaLabel = hostAriaLabel;
+    }
+
     this.hostContext = {
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
       datePicker: !!closestPassShadow(this.hostElement, 'ix-date-picker'),
@@ -210,8 +218,16 @@ export class DropdownButton
   }
 
   override render() {
+    const ariaLabel =
+      this.hostAriaLabel ??
+      this.ariaLabelDropdownButton ??
+      this.label ??
+      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown');
+    this.renderedAriaLabel = ariaLabel;
+
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
+      'aria-label': ariaLabel,
       'aria-haspopup': 'true',
       'aria-disabled': a11yBoolean(this.disabled),
       'aria-expanded': a11yBoolean(this.dropdownShow),
@@ -247,12 +263,18 @@ export class DropdownButton
         tabIndex={this.disabled ? -1 : 0}
         {...ariaAttributes}
       >
-        <div class="dropdown-button">
+        <div
+          class={{
+            'dropdown-button': true,
+            [this.variant]: true,
+          }}
+        >
           {this.label || this.label === null ? (
             <ix-button
               {...commonProperties}
               class={'internal-button'}
               alignment="start"
+              inert={true}
               ref={(ref) => forceTabIndex(ref, -1)}
               ariaLabelButton={
                 this.ariaLabelDropdownButton ??
@@ -262,6 +284,7 @@ export class DropdownButton
               <div class={'content'}>
                 {this.icon ? (
                   <ix-icon
+                    aria-hidden="true"
                     name={this.icon}
                     size="24"
                     class={'dropdown-icon'}
@@ -287,6 +310,7 @@ export class DropdownButton
               <ix-icon-button
                 {...commonProperties}
                 icon={this.icon}
+                inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
                 aria-label={
                   this.ariaLabelDropdownButton ??
