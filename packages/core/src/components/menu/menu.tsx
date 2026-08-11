@@ -230,7 +230,20 @@ export class Menu {
   }
 
   get menuNavigationContainer(): HTMLDivElement {
-    return this.menu!.querySelector('.menu-navigation')!;
+    const menu = this.menu;
+
+    if (!menu) {
+      throw new Error('Menu element not found');
+    }
+
+    const menuNavigationContainer =
+      menu.querySelector<HTMLDivElement>('.menu-navigation');
+
+    if (!menuNavigationContainer) {
+      throw new Error('Menu navigation container not found');
+    }
+
+    return menuNavigationContainer;
   }
 
   get overlayContainer() {
@@ -852,7 +865,8 @@ export class Menu {
     event.preventDefault();
 
     if (isMenuNavigationFocused) {
-      let index = items.indexOf(this.lastFocusedMenuItem!);
+      const lastFocusedMenuItem = this.lastFocusedMenuItem;
+      let index = lastFocusedMenuItem ? items.indexOf(lastFocusedMenuItem) : -1;
 
       if (event.key === 'Home') {
         index = 0;
