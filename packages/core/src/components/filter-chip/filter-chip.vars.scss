@@ -12,7 +12,7 @@
 :host {
   --ix-filter-chip--border-width: var(--theme-focus--border-thickness);
   --ix-filter-chip--background: transparent;
-  --ix-filter-chip--border-color--disabled: var(--theme-color-component-4);
+  --ix-filter-chip--border-color--disabled: #{sys.$si-sys-border-3};
   --ix-filter-chip--color--disabled: #{sys.$si-sys-text-disabled};
   --ix-filter-chip--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-filter-chip--background--active: #{sys.$si-sys-background-accent-secondary-active};

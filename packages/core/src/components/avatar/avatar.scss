@@ -116,7 +116,7 @@
     }
   }
 
-  @include button-mixin.btn-base-variant('tertiary');
+  @include button-mixin.btn-base-variant('subtle-tertiary');
 
   button:focus-visible {
     outline: 1px solid var(--ix-avatar--outline-color--focus);
