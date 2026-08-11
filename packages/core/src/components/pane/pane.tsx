@@ -785,7 +785,7 @@ export class Pane {
               }
               iconColor={
                 this.expanded && (this.isMobile || this.hideOnCollapse)
-                  ? 'si-sys-text-secondary'
+                  ? '--si-sys-text-secondary'
                   : undefined
               }
               variant="subtle-tertiary"

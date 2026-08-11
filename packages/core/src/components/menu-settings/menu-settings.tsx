@@ -129,7 +129,7 @@ export class MenuSettings {
             variant="tertiary"
             size="24"
             icon={iconClose}
-            iconColor="si-sys-text-secondary"
+            iconColor="--si-sys-text-secondary"
             aria-label={this.ariaLabelCloseButton}
             onClick={(e) =>
               this.close.emit({

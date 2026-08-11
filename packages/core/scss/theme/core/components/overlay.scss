@@ -15,5 +15,5 @@
 @mixin setVars {
   --theme-overlay--background: var(--theme-color-backdrop);
   --theme-overlay-header--background: rgba(0, 0, 0, 0);
-  --theme-overlay-header--color: var(--theme-si-sys-text-primary);
+  --theme-overlay-header--color: var(--si-sys-text-primary);
 }

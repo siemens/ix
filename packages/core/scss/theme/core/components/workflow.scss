@@ -15,20 +15,20 @@
 @mixin setVars {
   --theme-workflow--border-radius: 1px;
   --theme-workflow-step--background: rgba(0, 0, 0, 0);
-  --theme-workflow-step--background--active: var(--theme-si-sys-background-selected);
+  --theme-workflow-step--background--active: var(--si-sys-background-selected);
   --theme-workflow-step--background--disabled: rgba(0, 0, 0, 0);
-  --theme-workflow-step--background--hover: var(--theme-si-sys-background-hover);
-  --theme-workflow-step--background--selected: var(--theme-si-sys-background-selected);
-  --theme-workflow-step--color: var(--theme-si-sys-text-primary);
-  --theme-workflow-step--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-workflow-step-icon--background: var(--theme-si-sys-background-0);
-  --theme-workflow-step-icon-default--color: var(--theme-si-sys-text-secondary);
-  --theme-workflow-step-icon-default--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-workflow-step-icon-default--color--selected: var(--theme-si-sys-text-accent-hover);
-  --theme-workflow-step-icon-done--color: var(--theme-si-sys-text-accent);
-  --theme-workflow-step-icon-done--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-workflow-step-icon-done--color--selected: var(--theme-si-sys-text-accent-hover);
-  --theme-workflow-step-icon-error--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-workflow-step-icon-success--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-workflow-step-icon-warning--color--disabled: var(--theme-si-sys-text-disabled);
+  --theme-workflow-step--background--hover: var(--si-sys-background-hover);
+  --theme-workflow-step--background--selected: var(--si-sys-background-selected);
+  --theme-workflow-step--color: var(--si-sys-text-primary);
+  --theme-workflow-step--color--disabled: var(--si-sys-text-disabled);
+  --theme-workflow-step-icon--background: var(--si-sys-background-0);
+  --theme-workflow-step-icon-default--color: var(--si-sys-text-secondary);
+  --theme-workflow-step-icon-default--color--disabled: var(--si-sys-text-disabled);
+  --theme-workflow-step-icon-default--color--selected: var(--si-sys-text-accent-hover);
+  --theme-workflow-step-icon-done--color: var(--si-sys-text-accent);
+  --theme-workflow-step-icon-done--color--disabled: var(--si-sys-text-disabled);
+  --theme-workflow-step-icon-done--color--selected: var(--si-sys-text-accent-hover);
+  --theme-workflow-step-icon-error--color--disabled: var(--si-sys-text-disabled);
+  --theme-workflow-step-icon-success--color--disabled: var(--si-sys-text-disabled);
+  --theme-workflow-step-icon-warning--color--disabled: var(--si-sys-text-disabled);
 }

@@ -134,16 +134,16 @@ const Home: React.FC = () => {
           <h2>Events</h2>
           <div className="Home__Event__Event_List">
             <IxEventList animated={false}>
-              <IxEventListItem itemColor="color-alarm">
+              <IxEventListItem itemColor="--si-sys-background-danger">
                 Battery low
               </IxEventListItem>
-              <IxEventListItem itemColor="color-success">
+              <IxEventListItem itemColor="--si-sys-background-success">
                 Upload success
               </IxEventListItem>
-              <IxEventListItem itemColor="color-warning">
+              <IxEventListItem itemColor="--si-sys-background-warning">
                 Heat limit
               </IxEventListItem>
-              <IxEventListItem itemColor="color-alarm">
+              <IxEventListItem itemColor="--si-sys-background-danger">
                 Restart required
               </IxEventListItem>
 

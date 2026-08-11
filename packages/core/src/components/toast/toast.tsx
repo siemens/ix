@@ -63,7 +63,8 @@ export class Toast {
   @Prop() icon?: string;
 
   /**
-   * Icon color of toast
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -110,7 +111,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconInfo}
             size="24"
-            color="si-sys-text-primary"
+            color="--si-sys-text-primary"
           />
         );
 
@@ -120,7 +121,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconError}
             size="24"
-            color="si-sys-text-danger"
+            color="--si-sys-text-danger"
           />
         );
 
@@ -130,7 +131,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconSuccess}
             size="24"
-            color="si-sys-text-success"
+            color="--si-sys-text-success"
           />
         );
 
@@ -140,7 +141,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconWarning}
             size="24"
-            color="si-sys-text-warning"
+            color="--si-sys-text-warning"
           />
         );
 
@@ -229,7 +230,7 @@ export class Toast {
           <div class="toast-close">
             <ix-icon-button
               icon={iconClose}
-              iconColor="si-sys-text-secondary"
+              iconColor="--si-sys-text-secondary"
               size="24"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}

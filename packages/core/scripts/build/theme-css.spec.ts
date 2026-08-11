@@ -13,8 +13,10 @@ import { describe, expect, it } from 'vitest';
 const themeRoot = path.resolve('scss/theme/classic');
 const scssRoot = path.resolve('scss');
 
-const referenceUsagePattern = /var\((--theme-si-ref-[a-zA-Z0-9-]+)\)/g;
-const referenceDeclarationPattern = /^\s*(--theme-si-ref-[a-zA-Z0-9-]+):/gm;
+const referenceUsagePattern = /var\((--si-ref-[a-zA-Z0-9-]+)\)/g;
+const referenceDeclarationPattern = /^\s*(--si-ref-[a-zA-Z0-9-]+):/gm;
+const systemDeclarationPattern = /^\s*(--si-sys-[a-zA-Z0-9-]+):/gm;
+const legacySiemensPrefixPattern = /--theme-si-(?:ref|sys)-/;
 
 describe('classic theme CSS', () => {
   it.each(['dark', 'light'] as const)(
@@ -27,12 +29,17 @@ describe('classic theme CSS', () => {
       const declaredReferenceTokens = new Set(
         [...css.matchAll(referenceDeclarationPattern)].map((match) => match[1])
       );
+      const declaredSystemTokens = new Set(
+        [...css.matchAll(systemDeclarationPattern)].map((match) => match[1])
+      );
       const missingReferenceTokens = [...usedReferenceTokens].filter(
         (token) => !declaredReferenceTokens.has(token)
       );
 
       expect(usedReferenceTokens.size).toBeGreaterThan(0);
       expect(missingReferenceTokens).toEqual([]);
+      expect(declaredSystemTokens.size).toBeGreaterThan(0);
+      expect(css).not.toMatch(legacySiemensPrefixPattern);
       expect(css).toContain(
         `[data-ix-theme=classic][data-ix-color-schema=${schema}]`
       );

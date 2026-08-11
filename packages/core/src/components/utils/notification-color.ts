@@ -11,11 +11,11 @@
  * Icon colors representing common notification states (e.g. alarm, info).
  */
 export type NotificationColor =
-  | 'si-sys-text-primary'
-  | 'si-sys-text-information'
-  | 'si-sys-text-critical'
-  | 'si-sys-text-warning'
-  | 'si-sys-text-success'
-  | 'si-sys-text-danger'
-  | 'si-sys-text-secondary'
-  | 'si-sys-text-accent';
+  | '--si-sys-text-primary'
+  | '--si-sys-text-information'
+  | '--si-sys-text-critical'
+  | '--si-sys-text-warning'
+  | '--si-sys-text-success'
+  | '--si-sys-text-danger'
+  | '--si-sys-text-secondary'
+  | '--si-sys-text-accent';

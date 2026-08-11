@@ -13,10 +13,10 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-label--color: var(--theme-si-sys-text-secondary);
-  --theme-label--color--active: var(--theme-si-sys-text-primary);
-  --theme-label--color--disabled: var(--theme-si-sys-text-disabled);
-  --theme-label--color--focus: var(--theme-si-sys-text-accent-hover);
-  --theme-label--color--hover: var(--theme-si-sys-text-primary);
-  --theme-label--color--invalid: var(--theme-si-sys-text-danger);
+  --theme-label--color: var(--si-sys-text-secondary);
+  --theme-label--color--active: var(--si-sys-text-primary);
+  --theme-label--color--disabled: var(--si-sys-text-disabled);
+  --theme-label--color--focus: var(--si-sys-text-accent-hover);
+  --theme-label--color--hover: var(--si-sys-text-primary);
+  --theme-label--color--invalid: var(--si-sys-text-danger);
 }

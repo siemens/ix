@@ -13,7 +13,7 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-modal--background: var(--theme-si-sys-background-1);
+  --theme-modal--background: var(--si-sys-background-1);
   --theme-modal--border-color: rgba(0, 0, 0, 0);
   --theme-modal--box-shadow: var(--theme-shadow-4);
   --theme-theme-modal--border-thickness: var(--theme-border-width-default);

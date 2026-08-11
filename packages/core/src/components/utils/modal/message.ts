@@ -255,7 +255,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconWarning,
-        iconColor: 'si-sys-background-warning',
+        iconColor: '--si-sys-background-warning',
         actions: createConfirmButtons(
           textOkay,
           textCancel,
@@ -280,7 +280,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconError,
-        iconColor: 'si-sys-background-danger',
+        iconColor: '--si-sys-background-danger',
         actions: createConfirmButtons(
           textOkay,
           textCancel,
@@ -305,7 +305,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconSuccess,
-        iconColor: 'si-sys-background-success',
+        iconColor: '--si-sys-background-success',
         actions: createConfirmButtons(
           textOkay,
           textCancel,

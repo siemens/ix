@@ -828,7 +828,7 @@ export class CategoryFilter {
         variant="tertiary"
         oval
         icon={iconClear}
-        iconColor="si-sys-text-secondary"
+        iconColor="--si-sys-text-secondary"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
@@ -837,14 +837,14 @@ export class CategoryFilter {
 
   private getIconColor() {
     if (this.disabled) {
-      return 'si-sys-text-disabled';
+      return '--si-sys-text-disabled';
     }
 
     if (this.readonly) {
-      return 'si-sys-text-primary';
+      return '--si-sys-text-primary';
     }
 
-    return 'si-sys-text-accent';
+    return '--si-sys-text-accent';
   }
 
   render() {
