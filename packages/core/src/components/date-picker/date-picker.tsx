@@ -25,6 +25,11 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
+import {
+  formatWithLocale,
+  parseWithLocale,
+  toISODate,
+} from '../utils/date-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
@@ -170,7 +175,9 @@ export class DatePicker
    * The locale is used to translate the labels for weekdays and months.
    * It also determines the default order of weekdays based on the locale's conventions.
    * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
-   * It does not affect the values returned by methods and events.
+   * The locale is also applied when formatting and parsing date values.
+   * For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale.
+   * Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
    */
   @Prop() locale?: string;
 
@@ -201,51 +208,55 @@ export class DatePicker
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+   * formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode.
+   * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Date selection event. Emitted when the selection is confirmed via the date select button.
+   * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the currently selected date or range. The object returned contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Get the currently selected date or range. The object returned contains `from` and `to` properties
+   * formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
     const _from = this.currFromDate?.isValid
-      ? this.currFromDate?.toFormat(this.format)
+      ? formatWithLocale(this.currFromDate, this.format, this.locale)
       : undefined;
     const _to = this.currToDate?.isValid
-      ? this.currToDate?.toFormat(this.format)
+      ? formatWithLocale(this.currToDate, this.format, this.locale)
       : undefined;
 
     if (!this.singleSelection) {
       return {
         from: _from,
         to: _to,
+        isoFrom: toISODate(this.currFromDate),
+        isoTo: toISODate(this.currToDate),
       };
     }
 
     return {
       from: _from,
       to: undefined,
+      isoFrom: toISODate(this.currFromDate),
+      isoTo: undefined,
     };
   }
 
@@ -368,7 +379,7 @@ export class DatePicker
   }
 
   private parseDateString(dateString: string): DateTime | undefined {
-    const date = DateTime.fromFormat(dateString, this.format);
+    const date = parseWithLocale(dateString, this.format, this.locale);
 
     if (!date.isValid) {
       console.error(date.invalidExplanation);
@@ -400,10 +411,10 @@ export class DatePicker
     this.setTranslations();
 
     this.currFromDate = this.from
-      ? DateTime.fromFormat(this.from, this.format)
+      ? parseWithLocale(this.from, this.format, this.locale)
       : undefined;
     this.currToDate = this.to
-      ? DateTime.fromFormat(this.to, this.format)
+      ? parseWithLocale(this.to, this.format, this.locale)
       : undefined;
 
     const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
@@ -750,10 +761,10 @@ export class DatePicker
 
   private isWithinMinMaxYear(year: number): boolean {
     const minDateYear = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format).year
+      ? parseWithLocale(this.minDate, this.format, this.locale).year
       : undefined;
     const maxDateYear = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format).year
+      ? parseWithLocale(this.maxDate, this.format, this.locale).year
       : undefined;
     const isBefore = minDateYear ? year < minDateYear : false;
     const isAfter = maxDateYear ? year > maxDateYear : false;
@@ -763,10 +774,10 @@ export class DatePicker
 
   private isWithinMinMaxMonth(month: number): boolean {
     const minDateObj = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
+      ? parseWithLocale(this.minDate, this.format, this.locale)
       : undefined;
     const maxDateObj = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
+      ? parseWithLocale(this.maxDate, this.format, this.locale)
       : undefined;
     const minDateMonth = minDateObj?.month;
     const maxDateMonth = maxDateObj?.month;
@@ -782,10 +793,10 @@ export class DatePicker
 
   private isWithinMinMaxDate(date: DateTime): boolean {
     const _minDate = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
+      ? parseWithLocale(this.minDate, this.format, this.locale)
       : undefined;
     const _maxDate = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
+      ? parseWithLocale(this.maxDate, this.format, this.locale)
       : undefined;
     const isBefore = _minDate
       ? date.startOf('day') < _minDate.startOf('day')

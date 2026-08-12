@@ -22,7 +22,7 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { parseWithLocale } from '../utils/date-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -360,9 +360,9 @@ export class DateInput
       return;
     }
 
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+    const date = parseWithLocale(value, this.format, this.locale);
+    const minDate = parseWithLocale(this.minDate, this.format, this.locale);
+    const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
     this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 

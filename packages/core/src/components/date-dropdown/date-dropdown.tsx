@@ -22,6 +22,7 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { parseWithLocale } from '../utils/date-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
@@ -284,7 +285,7 @@ export class DateDropdown
     if (option) {
       if (option.from && option?.from === this.currentRangeValue?.from) {
         // Show the correct month in the date picker if the same range is selected again
-        const formattedDate = DateTime.fromFormat(option.from, this.format);
+        const formattedDate = parseWithLocale(option.from, this.format, this.locale);
         this.datePickerRef.current?.updateSelectedYearMonth(formattedDate);
       } else {
         this.currentRangeValue = option;

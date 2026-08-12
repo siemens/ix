@@ -307,6 +307,8 @@ export class DatetimePicker
       from: date?.from ?? '',
       to: date?.to ?? '',
       time: time ?? '',
+      isoFrom: date?.isoFrom,
+      isoTo: date?.isoTo,
     });
   }
 
