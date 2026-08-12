@@ -63,14 +63,14 @@ regressionTest('renders', async ({ mount, page }) => {
   const g1Dropdown = g1.locator('ix-dropdown');
   const g2Dropdown = g2.locator('ix-dropdown');
 
-  await sb1.locator('ix-icon-button').first().click();
+  await sb1.locator('ix-dropdown-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     0
   );
 
-  await sb2.locator('ix-icon-button').first().click();
+  await sb2.locator('ix-dropdown-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
