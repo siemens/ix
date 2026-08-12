@@ -79,6 +79,19 @@ regressionTest(
   }
 );
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-event-list>
+      <ix-event-list-item item-color="color-primary">Event 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Event 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary" selected>Event 3</ix-event-list-item>
+    </ix-event-list>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
