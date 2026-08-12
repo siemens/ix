@@ -95,6 +95,77 @@ describe('OverlayCoordinator', () => {
     expect(second.dismiss).toHaveBeenCalledWith('escape');
   });
 
+  it('defers a parent focus trap only when the topmost overlay owns focus', () => {
+    const coordinator = createCoordinator();
+    const parentHost = document.createElement('div');
+    const childTrigger = document.createElement('button');
+    const childHost = document.createElement('div');
+    const childItem = document.createElement('button');
+    parentHost.append(childTrigger);
+    childHost.append(childItem);
+    document.body.append(parentHost, childHost);
+
+    const parent = createOverlay('popover:parent', {
+      hostElement: parentHost,
+    });
+    const child = createOverlay('dropdown:child', {
+      kind: 'dropdown',
+      hostElement: childHost,
+      triggerElement: childTrigger,
+    });
+    coordinator.connect(parent.entry);
+    coordinator.connect(child.entry);
+    coordinator.presented(parent.entry.key);
+    coordinator.presented(child.entry.key);
+
+    expect(coordinator.shouldDeferFocusTrap(parentHost, childTrigger)).toBe(
+      false
+    );
+    expect(
+      coordinator.getFocusTrapExcludedHosts(parentHost, childTrigger)
+    ).toEqual([childHost]);
+    expect(coordinator.shouldDeferFocusTrap(parentHost, childItem)).toBe(true);
+    expect(
+      coordinator.getFocusTrapExcludedHosts(parentHost, childItem)
+    ).toEqual([]);
+  });
+
+  it('excludes the complete child overlay hierarchy from a parent focus trap', () => {
+    const coordinator = createCoordinator();
+    const popoverHost = document.createElement('div');
+    const dropdownTrigger = document.createElement('button');
+    const dropdownHost = document.createElement('div');
+    const submenuTrigger = document.createElement('button');
+    const submenuHost = document.createElement('div');
+    popoverHost.append(dropdownTrigger);
+    dropdownHost.append(submenuTrigger);
+    document.body.append(popoverHost, dropdownHost, submenuHost);
+
+    const popover = createOverlay('popover:parent', {
+      hostElement: popoverHost,
+    });
+    const dropdown = createOverlay('dropdown:child', {
+      kind: 'dropdown',
+      hostElement: dropdownHost,
+      triggerElement: dropdownTrigger,
+    });
+    const submenu = createOverlay('dropdown:submenu', {
+      kind: 'dropdown',
+      hostElement: submenuHost,
+      triggerElement: submenuTrigger,
+    });
+    coordinator.connect(popover.entry);
+    coordinator.connect(dropdown.entry);
+    coordinator.connect(submenu.entry);
+    coordinator.presented(popover.entry.key);
+    coordinator.presented(dropdown.entry.key);
+    coordinator.presented(submenu.entry.key);
+
+    expect(
+      coordinator.getFocusTrapExcludedHosts(popoverHost, dropdownTrigger)
+    ).toEqual([submenuHost, dropdownHost]);
+  });
+
   it('uses the nearest composed ancestor as the parent focus scope', () => {
     const coordinator = createCoordinator();
     const grandparentHost = document.createElement('div');
@@ -135,9 +206,58 @@ describe('OverlayCoordinator', () => {
     expect(parent.getAdjacentFocusElement).toHaveBeenCalledWith(
       current,
       false,
-      childHost
+      [childHost]
     );
     expect(grandparent.getAdjacentFocusElement).not.toHaveBeenCalled();
+  });
+
+  it('collects ancestors across mixed overlay types', () => {
+    const coordinator = createCoordinator();
+    const dropdownHost = document.createElement('div');
+    const popoverTrigger = document.createElement('button');
+    const popoverHost = document.createElement('div');
+    const nestedDropdownTrigger = document.createElement('button');
+    const nestedDropdownHost = document.createElement('div');
+    dropdownHost.append(popoverTrigger);
+    popoverHost.append(nestedDropdownTrigger);
+    document.body.append(dropdownHost, popoverHost, nestedDropdownHost);
+
+    const dropdown = createOverlay('dropdown:parent', {
+      kind: 'dropdown',
+      hostElement: dropdownHost,
+    });
+    const popover = createOverlay('popover:child', {
+      hostElement: popoverHost,
+      triggerElement: popoverTrigger,
+    });
+    const nestedDropdown = createOverlay('dropdown:nested', {
+      kind: 'dropdown',
+      hostElement: nestedDropdownHost,
+      triggerElement: nestedDropdownTrigger,
+    });
+    coordinator.connect(dropdown.entry);
+    coordinator.connect(popover.entry);
+    coordinator.connect(nestedDropdown.entry);
+    coordinator.presented(dropdown.entry.key);
+    coordinator.presented(popover.entry.key);
+
+    expect([...coordinator.getAncestorKeys(nestedDropdown.entry.key)]).toEqual([
+      popover.entry.key,
+      dropdown.entry.key,
+    ]);
+    expect(
+      coordinator.hasAncestorOfKind(nestedDropdown.entry.key, 'popover')
+    ).toBe(true);
+    expect(
+      coordinator.hasAncestorOfKind(nestedDropdown.entry.key, 'dropdown')
+    ).toBe(true);
+    coordinator.presented(nestedDropdown.entry.key);
+    expect(
+      coordinator.isTopmostInHierarchy(dropdown.entry.key, 'dropdown')
+    ).toBe(true);
+    expect(coordinator.isTopmostInHierarchy(popover.entry.key, 'popover')).toBe(
+      false
+    );
   });
 
   it('recognizes a child trigger assigned to a slot inside its parent', () => {

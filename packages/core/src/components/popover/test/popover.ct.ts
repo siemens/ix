@@ -630,6 +630,69 @@ regressionTest.describe('ix-popover', () => {
       }
     );
 
+    for (const openMethod of ['pointer', 'keyboard'] as const) {
+      regressionTest(
+        `traps focus with one button and a closed dropdown after ${openMethod} open`,
+        async ({ mount, page }) => {
+          await page.evaluate(() => {
+            if (customElements.get('ix-test-hidden-slot')) {
+              return;
+            }
+
+            customElements.define(
+              'ix-test-hidden-slot',
+              class extends HTMLElement {
+                constructor() {
+                  super();
+                  this.attachShadow({ mode: 'closed' }).innerHTML =
+                    '<slot style="display: none"></slot>';
+                }
+              }
+            );
+          });
+          await mount(html`
+            <ix-button id="trigger">Open</ix-button>
+            <ix-popover id="popover" trigger="trigger">
+              <ix-popover-content>
+                <ix-button id="only-control">Open dropdown</ix-button>
+                <ix-dropdown id="dropdown" trigger="only-control">
+                  <ix-dropdown-item label="First action"></ix-dropdown-item>
+                  <ix-dropdown-item label="Second action"></ix-dropdown-item>
+                </ix-dropdown>
+                <ix-test-hidden-slot>
+                  <button id="hidden-control">Hidden</button>
+                </ix-test-hidden-slot>
+              </ix-popover-content>
+            </ix-popover>
+            <button id="outside">Outside</button>
+          `);
+
+          const trigger = page.locator('#trigger');
+          const popover = page.locator('#popover');
+          const control = page.locator('#only-control button');
+          const outside = page.locator('#outside');
+
+          await expect(trigger).toHaveAttribute('data-ix-popover-trigger');
+          await expect(page.locator('#only-control')).toHaveAttribute(
+            'data-ix-dropdown-trigger'
+          );
+          if (openMethod === 'pointer') {
+            await trigger.click();
+          } else {
+            await trigger.focus();
+            await page.keyboard.press('Enter');
+          }
+          await expect(popover).toHaveAttribute('show');
+          await expect(control).toBeFocused();
+
+          await page.keyboard.press('Tab');
+
+          await expect(control).toBeFocused();
+          await expect(outside).not.toBeFocused();
+        }
+      );
+    }
+
     regressionTest(
       'does not restore focus to trigger after pointer dismiss for interactive popovers',
       async ({ mount, page }) => {
@@ -1130,6 +1193,108 @@ regressionTest.describe('ix-popover', () => {
       }
     );
 
+    regressionTest(
+      'keeps a dropdown-popover-dropdown hierarchy open',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="outer-trigger">Actions</ix-button>
+          <ix-dropdown
+            id="outer-dropdown"
+            trigger="outer-trigger"
+            navigation-mode="roving-tabindex"
+          >
+            <ix-dropdown-item
+              id="popover-trigger"
+              label="Show details"
+            ></ix-dropdown-item>
+          </ix-dropdown>
+          <ix-popover
+            id="popover"
+            trigger="popover-trigger"
+            close-on-click-outside
+          >
+            <ix-popover-content>
+              <ix-button id="inner-trigger">More actions</ix-button>
+              <ix-dropdown id="inner-dropdown" trigger="inner-trigger">
+                <ix-dropdown-item label="Action"></ix-dropdown-item>
+              </ix-dropdown>
+            </ix-popover-content>
+          </ix-popover>
+        `);
+
+        const outerTrigger = page.locator('#outer-trigger');
+        const outerDropdown = page.locator('#outer-dropdown');
+        const popoverTrigger = page.locator('#popover-trigger');
+        const popover = page.locator('#popover');
+        const innerTrigger = page.locator('#inner-trigger');
+        const innerDropdown = page.locator('#inner-dropdown');
+
+        await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
+        await expect(innerTrigger).toHaveAttribute('data-ix-dropdown-trigger');
+        await outerTrigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(popoverTrigger).toBeFocused();
+        await page.keyboard.press('Enter');
+        await expect(popover).toHaveAttribute('show');
+        await expect(innerTrigger).toBeFocused();
+
+        await page.keyboard.press('ArrowDown');
+        await expect(innerDropdown).toHaveClass(/show/);
+        await expect(outerDropdown).toHaveClass(/show/);
+        await expect(popover).toHaveAttribute('show');
+
+        await page.keyboard.press('Escape');
+        await expect(innerDropdown).not.toHaveClass(/show/);
+        await expect(popover).toHaveAttribute('show');
+        await expect(outerDropdown).toHaveClass(/show/);
+
+        await page.keyboard.press('Escape');
+        await expect(popover).not.toHaveAttribute('show');
+        await expect(outerDropdown).toHaveClass(/show/);
+
+        await page.keyboard.press('Escape');
+        await expect(outerDropdown).not.toHaveClass(/show/);
+      }
+    );
+
+    regressionTest(
+      'closes an item-triggered popover before its active-descendant dropdown',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="dropdown-trigger">Actions</ix-button>
+          <ix-dropdown id="dropdown" trigger="dropdown-trigger">
+            <ix-dropdown-item
+              id="popover-trigger"
+              label="Show details"
+            ></ix-dropdown-item>
+          </ix-dropdown>
+          <ix-popover id="popover" trigger="popover-trigger">
+            <ix-popover-content>Details</ix-popover-content>
+          </ix-popover>
+        `);
+
+        const dropdownTrigger = page.locator('#dropdown-trigger');
+        const dropdown = page.locator('#dropdown');
+        const popoverTrigger = page.locator('#popover-trigger');
+        const popover = page.locator('#popover');
+
+        await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
+        await dropdownTrigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(dropdown).toHaveClass(/show/);
+        await expect(dropdownTrigger).toBeFocused();
+        await page.keyboard.press('Enter');
+        await expect(popover).toHaveAttribute('show');
+
+        await page.keyboard.press('Escape');
+        await expect(popover).not.toHaveAttribute('show');
+        await expect(dropdown).toHaveClass(/show/);
+
+        await page.keyboard.press('Escape');
+        await expect(dropdown).not.toHaveClass(/show/);
+      }
+    );
+
     for (const enableTopLayer of [false, true]) {
       regressionTest(
         `keeps Tab inside a popover when a ${
@@ -1164,6 +1329,12 @@ regressionTest.describe('ix-popover', () => {
           const firstControl = page.locator('#first-control');
           const outside = page.locator('#outside');
 
+          await expect(popoverTrigger).toHaveAttribute(
+            'data-ix-popover-trigger'
+          );
+          await expect(dropdownTrigger).toHaveAttribute(
+            'data-ix-dropdown-trigger'
+          );
           await popoverTrigger.click();
           await expect(popover).toHaveAttribute('show');
 
@@ -1181,42 +1352,178 @@ regressionTest.describe('ix-popover', () => {
     }
 
     regressionTest(
-      'Escape closes a dropdown before its parent popover',
+      'closes an active-descendant dropdown while keeping Tab trapped in its popover',
       async ({ mount, page }) => {
         await mount(html`
           <ix-button id="popover-trigger">Open settings</ix-button>
           <ix-popover id="settings-popover" trigger="popover-trigger">
             <ix-popover-content>
+              <button id="first-control" tabindex="1">First control</button>
               <ix-button id="dropdown-trigger">Choose action</ix-button>
-              <ix-dropdown
-                id="dropdown"
-                trigger="dropdown-trigger"
-                navigation-mode="roving-tabindex"
-              >
+              <ix-dropdown id="dropdown" trigger="dropdown-trigger">
                 <ix-dropdown-item label="Action one"></ix-dropdown-item>
+                <ix-dropdown-item label="Action two"></ix-dropdown-item>
               </ix-dropdown>
             </ix-popover-content>
           </ix-popover>
+          <button id="outside">Outside</button>
         `);
 
         const popoverTrigger = page.locator('#popover-trigger');
         const popover = page.locator('#settings-popover');
         const dropdownTrigger = page.locator('#dropdown-trigger');
         const dropdown = page.locator('#dropdown');
+        const firstItem = dropdown.locator('ix-dropdown-item').first();
+        const firstControl = page.locator('#first-control');
+        const outside = page.locator('#outside');
 
+        await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
+        await expect(dropdownTrigger).toHaveAttribute(
+          'data-ix-dropdown-trigger'
+        );
         await popoverTrigger.click();
+        await expect(popover).toHaveAttribute('show');
         await dropdownTrigger.focus();
         await page.keyboard.press('ArrowDown');
-        await expect(dropdown.locator('ix-dropdown-item')).toBeFocused();
+        await expect(dropdown).toHaveClass(/show/);
+        await expect(dropdownTrigger).toBeFocused();
+        await expect(firstItem).toHaveClass(/ix-focused/);
 
-        await page.keyboard.press('Escape');
+        await page.keyboard.press('Tab');
+
         await expect(dropdown).not.toHaveClass(/show/);
         await expect(popover).toHaveAttribute('show');
+        await expect(firstControl).toBeFocused();
+        await expect(outside).not.toBeFocused();
 
-        await page.keyboard.press('Escape');
-        await expect(popover).not.toHaveAttribute('show');
+        await dropdownTrigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(dropdown).toHaveClass(/show/);
+
+        await page.keyboard.press('Shift+Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(popover).toHaveAttribute('show');
+        await expect(firstControl).toBeFocused();
+        await expect(outside).not.toBeFocused();
       }
     );
+
+    regressionTest(
+      'closes an active-descendant submenu chain while keeping Tab trapped',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="popover-trigger">Open settings</ix-button>
+          <ix-popover id="settings-popover" trigger="popover-trigger">
+            <ix-popover-content>
+              <button id="first-control" tabindex="1">First control</button>
+              <ix-button id="dropdown-trigger">Choose action</ix-button>
+              <ix-dropdown id="dropdown" trigger="dropdown-trigger">
+                <ix-dropdown-item
+                  id="submenu-trigger"
+                  label="More actions"
+                ></ix-dropdown-item>
+              </ix-dropdown>
+              <ix-dropdown id="submenu" trigger="submenu-trigger">
+                <ix-dropdown-item label="Nested action"></ix-dropdown-item>
+              </ix-dropdown>
+            </ix-popover-content>
+          </ix-popover>
+          <button id="outside">Outside</button>
+        `);
+
+        const popoverTrigger = page.locator('#popover-trigger');
+        const popover = page.locator('#settings-popover');
+        const dropdownTrigger = page.locator('#dropdown-trigger');
+        const dropdown = page.locator('#dropdown');
+        const submenuTrigger = page.locator('#submenu-trigger');
+        const submenu = page.locator('#submenu');
+        const firstControl = page.locator('#first-control');
+        const outside = page.locator('#outside');
+
+        await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
+        await expect(dropdownTrigger).toHaveAttribute(
+          'data-ix-dropdown-trigger'
+        );
+        await expect(submenuTrigger).toHaveAttribute(
+          'data-ix-dropdown-trigger'
+        );
+        await popoverTrigger.click();
+        await expect(popover).toHaveAttribute('show');
+        await dropdownTrigger.focus();
+        await page.keyboard.press('ArrowDown');
+        await expect(dropdown).toHaveClass(/show/);
+        await expect(submenuTrigger).toHaveClass(/ix-focused/);
+        await page.keyboard.press('ArrowRight');
+        await expect(submenu).toHaveClass(/show/);
+        await expect(dropdownTrigger).toBeFocused();
+
+        await page.keyboard.press('Tab');
+
+        await expect(dropdown).not.toHaveClass(/show/);
+        await expect(submenu).not.toHaveClass(/show/);
+        await expect(firstControl).toBeFocused();
+        await expect(outside).not.toBeFocused();
+      }
+    );
+
+    for (const navigationMode of [
+      'active-descendant',
+      'roving-tabindex',
+    ] as const) {
+      regressionTest(
+        `Escape closes ${navigationMode} dropdown before its parent popover`,
+        async ({ mount, page }) => {
+          await mount(html`
+            <ix-button id="popover-trigger">Open settings</ix-button>
+            <ix-popover id="settings-popover" trigger="popover-trigger">
+              <ix-popover-content>
+                <ix-button id="dropdown-trigger">Choose action</ix-button>
+                <ix-dropdown
+                  id="dropdown"
+                  trigger="dropdown-trigger"
+                  navigation-mode=${navigationMode}
+                >
+                  <ix-dropdown-item label="Action one"></ix-dropdown-item>
+                </ix-dropdown>
+              </ix-popover-content>
+            </ix-popover>
+          `);
+
+          const popoverTrigger = page.locator('#popover-trigger');
+          const popover = page.locator('#settings-popover');
+          const dropdownTrigger = page.locator('#dropdown-trigger');
+          const dropdown = page.locator('#dropdown');
+          const dropdownItem = dropdown.locator('ix-dropdown-item');
+
+          await expect(popoverTrigger).toHaveAttribute(
+            'data-ix-popover-trigger'
+          );
+          await expect(dropdownTrigger).toHaveAttribute(
+            'data-ix-dropdown-trigger'
+          );
+          await popoverTrigger.click();
+          await expect(popover).toHaveAttribute('show');
+          await dropdownTrigger.focus();
+          await page.keyboard.press('ArrowDown');
+          await expect(dropdown).toHaveClass(/show/);
+
+          if (navigationMode === 'roving-tabindex') {
+            await expect(dropdownItem).toBeFocused();
+          } else {
+            await expect(dropdownTrigger).toBeFocused();
+            await expect(dropdownItem).toHaveClass(/ix-focused/);
+          }
+
+          await page.keyboard.press('Escape');
+          await expect(dropdown).not.toHaveClass(/show/);
+          await expect(popover).toHaveAttribute('show');
+
+          await page.keyboard.press('Escape');
+          await expect(popover).not.toHaveAttribute('show');
+        }
+      );
+    }
   });
 
   regressionTest.describe('sub-components', () => {

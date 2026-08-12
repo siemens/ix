@@ -33,7 +33,7 @@ export interface PopoverInterface {
   getAdjacentFocusElement(
     current: HTMLElement,
     backwards: boolean,
-    excludedHost?: HTMLElement
+    excludedHosts?: HTMLElement[]
   ): HTMLElement | undefined;
 
   isPresent(): boolean;
@@ -74,8 +74,8 @@ class PopoverController {
           popover,
           reason === 'outside' ? 'release' : 'restore-trigger'
         ),
-      getAdjacentFocusElement: (current, backwards, excludedHost) =>
-        popover.getAdjacentFocusElement(current, backwards, excludedHost),
+      getAdjacentFocusElement: (current, backwards, excludedHosts) =>
+        popover.getAdjacentFocusElement(current, backwards, excludedHosts),
     });
   }
 
@@ -160,6 +160,17 @@ class PopoverController {
   /** Whether this host is the active (topmost) popover for keyboard focus. */
   isTopmostPresentedHost(host: HTMLElement): boolean {
     return this.overlayCoordinator.isTopmostHost(host);
+  }
+
+  shouldDeferFocusTrap(host: HTMLElement, activeElement: Element | null) {
+    return this.overlayCoordinator.shouldDeferFocusTrap(host, activeElement);
+  }
+
+  getFocusTrapExcludedHosts(host: HTMLElement, activeElement: Element | null) {
+    return this.overlayCoordinator.getFocusTrapExcludedHosts(
+      host,
+      activeElement
+    );
   }
 
   didPresent(popover: PopoverInterface) {

@@ -106,6 +106,22 @@ describe('NestedOverlayRegistry', () => {
     expect(dismissSpy).toHaveBeenCalledWith(unrelated);
   });
 
+  it('dismissOthers skips related instances outside its own hierarchy', () => {
+    const { registry, dismissSpy } = createRegistry();
+    const active = instance('active');
+    const related = instance('related');
+    const unrelated = instance('unrelated');
+
+    registry.connect(active);
+    registry.connect(related);
+    registry.connect(unrelated);
+
+    registry.dismissOthers('active', ['related']);
+
+    expect(dismissSpy).toHaveBeenCalledTimes(1);
+    expect(dismissSpy).toHaveBeenCalledWith(unrelated);
+  });
+
   it('dismissAll respects blocksOutsideDismiss unless policy is ignored', () => {
     const { registry, dismissSpy } = createRegistry();
     const dismissible = instance('dismissible');

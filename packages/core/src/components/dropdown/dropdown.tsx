@@ -462,15 +462,25 @@ export class Dropdown
 
     const shouldCloseOnTab =
       event.key === 'Tab' &&
-      (this.disableFocusTrap === true || this.isRovingTabindex);
+      (this.disableFocusTrap === true ||
+        this.isRovingTabindex ||
+        dropdownController.hasPopoverAncestor(this));
 
     if (event.key === 'Escape' && this.show) {
-      dropdownController.dismiss(this);
+      if (!dropdownController.shouldHandleEscape(this)) {
+        return;
+      }
+
+      event.stopPropagation();
+      dropdownController.dismissOnEscape(this);
       return;
     }
 
     if (shouldCloseOnTab && this.show) {
-      if (this.isRovingTabindex) {
+      if (
+        this.isRovingTabindex ||
+        dropdownController.hasPopoverAncestor(this)
+      ) {
         this.closeAndReleaseFocus(event);
       } else {
         dropdownController.dismiss(this);
@@ -930,14 +940,16 @@ export class Dropdown
       event.preventDefault();
     }
 
-    hierarchy.forEach((dropdown) => {
-      dropdown.suppressTriggerFocusOnHide = true;
-    });
+    dropdownController.suppressTriggerFocusRestore(rootDropdown);
     dropdownController.dismiss(rootDropdown);
 
     if (focusTarget) {
       requestAnimationFrameNoNgZone(() => focusElement(focusTarget));
     }
+  }
+
+  suppressTriggerFocusRestore() {
+    this.suppressTriggerFocusOnHide = true;
   }
 
   private getDropdownHierarchy() {

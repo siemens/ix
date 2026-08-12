@@ -186,8 +186,14 @@ export class Popover
     return {
       trapFocusInShadowDom: 'both' as const,
       listenOnDocument: true,
-      shouldDeferTabTrap: (trapHost: HTMLElement) =>
-        !popoverController.isTopmostPresentedHost(trapHost),
+      shouldDeferTabTrap: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.shouldDeferFocusTrap(trapHost, activeElement),
+      getExcludedOverlayHosts: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.getFocusTrapExcludedHosts(trapHost, activeElement),
     };
   }
 
@@ -207,14 +213,14 @@ export class Popover
   getAdjacentFocusElement(
     current: HTMLElement,
     backwards: boolean,
-    excludedHost?: HTMLElement
+    excludedHosts?: HTMLElement[]
   ): HTMLElement | undefined {
     return getAdjacentFocusTrapElement(
       this.hostElement,
       current,
       backwards,
       this.getFocusTrapOptions(),
-      excludedHost
+      excludedHosts
     );
   }
 

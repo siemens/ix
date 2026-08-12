@@ -1,3 +1,32 @@
 :host {
   display: block;
 }
+
+.playground {
+  display: grid;
+  gap: 2rem;
+  max-width: 64rem;
+  padding: 2rem;
+}
+
+.playground header,
+.scenario {
+  display: grid;
+  gap: 1rem;
+}
+
+.playground h1,
+.playground h2,
+.playground p,
+.playground ol {
+  margin: 0;
+}
+
+.playground ol {
+  padding-inline-start: 1.5rem;
+}
+
+.scenario {
+  align-items: start;
+  justify-items: start;
+}

@@ -21,7 +21,7 @@ export interface CoordinatedOverlay {
   getAdjacentFocusElement?(
     current: HTMLElement,
     backwards: boolean,
-    excludedHost?: HTMLElement
+    excludedHosts?: HTMLElement[]
   ): HTMLElement | undefined;
 }
 
@@ -109,6 +109,52 @@ export class OverlayCoordinator {
     return this.getTopmost()?.hostElement === host;
   }
 
+  isTopmostInHierarchy(key: string, kind: OverlayKind) {
+    const topmost = this.getTopmost();
+
+    return (
+      topmost?.kind === kind &&
+      (topmost.key === key || this.isDescendantOf(topmost.key, key))
+    );
+  }
+
+  shouldDeferFocusTrap(host: HTMLElement, activeElement: Element | null) {
+    const topmost = this.getTopmost();
+
+    return (
+      topmost !== undefined &&
+      topmost.hostElement !== host &&
+      activeElement !== null &&
+      composedContains(topmost.hostElement, activeElement)
+    );
+  }
+
+  getFocusTrapExcludedHosts(
+    host: HTMLElement,
+    activeElement: Element | null
+  ): HTMLElement[] {
+    const topmost = this.getTopmost();
+    if (
+      topmost === undefined ||
+      topmost.hostElement === host ||
+      activeElement === null ||
+      composedContains(topmost.hostElement, activeElement)
+    ) {
+      return [];
+    }
+
+    const excludedHosts: HTMLElement[] = [];
+    let current: CoordinatedOverlay | undefined = topmost;
+
+    while (current && current.hostElement !== host) {
+      excludedHosts.push(current.hostElement);
+      const parentKey = this.getParentKey(current.key);
+      current = parentKey ? this.entries.get(parentKey) : undefined;
+    }
+
+    return current?.hostElement === host ? excludedHosts : [];
+  }
+
   getParentFocusExitTarget(
     childKey: string,
     current: HTMLElement,
@@ -116,11 +162,43 @@ export class OverlayCoordinator {
   ) {
     const parentKey = this.getParentKey(childKey);
     const child = this.entries.get(childKey);
-    return parentKey
-      ? this.entries
-          .get(parentKey)
-          ?.getAdjacentFocusElement?.(current, backwards, child?.hostElement)
-      : undefined;
+    const parent = parentKey ? this.entries.get(parentKey) : undefined;
+    if (!parent || !child) {
+      return undefined;
+    }
+
+    const excludedHosts = this.getFocusTrapExcludedHosts(
+      parent.hostElement,
+      current
+    );
+
+    return parent.getAdjacentFocusElement?.(
+      current,
+      backwards,
+      excludedHosts.length > 0 ? excludedHosts : [child.hostElement]
+    );
+  }
+
+  getAncestorKeys(childKey: string) {
+    const ancestors = new Set<string>();
+    let parentKey = this.getParentKey(childKey);
+
+    while (parentKey && !ancestors.has(parentKey)) {
+      ancestors.add(parentKey);
+      parentKey = this.getParentKey(parentKey);
+    }
+
+    return ancestors;
+  }
+
+  hasAncestorOfKind(childKey: string, kind: OverlayKind) {
+    for (const ancestorKey of this.getAncestorKeys(childKey)) {
+      if (this.entries.get(ancestorKey)?.kind === kind) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   pathIncludesChildTrigger(parentKey: string, path: EventTarget[]) {

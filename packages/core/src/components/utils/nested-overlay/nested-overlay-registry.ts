@@ -131,8 +131,9 @@ export class NestedOverlayRegistry<T extends OverlayInstanceBase> {
     });
   }
 
-  dismissOthers(activeId: string): void {
+  dismissOthers(activeId: string, relatedIds: string[] = []): void {
     const path = this.buildPathIncluding(activeId);
+    relatedIds.forEach((id) => path.add(id));
 
     this.forEach((instance) => {
       if (

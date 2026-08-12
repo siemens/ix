@@ -33,7 +33,15 @@ export type FocusTrapOptions = {
   /** Capture Tab on `document` (popover in ancestor shadow roots / top layer). */
   listenOnDocument?: boolean;
   /** Skip handling when another overlay owns focus (nested / sibling popover). */
-  shouldDeferTabTrap?: (trapHost: HTMLElement) => boolean;
+  shouldDeferTabTrap?: (
+    trapHost: HTMLElement,
+    activeElement: Element | null
+  ) => boolean;
+  /** Exclude child overlays that are open but do not own DOM focus. */
+  getExcludedOverlayHosts?: (
+    trapHost: HTMLElement,
+    activeElement: Element | null
+  ) => HTMLElement[];
 };
 
 const focusTrapQuery = `${focusableQueryString}, [${TRAP_FOCUS_INCLUDE_ATTRIBUTE}]`;
@@ -281,9 +289,39 @@ function shouldExcludeFromFocusTrap(
 
 /** CSS-hidden controls can match the focusable query but are not in tab order. */
 function isHiddenFromTabOrder(element: HTMLElement): boolean {
-  const { display, visibility } = getComputedStyle(element);
+  if (
+    typeof element.checkVisibility === 'function' &&
+    !element.checkVisibility()
+  ) {
+    return true;
+  }
 
-  return display === 'none' || visibility === 'hidden';
+  if (getComputedStyle(element).visibility === 'hidden') {
+    return true;
+  }
+
+  let current: Element | null = element;
+
+  while (current) {
+    if (getComputedStyle(current).display === 'none') {
+      return true;
+    }
+
+    if (current.assignedSlot) {
+      current = current.assignedSlot;
+      continue;
+    }
+
+    if (current.parentElement) {
+      current = current.parentElement;
+      continue;
+    }
+
+    const root = current.getRootNode();
+    current = root instanceof ShadowRoot ? root.host : null;
+  }
+
+  return false;
 }
 
 /** Drops focusables inside closed or nested child popovers (not tabbable in the active layer). */
@@ -374,12 +412,11 @@ export function getAdjacentFocusTrapElement(
   current: HTMLElement,
   backwards: boolean,
   options?: FocusTrapOptions,
-  excludedHost?: HTMLElement
+  excludedHosts: HTMLElement[] = []
 ): HTMLElement | undefined {
   const focusableElements = getFocusTrapFocusables(ref, options).filter(
     (element) =>
-      excludedHost === undefined ||
-      !isFocusWithinTrapHost(element, excludedHost)
+      !excludedHosts.some((host) => isFocusWithinTrapHost(element, host))
   );
   const currentIndex = findActiveFocusableIndex(current, focusableElements);
   if (currentIndex === -1 || focusableElements.length === 0) {
@@ -466,17 +503,25 @@ export const addFocusTrap = async (
 
   const onKeydown = (event: Event) => {
     const keyboardEvent = event as KeyboardEvent;
+    let excludedOverlayHosts: HTMLElement[] = [];
 
     if (keyboardEvent.key !== 'Tab') {
       return;
     }
 
+    if (keyboardEvent.defaultPrevented) {
+      return;
+    }
+
     if (options?.listenOnDocument) {
-      if (options.shouldDeferTabTrap?.(trapHost)) {
+      const deepActive = getDeepActiveElement();
+
+      if (options.shouldDeferTabTrap?.(trapHost, deepActive)) {
         return;
       }
 
-      const deepActive = getDeepActiveElement();
+      excludedOverlayHosts =
+        options.getExcludedOverlayHosts?.(trapHost, deepActive) ?? [];
 
       if (
         deepActive instanceof HTMLElement &&
@@ -486,7 +531,12 @@ export const addFocusTrap = async (
       }
     }
 
-    const focusableElements = getFocusTrapFocusables(trapHost, options);
+    const focusableElements = getFocusTrapFocusables(trapHost, options).filter(
+      (element) =>
+        !excludedOverlayHosts.some((excludedHost) =>
+          isFocusWithinTrapHost(element, excludedHost)
+        )
+    );
 
     if (focusableElements.length === 0) {
       return;
