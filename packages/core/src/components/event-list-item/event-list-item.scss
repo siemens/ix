@@ -10,7 +10,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'mixins/shadow-dom/host-disabled';
 @use 'misc/common-variables' as vars;
 
 @use './event-list-item.vars' as *;
@@ -177,4 +176,6 @@ $default-event-list-item-height: 2.5rem;
   }
 }
 
-@include host-disabled.host-disabled;
+:host(.disabled) {
+  pointer-events: none;
+}

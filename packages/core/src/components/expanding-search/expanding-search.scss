@@ -10,7 +10,6 @@
 @use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'mixins/text-truncation';
 
 @use './expanding-search.vars' as *;
 $container-width: 11.5625rem;

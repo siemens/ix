@@ -65,18 +65,6 @@
   }
 }
 
-@mixin host-focus() {
-  :host(:focus:not(.disabled):not(:disabled)) {
-    @content;
-  }
-}
-
-@mixin host-focus-visible() {
-  :host(:focus-visible:not(.disabled):not(:disabled)) {
-    @content;
-  }
-}
-
 @mixin ghost-hover-pressed {
   &:not(.disabled):not(:disabled) {
     &.hover,
@@ -88,6 +76,18 @@
     &:active {
       background-color: var(--theme-color-ghost--active);
     }
+  }
+}
+
+@mixin host-ghost-hover-pressed {
+  :host(:not(.disabled):not(:disabled).hover),
+  :host(:not(.disabled):not(:disabled):hover) {
+    background-color: var(--theme-color-ghost--hover);
+  }
+
+  :host(:not(.disabled):not(:disabled).active),
+  :host(:not(.disabled):not(:disabled):active) {
+    background-color: var(--theme-color-ghost--active);
   }
 }
 

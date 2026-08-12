@@ -9,8 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 @use './../button/button-mixin';
-@use 'mixins/text-truncation';
-@use 'mixins/hover';
 @use 'mixins/scrollbar';
 
 @use '../utils/focus/focus-proxy' as focus-proxy;

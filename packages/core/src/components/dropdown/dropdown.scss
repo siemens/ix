@@ -9,8 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 
-@use 'legacy/mixins/fonts';
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
 @use './dropdown.vars' as *;

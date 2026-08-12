@@ -9,7 +9,6 @@
 @use 'mixins/shadow-dom/component';
 
 @use './../chip/chip-mixin';
-@use 'mixins/text-truncation';
 
 @use './pill.vars' as *;
 :host {

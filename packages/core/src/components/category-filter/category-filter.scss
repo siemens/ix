@@ -12,12 +12,11 @@
 @use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
-@use 'mixins/internal/dropdown-item';
 @use 'mixins/input';
-@use 'mixins/shadows';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './category-filter-dropdown-item' as dropdown-item;
 @use './category-filter.vars' as *;
 :host {
   display: block;

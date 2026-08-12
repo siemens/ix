@@ -8,7 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'mixins/shadow-dom/hover';
+@use 'mixins/hover';
 
 @use './dropdown-item.vars' as *;
 $itemPadding: 0.5rem;
@@ -102,7 +102,7 @@ $focusBorder: 0.0625rem;
   }
 }
 
-@include hover.ghost-hover-pressed;
+@include hover.host-ghost-hover-pressed;
 
 :host(.disabled) {
   pointer-events: none;

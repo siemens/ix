@@ -9,7 +9,6 @@
 
 @use 'sass:list';
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
