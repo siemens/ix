@@ -123,11 +123,25 @@ export class DatePicker
    */
   @Prop() minDate = '';
 
+  @Watch('minDate')
+  onMinDateChange(newVal: string) {
+    this._minDateObj = newVal
+      ? parseWithLocale(newVal, this.format, this.locale)
+      : undefined;
+  }
+
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
   @Prop() maxDate = '';
+
+  @Watch('maxDate')
+  onMaxDateChange(newVal: string) {
+    this._maxDateObj = newVal
+      ? parseWithLocale(newVal, this.format, this.locale)
+      : undefined;
+  }
 
   /**
    * Text of the date select button.
@@ -184,6 +198,17 @@ export class DatePicker
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
+    this._minDateObj = this.minDate
+      ? parseWithLocale(this.minDate, this.format, this.locale)
+      : undefined;
+    this._maxDateObj = this.maxDate
+      ? parseWithLocale(this.maxDate, this.format, this.locale)
+      : undefined;
+  }
+
+  @Watch('weekStartIndex')
+  onWeekStartIndexChange() {
+    this.calendarDirty = true;
   }
 
   /**
@@ -285,6 +310,9 @@ export class DatePicker
   private monthChangedFromFocus = false;
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[] = [];
+  private _minDateObj?: DateTime;
+  private _maxDateObj?: DateTime;
+  private calendarDirty = true;
 
   onKeyDown(event: KeyboardEvent) {
     if (!this.isDayFocus) {
@@ -399,6 +427,12 @@ export class DatePicker
     this.selectedMonth = date.month - 1;
   }
 
+  @Watch('selectedYear')
+  @Watch('selectedMonth')
+  onCalendarStateChange() {
+    this.calendarDirty = true;
+  }
+
   onDayBlur() {
     this.isDayFocus = false;
   }
@@ -409,6 +443,13 @@ export class DatePicker
 
   override componentWillLoad() {
     this.setTranslations();
+
+    this._minDateObj = this.minDate
+      ? parseWithLocale(this.minDate, this.format, this.locale)
+      : undefined;
+    this._maxDateObj = this.maxDate
+      ? parseWithLocale(this.maxDate, this.format, this.locale)
+      : undefined;
 
     this.currFromDate = this.from
       ? parseWithLocale(this.from, this.format, this.locale)
@@ -441,7 +482,10 @@ export class DatePicker
   }
 
   override componentWillRender() {
-    this.calculateCalendar();
+    if (this.calendarDirty) {
+      this.calculateCalendar();
+      this.calendarDirty = false;
+    }
   }
 
   override componentDidRender() {
@@ -742,12 +786,14 @@ export class DatePicker
     };
   }
 
-  private getDayClasses(day: number): Record<string, boolean> {
+  private getDayClasses(
+    day: number,
+    util: ReturnType<DatePicker['getUtilitiesBasedOnDay']>
+  ): Record<string, boolean> {
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
     );
 
-    const util = this.getUtilitiesBasedOnDay(day);
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
@@ -760,12 +806,8 @@ export class DatePicker
   }
 
   private isWithinMinMaxYear(year: number): boolean {
-    const minDateYear = this.minDate
-      ? parseWithLocale(this.minDate, this.format, this.locale).year
-      : undefined;
-    const maxDateYear = this.maxDate
-      ? parseWithLocale(this.maxDate, this.format, this.locale).year
-      : undefined;
+    const minDateYear = this._minDateObj?.year;
+    const maxDateYear = this._maxDateObj?.year;
     const isBefore = minDateYear ? year < minDateYear : false;
     const isAfter = maxDateYear ? year > maxDateYear : false;
 
@@ -773,36 +815,24 @@ export class DatePicker
   }
 
   private isWithinMinMaxMonth(month: number): boolean {
-    const minDateObj = this.minDate
-      ? parseWithLocale(this.minDate, this.format, this.locale)
-      : undefined;
-    const maxDateObj = this.maxDate
-      ? parseWithLocale(this.maxDate, this.format, this.locale)
-      : undefined;
-    const minDateMonth = minDateObj?.month;
-    const maxDateMonth = maxDateObj?.month;
+    const minDateMonth = this._minDateObj?.month;
+    const maxDateMonth = this._maxDateObj?.month;
     const isBefore = minDateMonth
-      ? this.tempYear === minDateObj.year && month < minDateMonth
+      ? this.tempYear === this._minDateObj!.year && month < minDateMonth
       : false;
     const isAfter = maxDateMonth
-      ? this.tempYear === maxDateObj.year && month > maxDateMonth
+      ? this.tempYear === this._maxDateObj!.year && month > maxDateMonth
       : false;
 
     return !isBefore && !isAfter;
   }
 
   private isWithinMinMaxDate(date: DateTime): boolean {
-    const _minDate = this.minDate
-      ? parseWithLocale(this.minDate, this.format, this.locale)
-      : undefined;
-    const _maxDate = this.maxDate
-      ? parseWithLocale(this.maxDate, this.format, this.locale)
-      : undefined;
-    const isBefore = _minDate
-      ? date.startOf('day') < _minDate.startOf('day')
+    const isBefore = this._minDateObj
+      ? date.startOf('day') < this._minDateObj.startOf('day')
       : false;
-    const isAfter = _maxDate
-      ? date.startOf('day') > _maxDate.startOf('day')
+    const isAfter = this._maxDateObj
+      ? date.startOf('day') > this._maxDateObj.startOf('day')
       : false;
 
     return !isBefore && !isAfter;
@@ -1060,19 +1090,20 @@ export class DatePicker
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
+                    const util = day
+                      ? this.getUtilitiesBasedOnDay(day)
+                      : undefined;
                     return day ? (
                       <div
                         role="gridcell"
                         aria-selected={
-                          this.getUtilitiesBasedOnDay(day).isSelected()
-                            ? 'true'
-                            : 'false'
+                          util!.isSelected() ? 'true' : 'false'
                         }
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
                         data-date-value={`${week.weekNumber}-${day}`}
-                        class={this.getDayClasses(day)}
+                        class={this.getDayClasses(day, util!)}
                         onClick={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
@@ -1085,7 +1116,7 @@ export class DatePicker
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}
-                        autofocus={this.getUtilitiesBasedOnDay(day).isToday()}
+                        autofocus={util!.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
