@@ -37,20 +37,18 @@ export const WithDropdownItems: Story = {
     label: 'Button',
     variant: 'primary',
   },
-  render: (args) => {
-    const container = genericRender('ix-dropdown-button', args);
-    const dropdownButton = container.querySelector('ix-dropdown-button')!;
+  render: (args) =>
+    genericRender('ix-dropdown-button', args, [], (dropdownButton) => {
+      ['Dropdown Item 1', 'Dropdown Item 2', 'Dropdown Item 3'].forEach(
+        (label) => {
+          const dropdownItem = document.createElement('ix-dropdown-item');
+          dropdownItem.label = label;
+          dropdownButton.appendChild(dropdownItem);
+        }
+      );
 
-    ['Dropdown Item 1', 'Dropdown Item 2', 'Dropdown Item 3'].forEach(
-      (label) => {
-        const dropdownItem = document.createElement('ix-dropdown-item');
-        dropdownItem.label = label;
-        dropdownButton.appendChild(dropdownItem);
-      }
-    );
-
-    return container;
-  },
+      return dropdownButton;
+    }),
 };
 
 export const Secondary: Story = {

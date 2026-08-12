@@ -221,8 +221,7 @@ export class DropdownButton
     const ariaLabel =
       this.hostAriaLabel ??
       this.ariaLabelDropdownButton ??
-      this.label ??
-      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown');
+      (this.label || (this.dropdownShow ? 'Close dropdown' : 'Open dropdown'));
     this.renderedAriaLabel = ariaLabel;
 
     const ariaAttributes = {
