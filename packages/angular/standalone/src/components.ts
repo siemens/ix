@@ -982,22 +982,22 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode.
+The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Date selection event. Emitted when the selection is confirmed via the date select button.
+The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
 }
