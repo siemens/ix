@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'mixins/fonts';
-@use 'mixins/validation/form-component';
+@use '../../mixins/fonts';
+@use '../../mixins/validation/form-component';
 
 label.ix-form-label {
   color: var(--theme-color-soft-text);
@@ -22,8 +22,7 @@ label.ix-form-label.label-alignment-left {
   & {
     appearance: textfield;
     background-color: var(--theme-color-component-8);
-    border: var(--theme-border-width-default) solid
-      var(--theme-color-std-bdr);
+    border: var(--theme-border-width-default) solid var(--theme-color-std-bdr);
     border-radius: var(--theme-small-border-radius);
     box-shadow: var(--theme-inset-shadow-1);
     color: var(--theme-color-std-text);
@@ -73,8 +72,7 @@ label.ix-form-label.label-alignment-left {
   &.read-only,
   &:read-only {
     background-color: transparent;
-    border: var(--theme-border-width-default) solid
-      var(--theme-color-std-bdr);
+    border: var(--theme-border-width-default) solid var(--theme-color-std-bdr);
     box-shadow: none;
     outline: none;
 
@@ -86,8 +84,7 @@ label.ix-form-label.label-alignment-left {
   &:disabled,
   &.disabled {
     background-color: transparent;
-    border: var(--theme-border-width-default) solid
-      var(--theme-color-weak-bdr);
+    border: var(--theme-border-width-default) solid var(--theme-color-weak-bdr);
     box-shadow: none;
     outline: none;
 

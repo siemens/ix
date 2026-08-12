@@ -6,4 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'entries/foundation';
+@use './links';
+@use './shadows';
+@use './input-group';
+@use './table';
+@use './typography';
+@use './button-group';

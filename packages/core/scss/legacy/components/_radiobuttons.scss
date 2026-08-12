@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use '../../misc/common-variables' as vars;
 
 @mixin radio-basic() {
   $size: 1.25rem;
@@ -85,14 +85,12 @@
 
     &:hover + label:before {
       background-color: var(--theme-color-secondary--hover);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-dynamic);
+      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
     }
 
     &:active + label:before {
       background-color: var(--theme-color-secondary--active);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-dynamic);
+      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
     }
 
     &:disabled + label::before {
@@ -105,8 +103,7 @@
   .ix-form-control[type='radio']:checked {
     & + label:before {
       background-color: var(--theme-color-dynamic);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     & + label:after {
@@ -123,20 +120,17 @@
 
     &:hover + label:before {
       background-color: var(--theme-color-dynamic--hover);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:active + label:before {
       background-color: var(--theme-color-dynamic--active);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label:before {
       background-color: var(--theme-color-component-4);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label::after {

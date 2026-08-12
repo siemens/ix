@@ -11,7 +11,7 @@
 @use './../button/button-mixin' as button-mixin;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
-@use 'mixins/break-points' as break-points;
+@use 'mixins/breakpoints';
 
 @use './date-dropdown.vars' as *;
 :host {
@@ -76,7 +76,7 @@
     padding: 0px;
   }
 
-  @include break-points.media-breakpoint-match(sm) {
+  @include breakpoints.media-breakpoint-match(sm) {
     .container {
       flex-direction: column;
       max-height: unset;

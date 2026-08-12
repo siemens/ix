@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use '../../misc/common-variables' as vars;
 
 @mixin checkbox-basic() {
   $size: 1.125rem;
@@ -75,14 +75,12 @@
 
     &:hover + label:before {
       background-color: var(--theme-color-secondary--hover);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-dynamic);
+      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
     }
 
     &:active + label:before {
       background-color: var(--theme-color-secondary--active);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-dynamic);
+      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
     }
 
     &:disabled + label::before {
@@ -95,8 +93,7 @@
   .ix-form-control[type='checkbox']:checked {
     & + label:before {
       background-color: var(--theme-color-dynamic);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     & + label:after {
@@ -106,8 +103,7 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid
-        var(--theme-color-primary--contrast);
+      border-bottom: 0.0625rem solid var(--theme-color-primary--contrast);
       border-left: 0.0625rem solid var(--theme-color-primary--contrast);
       position: absolute;
       margin: 0.525rem 0.42rem 0.1875rem;
@@ -117,20 +113,17 @@
 
     &:hover + label:before {
       background-color: var(--theme-color-dynamic--hover);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:active + label:before {
       background-color: var(--theme-color-dynamic--active);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label:before {
       background-color: var(--theme-color-component-4);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label::after {
@@ -149,34 +142,29 @@
       display: block;
       width: 0.625rem;
       height: 0.125rem;
-      border-bottom: 0.125rem solid
-        var(--theme-color-primary--contrast);
+      border-bottom: 0.125rem solid var(--theme-color-primary--contrast);
       position: absolute;
       margin: 0.5625rem 0 0 0.25rem;
     }
 
     & + label:before {
       background-color: var(--theme-color-dynamic);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:hover + label:before {
       background-color: var(--theme-color-dynamic--hover);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:active + label:before {
       background-color: var(--theme-color-dynamic--active);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label::before {
       background-color: var(--theme-color-component-4);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-0);
+      border: var(--theme-border-width-default) solid var(--theme-color-0);
     }
 
     &:disabled + label::after {

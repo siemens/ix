@@ -6,9 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'foundation';
-@use 'mixins/fonts' as font-mixins;
-@use 'mixins/scrollbar';
+@use '../mixins/fonts' as font-mixins;
 
 [data-ix-theme] {
   font-family: var(--theme-font-family);
@@ -20,8 +18,4 @@ body {
   background-color: var(--theme-color-1);
   margin: 0;
   @include font-mixins.typography-body;
-}
-
-body:not(.disable-scrollbar) {
-  @include scrollbar.scrollbar;
 }

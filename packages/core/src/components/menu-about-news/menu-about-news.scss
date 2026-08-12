@@ -8,7 +8,7 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'mixins/break-points';
+@use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
 @use './menu-about-news.vars' as *;
 $left: 3.4rem;
@@ -93,7 +93,7 @@ $left: 3.4rem;
   display: none;
 }
 
-@include break-points.media-breakpoint-match('sm') {
+@include breakpoints.media-breakpoint-match('sm') {
   :host {
     display: flex;
     flex-direction: column;

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'mixins/break-points';
+@use 'mixins/breakpoints';
 
 @use './application-header.vars' as *;
 :host {
@@ -195,7 +195,7 @@
     justify-content: end;
   }
 
-  @include break-points.media-breakpoint-match('sm') {
+  @include breakpoints.media-breakpoint-match('sm') {
     .logo {
       margin-left: 0.5rem;
       display: none !important;
