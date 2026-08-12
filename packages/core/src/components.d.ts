@@ -2500,6 +2500,12 @@ export namespace Components {
          */
         "variant": ListItemVariant1;
     }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 5.2.0
+     */
+    interface IxListItemSeparator {
+    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -5838,6 +5844,16 @@ declare global {
         prototype: HTMLIxListItemElement;
         new (): HTMLIxListItemElement;
     };
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 5.2.0
+     */
+    interface HTMLIxListItemSeparatorElement extends Components.IxListItemSeparator, HTMLStencilElement {
+    }
+    var HTMLIxListItemSeparatorElement: {
+        prototype: HTMLIxListItemSeparatorElement;
+        new (): HTMLIxListItemSeparatorElement;
+    };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
@@ -6752,6 +6768,7 @@ declare global {
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-list": HTMLIxListElement;
         "ix-list-item": HTMLIxListItemElement;
+        "ix-list-item-separator": HTMLIxListItemSeparatorElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -9357,6 +9374,12 @@ declare namespace LocalJSX {
           * @default 'filled'
          */
         "variant"?: ListItemVariant1;
+    }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 5.2.0
+     */
+    interface IxListItemSeparator {
     }
     interface IxMenu {
         /**
@@ -12996,6 +13019,7 @@ declare namespace LocalJSX {
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
         "ix-list": Omit<IxList, keyof IxListAttributes> & { [K in keyof IxList & keyof IxListAttributes]?: IxList[K] } & { [K in keyof IxList & keyof IxListAttributes as `attr:${K}`]?: IxListAttributes[K] } & { [K in keyof IxList & keyof IxListAttributes as `prop:${K}`]?: IxList[K] };
         "ix-list-item": Omit<IxListItem, keyof IxListItemAttributes> & { [K in keyof IxListItem & keyof IxListItemAttributes]?: IxListItem[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `attr:${K}`]?: IxListItemAttributes[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `prop:${K}`]?: IxListItem[K] };
+        "ix-list-item-separator": IxListItemSeparator;
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -13142,6 +13166,11 @@ declare module "@stencil/core" {
              * @since 5.2.0
              */
             "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;
+            /**
+             * Standalone horizontal separator for list content.
+             * @since 5.2.0
+             */
+            "ix-list-item-separator": LocalJSX.IntrinsicElements["ix-list-item-separator"] & JSXBase.HTMLAttributes<HTMLIxListItemSeparatorElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             /**

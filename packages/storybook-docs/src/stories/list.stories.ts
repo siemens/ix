@@ -83,6 +83,29 @@ export const ItemDefaults: Story = {
   },
 };
 
+export const WithStandaloneSeparators: Story = {
+  render: (args) => {
+    const list = genericRender('ix-list', args) as unknown as HTMLIxListElement;
+    list.setAttribute('aria-label', 'Projects');
+
+    list.append(
+      createItem('Factory overview', {
+        description: 'Updated 5 minutes ago',
+      }),
+      document.createElement('ix-list-item-separator'),
+      createItem('Production line 1', { checkbox: true, selected: true }),
+      document.createElement('ix-list-item-separator'),
+      createItem('Production line 2', { checkbox: true })
+    );
+
+    return list;
+  },
+  args: {
+    hasDivider: false,
+    itemGap: 8,
+  },
+};
+
 export const Draggable: Story = {
   render: (args) => {
     const list = meta.render(args);

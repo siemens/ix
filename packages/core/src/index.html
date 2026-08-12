@@ -31,9 +31,17 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <div style="width: 400px; margin: 12px">
+    <div
+      style="
+        width: 1200px;
+        margin: 12px;
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+      "
+    >
       <ix-list has-divider item-gap="0" variant="ghost">
-        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test"> </ix-list-item>
         <ix-list-item icon="project" label="test 2"></ix-list-item>
         <ix-list-item icon="project" label="test 3"></ix-list-item>
         <ix-list-item
@@ -41,6 +49,42 @@ SPDX-License-Identifier: MIT
           label="test 4"
           has-divider="false"
         ></ix-list-item>
+      </ix-list>
+      <ix-list variant="outline">
+        <ix-list-item icon="project" label="test">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 2">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 3">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 4">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+      </ix-list>
+      <ix-list variant="filled">
+        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
+        <ix-list-item icon="project" label="test 4"></ix-list-item>
       </ix-list>
     </div>
 
@@ -56,6 +100,7 @@ SPDX-License-Identifier: MIT
     <div style="width: 400px; margin: 12px; margin-top: 40px">
       <ix-list>
         <ix-list-item checkbox icon="project" label="test"></ix-list-item>
+        <ix-list-item-separator></ix-list-item-separator>
         <ix-list-item checkbox icon="project" label="test 2"></ix-list-item>
         <ix-list-item checkbox icon="project" label="test 3"></ix-list-item>
         <ix-list-item checkbox icon="project" label="test 4"></ix-list-item>

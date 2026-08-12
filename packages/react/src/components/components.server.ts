@@ -67,6 +67,7 @@ import { IxKpi as IxKpiElement } from "@siemens/ix/components/ix-kpi.js";
 import { IxLayoutAuto as IxLayoutAutoElement } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement } from "@siemens/ix/components/ix-link-button.js";
+import { IxListItemSeparator as IxListItemSeparatorElement } from "@siemens/ix/components/ix-list-item-separator.js";
 import { IxListItem as IxListItemElement } from "@siemens/ix/components/ix-list-item.js";
 import { IxList as IxListElement } from "@siemens/ix/components/ix-list.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement } from "@siemens/ix/components/ix-menu-about-item.js";
@@ -1185,6 +1186,16 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxListItem as StencilReactComponent<IxListItemElement, IxListItemEvents, Components.IxListItem>,
+    serializeShadowRoot
+});
+
+export type IxListItemSeparatorEvents = NonNullable<unknown>;
+
+export const IxListItemSeparator: StencilReactComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator> = /*@__PURE__*/ createComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator>({
+    tagName: 'ix-list-item-separator',
+    properties: {},
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxListItemSeparator as StencilReactComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator>,
     serializeShadowRoot
 });
 

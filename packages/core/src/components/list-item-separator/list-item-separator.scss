@@ -1,0 +1,9 @@
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+
+  @include component.ix-component;
+}

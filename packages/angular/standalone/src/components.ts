@@ -61,6 +61,7 @@ import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/component
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxList } from '@siemens/ix/components/ix-list.js';
 import { defineCustomElement as defineIxListItem } from '@siemens/ix/components/ix-list-item.js';
+import { defineCustomElement as defineIxListItemSeparator } from '@siemens/ix/components/ix-list-item-separator.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -1728,6 +1729,28 @@ export declare interface IxListItem extends Components.IxListItem {
    */
   selectedChange: EventEmitter<CustomEvent<boolean>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxListItemSeparator
+})
+@Component({
+  selector: 'ix-list-item-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxListItemSeparator {
+  protected el: HTMLIxListItemSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItemSeparator extends Components.IxListItemSeparator {}
 
 
 @ProxyCmp({

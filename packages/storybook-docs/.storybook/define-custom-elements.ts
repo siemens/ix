@@ -55,6 +55,7 @@ import { defineCustomElement as ixLayoutGrid } from '@siemens/ix/components/ix-l
 import { defineCustomElement as ixLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as ixList } from '@siemens/ix/components/ix-list.js';
 import { defineCustomElement as ixListItem } from '@siemens/ix/components/ix-list-item.js';
+import { defineCustomElement as ixListItemSeparator } from '@siemens/ix/components/ix-list-item-separator.js';
 import { defineCustomElement as ixMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as ixMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as ixMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -163,6 +164,7 @@ ixLayoutGrid();
 ixLinkButton();
 ixList();
 ixListItem();
+ixListItemSeparator();
 ixMenu();
 ixMenuAbout();
 ixMenuAboutItem();

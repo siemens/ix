@@ -57,6 +57,7 @@ export const DIRECTIVES = [
   d.IxLinkButton,
   d.IxList,
   d.IxListItem,
+  d.IxListItemSeparator,
   d.IxMenu,
   d.IxMenuAbout,
   d.IxMenuAboutItem,

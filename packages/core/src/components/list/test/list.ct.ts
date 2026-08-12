@@ -329,6 +329,28 @@ regressionTest('applies item gap and dividers', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'renders standalone separators and applies list gap around them',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-list item-gap="8" aria-label="Projects">
+        <ix-list-item label="Project Alpha"></ix-list-item>
+        <ix-list-item-separator></ix-list-item-separator>
+        <ix-list-item label="Project Beta"></ix-list-item>
+      </ix-list>
+    `);
+
+    const list = page.locator('ix-list');
+    const separator = list.locator('ix-list-item-separator');
+
+    await expect(list.locator('.list')).toHaveCSS('gap', '8px');
+    await expect(separator).toBeVisible();
+    await expect(separator).toHaveAttribute('role', 'separator');
+    await expect(separator).toHaveCSS('border-bottom-width', '1px');
+    await expect(separator).toHaveCSS('border-bottom-style', 'solid');
+  }
+);
+
+regressionTest(
   'applies item defaults and preserves item overrides',
   async ({ mount, page }) => {
     await mount(`

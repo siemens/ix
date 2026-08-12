@@ -66,6 +66,7 @@ import { IxKpi as IxKpiElement, defineCustomElement as defineIxKpi } from "@siem
 import { IxLayoutAuto as IxLayoutAutoElement, defineCustomElement as defineIxLayoutAuto } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement, defineCustomElement as defineIxLayoutGrid } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement, defineCustomElement as defineIxLinkButton } from "@siemens/ix/components/ix-link-button.js";
+import { IxListItemSeparator as IxListItemSeparatorElement, defineCustomElement as defineIxListItemSeparator } from "@siemens/ix/components/ix-list-item-separator.js";
 import { IxListItem as IxListItemElement, defineCustomElement as defineIxListItem } from "@siemens/ix/components/ix-list-item.js";
 import { IxList as IxListElement, defineCustomElement as defineIxList } from "@siemens/ix/components/ix-list.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement, defineCustomElement as defineIxMenuAboutItem } from "@siemens/ix/components/ix-menu-about-item.js";
@@ -833,6 +834,17 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
         onSelectedChange: 'selectedChange'
     } as IxListItemEvents,
     defineCustomElement: defineIxListItem
+});
+
+export type IxListItemSeparatorEvents = NonNullable<unknown>;
+
+export const IxListItemSeparator: StencilReactComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator> = /*@__PURE__*/ createComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator>({
+    tagName: 'ix-list-item-separator',
+    elementClass: IxListItemSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxListItemSeparatorEvents,
+    defineCustomElement: defineIxListItemSeparator
 });
 
 export type IxMenuEvents = {

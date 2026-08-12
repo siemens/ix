@@ -56,6 +56,7 @@ export { IxLayoutGrid } from './ix-layout-grid.js';
 export { IxLinkButton } from './ix-link-button.js';
 export { IxList } from './ix-list.js';
 export { IxListItem } from './ix-list-item.js';
+export { IxListItemSeparator } from './ix-list-item-separator.js';
 export { IxMenu } from './ix-menu.js';
 export { IxMenuAbout } from './ix-menu-about.js';
 export { IxMenuAboutItem } from './ix-menu-about-item.js';
