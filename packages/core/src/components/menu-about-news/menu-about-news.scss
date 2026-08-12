@@ -29,7 +29,7 @@ $left: 3.4rem;
 
   margin-inline-start: var(--margin) !important;
 
-  box-shadow: var(--ix-shadow--level-4);
+  box-shadow: var(--theme-shadow-4);
   @include component.ix-component;
 
   .banner-container {
