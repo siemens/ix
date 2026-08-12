@@ -41,7 +41,7 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-import { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
+import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 import { ListItemVariant } from "./components/list-item/list-item";
 import { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
@@ -99,7 +99,7 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-export { ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
+export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
 export { ListItemVariant } from "./components/list-item/list-item";
 export { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
@@ -2410,6 +2410,12 @@ export namespace Components {
           * @since 5.2.0
          */
         "disabled"?: boolean;
+        /**
+          * Visual behavior used while dragging a list item.
+          * @since 5.2.0
+          * @default 'dynamic'
+         */
+        "dragBehavior": ListDragBehavior;
         /**
           * Enable drag-and-drop reordering of direct list items.
           * @since 5.2.0
@@ -9271,6 +9277,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Visual behavior used while dragging a list item.
+          * @since 5.2.0
+          * @default 'dynamic'
+         */
+        "dragBehavior"?: ListDragBehavior;
+        /**
           * Enable drag-and-drop reordering of direct list items.
           * @since 5.2.0
           * @default false
@@ -12412,6 +12424,7 @@ declare namespace LocalJSX {
         "checkbox": boolean;
         "actionOnHover": boolean;
         "draggable": boolean;
+        "dragBehavior": ListDragBehavior;
     }
     interface IxListItemAttributes {
         "variant": ListItemVariant;

@@ -37,7 +37,7 @@
 }
 
 :host(.selected) .item-surface {
-  background-color: var(--theme-color-component-1--active);
+  background-color: var(--theme-color-component-1--hover);
 }
 
 :host(:not(.disabled)) .item-surface:hover {
@@ -51,20 +51,26 @@
   background-color: var(--theme-color-ghost--active);
 }
 
-:host([variant='filled']:not(.disabled)) .item-surface:hover,
+:host([variant='filled']:not(.disabled):not(.selected)) .item-surface:hover {
+  background-color: var(--theme-color-component-1--hover);
+}
+
 :host(.selected:not(.disabled)) .item-surface:hover {
   background-color: var(--theme-color-component-1--hover);
 }
 
-:host([variant='filled']:not(.disabled))
-  .item-surface:active:not(
-    :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
-  ),
-:host(.selected:not(.disabled))
+:host([variant='filled']:not(.disabled):not(.selected))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
   background-color: var(--theme-color-component-1--active);
+}
+
+:host(.selected:not(.disabled))
+  .item-surface:active:not(
+    :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
+  ) {
+  background-color: var(--theme-color-ghost--selected-active);
 }
 
 :host(.has-divider) .item-surface {
@@ -233,6 +239,10 @@
 }
 
 :host(.disabled) .description {
+  color: var(--theme-color-weak-text);
+}
+
+:host(.disabled) .label {
   color: var(--theme-color-weak-text);
 }
 

@@ -155,6 +155,82 @@ regressionTest(
 );
 
 regressionTest(
+  'shows a separator and keeps the item in place until pointer drop',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-list draggable drag-behavior="separator">
+          <ix-list-item label="Project Alpha"></ix-list-item>
+          <ix-list-item label="Project Beta"></ix-list-item>
+          <ix-list-item label="Project Gamma"></ix-list-item>
+        </ix-list>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const list = page.locator('ix-list');
+    const listContainer = list.locator('.list');
+    const items = list.locator('ix-list-item');
+    const draggedItem = items.first();
+    const gripperBounds = await draggedItem
+      .locator('.drag-gripper')
+      .boundingBox();
+    const draggedItemBounds = await draggedItem.boundingBox();
+    const nextItemBounds = await items.nth(1).boundingBox();
+    const targetBounds = await items.nth(2).boundingBox();
+
+    expect(gripperBounds).not.toBeNull();
+    expect(draggedItemBounds).not.toBeNull();
+    expect(nextItemBounds).not.toBeNull();
+    expect(targetBounds).not.toBeNull();
+    const initialScrollHeight = await listContainer.evaluate(
+      (element) => element.scrollHeight
+    );
+    await list.evaluate(
+      (element, maxHeight) => (element.style.maxHeight = `${maxHeight}px`),
+      initialScrollHeight
+    );
+    await page.mouse.move(
+      gripperBounds!.x + gripperBounds!.width / 2,
+      gripperBounds!.y + gripperBounds!.height / 2
+    );
+    await page.mouse.down();
+
+    const separator = list.locator('.ix-list-drag-placeholder');
+    const initialSeparatorBounds = await separator.boundingBox();
+    expect(initialSeparatorBounds).not.toBeNull();
+    expect(initialSeparatorBounds!.y).toBeCloseTo(
+      (draggedItemBounds!.y + draggedItemBounds!.height + nextItemBounds!.y) /
+        2,
+      0
+    );
+
+    await page.mouse.move(
+      targetBounds!.x + targetBounds!.width / 2,
+      targetBounds!.y + targetBounds!.height
+    );
+
+    await expect(items.nth(0)).toHaveAttribute('label', 'Project Alpha');
+    await expect(draggedItem).not.toHaveClass(/\bpointer-dragging\b/);
+    await expect(separator).toHaveClass(/\bseparator\b/);
+    await expect(separator).toHaveCSS('border-top-style', 'solid');
+    expect(
+      await listContainer.evaluate((element) => element.scrollHeight)
+    ).toBe(initialScrollHeight);
+    expect((await draggedItem.boundingBox())!.y).toBeCloseTo(
+      draggedItemBounds!.y,
+      0
+    );
+
+    await page.mouse.up();
+
+    await expect(items.nth(0)).toHaveAttribute('label', 'Project Beta');
+    await expect(items.nth(2)).toHaveAttribute('label', 'Project Alpha');
+    await expect(separator).toHaveCount(0);
+  }
+);
+
+regressionTest(
   'keeps the pointer preview at the item position when drag starts',
   async ({ mount, page }) => {
     await mount(

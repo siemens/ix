@@ -21,6 +21,7 @@ import type { ListItemVariant } from '../list-item/list-item';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 export type ListItemGap = 0 | 4 | 8 | 12;
+export type ListDragBehavior = 'dynamic' | 'separator';
 
 export interface ListItemOrderChangeEvent {
   item: HTMLIxListItemElement;
@@ -129,6 +130,12 @@ export class List {
   @Prop({ reflect: true }) draggable = false;
 
   /**
+   * Visual behavior used while dragging a list item.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) dragBehavior: ListDragBehavior = 'dynamic';
+
+  /**
    * Emitted after a list item has been reordered.
    * @since 5.2.0
    */
@@ -183,6 +190,13 @@ export class List {
       this.cancelReorder();
     }
     this.synchronizeItems();
+  }
+
+  @Watch('dragBehavior')
+  protected dragBehaviorChanged() {
+    if (this.draggedItem) {
+      this.cancelReorder();
+    }
   }
 
   @Watch('variant')
@@ -389,19 +403,29 @@ export class List {
     return true;
   }
 
-  private createDragPlaceholder(item: HTMLIxListItemElement) {
+  private createDragPlaceholder(item: HTMLIxListItemElement, clientY: number) {
     const itemBounds = item.getBoundingClientRect();
     const placeholder = document.createElement('div');
     placeholder.className = 'ix-list-drag-placeholder';
     placeholder.setAttribute('aria-hidden', 'true');
-    placeholder.style.height = `${itemBounds.height}px`;
+    placeholder.classList.toggle(
+      'separator',
+      this.dragBehavior === 'separator'
+    );
+    if (this.dragBehavior === 'dynamic') {
+      placeholder.style.height = `${itemBounds.height}px`;
+    }
     this.hostElement.insertBefore(placeholder, item);
     this.dragPlaceholder = placeholder;
 
-    item.style.setProperty('--ix-list-drag-left', `${itemBounds.left}px`);
-    item.style.setProperty('--ix-list-drag-top', `${itemBounds.top}px`);
-    item.style.setProperty('--ix-list-drag-width', `${itemBounds.width}px`);
-    item.classList.add('pointer-dragging');
+    if (this.dragBehavior === 'dynamic') {
+      item.style.setProperty('--ix-list-drag-left', `${itemBounds.left}px`);
+      item.style.setProperty('--ix-list-drag-top', `${itemBounds.top}px`);
+      item.style.setProperty('--ix-list-drag-width', `${itemBounds.width}px`);
+      item.classList.add('pointer-dragging');
+    } else {
+      this.movePlaceholder(clientY);
+    }
   }
 
   private movePlaceholder(clientY: number) {
@@ -423,6 +447,37 @@ export class List {
       this.hostElement.insertBefore(placeholder, beforeItem);
     } else {
       this.hostElement.appendChild(placeholder);
+    }
+
+    if (this.dragBehavior === 'separator') {
+      const list =
+        this.hostElement.shadowRoot?.querySelector<HTMLElement>('.list');
+      if (!list) {
+        return;
+      }
+
+      const visibleItems = this.items.filter((candidate) => !candidate.hidden);
+      const beforeIndex = beforeItem
+        ? visibleItems.indexOf(beforeItem)
+        : visibleItems.length;
+      const previousItem = visibleItems[beforeIndex - 1];
+      const listBounds = list.getBoundingClientRect();
+      const beforeBounds = beforeItem?.getBoundingClientRect();
+      const previousBounds = previousItem?.getBoundingClientRect();
+      const boundary = beforeBounds
+        ? previousBounds
+          ? (previousBounds.bottom + beforeBounds.top) / 2
+          : beforeBounds.top
+        : (previousBounds?.bottom ?? listBounds.top);
+      const top = boundary - listBounds.top + list.scrollTop;
+      const containedTop = Math.min(
+        Math.max(top, 0),
+        Math.max(list.scrollHeight - 1, 0)
+      );
+      placeholder.style.setProperty(
+        '--ix-list-drag-separator-top',
+        `${containedTop}px`
+      );
     }
   }
 
@@ -537,7 +592,7 @@ export class List {
     event.preventDefault();
     this.dragPointerId = event.pointerId;
     this.dragStartY = event.clientY;
-    this.createDragPlaceholder(item);
+    this.createDragPlaceholder(item, event.clientY);
     gripper.setPointerCapture(event.pointerId);
   }
 
@@ -552,10 +607,12 @@ export class List {
     }
 
     event.preventDefault();
-    item.style.setProperty(
-      '--ix-list-drag-y',
-      `${event.clientY - this.dragStartY}px`
-    );
+    if (this.dragBehavior === 'dynamic') {
+      item.style.setProperty(
+        '--ix-list-drag-y',
+        `${event.clientY - this.dragStartY}px`
+      );
+    }
     this.movePlaceholder(event.clientY);
   }
 

@@ -1157,7 +1157,8 @@ export const IxList: StencilReactComponent<IxListElement, IxListEvents, Componen
         disabled: 'disabled',
         checkbox: 'checkbox',
         actionOnHover: 'action-on-hover',
-        draggable: 'draggable'
+        draggable: 'draggable',
+        dragBehavior: 'drag-behavior'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxList as StencilReactComponent<IxListElement, IxListEvents, Components.IxList>,

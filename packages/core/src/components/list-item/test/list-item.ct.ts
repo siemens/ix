@@ -222,14 +222,40 @@ regressionTest(
   'disables the primary and action regions',
   async ({ mount, page }) => {
     await mount(`
-    <ix-list-item label="Disabled" disabled>
+    <ix-list-item label="Disabled" description="Unavailable" disabled>
       <button slot="action">Action</button>
     </ix-list-item>
   `);
 
     const item = page.locator('ix-list-item');
+    const weakTextColor = await item.evaluate((element) =>
+      getComputedStyle(element)
+        .getPropertyValue('--theme-color-weak-text')
+        .trim()
+    );
     await expect(item.locator('.primary-action')).toBeDisabled();
     await expect(item.locator('.action')).toHaveAttribute('inert', '');
     await expect(item).toHaveAttribute('aria-disabled', 'true');
+    await expect(item.locator('.label')).toHaveCSS('color', weakTextColor);
+    await expect(item.locator('.description')).toHaveCSS(
+      'color',
+      weakTextColor
+    );
   }
 );
+
+regressionTest('uses selected state colors', async ({ mount, page }) => {
+  await mount(`<ix-list-item label="Selected" selected></ix-list-item>`);
+
+  const item = page.locator('ix-list-item');
+  const selectedColor = await item.evaluate((element) =>
+    getComputedStyle(element)
+      .getPropertyValue('--theme-color-ghost--selected')
+      .trim()
+  );
+
+  await expect(item.locator('.item-surface')).toHaveCSS(
+    'background-color',
+    selectedColor
+  );
+});

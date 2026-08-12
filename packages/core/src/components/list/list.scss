@@ -9,6 +9,7 @@
 }
 
 .list {
+  position: relative;
   display: flex;
   width: 100%;
   max-height: inherit;
@@ -39,5 +40,17 @@
 :host(.has-divider) ::slotted(.ix-list-drag-placeholder) {
   height: 0.25rem !important;
   border-top: 1px solid var(--theme-color-std-bdr);
+  border-radius: 0;
+}
+
+::slotted(.ix-list-drag-placeholder.separator) {
+  position: absolute;
+  z-index: 1;
+  top: var(--ix-list-drag-separator-top, 0);
+  right: 0;
+  left: 0;
+  height: 0 !important;
+  margin: 0;
+  border-top: 1px solid var(--theme-color-contrast-bdr);
   border-radius: 0;
 }
