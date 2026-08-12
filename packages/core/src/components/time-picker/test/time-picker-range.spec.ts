@@ -13,16 +13,7 @@ import {
   getCandidateRangeForUnit,
   isSelectableForUnitWithinBounds,
 } from '../time-picker-range';
-
-function expectDefined<T>(value: T | null | undefined): T {
-  expect(value).toBeDefined();
-
-  if (value === null || value === undefined) {
-    throw new Error('Expected value to be defined');
-  }
-
-  return value;
-}
+import { expectDefined } from './expect-defined';
 
 describe('getCandidateRangeForUnit', () => {
   const base = DateTime.fromObject(

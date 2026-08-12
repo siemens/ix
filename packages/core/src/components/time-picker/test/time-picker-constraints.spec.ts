@@ -16,21 +16,12 @@ import {
   parseTimeOnDay,
   timeOfDayRangeIntersectsInclusiveBounds,
 } from '../time-picker-constraints';
+import { expectDefined } from './expect-defined';
 
 const baseDay = DateTime.fromObject(
   { year: 2024, month: 6, day: 15 },
   { zone: 'utc' }
 ).startOf('day');
-
-function expectDefined<T>(value: T | null | undefined): T {
-  expect(value).toBeDefined();
-
-  if (value === null || value === undefined) {
-    throw new Error('Expected value to be defined');
-  }
-
-  return value;
-}
 
 describe('parseTimeOnDay', () => {
   it('returns null for undefined or blank', () => {

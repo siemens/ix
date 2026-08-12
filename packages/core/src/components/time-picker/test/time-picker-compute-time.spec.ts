@@ -10,21 +10,12 @@
 import { describe, expect, it } from 'vitest';
 import { DateTime } from 'luxon';
 import { computeTimeWithRawUnitValue } from '../time-picker-compute-time';
+import { expectDefined } from './expect-defined';
 
 const noon = DateTime.fromObject(
   { year: 2024, month: 1, day: 1, hour: 12, minute: 0, second: 0 },
   { zone: 'utc' }
 );
-
-function expectDefined<T>(value: T | null | undefined): T {
-  expect(value).toBeDefined();
-
-  if (value === null || value === undefined) {
-    throw new Error('Expected value to be defined');
-  }
-
-  return value;
-}
 
 describe('computeTimeWithRawUnitValue', () => {
   it('24h: maps hour without AM/PM shift', () => {
