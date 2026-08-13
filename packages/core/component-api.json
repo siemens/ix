@@ -133,12 +133,44 @@
           "deprecated": false
         },
         {
+          "name": "disableSkipLink",
+          "attribute": "disable-skip-link",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "forceBreakpoint",
           "attribute": "force-breakpoint",
           "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToContent",
+          "attribute": "i18n-skip-to-content",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to main content'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "skipLinkTargetId",
+          "attribute": "skip-link-target-id",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
