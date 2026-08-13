@@ -548,7 +548,7 @@ regressionTest(
 );
 
 regressionTest(
-  'should allow scrolling in dropdown with many items when active page is in a different category',
+  'should not retain inline max-height after expanding category with many items',
   async ({ mount, page }) => {
     await mount(`
       <ix-application>
@@ -573,6 +573,7 @@ regressionTest(
             <ix-menu-item>Item 17</ix-menu-item>
             <ix-menu-item>Item 18</ix-menu-item>
             <ix-menu-item>Item 19</ix-menu-item>
+            <ix-menu-item>Item 20</ix-menu-item>
           </ix-menu-category>
           <ix-menu-category label="Other Category">
             <ix-menu-item>Other Item</ix-menu-item>
@@ -581,33 +582,64 @@ regressionTest(
       </ix-application>
     `);
 
+    await page
+      .locator('ix-application')
+      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['md']));
+
+    const menuCategory = page.locator('ix-menu-category').first();
+
+    // Override item heights to be larger than the hardcoded 40px used by
+    // getNestedItemsHeight(), so the animation's inline max-height
+    // underestimates the actual content and overflow:hidden clips items.
+    await menuCategory.evaluate((cat: HTMLIxMenuCategoryElement) => {
+      cat.querySelectorAll(':scope ix-menu-item').forEach((item) => {
+        (item as HTMLElement).style.setProperty(
+          '--ix-menu-item-height',
+          '80px'
+        );
+      });
+    });
+
     const otherCategory = page.locator('ix-menu-category').nth(1);
-    await otherCategory.hover();
     const otherItem = otherCategory.locator(
       'ix-menu-item:not(.category-parent)'
     );
-    await otherItem.click();
     await otherItem.evaluate((el: HTMLIxMenuItemElement) => (el.active = true));
     await expect(otherItem).toHaveClass(/active/);
 
-    const menuCategory = page.locator('ix-menu-category').first();
-    await menuCategory.hover();
+    await page.locator('ix-menu').locator('ix-menu-expand-icon').click();
 
-    const dropdown = menuCategory.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+    await menuCategory.click();
 
-    const isScrollable = await dropdown.evaluate((el) => {
-      return el.scrollHeight > el.clientHeight;
-    });
-    expect(isScrollable).toBe(true);
+    await page.waitForTimeout(300);
 
+    const menuItems = menuCategory.locator('.menu-items');
+    await expect(menuItems).toHaveClass(/menu-items--expanded/);
+
+    const inlineMaxHeight = await menuItems.evaluate(
+      (el) => el.style.maxHeight
+    );
+    expect(inlineMaxHeight).toBe('');
+
+    // The last item should be scrollable into view, not clipped by
+    // overflow:hidden + an incorrect inline max-height.
     const lastItem = menuCategory
       .locator('ix-menu-item:not(.category-parent)')
       .last();
-    await lastItem.scrollIntoViewIfNeeded();
-    await expect(lastItem).toBeInViewport();
-    await lastItem.click();
-    await expect(dropdown).not.toBeVisible();
+    await expect(lastItem).toBeVisible();
+
+    const isClipped = await menuItems.evaluate((container) => {
+      const items = container
+        .querySelectorAll('slot')[0]
+        ?.assignedElements()
+        .filter((el): el is HTMLElement => el.tagName === 'IX-MENU-ITEM');
+      if (!items || items.length === 0) return false;
+      const lastEl = items[items.length - 1];
+      const containerRect = container.getBoundingClientRect();
+      const itemRect = lastEl.getBoundingClientRect();
+      return itemRect.bottom > containerRect.bottom;
+    });
+    expect(isClipped).toBe(false);
   }
 );
 

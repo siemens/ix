@@ -87,7 +87,6 @@ export class MenuCategory
   @State() showItems = false;
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
-  @State() willShowItems = false;
 
   /** @internal */
   @Method()
@@ -151,7 +150,6 @@ export class MenuCategory
         setTimeout(() => {
           this.showItems = false;
           this.showDropdown = false;
-          this.willShowItems = false;
         }, DefaultAnimationTimeout + slotHideThresholdMs);
       },
     });
@@ -166,6 +164,9 @@ export class MenuCategory
       easing: 'easeInSine',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
+      onComplete: () => {
+        this.clearMenuItemsContainertyles();
+      },
     });
   }
 
@@ -181,11 +182,7 @@ export class MenuCategory
       );
 
       if (ref) {
-        this.willShowItems = true;
         dropdownController.present(ref);
-        if (!ref.isPresent()) {
-          this.willShowItems = false;
-        }
       }
     }
   }
@@ -238,7 +235,6 @@ export class MenuCategory
 
   private onDropdownShowChanged(dropdownShown: boolean) {
     this.showDropdown = dropdownShown;
-    this.willShowItems = false;
 
     if (!dropdownShown) {
       this.focusFirstItemOnDropdownOpen = false;
@@ -430,25 +426,23 @@ export class MenuCategory
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
         if (!menuExpand) {
-          this.clearMenuItemStyles();
+          this.clearMenuItemsContainertyles();
         }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
   }
 
-  clearMenuItemStyles() {
+  clearMenuItemsContainertyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
   }
 
   @Watch('showDropdown')
   @Watch('showItems')
-  @Watch('willShowItems')
   onShowItemsChange() {
     this.getNestedItems().forEach((item) => {
-      item.hidden =
-        !this.showItems && !this.showDropdown && !this.willShowItems;
+      item.hidden = !this.showItems && !this.showDropdown;
     });
   }
 
