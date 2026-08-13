@@ -42,7 +42,9 @@ regressionTest(
       list!.appendChild(item);
     });
 
-    await page.waitForTimeout(200);
+    await expect(page.locator('ix-event-list-item').nth(1)).toHaveClass(
+      /hydrated/
+    );
 
     const animeWarnings = warnings.filter((w) => w.includes('No target found'));
     expect(animeWarnings).toHaveLength(0);
@@ -72,7 +74,9 @@ regressionTest(
       list!.appendChild(item);
     });
 
-    await page.waitForTimeout(300);
+    await expect(page.locator('ix-event-list-item').nth(1)).toHaveClass(
+      /hydrated/
+    );
 
     const animeWarnings = warnings.filter((w) => w.includes('No target found'));
     expect(animeWarnings).toHaveLength(0);
@@ -116,7 +120,7 @@ regressionTest('check if items still clickable', async ({ mount, page }) => {
     </ix-event-list>
   `);
 
-  await page.waitForTimeout(500);
+  await expect(page.locator('ix-event-list')).toHaveClass(/hydrated/);
   const firstEventListItem = page.locator('ix-event-list-item').first();
   const secondEventListItem = page.locator('ix-event-list-item').nth(1);
   const thirdEventListItem = page.locator('ix-event-list-item').last();
