@@ -90,14 +90,14 @@ export class Application {
    * Disable the built-in link for bypassing repeated application content.
    * Only disable it when an equivalent bypass mechanism is provided elsewhere.
    *
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() disableSkipLink = false;
 
   /**
    * Localized text for the link that bypasses repeated application content.
    *
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-skip-to-content' }) i18nSkipToContent =
     DEFAULT_SKIP_LINK_LABEL;
@@ -106,7 +106,7 @@ export class Application {
    * ID of a light-DOM descendant to focus when the skip link is activated.
    * Falls back to the internal main region when the target cannot be used.
    *
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() skipLinkTargetId?: string;
 

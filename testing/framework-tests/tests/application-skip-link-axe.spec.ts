@@ -13,6 +13,11 @@ test('application skip link - accessibility check', async ({ page }) => {
   await page.goto('/preview/application');
   await waitForReadiness(page);
 
+  const skipLink = page.getByRole('link', { name: 'Skip to main content' });
+  await skipLink.focus();
+  await expect(skipLink).toBeFocused();
+  await expect(skipLink).toBeInViewport();
+
   const results = await createAxeBuilder(page)
     .include('ix-application')
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

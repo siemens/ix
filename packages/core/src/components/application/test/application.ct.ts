@@ -19,7 +19,7 @@ const captureWarnings = (page: Page) => {
   return warnings;
 };
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
     <ix-application>
       <ix-application-header name="My application"></ix-application-header>
@@ -29,6 +29,11 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
       <ix-content>Page content</ix-content>
     </ix-application>
   `);
+
+  const skipLink = page.getByRole('link', { name: 'Skip to main content' });
+  await skipLink.focus();
+  await expect(skipLink).toBeFocused();
+  await expect(skipLink).toBeInViewport();
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
