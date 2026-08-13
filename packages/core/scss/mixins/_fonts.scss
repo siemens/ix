@@ -118,7 +118,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h1),
     $line-height: var(--si-ref-typography-line-height-h1),
-    $font-weight: var(--si-ref-typography-font-weight-bold),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
@@ -126,7 +126,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h2),
     $line-height: var(--si-ref-typography-line-height-h2),
-    $font-weight: var(--si-ref-typography-font-weight-bold),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
@@ -134,7 +134,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h3),
     $line-height: var(--si-ref-typography-line-height-h3),
-    $font-weight: var(--si-ref-typography-font-weight-bold),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
@@ -142,7 +142,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h4),
     $line-height: var(--si-ref-typography-line-height-h4),
-    $font-weight: var(--si-ref-typography-font-weight-bold),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
@@ -150,6 +150,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h5),
     $line-height: var(--si-ref-typography-line-height-h5),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
@@ -165,7 +166,7 @@
   @include define-typography(
     $size: var(--si-ref-typography-font-size-h6),
     $line-height: var(--si-ref-typography-line-height-h6),
-    $font-weight: var(--si-ref-typography-font-weight-bold),
+    $font-weight: var(--si-ref-typography-font-weight-sbold),
   );
 }
 
