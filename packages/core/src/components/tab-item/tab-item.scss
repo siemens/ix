@@ -115,6 +115,11 @@
   flex-basis: 100%;
   width: 100%;
   @include text-truncation.ellipsis;
+
+  div {
+    max-width: 100%;
+    @include text-truncation.ellipsis;
+  }
 }
 
 :host(.selected:not(.disabled)) {
