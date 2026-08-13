@@ -548,7 +548,7 @@ regressionTest(
 );
 
 regressionTest(
-  'should allow scrolling in dropdown with many items when no category item is active',
+  'should allow scrolling in dropdown with many items when active page is in a different category',
   async ({ mount, page }) => {
     await mount(`
       <ix-application>
@@ -574,11 +574,23 @@ regressionTest(
             <ix-menu-item>Item 18</ix-menu-item>
             <ix-menu-item>Item 19</ix-menu-item>
           </ix-menu-category>
+          <ix-menu-category label="Other Category">
+            <ix-menu-item>Other Item</ix-menu-item>
+          </ix-menu-category>
         </ix-menu>
       </ix-application>
     `);
 
-    const menuCategory = page.locator('ix-menu-category');
+    const otherCategory = page.locator('ix-menu-category').nth(1);
+    await otherCategory.hover();
+    const otherItem = otherCategory.locator(
+      'ix-menu-item:not(.category-parent)'
+    );
+    await otherItem.click();
+    await otherItem.evaluate((el: HTMLIxMenuItemElement) => (el.active = true));
+    await expect(otherItem).toHaveClass(/active/);
+
+    const menuCategory = page.locator('ix-menu-category').first();
     await menuCategory.hover();
 
     const dropdown = menuCategory.locator('ix-dropdown');
