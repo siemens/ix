@@ -2,4 +2,4 @@
 '@siemens/ix': minor
 ---
 
-Add component-level CSS custom properties for action cards, AI and user chat messages, and chat inputs to support targeted theme customization.
+Expose component-scoped `--ix-*` CSS custom properties for `ix-action-card`, `ix-chat-input`, `ix-chat-ai-message`, and `ix-chat-user-message`, allowing their appearance and interaction states to be customized without overriding internal selectors.

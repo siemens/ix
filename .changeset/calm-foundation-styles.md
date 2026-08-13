@@ -2,6 +2,6 @@
 '@siemens/ix': major
 ---
 
-Make the default IX stylesheet self-contained-component focused by loading the classic theme and foundation. Foundation retains the body typography, text color, background, and automatic document scrollbar styling. Native element normalization, body margin reset, utility classes, and native form styles are explicit opt-ins under `@siemens/ix/css/*`, with aggregate globals and legacy bundles.
+Change the default IX stylesheet to include the classic theme and the foundation styles required by IX components. Native element normalization, the body margin reset, utility classes, and native form styles are no longer applied by default. Import `@siemens/ix/css/globals.css` for the supported global styles, or combine `@siemens/ix/css/default.css` with `@siemens/ix/css/legacy.css` to retain the previous behavior while migrating.
 
-The public Sass API now uses explicit exports instead of exposing every internal partial. Migrate deep imports to the documented foundation, global, theme, token, mixin, or deprecated compatibility entry points.
+Replace deep Sass imports with the explicit foundation, global, theme, token, mixin, or deprecated compatibility entry points. Unsupported legacy component modules and implementation-specific mixins have been removed; migration guidance is available in `BREAKING_CHANGES/v6.md`.
