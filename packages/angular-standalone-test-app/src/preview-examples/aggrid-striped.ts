@@ -28,8 +28,8 @@ export default class AGGridStriped implements OnInit {
   gridOptions: GridOptions | null = null;
 
   ngOnInit() {
-    const ixTheme = getIxTheme(agGrid).withParams({
-      oddRowBackgroundColor: 'var(--theme-color-1)',
+    const ixTheme = getIxTheme(agGrid, {
+      stripedRows: true,
     });
 
     this.gridOptions = {

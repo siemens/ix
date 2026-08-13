@@ -28,8 +28,8 @@ LICENSE file in the root directory of this source tree.
 
       ModuleRegistry.registerModules([AllCommunityModule]);
 
-      const ixTheme = getIxTheme(agGridCommunity).withParams({
-        oddRowBackgroundColor: 'var(--theme-color-1)',
+      const ixTheme = getIxTheme(agGridCommunity, {
+        stripedRows: true,
       });
 
       const container = document.querySelector('#grid-container');

@@ -25,8 +25,8 @@ export default () => {
 
   useEffect(() => {
     const initializeGrid = () => {
-      const ixTheme = getIxTheme(agGrid).withParams({
-        oddRowBackgroundColor: 'var(--theme-color-1)',
+      const ixTheme = getIxTheme(agGrid, {
+        stripedRows: true,
       });
 
       setGridOptions({

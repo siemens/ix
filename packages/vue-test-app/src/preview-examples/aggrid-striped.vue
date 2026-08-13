@@ -23,8 +23,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const gridOptions = ref<GridOptions | null>(null);
 
 onMounted(() => {
-  const ixTheme = getIxTheme(agGrid).withParams({
-    oddRowBackgroundColor: 'var(--theme-color-1)',
+  const ixTheme = getIxTheme(agGrid, {
+    stripedRows: true,
   });
 
   gridOptions.value = {

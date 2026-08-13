@@ -19,9 +19,7 @@ import { COLUMN_DEFS, ROW_DATA } from '../utils/test/basic.const';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const stripedTheme = getIxTheme(agGridCommunity).withParams({
-  oddRowBackgroundColor: 'var(--theme-color-1)',
-});
+const stripedTheme = getIxTheme(agGridCommunity, { stripedRows: true });
 
 const gridOptions = {
   columnDefs: COLUMN_DEFS,
