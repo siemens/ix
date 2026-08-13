@@ -20,6 +20,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
+import AgGridStriped from './preview-examples/aggrid-striped';
 import Application from './preview-examples/application';
 import ApplicationAdvanced from './preview-examples/application-advanced';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
@@ -292,6 +293,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-breakpoints': ApplicationBreakpoints,
