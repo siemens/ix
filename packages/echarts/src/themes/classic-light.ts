@@ -181,12 +181,10 @@ export default {
     timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
-        color: '#405158',
-        borderColor: '#006A87',
+        borderColor: '#405158',
       },
       emphasis: {
         iconStyle: {
-          color: '#004F69',
           borderColor: '#004F69',
         },
       },
