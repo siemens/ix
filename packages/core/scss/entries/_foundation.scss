@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '../theme/core/common' as common;
+@use '../foundation/body';
+@use '../foundation/scrollbar';
 
 :root {
   --ix-safe-area-inset-top: 0rem;

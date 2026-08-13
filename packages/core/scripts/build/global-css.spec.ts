@@ -45,13 +45,23 @@ describe('global CSS entry points', () => {
       const selectors = getSelectors(compileEntry(entry));
       const selectorList = selectors.join(',');
 
-      expect(selectorList).not.toMatch(/(^|,)\s*body(?:[^\w-]|$)/);
       expect(selectorList).not.toContain('.typography-');
       expect(selectorList).not.toContain('.ix-table');
       expect(selectorList).not.toContain('.ix-form-control');
       expect(selectorList).not.toContain('[data-ix-scrollbars]');
     }
   );
+
+  it('includes document presentation defaults in foundation', () => {
+    const foundationCss = compileEntry('ix-foundation.scss');
+    const foundation = normalizeCss(foundationCss);
+
+    expect(foundation).toContain('body{color:var(--theme-color-std-text)');
+    expect(foundation).toContain('background-color:var(--theme-color-1)');
+    expect(foundation).toContain('font-family:Siemens Sans');
+    expect(foundationCss).toContain('body:not(.disable-scrollbar)');
+    expect(foundation).not.toContain('margin:0');
+  });
 
   it('scopes the optional scrollbar stylesheet to an explicit subtree', () => {
     const selectors = getSelectors(compileEntry('ix-scrollbar.scss'));
@@ -83,7 +93,7 @@ describe('global CSS entry points', () => {
     const legacy = normalizeCss(legacyCss);
 
     expect(legacy).toContain('.ix-form-control');
-    expect(legacyCss).toContain('body:not(.disable-scrollbar)');
+    expect(legacyCss).not.toContain('body:not(.disable-scrollbar)');
     expect(legacyCss).toContain('.ix-table');
     expect(legacy).toContain('box-sizing:border-box');
   });
