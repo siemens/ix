@@ -569,15 +569,15 @@
     }
   },
   "toolbox": {
-    "si/sys/text/accent": {
+    "si/sys/text/secondary": {
       "eChartsVariable": [
         "toolbox.iconStyle.color"
       ],
       "hexValuesByMode": {
-        "Siemens Brand Dark": "#00CCCC",
-        "Siemens Brand Light": "#006B80",
-        "Classic Dark": "#00C9E4",
-        "Classic Light": "#006A87"
+        "Siemens Brand Dark": "#B3B3BE",
+        "Siemens Brand Light": "#4C4C68",
+        "Classic Dark": "#AEB5B8",
+        "Classic Light": "#405158"
       }
     },
     "si/sys/text/accent-hover": {
