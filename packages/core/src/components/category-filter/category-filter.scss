@@ -96,7 +96,7 @@
     @include legacy-fonts.text-default;
 
     &::placeholder {
-      @include fonts.typography-label;
+      @include fonts.typography-body;
       color: var(--theme-color-soft-text);
     }
 
