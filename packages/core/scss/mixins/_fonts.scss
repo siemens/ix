@@ -30,6 +30,8 @@
   font-weight: #{$font-weight};
   letter-spacing: #{$letter-spacing};
   text-decoration: $text-decoration;
+
+  @include font-smoothing();
 }
 
 @mixin typography-body {
