@@ -87,6 +87,7 @@ export class MenuCategory
   @State() showItems = false;
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
+  @State() willShowItems = false;
 
   /** @internal */
   @Method()
@@ -150,6 +151,7 @@ export class MenuCategory
         setTimeout(() => {
           this.showItems = false;
           this.showDropdown = false;
+          this.willShowItems = false;
         }, DefaultAnimationTimeout + slotHideThresholdMs);
       },
     });
@@ -173,15 +175,17 @@ export class MenuCategory
     }
     this.closeOtherCategories.emit(this.categoryId);
 
-    this.showDropdown = true;
-
     if (this.dropdownRef.current) {
       const ref = dropdownController.getDropdownById(
         this.dropdownRef.current.dataset.ixDropdown!
       );
 
       if (ref) {
+        this.willShowItems = true;
         dropdownController.present(ref);
+        if (!ref.isPresent()) {
+          this.willShowItems = false;
+        }
       }
     }
   }
@@ -234,6 +238,7 @@ export class MenuCategory
 
   private onDropdownShowChanged(dropdownShown: boolean) {
     this.showDropdown = dropdownShown;
+    this.willShowItems = false;
 
     if (!dropdownShown) {
       this.focusFirstItemOnDropdownOpen = false;
@@ -439,9 +444,11 @@ export class MenuCategory
 
   @Watch('showDropdown')
   @Watch('showItems')
+  @Watch('willShowItems')
   onShowItemsChange() {
     this.getNestedItems().forEach((item) => {
-      item.hidden = !this.showItems && !this.showDropdown;
+      item.hidden =
+        !this.showItems && !this.showDropdown && !this.willShowItems;
     });
   }
 
