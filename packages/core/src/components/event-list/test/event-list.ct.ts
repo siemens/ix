@@ -17,18 +17,19 @@
  */
 import 'jest';
 import { regressionTest } from '@utils/test';
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
+
+const anyItemHasAnimatedStyle = (page: Page) =>
+  page.evaluate(() => {
+    const items = document.querySelectorAll('ix-event-list-item');
+    return Array.from(items).some(
+      (item) => (item as HTMLElement).style.opacity !== ''
+    );
+  });
 
 regressionTest(
-  'does not log anime.js warning on child mutation when animated is false (default)',
+  'does not animate list when animated is false (default)',
   async ({ mount, page }) => {
-    const warnings: string[] = [];
-    page.on('console', (msg) => {
-      if (msg.type() === 'warning') {
-        warnings.push(msg.text());
-      }
-    });
-
     await mount(`
       <ix-event-list>
         <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
@@ -46,21 +47,13 @@ regressionTest(
       /hydrated/
     );
 
-    const animeWarnings = warnings.filter((w) => w.includes('No target found'));
-    expect(animeWarnings).toHaveLength(0);
+    expect(await anyItemHasAnimatedStyle(page)).toBe(false);
   }
 );
 
 regressionTest(
-  'does not log anime.js warning on child mutation when animated is true',
+  'animates list items when animated is true',
   async ({ mount, page }) => {
-    const warnings: string[] = [];
-    page.on('console', (msg) => {
-      if (msg.type() === 'warning') {
-        warnings.push(msg.text());
-      }
-    });
-
     await mount(`
       <ix-event-list animated>
         <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
@@ -78,8 +71,13 @@ regressionTest(
       /hydrated/
     );
 
-    const animeWarnings = warnings.filter((w) => w.includes('No target found'));
-    expect(animeWarnings).toHaveLength(0);
+    await page.waitForFunction(() => {
+      const items = document.querySelectorAll('ix-event-list-item');
+      return Array.from(items).some(
+        (item) => (item as HTMLElement).style.opacity !== ''
+      );
+    });
+    expect(await anyItemHasAnimatedStyle(page)).toBe(true);
   }
 );
 
