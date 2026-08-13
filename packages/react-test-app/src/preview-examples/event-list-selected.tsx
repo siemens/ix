@@ -20,7 +20,7 @@ export default function EventListSelected() {
       {items.map((text, index) => (
         <IxEventListItem
           key={text}
-          itemColor="color-primary"
+          itemColor="--si-sys-background-accent"
           selected={selectedIndex === index}
           onClick={() => setSelectedIndex(index)}
         >

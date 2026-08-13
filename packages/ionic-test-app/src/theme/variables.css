@@ -31,7 +31,7 @@ body[data-screen-orientation='landscape-primary'] {
   --ion-color-primary: var(--theme-color-primary);
   --ion-text-color: var(--theme-color-std-text);
   --ion-item-background: var(--theme-color-1);
-  --ion-toolbar-background: var(--theme-app-header--background);
+  --ion-toolbar-background: var(--si-sys-background-1);
 
   --ion-padding: 16px;
   --ion-margin: 16px;

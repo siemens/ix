@@ -87,7 +87,7 @@ export default () => {
           icon={iconPrint}
           variant="custom"
           background="var(--theme-chart-11)"
-          chipColor="var(--theme-chip-outline--color)"
+          chipColor="var(--si-sys-text-primary)"
           outline
           closable
         >

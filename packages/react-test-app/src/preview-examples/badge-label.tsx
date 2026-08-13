@@ -14,7 +14,7 @@ import { IxBadge } from '@siemens/ix-react';
 
 const CUSTOM_BACKGROUND = 'var(--theme-chart-11)';
 const CUSTOM_COLOR = 'var(--theme-color-inv-std-text)';
-const CUSTOM_OUTLINE_COLOR = 'var(--theme-chip-outline--color)';
+const CUSTOM_OUTLINE_COLOR = 'var(--si-sys-text-primary)';
 
 export default () => {
   return (

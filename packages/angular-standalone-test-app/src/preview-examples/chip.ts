@@ -62,7 +62,7 @@ import { IxChip } from '@siemens/ix-angular/standalone';
           icon="print"
           variant="custom"
           background="var(--theme-chart-11)"
-          chip-color="var(--theme-chip-outline--color)"
+          chip-color="var(--si-sys-text-primary)"
           outline
           closable
           >Custom</ix-chip
