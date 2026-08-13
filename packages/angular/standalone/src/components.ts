@@ -10,6 +10,7 @@ import { defineCustomElement as defineIxActionCard } from '@siemens/ix/component
 import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
+import { defineCustomElement as defineIxBadge } from '@siemens/ix/components/ix-badge.js';
 import { defineCustomElement as defineIxBlind } from '@siemens/ix/components/ix-blind.js';
 import { defineCustomElement as defineIxBreadcrumb } from '@siemens/ix/components/ix-breadcrumb.js';
 import { defineCustomElement as defineIxBreadcrumbItem } from '@siemens/ix/components/ix-breadcrumb-item.js';
@@ -218,6 +219,29 @@ export class IxAvatar {
 
 
 export declare interface IxAvatar extends Components.IxAvatar {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxBadge,
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant']
+})
+@Component({
+  selector: 'ix-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant'],
+})
+export class IxBadge {
+  protected el: HTMLIxBadgeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxBadge extends Components.IxBadge {}
 
 
 @ProxyCmp({

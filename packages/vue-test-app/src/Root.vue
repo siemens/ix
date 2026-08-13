@@ -26,6 +26,11 @@ import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import Badge from './preview-examples/badge.vue';
+import BadgeCounter from './preview-examples/badge-counter.vue';
+import BadgeDot from './preview-examples/badge-dot.vue';
+import BadgeLabel from './preview-examples/badge-label.vue';
+import BadgeStatusIcon from './preview-examples/badge-status-icon.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import Blind from './preview-examples/blind.vue';
@@ -276,6 +281,11 @@ const routes: IxPreviewRoutes = {
   '/preview/avatar-image': AvatarImage,
   '/preview/avatar-initials': AvatarInitials,
   '/preview/avatar': Avatar,
+  '/preview/badge': Badge,
+  '/preview/badge-counter': BadgeCounter,
+  '/preview/badge-dot': BadgeDot,
+  '/preview/badge-label': BadgeLabel,
+  '/preview/badge-status-icon': BadgeStatusIcon,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
