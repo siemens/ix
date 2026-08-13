@@ -62,7 +62,7 @@ regressionTest('renders draggable grippers', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'allows keyboard access to active drag gripper',
+  'tabs from active item to drag gripper and reverse-tabs out of the list',
   async ({ mount, page }) => {
     await mount(
       `
@@ -72,17 +72,77 @@ regressionTest(
             <ix-list-item label="Project Alpha"></ix-list-item>
             <ix-list-item label="Project Beta"></ix-list-item>
           </ix-list>
+          <button id="after-list">After list</button>
         </div>
       `,
       { icons: { iconDragGripper } }
     );
 
     const firstGripper = page.getByLabel('Reorder Project Alpha');
+    const firstPrimaryAction = page.locator('ix-list-item .primary-action').first();
 
     await expect(firstGripper).toHaveAttribute('tabindex', '0');
     await page.locator('#before-list').focus();
     await page.keyboard.press('Tab');
+
+    await expect(firstPrimaryAction).toBeFocused();
+    await page.keyboard.press('Tab');
     await expect(firstGripper).toBeFocused();
+
+    await expect
+      .poll(() =>
+        firstGripper.evaluate(
+          (element) => getComputedStyle(element, '::after').display
+        )
+      )
+      .not.toBe('none');
+    await expect(firstGripper).toHaveCSS('position', 'relative');
+    await expect
+      .poll(() =>
+        firstGripper.evaluate(
+          (element) => getComputedStyle(element, '::after').inset
+        )
+      )
+      .not.toBe('0px');
+
+    await firstPrimaryAction.focus();
+    await page.keyboard.press('Shift+Tab');
+    await expect(page.locator('#before-list')).toBeFocused();
+
+    await firstGripper.focus();
+    await page.keyboard.press('Tab');
+    await expect(page.locator('#after-list')).toBeFocused();
+  }
+);
+
+regressionTest(
+  'roves to previous and next items from drag gripper with arrow keys',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-list draggable aria-label="Projects">
+          <ix-list-item label="Project Alpha"></ix-list-item>
+          <ix-list-item label="Project Beta"></ix-list-item>
+          <ix-list-item label="Project Gamma"></ix-list-item>
+        </ix-list>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const firstGripper = page.getByLabel('Reorder Project Alpha');
+    const secondPrimaryAction = page.locator('ix-list-item .primary-action').nth(1);
+    const firstPrimaryAction = page.locator('ix-list-item .primary-action').first();
+
+    await firstGripper.focus();
+    await firstGripper.press('ArrowDown');
+    await expect(secondPrimaryAction).toBeFocused();
+
+    await secondPrimaryAction.press('ArrowLeft');
+    const secondGripper = page.getByLabel('Reorder Project Beta');
+    await expect(secondGripper).toBeFocused();
+
+    await secondGripper.press('ArrowUp');
+    await expect(firstPrimaryAction).toBeFocused();
   }
 );
 

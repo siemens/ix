@@ -238,18 +238,6 @@ export class ListItem
       >
         <div class="item-surface">
           <button
-            class="drag-gripper"
-            type="button"
-            tabindex={-1}
-            disabled={this.disabled}
-            aria-pressed="false"
-            aria-label={
-              this.label ? `Reorder ${this.label}` : 'Reorder list item'
-            }
-          >
-            <ix-icon name={iconDragGripper} aria-hidden="true"></ix-icon>
-          </button>
-          <button
             {...this.inheritAriaAttributes}
             ref={this.primaryActionRef}
             class="primary-action"
@@ -265,6 +253,18 @@ export class ListItem
           >
             {this.renderStandardContent(labelId)}
             <slot></slot>
+          </button>
+          <button
+            class="drag-gripper"
+            type="button"
+            tabindex={-1}
+            disabled={this.disabled}
+            aria-pressed="false"
+            aria-label={
+              this.label ? `Reorder ${this.label}` : 'Reorder list item'
+            }
+          >
+            <ix-icon name={iconDragGripper} aria-hidden="true"></ix-icon>
           </button>
           {this.checkbox ? (
             <ix-checkbox

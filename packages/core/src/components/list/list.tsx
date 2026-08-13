@@ -722,9 +722,21 @@ export class List {
         return;
       }
 
-      if (event.key === 'ArrowRight' || event.key === 'Tab') {
+      if (event.key === 'ArrowRight') {
         event.preventDefault();
         primaryAction?.focus();
+        return;
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        this.focusRelativeItem(item, 1);
+        return;
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.focusRelativeItem(item, -1);
       }
       return;
     }
