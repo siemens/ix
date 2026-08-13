@@ -13,8 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use "./variables" as light;
+@use "../composition" as tokens;
 
 [data-ix-theme="classic"][data-ix-color-schema="light"] {
-  @include light.setVars;
+  @include tokens.complete-light();
 }

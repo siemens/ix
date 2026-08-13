@@ -13,8 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use "./variables" as dark;
+@use "../composition" as tokens;
 
 [data-ix-theme="classic"][data-ix-color-schema="dark"] {
-  @include dark.setVars;
+  @include tokens.complete-dark();
 }
