@@ -201,7 +201,7 @@ regressionTest(
 );
 
 regressionTest(
-  'truncates title and subtitle on separate lines with complete native tooltips',
+  'truncates title and subtitle on separate lines without native tooltips',
   async ({ mount, page }) => {
     const title = 'A long title that is truncated in compact layouts';
     const subtitle = 'A long subtitle that is truncated independently';
@@ -220,10 +220,7 @@ regressionTest(
     const titleText = header.getByText(title, { exact: true });
     const subtitleText = header.getByText(subtitle, { exact: true });
 
-    for (const [text, completeValue] of [
-      [titleText, title],
-      [subtitleText, subtitle],
-    ] as const) {
+    for (const text of [titleText, subtitleText]) {
       const overflow = await getTextLayout(text);
 
       expect(overflow.height).toBe(overflow.lineHeight);
@@ -231,7 +228,7 @@ regressionTest(
       expect(overflow.overflow).toBe('hidden');
       expect(overflow.textOverflow).toBe('ellipsis');
       expect(overflow.whiteSpace).toBe('nowrap');
-      await expect(text).toHaveAttribute('title', completeValue);
+      await expect(text).not.toHaveAttribute('title');
     }
 
     const titleBox = await titleText.boundingBox();
@@ -267,7 +264,7 @@ regressionTest(
     });
 
     await expect(header).toHaveAttribute('text-overflow', 'ellipsis');
-    await expect(titleText).toHaveAttribute('title', title);
+    await expect(titleText).not.toHaveAttribute('title');
     await expect.poll(getHeight).toBeLessThan(wrappedHeight);
 
     await header.evaluate((element: HTMLIxContentHeaderElement) => {

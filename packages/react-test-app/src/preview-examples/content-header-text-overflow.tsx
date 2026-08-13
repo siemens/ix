@@ -14,7 +14,7 @@ export default () => {
     <IxContentHeader
       hasBackButton
       headerTitle="Content title that remains compact when horizontal space is limited"
-      headerSubtitle="Supporting context is available from the native tooltip"
+      headerSubtitle="Supporting context is truncated independently when space is limited"
       textOverflow="ellipsis"
     >
       <IxButton variant="tertiary">Button1</IxButton>

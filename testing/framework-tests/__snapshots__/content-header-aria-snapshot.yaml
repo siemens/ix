@@ -1,5 +1,5 @@
 - button "Arrow Left"
-- text: Content title that remains compact when horizontal space is limited Supporting context is available from the native tooltip
+- text: Content title that wraps when horizontal space is limited Supporting context remains visible on additional lines
 - button "Button1"
 - button "Button2"
 - button "Button3"

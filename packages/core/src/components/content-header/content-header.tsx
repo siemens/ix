@@ -77,9 +77,6 @@ export class ContentHeader {
                 headerText: true,
                 truncate: this.textOverflow === 'ellipsis',
               }}
-              title={
-                this.textOverflow === 'ellipsis' ? this.headerTitle : undefined
-              }
             >
               {this.headerTitle}
             </ix-typography>
@@ -96,11 +93,6 @@ export class ContentHeader {
                 headerText: true,
                 truncate: this.textOverflow === 'ellipsis',
               }}
-              title={
-                this.textOverflow === 'ellipsis'
-                  ? this.headerSubtitle
-                  : undefined
-              }
             >
               {this.headerSubtitle}
             </ix-typography>

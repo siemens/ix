@@ -19,6 +19,12 @@ const meta = {
     a11y: {
       test: 'error',
     },
+    docs: {
+      description: {
+        component:
+          '`textOverflow="wrap"` is the default. Use `textOverflow="ellipsis"` to opt into single-line ellipsis behavior.',
+      },
+    },
   },
 } satisfies Meta<Element>;
 

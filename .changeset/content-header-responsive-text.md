@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Add responsive wrapping for `ix-content-header` titles and subtitles and a `textOverflow="ellipsis"` option for compact single-line ellipsis behavior with native tooltips for both values.
+Make wrapping the default behavior for `ix-content-header` titles and subtitles. Use `textOverflow="ellipsis"` for explicit single-line ellipsis behavior without native tooltips.
