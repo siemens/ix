@@ -592,7 +592,10 @@ regressionTest(
     const lastItem = menuCategory
       .locator('ix-menu-item:not(.category-parent)')
       .last();
-    await expect(lastItem).not.toBeHidden();
+    await lastItem.scrollIntoViewIfNeeded();
+    await expect(lastItem).toBeInViewport();
+    await lastItem.click();
+    await expect(dropdown).not.toBeVisible();
   }
 );
 
