@@ -164,7 +164,7 @@ export class CardList {
     cancelable: true,
   })
   showMoreCardClick!: EventEmitter<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>;
 
   @Element() hostElement!: HTMLIxCardListElement;
@@ -183,7 +183,68 @@ export class CardList {
     this.collapseChanged.emit(this.collapse);
   }
 
-  private handleClick(emitter: EventEmitter, event: MouseEvent) {
+  private findFirstFocusable(
+    root: HTMLElement | ShadowRoot
+  ): HTMLElement | null {
+    const focusableSelectors =
+      'button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const direct = (root as Element).querySelector?.<HTMLElement>(
+      focusableSelectors
+    );
+    if (direct) return direct;
+
+    for (const child of Array.from(
+      (root as Element).querySelectorAll?.('*') ?? []
+    )) {
+      const el = child as HTMLElement;
+      if (el.shadowRoot) {
+        const found = this.findFirstFocusable(el.shadowRoot);
+        if (found) return found;
+      }
+    }
+
+    return null;
+  }
+
+  private focusFirstVisibleCard(startIndex: number = 0) {
+    requestAnimationFrameNoNgZone(() => {
+      requestAnimationFrameNoNgZone(() => {
+        const firstNewlyVisible = this.getListChildren()
+          .slice(startIndex)
+          .find(
+            (el): el is HTMLElement =>
+              el instanceof HTMLElement &&
+              !el.classList.contains('display-none')
+          );
+
+        if (!firstNewlyVisible) return;
+
+        const internalFocusable = firstNewlyVisible.shadowRoot
+          ? this.findFirstFocusable(firstNewlyVisible.shadowRoot)
+          : null;
+
+        if (internalFocusable) {
+          internalFocusable.focus({ preventScroll: false });
+          return;
+        }
+
+        if (firstNewlyVisible.hasAttribute('tabindex')) {
+          firstNewlyVisible.focus({ preventScroll: false });
+          return;
+        }
+
+        firstNewlyVisible.setAttribute('tabindex', '-1');
+        firstNewlyVisible.focus({ preventScroll: false });
+        firstNewlyVisible.removeAttribute('tabindex');
+      });
+    });
+  }
+
+  private handleClick(
+    emitter: EventEmitter,
+    event: MouseEvent | KeyboardEvent
+  ) {
     const { defaultPrevented } = emitter.emit({
       nativeEvent: event,
     });
@@ -192,12 +253,29 @@ export class CardList {
       return;
     }
 
+    const wasShowingAll = this.isShowingAll;
+    const firstNewCardIndex = this.maxVisibleCards;
+
     this.isShowingAll = !this.isShowingAll;
     this.changeVisibilityOfSlotChildren();
+
+    if (!wasShowingAll) {
+      this.focusFirstVisibleCard(firstNewCardIndex);
+    }
   }
 
   private onShowAllClick(event: MouseEvent) {
     this.handleClick(this.showAllClick, event);
+  }
+
+  private onShowMoreCardClick(event: MouseEvent | KeyboardEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key !== 'Enter' && event.key !== ' ') {
+        return;
+      }
+      event.preventDefault();
+    }
+    this.handleClick(this.showMoreCardClick, event);
   }
 
   private getListChildren() {
@@ -371,12 +449,16 @@ export class CardList {
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
+                role="button"
+                tabindex="0"
+                aria-label={`${this.i18nMoreCards} (${this.numberOfOverflowingElements})`}
                 class={{
                   Show__All__Card: true,
                 }}
-                onClick={(event) => {
-                  this.handleClick(this.showMoreCardClick, event);
-                }}
+                onClick={(event) => this.onShowMoreCardClick(event)}
+                onKeyDown={(event: KeyboardEvent) =>
+                  this.onShowMoreCardClick(event)
+                }
               >
                 <ix-card-content>
                   <div class="Show__All__Card__Content">

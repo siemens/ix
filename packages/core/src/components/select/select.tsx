@@ -44,6 +44,7 @@ import {
 import {
   HookValidationLifecycle,
   IxInputFieldComponent,
+  NativeInputNotFoundError,
   ValidationResults,
 } from '../utils/input';
 import { DefaultMixins } from '../utils/internal/component';
@@ -1303,7 +1304,7 @@ export class Select
     if (this.inputElement) {
       return Promise.resolve(this.inputElement);
     } else {
-      return Promise.reject(new Error('Input element not found'));
+      return Promise.reject(new NativeInputNotFoundError());
     }
   }
 
