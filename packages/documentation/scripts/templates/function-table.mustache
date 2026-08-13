@@ -1,5 +1,8 @@
+{{^embedded}}
 import ApiFunction from '@site/src/components/ApiTable/ApiFunction';
 import { DeprecatedTag, SinceTag } from '@site/src/components/UI/Tags';
+import ReactMarkdown from 'react-markdown';
+{{/embedded}}
 
 {{#functions}}
 <ApiFunction
@@ -25,6 +28,6 @@ import { DeprecatedTag, SinceTag } from '@site/src/components/UI/Tags';
   {{{rTag}}}
   {{/docsTags}}
 
-  {{comment}}
+  <ReactMarkdown>{ {{{comment}}} }</ReactMarkdown>
 </ApiFunction>
 {{/functions}}
