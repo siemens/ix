@@ -192,7 +192,7 @@ export class Pagination {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowEnd) {
-            this.selectPage(this.selectedPage - Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage - jump);
           } else {
             this.selectPage(this.count - this.maxCountPages);
           }
@@ -240,7 +240,7 @@ export class Pagination {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowStart) {
-            this.selectPage(this.selectedPage + Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage + jump);
           } else {
             this.selectPage(this.maxCountPages - 1);
           }
