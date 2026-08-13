@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use './mixins/action.mixin';
+@use './chat-user-message.vars';
 
 :host {
   display: flex;
@@ -27,8 +28,8 @@
     box-sizing: border-box;
     padding: var(--theme-space-2) var(--theme-space-3);
     border-radius: var(--theme-default-border-radius);
-    background-color: var(--theme-color-component-8);
-    color: var(--theme-color-std-text);
+    background-color: var(--ix-chat-user-message--background);
+    color: var(--ix-chat-user-message--color);
   }
 
   .attachments {
@@ -85,7 +86,7 @@
   outline: none;
 
   .message {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-chat-user-message--outline-color--focus);
     outline-offset: var(--theme-focus-outline-offset);
   }
 }
