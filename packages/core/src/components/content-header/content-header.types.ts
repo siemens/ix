@@ -8,4 +8,4 @@
  */
 export type ContentHeaderVariant = 'primary' | 'secondary';
 
-export type ContentHeaderTextOverflow = 'wrap' | 'truncate';
+export type ContentHeaderTextOverflow = 'wrap' | 'ellipsis';

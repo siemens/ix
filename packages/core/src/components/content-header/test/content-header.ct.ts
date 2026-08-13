@@ -211,7 +211,7 @@ regressionTest(
         style="width: 16rem"
         header-title="${title}"
         header-subtitle="${subtitle}"
-        text-overflow="truncate"
+        text-overflow="ellipsis"
       ></ix-content-header>
     `);
 
@@ -263,10 +263,10 @@ regressionTest(
     const wrappedHeight = await getHeight();
 
     await header.evaluate((element: HTMLIxContentHeaderElement) => {
-      element.textOverflow = 'truncate';
+      element.textOverflow = 'ellipsis';
     });
 
-    await expect(header).toHaveAttribute('text-overflow', 'truncate');
+    await expect(header).toHaveAttribute('text-overflow', 'ellipsis');
     await expect(titleText).toHaveAttribute('title', title);
     await expect.poll(getHeight).toBeLessThan(wrappedHeight);
 

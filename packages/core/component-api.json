@@ -2255,6 +2255,17 @@
           "deprecated": false
         },
         {
+          "name": "textOverflow",
+          "attribute": "text-overflow",
+          "type": "\"ellipsis\" | \"wrap\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'wrap'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "variant",
           "attribute": "variant",
           "type": "\"primary\" | \"secondary\"",

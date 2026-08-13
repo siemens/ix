@@ -16,7 +16,7 @@ import { IxButton, IxContentHeader } from '@siemens/ix-vue';
     has-back-button
     header-title="Content title that remains compact when horizontal space is limited"
     header-subtitle="Supporting context is available from the native tooltip"
-    text-overflow="truncate"
+    text-overflow="ellipsis"
   >
     <IxButton variant="tertiary">Button1</IxButton>
     <IxButton variant="tertiary">Button2</IxButton>

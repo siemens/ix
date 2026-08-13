@@ -75,10 +75,10 @@ export class ContentHeader {
               class={{
                 secondary: this.variant === 'secondary',
                 headerText: true,
-                truncate: this.textOverflow === 'truncate',
+                truncate: this.textOverflow === 'ellipsis',
               }}
               title={
-                this.textOverflow === 'truncate' ? this.headerTitle : undefined
+                this.textOverflow === 'ellipsis' ? this.headerTitle : undefined
               }
             >
               {this.headerTitle}
@@ -94,10 +94,10 @@ export class ContentHeader {
               class={{
                 subtitle: this.variant === 'secondary',
                 headerText: true,
-                truncate: this.textOverflow === 'truncate',
+                truncate: this.textOverflow === 'ellipsis',
               }}
               title={
-                this.textOverflow === 'truncate'
+                this.textOverflow === 'ellipsis'
                   ? this.headerSubtitle
                   : undefined
               }
