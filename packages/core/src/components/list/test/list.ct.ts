@@ -62,6 +62,31 @@ regressionTest('renders draggable grippers', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'allows keyboard access to active drag gripper',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <div>
+          <button id="before-list">Before list</button>
+          <ix-list draggable aria-label="Projects">
+            <ix-list-item label="Project Alpha"></ix-list-item>
+            <ix-list-item label="Project Beta"></ix-list-item>
+          </ix-list>
+        </div>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const firstGripper = page.getByLabel('Reorder Project Alpha');
+
+    await expect(firstGripper).toHaveAttribute('tabindex', '0');
+    await page.locator('#before-list').focus();
+    await page.keyboard.press('Tab');
+    await expect(firstGripper).toBeFocused();
+  }
+);
+
+regressionTest(
   'does not display grippers by default',
   async ({ mount, page }) => {
     await mount(`<ix-list><ix-list-item label="Project Alpha" /></ix-list>`);

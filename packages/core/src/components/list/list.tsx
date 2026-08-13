@@ -360,9 +360,11 @@ export class List {
       }
       const gripper = this.getDragGripper(item);
       if (gripper) {
-        gripper.disabled = Boolean(
-          !this.draggable || item.disabled || item.hidden
+        const isGripperEnabled = Boolean(
+          this.draggable && !item.disabled && !item.hidden
         );
+        gripper.disabled = !isGripperEnabled;
+        gripper.tabIndex = isActive && isGripperEnabled ? 0 : -1;
       }
       this.setActionTabOrder(item, isActive);
     });
@@ -400,6 +402,9 @@ export class List {
         item
       )} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.`
     );
+    if (mode === 'keyboard') {
+      this.getDragGripper(item)?.focus({ preventScroll: true });
+    }
     return true;
   }
 
@@ -669,32 +674,49 @@ export class List {
     const eventPath = event.composedPath();
     const primaryAction = this.getPrimaryAction(item);
     const dragGripper = this.getDragGripper(item);
-    const isDragGripper = !!dragGripper && eventPath.includes(dragGripper);
+    const isDragGripperFocused =
+      !!dragGripper && item.shadowRoot?.activeElement === dragGripper;
+    const isDragGripper =
+      !!dragGripper &&
+      (eventPath.includes(dragGripper) || isDragGripperFocused);
     const actionElements = this.getActionElements(item);
     const actionIndex = actionElements.findIndex((element) =>
       eventPath.includes(element)
     );
+    const isPrimaryActionFocused =
+      !!primaryAction && item.shadowRoot?.activeElement === primaryAction;
     const isPrimaryAction =
-      !!primaryAction && eventPath.includes(primaryAction);
+      !!primaryAction &&
+      (eventPath.includes(primaryAction) || isPrimaryActionFocused);
+    const isActivationKey =
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar' ||
+      event.code === 'Space';
+
+    const isKeyboardDraggingCurrentItem =
+      this.draggedItem === item && this.dragMode === 'keyboard';
+
+    if (isKeyboardDraggingCurrentItem && (isDragGripper || isPrimaryAction)) {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.moveKeyboardItem(item, event.key === 'ArrowDown' ? 1 : -1);
+        return;
+      }
+      if (isActivationKey) {
+        event.preventDefault();
+        this.finishReorder();
+        return;
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        this.cancelReorder();
+        return;
+      }
+    }
 
     if (isDragGripper) {
-      if (this.draggedItem === item && this.dragMode === 'keyboard') {
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-          event.preventDefault();
-          this.moveKeyboardItem(item, event.key === 'ArrowDown' ? 1 : -1);
-          return;
-        }
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          this.finishReorder();
-          return;
-        }
-        if (event.key === 'Escape') {
-          event.preventDefault();
-          this.cancelReorder();
-          return;
-        }
-      } else if (event.key === 'Enter' || event.key === ' ') {
+      if (isActivationKey) {
         event.preventDefault();
         this.beginReorder(item, 'keyboard');
         return;
@@ -704,6 +726,17 @@ export class List {
         event.preventDefault();
         primaryAction?.focus();
       }
+      return;
+    }
+
+    if (
+      isPrimaryAction &&
+      isActivationKey &&
+      this.draggable &&
+      !dragGripper?.disabled
+    ) {
+      event.preventDefault();
+      this.beginReorder(item, 'keyboard');
       return;
     }
 

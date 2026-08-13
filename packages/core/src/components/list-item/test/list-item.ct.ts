@@ -38,6 +38,39 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'keeps default slot content inline with standard content',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list-item label="Project Alpha">
+      <span class="inline-extra">Extra</span>
+    </ix-list-item>
+  `);
+
+    const item = page.locator('ix-list-item');
+    const primaryAction = item.locator('.primary-action');
+    const label = item.locator('.label');
+    const extra = item.locator('.inline-extra');
+
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(primaryAction).toHaveCSS('display', 'flex');
+    await expect(label).toBeVisible();
+    await expect(extra).toBeVisible();
+
+    const labelRect = await label.boundingBox();
+    const extraRect = await extra.boundingBox();
+
+    expect(labelRect).not.toBeNull();
+    expect(extraRect).not.toBeNull();
+
+    const verticalOffset = Math.abs(
+      (labelRect?.y ?? 0) - (extraRect?.y ?? Number.POSITIVE_INFINITY)
+    );
+
+    expect(verticalOffset).toBeLessThan(4);
+  }
+);
+
+regressionTest(
   'focuses the primary action with the keyboard',
   async ({ mount, page }) => {
     await mount(`

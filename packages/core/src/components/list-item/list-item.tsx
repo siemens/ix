@@ -147,6 +147,10 @@ export class ListItem
 
   private readonly primaryActionRef = makeRef<HTMLButtonElement>();
 
+  private hasStandardContent() {
+    return !!(this.icon || this.label || this.description);
+  }
+
   override getIgnoredAriaAttributes(): A11yAttributeName[] {
     return ['role', 'aria-checked', 'aria-disabled', 'aria-pressed'];
   }
@@ -183,14 +187,11 @@ export class ListItem
     this.selectedChange.emit(event.detail);
   }
 
-  private handleDefaultSlotChange(event: Event) {
-    console.log(event);
-    // this.hasCustomContent = hasSlottedContent(
-    //   event.currentTarget as HTMLSlotElement
-    // );
-  }
-
   private renderStandardContent(labelId: string) {
+    if (!this.hasStandardContent()) {
+      return null;
+    }
+
     return (
       <div class="standard-content">
         {this.icon ? (
@@ -263,10 +264,7 @@ export class ListItem
             }
           >
             {this.renderStandardContent(labelId)}
-
-            <slot
-              onSlotchange={(event) => this.handleDefaultSlotChange(event)}
-            ></slot>
+            <slot></slot>
           </button>
           {this.checkbox ? (
             <ix-checkbox
