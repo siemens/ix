@@ -124,7 +124,11 @@ export class EventList {
       }
 
       const listElement =
-        this.hostElement.shadowRoot!.querySelector('div[role="list"]');
+        this.hostElement.shadowRoot?.querySelector('div[role="list"]');
+
+      if (!listElement) {
+        return resolve();
+      }
 
       animate(listElement!, {
         opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
