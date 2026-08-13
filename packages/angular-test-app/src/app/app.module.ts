@@ -71,7 +71,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
-import ContentHeaderTruncate from '../preview-examples/content-header-truncate';
+import ContentHeaderTextOverflow from '../preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
@@ -349,7 +349,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ContentExample,
     ContentHeader,
     ContentHeaderNoBack,
-    ContentHeaderTruncate,
+    ContentHeaderTextOverflow,
     ContentHeaderWithSlot,
     DatepickerRange,
     Datepicker,

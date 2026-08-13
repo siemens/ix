@@ -70,7 +70,7 @@ import './generated/chip-axe.spec';
 
 // Content header tests
 import './generated/content-header-axe.spec';
-import './generated/content-header-truncate-axe.spec';
+import './generated/content-header-text-overflow-axe.spec';
 
 // Chat tests
 import './generated/chat-axe.spec';

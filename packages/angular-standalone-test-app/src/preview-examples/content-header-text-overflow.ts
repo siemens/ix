@@ -8,10 +8,11 @@
  */
 
 import { Component } from '@angular/core';
+import { IxButton, IxContentHeader } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: false,
   selector: 'app-example',
-  templateUrl: './content-header-truncate.html',
+  imports: [IxContentHeader, IxButton],
+  templateUrl: './content-header-text-overflow.html',
 })
-export default class ContentHeaderTruncate {}
+export default class ContentHeaderTextOverflow {}
