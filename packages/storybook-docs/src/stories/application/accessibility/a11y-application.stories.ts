@@ -26,7 +26,7 @@ const renderApplication = (args: Partial<Element> = {}) => html`
     <ix-menu>
       <ix-menu-item>Home</ix-menu-item>
     </ix-menu>
-    <h1 id="application-story-content">Application content</h1>
+    <h1 id="application-story-content" tabindex="-1">Application content</h1>
     <p>The skip link bypasses the application navigation.</p>
   </ix-application>
 `;
