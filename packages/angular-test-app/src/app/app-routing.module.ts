@@ -15,12 +15,18 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -47,6 +53,10 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
@@ -322,6 +332,10 @@ const routes: Routes = [
         component: AgGrid,
       },
       {
+        path: 'aggrid-striped',
+        component: AgGridStriped,
+      },
+      {
         path: 'avatar-image',
         component: AvatarImage,
       },
@@ -332,6 +346,26 @@ const routes: Routes = [
       {
         path: 'avatar',
         component: Avatar,
+      },
+      {
+        path: 'badge',
+        component: Badge,
+      },
+      {
+        path: 'badge-counter',
+        component: BadgeCounter,
+      },
+      {
+        path: 'badge-dot',
+        component: BadgeDot,
+      },
+      {
+        path: 'badge-label',
+        component: BadgeLabel,
+      },
+      {
+        path: 'badge-status-icon',
+        component: BadgeStatusIcon,
       },
       {
         path: 'blind-header-actions',
@@ -417,6 +451,22 @@ const routes: Routes = [
       {
         path: 'category-filter',
         component: CategoryFilter,
+      },
+      {
+        path: 'chat',
+        component: Chat,
+      },
+      {
+        path: 'chat-ai-message',
+        component: ChatAiMessage,
+      },
+      {
+        path: 'chat-input',
+        component: ChatInput,
+      },
+      {
+        path: 'chat-user-message',
+        component: ChatUserMessage,
       },
       {
         path: 'checkbox-indeterminate',
