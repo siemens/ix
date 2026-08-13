@@ -22,10 +22,10 @@ import { expect } from '@playwright/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -33,13 +33,31 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(eventList).toHaveClass(/hydrated/);
 });
 
+regressionTest(
+  'resolves a custom property item color',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-event-list-item
+      item-color="--si-sys-background-accent"
+      style="--si-sys-background-accent: rgb(1, 2, 3)"
+    >
+      Text
+    </ix-event-list-item>
+  `);
+
+    await expect(
+      page.locator('ix-event-list-item').locator('.indicator')
+    ).toHaveCSS('background-color', 'rgb(1, 2, 3)');
+  }
+);
+
 regressionTest('check if items still clickable', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item item-color="color-primary" selected>Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent" selected>Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -76,10 +94,10 @@ regressionTest(
 
     await mount(`
     <ix-event-list item-height="${itemHeight}">
-      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 

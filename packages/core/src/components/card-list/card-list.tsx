@@ -36,7 +36,7 @@ function CardListTitle(props: {
         variant="subtle-tertiary"
         icon={iconChevronUp}
         onClick={props.onClick}
-        iconColor="color-std-text"
+        iconColor="--si-sys-text-primary"
         class={{
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,

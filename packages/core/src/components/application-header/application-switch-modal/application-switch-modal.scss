@@ -9,6 +9,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 
+@use './application-switch-modal.vars' as *;
 :host {
   display: block;
 
@@ -55,7 +56,9 @@
   }
 
   .AppEntry.Selected {
-    background-color: var(--theme-color-ghost--selected);
+    background-color: var(
+      --ix-application-switch-modal-app-entry--background--selected
+    );
   }
 
   .AppEntry {
@@ -63,7 +66,8 @@
   }
 
   .AppEntry:focus-visible {
-    border: 1px solid var(--theme-color-focus-bdr);
+    border: 1px solid
+      var(--ix-application-switch-modal-app-entry--border-color--focus);
   }
 
   .AppName {

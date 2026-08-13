@@ -8,9 +8,9 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'mixins/break-points';
-@use 'mixins/shadows';
+@use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
+@use './menu-about-news.vars' as *;
 $left: 3.4rem;
 
 :host {
@@ -20,16 +20,16 @@ $left: 3.4rem;
   position: fixed;
   width: 20rem;
   height: auto;
-  background-color: var(--theme-color-2);
+  background-color: var(--ix-menu-about-news--background);
   border-radius: vars.$default-border-radius;
   padding: 1rem;
   left: $left;
   z-index: 10000;
-  transition: left var(--theme-default-time);
+  transition: left var(--ix-menu-about-news--transition-duration);
 
   margin-inline-start: var(--margin) !important;
 
-  @include shadows.box-shadow(4);
+  box-shadow: var(--theme-shadow-4);
   @include component.ix-component;
 
   .banner-container {
@@ -43,7 +43,7 @@ $left: 3.4rem;
       width: 3rem;
 
       polygon {
-        fill: var(--theme-color-primary);
+        fill: var(--ix-menu-about-news-banner--fill);
       }
     }
 
@@ -61,7 +61,7 @@ $left: 3.4rem;
   }
 
   .popover-body {
-    color: var(--theme-color-std-text);
+    color: var(--ix-menu-about-news-body--color);
   }
 
   .cui-popover-news-footer {
@@ -80,7 +80,7 @@ $left: 3.4rem;
     position: absolute;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: var(--theme-color-2);
+    background-color: var(--ix-menu-about-news-arrow--background);
     transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
   }
 }
@@ -93,7 +93,7 @@ $left: 3.4rem;
   display: none;
 }
 
-@include break-points.media-breakpoint-match('sm') {
+@include breakpoints.media-breakpoint-match('sm') {
   :host {
     display: flex;
     flex-direction: column;
@@ -104,7 +104,7 @@ $left: 3.4rem;
     left: calc(50% - 1rem) !important;
     bottom: 1rem !important;
     margin-inline: 0 !important;
-    z-index: calc(var(--theme-z-index-sticky) - 1);
+    z-index: calc(var(--ix-menu-about-news--z-index) - 1);
 
     .slot-container {
       overflow-y: auto;

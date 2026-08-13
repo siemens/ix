@@ -8,10 +8,10 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'legacy/mixins/fonts';
 
+@use './tile.vars' as *;
 @mixin set-height($height) {
   height: $height;
   min-height: $height;
@@ -30,12 +30,12 @@ $width: 11.937rem;
 
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--theme-tile--border);
-  border-radius: var(--theme-tile--border-radius);
+  border: var(--ix-tile--border-width) solid var(--ix-tile--border-color);
+  border-radius: var(--ix-tile--border-radius);
 
-  background-color: var(--theme-color-2);
-  color: var(--theme-color-std-text);
-  box-shadow: var(--theme-tile--box-shadow);
+  background-color: var(--ix-tile--background);
+  color: var(--ix-tile--color);
+  box-shadow: var(--ix-tile--box-shadow);
 
   // @each $key, $value in $color-map-status {
   //   &.tile-#{$key} {
@@ -73,12 +73,12 @@ $width: 11.937rem;
   }
 
   .tile-subheader {
-    color: var(--theme-btn-invisible-secondary--color);
+    color: var(--ix-tile-subheader--color);
     flex-grow: 0;
   }
 
   .tile-footer.has-content {
-    border-block-start: 1px solid var(--theme-color-1);
+    border-block-start: 1px solid var(--ix-tile-footer--border-color);
     height: vars.$large-control-height;
   }
 }

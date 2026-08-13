@@ -9,6 +9,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 
+@use './card-list.vars' as *;
 $CardList__Title__Height: 1.5rem;
 
 :host {
@@ -37,7 +38,8 @@ $CardList__Title__Height: 1.5rem;
 
   .CardList__Title__Button {
     margin-right: 1rem;
-    transition: var(--theme-default-time) transform ease-in-out;
+    transition: var(--ix-card-list-title-button--transition-duration) transform
+      ease-in-out;
   }
 
   .CardList__Title__Button__Collapsed {
@@ -57,7 +59,7 @@ $CardList__Title__Height: 1.5rem;
     height: calc(100% - #{$CardList__Title__Height});
     width: 100%;
     gap: 1.5rem;
-    transition: var(--theme-default-time) ease-in-out;
+    transition: var(--ix-card-list-content--transition-duration) ease-in-out;
     overflow: auto;
   }
 
@@ -107,12 +109,12 @@ $CardList__Title__Height: 1.5rem;
     max-height: 11.25rem;
     height: 11.25rem;
 
-    --ix-card-border-color: var(--theme-color-primary);
-    color: var(--theme-color-primary);
+    --ix-card-border-color: var(--ix-card-list-show-all--border-color);
+    color: var(--ix-card-list-show-all--color);
 
     @include hover.focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid var(--ix-card-list-show-all--outline-color--focus);
+      outline-offset: var(--ix-card-list-show-all--focus-outline-offset);
     }
   }
 
@@ -125,11 +127,11 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .Show__All__Card:hover {
-    background-color: var(--theme-color-ghost--hover);
+    background-color: var(--ix-card-list-show-all--background--hover);
   }
 
   .Show__All__Card:active {
-    background-color: var(--theme-color-ghost--active);
+    background-color: var(--ix-card-list-show-all--background--active);
   }
 
   .Show__All__Card__Content {

@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './message-bar.vars' as *;
 :host {
   margin: vars.$small-space vars.$small-space 0rem vars.$small-space;
 
@@ -22,30 +23,28 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     min-height: 3.375rem;
-    padding: calc(
-        #{vars.$medium-space} - var(--theme-message-bar--border-thickness)
-      )
+    padding: calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
       vars.$medium-space
-      calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
+      calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
       vars.$default-space;
-    border-radius: var(--theme-message-bar--border-radius);
-    background-color: var(--theme-messagebar--background);
+    border-radius: var(--ix-message-bar--border-radius);
+    background-color: var(--ix-message-bar--background);
   }
 
   $message-types: (
-    'alarm': var(--theme-color-alarm),
-    'danger': var(--theme-color-alarm),
-    'critical': var(--theme-color-critical),
-    'warning': var(--theme-color-warning),
-    'success': var(--theme-color-success),
-    'info': var(--theme-color-info),
-    'neutral': var(--theme-color-neutral),
-    'primary': var(--theme-color-primary),
+    'alarm': var(--ix-message-bar--border-color--alarm),
+    'danger': var(--ix-message-bar--border-color--alarm),
+    'critical': var(--ix-message-bar--border-color--critical),
+    'warning': var(--ix-message-bar--border-color--warning),
+    'success': var(--ix-message-bar--border-color--success),
+    'info': var(--ix-message-bar--border-color--info),
+    'neutral': var(--ix-message-bar--border-color--neutral),
+    'primary': var(--ix-message-bar--border-color--primary),
   );
 
   @each $type, $color in $message-types {
     .#{$type} {
-      border: solid var(--theme-message-bar--border-thickness) $color;
+      border: solid var(--ix-message-bar--border-width) $color;
     }
   }
 

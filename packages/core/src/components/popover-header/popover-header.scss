@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 
+@use './popover-header.vars' as *;
 :host {
   display: flex;
   padding: 0.75rem;
@@ -29,23 +30,23 @@
 
   .popover-close {
     align-self: flex-start;
-    border-radius: var(--theme-small-border-radius);
+    border-radius: var(--ix-popover-header-close-button--border-radius);
 
-    --ix-icon-button-color: var(--theme-popover-close--color);
-    --theme-btn-tertiary--color: var(--theme-popover-close--color);
-    --theme-btn-tertiary--color--hover: var(--theme-popover-close--color);
-    --theme-btn-tertiary--color--active: var(--theme-popover-close--color);
-    --theme-btn-tertiary--background: var(
-      --theme-popover-close-btn--background
+    --ix-icon-button-color: var(--ix-popover-close--color);
+    --ix-button-tertiary--color: var(--ix-popover-close--color);
+    --ix-button-tertiary--color--hover: var(--ix-popover-close--color);
+    --ix-button-tertiary--color--active: var(--ix-popover-close--color);
+    --ix-button-tertiary--background: var(
+      --ix-popover-close-button--background
     );
-    --theme-btn-tertiary--background--hover: var(
-      --theme-popover-close-btn--background--hover
+    --ix-button-tertiary--background--hover: var(
+      --ix-popover-close-button--background--hover
     );
-    --theme-btn-tertiary--background--active: var(
-      --theme-popover-close-btn--background--active
+    --ix-button-tertiary--background--active: var(
+      --ix-popover-close-button--background--active
     );
-    --theme-btn-tertiary--border-color: transparent;
-    --theme-btn-tertiary--border-color--hover: transparent;
-    --theme-btn-tertiary--border-color--active: transparent;
+    --ix-button-tertiary--border-color: transparent;
+    --ix-button-tertiary--border-color--hover: transparent;
+    --ix-button-tertiary--border-color--active: transparent;
   }
 }
