@@ -212,12 +212,12 @@
 // new font styles for iX v6 (delete old ones above once replaced everywhere)
 
 @mixin define-typography-v6 ( // TODO: remove v6 in naming once replaced everywhere
-  $size: var(--theme-si-ref-typography-font-size-body),
-  $line-height: var(--theme-si-ref-typography-line-height-body),
-  $font-weight: var(--theme-si-ref-typography-font-weight-roman),
-  $letter-spacing: var(--theme-si-ref-typography-letter-spacing-normal),
+  $size: var(--si-ref-typography-font-size-body),
+  $line-height: var(--si-ref-typography-line-height-body),
+  $font-weight: var(--si-ref-typography-font-weight-roman),
+  $letter-spacing: var(--si-ref-typography-letter-spacing-normal),
   $text-decoration: none,
-  $font-family: var(--theme-si-ref-typography-font-family-sans)
+  $font-family: var(--si-ref-typography-font-family-sans)
 ) {
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: $font-family, Siemens Sans, Arial, Helvetica, sans-serif;
@@ -231,130 +231,130 @@
 
 @mixin typography-body {
   @include define-typography-v6(
-    $line-height: var(--theme-si-ref-typography-line-height-body),
-    $size: var(--theme-si-ref-typography-font-size-body)
+    $line-height: var(--si-ref-typography-line-height-body),
+    $size: var(--si-ref-typography-font-size-body)
   );
 }
 
 @mixin typography-body-sm {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-body-sm),
-    $line-height: var(--theme-si-ref-typography-line-height-code-sm),
+    $size: var(--si-ref-typography-font-size-body-sm),
+    $line-height: var(--si-ref-typography-line-height-code-sm),
   );
 }
 
 @mixin typography-body-p {
   @include define-typography-v6(
-    $line-height: var(--theme-si-ref-typography-line-height-body-paragraph),
-    $size: var(--theme-si-ref-typography-font-size-body-paragraph)
+    $line-height: var(--si-ref-typography-line-height-body-paragraph),
+    $size: var(--si-ref-typography-font-size-body-paragraph)
   );
 }
 
 @mixin typography-body-sm {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-body-sm),
-    $line-height: var(--theme-si-ref-typography-line-height-body-sm)
+    $size: var(--si-ref-typography-font-size-body-sm),
+    $line-height: var(--si-ref-typography-line-height-body-sm)
   );
 }
 
 @mixin typography-body-lg {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-body-lg),
-    $line-height: var(--theme-si-ref-typography-line-height-body-lg),
+    $size: var(--si-ref-typography-font-size-body-lg),
+    $line-height: var(--si-ref-typography-line-height-body-lg),
   );
 }
 
 @mixin typography-display {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-display),
-    $line-height: var(--theme-si-ref-typography-line-height-display),
+    $size: var(--si-ref-typography-font-size-display),
+    $line-height: var(--si-ref-typography-line-height-display),
   );
 }
 
 @mixin typography-display-sbold {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-display),
-    $line-height: var(--theme-si-ref-typography-line-height-display),
-    $font-weight: var(--theme-si-ref-typography-font-weight-sbold)
+    $size: var(--si-ref-typography-font-size-display),
+    $line-height: var(--si-ref-typography-line-height-display),
+    $font-weight: var(--si-ref-typography-font-weight-sbold)
   );
 }
 
 @mixin typography-display-lg-sbold {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-display-lg),
-    $line-height: var(--theme-si-ref-typography-line-height-display-lg),
-    $font-weight: var(--theme-font-weight-bold)
+    $size: var(--si-ref-typography-font-size-display-lg),
+    $line-height: var(--si-ref-typography-line-height-display-lg),
+    $font-weight: var(--font-weight-bold)
   );
 }
 
 @mixin typography-headings-h1 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h1),
-    $line-height: var(--theme-si-ref-typography-line-height-h1),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h1),
+    $line-height: var(--si-ref-typography-line-height-h1),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-headings-h2 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h2),
-    $line-height: var(--theme-si-ref-typography-line-height-h2),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h2),
+    $line-height: var(--si-ref-typography-line-height-h2),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-headings-h3 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h3),
-    $line-height: var(--theme-si-ref-typography-line-height-h3),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h3),
+    $line-height: var(--si-ref-typography-line-height-h3),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-headings-h4 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h4),
-    $line-height: var(--theme-si-ref-typography-line-height-h4),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h4),
+    $line-height: var(--si-ref-typography-line-height-h4),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-headings-h5 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h5),
-    $line-height: var(--theme-si-ref-typography-line-height-h5),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h5),
+    $line-height: var(--si-ref-typography-line-height-h5),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-headings-h6 {
   @include define-typography-v6(
-    $size: var(--theme-si-ref-typography-font-size-h6),
-    $line-height: var(--theme-si-ref-typography-line-height-h6),
-    $font-weight: var(--theme-si-ref-typography-font-weight-bold),
+    $size: var(--si-ref-typography-font-size-h6),
+    $line-height: var(--si-ref-typography-line-height-h6),
+    $font-weight: var(--si-ref-typography-font-weight-bold),
   );
 }
 
 @mixin typography-code {
   @include define-typography-v6(
-    $font-family: var(--theme-si-ref-typography-font-family-mono),
-    $line-height: var(--theme-si-ref-typography-line-height-code),
-    $size: var(--theme-si-ref-typography-font-size-code)
+    $font-family: var(--si-ref-typography-font-family-mono),
+    $line-height: var(--si-ref-typography-line-height-code),
+    $size: var(--si-ref-typography-font-size-code)
   );
 }
 
 @mixin typography-code-sm {
   @include define-typography-v6(
-    $font-family: var(--theme-si-ref-typography-font-family-mono),
-    $size: var(--theme-si-ref-typography-font-size-code-sm),
-    $line-height: var(--theme-si-ref-typography-line-height-code-sm)
+    $font-family: var(--si-ref-typography-font-family-mono),
+    $size: var(--si-ref-typography-font-size-code-sm),
+    $line-height: var(--si-ref-typography-line-height-code-sm)
   );
 }
 
 @mixin typography-code-lg {
   @include define-typography-v6(
-    $font-family: var(--theme-si-ref-typography-font-family-mono),
-    $size: var(--theme-si-ref-typography-font-size-code-lg),
-    $line-height: var(--theme-si-ref-typography-line-height-code-lg)
+    $font-family: var(--si-ref-typography-font-family-mono),
+    $size: var(--si-ref-typography-font-size-code-lg),
+    $line-height: var(--si-ref-typography-line-height-code-lg)
   );
 }
