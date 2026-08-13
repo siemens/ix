@@ -7,6 +7,8 @@ import './action-card.spec.ts';
 import './add-icons-axe.spec.ts';
 import './add-icons.spec.ts';
 import './aggrid-axe.spec.ts';
+import './aggrid-striped-axe.spec.ts';
+import './aggrid-striped.spec.ts';
 import './aggrid.spec.ts';
 import './application-advanced-axe.spec.ts';
 import './application-advanced.spec.ts';
