@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+async function blurActiveElement(page: Page): Promise<void> {
+  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+}
 
 regressionTest.describe('group', () => {
   regressionTest('basic', async ({ page }) => {
@@ -19,7 +23,7 @@ regressionTest.describe('group', () => {
   regressionTest('with context menu', async ({ page }) => {
     await page.goto('group/context-menu');
     await page.locator('ix-icon-button').click();
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await blurActiveElement(page);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -27,7 +31,7 @@ regressionTest.describe('group', () => {
     await page.goto('group/basic');
     await page.click("[id='group']");
     await page.hover("[id='group']");
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await blurActiveElement(page);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -35,7 +39,7 @@ regressionTest.describe('group', () => {
     await page.goto('group/overflow');
     await page.click("[id='group']");
     await page.hover("[id='group']");
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await blurActiveElement(page);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -44,7 +48,7 @@ regressionTest.describe('group', () => {
     await page.getByTestId('expand-collapsed-icon').click();
     await page.locator('text=Example text 1').click();
     await page.locator('text=Example text 2').hover();
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await blurActiveElement(page);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -56,7 +60,7 @@ regressionTest.describe('group', () => {
       const groupExpand = child.getByTestId('expand-collapsed-icon');
       await groupExpand.click();
     }
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await blurActiveElement(page);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

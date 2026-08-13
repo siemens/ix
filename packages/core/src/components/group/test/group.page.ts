@@ -41,7 +41,7 @@ export class GroupPage {
   }
 
   /** Header select control (`aria-pressed`); not the expand disclosure. */
-  selectButton(_name: string | RegExp = 'Header text'): Locator {
+  selectButton(): Locator {
     return this.host.locator('button.group-header-select');
   }
 
@@ -93,9 +93,7 @@ export class GroupPage {
     );
   }
 
-  async expectNoSelectButton(
-    _name: string | RegExp = 'Header text'
-  ): Promise<void> {
+  async expectNoSelectButton(): Promise<void> {
     await expect(this.selectButton()).toHaveCount(0);
   }
 
@@ -123,8 +121,8 @@ export class GroupPage {
     await this.expandButton.focus();
   }
 
-  async focusSelect(name: string | RegExp = 'Header text'): Promise<void> {
-    await this.selectButton(name).focus();
+  async focusSelect(): Promise<void> {
+    await this.selectButton().focus();
   }
 
   async focusItem(name: string | RegExp): Promise<void> {

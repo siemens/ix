@@ -268,9 +268,6 @@ export class Group
     this.observer = createMutationObserver(() => {
       this.slotSize = this.groupItems.length;
     });
-    // Capture before dropdown trigger closes the menu on Escape (bubble),
-    // so we can skip collapsing on the same key press.
-    this.hostElement.addEventListener('keydown', this.onKeyDownCapture, true);
     if (!this.groupContent) {
       return;
     }
@@ -284,11 +281,6 @@ export class Group
 
   override disconnectedCallback() {
     super.disconnectedCallback?.();
-    this.hostElement.removeEventListener(
-      'keydown',
-      this.onKeyDownCapture,
-      true
-    );
     if (this.observer) {
       this.observer.disconnect();
     }
@@ -303,23 +295,35 @@ export class Group
     }
   }
 
-  private readonly onKeyDownCapture = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape' || !this.expanded) {
+  /**
+   * Capture before dropdown trigger closes the menu on Escape (bubble),
+   * so we can skip collapsing on the same key press.
+   * `@Listen` re-binds on connect/disconnect (unlike `componentDidLoad`).
+   */
+  @Listen('keydown', { capture: true })
+  onKeyDownCapture(event: KeyboardEvent) {
+    if (event.key !== 'Escape') {
       return;
     }
 
-    if (this.isGroupDropdownOpen()) {
-      this.skipEscapeCollapse = true;
-    }
-  };
+    // Always assign for this keypress so the flag cannot stay stale.
+    this.skipEscapeCollapse = this.expanded && this.isGroupDropdownOpen();
+  }
 
   private onKeyDown(event: KeyboardEvent) {
-    if (event.key !== 'Escape' || !this.expanded || event.defaultPrevented) {
+    if (event.key !== 'Escape') {
       return;
     }
 
-    if (this.skipEscapeCollapse || this.isGroupDropdownOpen()) {
-      this.skipEscapeCollapse = false;
+    const skip = this.skipEscapeCollapse;
+    this.skipEscapeCollapse = false;
+
+    if (
+      !this.expanded ||
+      event.defaultPrevented ||
+      skip ||
+      this.isGroupDropdownOpen()
+    ) {
       return;
     }
 
@@ -332,13 +336,12 @@ export class Group
     ariaHidden?: boolean;
   }) {
     return (
-      <div
-        class="group-header-content"
-        id={options?.contentId}
-        aria-hidden={options?.ariaHidden ? 'true' : undefined}
-      >
+      <div class="group-header-content" id={options?.contentId}>
         {this.header ? (
-          <div class="group-header-props-container">
+          <div
+            class="group-header-props-container"
+            aria-hidden={options?.ariaHidden ? 'true' : undefined}
+          >
             <div class="group-header-title">
               <span title={this.header}>{this.header}</span>
             </div>

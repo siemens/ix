@@ -184,6 +184,7 @@ $header-height: 4rem;
     flex: 0 0 auto;
     align-items: flex-start;
     justify-content: center;
+
     // Native <button> flex items do not stretch like the old <div>; pin to top.
     align-self: flex-start;
     order: -1;
