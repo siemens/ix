@@ -529,6 +529,7 @@ export class List {
     if (!item) {
       return;
     }
+    const shouldRestoreFocus = this.dragMode === 'keyboard';
 
     if (this.dragPlaceholder) {
       this.hostElement.insertBefore(item, this.dragPlaceholder);
@@ -539,7 +540,9 @@ export class List {
     this.cleanupReorder();
     this.activeItem = item;
     this.synchronizeItems();
-    this.getDragGripper(item)?.focus({ preventScroll: true });
+    if (shouldRestoreFocus) {
+      this.getDragGripper(item)?.focus({ preventScroll: true });
+    }
 
     if (oldIndex !== newIndex) {
       this.itemOrderChange.emit({ item, oldIndex, newIndex });
@@ -557,6 +560,7 @@ export class List {
     if (!item) {
       return;
     }
+    const shouldRestoreFocus = this.dragMode === 'keyboard';
 
     const nextSibling = this.dragOriginalNextSibling;
     if (nextSibling?.parentNode === this.hostElement) {
@@ -568,7 +572,9 @@ export class List {
     this.cleanupReorder();
     this.activeItem = item;
     this.synchronizeItems();
-    this.getDragGripper(item)?.focus({ preventScroll: true });
+    if (shouldRestoreFocus) {
+      this.getDragGripper(item)?.focus({ preventScroll: true });
+    }
     this.announce(item, `${this.getItemLabel(item)} reorder cancelled.`);
   }
 

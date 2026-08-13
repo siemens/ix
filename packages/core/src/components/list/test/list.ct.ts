@@ -146,6 +146,7 @@ regressionTest(
 
     await expect(items.nth(0)).toHaveAttribute('label', 'Project Beta');
     await expect(items.nth(2)).toHaveAttribute('label', 'Project Alpha');
+    await expect(page.getByLabel('Reorder Project Alpha')).not.toBeFocused();
     expect(await eventPromise).toEqual({
       oldIndex: 0,
       newIndex: 2,
