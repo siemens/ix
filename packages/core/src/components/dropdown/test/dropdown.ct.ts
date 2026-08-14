@@ -116,6 +116,27 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
   await expect(dropdown).not.toBeVisible();
 });
 
+regressionTest(
+  'activation key does not close mouse-opened dropdown without active item',
+  async ({ mount, page }) => {
+    await mount(`<ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger" trigger-toggles="true">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+    const trigger = page.locator('#trigger');
+    const dropdown = page.locator('.dropdown-menu');
+
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
+
+    await trigger.press(' ');
+
+    await expect(dropdown).toBeVisible();
+  }
+);
+
 regressionTest.describe('Close behavior', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
