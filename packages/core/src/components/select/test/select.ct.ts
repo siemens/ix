@@ -123,6 +123,43 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   await expect(dropdown).not.toHaveClass(/show/);
 });
 
+test('toggles disabled without dropdown trigger errors', async ({
+  mount,
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') {
+      consoleErrors.push(msg.text());
+    }
+  });
+
+  await mount(`
+    <ix-select>
+      <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const dropdownTrigger = page.locator('[data-select-dropdown]');
+
+  await expect(select).toHaveClass(/hydrated/);
+  await expect(dropdownTrigger).toHaveCount(1);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.disabled = true;
+  });
+  await expect(dropdownTrigger).toHaveCount(0);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.disabled = false;
+  });
+  await expect(dropdownTrigger).toHaveCount(1);
+
+  expect(consoleErrors).toEqual([]);
+});
+
 test('does not select an item when ix-select-item is disabled', async ({
   mount,
   page,
@@ -1558,6 +1595,68 @@ test('multiple mode: focused "+N" chip traps Tab navigation', async ({
   await page.keyboard.press('Shift+Tab');
   await expect(removeButtons.last()).toBeFocused();
   await expect(beforeOverflow).not.toBeFocused();
+});
+
+test('does not emit unhandled rejection when select is unmounted during validation', async ({
+  mount,
+  page,
+}) => {
+  const inputNotFoundErrors: string[] = [];
+
+  page.on('pageerror', (error) => {
+    if (error.message.includes('Input element not found')) {
+      inputNotFoundErrors.push(error.message);
+    }
+  });
+
+  await page.addInitScript(() => {
+    window.addEventListener('unhandledrejection', (event) => {
+      const msg =
+        event.reason instanceof Error
+          ? event.reason.message
+          : String(event.reason);
+      if (!msg.includes('Input element not found')) {
+        return;
+      }
+      const target = window as unknown as { __ixUnhandled?: string[] };
+      target.__ixUnhandled = target.__ixUnhandled ?? [];
+      target.__ixUnhandled.push(msg);
+    });
+  });
+
+  await mount(`<div id="select-host"></div>`);
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const host = document.getElementById('select-host')!;
+        const select = document.createElement('ix-select');
+        select.setAttribute('required', '');
+        select.setAttribute('label', 'Example');
+
+        const item = document.createElement('ix-select-item');
+        item.setAttribute('value', 'a');
+        item.setAttribute('label', 'Option A');
+        select.appendChild(item);
+        host.appendChild(select);
+
+        setTimeout(() => {
+          host.innerHTML = '';
+          setTimeout(resolve, 0);
+        }, 0);
+      })
+  );
+
+  await page.evaluate(
+    () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+  );
+
+  const injected = await page.evaluate(
+    () =>
+      (window as unknown as { __ixUnhandled?: string[] }).__ixUnhandled ?? []
+  );
+
+  expect([...inputNotFoundErrors, ...injected]).toEqual([]);
 });
 
 test('input does not clear when slotchange fires before inputFilterText is set', async ({

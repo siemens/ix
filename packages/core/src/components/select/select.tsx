@@ -44,6 +44,7 @@ import {
 import {
   HookValidationLifecycle,
   IxInputFieldComponent,
+  NativeInputNotFoundError,
   ValidationResults,
 } from '../utils/input';
 import { DefaultMixins } from '../utils/internal/component';
@@ -1315,7 +1316,7 @@ export class Select
     if (this.inputElement) {
       return Promise.resolve(this.inputElement);
     } else {
-      return Promise.reject(new Error('Input element not found'));
+      return Promise.reject(new NativeInputNotFoundError());
     }
   }
 
@@ -1513,9 +1514,14 @@ export class Select
                           : 'Open select dropdown'
                       }
                       aria-hidden="true"
+                      tabindex={-1}
                       ref={(ref) => {
+                        if (!ref) {
+                          return;
+                        }
+
                         const element = ref as unknown as HTMLButtonElement;
-                        // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
+                        // VDOM issue if tabIndex is provided only via property <ix-icon-button tabIndex={-1}>
                         // the tabindex will be '0' after expanding the dropdown
                         element.tabIndex = -1;
                         element.ariaHidden = 'true';

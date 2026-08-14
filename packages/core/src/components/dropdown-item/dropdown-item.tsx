@@ -195,12 +195,15 @@ export class DropdownItem
             {this.label}
             <slot></slot>
           </div>
-          {this.isSubMenu ? (
-            <ix-icon
-              name={iconChevronRightSmall}
-              class={'submenu-icon'}
-            ></ix-icon>
-          ) : null}
+          <div class="dropdown-item-end">
+            <slot name="end"></slot>
+            {this.isSubMenu ? (
+              <ix-icon
+                name={iconChevronRightSmall}
+                class={'submenu-icon'}
+              ></ix-icon>
+            ) : null}
+          </div>
         </div>
       </Host>
     );
