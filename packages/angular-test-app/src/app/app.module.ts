@@ -24,6 +24,7 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -289,6 +290,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ActionCard,
     AddIcons,
     AgGrid,
+    AgGridStriped,
     ApplicationExample,
     ApplicationAdvancedExample,
     ApplicationBreakpointExample,

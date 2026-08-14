@@ -1166,7 +1166,7 @@
         },
         {
           "name": "showMoreCardClick",
-          "detail": "{ nativeEvent: MouseEvent; }",
+          "detail": "{ nativeEvent: MouseEvent | KeyboardEvent; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
