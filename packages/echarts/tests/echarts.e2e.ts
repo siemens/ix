@@ -23,6 +23,12 @@ regressionTest.describe('echarts', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('with timeline', async ({ page }) => {
+    await page.goto('with-timeline.html');
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('more colors', async ({ page }) => {
     await page.goto('more-colors.html');
 
