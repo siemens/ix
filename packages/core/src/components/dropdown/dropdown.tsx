@@ -922,15 +922,15 @@ export class Dropdown
       return;
     }
 
-    event.detail.activeElement.classList.add(
-      'ix-dropdown-submenu-trigger-active'
-    );
     const dropdown = dropdownController.getDropdownById(submenuIds[0]);
 
     if (!dropdown) {
       return;
     }
 
+    event.detail.activeElement.classList.add(
+      'ix-dropdown-submenu-trigger-active'
+    );
     dropdownController.present(dropdown);
 
     this.forwardQueryElement = dropdown.hostElement;
