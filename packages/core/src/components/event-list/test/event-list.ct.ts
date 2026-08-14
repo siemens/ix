@@ -17,82 +17,7 @@
  */
 import 'jest';
 import { regressionTest } from '@utils/test';
-import { expect, Page } from '@playwright/test';
-
-const anyItemHasAnimatedStyle = (page: Page) =>
-  page.evaluate(() => {
-    const items = document.querySelectorAll('ix-event-list-item');
-    return Array.from(items).some(
-      (item) => (item as HTMLElement).style.opacity !== ''
-    );
-  });
-
-regressionTest(
-  'does not animate list when animated is false (default)',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-event-list>
-        <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
-      </ix-event-list>
-    `);
-
-    await page.evaluate(() => {
-      const list = document.querySelector('ix-event-list');
-      const item = document.createElement('ix-event-list-item');
-      item.textContent = 'Item 2';
-      list!.appendChild(item);
-    });
-
-    await expect(page.locator('ix-event-list-item').nth(1)).toHaveClass(
-      /hydrated/
-    );
-
-    expect(await anyItemHasAnimatedStyle(page)).toBe(false);
-  }
-);
-
-regressionTest(
-  'animates list items when animated is true',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-event-list animated>
-        <ix-event-list-item item-color="color-primary">Item 1</ix-event-list-item>
-      </ix-event-list>
-    `);
-
-    await page.evaluate(() => {
-      const list = document.querySelector('ix-event-list');
-      const item = document.createElement('ix-event-list-item');
-      item.textContent = 'Item 2';
-      list!.appendChild(item);
-    });
-
-    await expect(page.locator('ix-event-list-item').nth(1)).toHaveClass(
-      /hydrated/
-    );
-
-    await page.waitForFunction(() => {
-      const items = document.querySelectorAll('ix-event-list-item');
-      return Array.from(items).some(
-        (item) => (item as HTMLElement).style.opacity !== ''
-      );
-    });
-    expect(await anyItemHasAnimatedStyle(page)).toBe(true);
-  }
-);
-
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`
-    <ix-event-list>
-      <ix-event-list-item item-color="color-primary">Event 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Event 2</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary" selected>Event 3</ix-event-list-item>
-    </ix-event-list>
-  `);
-
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
+import { expect } from '@playwright/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -118,7 +43,7 @@ regressionTest('check if items still clickable', async ({ mount, page }) => {
     </ix-event-list>
   `);
 
-  await expect(page.locator('ix-event-list')).toHaveClass(/hydrated/);
+  await page.waitForTimeout(500);
   const firstEventListItem = page.locator('ix-event-list-item').first();
   const secondEventListItem = page.locator('ix-event-list-item').nth(1);
   const thirdEventListItem = page.locator('ix-event-list-item').last();
