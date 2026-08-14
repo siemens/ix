@@ -26,9 +26,9 @@
   --ix-badge-critical-background: #{sys.$si-sys-background-critical};
   --ix-badge-critical-border-color: #{sys.$si-sys-border-critical};
   --ix-badge-critical-color: #{sys.$si-sys-text-critical};
-  --ix-badge-critical-contrast-color: #{sys.$si-sys-text-on-warning};
+  --ix-badge-critical-contrast-color: #{sys.$si-sys-text-on-critical};
   --ix-badge-warning-background: #{sys.$si-sys-background-warning};
-  --ix-badge-warning-border-color: #{sys.$si-sys-background-warning};
+  --ix-badge-warning-border-color: #{sys.$si-sys-border-warning};
   --ix-badge-warning-color: #{sys.$si-sys-text-warning};
   --ix-badge-warning-contrast-color: #{sys.$si-sys-text-on-warning};
   --ix-badge-info-background: #{sys.$si-sys-background-information};
@@ -40,7 +40,7 @@
   --ix-badge-success-color: #{sys.$si-sys-text-success};
   --ix-badge-success-contrast-color: #{sys.$si-sys-text-on-success};
   --ix-badge-neutral-background: #{sys.$si-sys-background-neutral};
-  --ix-badge-neutral-border-color: #{sys.$si-sys-border-3};
+  --ix-badge-neutral-border-color: #{sys.$si-sys-border-neutral};
   --ix-badge-neutral-color: #{sys.$si-sys-text-secondary};
   --ix-badge-neutral-contrast-color: #{sys.$si-sys-text-primary};
 

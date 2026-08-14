@@ -251,7 +251,7 @@ $border-radius: 100px;
 
     .indicator {
       background-color: var(--ix-badge-outline-background);
-      color: var(--ix-badge-#{$variant}-color);
+      color: var(--ix-badge-default-color);
       border: 0.0625rem solid var(--ix-badge-#{$variant}-border-color);
     }
   }
