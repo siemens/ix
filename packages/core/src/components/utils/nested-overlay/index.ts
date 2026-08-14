@@ -14,7 +14,17 @@ export {
   removeIdFromHierarchy,
 } from './hierarchy';
 export type { ChildIdsByParent } from './hierarchy';
-export { NestedOverlayStack } from './nested-overlay-stack';
-export type { OverlayInstanceBase } from './nested-overlay-stack';
+export { NestedOverlayRegistry } from './nested-overlay-registry';
+export type { OverlayInstanceBase } from './nested-overlay-registry';
+export {
+  getOverlayKey,
+  OverlayCoordinator,
+  overlayCoordinator,
+} from './overlay-coordinator';
+export type {
+  CoordinatedOverlay,
+  OverlayDismissReason,
+  OverlayKind,
+} from './overlay-coordinator';
 export { pathIncludesTrigger } from './path-utils';
 export type { DismissAllOptions, OverlayDismissPolicy } from './types';

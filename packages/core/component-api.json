@@ -3835,6 +3835,17 @@
           "deprecated": false
         },
         {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "placement",
           "attribute": "placement",
           "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
@@ -4007,6 +4018,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },

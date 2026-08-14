@@ -143,6 +143,7 @@ export class DropdownItem
       <Host
         id={id}
         role={this.itemRole}
+        disableAriaSelectHandling={this.itemRole !== 'option'}
         aria-disabled={a11yBoolean(this.disabled)}
         aria-label={this.hostElement.ariaLabel ?? this.ariaLabelButton}
         class={{

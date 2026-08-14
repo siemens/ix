@@ -1806,6 +1806,12 @@ export namespace Components {
          */
         "keyboardItemTriggerKeys": string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -1894,6 +1900,12 @@ export namespace Components {
           * Set label
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         /**
           * Placement of the dropdown
          */
@@ -8788,6 +8800,12 @@ declare namespace LocalJSX {
          */
         "keyboardItemTriggerKeys"?: string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -8885,6 +8903,12 @@ declare namespace LocalJSX {
           * Set label
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
         /**
           * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
          */
@@ -12541,6 +12565,7 @@ declare namespace LocalJSX {
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
@@ -12555,6 +12580,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }
