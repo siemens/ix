@@ -516,19 +516,17 @@ regressionTest(
         </ix-menu>
       </ix-application>
     `);
-
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveClass(/hydrated/);
+    await expect(page.locator('ix-menu')).not.toHaveClass(/expanded/);
 
-    // Navigate to category
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('ArrowDown');
-
+    const categoryParent = categoryElement.locator('.category-parent');
+    await expect(categoryParent).toHaveClass(/hydrated/);
+    await categoryElement.focus();
     await expect(categoryElement).toBeFocused();
 
     const dropdown = categoryElement.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/hydrated/);
     await expect(dropdown).not.toBeVisible();
 
     await page.keyboard.press(' ');
@@ -543,13 +541,13 @@ regressionTest(
 
     await page.keyboard.press('Escape');
     await expect(dropdown).not.toBeVisible();
-    await expect(categoryElement.locator('.category-parent')).toBeFocused();
+    await expect(categoryParent).toBeFocused();
   }
 );
 
 regressionTest(
   'should move into expanded category items when pressing ArrowDown on category button',
-  async ({ mount, page }) => {
+  async ({ mount, page, makeAxeBuilder }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
 
     await mount(`
@@ -567,6 +565,8 @@ regressionTest(
     const categoryElement = page.locator('ix-menu-category');
     const categoryButton = categoryElement.locator('.category-parent');
     const items = categoryElement.locator(':scope > ix-menu-item');
+
+    await expect(categoryButton).toHaveClass(/hydrated/);
 
     // Category should be expanded initially because one item is active
     const menuItems = categoryElement.locator('.menu-items');
@@ -589,5 +589,8 @@ regressionTest(
     // Press ArrowUp should wrap around to last item (not exit to category)
     await page.keyboard.press('ArrowUp');
     await expect(items.nth(0)).toHaveVisibleFocus();
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );

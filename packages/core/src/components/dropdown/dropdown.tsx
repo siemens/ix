@@ -259,6 +259,7 @@ export class Dropdown
   private readonly dialogRef = makeRef<HTMLDialogElement>();
   private intersectObserverTrigger?: IntersectionObserver;
   private triggerElement?: Element;
+  private triggerResolutionToken = 0;
   private anchorElement?: Element;
   private forwardQueryElement: HTMLElement | null = null;
   private dropdownElementId = `dropdown-${sequenceId++}`;
@@ -314,6 +315,20 @@ export class Dropdown
 
   getId() {
     return this.dropdownElementId;
+  }
+
+  matchesTrigger(eventTargets: EventTarget[]) {
+    const trigger =
+      this.trigger ?? this.hostElement.getAttribute('trigger') ?? undefined;
+
+    return eventTargets.some(
+      (target) =>
+        target === trigger ||
+        (typeof trigger === 'string' &&
+          trigger !== '' &&
+          target instanceof HTMLElement &&
+          target.id === trigger)
+    );
   }
 
   willDismiss() {
@@ -505,11 +520,35 @@ export class Dropdown
   }
 
   private async registerListener(element: ElementReference) {
-    this.triggerElement = await this.resolveElement(element);
-
-    if (!this.triggerElement) {
+    if (!element) {
       return;
     }
+
+    const resolutionToken = ++this.triggerResolutionToken;
+    const immediateElement = this.resolveImmediateElement(element);
+    const canRegisterImmediately =
+      immediateElement &&
+      (!hasDropdownItemWrapperImplemented(immediateElement) ||
+        immediateElement.tagName === 'IX-DROPDOWN-ITEM');
+
+    if (canRegisterImmediately) {
+      this.triggerElement = immediateElement;
+      if (immediateElement.tagName === 'IX-DROPDOWN-ITEM') {
+        (immediateElement as HTMLIxDropdownItemElement).isSubMenu = true;
+        this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+      }
+      this.addEventListenersFor();
+      this.discoverSubmenu();
+      return;
+    }
+
+    const resolvedElement = await this.resolveElement(element);
+
+    if (!resolvedElement || resolutionToken !== this.triggerResolutionToken) {
+      return;
+    }
+
+    this.triggerElement = resolvedElement;
 
     this.addEventListenersFor();
     this.discoverSubmenu();
@@ -584,6 +623,32 @@ export class Dropdown
     const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
+  }
+
+  private resolveImmediateElement(
+    element: ElementReference
+  ): HTMLElement | undefined {
+    if (element instanceof Promise) {
+      return undefined;
+    }
+
+    if (element instanceof HTMLElement) {
+      return element;
+    }
+
+    const documentElement = document.getElementById(element);
+    if (documentElement) {
+      return documentElement;
+    }
+
+    const root = this.hostElement.getRootNode();
+    if (root instanceof ShadowRoot) {
+      return (
+        root.querySelector<HTMLElement>(`#${CSS.escape(element)}`) ?? undefined
+      );
+    }
+
+    return undefined;
   }
 
   private async checkForSubmenuAnchor(element?: Element) {
@@ -686,18 +751,18 @@ export class Dropdown
   }
 
   @Watch('trigger')
-  changedTrigger(
+  async changedTrigger(
     newTriggerValue: ElementReference,
     oldTriggerValue: ElementReference | undefined
   ) {
-    if (newTriggerValue && newTriggerValue !== oldTriggerValue) {
+    if (newTriggerValue !== oldTriggerValue) {
       this.disposeClickListener?.();
       this.disposeClickListener = undefined;
       this.disposeKeyListener?.();
       this.disposeKeyListener = undefined;
     }
 
-    this.registerListener(newTriggerValue);
+    await this.registerListener(newTriggerValue);
   }
 
   private applyFallbackPosition(element: HTMLElement) {
@@ -706,9 +771,9 @@ export class Dropdown
         this.hostElement.parentElement || this.hostElement;
       const refRect = referenceElement.getBoundingClientRect();
 
-      const transform = `translate(${Math.round(
-        refRect.left
-      )}px, ${Math.round(refRect.top)}px)`;
+      const transform = `translate(${Math.round(refRect.left)}px, ${Math.round(
+        refRect.top
+      )}px)`;
 
       Object.assign(element.style, {
         top: '0',
@@ -864,7 +929,7 @@ export class Dropdown
       return;
     }
 
-    this.changedTrigger(this.trigger, undefined);
+    await this.changedTrigger(this.trigger, undefined);
   }
 
   override async componentDidRender() {

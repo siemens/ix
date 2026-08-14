@@ -22,7 +22,7 @@ regressionTest('renders', async ({ mount, page }) => {
   const element = page.locator('#aboutAndLegal');
   await element.click();
 
-  await page.getByText('Content 1').click();
+  await expect(page.getByText('Content 1')).toBeVisible();
 
   const aboutAndLegal = page.locator('ix-menu-about');
   await expect(aboutAndLegal).toHaveClass(/hydrated/);

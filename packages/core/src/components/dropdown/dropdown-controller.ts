@@ -22,6 +22,7 @@ export interface DropdownInterface extends IxComponentInterface {
 
   getAssignedSubmenuIds(): string[];
   getId(): string;
+  matchesTrigger(eventTargets: EventTarget[]): boolean;
 
   discoverSubmenu(): void;
 
@@ -139,12 +140,36 @@ class DropdownController {
     );
   }
 
+  private getDropdownByTriggerPath(eventTargets: EventTarget[]) {
+    for (const dropdown of this.stack.values()) {
+      if (dropdown.matchesTrigger(eventTargets)) {
+        return dropdown;
+      }
+    }
+
+    return undefined;
+  }
+
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
     window.addEventListener('click', (event: MouseEvent) => {
-      const hasTrigger = this.pathIncludesTrigger(event.composedPath());
-      const hasDropdown = this.pathIncludesDropdown(event.composedPath());
+      const eventTargets = event.composedPath();
+      const hasTrigger = this.pathIncludesTrigger(eventTargets);
+      const hasDropdown = this.pathIncludesDropdown(eventTargets);
+
+      if (!hasTrigger && !event.defaultPrevented) {
+        const dropdown = this.getDropdownByTriggerPath(eventTargets);
+        if (dropdown) {
+          if (dropdown.isPresent()) {
+            this.dismiss(dropdown);
+          } else {
+            this.present(dropdown);
+          }
+          this.dismissOthers(dropdown.getId());
+          return;
+        }
+      }
 
       if (!hasTrigger && !hasDropdown) {
         this.dismissAll();

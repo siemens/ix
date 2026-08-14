@@ -675,7 +675,10 @@ export class Menu {
 
   private onMenuItemsClick(event: Event) {
     if (this.isMenuItemClicked(event)) {
-      if (!this.showPinned) {
+      if (
+        !this.pinned &&
+        (!this.applicationLayoutContext || this.breakpoint !== 'lg')
+      ) {
         this.toggleMenu(false);
       }
       this.onOverlayClose();

@@ -155,6 +155,70 @@ describe('icon-button', () => {
       expect(button?.getAttribute('aria-label')).toBe('some label');
     });
 
+    it('should move updated aria attributes to the button', async () => {
+      const { root, waitForChanges } = await render(
+        <ix-icon-button icon="rocket"></ix-icon-button>
+      );
+      const iconButton = root as HTMLIxIconButtonElement;
+
+      iconButton.setAttribute('aria-expanded', 'true');
+      await waitForChanges();
+
+      expect(iconButton).not.toHaveAttribute('aria-expanded');
+      expect(queryButton(iconButton)).toHaveAttribute('aria-expanded');
+      expect(queryButton(iconButton)?.getAttribute('aria-expanded')).toBe(
+        'true'
+      );
+
+      iconButton.setAttribute('aria-expanded', 'false');
+      await waitForChanges();
+
+      expect(iconButton).not.toHaveAttribute('aria-expanded');
+      expect(queryButton(iconButton)?.getAttribute('aria-expanded')).toBe(
+        'false'
+      );
+
+      iconButton.removeAttribute('aria-expanded');
+      await waitForChanges();
+
+      expect(queryButton(iconButton)).not.toHaveAttribute('aria-expanded');
+
+      iconButton.setAttribute('aria-expanded', 'true');
+      await waitForChanges();
+      expect(iconButton.toggleAttribute('aria-expanded')).toBe(false);
+      await waitForChanges();
+
+      expect(queryButton(iconButton)).not.toHaveAttribute('aria-expanded');
+
+      iconButton.setAttribute('aria-expanded', 'true');
+      await waitForChanges();
+      expect(iconButton.toggleAttribute('aria-expanded', true)).toBe(true);
+      await waitForChanges();
+
+      expect(queryButton(iconButton)?.getAttribute('aria-expanded')).toBe(
+        'true'
+      );
+
+      iconButton.removeAttribute('ARIA-EXPANDED');
+      await waitForChanges();
+
+      expect(queryButton(iconButton)).not.toHaveAttribute('aria-expanded');
+
+      iconButton.setAttribute('aria-expanded', 'true');
+      await waitForChanges();
+      iconButton.removeAttributeNS(null, 'aria-expanded');
+      await waitForChanges();
+
+      expect(queryButton(iconButton)).not.toHaveAttribute('aria-expanded');
+
+      iconButton.setAttribute('aria-expanded', 'true');
+      await waitForChanges();
+      iconButton.ariaExpanded = null;
+      await waitForChanges();
+
+      expect(queryButton(iconButton)).not.toHaveAttribute('aria-expanded');
+    });
+
     it('should have an unknown aria label with an URL', async () => {
       const { root } = await render(
         <ix-icon-button icon="https://someurl.com/test.svg"></ix-icon-button>

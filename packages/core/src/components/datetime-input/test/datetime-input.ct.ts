@@ -1450,8 +1450,14 @@ regressionTest('form-ready - initial value', async ({ mount, page }) => {
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/12/25 10:00:00');
+  const dateTimeInput = page.locator('ix-datetime-input');
+  await expect(dateTimeInput).toHaveClass(/hydrated/);
+  await expect(dateTimeInput.getByRole('textbox')).toHaveValue(
+    '2024/12/25 10:00:00'
+  );
+  await expect
+    .poll(() => getFormValue(formElement, 'appointment-time', page))
+    .toBe('2024/12/25 10:00:00');
 });
 
 regressionTest(

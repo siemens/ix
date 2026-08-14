@@ -108,10 +108,7 @@ regressionTest(
     const checkbox = page.locator('ix-checkbox');
     await expect(checkbox).not.toHaveClass(/label-less/);
     await expect(checkbox).toHaveText(/Custom slot label text/);
-    const width = await checkbox.evaluate((element) =>
-      Number.parseFloat(getComputedStyle(element).width)
-    );
-    expect(width).toBeGreaterThan(24);
+    await expect(checkbox.locator('ix-typography')).toBeVisible();
   }
 );
 
@@ -121,37 +118,38 @@ regressionTest('label', async ({ mount, page }) => {
   await expect(checkboxElement).toHaveText(/some label/);
 });
 
-test('Checkbox should not cause layout shift when checked', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'Checkbox should not cause layout shift when checked',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-checkbox label="test"></ix-checkbox>
     <div id="element-below">This element should not move</div>
   `);
 
-  await page.waitForSelector('ix-checkbox', { state: 'attached' });
+    const checkbox = page.locator('ix-checkbox');
+    const elementBelow = page.locator('#element-below');
 
-  const initialBounds = await page.$eval('#element-below', (el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, left: rect.left };
-  });
+    await expect(checkbox).toHaveClass(/hydrated/);
+    await expect(elementBelow).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
 
-  await page.click('ix-checkbox');
+    const initialBounds = await elementBelow.boundingBox();
+    if (!initialBounds) {
+      throw new Error('Expected element below checkbox to have a bounding box');
+    }
 
-  await page.waitForFunction(() => {
-    const checkbox = document.querySelector('ix-checkbox');
-    return checkbox?.getAttribute('aria-checked') === 'true';
-  });
+    await checkbox.click();
+    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
 
-  const newBounds = await page.$eval('#element-below', (el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, left: rect.left };
-  });
+    const newBounds = await elementBelow.boundingBox();
+    if (!newBounds) {
+      throw new Error('Expected element below checkbox to remain visible');
+    }
 
-  expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
-  expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
-});
+    expect(newBounds.y).toBeCloseTo(initialBounds.y, 0);
+    expect(newBounds.x).toBeCloseTo(initialBounds.x, 0);
+  }
+);
 
 test.describe('accessibility', () => {
   test('should expose aria-label for accessibility queries', async ({

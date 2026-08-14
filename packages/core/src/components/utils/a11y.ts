@@ -183,6 +183,14 @@ const a11yAttributes: A11yAttributeName[] = [
   'aria-valuetext',
 ];
 
+export const isA11yAttributeName = (
+  attributeName: string
+): attributeName is A11yAttributeName =>
+  a11yAttributes.includes(attributeName as A11yAttributeName);
+
+export const getA11yAttributeNames = (): readonly A11yAttributeName[] =>
+  a11yAttributes;
+
 type PartialRecord<K extends A11yAttributeName, T> = {
   [P in K]?: T;
 };

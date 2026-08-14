@@ -1204,6 +1204,17 @@ regressionTest.describe('ix-popover', () => {
         await expect(
           await popover.dialog(await popover.getPopover())
         ).toHaveAttribute('aria-label', 'What is new panel');
+
+        const popoverElement = await popover.getPopover();
+        await popoverElement.evaluate((element) => {
+          element.setAttribute('aria-label', 'Updated panel');
+        });
+
+        await expect(popoverElement).not.toHaveAttribute('aria-label');
+        await expect(await popover.dialog(popoverElement)).toHaveAttribute(
+          'aria-label',
+          'Updated panel'
+        );
       }
     );
 
