@@ -13,8 +13,8 @@ export default () => {
   return (
     <IxContentHeader
       hasBackButton
-      headerTitle="Content title that wraps when horizontal space is limited"
-      headerSubtitle="Supporting context remains visible on additional lines"
+      headerTitle="Content title"
+      headerSubtitle="Subtitle"
     >
       <IxButton variant="tertiary">Button1</IxButton>
       <IxButton variant="tertiary">Button2</IxButton>

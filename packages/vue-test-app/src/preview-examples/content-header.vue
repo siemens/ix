@@ -14,8 +14,8 @@ import { IxButton, IxContentHeader } from '@siemens/ix-vue';
 <template>
   <IxContentHeader
     has-back-button
-    header-title="Content title that wraps when horizontal space is limited"
-    header-subtitle="Supporting context remains visible on additional lines"
+    header-title="Content title"
+    header-subtitle="Subtitle"
   >
     <IxButton variant="tertiary">Button1</IxButton>
     <IxButton variant="tertiary">Button2</IxButton>
