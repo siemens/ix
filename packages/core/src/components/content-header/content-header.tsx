@@ -42,7 +42,7 @@ export class ContentHeader {
   /**
    * Controls how the title and subtitle handle limited horizontal space.
    *
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
 

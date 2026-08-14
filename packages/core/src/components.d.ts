@@ -1053,7 +1053,7 @@ export namespace Components {
         "headerTitle"?: string;
         /**
           * Controls how the title and subtitle handle limited horizontal space.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'wrap'
          */
         "textOverflow": ContentHeaderTextOverflow;
@@ -8028,7 +8028,7 @@ declare namespace LocalJSX {
         "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
         /**
           * Controls how the title and subtitle handle limited horizontal space.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'wrap'
          */
         "textOverflow"?: ContentHeaderTextOverflow;

@@ -1,8 +1,8 @@
 ---
-'@siemens/ix': minor
-'@siemens/ix-angular': minor
-'@siemens/ix-react': minor
-'@siemens/ix-vue': minor
+'@siemens/ix': major
+'@siemens/ix-angular': major
+'@siemens/ix-react': major
+'@siemens/ix-vue': major
 ---
 
-Make wrapping the default behavior for `ix-content-header` titles and subtitles. Use `textOverflow="ellipsis"` for explicit single-line ellipsis behavior without native tooltips.
+**Breaking change:** `ix-content-header` titles and subtitles now wrap by default. Set `textOverflow="ellipsis"` to preserve the previous single-line ellipsis behavior without native tooltips.
