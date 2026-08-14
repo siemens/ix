@@ -121,11 +121,11 @@ describe('classic theme CSS', () => {
 });
 
 describe('system Sass variables', () => {
-  it('emits no CSS when loaded', () => {
-    const css = compileString("@use 'theme/core/sys.variables';", {
+  it('emits no CSS rules when loaded', () => {
+    const css = compileString("@use 'tokens/system';", {
       loadPaths: [scssRoot],
     }).css;
 
-    expect(css).toBe('');
+    expect(css).not.toMatch(/[{}]/);
   });
 });

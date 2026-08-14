@@ -1,4 +1,4 @@
-@use 'theme/core/sys.variables' as sys;
+@use 'tokens/system' as sys;
 
 :host {
   --ix-key-value-label--color: #{sys.$si-sys-text-secondary};

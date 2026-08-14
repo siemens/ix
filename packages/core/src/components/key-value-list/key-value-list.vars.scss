@@ -1,4 +1,4 @@
-@use 'theme/core/sys.variables' as sys;
+@use 'tokens/system' as sys;
 
 :host {
   --ix-key-value-list-item--border-color: #{sys.$si-sys-border-4};
