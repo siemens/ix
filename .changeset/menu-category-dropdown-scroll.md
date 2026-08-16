@@ -2,6 +2,6 @@
 '@siemens/ix': patch
 ---
 
-fix(core/menu-category): ensure sub-menu items are visible before dropdown presents so scrolling works correctly when no category item is active
+Fix navigation sub-menu dropdown scroll so that it is available in all navigation scenarios
 
 Fixes #2664
