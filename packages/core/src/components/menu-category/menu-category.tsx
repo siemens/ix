@@ -165,7 +165,7 @@ export class MenuCategory
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
       onComplete: () => {
-        this.clearMenuItemsContainertyles();
+        this.clearMenuItemsContainerStyles();
       },
     });
   }
@@ -426,14 +426,14 @@ export class MenuCategory
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
         if (!menuExpand) {
-          this.clearMenuItemsContainertyles();
+          this.clearMenuItemsContainerStyles();
         }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
   }
 
-  clearMenuItemsContainertyles() {
+  clearMenuItemsContainerStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
   }
