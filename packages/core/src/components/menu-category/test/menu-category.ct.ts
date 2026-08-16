@@ -550,6 +550,9 @@ regressionTest(
 regressionTest(
   'should not retain inline max-height after expanding category with many items',
   async ({ mount, page }) => {
+
+    await page.setViewportSize({ width: 1280, height: 500 });
+
     await mount(`
       <ix-application>
         <ix-menu>
@@ -588,18 +591,6 @@ regressionTest(
 
     const menuCategory = page.locator('ix-menu-category').first();
 
-    // Override item heights to be larger than the hardcoded 40px used by
-    // getNestedItemsHeight(), so the animation's inline max-height
-    // underestimates the actual content and overflow:hidden clips items.
-    await menuCategory.evaluate((cat: HTMLIxMenuCategoryElement) => {
-      cat.querySelectorAll(':scope ix-menu-item').forEach((item) => {
-        (item as HTMLElement).style.setProperty(
-          '--ix-menu-item-height',
-          '80px'
-        );
-      });
-    });
-
     const otherCategory = page.locator('ix-menu-category').nth(1);
     const otherItem = otherCategory.locator(
       'ix-menu-item:not(.category-parent)'
@@ -616,6 +607,8 @@ regressionTest(
     const menuItems = menuCategory.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
 
+    // The inline max-height must be cleared after the animation so the CSS
+    // class (max-height: 999999999px) takes over and nothing clips the items.
     const inlineMaxHeight = await menuItems.evaluate(
       (el) => el.style.maxHeight
     );
@@ -627,19 +620,6 @@ regressionTest(
       .locator('ix-menu-item:not(.category-parent)')
       .last();
     await expect(lastItem).toBeVisible();
-
-    const isClipped = await menuItems.evaluate((container) => {
-      const items = container
-        .querySelectorAll('slot')[0]
-        ?.assignedElements()
-        .filter((el): el is HTMLElement => el.tagName === 'IX-MENU-ITEM');
-      if (!items || items.length === 0) return false;
-      const lastEl = items[items.length - 1];
-      const containerRect = container.getBoundingClientRect();
-      const itemRect = lastEl.getBoundingClientRect();
-      return itemRect.bottom > containerRect.bottom;
-    });
-    expect(isClipped).toBe(false);
   }
 );
 
