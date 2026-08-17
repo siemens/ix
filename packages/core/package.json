@@ -142,7 +142,7 @@
     "vitest": "^4.1.4"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.4.0"
+    "@siemens/ix-icons": "^3.5.0"
   },
   "config": {
     "commitizen": {

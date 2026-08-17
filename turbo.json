@@ -28,6 +28,7 @@
         "www/**",
         "loader/**",
         "api-docs/**",
+        "component-api.json",
         "component-doc.json",
         "component-index.json",
         "component-search-index.json",

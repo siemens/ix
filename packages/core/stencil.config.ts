@@ -39,9 +39,7 @@ function getAngularConfig() {
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents,
       outputType: 'component',
-      valueAccessorConfigs: [
-        /** Value accessors should not be generated */
-      ],
+      valueAccessorConfigs: [/** Value accessors should not be generated */],
     }),
     angularOutputTarget({
       componentCorePackage: corePackageName,
@@ -64,7 +62,7 @@ export const config: Config = {
   excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
   watchIgnoredRegex: [
-    /component-doc\.json/,
+    /component-(api|doc)\.json/,
     /component-index\.json/,
     /component-search-index\.json/,
   ],

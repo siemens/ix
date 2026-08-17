@@ -8,8 +8,8 @@
   },
   "devDependencies": {
     "@cyclonedx/cyclonedx-library": "^8.0.0",
-    "@types/node": "^22.15.16",
     "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.16",
     "fs-extra": "^11.3.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"

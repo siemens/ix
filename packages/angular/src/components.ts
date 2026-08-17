@@ -336,7 +336,7 @@ export class IxCardList {
   protected el: HTMLIxCardListElement;
   @Output() collapseChanged = new EventEmitter<IxCardListCustomEvent<boolean>>();
   @Output() showAllClick = new EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>();
-  @Output() showMoreCardClick = new EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>();
+  @Output() showMoreCardClick = new EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -358,7 +358,7 @@ export declare interface IxCardList extends Components.IxCardList {
   /**
    * Fire event when the show more card is clicked.
    */
-  showMoreCardClick: EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showMoreCardClick: EventEmitter<IxCardListCustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>;
 }
 
 

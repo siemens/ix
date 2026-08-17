@@ -311,6 +311,8 @@ export namespace Components {
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
      * Override max-width with `--ix-badge-max-width`.
+     * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+     * @figma-main-component-id 138424:114072
      * @since 5.2.0
      */
     interface IxBadge {
@@ -5736,6 +5738,8 @@ declare global {
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
      * Override max-width with `--ix-badge-max-width`.
+     * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+     * @figma-main-component-id 138424:114072
      * @since 5.2.0
      */
     interface HTMLIxBadgeElement extends Components.IxBadge, HTMLStencilElement {
@@ -5875,7 +5879,7 @@ declare global {
     nativeEvent: MouseEvent;
   };
         "showMoreCardClick": {
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   };
     }
     /**
@@ -8059,6 +8063,8 @@ declare namespace LocalJSX {
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
      * Override max-width with `--ix-badge-max-width`.
+     * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+     * @figma-main-component-id 138424:114072
      * @since 5.2.0
      */
     interface IxBadge {
@@ -8468,7 +8474,7 @@ declare namespace LocalJSX {
           * Fire event when the show more card is clicked.
          */
         "onShowMoreCardClick"?: (event: IxCardListCustomEvent<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>) => void;
         /**
           * Overwrite the default show all count.
@@ -14737,6 +14743,8 @@ declare module "@stencil/core" {
              * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
              * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
              * Override max-width with `--ix-badge-max-width`.
+             * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+             * @figma-main-component-id 138424:114072
              * @since 5.2.0
              */
             "ix-badge": LocalJSX.IntrinsicElements["ix-badge"] & JSXBase.HTMLAttributes<HTMLIxBadgeElement>;
