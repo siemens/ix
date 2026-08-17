@@ -1093,7 +1093,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
-    return this.formattedTime![unit] === String(number);
+    return this.formattedTime[unit] === String(number);
   }
 
   /** Roving tabindex: one tab stop per column; active column only the focused cell has `tabindex=0`. */
