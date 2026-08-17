@@ -8,5 +8,9 @@
  */
 @use '../theme/classic/theme' as classic;
 @use './foundation';
+@use './../utilities/button-group';
+@use './../utilities/links';
+@use './../utilities/table';
+@use './../utilities/typography';
 
 @include classic.theme;

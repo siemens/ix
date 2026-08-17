@@ -27,9 +27,12 @@
 
 [data-ix-theme] {
   --animate-duration: var(--theme-default-time);
-  --theme-font-family: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
-    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+  --theme-font-family: 'SiemensSans Pro VF', 'SiemensSans Pro', helvetica,
+    arial, sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  font-family: var(--theme-font-family);
 
   @include common.setVars;
 

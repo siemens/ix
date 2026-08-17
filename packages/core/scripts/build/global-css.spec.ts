@@ -33,32 +33,47 @@ function getSelectors(css: string) {
 function normalizeCss(css: string) {
   return css
     .replaceAll(/\/\*[\s\S]*?\*\//g, '')
+    .replaceAll('@charset "UTF-8";', '')
     .replaceAll(/\s+/g, ' ')
     .replaceAll(/\s*([{}:,;])\s*/g, '$1')
     .trim();
 }
 
 describe('global CSS entry points', () => {
-  it.each(['ix.scss', 'ix-foundation.scss'])(
-    'keeps %s free of optional global styles',
-    (entry) => {
-      const selectors = getSelectors(compileEntry(entry));
-      const selectorList = selectors.join(',');
+  it('keeps foundation free of optional global styles', () => {
+    const selectors = getSelectors(compileEntry('ix-foundation.scss'));
+    const selectorList = selectors.join(',');
 
-      expect(selectorList).not.toContain('.typography-');
-      expect(selectorList).not.toContain('.ix-table');
-      expect(selectorList).not.toContain('.ix-form-control');
-      expect(selectorList).not.toContain('[data-ix-scrollbars]');
-    }
-  );
+    expect(selectorList).not.toContain('.typography-');
+    expect(selectorList).not.toContain('.ix-table');
+    expect(selectorList).not.toContain('.ix-form-control');
+    expect(selectorList).not.toContain('[data-ix-scrollbars]');
+  });
+
+  it('includes the default utilities without opt-in global styles', () => {
+    const selectors = getSelectors(compileEntry('ix.scss'));
+    const selectorList = selectors.join(',');
+
+    expect(selectorList).toContain('.typography-');
+    expect(selectorList).toContain('.ix-table');
+    expect(selectorList).toContain('.ix-button-group');
+    expect(selectorList).toContain('a[href]');
+    expect(selectorList).not.toContain('.input-group-label');
+    expect(selectorList).not.toContain('.ix-form-control');
+    expect(selectorList).not.toContain('[data-ix-scrollbars]');
+  });
 
   it('includes document presentation defaults in foundation', () => {
     const foundationCss = compileEntry('ix-foundation.scss');
     const foundation = normalizeCss(foundationCss);
 
-    expect(foundation).toContain('body{color:var(--theme-color-std-text)');
-    expect(foundation).toContain('background-color:var(--theme-color-1)');
+    expect(foundation).toContain('body{color:var(--si-sys-text-primary)');
+    expect(foundation).toContain('background-color:var(--si-sys-background-0)');
     expect(foundation).toContain('font-family:Siemens Sans');
+    expect(foundation).toContain(
+      '--theme-font-family:"SiemensSans Pro VF","SiemensSans Pro",helvetica,arial,sans-serif'
+    );
+    expect(foundation).toContain('font-family:var(--theme-font-family)');
     expect(foundationCss).toContain('body:not(.disable-scrollbar)');
     expect(foundation).not.toContain('margin:0');
   });
