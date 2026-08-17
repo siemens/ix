@@ -11,8 +11,8 @@ import { h, type VNode } from '@stencil/core';
 import './badge-preview.css';
 
 /** Aligned with chip / react badge preview custom tokens. */
-export const CUSTOM_BADGE_BACKGROUND = 'var(--theme-chart-11)';
-export const CUSTOM_BADGE_COLOR = 'var(--theme-color-inv-std-text)';
+export const CUSTOM_BADGE_BACKGROUND = 'var(--si-sys-data-categorical-9)';
+export const CUSTOM_BADGE_COLOR = 'var(--si-sys-text-inverse)';
 export const CUSTOM_BADGE_OUTLINE_COLOR = 'var(--si-sys-text-primary)';
 
 export const VARIANT_ROWS = [

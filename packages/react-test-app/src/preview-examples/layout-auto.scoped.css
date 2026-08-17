@@ -18,7 +18,7 @@ ix-layout-auto ix-typography {
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  border: 0.0625rem solid var(--theme-color-soft-bdr);
-  background: var(--theme-color-ghost);
+  border: 0.0625rem solid var(--si-sys-border-3);
+  background: transparent;
   border-radius: 0.1875rem;
 }

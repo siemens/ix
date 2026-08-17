@@ -44,7 +44,7 @@ const meta = {
       footerDiv.slot = 'footer';
       footerDiv.innerHTML = '<ix-button>Footer content</ix-button>';
       footerDiv.style.padding = '8px 16px';
-      footerDiv.style.color = 'var(--theme-color-soft-text)';
+      footerDiv.style.color = 'var(--si-sys-text-secondary)';
       footerDiv.style.fontSize = '12px';
       groupElement.appendChild(footerDiv);
     }

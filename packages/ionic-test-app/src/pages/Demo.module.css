@@ -13,7 +13,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: var(--theme-color-component-1);
+  background-color: var(--si-sys-background-1);
   border-radius: var(--theme-default-border-radius);
   height: 100%;
   padding: 0.5rem;

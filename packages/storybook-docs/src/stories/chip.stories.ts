@@ -68,8 +68,8 @@ function chipMatrixPair(
         <ix-chip
           icon=${CHIP_MATRIX_ICON}
           variant="custom"
-          background="var(--theme-chart-11)"
-          chip-color="var(--theme-color-inv-std-text)"
+          background="var(--si-sys-data-categorical-9)"
+          chip-color="var(--si-sys-text-inverse)"
           ?closable=${closable}
           >${label}</ix-chip
         >
@@ -77,7 +77,7 @@ function chipMatrixPair(
           icon=${CHIP_MATRIX_ICON}
           variant="custom"
           outline
-          background="var(--theme-chart-11)"
+          background="var(--si-sys-data-categorical-9)"
           chip-color="var(--si-sys-text-primary)"
           ?closable=${closable}
           >${label}</ix-chip
@@ -87,15 +87,15 @@ function chipMatrixPair(
     return html`
       <ix-chip
         variant="custom"
-        background="var(--theme-chart-11)"
-        chip-color="var(--theme-color-inv-std-text)"
+        background="var(--si-sys-data-categorical-9)"
+        chip-color="var(--si-sys-text-inverse)"
         ?closable=${closable}
         >${label}</ix-chip
       >
       <ix-chip
         variant="custom"
         outline
-        background="var(--theme-chart-11)"
+        background="var(--si-sys-data-categorical-9)"
         chip-color="var(--si-sys-text-primary)"
         ?closable=${closable}
         >${label}</ix-chip
@@ -177,7 +177,7 @@ function chipMatrixOverview(): TemplateResult {
         max-width: 48rem;
         font-size: 0.875rem;
         line-height: 1.45;
-        color: var(--theme-color-std-text);
+        color: var(--si-sys-text-primary);
       }
       .chip-sb-matrix__grid {
         display: grid;
@@ -189,7 +189,7 @@ function chipMatrixOverview(): TemplateResult {
         font-size: 0.8125rem;
         font-weight: 600;
         padding-bottom: 0.25rem;
-        border-bottom: 1px solid var(--theme-color-soft-bdr);
+        border-bottom: 1px solid var(--si-sys-border-3);
         margin-bottom: 0.25rem;
       }
       .chip-sb-matrix__narrow {

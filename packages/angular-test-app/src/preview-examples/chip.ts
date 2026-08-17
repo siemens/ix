@@ -31,8 +31,8 @@ import { Component } from '@angular/core';
         <ix-chip
           icon="print"
           variant="custom"
-          background="var(--theme-chart-11)"
-          chip-color="var(--theme-color-inv-std-text)"
+          background="var(--si-sys-data-categorical-9)"
+          chip-color="var(--si-sys-text-inverse)"
           closable
           >Custom</ix-chip
         >
@@ -60,7 +60,7 @@ import { Component } from '@angular/core';
         <ix-chip
           icon="print"
           variant="custom"
-          background="var(--theme-chart-11)"
+          background="var(--si-sys-data-categorical-9)"
           chip-color="var(--si-sys-text-primary)"
           outline
           closable
