@@ -34,6 +34,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  clearInputValue,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -197,12 +198,18 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly passwordToggleRef = () => this.updatePaddings();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
+  private readonly isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
+  }
+
+  @Watch('value')
+  onValueChange(newValue: string) {
+    this.updateFormInternalValue(newValue);
   }
 
   @Watch('type')
@@ -239,7 +246,10 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (this.inputRef.current && this.touched) {
+    if (this.inputRef.current && this.touched && !this.isClearing) {
+      if (this.inputRef.current.value !== value) {
+        this.inputRef.current.value = value;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -288,6 +298,16 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 5.1.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this);
   }
 
   render() {

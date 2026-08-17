@@ -323,3 +323,28 @@ export async function emitPickerValidityStateChangeIfChanged(
     invalidReason: context.invalidReason,
   });
 }
+
+export async function clearInputValue<T>(
+  comp: IxInputFieldComponent<T>,
+  options?: { defaultValue?: T }
+): Promise<void> {
+  const defaultValue =
+    options && 'defaultValue' in options
+      ? options.defaultValue
+      : ('' as unknown as T);
+  const compAny = comp as IxInputFieldComponent<T> & {
+    touched: boolean;
+    isClearing: boolean;
+    updateFormInternalValue: (value: T) => void;
+    valueChange: { emit: (value: T) => void };
+  };
+  compAny.isClearing = true;
+  compAny.touched = false;
+  compAny.updateFormInternalValue(defaultValue as T);
+  compAny.valueChange.emit(defaultValue as T);
+  comp.hostElement.classList.remove(
+    'ix-invalid--validity-invalid',
+    'ix-invalid--required'
+  );
+  compAny.isClearing = false;
+}
