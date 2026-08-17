@@ -75,7 +75,7 @@ export class IconButton
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-  submitButtonElement!: HTMLButtonElement;
+  submitButtonElement?: HTMLButtonElement;
 
   override componentDidLoad() {
     if (this.type === 'submit') {
