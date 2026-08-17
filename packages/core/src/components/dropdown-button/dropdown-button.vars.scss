@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,6 +8,9 @@
  */
 
 @use 'tokens/system' as sys;
+@use '../button/button-variants' as button-variants;
+
+$dropdown-button-variants: button-variants.$btn-variants;
 
 :host {
   --ix-dropdown-button--outline-color--focus: #{sys.$si-sys-effects-focus};

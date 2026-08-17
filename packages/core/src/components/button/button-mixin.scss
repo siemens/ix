@@ -11,6 +11,7 @@
 @use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use './button-variants' as *;
 
 @use './button.vars' as *;
 @mixin btn-base-variant($name) {
@@ -172,21 +173,11 @@
   }
 }
 
-@mixin all-btn-variants {
-  $button-categories: (
-    primary,
-    secondary,
-    tertiary,
-    subtle-primary,
-    subtle-secondary,
-    subtle-tertiary,
-    danger-primary,
-    danger-secondary,
-    danger-tertiary
-  );
+// Shared button variant names live in button-variants.scss
 
+@mixin all-btn-variants {
   @include btn;
-  @each $category in $button-categories {
+  @each $category in $btn-variants {
     @include btn-variant($category);
   }
 }

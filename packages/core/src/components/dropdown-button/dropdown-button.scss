@@ -8,8 +8,8 @@
  */
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-
 @use './dropdown-button.vars' as *;
+
 @mixin triangle($name: '') {
   @if ($name != '') {
     $name: '#{$name}-';
@@ -34,6 +34,28 @@
   .triangle.#{$name}tertiary.disabled {
     color: var(--ix-dropdown-button-#{$name}tertiary--color--disabled);
   }
+}
+
+// Apply the expanded active look to nested ix-button / ix-icon-button.
+@mixin expanded-active-variant($name) {
+  --ix-button-#{$name}--background: var(
+    --ix-dropdown-button-#{$name}--background--active
+  );
+  --ix-button-#{$name}--background--hover: var(
+    --ix-dropdown-button-#{$name}--background--active
+  );
+  --ix-button-#{$name}--color: var(
+    --ix-dropdown-button-#{$name}--color--active
+  );
+  --ix-button-#{$name}--color--hover: var(
+    --ix-dropdown-button-#{$name}--color--active
+  );
+  --ix-button-#{$name}--border-color: var(
+    --ix-dropdown-button-#{$name}--border-color--active
+  );
+  --ix-button-#{$name}--border-color--hover: var(
+    --ix-dropdown-button-#{$name}--border-color--active
+  );
 }
 
 :host {
@@ -137,6 +159,15 @@
 :host(:focus-visible) {
   outline: 1px solid var(--ix-dropdown-button--outline-color--focus);
   outline-offset: var(--ix-dropdown-button--focus--outline-offset);
+}
+
+:host([aria-expanded='true']) {
+  ix-button,
+  ix-icon-button {
+    @each $variant in $dropdown-button-variants {
+      @include expanded-active-variant($variant);
+    }
+  }
 }
 
 :host([aria-expanded='true']:focus-visible) {
