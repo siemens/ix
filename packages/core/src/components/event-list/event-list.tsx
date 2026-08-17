@@ -120,10 +120,15 @@ export class EventList {
   private triggerFadeOut(): Promise<void> {
     return new Promise((resolve) => {
       if (!this.animated) {
-        resolve();
+        return resolve();
       }
 
-      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+      const listElement =
+        this.hostElement.shadowRoot?.querySelector('div[role="list"]');
+
+      if (!listElement) {
+        return resolve();
+      }
 
       if (!listElement) {
         resolve();
