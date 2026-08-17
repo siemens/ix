@@ -13,11 +13,23 @@
     @include fonts.typography-body-paragraph;
   }
 
+  .typography-body-paragraph-sbold {
+    @include fonts.typography-body-paragraph-sbold;
+  }
+
   .typography-body-sm {
     @include fonts.typography-body-sm;
   }
 
+  .typography-body-sm-sbold {
+    @include fonts.typography-body-sm-sbold;
+  }
+
   .typography-body-lg {
+    @include fonts.typography-body-lg;
+  }
+
+  .typography-body-lg-sbold {
     @include fonts.typography-body-lg;
   }
 
@@ -93,24 +105,12 @@
     @include fonts.typography-code;
   }
 
-  .typography-code-bold {
-    @include fonts.typography-code-bold;
-  }
-
   .typography-code-lg {
     @include fonts.typography-code-lg;
   }
 
-  .typography-code-lg-bold {
-    @include fonts.typography-code-lg-bold;
-  }
-
   .typography-code-sm {
     @include fonts.typography-code-sm;
-  }
-
-  .typography-code-sm-bold {
-    @include fonts.typography-code-sm-bold;
   }
 
   .typography-decoration-none {
