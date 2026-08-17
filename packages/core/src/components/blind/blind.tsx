@@ -179,7 +179,7 @@ export class Blind {
                   )}
                   <div class={'blind-header-title-row'}>
                     <div class="blind-header-title-col">
-                      <ix-typography title={this.label} format="label-lg" bold>
+                      <ix-typography title={this.label} format="body-lg" bold>
                         <div
                           class="blind-header-title-label"
                           title={this.label}
