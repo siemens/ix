@@ -14,7 +14,7 @@
  */
 @mixin setVars {
   --theme-pagination-item--background: rgba(0, 0, 0, 0);
-  --theme-pagination-item--background--active: var(--si-sys-background-selected);
+  --theme-pagination-item--background--active: var(--si-sys-background-active);
   --theme-pagination-item--background--disabled: rgba(0, 0, 0, 0);
   --theme-pagination-item--background--hover: var(--si-sys-background-hover);
   --theme-pagination-item--background--selected: var(--theme-color-component-7);

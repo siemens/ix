@@ -17,7 +17,9 @@
   --theme-card--border-width: var(--theme-border-width-default);
   --theme-card--focus--outline-offset: var(--theme-focus-outline-offset);
   --theme-card-alarm--background: var(--si-sys-background-danger);
-  --theme-card-alarm--background--active: var(--si-sys-background-danger-active);
+  --theme-card-alarm--background--active: var(
+    --si-sys-background-danger-active
+  );
   --theme-card-alarm--background--hover: var(--si-sys-background-danger-hover);
   --theme-card-alarm--background--selected: var(--si-sys-background-danger);
   --theme-card-alarm--border-color: rgba(0, 0, 0, 0);
@@ -26,26 +28,36 @@
   --theme-card-alarm--border-color--selected: var(--si-sys-border-accent-hover);
   --theme-card-alarm--color: var(--si-sys-text-on-danger);
   --theme-card-critical--background: var(--theme-color-critical);
-  --theme-card-critical--background--active: var(--theme-color-critical--active);
+  --theme-card-critical--background--active: var(
+    --theme-color-critical--active
+  );
   --theme-card-critical--background--hover: var(--theme-color-critical--hover);
   --theme-card-critical--background--selected: var(--theme-color-critical);
   --theme-card-critical--border-color: rgba(0, 0, 0, 0);
   --theme-card-critical--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-critical--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-critical--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-critical--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-critical--color: var(--theme-color-critical--contrast);
   --theme-card-filled--background: var(--si-sys-background-1);
-  --theme-card-filled--background--active: var(--si-sys-background-selected);
+  --theme-card-filled--background--active: var(--si-sys-background-active);
   --theme-card-filled--background--hover: var(--si-sys-background-hover);
-  --theme-card-filled--background--selected: var(--si-sys-background-selected);
+  --theme-card-filled--background--selected: var(--si-sys-background-active);
   --theme-card-filled--border-color: rgba(0, 0, 0, 0);
   --theme-card-filled--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-filled--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-filled--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-filled--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-filled--color: var(--si-sys-text-primary);
   --theme-card-info--background: var(--si-sys-background-information);
-  --theme-card-info--background--active: var(--si-sys-background-information-active);
-  --theme-card-info--background--hover: var(--si-sys-background-information-hover);
+  --theme-card-info--background--active: var(
+    --si-sys-background-information-active
+  );
+  --theme-card-info--background--hover: var(
+    --si-sys-background-information-hover
+  );
   --theme-card-info--background--selected: var(--si-sys-background-information);
   --theme-card-info--border-color: rgba(0, 0, 0, 0);
   --theme-card-info--border-color--active: rgba(0, 0, 0, 0);
@@ -59,34 +71,50 @@
   --theme-card-neutral--border-color: rgba(0, 0, 0, 0);
   --theme-card-neutral--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-neutral--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-neutral--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-neutral--color: var(--theme-color-neutral--contrast);
   --theme-card-outline--background: rgba(0, 0, 0, 0);
-  --theme-card-outline--background--active: var(--si-sys-background-selected);
+  --theme-card-outline--background--active: var(--si-sys-background-active);
   --theme-card-outline--background--hover: var(--si-sys-background-hover);
-  --theme-card-outline--background--selected: var(--si-sys-background-selected);
+  --theme-card-outline--background--selected: var(--si-sys-background-active);
   --theme-card-outline--border-color: var(--si-sys-border-3);
   --theme-card-outline--border-color--active: var(--si-sys-border-3);
   --theme-card-outline--border-color--hover: var(--si-sys-border-3);
-  --theme-card-outline--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-outline--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-outline--color: var(--si-sys-text-primary);
   --theme-card-primary--background: var(--si-sys-background-accent);
-  --theme-card-primary--background--active: var(--si-sys-background-accent-active);
-  --theme-card-primary--background--hover: var(--si-sys-background-accent-hover);
+  --theme-card-primary--background--active: var(
+    --si-sys-background-accent-active
+  );
+  --theme-card-primary--background--hover: var(
+    --si-sys-background-accent-hover
+  );
   --theme-card-primary--background--selected: var(--si-sys-background-accent);
   --theme-card-primary--border-color: rgba(0, 0, 0, 0);
   --theme-card-primary--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-primary--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-primary--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-primary--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-primary--color: var(--si-sys-text-on-accent);
   --theme-card-success--background: var(--si-sys-background-success);
-  --theme-card-success--background--active: var(--si-sys-background-success-active);
-  --theme-card-success--background--hover: var(--si-sys-background-success-hover);
+  --theme-card-success--background--active: var(
+    --si-sys-background-success-active
+  );
+  --theme-card-success--background--hover: var(
+    --si-sys-background-success-hover
+  );
   --theme-card-success--background--selected: var(--si-sys-background-success);
   --theme-card-success--border-color: rgba(0, 0, 0, 0);
   --theme-card-success--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-success--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-success--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-success--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-success--color: var(--si-sys-text-on-success);
   --theme-card-warning--background: var(--theme-color-warning);
   --theme-card-warning--background--active: var(--theme-color-warning--active);
@@ -95,6 +123,8 @@
   --theme-card-warning--border-color: rgba(0, 0, 0, 0);
   --theme-card-warning--border-color--active: rgba(0, 0, 0, 0);
   --theme-card-warning--border-color--hover: rgba(0, 0, 0, 0);
-  --theme-card-warning--border-color--selected: var(--si-sys-border-accent-hover);
+  --theme-card-warning--border-color--selected: var(
+    --si-sys-border-accent-hover
+  );
   --theme-card-warning--color: var(--theme-color-warning--contrast);
 }

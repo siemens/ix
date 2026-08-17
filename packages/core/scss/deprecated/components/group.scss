@@ -17,10 +17,10 @@
   --theme-group--border-radius--focus: var(--theme-min-border-radius);
   --theme-group-header--color: var(--si-sys-text-primary);
   --theme-group-item--background: var(--si-sys-background-1);
-  --theme-group-item--background--active: var(--si-sys-background-selected);
+  --theme-group-item--background--active: var(--si-sys-background-active);
   --theme-group-item--background--disabled: var(--si-sys-background-1);
   --theme-group-item--background--hover: var(--si-sys-background-hover);
-  --theme-group-item--background--selected: var(--si-sys-background-selected);
+  --theme-group-item--background--selected: var(--si-sys-background-active);
   --theme-group-item--border-color: rgba(0, 0, 0, 0);
   --theme-group-item--border-color--active: rgba(0, 0, 0, 0);
   --theme-group-item--border-color--disabled: rgba(0, 0, 0, 0);
@@ -29,8 +29,12 @@
   --theme-group-item-icon--color: var(--si-sys-text-primary);
   --theme-group-item-icon--color--disabled: var(--si-sys-text-disabled);
   --theme-group-item-indicator--background: rgba(0, 0, 0, 0);
-  --theme-group-item-indicator--background--selected: var(--si-sys-background-accent-hover);
-  --theme-group-item-indicator--background--subselected: var(--si-sys-background-accent-hover);
+  --theme-group-item-indicator--background--selected: var(
+    --si-sys-background-accent-hover
+  );
+  --theme-group-item-indicator--background--subselected: var(
+    --si-sys-background-accent-hover
+  );
   --theme-group-item-subtext--color: var(--si-sys-text-secondary);
   --theme-group-item-subtext--color--disabled: var(--si-sys-text-disabled);
   --theme-group-item-text--color: var(--si-sys-text-primary);

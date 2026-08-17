@@ -16,20 +16,28 @@
   --theme-select-list--background: var(--si-sys-background-1);
   --theme-select-list--border-color: rgba(0, 0, 0, 0);
   --theme-select-list-item--background: rgba(0, 0, 0, 0);
-  --theme-select-list-item--background--active: var(--si-sys-background-selected);
+  --theme-select-list-item--background--active: var(--si-sys-background-active);
   --theme-select-list-item--background--disabled: rgba(0, 0, 0, 0);
   --theme-select-list-item--background--hover: var(--si-sys-background-hover);
-  --theme-select-list-item--background--selected: var(--si-sys-background-selected);
-  --theme-select-list-item--background--selected-active: var(--si-sys-background-selected);
+  --theme-select-list-item--background--selected: var(
+    --si-sys-background-active
+  );
+  --theme-select-list-item--background--selected-active: var(
+    --si-sys-background-active
+  );
   --theme-select-list-item--background--selected-disabled: rgba(0, 0, 0, 0);
-  --theme-select-list-item--background--selected-hover: var(--si-sys-background-hover);
+  --theme-select-list-item--background--selected-hover: var(
+    --si-sys-background-hover
+  );
   --theme-select-list-item--color: var(--si-sys-text-primary);
   --theme-select-list-item--color--active: var(--si-sys-text-primary);
   --theme-select-list-item--color--disabled: var(--si-sys-text-disabled);
   --theme-select-list-item--color--hover: var(--si-sys-text-primary);
   --theme-select-list-item--color--selected: var(--si-sys-text-primary);
   --theme-select-list-item--color--selected-active: var(--si-sys-text-primary);
-  --theme-select-list-item--color--selected-disabled: var(--si-sys-text-disabled);
+  --theme-select-list-item--color--selected-disabled: var(
+    --si-sys-text-disabled
+  );
   --theme-select-list-item--color--selected-hover: var(--si-sys-text-primary);
   --theme-select-list-item-check--color: var(--si-sys-text-primary);
   --theme-select-list-item-check--color--active: var(--si-sys-text-primary);

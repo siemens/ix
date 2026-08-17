@@ -18,7 +18,9 @@
   --theme-tooltip--color: var(--si-sys-text-primary);
   --theme-tooltip-close--color: var(--si-sys-text-secondary);
   --theme-tooltip-close-btn--background: rgba(0, 0, 0, 0);
-  --theme-tooltip-close-btn--background--active: var(--si-sys-background-selected);
+  --theme-tooltip-close-btn--background--active: var(
+    --si-sys-background-active
+  );
   --theme-tooltip-close-btn--background--hover: var(--si-sys-background-hover);
   --theme-tootlip--background: var(--theme-tooltip--background);
 }

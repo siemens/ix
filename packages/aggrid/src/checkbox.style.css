@@ -35,7 +35,7 @@
 }
 
 .ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate):active {
-  background-color: var(--si-sys-background-selected);
+  background-color: var(--si-sys-background-active);
   border: var(--theme-border-width-default) solid var(--si-sys-border-2);
 }
 

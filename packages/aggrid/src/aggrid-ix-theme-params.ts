@@ -86,7 +86,7 @@ export const aggridIxThemeParams = {
   menuBorder: `false`,
   menuBorderColor: `var(--si-sys-border-2)`,
   menuShadow: `var(--theme-shadow-4)`,
-  oddRowBackgroundColor: `var(--si-sys-background-1)`,
+  oddRowBackgroundColor: `var(--si-sys-background-2)`,
   panelTitleBarBorder: `false`,
   pinnedColumnBackgroundColor: `var(--si-sys-background-active)`,
   pinnedRowBackgroundColor: `var(--si-sys-background-active)`,
