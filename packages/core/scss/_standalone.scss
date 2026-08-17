@@ -37,7 +37,7 @@ body {
   color: var(--theme-color-std-text);
   background-color: var(--theme-color-1);
   margin: 0;
-  @include font-mixins.typography-body;
+  @include font-mixins.typography-body-paragraph;
 }
 
 body:not(.disable-scrollbar) {
