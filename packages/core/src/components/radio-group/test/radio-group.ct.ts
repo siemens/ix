@@ -245,4 +245,29 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('ArrowLeft');
     await expect(page.getByLabel('Option 2')).toBeChecked();
   });
+
+  regressionTest(
+    'should apply invalid class to radio-group when required radio is touched',
+    async ({ mount, page }) => {
+      await mount(`
+      <form>
+        <ix-radio-group>
+          <ix-radio label="Option 1" value="opt1" required></ix-radio>
+          <ix-radio label="Option 2" value="opt2"></ix-radio>
+        </ix-radio-group>
+        <button type="button">Other</button>
+      </form>
+    `);
+
+      const radioGroup = page.locator('ix-radio-group');
+      const radio1 = page.locator('ix-radio').nth(0);
+      await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+      await radio1.focus();
+      await page.locator('button').focus();
+
+      await expect(radioGroup).toHaveClass(/\bix-invalid--required\b/);
+      await expect(radioGroup).toHaveClass(/\bix-invalid\b/);
+    }
+  );
 });
