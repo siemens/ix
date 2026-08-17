@@ -22,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          '`textOverflow="wrap"` is the default. Use `textOverflow="ellipsis"` to opt into single-line ellipsis behavior.',
+          '`textOverflow="wrap"` is the default. Use `textOverflow="ellipsis"` to opt into visual single-line truncation. Ellipsis does not add a tooltip; use wrapping when the complete text must remain visible.',
       },
     },
   },
@@ -34,7 +34,7 @@ type Story = StoryObj<Element>;
 const title =
   'Content title that demonstrates behavior when horizontal space is limited';
 const subtitle =
-  'Supporting context also responds to the available component width';
+  'Supporting context that demonstrates behavior when horizontal space is limited';
 
 export const TextOverflow: Story = {
   render: () => html`

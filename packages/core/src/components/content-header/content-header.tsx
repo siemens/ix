@@ -41,6 +41,7 @@ export class ContentHeader {
 
   /**
    * Controls how the title and subtitle handle limited horizontal space.
+   * Ellipsis visually truncates the text without adding a tooltip.
    *
    * @since 6.0.0
    */
