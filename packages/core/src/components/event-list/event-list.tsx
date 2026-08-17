@@ -130,7 +130,12 @@ export class EventList {
         return resolve();
       }
 
-      animate(listElement!, {
+      if (!listElement) {
+        resolve();
+        return;
+      }
+
+      animate(listElement, {
         opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
         duration: EventList.fadeOutDuration,
         onComplete: () => {
