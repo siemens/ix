@@ -30,6 +30,49 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   expect(results.violations).toEqual([]);
 });
 
+regressionTest(
+  'prevents focus from remaining in collapsed card content',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(`
+      <button>Before</button>
+      <ix-card-list label="Test" hide-show-all>
+        <ix-card>
+          <ix-card-content>
+            <button>Card action</button>
+          </ix-card-content>
+        </ix-card>
+      </ix-card-list>
+      <button>After</button>
+    `);
+
+    const cardList = page.locator('ix-card-list');
+    const collapseButton = cardList.getByRole('button', {
+      name: 'Chevron Up',
+    });
+    const cardAction = page.getByRole('button', { name: 'Card action' });
+    const content = cardList.locator('.CardList__Content');
+    const after = page.getByRole('button', { name: 'After' });
+
+    await expect(cardList).toHaveClass(/\bhydrated\b/);
+
+    await cardAction.focus();
+    await expect(cardAction).toBeFocused();
+
+    await cardList.evaluate((element: HTMLIxCardListElement) => {
+      element.collapse = true;
+    });
+
+    await expect(collapseButton).toBeFocused();
+    await expect(content).toHaveJSProperty('inert', true);
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+
+    await page.keyboard.press('Tab');
+    await expect(after).toBeFocused();
+     }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-card-list label="Test">

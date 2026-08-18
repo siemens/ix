@@ -9,6 +9,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronUp, iconMoreMenu } from '@siemens/ix-icons/icons';
@@ -25,6 +26,7 @@ function CardListTitle(props: {
   labelShowLess: string;
   showLess: boolean;
   hideShowAll: boolean;
+  collapseButtonRef: (element?: HTMLIxIconButtonElement) => void;
 }) {
   if (!props.label) {
     return null;
@@ -42,6 +44,7 @@ function CardListTitle(props: {
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
         aria-label={props.ariaLabelExpandButton}
+        ref={props.collapseButtonRef}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
@@ -177,6 +180,21 @@ export class CardList {
   @State() private rightScrollDistance = 0;
 
   private observer?: MutationObserver;
+
+  private collapseButton?: HTMLIxIconButtonElement;
+
+  @Watch('collapse')
+  protected handleCollapseChange(isCollapsed: boolean) {
+    if (isCollapsed && this.hasFocusWithinListContent()) {
+      this.collapseButton?.focus();
+    }
+  }
+
+  private hasFocusWithinListContent() {
+    return this.getListChildren().some((child) =>
+      child.matches(':focus-within')
+    );
+  }
 
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
@@ -415,6 +433,7 @@ export class CardList {
         <CardListTitle
           isCollapsed={this.collapse}
           label={this.label}
+          ariaLabelExpandButton={this.ariaLabelExpandButton}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
@@ -426,6 +445,7 @@ export class CardList {
           onClick={() => this.onCardListVisibilityToggle()}
           onShowAllClick={(e) => this.onShowAllClick(e)}
           hideShowAll={this.hideShowAll}
+          collapseButtonRef={(element) => (this.collapseButton = element)}
         ></CardListTitle>
         <div
           class={{
@@ -441,6 +461,7 @@ export class CardList {
               CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
             }}
             onScroll={() => this.onCardListScroll()}
+            inert={this.collapse}
           >
             <slot
               onSlotchange={() => {
