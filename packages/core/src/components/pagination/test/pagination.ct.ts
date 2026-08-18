@@ -99,8 +99,8 @@ regressionTest('should not change page', async ({ mount, page }) => {
   const buttons = pagination.locator('button');
   await buttons.nth(1).click();
 
-  await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
-  await expect(buttons.nth(1)).toHaveAttribute('aria-pressed', 'false');
+  await expect(buttons.first()).toHaveAttribute('aria-current', 'page');
+  await expect(buttons.nth(1)).not.toHaveAttribute('aria-current', 'page');
 });
 
 regressionTest('should handle valid page input', async ({ mount, page }) => {
