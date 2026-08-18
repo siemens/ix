@@ -1,5 +1,20 @@
 # @siemens/ix-angular
 
+## 5.2.0
+
+### Minor Changes
+
+- [#2645](https://github.com/siemens/ix/pull/2645) [`09fa2b6`](https://github.com/siemens/ix/commit/09fa2b60e98b7bca57355f70267d0a8cd8e2dbe8) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Introduces `ix-badge` for overlay count and status indicators on anchors or as standalone badges, with semantic variants, outline mode, position/offset, optional attention animation, and standalone `tooltipText` support.
+
+### Patch Changes
+
+- [#2613](https://github.com/siemens/ix/pull/2613) [`8e7565b`](https://github.com/siemens/ix/commit/8e7565b144c127d0c5cb1b9e038d43a5eab56ee3) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Add keyboard navigation for "Show all" and "Show more" cards in **ix-card-list**.
+
+- [#2698](https://github.com/siemens/ix/pull/2698) [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update ix-icons peer dependency to V3.5.0.
+
+- Updated dependencies [[`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2), [`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`8e7565b`](https://github.com/siemens/ix/commit/8e7565b144c127d0c5cb1b9e038d43a5eab56ee3), [`5c43ed5`](https://github.com/siemens/ix/commit/5c43ed51616a11dcf15519e7a5b16e05ec26cbb0), [`a14ae0a`](https://github.com/siemens/ix/commit/a14ae0ab7dccdcfa16b28a0bbf7b7c5dfb76d252), [`1ef341b`](https://github.com/siemens/ix/commit/1ef341b2e6258240fadf4699b2fa3e3dd8435703), [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b), [`09fa2b6`](https://github.com/siemens/ix/commit/09fa2b60e98b7bca57355f70267d0a8cd8e2dbe8), [`81e7e24`](https://github.com/siemens/ix/commit/81e7e24b6edf434f374447f0efe17dfad0f239e2), [`aea81f5`](https://github.com/siemens/ix/commit/aea81f579131e02bdf7e5cfb3f2e300321e3f965)]:
+  - @siemens/ix@5.2.0
+
 ## 5.1.1
 
 ### Patch Changes

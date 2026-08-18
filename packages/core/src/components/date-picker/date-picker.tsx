@@ -273,9 +273,9 @@ export class DatePicker
   private readonly yearMonthSelectionDropdownRef =
     makeRef<HTMLIxDropdownElement>();
 
-  @State() dayNames!: string[];
-  @State() dayNamesFull!: string[];
-  @State() monthNames!: string[];
+  @State() dayNames: string[] = [];
+  @State() dayNamesFull: string[] = [];
+  @State() monthNames: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
@@ -893,8 +893,13 @@ export class DatePicker
   }
 
   private async intersect(entries: IntersectionObserverEntry[]) {
-    const container =
-      await this.yearDropdownButtonRef.current!.getDropdownReference();
+    const yearDropdownButton = this.yearDropdownButtonRef.current;
+
+    if (!yearDropdownButton) {
+      return;
+    }
+
+    const container = await yearDropdownButton.getDropdownReference();
     entries.forEach((entry) => {
       const target = entry.target as HTMLElement;
       if (entry.isIntersecting) {
@@ -921,8 +926,8 @@ export class DatePicker
     ) as HTMLElement | undefined;
   }
 
-  private scrollToSelectedDropdownItem(dropdownElement: HTMLElement) {
-    const selectedItem = dropdownElement.querySelector(
+  private scrollToSelectedDropdownItem(dropdownElement: HTMLElement | null) {
+    const selectedItem = dropdownElement?.querySelector(
       'ix-dropdown-item[checked]'
     ) as HTMLElement;
 
@@ -1053,7 +1058,7 @@ export class DatePicker
                         ) as HTMLElement
                       );
                       this.scrollToSelectedDropdownItem(
-                        this.yearDropdownButtonRef.current!
+                        this.yearDropdownButtonRef.current
                       );
                     });
                   } else {

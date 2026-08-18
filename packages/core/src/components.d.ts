@@ -5401,7 +5401,7 @@ declare global {
     nativeEvent: MouseEvent;
   };
         "showMoreCardClick": {
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   };
     }
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
@@ -7556,7 +7556,7 @@ declare namespace LocalJSX {
           * Fire event when the show more card is clicked.
          */
         "onShowMoreCardClick"?: (event: IxCardListCustomEvent<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>) => void;
         /**
           * Overwrite the default show all count.

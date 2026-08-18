@@ -253,6 +253,7 @@ export const testIds = [
   "application-app-switch",
   "application-advanced",
   "aggrid",
+  "aggrid-striped",
   "add-icons",
   "action-card",
   "about-and-legal",
