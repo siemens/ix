@@ -1842,4 +1842,3 @@ test('programmatic value setting updates validation state', async ({
   await page.waitForTimeout(100);
   await expect(select).not.toHaveClass(/ix-invalid--required/);
 });
-
