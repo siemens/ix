@@ -446,7 +446,7 @@ export class DatePicker
       return;
     }
 
-    const dayElem = this.hostElement.shadowRoot!.querySelector(
+    const dayElem = this.hostElement.shadowRoot?.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
 
@@ -1020,7 +1020,7 @@ export class DatePicker
                   if (event.detail) {
                     requestAnimationFrameNoNgZone(() => {
                       this.scrollToSelectedDropdownItem(
-                        this.monthDropdownButtonRef.current!
+                        this.monthDropdownButtonRef.current
                       );
                     });
                   }
@@ -1048,12 +1048,12 @@ export class DatePicker
                   if (event.detail) {
                     requestAnimationFrameNoNgZone(() => {
                       this.intersectStart.observe(
-                        this.hostElement.shadowRoot!.querySelector(
+                        this.hostElement.shadowRoot?.querySelector(
                           '[data-sentinel="top"]'
                         ) as HTMLElement
                       );
                       this.intersectEnd.observe(
-                        this.hostElement.shadowRoot!.querySelector(
+                        this.hostElement.shadowRoot?.querySelector(
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
