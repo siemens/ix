@@ -73,6 +73,43 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'moves focus from the show-more card before collapsing',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-card-list
+        label="Test"
+        list-style="stack"
+        max-visible-cards="1"
+      >
+        ${CARDS_HTML}
+      </ix-card-list>
+    `);
+
+    const cardList = page.locator('ix-card-list');
+    const collapseButton = cardList.getByRole('button', {
+      name: 'Chevron Up',
+    });
+    const showMoreCard = cardList.getByRole('button', {
+      name: /there are more cards available/i,
+    });
+    const content = cardList.locator('.CardList__Content');
+
+    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(showMoreCard).toBeVisible();
+
+    await showMoreCard.focus();
+    await expect(showMoreCard).toBeFocused();
+
+    await cardList.evaluate((element: HTMLIxCardListElement) => {
+      element.collapse = true;
+    });
+
+    await expect(collapseButton).toBeFocused();
+    await expect(content).toHaveJSProperty('inert', true);
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-card-list label="Test">

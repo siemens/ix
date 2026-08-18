@@ -191,9 +191,7 @@ export class CardList {
   }
 
   private hasFocusWithinListContent() {
-    return this.getListChildren().some((child) =>
-      child.matches(':focus-within')
-    );
+    return this.listElement?.matches(':focus-within') ?? false;
   }
 
   private onCardListVisibilityToggle() {
