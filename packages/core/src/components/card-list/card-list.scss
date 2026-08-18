@@ -39,10 +39,6 @@ $CardList__Title__Height: 1.5rem;
     transition: var(--theme-default-time) transform ease-in-out;
   }
 
-  .CardList_Title__Label {
-    align-self: flex-end;
-  }
-
   .CardList__Title__Button__Collapsed {
     transform: rotate(-180deg);
   }
