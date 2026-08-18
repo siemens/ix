@@ -176,27 +176,29 @@ regressionTest(
       Number.parseFloat(getComputedStyle(element).lineHeight)
     );
 
-    expect(titleBox).not.toBeNull();
-    expect(subtitleBox).not.toBeNull();
-    expect(pillBox).not.toBeNull();
-    expect(actionBox).not.toBeNull();
-    expect(backButtonBox).not.toBeNull();
-    expect(titleBox!.height).toBeGreaterThan(titleLineHeight);
-    expect(pillBox!.y).toBeLessThan(titleBox!.y + titleLineHeight);
-    expect(actionBox!.y).toBeLessThan(titleBox!.y + titleLineHeight);
-    expect(backButtonBox!.y).toBeLessThan(titleBox!.y + titleLineHeight);
-    expect(titleBox!.x + titleBox!.width).toBeLessThanOrEqual(pillBox!.x);
-    expect(subtitleBox!.x + subtitleBox!.width).toBeLessThanOrEqual(
-      actionBox!.x
-    );
+    if (!titleBox || !subtitleBox || !pillBox || !actionBox || !backButtonBox) {
+      throw new Error(
+        'Expected content header elements to have bounding boxes'
+      );
+    }
+
+    expect(titleBox.height).toBeGreaterThan(titleLineHeight);
+    expect(pillBox.y).toBeLessThan(titleBox.y + titleLineHeight);
+    expect(actionBox.y).toBeLessThan(titleBox.y + titleLineHeight);
+    expect(backButtonBox.y).toBeLessThan(titleBox.y + titleLineHeight);
+    expect(titleBox.x + titleBox.width).toBeLessThanOrEqual(pillBox.x);
+    expect(subtitleBox.x + subtitleBox.width).toBeLessThanOrEqual(actionBox.x);
 
     await header.evaluate((element) => {
       element.style.width = '80rem';
     });
     const wideActionBox = await action.boundingBox();
-    expect(wideActionBox).not.toBeNull();
-    expect(actionBox!.height).toBe(wideActionBox!.height);
-    expect(actionBox!.width).toBe(wideActionBox!.width);
+    if (!wideActionBox) {
+      throw new Error('Expected wide action to have a bounding box');
+    }
+
+    expect(actionBox.height).toBe(wideActionBox.height);
+    expect(actionBox.width).toBe(wideActionBox.width);
   }
 );
 
@@ -233,9 +235,11 @@ regressionTest(
 
     const titleBox = await titleText.boundingBox();
     const subtitleBox = await subtitleText.boundingBox();
-    expect(titleBox).not.toBeNull();
-    expect(subtitleBox).not.toBeNull();
-    expect(titleBox!.y + titleBox!.height).toBeLessThanOrEqual(subtitleBox!.y);
+    if (!titleBox || !subtitleBox) {
+      throw new Error('Expected title and subtitle to have bounding boxes');
+    }
+
+    expect(titleBox.y + titleBox.height).toBeLessThanOrEqual(subtitleBox.y);
   }
 );
 
