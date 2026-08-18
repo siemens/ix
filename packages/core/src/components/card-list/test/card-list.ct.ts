@@ -20,30 +20,26 @@ const CARDS_HTML = `
 
 regressionTest(
   'prevents focus from remaining in collapsed card content',
-  async ({ mount, page }) => {
+  async ({ mount, page, makeAxeBuilder }) => {
     await mount(`
-      <button id="before">Before</button>
-      <ix-card-list
-        label="Test"
-        aria-label-expand-button="Toggle card list"
-        hide-show-all
-      >
+      <button>Before</button>
+      <ix-card-list label="Test" hide-show-all>
         <ix-card>
           <ix-card-content>
-            <button id="card-action">Card action</button>
+            <button>Card action</button>
           </ix-card-content>
         </ix-card>
       </ix-card-list>
-      <button id="after">After</button>
+      <button>After</button>
     `);
 
     const cardList = page.locator('ix-card-list');
     const collapseButton = cardList.getByRole('button', {
-      name: 'Toggle card list',
+      name: 'Chevron Up',
     });
-    const cardAction = page.locator('#card-action');
+    const cardAction = page.getByRole('button', { name: 'Card action' });
     const content = cardList.locator('.CardList__Content');
-    const after = page.locator('#after');
+    const after = page.getByRole('button', { name: 'After' });
 
     await expect(cardList).toHaveClass(/\bhydrated\b/);
 
@@ -56,6 +52,9 @@ regressionTest(
 
     await expect(collapseButton).toBeFocused();
     await expect(content).toHaveJSProperty('inert', true);
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
 
     await page.keyboard.press('Tab');
     await expect(after).toBeFocused();

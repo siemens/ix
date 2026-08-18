@@ -196,16 +196,8 @@ export class CardList {
   }
 
   private hasFocusWithinListContent() {
-    const activeElement = document.activeElement;
-
-    if (!activeElement) {
-      return false;
-    }
-
-    return this.getListChildren().some(
-      (child) =>
-        child === activeElement ||
-        (child instanceof HTMLElement && child.contains(activeElement))
+    return this.getListChildren().some((child) =>
+      child.matches(':focus-within')
     );
   }
 
