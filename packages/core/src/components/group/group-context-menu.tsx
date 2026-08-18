@@ -24,6 +24,8 @@ export class GroupContextMenu {
 
   @State() showContextMenu = false;
 
+  @State() contextMenuExpanded = false;
+
   private getTrigger() {
     return this.hostElement;
   }
@@ -59,16 +61,23 @@ export class GroupContextMenu {
     }
 
     this.configureDropdown(dropdownElement, triggerElement);
+    dropdownElement.hostRole = 'menu';
   }
 
   render() {
     return (
-      <Host>
+      <Host
+        onShowChange={(event: CustomEvent<boolean>) =>
+          (this.contextMenuExpanded = event.detail)
+        }
+      >
         <ix-icon-button
           class={{ hide: !this.showContextMenu }}
           size="24"
           variant="subtle-tertiary"
           icon={iconContextMenu}
+          aria-haspopup="menu"
+          aria-expanded={this.contextMenuExpanded.toString()}
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>
