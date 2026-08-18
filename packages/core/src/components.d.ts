@@ -1052,7 +1052,7 @@ export namespace Components {
          */
         "headerTitle"?: string;
         /**
-          * Controls how the title and subtitle handle limited horizontal space.
+          * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
           * @default 'wrap'
          */
@@ -8027,7 +8027,7 @@ declare namespace LocalJSX {
          */
         "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
         /**
-          * Controls how the title and subtitle handle limited horizontal space.
+          * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
           * @default 'wrap'
          */
