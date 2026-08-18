@@ -76,10 +76,25 @@ export const Overflow: Story = {
 
     const menu = canvasElement.querySelector('ix-menu');
     const tabs = menu?.shadowRoot?.querySelector<HTMLElement>('.tabs');
+    const menuNavigation =
+      menu?.shadowRoot?.querySelector<HTMLElement>('.menu-navigation');
 
-    if (!tabs) {
-      throw new Error('Unable to find the menu scroll container');
+    if (!tabs || !menuNavigation) {
+      throw new Error('Unable to find the menu navigation containers');
     }
+
+    menuNavigation.focus();
+    menuNavigation.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        bubbles: true,
+        composed: true,
+        key: 'ArrowDown',
+      })
+    );
+
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => resolve())
+    );
 
     tabs.scrollTop = (tabs.scrollHeight - tabs.clientHeight) / 2;
     tabs.dispatchEvent(new Event('scroll'));
