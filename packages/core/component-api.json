@@ -5809,6 +5809,16 @@
           "deprecated": false
         },
         {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\" | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "checkbox",
           "attribute": "checkbox",
           "type": "boolean | undefined",
@@ -5912,6 +5922,17 @@
           "mutable": false,
           "reflectToAttribute": true,
           "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'center'",
           "optional": false,
           "required": false,
           "deprecated": false

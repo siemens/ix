@@ -31,6 +31,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 
 export type ListItemVariant = 'ghost' | 'outline' | 'filled';
+export type ListItemActionSlotAlignment = 'start' | 'center';
 
 const interactiveElementSelector = [
   'a[href]',
@@ -132,6 +133,13 @@ export class ListItem
    * @since 5.2.0
    */
   @Prop({ reflect: true }) actionOnHover = false;
+
+  /**
+   * Vertical alignment of the action slot content.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) actionSlotAlignment: ListItemActionSlotAlignment =
+    'center';
 
   /**
    * Emitted when the primary item surface is activated.

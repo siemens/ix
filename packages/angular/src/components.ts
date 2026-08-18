@@ -1729,14 +1729,14 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
-  inputs: ['actionOnHover', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant']
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant']
 })
 @Component({
   selector: 'ix-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant'],
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant'],
   outputs: ['itemOrderChange'],
   standalone: false
 })
@@ -1761,14 +1761,14 @@ export declare interface IxList extends Components.IxList {
 
 
 @ProxyCmp({
-  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant']
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant'],
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant'],
   outputs: ['itemClick', 'selectedChange'],
   standalone: false
 })

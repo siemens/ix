@@ -17,7 +17,10 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import type { ListItemVariant } from '../list-item/list-item';
+import type {
+  ListItemActionSlotAlignment,
+  ListItemVariant,
+} from '../list-item/list-item';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 export type ListItemGap = 0 | 4 | 8 | 12;
@@ -50,6 +53,7 @@ type InheritedItemProperty =
   | 'disabled'
   | 'checkbox'
   | 'actionOnHover'
+  | 'actionSlotAlignment'
   | 'hasDivider';
 
 const inheritedItemProperties: Array<{
@@ -60,6 +64,10 @@ const inheritedItemProperties: Array<{
   { property: 'disabled', attribute: 'disabled' },
   { property: 'checkbox', attribute: 'checkbox' },
   { property: 'actionOnHover', attribute: 'action-on-hover' },
+  {
+    property: 'actionSlotAlignment',
+    attribute: 'action-slot-alignment',
+  },
   { property: 'hasDivider', attribute: 'has-divider' },
 ];
 
@@ -70,6 +78,7 @@ const itemPropertyDefaults: Required<
   disabled: false,
   checkbox: false,
   actionOnHover: false,
+  actionSlotAlignment: 'center',
   hasDivider: false,
 };
 
@@ -123,6 +132,12 @@ export class List {
   @Prop({ reflect: true }) actionOnHover?: boolean;
 
   /**
+   * Default action slot alignment for list items that do not define their own setting.
+   * @since 5.2.0
+   */
+  @Prop({ reflect: true }) actionSlotAlignment?: ListItemActionSlotAlignment;
+
+  /**
    * Enable drag-and-drop reordering of direct list items.
    * @since 5.2.0
    */
@@ -152,7 +167,12 @@ export class List {
   private readonly originalActionTabIndex = new WeakMap<HTMLElement, string>();
   private readonly inheritedItemValues = new WeakMap<
     HTMLIxListItemElement,
-    Partial<Record<InheritedItemProperty, ListItemVariant | boolean>>
+    Partial<
+      Record<
+        InheritedItemProperty,
+        ListItemVariant | ListItemActionSlotAlignment | boolean
+      >
+    >
   >();
   private readonly overriddenItemProperties = new WeakMap<
     HTMLIxListItemElement,
@@ -166,6 +186,7 @@ export class List {
     this.mutationObserver.observe(this.hostElement, {
       attributeFilter: [
         'action-on-hover',
+        'action-slot-alignment',
         'checkbox',
         'disabled',
         'has-divider',
@@ -203,6 +224,7 @@ export class List {
   @Watch('disabled')
   @Watch('checkbox')
   @Watch('actionOnHover')
+  @Watch('actionSlotAlignment')
   @Watch('hasDivider')
   protected itemDefaultsChanged() {
     this.synchronizeItems();

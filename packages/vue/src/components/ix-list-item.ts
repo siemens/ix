@@ -18,6 +18,7 @@ export const IxListItem: StencilVueComponent<JSX.IxListItem> = /*@__PURE__*/ def
   'checkbox',
   'hasDivider',
   'actionOnHover',
+  'actionSlotAlignment',
   'itemClick',
   'selectedChange'
 ], [

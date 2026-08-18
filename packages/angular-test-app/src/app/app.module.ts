@@ -136,6 +136,12 @@ import FormCheckboxValidation from '../preview-examples/form-checkbox-validation
 import FormLayoutAuto from '../preview-examples/form-layout-auto';
 import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
+import GenericListActionOnHover from '../preview-examples/generic-list-action-on-hover';
+import GenericListAdditionalOptions from '../preview-examples/generic-list-additional-options';
+import GenericListBasic from '../preview-examples/generic-list-basic';
+import GenericListCustomContent from '../preview-examples/generic-list-custom-content';
+import GenericListDraggable from '../preview-examples/generic-list-draggable';
+import GenericListVariants from '../preview-examples/generic-list-variants';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -394,6 +400,12 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EventList,
     ExpandingSearch,
     FlipTile,
+    GenericListActionOnHover,
+    GenericListAdditionalOptions,
+    GenericListBasic,
+    GenericListCustomContent,
+    GenericListDraggable,
+    GenericListVariants,
     FormCheckbox,
     FormCheckboxDisabled,
     FormCheckboxValidation,

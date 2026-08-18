@@ -13,6 +13,7 @@ export const IxList: StencilVueComponent<JSX.IxList> = /*@__PURE__*/ defineConta
   'disabled',
   'checkbox',
   'actionOnHover',
+  'actionSlotAlignment',
   'draggable',
   'dragBehavior',
   'itemOrderChange'

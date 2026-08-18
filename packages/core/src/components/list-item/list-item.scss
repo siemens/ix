@@ -235,6 +235,10 @@
   align-self: stretch;
 }
 
+:host([action-slot-alignment='start']) .action {
+  align-items: start;
+}
+
 :host(.disabled) {
   color: var(--theme-color-weak-text);
   cursor: default;

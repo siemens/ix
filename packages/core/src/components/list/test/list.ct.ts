@@ -516,9 +516,19 @@ regressionTest(
   'applies item defaults and preserves item overrides',
   async ({ mount, page }) => {
     await mount(`
-    <ix-list variant="ghost" disabled checkbox action-on-hover>
+    <ix-list
+      variant="ghost"
+      disabled
+      checkbox
+      action-on-hover
+      action-slot-alignment="start"
+    >
       <ix-list-item label="Inherited"></ix-list-item>
-      <ix-list-item label="Overridden" variant="outline"></ix-list-item>
+      <ix-list-item
+        label="Overridden"
+        variant="outline"
+        action-slot-alignment="center"
+      ></ix-list-item>
       <ix-list-item
         label="Boolean overrides"
         disabled="false"
@@ -538,7 +548,15 @@ regressionTest(
     await expect(inheritedItem).toHaveAttribute('disabled', '');
     await expect(inheritedItem).toHaveAttribute('checkbox', '');
     await expect(inheritedItem).toHaveAttribute('action-on-hover', '');
+    await expect(inheritedItem).toHaveAttribute(
+      'action-slot-alignment',
+      'start'
+    );
     await expect(overriddenItem).toHaveAttribute('variant', 'outline');
+    await expect(overriddenItem).toHaveAttribute(
+      'action-slot-alignment',
+      'center'
+    );
     await expect(booleanOverrides).not.toHaveAttribute('disabled', '');
     await expect(booleanOverrides).not.toHaveAttribute('checkbox', '');
     await expect(booleanOverrides).not.toHaveAttribute('action-on-hover', '');
@@ -552,16 +570,26 @@ regressionTest(
       element.disabled = false;
       element.checkbox = false;
       element.actionOnHover = false;
+      element.actionSlotAlignment = 'center';
     });
     await list.evaluate((element) => {
       element.disabled = true;
       element.checkbox = true;
       element.actionOnHover = true;
+      element.actionSlotAlignment = 'start';
     });
 
     await expect(overriddenItem).not.toHaveAttribute('disabled', '');
     await expect(overriddenItem).not.toHaveAttribute('checkbox', '');
     await expect(overriddenItem).not.toHaveAttribute('action-on-hover', '');
+    await expect(inheritedItem).toHaveAttribute(
+      'action-slot-alignment',
+      'start'
+    );
+    await expect(overriddenItem).toHaveAttribute(
+      'action-slot-alignment',
+      'center'
+    );
   }
 );
 

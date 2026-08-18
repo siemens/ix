@@ -44,8 +44,8 @@ import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
-import { ListItemVariant } from "./components/list-item/list-item";
-import { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
+import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
+import { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -104,8 +104,8 @@ export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
-export { ListItemVariant } from "./components/list-item/list-item";
-export { ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
+export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
+export { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2651,6 +2651,11 @@ export namespace Components {
          */
         "actionOnHover"?: boolean;
         /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
           * Display selection checkboxes on list items that do not define their own setting.
           * @since 5.2.0
          */
@@ -2700,6 +2705,12 @@ export namespace Components {
           * @default false
          */
         "actionOnHover": boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 5.2.0
+          * @default 'center'
+         */
+        "actionSlotAlignment": ListItemActionSlotAlignment1;
         /**
           * Accessible label for the item icon.
           * @since 5.2.0
@@ -9874,6 +9885,11 @@ declare namespace LocalJSX {
          */
         "actionOnHover"?: boolean;
         /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 5.2.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
           * Display selection checkboxes on list items that do not define their own setting.
           * @since 5.2.0
          */
@@ -9928,6 +9944,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "actionOnHover"?: boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 5.2.0
+          * @default 'center'
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment1;
         /**
           * Accessible label for the item icon.
           * @since 5.2.0
@@ -13074,6 +13096,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "checkbox": boolean;
         "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
         "draggable": boolean;
         "dragBehavior": ListDragBehavior;
     }
@@ -13089,6 +13112,7 @@ declare namespace LocalJSX {
         "checkbox": boolean;
         "hasDivider": boolean;
         "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;

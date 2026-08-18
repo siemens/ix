@@ -201,6 +201,33 @@ regressionTest('shows actions by default', async ({ mount, page }) => {
   );
 });
 
+regressionTest('aligns action slot content', async ({ mount, page }) => {
+  await mount(`
+    <div>
+      <ix-list-item label="Centered action">
+        <button slot="action">Action</button>
+      </ix-list-item>
+      <ix-list-item label="Start action" action-slot-alignment="start">
+        <button slot="action">Action</button>
+      </ix-list-item>
+    </div>
+  `);
+
+  const items = page.locator('ix-list-item');
+  await expect(items.nth(0)).toHaveAttribute(
+    'action-slot-alignment',
+    'center'
+  );
+  await expect(items.nth(0).locator('.action')).toHaveCSS(
+    'align-items',
+    'center'
+  );
+  await expect(items.nth(1).locator('.action')).toHaveCSS(
+    'align-items',
+    'start'
+  );
+});
+
 regressionTest(
   'does not show the item pressed state for interactive controls',
   async ({ mount, page }) => {
