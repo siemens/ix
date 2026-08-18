@@ -104,8 +104,11 @@ export class GroupPage {
   async expectExpandControlsContent(): Promise<string> {
     const contentId = await this.expandButton.getAttribute('aria-controls');
     expect(contentId).toBeTruthy();
-    await expect(this.contentByControlsId(contentId!)).toBeAttached();
-    return contentId!;
+    if (!contentId) {
+      throw new Error('expand button is missing aria-controls');
+    }
+    await expect(this.contentByControlsId(contentId)).toBeAttached();
+    return contentId;
   }
 
   async expectDropdownOpen(open = true): Promise<void> {
