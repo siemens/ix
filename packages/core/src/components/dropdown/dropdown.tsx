@@ -574,7 +574,9 @@ export class Dropdown
       }
     );
 
-    this.intersectObserverTrigger.observe(this.anchorElement!);
+    if (this.anchorElement) {
+      this.intersectObserverTrigger.observe(this.anchorElement);
+    }
   }
 
   private createFallbackPlacement(
@@ -925,21 +927,21 @@ export class Dropdown
       return;
     }
 
+    const dropdown = dropdownController.getDropdownById(submenuIds[0]);
+
+    if (!dropdown) {
+      return;
+    }
+
     event.detail.activeElement.classList.add(
       'ix-dropdown-submenu-trigger-active'
     );
-    dropdownController.present(
-      dropdownController.getDropdownById(submenuIds[0])!
-    );
+    dropdownController.present(dropdown);
 
-    this.forwardQueryElement = dropdownController.getDropdownById(
-      submenuIds[0]
-    )!.hostElement;
+    this.forwardQueryElement = dropdown.hostElement;
 
     requestAnimationFrameNoNgZone(() => {
-      focusFirstDescendant(
-        dropdownController.getDropdownById(submenuIds[0])!.hostElement
-      );
+      focusFirstDescendant(dropdown.hostElement);
     });
   }
 

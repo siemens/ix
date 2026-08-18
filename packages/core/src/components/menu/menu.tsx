@@ -225,17 +225,36 @@ export class Menu {
   }
 
   get menuItemsContainer(): HTMLDivElement {
-    return this.menu!.querySelector('.tabs')!;
+    const menuItemsContainer = this.menu?.querySelector('.tabs');
+
+    if (!menuItemsContainer) {
+      throw new Error('Menu items container not found');
+    }
+
+    return menuItemsContainer as HTMLDivElement;
   }
 
   get menuNavigationContainer(): HTMLDivElement {
-    return this.menu!.querySelector('.menu-navigation')!;
+    const menu = this.menu;
+
+    if (!menu) {
+      throw new Error('Menu element not found');
+    }
+
+    const menuNavigationContainer =
+      menu.querySelector<HTMLDivElement>('.menu-navigation');
+
+    if (!menuNavigationContainer) {
+      throw new Error('Menu navigation container not found');
+    }
+
+    return menuNavigationContainer;
   }
 
   get overlayContainer() {
     return this.hostElement.shadowRoot!.querySelector(
       '.menu-overlay'
-    ) as HTMLDivElement;
+    ) as HTMLDivElement | null;
   }
 
   get menuItems() {
@@ -648,7 +667,13 @@ export class Menu {
 
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
-      animate(this.overlayContainer!, {
+      const overlayContainer = this.overlayContainer;
+
+      if (!overlayContainer) {
+        return;
+      }
+
+      animate(overlayContainer, {
         duration: Animation.mediumTime,
         backdropFilter: [0, 'blur(1rem)'],
         translateX: ['-4rem', 0],
@@ -667,7 +692,14 @@ export class Menu {
 
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
-      animate(this.overlayContainer!, {
+      const overlayContainer = this.overlayContainer;
+
+      if (!overlayContainer) {
+        onComplete();
+        return;
+      }
+
+      animate(overlayContainer, {
         duration: Animation.mediumTime,
         backdropFilter: ['blur(1rem)', 0],
         translateX: [0, '-4rem'],
@@ -838,7 +870,8 @@ export class Menu {
     event.preventDefault();
 
     if (isMenuNavigationFocused) {
-      let index = items.indexOf(this.lastFocusedMenuItem!);
+      const lastFocusedMenuItem = this.lastFocusedMenuItem;
+      let index = lastFocusedMenuItem ? items.indexOf(lastFocusedMenuItem) : -1;
 
       if (event.key === 'Home') {
         index = 0;

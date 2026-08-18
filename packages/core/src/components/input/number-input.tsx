@@ -222,7 +222,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   @Watch('value')
   onValueChange(newValue: number | undefined) {
-    this.updateFormInternalValue(newValue!);
+    this.updateOptionalFormInternalValue(newValue);
   }
 
   @HookValidationLifecycle()
@@ -231,7 +231,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value!);
+    this.updateOptionalFormInternalValue(this.value);
   }
 
   connectedCallback() {
@@ -282,6 +282,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   updateFormInternalValue(value: number) {
+    this.updateOptionalFormInternalValue(value);
+  }
+
+  private updateOptionalFormInternalValue(value?: number) {
     const formValue =
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
@@ -309,12 +313,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const parsedValue = this.convertNumberStringToFloat(inputValue);
 
-    this.updateFormInternalValue(parsedValue!);
+    this.updateOptionalFormInternalValue(parsedValue);
     if (parsedValue !== undefined && this.inputRef.current) {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
-    this.updateFormInternalValue(parsedValue!);
+    this.updateOptionalFormInternalValue(parsedValue);
     onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
@@ -541,7 +545,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   this.formInternals.setFormValue(value);
                   this.value = parsedValue;
                 } else {
-                  this.updateFormInternalValue(parsedValue!);
+                  this.updateOptionalFormInternalValue(parsedValue);
                 }
               }}
               onBlur={this.handleBlur}

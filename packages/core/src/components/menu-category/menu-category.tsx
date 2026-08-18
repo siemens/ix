@@ -145,7 +145,11 @@ export class MenuCategory
 
   private animateFadeOut() {
     const slotHideThresholdMs = 25;
-    animate(this.menuItemsContainer!, {
+    if (!this.menuItemsContainer) {
+      return;
+    }
+
+    animate(this.menuItemsContainer, {
       duration: DefaultAnimationTimeout,
       easing: 'easeInSine',
       opacity: [1, 0],
@@ -163,7 +167,11 @@ export class MenuCategory
     this.showItems = true;
     this.showDropdown = false;
 
-    animate(this.menuItemsContainer!, {
+    if (!this.menuItemsContainer) {
+      return;
+    }
+
+    animate(this.menuItemsContainer, {
       duration: DefaultAnimationTimeout,
       easing: 'easeInSine',
       opacity: [0, 1],
@@ -177,10 +185,10 @@ export class MenuCategory
     }
     this.closeOtherCategories.emit(this.categoryId);
 
-    if (this.dropdownRef.current) {
-      const ref = dropdownController.getDropdownById(
-        this.dropdownRef.current.dataset.ixDropdown!
-      );
+    const dropdownId = this.dropdownRef.current?.dataset.ixDropdown;
+
+    if (dropdownId) {
+      const ref = dropdownController.getDropdownById(dropdownId);
 
       if (ref) {
         dropdownController.present(ref);
@@ -194,10 +202,10 @@ export class MenuCategory
       return;
     }
 
-    if (this.dropdownRef.current) {
-      const ref = dropdownController.getDropdownById(
-        this.dropdownRef.current.dataset.ixDropdown!
-      );
+    const dropdownId = this.dropdownRef.current?.dataset.ixDropdown;
+
+    if (dropdownId) {
+      const ref = dropdownController.getDropdownById(dropdownId);
 
       if (ref) {
         dropdownController.dismiss(ref);
