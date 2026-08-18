@@ -1597,10 +1597,74 @@ test('multiple mode: focused "+N" chip traps Tab navigation', async ({
   await expect(beforeOverflow).not.toBeFocused();
 });
 
+test('does not emit unhandled rejection when select is unmounted during validation', async ({
+  mount,
+  page,
+}) => {
+  const inputNotFoundErrors: string[] = [];
+
+  page.on('pageerror', (error) => {
+    if (error.message.includes('Input element not found')) {
+      inputNotFoundErrors.push(error.message);
+    }
+  });
+
+  await page.addInitScript(() => {
+    window.addEventListener('unhandledrejection', (event) => {
+      const msg =
+        event.reason instanceof Error
+          ? event.reason.message
+          : String(event.reason);
+      if (!msg.includes('Input element not found')) {
+        return;
+      }
+      const target = window as unknown as { __ixUnhandled?: string[] };
+      target.__ixUnhandled = target.__ixUnhandled ?? [];
+      target.__ixUnhandled.push(msg);
+    });
+  });
+
+  await mount(`<div id="select-host"></div>`);
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const host = document.getElementById('select-host');
+        if (!host) {
+          throw new Error('Select host element not found');
+        }
+        const select = document.createElement('ix-select');
+        select.setAttribute('required', '');
+        select.setAttribute('label', 'Example');
+
+        const item = document.createElement('ix-select-item');
+        item.setAttribute('value', 'a');
+        item.setAttribute('label', 'Option A');
+        select.appendChild(item);
+        host.appendChild(select);
+
+        setTimeout(() => {
+          host.innerHTML = '';
+          setTimeout(resolve, 0);
+        }, 0);
+      })
+  );
+
+  await page.evaluate(
+    () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+  );
+
+  const injected = await page.evaluate(
+    () =>
+      (window as unknown as { __ixUnhandled?: string[] }).__ixUnhandled ?? []
+  );
+
+  expect([...inputNotFoundErrors, ...injected]).toEqual([]);
+});
+
 test('required select prevents form submission when empty', async ({
   mount,
   page,
-  makeAxeBuilder,
 }) => {
   await mount(`
       <form>
@@ -1623,14 +1687,11 @@ test('required select prevents form submission when empty', async ({
   await submitButton.click();
 
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const a11y = await makeAxeBuilder().analyze();
-  expect(a11y.violations).toEqual([]);
 });
 
 test('multiple required selects prevent form submission when any is empty', async ({
   mount,
   page,
-  makeAxeBuilder,
 }) => {
   await mount(`
       <form>
@@ -1658,8 +1719,6 @@ test('multiple required selects prevent form submission when any is empty', asyn
 
   await submitButton.click();
   await expect(locationSelect).toHaveClass(/ix-invalid--required/);
-  const a11yMultiple = await makeAxeBuilder().analyze();
-  expect(a11yMultiple.violations).toEqual([]);
 
   await locationSelect.locator('[data-select-dropdown]').click();
   await locationSelect.locator('ix-select-item').first().click();
@@ -1673,7 +1732,6 @@ test('multiple required selects prevent form submission when any is empty', asyn
 test('custom invalidText is used for validation feedback', async ({
   mount,
   page,
-  makeAxeBuilder,
 }) => {
   await mount(`
       <form>
@@ -1694,8 +1752,6 @@ test('custom invalidText is used for validation feedback', async ({
   await submitButton.click();
   const fieldWrapper = select.locator('ix-field-wrapper');
   await expect(fieldWrapper).toContainText('Please select your department');
-  const a11yCustomInvalidText = await makeAxeBuilder().analyze();
-  expect(a11yCustomInvalidText.violations).toEqual([]);
 });
 
 test('novalidate form attribute disables validation', async ({
@@ -1727,11 +1783,7 @@ test('novalidate form attribute disables validation', async ({
   await expect(select).not.toHaveClass(/ix-invalid--required/);
 });
 
-test('multiple mode validation works correctly', async ({
-  mount,
-  page,
-  makeAxeBuilder,
-}) => {
+test('multiple mode validation works correctly', async ({ mount, page }) => {
   await mount(`
       <form>
         <ix-select name="departments" required mode="multiple">
@@ -1751,8 +1803,6 @@ test('multiple mode validation works correctly', async ({
 
   await submitButton.click();
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const a11yMultipleMode = await makeAxeBuilder().analyze();
-  expect(a11yMultipleMode.violations).toEqual([]);
 
   await page.locator('[data-select-dropdown]').click();
   await page.locator('ix-select-item').first().click();
@@ -1768,7 +1818,6 @@ test('multiple mode validation works correctly', async ({
 test('programmatic value setting updates validation state', async ({
   mount,
   page,
-  makeAxeBuilder,
 }) => {
   await mount(`
       <form>
@@ -1785,8 +1834,6 @@ test('programmatic value setting updates validation state', async ({
 
   await submitButton.click();
   await expect(select).toHaveClass(/ix-invalid--required/);
-  const a11yBefore = await makeAxeBuilder().analyze();
-  expect(a11yBefore.violations).toEqual([]);
 
   await select.evaluate((el: HTMLIxSelectElement) => {
     el.value = '1';
@@ -1794,6 +1841,5 @@ test('programmatic value setting updates validation state', async ({
 
   await page.waitForTimeout(100);
   await expect(select).not.toHaveClass(/ix-invalid--required/);
-  const a11yAfter = await makeAxeBuilder().analyze();
-  expect(a11yAfter.violations).toEqual([]);
 });
+

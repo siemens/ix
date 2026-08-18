@@ -429,7 +429,12 @@ regressionTest.describe('time picker tests', () => {
 
       const checkScrollAlignment = async (locator: Locator) => {
         return await locator.evaluate((el: HTMLElement) => {
-          const list = el.parentElement!;
+          const list = el.parentElement;
+
+          if (!list) {
+            throw new Error('Expected time picker list element');
+          }
+
           // Offset from time-picker.tsx elementListScrollToTop
           const scrollPositionOffset = 11;
           // Scrollposition calculation from time-picker.tsx elementListScrollToTop

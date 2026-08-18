@@ -171,12 +171,18 @@ export class BadgePage {
   ): Promise<void> {
     const button = this.getButton(buttonName);
     const describedBy = await button.getAttribute('aria-describedby');
-    expect(describedBy).toBeTruthy();
+
+    if (!describedBy) {
+      throw new Error('Expected aria-describedby to be present on button');
+    }
 
     await expect(this.description).toHaveText(descriptionText);
     const descriptionId = await this.description.getAttribute('id');
-    expect(descriptionId).toBeTruthy();
-    expect(describedBy!.split(/\s+/)).toContain(descriptionId);
+
+    if (!descriptionId) {
+      throw new Error('Expected description id to be present');
+    }
+    expect(describedBy.split(/\s+/)).toContain(descriptionId);
 
     // Description stays in light DOM for aria-describedby (SR-only chrome is
     // not always exposed via Playwright's accessible description API).
@@ -184,7 +190,7 @@ export class BadgePage {
       .poll(async () =>
         this.page.evaluate(
           (id) => document.getElementById(id)?.textContent ?? null,
-          descriptionId!
+          descriptionId
         )
       )
       .toBe(descriptionText);
