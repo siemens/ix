@@ -10,6 +10,10 @@ import { expect } from '@playwright/test';
 import { iconDragGripper } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
+function assertNotNull<T>(value: T | null): asserts value is T {
+  expect(value).not.toBeNull();
+}
+
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
     <ix-list aria-label="Projects">
@@ -222,16 +226,16 @@ regressionTest(
       .boundingBox();
     const targetBounds = await items.nth(2).boundingBox();
 
-    expect(gripperBounds).not.toBeNull();
-    expect(targetBounds).not.toBeNull();
+    assertNotNull(gripperBounds);
+    assertNotNull(targetBounds);
     await page.mouse.move(
-      gripperBounds!.x + gripperBounds!.width / 2,
-      gripperBounds!.y + gripperBounds!.height / 2
+      gripperBounds.x + gripperBounds.width / 2,
+      gripperBounds.y + gripperBounds.height / 2
     );
     await page.mouse.down();
     await page.mouse.move(
-      targetBounds!.x + targetBounds!.width / 2,
-      targetBounds!.y + targetBounds!.height
+      targetBounds.x + targetBounds.width / 2,
+      targetBounds.y + targetBounds.height
     );
     await page.mouse.up();
 
@@ -271,10 +275,10 @@ regressionTest(
     const nextItemBounds = await items.nth(1).boundingBox();
     const targetBounds = await items.nth(2).boundingBox();
 
-    expect(gripperBounds).not.toBeNull();
-    expect(draggedItemBounds).not.toBeNull();
-    expect(nextItemBounds).not.toBeNull();
-    expect(targetBounds).not.toBeNull();
+    assertNotNull(gripperBounds);
+    assertNotNull(draggedItemBounds);
+    assertNotNull(nextItemBounds);
+    assertNotNull(targetBounds);
     const initialScrollHeight = await listContainer.evaluate(
       (element) => element.scrollHeight
     );
@@ -283,23 +287,22 @@ regressionTest(
       initialScrollHeight
     );
     await page.mouse.move(
-      gripperBounds!.x + gripperBounds!.width / 2,
-      gripperBounds!.y + gripperBounds!.height / 2
+      gripperBounds.x + gripperBounds.width / 2,
+      gripperBounds.y + gripperBounds.height / 2
     );
     await page.mouse.down();
 
     const separator = list.locator('.ix-list-drag-placeholder');
     const initialSeparatorBounds = await separator.boundingBox();
-    expect(initialSeparatorBounds).not.toBeNull();
-    expect(initialSeparatorBounds!.y).toBeCloseTo(
-      (draggedItemBounds!.y + draggedItemBounds!.height + nextItemBounds!.y) /
-        2,
+    assertNotNull(initialSeparatorBounds);
+    expect(initialSeparatorBounds.y).toBeCloseTo(
+      (draggedItemBounds.y + draggedItemBounds.height + nextItemBounds.y) / 2,
       0
     );
 
     await page.mouse.move(
-      targetBounds!.x + targetBounds!.width / 2,
-      targetBounds!.y + targetBounds!.height
+      targetBounds.x + targetBounds.width / 2,
+      targetBounds.y + targetBounds.height
     );
 
     await expect(items.nth(0)).toHaveAttribute('label', 'Project Alpha');
@@ -309,10 +312,9 @@ regressionTest(
     expect(
       await listContainer.evaluate((element) => element.scrollHeight)
     ).toBe(initialScrollHeight);
-    expect((await draggedItem.boundingBox())!.y).toBeCloseTo(
-      draggedItemBounds!.y,
-      0
-    );
+    const currentDraggedItemBounds = await draggedItem.boundingBox();
+    assertNotNull(currentDraggedItemBounds);
+    expect(currentDraggedItemBounds.y).toBeCloseTo(draggedItemBounds.y, 0);
 
     await page.mouse.up();
 
@@ -343,17 +345,17 @@ regressionTest(
     const itemBounds = await item.boundingBox();
     const gripperBounds = await gripper.boundingBox();
 
-    expect(itemBounds).not.toBeNull();
-    expect(gripperBounds).not.toBeNull();
+    assertNotNull(itemBounds);
+    assertNotNull(gripperBounds);
     await page.mouse.move(
-      gripperBounds!.x + gripperBounds!.width / 2,
-      gripperBounds!.y + gripperBounds!.height / 2
+      gripperBounds.x + gripperBounds.width / 2,
+      gripperBounds.y + gripperBounds.height / 2
     );
     await page.mouse.down();
 
     const previewBounds = await item.boundingBox();
-    expect(previewBounds).not.toBeNull();
-    expect(previewBounds!.y).toBeCloseTo(itemBounds!.y, 0);
+    assertNotNull(previewBounds);
+    expect(previewBounds.y).toBeCloseTo(itemBounds.y, 0);
     await page.mouse.up();
   }
 );
@@ -386,10 +388,10 @@ regressionTest(
       .not.toBe('none');
 
     const gripperBounds = await gripper.boundingBox();
-    expect(gripperBounds).not.toBeNull();
+    assertNotNull(gripperBounds);
     await page.mouse.move(
-      gripperBounds!.x + gripperBounds!.width / 2,
-      gripperBounds!.y + gripperBounds!.height / 2
+      gripperBounds.x + gripperBounds.width / 2,
+      gripperBounds.y + gripperBounds.height / 2
     );
     await page.mouse.down();
 
