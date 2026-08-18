@@ -96,7 +96,9 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
 
     const id = parent.getAttribute('data-portal-id');
     if (!id) {
-      throw new Error('Cannot remove a portal view without a portal identifier');
+      throw new Error(
+        'Cannot remove a portal view without a portal identifier'
+      );
     }
 
     this.removeViewFromPortal(id);
