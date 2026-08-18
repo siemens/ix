@@ -7,15 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
-type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
+type TypographyFormatBody =
+  | 'body'
+  | 'body-paragraph'
+  | 'body-paragraph-sbold'
+  | 'body-sm'
+  | 'body-sm-sbold'
+  | 'body-lg'
+  | 'body-lg-sbold';
 type TypographyFormatDisplay =
   | 'display'
   | 'display-xs'
   | 'display-sm'
   | 'display-lg'
+  | 'display-lg-sbold'
   | 'display-xl'
-  | 'display-xxl';
-type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
+  | 'display-xl-sbold'
+  | 'display-xxl'
+  | 'display-xxl-sbold';
+type TypographyFormatHeading = 'h6' | 'h5' | 'h5-bold' | 'h4' | 'h3' | 'h2' | 'h1';
 type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
 
 export type TypographyVariants =
