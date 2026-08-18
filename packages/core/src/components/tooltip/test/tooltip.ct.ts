@@ -108,8 +108,13 @@ regressionTest(
     `);
 
     await page.evaluate(() => {
-      const container = document.getElementById('container')!;
-      const tooltip = container.querySelector('ix-tooltip')!;
+      const container = document.getElementById('container');
+      const tooltip = container?.querySelector('ix-tooltip');
+
+      if (!container || !tooltip) {
+        throw new Error('Expected tooltip test elements');
+      }
+
       tooltip.remove();
       container.appendChild(tooltip);
     });

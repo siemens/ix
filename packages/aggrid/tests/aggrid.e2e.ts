@@ -73,6 +73,13 @@ regressionTest.describe('aggrid', () => {
     ).toMatchSnapshot();
   });
 
+  regressionTest('striped rows', async ({ page }) => {
+    await page.goto('striped/striped.html');
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  });
+
   regressionTest.describe('header checkbox', () => {
     regressionTest('should be unchecked', async ({ page }) => {
       await page.goto('basic/basic.html');

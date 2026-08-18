@@ -1,5 +1,42 @@
 # @siemens/ix
 
+## 5.2.0
+
+### Minor Changes
+
+- [#2569](https://github.com/siemens/ix/pull/2569) [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86) Thanks [@danielleroux](https://github.com/danielleroux)! - Add the `ix-chat-input` component for AI prompt entry, including multiline input behavior, attachment support with `ix-chat-attachment`, action slots, submit handling, processing state, threshold-based character limit guidance, form integration, and disclaimer text.
+
+- [#2569](https://github.com/siemens/ix/pull/2569) [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86) Thanks [@danielleroux](https://github.com/danielleroux)! - Add the `ix-chat` component for composing chat layouts with messages and a chat input, add the `ix-chat-user-message` component for displaying right-aligned user messages in chat interfaces with optional contextual actions and sent attachments, and add the `ix-chat-ai-message` component for displaying slotted AI-generated responses with optional actions and sources. The existing `ix-chat-attachment` component now renders with `ix-chip`, supports a compact `sent` variant, supports preview-enabled attachments with `previewSupported`, emits `attachmentClick` only for those preview interactions, and no longer exposes a retry action for failed attachments. `ix-chat-input` can display prompt attachments and now provides a `follow-up` slot for follow-up prompt actions.
+
+- [#2645](https://github.com/siemens/ix/pull/2645) [`09fa2b6`](https://github.com/siemens/ix/commit/09fa2b60e98b7bca57355f70267d0a8cd8e2dbe8) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Introduces `ix-badge` for overlay count and status indicators on anchors or as standalone badges, with semantic variants, outline mode, position/offset, optional attention animation, and standalone `tooltipText` support.
+
+### Patch Changes
+
+- [#2520](https://github.com/siemens/ix/pull/2520) [`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Color **ix-blind** borders according to variant.
+
+- [#2520](https://github.com/siemens/ix/pull/2520) [`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Color **ix-push-card** borders according to variant.
+
+- [#2569](https://github.com/siemens/ix/pull/2569) [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix `ix-chip` so closable chips still render an interactive close button when `inactive` is set without overlapping or breaking text truncation.
+
+- [#2613](https://github.com/siemens/ix/pull/2613) [`8e7565b`](https://github.com/siemens/ix/commit/8e7565b144c127d0c5cb1b9e038d43a5eab56ee3) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Add keyboard navigation for "Show all" and "Show more" cards in **ix-card-list**.
+
+- [#2680](https://github.com/siemens/ix/pull/2680) [`5c43ed5`](https://github.com/siemens/ix/commit/5c43ed51616a11dcf15519e7a5b16e05ec26cbb0) Thanks [@JonaMaiss](https://github.com/JonaMaiss)! - fix (core/tab-item): show ellipsized text for layout=stretched.
+  Text in tab-item was not shown correctly if it was too long for the given space.
+
+- [#2684](https://github.com/siemens/ix/pull/2684) [`a14ae0a`](https://github.com/siemens/ix/commit/a14ae0ab7dccdcfa16b28a0bbf7b7c5dfb76d252) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Show an active visual state on `ix-dropdown-button` while the dropdown is open (`aria-expanded`), so the trigger stays clearly linked to the menu. Fixes [#1402](https://github.com/siemens/ix/issues/1402)
+
+- [#2710](https://github.com/siemens/ix/pull/2710) [`1ef341b`](https://github.com/siemens/ix/commit/1ef341b2e6258240fadf4699b2fa3e3dd8435703) Thanks [@benjgil](https://github.com/benjgil)! - Fix `ix-event-list` so child mutations no longer call anime.js with a missing target, which stopped the console `"No target found"` warning (including when `animated` is unset).
+
+  Fixes [#2689](https://github.com/siemens/ix/issues/2689)
+
+- [#2698](https://github.com/siemens/ix/pull/2698) [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update ix-icons peer dependency to V3.5.0.
+
+- [#2690](https://github.com/siemens/ix/pull/2690) [`81e7e24`](https://github.com/siemens/ix/commit/81e7e24b6edf434f374447f0efe17dfad0f239e2) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix internal form validation so a missing or unmounted native input (e.g. `ix-select` during connect/teardown) no longer causes an unhandled `Input element not found` promise rejection. Fixes [#2669](https://github.com/siemens/ix/issues/2669)
+
+- [#2682](https://github.com/siemens/ix/pull/2682) [`aea81f5`](https://github.com/siemens/ix/commit/aea81f579131e02bdf7e5cfb3f2e300321e3f965) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Prevent **ix-menu-category** from closing its dropdown during touch interaction.
+
+  Fixes [#2679](https://github.com/siemens/ix/issues/2679)
+
 ## 5.1.1
 
 ### Patch Changes
