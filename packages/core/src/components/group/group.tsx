@@ -145,6 +145,16 @@ export class Group {
     this.changeItemIndex();
   }
 
+  private onHeaderKeyDown(event: KeyboardEvent) {
+    if (
+      (event.key === 'Enter' || event.key === ' ') &&
+      event.target === event.currentTarget
+    ) {
+      event.preventDefault();
+      this.onHeaderClick(event as unknown as Event);
+    }
+  }
+
   private changeHeaderSelection(newSelection: boolean) {
     const oldIsHeaderSelected = this.selected;
     const newIsHeaderSelected = newSelection;
@@ -240,10 +250,20 @@ export class Group {
             expand: this.expanded,
             selected: this.selected,
           }}
+          role="button"
+          aria-expanded={String(this.expanded)}
+          aria-pressed={
+            this.suppressHeaderSelection ? undefined : String(this.selected)
+          }
           tabindex="0"
+          onKeyDown={(e: KeyboardEvent) => this.onHeaderKeyDown(e)}
         >
           <div
             class="group-header-clickable"
+            aria-expanded={String(this.expanded)}
+            aria-pressed={
+              this.suppressHeaderSelection ? undefined : String(this.selected)
+            }
             onClick={(e) => this.onHeaderClick(e)}
           >
             <div
@@ -260,6 +280,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
+                aria-hidden={this.suppressHeaderSelection ? 'true' : 'false'}
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>
             </div>
