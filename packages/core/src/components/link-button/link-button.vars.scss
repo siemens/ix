@@ -11,8 +11,8 @@
 
 :host {
   --ix-link-button--color: #{sys.$si-sys-text-accent};
-  --ix-link-button--color--hover: var(--theme-color-dynamic--hover);
-  --ix-link-button--color--active: var(--theme-color-dynamic--active);
+  --ix-link-button--color--hover: #{sys.$si-sys-text-accent-hover};
+  --ix-link-button--color--active: #{sys.$si-sys-text-accent-active};
   --ix-link-button--color--disabled: #{sys.$si-sys-text-disabled};
   --ix-link-button--outline-color--focus: #{sys.$si-sys-effects-focus};
 }

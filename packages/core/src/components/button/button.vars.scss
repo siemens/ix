@@ -59,12 +59,8 @@
   --ix-button-primary--background--disabled: var(--theme-color-component-4);
   --ix-button-primary--background--hover: #{sys.$si-sys-background-accent-hover};
   --ix-button-primary--background--pressed: #{sys.$si-sys-background-accent-hover};
-  --ix-button-primary--background--pressed-active: var(
-    --theme-color-dynamic--active
-  );
-  --ix-button-primary--background--pressed-hover: var(
-    --theme-color-dynamic--hover
-  );
+  --ix-button-primary--background--pressed-active: #{sys.$si-sys-background-accent-active};
+  --ix-button-primary--background--pressed-hover: #{sys.$si-sys-background-accent-hover};
   --ix-button-primary--border-color: rgba(0, 0, 0, 0);
   --ix-button-primary--border-color--active: rgba(0, 0, 0, 0);
   --ix-button-primary--border-color--disabled: rgba(0, 0, 0, 0);

@@ -54,3 +54,34 @@ export const Collapsed: Story = {
     expand: false,
   },
 };
+
+export const Overflow: Story = {
+  render: () => html`
+    <div style="height: 32rem; overflow: hidden; position: relative;">
+      <ix-menu expand="true">
+        <ix-menu-item home icon="home">Home</ix-menu-item>
+        ${Array.from(
+          { length: 18 },
+          (_, index) => html`
+            <ix-menu-item icon="star">Item ${index + 1}</ix-menu-item>
+          `
+        )}
+        <ix-menu-about></ix-menu-about>
+        <ix-menu-settings></ix-menu-settings>
+      </ix-menu>
+    </div>
+  `,
+  play: async ({ canvasElement }) => {
+    await customElements.whenDefined('ix-menu');
+
+    const menu = canvasElement.querySelector('ix-menu');
+    const tabs = menu?.shadowRoot?.querySelector<HTMLElement>('.tabs');
+
+    if (!tabs) {
+      throw new Error('Unable to find the menu scroll container');
+    }
+
+    tabs.scrollTop = (tabs.scrollHeight - tabs.clientHeight) / 2;
+    tabs.dispatchEvent(new Event('scroll'));
+  },
+};

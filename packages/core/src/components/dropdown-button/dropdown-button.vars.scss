@@ -71,12 +71,8 @@ $dropdown-button-variants: button-variants.$btn-variants;
   );
   --ix-dropdown-button-primary--background--hover: #{sys.$si-sys-background-accent-hover};
   --ix-dropdown-button-primary--background--pressed: #{sys.$si-sys-background-accent-hover};
-  --ix-dropdown-button-primary--background--pressed-active: var(
-    --theme-color-dynamic--active
-  );
-  --ix-dropdown-button-primary--background--pressed-hover: var(
-    --theme-color-dynamic--hover
-  );
+  --ix-dropdown-button-primary--background--pressed-active: #{sys.$si-sys-background-accent-active};
+  --ix-dropdown-button-primary--background--pressed-hover: #{sys.$si-sys-background-accent-hover};
   --ix-dropdown-button-primary--border-color: rgba(0, 0, 0, 0);
   --ix-dropdown-button-primary--border-color--active: rgba(0, 0, 0, 0);
   --ix-dropdown-button-primary--border-color--disabled: rgba(0, 0, 0, 0);

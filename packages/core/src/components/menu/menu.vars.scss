@@ -11,7 +11,8 @@
 
 :host {
   --ix-menu--z-index: var(--theme-z-index-sticky);
-  --ix-menu-tabs-shadow--color: var(--theme-color-shadow-1);
+  --ix-menu-tabs-shadow--border-color: #{sys.$si-sys-border-4};
+  --ix-menu-tabs-shadow--box-shadow: #{sys.$si-sys-effects-shadow-2};
   --ix-menu-tabs-shadow--transition-duration: var(--theme-default-time);
   --ix-menu-panel--transition-duration: var(--theme-default-time);
   --ix-menu-overlay--background: rgba(0, 0, 0, 0);
