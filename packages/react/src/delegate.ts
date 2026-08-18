@@ -8,6 +8,7 @@
  */
 import type { FrameworkDelegate } from '@siemens/ix';
 import { registerFrameworkDelegate } from '@siemens/ix/components';
+import type { ReactNode } from 'react';
 import ReactDOMClient from 'react-dom/client';
 let viewInstance = 0;
 
@@ -17,8 +18,8 @@ function createViewInstance() {
 
 const mountedRootNodes: Record<string, ReactDOMClient.Root> = {};
 
-async function fallbackRootDom(id: string, view: React.ReactNode) {
-  return new Promise((resolve) => {
+async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
+  return new Promise<Element>((resolve) => {
     const rootElement = document.createElement('DIV');
     rootElement.id = id;
     rootElement.style.display = 'contents';
@@ -36,8 +37,12 @@ async function fallbackRootDom(id: string, view: React.ReactNode) {
   });
 }
 
-async function fallbackRemoveViewFromRootDom(view: any) {
+async function fallbackRemoveViewFromRootDom(view: Element) {
   const parent = view.parentElement;
+  if (!parent) {
+    throw new Error('Cannot remove a view without a parent element');
+  }
+
   const id = parent.id;
   if (id in mountedRootNodes) {
     mountedRootNodes[id].unmount();
@@ -47,7 +52,7 @@ async function fallbackRemoveViewFromRootDom(view: any) {
 }
 
 export class ReactFrameworkDelegate implements FrameworkDelegate {
-  attachViewToPortal?: (id: string, view: any) => Promise<Element>;
+  attachViewToPortal?: (id: string, view: ReactNode) => Promise<Element>;
   removeViewFromPortal?: (id: string) => void;
 
   resolvePortalInitPromise: (() => void) | undefined;
@@ -60,29 +65,39 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
     );
   }
 
-  async attachView(view: any): Promise<any> {
+  async attachView<R = HTMLElement>(view: ReactNode): Promise<R> {
     const id = createViewInstance();
 
     if (!this.isUsingReactPortal) {
-      return fallbackRootDom(id, view);
+      return (await fallbackRootDom(id, view)) as R;
     }
 
     await this.isPortalReady();
     if (this.attachViewToPortal) {
-      const refElement = await this.attachViewToPortal(id, view);
-      return refElement;
+      return (await this.attachViewToPortal(id, view)) as R;
     }
 
-    console.error('Portal could not be initialized');
+    throw new Error('React portal could not be initialized');
   }
 
-  async removeView(view: any): Promise<void> {
+  async removeView(view: unknown): Promise<void> {
+    if (!(view instanceof Element)) {
+      throw new TypeError('A React framework view must be a DOM element');
+    }
+
     if (!this.removeViewFromPortal) {
       return fallbackRemoveViewFromRootDom(view);
     }
 
     const parent = view.parentElement;
+    if (!parent) {
+      throw new Error('Cannot remove a view without a parent element');
+    }
+
     const id = parent.getAttribute('data-portal-id');
+    if (!id) {
+      throw new Error('Cannot remove a portal view without a portal identifier');
+    }
 
     this.removeViewFromPortal(id);
   }
