@@ -88,6 +88,7 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimepickerLocale from '../preview-examples/datetimepicker-locale';
 import DatetimeInput from '../preview-examples/datetime-input';
 import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
@@ -353,6 +354,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Datepicker,
     DatepickerLocale,
     Datetimepicker,
+    DatetimepickerLocale,
     DatetimeInput,
     DatetimeInputDisabled,
     DatetimeInputLabel,

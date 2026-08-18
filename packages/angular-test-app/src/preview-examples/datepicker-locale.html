@@ -7,9 +7,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-<div style="display: flex; flex-direction: column; gap: 1rem">
-  <div style="display: flex; gap: 2rem; flex-wrap: wrap">
-    <div>
+<ix-layout-grid>
+  <ix-row>
+    <ix-col>
       <span style="margin-right: 0.5rem">Language:</span>
       <ix-select [value]="locale" (valueChange)="setLocale($event)">
         <ix-select-item
@@ -18,8 +18,8 @@ LICENSE file in the root directory of this source tree.
           [label]="l.label"
         ></ix-select-item>
       </ix-select>
-    </div>
-    <div>
+    </ix-col>
+    <ix-col>
       <span style="margin-right: 0.5rem">Format:</span>
       <ix-select [value]="format" (valueChange)="setFormat($event)">
         <ix-select-item
@@ -28,64 +28,65 @@ LICENSE file in the root directory of this source tree.
           [label]="f.label"
         ></ix-select-item>
       </ix-select>
-    </div>
-  </div>
+    </ix-col>
+  </ix-row>
 
-  <ix-date-picker
-    [locale]="locale"
-    [format]="format"
-    (dateChange)="onDateChange($event)"
-    (dateRangeChange)="onDateChange($event)"
-  ></ix-date-picker>
+  <ix-row>
+    <ix-col size="12">
+      <ix-date-picker
+        [locale]="locale"
+        [format]="format"
+        (dateChange)="onDateChange($event)"
+        (dateRangeChange)="onDateChange($event)"
+      ></ix-date-picker>
+    </ix-col>
+  </ix-row>
 
-  <div
-    style="
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--theme-color-weak-bdr);
-      border-radius: 4px;
-      background: var(--theme-color-2);
-      min-width: 320px;
-    "
-  >
-    <div style="font-weight: 700; margin-bottom: 0.5rem">
-      Last dateChange event
-    </div>
-    <ng-container *ngIf="lastEvent === null; else eventValues">
-      <span style="color: var(--theme-color-soft-text)">
-        Select a date to see event values
+  <ix-row>
+    <ix-col
+      size="12"
+      style="
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--theme-color-weak-bdr);
+        border-radius: 4px;
+        background: var(--theme-color-2);
+      "
+    >
+      <span style="display: block; font-weight: 700; margin-bottom: 0.5rem">
+        Last dateChange event
       </span>
-    </ng-container>
-    <ng-template #eventValues>
-      <div
-        *ngFor="
-          let row of [
-            { key: 'from', label: 'from', note: '(locale-aware)' },
-            { key: 'to', label: 'to', note: '(locale-aware)' },
-            { key: 'isoFrom', label: 'isoFrom', note: '(ISO 8601, stable)' },
-            { key: 'isoTo', label: 'isoTo', note: '(ISO 8601, stable)' }
-          ]
-        "
-        style="display: flex; gap: 0.5rem; align-items: baseline; padding: 2px 0"
-      >
-        <span
-          style="
-            font-weight: 600;
-            min-width: 90px;
-            display: inline-block;
-            color: var(--theme-color-std-text);
-          "
-        >
-          {{ row.label }}
+      <ng-container *ngIf="lastEvent === null; else eventValues">
+        <span style="color: var(--theme-color-soft-text)">
+          Select a date to see event values
         </span>
-        <span
-          style="font-family: monospace; color: var(--theme-color-primary)"
-        >
-          {{ lastEvent?.[row.key] ?? '—' }}
-        </span>
-        <span style="color: var(--theme-color-soft-text); font-size: 0.8em">
-          {{ row.note }}
-        </span>
-      </div>
-    </ng-template>
-  </div>
-</div>
+      </ng-container>
+      <ng-template #eventValues>
+        <ix-layout-grid no-margin>
+          <ix-row
+            *ngFor="
+              let row of [
+                { key: 'from', label: 'from', note: '(locale-aware)' },
+                { key: 'to', label: 'to', note: '(locale-aware)' },
+                { key: 'isoFrom', label: 'isoFrom', note: '(ISO 8601, stable)' },
+                { key: 'isoTo', label: 'isoTo', note: '(ISO 8601, stable)' }
+              ]
+            "
+          >
+            <ix-col
+              size="2"
+              style="font-weight: 600; color: var(--theme-color-std-text)"
+            >
+              {{ row.label }}
+            </ix-col>
+            <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
+              {{ lastEvent?.[row.key] ?? '—' }}
+            </ix-col>
+            <ix-col style="color: var(--theme-color-soft-text); font-size: 0.8em">
+              {{ row.note }}
+            </ix-col>
+          </ix-row>
+        </ix-layout-grid>
+      </ng-template>
+    </ix-col>
+  </ix-row>
+</ix-layout-grid>

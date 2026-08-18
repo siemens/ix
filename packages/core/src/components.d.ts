@@ -1669,10 +1669,40 @@ export namespace Components {
         "getDatepickerElement": () => Promise<HTMLIxDatePickerElement | undefined>;
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone": string;
+        /**
+          * Text for the time picker hour column header.
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for the time picker minute column header.
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm": string;
+        /**
+          * Text for the time picker second column header.
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader": string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -4364,6 +4394,11 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -4383,6 +4418,11 @@ export namespace Components {
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm": string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -4414,6 +4454,10 @@ export namespace Components {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -4522,6 +4566,11 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * Text of the time confirm button.
           * @default 'Confirm'
          */
@@ -4547,10 +4596,19 @@ export namespace Components {
          */
         "i18nMinuteColumnHeader": string;
         /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm": string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -8640,10 +8698,40 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone"?: string;
+        /**
+          * Text for the time picker hour column header.
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for the time picker minute column header.
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
+        /**
+          * Text for the time picker second column header.
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader"?: string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -11541,6 +11629,11 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -11560,6 +11653,11 @@ declare namespace LocalJSX {
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -11587,6 +11685,10 @@ declare namespace LocalJSX {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -11705,6 +11807,11 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the time confirm button.
           * @default 'Confirm'
          */
@@ -11730,10 +11837,19 @@ declare namespace LocalJSX {
          */
         "i18nMinuteColumnHeader"?: string;
         /**
+          * Label for the PM button in 12-hour mode.
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -12520,6 +12636,12 @@ declare namespace LocalJSX {
         "timeReference": 'AM' | 'PM';
         "i18nDone": string;
         "i18nTime": string;
+        "i18nAm": string;
+        "i18nPm": string;
+        "i18nHourColumnHeader": string;
+        "i18nMinuteColumnHeader": string;
+        "i18nSecondColumnHeader": string;
+        "i18nMillisecondColumnHeader": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
         "weekStartIndex": number;
@@ -13163,6 +13285,9 @@ declare namespace LocalJSX {
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
         "suppressSubmitOnEnter": boolean;
+        "locale": string;
+        "i18nAm": string;
+        "i18nPm": string;
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
@@ -13170,6 +13295,7 @@ declare namespace LocalJSX {
     }
     interface IxTimePickerAttributes {
         "format": string;
+        "locale": string;
         "corners": TimePickerCorners;
         "embedded": boolean;
         "dateTimePickerAppearance": boolean;
@@ -13187,6 +13313,8 @@ declare namespace LocalJSX {
         "i18nMinuteColumnHeader": string;
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
+        "i18nAm": string;
+        "i18nPm": string;
     }
     interface IxToastAttributes {
         "type": ToastType;

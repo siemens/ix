@@ -32,8 +32,9 @@ export default class DatepickerLocale {
 
   formats = [
     { label: 'yyyy/LL/dd (default)', value: 'yyyy/LL/dd' },
-    { label: 'dd MMMM yyyy (locale names)', value: 'dd MMMM yyyy' },
-    { label: 'dd MMM yyyy (short)', value: 'dd MMM yyyy' },
+    { label: 'EEEE, dd MMMM yyyy (all locale names)', value: 'EEEE, dd MMMM yyyy' },
+    { label: 'dd MMMM yyyy (month name)', value: 'dd MMMM yyyy' },
+    { label: 'dd MMM yyyy (short month)', value: 'dd MMM yyyy' },
     { label: 'LL/dd/yyyy', value: 'LL/dd/yyyy' },
   ];
 

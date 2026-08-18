@@ -254,6 +254,21 @@ export class TimeInput
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+   */
+  @Prop() locale?: string;
+
+  /**
+   * Label for the AM button in 12-hour mode.
+   */
+  @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
+
+  /**
+   * Label for the PM button in 12-hour mode.
+   */
+  @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
+
+  /**
    * Hides the header of the picker.
    *
    * @since 4.0.0
@@ -704,6 +719,7 @@ export class TimeInput
           <ix-time-picker
             ref={this.timePickerRef}
             format={this.format}
+            locale={this.locale}
             time={this.time ?? ''}
             minTime={this.minTime}
             maxTime={this.maxTime}
@@ -719,6 +735,8 @@ export class TimeInput
             i18nSecondColumnHeader={this.i18nSecondColumnHeader}
             i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
+            i18nAm={this.i18nAm}
+            i18nPm={this.i18nPm}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
               if (this.initialValue !== event.detail) {

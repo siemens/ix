@@ -82,6 +82,7 @@ import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import DateRange from './preview-examples/date-range';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import DatetimeInput from './preview-examples/datetime-input';
 import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
@@ -345,6 +346,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
