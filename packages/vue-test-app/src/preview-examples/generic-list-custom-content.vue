@@ -75,11 +75,7 @@ addIcons({ iconAlarmBell, iconContextMenu });
         <div class="event-list-body">
           <div class="event-list-details">
             <div class="event-list-title">
-              <IxBadge
-                type="label"
-                label="Warning"
-                variant="warning"
-              ></IxBadge>
+              <IxBadge type="label" label="Warning" variant="warning"></IxBadge>
               <strong>Low cooling water pressure</strong>
             </div>
             <strong>P4711-23012-042</strong>

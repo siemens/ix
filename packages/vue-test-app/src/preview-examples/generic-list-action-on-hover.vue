@@ -27,10 +27,7 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
     <IxListItem icon="project" label="Item 2">
@@ -39,10 +36,7 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
     <IxListItem icon="project" label="Item 3">
@@ -51,10 +45,7 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
   </IxList>

@@ -214,10 +214,7 @@ regressionTest('aligns action slot content', async ({ mount, page }) => {
   `);
 
   const items = page.locator('ix-list-item');
-  await expect(items.nth(0)).toHaveAttribute(
-    'action-slot-alignment',
-    'center'
-  );
+  await expect(items.nth(0)).toHaveAttribute('action-slot-alignment', 'center');
   await expect(items.nth(0).locator('.action')).toHaveCSS(
     'align-items',
     'center'

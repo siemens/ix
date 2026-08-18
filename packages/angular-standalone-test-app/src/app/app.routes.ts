@@ -281,9 +281,7 @@ export const routePaths: IxPreviewRoutes = {
       (m) => m.default
     ),
   'preview/generic-list-draggable': () =>
-    import('../preview-examples/generic-list-draggable').then(
-      (m) => m.default
-    ),
+    import('../preview-examples/generic-list-draggable').then((m) => m.default),
   'preview/generic-list-variants': () =>
     import('../preview-examples/generic-list-variants').then((m) => m.default),
   'preview/form-checkbox': () =>

@@ -79,7 +79,9 @@ regressionTest(
     );
 
     const firstGripper = page.getByLabel('Reorder Project Alpha');
-    const firstPrimaryAction = page.locator('ix-list-item .primary-action').first();
+    const firstPrimaryAction = page
+      .locator('ix-list-item .primary-action')
+      .first();
 
     await expect(firstGripper).toHaveAttribute('tabindex', '0');
     await page.locator('#before-list').focus();
@@ -130,8 +132,12 @@ regressionTest(
     );
 
     const firstGripper = page.getByLabel('Reorder Project Alpha');
-    const secondPrimaryAction = page.locator('ix-list-item .primary-action').nth(1);
-    const firstPrimaryAction = page.locator('ix-list-item .primary-action').first();
+    const secondPrimaryAction = page
+      .locator('ix-list-item .primary-action')
+      .nth(1);
+    const firstPrimaryAction = page
+      .locator('ix-list-item .primary-action')
+      .first();
 
     await firstGripper.focus();
     await firstGripper.press('ArrowDown');

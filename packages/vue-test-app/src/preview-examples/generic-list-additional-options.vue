@@ -26,53 +26,32 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
 
 <template>
   <IxList checkbox>
-    <IxListItem
-      icon="project"
-      label="Item 1"
-      description="Some description 1"
-    >
+    <IxListItem icon="project" label="Item 1" description="Some description 1">
       <div slot="action">
         <IxIconButton
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
     <IxListItemSeparator></IxListItemSeparator>
-    <IxListItem
-      icon="project"
-      label="Item 2"
-      description="Some description 2"
-    >
+    <IxListItem icon="project" label="Item 2" description="Some description 2">
       <div slot="action">
         <IxIconButton
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
-    <IxListItem
-      icon="project"
-      label="Item 3"
-      description="Some description 3"
-    >
+    <IxListItem icon="project" label="Item 3" description="Some description 3">
       <div slot="action">
         <IxIconButton
           icon="edit-document"
           variant="subtle-tertiary"
         ></IxIconButton>
-        <IxIconButton
-          icon="trashcan"
-          variant="subtle-tertiary"
-        ></IxIconButton>
+        <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
   </IxList>
