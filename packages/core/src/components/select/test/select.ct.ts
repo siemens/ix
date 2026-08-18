@@ -1596,3 +1596,68 @@ test('multiple mode: focused "+N" chip traps Tab navigation', async ({
   await expect(removeButtons.last()).toBeFocused();
   await expect(beforeOverflow).not.toBeFocused();
 });
+
+test('does not emit unhandled rejection when select is unmounted during validation', async ({
+  mount,
+  page,
+}) => {
+  const inputNotFoundErrors: string[] = [];
+
+  page.on('pageerror', (error) => {
+    if (error.message.includes('Input element not found')) {
+      inputNotFoundErrors.push(error.message);
+    }
+  });
+
+  await page.addInitScript(() => {
+    window.addEventListener('unhandledrejection', (event) => {
+      const msg =
+        event.reason instanceof Error
+          ? event.reason.message
+          : String(event.reason);
+      if (!msg.includes('Input element not found')) {
+        return;
+      }
+      const target = window as unknown as { __ixUnhandled?: string[] };
+      target.__ixUnhandled = target.__ixUnhandled ?? [];
+      target.__ixUnhandled.push(msg);
+    });
+  });
+
+  await mount(`<div id="select-host"></div>`);
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const host = document.getElementById('select-host');
+        if (!host) {
+          throw new Error('Select host element not found');
+        }
+        const select = document.createElement('ix-select');
+        select.setAttribute('required', '');
+        select.setAttribute('label', 'Example');
+
+        const item = document.createElement('ix-select-item');
+        item.setAttribute('value', 'a');
+        item.setAttribute('label', 'Option A');
+        select.appendChild(item);
+        host.appendChild(select);
+
+        setTimeout(() => {
+          host.innerHTML = '';
+          setTimeout(resolve, 0);
+        }, 0);
+      })
+  );
+
+  await page.evaluate(
+    () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+  );
+
+  const injected = await page.evaluate(
+    () =>
+      (window as unknown as { __ixUnhandled?: string[] }).__ixUnhandled ?? []
+  );
+
+  expect([...inputNotFoundErrors, ...injected]).toEqual([]);
+});

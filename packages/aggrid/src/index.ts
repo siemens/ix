@@ -23,6 +23,16 @@ import {
 } from '@siemens/ix-icons/icons';
 
 const additionalThemeParams = { fontFamily: ['Siemens Sans', 'sans-serif'] };
+const stripedRowThemeParams = {
+  oddRowBackgroundColor: 'var(--theme-color-1)',
+};
+
+export type IxThemeOptions = {
+  /**
+   * Enables alternating row background colors.
+   */
+  stripedRows?: boolean;
+};
 
 // Flexible type for multiple versions
 type AgGridModule = {
@@ -41,11 +51,17 @@ function extractSvgFromDataUri(dataUri: string): string {
   return svgString.trim();
 }
 
-function createIxTheme(agModule: AgGridModule) {
+function createIxTheme(agModule: AgGridModule, options?: IxThemeOptions) {
   const { createPart, themeAlpine } = agModule;
-  const base = themeAlpine.withParams({
+
+  const themeParams = {
     ...aggridIxThemeParams,
     ...additionalThemeParams,
+    ...(options?.stripedRows ? stripedRowThemeParams : {}),
+  };
+
+  const base = themeAlpine.withParams({
+    ...themeParams,
   });
 
   const iconCSS = iconOverrides({
@@ -117,15 +133,16 @@ function createIxTheme(agModule: AgGridModule) {
   return theme;
 }
 
-const getIxTheme = (agModule: AgGridModule) => {
-  return createIxTheme(agModule);
+const getIxTheme = (agModule: AgGridModule, options?: IxThemeOptions) => {
+  return createIxTheme(agModule, options);
 };
 
 const getIxThemeAsync = async (
-  importModule: () => Promise<AgGridModule> | AgGridModule
+  importModule: () => Promise<AgGridModule> | AgGridModule,
+  options?: IxThemeOptions
 ) => {
   const agLib = await importModule();
-  return createIxTheme(agLib);
+  return createIxTheme(agLib, options);
 };
 
 export { getIxTheme, getIxThemeAsync };

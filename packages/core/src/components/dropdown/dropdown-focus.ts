@@ -107,7 +107,7 @@ export const configureKeyboardInteraction = (
     beforeKeydown?: (ev: KeyboardEvent) => void;
     onItemActivation?: (
       event: KeyboardEvent,
-      activeElement: HTMLElement
+      activeElement: HTMLElement | null
     ) => void;
   } = {}
 ) => {
@@ -264,7 +264,7 @@ export const configureKeyboardInteraction = (
     }
 
     if (itemTriggerKeys.includes(event.key)) {
-      options.onItemActivation?.(event, activeElement!);
+      options.onItemActivation?.(event, activeElement);
     }
   };
 

@@ -83,7 +83,10 @@ export class CardAccordion {
 
   private scrollExpandedContentIntoView() {
     setTimeout(() => {
-      const rect = this.expandedContent!.getBoundingClientRect();
+      if (!this.expandedContent) {
+        return;
+      }
+      const rect = this.expandedContent.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
         this.hostElement
           .shadowRoot!.querySelector('.expand-content')!
