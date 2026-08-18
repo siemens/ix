@@ -70,7 +70,7 @@ regressionTest(
 
     await page.keyboard.press('Tab');
     await expect(after).toBeFocused();
-     }
+  }
 );
 
 regressionTest('renders', async ({ mount, page }) => {
