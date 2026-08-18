@@ -7,7 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { test, expect } from '@utils/test';
+import { Locator } from '@playwright/test';
 import { selectController } from './select-controller';
+
+function getDropdownItem(items: Locator[], index: number) {
+  const item = items.at(index);
+
+  if (!item) {
+    throw new Error(`Expected dropdown item at index ${index}`);
+  }
+
+  return item;
+}
 
 test.describe('arrow key navigation', () => {
   test.describe('ArrowDown', () => {
@@ -178,22 +189,37 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsBeforeNavigation.at(1)!).toHaveText(/Item 2/);
-      await expect(itemsBeforeNavigation.at(0)!).not.toHaveVisibleFocus(
+      const firstItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        0
+      );
+      const secondItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        1
+      );
+
+      await expect(secondItemBeforeNavigation).toHaveText(/Item 2/);
+      await expect(firstItemBeforeNavigation).not.toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsBeforeNavigation.at(1)!).toHaveVisibleFocus(
+      await expect(secondItemBeforeNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
 
       await selectCtrl.arrowDown();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+      const secondItemAfterNavigation = getDropdownItem(
+        itemsAfterNavigation,
+        1
+      );
+
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(1)!).not.toHaveVisibleFocus(
+      await expect(secondItemAfterNavigation).not.toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
     });
@@ -219,10 +245,12 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
     });
 
     test('wrap - add item -> dynamic item', async ({ mount, page }) => {
@@ -252,10 +280,12 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
     });
   });
 
@@ -280,18 +310,25 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsBeforeNavigation.at(1)!).toHaveVisibleFocus(
+      const secondItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        1
+      );
+
+      await expect(secondItemBeforeNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsBeforeNavigation.at(1)!).toHaveText(/I/);
+      await expect(secondItemBeforeNavigation).toHaveText(/I/);
 
       await selectCtrl.arrowUp();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
     });
 
     test('add item -> slot', async ({ mount, page }) => {
@@ -315,10 +352,12 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowUp();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
     });
 
     test('add item -> dynamic item', async ({ mount, page }) => {
@@ -347,10 +386,12 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowUp();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      await expect(getDropdownItem(itemsAfterNavigation, 0)).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(getDropdownItem(itemsAfterNavigation, 0)).toHaveText(
+        /Item 1/
+      );
     });
 
     test('wrap - slot -> dynamic item', async ({ mount, page }) => {
@@ -373,22 +414,37 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsBeforeNavigation.at(0)!).toHaveText(/Item 1/);
-      await expect(itemsBeforeNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        0
+      );
+      const secondItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        1
+      );
+
+      await expect(firstItemBeforeNavigation).toHaveText(/Item 1/);
+      await expect(firstItemBeforeNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsBeforeNavigation.at(1)!).not.toHaveVisibleFocus(
+      await expect(secondItemBeforeNavigation).not.toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
 
       await selectCtrl.arrowUp();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(1)!).toHaveText(/Item 2/);
-      await expect(itemsAfterNavigation.at(0)!).not.toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+      const secondItemAfterNavigation = getDropdownItem(
+        itemsAfterNavigation,
+        1
+      );
+
+      await expect(secondItemAfterNavigation).toHaveText(/Item 2/);
+      await expect(firstItemAfterNavigation).not.toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(1)!).toHaveVisibleFocus(
+      await expect(secondItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
     });
@@ -409,8 +465,13 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsBeforeNavigation.at(0)!).toHaveText(/Item 1/);
-      await expect(itemsBeforeNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemBeforeNavigation = getDropdownItem(
+        itemsBeforeNavigation,
+        0
+      );
+
+      await expect(firstItemBeforeNavigation).toHaveText(/Item 1/);
+      await expect(firstItemBeforeNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
 
@@ -440,10 +501,12 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.arrowDown();
 
       const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
-      await expect(itemsAfterNavigation.at(0)!).toHaveVisibleFocus(
+      const firstItemAfterNavigation = getDropdownItem(itemsAfterNavigation, 0);
+
+      await expect(firstItemAfterNavigation).toHaveVisibleFocus(
         selectCtrl.getInputLocator()
       );
-      await expect(itemsAfterNavigation.at(0)!).toHaveText(/Item 1/);
+      await expect(firstItemAfterNavigation).toHaveText(/Item 1/);
 
       await selectCtrl.arrowUp();
 

@@ -148,8 +148,12 @@ regressionTest(
 
     const tabItemId = await firstTabItem.getAttribute('id');
 
+    if (!tabItemId) {
+      throw new Error('Expected first tab item id');
+    }
+
     const panel = page.locator('ix-tab-panel').nth(0);
-    await expect(panel).toHaveAttribute('aria-labelledby', tabItemId!);
+    await expect(panel).toHaveAttribute('aria-labelledby', tabItemId);
   }
 );
 
