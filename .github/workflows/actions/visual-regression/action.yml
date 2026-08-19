@@ -44,7 +44,10 @@ runs:
     - name: Test
       uses: ./.github/workflows/actions/playwright-container
       with:
-        run: pnpm --filter '${{ inputs.projectName }}' run visual-regression ${{ steps.playwright-args.outputs.value }}
+        env: |
+          PROJECT_NAME=${{ inputs.projectName }}
+          PLAYWRIGHT_ARGS=${{ steps.playwright-args.outputs.value }}
+        run: pnpm --filter "$PROJECT_NAME" run visual-regression $PLAYWRIGHT_ARGS
 
     - uses: actions/upload-artifact@v4
       if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
