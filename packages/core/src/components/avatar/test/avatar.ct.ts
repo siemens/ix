@@ -9,7 +9,7 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest.describe.only('embedded into header', () => {
+regressionTest.describe('embedded into header', () => {
   regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
     await mount(
       `
