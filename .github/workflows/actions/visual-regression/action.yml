@@ -22,12 +22,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Build
-      shell: bash
-      env:
-        PROJECT_NAME: ${{ inputs.projectName }}
-      run: pnpm run build --cache-dir=.turbo --filter "${{ inputs.projectName == 'visual-testing' && '@siemens/ix' || inputs.projectName }}"
-
     - name: Test
       shell: bash
       env:
