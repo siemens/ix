@@ -9,7 +9,38 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest.describe('embedded into header', () => {
+regressionTest.describe.only('embedded into header', () => {
+  regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar username="John" extra="Doe">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('renders', async ({ page, mount }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar></ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+
+    await expect(avatar).toHaveClass(/\bhydrated\b/);
+    await expect(avatar).toBeVisible();
+  });
+
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
