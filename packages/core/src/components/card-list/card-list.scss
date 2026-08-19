@@ -110,12 +110,8 @@ $CardList__Title__Height: 1.5rem;
     color: var(--theme-color-primary);
   }
 
-  .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: 2.375rem;
-  }
-
-  .CardList__Style__Flexbox__Scroll .Show__All__Card {
-    margin-bottom: 2.375rem;
+  .Show__All__Card {
+    align-self: center;
   }
 
   .Show__All__Card:hover {
@@ -143,8 +139,9 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .Show__All__Card__Text {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     margin-top: auto;
+    text-align: center;
   }
 }
 
