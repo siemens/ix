@@ -10,6 +10,7 @@
 
 @use './../chip/chip-mixin';
 @use 'mixins/text-truncation';
+@use 'misc/common-variables' as vars;
 
 :host {
   display: inline-block;
@@ -32,7 +33,7 @@
     }
 
     .slot-container {
-      line-height: 1.25rem;
+      line-height: vars.$line-height-default-single;
     }
 
     &.outline {
