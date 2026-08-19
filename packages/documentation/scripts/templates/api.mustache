@@ -1,6 +1,9 @@
 import {SinceTag, DeprecatedTag} from '@site/src/components/UI/Tags';
 import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';
 import ApiTable from '@site/src/components/ApiTable';
+{{#hasMethods}}
+import ApiFunction from '@site/src/components/ApiTable/ApiFunction';
+{{/hasMethods}}
 import ReactMarkdown from 'react-markdown';
 
 ## API for {{ tag }}{{#singleFramework}} ({{{ framework }}}){{/singleFramework}}
@@ -10,6 +13,12 @@ import ReactMarkdown from 'react-markdown';
 
 {{{ properties }}}
 {{/hasProps}}
+
+{{#hasMethods}}
+### Methods
+
+{{{ methods }}}
+{{/hasMethods}}
 
 {{#hasEvents}}
 ### Events
