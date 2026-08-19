@@ -166,7 +166,13 @@ export class Tooltip {
     placement,
     middlewareData,
   }: ComputePositionReturn): ArrowPosition | undefined {
-    let { x, y } = middlewareData.arrow!;
+    const arrow = middlewareData.arrow;
+
+    if (!arrow) {
+      return undefined;
+    }
+
+    let { x, y } = arrow;
     const resetPosition = {
       top: 'unset',
       right: 'unset',

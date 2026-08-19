@@ -5,6 +5,7 @@ export { IxActionCard } from './ix-action-card.js';
 export { IxApplication } from './ix-application.js';
 export { IxApplicationHeader } from './ix-application-header.js';
 export { IxAvatar } from './ix-avatar.js';
+export { IxBadge } from './ix-badge.js';
 export { IxBlind } from './ix-blind.js';
 export { IxBreadcrumb } from './ix-breadcrumb.js';
 export { IxBreadcrumbItem } from './ix-breadcrumb-item.js';
