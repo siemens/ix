@@ -21,7 +21,7 @@
 
 import { DateTime } from 'luxon';
 import { describe, expect, it } from 'vitest';
-import { formatWithLocale, parseWithLocale } from '../../utils/date-locale';
+import { formatWithLocale, parseWithLocale } from '../../utils/date-time-locale';
 
 // ---------------------------------------------------------------------------
 // Helpers

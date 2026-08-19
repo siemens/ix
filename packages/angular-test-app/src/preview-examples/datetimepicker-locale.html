@@ -82,40 +82,21 @@ LICENSE file in the root directory of this source tree.
       </ng-container>
       <ng-template #eventValues>
         <ix-layout-grid no-margin>
-          <ix-row>
+          <ix-row *ngFor="let row of eventRows">
             <ix-col
               size="2"
               style="font-weight: 600; color: var(--theme-color-std-text)"
             >
-              from
+              {{ row.label }}
             </ix-col>
             <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
-              {{ lastEvent?.from || '—' }}
+              {{ lastEvent?.[row.key] || '—' }}
             </ix-col>
-          </ix-row>
-          <ix-row>
             <ix-col
-              size="2"
-              style="font-weight: 600; color: var(--theme-color-std-text)"
+              *ngIf="row.note"
+              style="color: var(--theme-color-soft-text); font-size: 0.8em"
             >
-              to
-            </ix-col>
-            <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
-              {{ lastEvent?.to || '—' }}
-            </ix-col>
-          </ix-row>
-          <ix-row>
-            <ix-col
-              size="2"
-              style="font-weight: 600; color: var(--theme-color-std-text)"
-            >
-              time
-            </ix-col>
-            <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
-              {{ lastEvent?.time || '—' }}
-            </ix-col>
-            <ix-col style="color: var(--theme-color-soft-text); font-size: 0.8em">
-              (locale-aware in 12h mode)
+              {{ row.note }}
             </ix-col>
           </ix-row>
         </ix-layout-grid>

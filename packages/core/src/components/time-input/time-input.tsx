@@ -59,6 +59,7 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
+import { parseWithLocale } from '../utils/date-time-locale';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
@@ -255,16 +256,22 @@ export class TimeInput
 
   /**
    * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+   *
+   * @since 6.0.0
    */
   @Prop() locale?: string;
 
   /**
    * Label for the AM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
 
   /**
    * Label for the PM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
 
@@ -430,7 +437,8 @@ export class TimeInput
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay
+      baseDay,
+      this.locale
     );
     return isWithinTimePickerConstraints(parsed, min, max);
   }
@@ -442,7 +450,7 @@ export class TimeInput
       return;
     }
 
-    const parsed = DateTime.fromFormat(trimmed, this.format);
+    const parsed = parseWithLocale(trimmed, this.format, this.locale);
     if (!parsed.isValid) {
       this.time = null;
       return;
@@ -459,7 +467,7 @@ export class TimeInput
       return null;
     }
 
-    const time = DateTime.fromFormat(value, this.format);
+    const time = parseWithLocale(value, this.format, this.locale);
     if (time.isValid && this.isWithinConfiguredBounds(time)) {
       return {
         isInputInvalid: false,

@@ -25,7 +25,7 @@ import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
 import { closestPassShadow } from '../utils/shadow-dom';
-import { formatWithLocale, parseWithLocale } from '../utils/date-locale';
+import { formatWithLocale, parseWithLocale } from '../utils/date-time-locale';
 import { buildTimePickerColumnNumberArrays } from './time-picker-column-values';
 import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
 import {
@@ -101,6 +101,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+   *
+   * @since 6.0.0
    */
   @Prop() locale?: string;
   @Watch('locale')
@@ -367,11 +369,15 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Label for the AM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
 
   /**
    * Label for the PM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
 
@@ -392,6 +398,16 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   async getCurrentTime(): Promise<string | undefined> {
     return this._time
       ? formatWithLocale(this._time, this.format, this.locale)
+      : undefined;
+  }
+
+  /**
+   * Get the current time in ISO format
+   */
+  @Method()
+  async getCurrentIsoTime(): Promise<string | undefined> {
+    return this._time?.isValid
+      ? (this._time.toISOTime() ?? undefined)
       : undefined;
   }
 
@@ -670,7 +686,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
         if (this.time) {
-          const timeFormat = parseWithLocale(this.time, this.format, this.locale);
+          const timeFormat = parseWithLocale(
+            this.time,
+            this.format,
+            this.locale
+          );
           if (timeFormat.isValid) {
             this._time = parseWithLocale(this.time, this.format, this.locale);
             this.setInitialFocusedValueAndUnit();
@@ -745,7 +765,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    this.timeChange.emit(formatWithLocale(this._time, this.format, this.locale));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   /** `_time` or “now” (constraints, AM/PM, confirm). */
@@ -774,7 +796,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay
+      baseDay,
+      this.locale
     );
   }
 
@@ -1181,7 +1204,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = candidate;
     this.elementListScrollToTop(unit, number, 'smooth');
-    this.timeChange.emit(formatWithLocale(this._time, this.format, this.locale));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   private updateDescriptorFocusedValue(
@@ -1372,7 +1397,10 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               <div class="flex">
                 <div class="column-separator"></div>
                 <div class="columns">
-                  <div class="column-header" title={`${this.i18nAm}/${this.i18nPm}`} />
+                  <div
+                    class="column-header"
+                    title={`${this.i18nAm}/${this.i18nPm}`}
+                  />
                   <div
                     role="listbox"
                     aria-label={`${this.i18nAm}/${this.i18nPm}`}

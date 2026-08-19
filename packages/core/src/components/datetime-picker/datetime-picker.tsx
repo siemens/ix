@@ -124,22 +124,30 @@ export class DatetimePicker
 
   /**
    * Label for the AM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
 
   /**
    * Label for the PM button in 12-hour mode.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
 
   /**
    * Text for the time picker hour column header.
+   *
+   * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-hour-column-header' }) i18nHourColumnHeader: string =
     'hr';
 
   /**
    * Text for the time picker minute column header.
+   *
+   * @since 6.0.0
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-minute-column-header' })
@@ -147,6 +155,8 @@ export class DatetimePicker
 
   /**
    * Text for the time picker second column header.
+   *
+   * @since 6.0.0
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-second-column-header' })
@@ -154,6 +164,8 @@ export class DatetimePicker
 
   /**
    * Text for the time picker millisecond column header.
+   *
+   * @since 6.0.0
    */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
@@ -339,6 +351,7 @@ export class DatetimePicker
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
     const time = await this.timePickerElement?.getCurrentTime();
+    const isoTime = await this.timePickerElement?.getCurrentIsoTime();
 
     this.dateSelect.emit({
       from: date?.from ?? '',
@@ -346,6 +359,7 @@ export class DatetimePicker
       time: time ?? '',
       isoFrom: date?.isoFrom,
       isoTo: date?.isoTo,
+      isoTime,
     });
   }
 
@@ -436,6 +450,7 @@ export class DatetimePicker
                   maxTime={maxTime}
                   i18nAm={this.i18nAm}
                   i18nPm={this.i18nPm}
+                  i18nHeader={this.i18nTime}
                   i18nHourColumnHeader={this.i18nHourColumnHeader}
                   i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
                   i18nSecondColumnHeader={this.i18nSecondColumnHeader}

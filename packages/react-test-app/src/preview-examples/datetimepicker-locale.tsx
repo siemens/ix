@@ -91,7 +91,7 @@ const EVENT_ROWS: { key: keyof EventLog; note: string }[] = [
   { key: 'isoTime', note: '(ISO 8601, stable)' },
 ];
 
-export default () => {
+const DateTimePickerLocale = () => {
   const [locale, setLocale] = useState('de');
   const [dateFormat, setDateFormat] = useState('yyyy/LL/dd');
   const [timeFormat, setTimeFormat] = useState('HH:mm:ss');
@@ -225,3 +225,5 @@ export default () => {
     </IxLayoutGrid>
   );
 };
+
+export default DateTimePickerLocale;

@@ -11,7 +11,7 @@ import {
   parseWithLocale,
   toISODate,
   toISOTime,
-} from '../date-locale';
+} from '../date-time-locale';
 
 describe('formatWithLocale', () => {
   const dt = DateTime.fromObject({ year: 2023, month: 9, day: 5 });

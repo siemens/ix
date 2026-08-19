@@ -4550,6 +4550,10 @@ export namespace Components {
          */
         "format": string;
         /**
+          * Get the current time in ISO format
+         */
+        "getCurrentIsoTime": () => Promise<string | undefined>;
+        /**
           * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;

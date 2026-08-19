@@ -19,7 +19,7 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { formatWithLocale } from '../utils/date-locale';
+import { formatWithLocale } from '../utils/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -416,7 +416,8 @@ export class DatetimeInput
       this.minTime,
       this.maxTime,
       this.timeOnlyFormat,
-      dateTime.startOf('day')
+      dateTime.startOf('day'),
+      this.locale
     );
 
     const hasDateBounds = !!(minDateTime?.isValid || maxDateTime?.isValid);

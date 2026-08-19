@@ -29,7 +29,7 @@ import {
   formatWithLocale,
   parseWithLocale,
   toISODate,
-} from '../utils/date-locale';
+} from '../utils/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
@@ -124,10 +124,8 @@ export class DatePicker
   @Prop() minDate = '';
 
   @Watch('minDate')
-  onMinDateChange(newVal: string) {
-    this._minDateObj = newVal
-      ? parseWithLocale(newVal, this.format, this.locale)
-      : undefined;
+  onMinDateChange() {
+    this.refreshBoundDates();
   }
 
   /**
@@ -137,10 +135,8 @@ export class DatePicker
   @Prop() maxDate = '';
 
   @Watch('maxDate')
-  onMaxDateChange(newVal: string) {
-    this._maxDateObj = newVal
-      ? parseWithLocale(newVal, this.format, this.locale)
-      : undefined;
+  onMaxDateChange() {
+    this.refreshBoundDates();
   }
 
   /**
@@ -195,9 +191,18 @@ export class DatePicker
    */
   @Prop() locale?: string;
 
+  @Watch('format')
+  onFormatChange() {
+    this.refreshBoundDates();
+  }
+
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
+    this.refreshBoundDates();
+  }
+
+  private refreshBoundDates() {
     this._minDateObj = this.minDate
       ? parseWithLocale(this.minDate, this.format, this.locale)
       : undefined;
@@ -443,13 +448,7 @@ export class DatePicker
 
   override componentWillLoad() {
     this.setTranslations();
-
-    this._minDateObj = this.minDate
-      ? parseWithLocale(this.minDate, this.format, this.locale)
-      : undefined;
-    this._maxDateObj = this.maxDate
-      ? parseWithLocale(this.maxDate, this.format, this.locale)
-      : undefined;
+    this.refreshBoundDates();
 
     this.currFromDate = this.from
       ? parseWithLocale(this.from, this.format, this.locale)

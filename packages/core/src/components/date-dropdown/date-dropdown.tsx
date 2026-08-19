@@ -22,7 +22,7 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { parseWithLocale } from '../utils/date-locale';
+import { parseWithLocale, toISODate } from '../utils/date-time-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
@@ -233,7 +233,14 @@ export class DateDropdown
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    return this.currentRangeValue || { id: '', from: '', to: '' };
+    const val = this.currentRangeValue ?? { id: '', from: '', to: '' };
+    const isoFrom = toISODate(
+      parseWithLocale(val.from ?? '', this.format, this.locale)
+    );
+    const isoTo = toISODate(
+      parseWithLocale(val.to ?? '', this.format, this.locale)
+    );
+    return { ...val, isoFrom, isoTo };
   }
 
   private initialize() {
@@ -269,7 +276,13 @@ export class DateDropdown
   }
 
   private onDateSelect(rangeValue: { from?: string; to?: string; id: string }) {
-    this.dateRangeChange.emit(rangeValue);
+    const isoFrom = toISODate(
+      parseWithLocale(rangeValue.from ?? '', this.format, this.locale)
+    );
+    const isoTo = toISODate(
+      parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
+    );
+    this.dateRangeChange.emit({ ...rangeValue, isoFrom, isoTo });
   }
 
   private onRangeListSelect(id: string) {

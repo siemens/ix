@@ -19,15 +19,15 @@ export function parseWithLocale(
   format: string,
   locale?: string
 ): DateTime {
-  return locale
-    ? DateTime.fromFormat(value, format, { locale })
-    : DateTime.fromFormat(value, format);
+  return DateTime.fromFormat(value, format, { locale });
 }
 
 export function toISODate(dt: DateTime | undefined): string | undefined {
   return dt?.isValid ? (dt.toISODate() ?? undefined) : undefined;
 }
 
-export function toISOTime(dt: DateTime | undefined): string | undefined {
-  return dt?.isValid ? (dt.toISOTime() ?? undefined) : undefined;
+export function toISOTime(time: string | undefined): string | undefined {
+  
 }
+
+

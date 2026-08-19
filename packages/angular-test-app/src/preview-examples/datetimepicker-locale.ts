@@ -11,9 +11,15 @@ import { Component } from '@angular/core';
 import type { DateTimeSelectEvent } from '@siemens/ix';
 
 type EventLog = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
   time: string;
+};
+
+type EventLogRow = {
+  key: keyof EventLog;
+  label: string;
+  note?: string;
 };
 
 const I18N_AM: Record<string, string> = {
@@ -75,6 +81,12 @@ export default class DatetimepickerLocale {
   timeFormats = [
     { label: 'HH:mm:ss (24h, default)', value: 'HH:mm:ss' },
     { label: 'hh:mm a (12h, locale-aware)', value: 'hh:mm a' },
+  ];
+
+  eventRows: EventLogRow[] = [
+    { key: 'from', label: 'from' },
+    { key: 'to', label: 'to' },
+    { key: 'time', label: 'time', note: '(locale-aware in 12h mode)' },
   ];
 
   locale = 'de';
