@@ -23,6 +23,10 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - uses: ./.github/workflows/actions/playwright
+        with:
+          install-deps: 'false'
+
       - name: Documentation
         uses: actions/upload-artifact@v4
         with:
@@ -43,9 +47,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
-          projectName: '@siemens/ix'
-          artifactName: 'core'
-          projectPath: './packages/core/blob-report/'
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          projectPath: './testing/visual-testing/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
 
@@ -58,9 +62,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/merge-reports
         with:
-          projectName: '@siemens/ix'
-          artifactName: 'core'
-          blobPattern: '@siemens/ix-blob-report-*'
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
     needs: [build]
@@ -116,6 +120,5 @@ jobs:
 
       - name: Test
         run: |
-          cd testing/performance-memlab
           pnpm dlx puppeteer browsers install chrome@127.0.6533.88
-          pnpm test.memlab
+          pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo

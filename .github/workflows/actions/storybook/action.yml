@@ -5,11 +5,9 @@ runs:
   steps:
     - name: Build
       shell: bash
-      run: pnpm run build --cache-dir=.turbo
+      run: pnpm run build --cache-dir=.turbo --filter storybook-docs
 
-    - name: Install playwright dependencies
-      shell: bash
-      run: pnpm --filter storybook-docs exec playwright install chromium --with-deps
+    - uses: ./.github/workflows/actions/playwright
 
     - name: Test
       shell: bash
