@@ -8,5 +8,6 @@ runs:
       run: pnpm run build --cache-dir=.turbo --filter storybook-docs
 
     - name: Test
-      shell: bash
-      run: pnpm --filter storybook-docs test.a11y
+      uses: ./.github/workflows/actions/playwright-container
+      with:
+        run: pnpm --filter storybook-docs test.a11y

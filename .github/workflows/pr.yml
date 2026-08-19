@@ -16,7 +16,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Keep Playwright container tags aligned with the version in pnpm-lock.yaml.
+  # Builds, installs and every turbo invocation run on the host runner so all jobs
+  # share one cache version and one hash space. Only browser-driven commands are
+  # executed inside the pinned Playwright image, see actions/playwright-container.
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -78,6 +80,8 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
+        with:
+          save-cache: 'true'
 
       - name: Build
         run: pnpm build --cache-dir=.turbo
@@ -99,9 +103,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --init --ipc=host
     strategy:
       fail-fast: false
       matrix:
@@ -136,9 +137,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -153,9 +151,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -170,9 +165,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -183,9 +175,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
-      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo

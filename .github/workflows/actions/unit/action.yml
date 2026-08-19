@@ -3,6 +3,11 @@ description: 'Unit tests'
 runs:
   using: 'composite'
   steps:
-    - name: Test
+    - name: Build
       shell: bash
-      run: pnpm run test --cache-dir=.turbo
+      run: pnpm run build --cache-dir=.turbo
+
+    - name: Test
+      uses: ./.github/workflows/actions/playwright-container
+      with:
+        run: pnpm run test --cache-dir=.turbo --only
