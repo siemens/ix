@@ -32,6 +32,10 @@
   ix-card-content {
     height: 11rem;
 
+    &::part(content) {
+      overflow: visible;
+    }
+
     .typography-h4 {
       padding-top: .25rem;
     }
