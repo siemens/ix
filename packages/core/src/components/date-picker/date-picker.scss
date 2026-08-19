@@ -88,7 +88,6 @@
     align-items: center;
     justify-items: center;
     justify-content: center;
-    color: var(--ix-date-picker-today--color);
 
     &--show-week-numbers {
       grid-template-columns: 24px repeat(7, 40px);
@@ -107,6 +106,7 @@
       align-items: center;
       background-color: var(--ix-date-picker-day--background);
       border: 1px solid var(--ix-date-picker-day--background);
+      color: var(--ix-date-picker-day--color);
       width: 40px;
       height: 40px;
       cursor: pointer;
@@ -118,77 +118,24 @@
 
       &.today {
         border: 1px solid var(--ix-date-picker-today--border-color);
-
-        &:hover {
-          background-color: var(--ix-date-picker-day--background--hover);
-        }
-
-        &:active {
-          background-color: var(--ix-date-picker-day--background--active);
-        }
+        box-shadow: inset 0 0 0 1px
+          var(--ix-date-picker-today--contrast-ring-color);
 
         &.selected {
-          box-shadow: inset 0 0 0 1px white;
-
-          &:hover {
-            background-color: var(
-              --ix-date-picker-day--background--selected-hover
-            );
-          }
-
-          &:active {
-            background-color: var(
-              --ix-date-picker-day--background--selected-active
-            );
-          }
-
           &.disabled {
-            pointer-events: none;
-            background-color: var(
-              --ix-date-picker-day--background--selected-disabled
-            );
             border: 1px solid
               var(--ix-date-picker-day--background--selected-disabled);
-            color: var(--ix-date-picker-day--color--selected-disabled);
           }
         }
 
         &.range {
-          background-color: var(--ix-date-picker-day--background--range);
-          color: var(--ix-date-picker-day--color--range);
-          border: 1px solid var(--ix-date-picker-today--border-color--range);
-          box-shadow: inset 0 0 0 1px white;
-
-          &:hover {
-            background-color: var(
-              --ix-date-picker-day--background--range-hover
-            );
-            border: 1px solid
-              var(--ix-date-picker-today--border-color--range-hover);
-          }
-
-          &:active {
-            background-color: var(
-              --ix-date-picker-day--background--range-active
-            );
-            border: 1px solid
-              var(--ix-date-picker-today--border-color--range-active);
-          }
-
           &.disabled {
-            background-color: var(
-              --ix-date-picker-day--background--range-disabled
-            );
-            color: var(--ix-date-picker-day--color--range-disabled);
             border: 1px solid
               var(--ix-date-picker-today--border-color--range-disabled);
           }
         }
 
         &.disabled {
-          pointer-events: none;
-          background-color: var(--ix-date-picker-day--background--disabled);
-          color: var(--ix-date-picker-day--color--disabled);
           cursor: default;
         }
       }

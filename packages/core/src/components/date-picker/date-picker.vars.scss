@@ -15,42 +15,32 @@
   --ix-date-picker-weekday--font-size: var(--theme-ms-0);
   --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
-  --ix-date-picker-day--background--active: #{sys.$si-sys-background-selected};
+  --ix-date-picker-day--background--active: #{sys.$si-sys-background-active};
   --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--hover: #{sys.$si-sys-background-hover};
-  --ix-date-picker-day--background--range: var(--theme-color-component-10);
-  --ix-date-picker-day--background--range-active: var(
-    --theme-color-component-10--active
-  );
+  --ix-date-picker-day--background--range: #{sys.$si-sys-background-active};
+  --ix-date-picker-day--background--range-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-date-picker-day--background--range-disabled: var(
     --theme-color-component-10--disabled
   );
-  --ix-date-picker-day--background--range-hover: var(
-    --theme-color-component-10--hover
-  );
-  --ix-date-picker-day--background--selected: #{sys.$si-sys-background-accent-hover};
-  --ix-date-picker-day--background--selected-active: var(
-    --theme-color-component-9--active
-  );
+  --ix-date-picker-day--background--range-hover: #{sys.$si-sys-background-accent-secondary-hover};
+  --ix-date-picker-day--background--selected: #{sys.$si-sys-background-accent};
+  --ix-date-picker-day--background--selected-active: #{sys.$si-sys-background-accent-active};
   --ix-date-picker-day--background--selected-disabled: var(
     --theme-color-component-9--disabled
   );
-  --ix-date-picker-day--background--selected-hover: var(
-    --theme-color-component-9--hover
-  );
+  --ix-date-picker-day--background--selected-hover: #{sys.$si-sys-background-accent-hover};
+  --ix-date-picker-day--color: #{sys.$si-sys-text-accent};
   --ix-date-picker-day--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-date-picker-day--color--range: #{sys.$si-sys-text-on-accent};
+  --ix-date-picker-day--color--range: #{sys.$si-sys-text-primary};
   --ix-date-picker-day--color--range-disabled: #{sys.$si-sys-text-disabled};
   --ix-date-picker-day--color--selected: #{sys.$si-sys-text-on-accent};
   --ix-date-picker-day--color--selected-disabled: #{sys.$si-sys-text-disabled};
   --ix-date-picker-today--border-color: #{sys.$si-sys-border-accent};
-  --ix-date-picker-today--border-color--range: #{sys.$si-sys-border-accent};
-  --ix-date-picker-today--border-color--range-active: #{sys.$si-sys-border-accent};
+  --ix-date-picker-today--contrast-ring-color: #{sys.$si-sys-background-0};
   --ix-date-picker-today--border-color--range-disabled: var(
     --theme-color-primary--disabled
   );
-  --ix-date-picker-today--border-color--range-hover: #{sys.$si-sys-border-accent};
-  --ix-date-picker-today--color: #{sys.$si-sys-text-accent};
   --ix-date-picker-weekday--color: #{sys.$si-sys-text-secondary};
   --ix-date-picker-menu-item--color: #{sys.$si-sys-text-primary};
   --ix-date-picker-list-item--background--hover: #{sys.$si-sys-background-hover};
