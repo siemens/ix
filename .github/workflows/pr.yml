@@ -165,10 +165,22 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: core
+            packages: '@siemens/ix'
+          - group: angular
+            packages: 'angular-test-app angular-standalone-test-app @siemens/ix-angular'
+          - group: react-vue
+            packages: 'react-test-app @siemens/ix-react vue-test-app @siemens/ix-vue'
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
+        with:
+          packages: ${{ matrix.packages }}
 
   accessibility:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}

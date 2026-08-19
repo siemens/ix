@@ -1,13 +1,37 @@
 name: 'Unit tests'
 description: 'Unit tests'
+inputs:
+  packages:
+    description: 'Space separated workspace packages to test. Empty runs every package.'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
+    - name: Resolve turbo filters
+      id: filters
+      shell: bash
+      env:
+        PACKAGES: ${{ inputs.packages }}
+      run: |
+        build_filters=""
+        test_filters=""
+        for package in $PACKAGES; do
+          build_filters="${build_filters:+$build_filters }--filter $package..."
+          test_filters="${test_filters:+$test_filters }--filter $package"
+        done
+        echo "build=$build_filters" >> "$GITHUB_OUTPUT"
+        echo "test=$test_filters" >> "$GITHUB_OUTPUT"
+
     - name: Build
       shell: bash
-      run: pnpm run build --cache-dir=.turbo
+      env:
+        BUILD_FILTERS: ${{ steps.filters.outputs.build }}
+      run: pnpm run build --cache-dir=.turbo $BUILD_FILTERS
 
     - name: Test
       uses: ./.github/workflows/actions/playwright-container
       with:
-        run: pnpm run test --cache-dir=.turbo --only
+        env: |
+          TEST_FILTERS=${{ steps.filters.outputs.test }}
+        run: pnpm run test --cache-dir=.turbo --only $TEST_FILTERS
