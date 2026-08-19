@@ -31,6 +31,10 @@
       margin-right: 0;
     }
 
+    .slot-container {
+      line-height: 1.25rem;
+    }
+
     &.outline {
       background-color: var(--theme-pill-outline--background);
       &.icon {
