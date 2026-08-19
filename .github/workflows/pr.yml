@@ -16,6 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Keep Playwright container tags aligned with the version in pnpm-lock.yaml.
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -87,10 +88,6 @@ jobs:
       - name: Check for local development changes
         run: ./scripts/lint-build.sh
 
-      - uses: ./.github/workflows/actions/playwright
-        with:
-          install-deps: 'false'
-
       - name: Documentation
         uses: actions/upload-artifact@v4
         with:
@@ -102,6 +99,9 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --init --ipc=host
     strategy:
       fail-fast: false
       matrix:
@@ -136,6 +136,9 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -150,6 +153,9 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -164,6 +170,9 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -174,6 +183,9 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo

@@ -22,8 +22,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: ./.github/workflows/actions/playwright
-
     - name: Test
       shell: bash
       env:
