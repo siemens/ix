@@ -15,7 +15,7 @@ LICENSE file in the root directory of this source tree.
     <title>Application example</title>
   </head>
   <body>
-    <ix-application skip-link-target-id="main-content">
+    <ix-application skip-link-main-target-id="main-content">
       <ix-application-header name="My Application">
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
@@ -29,6 +29,7 @@ LICENSE file in the root directory of this source tree.
         <ix-content-header slot="header" header-title="My Content Page">
         </ix-content-header>
       </ix-content>
+      <button slot="bottom">Footer action</button>
     </ix-application>
 
     <script type="module">

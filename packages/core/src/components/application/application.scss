@@ -20,6 +20,12 @@
 
   @include component.ix-component;
 
+  .skip-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
   .skip-link {
     @include fonts.typography-body;
 
@@ -93,6 +99,10 @@
     display: block;
     position: relative;
     width: 100%;
+
+    &[hidden] {
+      display: none;
+    }
   }
 }
 

@@ -154,9 +154,10 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
         theme: 'theme',
         colorSchema: 'color-schema',
         forceBreakpoint: 'force-breakpoint',
-        disableSkipLink: 'disable-skip-link',
-        i18nSkipToContent: 'i18n-skip-to-content',
-        skipLinkTargetId: 'skip-link-target-id'
+        disableSkipLinks: 'disable-skip-links',
+        i18nSkipToMain: 'i18n-skip-to-main',
+        i18nSkipToFooter: 'i18n-skip-to-footer',
+        skipLinkMainTargetId: 'skip-link-main-target-id'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxApplication as StencilReactComponent<IxApplicationElement, IxApplicationEvents, Components.IxApplication>,

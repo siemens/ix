@@ -1,5 +1,7 @@
-- link "Skip to main content":
-  - /url: "#ix-application-main-content"
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#ix-application-main-content"
 - text: My Application
 - button "Select config":
   - img
@@ -15,4 +17,3 @@
     - radio "Small"
     - radio "Medium" [checked]
     - radio "Large"
-- contentinfo

@@ -18,7 +18,7 @@ import {
 
 export default () => {
   return (
-    <IxApplication skipLinkTargetId="main-content">
+    <IxApplication skipLinkMainTargetId="main-content">
       <IxApplicationHeader name="My Application">
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
@@ -34,6 +34,7 @@ export default () => {
           headerTitle="My Content Page"
         ></IxContentHeader>
       </IxContent>
+      <button slot="bottom">Footer action</button>
     </IxApplication>
   );
 };

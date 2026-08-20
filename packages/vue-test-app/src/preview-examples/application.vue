@@ -19,7 +19,7 @@ import {
 </script>
 
 <template>
-  <IxApplication skipLinkTargetId="main-content">
+  <IxApplication skipLinkMainTargetId="main-content">
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
@@ -35,5 +35,6 @@ import {
         header-title="My Content Page"
       ></IxContentHeader>
     </IxContent>
+    <button slot="bottom">Footer action</button>
   </IxApplication>
 </template>

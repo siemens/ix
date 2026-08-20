@@ -1,9 +1,15 @@
-- link "Skip to main content":
-  - /url: "#main-content"
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#main-content"
+  - listitem:
+    - link "Skip to footer":
+      - /url: "#ix-application-footer"
 - text: My Application
 - navigation:
   - button "Item 1"
   - button "Item 2"
 - complementary
 - main: My Content Page
-- contentinfo
+- contentinfo:
+  - button "Footer action"

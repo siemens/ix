@@ -16,12 +16,14 @@ import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
-import { hasSlottedElements } from '../utils/shadow-dom';
+import { hasSlottedContent, hasSlottedElements } from '../utils/shadow-dom';
 import { themeSwitcher, ThemeVariant } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
-const DEFAULT_SKIP_LINK_LABEL = 'Skip to main content';
-const DEFAULT_SKIP_LINK_TARGET_ID = 'ix-application-main-content';
+const DEFAULT_SKIP_LINK_MAIN_LABEL = 'Skip to main content';
+const DEFAULT_SKIP_LINK_MAIN_TARGET_ID = 'ix-application-main-content';
+const DEFAULT_SKIP_LINK_FOOTER_LABEL = 'Skip to footer';
+const DEFAULT_SKIP_LINK_FOOTER_TARGET_ID = 'ix-application-footer';
 
 /**
  * @slot application-header - Header displayed at the top of the application.
@@ -87,34 +89,46 @@ export class Application {
   @Prop() appSwitchConfig?: AppSwitchConfiguration;
 
   /**
-   * Disable the built-in link for bypassing repeated application content.
-   * Only disable it when an equivalent bypass mechanism is provided elsewhere.
+   * Disable the built-in links for bypassing repeated application content.
+   * Only disable them when an equivalent bypass mechanism is provided
+   * elsewhere.
    *
    * @since 6.0.0
    */
-  @Prop() disableSkipLink = false;
+  @Prop() disableSkipLinks = false;
 
   /**
-   * Localized text for the link that bypasses repeated application content.
+   * Localized text for the link that bypasses repeated application content and
+   * focuses the main region.
    *
    * @since 6.0.0
    */
-  @Prop({ attribute: 'i18n-skip-to-content' }) i18nSkipToContent =
-    DEFAULT_SKIP_LINK_LABEL;
+  @Prop({ attribute: 'i18n-skip-to-main' }) i18nSkipToMain =
+    DEFAULT_SKIP_LINK_MAIN_LABEL;
 
   /**
-   * ID of a light-DOM descendant to focus when the skip link is activated.
+   * Localized text for the link that focuses the application footer.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-skip-to-footer' }) i18nSkipToFooter =
+    DEFAULT_SKIP_LINK_FOOTER_LABEL;
+
+  /**
+   * ID of a light-DOM descendant to focus when the Main skip link is activated.
    * Falls back to the internal main region when the target cannot be used.
    *
    * @since 6.0.0
    */
-  @Prop() skipLinkTargetId?: string;
+  @Prop() skipLinkMainTargetId?: string;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
+  @State() footerSlotted = false;
 
   private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
   private mainElement?: HTMLElement;
+  private footerElement?: HTMLElement;
   private temporaryFocusTargetRestore?: () => void;
 
   get menu(): HTMLIxMenuElement | null {
@@ -124,6 +138,12 @@ export class Application {
   get applicationSidebarSlot() {
     return this.hostElement.shadowRoot!.querySelector(
       '.application-sidebar slot'
+    ) as HTMLSlotElement;
+  }
+
+  get footerSlot() {
+    return this.hostElement.shadowRoot!.querySelector(
+      'slot[name="bottom"]'
     ) as HTMLSlotElement;
   }
 
@@ -150,30 +170,51 @@ export class Application {
     }
   }
 
-  private get skipLinkLabel() {
-    return this.i18nSkipToContent?.trim() || DEFAULT_SKIP_LINK_LABEL;
+  private get skipLinkMainLabel() {
+    return this.i18nSkipToMain?.trim() || DEFAULT_SKIP_LINK_MAIN_LABEL;
   }
 
-  private get skipLinkHref() {
-    const targetId = this.skipLinkTargetId?.trim();
-    return `#${targetId || DEFAULT_SKIP_LINK_TARGET_ID}`;
+  private get skipLinkFooterLabel() {
+    return this.i18nSkipToFooter?.trim() || DEFAULT_SKIP_LINK_FOOTER_LABEL;
+  }
+
+  private get skipLinkMainHref() {
+    const targetId = this.skipLinkMainTargetId?.trim();
+    return `#${targetId || DEFAULT_SKIP_LINK_MAIN_TARGET_ID}`;
   }
 
   private warn(message: string) {
     console.warn(`ix-application: ${message}`);
   }
 
-  private validateSkipLinkLabel(label: string | undefined) {
+  private validateSkipLinkLabel(
+    propertyName: 'i18nSkipToMain' | 'i18nSkipToFooter',
+    label: string | undefined,
+    fallback: string
+  ) {
     if (!label?.trim()) {
       this.warn(
-        `i18nSkipToContent must not be empty. Using "${DEFAULT_SKIP_LINK_LABEL}" instead.`
+        `${propertyName} must not be empty. Using "${fallback}" instead.`
       );
     }
   }
 
-  @Watch('i18nSkipToContent')
-  onI18nSkipToContentChange(label: string | undefined) {
-    this.validateSkipLinkLabel(label);
+  @Watch('i18nSkipToMain')
+  onI18nSkipToMainChange(label: string | undefined) {
+    this.validateSkipLinkLabel(
+      'i18nSkipToMain',
+      label,
+      DEFAULT_SKIP_LINK_MAIN_LABEL
+    );
+  }
+
+  @Watch('i18nSkipToFooter')
+  onI18nSkipToFooterChange(label: string | undefined) {
+    this.validateSkipLinkLabel(
+      'i18nSkipToFooter',
+      label,
+      DEFAULT_SKIP_LINK_FOOTER_LABEL
+    );
   }
 
   private isOwnedLightDomDescendant(element: HTMLElement) {
@@ -207,7 +248,7 @@ export class Application {
 
     if (matches.length !== 1 || !this.isUsableSkipLinkTarget(matches[0])) {
       this.warn(
-        `skipLinkTargetId "${targetId}" must identify one usable descendant. Falling back to the main content.`
+        `skipLinkMainTargetId "${targetId}" must identify one usable descendant. Falling back to the main content.`
       );
       return;
     }
@@ -266,10 +307,10 @@ export class Application {
     });
   }
 
-  private onSkipLinkClick(event: MouseEvent) {
+  private onSkipLinkMainClick(event: MouseEvent) {
     event.preventDefault();
 
-    const targetId = this.skipLinkTargetId?.trim();
+    const targetId = this.skipLinkMainTargetId?.trim();
     if (!targetId) {
       this.focusMainContent();
       return;
@@ -283,14 +324,36 @@ export class Application {
 
     if (!this.focusCustomSkipLinkTarget(target)) {
       this.warn(
-        `skipLinkTargetId "${targetId}" does not identify a focusable descendant. Falling back to the main content.`
+        `skipLinkMainTargetId "${targetId}" does not identify a focusable descendant. Falling back to the main content.`
       );
       this.focusMainContent();
     }
   }
 
+  private onSkipLinkFooterClick(event: MouseEvent) {
+    event.preventDefault();
+    this.footerElement?.focus({ preventScroll: true });
+
+    if (this.hostElement.shadowRoot?.activeElement !== this.footerElement) {
+      this.warn('Could not focus the application footer.');
+    }
+  }
+
+  private updateFooterSlotted() {
+    this.footerSlotted = hasSlottedContent(this.footerSlot);
+  }
+
   componentWillLoad() {
-    this.validateSkipLinkLabel(this.i18nSkipToContent);
+    this.validateSkipLinkLabel(
+      'i18nSkipToMain',
+      this.i18nSkipToMain,
+      DEFAULT_SKIP_LINK_MAIN_LABEL
+    );
+    this.validateSkipLinkLabel(
+      'i18nSkipToFooter',
+      this.i18nSkipToFooter,
+      DEFAULT_SKIP_LINK_FOOTER_LABEL
+    );
     this.setBreakpoints(this.breakpoints);
 
     this.contextProvider = useContextProvider(
@@ -310,6 +373,10 @@ export class Application {
       this.forceBreakpoint || applicationLayoutService.breakpoint;
 
     this.forceLayoutChange(this.forceBreakpoint);
+  }
+
+  componentDidLoad() {
+    this.updateFooterSlotted();
   }
 
   disconnectedCallback() {
@@ -355,14 +422,29 @@ export class Application {
           [`breakpoint-${this.breakpoint}`]: true,
         }}
       >
-        {!this.disableSkipLink && (
-          <a
-            class="skip-link"
-            href={this.skipLinkHref}
-            onClick={(event) => this.onSkipLinkClick(event)}
-          >
-            {this.skipLinkLabel}
-          </a>
+        {!this.disableSkipLinks && (
+          <ul class="skip-links" role="list">
+            <li>
+              <a
+                class="skip-link"
+                href={this.skipLinkMainHref}
+                onClick={(event) => this.onSkipLinkMainClick(event)}
+              >
+                {this.skipLinkMainLabel}
+              </a>
+            </li>
+            {this.footerSlotted && (
+              <li>
+                <a
+                  class="skip-link"
+                  href={`#${DEFAULT_SKIP_LINK_FOOTER_TARGET_ID}`}
+                  onClick={(event) => this.onSkipLinkFooterClick(event)}
+                >
+                  {this.skipLinkFooterLabel}
+                </a>
+              </li>
+            )}
+          </ul>
         )}
         <slot name="application-header"></slot>
         <div class="application">
@@ -386,7 +468,7 @@ export class Application {
           <div class="content-area">
             <main
               class="content"
-              id={DEFAULT_SKIP_LINK_TARGET_ID}
+              id={DEFAULT_SKIP_LINK_MAIN_TARGET_ID}
               tabIndex={-1}
               ref={(element) => (this.mainElement = element)}
               onClick={() => this.onContentClick()}
@@ -394,8 +476,18 @@ export class Application {
             >
               <slot></slot>
             </main>
-            <footer class="footer">
-              <slot name="bottom"></slot>
+            <footer
+              class="footer"
+              hidden={!this.footerSlotted}
+              id={DEFAULT_SKIP_LINK_FOOTER_TARGET_ID}
+              role="contentinfo"
+              tabIndex={-1}
+              ref={(element) => (this.footerElement = element)}
+            >
+              <slot
+                name="bottom"
+                onSlotchange={() => this.updateFooterSlotted()}
+              ></slot>
             </footer>
           </div>
         </div>

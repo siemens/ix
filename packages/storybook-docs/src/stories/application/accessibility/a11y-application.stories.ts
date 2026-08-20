@@ -14,11 +14,15 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 type Element = Components.IxApplication;
 
-const renderApplication = (args: Partial<Element> = {}) => html`
+const renderApplication = (
+  args: Partial<Element> = {},
+  withFooter = false
+) => html`
   <ix-application
-    ?disable-skip-link=${args.disableSkipLink}
-    i18n-skip-to-content=${ifDefined(args.i18nSkipToContent)}
-    skip-link-target-id=${ifDefined(args.skipLinkTargetId)}
+    ?disable-skip-links=${args.disableSkipLinks}
+    i18n-skip-to-main=${ifDefined(args.i18nSkipToMain)}
+    i18n-skip-to-footer=${ifDefined(args.i18nSkipToFooter)}
+    skip-link-main-target-id=${ifDefined(args.skipLinkMainTargetId)}
   >
     <ix-application-header
       name="Skip link accessibility"
@@ -27,7 +31,10 @@ const renderApplication = (args: Partial<Element> = {}) => html`
       <ix-menu-item>Home</ix-menu-item>
     </ix-menu>
     <h1 id="application-story-content" tabindex="-1">Application content</h1>
-    <p>The skip link bypasses the application navigation.</p>
+    <p>The skip links bypass repeated application-shell content.</p>
+    ${withFooter
+      ? html`<button slot="bottom">Application footer action</button>`
+      : ''}
   </ix-application>
 `;
 
@@ -47,35 +54,44 @@ export default meta;
 type Story = StoryObj<Element>;
 
 /**
- * The default skip link targeting its internal main region.
+ * The default Main skip link targeting its internal main region.
  */
 export const DefaultSkipLink: Story = {};
 
 /**
- * Skip link targeting a light-DOM descendant.
+ * Main and conditional Footer skip links.
+ */
+export const MainAndFooterSkipLinks: Story = {
+  render: (args) => renderApplication(args, true),
+};
+
+/**
+ * Main skip link targeting a light-DOM descendant.
  */
 export const CustomSkipLinkTarget: Story = {
   args: {
-    skipLinkTargetId: 'application-story-content',
+    skipLinkMainTargetId: 'application-story-content',
   },
 };
 
 /**
- * Without the built-in skip link. An equivalent bypass link is
+ * Without the built-in skip links. An equivalent bypass link is
  * provided outside the component.
  */
-export const DisabledSkipLink: Story = {
+export const DisabledSkipLinks: Story = {
   render: () => html`
     <a href="#application-story-content">Skip to application content</a>
-    ${renderApplication({ disableSkipLink: true })}
+    ${renderApplication({ disableSkipLinks: true })}
   `,
 };
 
 /**
- * Localized skip-link text.
+ * Localized Main and Footer skip-link text.
  */
-export const LocalizedSkipLink: Story = {
+export const LocalizedSkipLinks: Story = {
   args: {
-    i18nSkipToContent: 'Zum Hauptinhalt springen',
+    i18nSkipToMain: 'Zum Hauptinhalt springen',
+    i18nSkipToFooter: 'Zur Fußzeile springen',
   },
+  render: (args) => renderApplication(args, true),
 };

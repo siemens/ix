@@ -133,8 +133,8 @@
           "deprecated": false
         },
         {
-          "name": "disableSkipLink",
-          "attribute": "disable-skip-link",
+          "name": "disableSkipLinks",
+          "attribute": "disable-skip-links",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -154,8 +154,19 @@
           "deprecated": false
         },
         {
-          "name": "i18nSkipToContent",
-          "attribute": "i18n-skip-to-content",
+          "name": "i18nSkipToFooter",
+          "attribute": "i18n-skip-to-footer",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to footer'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToMain",
+          "attribute": "i18n-skip-to-main",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
@@ -165,8 +176,8 @@
           "deprecated": false
         },
         {
-          "name": "skipLinkTargetId",
-          "attribute": "skip-link-target-id",
+          "name": "skipLinkMainTargetId",
+          "attribute": "skip-link-main-target-id",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,

@@ -177,26 +177,32 @@ export namespace Components {
          */
         "colorSchema"?: ThemeVariant;
         /**
-          * Disable the built-in link for bypassing repeated application content. Only disable it when an equivalent bypass mechanism is provided elsewhere.
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
           * @since 6.0.0
           * @default false
          */
-        "disableSkipLink": boolean;
+        "disableSkipLinks": boolean;
         /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
         /**
-          * Localized text for the link that bypasses repeated application content.
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter": string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
           * @since 6.0.0
           * @default 'Skip to main content'
          */
-        "i18nSkipToContent": string;
+        "i18nSkipToMain": string;
         /**
-          * ID of a light-DOM descendant to focus when the skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * ID of a light-DOM descendant to focus when the Main skip link is activated. Falls back to the internal main region when the target cannot be used.
           * @since 6.0.0
          */
-        "skipLinkTargetId"?: string;
+        "skipLinkMainTargetId"?: string;
         /**
           * Application theme
          */
@@ -7067,26 +7073,32 @@ declare namespace LocalJSX {
          */
         "colorSchema"?: ThemeVariant;
         /**
-          * Disable the built-in link for bypassing repeated application content. Only disable it when an equivalent bypass mechanism is provided elsewhere.
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
           * @since 6.0.0
           * @default false
          */
-        "disableSkipLink"?: boolean;
+        "disableSkipLinks"?: boolean;
         /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
-          * Localized text for the link that bypasses repeated application content.
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter"?: string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
           * @since 6.0.0
           * @default 'Skip to main content'
          */
-        "i18nSkipToContent"?: string;
+        "i18nSkipToMain"?: string;
         /**
-          * ID of a light-DOM descendant to focus when the skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * ID of a light-DOM descendant to focus when the Main skip link is activated. Falls back to the internal main region when the target cannot be used.
           * @since 6.0.0
          */
-        "skipLinkTargetId"?: string;
+        "skipLinkMainTargetId"?: string;
         /**
           * Application theme
          */
@@ -12227,9 +12239,10 @@ declare namespace LocalJSX {
         "theme": string;
         "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
-        "disableSkipLink": boolean;
-        "i18nSkipToContent": string;
-        "skipLinkTargetId": string;
+        "disableSkipLinks": boolean;
+        "i18nSkipToMain": string;
+        "i18nSkipToFooter": string;
+        "skipLinkMainTargetId": string;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;

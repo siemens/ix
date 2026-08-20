@@ -9,7 +9,7 @@
 import { expect, test } from '@playwright/test';
 import { createAxeBuilder, waitForReadiness } from './utils';
 
-test('application skip link - accessibility check', async ({ page }) => {
+test('application skip links - accessibility check', async ({ page }) => {
   await page.goto('/preview/application');
   await waitForReadiness(page);
 
@@ -17,6 +17,12 @@ test('application skip link - accessibility check', async ({ page }) => {
   await skipLink.focus();
   await expect(skipLink).toBeFocused();
   await expect(skipLink).toBeInViewport();
+  await page.keyboard.press('Tab');
+
+  const footerSkipLink = page.getByRole('link', { name: 'Skip to footer' });
+  await expect(footerSkipLink).toBeFocused();
+  await expect(footerSkipLink).toBeInViewport();
+  await expect(skipLink).not.toBeInViewport();
 
   const results = await createAxeBuilder(page)
     .include('ix-application')

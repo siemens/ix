@@ -27,6 +27,7 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
         <ix-menu-item>Home</ix-menu-item>
       </ix-menu>
       <ix-content>Page content</ix-content>
+      <button slot="bottom">Footer action</button>
     </ix-application>
   `);
 
@@ -48,31 +49,89 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'renders a native skip link with default semantics',
+  'renders a semantic skip-link list for available destinations',
   async ({ mount, page }) => {
-    await mount(`<ix-application>Page content</ix-application>`);
+    await mount(`
+      <ix-application>
+        Page content
+        <div slot="bottom">Footer content</div>
+      </ix-application>
+    `);
 
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    await expect(link).toHaveAttribute('href', '#ix-application-main-content');
+    const list = page.getByRole('list');
+    await expect(list).toHaveCount(1);
+    await expect(list.getByRole('listitem')).toHaveCount(2);
+    await expect(
+      list.getByRole('link', { name: 'Skip to main content' })
+    ).toHaveAttribute('href', '#ix-application-main-content');
+    await expect(
+      list.getByRole('link', { name: 'Skip to footer' })
+    ).toHaveAttribute('href', '#ix-application-footer');
+    await expect(page.getByRole('contentinfo')).toBeVisible();
   }
 );
 
 regressionTest(
-  'places the skip link first in the application focus order',
+  'places Main before Footer in the application focus order',
   async ({ mount, page }) => {
     await mount(`
       <ix-application>
         <button slot="application-header">Header action</button>
         <button>Content action</button>
+        <button slot="bottom">Footer action</button>
       </ix-application>
     `);
 
     await expect(page.locator('ix-application')).toHaveClass(/\bhydrated\b/);
+    await expect(
+      page.getByRole('link', { name: 'Skip to footer' })
+    ).toHaveCount(1);
     await page.keyboard.press('Tab');
 
     await expect(
       page.getByRole('link', { name: 'Skip to main content' })
     ).toBeFocused();
+
+    await page.keyboard.press('Tab');
+    await expect(
+      page.getByRole('link', { name: 'Skip to footer' })
+    ).toBeFocused();
+
+    await page.keyboard.press('Tab');
+    await expect(
+      page.getByRole('button', { name: 'Header action' })
+    ).toBeFocused();
+  }
+);
+
+regressionTest(
+  'adds and removes the Footer destination with bottom-slot content',
+  async ({ mount, page }) => {
+    await mount(`<ix-application>Page content</ix-application>`);
+
+    const application = page.locator('ix-application');
+    const footerLink = page.getByRole('link', { name: 'Skip to footer' });
+    const footer = application.locator('footer');
+
+    await expect(footerLink).toHaveCount(0);
+    await expect(footer).toHaveAttribute('hidden', '');
+
+    await application.evaluate((element) => {
+      const footerContent = document.createElement('span');
+      footerContent.slot = 'bottom';
+      footerContent.textContent = 'Footer content';
+      element.append(footerContent);
+    });
+
+    await expect(footerLink).toBeVisible();
+    await expect(footer).not.toHaveAttribute('hidden', '');
+
+    await application.evaluate((element) => {
+      element.querySelector('[slot="bottom"]')?.remove();
+    });
+
+    await expect(footerLink).toHaveCount(0);
+    await expect(footer).toHaveAttribute('hidden', '');
   }
 );
 
@@ -107,24 +166,39 @@ regressionTest(
   'shows the skip link at logical top-start only while focused',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 800, height: 600 });
-    await mount(`<ix-application>Page content</ix-application>`);
+    await mount(`
+      <ix-application>
+        Page content
+        <div slot="bottom">Footer content</div>
+      </ix-application>
+    `);
 
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    await expect(link).not.toBeInViewport();
+    const mainLink = page.getByRole('link', { name: 'Skip to main content' });
+    const footerLink = page.getByRole('link', { name: 'Skip to footer' });
+    await expect(mainLink).not.toBeInViewport();
+    await expect(footerLink).not.toBeInViewport();
 
-    await link.focus();
+    await mainLink.focus();
 
-    await expect(link).toBeInViewport();
-    const outlineInset = await link.evaluate((element) => {
+    await expect(mainLink).toBeInViewport();
+    await expect(footerLink).not.toBeInViewport();
+    const outlineInset = await mainLink.evaluate((element) => {
       const style = getComputedStyle(element);
       return (
         Number.parseFloat(style.outlineWidth) +
         Number.parseFloat(style.outlineOffset)
       );
     });
-    const ltrBox = await link.boundingBox();
+    const ltrBox = await mainLink.boundingBox();
     expect(ltrBox?.x).toBe(outlineInset);
     expect(ltrBox?.y).toBe(outlineInset);
+
+    await page.keyboard.press('Tab');
+    await expect(mainLink).not.toBeInViewport();
+    await expect(footerLink).toBeInViewport();
+    const footerBox = await footerLink.boundingBox();
+    expect(footerBox?.x).toBe(ltrBox?.x);
+    expect(footerBox?.y).toBe(ltrBox?.y);
 
     await page.locator('ix-application').evaluate((element) => {
       element.style.setProperty('--ix-safe-area-inset-top', '1rem');
@@ -132,13 +206,47 @@ regressionTest(
       element.style.setProperty('--ix-safe-area-inset-right', '1rem');
       element.setAttribute('dir', 'rtl');
     });
-    await link.focus();
+    await footerLink.focus();
 
-    const rtlBox = await link.boundingBox();
+    const rtlBox = await footerLink.boundingBox();
     expect(rtlBox?.y).toBe(16 + outlineInset);
     expect(800 - (rtlBox?.x ?? 0) - (rtlBox?.width ?? 0)).toBe(
       16 + outlineInset
     );
+  }
+);
+
+regressionTest(
+  'focuses the Footer without changing Main scroll position',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 800, height: 400 });
+    await mount(`
+      <ix-application>
+        <div style="height: 1200px">Page content</div>
+        <button slot="bottom">Footer action</button>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const main = application.getByRole('main');
+    const footer = application.getByRole('contentinfo');
+    const footerLink = page.getByRole('link', { name: 'Skip to footer' });
+
+    await main.evaluate((element) => (element.scrollTop = 300));
+    await expect
+      .poll(() => main.evaluate((element) => element.scrollTop))
+      .toBe(300);
+
+    await footerLink.focus();
+    await footerLink.press('Enter');
+
+    await expect(footer).toBeFocused();
+    expect(await main.evaluate((element) => element.scrollTop)).toBe(300);
+
+    await page.keyboard.press('Tab');
+    await expect(
+      page.getByRole('button', { name: 'Footer action' })
+    ).toBeFocused();
   }
 );
 
@@ -173,7 +281,7 @@ regressionTest(
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 800, height: 400 });
     await mount(`
-      <ix-application skip-link-target-id="page-title">
+      <ix-application skip-link-main-target-id="page-title">
         <div style="height: 900px"></div>
         <h1 id="page-title">Page title</h1>
         <button id="next">Next</button>
@@ -202,7 +310,7 @@ regressionTest(
   'supports custom target IDs that require selector escaping',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application skip-link-target-id='content"section'>
+      <ix-application skip-link-main-target-id='content"section'>
         <h1 id='content"section'>Escaped target</h1>
       </ix-application>
     `);
@@ -219,7 +327,7 @@ regressionTest(
   'restores temporary focusability when switching custom targets',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application skip-link-target-id="first-target">
+      <ix-application skip-link-main-target-id="first-target">
         <h1 id="first-target">First target</h1>
         <h2 id="second-target">Second target</h2>
         <button id="next">Next</button>
@@ -236,7 +344,7 @@ regressionTest(
     await expect(firstTarget).toHaveAttribute('tabindex', '-1');
 
     await application.evaluate((element: HTMLIxApplicationElement) => {
-      element.skipLinkTargetId = 'second-target';
+      element.skipLinkMainTargetId = 'second-target';
     });
     await expect(link).toHaveAttribute('href', '#second-target');
     await link.evaluate((element: HTMLAnchorElement) => element.click());
@@ -254,7 +362,7 @@ regressionTest(
   'preserves existing target focusability',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <div id="target" tabindex="0">Target</div>
         <button id="next">Next</button>
       </ix-application>
@@ -275,7 +383,7 @@ regressionTest(
   'does not add tabindex to a naturally focusable target',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <button id="target">Target</button>
       </ix-application>
     `);
@@ -294,7 +402,7 @@ const invalidTargetCases = [
   {
     name: 'missing',
     markup: `
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         Page content
       </ix-application>
     `,
@@ -302,7 +410,7 @@ const invalidTargetCases = [
   {
     name: 'duplicate',
     markup: `
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <div id="target">First</div>
         <div id="target">Second</div>
       </ix-application>
@@ -312,7 +420,7 @@ const invalidTargetCases = [
     name: 'out-of-scope',
     markup: `
       <div id="target">Outside target</div>
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         Page content
       </ix-application>
     `,
@@ -320,7 +428,7 @@ const invalidTargetCases = [
   {
     name: 'hidden',
     markup: `
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <div id="target" hidden>Hidden target</div>
       </ix-application>
     `,
@@ -328,7 +436,7 @@ const invalidTargetCases = [
   {
     name: 'inert',
     markup: `
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <div inert>
           <div id="target">Inert target</div>
         </div>
@@ -338,7 +446,7 @@ const invalidTargetCases = [
   {
     name: 'disabled',
     markup: `
-      <ix-application skip-link-target-id="target">
+      <ix-application skip-link-main-target-id="target">
         <button id="target" disabled>Disabled target</button>
       </ix-application>
     `,
@@ -358,7 +466,7 @@ for (const { name, markup } of invalidTargetCases) {
 
       await expect(page.locator('ix-application main')).toBeFocused();
       expect(warnings).toContainEqual(
-        expect.stringContaining('skipLinkTargetId "target"')
+        expect.stringContaining('skipLinkMainTargetId "target"')
       );
     }
   );
@@ -369,16 +477,21 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <ix-application
-        i18n-skip-to-content="Zum Inhalt springen"
-        skip-link-target-id="content"
+        i18n-skip-to-main="Zum Inhalt springen"
+        i18n-skip-to-footer="Zur Fußzeile springen"
+        skip-link-main-target-id="content"
       >
         <div id="content">Inhalt</div>
+        <div slot="bottom">Fußzeile</div>
       </ix-application>
     `);
 
     await expect(
       page.getByRole('link', { name: 'Zum Inhalt springen' })
     ).toHaveAttribute('href', '#content');
+    await expect(
+      page.getByRole('link', { name: 'Zur Fußzeile springen' })
+    ).toHaveAttribute('href', '#ix-application-footer');
   }
 );
 
@@ -387,32 +500,46 @@ regressionTest(
   async ({ mount, page }) => {
     const warnings = captureWarnings(page);
     await mount(`
-      <ix-application i18n-skip-to-content="   ">
+      <ix-application
+        i18n-skip-to-main="   "
+        i18n-skip-to-footer="   "
+      >
         Page content
+        <div slot="bottom">Footer content</div>
       </ix-application>
     `);
 
     await expect(
       page.getByRole('link', { name: 'Skip to main content' })
     ).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: 'Skip to footer' })
+    ).toBeVisible();
     expect(warnings).toContainEqual(
-      expect.stringContaining('i18nSkipToContent must not be empty')
+      expect.stringContaining('i18nSkipToMain must not be empty')
+    );
+    expect(warnings).toContainEqual(
+      expect.stringContaining('i18nSkipToFooter must not be empty')
     );
   }
 );
 
 regressionTest(
-  'can disable the built-in skip link',
+  'can disable the built-in skip-link list',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application disable-skip-link>
+      <ix-application disable-skip-links>
         <button slot="application-header">Header action</button>
         <button>Content action</button>
+        <button slot="bottom">Footer action</button>
       </ix-application>
     `);
 
     await expect(
       page.getByRole('link', { name: 'Skip to main content' })
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole('link', { name: 'Skip to footer' })
     ).toHaveCount(0);
 
     await expect(page.locator('ix-application')).toHaveClass(/\bhydrated\b/);
@@ -426,18 +553,28 @@ regressionTest(
 regressionTest(
   'does not update browser history or the URL fragment',
   async ({ mount, page }) => {
-    await mount(`<ix-application>Page content</ix-application>`);
+    await mount(`
+      <ix-application>
+        Page content
+        <div slot="bottom">Footer content</div>
+      </ix-application>
+    `);
 
     const initialUrl = page.url();
     const initialHistoryLength = await page.evaluate(() => history.length);
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    await link.focus();
-    await link.press('Enter');
+    const links = [
+      page.getByRole('link', { name: 'Skip to main content' }),
+      page.getByRole('link', { name: 'Skip to footer' }),
+    ];
 
-    expect(page.url()).toBe(initialUrl);
-    expect(await page.evaluate(() => history.length)).toBe(
-      initialHistoryLength
-    );
+    for (const link of links) {
+      await link.focus();
+      await link.press('Enter');
+      expect(page.url()).toBe(initialUrl);
+      expect(await page.evaluate(() => history.length)).toBe(
+        initialHistoryLength
+      );
+    }
   }
 );
 

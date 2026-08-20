@@ -19,6 +19,10 @@ regressionTest('focused skip link', async ({ page }) => {
   });
   await skipLink.focus();
   await expect(skipLink).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(
+    page.getByRole('link', { name: 'Skip to footer' })
+  ).toBeFocused();
 
   await expect(page).toHaveScreenshot({
     fullPage: true,
