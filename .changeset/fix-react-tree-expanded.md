@@ -1,5 +1,8 @@
 ---
-'@siemens/ix-react': patch
+'@siemens/ix-react': major
 ---
 
-Fix the `onNodeToggled` event payload type to expose `isExpanded` with the correct spelling.
+Correct the `onNodeToggled` event payload type by renaming `isExpaned` to `isExpanded`.
+
+Update event handlers to access `event.detail.isExpanded` instead of
+`event.detail.isExpaned`.
