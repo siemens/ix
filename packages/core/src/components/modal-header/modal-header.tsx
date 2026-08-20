@@ -79,13 +79,12 @@ export class ModalHeader {
    */
   @Event() closeClick!: EventEmitter<MouseEvent>;
 
-  private parentDialog!: HTMLIxModalElement;
+  private parentDialog?: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.parentDialog = closestPassShadow(
-      this.hostElement,
-      'ix-modal'
-    ) as HTMLIxModalElement;
+    this.parentDialog = closestPassShadow(this.hostElement, 'ix-modal') as
+      | HTMLIxModalElement
+      | undefined;
     this.onIconChange(this.icon);
   }
 
@@ -95,7 +94,7 @@ export class ModalHeader {
       return;
     }
 
-    this.parentDialog.dismissModal();
+    this.parentDialog?.dismissModal();
   }
 
   render() {

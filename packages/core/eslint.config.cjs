@@ -52,6 +52,21 @@ module.exports = [
       'react/jsx-uses-react': 0,
       'react/react-in-jsx-scope': 0,
       '@typescript-eslint/no-confusing-non-null-assertion': 'error',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            "TSNonNullExpression:not([expression.type='MemberExpression'][expression.property.name='shadowRoot']):not([expression.type='CallExpression'][expression.callee.type='MemberExpression'][expression.callee.property.name='querySelector'])",
+          message:
+            'Avoid non-null assertion (!). Use safer narrowing, except for shadowRoot access and querySelector(...) results.',
+        },
+        {
+          selector:
+            "PropertyDefinition[definite=true]:not(:has(Decorator[expression.callee.name='Event'])):not(:has(Decorator[expression.callee.name='Prop'])):not(:has(Decorator[expression.callee.name='Element'])):not(:has(Decorator[expression.callee.name='Element'])):not(:has(Decorator[expression.callee.name='AttachInternals']))",
+          message:
+            'Avoid definite assignment assertion (!). Initialize the field or use an allowed decorator field.',
+        },
+      ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
       'no-unused-vars': 'off',

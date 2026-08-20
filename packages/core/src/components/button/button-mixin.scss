@@ -14,6 +14,13 @@
 @use './button-variants' as *;
 
 @use './button.vars' as *;
+
+@mixin btn-active-look($name) {
+  border-color: var(--ix-button-#{$name}--border-color--active);
+  background-color: var(--ix-button-#{$name}--background--active);
+  color: var(--ix-button-#{$name}--color--active);
+}
+
 @mixin btn-base-variant($name) {
   .btn-#{$name} {
     text-align: start;
@@ -56,9 +63,7 @@
     }
 
     @include hover.active {
-      border-color: var(--ix-button-#{$name}--border-color--active);
-      background-color: var(--ix-button-#{$name}--background--active);
-      color: var(--ix-button-#{$name}--color--active);
+      @include btn-active-look($name);
     }
   }
 }
@@ -81,6 +86,13 @@
 @mixin btn-variant($name) {
   :host {
     @include btn-base-variant($name);
+  }
+
+  // Host class `active` locks Figma Active (e.g. overlay open). Not a selected or toggle state.
+  :host(.active:not(.disabled)) {
+    .btn-#{$name}:not(.disabled):not(:disabled) {
+      @include btn-active-look($name);
+    }
   }
 
   :host(.disabled) {

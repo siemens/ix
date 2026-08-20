@@ -170,9 +170,11 @@ regressionTest(
     const slotBox = await slotContainer.boundingBox();
     const closeBox = await closeButton.boundingBox();
 
-    expect(slotBox).not.toBeNull();
-    expect(closeBox).not.toBeNull();
-    expect(slotBox!.x + slotBox!.width).toBeLessThanOrEqual(closeBox!.x);
+    if (!slotBox || !closeBox) {
+      throw new Error('Expected chip slot and close button bounding boxes');
+    }
+
+    expect(slotBox.x + slotBox.width).toBeLessThanOrEqual(closeBox.x);
   }
 );
 
@@ -234,7 +236,9 @@ regressionTest(
     const chipMain = page.locator('ix-chip').locator('.chip-main');
     const chipMainBox = await chipMain.boundingBox();
 
-    expect(chipMainBox).not.toBeNull();
+    if (!chipMainBox) {
+      throw new Error('Expected chip main bounding box');
+    }
 
     const getBackgroundColor = () =>
       chipMain.evaluate((element) => getComputedStyle(element).backgroundColor);
@@ -242,8 +246,8 @@ regressionTest(
     const defaultBackgroundColor = await getBackgroundColor();
 
     await page.mouse.move(
-      chipMainBox!.x + chipMainBox!.width / 2,
-      chipMainBox!.y + chipMainBox!.height / 2
+      chipMainBox.x + chipMainBox.width / 2,
+      chipMainBox.y + chipMainBox.height / 2
     );
     await expect.poll(getBackgroundColor).toBe(defaultBackgroundColor);
 

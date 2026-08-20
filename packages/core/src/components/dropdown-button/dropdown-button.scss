@@ -36,28 +36,6 @@
   }
 }
 
-// Apply the expanded active look to nested ix-button / ix-icon-button.
-@mixin expanded-active-variant($name) {
-  --ix-button-#{$name}--background: var(
-    --ix-dropdown-button-#{$name}--background--active
-  );
-  --ix-button-#{$name}--background--hover: var(
-    --ix-dropdown-button-#{$name}--background--active
-  );
-  --ix-button-#{$name}--color: var(
-    --ix-dropdown-button-#{$name}--color--active
-  );
-  --ix-button-#{$name}--color--hover: var(
-    --ix-dropdown-button-#{$name}--color--active
-  );
-  --ix-button-#{$name}--border-color: var(
-    --ix-dropdown-button-#{$name}--border-color--active
-  );
-  --ix-button-#{$name}--border-color--hover: var(
-    --ix-dropdown-button-#{$name}--border-color--active
-  );
-}
-
 :host {
   display: inline-block;
   position: relative;
@@ -162,11 +140,10 @@
 }
 
 :host([aria-expanded='true']) {
-  ix-button,
-  ix-icon-button {
-    @each $variant in $dropdown-button-variants {
-      @include expanded-active-variant($variant);
-    }
+  @each $variant in $dropdown-button-variants {
+    --ix-dropdown-button-#{$variant}--color: var(
+      --ix-dropdown-button-#{$variant}--color--active
+    );
   }
 }
 
