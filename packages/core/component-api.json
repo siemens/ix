@@ -8817,6 +8817,14 @@
           "deprecated": false
         },
         {
+          "name": "dropdownOpenChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
           "name": "inputChange",
           "detail": "string",
           "bubbles": true,
