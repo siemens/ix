@@ -1,5 +1,11 @@
 /\*
 
+## 4.1.1
+
+### Patch Changes
+
+- [#2698](https://github.com/siemens/ix/pull/2698) [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update ix-icons peer dependency to V3.5.0.
+
 ## 4.1.0
 
 ### Minor Changes
