@@ -8,36 +8,103 @@
  */
 import type { FrameworkDelegate } from '@siemens/ix';
 import { registerFrameworkDelegate } from '@siemens/ix/components';
+import type { ReactNode } from 'react';
+import { createElement, Fragment, useLayoutEffect } from 'react';
 import ReactDOMClient from 'react-dom/client';
 let viewInstance = 0;
+
+export const ATTACH_VIEW_TIMEOUT_MS = 5000;
 
 function createViewInstance() {
   return `ix-react-view-${viewInstance++}`;
 }
 
 const mountedRootNodes: Record<string, ReactDOMClient.Root> = {};
+const mountedDomViews = new WeakSet<Element>();
 
-async function fallbackRootDom(id: string, view: React.ReactNode) {
-  return new Promise((resolve) => {
+function CommitSignal({ onCommit }: { onCommit: () => void }) {
+  useLayoutEffect(onCommit, [onCommit]);
+  return null;
+}
+
+async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
+  return new Promise<Element>((resolve, reject) => {
     const rootElement = document.createElement('DIV');
     rootElement.id = id;
     rootElement.style.display = 'contents';
     document.body.appendChild(rootElement);
 
     const root = ReactDOMClient.createRoot(rootElement);
-    root.render(view);
-
     mountedRootNodes[id] = root;
 
-    setTimeout(() => {
+    let settled = false;
+
+    const cleanup = () => {
+      clearTimeout(timeoutId);
+      root.unmount();
+      delete mountedRootNodes[id];
+      rootElement.remove();
+    };
+
+    const settleResolve = (value: Element) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      resolve(value);
+    };
+
+    const settleReject = (error: unknown) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      cleanup();
+      reject(error);
+    };
+
+    const timeoutId = setTimeout(() => {
+      settleReject(
+        new Error(
+          `React view did not commit within ${ATTACH_VIEW_TIMEOUT_MS}ms`
+        )
+      );
+    }, ATTACH_VIEW_TIMEOUT_MS);
+
+    const onCommit = () => {
       const viewElement = rootElement.children[0];
-      resolve(viewElement);
-    });
+      if (!(viewElement instanceof Element)) {
+        queueMicrotask(() => {
+          settleReject(new Error('React view did not render a host element'));
+        });
+        return;
+      }
+
+      clearTimeout(timeoutId);
+      settleResolve(viewElement);
+    };
+
+    try {
+      root.render(
+        createElement(
+          Fragment,
+          null,
+          view,
+          createElement(CommitSignal, { onCommit })
+        )
+      );
+    } catch (error) {
+      settleReject(error);
+    }
   });
 }
 
-async function fallbackRemoveViewFromRootDom(view: any) {
+async function fallbackRemoveViewFromRootDom(view: Element) {
   const parent = view.parentElement;
+  if (!parent) {
+    throw new Error('Cannot remove a view without a parent element');
+  }
+
   const id = parent.id;
   if (id in mountedRootNodes) {
     mountedRootNodes[id].unmount();
@@ -47,7 +114,7 @@ async function fallbackRemoveViewFromRootDom(view: any) {
 }
 
 export class ReactFrameworkDelegate implements FrameworkDelegate {
-  attachViewToPortal?: (id: string, view: any) => Promise<Element>;
+  attachViewToPortal?: (id: string, view: ReactNode) => Promise<Element>;
   removeViewFromPortal?: (id: string) => void;
 
   resolvePortalInitPromise: (() => void) | undefined;
@@ -60,29 +127,53 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
     );
   }
 
-  async attachView(view: any): Promise<any> {
+  async attachView<R = HTMLElement>(view: ReactNode | HTMLElement): Promise<R> {
+    if (view instanceof HTMLElement) {
+      document.body.appendChild(view);
+      mountedDomViews.add(view);
+      return view as R;
+    }
+
     const id = createViewInstance();
 
     if (!this.isUsingReactPortal) {
-      return fallbackRootDom(id, view);
+      return (await fallbackRootDom(id, view)) as R;
     }
 
     await this.isPortalReady();
     if (this.attachViewToPortal) {
-      const refElement = await this.attachViewToPortal(id, view);
-      return refElement;
+      return (await this.attachViewToPortal(id, view)) as R;
     }
 
-    console.error('Portal could not be initialized');
+    throw new Error('React portal could not be initialized');
   }
 
-  async removeView(view: any): Promise<void> {
+  async removeView(view: unknown): Promise<void> {
+    if (!(view instanceof Element)) {
+      throw new TypeError('A React framework view must be a DOM element');
+    }
+
+    if (mountedDomViews.has(view)) {
+      mountedDomViews.delete(view);
+      view.remove();
+      return;
+    }
+
     if (!this.removeViewFromPortal) {
       return fallbackRemoveViewFromRootDom(view);
     }
 
     const parent = view.parentElement;
+    if (!parent) {
+      throw new Error('Cannot remove a view without a parent element');
+    }
+
     const id = parent.getAttribute('data-portal-id');
+    if (!id) {
+      throw new Error(
+        'Cannot remove a portal view without a portal identifier'
+      );
+    }
 
     this.removeViewFromPortal(id);
   }
