@@ -39,7 +39,7 @@ const showModalLoadingWithDependencies = createShowModalLoading([
 export * from './modal';
 
 export type ModalConfig = {
-  content: React.ReactNode | string;
+  content: React.ReactNode | HTMLElement;
 };
 
 export async function showModal(
