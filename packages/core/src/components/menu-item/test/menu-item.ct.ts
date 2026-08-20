@@ -30,58 +30,101 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest(
   'shares ARIA observation across hosts',
   async ({ mount, page }) => {
-    await page.evaluate(() => {
-      const NativeMutationObserver = window.MutationObserver;
-      const ariaObservers = new Set<MutationObserver>();
-
-      window.MutationObserver = class extends NativeMutationObserver {
-        override observe(target: Node, options?: MutationObserverInit): void {
-          if (
-            options?.attributeFilter?.includes('aria-label') &&
-            options.attributeFilter.includes('role')
-          ) {
-            ariaObservers.add(this);
-          }
-          super.observe(target, options);
-        }
+    const originalGlobals = await page.evaluateHandle(() => {
+      const testWindow = window as Window & {
+        getAriaObserverCount?: () => number;
       };
 
-      (
-        window as Window & { getAriaObserverCount: () => number }
-      ).getAriaObserverCount = () => ariaObservers.size;
+      return {
+        mutationObserver: window.MutationObserver,
+        getAriaObserverCount: testWindow.getAriaObserverCount,
+        hadGetAriaObserverCount: Object.hasOwn(
+          testWindow,
+          'getAriaObserverCount'
+        ),
+      };
     });
 
-    const items = Array.from(
-      { length: 100 },
-      (_, index) => `<ix-menu-item>Item ${index}</ix-menu-item>`
-    ).join('');
-    await mount(`<ix-application><ix-menu>${items}</ix-menu></ix-application>`);
+    try {
+      await page.evaluate(() => {
+        const NativeMutationObserver = window.MutationObserver;
+        const ariaObservers = new Set<MutationObserver>();
 
-    const menuItems = page.locator('ix-menu-item');
-    await expect(menuItems).toHaveCount(100);
-    await expect(menuItems.last()).toHaveClass(/hydrated/);
+        window.MutationObserver = class extends NativeMutationObserver {
+          override observe(target: Node, options?: MutationObserverInit): void {
+            if (
+              options?.attributeFilter?.includes('aria-label') &&
+              options.attributeFilter.includes('role')
+            ) {
+              ariaObservers.add(this);
+            }
+            super.observe(target, options);
+          }
+        };
 
-    await menuItems.evaluateAll((elements) => {
-      elements.forEach((element, index) =>
-        element.setAttribute('aria-label', `Item label ${index}`)
-      );
-    });
-
-    await expect(menuItems.first().getByRole('menuitem')).toHaveAttribute(
-      'aria-label',
-      'Item label 0'
-    );
-    await expect(menuItems.last().getByRole('menuitem')).toHaveAttribute(
-      'aria-label',
-      'Item label 99'
-    );
-    expect(
-      await page.evaluate(() =>
         (
-          window as Window & { getAriaObserverCount: () => number }
-        ).getAriaObserverCount()
-      )
-    ).toBe(1);
+          window as Window & { getAriaObserverCount?: () => number }
+        ).getAriaObserverCount = () => ariaObservers.size;
+      });
+
+      const items = Array.from(
+        { length: 100 },
+        (_, index) => `<ix-menu-item>Item ${index}</ix-menu-item>`
+      ).join('');
+      await mount(
+        `<ix-application><ix-menu>${items}</ix-menu></ix-application>`
+      );
+
+      const menuItems = page.locator('ix-menu-item');
+      await expect(menuItems).toHaveCount(100);
+      await expect(menuItems.last()).toHaveClass(/hydrated/);
+
+      await menuItems.evaluateAll((elements) => {
+        elements.forEach((element, index) =>
+          element.setAttribute('aria-label', `Item label ${index}`)
+        );
+      });
+
+      await expect(menuItems.first().getByRole('menuitem')).toHaveAttribute(
+        'aria-label',
+        'Item label 0'
+      );
+      await expect(menuItems.last().getByRole('menuitem')).toHaveAttribute(
+        'aria-label',
+        'Item label 99'
+      );
+      expect(
+        await page.evaluate(() =>
+          (
+            window as Window & { getAriaObserverCount?: () => number }
+          ).getAriaObserverCount?.()
+        )
+      ).toBe(1);
+    } finally {
+      try {
+        await page.evaluate(
+          ({
+            mutationObserver,
+            getAriaObserverCount,
+            hadGetAriaObserverCount,
+          }) => {
+            const testWindow = window as Window & {
+              getAriaObserverCount?: () => number;
+            };
+
+            window.MutationObserver = mutationObserver;
+            if (hadGetAriaObserverCount) {
+              testWindow.getAriaObserverCount = getAriaObserverCount;
+            } else {
+              Reflect.deleteProperty(testWindow, 'getAriaObserverCount');
+            }
+          },
+          originalGlobals
+        );
+      } finally {
+        await originalGlobals.dispose();
+      }
+    }
   }
 );
 
