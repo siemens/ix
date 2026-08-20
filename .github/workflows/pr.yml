@@ -20,6 +20,9 @@ env:
   CORPORATE_THEME_VERSION: ${{ vars.CORPORATE_THEME_VERSION }}
 
 jobs:
+  # Builds, installs and every turbo invocation run on the host runner so all jobs
+  # share one cache version and one hash space. Only browser-driven commands are
+  # executed inside the pinned Playwright image, see actions/playwright-container.
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -30,6 +33,9 @@ jobs:
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
       unittests_any_changed: ${{ steps.changes.outputs.unittests_any_changed }}
       accessibility_any_changed: ${{ steps.changes.outputs.accessibility_any_changed }}
+      visual_testing_any_changed: ${{ steps.changes.outputs.visual_testing_any_changed }}
+      memlab_any_changed: ${{ steps.changes.outputs.memlab_any_changed }}
+      ci_any_changed: ${{ steps.changes.outputs.ci_any_changed }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Track changes between commits
@@ -61,14 +67,25 @@ jobs:
             accessibility:
               - packages/storybook-docs/**
               - packages/core/**
+            visual_testing:
+              - testing/visual-testing/**
+            memlab:
+              - testing/performance-memlab/**
+            ci:
+              - .github/workflows/**
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - turbo.json
   build:
-    needs: changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - uses: ./.github/workflows/actions/turbo
+        with:
+          save-cache: 'true'
 
       - name: Build
         run: pnpm build --cache-dir=.turbo
@@ -86,7 +103,7 @@ jobs:
           path: ./packages/documentation/build
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.visual_testing_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -120,7 +137,7 @@ jobs:
           blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -134,7 +151,7 @@ jobs:
           projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -148,17 +165,29 @@ jobs:
           projectPath: './packages/echarts/playwright-report/'
 
   unit:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: core
+            packages: '@siemens/ix'
+          - group: angular
+            packages: 'angular-test-app angular-standalone-test-app @siemens/ix-angular'
+          - group: react-vue
+            packages: 'react-test-app @siemens/ix-react vue-test-app @siemens/ix-vue'
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
+        with:
+          packages: ${{ matrix.packages }}
 
   accessibility:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -168,7 +197,7 @@ jobs:
       - uses: ./.github/workflows/actions/storybook
 
   unit-memlab:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.memlab_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -178,6 +207,5 @@ jobs:
 
       - name: Test
         run: |
-          cd testing/performance-memlab
           pnpm dlx puppeteer browsers install chrome@127.0.6533.88
-          pnpm test.memlab
+          pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo

@@ -12,7 +12,11 @@
     "CORPORATE_THEME_VERSION",
     "CORPORATE_THEME_URL"
   ],
-  "globalPassThroughEnv": ["CORPORATE_THEME_TOKEN"],
+  "globalPassThroughEnv": [
+    "CORPORATE_THEME_TOKEN",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "CHROME_BIN"
+  ],
   "globalDependencies": [".env*", "**/.env*"],
   "ui": "stream",
   "tasks": {
@@ -46,13 +50,14 @@
       "cache": false
     },
     "visual-regression": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.setup": {
       "cache": false
     },
     "test": {
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.memlab": {
