@@ -129,10 +129,8 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
 
   async attachView<R = HTMLElement>(view: ReactNode | HTMLElement): Promise<R> {
     if (view instanceof HTMLElement) {
-      if (!view.isConnected) {
-        document.body.appendChild(view);
-        mountedDomViews.add(view);
-      }
+      document.body.appendChild(view);
+      mountedDomViews.add(view);
       return view as R;
     }
 

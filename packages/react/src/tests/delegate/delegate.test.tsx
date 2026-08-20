@@ -23,6 +23,7 @@ const rootSelector = '[id^="ix-react-view-"]';
 
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   reactFrameworkDelegate.isUsingReactPortal = false;
   document
     .querySelectorAll(rootSelector)
@@ -58,23 +59,44 @@ describe('ReactFrameworkDelegate', () => {
   });
 
   it('waits for React to commit before resolving a delayed render', async () => {
+    vi.useFakeTimers();
+
+    let ready = false;
+    let resolveRender = () => {};
+    const renderReady = new Promise<void>((resolve) => {
+      resolveRender = () => {
+        ready = true;
+        resolve();
+      };
+    });
+    function DelayedView() {
+      if (!ready) {
+        throw renderReady;
+      }
+      return <div>Delayed content</div>;
+    }
+
     const delegate = new ReactFrameworkDelegate();
-
-    const viewPromise = delegate.attachView(<div>Delayed content</div>);
-
-    await waitFor(async () => {
-      const view = await viewPromise;
-      expect(view).toHaveTextContent('Delayed content');
+    let resolved = false;
+    const viewPromise = delegate.attachView(<DelayedView />).then((view) => {
+      resolved = true;
+      return view;
     });
 
+    await vi.advanceTimersByTimeAsync(0);
+    expect(resolved).toBe(false);
+
+    resolveRender();
+    await vi.advanceTimersByTimeAsync(0);
     const view = await viewPromise;
+    expect(view).toHaveTextContent('Delayed content');
     await delegate.removeView(view);
   });
 
   it('rejects with a timeout and cleans up the root container when the view never commits', async () => {
     vi.useFakeTimers();
 
-    function NeverCommits() {
+    function NeverCommits(): never {
       throw new Promise(() => {
         // never resolves, so the render never commits
       });
@@ -90,7 +112,6 @@ describe('ReactFrameworkDelegate', () => {
     await vi.advanceTimersByTimeAsync(ATTACH_VIEW_TIMEOUT_MS);
     await assertion;
 
-    vi.useRealTimers();
     expect(document.querySelector(rootSelector)).toBeNull();
   });
 

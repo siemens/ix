@@ -12,7 +12,13 @@ import { afterEach, describe, expect, it } from 'vitest';
 import Content from './toast';
 import { iconStar } from '@siemens/ix-icons/icons';
 
-afterEach(cleanup);
+let toastContainer: Element | null = null;
+
+afterEach(() => {
+  cleanup();
+  toastContainer?.remove();
+  toastContainer = null;
+});
 
 describe(`toast`, () => {
   it(`basic`, async () => {
@@ -23,6 +29,7 @@ describe(`toast`, () => {
 
     await customElements.whenDefined('ix-toast');
     await customElements.whenDefined('ix-toast-container');
+    toastContainer = document.querySelector('ix-toast-container');
 
     const toast = await screen.findByText('Foobar');
 
