@@ -27,10 +27,7 @@ function CommitSignal({ onCommit }: { onCommit: () => void }) {
   return null;
 }
 
-async function fallbackRootDom(
-  id: string,
-  view: ReactNode
-): Promise<Element> {
+async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
   return new Promise<Element>((resolve, reject) => {
     const rootElement = document.createElement('DIV');
     rootElement.id = id;
@@ -130,9 +127,7 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
     );
   }
 
-  async attachView<R = HTMLElement>(
-    view: ReactNode | HTMLElement
-  ): Promise<R> {
+  async attachView<R = HTMLElement>(view: ReactNode | HTMLElement): Promise<R> {
     if (view instanceof HTMLElement) {
       if (!view.isConnected) {
         document.body.appendChild(view);
