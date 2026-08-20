@@ -143,6 +143,11 @@ export const InheritAriaAttributesMixin = <
 
       const hostElement = this.#getHostElement();
       const removeAttribute = hostElement.removeAttribute.bind(hostElement);
+
+      // ARIA attributes are moved from the host to the internal element during
+      // initialization. When Angular later calls removeAttribute(), the host
+      // attribute is already absent, so no MutationObserver record is created.
+      // Intercept the call to also clear the forwarded internal attribute.
       hostElement.removeAttribute = (attributeName) => {
         removeAttribute(attributeName);
 
