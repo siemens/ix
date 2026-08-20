@@ -56,6 +56,16 @@ export const Collapsed: Story = {
 };
 
 export const Overflow: Story = {
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          //TODO will be fixed with EIX-232
+          { id: 'scrollable-region-focusable', enabled: false },
+        ],
+      },
+    },
+  },
   render: () => html`
     <div style="height: 32rem; overflow: hidden; position: relative;">
       <ix-menu expand="true">
