@@ -316,6 +316,7 @@ regressionTest(
     const dropdown = button.locator('ix-dropdown');
     await expect(dropdown).toBeVisible();
     await expect(button).toHaveAttribute('aria-expanded', 'true');
+    await expect(button.locator('ix-button')).toHaveClass(/\bactive\b/);
 
     await expect(button).toHaveCSS('outline-style', 'none');
   }

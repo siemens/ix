@@ -271,7 +271,10 @@ export class DropdownButton
           {this.label || this.label === null ? (
             <ix-button
               {...commonProperties}
-              class={'internal-button'}
+              class={{
+                'internal-button': true,
+                active: this.dropdownShow,
+              }}
               alignment="start"
               inert={true}
               ref={(ref) => forceTabIndex(ref, -1)}
@@ -308,6 +311,7 @@ export class DropdownButton
             <div>
               <ix-icon-button
                 {...commonProperties}
+                class={{ active: this.dropdownShow }}
                 icon={this.icon}
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
