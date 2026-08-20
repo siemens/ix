@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import type { Components } from '@siemens/ix/components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxList;
@@ -27,33 +27,32 @@ const createItem = (
   return item;
 };
 
+const renderList = (
+  args: Element,
+  items: HTMLIxListItemElement[] = [
+    createItem('Factory overview', {
+      description: 'Updated 5 minutes ago',
+      icon: 'project',
+    }),
+    createItem('Production line 1', {
+      description: 'Running normally',
+      icon: 'project',
+    }),
+    createItem('Archived project', { disabled: true }),
+  ]
+) => {
+  const container = genericRender('ix-list', args);
+  const list = container.querySelector('ix-list') as HTMLIxListElement;
+  list.setAttribute('aria-label', 'Projects');
+  list.append(...items);
+
+  return container;
+};
+
 const meta = {
   title: 'Example/List',
   tags: [],
-  render: (args) => {
-    const list = genericRender('ix-list', args) as unknown as HTMLIxListElement;
-    list.setAttribute('aria-label', 'Projects');
-
-    const firstItem = createItem('Factory overview', {
-      actionOnHover: true,
-      description: 'Updated 5 minutes ago',
-      status: 'Online',
-    });
-    const action = document.createElement('ix-button');
-    action.slot = 'action';
-    action.variant = 'tertiary';
-    action.textContent = 'Open';
-    firstItem.appendChild(action);
-
-    list.append(
-      firstItem,
-      createItem('Production line 1', { checkbox: true, selected: true }),
-      createItem('Production line 2', { checkbox: true }),
-      createItem('Archived project', { disabled: true })
-    );
-
-    return list;
-  },
+  render: (args) => renderList(args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-list', {}),
   parameters: {},
 } satisfies Meta<Element>;
@@ -68,69 +67,57 @@ export const Default: Story = {
   },
 };
 
-export const Spaced: Story = {
+export const Variants: Story = {
+  render: (args) =>
+    renderList(args, [
+      createItem('Ghost item', { variant: 'ghost' }),
+      createItem('Outline item', { variant: 'outline' }),
+      createItem('Filled item', { variant: 'filled' }),
+    ]),
   args: {
-    hasDivider: false,
-    itemGap: '8',
-  },
-};
-
-export const ItemDefaults: Story = {
-  args: {
-    variant: 'outline',
-    checkbox: true,
-    actionOnHover: true,
-  },
-};
-
-export const WithStandaloneSeparators: Story = {
-  render: (args) => {
-    const list = genericRender('ix-list', args) as unknown as HTMLIxListElement;
-    list.setAttribute('aria-label', 'Projects');
-
-    list.append(
-      createItem('Factory overview', {
-        description: 'Updated 5 minutes ago',
-      }),
-      document.createElement('ix-list-item-separator'),
-      createItem('Production line 1', { checkbox: true, selected: true }),
-      document.createElement('ix-list-item-separator'),
-      createItem('Production line 2', { checkbox: true })
-    );
-
-    return list;
-  },
-  args: {
-    hasDivider: false,
     itemGap: 8,
   },
 };
 
-export const Draggable: Story = {
-  render: (args) => {
-    const list = meta.render(args);
-    list.addEventListener('itemOrderChange', () => {
-      list.dataset.order = Array.from(list.querySelectorAll('ix-list-item'))
-        .map((item) => item.label)
-        .join(',');
-    });
-    return list;
-  },
+export const Selection: Story = {
+  render: (args) =>
+    renderList(args, [
+      createItem('Factory overview', { checkbox: true, selected: true }),
+      createItem('Production line 1', { checkbox: true }),
+      createItem('Production line 2', { checkbox: true }),
+    ]),
   args: {
-    draggable: true,
-    hasDivider: false,
     itemGap: 4,
   },
 };
 
-export const Constrained: Story = {
+export const Actions: Story = {
   render: (args) => {
-    const list = meta.render(args);
-    list.style.cssText = 'display: block; max-height: 10rem; width: 24rem;';
-    return list;
+    const firstItem = createItem('Factory overview', {
+      description: 'Updated 5 minutes ago',
+    });
+    const action = document.createElement('ix-icon-button');
+    action.slot = 'action';
+    action.variant = 'subtle-tertiary';
+    action.textContent = 'Open';
+    action.icon = 'edit';
+    firstItem.append(action);
+
+    return renderList(args, [
+      firstItem,
+      createItem('Production line 1'),
+      createItem('Production line 2'),
+    ]);
   },
   args: {
-    hasDivider: true,
+    itemGap: 4,
+  },
+};
+
+export const Draggable: Story = {
+  args: {
+    dragBehavior: 'dynamic',
+    draggable: true,
     itemGap: 4,
   },
 };
