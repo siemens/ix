@@ -190,6 +190,8 @@ regressionTest('updates inherited ARIA attributes', async ({ mount, page }) => {
     const parent = element.parentElement;
     element.remove();
     element.setAttribute('aria-label', 'Changed while disconnected');
+    element.setAttribute('aria-level', '2');
+    element.setAttribute('data-reconnect-marker', 'preserved');
     parent?.append(element);
   });
 
@@ -197,6 +199,10 @@ regressionTest('updates inherited ARIA attributes', async ({ mount, page }) => {
     'aria-label',
     'Changed while disconnected'
   );
+  await expect(button).toHaveAttribute('aria-level', '2');
+  await expect(menuItem).not.toHaveAttribute('aria-label');
+  await expect(menuItem).not.toHaveAttribute('aria-level');
+  await expect(menuItem).toHaveAttribute('data-reconnect-marker', 'preserved');
 });
 
 async function expectMenuItemToHaveTooltip(

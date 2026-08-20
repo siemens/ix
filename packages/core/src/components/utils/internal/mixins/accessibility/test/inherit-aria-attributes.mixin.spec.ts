@@ -235,6 +235,7 @@ describe('InheritAriaAttributesMixin', () => {
     expect(component.inheritAriaAttributes['aria-label']).toBe(
       'While disconnected'
     );
+    expect(hostElement).not.toHaveAttribute('aria-label');
     expect(MutationObserverMock.instances).toHaveLength(2);
 
     component.disconnectedCallback();

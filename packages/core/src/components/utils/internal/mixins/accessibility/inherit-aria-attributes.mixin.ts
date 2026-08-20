@@ -192,11 +192,17 @@ export const InheritAriaAttributesMixin = <
 
       if (this.#ariaObserverInitialized) {
         const hostElement = this.#getHostElement();
+        this.#observeAriaAttributes();
+
         if (this.#ariaAttributesBeforeDisconnect) {
+          const inheritedAttributes = this.readAriaAttributesFromHost();
+
           a11yAttributes.forEach((attributeName) => {
             const oldValue =
               this.#ariaAttributesBeforeDisconnect?.get(attributeName) ?? null;
-            const newValue = hostElement.getAttribute(attributeName);
+            const newValue =
+              inheritedAttributes[attributeName] ??
+              hostElement.getAttribute(attributeName);
             if (
               newValue !== oldValue ||
               this.#ariaAttributesChangedWhileDisconnected.has(attributeName)
@@ -208,7 +214,6 @@ export const InheritAriaAttributesMixin = <
             }
           });
         }
-        this.#observeAriaAttributes();
       }
       this.#ariaAttributesBeforeDisconnect = undefined;
       this.#ariaAttributesChangedWhileDisconnected.clear();
