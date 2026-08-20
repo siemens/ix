@@ -7,9 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, State } from '@stencil/core';
-import { getSlottedElements } from '../utils/shadow-dom';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
  * @slot default - Context menu items.
@@ -23,17 +24,45 @@ export class GroupContextMenu {
   @Element() hostElement!: HTMLIxGroupContextMenuElement;
 
   @State() showContextMenu = false;
+  @State() dropdownShow = false;
+
+  private dropdownElement?: HTMLIxDropdownElement;
 
   private getTrigger() {
     return this.hostElement;
+  }
+
+  private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    this.dropdownShow = event.detail;
+  };
+
+  private unbindDropdown() {
+    this.dropdownElement?.removeEventListener(
+      'showChanged',
+      this.onDropdownShowChanged
+    );
+    this.dropdownElement = undefined;
   }
 
   private configureDropdown(
     dropdownElement: HTMLIxDropdownElement,
     triggerElement: HTMLElement
   ) {
+    if (this.dropdownElement !== dropdownElement) {
+      this.unbindDropdown();
+      dropdownElement.addEventListener(
+        'showChanged',
+        this.onDropdownShowChanged
+      );
+      this.dropdownElement = dropdownElement;
+    }
+
     dropdownElement.positioningStrategy = 'fixed';
     dropdownElement.trigger = triggerElement;
+  }
+
+  disconnectedCallback() {
+    this.unbindDropdown();
   }
 
   private onSlotChange() {
@@ -50,11 +79,9 @@ export class GroupContextMenu {
 
     const triggerElement = this.getTrigger();
 
-    if (!triggerElement) {
-      return;
-    }
-
-    if (!dropdownElement) {
+    if (!triggerElement || !dropdownElement) {
+      this.unbindDropdown();
+      this.dropdownShow = false;
       return;
     }
 
@@ -65,10 +92,15 @@ export class GroupContextMenu {
     return (
       <Host>
         <ix-icon-button
-          class={{ hide: !this.showContextMenu }}
+          class={{
+            hide: !this.showContextMenu,
+            active: this.dropdownShow,
+          }}
           size="24"
           variant="subtle-tertiary"
           icon={iconContextMenu}
+          aria-expanded={a11yBoolean(this.dropdownShow)}
+          aria-haspopup="true"
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>

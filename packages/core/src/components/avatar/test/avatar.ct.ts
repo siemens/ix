@@ -25,6 +25,40 @@ regressionTest.describe('embedded into header', () => {
     await expect(avatar.locator('button')).toBeVisible();
   });
 
+  regressionTest(
+    'marks the header avatar trigger active while the dropdown is open',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar>
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      const trigger = avatar.locator('button');
+      const dropdown = avatar.locator('ix-dropdown');
+
+      await expect(avatar).not.toHaveClass(/\bactive\b/);
+      await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+      await trigger.click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(avatar).toHaveClass(/\bactive\b/);
+      await expect(trigger).toHaveClass(/\bactive\b/);
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+      await page.keyboard.press('Escape');
+      await expect(dropdown).not.toHaveClass(/show/);
+      await expect(avatar).not.toHaveClass(/\bactive\b/);
+      await expect(trigger).not.toHaveClass(/\bactive\b/);
+    }
+  );
+
   regressionTest('show avatar dropdown', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
