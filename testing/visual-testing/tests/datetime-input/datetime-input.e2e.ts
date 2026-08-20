@@ -22,12 +22,14 @@ regressionTest.describe('datetime-input', () => {
     await page.goto('datetime-input/basic');
 
     const datetimeInput = page.locator('ix-datetime-input').first();
-    const calendarButton = datetimeInput.locator('ix-icon-button').first();
+    await datetimeInput.getByRole('button', { name: 'Toggle calendar' }).click();
+    await expect(datetimeInput.getByTestId('datetime-dropdown')).toHaveClass(
+      /show/
+    );
 
-    await calendarButton.click();
-    await datetimeInput
-      .getByRole('button', { name: 'Confirm' })
-      .waitFor({ state: 'visible' });
+    await page.keyboard.press('Tab');
+    await expect(datetimeInput.locator('input')).not.toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixels: 25,

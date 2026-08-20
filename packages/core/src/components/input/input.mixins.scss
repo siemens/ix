@@ -109,6 +109,14 @@ $input-end-container-inset: 0.25rem;
     }
   }
 
+  // Picker fields (date/time/datetime) set host `active` while the overlay is open.
+  :host(.active:not(.disabled):not(.readonly)) {
+    input:not(:disabled):not(:read-only) {
+      @include input.element-input-hover;
+      outline: none;
+    }
+  }
+
   @include form-component.host-valid;
 
   @include form-component.host-info {

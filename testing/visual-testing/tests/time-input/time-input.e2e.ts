@@ -18,6 +18,20 @@ regressionTest.describe('time input', () => {
     });
   });
 
+  regressionTest('dropdown open', async ({ page }) => {
+    await page.goto('time-input/basic');
+
+    const timeInput = page.locator('ix-time-input').first();
+    await timeInput.getByTestId('open-time-picker').click();
+    await expect(timeInput.getByTestId('time-dropdown')).toHaveClass(/show/);
+
+    await page.keyboard.press('Tab');
+    await expect(timeInput.locator('input')).not.toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('validation', async ({ page }) => {
     await page.goto('time-input/validation');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
