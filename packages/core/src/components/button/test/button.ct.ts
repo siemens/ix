@@ -20,7 +20,7 @@ declare global {
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-button>Content</ix-button>`);
   const button = page.locator('ix-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 });
 
 regressionTest('show icon', async ({ mount, page }) => {
@@ -61,7 +61,7 @@ regressionTest(
     await mount(`<ix-button disabled>Content</ix-button>`);
     const button = page.locator('ix-button');
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button).toHaveCSS('pointer-events', 'none');
   }
 );

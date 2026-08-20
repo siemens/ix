@@ -20,7 +20,7 @@ regressionTest('should render with role tabpanel', async ({ mount, page }) => {
     `);
 
   const panel = page.locator('ix-tab-panel');
-  await expect(panel).toHaveClass(/\bhydrated\b/);
+  await expect(panel).toHaveAttribute('hydrated');
   await expect(panel).toHaveAttribute('role', 'tabpanel');
 });
 

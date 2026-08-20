@@ -39,10 +39,10 @@ regressionTest('renders all components', async ({ mount, page }) => {
     </ix-tab-set>
   `);
 
-  await expect(page.locator('ix-tab-set')).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tabs')).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tab-panel').nth(0)).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tab-panel').nth(1)).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-tab-set')).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tabs')).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tab-panel').nth(0)).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tab-panel').nth(1)).toHaveAttribute('hydrated');
 });
 
 regressionTest(

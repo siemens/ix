@@ -13,7 +13,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-upload></ix-upload>`);
   const upload = page.locator('ix-upload');
 
-  await expect(upload).toHaveClass(/hydrated/);
+  await expect(upload).toHaveAttribute('hydrated');
   await expect(upload).toBeVisible();
 });
 

@@ -12,5 +12,5 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
   const blindElement = page.locator('ix-blind');
-  await expect(blindElement).toHaveClass(/hydrated/);
+  await expect(blindElement).toHaveAttribute('hydrated');
 });

@@ -19,7 +19,7 @@ const getHourCell = (page: Page, hour: number) =>
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-datetime-picker></ix-datetime-picker>`);
   const datePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
 });
 
 regressionTest(
