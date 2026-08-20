@@ -79,6 +79,7 @@ export class WorkflowStep {
   @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean = false;
+
   @Watch('selected')
   selectedHandler() {
     this.setWorkflowStepStyles();
@@ -138,12 +139,14 @@ export class WorkflowStep {
       this.selectedChanged.emit(this.hostElement);
     }
   }
+
   onKeyDown(event: KeyboardEvent) {
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
       this.onStepClick();
     }
   }
+
   getIconAriaLabel() {
     switch (this.iconName) {
       case iconCircle:
@@ -175,6 +178,7 @@ export class WorkflowStep {
           }
           class="absolute"
           size="24"
+          aria-hidden="true"
         ></ix-icon>
         <ix-icon
           color={this.iconColor}
@@ -185,6 +189,7 @@ export class WorkflowStep {
         ></ix-icon>
       </Fragment>
     ) : null;
+
     return (
       <Host class={{ 'host-vertical': this.vertical }}>
         <div

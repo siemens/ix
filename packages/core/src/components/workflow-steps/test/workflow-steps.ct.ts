@@ -41,6 +41,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
 });
+
 regressionTest(
   'should have correct aria attributes for accessibility',
   async ({ mount, page }) => {
@@ -67,6 +68,10 @@ regressionTest(
 
     await expect(step1Div).toHaveAttribute('role', 'button');
     await expect(step1Div).toHaveAttribute('tabindex', '0');
+    await expect(steps.nth(0).locator('ix-icon').first()).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
     await expect(step2Div).toHaveAttribute('aria-disabled', 'true');
     await expect(step2Div).toHaveAttribute('tabindex', '-1');
@@ -74,6 +79,7 @@ regressionTest(
     await expect(step3Div).toHaveAttribute('aria-current', 'step');
   }
 );
+
 regressionTest('should be clickable', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps clickable>
@@ -118,6 +124,7 @@ regressionTest('should prevent click navigation', async ({ mount, page }) => {
   await expect(firstStepDiv).toHaveClass(/selected/);
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
+
 regressionTest(
   'supports keyboard selection via Enter and Space',
   async ({ mount, page }) => {
