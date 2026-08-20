@@ -14,30 +14,30 @@ import {
 } from '../date-time-locale';
 
 describe('formatWithLocale', () => {
-  const dt = DateTime.fromObject({ year: 2023, month: 9, day: 5 });
+  const dt = DateTime.fromObject({ year: 2023, month: 3, day: 5 });
 
   it('formats without locale using en-US defaults', () => {
-    expect(formatWithLocale(dt, 'yyyy/LL/dd')).toBe('2023/09/05');
+    expect(formatWithLocale(dt, 'yyyy/LL/dd')).toBe('2023/03/05');
   });
 
   it('formats numeric tokens identically regardless of locale', () => {
-    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'de')).toBe('2023/09/05');
-    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'ja')).toBe('2023/09/05');
-    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'ru')).toBe('2023/09/05');
+    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'de')).toBe('2023/03/05');
+    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'ja')).toBe('2023/03/05');
+    expect(formatWithLocale(dt, 'yyyy/LL/dd', 'ru')).toBe('2023/03/05');
   });
 
   it('formats locale-dependent tokens in the target locale', () => {
     const germanMonth = formatWithLocale(dt, 'MMMM', 'de');
-    expect(germanMonth.toLowerCase()).toContain('september');
+    expect(germanMonth.toLowerCase()).toContain('märz');
 
     const englishMonth = formatWithLocale(dt, 'MMMM');
-    expect(englishMonth).toBe('September');
+    expect(englishMonth).toBe('March');
   });
 
   it('formats full date with locale-dependent month name', () => {
     const result = formatWithLocale(dt, 'dd MMMM yyyy', 'de');
     expect(result).toMatch(/^05 .+ 2023$/);
-    expect(result.toLowerCase()).toContain('september');
+    expect(result.toLowerCase()).toContain('märz');
   });
 });
 
@@ -59,10 +59,10 @@ describe('parseWithLocale', () => {
   });
 
   it('parses a locale-dependent format with the correct locale', () => {
-    const result = parseWithLocale('05 September 2023', 'dd MMMM yyyy', 'de');
+    const result = parseWithLocale('05 März 2023', 'dd MMMM yyyy', 'de');
     expect(result.isValid).toBe(true);
     expect(result.year).toBe(2023);
-    expect(result.month).toBe(9);
+    expect(result.month).toBe(3);
     expect(result.day).toBe(5);
   });
 

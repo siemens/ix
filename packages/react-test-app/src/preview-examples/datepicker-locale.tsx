@@ -108,7 +108,7 @@ export default () => {
               <span
                 style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem' }}
               >
-                Last dateChange event
+                Last date-picker event
               </span>
               {lastEvent === null ? (
                 <span style={{ color: 'var(--theme-color-soft-text)' }}>

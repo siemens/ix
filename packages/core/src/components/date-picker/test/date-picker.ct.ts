@@ -356,7 +356,7 @@ regressionTest.describe('locale support', () => {
     'locale-dependent format produces localized from value',
     async ({ mount, page }) => {
       await mount(
-        `<ix-date-picker from="2023/09/05" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+        `<ix-date-picker from="2023/03/05" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
       );
       await page.waitForSelector('ix-date-time-card');
 
@@ -366,8 +366,8 @@ regressionTest.describe('locale support', () => {
       );
 
       const result = await currentDate;
-      expect(result.from).toContain('September');
-      expect(result.isoFrom).toBe('2023-09-05');
+      expect(result.from).toContain('März');
+      expect(result.isoFrom).toBe('2023-03-05');
       expect(result.isoTo).toBeUndefined();
     }
   );

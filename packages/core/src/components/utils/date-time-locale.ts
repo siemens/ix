@@ -26,8 +26,6 @@ export function toISODate(dt: DateTime | undefined): string | undefined {
   return dt?.isValid ? (dt.toISODate() ?? undefined) : undefined;
 }
 
-export function toISOTime(time: string | undefined): string | undefined {
-  
+export function toISOTime(dt: DateTime | undefined): string | undefined {
+  return dt?.isValid ? (dt.toISOTime() ?? undefined) : undefined;
 }
-
-

@@ -112,10 +112,10 @@ export class DateInput
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
-   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
-   * It does not affect the values returned by methods and events.
+   * The locale is used to translate the labels for weekdays and months,
+   * determine the default order of weekdays, and parse user input.
+   * Values emitted via `valueChange` reflect the locale-formatted string
+   * as typed or selected by the user.
    */
   @Prop() locale?: string;
 

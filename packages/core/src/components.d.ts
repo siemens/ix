@@ -1670,6 +1670,7 @@ export namespace Components {
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
           * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'AM'
          */
         "i18nAm": string;
@@ -1680,26 +1681,31 @@ export namespace Components {
         "i18nDone": string;
         /**
           * Text for the time picker hour column header.
+          * @since 6.0.0
           * @default 'hr'
          */
         "i18nHourColumnHeader": string;
         /**
           * Text for the time picker millisecond column header.
+          * @since 6.0.0
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader": string;
         /**
           * Text for the time picker minute column header.
+          * @since 6.0.0
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
         /**
           * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'PM'
          */
         "i18nPm": string;
         /**
           * Text for the time picker second column header.
+          * @since 6.0.0
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;

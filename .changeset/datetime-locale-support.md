@@ -16,3 +16,6 @@ If your code reads these fields and expects locale-neutral strings, migrate to t
  **New props:**
  - `ix-time-picker` and `ix-time-input`: `locale`, `i18nAm`, and `i18nPm` 
  - `ix-datetime-picker`: `i18nAm`, `i18nPm`, `i18nHourColumnHeader`, `i18nMinuteColumnHeader`, `i18nSecondColumnHeader`, and `i18nMillisecondColumnHeader`
+
+**Updated `ix-date-input` locale behavior:**
+The `locale` prop now explicitly affects input parsing and the values emitted via `valueChange`. Previous documentation incorrectly stated that locale does not affect returned values.
