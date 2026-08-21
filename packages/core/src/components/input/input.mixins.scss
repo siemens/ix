@@ -113,7 +113,6 @@ $input-end-container-inset: 0.25rem;
   :host(.active:not(.disabled):not(.readonly)) {
     input:not(:disabled):not(:read-only) {
       @include input.element-input-hover;
-      outline: none;
     }
   }
 
