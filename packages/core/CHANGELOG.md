@@ -1,5 +1,15 @@
 # @siemens/ix
 
+## 5.2.1
+
+### Patch Changes
+
+- [#2726](https://github.com/siemens/ix/pull/2726) [`5d02ab3`](https://github.com/siemens/ix/commit/5d02ab3c3eea160d19037a5759729311e1252b7a) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Keep the Active look on the `ix-date-dropdown` trigger while the picker is open.
+
+- [#2734](https://github.com/siemens/ix/pull/2734) [`e360630`](https://github.com/siemens/ix/commit/e36063060e068961793f91b38c33cfbcfa93e9c8) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix Angular NgModule menu initialization so interpolated ARIA attributes no longer cause `ariaAttributeChanged` runtime errors. Reliably forward dynamic ARIA attribute updates and removals to internal elements, and keep an explicit `role` on `ix-tabs` from overriding its internal `tablist` role.
+
+  Fixes [#2716](https://github.com/siemens/ix/issues/2716)
+
 ## 5.2.0
 
 ### Minor Changes
