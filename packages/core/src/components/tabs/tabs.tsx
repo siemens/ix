@@ -21,6 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { A11yAttributeName } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { TabClickDetail } from '../tab-item/tab-item.types';
 import { emitEvent } from '../utils/event';
@@ -45,6 +46,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 })
 export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   @Element() override hostElement!: HTMLIxTabsElement;
+
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return ['role'];
+  }
 
   /**
    * Set tab items to small size
@@ -141,6 +146,8 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override componentWillLoad() {
+    super.componentWillLoad();
+
     this.onComponentChildrenChange();
     if (this.activeTabKey) {
       this.setTabActive(this.activeTabKey);
@@ -148,6 +155,8 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }

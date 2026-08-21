@@ -290,6 +290,8 @@ export class Popover
   }
 
   override connectedCallback() {
+    super.connectedCallback();
+
     if (this.hasDisconnected) {
       popoverController.connected(this);
       void this.initializePopover();
@@ -316,6 +318,8 @@ export class Popover
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     this.hasDisconnected = true;
     this.clearHideTimeout();
     this.disposeAutoUpdate?.();
