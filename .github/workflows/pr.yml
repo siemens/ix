@@ -51,19 +51,16 @@ jobs:
               - packages/echarts/**
             docs:
               - packages/documentation/**
-              - packages/example-styles/**
-              - packages/html-test-app/**
-              - packages/angular-test-app/**
-              - packages/react-test-app/**
-              - packages/vue-test-app/**
+              - examples/**
             unittests:
               - packages/core/**
               - packages/angular/**
               - packages/react/**
               - packages/vue/**
-              - packages/angular-test-app/**
-              - packages/react-test-app/**
-              - packages/vue-test-app/**
+              - testing/angular-test-app/**
+              - testing/angular-standalone-test-app/**
+              - testing/react-test-app/**
+              - testing/vue-test-app/**
             accessibility:
               - packages/storybook-docs/**
               - packages/core/**

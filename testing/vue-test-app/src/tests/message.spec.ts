@@ -6,9 +6,37 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { IxButton, showMessage } from '@siemens/ix-vue';
 import { render, waitFor } from '@testing-library/vue';
+import { defineComponent } from 'vue';
 import { describe, expect, it } from 'vitest';
-import MessageComponent from '../preview-examples/message.vue';
+
+const MessageComponent = defineComponent({
+  components: {
+    IxButton,
+  },
+  setup() {
+    const triggerMessage = async () => {
+      (
+        await showMessage.success(
+          'Example title',
+          'message',
+          'Save',
+          'Cancel',
+          'payload:save',
+          'payload:cancel'
+        )
+      ).once(() => {});
+    };
+
+    return {
+      triggerMessage,
+    };
+  },
+  template: `
+    <IxButton @click="triggerMessage">Show 'success' message</IxButton>
+  `,
+});
 
 describe('Message Events', () => {
   it('should remove message modal from DOM after close (validates camelCase event handling)', async () => {
