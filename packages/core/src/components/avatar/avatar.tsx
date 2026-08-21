@@ -107,11 +107,19 @@ function UserInfo(
     userName: string;
     extra?: string;
     ariaLabel?: string;
+    wrapUsername?: boolean;
   }>
 ) {
+  const noTruncate = props.wrapUsername === true;
   return (
     <Fragment>
-      <div class="user-info" onClick={(event) => event.preventDefault()}>
+      <div
+        class={{
+          'user-info': true,
+          'user-info--no-truncate': noTruncate,
+        }}
+        onClick={(event) => event.preventDefault()}
+      >
         <AvatarImage
           image={props.image}
           initials={props.initials}
@@ -181,6 +189,14 @@ export class Avatar
    * @since 4.0.0
    */
   @Prop() ariaLabelTooltip?: string;
+
+  /**
+   * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis.
+   * Note: Only working if avatar is part of the ix-application-header
+   *
+   * @since 5.2.0
+   */
+  @Prop() wrapUsername: boolean = false;
 
   @State() isClosestApplicationHeader = false;
   @State() dropdownShow = false;
@@ -359,6 +375,7 @@ export class Avatar
                   initials={this.initials}
                   userName={this.username}
                   ariaLabel={ariaLabel}
+                  wrapUsername={this.wrapUsername}
                 />
                 {this.hasSlottedElements && (
                   <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>
