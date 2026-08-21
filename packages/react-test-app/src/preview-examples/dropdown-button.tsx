@@ -15,20 +15,28 @@ import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 export default () => {
   return (
     <div className="dropdown-button">
-      <IxDropdownButton label="Dropdown" icon={iconCheckboxes}>
-        <IxDropdownItem label="Item 1"></IxDropdownItem>
-        <IxDropdownItem label="Item 2"></IxDropdownItem>
-      </IxDropdownButton>
-      <IxDropdownButton variant="subtle-primary" label="Dropdown" icon={iconCheckboxes}>
-        <IxDropdownItem label="Item 1"></IxDropdownItem>
-        <IxDropdownItem label="Item 2"></IxDropdownItem>
-      </IxDropdownButton>
-      <IxDropdownButton variant="tertiary" label="Dropdown" icon={iconCheckboxes}>
+      <IxDropdownButton label="Primary dropdown" icon={iconCheckboxes}>
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
-        label="Dropdown"
+        variant="subtle-primary"
+        label="Subtle primary dropdown"
+        icon={iconCheckboxes}
+      >
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
+      </IxDropdownButton>
+      <IxDropdownButton
+        variant="tertiary"
+        label="Tertiary dropdown"
+        icon={iconCheckboxes}
+      >
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
+      </IxDropdownButton>
+      <IxDropdownButton
+        label="Disabled dropdown"
         disabled
         icon={iconCheckboxes}
       ></IxDropdownButton>

@@ -14,19 +14,27 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <div class="example">
-      <ix-dropdown-button label="Dropdown" icon="checkboxes">
+      <ix-dropdown-button label="Primary dropdown" icon="checkboxes">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button variant="subtle-primary" label="Dropdown" icon="checkboxes">
+      <ix-dropdown-button
+        variant="subtle-primary"
+        label="Subtle primary dropdown"
+        icon="checkboxes"
+      >
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button variant="tertiary" label="Dropdown" icon="checkboxes">
+      <ix-dropdown-button
+        variant="tertiary"
+        label="Tertiary dropdown"
+        icon="checkboxes"
+      >
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button label="Dropdown" disabled icon="checkboxes">
+      <ix-dropdown-button label="Disabled dropdown" disabled icon="checkboxes">
       </ix-dropdown-button>
     </div>
   `,

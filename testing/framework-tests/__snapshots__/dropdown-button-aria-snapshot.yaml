@@ -1,12 +1,4 @@
-- button "Dropdown":
-  - img
-  - img
-- button "Dropdown":
-  - img
-  - img
-- button "Dropdown":
-  - img
-  - img
-- button "Dropdown" [disabled]:
-  - img
-  - img
+- button "Primary dropdown"
+- button "Subtle primary dropdown"
+- button "Tertiary dropdown"
+- button "Disabled dropdown" [disabled]
