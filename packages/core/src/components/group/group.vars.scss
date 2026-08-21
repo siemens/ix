@@ -1,0 +1,35 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-group-border-radius: var(--theme-group--border-radius);
+  --ix-group-header-color: var(--theme-group-header--color);
+  --ix-group-subheader-color: var(--theme-group-subheader--color);
+
+  --ix-group-item-background: var(--theme-group-item--background);
+  --ix-group-item-background-hover: var(--theme-group-item--background--hover);
+  --ix-group-item-background-active: var(--theme-group-item--background--active);
+  --ix-group-item-background-selected: var(
+    --theme-group-item--background--selected
+  );
+  --ix-group-item-border-color: var(--theme-group-item--border-color);
+
+  --ix-group-item-indicator-background: var(--theme-color-input--focus);
+  --ix-group-item-indicator-background-selected: var(
+    --theme-group-item-indicator--background--selected
+  );
+
+  --ix-group-focus-border-color: var(--theme-color-focus-bdr);
+  --ix-group-focus-border-thickness: var(--theme-focus--border-thickness);
+  --ix-group-focus-border-radius: var(--theme-default-border-radius);
+  --ix-group-focus-outline-offset: var(--theme-btn--focus--outline-offset);
+  --ix-group-separator-width: var(--theme-border-width-default);
+
+  --ix-group-expand-icon-color: var(--theme-color-std-text);
+}

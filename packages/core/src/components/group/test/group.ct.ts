@@ -9,6 +9,23 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import { GroupPage } from './group.page';
+
+const groupWithItems = `
+  <ix-group header="Header text" sub-header="Subheader text">
+    <ix-group-item text="Item 1"></ix-group-item>
+    <ix-group-item text="Item 2"></ix-group-item>
+  </ix-group>
+`;
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(groupWithItems);
+  const group = new GroupPage(page);
+  await group.expectHydrated();
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
@@ -170,5 +187,146 @@ regressionTest(
     await expect(groupItem).not.toHaveAttribute('disabled');
     await groupItem.click();
     await expect(groupItem).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'expand button exposes disclosure ARIA',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.expectExpandAria({
+      expanded: false,
+      accessibleName: 'Header text',
+    });
+    await group.expectExpandControlsContent();
+    await group.expectExpandIconDecorative();
+
+    await group.clickExpand();
+    await group.expectExpandAria({
+      expanded: true,
+      accessibleName: 'Header text',
+    });
+  }
+);
+
+regressionTest(
+  'Space and Enter toggle expand on expand button',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.focusExpand();
+    await group.pressSpace();
+    await group.expectExpanded();
+    await expect(group.expandButton).toHaveAttribute('aria-expanded', 'true');
+
+    await group.pressEnter();
+    await group.expectExpanded(false);
+    await expect(group.expandButton).toHaveAttribute('aria-expanded', 'false');
+  }
+);
+
+regressionTest(
+  'Escape collapses expanded group and focuses expand button',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.clickExpand();
+    await group.expectExpanded();
+
+    await group.focusItem('Item 1');
+    await group.pressEscape();
+
+    await group.expectExpanded(false);
+    await expect(group.expandButton).toBeFocused();
+  }
+);
+
+regressionTest(
+  'Space and Enter select group header',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.expectSelectPressed(false);
+
+    await group.focusSelect();
+    await group.pressSpace();
+    await group.expectSelected();
+    await group.expectSelectPressed(true);
+
+    await group.pressEnter();
+    await group.expectSelected(false);
+    await group.expectSelectPressed(false);
+  }
+);
+
+regressionTest(
+  'suppressHeaderSelection hides select button and keeps expand',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group
+        header="Header text"
+        sub-header="Subheader text"
+        suppress-header-selection
+      >
+        <ix-group-item text="Item 1"></ix-group-item>
+        <ix-group-item text="Item 2"></ix-group-item>
+      </ix-group>
+    `);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.expectNoSelectButton();
+
+    await group.focusExpand();
+    await group.pressSpace();
+    await group.expectExpanded();
+    await expect(group.expandButton).toHaveAttribute('aria-expanded', 'true');
+  }
+);
+
+regressionTest(
+  'Escape does not collapse group while context menu is open',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group header="Header text" expanded>
+        <ix-dropdown slot="dropdown">
+          <ix-dropdown-item label="Edit"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-group-item text="Item 1"></ix-group-item>
+      </ix-group>
+    `);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+    await group.expectExpanded();
+
+    await group.openContextMenu();
+    await group.expectDropdownOpen();
+
+    await group.pressEscape();
+    await group.expectDropdownOpen(false);
+    await group.expectExpanded();
+  }
+);
+
+regressionTest(
+  'Tab order is header select then expand',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.focusSelect();
+    await expect(group.selectButton()).toBeFocused();
+    await group.pressTab();
+    await expect(group.expandButton).toBeFocused();
   }
 );
