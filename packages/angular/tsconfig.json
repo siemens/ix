@@ -16,7 +16,7 @@
     "declarationDir": "dist",
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es2017"],
+    "lib": ["dom", "es2020"],
     "module": "es2015",
     "moduleResolution": "bundler",
     "noImplicitAny": true,

@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { iconCheckboxes } from '@siemens/ix-icons/icons';
-import { IxDropdownButton } from '@siemens/ix-vue';
+import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./dropdown-button.css"></style>
