@@ -57,6 +57,9 @@ export class GroupContextMenu {
       this.dropdownElement = dropdownElement;
     }
 
+    // showChanged does not replay current state when the slotted dropdown is replaced.
+    this.dropdownShow = dropdownElement.show;
+
     dropdownElement.positioningStrategy = 'fixed';
     dropdownElement.trigger = triggerElement;
   }
