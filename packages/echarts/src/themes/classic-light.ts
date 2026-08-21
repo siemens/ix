@@ -8,28 +8,28 @@
  */
 
 const textStyleDefault = {
-  color: '#000000',
-  fontFamily: 'Siemens Sans, sans-serif',
+  color: '#000609',
+  fontFamily: 'Arial, Helvetica, sans-serif',
 };
 
 const colors = [
-  '#00838F' /* theme-chart-3 */,
-  '#00572B' /* theme-chart-2 */,
-  '#0041D6' /* theme-chart-8 */,
-  '#008A7C' /* theme-chart-1 */,
-  '#0076A8' /* theme-chart-6 */,
-  '#003C61' /* theme-chart-4 */,
-  '#7C40FF' /* theme-chart-10 */,
-  '#4A52F2' /* theme-chart-9 */,
-  '#900EEC' /* theme-chart-11 */,
-  '#9E5833' /* theme-chart-14 */,
-  '#6F2542' /* theme-chart-13 */,
-  '#AA32BE' /* theme-chart-12 */,
-  '#182171' /* theme-chart-7 */,
-  '#B74E2A' /* theme-chart-15 */,
-  '#73735E' /* theme-chart-16 */,
-  '#7A8000' /* theme-chart-17 */,
-  '#61778C' /* theme-chart-5 */,
+  '#0096B4' /* si.sys.data.categorical.3 */,
+  '#1A747D' /* si.sys.data.categorical.2 */,
+  '#00237A' /* si.sys.data.categorical.8 */,
+  '#005159' /* si.sys.data.categorical.1 */,
+  '#3664C6' /* si.sys.data.categorical.6 */,
+  '#002949' /* si.sys.data.categorical.4 */,
+  '#7353E5' /* si.sys.data.categorical.10 */,
+  '#553BA3' /* si.sys.data.categorical.9 */,
+  '#740089' /* si.sys.data.categorical.11 */,
+  '#AB6621' /* si.sys.data.categorical.14 */,
+  '#C04774' /* si.sys.data.categorical.13 */,
+  '#4F153D' /* si.sys.data.categorical.12 */,
+  '#00237A' /* si.sys.data.categorical.7 */,
+  '#FFB266' /* si.sys.data.categorical.15 */,
+  '#C5C5B8' /* si.sys.data.categorical.16 */,
+  '#757563' /* si.sys.data.categorical.17 */,
+  '#405158' /* si.sys.data.categorical.5 */,
 ];
 
 const axisCommon = {
@@ -67,11 +67,14 @@ export default {
   themeName: 'theme-classic-light',
   theme: {
     color: colors,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'transparent',
     textStyle: textStyleDefault,
     title: {
       textStyle: textStyleDefault,
-      subtextStyle: textStyleDefault,
+      subtextStyle: {
+        ...textStyleDefault,
+        color: '#405158',
+      },
     },
     line: {
       itemStyle: {
@@ -98,78 +101,78 @@ export default {
     bar: {
       itemStyle: {
         barBorderWidth: 0,
-        barBorderColor: '#000000',
+        barBorderColor: '#919CA1',
       },
     },
     pie: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     scatter: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     boxplot: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     parallel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     sankey: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     funnel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
     },
     gauge: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#919CA1',
       },
       axisLabel: {
-        color: 'rgba(0, 10, 20, 0.9)',
+        color: '#000609',
       },
     },
     candlestick: {
       itemStyle: {
-        color: '#339b00',
-        color0: '#dc0031',
-        borderColor: '#339b00',
-        borderColor0: '#dc0031',
+        color: '#D72323',
+        color0: '#376F1C',
+        borderColor: '#D72323',
+        borderColor0: '#376F1C',
         borderWidth: 1,
       },
     },
     graph: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#0096B4',
       },
       lineStyle: {
         width: '1',
-        color: '#000000',
+        color: '#0096B4',
       },
       symbolSize: 4,
       symbol: 'circle',
       smooth: false,
       color: colors,
       label: {
-        color: '#ffffff',
+        color: '#FFFFFF',
       },
     },
     categoryAxis: axisCommon,
@@ -178,11 +181,11 @@ export default {
     timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
-        borderColor: '#000000',
+        borderColor: '#405158',
       },
       emphasis: {
         iconStyle: {
-          borderColor: '#000000',
+          borderColor: '#004F69',
         },
       },
     },
@@ -190,18 +193,19 @@ export default {
       textStyle: textStyleDefault,
     },
     tooltip: {
-      backgroundColor: '#ffffffcc',
-      borderColor: '#00000033',
+      backgroundColor: '#FFFFFF',
+      borderColor: '#FFFFFF',
       textStyle: {
-        color: 'rgba(0, 10, 20, .9)',
+        color: '#000609',
+        fontFamily: 'Arial, Helvetica, sans-serif',
       },
       axisPointer: {
         lineStyle: {
-          color: '#000000',
+          color: '#000609',
           width: '1',
         },
         crossStyle: {
-          color: '#000000',
+          color: '#000609',
           width: '1',
         },
       },
@@ -212,37 +216,37 @@ export default {
         width: '1',
       },
       itemStyle: {
-        color: '#000000',
+        color: '#0096B4',
         borderWidth: '1',
       },
       controlStyle: {
-        color: '#0e777c',
-        borderColor: '#0e777c',
+        color: '#006A87',
+        borderColor: '#006A87',
         borderWidth: '1',
       },
       checkpointStyle: {
-        color: '#0e777c',
-        borderColor: '#ffffff',
+        color: '#005159',
+        borderColor: '#FFFFFF',
       },
       label: {
-        color: '#000000',
+        color: '#000609',
       },
       emphasis: {
         itemStyle: {
-          color: '#000000',
+          color: '#0096B4',
         },
         controlStyle: {
-          color: '#0e777c',
-          borderColor: '#0e777c',
+          color: '#006A87',
+          borderColor: '#006A87',
           borderWidth: '1',
         },
         label: {
-          color: '#000000',
+          color: '#000609',
         },
       },
     },
     visualMap: {
-      color: ['#dc0031', '#ff8d00', '#f0b800'],
+      color: ['#D72323', '#BA5D00', '#FCB900'],
     },
     dataZoom: {
       handleSize: 'undefined%',
@@ -253,22 +257,22 @@ export default {
     },
     markPoint: {
       label: {
-        color: 'rgba(0, 10, 20, .9)',
-        textBorderColor: '#fff',
+        color: '#000609',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
     markLine: {
       label: {
-        color: 'rgba(0, 10, 20, .9)',
-        textBorderColor: '#fff',
+        color: '#000609',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
     markArea: {
       label: {
-        color: 'rgba(0, 10, 20, .9)',
-        textBorderColor: '#fff',
+        color: '#000609',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
