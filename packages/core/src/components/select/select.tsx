@@ -1412,6 +1412,7 @@ export class Select
         class={{
           readonly: this.readonly,
           disabled: this.disabled,
+          active: this.dropdownShow,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}

@@ -58,8 +58,7 @@
     }
 
     &:not(.readonly):not(.disabled):hover {
-      border-color: var(--theme-input--border-color--hover) !important;
-      background-color: var(--theme-input--background--hover);
+      @include input.element-input-hover;
     }
 
     &:not(.readonly):not(.disabled).focus {
@@ -196,5 +195,11 @@
 
   .display-none {
     display: none;
+  }
+}
+
+:host(.active:not(.disabled)) {
+  .input-container:not(.readonly):not(.disabled) {
+    @include input.element-input-hover;
   }
 }

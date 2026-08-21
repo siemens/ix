@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Keep date, time, and datetime input fields in the Hover look while their pickers are open.
+Keep date, time, datetime, select, and category-filter fields in the Hover look while their overlays are open.
