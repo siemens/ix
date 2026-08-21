@@ -1048,7 +1048,7 @@ export namespace Components {
          */
         "headerSubtitle": string | undefined;
         /**
-          * Title of Header
+          * Variant of content header
          */
         "headerTitle"?: string;
         /**
@@ -8013,7 +8013,7 @@ declare namespace LocalJSX {
          */
         "headerSubtitle"?: string | undefined;
         /**
-          * Title of Header
+          * Variant of content header
          */
         "headerTitle"?: string;
         /**
