@@ -18,15 +18,19 @@ const snapshotOptions = {
 async function openAndSettlePopover(page: Page) {
   const popover = page.locator('ix-popover').first();
   const trigger = page.locator('ix-button#trigger').first();
+  const dialog = popover.locator('[popover]');
 
   await expect(trigger).toBeVisible();
   await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
   await expect(popover).toHaveAttribute('show', '');
+  await expect(dialog).toBeVisible();
   await expect(trigger).toHaveClass(/\bactive\b/);
 
   // Pointer off trigger so the snapshot is Active-while-open, not :hover.
   await page.mouse.move(5, 5, { steps: 10 });
-  await page.waitForTimeout(300);
+  await expect(popover).toHaveAttribute('show', '');
+  await expect(dialog).toBeVisible();
+  await expect(trigger).toHaveClass(/\bactive\b/);
 }
 
 regressionTest.describe('popover', () => {
@@ -60,10 +64,13 @@ regressionTest.describe('popover', () => {
     await page.goto('popover/hover-trigger');
 
     const trigger = page.locator('ix-button#trigger');
+    const popover = page.locator('ix-popover');
+    const dialog = popover.locator('[popover]');
+
     await trigger.hover();
-    await expect(page.locator('ix-popover')).toHaveAttribute('show', '');
+    await expect(popover).toHaveAttribute('show', '');
+    await expect(dialog).toBeVisible();
     await expect(trigger).toHaveClass(/\bactive\b/);
-    await page.waitForTimeout(300);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       snapshotOptions
