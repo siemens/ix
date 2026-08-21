@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
@@ -20,6 +28,8 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
   shadow: true,
 })
 export class TreeItem {
+  @Element() hostElement!: HTMLIxTreeItemElement;
+
   /**
    * Text
    */
@@ -76,6 +86,16 @@ export class TreeItem {
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
               color="color-std-text"
+              tabIndex={isDisabled ? -1 : 0}
+              role="button"
+              aria-expanded={!!this.context?.isExpanded}
+              aria-disabled={isDisabled ?? false}
+              aria-label={
+                this.ariaLabelChevronIcon ??
+                (this.context?.isExpanded
+                  ? 'Collapse tree item'
+                  : 'Expand tree item')
+              }
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;
@@ -84,17 +104,34 @@ export class TreeItem {
                 e.stopPropagation();
                 this.toggle.emit();
               }}
-              aria-label={
-                this.ariaLabelChevronIcon ??
-                (this.context?.isExpanded
-                  ? 'Collapse tree item'
-                  : 'Expand tree item')
-              }
+              onKeyDown={(e: KeyboardEvent) => {
+                if (isDisabled) {
+                  return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.toggle.emit();
+                }
+              }}
             />
           ) : null}
         </div>
         <div
           class="tree-node-container"
+          role="button"
+          tabIndex={isDisabled ? -1 : 0}
+          aria-disabled={isDisabled ?? false}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (isDisabled) {
+              return;
+            }
+            if (e.key === ' ' || e.key === 'Enter') {
+              e.preventDefault();
+              e.stopPropagation();
+              (e.currentTarget as HTMLElement).click();
+            }
+          }}
           onClick={() => {
             if (isDisabled) {
               return;
