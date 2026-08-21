@@ -91,8 +91,9 @@ export class DropdownButton
   @Prop() placement?: AlignedPlacement;
 
   /**
-   * ARIA label for the dropdown button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the dropdown button.
+   * Set as `aria-label` on the host, which is the interactive control.
+   * The nested button is inert and is not exposed to assistive technology.
    *
    * @since 3.2.0
    */
@@ -219,9 +220,10 @@ export class DropdownButton
 
   override render() {
     const ariaLabel =
-      this.hostAriaLabel ??
-      this.ariaLabelDropdownButton ??
-      (this.label || (this.dropdownShow ? 'Close dropdown' : 'Open dropdown'));
+      this.hostAriaLabel ||
+      this.ariaLabelDropdownButton ||
+      this.label ||
+      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown');
     this.renderedAriaLabel = ariaLabel;
 
     const ariaAttributes = {
@@ -262,12 +264,7 @@ export class DropdownButton
         tabIndex={this.disabled ? -1 : 0}
         {...ariaAttributes}
       >
-        <div
-          class={{
-            'dropdown-button': true,
-            [this.variant]: true,
-          }}
-        >
+        <div class="dropdown-button">
           {this.label || this.label === null ? (
             <ix-button
               {...commonProperties}

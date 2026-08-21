@@ -10,34 +10,6 @@
 @use 'mixins/shadow-dom/component';
 @use './dropdown-button.vars' as *;
 
-@mixin button-state($state) {
-  $variants: (
-    primary,
-    secondary,
-    tertiary,
-    subtle-primary,
-    subtle-secondary,
-    subtle-tertiary,
-    danger-primary,
-    danger-secondary,
-    danger-tertiary
-  );
-
-  @each $variant in $variants {
-    .dropdown-button.#{$variant}:#{$state} {
-      --theme-btn-#{$variant}--border-color: var(
-        --theme-btn-#{$variant}--border-color--#{$state}
-      );
-      --theme-btn-#{$variant}--background: var(
-        --theme-btn-#{$variant}--background--#{$state}
-      );
-      --theme-btn-#{$variant}--color: var(
-        --theme-btn-#{$variant}--color--#{$state}
-      );
-    }
-  }
-}
-
 @mixin triangle($name: '') {
   @if ($name != '') {
     $name: '#{$name}-';
@@ -105,9 +77,6 @@
     height: 100%;
     cursor: pointer;
   }
-
-  @include button-state('hover');
-  @include button-state('active');
 
   .dropdown-button > ix-button {
     width: 100%;

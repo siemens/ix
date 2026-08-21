@@ -84,6 +84,20 @@ regressionTest(
     <ix-dropdown-button id="visible-label" label="Visible label">
       <ix-dropdown-item label="Item"></ix-dropdown-item>
     </ix-dropdown-button>
+    <ix-dropdown-button
+      id="empty-host-label"
+      aria-label=""
+      label="Visible label"
+    >
+      <ix-dropdown-item label="Item"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown-button
+      id="empty-dropdown-button-label"
+      aria-label-dropdown-button=""
+      label="Visible label"
+    >
+      <ix-dropdown-item label="Item"></ix-dropdown-item>
+    </ix-dropdown-button>
   `);
 
     await expect(page.locator('#host-label')).toHaveAccessibleName(
@@ -95,6 +109,12 @@ regressionTest(
     await expect(page.locator('#visible-label')).toHaveAccessibleName(
       'Visible label'
     );
+    await expect(page.locator('#empty-host-label')).toHaveAccessibleName(
+      'Visible label'
+    );
+    await expect(
+      page.locator('#empty-dropdown-button-label')
+    ).toHaveAccessibleName('Visible label');
   }
 );
 
