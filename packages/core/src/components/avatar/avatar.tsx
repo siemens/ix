@@ -326,7 +326,7 @@ export class Avatar
             loading={false}
             selected={false}
             type="button"
-            variant="tertiary"
+            variant="subtle-tertiary"
             extraClasses={{ active: this.dropdownShow }}
             ariaAttributes={{
               role: 'menu',
