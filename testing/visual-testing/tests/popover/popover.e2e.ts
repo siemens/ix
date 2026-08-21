@@ -7,13 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 const snapshotOptions = {
   threshold: 0.05,
   maxDiffPixelRatio: 0.01,
 };
+
+async function openAndSettlePopover(page: Page) {
+  const popover = page.locator('ix-popover').first();
+  const trigger = page.locator('ix-button#trigger').first();
+
+  await expect(trigger).toBeVisible();
+  await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
+  await expect(popover).toHaveAttribute('show', '');
+  await expect(trigger).toHaveClass(/\bactive\b/);
+
+  // Pointer off trigger so the snapshot is Active-while-open, not :hover.
+  await page.mouse.move(5, 5, { steps: 10 });
+  await page.waitForTimeout(300);
+}
 
 regressionTest.describe('popover', () => {
   (
@@ -34,7 +48,7 @@ regressionTest.describe('popover', () => {
   ).forEach((variant) => {
     regressionTest(variant, async ({ page }) => {
       await page.goto(`popover/${variant}`);
-      await page.waitForTimeout(500);
+      await openAndSettlePopover(page);
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         snapshotOptions
@@ -45,8 +59,11 @@ regressionTest.describe('popover', () => {
   regressionTest('hover-trigger', async ({ page }) => {
     await page.goto('popover/hover-trigger');
 
-    await page.locator('ix-button#trigger').hover();
-    await page.waitForTimeout(500);
+    const trigger = page.locator('ix-button#trigger');
+    await trigger.hover();
+    await expect(page.locator('ix-popover')).toHaveAttribute('show', '');
+    await expect(trigger).toHaveClass(/\bactive\b/);
+    await page.waitForTimeout(300);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       snapshotOptions
