@@ -27,8 +27,14 @@ import { makeRef } from '../utils/make-ref';
 import { hasSlottedContent } from '../utils/shadow-dom';
 
 /**
+ * Lets users select an option or toggle a single value on or off.
+ *
+ * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
+ * @figma-main-component-id 42365:47165
+ *
  * @form-ready
- * @slot default - Checkbox label.
+ *
+ * @slot - Checkbox label.
  */
 @Component({
   tag: 'ix-checkbox',

@@ -21,7 +21,11 @@ import { closestPassShadow } from '../utils/shadow-dom';
 import { iconClose } from '@siemens/ix-icons/icons';
 
 /**
- * @slot default - Modal header content.
+ * Header region of a modal dialog showing the title and close control.
+ *
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal header content.
  */
 @Component({
   tag: 'ix-modal-header',

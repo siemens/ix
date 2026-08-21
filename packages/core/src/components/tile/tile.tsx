@@ -10,10 +10,14 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 /**
- * @slot header - Content displayed in the tile header.
- * @slot subheader - Content displayed below the tile header.
- * @slot default - Main tile content.
- * @slot footer - Content displayed in the tile footer.
+ * Container that presents grouped information in a compact tile.
+ *
+ * @figma-main-component-id 1431:43158
+ *
+ * @slot header - Header content.
+ * @slot subheader - Subheader content.
+ * @slot - Tile content.
+ * @slot footer - Footer content.
  */
 @Component({
   tag: 'ix-tile',

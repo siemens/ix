@@ -39,6 +39,11 @@ interface CalendarWeek {
   dayNumbers: (number | undefined)[];
 }
 
+/**
+ * Calendar for selecting a single date or a date range.
+ *
+ * @figma-main-component-id 561:6290
+ */
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',

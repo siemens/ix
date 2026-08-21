@@ -12,6 +12,7 @@
       "@siemens/ix-docs"
     ]
   ],
+  "ignore": ["@siemens/ix-cli"],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

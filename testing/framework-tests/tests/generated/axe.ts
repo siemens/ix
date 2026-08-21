@@ -56,6 +56,7 @@ import './custom-field-axe.spec.ts';
 import './custom-field-validation-axe.spec.ts';
 import './date-dropdown-axe.spec.ts';
 import './date-dropdown-presets-axe.spec.ts';
+import './date-dropdown-user-range-axe.spec.ts';
 import './date-input-axe.spec.ts';
 import './date-input-disabled-axe.spec.ts';
 import './date-input-label-axe.spec.ts';

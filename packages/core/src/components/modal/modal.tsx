@@ -26,7 +26,11 @@ import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
 /**
- * @slot default - Modal sections and content.
+ * Dialog overlay that presents content or requires user interaction on top of the page.
+ *
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal content.
  */
 @Component({
   tag: 'ix-modal',

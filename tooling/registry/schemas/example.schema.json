@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IX Example Definition",
+  "description": "Schema for Siemens IX generated example definition files",
+  "type": "object",
+  "required": ["name", "variants"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "variants": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "html": {
+          "$ref": "#/definitions/variant"
+        },
+        "react": {
+          "$ref": "#/definitions/variant"
+        },
+        "angular": {
+          "$ref": "#/definitions/variant"
+        },
+        "angular-standalone": {
+          "$ref": "#/definitions/variant"
+        },
+        "vue": {
+          "$ref": "#/definitions/variant"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/variant"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "safeRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?!.*[:?#\\\\%])(?!(?:.*/)?\\.{1,2}(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "variant": {
+      "type": "object",
+      "required": ["files"],
+      "properties": {
+        "preview": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["source", "target"],
+            "properties": {
+              "source": {
+                "$ref": "#/definitions/safeRelativePath"
+              },
+              "target": {
+                "$ref": "#/definitions/safeRelativePath"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

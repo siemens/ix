@@ -44,8 +44,13 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 
 /**
- * @slot button-label - Custom content displayed next to the button label.
- * @slot default - Dropdown items.
+ * Button that opens an attached dropdown menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @figma-main-component-id 294:1198
+ *
+ * @slot button-label - Custom button label.
+ * @slot - Dropdown content.
  */
 @Component({
   tag: 'ix-dropdown-button',

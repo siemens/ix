@@ -8,6 +8,9 @@
  */
 import { Component, Host, h } from '@stencil/core';
 
+/**
+ * Internal development playground for previewing and testing components.
+ */
 @Component({
   tag: 'ix-playground',
   styleUrl: 'ix-playground.scss',

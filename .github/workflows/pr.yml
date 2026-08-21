@@ -15,6 +15,10 @@ concurrency:
   group: pr-${{ github.head_ref }}
   cancel-in-progress: true
 
+env:
+  CORPORATE_THEME_TOKEN: ${{ secrets.CORPORATE_THEME_TOKEN }}
+  CORPORATE_THEME_VERSION: ${{ vars.CORPORATE_THEME_VERSION }}
+
 jobs:
   # Builds, installs and every turbo invocation run on the host runner so all jobs
   # share one cache version and one hash space. Only browser-driven commands are
@@ -33,7 +37,7 @@ jobs:
       memlab_any_changed: ${{ steps.changes.outputs.memlab_any_changed }}
       ci_any_changed: ${{ steps.changes.outputs.ci_any_changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Track changes between commits
         id: changes
         uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32
@@ -47,19 +51,16 @@ jobs:
               - packages/echarts/**
             docs:
               - packages/documentation/**
-              - packages/example-styles/**
-              - packages/html-test-app/**
-              - packages/angular-test-app/**
-              - packages/react-test-app/**
-              - packages/vue-test-app/**
+              - examples/**
             unittests:
               - packages/core/**
               - packages/angular/**
               - packages/react/**
               - packages/vue/**
-              - packages/angular-test-app/**
-              - packages/react-test-app/**
-              - packages/vue-test-app/**
+              - testing/angular-test-app/**
+              - testing/angular-standalone-test-app/**
+              - testing/react-test-app/**
+              - testing/vue-test-app/**
             accessibility:
               - packages/storybook-docs/**
               - packages/core/**
@@ -77,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - uses: ./.github/workflows/actions/turbo
         with:
@@ -109,7 +110,7 @@ jobs:
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -124,7 +125,7 @@ jobs:
     needs: [visual-testing-core]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/merge-reports
         with:
@@ -138,7 +139,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -152,7 +153,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -176,7 +177,7 @@ jobs:
           - group: react-vue
             packages: 'react-test-app @siemens/ix-react vue-test-app @siemens/ix-vue'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
         with:
@@ -188,7 +189,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/storybook
 
@@ -198,7 +199,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/workflows/actions/turbo
 
       - name: Test
