@@ -22,13 +22,12 @@ regressionTest.describe('datetime-input', () => {
     await page.goto('datetime-input/basic');
 
     const datetimeInput = page.locator('ix-datetime-input').first();
-    await datetimeInput.getByRole('button', { name: 'Toggle calendar' }).click();
+    const input = datetimeInput.locator('input');
+    await input.click();
     await expect(datetimeInput.getByTestId('datetime-dropdown')).toHaveClass(
       /show/
     );
-
-    await page.keyboard.press('Tab');
-    await expect(datetimeInput.locator('input')).not.toBeFocused();
+    await expect(input).toBeFocused();
     await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({

@@ -22,11 +22,10 @@ regressionTest.describe('time input', () => {
     await page.goto('time-input/basic');
 
     const timeInput = page.locator('ix-time-input').first();
-    await timeInput.getByTestId('open-time-picker').click();
+    const input = timeInput.locator('input');
+    await input.click();
     await expect(timeInput.getByTestId('time-dropdown')).toHaveClass(/show/);
-
-    await page.keyboard.press('Tab');
-    await expect(timeInput.locator('input')).not.toBeFocused();
+    await expect(input).toBeFocused();
     await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
