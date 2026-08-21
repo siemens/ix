@@ -1729,6 +1729,95 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant']
+})
+@Component({
+  selector: 'ix-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant'],
+  outputs: ['itemOrderChange'],
+  standalone: false
+})
+export class IxList {
+  protected el: HTMLIxListElement;
+  @Output() itemOrderChange = new EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { ListItemOrderChangeEvent as IIxListListItemOrderChangeEvent } from '@siemens/ix';
+
+export declare interface IxList extends Components.IxList {
+  /**
+   * Emitted after a list item has been reordered. @since 5.2.0
+   */
+  itemOrderChange: EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant']
+})
+@Component({
+  selector: 'ix-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'tooltipText', 'variant'],
+  outputs: ['itemClick', 'selectedChange'],
+  standalone: false
+})
+export class IxListItem {
+  protected el: HTMLIxListItemElement;
+  @Output() itemClick = new EventEmitter<CustomEvent<HTMLIxListItemElement>>();
+  @Output() selectedChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItem extends Components.IxListItem {
+  /**
+   * Emitted when the primary item surface is activated. @since 5.2.0
+   */
+  itemClick: EventEmitter<CustomEvent<HTMLIxListItemElement>>;
+  /**
+   * Requests a controlled selection update when a checkbox item is activated. @since 5.2.0
+   */
+  selectedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-list-item-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxListItemSeparator {
+  protected el: HTMLIxListItemSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItemSeparator extends Components.IxListItemSeparator {}
+
+
+@ProxyCmp({
   inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nAriaLabelMenu', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nNavigationHint', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })

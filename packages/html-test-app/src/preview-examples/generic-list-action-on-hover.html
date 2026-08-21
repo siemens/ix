@@ -1,0 +1,71 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event list example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconProject,
+        iconEditDocument,
+        iconTrashcan,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconProject,
+        iconEditDocument,
+        iconTrashcan,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-list action-on-hover>
+      <ix-list-item icon="project" label="Item 1">
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+      <ix-list-item icon="project" label="Item 2">
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+      <ix-list-item icon="project" label="Item 3">
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+    </ix-list>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

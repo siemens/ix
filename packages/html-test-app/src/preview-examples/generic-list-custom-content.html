@@ -1,0 +1,146 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event list example</title>
+    <link rel="stylesheet" href="./generic-list-custom-content.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconAlarmBell, iconContextMenu } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconAlarmBell,
+        iconContextMenu,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-list action-slot-alignment="start">
+      <ix-list-item aria-label="Alarm: High temperature">
+        <div class="event-list-content">
+          <div class="event-list-status">
+            <ix-badge
+              type="dot"
+              variant="alarm"
+              role="img"
+              aria-label="Alarm"
+            ></ix-badge>
+            <ix-icon name="alarm-bell" aria-hidden="true"></ix-icon>
+          </div>
+          <div class="event-list-body">
+            <div class="event-list-details">
+              <div class="event-list-title">
+                <ix-badge type="label" label="Alarm" variant="alarm"></ix-badge>
+                <strong>High temperature</strong>
+              </div>
+              <strong>A1214-11241-101</strong>
+              <span class="event-list-location">
+                MyPlant - Cooling water circuit
+              </span>
+            </div>
+            <time class="event-list-timestamp" datetime="2026-05-13T08:50:21">
+              <span>2026-05-13</span>
+              <span>08:50:21</span>
+            </time>
+          </div>
+        </div>
+        <ix-icon-button
+          slot="action"
+          icon="context-menu"
+          variant="subtle-tertiary"
+          aria-label="Open menu for High temperature"
+        ></ix-icon-button>
+      </ix-list-item>
+
+      <ix-list-item aria-label="Warning: Low cooling water pressure">
+        <div class="event-list-content">
+          <div class="event-list-status">
+            <ix-badge
+              type="dot"
+              variant="warning"
+              role="img"
+              aria-label="Warning"
+            ></ix-badge>
+            <ix-icon name="alarm-bell" aria-hidden="true"></ix-icon>
+          </div>
+          <div class="event-list-body">
+            <div class="event-list-details">
+              <div class="event-list-title">
+                <ix-badge
+                  type="label"
+                  label="Warning"
+                  variant="warning"
+                ></ix-badge>
+                <strong>Low cooling water pressure</strong>
+              </div>
+              <strong>P4711-23012-042</strong>
+              <span class="event-list-location">
+                MyPlant - Pump station 2
+              </span>
+            </div>
+            <time class="event-list-timestamp" datetime="2026-05-13T08:42:03">
+              <span>2026-05-13</span>
+              <span>08:42:03</span>
+            </time>
+          </div>
+        </div>
+        <ix-icon-button
+          slot="action"
+          icon="context-menu"
+          variant="subtle-tertiary"
+          aria-label="Open menu for Low cooling water pressure"
+        ></ix-icon-button>
+      </ix-list-item>
+
+      <ix-list-item aria-label="Critical: Drive overload">
+        <div class="event-list-content">
+          <div class="event-list-status">
+            <ix-badge
+              type="dot"
+              variant="critical"
+              role="img"
+              aria-label="Critical"
+            ></ix-badge>
+            <ix-icon name="alarm-bell" aria-hidden="true"></ix-icon>
+          </div>
+          <div class="event-list-body">
+            <div class="event-list-details">
+              <div class="event-list-title">
+                <ix-badge
+                  type="label"
+                  label="Critical"
+                  variant="critical"
+                ></ix-badge>
+                <strong>Drive overload</strong>
+              </div>
+              <strong>M0815-55120-007</strong>
+              <span class="event-list-location">
+                MyPlant - Conveyor line 4
+              </span>
+            </div>
+            <time class="event-list-timestamp" datetime="2026-05-13T08:35:47">
+              <span>2026-05-13</span>
+              <span>08:35:47</span>
+            </time>
+          </div>
+        </div>
+        <ix-icon-button
+          slot="action"
+          icon="context-menu"
+          variant="subtle-tertiary"
+          aria-label="Open menu for Drive overload"
+        ></ix-icon-button>
+      </ix-list-item>
+    </ix-list>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

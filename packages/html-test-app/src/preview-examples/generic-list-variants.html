@@ -1,0 +1,53 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event list example</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconProject } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconProject,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-list has-divider item-gap="0" variant="ghost">
+      <ix-list-item icon="project" label="Item 1"> </ix-list-item>
+      <ix-list-item icon="project" label="Item 2"></ix-list-item>
+      <ix-list-item
+        icon="project"
+        label="Item 3"
+        has-divider="false"
+      ></ix-list-item>
+    </ix-list>
+    <ix-list variant="outline" item-gap="4">
+      <ix-list-item icon="project" label="Item 1"> </ix-list-item>
+      <ix-list-item icon="project" label="Item 2"> </ix-list-item>
+      <ix-list-item icon="project" label="Item 3"> </ix-list-item>
+    </ix-list>
+    <ix-list variant="filled">
+      <ix-list-item icon="project" label="Item 1"></ix-list-item>
+      <ix-list-item icon="project" label="Item 2"></ix-list-item>
+      <ix-list-item icon="project" label="Item 3"></ix-list-item>
+    </ix-list>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

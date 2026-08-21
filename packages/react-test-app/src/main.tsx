@@ -133,6 +133,12 @@ import FormCheckboxValidation from './preview-examples/form-checkbox-validation'
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
 import FormValidation from './preview-examples/form-validation';
+import GenericListActionOnHover from './preview-examples/generic-list-action-on-hover';
+import GenericListAdditionalOptions from './preview-examples/generic-list-additional-options';
+import GenericListBasic from './preview-examples/generic-list-basic';
+import GenericListCustomContent from './preview-examples/generic-list-custom-content';
+import GenericListDraggable from './preview-examples/generic-list-draggable';
+import GenericListVariants from './preview-examples/generic-list-variants';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -384,6 +390,12 @@ const routes: IxPreviewRoutes = {
   '/preview/form-checkbox-group': FormCheckboxGroup,
   '/preview/form-checkbox-validation': FormCheckboxValidation,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
+  '/preview/generic-list-action-on-hover': GenericListActionOnHover,
+  '/preview/generic-list-additional-options': GenericListAdditionalOptions,
+  '/preview/generic-list-basic': GenericListBasic,
+  '/preview/generic-list-custom-content': GenericListCustomContent,
+  '/preview/generic-list-draggable': GenericListDraggable,
+  '/preview/generic-list-variants': GenericListVariants,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,

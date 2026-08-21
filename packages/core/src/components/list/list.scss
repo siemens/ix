@@ -1,0 +1,56 @@
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: block;
+  width: 100%;
+  max-height: inherit;
+
+  @include component.ix-component;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-height: inherit;
+  flex-direction: column;
+  gap: var(--ix-list-item-gap, 0);
+  overflow-y: auto;
+}
+
+::slotted(.ix-list-drag-placeholder) {
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+::slotted(ix-list-item.pointer-dragging) {
+  position: fixed;
+  z-index: 1;
+  top: var(--ix-list-drag-top);
+  left: var(--ix-list-drag-left);
+  width: var(--ix-list-drag-width);
+  box-shadow: var(--theme-shadow-1);
+  cursor: grabbing;
+  pointer-events: none;
+  transform: translateY(var(--ix-list-drag-y, 0));
+}
+
+:host(.has-divider) ::slotted(.ix-list-drag-placeholder) {
+  height: 0.25rem !important;
+  border-top: 1px solid var(--theme-color-std-bdr);
+  border-radius: 0;
+}
+
+::slotted(.ix-list-drag-placeholder.separator) {
+  position: absolute;
+  z-index: 1;
+  top: var(--ix-list-drag-separator-top, 0);
+  right: 0;
+  left: 0;
+  height: 0 !important;
+  margin: 0;
+  border-top: 1px solid var(--theme-color-contrast-bdr);
+  border-radius: 0;
+}

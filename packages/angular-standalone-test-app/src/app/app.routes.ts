@@ -266,6 +266,24 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/expanding-search').then((m) => m.default),
   'preview/flip-tile': () =>
     import('../preview-examples/flip-tile').then((m) => m.default),
+  'preview/generic-list-action-on-hover': () =>
+    import('../preview-examples/generic-list-action-on-hover').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-additional-options': () =>
+    import('../preview-examples/generic-list-additional-options').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-basic': () =>
+    import('../preview-examples/generic-list-basic').then((m) => m.default),
+  'preview/generic-list-custom-content': () =>
+    import('../preview-examples/generic-list-custom-content').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-draggable': () =>
+    import('../preview-examples/generic-list-draggable').then((m) => m.default),
+  'preview/generic-list-variants': () =>
+    import('../preview-examples/generic-list-variants').then((m) => m.default),
   'preview/form-checkbox': () =>
     import('../preview-examples/form-checkbox').then((m) => m.default),
   'preview/form-checkbox-disabled': () =>
