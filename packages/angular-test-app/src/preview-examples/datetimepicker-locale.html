@@ -1,0 +1,106 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-layout-grid>
+  <ix-row>
+    <ix-col size="12">
+      <div style="display: flex; gap: 6rem; flex-wrap: wrap">
+        <div>
+          <span style="margin-right: 0.5rem">Language:</span>
+          <ix-select [value]="locale" (valueChange)="setLocale($event)">
+            <ix-select-item
+              *ngFor="let l of locales"
+              [value]="l.value"
+              [label]="l.label"
+            ></ix-select-item>
+          </ix-select>
+        </div>
+        <div>
+          <span style="margin-right: 0.5rem">Date format:</span>
+          <ix-select [value]="dateFormat" (valueChange)="setDateFormat($event)">
+            <ix-select-item
+              *ngFor="let f of dateFormats"
+              [value]="f.value"
+              [label]="f.label"
+            ></ix-select-item>
+          </ix-select>
+        </div>
+        <div>
+          <span style="margin-right: 0.5rem">Time format:</span>
+          <ix-select [value]="timeFormat" (valueChange)="setTimeFormat($event)">
+            <ix-select-item
+              *ngFor="let f of timeFormats"
+              [value]="f.value"
+              [label]="f.label"
+            ></ix-select-item>
+          </ix-select>
+        </div>
+      </div>
+    </ix-col>
+  </ix-row>
+
+  <ix-row>
+    <ix-col size="12">
+      <ix-datetime-picker
+        [singleSelection]="true"
+        [locale]="locale"
+        [dateFormat]="dateFormat"
+        [timeFormat]="timeFormat"
+        [i18nAm]="i18nAm"
+        [i18nPm]="i18nPm"
+        [i18nHourColumnHeader]="i18nHourColumnHeader"
+        [i18nMinuteColumnHeader]="i18nMinuteColumnHeader"
+        [i18nSecondColumnHeader]="i18nSecondColumnHeader"
+        (dateSelect)="onDateSelect($event)"
+      ></ix-datetime-picker>
+    </ix-col>
+  </ix-row>
+
+  <ix-row>
+    <ix-col
+      size="12"
+      style="
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--theme-color-weak-bdr);
+        border-radius: 4px;
+        background: var(--theme-color-2);
+      "
+    >
+      <span style="display: block; font-weight: 700; margin-bottom: 0.5rem">
+        Last dateSelect event
+      </span>
+      <ng-container *ngIf="lastEvent === null; else eventValues">
+        <span style="color: var(--theme-color-soft-text)">
+          Confirm a selection to see event values
+        </span>
+      </ng-container>
+      <ng-template #eventValues>
+        <ix-layout-grid no-margin>
+          <ix-row *ngFor="let row of eventRows">
+            <ix-col
+              size="2"
+              style="font-weight: 600; color: var(--theme-color-std-text)"
+            >
+              {{ row.label }}
+            </ix-col>
+            <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
+              {{ lastEvent?.[row.key] || '—' }}
+            </ix-col>
+            <ix-col
+              *ngIf="row.note"
+              style="color: var(--theme-color-soft-text); font-size: 0.8em"
+            >
+              {{ row.note }}
+            </ix-col>
+          </ix-row>
+        </ix-layout-grid>
+      </ng-template>
+    </ix-col>
+  </ix-row>
+</ix-layout-grid>

@@ -52,6 +52,8 @@ regressionTest.describe('date picker tests single', () => {
     await expect(currentDate).resolves.toEqual({
       from: '2024/10/10',
       to: undefined,
+      isoFrom: '2024-10-10',
+      isoTo: undefined,
     });
   });
 
@@ -63,6 +65,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2024/10/10',
       to: undefined,
+      isoFrom: '2024-10-10',
+      isoTo: undefined,
     });
   });
 });
@@ -80,6 +84,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: undefined,
+      isoFrom: '2023-09-05',
+      isoTo: undefined,
     });
   });
 
@@ -90,6 +96,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/19',
       to: undefined,
+      isoFrom: '2023-09-19',
+      isoTo: undefined,
     });
   });
 
@@ -102,6 +110,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/10/31',
       to: undefined,
+      isoFrom: '2023-10-31',
+      isoTo: undefined,
     });
   });
 
@@ -120,6 +130,8 @@ regressionTest.describe('date picker tests single', () => {
       expect((await getDateObj(page))[0]).toEqual({
         from: '2023/08/31',
         to: undefined,
+        isoFrom: '2023-08-31',
+        isoTo: undefined,
       });
     }
   );
@@ -156,6 +168,8 @@ regressionTest.describe('date picker tests single', () => {
       expect((await getDateObj(page))[0]).toEqual({
         from: '2021/01/01',
         to: undefined,
+        isoFrom: '2021-01-01',
+        isoTo: undefined,
       });
     }
   );
@@ -189,6 +203,8 @@ regressionTest.describe('date picker tests single', () => {
       await expect(currentDateOld).resolves.toEqual({
         from: '2023/09/05',
         to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
       });
 
       const errors: string[] = [];
@@ -209,6 +225,8 @@ regressionTest.describe('date picker tests single', () => {
       await expect(currentDate).resolves.toEqual({
         from: '2023/09/05',
         to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
       });
 
       expect(errors).toContain(
@@ -231,6 +249,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: '2023/09/10',
+      isoFrom: '2023-09-05',
+      isoTo: '2023-09-10',
     });
   });
 
@@ -243,6 +263,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/12',
       to: '2023/09/17',
+      isoFrom: '2023-09-12',
+      isoTo: '2023-09-17',
     });
   });
 
@@ -268,6 +290,8 @@ regressionTest.describe('date picker tests range', () => {
         expect(eventDetail).toEqual({
           from: undefined,
           to: undefined,
+          isoFrom: undefined,
+          isoTo: undefined,
         });
       }
     );
@@ -283,6 +307,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/28',
       to: '2023/10/05',
+      isoFrom: '2023-09-28',
+      isoTo: '2023-10-05',
     });
   });
 
@@ -323,6 +349,64 @@ regressionTest.describe('date picker tests range', () => {
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+});
+
+regressionTest.describe('locale support', () => {
+  regressionTest(
+    'locale-dependent format produces localized from value',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/03/05" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const currentDate = datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      const result = await currentDate;
+      expect(result.from).toContain('März');
+      expect(result.isoFrom).toBe('2023-03-05');
+      expect(result.isoTo).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'isoFrom remains ISO regardless of locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/09/05" locale="ja" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const result = await datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      expect(result.isoFrom).toBe('2023-09-05');
+      expect(result.isoTo).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'numeric-only format produces same output regardless of locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/09/05" locale="ru" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const result = await datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      expect(result.from).toBe('2023/09/05');
+      expect(result.isoFrom).toBe('2023-09-05');
+    }
+  );
 });
 
 regressionTest.describe('keyboard navigation', () => {

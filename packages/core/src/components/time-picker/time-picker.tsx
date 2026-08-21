@@ -25,6 +25,7 @@ import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
 import { closestPassShadow } from '../utils/shadow-dom';
+import { formatWithLocale, parseWithLocale } from '../utils/date-time-locale';
 import { buildTimePickerColumnNumberArrays } from './time-picker-column-values';
 import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
 import {
@@ -96,6 +97,25 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this.initPicker();
     this.updateScrollPositions();
+  }
+
+  /**
+   * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+   *
+   * @since 6.0.0
+   */
+  @Prop() locale?: string;
+  @Watch('locale')
+  watchLocalePropHandler() {
+    this.initPicker();
+  }
+
+  @Watch('i18nHourColumnHeader')
+  @Watch('i18nMinuteColumnHeader')
+  @Watch('i18nSecondColumnHeader')
+  @Watch('i18nMillisecondColumnHeader')
+  watchColumnHeaderPropHandler() {
+    this.setTimePickerDescriptors();
   }
 
   /**
@@ -207,7 +227,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     if (!trimmed) {
       return;
     }
-    const parsed = DateTime.fromFormat(trimmed, this.format);
+    const parsed = parseWithLocale(trimmed, this.format, this.locale);
     if (parsed.isValid) {
       return;
     }
@@ -235,8 +255,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    const minParsed = DateTime.fromFormat(minTrimmed, this.format);
-    const maxParsed = DateTime.fromFormat(maxTrimmed, this.format);
+    const minParsed = parseWithLocale(minTrimmed, this.format, this.locale);
+    const maxParsed = parseWithLocale(maxTrimmed, this.format, this.locale);
 
     if (!minParsed.isValid || !maxParsed.isValid) {
       return;
@@ -272,7 +292,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    const timeFormat = DateTime.fromFormat(newValue, this.format);
+    const timeFormat = parseWithLocale(newValue, this.format, this.locale);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
     }
@@ -348,6 +368,20 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * Label for the AM button in 12-hour mode.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
+
+  /**
+   * Label for the PM button in 12-hour mode.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
+
+  /**
    * Time event. Emitted when the user confirms the selected time.
    */
   @Event() timeSelect!: EventEmitter<string>;
@@ -362,7 +396,19 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async getCurrentTime(): Promise<string | undefined> {
-    return this._time?.toFormat(this.format);
+    return this._time
+      ? formatWithLocale(this._time, this.format, this.locale)
+      : undefined;
+  }
+
+  /**
+   * Get the current time in ISO format
+   */
+  @Method()
+  async getCurrentIsoTime(): Promise<string | undefined> {
+    return this._time?.isValid
+      ? (this._time.toISOTime() ?? undefined)
+      : undefined;
   }
 
   @State() private _time?: DateTime;
@@ -394,7 +440,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     let timePropDoesNotMatchFormat = false;
 
     if (this.time) {
-      parsedTime = DateTime.fromFormat(this.time, this.format);
+      parsedTime = parseWithLocale(this.time, this.format, this.locale);
 
       if (!parsedTime.isValid) {
         timePropDoesNotMatchFormat = true;
@@ -640,9 +686,13 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
         if (this.time) {
-          const timeFormat = DateTime.fromFormat(this.time, this.format);
+          const timeFormat = parseWithLocale(
+            this.time,
+            this.format,
+            this.locale
+          );
           if (timeFormat.isValid) {
-            this._time = DateTime.fromFormat(this.time, this.format);
+            this._time = parseWithLocale(this.time, this.format, this.locale);
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -715,7 +765,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    this.timeChange.emit(this._time.toFormat(this.format));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   /** `_time` or “now” (constraints, AM/PM, confirm). */
@@ -744,7 +796,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay
+      baseDay,
+      this.locale
     );
   }
 
@@ -1151,7 +1204,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = candidate;
     this.elementListScrollToTop(unit, number, 'smooth');
-    this.timeChange.emit(this._time.toFormat(this.format));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   private updateDescriptorFocusedValue(
@@ -1342,10 +1397,13 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               <div class="flex">
                 <div class="column-separator"></div>
                 <div class="columns">
-                  <div class="column-header" title="AM/PM" />
+                  <div
+                    class="column-header"
+                    title={`${this.i18nAm}/${this.i18nPm}`}
+                  />
                   <div
                     role="listbox"
-                    aria-label="AM/PM"
+                    aria-label={`${this.i18nAm}/${this.i18nPm}`}
                     class="element-list"
                     tabindex={-1}
                   >
@@ -1359,9 +1417,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('AM')}
                       tabindex="0"
-                      aria-label="AM"
+                      aria-label={this.i18nAm}
                     >
-                      AM
+                      {this.i18nAm}
                     </button>
                     <button
                       role="option"
@@ -1373,9 +1431,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('PM')}
                       tabindex="0"
-                      aria-label="PM"
+                      aria-label={this.i18nPm}
                     >
-                      PM
+                      {this.i18nPm}
                     </button>
                   </div>
                 </div>
@@ -1394,7 +1452,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               class="confirm-button"
               disabled={this.isConfirmDisabled()}
               onClick={() => {
-                this.timeSelect.emit(this._time?.toFormat(this.format));
+                this.timeSelect.emit(
+                  this._time
+                    ? formatWithLocale(this._time, this.format, this.locale)
+                    : undefined
+                );
               }}
             >
               {this.i18nConfirmTime}
