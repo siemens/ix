@@ -15,4 +15,17 @@ regressionTest.describe('date-input', () => {
     await page.goto('date-input/basic');
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('dropdown open', async ({ page }) => {
+    await page.goto('date-input/basic');
+
+    const dateInput = page.locator('ix-date-input[value="2025/01/01"]');
+    const input = dateInput.locator('input');
+    await input.click();
+    await expect(dateInput.getByTestId('date-dropdown')).toHaveClass(/show/);
+    await expect(input).toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
+
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
 });

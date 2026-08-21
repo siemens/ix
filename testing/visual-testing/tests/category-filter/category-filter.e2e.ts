@@ -13,7 +13,11 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('category-filter', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/basic');
-    await page.locator('input').click();
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.locator('input').click();
+    await expect(categoryFilter.locator('ix-dropdown')).toHaveClass(/show/);
+    // Leave the field so the snapshot is overlay-open Hover, not pointer :hover.
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/hover';
+@use 'mixins/input';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/field';
@@ -39,8 +40,7 @@
     box-shadow: var(--theme-inset-shadow-1) !important;
 
     &:hover:not(.readonly):not(.disabled) {
-      background-color: var(--theme-input--background--hover);
-      border-color: var(--theme-input--border-color--hover);
+      @include input.element-input-hover;
     }
   }
 
@@ -211,6 +211,12 @@
   .select {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+}
+
+:host(.active:not(.readonly):not(.disabled)) {
+  .select:not(.readonly):not(.disabled) {
+    @include input.element-input-hover;
   }
 }
 

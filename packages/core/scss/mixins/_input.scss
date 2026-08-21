@@ -9,6 +9,17 @@
 @use './fonts';
 @use './validation/form-component';
 
+@mixin element-input-focus {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-input--focus--outline-offset);
+  border-color: var(--theme-input--border-color--focus) !important;
+}
+
+@mixin element-input-hover {
+  border-color: var(--theme-input--border-color--hover) !important;
+  background-color: var(--theme-input--background--hover);
+}
+
 @mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
   & {
     min-height: 2rem;
@@ -60,8 +71,7 @@
         [disabled],
         :read-only
       ) {
-      border-color: var(--theme-input--border-color--hover) !important;
-      background-color: var(--theme-input--background--hover);
+      @include element-input-hover;
     }
   }
 
@@ -75,9 +85,7 @@
         [disabled],
         :read-only
       ) {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-input--focus--outline-offset);
-      border-color: var(--theme-input--border-color--focus) !important;
+      @include element-input-focus;
     }
   }
 

@@ -94,8 +94,7 @@ $input-end-container-inset: 0.25rem;
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {
-      border-color: var(--theme-input--border-color--hover) !important;
-      background-color: var(--theme-input--background--hover);
+      @include input.element-input-hover;
     }
   }
 
@@ -106,6 +105,14 @@ $input-end-container-inset: 0.25rem;
     textarea {
       pointer-events: none;
       color: var(--theme-input--color--disabled);
+    }
+  }
+
+  // Fields with an open overlay set host `active` (date/time/datetime via this mixin;
+  // select / category-filter use the same host class with local SCSS).
+  :host(.active:not(.disabled):not(.readonly)) {
+    input:not(:disabled):not(:read-only) {
+      @include input.element-input-hover;
     }
   }
 

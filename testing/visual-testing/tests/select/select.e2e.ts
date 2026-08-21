@@ -13,8 +13,11 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('select/basic');
-    await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    const select = page.locator('ix-select');
+    await select.locator('[data-select-dropdown]').click();
+    await expect(select.locator('ix-dropdown')).toHaveClass(/show/);
+    // Leave the field so the snapshot is overlay-open Hover, not pointer :hover.
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -49,6 +52,15 @@ regressionTest.describe('select', () => {
 
   regressionTest('mode-multiple-overflow', async ({ page }) => {
     await page.goto('select/mode-multiple-overflow');
+    const select = page.locator('ix-select');
+    const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+    await expect(overflowChip).toBeVisible();
+    await overflowChip.click();
+    await expect(select.locator('ix-dropdown.overflow-dropdown')).toHaveClass(
+      /show/
+    );
+    // Leave the field so the snapshot is overflow-open Hover, not pointer :hover.
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
