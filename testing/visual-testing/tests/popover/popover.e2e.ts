@@ -18,11 +18,15 @@ const snapshotOptions = {
 async function openAndSettlePopover(page: Page) {
   const popover = page.locator('ix-popover').first();
   const trigger = page.locator('ix-button#trigger').first();
-  const dialog = popover.locator('[popover]');
 
   await expect(trigger).toBeVisible();
   await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
   await expect(popover).toHaveAttribute('show', '');
+
+  // Scope by panel id so nested popovers (slot content) do not match twice.
+  const panelId = await popover.getAttribute('data-ix-popover');
+  expect(panelId).toBeTruthy();
+  const dialog = page.locator(`dialog#${panelId}`);
   await expect(dialog).toBeVisible();
   await expect(trigger).toHaveClass(/\bactive\b/);
 
@@ -65,11 +69,13 @@ regressionTest.describe('popover', () => {
 
     const trigger = page.locator('ix-button#trigger');
     const popover = page.locator('ix-popover');
-    const dialog = popover.locator('[popover]');
 
     await trigger.hover();
     await expect(popover).toHaveAttribute('show', '');
-    await expect(dialog).toBeVisible();
+
+    const panelId = await popover.getAttribute('data-ix-popover');
+    expect(panelId).toBeTruthy();
+    await expect(page.locator(`dialog#${panelId}`)).toBeVisible();
     await expect(trigger).toHaveClass(/\bactive\b/);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
