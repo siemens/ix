@@ -323,7 +323,7 @@ export class Avatar
             loading={false}
             selected={false}
             type="button"
-            variant="tertiary"
+            variant="subtle-tertiary"
             ariaAttributes={{
               role: 'menu',
               'aria-controls': `${this.getHostElementId()}-proxy-listbox`,

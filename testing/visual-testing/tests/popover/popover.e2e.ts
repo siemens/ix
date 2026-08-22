@@ -34,7 +34,16 @@ regressionTest.describe('popover', () => {
   ).forEach((variant) => {
     regressionTest(variant, async ({ page }) => {
       await page.goto(`popover/${variant}`);
-      await page.waitForTimeout(500);
+      if (variant === 'minimal') {
+        await page.locator('ix-popover').evaluate((element) => {
+          element.showPopover();
+        });
+        await expect(
+          page.getByText('This action cannot be undone.')
+        ).toBeVisible();
+      } else {
+        await page.waitForTimeout(500);
+      }
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         snapshotOptions
