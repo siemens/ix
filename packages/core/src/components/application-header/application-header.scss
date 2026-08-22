@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/break-points';
+@use 'mixins/fonts';
 
 :host {
   display: flex;
@@ -102,6 +103,10 @@
     }
 
     .application-name {
+      @include fonts.typography-body-lg;
+
+      margin: 0;
+      padding: 0;
       flex: 0 1 auto;
       min-width: 0;
       flex-shrink: 0;
