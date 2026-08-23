@@ -251,7 +251,10 @@ export class DropdownButton
           {this.label || this.label === null ? (
             <ix-button
               {...commonProperties}
-              class={'internal-button'}
+              class={{
+                'internal-button': true,
+                active: this.dropdownShow,
+              }}
               alignment="start"
               ref={(ref) => forceTabIndex(ref, -1)}
               ariaLabelButton={
@@ -286,6 +289,7 @@ export class DropdownButton
             <div>
               <ix-icon-button
                 {...commonProperties}
+                class={{ active: this.dropdownShow }}
                 icon={this.icon}
                 ref={(ref) => forceTabIndex(ref, -1)}
                 aria-label={

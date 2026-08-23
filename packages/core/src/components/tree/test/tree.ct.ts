@@ -258,7 +258,7 @@ regressionTest(
 
       new Array(10).fill(0).forEach((_, index) => {
         const id = `Item-${index}`;
-        treeElement!.model[id] = {
+        element.model[id] = {
           id,
           data: {
             name: id,
@@ -267,7 +267,7 @@ regressionTest(
           children: [],
         };
 
-        treeElement?.model.root.children.push(id);
+        element.model.root.children.push(id);
       });
 
       const parent = element.parentElement;

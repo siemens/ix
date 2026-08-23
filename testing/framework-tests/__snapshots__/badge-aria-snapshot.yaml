@@ -1,0 +1,30 @@
+- main:
+  - text: "3"
+  - button "Review, 3 unread"
+  - text: "1"
+  - button "What's new, 1 notification"
+  - text: "9"
+  - button "Bottom after, 9 items"
+  - button "Messages, unread"
+  - button "Device, warning"
+  - text: /\d+ \d+ \d+\+ \d+\+ 8 8/
+  - img "Unread"
+  - img "Online"
+  - img "Alarm"
+  - img "Success"
+  - text: Label
+  - tooltip "Label"
+  - text: Label
+  - tooltip "Label"
+  - text: /\d+/
+  - tooltip /\d+/
+  - text: /\d+/
+  - tooltip "Twelve notifications"
+  - img "Unread":
+    - tooltip "Unread"
+  - img "Unread":
+    - tooltip "Custom tooltip text"
+  - img "Warning":
+    - tooltip "Warning"
+  - img "Warning":
+    - tooltip "Custom tooltip text"
