@@ -8,20 +8,9 @@
  */
 
 /**
- * Tests for the locale-aware parse/format pipeline as used by ix-time-input.
- *
- * ix-time-input routes every incoming value through parseWithLocale() (in
- * validateNonEmptyValue and syncPickerTimeFromValue) and emits the original
- * string unchanged when it is valid.  Constraints (minTime / maxTime) are
- * parsed via getTimePickerConstraintBounds which also calls parseWithLocale.
- *
- * These tests verify:
- *   - Input validation accepts a localized 12-hour value (Japanese 午後).
- *   - An invalid value (wrong locale meridiem) is correctly rejected.
- *   - Picker synchronization: a valid localized value survives the parse step
- *     that syncPickerTimeFromValue uses before forwarding to ix-time-picker.
- *   - Emitted values retain the localized string exactly.
- *   - 12-hour constraints (minTime / maxTime) are parsed locale-awarely.
+ * Pure-logic tests for the locale-aware parse/format/constraint utilities
+ * that ix-time-input relies on.  Component-level locale tests (validation,
+ * picker sync, event emission, constraints) live in time-input.ct.ts.
  */
 
 import { DateTime } from 'luxon';
@@ -35,244 +24,67 @@ import {
   isWithinTimePickerConstraints,
 } from '../../time-picker/time-picker-constraints';
 
-// ---------------------------------------------------------------------------
-// Helpers — mirror the private methods of TimeInput
-// ---------------------------------------------------------------------------
-
-/**
- * Mirrors TimeInput.validateNonEmptyValue: parse and return validity.
- * Returns null when format is empty (same guard as the component).
- */
-function validateNonEmptyValue(
-  value: string,
-  format: string,
-  locale?: string,
-  minTime?: string,
-  maxTime?: string
-): { isInputInvalid: boolean; invalidReason: string | undefined } | null {
-  if (!format) return null;
-  const time = parseWithLocale(value, format, locale);
-  if (time.isValid) {
-    const baseDay = time.startOf('day');
-    const { min, max } = getTimePickerConstraintBounds(
-      minTime,
-      maxTime,
-      format,
-      baseDay,
-      locale
-    );
-    const inBounds = isWithinTimePickerConstraints(time, min, max);
-    if (inBounds) return { isInputInvalid: false, invalidReason: undefined };
-    return { isInputInvalid: true, invalidReason: 'customError' };
-  }
-  return {
-    isInputInvalid: true,
-    invalidReason: time.invalidReason ?? undefined,
-  };
-}
-
-/**
- * Mirrors TimeInput.syncPickerTimeFromValue: returns the string to forward to
- * ix-time-picker, or null when the value is not parsable.
- */
-function syncPickerTimeFromValue(
-  value: string,
-  format: string,
-  locale?: string
-): string | null {
-  const trimmed = value?.trim() ?? '';
-  if (!trimmed) return null;
-  const parsed = parseWithLocale(trimmed, format, locale);
-  return parsed.isValid ? trimmed : null;
-}
-
-/**
- * Mirrors the emit path: ix-time-input emits the raw value string when valid.
- * Format it back through formatWithLocale to confirm the round-trip.
- */
-function emitValue(
-  value: string,
-  format: string,
-  locale?: string
-): string | null {
-  const parsed = parseWithLocale(value, format, locale);
-  if (!parsed.isValid) return null;
-  return formatWithLocale(parsed, format, locale);
-}
-
-// ---------------------------------------------------------------------------
-// Reference value used throughout: 2:30 PM in Japanese (午後)
-// ---------------------------------------------------------------------------
-
 const FMT_12H = 'hh:mm a';
 const JA_PM_VALUE = '02:30 午後';
 const JA_AM_VALUE = '09:30 午前';
 
 // ---------------------------------------------------------------------------
-// Input validation — validateNonEmptyValue
+// parseWithLocale — Japanese 12h meridiem
 // ---------------------------------------------------------------------------
 
-describe('time-input locale validation — 12h Japanese meridiem', () => {
-  it('accepts "02:30 午後" with locale "ja" as valid', () => {
-    const result = validateNonEmptyValue(JA_PM_VALUE, FMT_12H, 'ja');
-    expect(result).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(false);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.invalidReason).toBeUndefined();
-  });
-
-  it('accepts "09:30 午前" with locale "ja" as valid', () => {
-    const result = validateNonEmptyValue(JA_AM_VALUE, FMT_12H, 'ja');
-    expect(result).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(false);
-  });
-
-  it('rejects "02:30 午後" when no locale is supplied', () => {
-    // Without "ja" locale, Luxon cannot interpret 午後
-    const result = validateNonEmptyValue(JA_PM_VALUE, FMT_12H);
-    expect(result).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(true);
-  });
-
-  it('rejects "02:30 午後" when parsed as English ("en")', () => {
-    const result = validateNonEmptyValue(JA_PM_VALUE, FMT_12H, 'en');
-    expect(result).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(true);
-  });
-
-  it('rejects a completely invalid string with locale "ja"', () => {
-    const result = validateNonEmptyValue('not-a-time', FMT_12H, 'ja');
-    expect(result).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(true);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.invalidReason).toBeDefined();
-  });
-
-  it('returns null when format is empty', () => {
-    expect(validateNonEmptyValue(JA_PM_VALUE, '', 'ja')).toBeNull();
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Picker synchronization — syncPickerTimeFromValue
-// ---------------------------------------------------------------------------
-
-describe('time-input picker sync — localized 12h value forwarded correctly', () => {
-  it('returns the original string for a valid Japanese PM value', () => {
-    const pickerTime = syncPickerTimeFromValue(JA_PM_VALUE, FMT_12H, 'ja');
-    expect(pickerTime).toBe(JA_PM_VALUE);
-  });
-
-  it('returns the original string for a valid Japanese AM value', () => {
-    const pickerTime = syncPickerTimeFromValue(JA_AM_VALUE, FMT_12H, 'ja');
-    expect(pickerTime).toBe(JA_AM_VALUE);
-  });
-
-  it('returns null for "02:30 午後" when locale is missing (unparsable)', () => {
-    expect(syncPickerTimeFromValue(JA_PM_VALUE, FMT_12H)).toBeNull();
-  });
-
-  it('returns null for an empty string', () => {
-    expect(syncPickerTimeFromValue('', FMT_12H, 'ja')).toBeNull();
-  });
-
-  it('trims whitespace before forwarding', () => {
-    const padded = `  ${JA_PM_VALUE}  `;
-    // syncPickerTimeFromValue trims the value before parsing, but returns the
-    // trimmed string (matching the component's this.time = trimmed assignment)
-    const pickerTime = syncPickerTimeFromValue(padded, FMT_12H, 'ja');
-    expect(pickerTime).toBe(JA_PM_VALUE);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Emitted value integrity — the localized string is preserved
-// ---------------------------------------------------------------------------
-
-describe('time-input emitted value — localized string retained', () => {
-  it('emitting "02:30 午後" with locale "ja" round-trips to the same string', () => {
-    const emitted = emitValue(JA_PM_VALUE, FMT_12H, 'ja');
-    expect(emitted).toBe(JA_PM_VALUE);
-  });
-
-  it('emitting "09:30 午前" with locale "ja" round-trips to the same string', () => {
-    const emitted = emitValue(JA_AM_VALUE, FMT_12H, 'ja');
-    expect(emitted).toBe(JA_AM_VALUE);
-  });
-
-  it('the parsed DateTime for "02:30 午後" has hour=14 and minute=30', () => {
+describe('parseWithLocale — Japanese 12h meridiem', () => {
+  it('parses "02:30 午後" to hour=14, minute=30 with locale "ja"', () => {
     const dt = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
     expect(dt.isValid).toBe(true);
     expect(dt.hour).toBe(14);
     expect(dt.minute).toBe(30);
   });
 
-  it('cross-locale emit: Japanese PM value re-formatted in English yields "02:30 PM"', () => {
-    const dt = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
+  it('parses "09:30 午前" to hour=9, minute=30 with locale "ja"', () => {
+    const dt = parseWithLocale(JA_AM_VALUE, FMT_12H, 'ja');
     expect(dt.isValid).toBe(true);
-    const enFormatted = formatWithLocale(dt, FMT_12H, 'en');
-    expect(enFormatted).toBe('02:30 PM');
+    expect(dt.hour).toBe(9);
+    expect(dt.minute).toBe(30);
   });
 
-  it('returns null for an unparsable value', () => {
-    expect(emitValue('bad-value', FMT_12H, 'ja')).toBeNull();
+  it('rejects "02:30 午後" without locale', () => {
+    expect(parseWithLocale(JA_PM_VALUE, FMT_12H).isValid).toBe(false);
+  });
+
+  it('rejects "02:30 午後" with locale "en"', () => {
+    expect(parseWithLocale(JA_PM_VALUE, FMT_12H, 'en').isValid).toBe(false);
   });
 });
 
 // ---------------------------------------------------------------------------
-// Constraint validation — minTime / maxTime with Japanese meridiem
+// formatWithLocale — cross-locale round-trip
 // ---------------------------------------------------------------------------
 
-describe('time-input constraint validation — Japanese 12h minTime/maxTime', () => {
+describe('formatWithLocale — Japanese 12h round-trip', () => {
+  it('"02:30 午後" round-trips through parse+format with locale "ja"', () => {
+    const parsed = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
+    expect(formatWithLocale(parsed, FMT_12H, 'ja')).toBe(JA_PM_VALUE);
+  });
+
+  it('"09:30 午前" round-trips through parse+format with locale "ja"', () => {
+    const parsed = parseWithLocale(JA_AM_VALUE, FMT_12H, 'ja');
+    expect(formatWithLocale(parsed, FMT_12H, 'ja')).toBe(JA_AM_VALUE);
+  });
+
+  it('Japanese PM value re-formatted in English yields "02:30 PM"', () => {
+    const dt = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
+    expect(formatWithLocale(dt, FMT_12H, 'en')).toBe('02:30 PM');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// getTimePickerConstraintBounds — Japanese 12h constraints
+// ---------------------------------------------------------------------------
+
+describe('getTimePickerConstraintBounds — Japanese 12h', () => {
   const baseDay = DateTime.fromObject({ year: 2000, month: 1, day: 1 });
 
-  it('accepts "02:30 午後" when within Japanese 12h constraints', () => {
-    // minTime: 12:00 PM (noon), maxTime: 05:00 PM
-    const result = validateNonEmptyValue(
-      JA_PM_VALUE,
-      FMT_12H,
-      'ja',
-      '12:00 午後',
-      '05:00 午後'
-    );
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(false);
-  });
-
-  it('rejects "02:30 午後" when below minTime "03:00 午後" in Japanese locale', () => {
-    const result = validateNonEmptyValue(
-      JA_PM_VALUE,
-      FMT_12H,
-      'ja',
-      '03:00 午後',
-      '06:00 午後'
-    );
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(true);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.invalidReason).toBe('customError');
-  });
-
-  it('rejects "02:30 午後" when above maxTime "02:00 午後" in Japanese locale', () => {
-    const result = validateNonEmptyValue(
-      JA_PM_VALUE,
-      FMT_12H,
-      'ja',
-      '12:00 午後',
-      '02:00 午後'
-    );
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.isInputInvalid).toBe(true);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(result!.invalidReason).toBe('customError');
-  });
-
-  it('parses Japanese minTime constraint correctly via getTimePickerConstraintBounds', () => {
+  it('parses "09:00 午前" as minTime to hour=9', () => {
     const { min } = getTimePickerConstraintBounds(
       '09:00 午前',
       undefined,
@@ -280,14 +92,12 @@ describe('time-input constraint validation — Japanese 12h minTime/maxTime', ()
       baseDay,
       'ja'
     );
-    expect(min).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(min!.hour).toBe(9);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(min!.minute).toBe(0);
+    expect(min).toBeDefined();
+    expect(min?.hour).toBe(9);
+    expect(min?.minute).toBe(0);
   });
 
-  it('parses Japanese maxTime constraint correctly via getTimePickerConstraintBounds', () => {
+  it('parses "05:30 午後" as maxTime to hour=17, minute=30', () => {
     const { max } = getTimePickerConstraintBounds(
       undefined,
       '05:30 午後',
@@ -295,28 +105,12 @@ describe('time-input constraint validation — Japanese 12h minTime/maxTime', ()
       baseDay,
       'ja'
     );
-    expect(max).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(max!.hour).toBe(17);
-    // eslint-disable-next-line no-restricted-syntax
-    expect(max!.minute).toBe(30);
+    expect(max).toBeDefined();
+    expect(max?.hour).toBe(17);
+    expect(max?.minute).toBe(30);
   });
 
-  it('min constraint < max constraint for Japanese PM bounds', () => {
-    const { min, max } = getTimePickerConstraintBounds(
-      '12:00 午後',
-      '05:00 午後',
-      FMT_12H,
-      baseDay,
-      'ja'
-    );
-    expect(min).not.toBeNull();
-    expect(max).not.toBeNull();
-    // eslint-disable-next-line no-restricted-syntax
-    expect(min! < max!).toBe(true);
-  });
-
-  it('midnight (12:00 午前) constraint parses to hour 0 in Japanese locale', () => {
+  it('"12:00 午前" (midnight) parses to hour=0', () => {
     const { min } = getTimePickerConstraintBounds(
       '12:00 午前',
       undefined,
@@ -324,11 +118,10 @@ describe('time-input constraint validation — Japanese 12h minTime/maxTime', ()
       baseDay,
       'ja'
     );
-    // eslint-disable-next-line no-restricted-syntax
-    expect(min!.hour).toBe(0);
+    expect(min?.hour).toBe(0);
   });
 
-  it('noon (12:00 午後) constraint parses to hour 12 in Japanese locale', () => {
+  it('"12:00 午後" (noon) parses to hour=12', () => {
     const { min } = getTimePickerConstraintBounds(
       '12:00 午後',
       undefined,
@@ -336,7 +129,53 @@ describe('time-input constraint validation — Japanese 12h minTime/maxTime', ()
       baseDay,
       'ja'
     );
-    // eslint-disable-next-line no-restricted-syntax
-    expect(min!.hour).toBe(12);
+    expect(min?.hour).toBe(12);
+  });
+
+  it('min < max for Japanese PM bounds', () => {
+    const { min, max } = getTimePickerConstraintBounds(
+      '12:00 午後',
+      '05:00 午後',
+      FMT_12H,
+      baseDay,
+      'ja'
+    );
+    expect(min).toBeDefined();
+    expect(max).toBeDefined();
+    if (min && max) {
+      expect(min < max).toBe(true);
+    }
+  });
+
+  it('value within Japanese bounds passes isWithinTimePickerConstraints', () => {
+    const parsed = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
+    const time = baseDay.set({
+      hour: parsed.hour,
+      minute: parsed.minute,
+    });
+    const { min, max } = getTimePickerConstraintBounds(
+      '12:00 午後',
+      '05:00 午後',
+      FMT_12H,
+      baseDay,
+      'ja'
+    );
+    expect(isWithinTimePickerConstraints(time, min, max)).toBe(true);
+  });
+
+  it('value below minTime fails isWithinTimePickerConstraints', () => {
+    const parsed = parseWithLocale(JA_PM_VALUE, FMT_12H, 'ja');
+    const time = baseDay.set({
+      hour: parsed.hour,
+      minute: parsed.minute,
+    });
+    const { min, max } = getTimePickerConstraintBounds(
+      '03:00 午後',
+      '06:00 午後',
+      FMT_12H,
+      baseDay,
+      'ja'
+    );
+    expect(isWithinTimePickerConstraints(time, min, max)).toBe(false);
   });
 });

@@ -9,6 +9,14 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+type HTMLIxTimeInputElement = HTMLElement & {
+  value: string;
+  locale: string;
+  format: string;
+  minTime: string;
+  maxTime: string;
+};
+
 regressionTest.describe('time input tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
@@ -270,3 +278,190 @@ regressionTest.describe('time input min/max tests', () => {
     }
   );
 });
+
+// ---------------------------------------------------------------------------
+// Locale validation — Japanese 12h meridiem through the real component
+// ---------------------------------------------------------------------------
+
+regressionTest.describe('time-input locale validation — Japanese 12h', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
+    await mount(
+      `<ix-time-input
+        value="02:30 午後"
+        format="hh:mm a"
+        locale="ja"
+      ></ix-time-input>`
+    );
+  });
+
+  regressionTest('accepts Japanese PM value as valid', async ({ page }) => {
+    await expect(page.locator('input')).toHaveValue('02:30 午後');
+    await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest('accepts Japanese AM value as valid', async ({ page }) => {
+    await page.locator('input').fill('09:30 午前');
+    await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest(
+    'rejects Japanese meridiem when locale is changed to English',
+    async ({ page }) => {
+      const timeInput = page.locator('ix-time-input');
+      await timeInput.evaluate((el) => {
+        (el as HTMLIxTimeInputElement).locale = 'en';
+      });
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest('rejects completely invalid string', async ({ page }) => {
+    await page.locator('input').fill('not-a-time');
+    await expect(page.locator('input')).toHaveClass(/is-invalid/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Locale picker sync — value forwarded to ix-time-picker
+// ---------------------------------------------------------------------------
+
+regressionTest.describe('time-input locale picker sync', () => {
+  regressionTest(
+    'valid Japanese value syncs to picker (selected hour visible)',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input
+          value="02:30 午後"
+          format="hh:mm a"
+          locale="ja"
+        ></ix-time-input>`
+      );
+
+      await page
+        .locator('ix-icon-button[data-testid="open-time-picker"]')
+        .click();
+
+      await expect(
+        page.locator('ix-time-picker [data-element-container-id="hour-2"]')
+      ).toHaveClass(/selected/);
+      await expect(
+        page.locator('ix-time-picker [data-element-container-id="minute-30"]')
+      ).toHaveClass(/selected/);
+    }
+  );
+
+  regressionTest(
+    'invalid value does not break picker (picker still opens)',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input
+          value="02:30 午後"
+          format="hh:mm a"
+          locale="ja"
+        ></ix-time-input>`
+      );
+
+      await page.locator('input').fill('bad-time');
+      await page
+        .locator('ix-icon-button[data-testid="open-time-picker"]')
+        .click();
+
+      await expect(
+        page.locator('ix-dropdown[data-testid="time-dropdown"]')
+      ).toHaveClass(/show/);
+    }
+  );
+});
+
+// ---------------------------------------------------------------------------
+// Locale event emission — valueChange carries the localized string
+// ---------------------------------------------------------------------------
+
+regressionTest.describe('time-input locale event emission', () => {
+  regressionTest(
+    'valueChange emits the localized Japanese string on input',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input
+          value="09:30 午前"
+          format="hh:mm a"
+          locale="ja"
+        ></ix-time-input>`
+      );
+
+      const valueChangePromise = page.evaluate(() => {
+        return new Promise((resolve) => {
+          document
+            .querySelector('ix-time-input')
+            ?.addEventListener('valueChange', (event) => {
+              resolve((event as CustomEvent).detail);
+            });
+        });
+      });
+
+      await page.locator('input').fill('02:30 午後');
+      expect(await valueChangePromise).toBe('02:30 午後');
+    }
+  );
+});
+
+// ---------------------------------------------------------------------------
+// Locale constraint validation — minTime/maxTime with Japanese meridiem
+// ---------------------------------------------------------------------------
+
+regressionTest.describe(
+  'time-input locale constraints — Japanese 12h min/max',
+  () => {
+    regressionTest.beforeEach(async ({ mount }) => {
+      await mount(
+        `<ix-time-input
+          value="02:30 午後"
+          format="hh:mm a"
+          locale="ja"
+          min-time="12:00 午後"
+          max-time="05:00 午後"
+        ></ix-time-input>`
+      );
+    });
+
+    regressionTest(
+      'value within Japanese constraints is valid',
+      async ({ page }) => {
+        await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+      }
+    );
+
+    regressionTest('value below minTime is invalid', async ({ page }) => {
+      const timeInput = page.locator('ix-time-input');
+      await timeInput.evaluate((el) => {
+        (el as HTMLIxTimeInputElement).minTime = '03:00 午後';
+      });
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+    });
+
+    regressionTest('value above maxTime is invalid', async ({ page }) => {
+      const timeInput = page.locator('ix-time-input');
+      await timeInput.evaluate((el) => {
+        (el as HTMLIxTimeInputElement).maxTime = '02:00 午後';
+      });
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+    });
+
+    regressionTest(
+      'updating constraints to include value clears invalid state',
+      async ({ page }) => {
+        const timeInput = page.locator('ix-time-input');
+
+        await timeInput.evaluate((el) => {
+          (el as HTMLIxTimeInputElement).minTime = '03:00 午後';
+        });
+        await expect(page.locator('input')).toHaveClass(/is-invalid/);
+
+        await timeInput.evaluate((el) => {
+          (el as HTMLIxTimeInputElement).minTime = '12:00 午後';
+        });
+        await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+      }
+    );
+  }
+);
