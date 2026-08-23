@@ -385,6 +385,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Label for the AM button in 12-hour mode.
+   * If not set, falls back to the first value of `Info.meridiems()` from Luxon.
    *
    * @since 6.0.0
    */
@@ -392,6 +393,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Label for the PM button in 12-hour mode.
+   * If not set, falls back to the second value of `Info.meridiems()` from Luxon.
    *
    * @since 6.0.0
    */

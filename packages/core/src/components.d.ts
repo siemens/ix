@@ -4580,7 +4580,7 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
-          * Label for the AM button in 12-hour mode.
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
           * @since 6.0.0
          */
         "i18nAm"?: string;
@@ -4610,7 +4610,7 @@ export namespace Components {
          */
         "i18nMinuteColumnHeader": string;
         /**
-          * Label for the PM button in 12-hour mode.
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
           * @since 6.0.0
          */
         "i18nPm"?: string;
@@ -11831,7 +11831,7 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
-          * Label for the AM button in 12-hour mode.
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
           * @since 6.0.0
          */
         "i18nAm"?: string;
@@ -11861,7 +11861,7 @@ declare namespace LocalJSX {
          */
         "i18nMinuteColumnHeader"?: string;
         /**
-          * Label for the PM button in 12-hour mode.
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
           * @since 6.0.0
          */
         "i18nPm"?: string;
