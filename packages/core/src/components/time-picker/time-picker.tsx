@@ -107,7 +107,19 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop() locale?: string;
   @Watch('locale')
   watchLocalePropHandler() {
-    this.initPicker();
+    if (this._time) {
+      this.setTimeRef();
+      this.formattedTime = this.getFormattedTime();
+      this.setTimePickerDescriptors();
+      this.setInitialFocusedValueAndUnit();
+      this.watchHourIntervalPropHandler(this.hourInterval);
+      this.watchMinuteIntervalPropHandler(this.minuteInterval);
+      this.watchSecondIntervalPropHandler(this.secondInterval);
+      this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
+      this.warnConstraintTimesIfInvalid({});
+    } else {
+      this.initPicker();
+    }
   }
 
   /**
