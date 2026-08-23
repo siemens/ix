@@ -403,6 +403,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Get the current time in ISO format
+   *
+   * @since 6.0.0
    */
   @Method()
   async getCurrentIsoTime(): Promise<string | undefined> {

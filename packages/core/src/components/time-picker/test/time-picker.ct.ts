@@ -278,7 +278,7 @@ regressionTest(
   'timeChange event payload uses locale-formatted string',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="HH:mm:ss" time="12:00:00" locale="de"></ix-time-picker>`
+      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -293,8 +293,8 @@ regressionTest(
       });
     });
 
-    await timePickerCell(picker, 'hr', 10).click();
-    expect(await timeChangePromise).toBe('10:00:00');
+    await timePickerCell(picker, 'hr', 5).click();
+    expect(await timeChangePromise).toBe('05:30 午前');
   }
 );
 
@@ -302,7 +302,7 @@ regressionTest(
   'timeSelect event payload uses locale-formatted string',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="HH:mm:ss" time="12:00:00" locale="de"></ix-time-picker>`
+      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -318,7 +318,33 @@ regressionTest(
     });
 
     await picker.locator('ix-button').click();
-    expect(await timeSelectPromise).toBe('12:00:00');
+    expect(await timeSelectPromise).toBe('02:30 午前');
+  }
+);
+
+regressionTest(
+  'changing locale updates meridiem labels and time string',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 AM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('AM');
+    await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('PM');
+
+    await picker.evaluate((el: HTMLElement) => {
+      (el as HTMLIxTimePickerElement).locale = 'ja';
+    });
+
+    await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('午前');
+    await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('午後');
+
+    const result = await picker.evaluate(async (el: HTMLElement) => {
+      return await (el as HTMLIxTimePickerElement).getCurrentTime();
+    });
+    expect(result).toBe('02:30 午前');
   }
 );
 

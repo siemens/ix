@@ -14,6 +14,9 @@ type EventLog = {
   from?: string;
   to?: string;
   time: string;
+  isoFrom?: string;
+  isoTo?: string;
+  isoTime?: string;
 };
 
 type EventLogRow = {
@@ -87,6 +90,9 @@ export default class DatetimepickerLocale {
     { key: 'from', label: 'from' },
     { key: 'to', label: 'to' },
     { key: 'time', label: 'time', note: '(locale-aware in 12h mode)' },
+    { key: 'isoFrom', label: 'isoFrom' },
+    { key: 'isoTo', label: 'isoTo' },
+    { key: 'isoTime', label: 'isoTime' },
   ];
 
   locale = 'de';
@@ -137,7 +143,7 @@ export default class DatetimepickerLocale {
 
   onDateSelect(event: Event) {
     const { detail } = event as CustomEvent<DateTimeSelectEvent>;
-    const { from, to, time } = detail;
-    this.lastEvent = { from, to, time };
+    const { from, to, time, isoFrom, isoTo, isoTime } = detail;
+    this.lastEvent = { from, to, time, isoFrom, isoTo, isoTime };
   }
 }
