@@ -22,3 +22,5 @@ If your code reads these fields and expects locale-neutral strings, migrate to t
 
 **Updated `ix-date-input` locale behavior:**
 The `locale` prop now explicitly affects input parsing and the values emitted via `valueChange`. Previous documentation incorrectly stated that locale does not affect returned values.
+
+Fixes #2414
