@@ -1,5 +1,15 @@
 # @siemens/ix-aggrid
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2713](https://github.com/siemens/ix/pull/2713) [`4892be9`](https://github.com/siemens/ix/commit/4892be953a01be47da37881aa6a2cbe781043476) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add optional theme configuration to `getIxTheme` and `getIxThemeAsync` with `stripedRows` for API-based striped row styling.
+
+  AG Grid now defaults to a uniform row background, while striped rows can be enabled with:
+
+  `getIxTheme(agGridCommunity, { stripedRows: true })`
+
 ## 5.0.1
 
 ### Patch Changes

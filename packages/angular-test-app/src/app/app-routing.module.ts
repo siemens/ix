@@ -15,6 +15,7 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -330,6 +331,10 @@ const routes: Routes = [
       {
         path: 'aggrid',
         component: AgGrid,
+      },
+      {
+        path: 'aggrid-striped',
+        component: AgGridStriped,
       },
       {
         path: 'avatar-image',
