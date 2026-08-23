@@ -356,7 +356,7 @@ regressionTest.describe('locale support', () => {
     'locale-dependent format produces localized from value',
     async ({ mount, page }) => {
       await mount(
-        `<ix-date-picker from="2023/03/05" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+        `<ix-date-picker from="05 März 2023" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
       );
       await page.waitForSelector('ix-date-time-card');
 
