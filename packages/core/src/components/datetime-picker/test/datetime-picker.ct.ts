@@ -164,6 +164,21 @@ regressionTest.describe('min/max time combination matrix', () => {
   );
 });
 
+regressionTest(
+  'forwards i18nTime prop to i18nHeader of embedded time-picker',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-picker single-selection i18n-time="Custom Time Label"></ix-datetime-picker>`
+    );
+
+    const header = page
+      .locator('ix-time-picker')
+      .first()
+      .locator('.header ix-typography');
+    await expect(header).toHaveText('Custom Time Label');
+  }
+);
+
 regressionTest.describe('datetime picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
