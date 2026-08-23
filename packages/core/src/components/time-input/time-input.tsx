@@ -396,7 +396,7 @@ export class TimeInput
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
-        this.value = now.toFormat(this.format);
+        this.value = now.toFormat(this.format, { locale: this.locale });
       }
     }
 
