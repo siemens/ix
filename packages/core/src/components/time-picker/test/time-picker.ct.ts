@@ -387,8 +387,15 @@ regressionTest(
     await expect(timePickerCell(picker, 'hr', 7)).toBeDisabled();
     // hour 9 is the minTime boundary → enabled
     await expect(timePickerCell(picker, 'hr', 9)).not.toBeDisabled();
+
+    // Mount a second picker in PM context to verify the maxTime upper bound
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const pmPicker = page.locator(TIME_PICKER_SELECTOR).last();
+    await expect(pmPicker).toHaveClass(/hydrated/);
     // hour 6 PM = 18:00, above maxTime 17:00 → disabled
-    await expect(timePickerCell(picker, 'hr', 6)).toBeDisabled();
+    await expect(timePickerCell(pmPicker, 'hr', 6)).toBeDisabled();
   }
 );
 
