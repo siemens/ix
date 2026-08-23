@@ -121,6 +121,8 @@ regressionTest.describe('date dropdown tests', () => {
         to: endDate.toFormat('yyyy/LL/dd'),
         id: 'last-7-days',
         label: 'Last 7 days',
+        isoFrom: startDate.toISODate(),
+        isoTo: endDate.toISODate(),
       });
     }
   );
@@ -159,6 +161,8 @@ regressionTest.describe('date dropdown tests', () => {
         to: today.toFormat(format),
         id: 'last-7-days',
         label: 'Last 7 days',
+        isoFrom: today.minus({ day: 7 }).toISODate(),
+        isoTo: today.toISODate(),
       });
     }
   );
@@ -179,6 +183,8 @@ regressionTest.describe('date dropdown tests', () => {
       to: endDate.toFormat('yyyy/LL/dd'),
       id: 'today',
       label: 'Today',
+      isoFrom: startDate.toISODate(),
+      isoTo: endDate.toISODate(),
     });
   });
 });

@@ -205,6 +205,8 @@ export class DateDropdown
     from?: string;
     to?: string;
     id: string;
+    isoFrom?: string;
+    isoTo?: string;
   };
   @State() private show = false;
 
@@ -233,14 +235,7 @@ export class DateDropdown
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    const val = this.currentRangeValue ?? { id: '', from: '', to: '' };
-    const isoFrom = toISODate(
-      parseWithLocale(val.from ?? '', this.format, this.locale)
-    );
-    const isoTo = toISODate(
-      parseWithLocale(val.to ?? '', this.format, this.locale)
-    );
-    return { ...val, isoFrom, isoTo };
+    return { ...(this.currentRangeValue ?? { id: '', from: '', to: '' }) };
   }
 
   private initialize() {
@@ -282,6 +277,9 @@ export class DateDropdown
     const isoTo = toISODate(
       parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
     );
+    if (this.currentRangeValue) {
+      this.currentRangeValue = { ...this.currentRangeValue, isoFrom, isoTo };
+    }
     this.dateRangeChange.emit({ ...rangeValue, isoFrom, isoTo });
   }
 
