@@ -817,10 +817,10 @@ export class DatePicker
     const minDateMonth = this._minDateObj?.month;
     const maxDateMonth = this._maxDateObj?.month;
     const isBefore = minDateMonth
-      ? this.tempYear === this._minDateObj!.year && month < minDateMonth
+      ? this.tempYear === this._minDateObj?.year && month < minDateMonth
       : false;
     const isAfter = maxDateMonth
-      ? this.tempYear === this._maxDateObj!.year && month > maxDateMonth
+      ? this.tempYear === this._maxDateObj?.year && month > maxDateMonth
       : false;
 
     return !isBefore && !isAfter;
@@ -1094,20 +1094,20 @@ export class DatePicker
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
-                    const util = day
-                      ? this.getUtilitiesBasedOnDay(day)
-                      : undefined;
-                    return day ? (
+                    if (!day) {
+                      return <div role="gridcell"></div>;
+                    }
+                    const util = this.getUtilitiesBasedOnDay(day);
+
+                    return (
                       <div
                         role="gridcell"
-                        aria-selected={
-                          util!.isSelected() ? 'true' : 'false'
-                        }
+                        aria-selected={util.isSelected() ? 'true' : 'false'}
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
                         data-date-value={`${week.weekNumber}-${day}`}
-                        class={this.getDayClasses(day, util!)}
+                        class={this.getDayClasses(day, util)}
                         onClick={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
@@ -1120,15 +1120,13 @@ export class DatePicker
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}
-                        autofocus={util!.isToday()}
+                        autofocus={util.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
                       >
                         {day}
                       </div>
-                    ) : (
-                      <div role="gridcell"></div>
                     );
                   })}
                 </div>

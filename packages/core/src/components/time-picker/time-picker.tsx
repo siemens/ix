@@ -110,14 +110,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.initPicker();
   }
 
-  @Watch('i18nHourColumnHeader')
-  @Watch('i18nMinuteColumnHeader')
-  @Watch('i18nSecondColumnHeader')
-  @Watch('i18nMillisecondColumnHeader')
-  watchColumnHeaderPropHandler() {
-    this.setTimePickerDescriptors();
-  }
-
   /**
    * Corner style.
    */
@@ -366,6 +358,14 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
   i18nMillisecondColumnHeader: string = 'ms';
+
+  @Watch('i18nHourColumnHeader')
+  @Watch('i18nMinuteColumnHeader')
+  @Watch('i18nSecondColumnHeader')
+  @Watch('i18nMillisecondColumnHeader')
+  watchColumnHeaderPropHandler() {
+    this.setTimePickerDescriptors();
+  }
 
   /**
    * Label for the AM button in 12-hour mode.
