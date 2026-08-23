@@ -232,6 +232,22 @@ regressionTest(
   }
 );
 
+regressionTest('locale-aware input parsing', async ({ mount, page }) => {
+  await mount(
+    `<ix-date-input locale="de" format="dd MMMM yyyy"></ix-date-input>`
+  );
+
+  const dateInputElement = page.locator('ix-date-input');
+  await expect(dateInputElement).toHaveClass(/hydrated/);
+
+  const input = dateInputElement.locator('input');
+  await input.fill('05 März 2023');
+  await input.blur();
+
+  await expect(input).not.toHaveClass(/is-invalid/);
+  await expect(dateInputElement).toHaveAttribute('value', '05 März 2023');
+});
+
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
