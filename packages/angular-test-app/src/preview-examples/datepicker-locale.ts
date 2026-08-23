@@ -15,6 +15,7 @@ type EventLog = {
   to?: string;
   isoFrom?: string;
   isoTo?: string;
+  [key: string]: string | undefined;
 };
 
 @Component({

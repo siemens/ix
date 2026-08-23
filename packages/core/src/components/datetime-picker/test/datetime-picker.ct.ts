@@ -174,7 +174,7 @@ regressionTest(
     const header = page
       .locator('ix-time-picker')
       .first()
-      .locator('.header ix-typography');
+      .getByText('Custom Time Label', { exact: true });
     await expect(header).toHaveText('Custom Time Label');
   }
 );
