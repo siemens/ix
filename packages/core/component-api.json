@@ -10327,11 +10327,10 @@
         {
           "name": "i18nAm",
           "attribute": "i18n-am",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'AM'",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -10393,11 +10392,10 @@
         {
           "name": "i18nPm",
           "attribute": "i18n-pm",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'PM'",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -10487,6 +10485,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "getCurrentIsoTime",
+          "signature": "getCurrentIsoTime() => Promise<string | undefined>",
+          "deprecated": false
+        },
         {
           "name": "getCurrentTime",
           "signature": "getCurrentTime() => Promise<string | undefined>",

@@ -1273,7 +1273,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -4401,6 +4401,7 @@ export namespace Components {
         "hourInterval": number;
         /**
           * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'AM'
          */
         "i18nAm": string;
@@ -4426,6 +4427,7 @@ export namespace Components {
         "i18nMinuteColumnHeader": string;
         /**
           * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'PM'
          */
         "i18nPm": string;
@@ -4462,6 +4464,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
          */
         "locale"?: string;
         /**
@@ -4557,6 +4560,7 @@ export namespace Components {
         "format": string;
         /**
           * Get the current time in ISO format
+          * @since 6.0.0
          */
         "getCurrentIsoTime": () => Promise<string | undefined>;
         /**
@@ -4577,9 +4581,9 @@ export namespace Components {
         "hourInterval": number;
         /**
           * Label for the AM button in 12-hour mode.
-          * @default 'AM'
+          * @since 6.0.0
          */
-        "i18nAm": string;
+        "i18nAm"?: string;
         /**
           * Text of the time confirm button.
           * @default 'Confirm'
@@ -4607,9 +4611,9 @@ export namespace Components {
         "i18nMinuteColumnHeader": string;
         /**
           * Label for the PM button in 12-hour mode.
-          * @default 'PM'
+          * @since 6.0.0
          */
-        "i18nPm": string;
+        "i18nPm"?: string;
         /**
           * Text for the second column header.
           * @default 'sec'
@@ -4617,6 +4621,7 @@ export namespace Components {
         "i18nSecondColumnHeader": string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
          */
         "locale"?: string;
         /**
@@ -8299,7 +8304,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -8709,6 +8714,7 @@ declare namespace LocalJSX {
         "from"?: string;
         /**
           * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'AM'
          */
         "i18nAm"?: string;
@@ -8719,26 +8725,31 @@ declare namespace LocalJSX {
         "i18nDone"?: string;
         /**
           * Text for the time picker hour column header.
+          * @since 6.0.0
           * @default 'hr'
          */
         "i18nHourColumnHeader"?: string;
         /**
           * Text for the time picker millisecond column header.
+          * @since 6.0.0
           * @default 'ms'
          */
         "i18nMillisecondColumnHeader"?: string;
         /**
           * Text for the time picker minute column header.
+          * @since 6.0.0
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
         /**
           * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'PM'
          */
         "i18nPm"?: string;
         /**
           * Text for the time picker second column header.
+          * @since 6.0.0
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
@@ -11640,6 +11651,7 @@ declare namespace LocalJSX {
         "hourInterval"?: number;
         /**
           * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'AM'
          */
         "i18nAm"?: string;
@@ -11665,6 +11677,7 @@ declare namespace LocalJSX {
         "i18nMinuteColumnHeader"?: string;
         /**
           * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
           * @default 'PM'
          */
         "i18nPm"?: string;
@@ -11697,6 +11710,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
          */
         "locale"?: string;
         /**
@@ -11818,7 +11832,7 @@ declare namespace LocalJSX {
         "hourInterval"?: number;
         /**
           * Label for the AM button in 12-hour mode.
-          * @default 'AM'
+          * @since 6.0.0
          */
         "i18nAm"?: string;
         /**
@@ -11848,7 +11862,7 @@ declare namespace LocalJSX {
         "i18nMinuteColumnHeader"?: string;
         /**
           * Label for the PM button in 12-hour mode.
-          * @default 'PM'
+          * @since 6.0.0
          */
         "i18nPm"?: string;
         /**
@@ -11858,6 +11872,7 @@ declare namespace LocalJSX {
         "i18nSecondColumnHeader"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
          */
         "locale"?: string;
         /**

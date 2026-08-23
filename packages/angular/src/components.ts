@@ -3008,7 +3008,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 @ProxyCmp({
   inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
-  methods: ['getCurrentTime']
+  methods: ['getCurrentTime', 'getCurrentIsoTime']
 })
 @Component({
   selector: 'ix-time-picker',
