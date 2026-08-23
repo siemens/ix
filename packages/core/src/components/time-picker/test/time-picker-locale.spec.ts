@@ -271,3 +271,69 @@ describe('constraint values — same parse path as time prop', () => {
     expect(inverted > max).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// 12-hour format constraint parsing — minTime / maxTime with locale meridiem
+// ---------------------------------------------------------------------------
+
+describe('12h constraint values — locale-aware parse', () => {
+  const FMT = 'hh:mm a';
+
+  it('parses a 12h minTime in en locale (AM)', () => {
+    const dt = parseProp('09:00 AM', FMT, 'en');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(9);
+    expect(dt.minute).toBe(0);
+  });
+
+  it('parses a 12h maxTime in en locale (PM)', () => {
+    const dt = parseProp('05:30 PM', FMT, 'en');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(17);
+    expect(dt.minute).toBe(30);
+  });
+
+  it('parses a 12h minTime with Japanese meridiem (午前)', () => {
+    const dt = parseProp('09:00 午前', FMT, 'ja');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(9);
+    expect(dt.minute).toBe(0);
+  });
+
+  it('parses a 12h maxTime with Japanese meridiem (午後)', () => {
+    const dt = parseProp('05:30 午後', FMT, 'ja');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(17);
+    expect(dt.minute).toBe(30);
+  });
+
+  it('12h constraint comparison holds across locale-aware parse', () => {
+    const min = parseProp('09:00 AM', FMT, 'en');
+    const max = parseProp('05:00 PM', FMT, 'en');
+    expect(min.isValid).toBe(true);
+    expect(max.isValid).toBe(true);
+    expect(min < max).toBe(true);
+
+    const outOfRange = parseProp('06:00 PM', FMT, 'en');
+    expect(outOfRange > max).toBe(true);
+  });
+
+  it('midnight (12:00 AM) constraint parses to hour 0', () => {
+    const dt = parseProp('12:00 AM', FMT, 'en');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(0);
+  });
+
+  it('noon (12:00 PM) constraint parses to hour 12', () => {
+    const dt = parseProp('12:00 PM', FMT, 'en');
+    expect(dt.isValid).toBe(true);
+    expect(dt.hour).toBe(12);
+  });
+
+  it('Japanese 12h constraint round-trips through format', () => {
+    const original = '02:30 午後';
+    const parsed = parseProp(original, FMT, 'ja');
+    expect(parsed.isValid).toBe(true);
+    expect(formatForEmit(parsed, FMT, 'ja')).toBe(original);
+  });
+});

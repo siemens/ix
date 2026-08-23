@@ -350,6 +350,72 @@ regressionTest(
 );
 
 regressionTest(
+  '12h minTime/maxTime: hours outside bounds are disabled when locale is set',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    // hour 7 (07 AM = 07:00) is below minTime 09:00 → disabled
+    await expect(timePickerCell(picker, 'hr', 7)).toBeDisabled();
+    // hour 9 is the minTime boundary → enabled
+    await expect(timePickerCell(picker, 'hr', 9)).not.toBeDisabled();
+    // hour 6 PM = 18:00, above maxTime 17:00 → disabled
+    await expect(timePickerCell(picker, 'hr', 6)).toBeDisabled();
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: clicking a valid hour emits timeChange with locale-formatted value',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeChangePromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeChange', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    // Click hour 11 (11 AM), which is within [09 AM, 05 PM]
+    await timePickerCell(picker, 'hr', 11).click();
+    expect(await timeChangePromise).toBe('11:00 AM');
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: confirm button emits timeSelect with locale-formatted value',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeSelectPromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeSelect', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    await picker.locator('ix-button').click();
+    expect(await timeSelectPromise).toBe('02:30 PM');
+  }
+);
+
+regressionTest(
   'locale prop watcher re-initializes picker without errors',
   async ({ mount, page }) => {
     await mount(
