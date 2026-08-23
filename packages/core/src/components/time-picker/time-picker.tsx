@@ -20,7 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { DateTime, Info } from 'luxon';
 import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
@@ -66,6 +66,9 @@ const MINUTE_INTERVAL_DEFAULT = 1;
 const SECOND_INTERVAL_DEFAULT = 1;
 const MILLISECOND_INTERVAL_DEFAULT = 100;
 
+const MERIDIEM_AM_DEFAULT = 'AM';
+const MERIDIEM_PM_DEFAULT = 'PM';
+
 const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   hour: '',
   minute: '',
@@ -107,6 +110,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop() locale?: string;
   @Watch('locale')
   watchLocalePropHandler() {
+    this.updateMeridiemLabels();
     if (this._time) {
       this.setTimeRef();
       this.formattedTime = this.getFormattedTime();
@@ -384,14 +388,14 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 6.0.0
    */
-  @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
+  @Prop({ attribute: 'i18n-am' }) i18nAm?: string;
 
   /**
    * Label for the PM button in 12-hour mode.
    *
    * @since 6.0.0
    */
-  @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
+  @Prop({ attribute: 'i18n-pm' }) i18nPm?: string;
 
   /**
    * Time event. Emitted when the user confirms the selected time.
@@ -436,6 +440,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   @State() private timeRef?: 'AM' | 'PM' | undefined;
+  @State() private amLabel: string = MERIDIEM_AM_DEFAULT;
+  @State() private pmLabel: string = MERIDIEM_PM_DEFAULT;
   @State() private formattedTime: TimeOutputFormat = FORMATTED_TIME_EMPTY;
   @State() private timePickerDescriptors: TimePickerDescriptor[] = [];
   @State() private isUnitFocused: boolean = false;
@@ -447,6 +453,18 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   override componentWillLoad() {
     this.initPicker();
+  }
+
+  @Watch('i18nAm')
+  @Watch('i18nPm')
+  watchI18nMeridiemPropHandler() {
+    this.updateMeridiemLabels();
+  }
+
+  private updateMeridiemLabels() {
+    const meridiems = Info.meridiems({ locale: this.locale ?? 'en' });
+    this.amLabel = this.i18nAm ?? meridiems[0];
+    this.pmLabel = this.i18nPm ?? meridiems[1];
   }
 
   private initPicker() {
@@ -469,6 +487,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = parsedTime;
 
+    this.updateMeridiemLabels();
     this.setTimeRef();
     this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
@@ -1413,11 +1432,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                 <div class="columns">
                   <div
                     class="column-header"
-                    title={`${this.i18nAm}/${this.i18nPm}`}
+                    title={`${this.amLabel}/${this.pmLabel}`}
                   />
                   <div
                     role="listbox"
-                    aria-label={`${this.i18nAm}/${this.i18nPm}`}
+                    aria-label={`${this.amLabel}/${this.pmLabel}`}
                     class="element-list"
                     tabindex={-1}
                   >
@@ -1431,9 +1450,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('AM')}
                       tabindex="0"
-                      aria-label={this.i18nAm}
+                      aria-label={this.amLabel}
                     >
-                      {this.i18nAm}
+                      {this.amLabel}
                     </button>
                     <button
                       role="option"
@@ -1445,9 +1464,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('PM')}
                       tabindex="0"
-                      aria-label={this.i18nPm}
+                      aria-label={this.pmLabel}
                     >
-                      {this.i18nPm}
+                      {this.pmLabel}
                     </button>
                   </div>
                 </div>
