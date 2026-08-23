@@ -3460,6 +3460,8 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxPlayground {
+    }
     /**
      * Floating panel anchored to a trigger element.
      * @since 5.1.0
@@ -6415,6 +6417,12 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPlaygroundElement extends Components.IxPlayground, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundElement: {
+        prototype: HTMLIxPlaygroundElement;
+        new (): HTMLIxPlaygroundElement;
+    };
     interface HTMLIxPopoverElementEventMap {
         "showChange": boolean;
         "showChanged": boolean;
@@ -7026,6 +7034,7 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground": HTMLIxPlaygroundElement;
         "ix-popover": HTMLIxPopoverElement;
         "ix-popover-content": HTMLIxPopoverContentElement;
         "ix-popover-footer": HTMLIxPopoverFooterElement;
@@ -10650,6 +10659,8 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    interface IxPlayground {
+    }
     /**
      * Floating panel anchored to a trigger element.
      * @since 5.1.0
@@ -13514,6 +13525,7 @@ declare namespace LocalJSX {
         "ix-pane": Omit<IxPane, keyof IxPaneAttributes> & { [K in keyof IxPane & keyof IxPaneAttributes]?: IxPane[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `attr:${K}`]?: IxPaneAttributes[K] } & { [K in keyof IxPane & keyof IxPaneAttributes as `prop:${K}`]?: IxPane[K] };
         "ix-pane-layout": Omit<IxPaneLayout, keyof IxPaneLayoutAttributes> & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes]?: IxPaneLayout[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `attr:${K}`]?: IxPaneLayoutAttributes[K] } & { [K in keyof IxPaneLayout & keyof IxPaneLayoutAttributes as `prop:${K}`]?: IxPaneLayout[K] };
         "ix-pill": Omit<IxPill, keyof IxPillAttributes> & { [K in keyof IxPill & keyof IxPillAttributes]?: IxPill[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `attr:${K}`]?: IxPillAttributes[K] } & { [K in keyof IxPill & keyof IxPillAttributes as `prop:${K}`]?: IxPill[K] };
+        "ix-playground": IxPlayground;
         "ix-popover": Omit<IxPopover, keyof IxPopoverAttributes> & { [K in keyof IxPopover & keyof IxPopoverAttributes]?: IxPopover[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `attr:${K}`]?: IxPopoverAttributes[K] } & { [K in keyof IxPopover & keyof IxPopoverAttributes as `prop:${K}`]?: IxPopover[K] };
         "ix-popover-content": Omit<IxPopoverContent, keyof IxPopoverContentAttributes> & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes]?: IxPopoverContent[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `attr:${K}`]?: IxPopoverContentAttributes[K] } & { [K in keyof IxPopoverContent & keyof IxPopoverContentAttributes as `prop:${K}`]?: IxPopoverContent[K] };
         "ix-popover-footer": Omit<IxPopoverFooter, keyof IxPopoverFooterAttributes> & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes]?: IxPopoverFooter[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `attr:${K}`]?: IxPopoverFooterAttributes[K] } & { [K in keyof IxPopoverFooter & keyof IxPopoverFooterAttributes as `prop:${K}`]?: IxPopoverFooter[K] };
@@ -13693,6 +13705,7 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IntrinsicElements["ix-pill"] & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground": LocalJSX.IntrinsicElements["ix-playground"] & JSXBase.HTMLAttributes<HTMLIxPlaygroundElement>;
             /**
              * Floating panel anchored to a trigger element.
              * @since 5.1.0

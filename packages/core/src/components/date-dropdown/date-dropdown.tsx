@@ -267,6 +267,8 @@ export class DateDropdown
       id: this.selectedDateRangeId,
       from: this.from,
       to: this.to,
+      isoFrom: toISODate(DateTime.fromFormat(this.from, this.format)),
+      isoTo: toISODate(DateTime.fromFormat(this.to, this.format)),
     };
   }
 
@@ -303,7 +305,13 @@ export class DateDropdown
         );
         this.datePickerRef.current?.updateSelectedYearMonth(formattedDate);
       } else {
-        this.currentRangeValue = option;
+        this.currentRangeValue = {
+          ...option,
+          isoFrom: toISODate(
+            DateTime.fromFormat(option.from ?? '', this.format)
+          ),
+          isoTo: toISODate(DateTime.fromFormat(option.to ?? '', this.format)),
+        };
       }
     }
 

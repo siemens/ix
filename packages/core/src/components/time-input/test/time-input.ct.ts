@@ -389,6 +389,9 @@ regressionTest.describe('time-input locale event emission', () => {
         ></ix-time-input>`
       );
 
+      const timeInput = page.locator('ix-time-input');
+      await expect(timeInput).toHaveClass(/hydrated/);
+
       const valueChangePromise = page.evaluate(() => {
         return new Promise((resolve) => {
           document
