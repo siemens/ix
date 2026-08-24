@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/shadow-dom/hover';
-@use 'misc/common-variables' as vars;
 
 $itemPadding: 0.5rem;
 $itemPaddingRight: 1.5rem;
@@ -77,7 +76,7 @@ $focusBorder: 0.0625rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
-    line-height: vars.$line-height-default-single;
+    padding-top: .25rem;
   }
 
   .dropdown-item-end {
