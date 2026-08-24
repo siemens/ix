@@ -3,6 +3,7 @@ import './about-and-legal-legacy-axe.spec.ts';
 import './action-card-axe.spec.ts';
 import './add-icons-axe.spec.ts';
 import './aggrid-axe.spec.ts';
+import './aggrid-striped-axe.spec.ts';
 import './application-advanced-axe.spec.ts';
 import './application-app-switch-axe.spec.ts';
 import './application-axe.spec.ts';

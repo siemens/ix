@@ -8,6 +8,22 @@
  */
 import { regressionTest, test, expect } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
@@ -128,6 +144,71 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
   await expect(itemOne).toBeVisible();
   await expect(itemTwo).toBeVisible();
 });
+
+regressionTest(
+  'should not close current category dropdown on own closeOtherCategories event',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category 1">
+            <ix-menu-item>Item 1</ix-menu-item>
+          </ix-menu-category>
+          <ix-menu-category label="Category 2">
+            <ix-menu-item>Item 2</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
+      );
+
+    const categoryOne = page.locator('ix-menu-category').nth(0);
+    const dropdownOne = categoryOne.locator('ix-dropdown');
+
+    await categoryOne.hover();
+    await expect(dropdownOne).toBeVisible();
+
+    const sourceCategoryId = await categoryOne
+      .locator('.category-parent')
+      .getAttribute('id');
+
+    expect(sourceCategoryId).toBeTruthy();
+
+    await page.evaluate((id) => {
+      window.dispatchEvent(
+        new CustomEvent('closeOtherCategories', {
+          detail: id,
+          bubbles: true,
+          composed: true,
+        })
+      );
+    }, sourceCategoryId);
+
+    await expect(dropdownOne).toBeVisible();
+
+    const categoryTwo = page.locator('ix-menu-category').nth(1);
+    const dropdownTwo = categoryTwo.locator('ix-dropdown');
+    await categoryTwo.hover();
+    await expect(dropdownTwo).toBeVisible();
+
+    await page.evaluate((id) => {
+      window.dispatchEvent(
+        new CustomEvent('closeOtherCategories', {
+          detail: id,
+          bubbles: true,
+          composed: true,
+        })
+      );
+    }, sourceCategoryId);
+
+    await expect(dropdownTwo).not.toBeVisible();
+  }
+);
 
 regressionTest(
   'should collapse category after collapse menu',

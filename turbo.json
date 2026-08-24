@@ -1,6 +1,7 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "BASE_URL"],
+  "globalPassThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH", "CHROME_BIN"],
   "globalDependencies": [".env"],
   "ui": "stream",
   "tasks": {
@@ -12,10 +13,12 @@
         "dist/**",
         "dist-css/**",
         "build/**",
+        "sboms/**",
         "storybook-static/**",
         "www/**",
         "loader/**",
         "api-docs/**",
+        "component-api.json",
         "component-doc.json",
         "component-usage-by-component.json",
         "component-usage.json"
@@ -31,13 +34,14 @@
       "cache": false
     },
     "visual-regression": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.setup": {
       "cache": false
     },
     "test": {
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.memlab": {

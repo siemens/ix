@@ -16,8 +16,8 @@ catalogs:
       specifier: ^1.58.1
       version: 1.58.1
     '@siemens/ix-icons':
-      specifier: ^3.3.0
-      version: 3.4.0
+      specifier: ^3.5.0
+      version: 3.5.0
     eslint:
       specifier: ^9.39.3
       version: 9.39.3
@@ -107,16 +107,16 @@ importers:
         version: 1.58.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.62.2)
+        version: 16.0.3(@rollup/wasm-node@4.62.4)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.62.2)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.62.4)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.14
@@ -137,10 +137,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.62.2'
+        version: '@rollup/wasm-node@4.62.4'
       rollup-plugin-import-css:
         specifier: ^4.2.0
-        version: 4.2.0(@rollup/wasm-node@4.62.2)
+        version: 4.2.0(@rollup/wasm-node@4.62.4)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -151,11 +151,11 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.1.1
+        specifier: ~5.2.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.0
+        version: 3.5.0
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -259,7 +259,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -374,7 +374,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -469,7 +469,7 @@ importers:
         version: 1.58.1
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@stencil-community/eslint-plugin':
         specifier: ^0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5)
@@ -658,10 +658,10 @@ importers:
         version: 1.58.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.62.2)
+        version: 16.0.3(@rollup/wasm-node@4.62.4)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.62.2)(tslib@2.8.1)(typescript@6.0.2)
+        version: 8.5.0(@rollup/wasm-node@4.62.4)(tslib@2.8.1)(typescript@6.0.2)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -682,19 +682,19 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.62.2'
+        version: '@rollup/wasm-node@4.62.4'
       rollup-plugin-dts:
         specifier: ^6.4.1
-        version: 6.4.1(@rollup/wasm-node@4.62.2)(typescript@6.0.2)
+        version: 6.4.1(@rollup/wasm-node@4.62.4)(typescript@6.0.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.62.2)
+        version: 2.2.4(@rollup/wasm-node@4.62.4)
       rollup-plugin-sourcemaps:
         specifier: ^0.6.3
-        version: 0.6.3(@rollup/wasm-node@4.62.2)(@types/node@24.0.14)
+        version: 0.6.3(@rollup/wasm-node@4.62.4)(@types/node@24.0.14)
       rollup-plugin-terser:
         specifier: ^7.0.2
-        version: 7.0.2(@rollup/wasm-node@4.62.2)
+        version: 7.0.2(@rollup/wasm-node@4.62.4)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -740,7 +740,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
@@ -782,7 +782,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -888,11 +888,11 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.1.1
+        specifier: ~5.2.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.0
+        version: 3.5.0
       '@stencil/react-output-target':
         specifier: ^1.5.3
         version: 1.5.3(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -902,7 +902,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.62.2)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.62.4)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -959,10 +959,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.62.2'
+        version: '@rollup/wasm-node@4.62.4'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.62.2)
+        version: 0.4.0(@rollup/wasm-node@4.62.4)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.0)
@@ -995,7 +995,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -1090,7 +1090,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@stencil/core':
         specifier: ^4.43.4
         version: 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
@@ -1146,11 +1146,11 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.1.1
+        specifier: ~5.2.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.0
+        version: 3.5.0
       '@stencil/vue-output-target':
         specifier: ^0.13.2
         version: 0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
@@ -1214,7 +1214,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -1350,7 +1350,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 3.4.0
+        version: 3.5.0
       '@types/node':
         specifier: ^24.0.14
         version: 24.0.14
@@ -3777,6 +3777,13 @@ packages:
     resolution: {integrity: sha512-2+BzZbjRO7Ct61k8fMNHEtoKjeWI9pIlHFTqBwZ5icHpqszIgEZbjb1MW5Z0+bITTCTl3gk4PDBxs9tA/csXvA==}
     engines: {node: '>=18'}
 
+  '@napi-rs/lzma-linux-x64-gnu@1.5.1':
+    resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
+    engines: {node: ^22.20 || ^24.12 || >=25}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
   '@napi-rs/nice-android-arm-eabi@1.0.1':
     resolution: {integrity: sha512-5qpvOu5IGwDo7MEKVqqyAxF90I6aLj4n07OzpARdgDRfz8UbBztTByBp0RC59r3J1Ij8uzYi6jI7r5Lws7nn6w==}
     engines: {node: '>= 10'}
@@ -4415,8 +4422,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.62.2':
-    resolution: {integrity: sha512-LseVv64SSO6S7eyc+LFGUnH36NMMFbtKN28vTUHFinRVzFKH4cVQ/BB22JfXM9Ei5l7x46AIQp+n2QzzJ9kxHg==}
+  '@rollup/wasm-node@4.62.4':
+    resolution: {integrity: sha512-GJFM5d4k5dSoY/oyILsKArplGvkss1DOURyXsl6IEM/X9RV3bQwqu9GY6tYfA97ZwIejfAguHa9fo1pGOQcyDg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -4442,8 +4449,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@3.4.0':
-    resolution: {integrity: sha512-T6maRV+DJ1MjT29phC/miwwc8fP/D8LQGNjc0UlBZnFCLaDMrtasQTREQzff99uROUmHw4nt5A65/ZWnW/j9Pg==}
+  '@siemens/ix-icons@3.5.0':
+    resolution: {integrity: sha512-FP/7jnjoTfIvIah5OkJ7nLoXjyNy2rcUClGk29NLd4h/If/lz5liu7AMrCNKV9BTNCWQM8UI1wmoeF8xWz5d+A==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@sigstore/bundle@3.1.0':
@@ -16094,6 +16101,9 @@ snapshots:
       strict-event-emitter: 0.5.1
     optional: true
 
+  '@napi-rs/lzma-linux-x64-gnu@1.5.1':
+    optional: true
+
   '@napi-rs/nice-android-arm-eabi@1.0.1':
     optional: true
 
@@ -16486,40 +16496,40 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.55.1'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.62.2)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.62.4)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.4)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.62.2)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.62.4)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.4)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.62.2)(tslib@2.8.1)(typescript@6.0.2)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.62.4)(tslib@2.8.1)(typescript@6.0.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.4)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
       typescript: 6.0.2
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.62.2)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.62.4)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
 
   '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.55.1)':
     dependencies:
@@ -16537,13 +16547,13 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.55.1'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.62.2)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.62.4)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
 
   '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
@@ -16605,10 +16615,11 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.62.2':
+  '@rollup/wasm-node@4.62.4':
     dependencies:
       '@types/estree': 1.0.9
     optionalDependencies:
+      '@napi-rs/lzma-linux-x64-gnu': 1.5.1
       fsevents: 2.3.3
 
   '@schematics/angular@20.1.4(chokidar@4.0.3)':
@@ -16639,7 +16650,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@3.4.0': {}
+  '@siemens/ix-icons@3.5.0': {}
 
   '@sigstore/bundle@3.1.0':
     dependencies:
@@ -24596,31 +24607,31 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 7.27.1
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.62.2)(typescript@6.0.2):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.62.4)(typescript@6.0.2):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
       typescript: 6.0.2
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-import-css@4.2.0(@rollup/wasm-node@4.62.2):
+  rollup-plugin-import-css@4.2.0(@rollup/wasm-node@4.62.4):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.2)
-      rollup: '@rollup/wasm-node@4.62.2'
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.4)
+      rollup: '@rollup/wasm-node@4.62.4'
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.62.2):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.62.4):
     dependencies:
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.62.2):
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.62.4):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.62.4)
       magic-string: 0.30.17
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -24630,19 +24641,19 @@ snapshots:
       js-xxhash: 4.0.0
       rollup: '@rollup/wasm-node@4.55.1'
 
-  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.62.2)(@types/node@24.0.14):
+  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.62.4)(@types/node@24.0.14):
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.2)
-      rollup: '@rollup/wasm-node@4.62.2'
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.62.4)
+      rollup: '@rollup/wasm-node@4.62.4'
       source-map-resolve: 0.6.0
     optionalDependencies:
       '@types/node': 24.0.14
 
-  rollup-plugin-terser@7.0.2(@rollup/wasm-node@4.62.2):
+  rollup-plugin-terser@7.0.2(@rollup/wasm-node@4.62.4):
     dependencies:
       '@babel/code-frame': 7.27.1
       jest-worker: 26.6.2
-      rollup: '@rollup/wasm-node@4.62.2'
+      rollup: '@rollup/wasm-node@4.62.4'
       serialize-javascript: 4.0.0
       terser: 5.46.0
 
