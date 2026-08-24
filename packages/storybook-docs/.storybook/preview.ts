@@ -63,6 +63,11 @@ const preview: Preview = {
     ixColorSchema: 'dark',
   },
   parameters: {
+    options: {
+      storySort: {
+        method: 'alphabetical',
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
