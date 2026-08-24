@@ -8,6 +8,7 @@
  */
 
 @use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
 @use './workflow-step.vars' as *;
@@ -167,8 +168,8 @@
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid #{sys.$si-sys-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
 
     &.selected {
