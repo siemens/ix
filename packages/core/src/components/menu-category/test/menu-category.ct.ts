@@ -550,7 +550,6 @@ regressionTest(
 regressionTest(
   'should not retain inline max-height after expanding category with many items',
   async ({ mount, page }) => {
-
     await page.setViewportSize({ width: 1280, height: 500 });
 
     await mount(`
