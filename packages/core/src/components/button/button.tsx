@@ -65,6 +65,9 @@ export class Button
    */
   @Prop() loading: boolean = false;
 
+  /** @internal */
+  @Prop() inert = false;
+
   /**
    * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
    *
@@ -191,6 +194,7 @@ export class Button
       iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,

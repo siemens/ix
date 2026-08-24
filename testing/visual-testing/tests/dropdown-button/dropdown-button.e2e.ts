@@ -18,6 +18,9 @@ regressionTest.describe('basic', () => {
 
   regressionTest('dropdown-button-icon', async ({ page }) => {
     await page.goto('dropdown-button/dropdown-button-icon');
+    const dropdownButton = page.locator('ix-dropdown-button').first();
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await dropdownButton.focus();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 

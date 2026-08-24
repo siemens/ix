@@ -72,6 +72,9 @@ export class IconButton
    */
   @Prop() loading = false;
 
+  /** @internal */
+  @Prop() inert = false;
+
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
@@ -125,6 +128,7 @@ export class IconButton
       iconColor: this.iconColor,
       iconSize: this.size,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),

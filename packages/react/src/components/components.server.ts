@@ -294,6 +294,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents, Co
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
+        inert: 'inert',
         form: 'form',
         icon: 'icon',
         iconRight: 'icon-right',
@@ -1112,7 +1113,8 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         iconColor: 'icon-color',
         disabled: 'disabled',
         type: 'type',
-        loading: 'loading'
+        loading: 'loading',
+        inert: 'inert'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
