@@ -66,6 +66,7 @@ export class Button
   @Prop() loading: boolean = false;
 
   /** @internal */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() inert = false;
 
   /**

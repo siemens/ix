@@ -73,6 +73,7 @@ export class IconButton
   @Prop() loading = false;
 
   /** @internal */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() inert = false;
 
   /**
