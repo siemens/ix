@@ -17,7 +17,7 @@ import {
   selector: 'app-example',
   imports: [IxDropdownButton, IxDropdownItem],
   template: `
-    <div class="example">
+    <div class="dropdown-button">
       <ix-dropdown-button label="Primary dropdown" icon="checkboxes">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
