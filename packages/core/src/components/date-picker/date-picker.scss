@@ -204,7 +204,7 @@
         background-color: var(--theme-datepicker-day--background--selected);
         color: var(--theme-datepicker-day--color--selected);
         border: 1px solid var(--theme-datepicker-day--background--selected);
-        font-weight: var(--theme-font-weight-bold);
+        font-weight: var(--si-ref-typography-font-weight-bold);
 
         &:hover {
           background-color: var(
@@ -260,7 +260,7 @@
 
       &.week-day {
         color: var(--theme-datepicker-weekday--color);
-        font-size: var(--theme-ms-0);
+        font-size: var(--si-ref-typography-font-size-code);
         line-height: 143%;
         border: none;
         background: none;

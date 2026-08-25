@@ -120,7 +120,7 @@
         &.selected {
           background-color: var(--theme-datepicker-day--background--selected);
           color: var(--theme-datepicker-day--color--selected);
-          font-weight: var(--theme-font-weight-bold);
+          font-weight: var(--si-ref-typography-font-weight-bold);
 
           &:hover:not(.disabled) {
             background-color: var(

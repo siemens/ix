@@ -236,7 +236,7 @@ export class Checkbox implements IxFormComponent<string> {
             </button>
           </div>
           <ix-typography
-            format="label"
+            format="body"
             textColor={this.disabled ? 'weak' : 'std'}
           >
             {this.label}
