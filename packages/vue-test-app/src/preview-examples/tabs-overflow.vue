@@ -33,14 +33,14 @@ const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
 <template>
   <div class="tabs" :style="{ maxWidth: '340px' }">
     <IxTabs
-      :activeTabKey="activeTabKey"
+      :active-tab-key="activeTabKey"
       layout="auto"
       @tabChange="setActiveTabKey"
     >
       <IxTabItem
         v-for="{ tabKey, label } in OVERFLOW_TABS"
         :key="tabKey"
-        :tabKey="tabKey"
+        :tab-key="tabKey"
       >
         {{ label }}
       </IxTabItem>

@@ -14,8 +14,8 @@ import { IxGroup, IxGroupItem } from '@siemens/ix-vue';
 <template>
   <IxGroup
     header="Header text"
-    subHeader="Subheader text"
-    suppressHeaderSelection
+    sub-header="Subheader text"
+    suppress-header-selection
   >
     <IxGroupItem text="Example text 1"></IxGroupItem>
     <IxGroupItem text="Example text 2"></IxGroupItem>
