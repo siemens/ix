@@ -146,6 +146,13 @@ export class WorkflowStep {
     }
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      this.onStepClick();
+    }
+  }
+
   getIconAriaLabel() {
     switch (this.iconName) {
       case iconCircle:
@@ -177,6 +184,7 @@ export class WorkflowStep {
           }
           class="absolute"
           size="24"
+          aria-hidden="true"
         ></ix-icon>
         <ix-icon
           color={this.iconColor}
@@ -189,12 +197,14 @@ export class WorkflowStep {
     ) : null;
 
     return (
-      <Host
-        class={{ 'host-vertical': this.vertical }}
-        onClick={() => this.onStepClick()}
-      >
+      <Host class={{ 'host-vertical': this.vertical }}>
         <div
-          tabIndex={0}
+          tabIndex={this.disabled || !this.clickable ? -1 : 0}
+          role={this.clickable ? 'button' : undefined}
+          aria-disabled={this.disabled ? 'true' : undefined}
+          aria-current={this.selected ? 'step' : undefined}
+          onClick={() => this.onStepClick()}
+          onKeyDown={(e) => this.onKeyDown(e)}
           class={{
             step: true,
             selected: this.selected,
