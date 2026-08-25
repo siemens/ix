@@ -114,6 +114,7 @@
       &:focus-visible {
         outline: 1px solid var(--ix-date-picker-day--outline-color--focus);
         outline-offset: var(--ix-date-picker--focus--outline-offset);
+        z-index: 1;
       }
 
       &.today {
