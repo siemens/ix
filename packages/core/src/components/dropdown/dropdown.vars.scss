@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-dropdown--background: #{sys.$si-sys-background-1};
+  --ix-dropdown--background: #{sys.$si-sys-background-3};
   --ix-dropdown--border-radius: var(--theme-default-border-radius);
   --ix-dropdown--z-index: var(--theme-z-index-dropdown);
   --ix-dropdown--box-shadow: #{sys.$si-sys-effects-shadow-4};

@@ -10,6 +10,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-menu-settings-overlay--background: var(--theme-color-backdrop-3);
+  --ix-menu-settings-overlay--background: #{sys.$si-sys-background-3};
   --ix-menu-settings-overlay-header--color: #{sys.$si-sys-text-primary};
 }

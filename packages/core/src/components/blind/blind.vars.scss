@@ -37,7 +37,7 @@ $blind-variant-sys-values: (
   neutral: (
     background: sys.$si-sys-background-neutral,
     hover: sys.$si-sys-background-hover,
-    active: sys.$si-sys-background-selected,
+    active: sys.$si-sys-background-active,
     contrast: sys.$si-sys-text-primary,
   ),
   primary: (

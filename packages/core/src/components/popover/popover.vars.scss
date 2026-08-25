@@ -12,7 +12,7 @@
 :host {
   --ix-popover--box-shadow: #{sys.$si-sys-effects-shadow-4};
   --ix-popover--border-radius: var(--theme-default-border-radius);
-  --ix-popover--background: #{sys.$si-sys-background-1};
+  --ix-popover--background: #{sys.$si-sys-background-3};
   --ix-popover--border-color: transparent;
   --ix-popover--color: #{sys.$si-sys-text-primary};
   // The "spike" (arrow) shape disables box-shadow (it doesn't follow the
