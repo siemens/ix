@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-group header="Header text" sub-header="Subheader text">
+    <ix-group header="Header text" subHeader="Subheader text">
       <ix-dropdown slot="dropdown">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
