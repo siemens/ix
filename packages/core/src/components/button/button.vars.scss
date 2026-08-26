@@ -75,7 +75,7 @@
   --ix-button-secondary--background--active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-secondary--background--disabled: rgba(0, 0, 0, 0);
   --ix-button-secondary--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
-  --ix-button-secondary--background--pressed: var(--theme-color-component-7);
+  --ix-button-secondary--background--pressed: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-secondary--background--pressed-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-secondary--background--pressed-hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-button-secondary--border-color: #{sys.$si-sys-border-accent};
@@ -96,9 +96,7 @@
   --ix-button-subtle-primary--background--active: #{sys.$si-sys-background-selected};
   --ix-button-subtle-primary--background--disabled: #{sys.$si-sys-background-1};
   --ix-button-subtle-primary--background--hover: #{sys.$si-sys-background-hover};
-  --ix-button-subtle-primary--background--pressed: var(
-    --theme-color-component-7
-  );
+  --ix-button-subtle-primary--background--pressed: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-primary--background--pressed-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-primary--background--pressed-hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-button-subtle-primary--border-color: rgba(0, 0, 0, 0);
@@ -119,9 +117,7 @@
   --ix-button-subtle-secondary--background--active: #{sys.$si-sys-background-selected};
   --ix-button-subtle-secondary--background--disabled: rgba(0, 0, 0, 0);
   --ix-button-subtle-secondary--background--hover: #{sys.$si-sys-background-hover};
-  --ix-button-subtle-secondary--background--pressed: var(
-    --theme-color-component-7
-  );
+  --ix-button-subtle-secondary--background--pressed: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-secondary--background--pressed-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-secondary--background--pressed-hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-button-subtle-secondary--border-color: #{sys.$si-sys-border-2};
@@ -142,9 +138,7 @@
   --ix-button-subtle-tertiary--background--active: #{sys.$si-sys-background-selected};
   --ix-button-subtle-tertiary--background--disabled: rgba(0, 0, 0, 0);
   --ix-button-subtle-tertiary--background--hover: #{sys.$si-sys-background-hover};
-  --ix-button-subtle-tertiary--background--pressed: var(
-    --theme-color-component-7
-  );
+  --ix-button-subtle-tertiary--background--pressed: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-tertiary--background--pressed-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-subtle-tertiary--background--pressed-hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-button-subtle-tertiary--border-color: rgba(0, 0, 0, 0);
@@ -165,7 +159,7 @@
   --ix-button-tertiary--background--active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-tertiary--background--disabled: rgba(0, 0, 0, 0);
   --ix-button-tertiary--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
-  --ix-button-tertiary--background--pressed: var(--theme-color-component-7);
+  --ix-button-tertiary--background--pressed: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-tertiary--background--pressed-active: #{sys.$si-sys-background-accent-secondary-active};
   --ix-button-tertiary--background--pressed-hover: #{sys.$si-sys-background-accent-secondary-hover};
   --ix-button-tertiary--border-color: rgba(0, 0, 0, 0);
