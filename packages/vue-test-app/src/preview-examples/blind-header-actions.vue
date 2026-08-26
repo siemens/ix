@@ -26,7 +26,7 @@ import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
       id="context-menu"
       slot="header-actions"
       :icon="iconContextMenu"
-      iconColor="--si-sys-text-accent"
+      icon-color="--si-sys-text-accent"
     ></IxIconButton>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam

@@ -25,7 +25,7 @@ import {
         id="context-menu"
         slot="header-actions"
         icon="context-menu"
-        icon-color="--si-sys-text-accent"
+        iconColor="--si-sys-text-accent"
       ></ix-icon-button>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
