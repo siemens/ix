@@ -52,7 +52,7 @@ const interactiveElementSelector = [
 /**
  * @slot default - Non-interactive custom content replacing the standard icon, label, description, and status layout.
  * @slot action - Interactive trailing controls that do not activate the item.
- * @since 5.2.0
+ * @since 6.0.0
  */
 
 @Component({
@@ -70,86 +70,86 @@ export class ListItem
 
   /**
    * Visual variant of the item.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) variant: ListItemVariant = 'filled';
 
   /**
    * Label displayed by the standard item layout.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() label?: string;
 
   /**
    * Supporting text displayed below the label.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() description?: string;
 
   /**
    * Icon displayed by the standard item layout.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() icon?: string;
 
   /**
    * Accessible label for the item icon.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() ariaLabelIcon?: string;
 
   /**
    * Tooltip text for the primary item surface. Uses the item label by default.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() tooltipText?: string;
 
   /**
    * Show the item as selected.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) selected = false;
 
   /**
    * Disable item activation and action controls.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) disabled = false;
 
   /**
    * Display selection with checkbox semantics.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) checkbox = false;
 
   /**
    * Display a divider below this item.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) hasDivider = false;
 
   /**
    * Show action slot content only when the item is hovered or focused.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) actionOnHover = false;
 
   /**
    * Vertical alignment of the action slot content.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) actionSlotAlignment: ListItemActionSlotAlignment =
     'center';
 
   /**
    * Emitted when the primary item surface is activated.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Event() itemClick!: EventEmitter<HTMLIxListItemElement>;
 
   /**
    * Requests a controlled selection update when a checkbox item is activated.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Event() selectedChange!: EventEmitter<boolean>;
 

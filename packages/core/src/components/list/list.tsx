@@ -84,7 +84,7 @@ const itemPropertyDefaults: Required<
 
 /**
  * @slot default - List items and optional group separators.
- * @since 5.2.0
+ * @since 6.0.0
  */
 
 @Component({
@@ -97,62 +97,62 @@ export class List {
 
   /**
    * Display dividers between direct list items.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) hasDivider = false;
 
   /**
    * Space in pixels between direct list items.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() itemGap: ListItemGap = 12;
 
   /**
    * Default visual variant for list items that do not define their own variant.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) variant?: ListItemVariant;
 
   /**
    * Default disabled state for list items that do not define their own state.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) disabled?: boolean;
 
   /**
    * Display selection checkboxes on list items that do not define their own setting.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) checkbox?: boolean;
 
   /**
    * Show action content on hover or focus for list items that do not define their own setting.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) actionOnHover?: boolean;
 
   /**
    * Default action slot alignment for list items that do not define their own setting.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) actionSlotAlignment?: ListItemActionSlotAlignment;
 
   /**
    * Enable drag-and-drop reordering of direct list items.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names -- Public API intentionally follows the native draggable name.
   @Prop({ reflect: true }) draggable = false;
 
   /**
    * Visual behavior used while dragging a list item.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop({ reflect: true }) dragBehavior: ListDragBehavior = 'dynamic';
 
   /**
    * Emitted after a list item has been reordered.
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Event() itemOrderChange!: EventEmitter<ListItemOrderChangeEvent>;
 

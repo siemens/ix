@@ -11,7 +11,7 @@ import { Component, h, Host } from '@stencil/core';
 
 /**
  * Standalone horizontal separator for list content.
- * @since 5.2.0
+ * @since 6.0.0
  */
 @Component({
   tag: 'ix-list-item-separator',
