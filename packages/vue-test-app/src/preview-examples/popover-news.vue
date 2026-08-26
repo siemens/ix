@@ -24,7 +24,7 @@ import {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu>
-      <IxMenuAbout active-tab-key="tab-1">
+      <IxMenuAbout enable-legacy-tabs active-tab-key="tab-1">
         <IxMenuAboutItem tab-key="tab-1" label="Example"> </IxMenuAboutItem>
       </IxMenuAbout>
       <IxMenuAboutNews label="Test" show active-about-tab-key="tab-1">

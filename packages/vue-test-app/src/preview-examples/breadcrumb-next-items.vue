@@ -17,18 +17,9 @@ const nextItems = ref<{ breadcrumbKey: string; label: string }[]>([
 </script>
 
 <template>
-  <IxBreadcrumb :next-items="nextItems">
-    <IxBreadcrumbItem
-      label="Item 1"
-      breadcrumb-key="item-1"
-    ></IxBreadcrumbItem>
-    <IxBreadcrumbItem
-      label="Item 2"
-      breadcrumb-key="item-2"
-    ></IxBreadcrumbItem>
-    <IxBreadcrumbItem
-      label="Item 3"
-      breadcrumb-key="item-3"
-    ></IxBreadcrumbItem>
+   <IxBreadcrumb :next-items="nextItems">
+    <IxBreadcrumbItem label="Item 1" breadcrumb-key="item-1"></IxBreadcrumbItem>
+    <IxBreadcrumbItem label="Item 2" breadcrumb-key="item-2"></IxBreadcrumbItem>
+    <IxBreadcrumbItem label="Item 3" breadcrumb-key="item-3"></IxBreadcrumbItem>
   </IxBreadcrumb>
 </template>
