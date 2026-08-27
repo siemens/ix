@@ -115,7 +115,7 @@
     }
   }
 
-  @include button-mixin.btn-base-variant('tertiary');
+  @include button-mixin.btn-base-variant('subtle-tertiary');
 
   button:focus-visible {
     outline: 1px solid var(--theme-color-focus-bdr);
@@ -127,4 +127,10 @@
   }
 
   @include focus-proxy.focus-proxy();
+}
+
+:host(.avatar-button.active) {
+  .btn-subtle-tertiary:not(.disabled):not(:disabled) {
+    @include button-mixin.btn-active-look('subtle-tertiary');
+  }
 }
