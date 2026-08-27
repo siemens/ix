@@ -35,35 +35,35 @@
   position: relative;
 
   background-color: var(--si-sys-background-1);
-  border: var(--theme-border-width-default, 1px) solid var(--si-sys-border-2);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:hover {
   background-color: var(--si-sys-background-hover);
-  border: var(--theme-border-width-default) solid var(--si-sys-border-2);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:active {
   background-color: var(--si-sys-background-active);
-  border: var(--theme-border-width-default) solid var(--si-sys-border-2);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:checked,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input {
   background-color: var(--si-sys-background-accent);
-  border: var(--theme-border-width-default) solid rgba(0, 0, 0, 0);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:hover,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:hover {
   background-color: var(--si-sys-background-accent-hover);
-  border: var(--theme-border-width-default) solid rgba(0, 0, 0, 0);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:active,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:active {
   background-color: var(--si-sys-background-accent-active);
-  border: var(--theme-border-width-default) solid rgba(0, 0, 0, 0);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked::after,
@@ -74,7 +74,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 100px;
-  background-color: var(--theme-color-primary--contrast);
+  background-color: var(--si-sys-text-on-accent);
   width: 0.5rem;
   height: 0.5rem;
 }
@@ -83,18 +83,18 @@
   cursor: not-allowed;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0);
-  border: var(--theme-border-width-default) solid var(--si-sys-text-disabled);
+  border: 0.0625rem solid var(--si-sys-text-disabled);
 }
 
 .ag-radio-button-input:checked:disabled,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:disabled {
   background-color: var(--si-sys-text-disabled);
-  border: var(--theme-border-width-default) solid rgba(0, 0, 0, 0);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:focus-visible {
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
-  outline-offset: var(--theme-focus-outline-offset);
+  outline: 0.0625rem solid var(--si-sys-effects-focus);
+  outline-offset: 0.125rem;
 }
 
 .ag-filter-condition {

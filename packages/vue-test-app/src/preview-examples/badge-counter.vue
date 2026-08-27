@@ -126,15 +126,15 @@ import { IxBadge } from '@siemens/ix-vue';
       type="counter"
       label="8"
       variant="custom"
-      background="var(--theme-chart-11)"
-      badge-color="var(--theme-color-inv-std-text)"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
     ></IxBadge>
     <IxBadge
       type="counter"
       label="8"
       variant="custom"
       outline
-      background="var(--theme-chart-11)"
+      background="var(--si-sys-data-categorical-9)"
       badge-color="var(--si-sys-text-primary)"
     ></IxBadge>
     <IxBadge
@@ -142,8 +142,8 @@ import { IxBadge } from '@siemens/ix-vue';
       label="8"
       variant="custom"
       enable-animation
-      background="var(--theme-chart-11)"
-      badge-color="var(--theme-color-inv-std-text)"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
     ></IxBadge>
     <IxBadge
       type="counter"
@@ -151,7 +151,7 @@ import { IxBadge } from '@siemens/ix-vue';
       variant="custom"
       outline
       enable-animation
-      background="var(--theme-chart-11)"
+      background="var(--si-sys-data-categorical-9)"
       badge-color="var(--si-sys-text-primary)"
     ></IxBadge>
   </div>

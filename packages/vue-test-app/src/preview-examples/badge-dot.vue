@@ -213,8 +213,8 @@ import { IxBadge } from '@siemens/ix-vue';
       variant="custom"
       role="img"
       aria-label="Custom"
-      background="var(--theme-chart-11)"
-      badge-color="var(--theme-color-inv-std-text)"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
     ></IxBadge>
     <IxBadge
       type="dot"
@@ -222,7 +222,7 @@ import { IxBadge } from '@siemens/ix-vue';
       outline
       role="img"
       aria-label="Custom outline"
-      background="var(--theme-chart-11)"
+      background="var(--si-sys-data-categorical-9)"
       badge-color="var(--si-sys-text-primary)"
     ></IxBadge>
     <IxBadge
@@ -231,8 +231,8 @@ import { IxBadge } from '@siemens/ix-vue';
       enable-animation
       role="img"
       aria-label="Custom pulse"
-      background="var(--theme-chart-11)"
-      badge-color="var(--theme-color-inv-std-text)"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
     ></IxBadge>
     <IxBadge
       type="dot"
@@ -241,7 +241,7 @@ import { IxBadge } from '@siemens/ix-vue';
       enable-animation
       role="img"
       aria-label="Custom pulse outline"
-      background="var(--theme-chart-11)"
+      background="var(--si-sys-data-categorical-9)"
       badge-color="var(--si-sys-text-primary)"
     ></IxBadge>
   </div>

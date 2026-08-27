@@ -29,18 +29,18 @@ const scrollbarOverwrite = `
   }
 
   ::-webkit-scrollbar-track:hover {
-    background: var(--theme-color-3);
+    background: var(--si-sys-background-1);
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: var(--theme-color-5);
+    background: var(--si-sys-border-4);
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-color-7);
+    background: var(--si-sys-border-2);
   }
 
   ::-webkit-scrollbar-corner {
