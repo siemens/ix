@@ -25,7 +25,7 @@ export type IxTreeProps = Omit<
   renderItem?: (data: any) => React.ReactNode;
   onContextChange?: (event: IxTreeCustomEvent<TreeContext>) => void;
   onNodeToggled?: (
-    event: CustomEvent<{ id: string; isExpaned: boolean }>
+    event: CustomEvent<{ id: string; isExpanded: boolean }>
   ) => void;
   onNodeClicked?: (event: CustomEvent<string>) => void;
   onNodeRemoved?: (event: CustomEvent<any>) => void;
