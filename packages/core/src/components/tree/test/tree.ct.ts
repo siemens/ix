@@ -92,6 +92,27 @@ const updateModel = async (tree: Locator, updatedModel: any) => {
   );
 };
 
+regressionTest.describe('accessibility', () => {
+  regressionTest('collapsed', async ({ mount, page, makeAxeBuilder }) => {
+    await initializeTree(mount, page);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('expanded', async ({ mount, page, makeAxeBuilder }) => {
+    const tree = await initializeTree(mount, page);
+
+    await tree
+      .locator('ix-tree-item', { hasText: 'Sample', hasNotText: 'Child' })
+      .locator('ix-icon')
+      .click();
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
@@ -747,5 +768,163 @@ regressionTest(
       },
       'Context Disabled Parent'
     );
+  }
+);
+
+regressionTest(
+  'should expand item when Enter is pressed on chevron',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+    const chevron = sampleItem.locator('ix-icon');
+
+    await chevron.focus();
+    await page.keyboard.press('Enter');
+
+    const children = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child ',
+    });
+    await expect(children.nth(0)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should expand item when Space is pressed on chevron',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+    const chevron = sampleItem.locator('ix-icon');
+
+    await chevron.focus();
+    await page.keyboard.press('Space');
+
+    const children = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child ',
+    });
+    await expect(children.nth(0)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should select item when Enter is pressed on tree-node-container',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+    const container = sampleItem.locator('.tree-node-container');
+
+    await container.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(sampleItem).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'should select item when Space is pressed on tree-node-container',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+    const container = sampleItem.locator('.tree-node-container');
+
+    await container.focus();
+    await page.keyboard.press('Space');
+
+    await expect(sampleItem).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'disabled item should not respond to keyboard activation',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, args) => {
+        element.model = args.model;
+        element.context = args.context;
+      },
+      {
+        model: {
+          root: {
+            id: 'root',
+            data: { name: '' },
+            hasChildren: true,
+            children: ['parent'],
+          },
+          parent: {
+            id: 'parent',
+            data: { name: 'Disabled Parent' },
+            hasChildren: true,
+            children: ['child'],
+            disabled: true,
+          },
+          child: {
+            id: 'child',
+            data: { name: 'Child' },
+            hasChildren: false,
+            children: [],
+          },
+        } as TreeModel<unknown>,
+        context: {
+          root: { isExpanded: true, isSelected: false },
+          parent: { isExpanded: false, isSelected: false },
+          child: { isExpanded: false, isSelected: false },
+        } as TreeContext,
+      }
+    );
+
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const parent = tree.locator('ix-tree-item', { hasText: 'Disabled Parent' });
+    const container = parent.locator('.tree-node-container');
+
+    await container.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(parent).not.toHaveClass(/selected/);
+    await expect(
+      tree.locator('ix-tree-item', { hasText: 'Child' })
+    ).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should preserve focus on tree-node-container after refreshTree',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+    const container = sampleItem.locator('.tree-node-container');
+
+    await container.focus();
+    await expect(container).toBeFocused();
+
+    await tree.evaluate((el: HTMLIxTreeElement) => el.refreshTree());
+
+    await expect(container).toBeFocused();
   }
 );
