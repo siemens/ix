@@ -27,7 +27,14 @@ regressionTest.describe('datetime-input', () => {
     await expect(datetimeInput.getByTestId('datetime-dropdown')).toHaveClass(
       /show/
     );
-    await expect(input).toBeFocused();
+    // Move focus into the overlay so the snapshot covers Active without field focus.
+    await datetimeInput.locator('ix-datetime-picker').evaluate(
+      async (el: HTMLIxDatetimePickerElement) => {
+        const datePicker = await el.getDatepickerElement();
+        await datePicker?.focusActiveDay();
+      }
+    );
+    await expect(input).not.toBeFocused();
     await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({

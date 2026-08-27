@@ -25,7 +25,9 @@ regressionTest.describe('time input', () => {
     const input = timeInput.locator('input');
     await input.click();
     await expect(timeInput.getByTestId('time-dropdown')).toHaveClass(/show/);
-    await expect(input).toBeFocused();
+    // ArrowDown moves focus into the time picker (Active without field focus).
+    await page.keyboard.press('ArrowDown');
+    await expect(input).not.toBeFocused();
     await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

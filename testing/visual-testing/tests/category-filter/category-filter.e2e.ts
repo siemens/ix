@@ -14,9 +14,12 @@ regressionTest.describe('category-filter', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/basic');
     const categoryFilter = page.locator('ix-category-filter');
-    await categoryFilter.locator('input').click();
+    const input = categoryFilter.locator('input');
+    // Open via keyboard so focus moves into the dropdown (Active without field focus).
+    await input.focus();
+    await page.keyboard.press('ArrowDown');
     await expect(categoryFilter.locator('ix-dropdown')).toHaveClass(/show/);
-    // Leave the field so the snapshot is overlay-open Hover, not pointer :hover.
+    await expect(input).not.toBeFocused();
     await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
