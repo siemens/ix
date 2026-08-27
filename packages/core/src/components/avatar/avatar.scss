@@ -127,3 +127,9 @@
 
   @include focus-proxy.focus-proxy();
 }
+
+:host(.avatar-button.active) {
+  .btn-subtle-tertiary:not(.disabled):not(:disabled) {
+    @include button-mixin.btn-active-look('subtle-tertiary');
+  }
+}
