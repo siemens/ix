@@ -28,6 +28,13 @@ function CardListTitle(props: {
   hideShowAll: boolean;
   collapseButtonRef: (element?: HTMLIxIconButtonElement) => void;
 }) {
+  const defaultAriaLabel = props.isCollapsed
+    ? 'Expand card list'
+    : 'Collapse card list';
+  const ariaLabel = props.ariaLabelExpandButton?.trim()
+    ? props.ariaLabelExpandButton
+    : defaultAriaLabel;
+
   if (!props.label) {
     return null;
   }
@@ -43,7 +50,7 @@ function CardListTitle(props: {
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
-        aria-label={props.ariaLabelExpandButton}
+        aria-label={ariaLabel}
         ref={props.collapseButtonRef}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
@@ -83,8 +90,9 @@ function CardListTitle(props: {
 })
 export class CardList {
   /**
-   * ARIA label for the card's expand button.
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the card list's expand and collapse button.
+   * Defaults to `Collapse card list` when expanded and `Expand card list` when
+   * collapsed. A non-empty custom value overrides the label in both states.
    *
    * @since 3.2.0
    */

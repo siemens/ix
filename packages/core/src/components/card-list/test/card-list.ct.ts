@@ -46,14 +46,18 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
+    await cardList.evaluate((element: HTMLIxCardListElement) => {
+      element.ariaLabelExpandButton = '   ';
+    });
     const collapseButton = cardList.getByRole('button', {
-      name: 'Chevron Up',
+      name: 'Collapse card list',
     });
     const cardAction = page.getByRole('button', { name: 'Card action' });
     const content = cardList.locator('.CardList__Content');
     const after = page.getByRole('button', { name: 'After' });
 
     await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(collapseButton).toBeVisible();
 
     await cardAction.focus();
     await expect(cardAction).toBeFocused();
@@ -62,7 +66,10 @@ regressionTest(
       element.collapse = true;
     });
 
-    await expect(collapseButton).toBeFocused();
+    const expandButton = cardList.getByRole('button', {
+      name: 'Expand card list',
+    });
+    await expect(expandButton).toBeFocused();
     await expect(content).toHaveJSProperty('inert', true);
 
     const results = await makeAxeBuilder().analyze();
@@ -88,7 +95,7 @@ regressionTest(
 
     const cardList = page.locator('ix-card-list');
     const collapseButton = cardList.getByRole('button', {
-      name: 'Chevron Up',
+      name: 'Collapse card list',
     });
     const showMoreCard = cardList.getByRole('button', {
       name: /there are more cards available/i,
@@ -96,6 +103,7 @@ regressionTest(
     const content = cardList.locator('.CardList__Content');
 
     await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(collapseButton).toBeVisible();
     await expect(showMoreCard).toBeVisible();
 
     await showMoreCard.focus();
@@ -105,7 +113,10 @@ regressionTest(
       element.collapse = true;
     });
 
-    await expect(collapseButton).toBeFocused();
+    const expandButton = cardList.getByRole('button', {
+      name: 'Expand card list',
+    });
+    await expect(expandButton).toBeFocused();
     await expect(content).toHaveJSProperty('inert', true);
   }
 );

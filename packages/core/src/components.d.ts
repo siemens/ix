@@ -581,7 +581,7 @@ export namespace Components {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
@@ -7482,7 +7482,7 @@ declare namespace LocalJSX {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
