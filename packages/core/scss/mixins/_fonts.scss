@@ -29,8 +29,8 @@
 }
 
 @mixin typography-body {
-  $font: var(--si-sys-typography-body);
   @include define-typography(
+    $font: var(--si-sys-typography-body),
   );
 }
 
