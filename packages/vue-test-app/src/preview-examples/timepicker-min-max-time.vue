@@ -15,7 +15,7 @@ import { IxTimePicker } from '@siemens/ix-vue';
   <IxTimePicker
     format="HH:mm:ss"
     time="12:00:00"
-    minTime="09:00:00"
-    maxTime="17:30:00"
+    min-time="09:00:00"
+    max-time="17:30:00"
   />
 </template>

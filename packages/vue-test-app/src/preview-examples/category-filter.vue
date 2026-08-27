@@ -37,8 +37,8 @@ const categories = {
 <template>
   <IxCategoryFilter
     placeholder="Filter by"
-    :uniqueCategories="false"
-    :filterState="filter"
+    :unique-categories="false"
+    :filter-state="filter"
     :categories="categories"
   ></IxCategoryFilter>
 </template>
