@@ -49,8 +49,10 @@ async function requireBoundingBox(locator: {
   } | null>;
 }) {
   const box = await locator.boundingBox();
-  expect(box).toBeTruthy();
-  return box!;
+  if (!box) {
+    throw new Error('Expected locator to have a bounding box');
+  }
+  return box;
 }
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
