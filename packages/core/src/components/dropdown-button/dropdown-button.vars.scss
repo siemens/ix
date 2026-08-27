@@ -17,14 +17,8 @@ $dropdown-button-variants: button-variants.$btn-variants;
   --ix-dropdown-button-#{$name}-color-disabled: var(
     --theme-btn-#{$name}--color--disabled
   );
-  --ix-dropdown-button-#{$name}-background-active: var(
-    --theme-btn-#{$name}--background--active
-  );
   --ix-dropdown-button-#{$name}-color-active: var(
     --theme-btn-#{$name}--color--active
-  );
-  --ix-dropdown-button-#{$name}-border-color-active: var(
-    --theme-btn-#{$name}--border-color--active
   );
 }
 
