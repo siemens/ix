@@ -24,7 +24,7 @@
   --ix-button-danger-primary--border-color--hover: rgba(0, 0, 0, 0);
   --ix-button-danger-primary--color: #{sys.$si-sys-text-on-danger};
   --ix-button-danger-primary--color--active: #{sys.$si-sys-text-on-danger};
-  --ix-button-danger-primary--color--disabled: #{sys.$si-sys-text-on-accent};
+  --ix-button-danger-primary--color--disabled: #{sys.$si-sys-text-disabled};
   --ix-button-danger-primary--color--hover: #{sys.$si-sys-text-on-danger};
   --ix-button-danger-secondary--background: rgba(0, 0, 0, 0);
   --ix-button-danger-secondary--background--active: #{sys.$si-sys-background-danger-active};
@@ -66,7 +66,7 @@
   --ix-button-primary--border-color--pressed-hover-active: rgba(0, 0, 0, 0);
   --ix-button-primary--color: #{sys.$si-sys-text-on-accent};
   --ix-button-primary--color--active: #{sys.$si-sys-text-on-accent};
-  --ix-button-primary--color--disabled: #{sys.$si-sys-text-on-accent};
+  --ix-button-primary--color--disabled: #{sys.$si-sys-text-disabled};
   --ix-button-primary--color--hover: #{sys.$si-sys-text-on-accent};
   --ix-button-primary--color--pressed: #{sys.$si-sys-text-on-accent};
   --ix-button-primary--color--pressed-active: #{sys.$si-sys-text-on-accent};
