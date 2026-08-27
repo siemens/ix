@@ -1,0 +1,14 @@
+packages/core/src/components/group/group-context-menu.tsx
+  h_c5a773bf2fda8b 97,107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "6ab64bf83b6e53093162149d4bd58f4ed6dfb093",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
