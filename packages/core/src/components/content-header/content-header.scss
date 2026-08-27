@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'mixins/fonts';
+@use 'misc/common-variables' as vars;
+
 :host {
   display: flex;
   flex-direction: row;
@@ -26,6 +29,19 @@
       text-overflow: ellipsis;
     }
 
+    .header-title {
+      @include fonts.typography-h3;
+
+      margin: 0;
+      padding: 0;
+
+      &.secondary {
+        @include fonts.typography-h4;
+
+        padding: vars.$tiny-space 0;
+      }
+    }
+
     .headerTitleRow {
       display: flex;
 
@@ -33,10 +49,6 @@
         display: inline-flex;
         margin-left: 0.5rem;
       }
-    }
-
-    .secondary {
-      padding: 0.25rem 0;
     }
   }
 
