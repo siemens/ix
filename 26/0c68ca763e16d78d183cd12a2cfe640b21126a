@@ -1,0 +1,14 @@
+packages/core/src/components/group/group.tsx
+  h_c5a773bf2fda8b 144-145,147,356,398
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "260c68ca763e16d78d183cd12a2cfe640b21126a",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
