@@ -13,9 +13,9 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-event-list item-height="L">
-      <ix-event-list-item item-color="color-primary">Test 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Test 2</ix-event-list-item>
+    <ix-event-list itemHeight="L">
+      <ix-event-list-item itemColor="color-primary">Test 1</ix-event-list-item>
+      <ix-event-list-item itemColor="color-primary">Test 2</ix-event-list-item>
     </ix-event-list>
   `,
 })

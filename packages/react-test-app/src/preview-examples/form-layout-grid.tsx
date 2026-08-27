@@ -23,7 +23,7 @@ export default () => {
   return (
     <IxLayoutGrid className="layout-grid-example">
       <IxRow>
-        <IxCol size="2" size-sm="12">
+        <IxCol size="2" sizeSm="12">
           <IxFieldLabel htmlFor="my-select-1">Example</IxFieldLabel>
         </IxCol>
         <IxCol>
@@ -31,7 +31,7 @@ export default () => {
         </IxCol>
       </IxRow>
       <IxRow>
-        <IxCol size="2" size-sm="12">
+        <IxCol size="2" sizeSm="12">
           <IxFieldLabel htmlFor="my-select-2">Example</IxFieldLabel>
         </IxCol>
         <IxCol>
@@ -39,7 +39,7 @@ export default () => {
         </IxCol>
       </IxRow>
       <IxRow>
-        <IxCol size="12" size-sm="12">
+        <IxCol size="12" sizeSm="12">
           <IxButton data-colspan="2">Submit</IxButton>
         </IxCol>
       </IxRow>
