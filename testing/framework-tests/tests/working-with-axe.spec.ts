@@ -26,6 +26,7 @@ import './generated/tabs-overflow-axe.spec';
 import './generated/tabs-rounded-axe.spec';
 import './generated/time-range-axe.spec';
 import './generated/timepicker-min-max-time-axe.spec';
+import './application-skip-link-axe.spec';
 
 // Button tests - basic
 import './generated/buttons-axe.spec';
