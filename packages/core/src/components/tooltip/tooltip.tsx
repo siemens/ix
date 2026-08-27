@@ -361,7 +361,7 @@ export class Tooltip {
           },
           {
             element: element,
-            eventType: 'focus',
+            eventType: 'focusin',
             callback: () => {
               this.showTooltip(element);
             },
