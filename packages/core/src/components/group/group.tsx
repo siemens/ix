@@ -141,14 +141,10 @@ export class Group
   }
 
   /**
-   * Accessible name for the expand disclosure control.
-   * Uses the header text only; expanded/collapsed state comes from **aria-expanded**.
+   * Accessible name for header select/expand controls.
+   * Uses the header text only; expand state comes from **aria-expanded**.
    */
-  private getExpandButtonLabel() {
-    return this.header || undefined;
-  }
-
-  private getSelectButtonLabel() {
+  private getHeaderButtonLabel() {
     return this.header || undefined;
   }
 
@@ -357,7 +353,7 @@ export class Group
 
   private renderHeaderSelect() {
     const headerContentId = `${this.getHostElementId()}-header-content`;
-    const selectLabel = this.getSelectButtonLabel();
+    const selectLabel = this.getHeaderButtonLabel();
 
     if (this.suppressHeaderSelection) {
       return (
@@ -399,7 +395,7 @@ export class Group
         data-testid="expand-collapsed-button"
         aria-expanded={a11yBoolean(this.expanded)}
         aria-controls={this.contentId}
-        aria-label={this.getExpandButtonLabel()}
+        aria-label={this.getHeaderButtonLabel()}
         ref={(el) => (this.expandButtonEl = el)}
         onClick={(event: Event) => this.onExpandClick(event)}
       >
