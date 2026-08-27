@@ -52,7 +52,7 @@ export function dismissModal(modalInstance: IxModalInstance) {
   }
 }
 
-export function closeModal<T = any>(
+export function closeModal<T = unknown>(
   modalInstance: IxModalInstance,
   reason?: T
 ) {

@@ -12,12 +12,10 @@ import {
   defineContainer,
   type StencilVueComponent,
 } from '@stencil/vue-output-target/runtime';
-import { defineCustomElement as defineIxTabPanel } from '@siemens/ix/components/ix-tab-panel.js';
 import { defineCustomElement as defineIxTabSet } from '@siemens/ix/components/ix-tab-set.js';
 import {
   defineComponent,
   h,
-  inject,
   isVNode,
   nextTick,
   onBeforeUnmount,
@@ -25,24 +23,15 @@ import {
   onUpdated,
   provide,
   ref,
-  type PropType,
-  type Ref,
   type VNode,
 } from 'vue';
+import { ixTabSetActiveKey } from './tab-panel';
 
-const InternalIxTabPanel: StencilVueComponent<JSX.IxTabPanel> =
-  // eslint-disable-next-line no-inline-comments
-  /*@__PURE__*/ defineContainer<JSX.IxTabPanel>(
-    'ix-tab-panel',
-    defineIxTabPanel,
-    ['tabKey']
-  );
+export { IxTabPanel } from './tab-panel';
 
 const InternalIxTabSet: StencilVueComponent<JSX.IxTabSet> =
   // eslint-disable-next-line no-inline-comments
   /*@__PURE__*/ defineContainer<JSX.IxTabSet>('ix-tab-set', defineIxTabSet);
-
-const ixTabSetActiveKey = Symbol('ix-tab-set-active-key');
 
 type HTMLRefElement<T> = { $el: T };
 
@@ -171,35 +160,6 @@ export const IxTabSet = defineComponent({
           ref: tabSetRef,
         },
         slots
-      );
-  },
-});
-
-export const IxTabPanel = defineComponent({
-  name: 'IxTabPanel',
-  inheritAttrs: false,
-  props: {
-    tabKey: {
-      type: String as PropType<string>,
-      required: true,
-    },
-  },
-  setup(props, { attrs, slots }) {
-    const activeTabKey = inject<Ref<string | undefined> | null>(
-      ixTabSetActiveKey,
-      null
-    );
-
-    return () =>
-      h(
-        InternalIxTabPanel,
-        {
-          ...attrs,
-          tabKey: props.tabKey,
-        },
-        activeTabKey === null || activeTabKey.value === props.tabKey
-          ? slots
-          : undefined
       );
   },
 });
