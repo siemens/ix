@@ -169,6 +169,39 @@ regressionTest(
 );
 
 regressionTest(
+  'marks the context menu trigger active while the dropdown is open',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group header="Header text">
+        <ix-dropdown slot="dropdown">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-group-item>Item 1</ix-group-item>
+      </ix-group>
+    `);
+
+    const group = page.locator('ix-group');
+    const trigger = group.locator('ix-group-context-menu ix-icon-button');
+    const dropdown = group.locator('ix-dropdown');
+
+    await expect(group).toHaveClass(/hydrated/);
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+    await trigger.click();
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(trigger).toHaveClass(/\bactive\b/);
+    await expect(trigger.locator('button')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(dropdown).not.toHaveClass(/show/);
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+  }
+);
+
+regressionTest(
   'disabled prop reflects to host attribute',
   async ({ mount, page }) => {
     await mount(`
