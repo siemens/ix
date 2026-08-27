@@ -13,7 +13,7 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-workflow--border-radius: 1px;
+  --theme-workflow--border-radius: 0.25rem;
   --theme-workflow-step--background: var(--theme-color-ghost);
   --theme-workflow-step--background--active: var(--theme-color-ghost--active);
   --theme-workflow-step--background--disabled: var(--theme-color-ghost);
