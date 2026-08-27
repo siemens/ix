@@ -1084,7 +1084,12 @@ export class DatePicker
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
                       >
-                        {day}
+                        <ix-typography
+                          format="body"
+                          bold={this.getUtilitiesBasedOnDay(day).isSelected()}
+                        >
+                          {day}
+                        </ix-typography>
                       </div>
                     ) : (
                       <div role="gridcell"></div>
