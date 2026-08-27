@@ -1,0 +1,50 @@
+.changeset/menu-category-hover-tooltip.md
+  h_c5a773bf2fda8b 1-10
+packages/angular-standalone-test-app/src/preview-examples/menu-category.html
+  h_c5a773bf2fda8b 14-18
+packages/angular-test-app/src/preview-examples/menu-category.html
+  h_c5a773bf2fda8b 5-9
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 1947,1954,1970,1977
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 2058,2065,2081,2088
+packages/core/component-api.json
+  h_c5a773bf2fda8b 6403-6413,6483-6493
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 2863-2868,2925-2930,9946-9951,10008-10013,12825,12843
+packages/core/src/components/menu-category/menu-category.scss
+  h_c5a773bf2fda8b 60-61,63-81
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 42-43,84-90,117,191-221,223,246-247,507-508,531-536,552,596-598
+packages/core/src/components/menu-category/test/menu-category.ct.ts
+  h_c5a773bf2fda8b 9,12-55,714-818
+packages/core/src/components/menu-item/menu-item.interface.ts
+  h_c5a773bf2fda8b 13
+packages/core/src/components/menu-item/menu-item.tsx
+  h_c5a773bf2fda8b 96-102,379-390
+packages/core/src/components/menu-item/test/menu-item.ct.ts
+  h_c5a773bf2fda8b 322-339
+packages/html-test-app/src/preview-examples/menu-category.html
+  h_c5a773bf2fda8b 29-33
+packages/react-test-app/src/preview-examples/menu-category.tsx
+  h_c5a773bf2fda8b 26-30
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 1385-1386,1406
+packages/vue-test-app/src/preview-examples/menu-category.vue
+  h_c5a773bf2fda8b 25-29
+packages/vue/src/components/ix-menu-category.ts
+  h_c5a773bf2fda8b 14
+packages/vue/src/components/ix-menu-item.ts
+  h_c5a773bf2fda8b 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "468e029a7dadced3de5c6e85b4fe43613b4e82b8",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
