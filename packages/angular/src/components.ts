@@ -1754,7 +1754,7 @@ import type { ListItemOrderChangeEvent as IIxListListItemOrderChangeEvent } from
 
 export declare interface IxList extends Components.IxList {
   /**
-   * Emitted after a list item has been reordered. @since 5.2.0
+   * Emitted after a list item has been reordered. @since 6.0.0
    */
   itemOrderChange: EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>;
 }
@@ -1785,11 +1785,11 @@ export class IxListItem {
 
 export declare interface IxListItem extends Components.IxListItem {
   /**
-   * Emitted when the primary item surface is activated. @since 5.2.0
+   * Emitted when the primary item surface is activated. @since 6.0.0
    */
   itemClick: EventEmitter<CustomEvent<HTMLIxListItemElement>>;
   /**
-   * Requests a controlled selection update when a checkbox item is activated. @since 5.2.0
+   * Requests a controlled selection update when a checkbox item is activated. @since 6.0.0
    */
   selectedChange: EventEmitter<CustomEvent<boolean>>;
 }

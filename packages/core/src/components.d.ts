@@ -2642,134 +2642,134 @@ export namespace Components {
         "url"?: string;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxList {
         /**
           * Show action content on hover or focus for list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "actionOnHover"?: boolean;
         /**
           * Default action slot alignment for list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment;
         /**
           * Display selection checkboxes on list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "checkbox"?: boolean;
         /**
           * Default disabled state for list items that do not define their own state.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "disabled"?: boolean;
         /**
           * Visual behavior used while dragging a list item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'dynamic'
          */
         "dragBehavior": ListDragBehavior;
         /**
           * Enable drag-and-drop reordering of direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "draggable": boolean;
         /**
           * Display dividers between direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "hasDivider": boolean;
         /**
           * Space in pixels between direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 12
          */
         "itemGap": ListItemGap;
         /**
           * Default visual variant for list items that do not define their own variant.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "variant"?: ListItemVariant;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxListItem {
         /**
           * Show action slot content only when the item is hovered or focused.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "actionOnHover": boolean;
         /**
           * Vertical alignment of the action slot content.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'center'
          */
         "actionSlotAlignment": ListItemActionSlotAlignment1;
         /**
           * Accessible label for the item icon.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Display selection with checkbox semantics.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "checkbox": boolean;
         /**
           * Supporting text displayed below the label.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "description"?: string;
         /**
           * Disable item activation and action controls.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "disabled": boolean;
         /**
           * Display a divider below this item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "hasDivider": boolean;
         /**
           * Icon displayed by the standard item layout.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "icon"?: string;
         /**
           * Label displayed by the standard item layout.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "label"?: string;
         /**
           * Show the item as selected.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "selected": boolean;
         /**
           * Tooltip text for the primary item surface. Uses the item label by default.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "tooltipText"?: string;
         /**
           * Visual variant of the item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'filled'
          */
         "variant": ListItemVariant1;
     }
     /**
      * Standalone horizontal separator for list content.
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxListItemSeparator {
     }
@@ -6169,7 +6169,7 @@ declare global {
         "itemOrderChange": ListItemOrderChangeEvent;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6190,7 +6190,7 @@ declare global {
         "selectedChange": boolean;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface HTMLIxListItemElement extends Components.IxListItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6208,7 +6208,7 @@ declare global {
     };
     /**
      * Standalone horizontal separator for list content.
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface HTMLIxListItemSeparatorElement extends Components.IxListItemSeparator, HTMLStencilElement {
     }
@@ -9876,149 +9876,149 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxList {
         /**
           * Show action content on hover or focus for list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "actionOnHover"?: boolean;
         /**
           * Default action slot alignment for list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment;
         /**
           * Display selection checkboxes on list items that do not define their own setting.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "checkbox"?: boolean;
         /**
           * Default disabled state for list items that do not define their own state.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "disabled"?: boolean;
         /**
           * Visual behavior used while dragging a list item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'dynamic'
          */
         "dragBehavior"?: ListDragBehavior;
         /**
           * Enable drag-and-drop reordering of direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "draggable"?: boolean;
         /**
           * Display dividers between direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "hasDivider"?: boolean;
         /**
           * Space in pixels between direct list items.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 12
          */
         "itemGap"?: ListItemGap;
         /**
           * Emitted after a list item has been reordered.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "onItemOrderChange"?: (event: IxListCustomEvent<ListItemOrderChangeEvent>) => void;
         /**
           * Default visual variant for list items that do not define their own variant.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "variant"?: ListItemVariant;
     }
     /**
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxListItem {
         /**
           * Show action slot content only when the item is hovered or focused.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "actionOnHover"?: boolean;
         /**
           * Vertical alignment of the action slot content.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'center'
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment1;
         /**
           * Accessible label for the item icon.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Display selection with checkbox semantics.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "checkbox"?: boolean;
         /**
           * Supporting text displayed below the label.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "description"?: string;
         /**
           * Disable item activation and action controls.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "disabled"?: boolean;
         /**
           * Display a divider below this item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "hasDivider"?: boolean;
         /**
           * Icon displayed by the standard item layout.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "icon"?: string;
         /**
           * Label displayed by the standard item layout.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "label"?: string;
         /**
           * Emitted when the primary item surface is activated.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "onItemClick"?: (event: IxListItemCustomEvent<HTMLIxListItemElement>) => void;
         /**
           * Requests a controlled selection update when a checkbox item is activated.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "onSelectedChange"?: (event: IxListItemCustomEvent<boolean>) => void;
         /**
           * Show the item as selected.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "selected"?: boolean;
         /**
           * Tooltip text for the primary item surface. Uses the item label by default.
-          * @since 5.2.0
+          * @since 6.0.0
          */
         "tooltipText"?: string;
         /**
           * Visual variant of the item.
-          * @since 5.2.0
+          * @since 6.0.0
           * @default 'filled'
          */
         "variant"?: ListItemVariant1;
     }
     /**
      * Standalone horizontal separator for list content.
-     * @since 5.2.0
+     * @since 6.0.0
      */
     interface IxListItemSeparator {
     }
@@ -13885,16 +13885,16 @@ declare module "@stencil/core" {
             "ix-layout-grid": LocalJSX.IntrinsicElements["ix-layout-grid"] & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
-             * @since 5.2.0
+             * @since 6.0.0
              */
             "ix-list": LocalJSX.IntrinsicElements["ix-list"] & JSXBase.HTMLAttributes<HTMLIxListElement>;
             /**
-             * @since 5.2.0
+             * @since 6.0.0
              */
             "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;
             /**
              * Standalone horizontal separator for list content.
-             * @since 5.2.0
+             * @since 6.0.0
              */
             "ix-list-item-separator": LocalJSX.IntrinsicElements["ix-list-item-separator"] & JSXBase.HTMLAttributes<HTMLIxListItemSeparatorElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
