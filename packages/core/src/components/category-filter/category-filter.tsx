@@ -826,7 +826,6 @@ export class CategoryFilter {
             !this.filterTokens.length && this.category === '',
         }}
         variant="tertiary"
-        oval
         icon={iconClear}
         iconColor="color-soft-text"
         size="16"
