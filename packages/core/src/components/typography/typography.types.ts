@@ -25,7 +25,14 @@ type TypographyFormatDisplay =
   | 'display-xl-sbold'
   | 'display-xxl'
   | 'display-xxl-sbold';
-type TypographyFormatHeading = 'h6' | 'h5' | 'h5-bold' | 'h4' | 'h3' | 'h2' | 'h1';
+type TypographyFormatHeading =
+  | 'h6'
+  | 'h5'
+  | 'h5-bold'
+  | 'h4'
+  | 'h3'
+  | 'h2'
+  | 'h1';
 type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
 
 export type TypographyVariants =
