@@ -77,3 +77,45 @@ regressionTest(
     await expect.poll(getHeight).toBe(wrappedHeight);
   }
 );
+
+regressionTest(
+  'collapses secondary actions into overflow menu when space is limited',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-content-header
+        style="width: 12rem"
+        header-title="A rather long content header title"
+      >
+        <ix-button slot="secondary-actions" variant="secondary">Export</ix-button>
+        <ix-button slot="secondary-actions" variant="secondary">Duplicate</ix-button>
+        <ix-button variant="primary">Important</ix-button>
+      </ix-content-header>
+    `);
+
+    const header = page.locator('ix-content-header');
+    await expect(header).toHaveClass(/\bhydrated\b/);
+
+    await expect(header.locator('.secondaryActionsDropdown')).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps secondary actions inline when there is enough space',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-content-header
+        style="width: 60rem"
+        header-title="Title"
+      >
+        <ix-button slot="secondary-actions" variant="secondary">Export</ix-button>
+        <ix-button variant="primary">Important</ix-button>
+      </ix-content-header>
+    `);
+
+    const header = page.locator('ix-content-header');
+    await expect(header).toHaveClass(/\bhydrated\b/);
+
+    await expect(header.locator('.secondaryActionsDropdown')).toHaveCount(0);
+    await expect(header.getByRole('button', { name: 'Export' })).toBeVisible();
+  }
+);
