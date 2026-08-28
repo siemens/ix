@@ -1036,6 +1036,9 @@ export namespace Components {
     }
     interface IxContent {
     }
+    /**
+     * @since 5.3.0
+     */
     interface IxContentHeader {
         /**
           * Display a back button
@@ -1048,12 +1051,12 @@ export namespace Components {
          */
         "headerSubtitle": string | undefined;
         /**
-          * Variant of content header
+          * Title of Header
          */
         "headerTitle"?: string;
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default 'wrap'
          */
         "textOverflow": ContentHeaderTextOverflow;
@@ -5569,6 +5572,9 @@ declare global {
     interface HTMLIxContentHeaderElementEventMap {
         "backButtonClick": void;
     }
+    /**
+     * @since 5.3.0
+     */
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxContentHeaderElementEventMap>(type: K, listener: (this: HTMLIxContentHeaderElement, ev: IxContentHeaderCustomEvent<HTMLIxContentHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -8007,6 +8013,9 @@ declare namespace LocalJSX {
     }
     interface IxContent {
     }
+    /**
+     * @since 5.3.0
+     */
     interface IxContentHeader {
         /**
           * Display a back button
@@ -8019,7 +8028,7 @@ declare namespace LocalJSX {
          */
         "headerSubtitle"?: string | undefined;
         /**
-          * Variant of content header
+          * Title of Header
          */
         "headerTitle"?: string;
         /**
@@ -8028,7 +8037,7 @@ declare namespace LocalJSX {
         "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default 'wrap'
          */
         "textOverflow"?: ContentHeaderTextOverflow;
@@ -13474,6 +13483,9 @@ declare module "@stencil/core" {
             "ix-chip": LocalJSX.IntrinsicElements["ix-chip"] & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-col": LocalJSX.IntrinsicElements["ix-col"] & JSXBase.HTMLAttributes<HTMLIxColElement>;
             "ix-content": LocalJSX.IntrinsicElements["ix-content"] & JSXBase.HTMLAttributes<HTMLIxContentElement>;
+            /**
+             * @since 5.3.0
+             */
             "ix-content-header": LocalJSX.IntrinsicElements["ix-content-header"] & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IntrinsicElements["ix-css-grid"] & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IntrinsicElements["ix-css-grid-item"] & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;

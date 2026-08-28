@@ -106,6 +106,9 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
+
+  overflow: hidden;
+
   align-items: center;
   justify-content: center;
 
@@ -122,7 +125,6 @@
 
     display: inline-block;
     height: 2rem;
-    min-height: 2rem;
     vertical-align: middle;
     cursor: pointer;
 

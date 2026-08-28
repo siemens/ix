@@ -24,12 +24,6 @@ export default () => {
       <IxButton slot='secondary-actions' variant='tertiary'>Button1</IxButton>
       <IxButton slot='secondary-actions' variant='tertiary'>Button2</IxButton>
       <IxButton slot='secondary-actions' variant='tertiary'>Button3</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button4</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button5</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button6</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button7</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button8</IxButton>
-      <IxButton slot='secondary-actions' variant='tertiary'>Button9</IxButton>
       <IxButton variant='primary'>Important</IxButton>
     </IxContentHeader>
   );

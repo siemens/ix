@@ -27,7 +27,7 @@ import type {
 
 /**
  * @slot header            - Content to be placed in the header area next to the title
- * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu
+ * @slot secondary-actions - Secondary action buttons that collapse into the overflow menu. @since 5.3.0
  * @slot default           - Default slot for action buttons or other content
  */
 @Component({
@@ -55,7 +55,7 @@ export class ContentHeader {
    * Controls how the title and subtitle handle limited horizontal space.
    * Ellipsis visually truncates the text without adding a tooltip.
    *
-   * @since 6.0.0
+   * @since 5.3.0
    */
   @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
 
