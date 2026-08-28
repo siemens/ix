@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '../mixins/fonts' as font-mixins;
+@use '../tokens/system' as sys;
+
+body {
+  color: #{sys.$si-sys-text-primary};
+  background-color: #{sys.$si-sys-background-0};
+  @include font-mixins.typography-body;
+}

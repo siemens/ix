@@ -1,0 +1,95 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+@use 'sass:map';
+
+// si/sys token values per variant (background/hover/active/contrast), per the
+// SI Theme Token Migration Guide. Naming isn't uniform across variants
+// (e.g. neutral hover/active reuse the generic background-hover/-selected
+// tokens instead of a neutral-hover/-active token), so each variant needs an
+// explicit mapping rather than string interpolation.
+$blind-variant-sys-values: (
+  alarm: (
+    background: sys.$si-sys-background-danger,
+    hover: sys.$si-sys-background-danger-hover,
+    active: sys.$si-sys-background-danger-active,
+    contrast: sys.$si-sys-text-on-danger,
+  ),
+  critical: (
+    background: sys.$si-sys-background-critical,
+    hover: sys.$si-sys-background-critical-hover,
+    active: sys.$si-sys-background-critical-active,
+    contrast: sys.$si-sys-text-on-critical,
+  ),
+  info: (
+    background: sys.$si-sys-background-information,
+    hover: sys.$si-sys-background-information-hover,
+    active: sys.$si-sys-background-information-active,
+    contrast: sys.$si-sys-text-on-information,
+  ),
+  neutral: (
+    background: sys.$si-sys-background-neutral,
+    hover: sys.$si-sys-background-hover,
+    active: sys.$si-sys-background-active,
+    contrast: sys.$si-sys-text-primary,
+  ),
+  primary: (
+    background: sys.$si-sys-background-accent,
+    hover: sys.$si-sys-background-accent-hover,
+    active: sys.$si-sys-background-accent-active,
+    contrast: sys.$si-sys-text-on-accent,
+  ),
+  success: (
+    background: sys.$si-sys-background-success,
+    hover: sys.$si-sys-background-success-hover,
+    active: sys.$si-sys-background-success-active,
+    contrast: sys.$si-sys-text-on-success,
+  ),
+  warning: (
+    background: sys.$si-sys-background-warning,
+    hover: sys.$si-sys-background-warning-hover,
+    active: sys.$si-sys-background-warning-active,
+    contrast: sys.$si-sys-text-on-warning,
+  ),
+);
+
+@mixin variant-vars($variant) {
+  $sys-values: map.get($blind-variant-sys-values, $variant);
+
+  @if $sys-values {
+    --ix-blind-#{$variant}--background: #{map.get($sys-values, background)};
+    --ix-blind-#{$variant}--background--hover: #{map.get($sys-values, hover)};
+    --ix-blind-#{$variant}--background--active: #{map.get($sys-values, active)};
+    --ix-blind-#{$variant}--color: #{map.get($sys-values, contrast)};
+  } @else if $variant == 'filled' {
+    --ix-blind-filled--background: transparent;
+    --ix-blind-filled--background--hover: transparent;
+    --ix-blind-filled--background--active: transparent;
+    --ix-blind-filled--color: light-dark(
+      rgba(0, 10, 20, 0.9),
+      rgba(245, 252, 255, 0.9)
+    );
+  }
+}
+
+:host {
+  --ix-blind-outline-header--background: transparent;
+  --ix-blind-header--color: #{sys.$si-sys-text-primary};
+  --ix-blind-header-sublabel--color: #{sys.$si-sys-text-secondary};
+  --ix-blind-header-actions--color: #{sys.$si-sys-text-accent};
+  --ix-blind-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-blind-outline--border-color--hover: #{sys.$si-sys-background-hover};
+  --ix-blind-outline--border-color--active: #{sys.$si-sys-background-selected};
+  --ix-blind-header--border-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-blind-content--transition-duration: var(--theme-default-time);
+  --ix-blind--border-radius: var(--theme-default-border-radius);
+  --ix-blind--border-width: var(--theme-border-width-default);
+  --ix-blind--background: #{sys.$si-sys-background-1};
+}

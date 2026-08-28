@@ -1,0 +1,84 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Style entry points</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 1rem;
+        color: #000;
+        background: #dfe3e6;
+        font-family: system-ui, sans-serif;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: 1.5rem;
+      }
+
+      .entry-point-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .entry-point-panel {
+        display: grid;
+        grid-template-rows: auto 35rem;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid #68767d;
+        border-radius: 0.25rem;
+        background: #fff;
+      }
+
+      .entry-point-panel h2 {
+        margin: 0;
+        padding: 0.5rem 0.75rem;
+        color: #fff;
+        background: #243137;
+        font-size: 1rem;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Composite CSS entry points</h1>
+    <main class="entry-point-grid">
+      <section class="entry-point-panel">
+        <h2>default.css</h2>
+        <iframe data-entry-point="default" title="default.css"></iframe>
+      </section>
+      <section class="entry-point-panel">
+        <h2>foundation.css</h2>
+        <iframe data-entry-point="foundation" title="foundation.css"></iframe>
+      </section>
+      <section class="entry-point-panel">
+        <h2>globals.css</h2>
+        <iframe data-entry-point="globals" title="globals.css"></iframe>
+      </section>
+      <section class="entry-point-panel">
+        <h2>legacy.css</h2>
+        <iframe data-entry-point="legacy" title="legacy.css"></iframe>
+      </section>
+    </main>
+    <script src="./define.ts" type="module"></script>
+  </body>
+</html>

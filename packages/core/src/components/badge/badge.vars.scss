@@ -7,32 +7,46 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   --ix-badge-offset-x: 0rem;
   --ix-badge-offset-y: 0rem;
   --ix-badge-max-width: none;
   --ix-badge-animation-duration: 2s;
 
-  --ix-badge-color-primary: var(--theme-color-primary);
-  --ix-badge-color-primary-contrast: var(--theme-color-primary--contrast);
-  --ix-badge-color-alarm: var(--theme-color-alarm);
-  --ix-badge-color-alarm-contrast: var(--theme-color-alarm--contrast);
-  --ix-badge-color-alarm-bdr: var(--theme-color-alarm-bdr);
-  --ix-badge-color-critical: var(--theme-color-critical);
-  --ix-badge-color-critical-contrast: var(--theme-color-critical--contrast);
-  --ix-badge-color-warning: var(--theme-color-warning);
-  --ix-badge-color-warning-contrast: var(--theme-color-warning--contrast);
-  --ix-badge-color-warning-bdr: var(--theme-color-warning-bdr);
-  --ix-badge-color-info: var(--theme-color-info);
-  --ix-badge-color-info-contrast: var(--theme-color-info--contrast);
-  --ix-badge-color-success: var(--theme-color-success);
-  --ix-badge-color-success-contrast: var(--theme-color-success--contrast);
-  --ix-badge-color-neutral: var(--theme-color-neutral);
-  --ix-badge-color-neutral-contrast: var(--theme-color-neutral--contrast);
+  --ix-badge-primary-background: #{sys.$si-sys-background-accent};
+  --ix-badge-primary-border-color: #{sys.$si-sys-border-accent};
+  --ix-badge-primary-color: #{sys.$si-sys-text-accent};
+  --ix-badge-primary-contrast-color: #{sys.$si-sys-text-on-accent};
+  --ix-badge-alarm-background: #{sys.$si-sys-background-danger};
+  --ix-badge-alarm-border-color: #{sys.$si-sys-border-danger};
+  --ix-badge-alarm-color: #{sys.$si-sys-text-danger};
+  --ix-badge-alarm-contrast-color: #{sys.$si-sys-text-on-danger};
+  --ix-badge-critical-background: #{sys.$si-sys-background-critical};
+  --ix-badge-critical-border-color: #{sys.$si-sys-border-critical};
+  --ix-badge-critical-color: #{sys.$si-sys-text-critical};
+  --ix-badge-critical-contrast-color: #{sys.$si-sys-text-on-critical};
+  --ix-badge-warning-background: #{sys.$si-sys-background-warning};
+  --ix-badge-warning-border-color: #{sys.$si-sys-border-warning};
+  --ix-badge-warning-color: #{sys.$si-sys-text-warning};
+  --ix-badge-warning-contrast-color: #{sys.$si-sys-text-on-warning};
+  --ix-badge-info-background: #{sys.$si-sys-background-information};
+  --ix-badge-info-border-color: #{sys.$si-sys-border-information};
+  --ix-badge-info-color: #{sys.$si-sys-text-information};
+  --ix-badge-info-contrast-color: #{sys.$si-sys-text-on-information};
+  --ix-badge-success-background: #{sys.$si-sys-background-success};
+  --ix-badge-success-border-color: #{sys.$si-sys-border-success};
+  --ix-badge-success-color: #{sys.$si-sys-text-success};
+  --ix-badge-success-contrast-color: #{sys.$si-sys-text-on-success};
+  --ix-badge-neutral-background: #{sys.$si-sys-background-neutral};
+  --ix-badge-neutral-border-color: #{sys.$si-sys-border-neutral};
+  --ix-badge-neutral-color: #{sys.$si-sys-text-secondary};
+  --ix-badge-neutral-contrast-color: #{sys.$si-sys-text-primary};
 
-  --ix-badge-color-ghost: var(--theme-color-ghost);
-  --ix-badge-color-text: var(--theme-color-std-text);
-  --ix-badge-color-contrast-ring: var(--theme-color-1);
+  --ix-badge-outline-background: transparent;
+  --ix-badge-default-color: #{sys.$si-sys-text-primary};
+  --ix-badge-contrast-ring-color: #{sys.$si-sys-background-0};
 
-  --ix-badge-pulse-color: var(--ix-badge-color-primary);
+  --ix-badge-pulse-color: var(--ix-badge-primary-background);
 }

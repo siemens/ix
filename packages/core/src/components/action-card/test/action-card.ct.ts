@@ -48,4 +48,13 @@ regressionTest.describe('accessibility', () => {
     const accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
+
+  regressionTest('critical', async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+      <ix-action-card heading="Heading" variant="critical"></ix-action-card>
+    `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
 });

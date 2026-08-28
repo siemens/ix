@@ -1,0 +1,84 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-radio-checkmark--background: #{sys.$si-sys-text-on-accent};
+  --ix-radio--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-radio--border-width: var(--theme-border-width-default);
+  --ix-radio--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-radio-checked--background: #{sys.$si-sys-background-accent};
+  --ix-radio-checked--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-radio-checked--background--disabled: #{sys.$si-sys-text-disabled};
+  --ix-radio-checked--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-radio-checked--background--info: #{sys.$si-sys-background-information};
+  --ix-radio-checked--background--info--active: #{sys.$si-sys-background-information-active};
+  --ix-radio-checked--background--info--hover: #{sys.$si-sys-background-information-hover};
+  --ix-radio-checked--background--invalid: #{sys.$si-sys-background-danger};
+  --ix-radio-checked--background--invalid--active: #{sys.$si-sys-background-danger-active};
+  --ix-radio-checked--background--invalid--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-radio-checked--background--warning: #{sys.$si-sys-background-warning};
+  --ix-radio-checked--background--warning--active: #{sys.$si-sys-background-warning-active};
+  --ix-radio-checked--background--warning--hover: #{sys.$si-sys-background-warning-hover};
+  --ix-radio-checked--border-color: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--active: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--info: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--info--active: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--info--hover: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--invalid: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--invalid--active: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--invalid--hover: rgba(0, 0, 0, 0);
+  --ix-radio-checked--border-color--warning: #{sys.$si-sys-background-warning};
+  --ix-radio-checked--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-radio-checked--border-color--warning--hover: #{sys.$si-sys-background-warning};
+  --ix-radio-checked--color: #{sys.$si-sys-text-on-accent};
+  --ix-radio-checked--color--active: #{sys.$si-sys-text-on-accent};
+  --ix-radio-checked--color--disabled: #{sys.$si-sys-text-inverse};
+  --ix-radio-checked--color--hover: #{sys.$si-sys-text-on-accent};
+  --ix-radio-checked--color--info: #{sys.$si-sys-text-on-information};
+  --ix-radio-checked--color--info--active: #{sys.$si-sys-text-on-information};
+  --ix-radio-checked--color--info--hover: #{sys.$si-sys-text-on-information};
+  --ix-radio-checked--color--invalid: #{sys.$si-sys-text-on-danger};
+  --ix-radio-checked--color--invalid--active: #{sys.$si-sys-text-on-danger};
+  --ix-radio-checked--color--invalid--hover: #{sys.$si-sys-text-on-danger};
+  --ix-radio-checked--color--warning: #{sys.$si-sys-text-on-warning};
+  --ix-radio-checked--color--warning--active: #{sys.$si-sys-text-on-warning};
+  --ix-radio-checked--color--warning--hover: #{sys.$si-sys-text-on-warning};
+  --ix-radio-label--color: #{sys.$si-sys-text-primary};
+  --ix-radio-label--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-radio-unchecked--background: #{sys.$si-sys-background-1};
+  --ix-radio-unchecked--background--active: #{sys.$si-sys-background-selected};
+  --ix-radio-unchecked--background--disabled: rgba(0, 0, 0, 0);
+  --ix-radio-unchecked--background--hover: #{sys.$si-sys-background-hover};
+  --ix-radio-unchecked--background--info: #{sys.$si-sys-background-1};
+  --ix-radio-unchecked--background--info--active: #{sys.$si-sys-background-selected};
+  --ix-radio-unchecked--background--info--hover: #{sys.$si-sys-background-hover};
+  --ix-radio-unchecked--background--invalid: #{sys.$si-sys-background-1};
+  --ix-radio-unchecked--background--invalid--active: #{sys.$si-sys-background-selected};
+  --ix-radio-unchecked--background--invalid--hover: #{sys.$si-sys-background-hover};
+  --ix-radio-unchecked--background--warning: #{sys.$si-sys-background-1};
+  --ix-radio-unchecked--background--warning--active: #{sys.$si-sys-background-selected};
+  --ix-radio-unchecked--background--warning--hover: #{sys.$si-sys-background-hover};
+  --ix-radio-unchecked--border-color: #{sys.$si-sys-border-2};
+  --ix-radio-unchecked--border-color--active: #{sys.$si-sys-border-2};
+  --ix-radio-unchecked--border-color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-radio-unchecked--border-color--hover: #{sys.$si-sys-border-2};
+  --ix-radio-unchecked--border-color--info: #{sys.$si-sys-border-information};
+  --ix-radio-unchecked--border-color--info--active: #{sys.$si-sys-border-information};
+  --ix-radio-unchecked--border-color--info--hover: #{sys.$si-sys-border-information};
+  --ix-radio-unchecked--border-color--invalid: #{sys.$si-sys-border-danger};
+  --ix-radio-unchecked--border-color--invalid--active: #{sys.$si-sys-border-danger};
+  --ix-radio-unchecked--border-color--invalid--hover: #{sys.$si-sys-border-danger};
+  --ix-radio-unchecked--border-color--warning: #{sys.$si-sys-background-warning};
+  --ix-radio-unchecked--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-radio-unchecked--border-color--warning--hover: #{sys.$si-sys-background-warning};
+}

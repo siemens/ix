@@ -26,7 +26,13 @@ export default () => {
   return (
     <>
       <IxBlind label="Example" icon={iconInfo}>
-        <IxIconButton variant="tertiary" id="context-menu" slot="header-actions" icon={iconContextMenu} iconColor="color-primary"></IxIconButton>
+        <IxIconButton
+          variant="tertiary"
+          id="context-menu"
+          slot="header-actions"
+          icon={iconContextMenu}
+          iconColor="--si-sys-text-accent"
+        ></IxIconButton>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
