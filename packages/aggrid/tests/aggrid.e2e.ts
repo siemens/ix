@@ -31,6 +31,13 @@ regressionTest.describe('aggrid', () => {
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
+
+    regressionTest('v36', async ({ page }) => {
+      await page.goto('versions/v36/basic.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 
   regressionTest('filter', async ({ page }) => {
