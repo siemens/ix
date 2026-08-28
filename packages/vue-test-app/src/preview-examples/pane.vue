@@ -30,7 +30,7 @@ onMounted(() => {
       composition="right"
       size="50%"
       variant="floating"
-      hideOnCollapse
+      hide-on-collapse
       :expanded="expanded"
       style="position: absolute; right: 0; z-index: 1"
     >
