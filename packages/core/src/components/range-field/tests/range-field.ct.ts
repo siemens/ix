@@ -201,7 +201,7 @@ regressionTest(
 
     await expect(firstInput).toHaveCSS('margin-top', '0px');
     await expect(secondInput).toHaveCSS('margin-top', '0px');
-    await expect(arrowElement).toHaveCSS('margin-top', '32px');
+    await expect(arrowElement).toHaveCSS('margin-top', '36px');
   }
 );
 
@@ -228,7 +228,7 @@ regressionTest(
 
     await expect(firstInput).toHaveCSS('margin-top', '28.8px');
     await expect(secondInput).toHaveCSS('margin-top', '0px');
-    await expect(arrowElement).toHaveCSS('margin-top', '32px');
+    await expect(arrowElement).toHaveCSS('margin-top', '36px');
   }
 );
 
@@ -255,7 +255,7 @@ regressionTest(
 
     await expect(firstInput).toHaveCSS('margin-top', '0px');
     await expect(secondInput).toHaveCSS('margin-top', '28.8px');
-    await expect(arrowElement).toHaveCSS('margin-top', '32px');
+    await expect(arrowElement).toHaveCSS('margin-top', '36px');
   }
 );
 
