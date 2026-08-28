@@ -129,6 +129,9 @@ importers:
       ag-grid-community-35:
         specifier: npm:ag-grid-community@^35.0.0
         version: ag-grid-community@35.2.0
+      ag-grid-community-36:
+        specifier: npm:ag-grid-community@^36.0.0
+        version: ag-grid-community@36.1.0
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
@@ -5671,6 +5674,9 @@ packages:
   ag-charts-types@13.2.0:
     resolution: {integrity: sha512-O9TTqZmKwLpjylaxxfKqiQ3reWplCSkyB0yG/cRYKxyyIPxEIh312E/aFn63F0rqdY+yYvz/7xe4rmF6clL1gw==}
 
+  ag-charts-types@14.1.0:
+    resolution: {integrity: sha512-mmzkng88c0l+Z9PvCMowMilhVeNgDU/iMuMemcOQD4BG/qO4vbkxWvyQO0iqju8Dx7YOY81PNzC/RmElQNiVkA==}
+
   ag-grid-angular@33.3.2:
     resolution: {integrity: sha512-2IhpowEAW3zLK4hS2Lr8Hi0yJZdfmebYJb23iaBpl9rUSwy34Bz8qhdkT57Y3kwCRPECHqSOo/j7HWY2X2blgA==}
     peerDependencies:
@@ -5686,6 +5692,9 @@ packages:
   ag-grid-community@35.2.0:
     resolution: {integrity: sha512-YLprL+RsOLHbhgpCXN62MASHGhtR4g1z4bNTY4dnUqKU/RRts13TgHukOEA5JKjyDpeQic8JA17bY8hO/KZBfQ==}
 
+  ag-grid-community@36.1.0:
+    resolution: {integrity: sha512-WnvSQ4csRs8gv/b1B0lPHykQXvUJVgi2u5mpY0Aa6dv3pvhDVVqCT8dwUyOeCog4JNPptaXGrOrZ8qP2XoJzVA==}
+
   ag-grid-react@33.3.2:
     resolution: {integrity: sha512-5bv4JIJvGov23sduIUIyQTqpa/qhoQrRkQm5pFOQb7RMwusfx6xBPrkLwIIlCJiQ8g0OOinxWzZ2kQ2Zml6tLw==}
     peerDependencies:
@@ -5696,6 +5705,9 @@ packages:
     resolution: {integrity: sha512-O1FS0MQNNBdMZTUTGrk/KjdK9nuPPRbmmL+bFQr8jKp7VCmO9wLV4w9taWbLTgQqGN6rQ4BAb6m2RJ78cHM3tQ==}
     peerDependencies:
       vue: ^3.5.0
+
+  ag-stack@36.1.0:
+    resolution: {integrity: sha512-Kmkf5iRZmyduNx2KtW450j6GbCdJ4ejacSpb1AWl0yrdquRmScLRc1SlLolx6lyCbTBSJGo4tRraKbBzre+GlQ==}
 
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -18308,6 +18320,8 @@ snapshots:
 
   ag-charts-types@13.2.0: {}
 
+  ag-charts-types@14.1.0: {}
+
   ag-grid-angular@33.3.2(@angular/common@20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1)):
     dependencies:
       '@angular/common': 20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
@@ -18327,6 +18341,11 @@ snapshots:
     dependencies:
       ag-charts-types: 13.2.0
 
+  ag-grid-community@36.1.0:
+    dependencies:
+      ag-charts-types: 14.1.0
+      ag-stack: 36.1.0
+
   ag-grid-react@33.3.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       ag-grid-community: 33.3.2
@@ -18338,6 +18357,8 @@ snapshots:
     dependencies:
       ag-grid-community: 33.3.2
       vue: 3.5.17(typescript@5.8.3)
+
+  ag-stack@36.1.0: {}
 
   agent-base@6.0.2:
     dependencies:
