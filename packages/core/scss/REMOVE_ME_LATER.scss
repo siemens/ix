@@ -1,0 +1,77 @@
+@mixin setRefVars {
+  --si-ref-typography-font-family-mono: 'Courier New', monospace;
+  --si-ref-typography-font-family-sans: Arial, helvetica, sans-serif;
+  --si-ref-typography-font-size-body: 0.875rem;
+  --si-ref-typography-font-size-body-lg: 1rem;
+  --si-ref-typography-font-size-body-paragraph: 0.875rem;
+  --si-ref-typography-font-size-body-sm: 0.75rem;
+  --si-ref-typography-font-size-code: 0.875rem;
+  --si-ref-typography-font-size-code-lg: 1rem;
+  --si-ref-typography-font-size-code-sm: 0.75rem;
+  --si-ref-typography-font-size-display: 2rem;
+  --si-ref-typography-font-size-display-lg: 2.5rem;
+  --si-ref-typography-font-size-display-xl: 3rem;
+  --si-ref-typography-font-size-display-xxl: 3.625rem;
+  --si-ref-typography-font-size-h1: 1.75rem;
+  --si-ref-typography-font-size-h2: 1.5rem;
+  --si-ref-typography-font-size-h3: 1.25rem;
+  --si-ref-typography-font-size-h4: 1rem;
+  --si-ref-typography-font-size-h5: 0.875rem;
+  --si-ref-typography-font-size-h6: 0.75rem;
+  --si-ref-typography-font-weight-bold: 700;
+  --si-ref-typography-font-weight-roman: 400;
+  --si-ref-typography-font-weight-sbold: 600;
+  --si-ref-typography-letter-spacing-normal: 0;
+  --si-ref-typography-line-height-body: 1.142857;
+  --si-ref-typography-line-height-body-lg: 1.25;
+  --si-ref-typography-line-height-body-paragraph: 1.428571;
+  --si-ref-typography-line-height-body-sm: 1.333333;
+  --si-ref-typography-line-height-code: 1.428571;
+  --si-ref-typography-line-height-code-lg: 1.25;
+  --si-ref-typography-line-height-code-sm: 1.333333;
+  --si-ref-typography-line-height-display: 1.25;
+  --si-ref-typography-line-height-display-lg: 1.3;
+  --si-ref-typography-line-height-display-xl: 1.333333;
+  --si-ref-typography-line-height-display-xxl: 1.241379;
+  --si-ref-typography-line-height-h1: 1.285714;
+  --si-ref-typography-line-height-h2: 1.333333;
+  --si-ref-typography-line-height-h3: 1.2;
+  --si-ref-typography-line-height-h4: 1.25;
+  --si-ref-typography-line-height-h5: 1.428571;
+  --si-ref-typography-line-height-h6: 1.333333;
+}
+
+@mixin setSysVars {
+  --si-sys-typography-body: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-body)/var(--si-ref-typography-line-height-body) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-lg: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-body-lg)/var(--si-ref-typography-line-height-body-lg) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-lg-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-body-lg)/var(--si-ref-typography-line-height-body-lg) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-paragraph: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-body-paragraph)/var(--si-ref-typography-line-height-body-paragraph) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-paragraph-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-body-paragraph)/var(--si-ref-typography-line-height-body-paragraph) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-body)/var(--si-ref-typography-line-height-body) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-sm: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-body-sm)/var(--si-ref-typography-line-height-body-sm) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-body-sm-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-body-sm)/var(--si-ref-typography-line-height-body-sm) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-code: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-code)/var(--si-ref-typography-line-height-code) var(--si-ref-typography-font-family-mono);
+  --si-sys-typography-code-lg: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-code-lg)/var(--si-ref-typography-line-height-code-lg) var(--si-ref-typography-font-family-mono);
+  --si-sys-typography-code-sm: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-code-sm)/var(--si-ref-typography-line-height-code-sm) var(--si-ref-typography-font-family-mono);
+  --si-sys-typography-display: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-display)/var(--si-ref-typography-line-height-display) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-lg: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-display-lg)/var(--si-ref-typography-line-height-display-lg) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-lg-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-display-lg)/var(--si-ref-typography-line-height-display-lg) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-display)/var(--si-ref-typography-line-height-display) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-xl: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-display-xl)/var(--si-ref-typography-line-height-display-xl) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-xl-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-display-xl)/var(--si-ref-typography-line-height-display-xl) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-xxl: var(--si-ref-typography-font-weight-roman) var(--si-ref-typography-font-size-display-xxl)/var(--si-ref-typography-line-height-display-xxl) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-display-xxl-sbold: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-display-xxl)/var(--si-ref-typography-line-height-display-xxl) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h1: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h1)/var(--si-ref-typography-line-height-h1) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h2: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h2)/var(--si-ref-typography-line-height-h2) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h3: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h3)/var(--si-ref-typography-line-height-h3) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h4: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h4)/var(--si-ref-typography-line-height-h4) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h5: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h5)/var(--si-ref-typography-line-height-h5) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h5-bold: var(--si-ref-typography-font-weight-bold) var(--si-ref-typography-font-size-h5)/var(--si-ref-typography-line-height-h5) var(--si-ref-typography-font-family-sans);
+  --si-sys-typography-h6: var(--si-ref-typography-font-weight-sbold) var(--si-ref-typography-font-size-h6)/var(--si-ref-typography-line-height-h6) var(--si-ref-typography-font-family-sans);
+}
+
+:root,
+:host {
+  @include setRefVars;
+  @include setSysVars;
+}

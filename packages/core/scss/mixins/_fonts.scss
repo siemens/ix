@@ -6,205 +6,168 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+@use '../REMOVE_ME_LATER';
+
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smooting: grayscale;
 }
 
 @mixin define-typography(
-  $size: var(--theme-ms-0),
-  $line-height: var(--theme-line-height-lg),
-  $font-weight: var(--theme-font-weight-normal),
-  $letter-spacing: var(--theme-letter-spacing-xl),
+  $font: var(--si-sys-typography-body),
+  $letter-spacing: var(--si-ref-typography-letter-spacing-normal),
   $text-decoration: none,
-  $font-family: Siemens Sans
 ) {
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: $font-family, Siemens Sans, Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-size: #{$size};
-  line-height: #{$line-height};
-  font-weight: #{$font-weight};
   letter-spacing: #{$letter-spacing};
   text-decoration: $text-decoration;
+  font: $font;
 
   @include font-smoothing();
 }
 
-@mixin typography-label {
-  @include define-typography($line-height: var(--theme-line-height-sm));
-}
-
-@mixin typography-label-xs {
-  @include define-typography(
-    $size: var(--theme-ms--2),
-    $line-height: var(--theme-line-height-sm),
-    $letter-spacing: var(--theme-letter-spacing-xxl)
-  );
-}
-
-@mixin typography-label-sm {
-  @include define-typography(
-    $size: var(--theme-ms--1),
-    $line-height: var(--theme-line-height-sm)
-  );
-}
-
-@mixin typography-label-lg {
-  @include define-typography(
-    $size: var(--theme-ms-1),
-    $line-height: var(--theme-line-height-sm),
-    $letter-spacing: var(--theme-letter-spacing-lg)
-  );
-}
-
 @mixin typography-body {
-  @include define-typography($line-height: var(--theme-line-height-md));
+  @include define-typography(
+    $font: var(--si-sys-typography-body),
+  );
 }
 
-@mixin typography-body-xs {
+@mixin typography-body-paragraph {
   @include define-typography(
-    $size: var(--theme-ms--2),
-    $letter-spacing: var(--theme-letter-spacing-xxl)
+    $font: var(--si-sys-typography-body-paragraph),
+  );
+}
+
+@mixin typography-body-paragraph-sbold {
+  @include define-typography(
+    $font: var(--si-sys-typography-body-paragraph-sbold),
   );
 }
 
 @mixin typography-body-sm {
-  @include define-typography($size: var(--theme-ms--1));
+  @include define-typography(
+    $font: var(--si-sys-typography-body-sm),
+  );
+}
+
+@mixin typography-body-sm-sbold {
+  @include define-typography(
+    $font: var(--si-sys-typography-body-sm-sbold),
+  );
 }
 
 @mixin typography-body-lg {
   @include define-typography(
-    $size: var(--theme-ms-1),
-    $letter-spacing: var(--theme-letter-spacing-lg)
+    $font: var(--si-sys-typography-body-lg),
+  );
+}
+
+@mixin typography-body-lg-sbold {
+  @include define-typography(
+    $font: var(--si-sys-typography-body-lg-sbold),
   );
 }
 
 @mixin typography-display {
   @include define-typography(
-    $size: var(--theme-ms-3),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-md)
-  );
-}
-
-@mixin typography-display-xs {
-  @include define-typography(
-    $size: var(--theme-ms-1),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-sm)
-  );
-}
-
-@mixin typography-display-sm {
-  @include define-typography(
-    $size: var(--theme-ms-2),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-lg)
+    $font: var(--si-sys-typography-display),
   );
 }
 
 @mixin typography-display-lg {
   @include define-typography(
-    $size: var(--theme-ms-4),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-md)
+    $font: var(--si-sys-typography-display-lg),
+  );
+}
+
+@mixin typography-display-lg-sbold {
+  @include define-typography(
+    $font: var(--si-sys-typography-display-lg-sbold),
   );
 }
 
 @mixin typography-display-xl {
   @include define-typography(
-    $size: var(--theme-ms-5),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-sm),
-    $font-weight: var(--theme-font-weight-bold)
+    $font: var(--si-sys-typography-display-xl),
+  );
+}
+
+@mixin typography-display-xl-sbold {
+  @include define-typography(
+    $font: var(--si-sys-typography-display-xl-sbold),
   );
 }
 
 @mixin typography-display-xxl {
   @include define-typography(
-    $size: var(--theme-ms-6),
-    $line-height: var(--theme-line-height-xs),
-    $letter-spacing: var(--theme-letter-spacing-sm),
-    $font-weight: var(--theme-font-weight-bold)
+    $font: var(--si-sys-typography-display-xxl),
   );
 }
 
-@mixin typography-h6 {
+@mixin typography-display-xxl-sbold {
   @include define-typography(
-    $size: var(--theme-ms--1),
-    $font-weight: var(--theme-font-weight-bold)
-  );
-}
-
-@mixin typography-h5 {
-  @include define-typography($font-weight: var(--theme-font-weight-bold));
-}
-
-@mixin typography-h4 {
-  @include define-typography(
-    $size: var(--theme-ms-1),
-    $font-weight: var(--theme-font-weight-bold),
-    $letter-spacing: var(--theme-letter-spacing-lg)
-  );
-}
-
-@mixin typography-h3 {
-  @include define-typography(
-    $size: var(--theme-ms-2),
-    $font-weight: var(--theme-font-weight-bold),
-    $letter-spacing: var(--theme-letter-spacing-lg)
-  );
-}
-
-@mixin typography-h2 {
-  @include define-typography(
-    $size: var(--theme-ms-3),
-    $line-height: var(--theme-line-height-md),
-    $font-weight: var(--theme-font-weight-bold),
-    $letter-spacing: var(--theme-letter-spacing-md)
+    $font: var(--si-sys-typography-display-xxl-sbold),
   );
 }
 
 @mixin typography-h1 {
   @include define-typography(
-    $size: var(--theme-ms-4),
-    $line-height: var(--theme-line-height-sm),
-    $font-weight: var(--theme-font-weight-bold),
-    $letter-spacing: var(--theme-letter-spacing-md)
+    $font: var(--si-sys-typography-h1),
+  );
+}
+
+@mixin typography-h2 {
+  @include define-typography(
+    $font: var(--si-sys-typography-h2),
+  );
+}
+
+@mixin typography-h3 {
+  @include define-typography(
+    $font: var(--si-sys-typography-h3),
+  );
+}
+
+@mixin typography-h4 {
+  @include define-typography(
+   $font: var(--si-sys-typography-h4),
+  );
+}
+
+@mixin typography-h5 {
+  @include define-typography(
+    $font: var(--si-sys-typography-h5),
+  );
+}
+
+@mixin typography-h5-bold {
+  @include define-typography(
+    $font: var(--si-sys-typography-h5-bold),
+  );
+}
+
+@mixin typography-h6 {
+  @include define-typography(
+    $font: var(--si-sys-typography-h6),
   );
 }
 
 @mixin typography-code {
   @include define-typography(
-    $font-family: (
-      JetBrainsMono,
-      Courier New,
-      monospace,
-    ),
-    $letter-spacing: var(--theme-letter-spacing-md)
+    $font: var(--si-sys-typography-code),
   );
 }
 
 @mixin typography-code-sm {
   @include define-typography(
-    $font-family: (
-      JetBrainsMono,
-      Courier New,
-      monospace,
-    ),
-    $size: var(--theme-ms--1)
+    $font: var(--si-sys-typography-code-sm),
   );
 }
 
 @mixin typography-code-lg {
   @include define-typography(
-    $font-family: (
-      JetBrainsMono,
-      Courier New,
-      monospace,
-    ),
-    $size: var(--theme-ms-1),
-    $letter-spacing: var(--theme-letter-spacing-md)
+    $font: var(--si-sys-typography-code-lg),
   );
 }

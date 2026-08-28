@@ -213,7 +213,7 @@ export class FormFieldLabel implements IxComponentInterface {
         >
           <ix-typography
             textColor={this.isInvalid ? 'alarm' : 'soft'}
-            format="label"
+            format="body"
           >
             <slot></slot>
             {this.required && <span>*</span>}

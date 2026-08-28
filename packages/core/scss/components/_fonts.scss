@@ -9,35 +9,35 @@
 @use 'mixins/fonts';
 
 @mixin font-label {
-  .typography-label {
-    @include fonts.typography-label;
+  .typography-body-paragraph {
+    @include fonts.typography-body-paragraph;
   }
 
-  .typography-label-xs {
-    @include fonts.typography-label-xs;
-  }
-
-  .typography-label-sm {
-    @include fonts.typography-label-sm;
-  }
-
-  .typography-label-lg {
-    @include fonts.typography-label-lg;
+  .typography-body-paragraph-sbold {
+    @include fonts.typography-body-paragraph-sbold;
   }
 
   .typography-body {
     @include fonts.typography-body;
   }
 
-  .typography-body-xs {
-    @include fonts.typography-body-xs;
+  .typography-body-paragraph-sbold {
+    @include fonts.typography-body-paragraph-sbold;
   }
 
   .typography-body-sm {
     @include fonts.typography-body-sm;
   }
 
+  .typography-body-sm-sbold {
+    @include fonts.typography-body-sm-sbold;
+  }
+
   .typography-body-lg {
+    @include fonts.typography-body-lg;
+  }
+
+  .typography-body-lg-sbold {
     @include fonts.typography-body-lg;
   }
 
@@ -45,24 +45,28 @@
     @include fonts.typography-display;
   }
 
-  .typography-display-xs {
-    @include fonts.typography-display-xs;
-  }
-
-  .typography-display-sm {
-    @include fonts.typography-display-sm;
-  }
-
   .typography-display-lg {
     @include fonts.typography-display-lg;
+  }
+
+  .typography-display-lg-sbold {
+    @include fonts.typography-display-lg-sbold;
   }
 
   .typography-display-xl {
     @include fonts.typography-display-xl;
   }
 
+  .typography-display-xl-sbold {
+    @include fonts.typography-display-xl-sbold;
+  }
+
   .typography-display-xxl {
     @include fonts.typography-display-xxl;
+  }
+
+  .typography-display-xxl-sbold {
+    @include fonts.typography-display-xxl-sbold;
   }
 
   h6,
@@ -75,6 +79,10 @@
   .h5,
   .typography-h5 {
     @include fonts.typography-h5;
+  }
+
+  .typography-h5-bold {
+    @include fonts.typography-h5-bold;
   }
 
   h4,

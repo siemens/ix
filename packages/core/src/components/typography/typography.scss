@@ -77,9 +77,9 @@
   @include legacy-fonts.text-xl;
 }
 
-$typography-formats: label, label-xs, label-sm, label-lg, body, body-xs, body-sm,
-  body-lg, display, display-xs, display-sm, display-lg, display-xl, display-xxl,
-  h6, h5, h4, h3, h2, h1, code, code-sm, code-lg;
+$typography-formats: label, label-xs, label-sm, label-lg, body, body-xs, body-sm, body-sm-sbold, body-paragraph, body-paragraph-sbold,
+  body-lg, body-lg-sbold, display, display-xs, display-sm, display-lg, display-lg-sbold, display-xl, display-xl-sbold, display-xxl, display-xxl-sbold,
+  h6, h5, h5-bold, h4, h3, h2, h1, code, code-sm, code-lg;
 
 @each $format in $typography-formats {
   :host(.typography-#{$format}) {

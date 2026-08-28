@@ -1031,7 +1031,9 @@
       "slots": [
         "default"
       ],
-      "cssParts": [],
+      "cssParts": [
+        "content"
+      ],
       "cssStates": []
     },
     {
@@ -11044,7 +11046,7 @@
         {
           "name": "format",
           "attribute": "format",
-          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\" | undefined",
+          "type": "\"body\" | \"body-lg\" | \"body-lg-sbold\" | \"body-paragraph\" | \"body-paragraph-sbold\" | \"body-sm\" | \"body-sm-sbold\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-lg-sbold\" | \"display-sm\" | \"display-xl\" | \"display-xl-sbold\" | \"display-xs\" | \"display-xxl\" | \"display-xxl-sbold\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h5-bold\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

@@ -46,7 +46,7 @@ function DefaultAvatar(
   if (initials) {
     return (
       <div class={'avatar-initials'}>
-        <ix-typography format="label-lg">{initials}</ix-typography>
+        <ix-typography format="body-lg">{initials}</ix-typography>
       </div>
     );
   }

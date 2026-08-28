@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 
 @mixin track {
   // Chrome, Safari, Opera, and Edge Chromium
@@ -275,6 +276,8 @@
     margin-top: 0.5rem;
 
     min-height: 0px;
+
+    @include fonts.typography-body;
   }
 }
 
