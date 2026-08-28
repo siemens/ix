@@ -268,3 +268,27 @@ regressionTest(
     await expect(dropdown).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'marks the trigger expanded while the dropdown is open',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    const trigger = dateDropdown.getByTestId('date-dropdown-trigger');
+    const dropdown = dateDropdown.locator('[data-date-dropdown]');
+
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
+    await expect(trigger).toHaveClass(/\bactive\b/);
+    await expect(trigger.locator('button')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(dropdown).not.toBeVisible();
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+  }
+);

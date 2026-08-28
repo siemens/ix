@@ -1166,7 +1166,7 @@
         },
         {
           "name": "showMoreCardClick",
-          "detail": "{ nativeEvent: MouseEvent; }",
+          "detail": "{ nativeEvent: MouseEvent | KeyboardEvent; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2251,6 +2251,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "textOverflow",
+          "attribute": "text-overflow",
+          "type": "\"ellipsis\" | \"wrap\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'wrap'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },

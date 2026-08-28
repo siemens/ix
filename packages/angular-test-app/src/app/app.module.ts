@@ -24,6 +24,7 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -71,6 +72,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from '../preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
@@ -289,6 +291,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ActionCard,
     AddIcons,
     AgGrid,
+    AgGridStriped,
     ApplicationExample,
     ApplicationAdvancedExample,
     ApplicationBreakpointExample,
@@ -348,6 +351,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ContentExample,
     ContentHeader,
     ContentHeaderNoBack,
+    ContentHeaderTextOverflow,
     ContentHeaderWithSlot,
     DatepickerRange,
     Datepicker,

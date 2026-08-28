@@ -94,6 +94,18 @@ SPDX-License-Identifier: MIT
 
     <ix-content-header
       variant="secondary"
+      has-back-button
+      header-title="This is a very long content title for testing purposes to see how the header handles overflow and wrapping in different scenarios"
+      header-subtitle="This is an equally long subtitle meant to test the behavior of the subtitle area when the text exceeds the usual length and needs to be displayed properly without breaking the layout"
+      text-overflow="ellipsis"
+    >
+      <ix-pill slot="header" icon="info" class="margin-top">Label</ix-pill>
+      <ix-button variant="tertiary">Button1</ix-button>
+      <ix-button variant="tertiary">Button2</ix-button>
+      <ix-button variant="tertiary">Button3</ix-button>
+    </ix-content-header>
+    <ix-content-header
+      variant="secondary"
       header-title="content title"
       header-subtitle="subtitle content"
     >

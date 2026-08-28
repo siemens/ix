@@ -20,6 +20,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
+import AgGridStriped from './preview-examples/aggrid-striped';
 import Application from './preview-examples/application';
 import ApplicationAdvanced from './preview-examples/application-advanced';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
@@ -67,6 +68,7 @@ import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
@@ -292,6 +294,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-breakpoints': ApplicationBreakpoints,
@@ -341,6 +344,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,

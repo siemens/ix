@@ -16,20 +16,32 @@
   .titleGroup {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-width: 0;
     margin-right: 0.5rem;
-    overflow: hidden;
 
-    .titleOverflow {
-      overflow-wrap: break-word;
+    .headerText {
+      min-width: 0;
+      overflow-wrap: anywhere;
+
+      &.truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
 
     .headerTitleRow {
       display: flex;
 
+      .headerText {
+        flex: 0 1 auto;
+      }
+
       .headerSlot {
         display: inline-flex;
+        flex: 0 0 auto;
+        align-self: flex-start;
         margin-left: 0.5rem;
       }
     }

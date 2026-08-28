@@ -34,6 +34,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/add-icons').then((m) => m.default),
   'preview/aggrid': () =>
     import('../preview-examples/aggrid').then((m) => m.default),
+  'preview/aggrid-striped': () =>
+    import('../preview-examples/aggrid-striped').then((m) => m.default),
   'preview/application': () =>
     import('../preview-examples/application').then((m) => m.default),
   'preview/application-advanced': () =>
@@ -128,6 +130,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/content-header').then((m) => m.default),
   'preview/content-header-no-back': () =>
     import('../preview-examples/content-header-no-back').then((m) => m.default),
+  'preview/content-header-text-overflow': () =>
+    import('../preview-examples/content-header-text-overflow').then(
+      (m) => m.default
+    ),
   'preview/content-header-with-slot': () =>
     import('../preview-examples/content-header-with-slot').then(
       (m) => m.default

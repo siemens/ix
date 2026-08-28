@@ -20,7 +20,10 @@ import {
 } from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
 import type { Disposable } from '../utils/typed-event';
-import type { ContentHeaderVariant } from './content-header.types';
+import type {
+  ContentHeaderTextOverflow,
+  ContentHeaderVariant,
+} from './content-header.types';
 
 /**
  * @slot header            - Content to be placed in the header area next to the title
@@ -41,12 +44,20 @@ export class ContentHeader {
   @Prop() variant: ContentHeaderVariant = 'primary';
 
   /**
-   * Variant of content header
+   * Title of Header
    */
   @Prop() headerTitle?: string;
 
   /** Subtitle of Header */
   @Prop() headerSubtitle: string | undefined = undefined;
+
+  /**
+   * Controls how the title and subtitle handle limited horizontal space.
+   * Ellipsis visually truncates the text without adding a tooltip.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
 
   /** Display a back button */
   @Prop() hasBackButton: boolean = false;
@@ -59,8 +70,6 @@ export class ContentHeader {
 
   breakpointDisposable?: Disposable;
   hasDisconnected = false;
-  secondarySlot: HTMLSlotElement | null = null;
-  defaultSlot: HTMLSlotElement | null = null;
 
   private resizeObserver?: ResizeObserver;
   private titleGroupEl?: HTMLDivElement;
@@ -125,31 +134,17 @@ export class ContentHeader {
   }
 
   private attachSlotListeners() {
-    const secSlot = this.hostElement.shadowRoot?.querySelector(
-      'slot[name="secondary-actions"]'
-    ) as HTMLSlotElement | null;
-
-    if (secSlot) {
-      this.secondarySlot = secSlot;
-      secSlot.addEventListener('slotchange', this.slotChangeHandler);
-    }
-
-    const defSlot = this.hostElement.shadowRoot?.querySelector(
-      'slot:not([name])'
-    ) as HTMLSlotElement | null;
-
-    if (defSlot) {
-      this.defaultSlot = defSlot;
-      defSlot.addEventListener('slotchange', this.slotChangeHandler);
-    }
-  }
-
-  private detachSlotListeners() {
-    this.secondarySlot?.removeEventListener(
+    this.hostElement.shadowRoot?.addEventListener(
       'slotchange',
       this.slotChangeHandler
     );
-    this.defaultSlot?.removeEventListener('slotchange', this.slotChangeHandler);
+  }
+
+  private detachSlotListeners() {
+    this.hostElement.shadowRoot?.removeEventListener(
+      'slotchange',
+      this.slotChangeHandler
+    );
   }
 
   private subscribeToBreakpointChanges() {
@@ -226,7 +221,8 @@ export class ContentHeader {
               format={this.variant === 'secondary' ? 'h4' : 'h3'}
               class={{
                 secondary: this.variant === 'secondary',
-                titleOverflow: true,
+                headerText: true,
+                truncate: this.textOverflow === 'ellipsis',
               }}
             >
               {this.headerTitle}
@@ -241,9 +237,9 @@ export class ContentHeader {
               text-color="soft"
               class={{
                 subtitle: this.variant === 'secondary',
-                titleOverflow: true,
+                headerText: true,
+                truncate: this.textOverflow === 'ellipsis',
               }}
-              title={this.headerSubtitle}
             >
               {this.headerSubtitle}
             </ix-typography>
