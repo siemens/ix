@@ -127,6 +127,10 @@
   }
 }
 
+:host(.icon-only) {
+  width: vars.$x-large-space;
+}
+
 :host(.host-context-date-picker) {
   ix-dropdown {
     max-height: 15.625rem;

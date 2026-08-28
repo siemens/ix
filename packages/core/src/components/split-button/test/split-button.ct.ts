@@ -91,12 +91,17 @@ regressionTest(
     await mount(getSplitButtonExample({}));
 
     const splitButton = page.locator('ix-split-button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownButton = splitButton.locator('ix-dropdown-button');
 
-    await dropdownButton.click();
-    await page.keyboard.press('ArrowDown');
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAccessibleName('dropdown button');
+    await dropdownButton.focus();
+    await expect(dropdownButton).toBeFocused();
+    await dropdownButton.press('Enter');
+    await expect(dropdownButton).toBeFocused();
 
     await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(dropdownButton).toHaveAttribute('aria-activedescendant', /.+/);
 
     const activeDescendant = await dropdownButton.getAttribute(
       'aria-activedescendant'
@@ -115,10 +120,16 @@ regressionTest(
     });
     await expect(dropdownItem1).toHaveClass(/ix-focused/);
 
-    await page.keyboard.press('ArrowDown');
-    const item2 = splitButton.getByRole('menuitem', { name: 'Item 1' });
+    await dropdownButton.press('ArrowDown');
+    const item2 = splitButton.getByRole('menuitem', { name: 'Item 2' });
     await expect(item2).toBeVisible();
-    await expect(item2).toHaveAttribute('id', activeDescendant);
+    await expect(item2).toHaveAttribute('id', /.+/);
+    const item2Id = await item2.evaluate((element) => element.id);
+
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-activedescendant',
+      item2Id
+    );
 
     const dropdownItem2 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 2/,

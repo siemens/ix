@@ -39,6 +39,7 @@ export type BaseButtonProps = {
   selected: boolean;
   disabled: boolean;
   loading: boolean;
+  inert?: boolean;
   icon?: string;
   iconRight?: string;
   onClick?: Function;
@@ -99,6 +100,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
+    inert: props.inert ? true : undefined,
     tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
     class: {
       ...getButtonClasses(

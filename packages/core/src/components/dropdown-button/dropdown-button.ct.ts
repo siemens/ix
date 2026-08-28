@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -16,13 +17,252 @@ regressionTest('renders', async ({ mount, page }) => {
   </ix-dropdown-button>
   `);
 
-  await page.locator('ix-dropdown-button').click();
+  const dropdownButton = page.locator('ix-dropdown-button');
+  await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+  await expect(dropdownButton.locator('ix-button button')).toHaveAttribute(
+    'aria-hidden',
+    'true'
+  );
+  await expect(dropdownButton.locator('ix-button button')).toHaveAttribute(
+    'inert',
+    ''
+  );
+
+  await dropdownButton.click();
   const item = page.locator('ix-dropdown-item');
   await expect(item).toBeVisible();
 
   await item.click();
   await expect(item).not.toBeVisible();
 });
+
+for (const key of ['Enter', 'Space']) {
+  regressionTest(
+    `opens an icon-only dropdown with ${key}`,
+    async ({ mount, page }) => {
+      await mount(
+        `
+          <button>Before</button>
+          <ix-dropdown-button
+            label=""
+            icon="checkboxes"
+          >
+            <ix-dropdown-item label="Item"></ix-dropdown-item>
+          </ix-dropdown-button>
+        `,
+        { icons: { iconCheckboxes } }
+      );
+
+      const dropdownButton = page.locator('ix-dropdown-button');
+      await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+
+      await page.getByRole('button', { name: 'Before' }).focus();
+      await page.keyboard.press('Tab');
+      await expect(dropdownButton).toBeFocused();
+
+      await page.keyboard.press(key);
+
+      await expect(dropdownButton.locator('ix-dropdown')).toBeVisible();
+      await expect(dropdownButton).toHaveAttribute('aria-expanded', 'true');
+    }
+  );
+}
+
+regressionTest(
+  'exposes one named button for an icon-only dropdown',
+  async ({ makeAxeBuilder, mount, page }) => {
+    await mount(
+      `
+        <ix-dropdown-button
+          label=""
+          icon="checkboxes"
+        >
+          <ix-dropdown-item label="Item"></ix-dropdown-item>
+        </ix-dropdown-button>
+      `,
+      { icons: { iconCheckboxes } }
+    );
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await dropdownButton.evaluate(
+      (element: HTMLIxDropdownButtonElement) =>
+        (element.ariaLabelDropdownButton = 'Actions')
+    );
+    await expect(dropdownButton).toHaveAccessibleName('Actions');
+    await expect(page.getByRole('button', { name: 'Actions' })).toHaveCount(1);
+    await expect(
+      dropdownButton.locator('ix-icon-button').locator('button')
+    ).toHaveAttribute('aria-hidden', 'true');
+    await expect(
+      dropdownButton.locator('ix-icon-button').locator('button')
+    ).toHaveAttribute('inert', '');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
+regressionTest(
+  'updates the default accessible name for an icon-only dropdown',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="">
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
+
+    await dropdownButton.click();
+
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-label',
+      'Close dropdown'
+    );
+  }
+);
+
+regressionTest(
+  'keeps an explicit aria-label that matches the default label',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="">
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
+
+    await dropdownButton.evaluate((element) => {
+      element.setAttribute('aria-label', 'Open dropdown');
+    });
+    await dropdownButton.click();
+
+    await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
+  }
+);
+
+regressionTest(
+  'keeps the generated accessible name dynamic after reconnection',
+  async ({ mount, page }) => {
+    await mount(`
+      <div>
+        <ix-dropdown-button label="">
+          <ix-dropdown-item label="Item"></ix-dropdown-item>
+        </ix-dropdown-button>
+      </div>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
+    await dropdownButton.evaluate((element) => {
+      const parent = element.parentElement;
+      element.remove();
+      parent?.append(element);
+    });
+    await dropdownButton.click();
+
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-label',
+      'Close dropdown'
+    );
+  }
+);
+
+regressionTest(
+  'uses the fallback label for blank host aria-label values',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="" aria-label="   ">
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
+
+    for (const ariaLabel of ['', '   ']) {
+      await dropdownButton.evaluate((element, value) => {
+        element.setAttribute('aria-label', value);
+      }, ariaLabel);
+      await expect(dropdownButton).toHaveAttribute(
+        'aria-label',
+        'Open dropdown'
+      );
+    }
+
+    await dropdownButton.click();
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-label',
+      'Close dropdown'
+    );
+  }
+);
+
+regressionTest(
+  'uses custom button-label slot text as the accessible name',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="Temporary">
+        <span slot="button-label">Select month</span>
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await dropdownButton.evaluate(
+      (element: HTMLIxDropdownButtonElement) => (element.label = null)
+    );
+
+    await expect(dropdownButton).toHaveAccessibleName('Select month');
+    await dropdownButton
+      .locator('[slot="button-label"]')
+      .evaluate((element) => {
+        element.textContent = 'Select year';
+      });
+    await expect(dropdownButton).toHaveAccessibleName('Select year');
+  }
+);
+
+regressionTest(
+  'uses the fallback for a whitespace-only configured aria label',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="">
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await dropdownButton.evaluate(
+      (element: HTMLIxDropdownButtonElement) =>
+        (element.ariaLabelDropdownButton = '   ')
+    );
+
+    await expect(dropdownButton).toHaveAccessibleName('Open dropdown');
+  }
+);
+
+regressionTest(
+  'treats a whitespace-only label as icon-only',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="   ">
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveClass(/\bicon-only\b/);
+    await expect(dropdownButton.locator('ix-icon-button')).toHaveCount(1);
+    await expect(dropdownButton).toHaveAccessibleName('Open dropdown');
+  }
+);
 
 regressionTest('close behavior - outside', async ({ mount, page }) => {
   await mount(`

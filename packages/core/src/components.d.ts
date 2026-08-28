@@ -516,6 +516,10 @@ export namespace Components {
          */
         "iconSize": '12' | '16' | '24';
         /**
+          * @default false
+         */
+        "inert": boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -1865,7 +1869,7 @@ export namespace Components {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Will be set as aria-label on the interactive host element.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
@@ -1897,7 +1901,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
         /**
@@ -2361,6 +2365,10 @@ export namespace Components {
           * Color of icon in  button
          */
         "iconColor"?: string;
+        /**
+          * @default false
+         */
+        "inert": boolean;
         /**
           * Loading button
           * @default false
@@ -7422,6 +7430,10 @@ declare namespace LocalJSX {
          */
         "iconSize"?: '12' | '16' | '24';
         /**
+          * @default false
+         */
+        "inert"?: boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -8863,7 +8875,7 @@ declare namespace LocalJSX {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Will be set as aria-label on the interactive host element.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
@@ -8894,7 +8906,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
         /**
@@ -9400,6 +9412,10 @@ declare namespace LocalJSX {
           * Color of icon in  button
          */
         "iconColor"?: string;
+        /**
+          * @default false
+         */
+        "inert"?: boolean;
         /**
           * Loading button
           * @default false
@@ -12276,6 +12292,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
         "form": string;
         "icon": string;
         "iconRight": string;
@@ -12692,6 +12709,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
     }
     interface IxIconToggleButtonAttributes {
         "variant": ButtonVariant;
