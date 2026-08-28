@@ -25,14 +25,14 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
       <ix-chip inactive>Inactive</ix-chip>
       <ix-chip
         variant="custom"
-        background="var(--theme-color-secondary)"
-        chip-color="var(--theme-color-std-text)"
+        background="var(--si-sys-background-accent-secondary)"
+        chip-color="var(--si-sys-text-primary)"
         closable
       >Custom filled</ix-chip>
       <ix-chip
         variant="custom"
-        background="var(--theme-color-primary)"
-        chip-color="var(--theme-color-primary--contrast)"
+        background="var(--si-sys-background-accent)"
+        chip-color="var(--si-sys-text-on-accent)"
         outline
         closable
       >Custom outline</ix-chip>

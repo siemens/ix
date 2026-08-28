@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
+@use './chat-input.vars';
 
 :host {
   display: block;
@@ -23,12 +24,12 @@
     min-height: 8rem;
     padding: var(--theme-space-2);
     box-sizing: border-box;
-    background-color: var(--theme-input--background);
-    border: var(--theme-input--border-thickness) solid
-      var(--theme-input--border-color);
-    border-radius: var(--theme-input--border-radius);
-    box-shadow: var(--theme-input--box-shadow);
-    color: var(--theme-input--color);
+    background-color: var(--ix-chat-input--background);
+    border: var(--ix-chat-input--border-width) solid
+      var(--ix-chat-input--border-color);
+    border-radius: var(--ix-chat-input--border-radius);
+    box-shadow: var(--ix-chat-input--box-shadow);
+    color: var(--ix-chat-input--color);
   }
 
   .follow-up-prompts {
@@ -54,14 +55,14 @@
   }
 
   .chat-input:hover {
-    border-color: var(--theme-input--border-color--hover);
-    background-color: var(--theme-input--background--hover);
+    border-color: var(--ix-chat-input--border-color--hover);
+    background-color: var(--ix-chat-input--background--hover);
   }
 
   .chat-input:focus-within {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-input--focus--outline-offset);
-    border-color: var(--theme-input--border-color--focus);
+    outline: 1px solid var(--ix-chat-input--outline-color--focus);
+    outline-offset: var(--ix-chat-input--focus--outline-offset);
+    border-color: var(--ix-chat-input--border-color--focus);
   }
 
   .attachments {
@@ -118,7 +119,7 @@
   }
 
   textarea::placeholder {
-    color: var(--theme-input-hint--color);
+    color: var(--ix-chat-input-placeholder--color);
   }
 
   .character-limit {
@@ -134,11 +135,11 @@
   }
 
   .character-limit--soft ix-icon {
-    color: var(--theme-color-info);
+    color: var(--ix-chat-input-character-limit-soft-icon--color);
   }
 
   .character-limit--hard ix-icon {
-    color: var(--theme-color-warning);
+    color: var(--ix-chat-input-character-limit-hard-icon--color);
   }
 
   .action-row {
@@ -183,9 +184,9 @@
   pointer-events: none;
 
   .chat-input {
-    border-color: var(--theme-input--border-color--disabled);
+    border-color: var(--ix-chat-input--border-color--disabled);
     box-shadow: none;
-    color: var(--theme-input--color--disabled);
+    color: var(--ix-chat-input--color--disabled);
     background-color: transparent;
   }
 
@@ -196,14 +197,14 @@
 
 :host(.readonly) {
   .chat-input {
-    border-color: var(--theme-input--border-color--readonly);
+    border-color: var(--ix-chat-input--border-color--readonly);
     box-shadow: none;
     background-color: transparent;
   }
 
   .chat-input:hover,
   .chat-input:focus-within {
-    border-color: var(--theme-input--border-color--readonly);
+    border-color: var(--ix-chat-input--border-color--readonly);
     outline: none;
   }
 }

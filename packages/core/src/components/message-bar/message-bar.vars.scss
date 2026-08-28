@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-message-bar--border-color--alarm: #{sys.$si-sys-border-danger};
+  --ix-message-bar--border-color--critical: #{sys.$si-sys-border-critical};
+  --ix-message-bar--border-color--warning: #{sys.$si-sys-border-warning};
+  --ix-message-bar--border-color--success: #{sys.$si-sys-border-success};
+  --ix-message-bar--border-color--info: #{sys.$si-sys-border-information};
+  --ix-message-bar--border-color--neutral: #{sys.$si-sys-border-neutral};
+  --ix-message-bar--border-color--primary: #{sys.$si-sys-border-accent};
+  --ix-message-bar--border-radius: var(--theme-default-border-radius);
+  --ix-message-bar--border-width: var(--theme-border-width-thick);
+  --ix-message-bar--background: #{sys.$si-sys-background-accent-secondary};
+}

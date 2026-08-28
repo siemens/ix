@@ -32,7 +32,7 @@ LICENSE file in the root directory of this source tree.
 
         for (const [index, text] of items.entries()) {
           const listItem = document.createElement('ix-event-list-item');
-          listItem.setAttribute('item-color', 'color-primary');
+          listItem.setAttribute('item-color', '--si-sys-background-accent');
           listItem.textContent = text;
 
           if (index === selectedIndex) {
