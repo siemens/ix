@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  --ix-badge-offset-x: 0rem;
+  --ix-badge-offset-y: 0rem;
+  --ix-badge-max-width: none;
+  --ix-badge-animation-duration: 2s;
+
+  --ix-badge-color-primary: var(--theme-color-primary);
+  --ix-badge-color-primary-contrast: var(--theme-color-primary--contrast);
+  --ix-badge-color-alarm: var(--theme-color-alarm);
+  --ix-badge-color-alarm-contrast: var(--theme-color-alarm--contrast);
+  --ix-badge-color-alarm-bdr: var(--theme-color-alarm-bdr);
+  --ix-badge-color-critical: var(--theme-color-critical);
+  --ix-badge-color-critical-contrast: var(--theme-color-critical--contrast);
+  --ix-badge-color-warning: var(--theme-color-warning);
+  --ix-badge-color-warning-contrast: var(--theme-color-warning--contrast);
+  --ix-badge-color-warning-bdr: var(--theme-color-warning-bdr);
+  --ix-badge-color-info: var(--theme-color-info);
+  --ix-badge-color-info-contrast: var(--theme-color-info--contrast);
+  --ix-badge-color-success: var(--theme-color-success);
+  --ix-badge-color-success-contrast: var(--theme-color-success--contrast);
+  --ix-badge-color-neutral: var(--theme-color-neutral);
+  --ix-badge-color-neutral-contrast: var(--theme-color-neutral--contrast);
+
+  --ix-badge-color-ghost: var(--theme-color-ghost);
+  --ix-badge-color-text: var(--theme-color-std-text);
+  --ix-badge-color-contrast-ring: var(--theme-color-1);
+
+  --ix-badge-pulse-color: var(--ix-badge-color-primary);
+}

@@ -6,9 +6,14 @@ on:
       - 'main'
       - 'release/*'
       - 'release-*'
+    tags:
+      - '@siemens/ix@*'
   workflow_dispatch:
 
 jobs:
+  # Builds, installs and every turbo invocation run on the host runner so all jobs
+  # share one cache version and one hash space. Only browser-driven commands are
+  # executed inside the pinned Playwright image, see actions/playwright-container.
   build:
     runs-on: ubuntu-latest
     steps:
@@ -16,6 +21,8 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
+        with:
+          save-cache: 'true'
 
       - name: Build
         run: pnpm build --cache-dir=.turbo
@@ -43,9 +50,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
-          projectName: '@siemens/ix'
-          artifactName: 'core'
-          projectPath: './packages/core/blob-report/'
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          projectPath: './testing/visual-testing/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
 
@@ -58,9 +65,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/merge-reports
         with:
-          projectName: '@siemens/ix'
-          artifactName: 'core'
-          blobPattern: '@siemens/ix-blob-report-*'
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
     needs: [build]
@@ -92,10 +99,22 @@ jobs:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: core
+            packages: '@siemens/ix'
+          - group: angular
+            packages: 'angular-test-app angular-standalone-test-app @siemens/ix-angular'
+          - group: react-vue
+            packages: 'react-test-app @siemens/ix-react vue-test-app @siemens/ix-vue'
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
+        with:
+          packages: ${{ matrix.packages }}
 
   accessibility:
     needs: [build]
@@ -116,6 +135,5 @@ jobs:
 
       - name: Test
         run: |
-          cd testing/performance-memlab
           pnpm dlx puppeteer browsers install chrome@127.0.6533.88
-          pnpm test.memlab
+          pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo

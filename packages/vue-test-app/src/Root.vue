@@ -18,6 +18,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
+import AgGridStriped from './preview-examples/aggrid-striped.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
@@ -26,6 +27,11 @@ import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import Badge from './preview-examples/badge.vue';
+import BadgeCounter from './preview-examples/badge-counter.vue';
+import BadgeDot from './preview-examples/badge-dot.vue';
+import BadgeLabel from './preview-examples/badge-label.vue';
+import BadgeStatusIcon from './preview-examples/badge-status-icon.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import Blind from './preview-examples/blind.vue';
@@ -59,6 +65,7 @@ import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
@@ -267,6 +274,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
@@ -276,6 +284,11 @@ const routes: IxPreviewRoutes = {
   '/preview/avatar-image': AvatarImage,
   '/preview/avatar-initials': AvatarInitials,
   '/preview/avatar': Avatar,
+  '/preview/badge': Badge,
+  '/preview/badge-counter': BadgeCounter,
+  '/preview/badge-dot': BadgeDot,
+  '/preview/badge-label': BadgeLabel,
+  '/preview/badge-status-icon': BadgeStatusIcon,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -313,6 +326,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,

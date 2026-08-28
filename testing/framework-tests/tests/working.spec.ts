@@ -68,8 +68,19 @@ import './generated/popover.spec';
 // Chip tests
 import './generated/chip.spec';
 
+// Content header tests
+import './generated/content-header.spec';
+import './generated/content-header-text-overflow.spec';
+
 // Chat tests
 import './generated/chat.spec';
 import './generated/chat-ai-message.spec';
 import './generated/chat-input.spec';
 import './generated/chat-user-message.spec';
+
+// Badge tests
+import './generated/badge.spec';
+import './generated/badge-counter.spec';
+import './generated/badge-label.spec';
+import './generated/badge-dot.spec';
+import './generated/badge-status-icon.spec';

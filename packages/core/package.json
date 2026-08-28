@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "5.1.1",
+  "version": "5.2.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
@@ -134,7 +134,7 @@
     "vitest": "^4.1.4"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.4.0"
+    "@siemens/ix-icons": "^3.5.0"
   },
   "config": {
     "commitizen": {

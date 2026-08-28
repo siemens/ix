@@ -14,19 +14,19 @@ import { IxSplitButton, IxDropdownItem } from '@siemens/ix-vue';
 
 <template>
   <div>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall">
+    <IxSplitButton label="Action text" :split-icon="iconChevronDownSmall">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disabled>
+    <IxSplitButton label="Action text" :split-icon="iconChevronDownSmall" disabled>
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableButton>
+    <IxSplitButton label="Action text" :split-icon="iconChevronDownSmall" disable-button>
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableDropdownButton>
+    <IxSplitButton label="Action text" :split-icon="iconChevronDownSmall" disable-dropdown-button>
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>

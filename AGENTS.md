@@ -89,7 +89,8 @@ Targeted commands:
 - Use core component tests for component behavior, interaction, keyboard handling, accessibility, slots, events, and state changes.
 - Include accessibility coverage (`makeAxeBuilder`) and a basic hydration/render test in component test files.
 - Add or update unit tests for pure logic changes, component tests for interaction/accessibility changes, and visual tests only for meaningful UI or theme changes.
-- Prefer Playwright locators, user-visible assertions, and deterministic waits over implementation-detail selectors and timeouts.
+- Prefer Playwright **accessibility locators** (`getByRole`, `getByLabel`, `getByText`, accessible name/description assertions) for user-facing contracts. Fall back to tag/CSS selectors for custom elements without roles and for decorative chrome outside the a11y tree.
+- Prefer deterministic waits over implementation-detail selectors and timeouts.
 
 ## Visual regression testing
 
@@ -130,6 +131,7 @@ Targeted commands:
 ## Component-test conventions (core)
 
 - Use `regressionTest` from `@utils/test` (not plain Playwright `test`).
+- Prefer accessibility locators (`getByRole`, `getByLabel`, `getByText`) when elements expose roles/names; use tag/CSS selectors for host state and decorative/`aria-hidden` chrome. See `.github/instructions/component-tests.instructions.md`.
 - Use Playwright locators (including for Shadow DOM assertions).
 - Avoid arbitrary timeouts (`waitForTimeout`).
 - Register icons via mount config; do not fetch static SVG files directly in tests.

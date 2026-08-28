@@ -112,6 +112,29 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant']
+})
+@Component({
+  selector: 'ix-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant'],
+  standalone: false
+})
+export class IxBadge {
+  protected el: HTMLIxBadgeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxBadge extends Components.IxBadge {}
+
+
+@ProxyCmp({
   inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
@@ -308,7 +331,7 @@ export class IxCardList {
   protected el: HTMLIxCardListElement;
   @Output() collapseChanged = new EventEmitter<CustomEvent<boolean>>();
   @Output() showAllClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
-  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
+  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -328,7 +351,7 @@ export declare interface IxCardList extends Components.IxCardList {
   /**
    * Fire event when the show more card is clicked.
    */
-  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>;
 }
 
 
@@ -689,14 +712,14 @@ export declare interface IxContent extends Components.IxContent {}
 
 
 @ProxyCmp({
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant']
 })
 @Component({
   selector: 'ix-content-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant'],
   outputs: ['backButtonClick'],
   standalone: false
 })
