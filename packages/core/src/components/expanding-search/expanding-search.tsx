@@ -150,7 +150,7 @@ export class ExpandingSearch
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-          color={this.hasFocus ? 'input-search-icon--color--focus' : undefined}
+          iconColor={this.hasFocus ? '--si-sys-text-accent' : undefined}
           class={{
             'btn-search': true,
             'btn-search--expanded': this.expanded,
@@ -173,7 +173,6 @@ export class ExpandingSearch
         >
           <input
             class={{
-              'ix-form-control': true,
               input: this.expanded,
               'disable-pointer': !this.expanded,
               'opacity-before': !this.expanded,

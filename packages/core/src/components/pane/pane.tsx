@@ -791,7 +791,7 @@ export class Pane {
               }
               iconColor={
                 this.expanded && (this.isMobile || this.hideOnCollapse)
-                  ? 'color-soft-text'
+                  ? '--si-sys-text-secondary'
                   : undefined
               }
               variant="subtle-tertiary"

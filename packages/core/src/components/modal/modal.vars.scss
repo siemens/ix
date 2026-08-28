@@ -1,0 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-modal-backdrop--background: #{sys.$si-sys-effects-backdrop};
+  --ix-modal--border-radius: var(--theme-default-border-radius);
+  --ix-modal--box-shadow: #{sys.$si-sys-effects-shadow-4};
+  --ix-modal--color: #{sys.$si-sys-text-primary};
+  --ix-modal--background: #{sys.$si-sys-background-3};
+}

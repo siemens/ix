@@ -6,6 +6,8 @@ on:
       - 'main'
       - 'release/*'
       - 'release-*'
+    tags:
+      - '@siemens/ix@*'
   workflow_dispatch:
 
 env:

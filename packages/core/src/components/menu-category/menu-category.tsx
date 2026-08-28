@@ -176,6 +176,9 @@ export class MenuCategory
       easing: 'easeInSine',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
+      onComplete: () => {
+        this.clearMenuItemsContainerStyles();
+      },
     });
   }
 
@@ -435,14 +438,14 @@ export class MenuCategory
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
         if (!menuExpand) {
-          this.clearMenuItemStyles();
+          this.clearMenuItemsContainerStyles();
         }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
   }
 
-  clearMenuItemStyles() {
+  clearMenuItemsContainerStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
   }

@@ -24,7 +24,7 @@ import React from 'react';
 
 type IxTreeEvents = {
   onContextChange: EventName<IxTreeCustomEvent<TreeContext>>;
-  onNodeToggled: EventName<CustomEvent<{ id: string; isExpaned: boolean }>>;
+  onNodeToggled: EventName<CustomEvent<{ id: string; isExpanded: boolean }>>;
   onNodeClicked: EventName<CustomEvent<string>>;
   onNodeRemoved: EventName<CustomEvent<any>>;
 };

@@ -42,7 +42,7 @@ export class EventListItem {
   /**
    * Color of the status indicator.
    * You can find a list of all available colors in our documentation.
-   * Example values are `--theme-color-alarm` or `color-alarm`
+   * Example value: `--si-sys-background-danger`
    *
    * {@link https://ix.siemens.io/docs/styles/colors}
    */
@@ -74,9 +74,7 @@ export class EventListItem {
   }
 
   render() {
-    let color = this.itemColor?.startsWith('--theme')
-      ? `var(${this.itemColor})`
-      : `var(--theme-${this.itemColor})`;
+    const color = this.itemColor ? `var(${this.itemColor})` : 'inherit';
 
     return (
       <Host
@@ -97,7 +95,7 @@ export class EventListItem {
           <div
             class={`indicator ${!this.itemColor ? 'indicator-empty' : ''}`}
             style={{
-              'background-color': this.itemColor ? color : 'inherit',
+              'background-color': color,
               opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>
