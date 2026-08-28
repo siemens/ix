@@ -35,7 +35,7 @@ function CardListTitle(props: {
     ? props.ariaLabelExpandButton
     : defaultAriaLabel;
 
-  if (!props.label) {
+  if (!props.label && !props.ariaLabelExpandButton?.trim()) {
     return null;
   }
 
