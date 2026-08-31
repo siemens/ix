@@ -51,6 +51,7 @@ import './chip-axe.spec.ts';
 import './content-axe.spec.ts';
 import './content-header-axe.spec.ts';
 import './content-header-no-back-axe.spec.ts';
+import './content-header-text-overflow-axe.spec.ts';
 import './content-header-with-slot-axe.spec.ts';
 import './custom-field-axe.spec.ts';
 import './custom-field-validation-axe.spec.ts';

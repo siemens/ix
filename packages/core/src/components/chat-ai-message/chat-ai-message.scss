@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './chat-ai-message.vars';
 
 :host {
   display: flex;
@@ -17,7 +18,7 @@
   min-width: 0;
   gap: var(--theme-space-3);
   box-sizing: border-box;
-  color: var(--theme-color-std-text);
+  color: var(--ix-chat-ai-message--color);
 
   @include component.ix-component;
 
