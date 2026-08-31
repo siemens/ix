@@ -263,7 +263,7 @@ export class Pagination {
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
               aria-label={this.ariaLabelPageSelection}
-              class="ix-form-control page-selection"
+              class="page-selection"
               type="number"
               min="1"
               max={this.count}

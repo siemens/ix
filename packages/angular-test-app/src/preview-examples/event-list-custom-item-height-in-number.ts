@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
   template: `
     <ix-event-list [itemHeight]="itemHeight">
       <ng-container *ngFor="let item of items">
-        <ix-event-list-item itemColor="color-primary"
+        <ix-event-list-item itemColor="--si-sys-background-accent"
           >Text {{ item }}</ix-event-list-item
         >
       </ng-container>

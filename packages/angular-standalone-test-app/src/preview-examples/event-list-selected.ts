@@ -17,7 +17,7 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-angular/standalone';
     <ix-event-list>
       @for (item of items; track item; let i = $index) {
         <ix-event-list-item
-          itemColor="color-primary"
+          itemColor="--si-sys-background-accent"
           [selected]="selectedIndex === i"
           (click)="selectedIndex = i"
         >

@@ -14,10 +14,18 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-event-list>
-      <ix-event-list-item itemColor="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item itemColor="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item itemColor="color-alarm">Text 3</ix-event-list-item>
-      <ix-event-list-item itemColor="color-success">Text 4</ix-event-list-item>
+      <ix-event-list-item itemColor="--si-sys-background-accent"
+        >Text 1</ix-event-list-item
+      >
+      <ix-event-list-item itemColor="--si-sys-background-accent"
+        >Text 2</ix-event-list-item
+      >
+      <ix-event-list-item itemColor="--si-sys-background-danger"
+        >Text 3</ix-event-list-item
+      >
+      <ix-event-list-item itemColor="--si-sys-background-success"
+        >Text 4</ix-event-list-item
+      >
     </ix-event-list>
   `,
 })

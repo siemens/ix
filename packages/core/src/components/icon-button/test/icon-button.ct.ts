@@ -22,6 +22,27 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
+regressionTest(
+  'forwards a custom property icon color',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-icon-button
+      icon="rocket"
+      icon-color="--si-sys-text-danger"
+      style="--si-sys-text-danger: rgb(1, 2, 3)"
+    ></ix-icon-button>`,
+      {
+        icons: { iconRocket },
+      }
+    );
+
+    await expect(page.locator('ix-icon-button ix-icon')).toHaveCSS(
+      'color',
+      'rgb(1, 2, 3)'
+    );
+  }
+);
+
 regressionTest('show spinner while loading', async ({ mount, page }) => {
   await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`, {
     icons: { iconRocket },
