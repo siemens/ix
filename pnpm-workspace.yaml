@@ -7,7 +7,7 @@ catalog:
   '@axe-core/playwright': ^4.11.0
   '@esbuild/linux-arm64': 0.27.2
   '@playwright/test': ^1.58.1
-  '@siemens/ix-icons': ^3.5.0
+  '@siemens/ix-icons': 0.0.0-20260811100620
   eslint: ^9.39.3
   glob: ^13.0.0
   playwright: ^1.58.1
@@ -20,8 +20,8 @@ minimumReleaseAgeExclude:
   - '@siemens/*'
 
 overrides:
-  cheerio: "1.0.0-rc.12"
-  rollup: "npm:@rollup/wasm-node"
+  cheerio: '1.0.0-rc.12'
+  rollup: 'npm:@rollup/wasm-node'
 
 patchedDependencies:
-  '@stencil/core': "patches/@stencil__core.patch"
+  '@stencil/core': 'patches/@stencil__core.patch'

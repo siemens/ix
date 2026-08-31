@@ -1,0 +1,30 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-popover--box-shadow: #{sys.$si-sys-effects-shadow-4};
+  --ix-popover--border-radius: var(--theme-default-border-radius);
+  --ix-popover--background: #{sys.$si-sys-background-3};
+  --ix-popover--border-color: transparent;
+  --ix-popover--color: #{sys.$si-sys-text-primary};
+  // The "spike" (arrow) shape disables box-shadow (it doesn't follow the
+  // rotated element) in favor of a filter: drop-shadow() chain, which does
+  // follow the rendered shape. drop-shadow() cannot consume a single
+  // multi-layer combined shadow token, so each layer of
+  // --si-sys-effects-shadow-4 is applied as its own drop-shadow(); both
+  // layers currently share the same value in Classic Light/Dark.
+  --ix-popover--elevation-filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.14))
+    drop-shadow(0px -0.25px 2px rgba(0, 0, 0, 0.08));
+  --ix-popover-close--color: #{sys.$si-sys-text-secondary};
+  --ix-popover-close-button--background: transparent;
+  --ix-popover-close-button--background--active: #{sys.$si-sys-background-selected};
+  --ix-popover-close-button--background--hover: #{sys.$si-sys-background-hover};
+}

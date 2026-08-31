@@ -14,7 +14,13 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-blind label="Example" icon="info">
-      <ix-icon-button variant="tertiary" id="context-menu" slot="header-actions" icon="context-menu" iconColor="color-primary"></ix-icon-button>
+      <ix-icon-button
+        variant="tertiary"
+        id="context-menu"
+        slot="header-actions"
+        icon="context-menu"
+        iconColor="--si-sys-text-accent"
+      ></ix-icon-button>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
       voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet

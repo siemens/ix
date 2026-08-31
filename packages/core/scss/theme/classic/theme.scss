@@ -13,20 +13,18 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
-@use './dark/variables' as as_dark_variables;
-@use './light/variables' as as_light_variables;
+@use './composition' as tokens;
 
 @mixin theme-only-dark {
   :root,
   :host {
     color-scheme: dark;
-    @include as_dark_variables.setVars();
   }
 
   [data-ix-theme='classic'] {
     --theme-name: classic;
     --theme-color-schema: dark;
-    @include as_dark_variables.setVars();
+    @include tokens.complete-dark();
   }
 }
 
@@ -39,7 +37,7 @@
   [data-ix-theme='classic'] {
     --theme-name: classic;
     --theme-color-schema: light;
-    @include as_light_variables.setVars();
+    @include tokens.complete-light();
   }
 }
 
@@ -51,26 +49,27 @@
 
   [data-ix-theme='classic'] {
     --theme-name: classic;
+    @include tokens.shared();
 
     &[data-ix-color-schema='dark'] {
       --theme-color-schema: dark;
-      @include as_dark_variables.setVars();
+      @include tokens.dark();
     }
 
     &[data-ix-color-schema='light'] {
       --theme-color-schema: light;
-      @include as_light_variables.setVars();
+      @include tokens.light();
     }
 
     &[data-ix-color-schema='system'] {
       @media (prefers-color-scheme: dark) {
         --theme-color-schema: dark;
-        @include as_dark_variables.setVars();
+        @include tokens.dark();
       }
 
       @media (prefers-color-scheme: light) {
         --theme-color-schema: light;
-        @include as_light_variables.setVars();
+        @include tokens.light();
       }
     }
   }
