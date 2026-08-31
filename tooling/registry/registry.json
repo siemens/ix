@@ -6,22 +6,7 @@
   },
   "versions": {
     "template": {
-      "searchIndex": {
-        "blocks": {
-          "html": "search-index-html.json",
-          "react": "search-index-react.json",
-          "angular": "search-index-angular.json",
-          "angular-standalone": "search-index-angular-standalone.json",
-          "vue": "search-index-vue.json"
-        },
-        "examples": {
-          "html": "examples-search-index-html.json",
-          "react": "examples-search-index-react.json",
-          "angular": "examples-search-index-angular.json",
-          "angular-standalone": "examples-search-index-angular-standalone.json",
-          "vue": "examples-search-index-vue.json"
-        }
-      },
+      "documentationSearchIndex": "documentation-search-index.json",
       "blocks": [
         {
           "name": "change-password",
@@ -1020,8 +1005,6 @@
       ],
       "components": {
         "componentDoc": "ix/component-doc.json",
-        "componentIndex": "ix/component-index.json",
-        "componentSearchIndex": "ix/component-search-index.json",
         "componentRelatedExamples": "ix/component-related-examples.json",
         "componentRelatedBlocks": "ix/component-related-blocks.json"
       },

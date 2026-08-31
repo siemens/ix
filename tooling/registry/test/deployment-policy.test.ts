@@ -28,10 +28,9 @@ function versionEntry(marker: string): RegistryVersionEntry {
     examples: [{ name: marker, path: `examples/${marker}.json` }],
     components: {
       componentDoc: 'components.json',
-      componentIndex: 'component-index.json',
-      componentSearchIndex: 'component-search-index.json',
       componentRelatedExamples: 'component-related-examples.json',
     },
+    documentationSearchIndex: 'documentation-search-index.json',
   };
 }
 
@@ -135,7 +134,51 @@ describe('registry merge policy', () => {
     ]);
     assert.equal(secondMerge.versions['v2.0.0'].blocks[0].name, 'historical');
     assert.equal(secondMerge.versions['v1.0.0'].blocks[0].name, 'new-update');
+    assert.equal(
+      secondMerge.versions['v1.0.0'].documentationSearchIndex,
+      'v1.0.0/documentation-search-index.json'
+    );
     assert.equal(secondMerge['dist-tags'].latest, 'v2.0.0');
+  });
+
+  it('retains legacy historical manifests during the first central-index deployment', () => {
+    const existing: RegistryIndex = {
+      name: 'ix',
+      'dist-tags': { latest: 'v2.0.0' },
+      versions: {
+        'v2.0.0': {
+          blocks: [{ name: 'historical', path: 'blocks/historical.json' }],
+          examples: [{ name: 'historical', path: 'examples/historical.json' }],
+          components: {
+            componentDoc: 'components.json',
+            componentIndex: 'component-index.json',
+            componentSearchIndex: 'component-search-index.json',
+            componentRelatedExamples: 'component-related-examples.json',
+          },
+          searchIndex: {
+            blocks: { react: 'search-index-react.json' },
+            examples: { react: 'examples-search-index-react.json' },
+          },
+        },
+      },
+    };
+
+    const merged = mergeRegistry(
+      existing,
+      registry('v1.0.0', 'current', 'v1.0.0'),
+      'v1.0.0'
+    );
+    const historical = merged.versions['v2.0.0'];
+
+    assert.ok('searchIndex' in historical);
+    assert.equal(
+      historical.components.componentSearchIndex,
+      'component-search-index.json'
+    );
+    assert.equal(
+      merged.versions['v1.0.0'].documentationSearchIndex,
+      'v1.0.0/documentation-search-index.json'
+    );
   });
 
   it('fully replaces a mutable version payload', async () => {

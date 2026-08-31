@@ -8,35 +8,70 @@
  */
 import fs from 'fs';
 import path from 'path';
-import MiniSearch from 'minisearch';
+import {
+  fetchRegistryArtifact,
+  fetchValidatedRegistryIndex,
+  resolveRegistryVersion,
+  type RegistryIndex,
+} from './registry';
+import { searchDocumentation } from './documentation-search';
 
 const DEFAULT_REGISTRY_BASE_URL = 'https://siemens.github.io/ix';
 
-type ComponentRegistryEntry = {
-  components: {
-    componentDoc: string;
-    componentIndex: string;
-    componentSearchIndex: string;
-    componentRelatedExamples?: string;
-    componentRelatedBlocks?: string;
-  };
-};
-
-type ComponentsRegistryIndex = {
-  'dist-tags': Record<string, string>;
-  versions: Record<
-    string,
-    {
-      components: ComponentRegistryEntry['components'];
-    }
-  >;
-};
-
 type ComponentJsonType =
   | 'componentDoc'
-  | 'componentIndex'
-  | 'componentSearchIndex'
-  | 'componentRelatedExamples';
+  | 'componentRelatedExamples'
+  | 'componentRelatedBlocks';
+
+type ComponentDocTag = {
+  name: string;
+  text?: string;
+};
+
+type ComponentProp = {
+  name: string;
+  type?: string;
+  docs?: string;
+  default?: string;
+};
+
+type ComponentEvent = {
+  event?: string;
+  docs?: string;
+};
+
+type ComponentMethod = {
+  name: string;
+  signature?: string;
+  docs?: string;
+};
+
+type ComponentSlot = {
+  name: string;
+  docs?: string;
+};
+
+type ComponentRecord = {
+  tag: string;
+  docs?: string;
+  overview?: string;
+  docsTags?: ComponentDocTag[];
+  props?: ComponentProp[];
+  events?: ComponentEvent[];
+  methods?: ComponentMethod[];
+  slots?: ComponentSlot[];
+  dependencies?: string[];
+  dependents?: string[];
+};
+
+type ComponentDocJson = {
+  components: ComponentRecord[];
+};
+
+type ComponentArtifactOptions = {
+  baseUrl?: string;
+  version?: string;
+};
 
 export interface ComponentSearchResult {
   tag: string;
@@ -86,7 +121,6 @@ function getPackageRoot(): string {
     if (fs.existsSync(candidatePath)) {
       return candidatePath;
     }
-    // Try parent directory
     const parentDir = path.dirname(currentDir);
     if (parentDir === currentDir) break;
     currentDir = parentDir;
@@ -109,48 +143,19 @@ function normalizePath(value: string): string {
   return value.replace(/^\.\//, '').replace(/^\/+/, '');
 }
 
-function withVersionPrefix(
-  value: string,
-  version: string,
-  knownVersions: string[]
-): string {
-  const normalizedValue = normalizePath(value);
-
-  if (normalizedValue.startsWith(`${version}/`)) {
-    return normalizedValue;
+function packageVersion(packageRoot: string): string | null {
+  try {
+    const packageJson = JSON.parse(
+      fs.readFileSync(path.join(packageRoot, 'package.json'), 'utf8')
+    ) as { version?: unknown };
+    return typeof packageJson.version === 'string' ? packageJson.version : null;
+  } catch {
+    return null;
   }
-
-  const [head, ...rest] = normalizedValue.split('/');
-  if (knownVersions.includes(head) && rest.length > 0) {
-    return `${version}/${rest.join('/')}`;
-  }
-
-  return `${version}/${normalizedValue}`;
 }
 
-function resolveRegistryVersion(registry: ComponentsRegistryIndex): string {
-  const latest = registry['dist-tags']?.latest;
-
-  if (!latest) {
-    throw new Error('Components registry latest version is missing');
-  }
-
-  if (registry.versions[latest]) {
-    return latest;
-  }
-
-  if (latest.startsWith('v') && registry.versions[latest.slice(1)]) {
-    return latest.slice(1);
-  }
-
-  const vPrefixedLatest = `v${latest}`;
-  if (registry.versions[vPrefixedLatest]) {
-    return vPrefixedLatest;
-  }
-
-  throw new Error(
-    `Components registry latest version '${latest}' is not available in versions`
-  );
+function versionsMatch(left: string, right: string): boolean {
+  return left.replace(/^v/, '') === right.replace(/^v/, '');
 }
 
 function findLocalComponentsRegistryPath(): string | null {
@@ -162,11 +167,8 @@ function findLocalComponentsRegistryPath(): string | null {
       path.join(currentDir, 'tooling', 'registry', 'registry.json'),
       path.join(currentDir, 'registry.json'),
     ];
-
     for (const candidatePath of candidatePaths) {
-      if (fs.existsSync(candidatePath)) {
-        return candidatePath;
-      }
+      if (fs.existsSync(candidatePath)) return candidatePath;
     }
 
     const parentDir = path.dirname(currentDir);
@@ -177,150 +179,173 @@ function findLocalComponentsRegistryPath(): string | null {
   return null;
 }
 
-function readLocalRegistryArtifact(jsonType: ComponentJsonType): string | null {
+function readLocalRegistryArtifact(
+  jsonType: ComponentJsonType,
+  versionRef?: string
+): string | null {
   const registryPath = findLocalComponentsRegistryPath();
-  if (!registryPath) {
-    return null;
-  }
+  if (!registryPath) return null;
 
   const registryDir = path.dirname(registryPath);
   const registry = JSON.parse(
-    fs.readFileSync(registryPath, 'utf-8')
-  ) as ComponentsRegistryIndex;
+    fs.readFileSync(registryPath, 'utf8')
+  ) as RegistryIndex;
+  const selectedVersion = resolveRegistryVersion(registry, versionRef);
+  const artifactPath =
+    registry.versions[selectedVersion]?.components?.[jsonType];
+  if (!artifactPath) return null;
 
-  const selectedVersion = resolveRegistryVersion(registry);
-  const selectedEntry = registry.versions[selectedVersion];
-  const artifactPath = selectedEntry?.components?.[jsonType];
-
-  if (!artifactPath) {
-    return null;
-  }
-
-  const scopedPath = withVersionPrefix(
-    artifactPath,
-    selectedVersion,
-    Object.keys(registry.versions)
-  );
-
-  const candidatePaths = [
+  const normalizedArtifactPath = normalizePath(artifactPath);
+  const scopedPath = normalizedArtifactPath.startsWith(`${selectedVersion}/`)
+    ? normalizedArtifactPath
+    : `${selectedVersion}/${normalizedArtifactPath}`;
+  for (const candidatePath of [
     path.join(registryDir, scopedPath),
-    path.join(registryDir, normalizePath(artifactPath)),
-  ];
-
-  for (const candidatePath of candidatePaths) {
+    path.join(registryDir, normalizedArtifactPath),
+  ]) {
     if (fs.existsSync(candidatePath)) {
-      return fs.readFileSync(candidatePath, 'utf-8');
+      return fs.readFileSync(candidatePath, 'utf8');
     }
   }
 
   return null;
 }
 
-async function readRemoteRegistryArtifact(
+function packageArtifactPath(
+  packageRoot: string,
   jsonType: ComponentJsonType
-): Promise<string> {
-  const registryResponse = await fetch(
-    `${DEFAULT_REGISTRY_BASE_URL}/registry.json`
-  );
-
-  if (!registryResponse.ok) {
-    throw new Error(
-      `Failed to fetch components registry: ${registryResponse.status}`
-    );
-  }
-
-  const registry = (await registryResponse.json()) as ComponentsRegistryIndex;
-  const selectedVersion = resolveRegistryVersion(registry);
-  const selectedEntry = registry.versions[selectedVersion];
-  const artifactPath = selectedEntry?.components?.[jsonType];
-
-  if (!artifactPath) {
-    throw new Error(
-      `Components registry does not define artifact: ${jsonType}`
-    );
-  }
-
-  const scopedPath = withVersionPrefix(
-    artifactPath,
-    selectedVersion,
-    Object.keys(registry.versions)
-  );
-
-  const candidatePaths = [scopedPath, normalizePath(artifactPath)];
-
-  for (const candidatePath of candidatePaths) {
-    const artifactResponse = await fetch(
-      `${DEFAULT_REGISTRY_BASE_URL}/${candidatePath}`
-    );
-    if (artifactResponse.ok) {
-      return await artifactResponse.text();
-    }
-  }
-
-  throw new Error(
-    `Failed to fetch component artifact '${jsonType}' from registry`
-  );
+): string {
+  const packagePathByType: Record<ComponentJsonType, string> = {
+    componentDoc: 'component-doc.json',
+    componentRelatedExamples: 'component-related-examples.json',
+    componentRelatedBlocks: 'component-related-blocks.json',
+  };
+  return path.join(packageRoot, packagePathByType[jsonType]);
 }
 
 async function loadComponentJsonArtifact(
-  jsonType: ComponentJsonType
+  jsonType: ComponentJsonType,
+  options: ComponentArtifactOptions = {}
 ): Promise<string> {
   const packageRoot = tryGetPackageRoot();
-  if (packageRoot) {
-    const packagePathByType: Record<ComponentJsonType, string> = {
-      componentDoc: 'component-doc.json',
-      componentIndex: 'component-index.json',
-      componentSearchIndex: 'component-search-index.json',
-      componentRelatedExamples: 'component-related-examples.json',
-    };
 
-    const packageArtifactPath = path.join(
-      packageRoot,
-      packagePathByType[jsonType]
+  if (!options.baseUrl) {
+    if (options.version) {
+      return loadComponentJsonArtifact(jsonType, {
+        baseUrl: DEFAULT_REGISTRY_BASE_URL,
+        version: options.version,
+      });
+    }
+
+    if (packageRoot) {
+      const localPackagePath = packageArtifactPath(packageRoot, jsonType);
+      if (fs.existsSync(localPackagePath)) {
+        return fs.readFileSync(localPackagePath, 'utf8');
+      }
+    }
+
+    const localRegistryContent = readLocalRegistryArtifact(
+      jsonType,
+      options.version
     );
-    if (fs.existsSync(packageArtifactPath)) {
-      return fs.readFileSync(packageArtifactPath, 'utf-8');
+    if (localRegistryContent) return localRegistryContent;
+
+    const registry = await fetchValidatedRegistryIndex(
+      DEFAULT_REGISTRY_BASE_URL
+    );
+    const selectedVersion = resolveRegistryVersion(registry, options.version);
+    const artifactPath =
+      registry.versions[selectedVersion]?.components?.[jsonType];
+    if (!artifactPath) {
+      throw new Error(
+        `Registry version '${selectedVersion}' does not define component artifact '${jsonType}'`
+      );
+    }
+    return JSON.stringify(
+      await fetchRegistryArtifact<unknown>(
+        DEFAULT_REGISTRY_BASE_URL,
+        artifactPath
+      )
+    );
+  }
+
+  const registry = await fetchValidatedRegistryIndex(options.baseUrl);
+  const selectedVersion = resolveRegistryVersion(registry, options.version);
+  if (
+    packageRoot &&
+    packageVersion(packageRoot) &&
+    versionsMatch(selectedVersion, packageVersion(packageRoot)!)
+  ) {
+    const localPackagePath = packageArtifactPath(packageRoot, jsonType);
+    if (fs.existsSync(localPackagePath)) {
+      return fs.readFileSync(localPackagePath, 'utf8');
     }
   }
 
-  const localRegistryContent = readLocalRegistryArtifact(jsonType);
-  if (localRegistryContent) {
-    return localRegistryContent;
+  const artifactPath =
+    registry.versions[selectedVersion]?.components?.[jsonType];
+  if (!artifactPath) {
+    throw new Error(
+      `Registry version '${selectedVersion}' does not define component artifact '${jsonType}'`
+    );
   }
+  return JSON.stringify(
+    await fetchRegistryArtifact<unknown>(options.baseUrl, artifactPath)
+  );
+}
 
-  return await readRemoteRegistryArtifact(jsonType);
+function parseComponentDoc(content: string): ComponentDocJson {
+  return JSON.parse(content) as ComponentDocJson;
+}
+
+function componentTagValues(
+  component: ComponentRecord,
+  tagName: string
+): string[] {
+  return (component.docsTags ?? [])
+    .filter((tag) => tag.name === tagName)
+    .flatMap((tag) => (tag.text ?? '').split(','))
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+function normalizeFigmaId(value: string): string {
+  return /^\d+[-:]\d+$/.test(value) ? value.replace('-', ':') : value;
+}
+
+function componentFigmaIds(component: ComponentRecord): string[] {
+  return [
+    ...new Set(
+      componentTagValues(component, 'figma-main-component-id').map(
+        normalizeFigmaId
+      )
+    ),
+  ].sort();
+}
+
+function componentDocumentation(component: ComponentRecord): string[] {
+  return [...new Set(componentTagValues(component, 'documentation'))].sort();
 }
 
 /**
- * Search for components using the lightweight MiniSearch index
- * @returns Top matching components with scores
+ * Search components through the versioned central documentation index.
  */
 export async function searchComponents(
   query: string,
-  options: { limit?: number } = {}
+  options: { limit?: number; baseUrl?: string; version?: string } = {}
 ): Promise<ComponentSearchResult[]> {
-  const { limit = 10 } = options;
-
   try {
-    const indexContent = await loadComponentJsonArtifact(
-      'componentSearchIndex'
-    );
-
-    const miniSearch = MiniSearch.loadJSON(indexContent, {
-      fields: ['tag', 'description', 'dependencies'],
-      storeFields: ['tag', 'description'],
+    const results = await searchDocumentation({
+      baseUrl: options.baseUrl ?? DEFAULT_REGISTRY_BASE_URL,
+      query,
+      kind: 'component',
+      version: options.version,
+      limit: options.limit ?? 10,
     });
-
-    const results = miniSearch.search(query, {
-      boost: { tag: 3, description: 1 },
-      fuzzy: 0.2,
-      prefix: true,
-    });
-
-    return results.slice(0, limit).map((r) => ({
-      tag: r.tag,
-      description: r.description,
-      score: r.score,
+    return results.map((result) => ({
+      tag: result.tag ?? result.name,
+      description: result.description ?? '',
+      score: result.score,
     }));
   } catch (error) {
     console.error('Error searching components:', error);
@@ -334,7 +359,6 @@ export async function searchComponents(
 
 /**
  * Fetch the markdown content from a documentation URL.
- * Returns the text on success, or null if the fetch fails.
  */
 export async function fetchDocumentationContent(
   url: string
@@ -343,67 +367,62 @@ export async function fetchDocumentationContent(
     const res = await fetch(url);
     if (res.ok) return await res.text();
   } catch {
-    // ignore fetch errors
+    // Documentation links are supporting content; API metadata remains usable.
   }
   return null;
 }
 
-/**
- * Get detailed API documentation for a specific component
- * Loads only the requested component from the full component-doc.json
- */
 export async function getComponentDetails(
-  componentTag: string
+  componentTag: string,
+  options: ComponentArtifactOptions = {}
 ): Promise<ComponentDetails | null> {
   try {
-    const relatedExamplesMap = JSON.parse(
-      await loadComponentJsonArtifact('componentRelatedExamples')
+    const artifactOptions = {
+      baseUrl: options.baseUrl,
+      version: options.version,
+    };
+    const componentDoc = parseComponentDoc(
+      await loadComponentJsonArtifact('componentDoc', artifactOptions)
+    );
+    const relatedExamples = JSON.parse(
+      await loadComponentJsonArtifact(
+        'componentRelatedExamples',
+        artifactOptions
+      )
     ) as Record<string, string[]>;
-
-    const componentDoc = JSON.parse(
-      await loadComponentJsonArtifact('componentDoc')
-    );
-
     const component = componentDoc.components.find(
-      (c: { tag: string }) => c.tag === componentTag
+      (candidate) => candidate.tag === componentTag
     );
+    if (!component) return null;
 
-    if (!component) {
-      return null;
-    }
-
-    const docUrls: string[] =
-      component.docsTags
-        ?.filter((t: { name: string }) => t.name === 'documentation')
-        .map((t: { text: string }) => t.text.trim()) ?? [];
-
+    const documentation = componentDocumentation(component);
     const documentationContent = (
-      await Promise.all(docUrls.map(fetchDocumentationContent))
-    ).filter((r): r is string => r !== null);
+      await Promise.all(documentation.map(fetchDocumentationContent))
+    ).filter((content): content is string => content !== null);
 
     return {
       tag: component.tag,
-      documentation: docUrls,
+      documentation,
       documentationContent,
-      relatedExamples: relatedExamplesMap[component.tag] ?? [],
-      props: component.props?.map((p: any) => ({
-        name: p.name,
-        type: p.type,
-        docs: p.docs,
-        default: p.default,
+      relatedExamples: relatedExamples[component.tag] ?? [],
+      props: component.props?.map((prop) => ({
+        name: prop.name,
+        type: prop.type ?? '',
+        docs: prop.docs ?? '',
+        default: prop.default,
       })),
-      events: component.events?.map((e: any) => ({
-        name: e.event,
-        docs: e.docs,
+      events: component.events?.map((event) => ({
+        name: event.event ?? '',
+        docs: event.docs ?? '',
       })),
-      methods: component.methods?.map((m: any) => ({
-        name: m.name,
-        signature: m.signature,
-        docs: m.docs,
+      methods: component.methods?.map((method) => ({
+        name: method.name,
+        signature: method.signature ?? '',
+        docs: method.docs ?? '',
       })),
-      slots: component.slots?.map((s: any) => ({
-        name: s.name,
-        docs: s.docs,
+      slots: component.slots?.map((slot) => ({
+        name: slot.name,
+        docs: slot.docs ?? '',
       })),
       dependencies: component.dependencies,
       dependents: component.dependents,
@@ -418,21 +437,16 @@ export async function getComponentDetails(
   }
 }
 
-/**
- * List all available components with categories
- */
-export async function listAllComponents(): Promise<
-  Array<{
-    tag: string;
-    description: string;
-  }>
-> {
+export async function listAllComponents(
+  options: ComponentArtifactOptions = {}
+): Promise<Array<{ tag: string; description: string }>> {
   try {
-    const index = JSON.parse(await loadComponentJsonArtifact('componentIndex'));
-
-    return index.components.map((c: any) => ({
-      tag: c.tag,
-      description: c.description,
+    const componentDoc = parseComponentDoc(
+      await loadComponentJsonArtifact('componentDoc', options)
+    );
+    return componentDoc.components.map((component) => ({
+      tag: component.tag,
+      description: componentDocumentationDescription(component),
     }));
   } catch (error) {
     console.error('Error listing components:', error);
@@ -444,17 +458,16 @@ export async function listAllComponents(): Promise<
   }
 }
 
-/**
- * Get the markdown documentation path for a component
- */
+function componentDocumentationDescription(component: ComponentRecord): string {
+  return component.docs ?? component.overview ?? '';
+}
+
 export function getComponentMarkdownPath(componentTag: string): string {
   const componentName = componentTag.replace(/^ix-/, '');
   const pkgRoot = tryGetPackageRoot();
-
   if (!pkgRoot) {
     return `Local markdown unavailable for ${componentTag} (install @siemens/ix for API markdown files)`;
   }
-
   return path.join(
     pkgRoot,
     'api-docs',
@@ -470,66 +483,49 @@ export interface FigmaComponentMapping {
   documentation: string[];
 }
 
-/**
- * Find IX components by Figma main component ID or get Figma main component IDs for a specific IX component
- */
-export async function getFigmaComponentMapping(query: string): Promise<{
+export async function getFigmaComponentMapping(
+  query: string,
+  options: ComponentArtifactOptions = {}
+): Promise<{
   queryType: 'figma-id' | 'component-tag';
   results: FigmaComponentMapping[];
 }> {
   try {
-    const index = JSON.parse(await loadComponentJsonArtifact('componentIndex'));
-
-    // Check if query looks like a Figma main component ID (e.g., "42365:39459" or "42365-39459")
+    const componentDoc = parseComponentDoc(
+      await loadComponentJsonArtifact('componentDoc', options)
+    );
     const isFigmaId = /^\d+[:-]\d+$/.test(query);
-
     if (isFigmaId) {
-      // Normalize the Figma ID format (both : and - are valid separators)
-      const normalizedQuery = query.replace('-', ':');
-
-      // Search for components that have this Figma main component ID
-      const matchingComponents = index.components
-        .filter(
-          (c: any) =>
-            c.figmaMainComponentIds &&
-            c.figmaMainComponentIds.some(
-              (id: string) => id === normalizedQuery || id === query
-            )
-        )
-        .map((c: any) => ({
-          componentTag: c.tag,
-          figmaMainComponentIds: c.figmaMainComponentIds,
-          documentation: c.documentation || [],
-        }));
-
+      const normalizedQuery = normalizeFigmaId(query);
       return {
         queryType: 'figma-id',
-        results: matchingComponents,
-      };
-    } else {
-      // Search by component tag
-      const component = index.components.find(
-        (c: any) => c.tag === query || c.tag === `ix-${query}`
-      );
-
-      if (!component) {
-        return {
-          queryType: 'component-tag',
-          results: [],
-        };
-      }
-
-      return {
-        queryType: 'component-tag',
-        results: [
-          {
+        results: componentDoc.components
+          .filter((component) =>
+            componentFigmaIds(component).includes(normalizedQuery)
+          )
+          .map((component) => ({
             componentTag: component.tag,
-            figmaMainComponentIds: component.figmaMainComponentIds || [],
-            documentation: component.documentation || [],
-          },
-        ],
+            figmaMainComponentIds: componentFigmaIds(component),
+            documentation: componentDocumentation(component),
+          })),
       };
     }
+
+    const component = componentDoc.components.find(
+      (candidate) => candidate.tag === query || candidate.tag === `ix-${query}`
+    );
+    return {
+      queryType: 'component-tag',
+      results: component
+        ? [
+            {
+              componentTag: component.tag,
+              figmaMainComponentIds: componentFigmaIds(component),
+              documentation: componentDocumentation(component),
+            },
+          ]
+        : [],
+    };
   } catch (error) {
     console.error('Error searching Figma main component mapping:', error);
     throw new Error(
@@ -540,25 +536,20 @@ export async function getFigmaComponentMapping(query: string): Promise<{
   }
 }
 
-/**
- * List all components that have Figma main component IDs
- */
-export async function listComponentsWithFigmaIds(): Promise<
-  FigmaComponentMapping[]
-> {
+export async function listComponentsWithFigmaIds(
+  options: ComponentArtifactOptions = {}
+): Promise<FigmaComponentMapping[]> {
   try {
-    const index = JSON.parse(await loadComponentJsonArtifact('componentIndex'));
-
-    return index.components
-      .filter(
-        (c: any) =>
-          c.figmaMainComponentIds && c.figmaMainComponentIds.length > 0
-      )
-      .map((c: any) => ({
-        componentTag: c.tag,
-        figmaMainComponentIds: c.figmaMainComponentIds,
-        documentation: c.documentation || [],
-      }));
+    const componentDoc = parseComponentDoc(
+      await loadComponentJsonArtifact('componentDoc', options)
+    );
+    return componentDoc.components
+      .map((component) => ({
+        componentTag: component.tag,
+        figmaMainComponentIds: componentFigmaIds(component),
+        documentation: componentDocumentation(component),
+      }))
+      .filter((component) => component.figmaMainComponentIds.length > 0);
   } catch (error) {
     console.error(
       'Error listing components with Figma main component IDs:',
