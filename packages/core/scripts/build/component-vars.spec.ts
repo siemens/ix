@@ -13,7 +13,6 @@ import { describe, expect, it } from 'vitest';
 const componentsRoot = path.resolve('src/components');
 const scssRoot = path.resolve('scss');
 const deprecatedRoot = path.resolve('scss/deprecated');
-const deprecatedComponentsRoot = path.resolve('scss/deprecated/components');
 const repositoryRoot = path.resolve('../..');
 const customPropertyDeclarationPattern = /(--ix-[a-z0-9-]+)\s*:/g;
 const customPropertyReferencePattern = /--ix-[a-z0-9-]+/g;
@@ -125,20 +124,17 @@ function findRepositorySourceFiles(directory: string): string[] {
 
 describe('component CSS custom properties', () => {
   it('does not reference legacy color tokens', () => {
-    const violations = findFiles(scssRoot, '.scss')
-      .filter(
-        (sourcePath) =>
-          !sourcePath.startsWith(`${deprecatedComponentsRoot}${path.sep}`)
-      )
-      .flatMap((sourcePath) =>
-        [
-          ...fs
-            .readFileSync(sourcePath, 'utf8')
-            .matchAll(legacyColorTokenReferencePattern),
-        ].map(
-          (match) => `${path.relative(process.cwd(), sourcePath)}: ${match[1]}`
-        )
+    const violations = findFiles(scssRoot, '.scss').flatMap((sourcePath) => {
+      const source = fs.readFileSync(sourcePath, 'utf8');
+
+      if (source.includes(generatedFileMarker)) {
+        return [];
+      }
+
+      return [...source.matchAll(legacyColorTokenReferencePattern)].map(
+        (match) => `${path.relative(process.cwd(), sourcePath)}: ${match[1]}`
       );
+    });
 
     expect(violations).toEqual([]);
   });
