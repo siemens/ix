@@ -10,9 +10,11 @@ import path from 'node:path';
 import process from 'node:process';
 import { defineConfig } from 'tsdown';
 
+const skillOutputDirectory = process.env.IX_SEARCH_OUT_DIR ?? '../../skills/ix';
+
 export default defineConfig({
   entry: ['src/skill/search.mjs'],
-  outDir: process.env.IX_SEARCH_OUT_DIR ?? '../../.agents/skills/ix',
+  outDir: path.join(skillOutputDirectory, 'scripts'),
   format: 'esm',
   platform: 'node',
   alias: {
@@ -32,8 +34,6 @@ export default defineConfig({
  * SPDX-License-Identifier: MIT
  *
  * GENERATED FILE - DO NOT EDIT.
- * Source: tooling/registry/src/skill/search.mjs
- * Regenerate: pnpm bundle:ix-search
  */`,
   },
 });
