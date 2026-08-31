@@ -48,7 +48,8 @@ export class PopoverHeader {
   @Prop() icon?: string;
 
   /**
-   * Icon color
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    *
    * @since 5.1.0
    */

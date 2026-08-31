@@ -77,10 +77,18 @@ function EventListExample() {
   return (
     <div className={styles.Example}>
       <IxEventList compact>
-        <IxEventListItem itemColor="color-primary">Text 1</IxEventListItem>
-        <IxEventListItem itemColor="color-primary">Text 2</IxEventListItem>
-        <IxEventListItem itemColor="color-primary">Text 3</IxEventListItem>
-        <IxEventListItem itemColor="color-primary">Text 4</IxEventListItem>
+        <IxEventListItem itemColor="--si-sys-background-accent">
+          Text 1
+        </IxEventListItem>
+        <IxEventListItem itemColor="--si-sys-background-accent">
+          Text 2
+        </IxEventListItem>
+        <IxEventListItem itemColor="--si-sys-background-accent">
+          Text 3
+        </IxEventListItem>
+        <IxEventListItem itemColor="--si-sys-background-accent">
+          Text 4
+        </IxEventListItem>
       </IxEventList>
     </div>
   );
@@ -103,13 +111,9 @@ function ButtonExample() {
       <IxButton>Button primary</IxButton>
       <IxButton variant="subtle-primary">Button primary</IxButton>
       <IxButton variant="subtle-primary">Button primary</IxButton>
-      <IxButton variant="subtle-secondary">
-        Button primary
-      </IxButton>
+      <IxButton variant="subtle-secondary">Button primary</IxButton>
       <IxButton variant="tertiary">Button primary</IxButton>
-      <IxButton variant="subtle-tertiary">
-        Button primary
-      </IxButton>
+      <IxButton variant="subtle-tertiary">Button primary</IxButton>
       <IxButton disabled>Button primary</IxButton>
       <IxButton disabled variant="subtle-primary">
         Button primary

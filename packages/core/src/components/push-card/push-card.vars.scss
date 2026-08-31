@@ -1,0 +1,187 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-push-card--border-radius: var(--theme-default-border-radius);
+  --ix-push-card--border-width: var(--theme-border-width-default);
+  --ix-push-card--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-push-card-alarm--background: #{sys.$si-sys-background-danger};
+  --ix-push-card-alarm--background--active: #{sys.$si-sys-background-danger-active};
+  --ix-push-card-alarm--background--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-push-card-alarm--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-alarm--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-alarm--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-alarm--color: #{sys.$si-sys-text-on-danger};
+  --ix-push-card-alarm-accordion--background: #{sys.$si-sys-background-danger};
+  --ix-push-card-alarm-accordion--background--active: #{sys.$si-sys-background-danger-active};
+  --ix-push-card-alarm-accordion--background--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-push-card-alarm-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-alarm-accordion--color: #{sys.$si-sys-text-on-danger};
+  --ix-push-card-alarm-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-alarm-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-alarm-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-alarm-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-alarm-subtext--color: #{sys.$si-sys-text-on-danger};
+  --ix-push-card-critical--background: #{sys.$si-sys-background-critical};
+  --ix-push-card-critical--background--active: #{sys.$si-sys-background-critical-active};
+  --ix-push-card-critical--background--hover: #{sys.$si-sys-background-critical-hover};
+  --ix-push-card-critical--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-critical--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-critical--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-critical--color: #{sys.$si-sys-text-on-warning};
+  --ix-push-card-critical-accordion--background: #{sys.$si-sys-background-critical};
+  --ix-push-card-critical-accordion--background--active: #{sys.$si-sys-background-critical-active};
+  --ix-push-card-critical-accordion--background--hover: #{sys.$si-sys-background-critical-hover};
+  --ix-push-card-critical-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-critical-accordion--color: #{sys.$si-sys-text-on-warning};
+  --ix-push-card-critical-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-critical-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-critical-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-critical-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-critical-subtext--color: #{sys.$si-sys-text-on-warning};
+  --ix-push-card-filled--background: #{sys.$si-sys-background-1};
+  --ix-push-card-filled--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-filled--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-filled--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-filled--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-filled--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-filled-accordion--background: #{sys.$si-sys-background-1};
+  --ix-push-card-filled-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-filled-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-filled-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-filled-accordion--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-filled-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-filled-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-filled-accordion-frame--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-filled-accordion-frame--border-width: var(
+    --theme-border-width-none
+  );
+  --ix-push-card-filled-subtext--color: #{sys.$si-sys-text-secondary};
+  --ix-push-card-info--background: #{sys.$si-sys-background-information};
+  --ix-push-card-info--background--active: #{sys.$si-sys-background-information-active};
+  --ix-push-card-info--background--hover: #{sys.$si-sys-background-information-hover};
+  --ix-push-card-info--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-info--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-info--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-info--color: #{sys.$si-sys-text-on-information};
+  --ix-push-card-info-accordion--background: #{sys.$si-sys-background-information};
+  --ix-push-card-info-accordion--background--active: #{sys.$si-sys-background-information-active};
+  --ix-push-card-info-accordion--background--hover: #{sys.$si-sys-background-information-hover};
+  --ix-push-card-info-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-info-accordion--color: #{sys.$si-sys-text-on-information};
+  --ix-push-card-info-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-info-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-info-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-info-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-info-subtext--color: #{sys.$si-sys-text-on-information};
+  --ix-push-card-neutral--background: #{sys.$si-sys-background-neutral};
+  --ix-push-card-neutral--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-neutral--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-neutral--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-neutral--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-neutral--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-neutral-accordion--background: #{sys.$si-sys-background-neutral};
+  --ix-push-card-neutral-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-neutral-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-neutral-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-neutral-accordion--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-neutral-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-neutral-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-neutral-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-neutral-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-neutral-subtext--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-outline--background: rgba(0, 0, 0, 0);
+  --ix-push-card-outline--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-outline--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-outline--border-color--active: #{sys.$si-sys-border-3};
+  --ix-push-card-outline--border-color--hover: #{sys.$si-sys-border-3};
+  --ix-push-card-outline--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-outline-accordion--background: #{sys.$si-sys-background-1};
+  --ix-push-card-outline-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-push-card-outline-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-push-card-outline-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-outline-accordion--color: #{sys.$si-sys-text-primary};
+  --ix-push-card-outline-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-outline-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-outline-accordion-frame--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-outline-accordion-frame--border-width: var(
+    --theme-border-width-none
+  );
+  --ix-push-card-outline-subtext--color: #{sys.$si-sys-text-secondary};
+  --ix-push-card-primary--background: #{sys.$si-sys-background-accent};
+  --ix-push-card-primary--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-push-card-primary--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-push-card-primary--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-primary--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-primary--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-primary--color: #{sys.$si-sys-text-on-accent};
+  --ix-push-card-primary-accordion--background: #{sys.$si-sys-background-accent};
+  --ix-push-card-primary-accordion--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-push-card-primary-accordion--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-push-card-primary-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-primary-accordion--color: #{sys.$si-sys-text-on-accent};
+  --ix-push-card-primary-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-primary-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-primary-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-primary-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-primary-subtext--color: #{sys.$si-sys-text-on-accent};
+  --ix-push-card-success--background: #{sys.$si-sys-background-success};
+  --ix-push-card-success--background--active: #{sys.$si-sys-background-success-active};
+  --ix-push-card-success--background--hover: #{sys.$si-sys-background-success-hover};
+  --ix-push-card-success--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-success--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-success--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-success--color: #{sys.$si-sys-text-on-success};
+  --ix-push-card-success-accordion--background: #{sys.$si-sys-background-success};
+  --ix-push-card-success-accordion--background--active: #{sys.$si-sys-background-success-active};
+  --ix-push-card-success-accordion--background--hover: #{sys.$si-sys-background-success-hover};
+  --ix-push-card-success-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-success-accordion--color: #{sys.$si-sys-text-on-success};
+  --ix-push-card-success-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-success-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-success-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-success-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-success-subtext--color: #{sys.$si-sys-text-on-success};
+  --ix-push-card-warning--background: #{sys.$si-sys-background-warning};
+  --ix-push-card-warning--background--active: #{sys.$si-sys-background-warning-active};
+  --ix-push-card-warning--background--hover: #{sys.$si-sys-background-warning-hover};
+  --ix-push-card-warning--border-color: rgba(0, 0, 0, 0);
+  --ix-push-card-warning--border-color--active: rgba(0, 0, 0, 0);
+  --ix-push-card-warning--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-push-card-warning--color: #{sys.$si-sys-text-on-warning};
+  --ix-push-card-warning-accordion--background: #{sys.$si-sys-background-warning};
+  --ix-push-card-warning-accordion--background--active: #{sys.$si-sys-background-warning-active};
+  --ix-push-card-warning-accordion--background--hover: #{sys.$si-sys-background-warning-hover};
+  --ix-push-card-warning-accordion--border-color: #{sys.$si-sys-background-0};
+  --ix-push-card-warning-accordion--color: #{sys.$si-sys-text-on-warning};
+  --ix-push-card-warning-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-push-card-warning-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-push-card-warning-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-push-card-warning-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-push-card-warning-subtext--color: #{sys.$si-sys-text-on-warning};
+}
