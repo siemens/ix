@@ -17,7 +17,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
       >
         75%
       </IxProgressIndicator>
@@ -26,7 +26,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         status="success"
       >
         75%
@@ -36,7 +36,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         status="error"
       >
         75%
@@ -46,7 +46,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         status="info"
       >
         75%
@@ -56,7 +56,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         status="warning"
       >
         75%
@@ -66,7 +66,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         status="paused"
       >
         75%

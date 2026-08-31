@@ -82,7 +82,7 @@ import { Component } from '@angular/core';
         <ix-col>
           <ix-pill
             variant="custom"
-            pill-color="var(--theme-color-inv-std-text)"
+            pillColor="var(--theme-color-inv-std-text)"
             background="var(--theme-color-dynamic)"
             icon="info"
           >Custom</ix-pill>
@@ -91,7 +91,7 @@ import { Component } from '@angular/core';
           <ix-pill
             variant="custom"
             outline
-            pill-color="var(--theme-color-dynamic)"
+            pillColor="var(--theme-color-dynamic)"
             background="var(--theme-color-dynamic)"
             icon="info"
           >Custom</ix-pill>

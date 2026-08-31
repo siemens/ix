@@ -12,22 +12,22 @@ LICENSE file in the root directory of this source tree.
   #popover
   trigger="triggerId"
   placement="bottom"
-  trigger-mode="click"
-  has-spike
-  close-on-click-outside
+  triggerMode="click"
+  hasSpike
+  closeOnClickOutside
   aria-label="Release highlights"
 >
   <ix-popover-header
     icon="info"
-    icon-color="color-info"
-    aria-label-close-icon-button="Close popover"
+    iconColor="color-info"
+    ariaLabelCloseIconButton="Close popover"
   >
     Release highlights
     <ix-pill slot="additional-items" variant="info">New</ix-pill>
   </ix-popover-header>
   <ix-popover-image
     [image]="popoverImageSrc"
-    image-alt="Release preview"
+    imageAlt="Release preview"
   ></ix-popover-image>
   <ix-popover-content>
     Check out the new dashboard and improved performance metrics.

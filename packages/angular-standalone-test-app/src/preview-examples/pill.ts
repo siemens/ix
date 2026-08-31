@@ -17,11 +17,11 @@ import { IxPill } from '@siemens/ix-angular/standalone';
   template: `
     <ix-pill
       variant="custom"
-      pill-color="var(--theme-color-inv-std-text)"
+      pillColor="var(--theme-color-inv-std-text)"
       background="var(--theme-color-dynamic)"
       >Label</ix-pill>
 
-    <ix-pill tooltip-text="Custom tooltip text">Label</ix-pill>
+    <ix-pill tooltipText="Custom tooltip text">Label</ix-pill>
     <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
