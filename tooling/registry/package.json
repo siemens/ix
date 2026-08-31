@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "build": "pnpm typecheck && pnpm run bundle:ix-search && tsx src/build.ts",
-    "bundle:ix-search": "tsdown --config tsdown.ix-search.config.ts",
+    "bundle:ix-search": "node scripts/build-ix-search-bundle.mjs",
     "check:ix-search": "node scripts/check-ix-search-bundle.mjs",
     "dev": "pnpm build && http-server dist",
     "init-version": "tsx scripts/init-version.ts",

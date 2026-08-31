@@ -8,7 +8,17 @@
  */
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
+import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -71,6 +81,8 @@ const documents: SearchDocument[] = [
   },
 ];
 
+const require = createRequire(import.meta.url);
+
 function createIndex(): object {
   const miniSearch = new MiniSearch<SearchDocument>({
     fields,
@@ -115,6 +127,88 @@ function runSearch(
   assert.equal(result.status, 0, result.stderr);
   return JSON.parse(result.stdout) as SearchDocument[];
 }
+
+function findPackageRoot(modulePath: string): string {
+  let directory = path.dirname(modulePath);
+  while (true) {
+    const packageJsonPath = path.join(directory, 'package.json');
+    if (
+      existsSync(packageJsonPath) &&
+      JSON.parse(readFileSync(packageJsonPath, 'utf8')).name === 'minisearch'
+    ) {
+      return directory;
+    }
+    const parentDirectory = path.dirname(directory);
+    if (parentDirectory === directory) break;
+    directory = parentDirectory;
+  }
+  throw new Error(
+    `Could not locate MiniSearch package root from '${modulePath}'`
+  );
+}
+
+function findLicenseFile(packageRoot: string): string {
+  const licenseName = readdirSync(packageRoot)
+    .filter((name) => /^license(?:\.[^.]+)?$/i.test(name))
+    .filter((name) => statSync(path.join(packageRoot, name)).isFile())
+    .sort()[0];
+  assert.ok(
+    licenseName,
+    `Could not locate MiniSearch license in ${packageRoot}`
+  );
+  return path.join(packageRoot, licenseName);
+}
+
+test('generated third-party notice uses the installed MiniSearch metadata and license', () => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), 'ix-search-license-'));
+  const repositoryRoot = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../../..'
+  );
+  const registryRoot = path.join(repositoryRoot, 'tooling/registry');
+  const buildScript = path.join(
+    registryRoot,
+    'scripts/build-ix-search-bundle.mjs'
+  );
+
+  try {
+    const result = spawnSync(process.execPath, [buildScript], {
+      cwd: registryRoot,
+      env: {
+        ...process.env,
+        IX_SEARCH_OUT_DIR: directory,
+      },
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, result.stderr);
+
+    const packageRoot = findPackageRoot(require.resolve('minisearch'));
+    const metadata = JSON.parse(
+      readFileSync(path.join(packageRoot, 'package.json'), 'utf8')
+    ) as { name: string; version: string; license: string };
+    const licenseText = readFileSync(
+      findLicenseFile(packageRoot),
+      'utf8'
+    ).replace(/\r\n?/g, '\n');
+    const notice = readFileSync(
+      path.join(directory, 'THIRD_PARTY_LICENSES.md'),
+      'utf8'
+    );
+
+    assert.match(notice, /GENERATED FILE - DO NOT EDIT/);
+    assert.match(notice, new RegExp(`## MiniSearch ${metadata.version}`));
+    assert.match(notice, new RegExp(`Package: ${metadata.name}`));
+    assert.match(notice, new RegExp(`License: ${metadata.license}`));
+    const licenseMarker = '```text\n';
+    const licenseMarkerIndex = notice.indexOf(licenseMarker);
+    assert.notEqual(licenseMarkerIndex, -1);
+    const licenseStart = licenseMarkerIndex + licenseMarker.length;
+    const licenseEnd = notice.indexOf('```', licenseStart);
+    assert.equal(notice.slice(licenseStart, licenseEnd), licenseText);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 test('bundled IX search runs outside the repository without MiniSearch resolution', () => {
   const directory = mkdtempSync(path.join(os.tmpdir(), 'ix-search-runtime-'));
