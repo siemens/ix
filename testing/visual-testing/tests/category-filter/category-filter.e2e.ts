@@ -73,12 +73,18 @@ regressionTest.describe('category-filter', () => {
 
   regressionTest('dropdown opens on text input', async ({ page }) => {
     await page.goto('category-filter/categories');
-    const input = page.locator('input').first();
+    const categoryFilter = page.locator('ix-category-filter').first();
+    const input = categoryFilter.locator('input');
 
-    await input.click();
-    // close dropdown
-    await input.click();
+    await input.focus();
     await input.fill('p');
+    await expect
+      .poll(async () =>
+        categoryFilter.locator('ix-dropdown').evaluate((el) => el.show)
+      )
+      .toBe(true);
+    await expect(page.getByRole('button', { name: 'Product' })).toBeVisible();
+    await page.mouse.move(5, 5, { steps: 10 });
 
     await expect(page).toHaveScreenshot();
   });

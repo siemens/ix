@@ -310,6 +310,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = false;
     if (this.dropdown) {
       this.dropdown.show = false;
     }
@@ -320,6 +321,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = true;
     if (this.dropdown) {
       this.dropdown.show = true;
     }
