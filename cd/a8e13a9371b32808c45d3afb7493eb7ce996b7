@@ -1,0 +1,1142 @@
+.changeset/aggrid-system-token-compatibility.md
+  h_c5a773bf2fda8b 1-5
+.changeset/bright-dates-glow.md
+  h_c5a773bf2fda8b 1-5
+.changeset/calm-foundation-styles.md
+  h_c5a773bf2fda8b 1-7
+.changeset/component-customization-tokens.md
+  h_c5a773bf2fda8b 1-5
+.changeset/echarts-system-token-properties.md
+  h_c5a773bf2fda8b 1-5
+.changeset/sys-token-migration-focus-color.md
+  h_c5a773bf2fda8b 1-11
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 5-483
+packages/aggrid/src/aggrid-ix-theme-params.ts
+  h_c5a773bf2fda8b 10-23,25,27-28,30-60,63-64,66-99,101-115,117-123,125-131
+packages/aggrid/src/checkbox.style.css
+  h_c5a773bf2fda8b 29,33-34,38-39,50,68
+packages/aggrid/src/header.style.css
+  h_c5a773bf2fda8b 11,15
+packages/aggrid/src/index.ts
+  h_c5a773bf2fda8b 27
+packages/aggrid/src/radio.style.css
+  h_c5a773bf2fda8b 37-38,42-43,47-48,53-54,59-60,65-66,77,85-86,91-92,96-97
+packages/aggrid/tests/basic/setup-basic.ts
+  h_c5a773bf2fda8b 15-16
+packages/aggrid/tests/dropdown-top-layer/setup-dropdown-top-layer.ts
+  h_c5a773bf2fda8b 10-11
+packages/aggrid/tests/pagination/setup-pagination.ts
+  h_c5a773bf2fda8b 15-16
+packages/aggrid/tests/versions/v34/setup-basic.ts
+  h_c5a773bf2fda8b 14-15
+packages/aggrid/tests/versions/v35/setup-basic.ts
+  h_c5a773bf2fda8b 14-15
+packages/angular-standalone-test-app/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 4-16,20-32,36-48,52-64,69-75,79-91,95-107,109-140
+packages/angular-standalone-test-app/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 2-29,32-53,55-82,84-111,114-135,137-164,166-193,195-230
+packages/angular-standalone-test-app/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 2-29,31-108,110-223
+packages/angular-standalone-test-app/src/preview-examples/blind-header-actions.ts
+  h_c5a773bf2fda8b 23-29
+packages/angular-standalone-test-app/src/preview-examples/chip.ts
+  h_c5a773bf2fda8b 35-36,64-65
+packages/angular-standalone-test-app/src/preview-examples/echarts-circle.ts
+  h_c5a773bf2fda8b 60
+packages/angular-standalone-test-app/src/preview-examples/echarts-gauge.ts
+  h_c5a773bf2fda8b 36-39,41,57-64,82,109,135-137
+packages/angular-standalone-test-app/src/preview-examples/echarts-line-advanced.ts
+  h_c5a773bf2fda8b 60,72
+packages/angular-standalone-test-app/src/preview-examples/echarts-line-multiple-y-axis.ts
+  h_c5a773bf2fda8b 109-127,149-154,162-167,170-175,182-187
+packages/angular-standalone-test-app/src/preview-examples/echarts-pie.ts
+  h_c5a773bf2fda8b 62
+packages/angular-standalone-test-app/src/preview-examples/echarts-progress-arc.ts
+  h_c5a773bf2fda8b 47-54,75,89
+packages/angular-standalone-test-app/src/preview-examples/echarts-progress-circle.ts
+  h_c5a773bf2fda8b 47-54,75,88,92,97
+packages/angular-standalone-test-app/src/preview-examples/echarts-special-3d.ts
+  h_c5a773bf2fda8b 39,44,48
+packages/angular-standalone-test-app/src/preview-examples/echarts-special-zoom.ts
+  h_c5a773bf2fda8b 82
+packages/angular-standalone-test-app/src/preview-examples/event-list-compact.ts
+  h_c5a773bf2fda8b 18-29
+packages/angular-standalone-test-app/src/preview-examples/event-list-custom-item-height.ts
+  h_c5a773bf2fda8b 18-23
+packages/angular-standalone-test-app/src/preview-examples/event-list-filled.ts
+  h_c5a773bf2fda8b 19-21,28-31
+packages/angular-standalone-test-app/src/preview-examples/event-list-selected.ts
+  h_c5a773bf2fda8b 19-25
+packages/angular-standalone-test-app/src/preview-examples/event-list.ts
+  h_c5a773bf2fda8b 18-29
+packages/angular-standalone-test-app/src/preview-examples/global.css
+  h_c5a773bf2fda8b 14-16
+packages/angular-standalone-test-app/src/preview-examples/grid-padding.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-standalone-test-app/src/preview-examples/grid-size.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-standalone-test-app/src/preview-examples/grid.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-standalone-test-app/src/preview-examples/layout-auto.css
+  h_c5a773bf2fda8b 21-22
+packages/angular-standalone-test-app/src/preview-examples/pill-variants.ts
+  h_c5a773bf2fda8b 91-92,100-101
+packages/angular-standalone-test-app/src/preview-examples/pill.ts
+  h_c5a773bf2fda8b 20-21
+packages/angular-standalone-test-app/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 22
+packages/angular-test-app/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 4-16,20-32,36-48,52-64,69-75,79-91,95-107,109-140
+packages/angular-test-app/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 2-29,32-53,55-82,84-111,114-135,137-164,166-193,195-230
+packages/angular-test-app/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 2-29,31-108,110-223
+packages/angular-test-app/src/preview-examples/blind-header-actions.ts
+  h_c5a773bf2fda8b 17-23
+packages/angular-test-app/src/preview-examples/chip.ts
+  h_c5a773bf2fda8b 34-35,63-64
+packages/angular-test-app/src/preview-examples/echarts-circle.ts
+  h_c5a773bf2fda8b 57
+packages/angular-test-app/src/preview-examples/echarts-gauge.ts
+  h_c5a773bf2fda8b 33-36,38,54-61,79,106,132-134
+packages/angular-test-app/src/preview-examples/echarts-line-advanced.ts
+  h_c5a773bf2fda8b 57,69
+packages/angular-test-app/src/preview-examples/echarts-line-multiple-y-axis.ts
+  h_c5a773bf2fda8b 106-124,146-151,159-164,167-172,179-184
+packages/angular-test-app/src/preview-examples/echarts-pie.ts
+  h_c5a773bf2fda8b 59
+packages/angular-test-app/src/preview-examples/echarts-progress-arc.ts
+  h_c5a773bf2fda8b 44-51,72,86
+packages/angular-test-app/src/preview-examples/echarts-progress-circle.ts
+  h_c5a773bf2fda8b 44-51,72,85,89,94
+packages/angular-test-app/src/preview-examples/echarts-special-3d.ts
+  h_c5a773bf2fda8b 36,41,45
+packages/angular-test-app/src/preview-examples/echarts-special-zoom.ts
+  h_c5a773bf2fda8b 78
+packages/angular-test-app/src/preview-examples/event-list-compact.ts
+  h_c5a773bf2fda8b 17-28
+packages/angular-test-app/src/preview-examples/event-list-custom-item-height-in-number.ts
+  h_c5a773bf2fda8b 18
+packages/angular-test-app/src/preview-examples/event-list-custom-item-height.ts
+  h_c5a773bf2fda8b 17-22
+packages/angular-test-app/src/preview-examples/event-list-filled.ts
+  h_c5a773bf2fda8b 18-20,27-30
+packages/angular-test-app/src/preview-examples/event-list-selected.ts
+  h_c5a773bf2fda8b 19
+packages/angular-test-app/src/preview-examples/event-list.ts
+  h_c5a773bf2fda8b 17-28
+packages/angular-test-app/src/preview-examples/global.css
+  h_c5a773bf2fda8b 14-16
+packages/angular-test-app/src/preview-examples/grid-padding.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-test-app/src/preview-examples/grid-size.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-test-app/src/preview-examples/grid.css
+  h_c5a773bf2fda8b 17,32-33
+packages/angular-test-app/src/preview-examples/layout-auto.css
+  h_c5a773bf2fda8b 21-22
+packages/angular-test-app/src/preview-examples/pill-variants.ts
+  h_c5a773bf2fda8b 85-86,94-95
+packages/angular-test-app/src/preview-examples/pill.html
+  h_c5a773bf2fda8b 11-12
+packages/angular-test-app/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 22
+packages/angular/READMEOSS.html
+  h_c5a773bf2fda8b 123
+packages/core/READMEOSS.html
+  h_c5a773bf2fda8b 123
+packages/core/package.json
+  h_c5a773bf2fda8b 62-68,71-108,110-115
+packages/core/scripts/build/build-css.ts
+  h_c5a773bf2fda8b 104-111,116
+packages/core/scripts/build/component-vars.spec.ts
+  h_c5a773bf2fda8b 1-280
+packages/core/scripts/build/global-css.spec.ts
+  h_c5a773bf2fda8b 1-181
+packages/core/scripts/build/theme-css.spec.ts
+  h_c5a773bf2fda8b 1-131
+packages/core/scss/_foundation.scss
+  h_c5a773bf2fda8b 2,9
+packages/core/scss/deprecated/_components.scss
+  h_c5a773bf2fda8b 17,28,45-46,48,50-56,60,71,88-89,91,93-99
+packages/core/scss/deprecated/components/action-card.scss
+  h_c5a773bf2fda8b 19-36,38-52,54-64,68-90,92-97,99-104,106-160,162-167,169-174,176-179
+packages/core/scss/deprecated/components/app-header.scss
+  h_c5a773bf2fda8b 16-22
+packages/core/scss/deprecated/components/avatar.scss
+  h_c5a773bf2fda8b 17-24
+packages/core/scss/deprecated/components/blind.scss
+  h_c5a773bf2fda8b 16-96
+packages/core/scss/deprecated/components/button.scss
+  h_c5a773bf2fda8b 19-78,80-111,113-122,124-142,144-194,196-265,267-287
+packages/core/scss/deprecated/components/card.scss
+  h_c5a773bf2fda8b 19-29,31-33,36-41,43-66,71-76,78-118,123-128,130
+packages/core/scss/deprecated/components/checkbox.scss
+  h_c5a773bf2fda8b 18-43,45-109,111-126,128-209
+packages/core/scss/deprecated/components/chip.scss
+  h_c5a773bf2fda8b 1-66
+packages/core/scss/deprecated/components/datepicker.scss
+  h_c5a773bf2fda8b 16-20,22-67,69-73,75-139
+packages/core/scss/deprecated/components/event-list.scss
+  h_c5a773bf2fda8b 16-32,35-51
+packages/core/scss/deprecated/components/flip.scss
+  h_c5a773bf2fda8b 17-47,49,51
+packages/core/scss/deprecated/components/ghost.scss
+  h_c5a773bf2fda8b 16-19
+packages/core/scss/deprecated/components/group.scss
+  h_c5a773bf2fda8b 18-45
+packages/core/scss/deprecated/components/input-helper.scss
+  h_c5a773bf2fda8b 16-24
+packages/core/scss/deprecated/components/input.scss
+  h_c5a773bf2fda8b 16-39,43-44,47-50,52-68
+packages/core/scss/deprecated/components/kpi.scss
+  h_c5a773bf2fda8b 17-20,22-25
+packages/core/scss/deprecated/components/label.scss
+  h_c5a773bf2fda8b 16-21
+packages/core/scss/deprecated/components/link.scss
+  h_c5a773bf2fda8b 16-25
+packages/core/scss/deprecated/components/menu.scss
+  h_c5a773bf2fda8b 16-17,21-47,49
+packages/core/scss/deprecated/components/message-bar.scss
+  h_c5a773bf2fda8b 18-19
+packages/core/scss/deprecated/components/modal-dialog.scss
+  h_c5a773bf2fda8b 16-17
+packages/core/scss/deprecated/components/navigation.scss
+  h_c5a773bf2fda8b 16-58,60,62
+packages/core/scss/deprecated/components/overlay.scss
+  h_c5a773bf2fda8b 17-18
+packages/core/scss/deprecated/components/pagination.scss
+  h_c5a773bf2fda8b 16-19,21-27
+packages/core/scss/deprecated/components/pane.scss
+  h_c5a773bf2fda8b 16-17,19-21,23
+packages/core/scss/deprecated/components/pill.scss
+  h_c5a773bf2fda8b 16-17
+packages/core/scss/deprecated/components/progress-indicator.scss
+  h_c5a773bf2fda8b 16-18,20,22-26,28,30-39,41
+packages/core/scss/deprecated/components/push-card.scss
+  h_c5a773bf2fda8b 19-51,53-61,64-150,152-160,163-286,288-296,299-324
+packages/core/scss/deprecated/components/radiobutton.scss
+  h_c5a773bf2fda8b 18-43,45-157
+packages/core/scss/deprecated/components/scrollbar.scss
+  h_c5a773bf2fda8b 18,20
+packages/core/scss/deprecated/components/select-list.scss
+  h_c5a773bf2fda8b 16-49
+packages/core/scss/deprecated/components/slider.scss
+  h_c5a773bf2fda8b 16-42
+packages/core/scss/deprecated/components/switch.scss
+  h_c5a773bf2fda8b 16-68,70-120,122-152,154-172,174-331
+packages/core/scss/deprecated/components/tab.scss
+  h_c5a773bf2fda8b 16,18,20-35,37,39-54,60-62
+packages/core/scss/deprecated/components/table.scss
+  h_c5a773bf2fda8b 16-61,63-84
+packages/core/scss/deprecated/components/toast.scss
+  h_c5a773bf2fda8b 16-17,22-23
+packages/core/scss/deprecated/components/tooltip.scss
+  h_c5a773bf2fda8b 16-24,26
+packages/core/scss/deprecated/components/tree.scss
+  h_c5a773bf2fda8b 1-29
+packages/core/scss/deprecated/components/upload.scss
+  h_c5a773bf2fda8b 16-23,25-27
+packages/core/scss/deprecated/components/workflow.scss
+  h_c5a773bf2fda8b 17-46
+packages/core/scss/entries/_default.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/scss/entries/_foundation.scss
+  h_c5a773bf2fda8b 9-11,18-25,30-32,39-45
+packages/core/scss/entries/_globals.scss
+  h_c5a773bf2fda8b 1-12
+packages/core/scss/entries/_legacy.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/scss/foundation/_body.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/scss/foundation/_scrollbar.scss
+  h_c5a773bf2fda8b 1-13
+packages/core/scss/globals/_base.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/scss/globals/_reset.scss
+  h_c5a773bf2fda8b 2
+packages/core/scss/globals/_scrollbar.scss
+  h_c5a773bf2fda8b 1-13
+packages/core/scss/ix-base.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix-foundation.scss
+  h_c5a773bf2fda8b 9
+packages/core/scss/ix-globals.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix-legacy.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix-reset.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix-scrollbar.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix-utilities.scss
+  h_c5a773bf2fda8b 1-9
+packages/core/scss/ix.scss
+  h_c5a773bf2fda8b 9
+packages/core/scss/legacy/_fonts.scss
+  h_c5a773bf2fda8b 10
+packages/core/scss/legacy/components/_checkboxes.scss
+  h_c5a773bf2fda8b 10,30,58,65,71-73,77-78,82-83,87-89,95-96,106-107,115-116,120-121,125-126,130,145,151-152,156-157,161-162,166-167,171,176
+packages/core/scss/legacy/components/_forms.scss
+  h_c5a773bf2fda8b 10-13,21-22,26-28,36,41-42,47-50,57,85,102,146
+packages/core/scss/legacy/components/_input.scss
+  h_c5a773bf2fda8b 9-10,12-218
+packages/core/scss/legacy/components/_radiobuttons.scss
+  h_c5a773bf2fda8b 10,39,68,75,81-83,87-88,92-93,97-99,105-106,114,122-123,127-128,132-133,137,147
+packages/core/scss/legacy/mixins/_fonts.scss
+  h_c5a773bf2fda8b 10
+packages/core/scss/misc/_common-variables.scss
+  h_c5a773bf2fda8b 2,9
+packages/core/scss/mixins/_break-points.scss
+  h_c5a773bf2fda8b 2,9
+packages/core/scss/mixins/_breakpoints.scss
+  h_c5a773bf2fda8b 1-51
+packages/core/scss/mixins/_hover.scss
+  h_c5a773bf2fda8b 9,73,78,83-94
+packages/core/scss/mixins/_input.scss
+  h_c5a773bf2fda8b 9,18-19,22-28,45-60,64,77-84,98-106,116,118,131-132,144-151,173-176,180-183,187-190,196-199,201-202,207-214,219-220,227-234,238-245,250-251
+packages/core/scss/mixins/_scrollbar.scss
+  h_c5a773bf2fda8b 9-10,12-16,23,37,41,47,52
+packages/core/scss/mixins/internal/_input-control.scss
+  h_c5a773bf2fda8b 1-126
+packages/core/scss/theme/classic/_composition.scss
+  h_c5a773bf2fda8b 1-44
+packages/core/scss/theme/classic/_si-reference.scss
+  h_c5a773bf2fda8b 1-238
+packages/core/scss/theme/classic/dark/_index.scss
+  h_c5a773bf2fda8b 16,19
+packages/core/scss/theme/classic/dark/_legacy.scss
+  h_c5a773bf2fda8b 22-58,61,65-88,90,92-103,105,107-110,113-117,119-120,122-123,125-146,148-151,154-166,170-190
+packages/core/scss/theme/classic/dark/_system.scss
+  h_c5a773bf2fda8b 1-353
+packages/core/scss/theme/classic/light/_index.scss
+  h_c5a773bf2fda8b 16,19
+packages/core/scss/theme/classic/light/_legacy.scss
+  h_c5a773bf2fda8b 22-56,58-60,66-77,79-83,85-102,104-114,116-120,122-123,125-143,145-146,148-150,154-155,157-160,162-175,177-190,213,222-225
+packages/core/scss/theme/classic/light/_system.scss
+  h_c5a773bf2fda8b 1-361
+packages/core/scss/theme/classic/theme.scss
+  h_c5a773bf2fda8b 16,27,40,52,56,61,67,72
+packages/core/scss/tokens/_legacy.scss
+  h_c5a773bf2fda8b 1-53
+packages/core/scss/tokens/_system.scss
+  h_c5a773bf2fda8b 1-260
+packages/core/scss/utilities/_button-group.scss
+  h_c5a773bf2fda8b 2,23-28
+packages/core/scss/utilities/_index.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/scss/utilities/_input-group.scss
+  h_c5a773bf2fda8b 2,11-13,18,20,22,28,30,32,35-40
+packages/core/scss/utilities/_links.scss
+  h_c5a773bf2fda8b 2,10-18,26,30,34,38,42
+packages/core/scss/utilities/_shadows.scss
+  h_c5a773bf2fda8b 2
+packages/core/scss/utilities/_table.scss
+  h_c5a773bf2fda8b 2,9-21,27-29,31-44,52,54,59,68,75
+packages/core/scss/utilities/_typography.scss
+  h_c5a773bf2fda8b 2,9-17,137,141
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 2051,2361,3108,3531,4615,9059,9400,10198,10654,11812
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 10,30-31,35,39-40
+packages/core/src/components/action-card/action-card.vars.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/src/components/action-card/test/action-card.ct.ts
+  h_c5a773bf2fda8b 51-59
+packages/core/src/components/application-header/application-header.scss
+  h_c5a773bf2fda8b 10,12,25-26,28-29,31,62,90,117,127,172-173,198
+packages/core/src/components/application-header/application-header.vars.scss
+  h_c5a773bf2fda8b 1-22
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.scss
+  h_c5a773bf2fda8b 12,59-61,69-70
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.tsx
+  h_c5a773bf2fda8b 65
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.vars.scss
+  h_c5a773bf2fda8b 2,9-14
+packages/core/src/components/application/application.scss
+  h_c5a773bf2fda8b 12,24
+packages/core/src/components/application/application.vars.scss
+  h_c5a773bf2fda8b 1-12
+packages/core/src/components/avatar/avatar.scss
+  h_c5a773bf2fda8b 16,45-46,55,59,120-121
+packages/core/src/components/avatar/avatar.vars.scss
+  h_c5a773bf2fda8b 1-17
+packages/core/src/components/badge/badge.scss
+  h_c5a773bf2fda8b 209,212,232,235,241,244-245,250,253-255,273,275,280
+packages/core/src/components/badge/badge.vars.scss
+  h_c5a773bf2fda8b 10-11,18-45,47-49,51
+packages/core/src/components/badge/test/badge.ct.ts
+  h_c5a773bf2fda8b 215-233,239-258
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 15,19-20,23,25,32,36,42-45,49,53,57-60,64,71-72,74-75,80,84,97-98,102-103,107-108,115,129,177-180,184,243,279-281,284,288
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 1-95
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 10,18-64
+packages/core/src/components/breadcrumb-item/breadcrumb-item.scss
+  h_c5a773bf2fda8b 14,44,58
+packages/core/src/components/breadcrumb-item/breadcrumb-item.vars.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/src/components/breadcrumb/breadcrumb.scss
+  h_c5a773bf2fda8b 13,62
+packages/core/src/components/breadcrumb/breadcrumb.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/button/button-mixin.scss
+  h_c5a773bf2fda8b 16-17,19-21,34-35,37,39-40,45-46,49-50,54-55,60-62,76-78,81,125-126,175-176,182-183
+packages/core/src/components/button/button.vars.scss
+  h_c5a773bf2fda8b 1-179
+packages/core/src/components/card-accordion/card-accordion.scss
+  h_c5a773bf2fda8b 11,13,19,38-39,54-55,68-69,93-94,101,113-115,119,123,128,134,141,146-149,153,158,163
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 1-104
+packages/core/src/components/card-list/card-list.scss
+  h_c5a773bf2fda8b 12,41-42,62,112-113,116-117,130,134
+packages/core/src/components/card-list/card-list.tsx
+  h_c5a773bf2fda8b 39
+packages/core/src/components/card-list/card-list.vars.scss
+  h_c5a773bf2fda8b 1-23
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 10,23-25,37-38,57,63-64,66,78,88-89,95-96,102-103,107,117,119-120
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 1-102
+packages/core/src/components/category-filter/_category-filter-dropdown-item.scss
+  h_c5a773bf2fda8b 2,10-11,13-14,17-23,28-30,34-38,42-46,51-52,58,62-63,70-73
+packages/core/src/components/category-filter/category-filter.scss
+  h_c5a773bf2fda8b 19-20,61-62,66-68,72-74,100,137,158-159,164-171,173-174,187-189
+packages/core/src/components/category-filter/category-filter.tsx
+  h_c5a773bf2fda8b 830,839,843,846
+packages/core/src/components/category-filter/category-filter.vars.scss
+  h_c5a773bf2fda8b 1-27
+packages/core/src/components/chat-ai-message/chat-ai-message.scss
+  h_c5a773bf2fda8b 11,21
+packages/core/src/components/chat-ai-message/chat-ai-message.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/chat-input/chat-input.scss
+  h_c5a773bf2fda8b 12,27-32,58-59,63-65,122,138,142,187,189,200,207
+packages/core/src/components/chat-input/chat-input.vars.scss
+  h_c5a773bf2fda8b 1-30
+packages/core/src/components/chat-user-message/chat-user-message.scss
+  h_c5a773bf2fda8b 12,31-32,89
+packages/core/src/components/chat-user-message/chat-user-message.vars.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/src/components/checkbox/checkbox.scss
+  h_c5a773bf2fda8b 11,44-46,50-51,63,77-79,85-87,93-95,102-104,111-113,120-122,128-130,137-139,148-150,156-158,164-166,173-175,182-184,191-193,199-201,208-210,216-217,219-220,222-223,226-227,229-230,232-233
+packages/core/src/components/checkbox/checkbox.tsx
+  h_c5a773bf2fda8b 186,194
+packages/core/src/components/checkbox/checkbox.vars.scss
+  h_c5a773bf2fda8b 1-121
+packages/core/src/components/checkbox/tests/checkbox.ct.ts
+  h_c5a773bf2fda8b 81
+packages/core/src/components/chip/chip-mixin.scss
+  h_c5a773bf2fda8b 13,77,79,111-112,115-116,122,126,131,137-140,143-144,148,153,157,169,172,175-176,181,186,192-194,198,203,211,219,224
+packages/core/src/components/chip/chip.scss
+  h_c5a773bf2fda8b 13,24-25,187,206,210-213,221-223,229-230,232,235,239,245-247,252,256,260,267-268,275,279-282,290-292,298-300,305-307,313,315,323-324,332-334,339,344-345,353-354,386,396
+packages/core/src/components/chip/chip.vars.scss
+  h_c5a773bf2fda8b 1-125
+packages/core/src/components/chip/test/chip.ct.ts
+  h_c5a773bf2fda8b 28-29,34-35
+packages/core/src/components/date-dropdown/date-dropdown.scss
+  h_c5a773bf2fda8b 14,16,33,48-49,79
+packages/core/src/components/date-dropdown/date-dropdown.vars.scss
+  h_c5a773bf2fda8b 10,12-15
+packages/core/src/components/date-picker/date-picker.scss
+  h_c5a773bf2fda8b 16,32-33,45,58,62,107-109,115-117,121-123,128,135,145,149,153-156,160,166,173,175,180-181,184,188,194,196,202-203,207-208,228
+packages/core/src/components/date-picker/date-picker.vars.scss
+  h_c5a773bf2fda8b 1-42
+packages/core/src/components/date-time-card/date-time-card.scss
+  h_c5a773bf2fda8b 13,18,27,60
+packages/core/src/components/date-time-card/date-time-card.vars.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/src/components/datetime-picker/datetime-picker.scss
+  h_c5a773bf2fda8b 13,42-43,70
+packages/core/src/components/datetime-picker/datetime-picker.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/divider/divider.scss
+  h_c5a773bf2fda8b 10,16
+packages/core/src/components/divider/divider.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/dropdown-button/dropdown-button.scss
+  h_c5a773bf2fda8b 19,22,25,29,32,35,98,131-132,137-138
+packages/core/src/components/dropdown-button/dropdown-button.vars.scss
+  h_c5a773bf2fda8b 9-10,16-17
+packages/core/src/components/dropdown-header/dropdown-header.scss
+  h_c5a773bf2fda8b 11,24
+packages/core/src/components/dropdown-header/dropdown-header.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/dropdown-item/dropdown-item.scss
+  h_c5a773bf2fda8b 11,13,64,69,105,109,112,120,128,133
+packages/core/src/components/dropdown-item/dropdown-item.vars.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/dropdown/dropdown.scss
+  h_c5a773bf2fda8b 14,16-17,19-20,30,55-57,64,83
+packages/core/src/components/dropdown/dropdown.vars.scss
+  h_c5a773bf2fda8b 1-19
+packages/core/src/components/empty-state/empty-state.scss
+  h_c5a773bf2fda8b 4,9
+packages/core/src/components/empty-state/empty-state.tsx
+  h_c5a773bf2fda8b 65
+packages/core/src/components/empty-state/empty-state.vars.scss
+  h_c5a773bf2fda8b 1-5
+packages/core/src/components/event-list-item/event-list-item.scss
+  h_c5a773bf2fda8b 15,21-22,27,30,33-36,39,43-44,46-47,49-50,52-53,77,97,107,153,157,164,173,179-181
+packages/core/src/components/event-list-item/event-list-item.tsx
+  h_c5a773bf2fda8b 41,73,94
+packages/core/src/components/event-list-item/event-list-item.vars.scss
+  h_c5a773bf2fda8b 1-38
+packages/core/src/components/event-list/test/event-list.ct.ts
+  h_c5a773bf2fda8b 25-28,36-53,57-60,97-100
+packages/core/src/components/expanding-search/expanding-search.scss
+  h_c5a773bf2fda8b 10,14,28-30,34-36,65-67,100-101,114
+packages/core/src/components/expanding-search/expanding-search.tsx
+  h_c5a773bf2fda8b 148
+packages/core/src/components/expanding-search/expanding-search.vars.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/field-label/tests/field-label.ct.ts
+  h_c5a773bf2fda8b 100,112,128,151,170,195,227
+packages/core/src/components/field-wrapper/field-wrapper.mixins.scss
+  h_c5a773bf2fda8b 10,27,31,35,39
+packages/core/src/components/field-wrapper/field-wrapper.vars.scss
+  h_c5a773bf2fda8b 1-17
+packages/core/src/components/filter-chip/filter-chip.scss
+  h_c5a773bf2fda8b 15,22-23,25-26,36-38,53-55,67-69,73-75
+packages/core/src/components/filter-chip/filter-chip.vars.scss
+  h_c5a773bf2fda8b 1-25
+packages/core/src/components/flip-tile/flip-tile.scss
+  h_c5a773bf2fda8b 16,21-22,50-51,77,83,86-87,93-95
+packages/core/src/components/flip-tile/flip-tile.vars.scss
+  h_c5a773bf2fda8b 1-51
+packages/core/src/components/group-item/group-item.scss
+  h_c5a773bf2fda8b 15,34,36,42,78,90,93,98-99,103,107-108,114,119
+packages/core/src/components/group-item/group-item.vars.scss
+  h_c5a773bf2fda8b 1-24
+packages/core/src/components/group/group.scss
+  h_c5a773bf2fda8b 14,24,32-33,35-36,41,44,49,52,60-62,70,80,83,88,91,106,143,151
+packages/core/src/components/group/group.vars.scss
+  h_c5a773bf2fda8b 10,12-25
+packages/core/src/components/helper-text/helper-text.scss
+  h_c5a773bf2fda8b 1
+packages/core/src/components/icon-button/icon-button.tsx
+  h_c5a773bf2fda8b 56-57
+packages/core/src/components/icon-button/test/icon-button.ct.ts
+  h_c5a773bf2fda8b 25-45
+packages/core/src/components/input/input.mixins.scss
+  h_c5a773bf2fda8b 13,82,98-99,109,117,122,126,132-133,138-139,143,149-150,155-156,160
+packages/core/src/components/input/input.scss
+  h_c5a773bf2fda8b 9,15-16,20-23
+packages/core/src/components/input/input.tsx
+  h_c5a773bf2fda8b 360
+packages/core/src/components/input/input.vars.scss
+  h_c5a773bf2fda8b 1-66
+packages/core/src/components/input/textarea.scss
+  h_c5a773bf2fda8b 12,19,22,26,33-34,37-38,42-44,51-52,55-56,60-62
+packages/core/src/components/input/textarea.vars.scss
+  h_c5a773bf2fda8b 1-25
+packages/core/src/components/ix-playground/ix-playground.tsx
+  h_c5a773bf2fda8b 18
+packages/core/src/components/key-value-list/key-value-list.scss
+  h_c5a773bf2fda8b 1,4,10
+packages/core/src/components/key-value-list/key-value-list.vars.scss
+  h_c5a773bf2fda8b 1-6
+packages/core/src/components/key-value/key-value.scss
+  h_c5a773bf2fda8b 4,29,40
+packages/core/src/components/key-value/key-value.vars.scss
+  h_c5a773bf2fda8b 1-6
+packages/core/src/components/kpi/kpi.scss
+  h_c5a773bf2fda8b 16,21,38,42,48,63,70,80,84
+packages/core/src/components/kpi/kpi.tsx
+  h_c5a773bf2fda8b 63,73
+packages/core/src/components/kpi/kpi.vars.scss
+  h_c5a773bf2fda8b 10,12-23
+packages/core/src/components/layout-grid/layout-grid.scss
+  h_c5a773bf2fda8b 9
+packages/core/src/components/layout-grid/layout-grid.vars.scss
+  h_c5a773bf2fda8b 9-12
+packages/core/src/components/link-button/link-button.scss
+  h_c5a773bf2fda8b 13,29,45,49,54,63
+packages/core/src/components/link-button/link-button.vars.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/menu-about-news/menu-about-news.scss
+  h_c5a773bf2fda8b 11,13,23,28,32,46,64,83,96,107
+packages/core/src/components/menu-about-news/menu-about-news.tsx
+  h_c5a773bf2fda8b 83,101
+packages/core/src/components/menu-about-news/menu-about-news.vars.scss
+  h_c5a773bf2fda8b 10-18
+packages/core/src/components/menu-about/menu-about.scss
+  h_c5a773bf2fda8b 14,17,36
+packages/core/src/components/menu-about/menu-about.tsx
+  h_c5a773bf2fda8b 130
+packages/core/src/components/menu-about/menu-about.vars.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/src/components/menu-avatar-item/menu-avatar-item.scss
+  h_c5a773bf2fda8b 11,14
+packages/core/src/components/menu-avatar-item/menu-avatar-item.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/menu-avatar/menu-avatar.scss
+  h_c5a773bf2fda8b 15,36,47,55-56,60-61,66
+packages/core/src/components/menu-avatar/menu-avatar.vars.scss
+  h_c5a773bf2fda8b 1-20
+packages/core/src/components/menu-category/menu-category.scss
+  h_c5a773bf2fda8b 13,39-40,50-51,81
+packages/core/src/components/menu-category/menu-category.vars.scss
+  h_c5a773bf2fda8b 1-16
+packages/core/src/components/menu-item/menu-item.scss
+  h_c5a773bf2fda8b 14,42,48,66,70-71,78,90,95,103,108,113,117,141,145,155
+packages/core/src/components/menu-item/menu-item.vars.scss
+  h_c5a773bf2fda8b 1-23
+packages/core/src/components/menu-settings/menu-settings.scss
+  h_c5a773bf2fda8b 14,17,36
+packages/core/src/components/menu-settings/menu-settings.tsx
+  h_c5a773bf2fda8b 132
+packages/core/src/components/menu-settings/menu-settings.vars.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/src/components/menu/menu-expand-icon.scss
+  h_c5a773bf2fda8b 13,25,36,39,48,60
+packages/core/src/components/menu/menu-expand-icon.vars.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/menu/menu.scss
+  h_c5a773bf2fda8b 14,23,45,77,86,88-90,92,94,102,121,124-125,136-137
+packages/core/src/components/menu/menu.vars.scss
+  h_c5a773bf2fda8b 1-24
+packages/core/src/components/message-bar/message-bar.scss
+  h_c5a773bf2fda8b 13,26,28,30-31,35-42,47
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 80-86,130
+packages/core/src/components/message-bar/message-bar.vars.scss
+  h_c5a773bf2fda8b 1-23
+packages/core/src/components/modal-header/modal-header.scss
+  h_c5a773bf2fda8b 25
+packages/core/src/components/modal-header/modal-header.tsx
+  h_c5a773bf2fda8b 71-72,122
+packages/core/src/components/modal/modal.scss
+  h_c5a773bf2fda8b 10,12,39-42,89-90,93-94,99
+packages/core/src/components/modal/modal.vars.scss
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/pagination/pagination.scss
+  h_c5a773bf2fda8b 12,34-35,43-46
+packages/core/src/components/pagination/pagination.tsx
+  h_c5a773bf2fda8b 266
+packages/core/src/components/pane/pane.scss
+  h_c5a773bf2fda8b 12,15,22-25,29-32,63,80,92-93,98,111,123-124,146,159,176-177,182-184,211
+packages/core/src/components/pane/pane.tsx
+  h_c5a773bf2fda8b 788
+packages/core/src/components/pane/pane.vars.scss
+  h_c5a773bf2fda8b 1-35
+packages/core/src/components/pill/pill.scss
+  h_c5a773bf2fda8b 13,35
+packages/core/src/components/pill/pill.vars.scss
+  h_c5a773bf2fda8b 10-13
+packages/core/src/components/popover-header/popover-header.scss
+  h_c5a773bf2fda8b 12,33,35-40,42-43,45-46,48-50
+packages/core/src/components/popover-header/popover-header.tsx
+  h_c5a773bf2fda8b 51-52
+packages/core/src/components/popover-header/popover-header.vars.scss
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/popover/popover.scss
+  h_c5a773bf2fda8b 10,33-37,50,71
+packages/core/src/components/popover/popover.vars.scss
+  h_c5a773bf2fda8b 1-30
+packages/core/src/components/progress-indicator/circular.scss
+  h_c5a773bf2fda8b 11,15,40
+packages/core/src/components/progress-indicator/circular.vars.scss
+  h_c5a773bf2fda8b 1-43
+packages/core/src/components/progress-indicator/linear.scss
+  h_c5a773bf2fda8b 11,16,25
+packages/core/src/components/progress-indicator/linear.vars.scss
+  h_c5a773bf2fda8b 1-43
+packages/core/src/components/progress-indicator/progress-indicator.scss
+  h_c5a773bf2fda8b 13,37,41,46,49,112,118
+packages/core/src/components/progress-indicator/progress-indicator.vars.scss
+  h_c5a773bf2fda8b 1-43
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 9-10,12,39,42,44,48-50,54,58,62,68,72
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 1-187
+packages/core/src/components/radio/radio.scss
+  h_c5a773bf2fda8b 11,57,66-68,74-76,82-84,91-93,100-102,109-111,119-121,128-130,135-136,153-155,161-163,169-171,178-180,187-189,196-198,204-206,213-215,221-222,224-225,227-228,231-232,234-235,237-238
+packages/core/src/components/radio/radio.vars.scss
+  h_c5a773bf2fda8b 1-84
+packages/core/src/components/radio/test/radio.ct.ts
+  h_c5a773bf2fda8b 72
+packages/core/src/components/select-item/select-item.scss
+  h_c5a773bf2fda8b 10,20,24-25
+packages/core/src/components/select-item/select-item.vars.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/src/components/select/select.scss
+  h_c5a773bf2fda8b 18,24,33-35,37,40-41,68-69,72,77-78,81,123-124,153,179,194,210-211,219,223,227,233-234,238,242,248-249,253,257
+packages/core/src/components/select/select.vars.scss
+  h_c5a773bf2fda8b 1-40
+packages/core/src/components/slider/slider.scss
+  h_c5a773bf2fda8b 11,104-108,181,184,189,193,197,283-284,287,291,295,302-305,308,313-314,317,322-323,326,331-332,335
+packages/core/src/components/slider/slider.vars.scss
+  h_c5a773bf2fda8b 1-41
+packages/core/src/components/spinner/spinner.scss
+  h_c5a773bf2fda8b 12,90,101,105,109
+packages/core/src/components/spinner/spinner.vars.scss
+  h_c5a773bf2fda8b 1-17
+packages/core/src/components/tab-item/tab-item.scss
+  h_c5a773bf2fda8b 13,22-23,56,58-59,63,67,76-77,87,91,95,127-128,136,140-142,145-147,153-154,168-169,173-174,179-180,184,188-189,214,222
+packages/core/src/components/tab-item/tab-item.vars.scss
+  h_c5a773bf2fda8b 2,9-40
+packages/core/src/components/tabs/tabs.scss
+  h_c5a773bf2fda8b 12,17,19,27,29,99
+packages/core/src/components/tabs/tabs.vars.scss
+  h_c5a773bf2fda8b 10-16
+packages/core/src/components/tile/tile.scss
+  h_c5a773bf2fda8b 14,33-34,36-38,76,81
+packages/core/src/components/tile/tile.vars.scss
+  h_c5a773bf2fda8b 1-21
+packages/core/src/components/time-picker/time-picker.scss
+  h_c5a773bf2fda8b 13,57,94,97,101-102,109,119-121,125-131,136-137,142,144
+packages/core/src/components/time-picker/time-picker.vars.scss
+  h_c5a773bf2fda8b 1-26
+packages/core/src/components/toast/toast-container.scss
+  h_c5a773bf2fda8b 13,19
+packages/core/src/components/toast/toast-container.vars.scss
+  h_c5a773bf2fda8b 10-11
+packages/core/src/components/toast/toast-utils.ts
+  h_c5a773bf2fda8b 43-44
+packages/core/src/components/toast/toast.scss
+  h_c5a773bf2fda8b 14,25-28,30,92
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 66-67,114,124,134,144,233
+packages/core/src/components/toast/toast.vars.scss
+  h_c5a773bf2fda8b 1-20
+packages/core/src/components/toggle/toggle.scss
+  h_c5a773bf2fda8b 12,57-58,70-71,73,77,82,86-87,91-92,96-97,101-102,106-107,111,115-116,120-121,125-126,130-131,151,163,167,171,175,179,192-193,195-196,198-199,202-203,205-206,208-209,212-213,215-216,218-219,222-223,225-226,228-229
+packages/core/src/components/toggle/toggle.vars.scss
+  h_c5a773bf2fda8b 1-214
+packages/core/src/components/tooltip/tooltip.scss
+  h_c5a773bf2fda8b 10,28-29,32,64
+packages/core/src/components/tooltip/tooltip.vars.scss
+  h_c5a773bf2fda8b 9-15
+packages/core/src/components/tree-item/tree-item.scss
+  h_c5a773bf2fda8b 14,49-50,61,66,70,75,80
+packages/core/src/components/tree-item/tree-item.tsx
+  h_c5a773bf2fda8b 78
+packages/core/src/components/tree-item/tree-item.vars.scss
+  h_c5a773bf2fda8b 1-19
+packages/core/src/components/typography/typography.scss
+  h_c5a773bf2fda8b 78-172,174-175,178-179,183
+packages/core/src/components/typography/typography.tsx
+  h_c5a773bf2fda8b 26-44,66
+packages/core/src/components/upload/upload.scss
+  h_c5a773bf2fda8b 14,35-37,61,66,72,118,122
+packages/core/src/components/upload/upload.vars.scss
+  h_c5a773bf2fda8b 1-21
+packages/core/src/components/utils/modal/message.ts
+  h_c5a773bf2fda8b 258,283,308
+packages/core/src/components/utils/notification-color.ts
+  h_c5a773bf2fda8b 14-21
+packages/core/src/components/workflow-step/workflow-step.scss
+  h_c5a773bf2fda8b 11,14,41-42,55,73,78,82,88,92,96,162,166,171-172,176,180,184,189
+packages/core/src/components/workflow-step/workflow-step.tsx
+  h_c5a773bf2fda8b 107,115,119,127,178,187
+packages/core/src/components/workflow-step/workflow-step.vars.scss
+  h_c5a773bf2fda8b 1-32
+packages/core/vitest-setup.ts
+  h_c5a773bf2fda8b 12
+packages/echarts/src/computecss.ts
+  h_c5a773bf2fda8b 10-11
+packages/html-test-app/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 22-34,38-50,54-66,70-82,86-98,102-114,118-130,132-163,165
+packages/html-test-app/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 20-47,49-258,260
+packages/html-test-app/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 25-136,138-251,253
+packages/html-test-app/src/preview-examples/blind-header-actions.html
+  h_c5a773bf2fda8b 28-34
+packages/html-test-app/src/preview-examples/chip.html
+  h_c5a773bf2fda8b 44-45,73-74
+packages/html-test-app/src/preview-examples/echarts-circle.html
+  h_c5a773bf2fda8b 69
+packages/html-test-app/src/preview-examples/echarts-gauge.html
+  h_c5a773bf2fda8b 54-57,59,65-81,83-84,86-106,109-132,134-138,140-166,168-169,180
+packages/html-test-app/src/preview-examples/echarts-line-advanced.html
+  h_c5a773bf2fda8b 71,78-89,93
+packages/html-test-app/src/preview-examples/echarts-line-multiple-y-axis.html
+  h_c5a773bf2fda8b 103-121
+packages/html-test-app/src/preview-examples/echarts-pie.html
+  h_c5a773bf2fda8b 71
+packages/html-test-app/src/preview-examples/echarts-progress-arc.html
+  h_c5a773bf2fda8b 56-63,84,98
+packages/html-test-app/src/preview-examples/echarts-progress-circle.html
+  h_c5a773bf2fda8b 56-63,84,97,101-103,108-110
+packages/html-test-app/src/preview-examples/echarts-special-3d.html
+  h_c5a773bf2fda8b 50,55,59
+packages/html-test-app/src/preview-examples/echarts-special-zoom.html
+  h_c5a773bf2fda8b 98
+packages/html-test-app/src/preview-examples/event-list-compact.html
+  h_c5a773bf2fda8b 19-30
+packages/html-test-app/src/preview-examples/event-list-custom-item-height-in-number.html
+  h_c5a773bf2fda8b 17-22
+packages/html-test-app/src/preview-examples/event-list-custom-item-height.html
+  h_c5a773bf2fda8b 19-24
+packages/html-test-app/src/preview-examples/event-list-filled.html
+  h_c5a773bf2fda8b 22-25
+packages/html-test-app/src/preview-examples/event-list-selected.html
+  h_c5a773bf2fda8b 35
+packages/html-test-app/src/preview-examples/event-list.html
+  h_c5a773bf2fda8b 19-30
+packages/html-test-app/src/preview-examples/global.css
+  h_c5a773bf2fda8b 14-16
+packages/html-test-app/src/preview-examples/grid-padding.css
+  h_c5a773bf2fda8b 17,32-33
+packages/html-test-app/src/preview-examples/grid-size.css
+  h_c5a773bf2fda8b 17,32-33
+packages/html-test-app/src/preview-examples/grid.css
+  h_c5a773bf2fda8b 17,32-33
+packages/html-test-app/src/preview-examples/init.js
+  h_c5a773bf2fda8b 28,32,38,43
+packages/html-test-app/src/preview-examples/layout-auto-custom.html
+  h_c5a773bf2fda8b 44-45
+packages/html-test-app/src/preview-examples/layout-auto.css
+  h_c5a773bf2fda8b 21-22
+packages/html-test-app/src/preview-examples/layout-auto.html
+  h_c5a773bf2fda8b 36-37
+packages/html-test-app/src/preview-examples/pill-variants.html
+  h_c5a773bf2fda8b 94-95,105-106
+packages/html-test-app/src/preview-examples/pill.html
+  h_c5a773bf2fda8b 28-29
+packages/html-test-app/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 36
+packages/ionic-test-app/src/App.tsx
+  h_c5a773bf2fda8b 34-36
+packages/ionic-test-app/src/pages/Demo.module.css
+  h_c5a773bf2fda8b 16
+packages/ionic-test-app/src/pages/Demo.tsx
+  h_c5a773bf2fda8b 80-91,114,116
+packages/ionic-test-app/src/pages/Home.tsx
+  h_c5a773bf2fda8b 137,140,143,146
+packages/ionic-test-app/src/theme/variables.css
+  h_c5a773bf2fda8b 30-34,38,42-49,51-54,56-59,61-64,66-69,71-74,76-79,81-84,86-89
+packages/nextjs-test-app/src/app/layout.tsx
+  h_c5a773bf2fda8b 3-4
+packages/react-test-app/src/preview-examples/badge-counter.tsx
+  h_c5a773bf2fda8b 14-16
+packages/react-test-app/src/preview-examples/badge-dot.tsx
+  h_c5a773bf2fda8b 14-16,137
+packages/react-test-app/src/preview-examples/badge-label.tsx
+  h_c5a773bf2fda8b 15-17
+packages/react-test-app/src/preview-examples/blind-header-actions.tsx
+  h_c5a773bf2fda8b 29-35
+packages/react-test-app/src/preview-examples/chip.tsx
+  h_c5a773bf2fda8b 48-49,89-90
+packages/react-test-app/src/preview-examples/echarts-circle.tsx
+  h_c5a773bf2fda8b 68
+packages/react-test-app/src/preview-examples/echarts-gauge.tsx
+  h_c5a773bf2fda8b 47-50,52,65-70,88,115,141-143
+packages/react-test-app/src/preview-examples/echarts-line-advanced.tsx
+  h_c5a773bf2fda8b 70,82
+packages/react-test-app/src/preview-examples/echarts-line-multiple-y-axis.tsx
+  h_c5a773bf2fda8b 66-84
+packages/react-test-app/src/preview-examples/echarts-pie.tsx
+  h_c5a773bf2fda8b 70
+packages/react-test-app/src/preview-examples/echarts-progress-arc.tsx
+  h_c5a773bf2fda8b 55-60,81,95
+packages/react-test-app/src/preview-examples/echarts-progress-circle.tsx
+  h_c5a773bf2fda8b 55-60,81,94,98,103
+packages/react-test-app/src/preview-examples/echarts-special-3d.tsx
+  h_c5a773bf2fda8b 50,55,59
+packages/react-test-app/src/preview-examples/echarts-special-zoom.tsx
+  h_c5a773bf2fda8b 99
+packages/react-test-app/src/preview-examples/event-list-compact.tsx
+  h_c5a773bf2fda8b 15-26
+packages/react-test-app/src/preview-examples/event-list-custom-item-height-in-number.tsx
+  h_c5a773bf2fda8b 20
+packages/react-test-app/src/preview-examples/event-list-custom-item-height.tsx
+  h_c5a773bf2fda8b 15-20
+packages/react-test-app/src/preview-examples/event-list-filled.tsx
+  h_c5a773bf2fda8b 13-16
+packages/react-test-app/src/preview-examples/event-list-selected.tsx
+  h_c5a773bf2fda8b 23
+packages/react-test-app/src/preview-examples/event-list.tsx
+  h_c5a773bf2fda8b 15-26
+packages/react-test-app/src/preview-examples/global.css
+  h_c5a773bf2fda8b 14-16
+packages/react-test-app/src/preview-examples/grid-padding.scoped.css
+  h_c5a773bf2fda8b 17,32-33
+packages/react-test-app/src/preview-examples/grid-size.scoped.css
+  h_c5a773bf2fda8b 17,32-33
+packages/react-test-app/src/preview-examples/grid.scoped.css
+  h_c5a773bf2fda8b 17,32-33
+packages/react-test-app/src/preview-examples/layout-auto.scoped.css
+  h_c5a773bf2fda8b 21-22
+packages/react-test-app/src/preview-examples/pill-variants.tsx
+  h_c5a773bf2fda8b 114-115,125-126
+packages/react-test-app/src/preview-examples/pill.tsx
+  h_c5a773bf2fda8b 20-21
+packages/react-test-app/src/preview-examples/popover.tsx
+  h_c5a773bf2fda8b 46
+packages/react/READMEOSS.html
+  h_c5a773bf2fda8b 123
+packages/storybook-docs/.storybook/preview.ts
+  h_c5a773bf2fda8b 6-7
+packages/storybook-docs/src/stories/application-header.stories.ts
+  h_c5a773bf2fda8b 195,286,290
+packages/storybook-docs/src/stories/application.stories.tsx
+  h_c5a773bf2fda8b 1-35
+packages/storybook-docs/src/stories/badge/badge-preview.css
+  h_c5a773bf2fda8b 27,33,52-53,64,81-82,93,104-105,126,147,154-155,182,190-191
+packages/storybook-docs/src/stories/badge/badge-preview.shared.tsx
+  h_c5a773bf2fda8b 14-16,82-86,185-188,195-198,206-209
+packages/storybook-docs/src/stories/breadcrumb-item.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/card-accordion.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/card-content.stories.tsx
+  h_c5a773bf2fda8b 1-28
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 1-36
+packages/storybook-docs/src/stories/card-title.stories.tsx
+  h_c5a773bf2fda8b 1-28
+packages/storybook-docs/src/stories/card.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/category-filter.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/chip.stories.ts
+  h_c5a773bf2fda8b 71-72,80-81,90-91,98-99,137,180,192
+packages/storybook-docs/src/stories/col.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/content-header.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/content.stories.tsx
+  h_c5a773bf2fda8b 1-32
+packages/storybook-docs/src/stories/custom-field.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/date-picker.stories.tsx
+  h_c5a773bf2fda8b 1-24
+packages/storybook-docs/src/stories/datetime-picker.stories.tsx
+  h_c5a773bf2fda8b 1-26
+packages/storybook-docs/src/stories/divider.stories.tsx
+  h_c5a773bf2fda8b 1-24
+packages/storybook-docs/src/stories/dropdown-header.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/dropdown-item.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/dropdown-quick-actions.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/dropdown.stories.tsx
+  h_c5a773bf2fda8b 1-37
+packages/storybook-docs/src/stories/empty-state.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/event-list-item.stories.ts
+  h_c5a773bf2fda8b 42,50,58,65,73,82
+packages/storybook-docs/src/stories/event-list.stories.ts
+  h_c5a773bf2fda8b 26
+packages/storybook-docs/src/stories/field-label.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/filter-chip.stories.tsx
+  h_c5a773bf2fda8b 1-26
+packages/storybook-docs/src/stories/flip-tile-content.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/group-context-menu.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/group-item.stories.tsx
+  h_c5a773bf2fda8b 1-34
+packages/storybook-docs/src/stories/group.stories.ts
+  h_c5a773bf2fda8b 47
+packages/storybook-docs/src/stories/helper-text.stories.tsx
+  h_c5a773bf2fda8b 1-28
+packages/storybook-docs/src/stories/icon-button.stories.ts
+  h_c5a773bf2fda8b 131
+packages/storybook-docs/src/stories/icon-toggle-button.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/key-value-list.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/key-value.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/kpi.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/layout-auto.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/layout-grid.stories.tsx
+  h_c5a773bf2fda8b 1-34
+packages/storybook-docs/src/stories/menu-about-item.stories.tsx
+  h_c5a773bf2fda8b 1-35
+packages/storybook-docs/src/stories/menu-about-news.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/menu-about.stories.tsx
+  h_c5a773bf2fda8b 1-35
+packages/storybook-docs/src/stories/menu-avatar-item.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/menu-avatar.stories.tsx
+  h_c5a773bf2fda8b 1-35
+packages/storybook-docs/src/stories/menu-settings-item.stories.tsx
+  h_c5a773bf2fda8b 1-37
+packages/storybook-docs/src/stories/menu-settings.stories.tsx
+  h_c5a773bf2fda8b 1-32
+packages/storybook-docs/src/stories/menu/menu.stories.ts
+  h_c5a773bf2fda8b 57-112
+packages/storybook-docs/src/stories/modal-content.stories.tsx
+  h_c5a773bf2fda8b 1-28
+packages/storybook-docs/src/stories/modal-footer.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/modal-header.stories.tsx
+  h_c5a773bf2fda8b 1-32
+packages/storybook-docs/src/stories/pane-layout.stories.tsx
+  h_c5a773bf2fda8b 1-34
+packages/storybook-docs/src/stories/popover-content.stories.tsx
+  h_c5a773bf2fda8b 1-26
+packages/storybook-docs/src/stories/popover-footer.stories.tsx
+  h_c5a773bf2fda8b 1-31
+packages/storybook-docs/src/stories/popover-header.stories.tsx
+  h_c5a773bf2fda8b 1-26
+packages/storybook-docs/src/stories/popover-image.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/popover.stories.ts
+  h_c5a773bf2fda8b 133
+packages/storybook-docs/src/stories/row.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/select-item.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/tab-item.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/tooltip.stories.tsx
+  h_c5a773bf2fda8b 1-33
+packages/storybook-docs/src/stories/tree-item.stories.tsx
+  h_c5a773bf2fda8b 1-32
+packages/storybook-docs/src/stories/typography.stories.tsx
+  h_c5a773bf2fda8b 1-30
+packages/storybook-docs/src/stories/upload.stories.tsx
+  h_c5a773bf2fda8b 1-29
+packages/storybook-docs/src/stories/workflow-step.stories.tsx
+  h_c5a773bf2fda8b 1-28
+packages/storybook-docs/src/stories/workflow.stories.tsx
+  h_c5a773bf2fda8b 1-45
+packages/vue-test-app/src/preview-examples/badge-counter.vue
+  h_c5a773bf2fda8b 20-32,36-48,52-64,68-80,85-91,95-107,111-123,125-156
+packages/vue-test-app/src/preview-examples/badge-dot.vue
+  h_c5a773bf2fda8b 18-45,48-69,71-98,100-127,130-151,153-180,182-209,211-246
+packages/vue-test-app/src/preview-examples/badge-label.vue
+  h_c5a773bf2fda8b 19-250
+packages/vue-test-app/src/preview-examples/blind-header-actions.vue
+  h_c5a773bf2fda8b 24-30
+packages/vue-test-app/src/preview-examples/chip.vue
+  h_c5a773bf2fda8b 37-38,70-71
+packages/vue-test-app/src/preview-examples/echarts-circle.vue
+  h_c5a773bf2fda8b 63
+packages/vue-test-app/src/preview-examples/echarts-gauge.vue
+  h_c5a773bf2fda8b 41-43,45,59-64,82,109,135-137
+packages/vue-test-app/src/preview-examples/echarts-line-advanced.vue
+  h_c5a773bf2fda8b 66,78
+packages/vue-test-app/src/preview-examples/echarts-line-multiple-y-axis.vue
+  h_c5a773bf2fda8b 114-132,155-161
+packages/vue-test-app/src/preview-examples/echarts-pie.vue
+  h_c5a773bf2fda8b 65
+packages/vue-test-app/src/preview-examples/echarts-progress-arc.vue
+  h_c5a773bf2fda8b 50-55,76,90
+packages/vue-test-app/src/preview-examples/echarts-progress-circle.vue
+  h_c5a773bf2fda8b 50-55,76,89,93,98
+packages/vue-test-app/src/preview-examples/echarts-special-3d.vue
+  h_c5a773bf2fda8b 44,49,53
+packages/vue-test-app/src/preview-examples/echarts-special-zoom.vue
+  h_c5a773bf2fda8b 96
+packages/vue-test-app/src/preview-examples/event-list-compact.vue
+  h_c5a773bf2fda8b 16-27
+packages/vue-test-app/src/preview-examples/event-list-custom-item-height-in-number.vue
+  h_c5a773bf2fda8b 16-21
+packages/vue-test-app/src/preview-examples/event-list-custom-item-height.vue
+  h_c5a773bf2fda8b 16-21
+packages/vue-test-app/src/preview-examples/event-list-filled.vue
+  h_c5a773bf2fda8b 14-17
+packages/vue-test-app/src/preview-examples/event-list-selected.vue
+  h_c5a773bf2fda8b 23
+packages/vue-test-app/src/preview-examples/event-list.vue
+  h_c5a773bf2fda8b 16-27
+packages/vue-test-app/src/preview-examples/global.css
+  h_c5a773bf2fda8b 14-16
+packages/vue-test-app/src/preview-examples/grid-padding.css
+  h_c5a773bf2fda8b 17,32-33
+packages/vue-test-app/src/preview-examples/grid-size.css
+  h_c5a773bf2fda8b 17,32-33
+packages/vue-test-app/src/preview-examples/grid.css
+  h_c5a773bf2fda8b 17,32-33
+packages/vue-test-app/src/preview-examples/layout-auto.css
+  h_c5a773bf2fda8b 21-22
+packages/vue-test-app/src/preview-examples/pill-variants.vue
+  h_c5a773bf2fda8b 86-87,97-98
+packages/vue-test-app/src/preview-examples/pill.vue
+  h_c5a773bf2fda8b 20-23,31-33,44-46
+packages/vue-test-app/src/preview-examples/popover.vue
+  h_c5a773bf2fda8b 46
+packages/vue/READMEOSS.html
+  h_c5a773bf2fda8b 123
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 19-20,119,262,377,472,743,785,998,1093,1217,1353,4452-4455,16658-16659
+pnpm-workspace.yaml
+  h_c5a773bf2fda8b 10,23-24,27
+testing/visual-testing/tests/3rd-party/bootstrap/html-elements/index.html
+  h_c5a773bf2fda8b 24
+testing/visual-testing/tests/application-header/no-border/index.html
+  h_c5a773bf2fda8b 27
+testing/visual-testing/tests/badge/attached-layout/index.html
+  h_c5a773bf2fda8b 43-44,52-53
+testing/visual-testing/tests/badge/counter/index.html
+  h_c5a773bf2fda8b 26-27,51-52,56,76-95,98-117,120-139,142-161,164-183,186-205,208-227,235-236,244-245,253-254,262-303,326-331
+testing/visual-testing/tests/badge/dot/index.html
+  h_c5a773bf2fda8b 26-27,51-52,56,76-95,98-117,120-139,142-161,164-183,186-205,208-227,234-235,243-244,252-253
+testing/visual-testing/tests/badge/label/index.html
+  h_c5a773bf2fda8b 26-27,51-52,56,76-98,101-123,126-148,151-173,176-198,201-223,226-248,257-258,267-268,277-278,286-298
+testing/visual-testing/tests/badge/status-icon/index.html
+  h_c5a773bf2fda8b 26-27,51-52,56
+testing/visual-testing/tests/chat/overflow/index.html
+  h_c5a773bf2fda8b 18-19,26,39-41
+testing/visual-testing/tests/chat/overview/index.html
+  h_c5a773bf2fda8b 18-19,26,53-55,87
+testing/visual-testing/tests/date-picker/basic/index.html
+  h_c5a773bf2fda8b 30
+testing/visual-testing/tests/date-picker/date-picker.e2e.ts
+  h_c5a773bf2fda8b 24-28
+testing/visual-testing/tests/date-picker/today-in-range/index.html
+  h_c5a773bf2fda8b 1-36
+testing/visual-testing/tests/event-list/basic/index.html
+  h_c5a773bf2fda8b 19,22,25,28-30
+testing/visual-testing/tests/event-list/chevron/index.html
+  h_c5a773bf2fda8b 19,22,25,28
+testing/visual-testing/tests/event-list/compact/index.html
+  h_c5a773bf2fda8b 19,22,25,28
+testing/visual-testing/tests/event-list/custom-height/index.html
+  h_c5a773bf2fda8b 19-24,28-33
+testing/visual-testing/tests/layout-grid/basic/index.html
+  h_c5a773bf2fda8b 27
+testing/visual-testing/tests/layout-grid/simple/index.html
+  h_c5a773bf2fda8b 18
+testing/visual-testing/tests/menu-about/menu-about.e2e.ts
+  h_c5a773bf2fda8b 21-23
+testing/visual-testing/tests/menu-settings/menu-settings.e2e.ts
+  h_c5a773bf2fda8b 18-19
+testing/visual-testing/tests/modal/non-blocking/index.html
+  h_c5a773bf2fda8b 20
+testing/visual-testing/tests/popover/header-with-icon/index.html
+  h_c5a773bf2fda8b 26
+testing/visual-testing/tests/popover/with-image/index.html
+  h_c5a773bf2fda8b 33
+testing/visual-testing/tests/style-entry-points/comparison/define.ts
+  h_c5a773bf2fda8b 1-16
+testing/visual-testing/tests/style-entry-points/comparison/index.html
+  h_c5a773bf2fda8b 1-84
+testing/visual-testing/tests/style-entry-points/fixture/define.ts
+  h_c5a773bf2fda8b 1-165
+testing/visual-testing/tests/style-entry-points/fixture/index.html
+  h_c5a773bf2fda8b 1-58
+testing/visual-testing/tests/style-entry-points/style-entry-points.e2e.ts
+  h_c5a773bf2fda8b 1-124
+testing/visual-testing/tests/theme-system/basic/define.ts
+  h_c5a773bf2fda8b 9-10
+testing/visual-testing/tests/typography/text-color/index.html
+  h_c5a773bf2fda8b 18,48-56,60
+testing/visual-testing/tests/utils/test/runtime/main.ts
+  h_c5a773bf2fda8b 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "cda8e13a9371b32808c45d3afb7493eb7ce996b7",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
