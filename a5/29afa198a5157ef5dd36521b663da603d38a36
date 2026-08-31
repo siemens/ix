@@ -1,0 +1,14 @@
+.changeset/eix-73-group-a11y.md
+  h_c5a773bf2fda8b 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a529afa198a5157ef5dd36521b663da603d38a36",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
