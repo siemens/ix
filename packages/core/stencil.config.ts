@@ -120,15 +120,6 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      copy: [
-        // Keep global CSS bundles (legacy/foundation/…) after Stencil clears dist.
-        // Requires a prior `pnpm run build.scss` (build.watch / start do this).
-        {
-          src: '../dist-css',
-          dest: '.',
-          warn: false,
-        },
-      ],
     },
     {
       type: 'dist-custom-elements',
