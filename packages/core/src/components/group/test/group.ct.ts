@@ -224,6 +224,22 @@ regressionTest(
 );
 
 regressionTest(
+  'selected group item exposes aria-pressed',
+  async ({ mount, page }) => {
+    await mount(groupWithItems);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await group.clickExpand();
+    const itemButton = group.itemButton('Item 1');
+    await expect(itemButton).toHaveAttribute('aria-pressed', 'false');
+
+    await itemButton.click();
+    await expect(itemButton).toHaveAttribute('aria-pressed', 'true');
+  }
+);
+
+regressionTest(
   'expand button exposes disclosure ARIA',
   async ({ mount, page }) => {
     await mount(groupWithItems);
