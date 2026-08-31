@@ -42,7 +42,11 @@
     },
     "registry#build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "../../.agents/skills/ix/search.mjs"],
+      "outputs": [
+        "dist/**",
+        "../../.agents/skills/ix/search.mjs",
+        "../../.agents/skills/ix/THIRD_PARTY_LICENSES.md"
+      ],
       "outputLogs": "new-only"
     },
     "start": {
