@@ -19,21 +19,21 @@ const temporaryDirectory = mkdtempSync(
 );
 const expectedBundle = path.resolve(
   packageDirectory,
-  '../../.agents/skills/ix/search.mjs'
+  '../../skills/ix/scripts/search.mjs'
 );
 const expectedThirdPartyLicenses = path.resolve(
   packageDirectory,
-  '../../.agents/skills/ix/THIRD_PARTY_LICENSES.md'
+  '../../skills/ix/THIRD_PARTY_LICENSES.md'
 );
 
 const artifacts = [
   {
-    name: '.agents/skills/ix/search.mjs',
+    name: 'skills/ix/scripts/search.mjs',
     expected: expectedBundle,
-    generated: path.join(temporaryDirectory, 'search.mjs'),
+    generated: path.join(temporaryDirectory, 'scripts', 'search.mjs'),
   },
   {
-    name: '.agents/skills/ix/THIRD_PARTY_LICENSES.md',
+    name: 'skills/ix/THIRD_PARTY_LICENSES.md',
     expected: expectedThirdPartyLicenses,
     generated: path.join(temporaryDirectory, 'THIRD_PARTY_LICENSES.md'),
   },
