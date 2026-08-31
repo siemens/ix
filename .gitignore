@@ -202,7 +202,14 @@ packages/documentation/static/ionic-preview
 ###
 # artifact from bundle @siemens/ix-icons
 ###
+
 ix-icons/dist/collection/components/icon/icon.css
 
 component-usage.json
 component-usage-by-component.json
+
+###
+# Skills
+###
+
+.agents/skills/ix/search.mjs

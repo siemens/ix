@@ -63,21 +63,39 @@ For implementation, API, example, block, Figma, or migration work:
 4. If `@siemens/ix` is absent and code should be implemented, stop and use the `ix-installation` skill. For planning or documentation-only work, use the user-requested version or clearly label the registry version used.
 5. If only a wrapper version is visible, use it as a provisional iX version and confirm compatibility with `@siemens/ix`.
 
-## Phase 2: Select Version-Matched Registry Documentation
+## Phase 2: Search the Version-Matched Registry
 
-1. Open `https://siemens.github.io/ix/llms.txt`.
-2. Look for the registry version matching the resolved iX version, normally `v<major.minor.patch>`.
-3. Open that version's `llms.txt`.
-4. Use:
-   - `llms/components.md` for component discovery and links to per-component details
-   - `llms/examples.md` for direct example discovery by related component, framework, or source file
-   - `llms/blocks.md` for copyable multi-file UI patterns
-5. Do not substitute the `latest` registry version without saying so.
+`search.mjs` is a generated, self-contained Node 22 bundle. Edit
+`tooling/registry/src/skill/search.mjs` and regenerate it from the repository root
+with `pnpm bundle:ix-search`; use `pnpm check:ix-search` to detect bundle drift.
+
+1. Run the bundled helper from the repository root:
+
+   ```sh
+   node .agents/skills/ix/search.mjs \
+     --query "<component, example, block, or Figma ID>" \
+     --version "<resolved iX version or registry tag>" \
+     --framework "<html|react|angular|angular-standalone|vue>"
+   ```
+
+   Add `--kind component`, `--limit`, `--registry-url`, or
+   `--local-index <path>` as needed. The helper emits concise JSON results with
+   version-canonical detail paths and normalizes Figma IDs from `123-456` to
+   `123:456`. A query without `--kind` can discover components, examples, and
+   blocks together.
+
+2. Open `https://siemens.github.io/ix/llms.txt` only to select or verify the
+   registry version matching the resolved iX version, normally
+   `v<major.minor.patch>`.
+3. Fetch the matched detail artifact at the `path` returned by the helper:
+   - `llms/components/<component-tag>.md` for the complete component contract
+   - `examples/<name>.json` for framework variants and their source files
+   - `blocks/<name>.json` for copyable multi-file UI patterns
+4. Do not substitute the `latest` registry version without saying so.
 
 If the exact version is unavailable:
 
 1. Use installed package metadata where possible:
-   - `node_modules/@siemens/ix/component-index.json`
    - `node_modules/@siemens/ix/component-doc.json`
    - `node_modules/@siemens/ix/api-docs/components/<component-name>/readme.md`
 2. Use the broad documentation site only for version-independent guidance.
@@ -85,10 +103,11 @@ If the exact version is unavailable:
 
 ## Example Workflow
 
-Use the example index when the task asks for practical code or names a behavior, pattern, source file, or iX component.
+Use the central search helper when the task asks for practical code or names a
+behavior, pattern, source file, or iX component.
 
-1. Open `llms/examples.md` relative to the selected version's registry entrypoint.
-2. Search example names and related iX component tags for the requested behavior.
+1. Search with `--kind example` and the target `--framework`.
+2. Open the matched example manifest from its canonical detail path.
 3. Inspect the available framework variants and source files.
 4. Open every source file needed by the target framework variant.
 5. Confirm the example's component APIs against the target project.
@@ -100,7 +119,7 @@ Use the relative path from the selected version. Do not construct or hard-code a
 
 ### Discover the Component
 
-1. Search the matching version's `llms/components.md` by component name, purpose, and description.
+1. Search the matching version with `--kind component` by component name, purpose, and description.
 2. Prefer an existing component that matches the requested behavior over rebuilding it from generic HTML.
 3. For broad discovery, compare the descriptions of plausible components before choosing.
 
@@ -123,7 +142,7 @@ Open the linked usage guide when the task involves component choice, composition
 
 ### Validate with an Example
 
-1. Search `llms/examples.md` by the component tag, then compare the component detail's related examples.
+1. Search with `--kind example` and the component tag, then compare the component detail's related examples.
 2. Select an example that demonstrates the requested state or interaction.
 3. Open only the matching variant:
    - `react`
@@ -150,8 +169,8 @@ When no related example exists, use the component API and usage guide directly a
 
 Use blocks for complete page sections or reusable multi-file patterns, not for a single component lookup.
 
-1. Open the matching version's `llms/blocks.md`.
-2. Search descriptions and keywords for the requested workflow.
+1. Search the matching version with `--kind block` and the target framework.
+2. Inspect descriptions and keywords for the requested workflow.
 3. Inspect:
    - intended use
    - preview path
@@ -215,13 +234,15 @@ When the task includes a Figma resource:
 
 1. Extract the main component ID when available.
 2. Normalize `123-456` to `123:456` for comparison.
-3. Search Figma IDs in the matching version's component details or component index.
+3. Search Figma IDs in the matching version with `search.mjs --kind component --figma-id <id>`.
 4. Treat the ID only as a design-system mapping, never as a runtime API.
 5. If one component matches, open its full component detail, usage guide, and a target-framework example before implementation.
 6. If multiple components match, compare their documentation and intended use instead of selecting arbitrarily.
-7. If no mapping exists, state that it is unmapped and use visual/functional requirements to search the component index. Do not invent a mapping.
+7. If no mapping exists, state that it is unmapped and use visual/functional requirements to search the central documentation index. Do not invent a mapping.
 
-Installed `node_modules/@siemens/ix/component-index.json` is the fallback source for `figmaMainComponentIds` and documentation links.
+Installed `node_modules/@siemens/ix/component-doc.json` is the fallback source for
+`figmaMainComponentIds` and documentation links when a matching registry version
+is not available.
 
 ## General Guidance, Migration, and Review
 

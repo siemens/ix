@@ -8,32 +8,21 @@ export type RegistryIndex = {
       examples: Array<{ name: string; path: string }>;
       components: {
         componentDoc: string;
-        componentIndex: string;
-        componentSearchIndex: string;
         componentRelatedExamples?: string;
         componentRelatedBlocks?: string;
+        componentIndex?: string;
+        componentSearchIndex?: string;
       };
+      documentationSearchIndex?: string;
+      searchIndex?: Record<
+        string,
+        Record<string, string | undefined> | undefined
+      >;
       llms?: {
         entrypoint: string;
         components: string;
         examples?: string;
         blocks: string;
-      };
-      searchIndex?: {
-        blocks?: {
-          html?: string;
-          react?: string;
-          angular?: string;
-          'angular-standalone'?: string;
-          vue?: string;
-        };
-        examples?: {
-          html?: string;
-          react?: string;
-          angular?: string;
-          'angular-standalone'?: string;
-          vue?: string;
-        };
       };
     }
   >;
@@ -74,26 +63,113 @@ export type ExampleVariant = {
   files: Array<{ source: string; target: string; type?: string }>;
 };
 
+const registryBlocksSchema = z.array(
+  z.object({
+    name: z.string().regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+    path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
+  })
+);
+
+const registryExamplesSchema = z.array(
+  z.object({
+    name: z.string().min(1),
+    path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
+  })
+);
+
+const registryLlmsSchema = z
+  .object({
+    entrypoint: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    components: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    examples: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path')
+      .optional(),
+    blocks: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path')
+      .optional(),
+  })
+  .strict()
+  .optional();
+
+const currentRegistryVersionSchema = z
+  .object({
+    blocks: registryBlocksSchema,
+    examples: registryExamplesSchema,
+    components: z
+      .object({
+        componentDoc: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedExamples: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+        componentRelatedBlocks: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+      })
+      .strict(),
+    documentationSearchIndex: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    llms: registryLlmsSchema,
+  })
+  .strict();
+
+const legacyRegistryVersionSchema = z
+  .object({
+    blocks: registryBlocksSchema,
+    examples: registryExamplesSchema,
+    components: z
+      .object({
+        componentDoc: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentIndex: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentSearchIndex: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedExamples: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedBlocks: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+      })
+      .strict(),
+    searchIndex: z
+      .object({
+        blocks: z.record(
+          z.string(),
+          z.string().refine(isSafeRelativePath, 'must be a safe relative path')
+        ),
+        examples: z.record(
+          z.string(),
+          z.string().refine(isSafeRelativePath, 'must be a safe relative path')
+        ),
+      })
+      .strict(),
+    llms: registryLlmsSchema,
+  })
+  .strict();
+
 const RegistryIndexSchema = z
   .object({
     name: z.string().min(1),
     'dist-tags': z.record(z.string(), z.string()),
     versions: z.record(
       z.string(),
-      z
-        .object({
-          blocks: z.array(
-            z.object({
-              name: z
-                .string()
-                .regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
-              path: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-            })
-          ),
-        })
-        .passthrough()
+      z.union([currentRegistryVersionSchema, legacyRegistryVersionSchema])
     ),
   })
   .passthrough();
@@ -385,25 +461,6 @@ function resolveExampleSourcePath(
   return `${entryBaseDir}/${sourcePath}`;
 }
 
-function withVersionPrefix(
-  value: string,
-  version: string,
-  knownVersions: string[]
-): string {
-  const normalizedValue = normalizePath(value);
-
-  if (normalizedValue.startsWith(`${version}/`)) {
-    return normalizedValue;
-  }
-
-  const [head, ...rest] = normalizedValue.split('/');
-  if (knownVersions.includes(head) && rest.length > 0) {
-    return `${version}/${rest.join('/')}`;
-  }
-
-  return `${version}/${normalizedValue}`;
-}
-
 export function resolveRegistryVersion(
   registry: VersionedRegistry,
   versionRef?: string
@@ -441,52 +498,17 @@ export function resolveRegistryVersion(
   );
 }
 
-export function resolveBlocksSearchIndexPath(
-  registry: RegistryIndex,
-  framework: 'react' | 'angular' | 'vue',
-  versionRef?: string
-): string {
-  const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex = registry.versions[version]?.searchIndex?.blocks;
-
-  const frameworkIndexPath = sourceIndex?.[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(`No search index available for framework: ${framework}`);
-  }
-
-  return withVersionPrefix(
-    frameworkIndexPath,
-    version,
-    Object.keys(registry.versions)
-  );
-}
-
-export function resolveExamplesSearchIndexPath(
-  registry: ExamplesRegistryIndex,
-  framework: 'html' | 'react' | 'angular' | 'angular-standalone' | 'vue',
-  versionRef?: string
-): string {
-  const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex = registry.versions[version]?.searchIndex?.examples;
-
-  const frameworkIndexPath = sourceIndex?.[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(
-      `No search index available for framework: ${framework} in examples registry`
-    );
-  }
-
-  return withVersionPrefix(
-    frameworkIndexPath,
-    version,
-    Object.keys(registry.versions)
-  );
-}
-
 export async function fetchRegistryIndex(
   baseUrl: string
 ): Promise<RegistryIndex> {
   return await fetchJson<RegistryIndex>(baseUrl, 'registry.json');
+}
+
+export async function fetchRegistryArtifact<T>(
+  baseUrl: string,
+  resourcePath: string
+): Promise<T> {
+  return await fetchJson<T>(baseUrl, resourcePath);
 }
 
 export async function fetchValidatedRegistryIndex(

@@ -64,7 +64,7 @@ Check the workflow run first, then verify:
 In `registry.json`, confirm that:
 
 1. `versions` contains the deployed version and previously published versions.
-2. Paths for the new entry begin with the deployed version.
+2. Paths for the new entry, including `documentationSearchIndex`, begin with the deployed version.
 3. `dist-tags.latest` points to the highest deployed stable semantic version.
 
 Redeploying an existing version replaces its complete version directory.
@@ -98,6 +98,10 @@ pnpm --filter registry build
 ```
 
 Build output is written to `tooling/registry/dist`.
+
+For local development, `pnpm --filter registry dev` builds the `development`
+entry with unprefixed artifact paths and serves `dist` directly. Deployment
+builds set `REGISTRY_PATH_PREFIX` explicitly before the merge step.
 
 ## Deployment safety
 
