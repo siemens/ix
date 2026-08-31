@@ -113,9 +113,7 @@ export class GroupItem {
           tabindex={this.disabled ? -1 : 0}
           disabled={this.disabled}
           aria-pressed={
-            this.suppressSelection
-              ? undefined
-              : a11yBoolean(this.selected)
+            this.suppressSelection ? undefined : a11yBoolean(this.selected)
           }
         >
           <div class="group-entry-selection-indicator"></div>
