@@ -10,10 +10,11 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @mixin input-control {
   & {
-    color: var(--ix-input--color, var(--theme-color-std-text));
+    color: var(--ix-input--color, #{sys.$si-sys-text-primary});
     border-radius: var(
       --ix-input--border-radius,
       var(--theme-small-border-radius)
@@ -21,11 +22,8 @@
     height: vars.$default-control-height;
     min-height: vars.$default-control-height;
     min-width: vars.$input-min-width;
-    background-color: var(
-      --ix-input--background,
-      var(--theme-color-component-8)
-    );
-    border: solid 1px var(--ix-input--border-color, var(--theme-color-std-bdr));
+    background-color: var(--ix-input--background, #{sys.$si-sys-background-1});
+    border: solid 1px var(--ix-input--border-color, #{sys.$si-sys-border-2});
     box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
     padding-inline-start: vars.$input-padding-x;
     padding-inline-end: vars.$input-padding-x;
@@ -35,18 +33,18 @@
   @include text-truncation.ellipsis;
 
   &::placeholder {
-    color: var(--ix-input-hint--color, var(--theme-color-soft-text));
+    color: var(--ix-input-hint--color, #{sys.$si-sys-text-secondary});
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
     @include hover.hover {
       background-color: var(
         --ix-input--background--hover,
-        var(--theme-color-component-8--hover)
+        #{sys.$si-sys-background-4}
       );
       border-color: var(
         --ix-input--border-color--hover,
-        var(--theme-color-dynamic)
+        #{sys.$si-sys-border-accent-hover}
       );
       cursor: auto;
     }
@@ -54,23 +52,23 @@
     @include hover.focus-visible {
       background-color: var(
         --ix-input--background--focus,
-        var(--theme-color-component-8--hover)
+        #{sys.$si-sys-background-4}
       );
       border-color: var(
         --ix-input--border-color--focus,
-        var(--theme-color-dynamic)
+        #{sys.$si-sys-border-accent-hover}
       );
       outline-offset: var(
         --ix-input--focus--outline-offset,
         var(--theme-focus-outline-offset)
       );
       box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
-      outline: 1px solid var(--theme-color-focus-bdr);
+      outline: 1px solid #{sys.$si-sys-effects-focus};
     }
   }
 
   &:focus-visible {
-    color: var(--ix-input--color, var(--theme-color-std-text));
+    color: var(--ix-input--color, #{sys.$si-sys-text-primary});
   }
 
   &[type='number'] {
@@ -98,7 +96,7 @@
   &.readonly {
     box-shadow: none !important;
     outline: none !important;
-    border-color: var(--ix-input--border-color, var(--theme-color-std-bdr));
+    border-color: var(--ix-input--border-color, #{sys.$si-sys-border-2});
     cursor: default !important;
 
     &::placeholder {
@@ -113,10 +111,10 @@
     border-inline-start: none !important;
     border-inline-end: none !important;
     border-radius: 0rem;
-    color: var(--theme-color-weak-text);
+    color: #{sys.$si-sys-text-disabled};
     border-color: var(
       --ix-input--border-color-bottom--disabled,
-      var(--theme-color-weak-bdr)
+      #{sys.$si-sys-border-4}
     );
 
     &::placeholder {

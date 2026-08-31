@@ -8,13 +8,14 @@
  */
 
 @use '../mixins/hover';
+@use '../tokens/system' as sys;
 
 a[href] {
-  --ix-link--color: var(--theme-color-primary);
-  --ix-link--color--active: var(--theme-color-dynamic);
-  --ix-link--color--hover: var(--theme-color-dynamic);
-  --ix-link--color--visited: var(--theme-color-primary);
-  --ix-link--outline-color--focus: var(--theme-color-focus-bdr);
+  --ix-link--color: #{sys.$si-sys-text-accent};
+  --ix-link--color--active: #{sys.$si-sys-text-accent-hover};
+  --ix-link--color--hover: #{sys.$si-sys-text-accent-hover};
+  --ix-link--color--visited: #{sys.$si-sys-text-accent};
+  --ix-link--outline-color--focus: #{sys.$si-sys-effects-focus};
 }
 
 @mixin no-link-decoration {
