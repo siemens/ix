@@ -66,8 +66,9 @@ For implementation, API, example, block, Figma, or migration work:
 ## Phase 2: Search the Version-Matched Registry
 
 `search.mjs` is a generated, self-contained Node 22 bundle. Edit
-`tooling/registry/src/skill/search.mjs` and regenerate it from the repository root
-with `pnpm bundle:ix-search`; use `pnpm check:ix-search` to detect bundle drift.
+`tooling/registry/src/skill/search.mjs` and regenerate the bundle and its
+third-party license notice from the repository root with
+`pnpm bundle:ix-search`; use `pnpm check:ix-search` to detect bundle drift.
 
 1. Run the bundled helper from the repository root:
 

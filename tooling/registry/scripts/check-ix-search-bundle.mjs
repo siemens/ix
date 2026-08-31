@@ -8,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -21,31 +21,50 @@ const expectedBundle = path.resolve(
   packageDirectory,
   '../../.agents/skills/ix/search.mjs'
 );
-const generatedBundle = path.join(temporaryDirectory, 'search.mjs');
+const expectedThirdPartyLicenses = path.resolve(
+  packageDirectory,
+  '../../.agents/skills/ix/THIRD_PARTY_LICENSES.md'
+);
+
+const artifacts = [
+  {
+    name: '.agents/skills/ix/search.mjs',
+    expected: expectedBundle,
+    generated: path.join(temporaryDirectory, 'search.mjs'),
+  },
+  {
+    name: '.agents/skills/ix/THIRD_PARTY_LICENSES.md',
+    expected: expectedThirdPartyLicenses,
+    generated: path.join(temporaryDirectory, 'THIRD_PARTY_LICENSES.md'),
+  },
+];
 
 try {
-  execFileSync(
-    'pnpm',
-    ['exec', 'tsdown', '--config', 'tsdown.ix-search.config.ts'],
-    {
-      cwd: packageDirectory,
-      env: {
-        ...process.env,
-        IX_SEARCH_OUT_DIR: temporaryDirectory,
-      },
-      stdio: 'inherit',
-    }
-  );
+  execFileSync(process.execPath, ['scripts/build-ix-search-bundle.mjs'], {
+    cwd: packageDirectory,
+    env: {
+      ...process.env,
+      IX_SEARCH_OUT_DIR: temporaryDirectory,
+    },
+    stdio: 'inherit',
+  });
 
-  const expected = readFileSync(expectedBundle);
-  const generated = readFileSync(generatedBundle);
-  if (!expected.equals(generated)) {
+  const staleArtifacts = artifacts.filter(
+    ({ expected, generated }) =>
+      !existsSync(expected) ||
+      !readFileSync(expected).equals(readFileSync(generated))
+  );
+  if (staleArtifacts.length > 0) {
     process.stderr.write(
-      'IX search bundle is out of date. Run `pnpm bundle:ix-search` to regenerate it.\n'
+      `IX search artifact(s) out of date: ${staleArtifacts
+        .map(({ name }) => name)
+        .join(', ')}. Run \`pnpm bundle:ix-search\` to regenerate them.\n`
     );
     process.exitCode = 1;
   } else {
-    process.stdout.write('IX search bundle is up to date.\n');
+    process.stdout.write(
+      'IX search bundle and third-party notice are up to date.\n'
+    );
   }
 } finally {
   rmSync(temporaryDirectory, { recursive: true, force: true });
