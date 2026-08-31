@@ -1,8 +1,8 @@
 ---
 name: ix
 description: 'Implement, review, migrate, or answer development questions about Siemens iX. Use version-matched registry documentation for component APIs, examples, blocks, and Figma mappings; use the official design-system documentation for usage guidance, accessibility, migrations, writing, charts, and icons.'
-argument-hint: 'Describe the iX feature, component, design, migration, or question and the target application'
-user-invocable: true
+license: 'MIT; see THIRD_PARTY_LICENSES.md for the bundled MiniSearch notice.'
+compatibility: 'Requires Node.js 22+ and network access to the Siemens iX registry and documentation. Local-index mode may work offline.'
 ---
 
 # Siemens iX Development
@@ -65,38 +65,34 @@ For implementation, API, example, block, Figma, or migration work:
 
 ## Phase 2: Search the Version-Matched Registry
 
-`search.mjs` is a generated, self-contained Node 22 bundle. Edit
-`tooling/registry/src/skill/search.mjs` and regenerate the bundle and its
-third-party license notice from the repository root with
-`pnpm bundle:ix-search`; use `pnpm check:ix-search` to detect bundle drift.
+`scripts/search.mjs` is the bundled, self-contained Node 22 helper included in
+this skill. From the installed skill root, run:
 
-1. Run the bundled helper from the repository root:
+```sh
+node scripts/search.mjs \
+  --query "<component, example, block, or Figma ID>" \
+  --version "<resolved iX version or registry tag>" \
+  --framework "<html|react|angular|angular-standalone|vue>"
+```
 
-   ```sh
-   node .agents/skills/ix/search.mjs \
-     --query "<component, example, block, or Figma ID>" \
-     --version "<resolved iX version or registry tag>" \
-     --framework "<html|react|angular|angular-standalone|vue>"
-   ```
+Add `--kind component`, `--limit`, `--registry-url`, or `--local-index <path>`
+as needed. The helper emits concise JSON results with version-canonical detail
+paths and normalizes Figma IDs from `123-456` to `123:456`. A query without
+`--kind` can discover components, examples, and blocks together.
 
-   Add `--kind component`, `--limit`, `--registry-url`, or
-   `--local-index <path>` as needed. The helper emits concise JSON results with
-   version-canonical detail paths and normalizes Figma IDs from `123-456` to
-   `123:456`. A query without `--kind` can discover components, examples, and
-   blocks together.
-
-2. Open `https://siemens.github.io/ix/llms.txt` only to select or verify the
+1. Open `https://siemens.github.io/ix/llms.txt` only to select or verify the
    registry version matching the resolved iX version, normally
    `v<major.minor.patch>`.
-3. Fetch the matched detail artifact at the `path` returned by the helper:
+2. Fetch the matched detail artifact at the `path` returned by the helper:
    - `llms/components/<component-tag>.md` for the complete component contract
    - `examples/<name>.json` for framework variants and their source files
    - `blocks/<name>.json` for copyable multi-file UI patterns
-4. Do not substitute the `latest` registry version without saying so.
+3. Do not substitute the `latest` registry version without saying so.
 
 If the exact version is unavailable:
 
-1. Use installed package metadata where possible:
+1. Use installed package metadata from the consumer's target application or
+   workspace, not from this installed skill directory, where possible:
    - `node_modules/@siemens/ix/component-doc.json`
    - `node_modules/@siemens/ix/api-docs/components/<component-name>/readme.md`
 2. Use the broad documentation site only for version-independent guidance.
@@ -189,7 +185,9 @@ Use blocks for complete page sections or reusable multi-file patterns, not for a
 ### Select an Icon
 
 1. Search `https://ix.siemens.io/docs/icons/icon-library.md` by name, category, tags, description, and related icons.
-2. If remote documentation is unavailable, search `node_modules/@siemens/ix-icons/dist/sample.json`.
+2. If remote documentation is unavailable, search
+   `node_modules/@siemens/ix-icons/dist/sample.json` in the consumer's target
+   application or workspace, not in this installed skill directory.
 3. Choose an icon whose documented meaning matches the action or status. Do not select by visual similarity alone.
 4. Consult the icon usage guidance for menu, status, component, and standalone icon rules.
 
@@ -235,15 +233,18 @@ When the task includes a Figma resource:
 
 1. Extract the main component ID when available.
 2. Normalize `123-456` to `123:456` for comparison.
-3. Search Figma IDs in the matching version with `search.mjs --kind component --figma-id <id>`.
+3. Search Figma IDs in the matching version with
+   `node scripts/search.mjs --kind component --figma-id <id>`.
 4. Treat the ID only as a design-system mapping, never as a runtime API.
 5. If one component matches, open its full component detail, usage guide, and a target-framework example before implementation.
 6. If multiple components match, compare their documentation and intended use instead of selecting arbitrarily.
 7. If no mapping exists, state that it is unmapped and use visual/functional requirements to search the central documentation index. Do not invent a mapping.
 
-Installed `node_modules/@siemens/ix/component-doc.json` is the fallback source for
+Installed `node_modules/@siemens/ix/component-doc.json` in the consumer's
+target application or workspace is the fallback source for
 `figmaMainComponentIds` and documentation links when a matching registry version
-is not available.
+is not available. It is not expected to be present in this installed skill
+directory.
 
 ## General Guidance, Migration, and Review
 

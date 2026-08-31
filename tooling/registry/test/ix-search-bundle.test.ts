@@ -9,7 +9,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import {
-  copyFileSync,
+  cpSync,
   existsSync,
   mkdtempSync,
   readFileSync,
@@ -103,14 +103,14 @@ function createIndex(): object {
 }
 
 function runSearch(
-  bundlePath: string,
+  scriptPath: string,
   directory: string,
   ...arguments_: string[]
 ): SearchDocument[] {
   const result = spawnSync(
     process.execPath,
     [
-      bundlePath,
+      scriptPath,
       '--local-index',
       path.join(directory, 'documentation-search-index.json'),
       ...arguments_,
@@ -212,26 +212,29 @@ test('generated third-party notice uses the installed MiniSearch metadata and li
 
 test('bundled IX search runs outside the repository without MiniSearch resolution', () => {
   const directory = mkdtempSync(path.join(os.tmpdir(), 'ix-search-runtime-'));
-  const bundlePath = path.join(directory, 'search.mjs');
+  const skillDirectory = path.join(directory, 'ix');
   const repositoryRoot = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     '../../..'
   );
 
   try {
-    copyFileSync(
-      path.join(repositoryRoot, '.agents/skills/ix/search.mjs'),
-      bundlePath
-    );
+    cpSync(path.join(repositoryRoot, 'skills/ix'), skillDirectory, {
+      recursive: true,
+    });
+    assert.ok(existsSync(path.join(skillDirectory, 'SKILL.md')));
+    assert.ok(existsSync(path.join(skillDirectory, 'scripts/search.mjs')));
+    assert.ok(existsSync(path.join(skillDirectory, 'THIRD_PARTY_LICENSES.md')));
+    assert.equal(existsSync(path.join(skillDirectory, 'search.mjs')), false);
     writeFileSync(
-      path.join(directory, 'documentation-search-index.json'),
+      path.join(skillDirectory, 'documentation-search-index.json'),
       JSON.stringify(createIndex())
     );
 
     assert.equal(
       runSearch(
-        bundlePath,
-        directory,
+        'scripts/search.mjs',
+        skillDirectory,
         '--query',
         'ix-button',
         '--kind',
@@ -241,8 +244,8 @@ test('bundled IX search runs outside the repository without MiniSearch resolutio
     );
     assert.equal(
       runSearch(
-        bundlePath,
-        directory,
+        'scripts/search.mjs',
+        skillDirectory,
         '--query',
         'button',
         '--kind',
@@ -254,8 +257,8 @@ test('bundled IX search runs outside the repository without MiniSearch resolutio
     );
     assert.equal(
       runSearch(
-        bundlePath,
-        directory,
+        'scripts/search.mjs',
+        skillDirectory,
         '--query',
         'workflow',
         '--kind',
@@ -267,8 +270,8 @@ test('bundled IX search runs outside the repository without MiniSearch resolutio
     );
     assert.equal(
       runSearch(
-        bundlePath,
-        directory,
+        'scripts/search.mjs',
+        skillDirectory,
         '--query',
         '123-456',
         '--kind',

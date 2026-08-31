@@ -103,6 +103,31 @@ For local development, `pnpm --filter registry dev` builds the `development`
 entry with unprefixed artifact paths and serves `dist` directly. Deployment
 builds set `REGISTRY_PATH_PREFIX` explicitly before the merge step.
 
+## iX skill search bundle
+
+The source for the consumer-facing search helper is
+`tooling/registry/src/skill/search.mjs`. The registry bundle pipeline generates
+these installed skill files:
+
+- `skills/ix/scripts/search.mjs`
+- `skills/ix/THIRD_PARTY_LICENSES.md`
+
+`IX_SEARCH_OUT_DIR` may be set to an alternate skill root; the bundle is
+written below its `scripts/` directory.
+
+Regenerate them from the repository root with:
+
+```sh
+pnpm bundle:ix-search
+```
+
+Check that both generated files match the source and installed dependencies
+with:
+
+```sh
+pnpm check:ix-search
+```
+
 ## Deployment safety
 
 The workflow:

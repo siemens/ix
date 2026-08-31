@@ -25,9 +25,9 @@ import process from 'node:process';
 const packageDirectory = path.resolve(import.meta.dirname, '..');
 const outputDirectory = path.resolve(
   packageDirectory,
-  process.env.IX_SEARCH_OUT_DIR ?? '../../.agents/skills/ix'
+  process.env.IX_SEARCH_OUT_DIR ?? '../../skills/ix'
 );
-const bundlePath = path.join(outputDirectory, 'search.mjs');
+const bundlePath = path.join(outputDirectory, 'scripts', 'search.mjs');
 const thirdPartyLicensesPath = path.join(
   outputDirectory,
   'THIRD_PARTY_LICENSES.md'
@@ -102,8 +102,6 @@ function thirdPartyLicenseNotice(metadata, licenseText) {
   return `# Third-party licenses
 
 <!-- GENERATED FILE - DO NOT EDIT. -->
-<!-- Source: tooling/registry/scripts/build-ix-search-bundle.mjs -->
-<!-- Regenerate: pnpm bundle:ix-search -->
 
 ## MiniSearch ${metadata.version}
 
