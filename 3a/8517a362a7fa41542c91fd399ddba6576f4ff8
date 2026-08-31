@@ -1,0 +1,20 @@
+packages/core/scss/mixins/_input.scss
+  h_c5a773bf2fda8b 13-35,100,114
+packages/core/src/components/category-filter/category-filter.scss
+  h_c5a773bf2fda8b 215-221
+packages/core/src/components/input/input.mixins.scss
+  h_c5a773bf2fda8b 98,112-119
+packages/core/src/components/select/select.scss
+  h_c5a773bf2fda8b 215-221
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "3a8517a362a7fa41542c91fd399ddba6576f4ff8",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
