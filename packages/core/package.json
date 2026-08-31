@@ -30,9 +30,7 @@
     "scss/",
     "hydrate/",
     "api-docs/",
-    "component-doc.json",
-    "component-index.json",
-    "component-search-index.json"
+    "component-doc.json"
   ],
   "exports": {
     ".": {
@@ -117,8 +115,6 @@
     "./scss/ix-scrollbar.scss": "./scss/ix-scrollbar.scss",
     "./scss/ix-utilities.scss": "./scss/ix-utilities.scss",
     "./component-doc.json": "./component-doc.json",
-    "./component-index.json": "./component-index.json",
-    "./component-search-index.json": "./component-search-index.json",
     "./api-docs/*": "./api-docs/*"
   },
   "scripts": {
@@ -179,7 +175,6 @@
     "http-server": "^14.1.1",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
-    "minisearch": "^7.1.0",
     "mustache": "^4.2.0",
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",

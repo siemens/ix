@@ -40,12 +40,80 @@
   },
   "definitions": {
     "versionEntry": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "blocks",
+            "examples",
+            "components",
+            "documentationSearchIndex"
+          ],
+          "properties": {
+            "blocks": {
+              "type": "array",
+              "description": "List of blocks available in this version",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/blockReference"
+              }
+            },
+            "examples": {
+              "type": "array",
+              "description": "List of examples available in this version",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/exampleReference"
+              }
+            },
+            "components": {
+              "type": "object",
+              "required": ["componentDoc", "componentRelatedExamples"],
+              "properties": {
+                "componentDoc": { "type": "string", "pattern": "\\.json$" },
+                "componentRelatedExamples": {
+                  "type": "string",
+                  "pattern": "\\.json$"
+                },
+                "componentRelatedBlocks": {
+                  "type": "string",
+                  "pattern": "\\.json$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "documentationSearchIndex": {
+              "type": "string",
+              "description": "Versioned central MiniSearch documentation index",
+              "pattern": "\\.json$"
+            },
+            "llms": {
+              "type": "object",
+              "description": "LLM-readable registry artifact files",
+              "required": ["entrypoint", "components", "blocks"],
+              "properties": {
+                "entrypoint": { "type": "string", "pattern": "\\.txt$" },
+                "components": { "type": "string", "pattern": "\\.md$" },
+                "examples": { "type": "string", "pattern": "\\.md$" },
+                "blocks": { "type": "string", "pattern": "\\.md$" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "$ref": "#/definitions/legacyVersionEntry"
+        }
+      ]
+    },
+    "legacyVersionEntry": {
       "type": "object",
       "required": ["blocks", "examples", "components", "searchIndex"],
       "properties": {
         "blocks": {
           "type": "array",
-          "description": "List of blocks available in this version",
+          "description": "List of blocks available in a historical version",
           "minItems": 1,
           "items": {
             "$ref": "#/definitions/blockReference"
@@ -53,7 +121,7 @@
         },
         "examples": {
           "type": "array",
-          "description": "List of examples available in this version",
+          "description": "List of examples available in a historical version",
           "minItems": 1,
           "items": {
             "$ref": "#/definitions/exampleReference"
@@ -99,7 +167,7 @@
         },
         "searchIndex": {
           "type": "object",
-          "description": "Framework-specific MiniSearch index files for blocks and examples",
+          "description": "Legacy framework-specific MiniSearch indexes retained for historical versions",
           "required": ["blocks", "examples"],
           "properties": {
             "blocks": { "$ref": "#/definitions/frameworkSearchIndex" },

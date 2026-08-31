@@ -323,10 +323,10 @@ The registry content for `blocks`, `examples` and component API metadata is expo
 | Registry file     | `tooling/registry/registry.json` (template)                                                                                               |
 | Blocks source     | Manual JSON files in `./blocks/*.json`                                                                                                    |
 | Examples source   | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                                           |
-| Components source | `packages/core/component-doc.json`, `component-index.json`, `component-search-index.json`                                                 |
+| Components source | `packages/core/component-doc.json`                                                                                                           |
 | LLM docs          | Generated `tooling/registry/dist/llms.txt` and split Markdown files in `tooling/registry/dist/llms/`                                     |
 | Schemas           | `tooling/registry/registry.schema.json`, plus `block.schema.json` and `example.schema.json` for entry files                               |
-| Build steps       | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, and `updateComponentsRegistry(...)` update sections of the same version entry |
+| Build steps      | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, `updateComponentsRegistry(...)`, and central search generation update the same version entry |
 | Template behavior | `dist-tags` and `versions` are overwritten during build/deploy                                                                            |
 
 Contributor guidance:

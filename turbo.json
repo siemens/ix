@@ -35,11 +35,14 @@
         "api-docs/**",
         "component-api.json",
         "component-doc.json",
-        "component-index.json",
-        "component-search-index.json",
         "component-usage-by-component.json",
         "component-usage.json"
       ],
+      "outputLogs": "new-only"
+    },
+    "registry#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "../../.agents/skills/ix/search.mjs"],
       "outputLogs": "new-only"
     },
     "start": {

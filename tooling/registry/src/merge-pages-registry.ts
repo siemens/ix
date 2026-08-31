@@ -15,17 +15,32 @@ import {
 } from './deployment-policy';
 import { assertJsonSchema, compileJsonSchema } from './schema-validation';
 
-type SearchIndexMap = {
-  html?: string;
-  react?: string;
-  angular?: string;
-  'angular-standalone'?: string;
-  vue?: string;
-};
-
-export type RegistryVersionEntry = {
+type RegistryVersionEntryCommon = {
   blocks: Array<{ name: string; path: string }>;
   examples: Array<{ name: string; path: string }>;
+};
+
+type RegistryLlms = {
+  entrypoint: string;
+  components: string;
+  examples?: string;
+  blocks: string;
+};
+
+type RegistryVersionEntryWithLlms = RegistryVersionEntryCommon & {
+  llms?: RegistryLlms;
+};
+
+export type CurrentRegistryVersionEntry = RegistryVersionEntryWithLlms & {
+  components: {
+    componentDoc: string;
+    componentRelatedExamples: string;
+    componentRelatedBlocks?: string;
+  };
+  documentationSearchIndex: string;
+};
+
+export type LegacyRegistryVersionEntry = RegistryVersionEntryWithLlms & {
   components: {
     componentDoc: string;
     componentIndex: string;
@@ -33,17 +48,15 @@ export type RegistryVersionEntry = {
     componentRelatedExamples: string;
     componentRelatedBlocks?: string;
   };
-  llms?: {
-    entrypoint: string;
-    components: string;
-    examples?: string;
-    blocks: string;
-  };
-  searchIndex?: {
-    blocks?: SearchIndexMap;
-    examples?: SearchIndexMap;
+  searchIndex: {
+    blocks: Record<string, string>;
+    examples: Record<string, string>;
   };
 };
+
+export type RegistryVersionEntry =
+  | CurrentRegistryVersionEntry
+  | LegacyRegistryVersionEntry;
 
 export type RegistryIndex = {
   $schema?: string;
@@ -106,33 +119,12 @@ function prefixVersionPath(version: string, value: string): string {
   return `${version}/${normalizedValue}`;
 }
 
-function prefixSearchIndexMap(
-  version: string,
-  searchIndex: SearchIndexMap | undefined
-): SearchIndexMap | undefined {
-  if (!searchIndex) {
-    return searchIndex;
-  }
-
-  return Object.fromEntries(
-    Object.entries(searchIndex).map(([framework, indexFile]) => [
-      framework,
-      prefixVersionPath(version, indexFile),
-    ])
-  ) as SearchIndexMap;
-}
-
 function prefixComponents(
   version: string,
-  components: RegistryVersionEntry['components']
-): RegistryVersionEntry['components'] {
+  components: CurrentRegistryVersionEntry['components']
+): CurrentRegistryVersionEntry['components'] {
   return {
     componentDoc: prefixVersionPath(version, components.componentDoc),
-    componentIndex: prefixVersionPath(version, components.componentIndex),
-    componentSearchIndex: prefixVersionPath(
-      version,
-      components.componentSearchIndex
-    ),
     componentRelatedExamples: prefixVersionPath(
       version,
       components.componentRelatedExamples
@@ -150,8 +142,8 @@ function prefixComponents(
 
 function prefixLlms(
   version: string,
-  llms: RegistryVersionEntry['llms']
-): RegistryVersionEntry['llms'] {
+  llms: CurrentRegistryVersionEntry['llms']
+): CurrentRegistryVersionEntry['llms'] {
   if (!llms) {
     return undefined;
   }
@@ -201,7 +193,13 @@ export function mergeRegistry(
     );
   }
 
-  const normalizedVersionEntry: RegistryVersionEntry = {
+  if (!('documentationSearchIndex' in currentVersionEntry)) {
+    throw new Error(
+      `Current registry version '${version}' must define documentationSearchIndex`
+    );
+  }
+
+  const normalizedVersionEntry: CurrentRegistryVersionEntry = {
     blocks: currentVersionEntry.blocks.map((block) => ({
       ...block,
       path: prefixVersionPath(version, block.path),
@@ -211,17 +209,11 @@ export function mergeRegistry(
       path: prefixVersionPath(version, example.path),
     })),
     components: prefixComponents(version, currentVersionEntry.components),
+    documentationSearchIndex: prefixVersionPath(
+      version,
+      currentVersionEntry.documentationSearchIndex
+    ),
     llms: prefixLlms(version, currentVersionEntry.llms),
-    searchIndex: {
-      blocks: prefixSearchIndexMap(
-        version,
-        currentVersionEntry.searchIndex?.blocks
-      ),
-      examples: prefixSearchIndexMap(
-        version,
-        currentVersionEntry.searchIndex?.examples
-      ),
-    },
   };
 
   baseRegistry.versions = {

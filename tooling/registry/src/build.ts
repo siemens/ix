@@ -11,7 +11,10 @@ import path from 'node:path';
 import fs from 'fs-extra';
 import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { glob } from 'glob';
-import { buildSearchIndex } from './search-index';
+import {
+  buildDocumentationSearchIndex,
+  DOCUMENTATION_SEARCH_INDEX_FILE,
+} from './search-index';
 import { generateExampleBlocks } from './generate-examples';
 import { generateLlmsArtifacts } from './llms';
 import { generateBlockDefinitions } from './block-dependencies';
@@ -20,6 +23,7 @@ import {
   updateComponentsRegistry,
   updateBlocksRegistry,
   updateExamplesRegistry,
+  updateDocumentationSearchIndexRegistry,
   updateLlmsRegistry,
 } from './update-registry';
 
@@ -37,12 +41,12 @@ const __registry_template = path.join(__dirname, 'registry.json');
 const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
 const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
 const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
-const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
-const __ix_component_index = path.join(__ix_package, 'component-index.json');
-const __ix_component_search_index = path.join(
-  __ix_package,
-  'component-search-index.json'
+const __documentation_search_index_schema = path.join(
+  __dirname,
+  'schemas',
+  'documentation-search-index.schema.json'
 );
+const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __blocks_root = path.join(__dirname, '..', '..', 'blocks');
 const __html_examples_component_usage_by_component = path.join(
   __examples_root,
@@ -141,8 +145,7 @@ const task = new Listr<Ctx>([
       ctx.dist = tsconfig.compilerOptions.outDir || 'dist';
       ctx.registryVersion =
         process.env.REGISTRY_VERSION?.trim() || 'development';
-      ctx.registryPathPrefix =
-        process.env.REGISTRY_PATH_PREFIX?.trim() || ctx.registryVersion;
+      ctx.registryPathPrefix = process.env.REGISTRY_PATH_PREFIX?.trim() ?? '';
       ctx.registryLatestTag =
         process.env.REGISTRY_LATEST_TAG?.trim() || ctx.registryVersion;
 
@@ -283,16 +286,6 @@ const task = new Listr<Ctx>([
         fs.copy(__ix_component_doc, path.join(dest, 'component-doc.json'), {
           dereference: true,
         }),
-        fs.copy(__ix_component_index, path.join(dest, 'component-index.json'), {
-          dereference: true,
-        }),
-        fs.copy(
-          __ix_component_search_index,
-          path.join(dest, 'component-search-index.json'),
-          {
-            dereference: true,
-          }
-        ),
       ]);
 
       const componentRelatedExamplesTarget = path.join(
@@ -383,8 +376,6 @@ const task = new Listr<Ctx>([
         pathPrefix: ctx.registryPathPrefix,
         components: {
           componentDoc: 'ix/component-doc.json',
-          componentIndex: 'ix/component-index.json',
-          componentSearchIndex: 'ix/component-search-index.json',
           componentRelatedExamples: 'ix/component-related-examples.json',
           componentRelatedBlocks: 'ix/component-related-blocks.json',
         },
@@ -512,41 +503,39 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Build blocks search indexes',
+    title: 'Build central documentation search index',
     task: async (ctx) => {
-      const blocksDir = path.join(ctx.dist, 'blocks');
-      const indexPaths = await buildSearchIndex(
-        ctx.dist,
-        blocksDir,
-        'search-index'
+      await buildDocumentationSearchIndex({
+        distDir: ctx.dist,
+        blocksDir: path.join(ctx.dist, 'blocks'),
+        examplesDir: path.join(ctx.dist, 'examples'),
+        componentDocPath: path.join(ctx.dist, 'ix', 'component-doc.json'),
+        componentRelatedExamplesPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-examples.json'
+        ),
+        componentRelatedBlocksPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-blocks.json'
+        ),
+        workspaceRoot: __workspace_root,
+      });
+      await validateJsonFiles(
+        [path.join(ctx.dist, DOCUMENTATION_SEARCH_INDEX_FILE)],
+        __documentation_search_index_schema
       );
 
-      const registryPath = path.join(ctx.dist, 'registry.json');
-      const registry = await fs.readJson(registryPath);
-      registry.versions ??= {};
-      registry.versions[ctx.registryVersion] ??= { blocks: [] };
-      registry.versions[ctx.registryVersion].searchIndex ??= {};
-      registry.versions[ctx.registryVersion].searchIndex.blocks = indexPaths;
-      await fs.writeJson(registryPath, registry, { spaces: 2 });
-    },
-  },
-  {
-    title: 'Build examples search indexes',
-    task: async (ctx) => {
-      const examplesDir = path.join(ctx.dist, 'examples');
-      const indexPaths = await buildSearchIndex(
-        ctx.dist,
-        examplesDir,
-        'examples-search-index'
+      await updateDocumentationSearchIndexRegistry(
+        path.join(ctx.dist, 'registry.json'),
+        {
+          version: ctx.registryVersion,
+          latestTag: ctx.registryLatestTag,
+          pathPrefix: ctx.registryPathPrefix,
+          documentationSearchIndex: DOCUMENTATION_SEARCH_INDEX_FILE,
+        }
       );
-
-      const registryPath = path.join(ctx.dist, 'registry.json');
-      const registry = await fs.readJson(registryPath);
-      registry.versions ??= {};
-      registry.versions[ctx.registryVersion] ??= { examples: [] };
-      registry.versions[ctx.registryVersion].searchIndex ??= {};
-      registry.versions[ctx.registryVersion].searchIndex.examples = indexPaths;
-      await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
   {

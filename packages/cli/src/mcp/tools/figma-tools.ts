@@ -25,10 +25,13 @@ export const figmaTools: ToolDefinition[] = [
     description:
       'Map between Figma main component IDs and Siemens IX components. Provide either a Figma main component ID (e.g., "42365:39459") to find the corresponding IX component, or an IX component tag (e.g., "ix-button") to get its Figma main component IDs.',
     schema: getFigmaComponentMappingSchema,
-    handler: async (args) => {
+    handler: async (args, context) => {
       try {
         const parsedArgs = getFigmaComponentMappingSchema.parse(args);
-        const mapping = await getFigmaComponentMapping(parsedArgs.query);
+        const mapping = await getFigmaComponentMapping(parsedArgs.query, {
+          baseUrl: context.registryUrl,
+          version: context.registryRef,
+        });
 
         if (mapping.results.length === 0) {
           if (mapping.queryType === 'figma-id') {
@@ -69,7 +72,9 @@ export const figmaTools: ToolDefinition[] = [
                 .join('\n');
               const docSection =
                 r.documentation.length > 0
-                  ? `\nDocumentation:\n${r.documentation.map((url) => `  - ${url}`).join('\n')}`
+                  ? `\nDocumentation:\n${r.documentation
+                      .map((url) => `  - ${url}`)
+                      .join('\n')}`
                   : '';
               return dedent`**${r.componentTag}**
               Figma Main Component IDs:
@@ -115,7 +120,9 @@ export const figmaTools: ToolDefinition[] = [
 
         const docSection =
           result.documentation.length > 0
-            ? `\nDocumentation guide available:\n${result.documentation.map((url) => `  - ${url}`).join('\n')}`
+            ? `\nDocumentation guide available:\n${result.documentation
+                .map((url) => `  - ${url}`)
+                .join('\n')}`
             : '\nNo documentation guide available for this component.';
 
         return {
@@ -155,9 +162,12 @@ export const figmaTools: ToolDefinition[] = [
     description:
       'List all Siemens IX components that have Figma main component ID mappings. Use this to discover which components are linked to Figma designs.',
     schema: listComponentsWithFigmaIdsSchema,
-    handler: async () => {
+    handler: async (_args, context) => {
       try {
-        const components = await listComponentsWithFigmaIds();
+        const components = await listComponentsWithFigmaIds({
+          baseUrl: context.registryUrl,
+          version: context.registryRef,
+        });
 
         if (components.length === 0) {
           return {
