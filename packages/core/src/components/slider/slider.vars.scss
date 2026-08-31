@@ -1,0 +1,41 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-slider-thumb--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-slider-thumb--background--disabled: #{sys.$si-sys-border-2};
+  --ix-slider-thumb--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-slider-thumb--background--info: #{sys.$si-sys-background-information};
+  --ix-slider-thumb--background--invalid--active: #{sys.$si-sys-background-danger-active};
+  --ix-slider-thumb--background--invalid--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-slider-thumb--background--invalid: #{sys.$si-sys-background-danger};
+  --ix-slider-thumb--background--success: #{sys.$si-sys-background-success};
+  --ix-slider-thumb--background--warning: #{sys.$si-sys-background-warning};
+  --ix-slider-thumb--background: #{sys.$si-sys-background-accent};
+  --ix-slider-thumb--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-slider-thumb--transition-duration: var(--theme-default-time);
+  --ix-slider-trace--background--disabled: #{sys.$si-sys-border-2};
+  --ix-slider-trace--background--info: #{sys.$si-sys-border-information};
+  --ix-slider-trace--background--invalid: #{sys.$si-sys-border-danger};
+  --ix-slider-trace--background--success: #{sys.$si-sys-border-success};
+  --ix-slider-trace--background--warning: #{sys.$si-sys-border-warning};
+  --ix-slider-trace--background: #{sys.$si-sys-border-accent};
+  --ix-slider-trace-marker--background--disabled: #{sys.$si-sys-border-2};
+  --ix-slider-trace-marker--background--info: #{sys.$si-sys-background-information};
+  --ix-slider-trace-marker--background--invalid: #{sys.$si-sys-background-danger};
+  --ix-slider-trace-marker--background--success: #{sys.$si-sys-background-success};
+  --ix-slider-trace-marker--background--warning: #{sys.$si-sys-background-warning};
+  --ix-slider-trace-marker--background: #{sys.$si-sys-background-accent};
+  --ix-slider-track--background--disabled: #{sys.$si-sys-background-2};
+  --ix-slider-track--background: #{sys.$si-sys-border-4};
+  --ix-slider-track-marker--background--disabled: #{sys.$si-sys-background-2};
+  --ix-slider-track-marker--background: #{sys.$si-sys-border-2};
+}
