@@ -39,7 +39,7 @@ type Story = StoryObj<Element>;
 
 export const Outline: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
     variant: 'outline',
   },
@@ -47,7 +47,7 @@ export const Outline: Story = {
 
 export const Filled: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
     variant: 'filled',
   },
@@ -55,14 +55,14 @@ export const Filled: Story = {
 
 export const Default: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
   },
 };
 
 export const Chevron: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
     chevron: true,
   },
@@ -70,7 +70,7 @@ export const Chevron: Story = {
 
 export const Selected: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
     chevron: true,
     selected: true,
@@ -79,7 +79,7 @@ export const Selected: Story = {
 
 export const Disabled: Story = {
   args: {
-    itemColor: '--theme-color-primary',
+    itemColor: '--si-sys-background-accent',
     defaultSlot: 'Event List Item',
     disabled: true,
   },

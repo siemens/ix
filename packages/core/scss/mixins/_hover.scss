@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use '../tokens/system' as sys;
 
 @mixin hover() {
   &:not(.disabled):not(:disabled) {
@@ -65,29 +66,29 @@
   }
 }
 
-@mixin host-focus() {
-  :host(:focus:not(.disabled):not(:disabled)) {
-    @content;
-  }
-}
-
-@mixin host-focus-visible() {
-  :host(:focus-visible:not(.disabled):not(:disabled)) {
-    @content;
-  }
-}
-
 @mixin ghost-hover-pressed {
   &:not(.disabled):not(:disabled) {
     &.hover,
     &:hover {
-      background-color: var(--theme-ghost--background--hover);
+      background-color: #{sys.$si-sys-background-hover};
     }
 
     &.active,
     &:active {
-      background-color: var(--theme-ghost--background--active);
+      background-color: #{sys.$si-sys-background-active};
     }
+  }
+}
+
+@mixin host-ghost-hover-pressed {
+  :host(:not(.disabled):not(:disabled).hover),
+  :host(:not(.disabled):not(:disabled):hover) {
+    background-color: #{sys.$si-sys-background-hover};
+  }
+
+  :host(:not(.disabled):not(:disabled).active),
+  :host(:not(.disabled):not(:disabled):active) {
+    background-color: #{sys.$si-sys-background-active};
   }
 }
 

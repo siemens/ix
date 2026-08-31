@@ -128,6 +128,6 @@ export const Size12: Story = {
 
 export const CustomIconColor: Story = {
   args: {
-    iconColor: 'color-alarm',
+    iconColor: '--si-sys-text-danger',
   },
 };
