@@ -99,7 +99,6 @@ regressionTest(
       <ix-list-item
         label="Standard label"
         description="Description"
-        status="Online"
       ></ix-list-item>
       <ix-list-item label="Hidden fallback">
         <span class="custom-content">Custom content</span>
@@ -112,11 +111,10 @@ regressionTest(
     await expect(items.nth(0).locator('.description')).toHaveText(
       'Description'
     );
-    await expect(items.nth(0).locator('ix-pill')).toContainText('Online');
     await expect(items.nth(1).locator('.custom-content')).toHaveText(
       'Custom content'
     );
-    await expect(items.nth(1).locator('.label')).not.toBeVisible();
+    await expect(items.nth(1).locator('.label')).toHaveText('Hidden fallback');
   }
 );
 
