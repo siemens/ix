@@ -807,3 +807,39 @@ regressionTest(
     await expect(items.nth(1)).toHaveAttribute('tabindex', '0');
   }
 );
+
+regressionTest(
+  'ignores pointercancel from unrelated pointer or during keyboard reorder',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-list draggable>
+          <ix-list-item label="Project Alpha"></ix-list-item>
+          <ix-list-item label="Project Beta"></ix-list-item>
+          <ix-list-item label="Project Gamma"></ix-list-item>
+        </ix-list>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const list = page.locator('ix-list');
+    const items = list.locator('ix-list-item');
+    const firstPrimaryAction = items.first().locator('.primary-action');
+    await firstPrimaryAction.focus();
+    await firstPrimaryAction.press('ArrowLeft');
+
+    const firstGripper = page.getByLabel('Reorder Project Alpha');
+    await expect(firstGripper).toBeFocused();
+    await firstGripper.press('Space');
+    await firstGripper.press('ArrowDown');
+
+    await list.dispatchEvent('pointercancel', { pointerId: 999 });
+
+    await expect(items.first()).toHaveClass(/\bdragging\b/);
+
+    await firstGripper.press('Enter');
+
+    await expect(items.nth(0)).toHaveAttribute('label', 'Project Beta');
+    await expect(items.nth(1)).toHaveAttribute('label', 'Project Alpha');
+  }
+);

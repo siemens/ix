@@ -656,6 +656,13 @@ export class List {
     this.finishReorder();
   }
 
+  private handlePointerCancel(event: PointerEvent) {
+    if (this.dragMode !== 'pointer' || event.pointerId !== this.dragPointerId) {
+      return;
+    }
+    this.cancelReorder();
+  }
+
   private focusItem(item: HTMLIxListItemElement) {
     this.activeItem = item;
     this.synchronizeItems();
@@ -860,7 +867,9 @@ export class List {
         onPointerDown={(event: PointerEvent) => this.handlePointerDown(event)}
         onPointerMove={(event: PointerEvent) => this.handlePointerMove(event)}
         onPointerUp={(event: PointerEvent) => this.handlePointerEnd(event)}
-        onPointerCancel={() => this.cancelReorder()}
+        onPointerCancel={(event: PointerEvent) =>
+          this.handlePointerCancel(event)
+        }
         onDragStart={(event: DragEvent) => event.preventDefault()}
         class={{
           'has-divider': this.hasDivider,
