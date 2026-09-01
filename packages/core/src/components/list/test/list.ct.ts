@@ -66,6 +66,42 @@ regressionTest('renders draggable grippers', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'keeps drag gripper pressed state through list item re-renders',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-list draggable aria-label="Projects">
+          <ix-list-item label="Project Alpha"></ix-list-item>
+          <ix-list-item label="Project Beta"></ix-list-item>
+        </ix-list>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const item = page.locator('ix-list-item').first();
+    const gripper = item.locator('.drag-gripper');
+
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(gripper).toBeEnabled();
+    await gripper.focus();
+    await expect(gripper).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(item).toHaveClass(/\bdragging\b/);
+    await expect(gripper).toHaveAttribute('aria-pressed', 'true');
+
+    await item.evaluate((element) => {
+      element.label = 'Project Alpha updated';
+    });
+
+    await expect(gripper).toHaveAttribute('aria-pressed', 'true');
+    await page.keyboard.press('Escape');
+
+    await expect(item).not.toHaveClass(/\bdragging\b/);
+    await expect(gripper).toHaveAttribute('aria-pressed', 'false');
+  }
+);
+
+regressionTest(
   'tabs from active item to drag gripper and reverse-tabs out of the list',
   async ({ mount, page }) => {
     await mount(

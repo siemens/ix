@@ -268,6 +268,17 @@ export class List {
     }
   }
 
+  private setItemReorderState(
+    item: HTMLIxListItemElement,
+    reordering: boolean
+  ) {
+    item.dispatchEvent(
+      new CustomEvent<boolean>('ixListItemReorderStateChange', {
+        detail: reordering,
+      })
+    );
+  }
+
   private getActionElements(item: HTMLIxListItemElement) {
     const selectionCheckbox = item.shadowRoot
       ?.querySelector<HTMLIxCheckboxElement>('.selection-checkbox')
@@ -416,8 +427,7 @@ export class List {
     this.dragMode = mode;
     this.dragOriginalIndex = this.items.indexOf(item);
     this.dragOriginalNextSibling = item.nextSibling;
-    item.classList.add('dragging');
-    this.getDragGripper(item)?.setAttribute('aria-pressed', 'true');
+    this.setItemReorderState(item, true);
     this.announce(
       item,
       `${this.getItemLabel(
@@ -537,8 +547,8 @@ export class List {
   private cleanupReorder() {
     const item = this.draggedItem;
     if (item) {
-      item.classList.remove('dragging', 'pointer-dragging');
-      this.getDragGripper(item)?.setAttribute('aria-pressed', 'false');
+      item.classList.remove('pointer-dragging');
+      this.setItemReorderState(item, false);
       item.style.removeProperty('--ix-list-drag-left');
       item.style.removeProperty('--ix-list-drag-top');
       item.style.removeProperty('--ix-list-drag-width');

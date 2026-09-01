@@ -14,8 +14,10 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Mixin,
   Prop,
+  State,
 } from '@stencil/core';
 import { iconDragGripper } from '@siemens/ix-icons/icons';
 import { A11yAttributeName, a11yBoolean } from '../utils/a11y';
@@ -159,6 +161,8 @@ export class ListItem
    */
   @Event() selectedChange!: EventEmitter<boolean>;
 
+  @State() private reordering = false;
+
   private readonly primaryActionRef = makeRef<HTMLButtonElement>();
 
   private hasStandardContent() {
@@ -177,6 +181,11 @@ export class ListItem
     if (primaryAction) {
       primaryAction.tabIndex = this.disabled ? -1 : this.hostElement.tabIndex;
     }
+  }
+
+  @Listen('ixListItemReorderStateChange')
+  protected handleReorderStateChange(event: CustomEvent<boolean>) {
+    this.reordering = event.detail;
   }
 
   private activateItem(event: MouseEvent) {
@@ -246,6 +255,7 @@ export class ListItem
         class={{
           disabled: this.disabled,
           selected: this.selected,
+          dragging: this.reordering,
           checkbox: this.checkbox,
           'has-divider': this.hasDivider,
         }}
@@ -273,7 +283,7 @@ export class ListItem
             type="button"
             tabindex={-1}
             disabled={this.disabled}
-            aria-pressed="false"
+            aria-pressed={a11yBoolean(this.reordering)}
             aria-label={this.ariaLabelDragGripper}
           >
             <ix-icon name={iconDragGripper} aria-hidden="true"></ix-icon>
