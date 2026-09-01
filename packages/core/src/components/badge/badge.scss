@@ -206,10 +206,10 @@ $border-radius: 100px;
 
 @each $variant in $status-icon-variants {
   :host([type='status-icon'].#{$variant}) {
-    --ix-badge-pulse-color: var(--ix-badge-color-#{$variant});
+    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-color);
 
     .status-icon:not(.status-icon-plate) {
-      color: var(--ix-badge-color-#{$variant});
+      color: var(--ix-badge-#{$variant}-color);
     }
   }
 }
@@ -229,36 +229,30 @@ $border-radius: 100px;
 
 /* Error uses alarm color tokens. */
 :host([type='status-icon'].error) {
-  --ix-badge-pulse-color: var(--ix-badge-color-alarm);
+  --ix-badge-pulse-color: var(--ix-badge-alarm-color);
 
   .status-icon:not(.status-icon-plate) {
-    color: var(--ix-badge-color-alarm);
+    color: var(--ix-badge-alarm-color);
   }
 }
 
 @each $variant in $predefined-variants {
   :host(.#{$variant}:not(.outline):not([type='status-icon'])) {
-    --ix-badge-pulse-color: var(--ix-badge-color-#{$variant});
+    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-background);
 
     .indicator {
-      background-color: var(--ix-badge-color-#{$variant});
-      color: var(--ix-badge-color-#{$variant}-contrast);
+      background-color: var(--ix-badge-#{$variant}-background);
+      color: var(--ix-badge-#{$variant}-contrast-color);
     }
   }
 
   :host(.#{$variant}.outline:not([type='status-icon'])) {
-    --ix-badge-pulse-color: var(--ix-badge-color-#{$variant});
+    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-border-color);
 
     .indicator {
-      background-color: var(--ix-badge-color-ghost);
-      color: var(--ix-badge-color-text);
-      @if $variant == 'alarm' {
-        border: 0.0625rem solid var(--ix-badge-color-alarm-bdr);
-      } @else if $variant == 'warning' {
-        border: 0.0625rem solid var(--ix-badge-color-warning-bdr);
-      } @else {
-        border: 0.0625rem solid var(--ix-badge-color-#{$variant});
-      }
+      background-color: var(--ix-badge-outline-background);
+      color: var(--ix-badge-default-color);
+      border: 0.0625rem solid var(--ix-badge-#{$variant}-border-color);
     }
   }
 }
@@ -276,14 +270,14 @@ $border-radius: 100px;
   --ix-badge-pulse-color: var(--ix-badge-custom-background);
 
   .indicator {
-    background-color: var(--ix-badge-color-ghost);
+    background-color: var(--ix-badge-outline-background);
     border: 0.0625rem solid var(--ix-badge-custom-background);
-    color: var(--ix-badge-custom-color, var(--ix-badge-color-text));
+    color: var(--ix-badge-custom-color, var(--ix-badge-default-color));
   }
 }
 
 :host(.border:not(.outline):not([type='status-icon'])) .indicator {
-  outline: 0.0625rem solid var(--ix-badge-color-contrast-ring);
+  outline: 0.0625rem solid var(--ix-badge-contrast-ring-color);
   outline-offset: 0;
 }
 

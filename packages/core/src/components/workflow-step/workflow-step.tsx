@@ -104,7 +104,7 @@ export class WorkflowStep {
         break;
       case 'success':
         this.iconName = iconSuccess;
-        this.iconColor = 'color-success';
+        this.iconColor = 'workflow-step-icon-success--color';
         break;
       case 'done':
         this.iconName = iconCircleFilled;
@@ -112,12 +112,11 @@ export class WorkflowStep {
         break;
       case 'warning':
         this.iconName = iconWarning;
-        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
-        this.iconColor = 'color-warning-text';
+        this.iconColor = 'workflow-step-icon-warning--color';
         break;
       case 'error':
         this.iconName = iconError;
-        this.iconColor = 'color-alarm';
+        this.iconColor = 'workflow-step-icon-error--color';
         break;
       default:
         this.iconName = iconCircle;
@@ -125,7 +124,7 @@ export class WorkflowStep {
     }
 
     if (this.disabled) {
-      this.iconColor = 'workflow-step-icon-success--color--disabled';
+      this.iconColor = 'workflow-step-icon-status--color--disabled';
     }
   }
 
@@ -141,6 +140,13 @@ export class WorkflowStep {
   onStepClick() {
     if (!this.disabled && this.clickable) {
       this.selectedChanged.emit(this.hostElement);
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      this.onStepClick();
     }
   }
 
@@ -169,15 +175,16 @@ export class WorkflowStep {
     const icons = !this.customIconSlot ? (
       <Fragment>
         <ix-icon
-          color="color-1"
+          color="--si-sys-background-0"
           name={
             this.status === 'warning' ? iconTriangleFilled : iconCircleFilled
           }
           class="absolute"
           size="24"
+          aria-hidden="true"
         ></ix-icon>
         <ix-icon
-          color={this.iconColor}
+          style={{ color: `var(--ix-${this.iconColor})` }}
           name={this.iconName}
           class="absolute"
           size="24"
@@ -187,12 +194,14 @@ export class WorkflowStep {
     ) : null;
 
     return (
-      <Host
-        class={{ 'host-vertical': this.vertical }}
-        onClick={() => this.onStepClick()}
-      >
+      <Host class={{ 'host-vertical': this.vertical }}>
         <div
-          tabIndex={0}
+          tabIndex={this.disabled || !this.clickable ? -1 : 0}
+          role={this.clickable ? 'button' : undefined}
+          aria-disabled={this.disabled ? 'true' : undefined}
+          aria-current={this.selected ? 'step' : undefined}
+          onClick={() => this.onStepClick()}
+          onKeyDown={(e) => this.onKeyDown(e)}
           class={{
             step: true,
             selected: this.selected,

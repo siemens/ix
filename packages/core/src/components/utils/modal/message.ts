@@ -255,8 +255,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconWarning,
-        //TODO(IX-3400): Remove warning-text when proper CSS variable is available
-        iconColor: 'color-warning-text',
+        iconColor: '--si-sys-background-warning',
         actions: createConfirmButtons(
           textOkay,
           textCancel,
@@ -281,7 +280,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconError,
-        iconColor: 'color-alarm',
+        iconColor: '--si-sys-background-danger',
         actions: createConfirmButtons(
           textOkay,
           textCancel,
@@ -306,7 +305,7 @@ export function createShowMessage(
         message,
         messageTitle: title,
         icon: iconSuccess,
-        iconColor: 'color-success',
+        iconColor: '--si-sys-background-success',
         actions: createConfirmButtons(
           textOkay,
           textCancel,

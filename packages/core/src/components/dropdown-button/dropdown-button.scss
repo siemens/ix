@@ -16,44 +16,24 @@
   }
 
   .triangle.#{$name}primary {
-    color: var(--ix-dropdown-button-#{$name}primary-color);
+    color: var(--ix-button-#{$name}primary--color);
   }
   .triangle.#{$name}secondary {
-    color: var(--ix-dropdown-button-#{$name}secondary-color);
+    color: var(--ix-button-#{$name}secondary--color);
   }
   .triangle.#{$name}tertiary {
-    color: var(--ix-dropdown-button-#{$name}tertiary-color);
+    color: var(--ix-button-#{$name}tertiary--color);
   }
 
   .triangle.#{$name}primary.disabled {
-    color: var(--ix-dropdown-button-#{$name}primary-color-disabled);
+    color: var(--ix-button-#{$name}primary--color--disabled);
   }
   .triangle.#{$name}secondary.disabled {
-    color: var(--ix-dropdown-button-#{$name}secondary-color-disabled);
+    color: var(--ix-button-#{$name}secondary--color--disabled);
   }
   .triangle.#{$name}tertiary.disabled {
-    color: var(--ix-dropdown-button-#{$name}tertiary-color-disabled);
+    color: var(--ix-button-#{$name}tertiary--color--disabled);
   }
-}
-
-// Apply Expanded Active look to nested ix-button / ix-icon-button via their theme vars.
-@mixin expanded-active-variant($name) {
-  --theme-btn-#{$name}--background: var(
-    --ix-dropdown-button-#{$name}-background-active
-  );
-  --theme-btn-#{$name}--background--hover: var(
-    --ix-dropdown-button-#{$name}-background-active
-  );
-  --theme-btn-#{$name}--color: var(--ix-dropdown-button-#{$name}-color-active);
-  --theme-btn-#{$name}--color--hover: var(
-    --ix-dropdown-button-#{$name}-color-active
-  );
-  --theme-btn-#{$name}--border-color: var(
-    --ix-dropdown-button-#{$name}-border-color-active
-  );
-  --theme-btn-#{$name}--border-color--hover: var(
-    --ix-dropdown-button-#{$name}-border-color-active
-  );
 }
 
 :host {
@@ -61,13 +41,6 @@
   position: relative;
   height: vars.$x-large-space;
   width: auto;
-
-  --ix-dropdown-button-border-radius-left: var(
-    --ix-dropdown-button-border-radius
-  );
-  --ix-dropdown-button-border-radius-right: var(
-    --ix-dropdown-button-border-radius
-  );
 
   border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
   border-bottom-left-radius: var(--ix-dropdown-button-border-radius-left);
@@ -122,7 +95,7 @@
     border-left: 4px solid transparent;
     border-top: 0 solid transparent;
     border-bottom: 4px solid;
-    color: var(--ix-dropdown-button-primary-color);
+    color: var(--ix-button-primary--color);
   }
 
   @include triangle();
@@ -155,13 +128,15 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid var(--ix-dropdown-button-focus-outline-color);
-  outline-offset: var(--ix-dropdown-button-focus-outline-offset);
+  outline: 1px solid var(--ix-button--outline-color--focus);
+  outline-offset: var(--ix-button--focus--outline-offset);
 }
 
 :host([aria-expanded='true']) {
   @each $variant in $dropdown-button-variants {
-    @include expanded-active-variant($variant);
+    --ix-button-#{$variant}--color: var(
+      --ix-button-#{$variant}--color--active
+    );
   }
 }
 
