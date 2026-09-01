@@ -175,7 +175,7 @@ regressionTest.describe('embedded into header', () => {
       await avatar.hover();
 
       const tooltip = avatar.getByLabel('myTooltip');
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/foo/);
 
@@ -183,7 +183,7 @@ regressionTest.describe('embedded into header', () => {
         avatar.setAttribute('tooltip-text', 'other text')
       );
 
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/other text/);
     }

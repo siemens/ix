@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 });
 
 regressionTest('hide expand icon initial', async ({ mount, page }) => {
@@ -22,7 +22,7 @@ regressionTest('hide expand icon initial', async ({ mount, page }) => {
     </ix-group>
   `);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 
   const expandIcon = group.getByTestId('expand-collapsed-icon');
   await expect(expandIcon).not.toBeVisible();
@@ -42,7 +42,7 @@ regressionTest('show expand icon initial', async ({ mount, page }) => {
     </ix-group>
   `);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 
   const expandIcon = group.getByTestId('expand-collapsed-icon');
   await expect(expandIcon).toBeVisible();
@@ -71,7 +71,7 @@ regressionTest(
     await expandIcon.click();
 
     const groupItem = page.locator('ix-group-item').first();
-    await expect(group).toHaveClass(/hydrated/);
+    await expect(group).toHaveAttribute('hydrated');
 
     await groupItem.evaluate((item) => {
       item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
@@ -96,14 +96,14 @@ regressionTest(
     await expandIcon.click();
 
     const groupItem = page.locator('ix-group-item').first();
-    await expect(group).toHaveClass(/hydrated/);
+    await expect(group).toHaveAttribute('hydrated');
 
     await group.evaluate((item) => {
       item.addEventListener('selectItem', (e) => e.preventDefault());
     });
 
     await groupItem.click();
-    await expect(groupItem).not.toHaveClass(/hydrated selected/);
+    await expect(groupItem).not.toHaveClass(/\bselected\b/);
   }
 );
 

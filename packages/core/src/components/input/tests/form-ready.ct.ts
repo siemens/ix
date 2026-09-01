@@ -271,7 +271,7 @@ regressionTest(
     const numberInput = page.locator('ix-number-input');
     const input = numberInput.locator('input');
 
-    await expect(numberInput).toHaveClass(/hydrated/);
+    await expect(numberInput).toHaveAttribute('hydrated');
 
     await numberInput.evaluate((el) => {
       // @ts-ignore

@@ -18,14 +18,14 @@ regressionTest('renders', async ({ page, mount }) => {
   await mount(`<ix-slider></ix-slider>`);
 
   const slider = page.locator('ix-slider');
-  await expect(slider).toHaveClass(/hydrated/);
+  await expect(slider).toHaveAttribute('hydrated');
 });
 
 regressionTest('should show tooltip by focus', async ({ page, mount }) => {
   await mount(`<ix-slider value="20"></ix-slider>`);
 
   const slider = page.locator('ix-slider');
-  await expect(slider).toHaveClass(/hydrated/);
+  await expect(slider).toHaveAttribute('hydrated');
 
   const input = slider.locator('input');
 
@@ -60,7 +60,7 @@ regressionTest(
     await mount(`<ix-slider value="20"></ix-slider>`);
 
     const slider = page.locator('ix-slider');
-    await expect(slider).toHaveClass(/hydrated/);
+    await expect(slider).toHaveAttribute('hydrated');
 
     const tooltip = slider.locator('ix-tooltip');
 

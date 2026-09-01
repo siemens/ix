@@ -7,7 +7,7 @@ describe('ix-typography', () => {
       <ix-typography>Example content</ix-typography>
     );
 
-    expect(root).toHaveClass('hydrated');
+    expect(root).toHaveAttribute('hydrated');
     expect(root).toHaveClass('typography-body');
     expect(root).toHaveTextContent('Example content');
     expect(root.shadowRoot?.querySelector('slot')).not.toBeNull();

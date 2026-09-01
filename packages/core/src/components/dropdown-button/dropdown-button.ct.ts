@@ -114,7 +114,7 @@ regressionTest(
   `);
 
     const button = page.locator('ix-dropdown-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await expect(button).toBeFocused();
@@ -152,7 +152,7 @@ regressionTest(
         })
     );
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');

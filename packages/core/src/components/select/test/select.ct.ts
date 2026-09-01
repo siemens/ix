@@ -48,7 +48,7 @@ test('renders', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
 
@@ -115,7 +115,7 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   const select = page.locator('ix-select');
   const dropdown = select.locator('ix-dropdown');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdown).not.toHaveClass(/show/);
 
   await select.locator('.select').click();
@@ -144,7 +144,7 @@ test('toggles disabled without dropdown trigger errors', async ({
   const select = page.locator('ix-select');
   const dropdownTrigger = page.locator('[data-select-dropdown]');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdownTrigger).toHaveCount(1);
 
   await select.evaluate((element: HTMLIxSelectElement) => {
@@ -173,7 +173,7 @@ test('does not select an item when ix-select-item is disabled', async ({
   `);
 
   const select = page.locator('ix-select');
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
 
@@ -224,7 +224,7 @@ test('does not open the dropdown when readonly', async ({ mount, page }) => {
   const select = page.locator('ix-select');
   const dropdown = select.locator('ix-dropdown');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdown).not.toHaveClass(/show/);
 
   await select.locator('.select').click();
@@ -240,7 +240,7 @@ test('editable mode', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('Not existing');
@@ -494,7 +494,7 @@ test('type in a novel item name in editable mode and then remove it', async ({
     `);
 
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('test');
@@ -557,7 +557,7 @@ test('check if clear button visible in disabled', async ({ mount, page }) => {
     `);
 
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
 
   const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
   await expect(clearButton).toBeVisible();
@@ -604,7 +604,7 @@ test('pass object as value and check if it is selectable', async ({
         </ix-select>
     `);
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
 
   async function setSelectItemValue(index: number): Promise<void> {
     await page
@@ -691,7 +691,7 @@ test.describe('Events', () => {
     await page.locator('ix-icon-button').click();
     await page.locator('ix-select-item').click();
 
-    await expect(select).toHaveClass(/hydrated/);
+    await expect(select).toHaveAttribute('hydrated');
     expect(await valueChanged).toBe('1');
   });
 
@@ -699,7 +699,7 @@ test.describe('Events', () => {
     const itemText = 'test';
     await mount(`<ix-select editable></ix-select>`);
     const select = page.locator('ix-select');
-    await expect(select).toHaveClass(/hydrated/);
+    await expect(select).toHaveAttribute('hydrated');
 
     const itemAdded = select.evaluate((elm) => {
       return new Promise<string>((resolve) => {
@@ -984,7 +984,7 @@ test('dropdown can be opened after clearing select in editable mode', async ({
 `);
 
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
   await page.locator('[data-select-dropdown]').click();
 
   await page.locator('ix-select-item').nth(1).click();

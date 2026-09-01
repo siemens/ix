@@ -48,7 +48,7 @@ regressionTest('renders', async ({ mount, page }) => {
   const tabs = page.locator('ix-tabs');
   const tab = page.locator('ix-tab-item').nth(0);
 
-  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tabs).toHaveAttribute('hydrated');
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
@@ -79,7 +79,7 @@ regressionTest('should change tab', async ({ mount, page }) => {
 
   await tab.click();
 
-  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tabs).toHaveAttribute('hydrated');
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
@@ -105,7 +105,7 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
     await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
@@ -136,7 +136,7 @@ regressionTest(
       );
     });
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
 
     await secondTab.click();
@@ -169,7 +169,7 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
     await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
@@ -310,7 +310,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'bottom']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'bottom']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -353,7 +355,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'top']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'top']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -389,9 +393,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    await expect(tabs.nth(0)).toHaveClass(/hydrated/);
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
 
-    for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
+    for (const className of ['new', 'bottom', 'stretched']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -427,7 +431,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'bottom']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'bottom']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );

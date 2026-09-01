@@ -30,7 +30,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const eventList = page.locator('ix-event-list');
-  await expect(eventList).toHaveClass(/hydrated/);
+  await expect(eventList).toHaveAttribute('hydrated');
 });
 
 regressionTest(

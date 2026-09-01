@@ -12,7 +12,7 @@ import { expect } from '@playwright/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
   const categoryFilter = page.locator('ix-category-filter');
-  await expect(categoryFilter).toHaveClass(/hydrated/);
+  await expect(categoryFilter).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('category-preview test', () => {
