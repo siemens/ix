@@ -29,6 +29,7 @@ export const DOCUMENTATION_SEARCH_FIELDS = [
   'kind',
   'name',
   'tag',
+  'aliases',
   'description',
   'keywords',
   'relatedComponents',
@@ -50,9 +51,11 @@ export const DOCUMENTATION_SEARCH_STORE_FIELDS = [
   'detailPath',
   'relatedComponents',
   'relatedExamples',
+  'reactExamples',
   'relatedBlocks',
   'documentation',
   'figmaMainComponentIds',
+  'aliases',
 ] as const;
 
 export const DOCUMENTATION_SEARCH_OPTIONS = {
@@ -60,6 +63,7 @@ export const DOCUMENTATION_SEARCH_OPTIONS = {
     kind: 1,
     name: 3,
     tag: 3,
+    aliases: 3,
     description: 2,
     keywords: 2,
     relatedComponents: 1.5,
@@ -116,6 +120,11 @@ type ExampleDefinition = {
   variants?: Record<string, DefinitionVariant>;
 };
 
+export type DocumentationSearchExampleReference = {
+  name: string;
+  path: string;
+};
+
 type BlockDefinition = {
   name: string;
   description?: string;
@@ -128,6 +137,7 @@ export type DocumentationSearchDocument = {
   kind: 'component' | 'example' | 'block';
   name: string;
   tag?: string;
+  aliases?: string[];
   description: string;
   keywords: string;
   framework?: DocumentationSearchFramework;
@@ -135,6 +145,7 @@ export type DocumentationSearchDocument = {
   detailPath: string;
   relatedComponents: string[];
   relatedExamples?: string[];
+  reactExamples?: DocumentationSearchExampleReference[];
   relatedBlocks?: string[];
   documentation?: string[];
   figmaMainComponentIds?: string[];
@@ -222,10 +233,51 @@ function componentApiMembers(component: ComponentDoc): string[] {
   ]);
 }
 
+function componentReactAlias(tag: string): string {
+  return `Ix${tag
+    .slice(3)
+    .split('-')
+    .map((part) => `${part.slice(0, 1).toUpperCase()}${part.slice(1)}`)
+    .join('')}`;
+}
+
+async function readReactExportNames(
+  workspaceRoot: string
+): Promise<Set<string>> {
+  const declarationFiles = await glob(
+    path.join(
+      workspaceRoot,
+      'packages',
+      'react',
+      'dist',
+      'types',
+      '**',
+      '*.d.ts'
+    ),
+    { absolute: true }
+  );
+  const exportedNames = new Set<string>();
+
+  for (const declarationFile of declarationFiles.sort()) {
+    const source = await fs.readFile(declarationFile, 'utf8');
+    for (const match of source.matchAll(
+      /\bexport\s+(?:declare\s+)?(?:const|class|function)\s+(Ix[A-Z][A-Za-z0-9]*)\b/g
+    )) {
+      if (match[1]) {
+        exportedNames.add(match[1]);
+      }
+    }
+  }
+
+  return exportedNames;
+}
+
 function createComponentDocuments(
   componentDoc: ComponentDocJson,
   relatedExamples: Record<string, string[]>,
-  relatedBlocks: Record<string, string[]>
+  relatedBlocks: Record<string, string[]>,
+  reactExportNames: Set<string>,
+  reactExamples: Record<string, DocumentationSearchExampleReference[]>
 ): DocumentationSearchDocument[] {
   return componentDoc.components
     .map((component): DocumentationSearchDocument => {
@@ -238,23 +290,47 @@ function createComponentDocuments(
         ...(component.dependents ?? []),
       ]);
       const apiMembers = componentApiMembers(component);
+      const aliases = stringList([
+        component.tag,
+        ...(reactExportNames.has(componentReactAlias(component.tag))
+          ? [componentReactAlias(component.tag)]
+          : []),
+      ]);
+      const relatedExampleNames = stringList(
+        relatedExamples[component.tag] ?? []
+      );
+      const componentReactExamples = (reactExamples[component.tag] ?? [])
+        .map((example) => ({ ...example }))
+        .sort(
+          (left, right) =>
+            left.name.localeCompare(right.name) ||
+            left.path.localeCompare(right.path)
+        );
 
       return {
         id: `component:${component.tag}`,
         kind: 'component',
         name: component.tag,
         tag: component.tag,
+        aliases,
         description: componentDescription(component),
         keywords: stringList([
+          ...aliases,
           ...relatedComponents,
           ...apiMembers,
+          ...relatedExampleNames,
+          ...componentReactExamples.flatMap((example) => [
+            example.name,
+            example.path,
+          ]),
           ...documentation,
           ...figmaMainComponentIds,
         ]).join(' '),
         path: `llms/components/${component.tag}.md`,
         detailPath: `llms/components/${component.tag}.md`,
         relatedComponents,
-        relatedExamples: stringList(relatedExamples[component.tag] ?? []),
+        relatedExamples: relatedExampleNames,
+        reactExamples: componentReactExamples,
         relatedBlocks: stringList(relatedBlocks[component.tag] ?? []),
         documentation,
         figmaMainComponentIds,
@@ -266,9 +342,15 @@ function createComponentDocuments(
         ).join(' '),
         sourceText: [
           component.tag,
+          ...aliases,
           component.filePath ?? '',
           componentDescription(component),
           ...apiMembers,
+          ...relatedExampleNames,
+          ...componentReactExamples.flatMap((example) => [
+            example.name,
+            example.path,
+          ]),
           ...documentation,
         ].join(' '),
       };
@@ -394,6 +476,8 @@ async function definitionDocuments(
         path: pathValue,
         detailPath: pathValue,
         relatedComponents: related,
+        aliases: [],
+        reactExamples: [],
         apiMembers: '',
         files: content.files,
         sourceText: [
@@ -413,36 +497,37 @@ async function definitionDocuments(
 export async function buildDocumentationSearchIndex(
   options: BuildDocumentationSearchIndexOptions
 ): Promise<string> {
-  const [componentDoc, relatedExamples, relatedBlocks, blocks, examples] =
-    await Promise.all([
-      fs.readJson(options.componentDocPath) as Promise<ComponentDocJson>,
-      fs.readJson(options.componentRelatedExamplesPath) as Promise<
-        Record<string, string[]>
-      >,
-      fs.readJson(options.componentRelatedBlocksPath) as Promise<
-        Record<string, string[]>
-      >,
-      definitionDocuments(
-        options.blocksDir,
-        'blocks',
-        options.distDir,
-        options.workspaceRoot,
-        {}
-      ),
-      definitionDocuments(
-        options.examplesDir,
-        'examples',
-        options.distDir,
-        options.workspaceRoot,
-        {}
-      ),
-    ]);
-
-  const componentSearchDocuments = createComponentDocuments(
+  const [
     componentDoc,
     relatedExamples,
-    relatedBlocks
-  );
+    relatedBlocks,
+    blocks,
+    examples,
+    reactExportNames,
+  ] = await Promise.all([
+    fs.readJson(options.componentDocPath) as Promise<ComponentDocJson>,
+    fs.readJson(options.componentRelatedExamplesPath) as Promise<
+      Record<string, string[]>
+    >,
+    fs.readJson(options.componentRelatedBlocksPath) as Promise<
+      Record<string, string[]>
+    >,
+    definitionDocuments(
+      options.blocksDir,
+      'blocks',
+      options.distDir,
+      options.workspaceRoot,
+      {}
+    ),
+    definitionDocuments(
+      options.examplesDir,
+      'examples',
+      options.distDir,
+      options.workspaceRoot,
+      {}
+    ),
+    readReactExportNames(options.workspaceRoot),
+  ]);
 
   const exampleComponents: Record<string, string[]> = {};
   for (const [componentTag, exampleNames] of Object.entries(relatedExamples)) {
@@ -468,6 +553,90 @@ export async function buildDocumentationSearchIndex(
       document.sourceText
     }\n${document.relatedComponents.join(' ')}`;
   }
+
+  const reactExamples: Record<string, DocumentationSearchExampleReference[]> =
+    {};
+  const componentTagsByReactAlias = new Map<string, string>();
+  for (const component of componentDoc.components) {
+    const reactAlias = componentReactAlias(component.tag);
+    if (reactExportNames.has(reactAlias)) {
+      componentTagsByReactAlias.set(reactAlias, component.tag);
+    }
+  }
+
+  for (const document of examples) {
+    if (document.framework !== 'react') {
+      continue;
+    }
+
+    const importedComponents = new Map<string, string>();
+    for (const match of document.sourceText.matchAll(
+      /import\s+(?:type\s+)?{([^}]*)}\s+from\s+['"]@siemens\/ix-react['"]/g
+    )) {
+      for (const specifier of (match[1] ?? '').split(',')) {
+        const [importedName, localName] = specifier
+          .trim()
+          .replace(/^type\s+/, '')
+          .split(/\s+as\s+/);
+        if (importedName && componentTagsByReactAlias.has(importedName)) {
+          importedComponents.set(localName ?? importedName, importedName);
+        }
+      }
+    }
+
+    const usedComponents = new Set<string>();
+    for (const match of document.sourceText.matchAll(
+      /<\s*([A-Z][A-Za-z0-9]*)\b/g
+    )) {
+      const importedName = importedComponents.get(match[1] ?? '');
+      const componentTag = importedName
+        ? componentTagsByReactAlias.get(importedName)
+        : undefined;
+      if (componentTag) {
+        usedComponents.add(componentTag);
+      }
+    }
+
+    for (const [componentTag, exampleNames] of Object.entries(
+      relatedExamples
+    )) {
+      if (exampleNames.includes(document.name)) {
+        usedComponents.add(componentTag);
+      }
+    }
+
+    for (const componentTag of usedComponents) {
+      reactExamples[componentTag] ??= [];
+      reactExamples[componentTag].push({
+        name: document.name,
+        path: document.detailPath,
+      });
+    }
+  }
+
+  for (const componentTag of Object.keys(reactExamples)) {
+    reactExamples[componentTag] = reactExamples[componentTag]
+      .filter(
+        (example, index, all) =>
+          all.findIndex(
+            (candidate) =>
+              candidate.name === example.name && candidate.path === example.path
+          ) === index
+      )
+      .sort(
+        (left, right) =>
+          left.name.localeCompare(right.name) ||
+          left.path.localeCompare(right.path)
+      );
+  }
+
+  const componentSearchDocuments = createComponentDocuments(
+    componentDoc,
+    relatedExamples,
+    relatedBlocks,
+    reactExportNames,
+    reactExamples
+  );
   for (const document of blocks) {
     document.relatedComponents = stringList(
       blockComponents[document.name] ?? []
