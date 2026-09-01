@@ -23,8 +23,9 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
 import { hasSlottedContent } from '../utils/shadow-dom';
+
+type AriaCheckedValue = 'true' | 'false' | 'mixed';
 
 /**
  * @form-ready
@@ -94,18 +95,58 @@ export class Checkbox implements IxFormComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   private touched = false;
+  private keyboardActivationPending = false;
 
   @State() private hasDefaultSlotElements = false;
 
   private defaultSlotElement?: HTMLSlotElement;
 
-  private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
-    checkboxRef.checked = this.checked;
-  });
-
   private setCheckedState(newChecked: boolean) {
     this.checked = newChecked;
     this.checkedChange.emit(this.checked);
+  }
+
+  private toggleCheckedState() {
+    if (this.disabled) {
+      return;
+    }
+
+    this.setCheckedState(!this.checked);
+  }
+
+  private clearKeyboardActivationPending() {
+    this.keyboardActivationPending = false;
+  }
+
+  private onKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    if (event.code === 'Space') {
+      event.preventDefault();
+      this.keyboardActivationPending = true;
+      this.toggleCheckedState();
+    }
+  }
+
+  private onKeyUp(event: KeyboardEvent) {
+    if (event.code === 'Space') {
+      this.clearKeyboardActivationPending();
+    }
+  }
+
+  private onClick() {
+    if (this.keyboardActivationPending) {
+      this.clearKeyboardActivationPending();
+      return;
+    }
+
+    this.toggleCheckedState();
+  }
+
+  disconnectedCallback() {
+    this.clearKeyboardActivationPending();
   }
 
   @Watch('checked')
@@ -133,6 +174,23 @@ export class Checkbox implements IxFormComponent<string> {
 
   private get isLabelLess() {
     return !this.label && !this.hasDefaultSlotElements;
+  }
+
+  private get ariaLabel() {
+    return (
+      this.label ||
+      this.hostElement.getAttribute('aria-label') ||
+      this.hostElement.textContent?.trim() ||
+      undefined
+    );
+  }
+
+  private get ariaCheckedValue(): AriaCheckedValue {
+    if (this.indeterminate) {
+      return 'mixed';
+    }
+
+    return this.checked ? 'true' : 'false';
   }
 
   updateFormInternalValue() {
@@ -202,38 +260,35 @@ export class Checkbox implements IxFormComponent<string> {
   render() {
     return (
       <Host
-        aria-checked={a11yBoolean(this.checked)}
+        aria-checked={this.ariaCheckedValue}
+        aria-label={this.ariaLabel}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-required={a11yBoolean(this.required)}
         role="checkbox"
+        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled,
           checked: this.checked,
           indeterminate: this.indeterminate,
           'label-less': this.isLabelLess,
         }}
+        onClick={() => this.onClick()}
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
+        onKeyUp={(event: KeyboardEvent) => this.onKeyUp(event)}
         onFocus={() => (this.touched = true)}
         onBlur={() => this.ixBlur.emit()}
       >
-        <label>
-          <input
-            aria-checked={a11yBoolean(this.checked)}
-            required={this.required}
-            disabled={this.disabled}
-            checked={this.checked}
-            ref={this.inputRef}
-            type="checkbox"
-            onChange={() => this.setCheckedState(!this.checked)}
-          />
+        <div aria-hidden="true">
           <div class="checkbox-button">
-            <button
-              disabled={this.disabled}
+            <div
+              aria-hidden="true"
               class={{
+                'checkbox-box': true,
                 checked: this.checked,
               }}
-              onClick={() => this.setCheckedState(!this.checked)}
             >
               {this.renderCheckmark()}
-            </button>
+            </div>
           </div>
           <ix-typography
             format="label"
@@ -247,7 +302,7 @@ export class Checkbox implements IxFormComponent<string> {
               }
             ></slot>
           </ix-typography>
-        </label>
+        </div>
       </Host>
     );
   }
