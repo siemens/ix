@@ -53,7 +53,8 @@ export class IconButton
   @Prop() size: '24' | '16' | '12' = '24';
 
   /**
-   * Color of icon in  button
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    */
   @Prop() iconColor?: string;
 

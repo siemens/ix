@@ -8,14 +8,15 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use './../card/card-vars' as card-vars;
+@use './../card/card.vars' as card-vars;
 
+@use './card-accordion.vars' as *;
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
-  transition: var(--theme-default-time) ease-in-out;
+  transition: var(--ix-card-accordion--transition-duration) ease-in-out;
   --ix-card-accordion-expanded-height: 14.75rem;
 
   @include component.ix-component;
@@ -34,8 +35,8 @@
     justify-content: flex-start;
 
     @include hover.focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid var(--ix-card-accordion--outline-color--focus);
+      outline-offset: var(--ix-card-accordion--focus--outline-offset);
     }
   }
 
@@ -50,7 +51,8 @@
 
   .expand-icon {
     margin-left: 0.5rem;
-    transition: var(--theme-default-time) transform ease-in-out;
+    transition: var(--ix-card-accordion-expand-icon--transition-duration)
+      transform ease-in-out;
   }
 
   .expand-icon.show {
@@ -63,7 +65,8 @@
     width: 100%;
     height: 0;
     overflow: hidden;
-    transition: height var(--theme-default-time) ease-in-out;
+    transition: height var(--ix-card-accordion-content--transition-duration)
+      ease-in-out;
   }
 
   .expand-content::after {
@@ -87,14 +90,15 @@
 
   .expand-content-body {
     opacity: 0;
-    transition: opacity var(--theme-default-time) ease-in-out;
+    transition: opacity var(--ix-card-accordion-content--transition-duration)
+      ease-in-out;
   }
 
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
     height: calc(var(--ix-card-accordion-expanded-height) - 1rem);
-    color: var(--theme-color-std-text);
+    color: var(--ix-card-accordion-content--color);
     opacity: 1;
   }
 
@@ -106,54 +110,57 @@
     width: 100%;
     height: 1rem;
 
-    background-color: var(--theme-color-component-1);
-    border-bottom-left-radius: var(--theme-default-border-radius);
-    border-bottom-right-radius: var(--theme-default-border-radius);
+    background-color: var(--ix-card-accordion-footer--background);
+    border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);
+    border-bottom-right-radius: var(--ix-card-accordion-footer--border-radius);
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.variant-#{$variant}) {
     .expand-action {
       background-color: var(
-        --theme-push-card-#{$variant}-accordion--background
+        --ix-card-accordion-#{$variant}-accordion--background
       );
 
       &:hover {
         background: var(
-          --theme-push-card-#{$variant}-accordion--background--hover
+          --ix-card-accordion-#{$variant}-accordion--background--hover
         );
       }
 
       &:active {
         background: var(
-          --theme-push-card-#{$variant}-accordion--background--active
+          --ix-card-accordion-#{$variant}-accordion--background--active
         );
       }
     }
 
     .expand-content {
       background-color: var(
-        --theme-push-card-#{$variant}-accordion-frame--background
+        --ix-card-accordion-#{$variant}-accordion-frame--background
       );
     }
 
     .expand-content::after {
-      border: var(--theme-push-card-#{$variant}-accordion-frame--border-width)
+      border: var(
+          --ix-card-accordion-#{$variant}-accordion-frame--border-width,
+          0px
+        )
         solid
         transparent;
       border-color: var(
-        --theme-push-card-#{$variant}-accordion-frame--border-color
+        --ix-card-accordion-#{$variant}-accordion-frame--border-color
       );
     }
 
     .expand-content.show .expand-content-body {
-      color: var(--theme-color-std-text);
+      color: var(--ix-card-accordion-content--color);
     }
 
     .expand-content-footer {
       background-color: var(
-        --theme-push-card-#{$variant}-accordion-footer--background
+        --ix-card-accordion-#{$variant}-accordion-footer--background
       );
     }
   }
