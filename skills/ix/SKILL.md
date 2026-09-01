@@ -34,8 +34,8 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 | Need                                                                         | Primary source                                                                   | Fallback or supporting source                                  |
 | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | Component discovery, exact API, related examples, Figma IDs                  | `https://siemens.github.io/ix/llms.txt` and its matching versioned registry docs | Installed `@siemens/ix` metadata                               |
-| Practical framework examples                                                 | Matching version's registry `llms/examples.md` and linked source files           | Related examples in component details                          |
-| Complete reusable UI blocks                                                  | Matching version's registry `llms/blocks.md` and linked source files             | Existing application patterns built from documented components |
+| Practical framework examples                                                 | Matching version's registry `llms/examples.md` and linked materialized files     | Related examples in component details                          |
+| Complete reusable UI blocks                                                  | Matching version's registry `llms/blocks.md` and linked materialized files       | Existing application patterns built from documented components |
 | Component usage and design guidance                                          | Documentation links from the versioned component detail                          | `https://ix.siemens.io/llms.txt`                               |
 | Installation, migration, accessibility, UX writing, charts, general guidance | `https://ix.siemens.io/llms.txt` and the relevant linked page                    | Repository-local guidance for the target project               |
 | Icon discovery                                                               | `https://ix.siemens.io/docs/icons/icon-library.md`                               | Installed `@siemens/ix-icons/dist/sample.json`                 |
@@ -116,7 +116,7 @@ fully portable and bypasses package and registry resolution.
    `v<major.minor.patch>`.
 2. Fetch the matched detail artifact at the `path` returned by the helper:
    - `llms/components/<component-tag>.md` for the complete component contract
-   - `examples/<name>.json` for framework variants and their source files
+   - `examples/<name>.json` for framework variants and their materialized files
    - `blocks/<name>.json` for copyable multi-file UI patterns
 3. Do not substitute the `latest` registry version without saying so.
 
@@ -148,8 +148,12 @@ behavior, pattern, source file, or iX component.
 
 1. Search with `--kind example` and the target `--framework`.
 2. Open the matched example manifest from its canonical detail path.
-3. Inspect the available framework variants and source files.
-4. Open every source file needed by the target framework variant.
+3. Inspect the available framework variants and their `files[].path` values.
+   Fetch each file path relative to the example manifest URL. For example,
+   `react/event-list.tsx` in `/v5.2.1/examples/event-list.json` is fetched from
+   `/v5.2.1/examples/react/event-list.tsx`. Never infer a route or look for a
+   repository source path.
+4. Open every materialized file needed by the target framework variant.
 5. Confirm the example's component APIs against the target project.
 6. Adapt the example to existing application patterns; do not copy unrelated scaffolding.
 
@@ -215,10 +219,13 @@ Use blocks for complete page sections or reusable multi-file patterns, not for a
    - intended use
    - preview path
    - available framework variants
-   - all linked source files
+   - all linked files using each manifest's `files[].path`, resolved relative
+     to that manifest URL
    - component relationship availability
 4. Use only the target framework variant.
-5. Read the linked source files before adapting the block.
+5. Read the linked files before adapting the block. Resolve each
+   `files[].path` relative to the block manifest URL; never infer a route or
+   use a repository source path.
 6. Integrate the block with the application's routing, state, styling, and naming conventions.
 7. Do not infer used-component relationships when the block docs mark them unavailable.
 8. Do not depend on private registry commands or a private CLI to install the block.

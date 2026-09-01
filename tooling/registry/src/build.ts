@@ -31,15 +31,16 @@ const __dirname = path.resolve();
 const __workspace_root = path.join(__dirname, '..', '..');
 const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
-const __angular_standalone_blocks = path.join(
-  __node_modules,
-  'angular-standalone-blocks'
-);
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
 const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
 const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
+const __authored_block_schema = path.join(
+  __dirname,
+  'schemas',
+  'authored-block.schema.json'
+);
 const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
 const __documentation_search_index_schema = path.join(
   __dirname,
@@ -64,7 +65,7 @@ type BlockDefinition = {
   variants?: Record<
     string,
     {
-      files?: Array<{ source: string }>;
+      files?: Array<{ sourcePath: string }>;
     }
   >;
 };
@@ -119,7 +120,7 @@ async function readBlockNamesByReactSource(): Promise<Map<string, string>> {
 
   for (const block of blocks) {
     for (const file of block.variants?.react?.files ?? []) {
-      const source = normalizeSourcePath(file.source);
+      const source = normalizeSourcePath(file.sourcePath);
       const relativeSource = source.startsWith('react-blocks/')
         ? source.slice('react-blocks/'.length)
         : source;
@@ -166,7 +167,7 @@ const task = new Listr<Ctx>([
       const files = await glob(path.join(__blocks_root, '*.json'), {
         absolute: true,
       });
-      await validateJsonFiles(files, __block_schema);
+      await validateJsonFiles(files, __authored_block_schema);
     },
   },
   {
@@ -189,26 +190,12 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy react blocks to dist',
+    title: 'Copy block preview assets to dist',
     task: async (ctx) => {
       const dest = path.join(ctx.dist, 'blocks', 'react-blocks');
-      await Promise.all([
-        fs.copy(path.join(__react_blocks, 'dist'), path.join(dest, 'dist'), {
-          dereference: true,
-        }),
-        fs.copy(path.join(__react_blocks, 'src'), path.join(dest, 'src'), {
-          dereference: true,
-        }),
-      ]);
-    },
-  },
-  {
-    title: 'Copy angular blocks to dist',
-    task: async (ctx) => {
-      const dest = path.join(ctx.dist, 'blocks', 'angular-standalone-blocks');
       await fs.copy(
-        path.join(__angular_standalone_blocks, 'src'),
-        path.join(dest, 'src'),
+        path.join(__react_blocks, 'dist'),
+        path.join(dest, 'dist'),
         {
           dereference: true,
         }
@@ -224,40 +211,8 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy example source files to dist',
+    title: 'Copy HTML example preview assets to dist',
     task: async (ctx) => {
-      const frameworks = [
-        'html-examples',
-        'react-examples',
-        'angular-examples',
-        'angular-standalone-examples',
-        'vue-examples',
-      ];
-
-      await Promise.all(
-        frameworks.map(async (framework) => {
-          const srcSourcePath = path.join(
-            __examples_root,
-            framework,
-            'src',
-            'preview-examples'
-          );
-          const srcDestPath = path.join(
-            ctx.dist,
-            'examples',
-            framework,
-            'src',
-            'preview-examples'
-          );
-
-          if (await fs.pathExists(srcSourcePath)) {
-            await fs.copy(srcSourcePath, srcDestPath, { dereference: true });
-          } else {
-            console.warn(`⚠️  Example source not found: ${srcSourcePath}`);
-          }
-        })
-      );
-
       const htmlDistSourcePath = path.join(
         __examples_root,
         'html-examples',
@@ -414,11 +369,15 @@ const task = new Listr<Ctx>([
         absolute: true,
       });
       await Promise.all(
-        files.map((file) =>
-          fs.copy(file, path.join(dest, path.basename(file)), {
-            dereference: true,
-          })
-        )
+        files
+          .filter(
+            (file) => path.basename(file) !== 'authored-block.schema.json'
+          )
+          .map((file) =>
+            fs.copy(file, path.join(dest, path.basename(file)), {
+              dereference: true,
+            })
+          )
       );
     },
   },

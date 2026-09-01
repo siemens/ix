@@ -88,7 +88,7 @@ export const exampleTools: ToolDefinition[] = [
 
           if (variant) {
             const files = variant.files
-              .map((f: { target: string }) => `  - ${f.target}`)
+              .map((f: { path: string }) => `  - ${f.path}`)
               .join('\n');
 
             exampleDetails = dedent`

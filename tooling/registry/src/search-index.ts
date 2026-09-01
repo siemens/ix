@@ -107,8 +107,7 @@ type ComponentDocJson = {
 };
 
 type DefinitionFile = {
-  source: string;
-  target: string;
+  path: string;
 };
 
 type DefinitionVariant = {
@@ -190,6 +189,29 @@ function isDocumentationSearchFramework(
   value: string
 ): value is DocumentationSearchFramework {
   return (DOCUMENTATION_SEARCH_FRAMEWORKS as readonly string[]).includes(value);
+}
+
+function assertCanonicalFilePath(
+  filePath: string,
+  framework: DocumentationSearchFramework
+): void {
+  if (
+    !filePath.startsWith(`${framework}/`) ||
+    filePath.includes('\\') ||
+    filePath.includes('\0') ||
+    filePath.includes(':') ||
+    filePath.includes('?') ||
+    filePath.includes('#') ||
+    filePath.includes('%') ||
+    path.posix.isAbsolute(filePath) ||
+    filePath
+      .split('/')
+      .some((segment) => !segment || segment === '.' || segment === '..')
+  ) {
+    throw new Error(
+      `Invalid canonical ${framework} file path '${filePath}' in documentation search input.`
+    );
+  }
 }
 
 function normalizeFigmaId(value: string): string {
@@ -358,60 +380,34 @@ function createComponentDocuments(
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
-async function resolveSourcePath(
-  source: string,
-  contentRoot: 'blocks' | 'examples',
-  contentDir: string,
-  distDir: string,
-  workspaceRoot: string
-): Promise<string | null> {
-  const candidates = [
-    path.resolve(contentDir, source),
-    path.resolve(distDir, source),
-    path.resolve(distDir, contentRoot, source),
-    path.resolve(workspaceRoot, source),
-    path.resolve(workspaceRoot, contentRoot, source),
-  ];
-
-  for (const candidate of candidates) {
-    if (await fs.pathExists(candidate)) {
-      return candidate;
-    }
-  }
-
-  return null;
-}
-
 async function readVariantContent(
   variant: DefinitionVariant,
-  contentRoot: 'blocks' | 'examples',
   contentDir: string,
-  distDir: string,
-  workspaceRoot: string
+  framework: DocumentationSearchFramework
 ): Promise<{ files: string; sourceText: string }> {
   const files = [...(variant.files ?? [])].sort((a, b) =>
-    a.target.localeCompare(b.target)
+    a.path.localeCompare(b.path)
   );
   const sourceCode: string[] = [];
 
   for (const file of files) {
-    const sourcePath = await resolveSourcePath(
-      file.source,
-      contentRoot,
-      contentDir,
-      distDir,
-      workspaceRoot
-    );
-    if (!sourcePath) {
-      console.warn(`⚠️  Source file not found: ${file.source}`);
-      continue;
+    assertCanonicalFilePath(file.path, framework);
+    const sourcePath = path.resolve(contentDir, file.path);
+    const relativePath = path.relative(contentDir, sourcePath);
+    if (
+      relativePath === '' ||
+      relativePath.startsWith('..' + path.sep) ||
+      path.isAbsolute(relativePath)
+    ) {
+      throw new Error(
+        `Generated ${contentDir} file path escapes its registry directory: ${file.path}`
+      );
     }
-
     sourceCode.push(await fs.readFile(sourcePath, 'utf8'));
   }
 
   return {
-    files: files.map((file) => file.target).join(' '),
+    files: files.map((file) => file.path).join(' '),
     sourceText: sourceCode.join('\n'),
   };
 }
@@ -419,8 +415,6 @@ async function readVariantContent(
 async function definitionDocuments(
   definitionsDir: string,
   contentRoot: 'blocks' | 'examples',
-  distDir: string,
-  workspaceRoot: string,
   relatedComponents: Record<string, string[]>
 ): Promise<DocumentationSearchDocument[]> {
   const definitionFiles = await glob(path.join(definitionsDir, '*.json'), {
@@ -450,10 +444,8 @@ async function definitionDocuments(
 
       const content = await readVariantContent(
         variant,
-        contentRoot,
         definitionsDir,
-        distDir,
-        workspaceRoot
+        frameworkName
       );
       const kind = contentRoot === 'blocks' ? 'block' : 'example';
       const name = definition.name;
@@ -512,20 +504,8 @@ export async function buildDocumentationSearchIndex(
     fs.readJson(options.componentRelatedBlocksPath) as Promise<
       Record<string, string[]>
     >,
-    definitionDocuments(
-      options.blocksDir,
-      'blocks',
-      options.distDir,
-      options.workspaceRoot,
-      {}
-    ),
-    definitionDocuments(
-      options.examplesDir,
-      'examples',
-      options.distDir,
-      options.workspaceRoot,
-      {}
-    ),
+    definitionDocuments(options.blocksDir, 'blocks', {}),
+    definitionDocuments(options.examplesDir, 'examples', {}),
     readReactExportNames(options.workspaceRoot),
   ]);
 
